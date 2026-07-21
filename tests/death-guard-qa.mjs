@@ -193,6 +193,11 @@ check('complete preview PWA cache revision is current',readProject('service-work
 check('book scripts and styles use the current release token',[...cssFiles,...files].every(file=>html.includes('./'+file+'?v=4')));
 check('v4 icon is used without legacy v3 PNG references',html.includes('assets/icon-v4.svg')&&!html.includes('icon-180.png'));
 check('navigation and popup specifications are present',['docs/SPEC_NAVIGATION.md','docs/SPEC_POPUPS.md'].every(file=>fs.existsSync(path.join(root,file))));
+const navigationSpec=read('docs/SPEC_NAVIGATION.md');
+check('navigation spec uses the current ten Glossary groups',navigationSpec.includes('десяти вложенных пунктов Glossary')&&!navigationSpec.includes('шести вложенных пунктов Glossary'));
+check('navigation spec inventory accounts for all 104 targets',navigationSpec.includes('6 + 1 + 1 + 5 + 9 + 27 + 9 + 36 + 10 = 104'));
+check('navigation spec treats 2200ms as recovery rather than success',navigationSpec.includes('сам по себе не считается успешным завершением')&&navigationSpec.includes('выполняет финальное позиционирование'));
+check('navigation spec defines singular label and plural section',navigationSpec.includes('подпись `Enhancement` ведёт к общему блоку с видимым заголовком `Enhancements`'));
 
 for(const result of results)console.log(`${result.ok?'PASS':'FAIL'}  ${result.name}${result.detail?' — '+result.detail:''}`);
 const failed=results.filter(result=>!result.ok);
