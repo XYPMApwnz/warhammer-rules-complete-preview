@@ -103,6 +103,14 @@ try{
     check('behavior: Glossary root does not flash between nested groups',selected==='glossary-core',selected);
     selected='';controller.items=[{id:'datasheets',depth:1,glossaryNested:false,node:parentNode},{id:'epic-heroes',depth:2,glossaryNested:false,node:childNode},{id:'characters',depth:2,glossaryNested:false,node:nextNode}];controller.geometry.ranges=[{item:controller.items[0],top:0,bottom:700},{item:controller.items[1],top:40,bottom:80},{item:controller.items[2],top:130,bottom:320}];controller.readViewport();
     check('behavior: parent does not flash between non-Glossary groups',selected==='epic-heroes',selected);
+    let stopped=0,scheduled=0;
+    controller.state={owner:'controller',active:'epic-heroes',transition:8};
+    controller.panel={contains:target=>target==='toc'};controller.menuButton={contains:()=>false};controller.collapseButton={contains:()=>false};
+    controller.stopControlledScroll=()=>{stopped++};controller.scheduleRead=()=>{scheduled++};
+    controller.cancelTransition({target:'toc'});
+    check('behavior: rapid TOC pointer input keeps controller ownership',controller.state.owner==='controller'&&controller.state.transition===8&&stopped===0&&scheduled===0,`${controller.state.owner} / ${controller.state.transition}`);
+    controller.cancelTransition({target:'article'});
+    check('behavior: article pointer input cancels controlled navigation',controller.state.owner==='reader'&&controller.state.transition===9&&stopped===1&&scheduled===1,`${controller.state.owner} / ${controller.state.transition}`);
   }finally{
     if(previousWindow===undefined)delete globalThis.window;else globalThis.window=previousWindow;
     if(previousDocument===undefined)delete globalThis.document;else globalThis.document=previousDocument;

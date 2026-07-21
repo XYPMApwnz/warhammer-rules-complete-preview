@@ -72,9 +72,9 @@
       this.scrim.addEventListener('click',()=>this.setDrawer(false));
       window.addEventListener('scroll',()=>this.scheduleRead(),{passive:true});
       window.addEventListener('resize',()=>this.handleResize(),{passive:true});
-      window.addEventListener('wheel',()=>this.cancelTransition(),{passive:true});
-      window.addEventListener('touchstart',()=>this.cancelTransition(),{passive:true});
-      window.addEventListener('pointerdown',()=>this.cancelTransition(),{passive:true});
+      window.addEventListener('wheel',event=>this.cancelTransition(event),{passive:true});
+      window.addEventListener('touchstart',event=>this.cancelTransition(event),{passive:true});
+      window.addEventListener('pointerdown',event=>this.cancelTransition(event),{passive:true});
 
       document.addEventListener('keydown',event=>{
         if(['PageUp','PageDown','Home','End','ArrowUp','ArrowDown',' '].includes(event.key))this.cancelTransition();
@@ -267,9 +267,16 @@
     navigate(id,element,settled){this.beginTransition(id,this.destination(element),()=>{this.highlight(element);settled?.();});}
     restore(id,scrollY,settled){this.beginTransition(id,Math.max(0,scrollY),settled);}
     beginTransition(id,destination,settled){
-      const token=++this.state.transition;this.state.owner='controller';this.activate(id,{behavior:'smooth'});
+      if(this.state.owner==='controller')this.stopControlledScroll();
+      const token=++this.state.transition;this.state.owner='controller';this.activate(id,{behavior:'auto'});
       window.scrollTo({top:destination,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
       this.waitForSettle(destination,token,settled);
+    }
+    stopControlledScroll(){
+      const root=document.documentElement,previous=root.style.scrollBehavior;
+      root.style.scrollBehavior='auto';
+      window.scrollTo({left:window.scrollX,top:window.scrollY,behavior:'auto'});
+      root.style.scrollBehavior=previous;
     }
     waitForSettle(destination,token,settled){
       const started=Date.now();let previous=window.scrollY,stable=0;
@@ -283,9 +290,11 @@
       };
       requestAnimationFrame(inspect);
     }
-    cancelTransition(){
+    cancelTransition(event){
+      const target=event?.target;
+      if(target&&(this.panel.contains(target)||this.menuButton.contains(target)||this.collapseButton.contains(target)))return;
       if(this.state.owner!=='controller')return;
-      this.state.transition++;this.state.owner='reader';this.scheduleRead();
+      this.stopControlledScroll();this.state.transition++;this.state.owner='reader';this.scheduleRead();
     }
   }
 
