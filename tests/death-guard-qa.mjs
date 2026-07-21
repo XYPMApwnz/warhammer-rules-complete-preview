@@ -194,8 +194,8 @@ check('book scripts and styles use the current release token',[...cssFiles,...fi
 check('v4 icon is used without legacy v3 PNG references',html.includes('assets/icon-v4.svg')&&!html.includes('icon-180.png'));
 check('navigation and popup specifications are present',['docs/SPEC_NAVIGATION.md','docs/SPEC_POPUPS.md'].every(file=>fs.existsSync(path.join(root,file))));
 const navigationSpec=read('docs/SPEC_NAVIGATION.md');
-check('navigation spec uses the current ten Glossary groups',navigationSpec.includes('десяти вложенных пунктов Glossary')&&!navigationSpec.includes('шести вложенных пунктов Glossary'));
-check('navigation spec inventory accounts for all 104 targets',navigationSpec.includes('6 + 1 + 1 + 5 + 9 + 27 + 9 + 36 + 10 = 104'));
+check('navigation spec keeps nested-group behavior independent of item count',navigationSpec.includes('Правило не зависит от количества пунктов в конкретной книге')&&!navigationSpec.includes('вложенных пунктов Glossary после клика'));
+check('navigation spec delegates concrete inventory to book data',navigationSpec.includes('Число глобальных целей не фиксируется в этом ТЗ')&&navigationSpec.includes('ожидаемый состав из её структурированных данных'));
 check('navigation spec treats 2200ms as recovery rather than success',navigationSpec.includes('сам по себе не считается успешным завершением')&&navigationSpec.includes('выполняет финальное позиционирование'));
 check('navigation spec defines singular label and plural section',navigationSpec.includes('подпись `Enhancement` ведёт к общему блоку с видимым заголовком `Enhancements`'));
 
