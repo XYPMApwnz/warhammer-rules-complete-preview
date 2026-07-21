@@ -1,0 +1,7 @@
+{
+  "name": "warhammer-rules-complete-preview",
+  "private": true,
+  "scripts": {
+    "test": "node tests/death-guard-qa.mjs && node books/core-rules/tests/qa.mjs && node books/adeptus-mechanicus/tests/qa.mjs && node tests/integration-qa.mjs"
+  }
+}

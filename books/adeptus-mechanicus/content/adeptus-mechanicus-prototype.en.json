@@ -1,0 +1,23 @@
+{
+  "schema": "wh40k-rulebook-v5-prototype",
+  "version": "1.0",
+  "title": "Adeptus Mechanicus Rules",
+  "subtitle": "Faction Pack v1.0 prototype using the navigation contract v5",
+  "sections": [
+    {"id":"updates","title":"Updates","subsections":[{"id":"rules-updates","title":"Faction Pack Rules Updates"}]},
+    {"id":"core-rules","title":"Core Rules","subsections":[{"id":"army-rule-doctrina","title":"Doctrina Imperatives","parts":["protector-imperative","conqueror-imperative"]}]},
+    {"id":"detachment-cohort-acquisitus","title":"Cohort Acquisitus","kind":"detachment","subsections":["cohort-acquisitus-rule","cohort-acquisitus-enhancements","cohort-acquisitus-stratagems"]},
+    {"id":"detachment-lords-of-the-forge","title":"Lords of the Forge","kind":"detachment","subsections":["lords-of-the-forge-rule","lords-of-the-forge-enhancements","lords-of-the-forge-stratagems"]},
+    {"id":"detachment-luminen-auto-choir","title":"Luminen Auto-choir","kind":"detachment","subsections":["luminen-auto-choir-rule","luminen-auto-choir-enhancements","luminen-auto-choir-stratagems"]},
+    {"id":"detachment-eradication-cohort","title":"Eradication Cohort","kind":"detachment","subsections":["eradication-cohort-rule","eradication-cohort-enhancements","eradication-cohort-stratagems"]},
+    {"id":"detachment-haloscreed-battle-clade","title":"Haloscreed Battle Clade","kind":"detachment","subsections":["haloscreed-battle-clade-rule","haloscreed-battle-clade-enhancements","haloscreed-battle-clade-stratagems"]},
+    {"id":"unit-thulia-ghuld","title":"Thulia Ghuld","kind":"unit","sourcePages":"9–10"},
+    {"id":"unit-hastarii-exterminators","title":"Hastarii Exterminators","kind":"unit","sourcePages":"11–12"},
+    {"id":"unit-hastarii-fusiliers","title":"Hastarii Fusiliers","kind":"unit","sourcePages":"13–14"},
+    {"id":"unit-servitor-battleclade","title":"Servitor Battleclade","kind":"unit","sourcePages":"15–16"}
+  ],
+  "sources": [
+    {"title":"Adeptus Mechanicus Faction Pack","version":"1.0","legalFrom":"2026-06-20","pages":26,"sha256":"7F01DD2CE7E35C762B0AB625ADE779022275574CF2D01EE46EE16B2F5582341C"}
+  ],
+  "audit": {"detachments":5,"datasheets":4,"glossaryTerms":11,"navMaxDepth":3,"navigationContract":"v5"}
+}
