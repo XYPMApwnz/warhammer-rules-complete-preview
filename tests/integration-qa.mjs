@@ -12,7 +12,7 @@ const check=(name,ok,detail='')=>results.push({name,ok,detail});
 const library=read('index.html');
 const sw=read('service-worker.js');
 const books={
-  'death-guard':{version:'5',app:'scripts/app.js',usesPopupGlossary:true,files:['assets/icon-v4.svg','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']},
+  'death-guard':{version:'6',app:'scripts/app.js',usesPopupGlossary:true,files:['assets/icon-v4.svg','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']},
   'core-rules':{version:null,app:'app.js',usesPopupGlossary:false,files:['styles.css','config.js','basic-content.js','app.js','content/core-rules.source.en.js','content/core-rules.en.js']},
   'adeptus-mechanicus':{version:'9',app:'scripts/app.js',usesPopupGlossary:true,files:['assets/mechanicus-logo.png','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','styles/mechanicus.css','scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']}
 };
@@ -40,8 +40,8 @@ for(const [slug,book] of Object.entries(books)){
 }
 
 check('preview cache namespace is isolated',sw.includes('warhammer-rules-complete-preview-'));
-check('preview cache revision is current',sw.includes('`${CACHE_PREFIX}v6`'));
-check('all 88 Core Rules source pages are precached',sw.includes('Array.from({length:88}')&&sw.includes('assets/pages/page-${String(index+1).padStart'));
+check('preview cache revision is current',sw.includes('`${CACHE_PREFIX}v7`'));
+check('Core Rules source pages are cached only on demand',!sw.includes('Array.from({length:88}')&&sw.includes('cached || fetchAndCache(request)'));
 check('global glossary runtime exists and is precached',exists('glossary/generated/glossary.en.js')&&sw.includes('"./glossary/generated/glossary.en.js?v=4"'));
 for(const [slug,book] of Object.entries(books)){
   const html=read(`books/${slug}/index.html`);

@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "warhammer-rules-complete-preview-";
-const CACHE_NAME = `${CACHE_PREFIX}v6`;
+const CACHE_NAME = `${CACHE_PREFIX}v7`;
 const LIBRARY_FALLBACK = "./index.html";
 const DEATH_GUARD_FALLBACK = "./books/death-guard/index.html";
 const CORE_RULES_FALLBACK = "./books/core-rules/index.html";
@@ -35,17 +35,17 @@ const APP_SHELL = [
   "./books/death-guard/",
   DEATH_GUARD_FALLBACK,
   "./books/death-guard/assets/icon-v4.svg",
-  "./books/death-guard/styles/tokens.css?v=5",
-  "./books/death-guard/styles/layout.css?v=5",
-  "./books/death-guard/styles/navigation.css?v=5",
-  "./books/death-guard/styles/content.css?v=5",
-  "./books/death-guard/styles/popups.css?v=5",
-  "./books/death-guard/scripts/data.js?v=5",
-  "./books/death-guard/scripts/navigation-controller.js?v=5",
-  "./books/death-guard/scripts/popup-controller.js?v=5",
-  "./books/death-guard/scripts/journey-controller.js?v=5",
-  "./books/death-guard/scripts/ui-controllers.js?v=5",
-  "./books/death-guard/scripts/app.js?v=5",
+  "./books/death-guard/styles/tokens.css?v=6",
+  "./books/death-guard/styles/layout.css?v=6",
+  "./books/death-guard/styles/navigation.css?v=6",
+  "./books/death-guard/styles/content.css?v=6",
+  "./books/death-guard/styles/popups.css?v=6",
+  "./books/death-guard/scripts/data.js?v=6",
+  "./books/death-guard/scripts/navigation-controller.js?v=6",
+  "./books/death-guard/scripts/popup-controller.js?v=6",
+  "./books/death-guard/scripts/journey-controller.js?v=6",
+  "./books/death-guard/scripts/ui-controllers.js?v=6",
+  "./books/death-guard/scripts/app.js?v=6",
   "./books/core-rules/",
   CORE_RULES_FALLBACK,
   "./books/core-rules/styles.css",
@@ -54,7 +54,6 @@ const APP_SHELL = [
   "./books/core-rules/app.js",
   "./books/core-rules/content/core-rules.source.en.js",
   "./books/core-rules/content/core-rules.en.js",
-  ...Array.from({length:88}, (_,index) => `./books/core-rules/assets/pages/page-${String(index+1).padStart(2,"0")}.jpg`),
   "./books/adeptus-mechanicus/",
   ADEPTUS_MECHANICUS_FALLBACK,
   "./books/adeptus-mechanicus/assets/mechanicus-logo.png",
@@ -119,7 +118,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  const networkUpdate = fetchAndCache(request);
-  event.waitUntil(networkUpdate.then(() => undefined).catch(() => undefined));
-  event.respondWith(caches.match(request).then((cached) => cached || networkUpdate));
+  event.respondWith(
+    caches.match(request).then((cached) => cached || fetchAndCache(request))
+  );
 });

@@ -290,6 +290,26 @@
   .weapon-row > div:first-child { font-size: 12px; }
   .weapon-head > div { font-size: 8px; }
   .tag { font-size: 7px; }
+
+  @supports (content-visibility: auto) {
+    .unit-card {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 1800px;
+    }
+    .stratagem {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 340px;
+    }
+    .rule-card,
+    .enhancement {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 300px;
+    }
+    .glossary-card {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 250px;
+    }
+  }
 }
 @media (max-width: 480px) {
   .hero { min-height: 520px; padding: 34px 24px; background-position: 58% 22%; }
