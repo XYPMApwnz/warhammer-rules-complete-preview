@@ -2,17 +2,27 @@
   'use strict';
   const api=window.WH40K_GLOSSARY;
   const terms=Object.keys(api.forBook('death-guard')).filter(id=>api.resolve(id)===id).map(id=>api.get(id)).filter(Boolean).sort((a,b)=>a.title.en.localeCompare(b.title.en));
-  const search=document.getElementById('search'),filters=document.getElementById('filters'),list=document.getElementById('termList'),detail=document.getElementById('termDetail'),resultCount=document.getElementById('resultCount');
-  let category='all',selected='';
+  const search=document.getElementById('search'),filters=document.getElementById('filters'),list=document.getElementById('termList'),detail=document.getElementById('termDetail'),resultCount=document.getElementById('resultCount'),libraryBack=document.getElementById('libraryBack');
+  let category='all',selected='',visibleLimit=120,searchTimer=0;
+  try{
+    const record=JSON.parse(sessionStorage.getItem('wh40k-mega-glossary-return')||'null');
+    if(record?.url&&record?.path){libraryBack.href=record.url;libraryBack.textContent='← Back to rulebook';}
+  }catch{}
   document.getElementById('termCount').textContent=api.counts.terms;
   document.getElementById('aliasCount').textContent=api.counts.aliases;
   const categories=['all',...new Set(terms.map(term=>term.kind))];
   const placeholder=/^(weapon|datasheet) profile\.?$/i;
 
-  function filterButton(value){const node=document.createElement('button');node.type='button';node.textContent=value==='all'?'All':value.replaceAll('-',' ');node.classList.toggle('active',value===category);node.addEventListener('click',()=>{category=value;renderFilters();renderList();});return node;}
+  function filterButton(value){const node=document.createElement('button');node.type='button';node.textContent=value==='all'?'All':value.replaceAll('-',' ');node.classList.toggle('active',value===category);node.addEventListener('click',()=>{category=value;visibleLimit=120;renderFilters();renderList();});return node;}
   function renderFilters(){filters.replaceChildren(...categories.map(filterButton));}
   function visibleTerms(){const query=search.value.trim().toLowerCase();return terms.filter(term=>(category==='all'||term.kind===category)&&(!query||`${term.title.en} ${term.summary?.en||''} ${term.definition.en} ${(term.aliases||[]).join(' ')}`.toLowerCase().includes(query)));}
-  function renderList(){const visible=visibleTerms();resultCount.textContent=`${visible.length} entries shown`;list.replaceChildren(...visible.map(term=>{const node=document.createElement('button');node.type='button';node.className='term-button';node.classList.toggle('active',term.id===selected);const title=document.createElement('strong');title.textContent=term.title.en;const meta=document.createElement('small');meta.textContent=`${term.kind} // ${term.scope}`;node.append(title,meta);node.addEventListener('click',()=>select(term.id));return node;}));}
+  function renderList(){
+    const visible=visibleTerms(),shown=visible.slice(0,visibleLimit);
+    resultCount.textContent=`${shown.length} of ${visible.length} entries shown`;
+    const nodes=shown.map(term=>{const node=document.createElement('button');node.type='button';node.className='term-button';node.classList.toggle('active',term.id===selected);const title=document.createElement('strong');title.textContent=term.title.en;const meta=document.createElement('small');meta.textContent=`${term.kind} // ${term.scope}`;node.append(title,meta);node.addEventListener('click',()=>select(term.id));return node;});
+    if(shown.length<visible.length){const more=document.createElement('button');more.type='button';more.className='term-button load-more';more.textContent=`Show ${Math.min(120,visible.length-shown.length)} more`;more.addEventListener('click',()=>{visibleLimit+=120;renderList();});nodes.push(more);}
+    list.replaceChildren(...nodes);
+  }
 
   function renderProfile(structured){
     const profile=structured?.weapon||structured?.statline;if(!profile)return null;
@@ -33,7 +43,7 @@
       card.append(title,meta);card.addEventListener('click',()=>select(linked.id));grid.append(card);
     }
     section.append(sectionLabel(`${label} // ${resolved.length}`),grid);
-    if(resolved.length>limit){const remainder=document.createElement('p');remainder.className='reference-remainder';remainder.textContent=`+ ${resolved.length-limit} more references`;section.append(remainder);}
+    if(resolved.length>limit){const remainder=document.createElement('button');remainder.type='button';remainder.className='reference-remainder';remainder.textContent=`Show ${resolved.length-limit} more references`;remainder.addEventListener('click',()=>{for(const linked of resolved.slice(limit)){const card=document.createElement('button');card.type='button';card.className='reference-card';const title=document.createElement('strong');title.textContent=linked.title.en;const meta=document.createElement('small');meta.textContent=`${linked.kind} // ${linked.canonicalSource?.locator||linked.scope}`;card.append(title,meta);card.addEventListener('click',()=>select(linked.id));grid.append(card);}remainder.remove();});section.append(remainder);}
     return section;
   }
 
@@ -63,5 +73,5 @@
     if(term.aliases?.length){const aliasNode=document.createElement('p');aliasNode.className='aliases';aliasNode.append('Legacy IDs: ');for(const value of term.aliases.slice(0,10)){const code=document.createElement('code');code.textContent=value;aliasNode.append(code);}detail.append(aliasNode);}
   }
 
-  search.addEventListener('input',renderList);window.addEventListener('hashchange',()=>select(decodeURIComponent(location.hash.slice(1))));renderFilters();renderList();const initial=decodeURIComponent(location.hash.slice(1));select(api.get(initial)?.id||api.get('core-lethal-hits')?.id||terms[0].id);
+  search.addEventListener('input',()=>{window.clearTimeout(searchTimer);searchTimer=window.setTimeout(()=>{visibleLimit=120;renderList();},100);});window.addEventListener('hashchange',()=>select(decodeURIComponent(location.hash.slice(1))));renderFilters();renderList();const initial=decodeURIComponent(location.hash.slice(1));select(api.get(initial)?.id||api.get('core-lethal-hits')?.id||terms[0].id);
 }());

@@ -18,7 +18,7 @@
 
 Официальный слой: `content/adeptus-mechanicus-rules.en.json`. Кодексные Detachments: `content/adeptus-mechanicus-codex-detachments.en.json`. Полный набор Datasheets: `content/adeptus-mechanicus-codex-datasheets.en.json`.
 
-Он генерирует `index.html`, `scripts/data.js` и `service-worker.js`.
+Он генерирует `index.html` и `scripts/data.js`. Offline-режимом всего объединённого сайта владеет корневой `service-worker.js`.
 
 Сборка:
 

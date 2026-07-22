@@ -8,12 +8,23 @@ const root=path.join(projectRoot,'books','death-guard');
 const read=name=>fs.readFileSync(path.join(root,name),'utf8');
 const readProject=name=>fs.readFileSync(path.join(projectRoot,name),'utf8');
 const html=read('index.html');
+const navigationTargets=readProject('books/shared/navigation-targets.js');
+const datasheetLayout=readProject('books/shared/datasheet-layout.js');
+const datasheetCss=readProject('books/shared/datasheet-system.css');
+const popupContent=readProject('books/shared/popup-content.js');
+const glossaryAutolink=readProject('books/shared/glossary-autolink.js');
 const bookData=JSON.parse(read('content/death-guard-rules.en.json'));
 const files=['scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'];
 const results=[];
 const check=(name,ok,detail='')=>results.push({name,ok,detail});
 
 for(const file of files){try{new vm.Script(read(file),{filename:file});check(file+' syntax',true);}catch(error){check(file+' syntax',false,error.message);}}
+try{new vm.Script(navigationTargets,{filename:'books/shared/navigation-targets.js'});check('shared navigation targets syntax',true);}catch(error){check('shared navigation targets syntax',false,error.message);}
+try{new vm.Script(datasheetLayout,{filename:'books/shared/datasheet-layout.js'});check('shared datasheet layout syntax',true);}catch(error){check('shared datasheet layout syntax',false,error.message);}
+try{new vm.Script(popupContent,{filename:'books/shared/popup-content.js'});check('shared popup content syntax',true);}catch(error){check('shared popup content syntax',false,error.message);}
+try{new vm.Script(glossaryAutolink,{filename:'books/shared/glossary-autolink.js'});check('shared glossary autolink syntax',true);}catch(error){check('shared glossary autolink syntax',false,error.message);}
+check('autolinker supports curated labels and typographic punctuation',glossaryAutolink.includes('entry.matchLabels')&&glossaryAutolink.includes("replace(/'/g")&&glossaryAutolink.includes("replace(/-/g"));
+check('production validation reuses the apply report',glossaryAutolink.includes('const missing=lastReport.ambiguous')&&!glossaryAutolink.includes('const missing=audit(root)'));
 
 const markup=html.replace(/<script[\s\S]*?<\/script>/gi,'');
 const ids=[...markup.matchAll(/\sid="([^"]+)"/g)].map(match=>match[1]);
@@ -57,14 +68,15 @@ check('navigation uses one passive scroll listener',(navigation.match(/addEventL
 check('navigation avoids :scope',!navigation.includes(':scope'));
 check('navigation has explicit reader/controller ownership',navigation.includes("owner:'reader'")&&navigation.includes("owner='controller'")&&navigation.includes("owner='reader'"));
 const settleSource=navigation.match(/waitForSettle\([\s\S]*?\n    cancelTransition/)?.[0]||'';
-check('navigation settles by reachable geometry instead of fixed delay',settleSource.includes('stable=atDestination&&')&&settleSource.includes('atDestination||stable>=6')&&settleSource.includes('Date.now()-started>2200')&&settleSource.includes("top:this.reachableDestination(destination)")&&!settleSource.includes('setTimeout'));
-check('intermediate stable frames cannot release scroll-spy',!settleSource.includes('Math.abs(current-destination)<2||stable>=6')&&!settleSource.includes('||stable>=6||'));
+check('navigation settles by reachable geometry instead of fixed delay',settleSource.includes('stable=atDestination&&')&&settleSource.includes('if(stable>=6)')&&settleSource.includes('Date.now()-started>2200')&&settleSource.includes("top:this.reachableDestination(destination)")&&!settleSource.includes('setTimeout'));
+check('first destination frame cannot release scroll-spy',!settleSource.includes('if(atDestination||stable>=6)')&&!settleSource.includes('Math.abs(current-destination)<2||stable>=6'));
 check('mobile breakpoint clears collapsed state',navigation.includes('if(mobile)this.state.collapsed=false'));
 check('native inert avoids the full tabindex walk',navigation.includes("this.supportsInert='inert'in HTMLElement.prototype")&&navigation.includes('if(this.supportsInert){root.inert=!interactive;return;}'));
 check('tabindex fallback remains available for legacy browsers',navigation.includes('data-nav-saved-tabindex'));
 check('unchanged drawer state is a no-op',navigation.includes('if(next===this.state.drawer)return'));
 const readViewportSource=navigation.match(/readViewport\(\)\{[\s\S]*?\n    \}/)?.[0]||'';
 check('scroll spy performs no layout measurements per frame',!readViewportSource.includes('getBoundingClientRect'));
+check('mobile layout avoids content-visibility geometry jumps',!readProject('books/death-guard/styles/content.css').includes('content-visibility: auto'));
 check('user input cancels controlled scrolling',navigation.includes('cancelTransition()')&&navigation.includes("window.addEventListener('touchstart'"));
 check('navigation branches use strict sibling accordion',navigation.includes("if(peer!==node&&peer.matches('[data-nav-id]'))this.closeBranch(peer,{deep:true})")&&!navigation.includes('isOnActivePath'));
 check('manual accordion state yields back to scroll tracking',navigation.includes('pathIsOpen(node)')&&navigation.includes("else if(item&&!this.pathIsOpen(item.node))this.revealPath(item.node,{includeSelf:true})"));
@@ -85,12 +97,17 @@ try{
     check('behavior: glossary destination clears sticky search',controller.destination(glossaryTarget)===1046,String(controller.destination(glossaryTarget)));
     const glossaryRoot={id:'glossary',dataset:{},closest:selector=>selector==='#glossary'?{}:null,getBoundingClientRect:()=>({top:200})};
     check('behavior: Glossary root ignores its own sticky search',controller.destination(glossaryRoot)===1110,String(controller.destination(glossaryRoot)));
-    const classes=new Set(),heading={tagName:'H3',offsetWidth:80,classList:{contains:name=>classes.has(name),add:name=>classes.add(name),remove:name=>classes.delete(name)}};
-    const section={matches:()=>false,children:[heading]};controller.highlight(section);
-    check('behavior: click destination highlights its direct heading',classes.has('destination-highlight'));
-    const enhancementClasses=new Set(),enhancement={offsetWidth:300,matches:selector=>selector.split(',').includes('.enhancement'),children:[heading],classList:{add:name=>enhancementClasses.add(name),remove:name=>enhancementClasses.delete(name)}};
-    controller.highlight(enhancement);
-    check('behavior: Enhancement highlights the complete card',enhancementClasses.has('destination-highlight'));
+    const targetContext={window:{},Object};vm.runInNewContext(navigationTargets,targetContext,{filename:'books/shared/navigation-targets.js'});
+    const resolve=targetContext.window.WHNavigationTargets.resolve;
+    const heading={tagName:'H3',matches:selector=>selector.includes('h3')};
+    const firstCard={matches:selector=>selector.includes('.stratagem')};
+    const section={matches:()=>false,children:[heading,firstCard]};
+    const sectionTargets=resolve(section);
+    check('behavior: section destination resolves to its direct heading',sectionTargets.scrollTarget===heading&&sectionTargets.highlightTarget===heading&&sectionTargets.kind==='section');
+    const enhancement={matches:selector=>selector.includes('.enhancement'),children:[heading]};
+    const enhancementTargets=resolve(enhancement);
+    check('behavior: concrete Enhancement resolves to its complete card',enhancementTargets.scrollTarget===enhancement&&enhancementTargets.highlightTarget===enhancement&&enhancementTargets.kind==='card');
+    check('behavior: section never falls through to its first card',sectionTargets.highlightTarget!==firstCard);
     const parentNode={};
     const childNode={parentElement:{classList:{contains:name=>name==='toc-branch'},parentElement:parentNode}};
     const nextNode={parentElement:{classList:{contains:name=>name==='toc-branch'},parentElement:parentNode}};
@@ -124,7 +141,10 @@ check('popup cards suppress self links',popups.includes('relatedId!==id'));
 check('desktop popup coordinates include document scroll',popups.includes("window.scrollY||0")&&/\.popup-layer\s*\{[^}]*position:\s*absolute/.test(read('styles/popups.css')));
 check('mobile popup layer is fixed',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.popup-layer\s*\{[^}]*position:\s*fixed/.test(read('styles/popups.css')));
 check('popup cards expose dialog semantics',popups.includes("setAttribute('role','dialog')")&&popups.includes("setAttribute('aria-modal','false')"));
-check('unit popups render semantic characteristic grids',popups.includes("card.classList.add('popup-statline')")&&popups.includes("summary=document.createElement('dl')")&&popups.includes("name=document.createElement('dt')")&&popups.includes("score=document.createElement('dd')"));
+check('outside click closes the complete popup chain',popups.includes("this.ids.length&&!event.target.closest('.term-popup')")&&popups.includes('this.closeFrom(0)'));
+check('popup actions inherit their originating unit context',popups.includes("contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}")&&popups.includes('contextualStatline'));
+check('Mega Glossary transitions persist a return record',popups.includes('wh40k-mega-glossary-return')&&read('scripts/app.js').includes('wh40k-mega-glossary-return'));
+check('popups use the shared semantic profile renderer',popups.includes('WHPopupContent.render')&&popupContent.includes("document.createElement('table')")&&popupContent.includes("document.createElement('dl')"));
 check('unit popup grid has a mobile no-overflow layout',/\.popup-stats\s*\{[^}]*grid-template-columns:\s*repeat\(auto-fit, minmax\(54px, 1fr\)\)/.test(read('styles/popups.css'))&&/@media\s*\(max-width:\s*480px\)[\s\S]*?\.popup-stats\s*\{[^}]*grid-template-columns:\s*repeat\(4, minmax\(0, 1fr\)\)/.test(read('styles/popups.css')));
 
 const popupClassSource=popups.match(/(class PopupController\{[\s\S]*?\n  \})\n\n  window\.DGPopups/)?.[1]||'';
@@ -172,16 +192,18 @@ const backSource=journey.match(/back\(\)\{[\s\S]*?\n    \}/)?.[0]||'';
 check('Back restores before highlighting rebuilt action',backSource.indexOf('this.popups.restore(record.popupIds')<backSource.indexOf('this.highlight(restoredPopup||trigger)'));
 check('Back restores popups only after navigation settles',backSource.indexOf('this.navigation.restore')<backSource.indexOf('this.popups.restore(record.popupIds'));
 check('Back has rebuilt-action fallback',journey.includes('this.findRestoredAction(record.popupAction)'));
-check('click navigation highlights only after controlled scroll settles',navigation.includes("()=>{this.highlight(element);settled?.();}"));
+check('click navigation highlights only after controlled scroll settles',navigation.includes("()=>{this.highlighter.show(targets.highlightTarget);settled?.();}"));
 
 const cssFiles=['styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css'];
-check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+'?v=6"')));
+check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=10':file==='styles/popups.css'?'?v=11':'?v=9')+'"')));
 const contentCss=read('styles/content.css');
 const navigationCss=read('styles/navigation.css');
 check('navigation hides horizontal overflow and styles its scrollbar',/\.toc-panel\s*\{[^}]*overflow-x:\s*hidden/.test(navigationCss)&&navigationCss.includes('.toc-panel::-webkit-scrollbar-thumb')&&navigationCss.includes('scrollbar-color:'));
-check('datasheet statlines keep all seven characteristics on one row',/\.statline\s*\{[^}]*grid-template-columns:\s*repeat\(7,minmax\(0,1fr\)\)/.test(contentCss));
+check('shared datasheet statlines keep every characteristic on one row',/\.unit-card \.statline\s*\{[^}]*display:\s*flex/.test(datasheetCss));
+check('mobile weapon characteristics use one six-column row',datasheetCss.includes('grid-template-columns: repeat(6, minmax(0, 1fr))')&&(markup.match(/data-label="(?:Range|A|BS|WS|S|AP|D)"/g)||[]).length===146*6);
 check('heading destination highlight uses text glow without outline',/\.destination-highlight:is\(h1,h2,h3,h4,h5,h6\)\s*\{[^}]*animation-name:\s*destination-heading-highlight/.test(contentCss)&&contentCss.includes('@keyframes destination-heading-highlight')&&!contentCss.match(/@keyframes destination-heading-highlight[^}]*outline/));
 check('detachment navigation targets render in separate rows',/\.detachment-content\s*\{[^}]*grid-template-columns:\s*1fr/.test(contentCss));
+check('desktop stratagem cards use two columns with a responsive fallback',contentCss.includes('.detachment-part[id$="-stratagems"] > .detachment-content { grid-template-columns: repeat(2, minmax(0, 1fr))')&&/@media\s*\(max-width:\s*1100px\)[\s\S]*?grid-template-columns:\s*1fr/.test(contentCss));
 check('each detachment has a visible Stratagems destination',(markup.match(/class="detachment-part"[^>]*data-track="[^"]+">\s*<h4 class="detachment-part-title">Stratagems<\/h4>/g)||[]).length===bookData.audit.detachments);
 check('no inline style or inline script',!/<style|<script(?![^>]*src=)/i.test(html));
 check('no runtime fetch in document controllers',!files.some(file=>/\bfetch\s*\(/.test(read(file))));
@@ -190,8 +212,12 @@ check('weapon rows receive explicit table semantics',read('scripts/ui-controller
 check('mobile header disables expensive backdrop blur',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.app-header\s*\{[^}]*backdrop-filter:\s*none/.test(read('styles/layout.css')));
 check('book uses the unified root manifest',html.includes('href="../../manifest.webmanifest"'));
 check('complete preview service worker owns its cache family',readProject('service-worker.js').includes('key.startsWith(CACHE_PREFIX)')&&readProject('service-worker.js').includes('warhammer-rules-complete-preview-'));
-check('complete preview PWA cache revision is current',readProject('service-worker.js').includes('`${CACHE_PREFIX}v9`'));
-check('book scripts and styles use the current release token',[...cssFiles,...files].every(file=>html.includes('./'+file+'?v=6')));
+check('complete preview PWA cache revision is content-derived',readProject('service-worker.js').includes('self.WH40K_CACHE_REVISION'));
+check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/content.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/popup-controller.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/content.css?v=10')&&html.includes('./styles/popups.css?v=11')&&html.includes('./scripts/popup-controller.js?v=14')&&html.includes('./scripts/app.js?v=13'));
+check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
+check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=4"'));
+check('book loads the shared datasheet layout',html.includes('src="../shared/datasheet-layout.js?v=2"'));
+check('glossary autolinking precedes navigation geometry',read('scripts/app.js').indexOf('WHGlossaryAutolink?.apply')<read('scripts/app.js').indexOf('new window.DGNavigation'));
 check('v4 icon is used without legacy v3 PNG references',html.includes('assets/icon-v4.svg')&&!html.includes('icon-180.png'));
 check('navigation and popup specifications are present',['docs/SPEC_NAVIGATION.md','docs/SPEC_POPUPS.md'].every(file=>fs.existsSync(path.join(root,file))));
 const navigationSpec=read('docs/SPEC_NAVIGATION.md');

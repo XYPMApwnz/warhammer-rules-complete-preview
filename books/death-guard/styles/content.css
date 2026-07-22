@@ -7,6 +7,29 @@
   font: 800 clamp(34px, 5vw, 52px)/1 Georgia, "Times New Roman", serif;
   letter-spacing: -.04em;
 }
+/* Datasheet-style Stratagem cards */
+.stratagem{--strat-color:#507f72;--strat-soft:rgba(80,127,114,.16);position:relative;display:grid;grid-template-columns:72px minmax(0,1fr);align-content:start;max-width:680px;margin:24px auto;overflow:hidden;border:1px solid var(--line);border-left:0;background:radial-gradient(circle at 74% 58%,transparent 0 48px,color-mix(in srgb,var(--strat-color) 10%,transparent) 49px 50px,transparent 51px),linear-gradient(120deg,var(--strat-soft),transparent 46%),var(--glass)}
+.stratagem.turn-yours{--strat-color:#247090;--strat-soft:rgba(36,112,144,.16)}
+.stratagem.turn-their{--strat-color:#a83338;--strat-soft:rgba(168,51,56,.17)}
+.stratagem::before{content:"";display:block;position:absolute;inset:0 auto 0 0;width:72px;background:linear-gradient(180deg,color-mix(in srgb,var(--strat-color) 72%,#101313),var(--strat-color));border-right:1px solid color-mix(in srgb,var(--strat-color) 70%,white)}
+.stratagem::after{content:attr(data-turn);position:absolute;z-index:2;left:8px;bottom:18px;width:56px;padding:8px 3px;border:2px solid var(--strat-color);background:#e8e5d7;color:var(--strat-color);font:900 11px/1.05 ui-monospace,monospace;text-align:center;white-space:pre-line}
+.stratagem .stratagem-head{grid-column:2;position:relative;display:flex;gap:14px;min-height:76px;padding:15px 18px;background:linear-gradient(90deg,color-mix(in srgb,var(--strat-color) 28%,#151916),rgba(17,21,18,.96));border-bottom:2px solid var(--strat-color);color:var(--ink)}
+.stratagem .stratagem-type{color:color-mix(in srgb,var(--strat-color) 58%,white)}
+.stratagem .cp{position:absolute;z-index:3;left:-62px;top:52px;width:52px;height:52px;margin:0;display:grid;place-items:center;background:#e8e5d7;color:var(--strat-color);border:0;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);font:900 13px ui-monospace,monospace}
+.stratagem .field{grid-column:2;margin:0;padding:13px 18px;border-bottom:1px dotted var(--line)}
+.stratagem .field b{color:var(--strat-color);font-weight:900}
+section[id$="-stratagems"]{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px}
+section[id$="-stratagems"]>.category-title{grid-column:1/-1}
+section[id$="-stratagems"]>.stratagem{max-width:none;width:100%;height:100%;margin:0}
+@media(max-width:800px){
+  section[id$="-stratagems"]{grid-template-columns:1fr}
+  .stratagem{grid-template-columns:58px minmax(0,1fr)}
+  .stratagem::before{width:58px}
+  .stratagem::after{left:5px;width:48px;font-size:9px}
+  .stratagem .stratagem-head{padding-right:14px}
+  .stratagem .cp{left:-52px;width:46px;height:46px;font-size:11px}
+}
+
 .section-title::before {
   content: "0" counter(archive-section) " // ARCHIVE";
   display: block;
@@ -127,6 +150,9 @@
   font: 800 clamp(22px, 3vw, 29px)/1.08 Georgia, "Times New Roman", serif;
 }
 .detachment-content { display: grid; grid-template-columns: 1fr; gap: 18px; }
+.detachment-part[id$="-stratagems"] { display: block; }
+.detachment-part[id$="-stratagems"] > .detachment-content { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
+.detachment-part[id$="-stratagems"] > .detachment-content > .stratagem { height: 100%; }
 .detachment-content > .rule-card,
 .detachment-content > .enhancement,
 .detachment-content > .stratagem { width: 100%; max-width: none; margin: 0; }
@@ -291,25 +317,9 @@
   .weapon-head > div { font-size: 8px; }
   .tag { font-size: 7px; }
 
-  @supports (content-visibility: auto) {
-    .unit-card {
-      content-visibility: auto;
-      contain-intrinsic-size: auto 1800px;
-    }
-    .stratagem {
-      content-visibility: auto;
-      contain-intrinsic-size: auto 340px;
-    }
-    .rule-card,
-    .enhancement {
-      content-visibility: auto;
-      contain-intrinsic-size: auto 300px;
-    }
-    .glossary-card {
-      content-visibility: auto;
-      contain-intrinsic-size: auto 250px;
-    }
-  }
+}
+@media (max-width: 1100px) {
+  .detachment-part[id$="-stratagems"] > .detachment-content { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
   .hero { min-height: 520px; padding: 34px 24px; background-position: 58% 22%; }
@@ -317,3 +327,6 @@
   .hero h1 { font-size: clamp(42px, 14vw, 64px); }
   .section-title { font-size: clamp(32px, 11vw, 44px); }
 }
+/* Keep the rail visible after the legacy card declarations above. */
+.stratagem{border-left:0;background:radial-gradient(circle at 74% 58%,transparent 0 48px,color-mix(in srgb,var(--strat-color) 10%,transparent) 49px 50px,transparent 51px),linear-gradient(120deg,var(--strat-soft),transparent 46%),var(--glass)}
+.stratagem::before{display:block}

@@ -58,4 +58,5 @@
 
 .reference-card strong { display: block; font: 700 16px Georgia, serif; }
 .reference-card small { display: block; margin-top: 8px; color: var(--muted); font: 8px monospace; letter-spacing: .08em; text-transform: uppercase; }
-.reference-remainder { color: var(--muted); font: 9px monospace; text-transform: uppercase; }
+.reference-remainder { border: 1px solid var(--line); background: var(--panel); color: var(--muted); padding: 10px 12px; font: 9px monospace; text-transform: uppercase; cursor: pointer; }
+.reference-remainder:hover,.reference-remainder:focus-visible { color: var(--acid); border-color: var(--acid); }

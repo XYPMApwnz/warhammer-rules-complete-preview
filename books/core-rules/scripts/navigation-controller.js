@@ -92,7 +92,7 @@
       const token=++this.state.transition; this.state.owner='controller'; this.select(id);
       window.scrollTo({top:destination,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
       const started=Date.now(); let previous=window.scrollY,stable=0;
-      const inspect=()=>{ if(token!==this.state.transition)return; const current=window.scrollY; stable=Math.abs(current-previous)<1?stable+1:0; previous=current; if(Math.abs(current-destination)<2||stable>=6||Date.now()-started>2200){this.state.owner='reader';settled?.();this.readViewport();return;} requestAnimationFrame(inspect); };
+      const inspect=()=>{ if(token!==this.state.transition)return; const current=window.scrollY; const atDestination=Math.abs(current-destination)<2; stable=atDestination&&Math.abs(current-previous)<1?stable+1:0; previous=current; if(stable>=6||Date.now()-started>2200){this.state.owner='reader';settled?.();this.readViewport();return;} requestAnimationFrame(inspect); };
       requestAnimationFrame(inspect);
     }
     scheduleRead(){if(this.state.owner!=='reader'||this.frame)return;this.frame=requestAnimationFrame(()=>{this.frame=0;this.readViewport();});}

@@ -1,4 +1,3 @@
-import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -57,17 +56,51 @@ const tracked=(id,title,body,classes='content-group')=>`<section class="${classe
 const navLeaf=(id,label,depth)=>`<li data-nav-id="${id}" data-nav-depth="${depth}"><div class="toc-row no-toggle"><button class="toc-label" data-nav-target="${id}">${esc(label)}</button></div></li>`;
 const navBranch=(id,label,depth,children)=>`<li data-nav-id="${id}" data-nav-depth="${depth}"><div class="toc-row"><button class="toc-label" data-nav-target="${id}">${esc(label)}</button><button class="toc-toggle" data-nav-toggle aria-label="Toggle ${esc(label)}" aria-expanded="false"></button></div><ul class="toc-branch" hidden>${children}</ul></li>`;
 const termMap=new Map(rules.glossary.map(term=>[term.title.toLowerCase(),term]));
-const decorate=value=>{
-  let text=esc(value);
-  const matches=[...termMap.values()].sort((a,b)=>b.title.length-a.title.length);
-  for(const term of matches){
-    const variants=[term.title,...(term.aliases||[])];
-    for(const variant of variants){
-      const rx=new RegExp(`\\[?${variant.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}((?: \\d\\+)?)\\]?`,'i');
-      if(rx.test(text))text=text.replace(rx,match=>`<button class="term-button" data-term="${term.id}">${match}</button>`);
-    }
+const escapeRegExp=value=>String(value).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const normalizeDecoratedTerm=value=>String(value)
+  .replace(/^\[/,'')
+  .replace(/\]$/,'')
+  .replace(/\s+\d+\+$/,'')
+  .trim()
+  .toLowerCase();
+const decoratorTermMap=new Map();
+for(const term of [...rules.glossary].sort((a,b)=>b.title.length-a.title.length)){
+  for(const variant of [term.title,...(term.aliases||[])]){
+    const key=normalizeDecoratedTerm(variant);
+    if(!key)continue;
+    const candidates=decoratorTermMap.get(key)||[];
+    if(!candidates.includes(term))candidates.push(term);
+    decoratorTermMap.set(key,candidates);
   }
-  return text;
+}
+const decoratorAlternation=[...decoratorTermMap.keys()].sort((a,b)=>b.length-a.length).map(escapeRegExp).join('|');
+const decoratorPattern=decoratorAlternation
+  ?new RegExp(`(^|[^A-Za-z0-9])((?:\\[)?(?:${decoratorAlternation})(?:\\])?(?:\\s+\\d+\\+)?)(?=$|[^A-Za-z0-9])`,'gi')
+  :null;
+const decoratorTerm=(key,unitId='')=>{
+  const candidates=decoratorTermMap.get(key)||[];
+  return candidates.find(term=>term.group==='Core abilities')
+    ||candidates.find(term=>unitId&&(term.unitIds||[]).includes(unitId))
+    ||candidates[0];
+};
+const decorate=(value,unitId='')=>{
+  const raw=String(value??'');
+  if(!decoratorPattern)return esc(raw);
+  const output=[];
+  let cursor=0;
+  decoratorPattern.lastIndex=0;
+  for(let match=decoratorPattern.exec(raw);match;match=decoratorPattern.exec(raw)){
+    const prefix=match[1]||'';
+    const token=match[2];
+    const tokenStart=match.index+prefix.length;
+    const term=decoratorTerm(normalizeDecoratedTerm(token),unitId);
+    if(!term)continue;
+    output.push(esc(raw.slice(cursor,tokenStart)));
+    output.push(`<button class="term-button" data-term="${term.id}">${esc(token)}</button>`);
+    cursor=tokenStart+token.length;
+  }
+  output.push(esc(raw.slice(cursor)));
+  return output.join('');
 };
 
 function validate(){
@@ -93,7 +126,7 @@ function validate(){
   if(!navigationRuntime.includes("this.pathIsOpen(item.node)"))fail('Navigation must restore the active open path after manual article scrolling');
   if(!navigationRuntime.includes("this.revealPath(item.node,{includeSelf:true})"))fail('Navigation must keep an active parent branch expanded');
   if(!navigationRuntime.includes("stable=atDestination&&"))fail('Navigation stable frames must only count at the reachable destination');
-  if(navigationRuntime.includes("||stable>=this.options.stableFrames||"))fail('Navigation must not release scroll-spy on intermediate stable frames');
+  if(navigationRuntime.includes("if(atDestination||stable>=this.options.stableFrames)"))fail('Navigation must not release scroll-spy on the first destination frame');
   if(!navigationRuntime.includes("window.scrollTo({top:this.reachableDestination(destination)"))fail('Navigation timeout must finish at the reachable destination before releasing scroll-spy');
 }
 
@@ -132,18 +165,19 @@ const stats=unit=>(unit.profiles?.length?unit.profiles:[{name:unit.title,stats:u
 const weapons=unit=>['ranged','melee'].map(mode=>{
   const rows=unit.weapons.filter(x=>x.mode===mode);
   if(!rows.length)return '';
-  return `<div class="weapon-group"><h5>${mode==='ranged'?'Ranged':'Melee'} weapons</h5><div class="weapon-table" role="table" aria-label="${esc(unit.title)} ${mode} weapons"><div class="weapon-row weapon-head"><div>Weapon</div><div>Range</div><div>A</div><div>${mode==='ranged'?'BS':'WS'}</div><div>S</div><div>AP</div><div>D</div></div>${rows.map(w=>`<div class="weapon-row"><div><button class="weapon-button" data-term="${w.termId}">${esc(w.name)}</button>${w.abilities?`<small>${decorate(w.abilities)}</small>`:''}</div><div>${esc(w.range)}</div><div>${esc(w.a)}</div><div>${esc(w.skill)}</div><div>${esc(w.s)}</div><div>${esc(w.ap)}</div><div>${esc(w.d)}</div></div>`).join('')}</div></div>`;
+  const skillLabel=mode==='ranged'?'BS':'WS';
+  return `<div class="weapon-group"><h5>${mode==='ranged'?'Ranged':'Melee'} weapons</h5><div class="weapon-table" role="table" aria-label="${esc(unit.title)} ${mode} weapons"><div class="weapon-row weapon-head"><div>Weapon</div><div>Range</div><div>A</div><div>${skillLabel}</div><div>S</div><div>AP</div><div>D</div></div>${rows.map(w=>`<div class="weapon-row"><div><button class="weapon-button" data-term="${w.termId}">${esc(w.name)}</button>${w.abilities?`<small>${decorate(w.abilities,unit.id)}</small>`:''}</div><div data-label="Range">${esc(w.range)}</div><div data-label="A">${esc(w.a)}</div><div data-label="${skillLabel}">${esc(w.skill)}</div><div data-label="S">${esc(w.s)}</div><div data-label="AP">${esc(w.ap)}</div><div data-label="D">${esc(w.d)}</div></div>`).join('')}</div></div>`;
 }).join('');
 const unitCard=unit=>{
   const slug=unit.id.replace('unit-','');
   const parts={profile:`${slug}-profile`,abilities:`${slug}-abilities`,composition:`${slug}-composition`,keywords:`${slug}-keywords`};
   const tabs=Object.entries(parts).map(([label,id])=>`<button class="local-tab" data-journey-target="${id}" data-journey-type="datasheet">${label[0].toUpperCase()+label.slice(1)}</button>`).join('');
-  const abilities=unit.abilities.map(item=>`<article class="ability"><h5><button class="term-button" data-term="${item.termId}">${esc(item.title)}</button></h5>${item.text?`<p>${decorate(item.text)}</p>`:''}</article>`).join('');
+  const abilities=unit.abilities.map(item=>`<article class="ability"><h5><button class="term-button" data-term="${item.termId}">${esc(item.title)}</button></h5>${item.text?`<p>${decorate(item.text,unit.id)}</p>`:''}</article>`).join('');
   const wargear=Array.isArray(unit.wargear)?unit.wargear:(unit.wargear?[unit.wargear]:[]);
-  const gear=wargear.length?`<h5>Wargear Options</h5><ul>${wargear.map(x=>`<li>${decorate(x)}</li>`).join('')}</ul>`:'';
+  const gear=wargear.length?`<h5>Wargear Options</h5><ul>${wargear.map(x=>`<li>${decorate(x,unit.id)}</li>`).join('')}</ul>`:'';
   const provenance=unit.sourcePages?`<div class="source">${sourceLink(unit.sourcePages)}</div>${transcript(unit.sourcePages)}`:`<div class="source"><a class="source-link" href="${esc(unit.source?.url||unit.referenceUrl)}">${esc(unit.source?.label||'Codex transcription')}</a>${unit.referenceUrl?` · <a class="source-link" href="${esc(unit.referenceUrl)}">Rules reference</a>`:''}</div>`;
   const points=unit.points?.length?unit.points.join(' / '):'';
-  return `<article class="unit-card surface${unit.status==='Warhammer Legends'?' legends-card':''}" id="${unit.id}" data-track="${unit.id}"><div class="unit-header"><div><div class="eyebrow">${esc(unit.status)}</div><h3>${esc(unit.title)}</h3></div><div class="unit-status">${unit.status==='Warhammer Legends'?'LEGENDS':points?`${esc(points)} PTS`:'CODEX'}</div></div><div class="local-nav">${tabs}</div><section class="unit-part" id="${parts.profile}"><h4>Profile & Weapons</h4>${stats(unit)}${weapons(unit)}</section><section class="unit-part" id="${parts.abilities}"><h4>Abilities</h4><div class="ability-list">${abilities}</div></section><section class="unit-part" id="${parts.composition}"><h4>Composition & Wargear</h4><p>${decorate(unit.composition)}</p>${gear}</section><section class="unit-part" id="${parts.keywords}"><h4>Keywords</h4><div class="keyword-list">${unit.keywords.map(x=>`<span>${esc(x)}</span>`).join('')}</div></section>${provenance}</article>`;
+  return `<article class="unit-card surface${unit.status==='Warhammer Legends'?' legends-card':''}" id="${unit.id}" data-track="${unit.id}"><div class="unit-header"><div><div class="eyebrow">${esc(unit.status)}</div><h3>${esc(unit.title)}</h3></div><div class="unit-status">${unit.status==='Warhammer Legends'?'LEGENDS':points?`${esc(points)} PTS`:'CODEX'}</div></div><div class="local-nav">${tabs}</div><section class="unit-part" id="${parts.profile}"><h4>Profile & Weapons</h4>${stats(unit)}${weapons(unit)}</section><section class="unit-part" id="${parts.abilities}"><h4>Abilities</h4><div class="ability-list">${abilities}</div></section><section class="unit-part" id="${parts.composition}"><h4>Composition & Wargear</h4><p>${decorate(unit.composition,unit.id)}</p>${gear}</section><section class="unit-part" id="${parts.keywords}"><h4>Keywords</h4><div class="keyword-list">${unit.keywords.map(x=>`<span>${esc(x)}</span>`).join('')}</div></section>${provenance}</article>`;
 };
 const datasheetGroups=datasheetCategories.map(group=>tracked(group.id,group.title,`<p class="lead">${group.units.length} datasheet${group.units.length===1?'':'s'} in this category.</p>${group.units.map(unitCard).join('')}`)).join('');
 const glossaryGroup=(id,title,terms)=>tracked(id,title,`<div class="glossary-grid">${terms.map(term=>`<article class="glossary-card surface" id="glossary-${term.id}" data-glossary-title="${esc(term.title)}"><h4>${esc(term.title)}</h4><p>${esc(term.summary)}</p><p class="glossary-full">${esc(term.full)}</p>${term.sectionId?`<button class="popup-action" data-journey-target="${term.sectionId}" data-journey-type="rule">Open rule</button>`:''}</article>`).join('')}</div>`);
@@ -152,7 +186,7 @@ const glossary=glossaryGroups.map(group=>glossaryGroup(group.id,group.title,grou
 const trackedCount=[...toc.matchAll(/data-nav-target="([^"]+)"/g)].length;
 const sourceStatus=`<div class="source-grid"><article class="rule-card surface"><div class="eyebrow">Primary official source</div><h3>Adeptus Mechanicus Faction Pack v1.0</h3><p>26 pages · SHA-256 <code>${rules.source.sha256}</code></p><p>${sourceLink([1])}</p></article><article class="rule-card surface"><div class="eyebrow">Codex transcription layer</div><h3>${rules.datasheets.length} complete datasheets</h3><p>Codex profiles are generated from the pinned BSData catalogue; all eight Faction Pack and Legends sheets printed by GW are overlaid from the official PDF.</p><p><a class="source-link" href="${codexDatasheets.source.url}">Pinned catalogue · revision ${esc(codexDatasheets.source.revision)}</a></p></article></div>`;
 const html=`<!doctype html>
-<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101313"><meta name="description" content="Complete local Adeptus Mechanicus Faction Pack v1.0 rules reference."><title>Adeptus Mechanicus Rules — Faction Pack v1.0</title><link rel="manifest" href="../../manifest.webmanifest"><link rel="icon" href="./assets/mechanicus-logo.png" type="image/png">${['tokens','layout','navigation','content','popups','mechanicus'].map(x=>`<link rel="stylesheet" href="./styles/${x}.css?v=10">`).join('')}</head><body>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101313"><meta name="description" content="Complete local Adeptus Mechanicus Faction Pack v1.0 rules reference."><title>Adeptus Mechanicus Rules — Faction Pack v1.0</title><link rel="manifest" href="../../manifest.webmanifest"><link rel="icon" href="./assets/mechanicus-logo.png" type="image/png">${['tokens','layout','navigation','content','popups','mechanicus'].map(x=>`<link rel="stylesheet" href="./styles/${x}.css?v=${x==='content'?'14':x==='popups'?'15':'13'}">`).join('')}<link rel="stylesheet" href="../shared/datasheet-system.css?v=4"></head><body>
 <header class="app-header" id="appHeader"><button class="header-button nav-menu" id="navMenu" type="button" aria-label="Open navigation" aria-controls="tocPanel" aria-expanded="false">☰</button><button class="header-button nav-collapse" id="navCollapse" type="button" aria-label="Collapse navigation" aria-controls="tocPanel" aria-expanded="true">◀</button><button class="app-brand" type="button" data-header-home><strong>Adeptus Mechanicus Rules</strong><small>Faction Pack v1.0 · complete local build</small></button><a class="library-link" href="../../index.html" aria-label="Back to rulebook library"><span aria-hidden="true">←</span><b>Library</b></a><button class="back-button" id="backButton" type="button" hidden>Back</button><div class="header-spacer"></div><button class="header-button" id="themeButton" type="button" aria-label="Use light theme">☼</button></header><button class="toc-scrim" id="tocScrim" type="button" aria-label="Close navigation" aria-hidden="true"></button>
 <nav class="toc-panel" id="tocPanel" aria-label="Rulebook navigation"><h2 class="toc-heading">Contents</h2><label class="toc-search" for="navSearch"><span aria-hidden="true">⌕</span><input id="navSearch" type="search" placeholder="Find a section…" autocomplete="off"></label><ul class="toc-tree" id="tocTree">${toc}</ul></nav>
 <main class="main" id="main"><div class="document"><div class="reader-tools surface" id="readerTools"><label for="globalSearch"><span aria-hidden="true">⌕</span><input id="globalSearch" type="search" placeholder="Search rules, units and terms…" autocomplete="off"></label><button id="globalSearchClear" type="button" hidden>Clear</button><span class="reader-status">${trackedCount} TARGETS // LOCAL</span></div><section class="search-results surface" id="searchResults" hidden aria-live="polite"></section>
@@ -162,26 +196,26 @@ const html=`<!doctype html>
 <section class="section" id="detachments" data-track="detachments"><h2 class="section-title">Detachments</h2><p class="lead">All ten Adeptus Mechanicus Detachments currently listed for 11th edition: five carried forward from Codex and five printed in Faction Pack v1.0.</p><div class="detachment-overview surface"><strong>10 TOTAL</strong><span>5 Codex</span><span>5 Faction Pack</span></div>${detachments}</section>
 <section class="section" id="datasheets" data-track="datasheets"><h2 class="section-title">Datasheets</h2><p class="lead">${rules.datasheets.length} Codex, Faction Pack and Warhammer Legends datasheets, grouped by battlefield role.</p>${datasheetGroups}</section>
 <section class="section" id="glossary" data-track="glossary"><h2 class="section-title">Glossary</h2><p class="lead">Searchable terms referenced by the Faction Pack.</p><div class="glossary-tools surface"><label class="sr-only" for="glossarySearch">Search glossary</label><input id="glossarySearch" type="search" placeholder="Search terms…" autocomplete="off"><button class="search-clear" id="searchClear" aria-label="Clear glossary search">×</button></div>${glossary}<div class="no-results" id="noResults" hidden>No matching terms.</div></section>
-<footer class="footer">Adeptus Mechanicus · Faction Pack v1.0 · data-driven local edition</footer></div></main><div class="popup-layer" id="popupLayer" aria-live="polite"></div><script src="../../glossary/generated/glossary.en.js?v=4"></script>${['data','navigation-controller','popup-controller','journey-controller','ui-controllers','app'].map(x=>`<script src="./scripts/${x}.js?v=10"></script>`).join('')}</body></html>\n`;
+<footer class="footer">Adeptus Mechanicus · Faction Pack v1.0 · data-driven local edition</footer></div></main><div class="popup-layer" id="popupLayer" aria-live="polite"></div><script src="../../glossary/generated/glossary.en.js"></script><script src="../shared/navigation-targets.js?v=1"></script><script src="../shared/datasheet-layout.js?v=2"></script><script src="../shared/popup-content.js?v=1"></script><script src="../shared/glossary-autolink.js?v=7"></script>${['data','navigation-controller','popup-controller','journey-controller','ui-controllers','app'].map(x=>`<script src="./scripts/${x}.js?v=${x==='popup-controller'?'18':x==='app'?'17':'13'}"></script>`).join('')}</body></html>\n`;
 
 const terms={};
 for(const term of rules.glossary)terms[term.id]={title:term.title,summary:term.summary,full:term.full,glossary:`glossary-${term.id}`,...(term.sectionId?{rule:term.sectionId}:{}),...(term.unitIds?.length?{units:term.unitIds,datasheet:term.unitIds[0],statline:`${term.unitIds[0].replace('unit-','')}-profile`}:{})};
 const dataJs=`window.DG_TERMS=${JSON.stringify(terms,null,2)};\n`;
-const shell=['./','./index.html','./manifest.webmanifest','./assets/mechanicus-logo.png','./assets/mechanicus-cover-800.webp','./sources/adeptus-mechanicus-faction-pack-v1.0.pdf','./content/adeptus-mechanicus-rules.en.json','./content/adeptus-mechanicus-codex-detachments.en.json','./content/adeptus-mechanicus-codex-datasheets.en.json','./content/adeptus-mechanicus-source.en.json',...['tokens','layout','navigation','content','popups','mechanicus'].map(x=>`./styles/${x}.css`),...['data','navigation-controller','popup-controller','journey-controller','ui-controllers','app'].map(x=>`./scripts/${x}.js`)];
-const versionHash=crypto.createHash('sha256');
-for(const file of shell.filter(x=>x!=='./'&&x!=='./index.html'&&x!=='./scripts/data.js'))versionHash.update(file).update(fs.readFileSync(path.join(root,file.slice(2))));
-versionHash.update(html).update(dataJs);
-const cacheVersion=versionHash.digest('hex').slice(0,12);
-const sw=`const CACHE_PREFIX='adeptus-mechanicus-rules-v1-';\nconst CACHE=CACHE_PREFIX+'${cacheVersion}';\nconst SHELL=${JSON.stringify(shell)};\nself.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting())));\nself.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith(CACHE_PREFIX)&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));\nself.addEventListener('fetch',event=>{if(event.request.method!=='GET'||new URL(event.request.url).origin!==location.origin)return;event.respondWith(caches.match(event.request,{ignoreSearch:true}).then(cached=>cached||fetch(event.request).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));}return response;}).catch(()=>event.request.mode==='navigate'?caches.match('./index.html'):Response.error())));});\n`;
-const outputs=new Map([['index.html',html],['scripts/data.js',dataJs],['service-worker.js',sw]]);
+const releaseHtml=html
+  .replace('../../glossary/generated/glossary.en.js"','../../glossary/generated/glossary.en.js?v=2"')
+  .replace('../shared/glossary-autolink.js?v=7','../shared/glossary-autolink.js?v=8');
+const outputs=new Map([['index.html',releaseHtml],['scripts/data.js',dataJs]]);
+
+if(/data-term="[^"]*</i.test(html))throw new Error('Generated data-term attributes must never contain markup');
+for(const match of html.matchAll(/data-term="([^"]+)"/g))if(!termIds.has(match[1]))throw new Error(`Generated page references unknown term: ${match[1]}`);
 
 validate();
 if(process.argv.includes('--check')){
   const stale=[];
   for(const [file,content] of outputs)if(!fs.existsSync(path.join(root,file))||fs.readFileSync(path.join(root,file),'utf8')!==content)stale.push(file);
   if(stale.length){console.error(`Generated artifacts are stale: ${stale.join(', ')}`);process.exit(1);}
-  console.log(`Full build is current: ${allDetachments.length} detachments, ${rules.datasheets.length} datasheets, ${rules.glossary.length} terms, cache ${cacheVersion}`);
+  console.log(`Full build is current: ${allDetachments.length} detachments, ${rules.datasheets.length} datasheets, root PWA cache`);
 }else{
   for(const [file,content] of outputs)fs.writeFileSync(path.join(root,file),content,'utf8');
-  console.log(`Built full Mechanicus project: ${allDetachments.length} detachments, ${rules.datasheets.length} datasheets, ${rules.glossary.length} terms, cache ${cacheVersion}`);
+  console.log(`Built full Mechanicus project: ${allDetachments.length} detachments, ${rules.datasheets.length} datasheets, root PWA cache`);
 }

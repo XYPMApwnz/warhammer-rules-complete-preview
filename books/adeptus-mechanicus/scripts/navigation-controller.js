@@ -5,9 +5,9 @@
   const SCROLL_KEYS=new Set(['PageUp','PageDown','Home','End','ArrowUp','ArrowDown',' ']);
 
   class NavigationController{
-    constructor({breakpoint=800,trackingGap=null,epsilon=1,settleDistance=2,stableFrames=6,maxTransitionMs=2200}={}){
+    constructor({breakpoint=800,trackingGap=null,epsilon=1,settleDistance=2,stableFrames=6,maxTransitionMs=2200,readerHoldMs=90}={}){
       trackingGap??=Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navigation-gap'))||18;
-      this.options={breakpoint,trackingGap,epsilon,settleDistance,stableFrames,maxTransitionMs};
+      this.options={breakpoint,trackingGap,epsilon,settleDistance,stableFrames,maxTransitionMs,readerHoldMs};
       this.header=document.getElementById('appHeader');
       this.panel=document.getElementById('tocPanel');
       this.tree=document.getElementById('tocTree');
@@ -21,10 +21,12 @@
 
       this.mobile=window.innerWidth<=breakpoint;
       this.state={owner:'reader',active:'',drawer:false,collapsed:false,transition:0};
+      this.readerCandidate={id:'',since:0};
       this.raf={read:0,geometry:0,transition:0};
       this.metrics={headerBottom:0,readerSticky:0,glossarySticky:0,ranges:[]};
       this.supportsInert='inert'in HTMLElement.prototype;
       this.activeButtons=new Set();
+      this.highlighter=new window.WHNavigationTargets.Highlighter();
       this.items=this.collectItems();
       this.byId=new Map(this.items.map(item=>[item.id,item]));
 
@@ -36,7 +38,7 @@
 
       if('ResizeObserver'in window){
         this.resizeObserver=new ResizeObserver(()=>this.scheduleGeometry());
-        this.resizeObserver.observe(this.main);
+        this.resizeObserver.observe(this.header);
         if(this.readerTools)this.resizeObserver.observe(this.readerTools);
         if(this.glossaryTools)this.resizeObserver.observe(this.glossaryTools);
       }
@@ -290,32 +292,24 @@
     }
     scheduleRead(){
       if(this.state.owner!=='reader'||this.raf.read)return;
-      this.raf.read=requestAnimationFrame(()=>{this.raf.read=0;this.readViewport();});
+      this.raf.read=requestAnimationFrame(now=>{this.raf.read=0;this.readViewport(now);});
     }
-    readViewport(){
+    readViewport(now=performance.now()){
       if(this.state.owner!=='reader')return;
       const item=this.pickActive();
-      if(item&&item.id!==this.state.active)this.activate(item.id,{reveal:true,keepVisible:true});
-      else if(item&&!this.pathIsOpen(item.node))this.revealPath(item.node,{includeSelf:true});
-    }
-
-    highlightTarget(element){
-      if(element.matches?.('.glossary-card,.rule-card,.enhancement,.unit-card,.ability,.stratagem,.roster-card'))return element;
-      if(element.classList?.contains('hero'))return element.querySelector('h1')||element;
-      if(element.classList?.contains('detachment-part')){
-        if(element.querySelector(':scope > .detachment-content > .stratagem'))return element.querySelector(':scope > .detachment-content > .stratagem');
-        if(element.querySelector(':scope > .stratagem'))return element.querySelector(':scope > .stratagem');
+      if(!item)return;
+      if(item.id===this.state.active){
+        this.readerCandidate={id:'',since:0};
+        if(!this.pathIsOpen(item.node))this.revealPath(item.node,{includeSelf:true});
+        return;
       }
-      const heading=[...element.children].find(child=>child.matches?.('.section-title,.category-title,.detachment-part-title')||/^H[1-6]$/.test(child.tagName||''));
-      return heading||[...element.children].find(child=>child.matches?.('.glossary-card,.rule-card,.enhancement,.unit-card,.ability,.stratagem'))||element;
-    }
-    highlight(element){
-      const target=this.highlightTarget(element);
-      if(!target)return;
-      target.classList.remove('destination-highlight');
-      void target.offsetWidth;
-      target.classList.add('destination-highlight');
-      window.setTimeout(()=>target.classList.remove('destination-highlight'),2300);
+      if(this.readerCandidate.id!==item.id)this.readerCandidate={id:item.id,since:now};
+      if(now-this.readerCandidate.since<this.options.readerHoldMs){
+        this.scheduleRead();
+        return;
+      }
+      this.readerCandidate={id:'',since:0};
+      this.activate(item.id,{reveal:true,keepVisible:true});
     }
 
     go(id){
@@ -329,13 +323,16 @@
         const owner=[...this.items].reverse().find(item=>item.section.contains(element));
         if(owner)id=owner.id;
       }
-      this.beginTransition(id,this.destination(element),()=>{this.highlight(element);settled?.();});
+      const targets=window.WHNavigationTargets.resolve(element);
+      if(!targets.scrollTarget)return;
+      this.beginTransition(id,this.destination(targets.scrollTarget),()=>{this.highlighter.show(targets.highlightTarget);settled?.();});
     }
     restore(id,scrollY,settled){this.beginTransition(id,Math.max(0,scrollY),settled);}
     beginTransition(id,destination,settled){
       this.cancelTransition({read:false,force:true});
       const token=++this.state.transition;
       this.state.owner='controller';
+      this.readerCandidate={id:'',since:0};
       this.activate(id,{reveal:true,keepVisible:true});
       const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
       const reachable=this.reachableDestination(destination);
@@ -363,7 +360,7 @@
         const atDestination=Math.abs(current-reachable)<this.options.settleDistance;
         stable=atDestination&&Math.abs(current-previous)<=this.options.epsilon?stable+1:0;
         previous=current;
-        if(atDestination||stable>=this.options.stableFrames){finish();return;}
+        if(stable>=this.options.stableFrames){finish();return;}
         if(now-started>=this.options.maxTransitionMs){
           const root=document.documentElement;
           const previousBehavior=root.style.scrollBehavior;

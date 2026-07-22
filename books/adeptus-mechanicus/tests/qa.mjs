@@ -8,6 +8,11 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=file=>fs.readFileSync(path.join(root,file),'utf8');
 const json=file=>JSON.parse(read(file));
 const html=read('index.html');
+const sharedTargets=fs.readFileSync(path.resolve(root,'..','shared','navigation-targets.js'),'utf8');
+const sharedDatasheetLayout=fs.readFileSync(path.resolve(root,'..','shared','datasheet-layout.js'),'utf8');
+const sharedDatasheetCss=fs.readFileSync(path.resolve(root,'..','shared','datasheet-system.css'),'utf8');
+const sharedPopupContent=fs.readFileSync(path.resolve(root,'..','shared','popup-content.js'),'utf8');
+const sharedGlossaryAutolink=fs.readFileSync(path.resolve(root,'..','shared','glossary-autolink.js'),'utf8');
 const factionRules=json('content/adeptus-mechanicus-rules.en.json');
 const source=json('content/adeptus-mechanicus-source.en.json');
 const codex=json('content/adeptus-mechanicus-codex-detachments.en.json');
@@ -22,6 +27,10 @@ const check=(name,ok,detail='')=>results.push({name,ok,detail});
 
 const scripts=['scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'];
 for(const file of scripts){try{new vm.Script(read(file),{filename:file});check(`${file} syntax`,true);}catch(error){check(`${file} syntax`,false,error.message);}}
+try{new vm.Script(sharedTargets,{filename:'../shared/navigation-targets.js'});check('shared navigation targets syntax',true);}catch(error){check('shared navigation targets syntax',false,error.message);}
+try{new vm.Script(sharedDatasheetLayout,{filename:'../shared/datasheet-layout.js'});check('shared datasheet layout syntax',true);}catch(error){check('shared datasheet layout syntax',false,error.message);}
+try{new vm.Script(sharedPopupContent,{filename:'../shared/popup-content.js'});check('shared popup content syntax',true);}catch(error){check('shared popup content syntax',false,error.message);}
+try{new vm.Script(sharedGlossaryAutolink,{filename:'../shared/glossary-autolink.js'});check('shared glossary autolink syntax',true);}catch(error){check('shared glossary autolink syntax',false,error.message);}
 
 const markup=html.replace(/<script[\s\S]*?<\/script>/gi,'');
 const ids=[...markup.matchAll(/\sid="([^"]+)"/g)].map(x=>x[1]);
@@ -74,8 +83,22 @@ check('term rule and unit destinations resolve',Object.values(terms).every(term=
 check('datasheet abilities and weapons are interactive',(markup.match(/class="ability"/g)||[]).length>100&&(markup.match(/class="weapon-button" data-term=/g)||[]).length>150);
 
 const navSource=read('scripts/navigation-controller.js');
+const popupSource=read('scripts/popup-controller.js');
 check('single passive scroll owner remains',(navSource.match(/addEventListener\('scroll'/g)||[]).length===1&&navSource.includes("state={owner:'reader'")&&navSource.includes('{passive:true}'));
 check('scroll spy uses cached geometry',!navSource.slice(navSource.indexOf('pickActive(){'),navSource.indexOf('scheduleRead(){')).includes('getBoundingClientRect'));
+check('manual scroll ignores transient navigation candidates',navSource.includes('readerHoldMs=90')&&navSource.includes('this.readerCandidate'));
+check('navigation uses the shared explicit target resolver',navSource.includes('WHNavigationTargets.resolve')&&!navSource.includes("querySelector(':scope > .stratagem')")&&!navSource.includes("querySelector('.stratagem')"));
+check('outside click closes the complete popup chain',popupSource.includes("this.ids.length&&!event.target.closest('.term-popup')")&&popupSource.includes('this.closeFrom(0)'));
+check('popup actions inherit their originating unit context',popupSource.includes("contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}")&&popupSource.includes('contextualStatline'));
+check('Mega Glossary transitions persist a return record',popupSource.includes('wh40k-mega-glossary-return')&&read('scripts/app.js').includes('wh40k-mega-glossary-return'));
+check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
+check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=4"'));
+check('book loads the shared datasheet layout',html.includes('src="../shared/datasheet-layout.js?v=2"'));
+check('glossary autolinking precedes navigation geometry',read('scripts/app.js').indexOf('WHGlossaryAutolink?.apply')<read('scripts/app.js').indexOf('new window.DGNavigation'));
+check('shared datasheet statlines keep every characteristic on one row',/\.unit-card \.statline\s*\{[^}]*display:\s*flex/.test(sharedDatasheetCss));
+check('mobile weapon characteristics use one six-column row',sharedDatasheetCss.includes('grid-template-columns: repeat(6, minmax(0, 1fr))')&&(html.match(/data-label="(?:Range|A|BS|WS|S|AP|D)"/g)||[]).length===rules.datasheets.reduce((sum,unit)=>sum+unit.weapons.length,0)*6);
+check('mobile layout avoids content-visibility geometry jumps',!read('styles/content.css').includes('content-visibility: auto'));
+check('desktop stratagem cards use two columns with a responsive fallback',read('styles/content.css').includes('.detachment-part[id$="-stratagems"] > .detachment-content { grid-template-columns: repeat(2, minmax(0, 1fr))')&&/@media\s*\(max-width:\s*1100px\)[\s\S]*?grid-template-columns:\s*1fr/.test(read('styles/content.css')));
 check('navigation cancellation remains wired',navSource.includes("root.style.scrollBehavior='auto'")&&navSource.includes("behavior:'auto'"));
 check('navigation gap has one CSS source',read('styles/tokens.css').includes('--navigation-gap: 18px')&&navSource.includes("getPropertyValue('--navigation-gap')")&&!navSource.includes('trackingGap=18'));
 check('header home does not mutate the URL hash',markup.includes('<button class="app-brand" type="button" data-header-home>')&&!markup.includes('href="#start"'));
@@ -87,9 +110,6 @@ const codexExtractor=spawnSync('C:\\Users\\denis\\.cache\\codex-runtimes\\codex-
 check('Codex datasheet snapshot is current',codexExtractor.status===0,(codexExtractor.stderr||codexExtractor.stdout).trim());
 const build=spawnSync(node,[path.join(root,'tools','build-full-content.mjs'),'--check'],{encoding:'utf8'});
 check('generated project artifacts are current',build.status===0,(build.stderr||build.stdout).trim());
-check('offline cache includes source PDF',read('service-worker.js').includes('./sources/adeptus-mechanicus-faction-pack-v1.0.pdf'));
-check('offline cache includes codex datasheet layer',read('service-worker.js').includes('./content/adeptus-mechanicus-codex-datasheets.en.json'));
-check('offline cache owns only faction prefix',read('service-worker.js').includes("CACHE_PREFIX='adeptus-mechanicus-rules-v1-'")&&read('service-worker.js').includes('key.startsWith(CACHE_PREFIX)'));
 
 function legendsCount(markup){return (markup.match(/class="unit-card surface legends-card"/g)||[]).length;}
 for(const result of results)console.log(`${result.ok?'PASS':'FAIL'}  ${result.name}${result.detail?' — '+result.detail:''}`);

@@ -16,7 +16,8 @@
         const close=event.target.closest('[data-popup-close]');
         if(close&&this.layer.contains(close)){event.preventDefault();this.closeFrom(Number(close.dataset.popupClose));return;}
         const trigger=event.target.closest('[data-term]');
-        if(trigger){event.preventDefault();this.open(trigger.dataset.term,trigger);}
+        if(trigger){event.preventDefault();this.open(trigger.dataset.term,trigger);return;}
+        if(this.ids.length&&!event.target.closest('.term-popup'))this.closeFrom(0);
       });
       document.addEventListener('keydown',event=>{
         if(event.key==='Escape'&&this.ids.length){event.preventDefault();event.stopImmediatePropagation();this.closeFrom(this.ids.length-1);}
@@ -70,19 +71,21 @@
       if(target?.isConnected)target.focus({preventScroll:true});else this.focusTop();
     }
 
-    contextualUnit(term){
-      const unit=this.rootElement()?.closest?.('.unit-card');
-      return unit&&(term.units||[]).includes(unit.id)?unit:null;
-    }
+    contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}
     actionList(term){
-      const unit=this.contextualUnit(term),unitId=unit?.id||'';
+      const unit=this.contextualUnit(),unitId=unit?.id||'';
       const contextualStatline=unit?.querySelector('.unit-part[id$="-profile"]')?.id||'';
       const actions=[];
-      if(term.glossary)actions.push({label:'Glossary',target:term.glossary,type:'glossary'});
+      if(term.glossary&&document.getElementById(term.glossary))actions.push({label:'Glossary',target:term.glossary,type:'glossary'});
+      else if(term.id)actions.push({label:'Mega Glossary',href:'../../glossary/index.html#'+encodeURIComponent(term.id)});
       if(term.rule)actions.push({label:'To rule',target:term.rule,type:'rule'});
       if(unitId||term.datasheet)actions.push({label:'Datasheet & Wargear',target:unitId||term.datasheet,type:'datasheet'});
       if(contextualStatline||term.statline)actions.push({label:'Statline',target:contextualStatline||term.statline,type:'datasheet'});
-      return actions.filter(action=>document.getElementById(action.target));
+      return actions.filter(action=>action.href||document.getElementById(action.target));
+    }
+    rememberMegaReturn(){
+      const root=this.rootElement(),unit=root?.closest?.('.unit-card');
+      try{sessionStorage.setItem('wh40k-mega-glossary-return',JSON.stringify({url:location.href,path:location.pathname,scrollX:window.scrollX||0,scrollY:window.scrollY||0,popupIds:this.snapshot(),rootTerm:root?.dataset?.term||'',unitId:unit?.id||''}));}catch{}
     }
     createCard(id,index){
       const term=this.terms[id],card=document.createElement('section'),titleId='term-popup-title-'+index+'-'+id;
@@ -91,8 +94,9 @@
 
       const close=document.createElement('button');close.type='button';close.className='popup-close';close.dataset.popupClose=String(index);close.setAttribute('aria-label','Close '+term.title+' popup');close.textContent='×';
       const title=document.createElement('h3');title.id=titleId;title.textContent=term.title;
-      const summary=document.createElement('p');summary.textContent=term.summary;
-      card.append(close,title,summary);
+      const content=window.WHPopupContent.render(term,this.terms);
+      card.classList.add(...content.classes);
+      card.append(close,title,content.node);
 
       const related=(term.related||[]).filter(relatedId=>relatedId!==id&&this.terms[relatedId]);
       if(related.length){
@@ -107,10 +111,14 @@
       if(actions.length){
         const group=document.createElement('div');group.className='popup-actions';
         actions.forEach((action,actionIndex)=>{
-          const button=document.createElement('button');button.type='button';button.className='popup-action';button.dataset.journeyTarget=action.target;button.dataset.journeyType=action.type;button.dataset.actionKey=index+'-'+actionIndex+'-'+action.type+'-'+action.target;button.textContent=action.label;group.append(button);
+          const button=document.createElement(action.href?'a':'button');button.className='popup-action';button.textContent=action.label;
+          if(action.href){button.href=action.href;button.addEventListener('click',()=>this.rememberMegaReturn());}
+          else{button.type='button';button.dataset.journeyTarget=action.target;button.dataset.journeyType=action.type;button.dataset.actionKey=index+'-'+actionIndex+'-'+action.type+'-'+action.target;}
+          group.append(button);
         });
         card.append(group);
       }
+      window.WHGlossaryAutolink?.apply(card);
       return card;
     }
 

@@ -21,6 +21,7 @@
       this.geometry={headerBottom:0,glossaryHeight:0,ranges:[]};
       this.activeButtons=new Set();
       this.supportsInert='inert'in HTMLElement.prototype;
+      this.highlighter=new window.WHNavigationTargets.Highlighter();
 
       this.items=[...this.tree.querySelectorAll('[data-nav-id]')].map(node=>{
         const row=this.direct(node,'toc-row');
@@ -42,7 +43,7 @@
 
       if('ResizeObserver'in window){
         this.layoutObserver=new ResizeObserver(()=>this.scheduleGeometry());
-        this.layoutObserver.observe(this.main);
+        this.layoutObserver.observe(this.header);
       }
     }
 
@@ -249,22 +250,12 @@
       else if(item&&!this.pathIsOpen(item.node))this.revealPath(item.node,{includeSelf:true});
     }
 
-    highlightElement(element){
-      if(element.matches?.('.glossary-card,.rule-card,.enhancement,.unit-card,.ability,.stratagem,.hero'))return element;
-      const content=[...element.children].find(child=>child.classList?.contains('detachment-content'));
-      const stratagem=content?.querySelector('.stratagem');if(stratagem)return stratagem;
-      const heading=[...element.children].find(child=>child.matches?.('.section-title,.category-title,.detachment-part-title')||/^H[1-6]$/.test(child.tagName||''));
-      if(heading)return heading;
-      return[...element.children].find(child=>child.matches?.('.glossary-card,.rule-card,.enhancement,.unit-card,.ability,.stratagem'))||element;
-    }
-    highlight(element){
-      const target=this.highlightElement(element);if(!target)return;
-      target.classList.remove('destination-highlight');void target.offsetWidth;target.classList.add('destination-highlight');
-      window.setTimeout(()=>target.classList.remove('destination-highlight'),2300);
-    }
-
     go(id){const item=this.byId.get(id);if(!item)return;this.setDrawer(false);this.navigate(id,item.section);}
-    navigate(id,element,settled){this.beginTransition(id,this.destination(element),()=>{this.highlight(element);settled?.();});}
+    navigate(id,element,settled){
+      const targets=window.WHNavigationTargets.resolve(element);
+      if(!targets.scrollTarget)return;
+      this.beginTransition(id,this.destination(targets.scrollTarget),()=>{this.highlighter.show(targets.highlightTarget);settled?.();});
+    }
     restore(id,scrollY,settled){this.beginTransition(id,Math.max(0,scrollY),settled);}
     beginTransition(id,destination,settled){
       if(this.state.owner==='controller')this.stopControlledScroll();
@@ -286,7 +277,7 @@
         if(token!==this.state.transition)return;
         const current=window.scrollY,reachable=this.reachableDestination(destination),atDestination=Math.abs(current-reachable)<2;
         stable=atDestination&&Math.abs(current-previous)<1?stable+1:0;previous=current;
-        if(atDestination||stable>=6){
+        if(stable>=6){
           this.state.owner='reader';settled?.();this.readViewport();return;
         }
         if(Date.now()-started>2200){

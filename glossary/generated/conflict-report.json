@@ -1,12 +1,11 @@
 {
   "schema": 1,
-  "generatedAt": "2026-07-22T00:29:25.290Z",
   "counts": {
-    "terms": 697,
-    "aliases": 524,
+    "terms": 913,
+    "aliases": 600,
     "variants": 49,
     "aliasCandidates": 33,
-    "keywordCandidates": 10
+    "keywordCandidates": 17
   },
   "variants": [
     {
@@ -781,6 +780,67 @@
       "candidateRuleIds": [
         "core-rule-19-03-keywords-in-attached-units",
         "core-anti"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-aircraft",
+      "candidateRuleIds": [
+        "core-rule-15-01-using-stratagems",
+        "core-rule-15-09-snap-shooting",
+        "core-rule-16-01-performing-actions",
+        "core-rule-23-01-deployment",
+        "core-rule-23-02-movement",
+        "core-rule-23-03-shooting",
+        "core-rule-23-04-charging-and-fighting"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-flying",
+      "candidateRuleIds": [
+        "core-rule-09-07-fall-back-move",
+        "core-rule-21-02-surge-move",
+        "core-rule-21-03-flying-models",
+        "core-rule-23-04-charging-and-fighting"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-titanic",
+      "candidateRuleIds": [
+        "core-rule-15-01-using-stratagems",
+        "core-rule-15-09-snap-shooting",
+        "core-rule-16-01-performing-actions",
+        "core-super-heavy-walker"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-explosives",
+      "candidateRuleIds": [
+        "core-rule-15-09-snap-shooting"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-towering",
+      "candidateRuleIds": [
+        "core-rule-22-05-plunging-fire"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-fortifications",
+      "candidateRuleIds": [
+        "core-rule-20-01-placing-units-in-strategic-reserves"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-imperium",
+      "candidateRuleIds": [
+        "core-rule-20-02-repositioned-units"
       ],
       "status": "review-required"
     }
