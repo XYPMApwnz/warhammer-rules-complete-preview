@@ -1,5 +1,5 @@
 const CACHE_PREFIX='adeptus-mechanicus-rules-v1-';
-const CACHE=CACHE_PREFIX+'ac89ca60df15';
+const CACHE=CACHE_PREFIX+'66f052d6e368';
 const SHELL=["./","./index.html","./manifest.webmanifest","./assets/mechanicus-logo.png","./assets/mechanicus-cover-800.webp","./sources/adeptus-mechanicus-faction-pack-v1.0.pdf","./content/adeptus-mechanicus-rules.en.json","./content/adeptus-mechanicus-codex-detachments.en.json","./content/adeptus-mechanicus-codex-datasheets.en.json","./content/adeptus-mechanicus-source.en.json","./styles/tokens.css","./styles/layout.css","./styles/navigation.css","./styles/content.css","./styles/popups.css","./styles/mechanicus.css","./scripts/data.js","./scripts/navigation-controller.js","./scripts/popup-controller.js","./scripts/journey-controller.js","./scripts/ui-controllers.js","./scripts/app.js"];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith(CACHE_PREFIX)&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
