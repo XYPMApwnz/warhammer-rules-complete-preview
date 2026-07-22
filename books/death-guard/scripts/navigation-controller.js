@@ -269,9 +269,11 @@
     beginTransition(id,destination,settled){
       if(this.state.owner==='controller')this.stopControlledScroll();
       const token=++this.state.transition;this.state.owner='controller';this.activate(id,{behavior:'auto'});
-      window.scrollTo({top:destination,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
-      this.waitForSettle(destination,token,settled);
+      const reachable=this.reachableDestination(destination);
+      window.scrollTo({top:reachable,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+      this.waitForSettle(reachable,token,settled);
     }
+    reachableDestination(destination){return Math.min(Math.max(0,destination),Math.max(0,document.documentElement.scrollHeight-window.innerHeight));}
     stopControlledScroll(){
       const root=document.documentElement,previous=root.style.scrollBehavior;
       root.style.scrollBehavior='auto';
@@ -282,9 +284,16 @@
       const started=Date.now();let previous=window.scrollY,stable=0;
       const inspect=()=>{
         if(token!==this.state.transition)return;
-        const current=window.scrollY;stable=Math.abs(current-previous)<1?stable+1:0;previous=current;
-        if(Math.abs(current-destination)<2||stable>=6||Date.now()-started>2200){
+        const current=window.scrollY,reachable=this.reachableDestination(destination),atDestination=Math.abs(current-reachable)<2;
+        stable=atDestination&&Math.abs(current-previous)<1?stable+1:0;previous=current;
+        if(atDestination||stable>=6){
           this.state.owner='reader';settled?.();this.readViewport();return;
+        }
+        if(Date.now()-started>2200){
+          this.stopControlledScroll();
+          window.scrollTo({left:window.scrollX,top:this.reachableDestination(destination),behavior:'auto'});
+          requestAnimationFrame(()=>{if(token!==this.state.transition)return;this.state.owner='reader';settled?.();this.refreshGeometry();});
+          return;
         }
         requestAnimationFrame(inspect);
       };

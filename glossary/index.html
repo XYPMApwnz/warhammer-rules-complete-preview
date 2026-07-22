@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0c100d">
+  <title>Mega Glossary — WH40K Library</title>
+  <link rel="stylesheet" href="./viewer.css?v=2">
+  <link rel="stylesheet" href="./viewer-profiles.css?v=2">
+</head>
+<body>
+  <header class="topbar">
+    <a class="back" href="../index.html">← Library</a>
+    <div class="brand"><span class="sigil">MG</span><div><strong>Mega Glossary</strong><small>Unified rules registry // 11e</small></div></div>
+    <span class="status"><i></i> Canonical source</span>
+  </header>
+  <main class="shell">
+    <section class="intro">
+      <p class="eyebrow">00 // Central archive</p>
+      <h1>One term.<br><em>One definition.</em></h1>
+      <p class="lead">The shared language of every rulebook in the library. Book-specific navigation stays local; definitions live here.</p>
+      <div class="metrics"><span><b id="termCount">—</b> canonical terms</span><span><b id="aliasCount">—</b> legacy aliases</span><span><b>3</b> connected books</span></div>
+    </section>
+    <section class="workspace">
+      <aside class="catalogue">
+        <label class="search"><span>Search registry</span><input id="search" type="search" placeholder="Lethal Hits, Mortarion…" autocomplete="off"></label>
+        <div class="filters" id="filters" aria-label="Term categories"></div>
+        <p class="result-count" id="resultCount"></p>
+        <div class="term-list" id="termList"></div>
+      </aside>
+      <article class="term-detail" id="termDetail" aria-live="polite"><p class="empty">Select a term from the archive.</p></article>
+    </section>
+  </main>
+  <script src="./generated/glossary.en.js?v=4"></script>
+  <script src="./viewer.js?v=2"></script>
+</body>
+</html>

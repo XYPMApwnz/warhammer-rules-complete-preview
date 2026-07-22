@@ -13,7 +13,7 @@
       version: 'Prototype 1.1',
       source: 'WH40k 11ed Core Rules - 01.06.2026',
       notice: 'Original English content extracted from the local Core Rules PDF. No translation layer is active.',
-      pdfPath: ''
+      pdfPath: '../Материалы Warhammer 40000/Правила/WH40k 11ed - Core Rules - 01-06-2026.pdf'
     },
     introduction: {
       id: 'introduction',

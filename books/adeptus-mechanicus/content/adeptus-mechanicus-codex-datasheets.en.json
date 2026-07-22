@@ -1,0 +1,4542 @@
+{
+  "schema": 1,
+  "source": {
+    "title": "BSData Warhammer 40,000 10th Edition · Adeptus Mechanicus",
+    "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat",
+    "revision": "106",
+    "sha256": "B363965936F84A45D607F6232231F2F827BF692096BCBE6F69E64B9E888A0B8B"
+  },
+  "datasheets": [
+    {
+      "id": "unit-skitarii-rangers",
+      "title": "Skitarii Rangers",
+      "status": "Codex transcription",
+      "category": "Battleline",
+      "points": [
+        "85"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "3",
+        "Sv": "4+",
+        "W": "1",
+        "Ld": "7+",
+        "OC": "2"
+      },
+      "profiles": [
+        {
+          "name": "Skitarii Rangers",
+          "stats": {
+            "M": "6\"",
+            "T": "3",
+            "Sv": "4+",
+            "W": "1",
+            "Ld": "7+",
+            "OC": "2"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Galvanic rifle",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Alpha combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Transuranic arquebus",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-2",
+          "d": "D3",
+          "abilities": "Heavy, Precision"
+        },
+        {
+          "name": "Arc rifle",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-1",
+          "d": "D3",
+          "abilities": "Anti-Vehicle 4+, Devastating Wounds, Rapid Fire 1"
+        },
+        {
+          "name": "➤ Plasma caliver - supercharge",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Hazardous"
+        },
+        {
+          "name": "➤ Plasma caliver - standard",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-2",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Close combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "1",
+          "skill": "4+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Mechanicus pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Objective Scouted",
+          "text": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
+        },
+        {
+          "title": "Enhanced data-tether",
+          "text": "Each time you select the bearer’s unit\nas the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Omnispex",
+          "text": "Ranged weapons equipped by models in the bearer’s unit have the IGNORES COVER ability."
+        },
+        {
+          "title": "Scouts 6\"",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Skitarii Ranger Alpha.",
+      "wargear": [
+        "Available weapon profiles: Galvanic rifle, Alpha combat weapon, Transuranic arquebus, Arc rifle, ➤ Plasma caliver - supercharge, ➤ Plasma caliver - standard, Close combat weapon, Mechanicus pistol."
+      ],
+      "keywords": [
+        "Rangers",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Infantry",
+        "Skitarii",
+        "Battleline"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-skitarii-vanguard",
+      "title": "Skitarii Vanguard",
+      "status": "Codex transcription",
+      "category": "Battleline",
+      "points": [
+        "95"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "3",
+        "Sv": "4+",
+        "W": "1",
+        "Ld": "7+",
+        "OC": "2"
+      },
+      "profiles": [
+        {
+          "name": "Skitarii Vanguard",
+          "stats": {
+            "M": "6\"",
+            "T": "3",
+            "Sv": "4+",
+            "W": "1",
+            "Ld": "7+",
+            "OC": "2"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Radium carbine",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Anti-Infantry 4+"
+        },
+        {
+          "name": "Alpha combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Transuranic arquebus",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-2",
+          "d": "D3",
+          "abilities": "Heavy, Precision"
+        },
+        {
+          "name": "Arc rifle",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-1",
+          "d": "D3",
+          "abilities": "Anti-Vehicle 4+, Devastating Wounds, Rapid Fire 1"
+        },
+        {
+          "name": "➤ Plasma caliver - supercharge",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Hazardous"
+        },
+        {
+          "name": "➤ Plasma caliver - standard",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-2",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Close combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "1",
+          "skill": "4+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Mechanicus pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Rad-saturation (Aura)",
+          "text": "While an enemy unit (excluding Vehicle units) is within 3\" of this unit, subtract 1 from the Objective Control characteristic of models in that unit."
+        },
+        {
+          "title": "Enhanced data-tether",
+          "text": "Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Omnispex",
+          "text": "Ranged weapons equipped by models in the bearer’s unit have the IGNORES COVER ability."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Skitarii Vanguard Alpha.",
+      "wargear": [
+        "Available weapon profiles: Radium carbine, Alpha combat weapon, Transuranic arquebus, Arc rifle, ➤ Plasma caliver - supercharge, ➤ Plasma caliver - standard, Close combat weapon, Mechanicus pistol."
+      ],
+      "keywords": [
+        "Vanguard",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Infantry",
+        "Skitarii",
+        "Battleline"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-cybernetica-datasmith",
+      "title": "Cybernetica Datasmith",
+      "status": "Codex transcription",
+      "category": "Characters",
+      "points": [
+        "35"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "4",
+        "Sv": "2+",
+        "W": "3",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Cybernetica Datasmith",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "2+",
+            "W": "3",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Power fist",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Mechanicus pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Leader",
+          "text": "This model must be attached to the following unit:\n■ Kastelan Robots\n\nYou must attach this model to a Kastelan Robots unit, even if one or more other Cybernetica Datasmith models havealready been attached to it. In such cases, if that bodyguard unit is destroyed, the Leader units attached to it become separate units with their original Starting Strengths. If you cannot attach this model to a Kastelan Robots unit, this model cannot be deployed and counts as having been destroyed during the first battle round. While attached to a Kastelan Robots unit, this model loses the INFANTRY keyword."
+        },
+        {
+          "title": "Battle Protocols",
+          "text": "At the start of the battle, if this model is leading a Kastelan Robots unit, that unit enters Aegis Protocols (see below). In your Command phase, if this model is leading a Kastelan Robots unit, you can select one protocol from those listed below for that unit to enter. Once a unit enters a protocol, it remains in that protocol until it enters a different one\n- Protector Protocol: Add 2 to the Attacks characteristic of ranged weapons equipped by Kastelan Robot models in that unit.\n- Conqueror Protocol: Add 2 to the Attacks characteristic of melee weapons equipped by Kastelan Robot models in that unit.\n- Aegis Protocol: Add 1 to the Toughness characteristic of Kastelan Robot models in that unit."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Cybernetica Datasmith.",
+      "wargear": [
+        "Available weapon profiles: Power fist, Mechanicus pistol."
+      ],
+      "keywords": [
+        "Cybernetica Datasmith",
+        "Tech-Priest",
+        "Infantry",
+        "Character",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Legio Cybernetica"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-skitarii-marshal",
+      "title": "Skitarii Marshal",
+      "status": "Codex transcription",
+      "category": "Characters",
+      "points": [
+        "35"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "3",
+        "Sv": "4+",
+        "W": "3",
+        "Ld": "6+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Skitarii Marshal",
+          "stats": {
+            "M": "6\"",
+            "T": "3",
+            "Sv": "4+",
+            "W": "3",
+            "Ld": "6+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Control stave",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "3+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Mechanicus pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Leader",
+          "text": "This model can be attached to the following units:\n- Skitarii Rangers\n- Skitarii Vanguard"
+        },
+        {
+          "title": "Control Edict",
+          "text": "While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+        },
+        {
+          "title": "Servo-skull Uplink",
+          "text": "Once per battle, at the start of any phase, you can select one friendly Skitarii unit that is Battle-shocked and within 6\" of this model. That unit is no longer Battle-shocked."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Skitarii Marshal.",
+      "wargear": [
+        "Available weapon profiles: Control stave, Mechanicus pistol."
+      ],
+      "keywords": [
+        "Marshal",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Skitarii",
+        "Character",
+        "Infantry"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-sydonian-skatros",
+      "title": "Sydonian Skatros",
+      "status": "Codex transcription",
+      "category": "Characters",
+      "points": [
+        "50"
+      ],
+      "stats": {
+        "M": "8\"",
+        "T": "4",
+        "Sv": "4+",
+        "W": "4",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Sydonian Skatros",
+          "stats": {
+            "M": "8\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "4",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Sydonian Feet",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Radium Jezzail",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "1",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-2",
+          "d": "3",
+          "abilities": "Heavy, Precision, Anti-Infantry 3+"
+        },
+        {
+          "name": "Skatros transuranic arquebus",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "1",
+          "skill": "3+",
+          "s": "7",
+          "ap": "-2",
+          "d": "D3",
+          "abilities": "Heavy, Precision, Anti-Monster 4+, Anti-Vehicle 4+"
+        },
+        {
+          "name": "Mechanicus pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Dread Snipers",
+          "text": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. That unit must take a Battle-shock test."
+        },
+        {
+          "title": "Sydonian Sentinel",
+          "text": "This model cannot be your Warlord."
+        },
+        {
+          "title": "Achillan Eye",
+          "text": "Each time this model makes an attack with a radium jezzail that targets an Infantry unit, you can re-roll the Wound roll. Each time this model makes an attack with a Skatros transuranic arquebus that targets a Monster or Vehicle unit, you can re-roll the Wound roll."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        },
+        {
+          "title": "Stealth",
+          "text": ""
+        },
+        {
+          "title": "Lone Operative",
+          "text": ""
+        }
+      ],
+      "composition": "See the model selections for Sydonian Skatros.",
+      "wargear": [
+        "Available weapon profiles: Sydonian Feet, Radium Jezzail, Skatros transuranic arquebus, Mechanicus pistol."
+      ],
+      "keywords": [
+        "Infantry",
+        "Imperium",
+        "Skitarii",
+        "Sydonian",
+        "Adeptus Mechanicus",
+        "Character",
+        "Skatros"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-tech-priest-dominus",
+      "title": "Tech-Priest Dominus",
+      "status": "Codex transcription",
+      "category": "Characters",
+      "points": [
+        "65"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "4",
+        "Sv": "2+",
+        "W": "4",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Tech-Priest Dominus",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "2+",
+            "W": "4",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Omnissian axe",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "3+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Macrostubber",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "5",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "Phosphor serpenta",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "1",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Ignores Cover, Pistol"
+        },
+        {
+          "name": "➤ Eradication ray - dissipated",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "D3",
+          "skill": "3+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Eradication ray - focused",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "D3",
+          "skill": "3+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Volkite blaster",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "3",
+          "skill": "3+",
+          "s": "5",
+          "ap": "0",
+          "d": "2",
+          "abilities": "Devastating Wounds"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Leader",
+          "text": "This model can be attached to the following units:\n■ Corpuscarii Electro-Priests\n■ Fulgurite Electro-Priests\n■ Kataphron Breachers\n■ Kataphron Destroyers\n■ Skitarii Rangers\n■ Skitarii Vanguard"
+        },
+        {
+          "title": "Lord of the Machine Cult",
+          "text": "While this model is leading a unit, models in that unit have the Feel No Pain 5+ ability. If that unit has the Electro-Priests keyword, models in that unit have the Feel No Pain 4+ ability instead"
+        },
+        {
+          "title": "Data-spike",
+          "text": "At the start of the Fight phase, you can select one enemy Vehicle unit within Engagement Range of this model’s unit and roll one D6: on a 4+, that enemy unit suffers D6 mortal wounds and, until the end of the phase, the Weapon Skill characteristic of melee weapons equipped by that enemy unit is worsened by 1."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Tech-Priest Dominus.",
+      "wargear": [
+        "Available weapon profiles: Omnissian axe, Macrostubber, Phosphor serpenta, ➤ Eradication ray - dissipated, ➤ Eradication ray - focused, Volkite blaster."
+      ],
+      "keywords": [
+        "Dominus",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Tech-Priest",
+        "Character",
+        "Infantry",
+        "Cult Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-tech-priest-enginseer",
+      "title": "Tech-Priest Enginseer",
+      "status": "Codex transcription",
+      "category": "Characters",
+      "points": [
+        "55"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "4",
+        "Sv": "3+",
+        "W": "3",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Tech-Priest Enginseer",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "3+",
+            "W": "3",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Servo arm",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Extra Attacks"
+        },
+        {
+          "name": "Omnissian axe",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Mechanicus pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Enginseer",
+          "text": "While this model is within 3\" of one or more friendly Adeptus Mechanicus Vehicle units, unless it is leading a unit, this model has the Lone Operative ability."
+        },
+        {
+          "title": "Omnissiah's Blessing",
+          "text": "In your Command phase, select one friendly Adeptus Mechanicus model within 3\" of this model. That model regains up to D3 lost wounds and, if it is a Vehicle model, until the start of your next Command phase, that model has the Feel No Pain 5+ ability. Each model can only be selected for this ability once per Command phase"
+        },
+        {
+          "title": "Vengeance for the Omnissiah",
+          "text": "If a friendly Adeptus Mechanicus Vehicle model is destroyed within 12\" of this model, until the end of the battle, this model’s Omnissian axe has an Attacks characteristic of 6."
+        },
+        {
+          "title": "Leader",
+          "text": "This model can be attached to the following units:\n■ Corpuscarii Electro-Priests\n■ Fulgurite Electro-Priests\n■ Kataphron Breachers\n■ Kataphron Destroyers\n■ Servitors\n■ Skitarii Rangers\n■ Skitarii Vanguard"
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Tech-Priest Enginseer.",
+      "wargear": [
+        "Available weapon profiles: Servo arm, Omnissian axe, Mechanicus pistol."
+      ],
+      "keywords": [
+        "Enginseer",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Tech-Priest",
+        "Character",
+        "Infantry",
+        "Cult Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-tech-priest-manipulus",
+      "title": "Tech-Priest Manipulus",
+      "status": "Codex transcription",
+      "category": "Characters",
+      "points": [
+        "60"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "4",
+        "Sv": "2+",
+        "W": "4",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Tech-Priest Manipulus",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "2+",
+            "W": "4",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Magnarail lance",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "1",
+          "skill": "3+",
+          "s": "7",
+          "ap": "-2",
+          "d": "3",
+          "abilities": "Heavy"
+        },
+        {
+          "name": "Transonic cannon",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "D6",
+          "skill": "N/A",
+          "s": "4",
+          "ap": "0",
+          "d": "2",
+          "abilities": "Devastating Wounds, Torrent"
+        },
+        {
+          "name": "Omnissian staff",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "3+",
+          "s": "6",
+          "ap": "-1",
+          "d": "2",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Leader",
+          "text": "This model can be attached to the following units:\n■ Corpuscarii Electro-Priests\n■ Fulgurite Electro-Priests\n■ Kataphron Breachers\n■ Kataphron Destroyers\n■ Skitarii Rangers\n■ Skitarii Vanguard"
+        },
+        {
+          "title": "Galvanic Field",
+          "text": "While this model is leading a unit, weapons equipped by models in that unit have the [Lethal Hits] ability."
+        },
+        {
+          "title": "Defend the Divine Work",
+          "text": "Once per battle, at the start of any phase, this model can use this ability. If it does, until the end of the phase, all models in this model’s unit have a 4+ invulnerable save."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Tech-Priest Manipulus.",
+      "wargear": [
+        "Available weapon profiles: Magnarail lance, Transonic cannon, Omnissian staff."
+      ],
+      "keywords": [
+        "Manipulus",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Tech-Priest",
+        "Character",
+        "Infantry",
+        "Cult Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-technoarcheologist",
+      "title": "Technoarcheologist",
+      "status": "Codex transcription",
+      "category": "Characters",
+      "points": [
+        "45"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "4",
+        "Sv": "3+",
+        "W": "3",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Technoarcheologist",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "3+",
+            "W": "3",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Servo-arc claw",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Anti-Vehicle 4+, Devastating Wounds"
+        },
+        {
+          "name": "Mechanicus pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Seekers of Divine Arcana",
+          "text": "While this model is leading a unit, add 1 to the Objective Control characteristic of models in that unit."
+        },
+        {
+          "title": "Cogitative Instincts",
+          "text": "Enemy units that are set up on the battlefield as Reinforcements cannot be set up within 12\" horizontally of this model."
+        },
+        {
+          "title": "Leader",
+          "text": "This model can be attached to the following units:\n■ Corpuscarii Electro-Priests\n■ Fulgurite Electro-Priests\n■ Kataphron Breachers\n■ Kataphron Destroyers\n■ Skitarii Rangers\n■ Skitarii Vanguard"
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Technoarcheologist.",
+      "wargear": [
+        "Available weapon profiles: Servo-arc claw, Mechanicus pistol."
+      ],
+      "keywords": [
+        "Technoarcheologist",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Tech-Priest",
+        "Character",
+        "Infantry",
+        "Cult Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-skorpius-dunerider",
+      "title": "Skorpius Dunerider",
+      "status": "Codex transcription",
+      "category": "Dedicated Transports",
+      "points": [
+        "85"
+      ],
+      "stats": {
+        "M": "12\"",
+        "T": "9",
+        "Sv": "3+",
+        "W": "11",
+        "Ld": "7+",
+        "OC": "2"
+      },
+      "profiles": [
+        {
+          "name": "Skorpius Dunerider",
+          "stats": {
+            "M": "12\"",
+            "T": "9",
+            "Sv": "3+",
+            "W": "11",
+            "Ld": "7+",
+            "OC": "2"
+          }
+        }
+      ],
+      "invulnerable": "",
+      "weapons": [
+        {
+          "name": "Cognis heavy stubber array",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "9",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 9, Sustained Hits 1, Twin-linked"
+        },
+        {
+          "name": "Armoured hull",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Broad spectrum data-tether",
+          "text": "Each time you select the bearer as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Fire Support",
+          "text": "In your Shooting phase, after this model has shot, select one enemy unit it scored one or more hits against this phase. Until the end of the phase, each time a friendly model that disembarked from this Transport this turn makes an attack that targets that enemy unit, you can re-roll the Wound roll."
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        },
+        {
+          "title": "Firing Deck 2",
+          "text": ""
+        }
+      ],
+      "composition": "1 Skorpius Dunerider.",
+      "wargear": [
+        "Available weapon profiles: Cognis heavy stubber array, Armoured hull."
+      ],
+      "keywords": [
+        "Skorpius Dunerider",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Vehicle",
+        "Dedicated Transport",
+        "Transport",
+        "Skitarii",
+        "Smoke"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-belisarius-cawl",
+      "title": "Belisarius Cawl",
+      "status": "Codex transcription",
+      "category": "Epic Heroes",
+      "points": [
+        "210"
+      ],
+      "stats": {
+        "M": "8\"",
+        "T": "8",
+        "Sv": "2+",
+        "W": "10",
+        "Ld": "6+",
+        "OC": "3"
+      },
+      "profiles": [
+        {
+          "name": "Belisarius Cawl",
+          "stats": {
+            "M": "8\"",
+            "T": "8",
+            "Sv": "2+",
+            "W": "10",
+            "Ld": "6+",
+            "OC": "3"
+          }
+        }
+      ],
+      "invulnerable": "4+",
+      "weapons": [
+        {
+          "name": "Arc Scourge",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "2+",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Anti-Vehicle 4+, Devastating Wounds, Extra Attacks"
+        },
+        {
+          "name": "Cawl's Omnissian axe",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "2+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Mechadendrite hive",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2D6",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Extra Attacks"
+        },
+        {
+          "name": "Solar atomiser",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "3",
+          "skill": "2+",
+          "s": "14",
+          "ap": "-4",
+          "d": "D6",
+          "abilities": "Melta 3"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Canticles of the Omnissiah",
+          "text": "At the start of your Command phase, select one of the abilities in the Canticles of the Omnissiah section. Until the start of your next Command phase, this model has that ability.\n\nInvocation of Machine Vengeance (Aura): At the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Machine Vengeance target. Each time a model in a friendly Adeptus Mechanicus unit makes an attack that targets your Machine Vengeance target, you can re-roll the Hit roll.\n\nMantra of Discipline: This model has the Battleline keyword and has the following ability:\nBinharic Courage (Aura): While a friendly Adeptus Mechanicus unit is within 6\" of this model, add 1 to the Objective Control characteristic of models in that unit and each time you take a Battle-shock or Leadership test for that unit, add 1 to that test.’\n\nShroudpsalm (Aura): While a friendly Adeptus Mechanicus unit is within 6\" of this model, that unit has the Stealth ability."
+        },
+        {
+          "title": "Mechanicus Bodyguard",
+          "text": "While this model is within 3\" of one or more other friendly Adeptus Mechanicus units, this model has the Lone Operative ability."
+        },
+        {
+          "title": "Self-repair Mechanisms",
+          "text": "At the start of your Command phase, this model regains up to D3 lost wounds."
+        },
+        {
+          "title": "Supreme Commander",
+          "text": "If this model is in your army, it must be your Warlord."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Belisarius Cawl.",
+      "wargear": [
+        "Available weapon profiles: Arc Scourge, Cawl's Omnissian axe, Mechadendrite hive, Solar atomiser."
+      ],
+      "keywords": [
+        "Belisarius Cawl",
+        "Epic Hero",
+        "Monster",
+        "Character",
+        "Tech-Priest",
+        "Adeptus Mechanicus",
+        "Imperium",
+        "Cult Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-thulia-ghuld",
+      "title": "Thulia Ghuld",
+      "status": "Codex transcription",
+      "category": "Epic Heroes",
+      "points": [
+        "210"
+      ],
+      "stats": {
+        "M": "8\"",
+        "T": "8",
+        "Sv": "2+",
+        "W": "10",
+        "Ld": "6+",
+        "OC": "3"
+      },
+      "profiles": [
+        {
+          "name": "Thulia Ghuld",
+          "stats": {
+            "M": "8\"",
+            "T": "8",
+            "Sv": "2+",
+            "W": "10",
+            "Ld": "6+",
+            "OC": "3"
+          }
+        }
+      ],
+      "invulnerable": "4+",
+      "weapons": [
+        {
+          "name": "➤ Rod of the War Forge - strike",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "6",
+          "skill": "2+",
+          "s": "10",
+          "ap": "-2",
+          "d": "3",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Rod of the War Forge - sweep",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "12",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Jericho-class conversion resonator - shockwave",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "D6+2",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Blast, Sustained Hits 1"
+        },
+        {
+          "name": "➤ Jericho-class conversion resonator - titanic impact",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "2+",
+          "s": "12",
+          "ap": "-3",
+          "d": "D6+2",
+          "abilities": "Devastating Wounds"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Icon of War",
+          "text": "Fanatical Devotion: You can select one friendly Skitarii or Thulia Ghuld unit within 6\" of this model; until the start of your next Command phase, that unit is eligible to shoot and declare a charge in a turn in which it Advanced.\n\nAdaptive Tactics: You can select one friendly Skitarii or Thulia Ghuld unit within 6\" of this model; until the start of your next Command phase, that unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n\nThe Fires of Mars: You can select one friendly Skitarii or Thulia Ghuld unit within 6\" of this model; until the start of your next Command phase, the Conqueror Imperative and Protector Imperative are both active for that unit."
+        },
+        {
+          "title": "Mechanicus Bodyguard",
+          "text": "While this model is within 3\" of one or more other friendly Adeptus Mechanicus units, this model has the Lone Operative ability."
+        },
+        {
+          "title": "Secutor of Olympus",
+          "text": "At the start of your Shooting phase, select one enemy Vehicle unit within 12\" of this model and roll one D6: on a 2+, that enemy unit suffers D3+1 mortal wounds."
+        },
+        {
+          "title": "Supreme Commander",
+          "text": "If this model is in your army, it must be your Warlord."
+        },
+        {
+          "title": "Rod of the War Forge",
+          "text": "In your Command phase, select one of the abilities in the Icon of War section. Until the start of your next Command phase, this model has that ability."
+        },
+        {
+          "title": "Cybernetic Augmentation",
+          "text": "This model can move through terrain features, but cannot end a move within a wall, a floor, etc. This model can be set up or end a move on any floor level of Ruins, but if that level is not the ground floor, it can only do so if its base does not overhang the floor at that level."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Thulia Ghuld.",
+      "wargear": [
+        "Available weapon profiles: ➤ Rod of the War Forge - strike, ➤ Rod of the War Forge - sweep, ➤ Jericho-class conversion resonator - shockwave, ➤ Jericho-class conversion resonator - titanic impact."
+      ],
+      "keywords": [
+        "Epic Hero",
+        "Monster",
+        "Character",
+        "Tech-Priest",
+        "Adeptus Mechanicus",
+        "Imperium",
+        "Cult Mechanicus",
+        "Thulia Ghuld"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-archaeopter-fusilave",
+      "title": "Archaeopter Fusilave",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "160"
+      ],
+      "stats": {
+        "M": "20+\"",
+        "T": "9",
+        "Sv": "3+",
+        "W": "10",
+        "Ld": "7+",
+        "OC": "0"
+      },
+      "profiles": [
+        {
+          "name": "Archaeopter Fusilave",
+          "stats": {
+            "M": "20+\"",
+            "T": "9",
+            "Sv": "3+",
+            "W": "10",
+            "Ld": "7+",
+            "OC": "0"
+          }
+        }
+      ],
+      "invulnerable": "",
+      "weapons": [
+        {
+          "name": "Cognis heavy stubber array",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "9",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 9, Sustained Hits 1, Twin-linked"
+        },
+        {
+          "name": "Armoured hull",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Bomb Rack",
+          "text": "Each time this model finishes a Normal move, you can select one enemy unit it moved across and roll six D6: for each 4+, that unit suffers 1 mortal wound."
+        },
+        {
+          "title": "Chaff Launcher",
+          "text": "The bearer has the Smoke keyword."
+        },
+        {
+          "title": "Command Uplink",
+          "text": "Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Hover",
+          "text": ""
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Archaeopter Fusilave.",
+      "wargear": [
+        "Available weapon profiles: Cognis heavy stubber array, Armoured hull."
+      ],
+      "keywords": [
+        "Archaeopter Fusilave",
+        "Vehicle",
+        "Aircraft",
+        "Fly",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Skitarii"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-archaeopter-stratoraptor",
+      "title": "Archaeopter Stratoraptor",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "185"
+      ],
+      "stats": {
+        "M": "20+\"",
+        "T": "9",
+        "Sv": "3+",
+        "W": "10",
+        "Ld": "7+",
+        "OC": "0"
+      },
+      "profiles": [
+        {
+          "name": "Archaeopter Stratoraptor",
+          "stats": {
+            "M": "20+\"",
+            "T": "9",
+            "Sv": "3+",
+            "W": "10",
+            "Ld": "7+",
+            "OC": "0"
+          }
+        }
+      ],
+      "invulnerable": "",
+      "weapons": [
+        {
+          "name": "Cognis heavy stubber",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 3, Sustained Hits 1"
+        },
+        {
+          "name": "Heavy phosphor blaster",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Ignores Cover"
+        },
+        {
+          "name": "Twin cognis lascannon",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "12",
+          "ap": "-3",
+          "d": "D6+1",
+          "abilities": "Sustained hits 1, Twin-linked"
+        },
+        {
+          "name": "Armoured hull",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Strafing Run",
+          "text": "Each time this model makes a ranged attack that targets an enemy unit (excluding units that can Fly), add 1 to the Hit roll."
+        },
+        {
+          "title": "Chaff Launcher",
+          "text": "The bearer has the Smoke keyword."
+        },
+        {
+          "title": "Command Uplink",
+          "text": "Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Hover",
+          "text": ""
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Archaeopter Stratoraptor.",
+      "wargear": [
+        "Available weapon profiles: Cognis heavy stubber, Heavy phosphor blaster, Twin cognis lascannon, Armoured hull."
+      ],
+      "keywords": [
+        "Archaeopter Stratoraptor",
+        "Skitarii",
+        "Vehicle",
+        "Aircraft",
+        "Fly",
+        "Imperium",
+        "Adeptus Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-archaeopter-transvector",
+      "title": "Archaeopter Transvector",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "150"
+      ],
+      "stats": {
+        "M": "20+\"",
+        "T": "9",
+        "Sv": "3+",
+        "W": "10",
+        "Ld": "7+",
+        "OC": "0"
+      },
+      "profiles": [
+        {
+          "name": "Archaeopter Transvector",
+          "stats": {
+            "M": "20+\"",
+            "T": "9",
+            "Sv": "3+",
+            "W": "10",
+            "Ld": "7+",
+            "OC": "0"
+          }
+        }
+      ],
+      "invulnerable": "",
+      "weapons": [
+        {
+          "name": "Cognis heavy stubber array",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "9",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 9, Sustained Hits 1, Twin-linked"
+        },
+        {
+          "name": "Armoured hull",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Aerial Deployment",
+          "text": "If this model starts the game in Hover mode and in Strategic Reserves, it can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules."
+        },
+        {
+          "title": "Chaff Launcher",
+          "text": "The bearer has the Smoke keyword."
+        },
+        {
+          "title": "Command Uplink",
+          "text": "Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Hover",
+          "text": ""
+        },
+        {
+          "title": "Deep Strike",
+          "text": ""
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Archaeopter Transvector.",
+      "wargear": [
+        "Available weapon profiles: Cognis heavy stubber array, Armoured hull."
+      ],
+      "keywords": [
+        "Archaeopter Transvector",
+        "Adeptus Mechanicus",
+        "Vehicle",
+        "Aircraft",
+        "Fly",
+        "Imperium",
+        "Skitarii",
+        "Transport"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-corpuscarii-electro-priests",
+      "title": "Corpuscarii Electro-Priests",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "65"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "3",
+        "Sv": "7+",
+        "W": "1",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Corpuscarii Electro-Priests",
+          "stats": {
+            "M": "6\"",
+            "T": "3",
+            "Sv": "7+",
+            "W": "1",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Electrostatic gauntlets",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "3",
+          "skill": "3+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Pistol, Sustained Hits 2"
+        },
+        {
+          "name": "Electrostatic gauntlets",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Sustained Hits 2"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Electro-shock",
+          "text": "In your Shooting phase, after this unit has shot, select one enemy unit (excluding Monsters and Vehicles) hit by one or more of those attacks. Until the end of your opponent’s next turn, that enemy unit is shocked. While a unit is shocked, subtract 2\" from its Move characteristic and subtract 2 from Advance and Charge rolls made for it."
+        },
+        {
+          "title": "Feel No Pain 5+",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "5-10 Corpuscarii Electro-Priests.",
+      "wargear": [
+        "Available weapon profiles: Electrostatic gauntlets, Electrostatic gauntlets."
+      ],
+      "keywords": [
+        "Electro-Priests",
+        "Corpuscarii",
+        "Imperium",
+        "Infantry",
+        "Adeptus Mechanicus",
+        "Cult Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-fulgurite-electro-priests",
+      "title": "Fulgurite Electro-Priests",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "70"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "3",
+        "Sv": "7+",
+        "W": "1",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Fulgurite Electro-Priests",
+          "stats": {
+            "M": "6\"",
+            "T": "3",
+            "Sv": "7+",
+            "W": "1",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Electroleech stave",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "3+",
+          "s": "6",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Devastating Wounds"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Electro-Infusion",
+          "text": "While a Character model is leading this unit, each time an attack targets this unit, subtract 1 from the Wound roll."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        },
+        {
+          "title": "Feel No Pain 5+",
+          "text": ""
+        }
+      ],
+      "composition": "5-10 Fulgurite Electro-Priests.",
+      "wargear": [
+        "Available weapon profiles: Electroleech stave."
+      ],
+      "keywords": [
+        "Electro-Priests",
+        "Fulgurite",
+        "Infantry",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Cult Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-hastarii-exterminators",
+      "title": "Hastarii Exterminators",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "135"
+      ],
+      "stats": {
+        "M": "5\"",
+        "T": "4",
+        "Sv": "3+",
+        "W": "2",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Hastarii Exterminator Alpha",
+          "stats": {
+            "M": "5\"",
+            "T": "4",
+            "Sv": "3+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        },
+        {
+          "name": "Hastarii Exterminators",
+          "stats": {
+            "M": "5\"",
+            "T": "4",
+            "Sv": "3+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Close combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "1",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Eradication caster - focused",
+          "mode": "ranged",
+          "range": "15\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Anti-Infantry 4+"
+        },
+        {
+          "name": "➤ Eradication caster - dissipated",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Anti-Infantry 4+"
+        },
+        {
+          "name": "Hastarii arc blaster",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Anti-Vehicle 4+, Devastating Wounds"
+        },
+        {
+          "name": "Power weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Attached Unit",
+          "text": "If a Character unit from your army can be attached to a Skitarii Rangers unit, it can be attached to this unit instead"
+        },
+        {
+          "title": "Broad-spectrum Targeting Augurs",
+          "text": "Each time a model in this unit makes an attack with an eradication caster that targets a unit (excluding Monster and Vehicle units), that attack has the [SUSTAINED HITS 1] ability."
+        },
+        {
+          "title": "Sustained Hits",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Hastarii Exterminator Alpha.",
+      "wargear": [
+        "Available weapon profiles: Close combat weapon, ➤ Eradication caster - focused, ➤ Eradication caster - dissipated, Hastarii arc blaster, Power weapon."
+      ],
+      "keywords": [
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Infantry",
+        "Skitarii",
+        "Hastarii",
+        "Exterminators"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-hastarii-fusiliers",
+      "title": "Hastarii Fusiliers",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "145"
+      ],
+      "stats": {
+        "M": "5\"",
+        "T": "4",
+        "Sv": "3+",
+        "W": "2",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Hastarii Fusilier Alpha",
+          "stats": {
+            "M": "5\"",
+            "T": "4",
+            "Sv": "3+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        },
+        {
+          "name": "Hastarii Fusilier",
+          "stats": {
+            "M": "5\"",
+            "T": "4",
+            "Sv": "3+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Neutron fusil",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "12",
+          "ap": "-3",
+          "d": "D6+1",
+          "abilities": ""
+        },
+        {
+          "name": "Hastarii phosphor blaster",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Ignores Cover"
+        },
+        {
+          "name": "Close combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "1",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Power weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Attached Unit",
+          "text": "If a Character unit from your army can be attached to a Skitarii Rangers unit, it can be attached to this unit instead"
+        },
+        {
+          "title": "Monocular Targeting Helms",
+          "text": "Each time a model in this unit makes an attack with a neutron fusil against a Monster or Vehicle unit, that attack has the [IGNORES COVER] ability."
+        },
+        {
+          "title": "Ignores Cover",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Hastarii Fusilier Alpha.",
+      "wargear": [
+        "Available weapon profiles: Neutron fusil, Hastarii phosphor blaster, Close combat weapon, Power weapon."
+      ],
+      "keywords": [
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Infantry",
+        "Skitarii",
+        "Hastarii",
+        "Fusiliers"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-ironstrider-ballistarii",
+      "title": "Ironstrider Ballistarii",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "85"
+      ],
+      "stats": {
+        "M": "10\"",
+        "T": "7",
+        "Sv": "3+",
+        "W": "7",
+        "Ld": "7+",
+        "OC": "2"
+      },
+      "profiles": [
+        {
+          "name": "Ironstrider Ballistarii",
+          "stats": {
+            "M": "10\"",
+            "T": "7",
+            "Sv": "3+",
+            "W": "7",
+            "Ld": "7+",
+            "OC": "2"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Twin cognis autocannon",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "4",
+          "skill": "4+",
+          "s": "9",
+          "ap": "-1",
+          "d": "3",
+          "abilities": "Sustained Hits 1, Twin-linked"
+        },
+        {
+          "name": "Twin cognis lascannon",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "12",
+          "ap": "-3",
+          "d": "D6+1",
+          "abilities": "Sustained Hits 1, Twin-linked"
+        },
+        {
+          "name": "Ironstrider feet",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Elevated Strider",
+          "text": "This unit is eligible to shoot in a turn in which it Fell Back or Advanced, and you can re-roll Desperate Escape tests taken for models in this unit."
+        },
+        {
+          "title": "Broad Spectrum Data-tether",
+          "text": "Each time you select this unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Deadly Demise 1",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "See the model selections for Ironstrider Ballistarii.",
+      "wargear": [
+        "Available weapon profiles: Twin cognis autocannon, Twin cognis lascannon, Ironstrider feet."
+      ],
+      "keywords": [
+        "Ironstrider Ballistarii",
+        "Vehicle",
+        "Smoke",
+        "Skitarii",
+        "Adeptus Mechanicus",
+        "Walker",
+        "Imperium"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-kastelan-robots",
+      "title": "Kastelan Robots",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "180"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "9",
+        "Sv": "2+",
+        "W": "7",
+        "Ld": "7+",
+        "OC": "2"
+      },
+      "profiles": [
+        {
+          "name": "Kastelan Robot",
+          "stats": {
+            "M": "6\"",
+            "T": "9",
+            "Sv": "2+",
+            "W": "7",
+            "Ld": "7+",
+            "OC": "2"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Close combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Twin Kastelan phosphor blaster",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Ignores Cover, Twin-linked"
+        },
+        {
+          "name": "Twin Kastelan fist",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "4+",
+          "s": "12",
+          "ap": "-2",
+          "d": "3",
+          "abilities": "Twin-linked"
+        },
+        {
+          "name": "Kastelan fist",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "4+",
+          "s": "12",
+          "ap": "-2",
+          "d": "3",
+          "abilities": ""
+        },
+        {
+          "name": "Kastelan phosphor blaster",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Ignores Cover"
+        },
+        {
+          "name": "Incendine combustor",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "D6",
+          "skill": "N/A",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Ignores Cover, Torrent"
+        },
+        {
+          "name": "Heavy phosphor blaster",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Ignores Cover"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Robotic Bodyguard",
+          "text": "While a Cybernetica Datasmith model is leading this unit, that model has the Feel No Pain 4+ ability."
+        },
+        {
+          "title": "Repulsor Grid",
+          "text": "Each time a ranged attack is allocated to a Kastelan Robot model in this unit, on an unmodified saving throw of 6, the attacking unit suffers 1 mortal wound after it has finished making its attacks."
+        },
+        {
+          "title": "Deadly Demise 1",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "2-4 Kastelan Robot.",
+      "wargear": [
+        "Available weapon profiles: Close combat weapon, Twin Kastelan phosphor blaster, Twin Kastelan fist, Kastelan fist, Kastelan phosphor blaster, Incendine combustor, Heavy phosphor blaster."
+      ],
+      "keywords": [
+        "Kastelan Robots",
+        "Adeptus Mechanicus",
+        "Imperium",
+        "Vehicle",
+        "Walker",
+        "Legio Cybernetica"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-kataphron-breachers",
+      "title": "Kataphron Breachers",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "160"
+      ],
+      "stats": {
+        "M": "5\"",
+        "T": "7",
+        "Sv": "3+",
+        "W": "3",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Kataphron Breachers",
+          "stats": {
+            "M": "5\"",
+            "T": "7",
+            "Sv": "3+",
+            "W": "3",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "6+",
+      "weapons": [
+        {
+          "name": "Torsion cannon",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Anti-Infantry 2+, Blast"
+        },
+        {
+          "name": "Hydraulic claw",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "3",
+          "abilities": ""
+        },
+        {
+          "name": "Arc claw",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Anti-Vehicle 4+"
+        },
+        {
+          "name": "Heavy arc rifle",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "3",
+          "abilities": "Anti-Vehicle 4+, Rapid Fire 2"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Breaching Command",
+          "text": "Each time a model in this unit makes an attack, re-roll a Hit roll of 1. While this unit is within 6” of one or more friendly Adeptus Mechanicus Battleline units, you can re-roll the Hit roll instead."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "See the model selections for Kataphron Breachers.",
+      "wargear": [
+        "Available weapon profiles: Torsion cannon, Hydraulic claw, Arc claw, Heavy arc rifle."
+      ],
+      "keywords": [
+        "Breachers",
+        "Kataphron",
+        "Infantry",
+        "Adeptus Mechanicus",
+        "Imperium",
+        "Cult Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-kataphron-destroyers",
+      "title": "Kataphron Destroyers",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "105"
+      ],
+      "stats": {
+        "M": "5\"",
+        "T": "6",
+        "Sv": "3+",
+        "W": "3",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Kataphron Destroyers",
+          "stats": {
+            "M": "5\"",
+            "T": "6",
+            "Sv": "3+",
+            "W": "3",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "6+",
+      "weapons": [
+        {
+          "name": "➤ Kataphron plasma culverin - standard",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "4",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-2",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Kataphron plasma culverin - supercharge",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "4",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Hazardous"
+        },
+        {
+          "name": "Cognis flamer",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "D6",
+          "skill": "N/A",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Ignores Cover, Torrent"
+        },
+        {
+          "name": "Close combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Phosphor blaster",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Ignores Cover, Rapid Fire 1"
+        },
+        {
+          "name": "Heavy grav-cannon",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "4",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Anti-Vehicle 2+"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Sentinel Directive",
+          "text": "Each time you target this unit with the Fire Overwatch Stratagem, hits are scored on unmodified Hit rolls of 5+ when resolving that Stratagem."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "See the model selections for Kataphron Destroyers.",
+      "wargear": [
+        "Available weapon profiles: ➤ Kataphron plasma culverin - standard, ➤ Kataphron plasma culverin - supercharge, Cognis flamer, Close combat weapon, Phosphor blaster, Heavy grav-cannon."
+      ],
+      "keywords": [
+        "Destroyers",
+        "Kataphron",
+        "Infantry",
+        "Adeptus Mechanicus",
+        "Imperium",
+        "Cult Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-onager-dunecrawler",
+      "title": "Onager Dunecrawler",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "155"
+      ],
+      "stats": {
+        "M": "8\"",
+        "T": "10",
+        "Sv": "2+",
+        "W": "11",
+        "Ld": "7+",
+        "OC": "3"
+      },
+      "profiles": [
+        {
+          "name": "Onager Dunecrawler",
+          "stats": {
+            "M": "8\"",
+            "T": "10",
+            "Sv": "2+",
+            "W": "11",
+            "Ld": "7+",
+            "OC": "3"
+          }
+        }
+      ],
+      "invulnerable": "4+",
+      "weapons": [
+        {
+          "name": "Cognis heavy stubber",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 3, Sustained Hits 1"
+        },
+        {
+          "name": "Dunecrawler legs",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Eradication beamer - dissipated",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3D3",
+          "skill": "4+",
+          "s": "9",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Blast, Sustained Hits 1"
+        },
+        {
+          "name": "➤ Eradication beamer - focused",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "3D3",
+          "skill": "4+",
+          "s": "10",
+          "ap": "-3",
+          "d": "3",
+          "abilities": "Blast, Sustained Hits 1"
+        },
+        {
+          "name": "Daedalus missile launcher",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "10",
+          "ap": "-2",
+          "d": "D6+1",
+          "abilities": "Anti-Fly 2+"
+        },
+        {
+          "name": "Icarus array",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "6",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Anti-Fly 4+, Twin-linked"
+        },
+        {
+          "name": "Neutron laser",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "16",
+          "ap": "-4",
+          "d": "D6+2",
+          "abilities": "Heavy"
+        },
+        {
+          "name": "Twin Onager heavy phosphor blaster",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "12",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Ignores Cover, Twin-linked"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Emanatus Forcefield (Aura)",
+          "text": "While a friendly Adeptus Mechanicus Battleline model is wholly within 6\" of this model, that Battleline model has a 4+ invulnerable save against ranged attacks."
+        },
+        {
+          "title": "Damaged: 1-4 wounds remaining",
+          "text": "While this mdel has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+        },
+        {
+          "title": "Scuttling Walker",
+          "text": "Each time this model makes a Normal, Advance or Fall Back move, it can move through friendly Monster and Vehicle models and sections of terrain features that are 4\" or less in height."
+        },
+        {
+          "title": "Broad spectrum data-tether",
+          "text": "The bearer loses the SMOKE keyword, but each time you target the bearer with a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Onager Dunecrawler.",
+      "wargear": [
+        "Available weapon profiles: Cognis heavy stubber, Dunecrawler legs, ➤ Eradication beamer - dissipated, ➤ Eradication beamer - focused, Daedalus missile launcher, Icarus array, Neutron laser, Twin Onager heavy phosphor blaster."
+      ],
+      "keywords": [
+        "Onager Dunecrawler",
+        "Imperium",
+        "Vehicle",
+        "Walker",
+        "Skitarii",
+        "Adeptus Mechanicus",
+        "Smoke"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-pteraxii-skystalkers",
+      "title": "Pteraxii Skystalkers",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "75"
+      ],
+      "stats": {
+        "M": "12\"",
+        "T": "4",
+        "Sv": "4+",
+        "W": "2",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Pteraxii Skystalkers",
+          "stats": {
+            "M": "12\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        },
+        {
+          "name": "Pteraxii Skystalker Alpha",
+          "stats": {
+            "M": "12\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Flechette blaster",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "5",
+          "skill": "4+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "Taser goad",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Sustained Hits 2"
+        },
+        {
+          "name": "Close combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Flechette carbine",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "6",
+          "skill": "4+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Ride the Thermals",
+          "text": "In your Shooting phase, after this unit has shot, if it is not within Engagement Range of one or more enemy units, it can do one of the following:\n- Make a Normal move of up to 6\".\n- Make a Normal move of up to 12\", provided every model in this unit ends that move wholly within 6\" of one or more friendly Adeptus Mechanicus Battleline units.\n\nIn either case, if it does, until the end of the turn, this unit is not eligible to declare a charge."
+        },
+        {
+          "title": "Deep Strike",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Pteraxii Skystalker Alpha; 4-9 Pteraxii Skystalkers.",
+      "wargear": [
+        "Available weapon profiles: Flechette blaster, Taser goad, Close combat weapon, Flechette carbine."
+      ],
+      "keywords": [
+        "Skystalkers",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Infantry",
+        "Fly",
+        "Jump Pack",
+        "Grenades",
+        "Skitarii",
+        "Pteraxii"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-pteraxii-sterylizors",
+      "title": "Pteraxii Sterylizors",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "80"
+      ],
+      "stats": {
+        "M": "12\"",
+        "T": "4",
+        "Sv": "4+",
+        "W": "2",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Pteraxii Sterylizors",
+          "stats": {
+            "M": "12\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        },
+        {
+          "name": "Pteraxii Skystalker Alpha",
+          "stats": {
+            "M": "12\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Flechette blaster",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "5",
+          "skill": "4+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "Taser goad",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Sustained Hits 2"
+        },
+        {
+          "name": "Pteraxii talons",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Phosphor torch",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "D6",
+          "skill": "N/A",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Ignores Cover, Torrent"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Searing Conflagaration",
+          "text": "Each time a model in this unit makes an attack with a phosphor torch that targets an enemy unit within range of an objective marker, re-roll a Wound roll of 1. If this unit is also within 6\" of one or more friendly Adeptus Mechanicus Battleline units, each time such an attack targets such a unit, you can re-roll the Wound roll instead."
+        },
+        {
+          "title": "Deep Strike",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Pteraxii Sterylizor Alpha; 4-9 Pteraxii Sterylizors.",
+      "wargear": [
+        "Available weapon profiles: Flechette blaster, Taser goad, Pteraxii talons, Phosphor torch."
+      ],
+      "keywords": [
+        "Sterylizors",
+        "Imperium",
+        "Infantry",
+        "Fly",
+        "Jump Pack",
+        "Skitarii",
+        "Adeptus Mechanicus",
+        "Pteraxii"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-serberys-raiders",
+      "title": "Serberys Raiders",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "60"
+      ],
+      "stats": {
+        "M": "12\"",
+        "T": "4",
+        "Sv": "4+",
+        "W": "2",
+        "Ld": "7+",
+        "OC": "2"
+      },
+      "profiles": [
+        {
+          "name": "Serberys Raiders",
+          "stats": {
+            "M": "12\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "2"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Galvanic carbine",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Devastating Wounds"
+        },
+        {
+          "name": "Cavalry sabre & clawed limbs",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "4+",
+          "s": "4",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Mechanicus pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Tactica Obliqua",
+          "text": "Once per turn, when an enemy unit ends a Normal, Advance or Fall Back move within 9\" of this unit, if this unit is not within Engagement Range of one or more enemy units, it can do one of the following:\n- Make a Normal move of up to D6\".\n- Make a Normal move of up to 6\", provided every model in this unit ends that move wholly within 6\" of one or more friendly Adeptus Mechanicus Battleline units."
+        },
+        {
+          "title": "Enhanced data-tether",
+          "text": "Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Scouts 9\"",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Serberys Raider Alpha.",
+      "wargear": [
+        "Available weapon profiles: Galvanic carbine, Cavalry sabre & clawed limbs, Mechanicus pistol."
+      ],
+      "keywords": [
+        "Serberys Raiders",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Skitarii",
+        "Mounted"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-serberys-sulphurhounds",
+      "title": "Serberys Sulphurhounds",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "55"
+      ],
+      "stats": {
+        "M": "12\"",
+        "T": "4",
+        "Sv": "4+",
+        "W": "2",
+        "Ld": "7+",
+        "OC": "2"
+      },
+      "profiles": [
+        {
+          "name": "Serberys Sulphurhounds",
+          "stats": {
+            "M": "12\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "2"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Cavalry arc maul",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "1",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Anti-Vehicle 4+, Devastating Wounds, Extra Attacks"
+        },
+        {
+          "name": "Clawed limbs",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Phosphor pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Ignores Cover, Pistol"
+        },
+        {
+          "name": "Phosphor blast carbine",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "D6",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Blast, Ignores cover"
+        },
+        {
+          "name": "Sulphur breath",
+          "mode": "ranged",
+          "range": "9\"",
+          "a": "D6",
+          "skill": "N/A",
+          "s": "3",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Ignores Cover, Pistol, Torrent"
+        },
+        {
+          "name": "Mechanicus pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Line-breakers",
+          "text": "Each time this unit ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6 for each model in this unit that is within Engagement Range of that enemy unit, adding 2 to the result if this unit started its Charge move within 6\" of one or more friendly Adeptus Mechanicus Battleline units. For each 4+, that enemy unit suffers 1 mortal wound."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Serberys Sulphurhound Alpha.",
+      "wargear": [
+        "Available weapon profiles: Cavalry arc maul, Clawed limbs, Phosphor pistol, Phosphor blast carbine, Sulphur breath, Mechanicus pistol."
+      ],
+      "keywords": [
+        "Serberys Sulphurhounds",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Skitarii",
+        "Mounted"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-servitor-battleclade",
+      "title": "Servitor Battleclade",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "60"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "4",
+        "Sv": "4+",
+        "W": "2",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Servitor Underseer",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        },
+        {
+          "name": "Combat Servitor",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "1",
+            "Ld": "8+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "6+",
+      "weapons": [
+        {
+          "name": "Mechanicus pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        },
+        {
+          "name": "Dataspikes",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Heavy arc rifle",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "3",
+          "abilities": "Anti-VEHICLE 4+, Rapid Fire 1"
+        },
+        {
+          "name": "Heavy bolter",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Heavy, Sustained Hits 1"
+        },
+        {
+          "name": "Incendine igniter",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "D6",
+          "skill": "N/A",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Ignores Cover, Torrent"
+        },
+        {
+          "name": "Meltagun",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "9",
+          "ap": "-4",
+          "d": "D6",
+          "abilities": "Melta 2"
+        },
+        {
+          "name": "Phosphor blaster",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Ignores Cover, Rapid Fire 1"
+        },
+        {
+          "name": "Servo-claw",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Network Override",
+          "text": "While this unit contains one or more Tech-Priest models, this unit is: \n- Eligible to perform an Action in a turn in which it Advanced. \n- Eligible to shoot in a turn in which it started an Action."
+        },
+        {
+          "title": "Attached Unit",
+          "text": "If a Character unit from your army with the Leader ability can be attached to a Kataphron Breachers unit, it can be attached to this unit instead."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Servitor Underseer; 1 Gun Servitor w/ heavy arc rifle; 1 Gun Servitor w/ heavy bolter.",
+      "wargear": [
+        "Available weapon profiles: Mechanicus pistol, Dataspikes, Heavy arc rifle, Heavy bolter, Incendine igniter, Meltagun, Phosphor blaster, Servo-claw."
+      ],
+      "keywords": [
+        "Adeptus Mechanicus",
+        "Infantry",
+        "Imperium",
+        "Cult Mechanicus",
+        "Servitor Battleclade"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-sicarian-infiltrators",
+      "title": "Sicarian Infiltrators",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "75"
+      ],
+      "stats": {
+        "M": "8\"",
+        "T": "4",
+        "Sv": "4+",
+        "W": "2",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Sicarian Infiltrators",
+          "stats": {
+            "M": "8\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Power weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "4+",
+          "s": "4",
+          "ap": "-2",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Stubcarbine",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "Flechette blaster",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "5",
+          "skill": "4+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "Taser goad",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Sustained Hits 2"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Neurostatic Interference (Aura)",
+          "text": "While an enemy unit is within 6\" of this unit, each time a Battle-shock or Leadership test is taken for that unit, subtract 1 from that test. While this unit is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 2 from that test instead."
+        },
+        {
+          "title": "Infiltrators",
+          "text": ""
+        },
+        {
+          "title": "Stealth",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "See the model selections for Sicarian Infiltrators.",
+      "wargear": [
+        "Available weapon profiles: Power weapon, Stubcarbine, Flechette blaster, Taser goad."
+      ],
+      "keywords": [
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Skitarii",
+        "Infantry",
+        "Sicarian",
+        "Infiltrators"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-sicarian-ruststalkers",
+      "title": "Sicarian Ruststalkers",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "80"
+      ],
+      "stats": {
+        "M": "8\"",
+        "T": "4",
+        "Sv": "4+",
+        "W": "2",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Sicarian Ruststalkers",
+          "stats": {
+            "M": "8\"",
+            "T": "4",
+            "Sv": "4+",
+            "W": "2",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Transonic razor & chordclaw",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Anti-Infantry 3+, Precision"
+        },
+        {
+          "name": "Transonic blades",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Precision"
+        },
+        {
+          "name": "Transonic blades & chordclaw",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Anti-Infantry 3+, Devastating Wounds, Precision"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Optimised Gait",
+          "text": "Add 1 to Advance and Charge rolls made for this unit. While this unit is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, add 2 to Advance and Charge rolls made for this unit instead."
+        },
+        {
+          "title": "Stealth",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "See the model selections for Sicarian Ruststalkers.",
+      "wargear": [
+        "Available weapon profiles: Transonic razor & chordclaw, Transonic blades, Transonic blades & chordclaw."
+      ],
+      "keywords": [
+        "Ruststalkers",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Infantry",
+        "Skitarii",
+        "Sicarian"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-skorpius-disintegrator",
+      "title": "Skorpius Disintegrator",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "165"
+      ],
+      "stats": {
+        "M": "10\"",
+        "T": "10",
+        "Sv": "2+",
+        "W": "12",
+        "Ld": "7+",
+        "OC": "3"
+      },
+      "profiles": [
+        {
+          "name": "Skorpius Disintegrator",
+          "stats": {
+            "M": "10\"",
+            "T": "10",
+            "Sv": "2+",
+            "W": "12",
+            "Ld": "7+",
+            "OC": "3"
+          }
+        }
+      ],
+      "invulnerable": "",
+      "weapons": [
+        {
+          "name": "Cognis heavy stubber",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 3, Sustained Hits 1"
+        },
+        {
+          "name": "Disruptor missile launcher",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "9",
+          "ap": "-2",
+          "d": "D6",
+          "abilities": "Twin-linked"
+        },
+        {
+          "name": "Belleros energy cannon",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "2D6",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Blast, Indirect Fire"
+        },
+        {
+          "name": "Ferrumite cannon",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "12",
+          "ap": "-3",
+          "d": "D6+1",
+          "abilities": ""
+        },
+        {
+          "name": "Armoured hull",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Broad spectrum data-tether",
+          "text": "Each time you select the bearer as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Blistering Salvoes",
+          "text": "Each time this model makes an attack with a belleros energy cannon that targets an Infantry unit, add 1 to the Hit roll. Each time this model makes an attack with a ferrumite cannon that targets a Monster or Vehicle unit, add 1 to the Hit roll."
+        },
+        {
+          "title": "Damaged: 1-4 wounds remaining",
+          "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Skorpius Disintegrator.",
+      "wargear": [
+        "Available weapon profiles: Cognis heavy stubber, Disruptor missile launcher, Belleros energy cannon, Ferrumite cannon, Armoured hull."
+      ],
+      "keywords": [
+        "Skorpius Disintegrator",
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Skitarii",
+        "Vehicle",
+        "Smoke"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-sydonian-dragoons-with-radium-jezzails",
+      "title": "Sydonian Dragoons with radium jezzails",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "55"
+      ],
+      "stats": {
+        "M": "10\"",
+        "T": "7",
+        "Sv": "3+",
+        "W": "7",
+        "Ld": "7+",
+        "OC": "2"
+      },
+      "profiles": [
+        {
+          "name": "Sydonian Dragoons",
+          "stats": {
+            "M": "10\"",
+            "T": "7",
+            "Sv": "3+",
+            "W": "7",
+            "Ld": "7+",
+            "OC": "2"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Phosphor serpenta",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Ignores Cover, Pistol"
+        },
+        {
+          "name": "Radium jezzail",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-2",
+          "d": "3",
+          "abilities": "Anti-Infantry 3+, Heavy, Precision"
+        },
+        {
+          "name": "Ironstrider feet",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Focused Hunters",
+          "text": "At the start of the battle, select one unit from your opponent’s army. Until the end of the battle, each time a model in this unit makes an attack that targets that unit, you can re-roll the Hit roll."
+        },
+        {
+          "title": "Broad Spectrum Data-tether",
+          "text": "Each time you select the bearer as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Deadly Demise 1",
+          "text": ""
+        },
+        {
+          "title": "Stealth",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "See the model selections for Sydonian Dragoons with radium jezzails.",
+      "wargear": [
+        "Available weapon profiles: Phosphor serpenta, Radium jezzail, Ironstrider feet."
+      ],
+      "keywords": [
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Skitarii",
+        "Vehicle",
+        "Walker",
+        "Sydonian",
+        "Dragoons with Radium Jezzails",
+        "Smoke"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-sydonian-dragoons-with-taser-lances",
+      "title": "Sydonian Dragoons with taser lances",
+      "status": "Codex transcription",
+      "category": "Other",
+      "points": [
+        "65"
+      ],
+      "stats": {
+        "M": "10\"",
+        "T": "7",
+        "Sv": "3+",
+        "W": "7",
+        "Ld": "7+",
+        "OC": "2"
+      },
+      "profiles": [
+        {
+          "name": "Sydonian Dragoons (Radium Jezzail)",
+          "stats": {
+            "M": "10\"",
+            "T": "7",
+            "Sv": "3+",
+            "W": "7",
+            "Ld": "7+",
+            "OC": "2"
+          }
+        }
+      ],
+      "invulnerable": "5+",
+      "weapons": [
+        {
+          "name": "Phosphor serpenta",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Ignores Cover, Pistol"
+        },
+        {
+          "name": "Taser lance",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Anti-Walker 2+, Lance, Sustained Hits 2"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Dynamic Efficiency",
+          "text": "This unit is eligible to declare a charge in a turn in which it Advanced or Fell Back, and you can re-roll Desperate Escape tests taken for models in this unit."
+        },
+        {
+          "title": "Broad Spectrum Data-tether",
+          "text": "Each time you select the bearer as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Deadly Demise 1",
+          "text": ""
+        },
+        {
+          "title": "Stealth",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "See the model selections for Sydonian Dragoons with taser lances.",
+      "wargear": [
+        "Available weapon profiles: Phosphor serpenta, Taser lance."
+      ],
+      "keywords": [
+        "Imperium",
+        "Adeptus Mechanicus",
+        "Skitarii",
+        "Vehicle",
+        "Walker",
+        "Sydonian",
+        "Dragoons with Taser Lances",
+        "Smoke"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-secutarii-hoplites",
+      "title": "Secutarii Hoplites",
+      "status": "Warhammer Legends",
+      "category": "Warhammer Legends",
+      "points": [
+        "65"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "3",
+        "Sv": "5+",
+        "W": "1",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Secutarii Hoplites",
+          "stats": {
+            "M": "6\"",
+            "T": "3",
+            "Sv": "5+",
+            "W": "1",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "4+",
+      "weapons": [
+        {
+          "name": "Alpha close combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "4",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Arc lance",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Anti-Vehicle 4+, Devastating Wounds, Lance"
+        },
+        {
+          "name": "Arc lance",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Anti-Vehicle 4+, Devastating Wounds"
+        },
+        {
+          "name": "Archeotech pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Titan Guard",
+          "text": "You can target this unit with the Heroic Intervention Stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this phase. When oing so, if there are one or more friendly Adeptus Titanicus units on the battlefield, you can re-roll the subsequent charge roll."
+        },
+        {
+          "title": "Secutarii",
+          "text": "If a model from your army with the Leader ability can be attached to a Skitarii Vanguard unit, it can be attached to this unit instead."
+        },
+        {
+          "title": "Enhanced data-tether",
+          "text": "Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Omnispex",
+          "text": "Ranged weapons equipped by models in the bearer’s unit have the IGNORES COVER ability."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Secutarii Hoplite Alpha.",
+      "wargear": [
+        "Available weapon profiles: Alpha close combat weapon, Arc lance, Arc lance, Archeotech pistol."
+      ],
+      "keywords": [
+        "Secutarii Hoplites",
+        "Infantry",
+        "Imperium",
+        "Skitarii",
+        "Adeptus Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-secutarii-peltasts",
+      "title": "Secutarii Peltasts",
+      "status": "Warhammer Legends",
+      "category": "Warhammer Legends",
+      "points": [
+        "50"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "3",
+        "Sv": "5+",
+        "W": "1",
+        "Ld": "7+",
+        "OC": "1"
+      },
+      "profiles": [
+        {
+          "name": "Secutarii Peltasts",
+          "stats": {
+            "M": "6\"",
+            "T": "3",
+            "Sv": "5+",
+            "W": "1",
+            "Ld": "7+",
+            "OC": "1"
+          }
+        }
+      ],
+      "invulnerable": "6+",
+      "weapons": [
+        {
+          "name": "Alpha close combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "4",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Close combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "1",
+          "skill": "4+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Galvanic caster - flechette",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "5",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Assault"
+        },
+        {
+          "name": "➤ Galvanic caster - hammershot",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Heavy"
+        },
+        {
+          "name": "Archeotech pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Devastating Wounds, Pistol"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Blind Barrage",
+          "text": "In your Shooting phase, after this unit has shot, select one enemy Infantry unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is blinded. While a unit is blinded, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+        },
+        {
+          "title": "Secutarii",
+          "text": "If a model from your army with the Leader ability can be attached to a Skitarii Vanguard unit, it can be attached to this unit instead."
+        },
+        {
+          "title": "Enhanced data-tether",
+          "text": "Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+        },
+        {
+          "title": "Omnispex",
+          "text": "Ranged weapons equipped by models in the bearer’s unit have the IGNORES COVER ability."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Secutarii Peltast Alpha.",
+      "wargear": [
+        "Available weapon profiles: Alpha close combat weapon, Close combat weapon, ➤ Galvanic caster - flechette, ➤ Galvanic caster - hammershot, Archeotech pistol."
+      ],
+      "keywords": [
+        "Infantry",
+        "Adeptus Mechanicus",
+        "Secutarii Peltasts",
+        "Skitarii",
+        "Imperium"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-servitors",
+      "title": "Servitors",
+      "status": "Warhammer Legends",
+      "category": "Warhammer Legends",
+      "points": [
+        "50"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "3",
+        "Sv": "4+",
+        "W": "1",
+        "Ld": "8+",
+        "OC": "0"
+      },
+      "profiles": [
+        {
+          "name": "Servitors",
+          "stats": {
+            "M": "6\"",
+            "T": "3",
+            "Sv": "4+",
+            "W": "1",
+            "Ld": "8+",
+            "OC": "0"
+          }
+        }
+      ],
+      "invulnerable": "6+",
+      "weapons": [
+        {
+          "name": "Servitor's servo arm",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "1",
+          "skill": "5+",
+          "s": "8",
+          "ap": "-2",
+          "d": "3",
+          "abilities": ""
+        },
+        {
+          "name": "Heavy bolter",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "6+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Heavy, Sustained Hits 1"
+        },
+        {
+          "name": "Multi-melta",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "2",
+          "skill": "6+",
+          "s": "9",
+          "ap": "-4",
+          "d": "D6",
+          "abilities": "Heavy, Melta 2"
+        },
+        {
+          "name": "➤ Plasma cannon - Standard",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D3",
+          "skill": "6+",
+          "s": "7",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Heavy, Blast"
+        },
+        {
+          "name": "➤ Plasma cannon - supercharge",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D3",
+          "skill": "6+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Hazardous, Heavy, Blast"
+        },
+        {
+          "name": "Servitor's tools",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "1",
+          "skill": "5+",
+          "s": "3",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Mindlock",
+          "text": "While a TECH-PRIEST model is leading this unit, improve the Ballistic Skill and Weapon Skill characteristics of ranged and melee weapons equipped by SERVITOR models in this unit by 1."
+        },
+        {
+          "title": "Servitor Retinue",
+          "text": "At the start of the Declare Battle Formations step, this unit can join one other unit from your army that is being led by a TECH-PRIEST ENGINSEER model (a unit cannot have more than one SERVITORS unit joined to it). If it does, until the end of the battle, every model in this unit counts as being part of that Bodyguard unit, and that Bodyguard unit’s Starting Strength is increased accordingly."
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "See the model selections for Servitors.",
+      "wargear": [
+        "Available weapon profiles: Servitor's servo arm, Heavy bolter, Multi-melta, ➤ Plasma cannon - Standard, ➤ Plasma cannon - supercharge, Servitor's tools."
+      ],
+      "keywords": [
+        "Adeptus Mechanicus",
+        "Infantry",
+        "Imperium",
+        "Cult Mechanicus",
+        "Servitors"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-terrax-pattern-termite",
+      "title": "Terrax-Pattern Termite",
+      "status": "Warhammer Legends",
+      "category": "Warhammer Legends",
+      "points": [
+        "200"
+      ],
+      "stats": {
+        "M": "8\"",
+        "T": "10",
+        "Sv": "3+",
+        "W": "14",
+        "Ld": "6+",
+        "OC": "2"
+      },
+      "profiles": [
+        {
+          "name": "Terrax-pattern Termite",
+          "stats": {
+            "M": "8\"",
+            "T": "10",
+            "Sv": "3+",
+            "W": "14",
+            "Ld": "6+",
+            "OC": "2"
+          }
+        }
+      ],
+      "invulnerable": "",
+      "weapons": [
+        {
+          "name": "Termite drill",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "6",
+          "skill": "4+",
+          "s": "14",
+          "ap": "-2",
+          "d": "D3+3",
+          "abilities": "Anti-Vehicle 3+"
+        },
+        {
+          "name": "Terrax melta cutter",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "5",
+          "skill": "4+",
+          "s": "9",
+          "ap": "-4",
+          "d": "D6",
+          "abilities": "Melta 2"
+        },
+        {
+          "name": "Combi bolter",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 2"
+        },
+        {
+          "name": "Heavy flamer",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "D6",
+          "skill": "N/A",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Ignores Cover, Torrent"
+        },
+        {
+          "name": "Twin volkite charger",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "2",
+          "abilities": "Devastating Wounds, Twin-linked"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Damaged: 1-5 wounds remaining",
+          "text": "While this mdel has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+        },
+        {
+          "title": "Termite Assault",
+          "text": "This model must start the battle in Reserves, but neither it nor any units embarked within it are counted towards any limits placed on the maximum number of Reserves units you can start the battle with. This model can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. Any units embarked within this model can disembark after it has been set up on the battlefield, and if they do they must be set up more than 9\" away from all enemy models."
+        },
+        {
+          "title": "Deadly Demise",
+          "text": "D3"
+        },
+        {
+          "title": "Deep Strike",
+          "text": ""
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": ""
+        },
+        {
+          "title": "Doctrina Imperatives",
+          "text": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.\n\nPROTECTOR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n■ Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n■ Each time a melee attack targets this unit, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, subtract 1 from the Hit roll.\n\nCONQUEROR IMPERATIVE\n■ Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n■ Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n■ Each time a model in this unit makes an attack, if this unit has the Battleline keyword and/or it is within 6\" of one or more friendly Adeptus Mechanicus Battleline units, improve the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "composition": "1 Terrax-Pattern Termite.",
+      "wargear": [
+        "Available weapon profiles: Termite drill, Terrax melta cutter, Combi bolter, Heavy flamer, Twin volkite charger."
+      ],
+      "keywords": [
+        "Vehicle",
+        "Imperium",
+        "Transport",
+        "Dedicated Transport",
+        "Terrax-pattern Termite"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    },
+    {
+      "id": "unit-x-101",
+      "title": "X-101",
+      "status": "Warhammer Legends",
+      "category": "Warhammer Legends",
+      "points": [
+        "40"
+      ],
+      "stats": {
+        "M": "6\"",
+        "T": "3",
+        "Sv": "4+",
+        "W": "3",
+        "Ld": "8+",
+        "OC": "0"
+      },
+      "profiles": [
+        {
+          "name": "X-101",
+          "stats": {
+            "M": "6\"",
+            "T": "3",
+            "Sv": "4+",
+            "W": "3",
+            "Ld": "8+",
+            "OC": "0"
+          }
+        }
+      ],
+      "invulnerable": "",
+      "weapons": [
+        {
+          "name": "Grav-gun",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Anti-Vehicle 4+"
+        },
+        {
+          "name": "Hydraulic Claw",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "2",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "3",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Mindlock",
+          "text": "While a Tech-Priest model is leading this model’s unit, improve the Ballistic Skill and Weapon Skill characteristics of this model’s weapons by 1."
+        },
+        {
+          "title": "Bound Creation",
+          "text": "While a Tech-Priest model is leading this model’s unit, that Tech-Priest model has the Feel No Pain 5+ ability."
+        },
+        {
+          "title": "Servitor Bodyguard",
+          "text": "At the start of the Declare Battle Formations step, this model can join one other unit from your army that is being led by a Tech-Priest Infantry model. If it does, until the end of the battle, this model counts as being part of that Bodyguard unit, and that Bodyguard unit’s Starting Strength is increased accordingly."
+        }
+      ],
+      "composition": "See the model selections for X-101.",
+      "wargear": [
+        "Available weapon profiles: Grav-gun, Hydraulic Claw."
+      ],
+      "keywords": [
+        "Infantry",
+        "Imperium",
+        "Character",
+        "Epic Hero",
+        "X-101",
+        "Cult Mechanicus"
+      ],
+      "source": {
+        "label": "Codex transcription · BSData",
+        "url": "https://github.com/BSData/wh40k-10e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.cat"
+      },
+      "referenceUrl": "https://wahapedia.ru/wh40k10ed/factions/adeptus-mechanicus/datasheets.html"
+    }
+  ],
+  "audit": {
+    "datasheets": 39,
+    "legendsDatasheets": 5
+  }
+}

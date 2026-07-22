@@ -1,0 +1,17 @@
+{
+  "core-assault": {
+    "summary": "An unengaged unit that Advanced this turn can shoot using only its [ASSAULT] weapons. After shooting, it cannot start an Action until the end of the phase.",
+    "definition": "Units containing one or more models with an [ASSAULT] weapon can use Assault Shooting. Assault Shooting is available when the unit is unengaged, made an Advance move this turn and has one or more [ASSAULT] weapons. The unit shoots normally, but only [ASSAULT] weapons can be selected. After it shoots, the unit cannot start an Action until the end of the phase.",
+    "sourceLocator": "24.04 and 10.05; pages 79 and 35"
+  },
+  "core-blast": {
+    "summary": "For every full 5 models in the target unit, add 1 attack die for this weapon. [BLAST X] adds X attack dice per full 5 models instead.",
+    "definition": "Each time you gather attack dice for a [BLAST] weapon, add 1 attack die for every full 5 models that were in the target unit during the Select Targets step. For [BLAST X], add X attack dice for every full 5 models instead. Example: [BLAST 2] against a 12-model unit adds 4 attack dice.",
+    "sourceLocator": "24.05; page 79"
+  },
+  "core-cleave": {
+    "summary": "If all of this weapon's attacks target one unit, add X attack dice for every full 5 models in that unit. Example: [CLEAVE 1] against 16 models adds 3 dice.",
+    "definition": "[CLEAVE] always takes the form [CLEAVE X]. Each time you gather attack dice for this weapon, if you selected only one target for all of the weapon's attacks, add X attack dice for every full 5 models that were in the target unit during the Select Targets step. Example: [CLEAVE 1] with A 3 against a 16-model unit adds 3 attack dice, for a total of 6.",
+    "sourceLocator": "24.06; page 79"
+  }
+}

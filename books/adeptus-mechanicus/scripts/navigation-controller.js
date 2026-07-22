@@ -5,7 +5,8 @@
   const SCROLL_KEYS=new Set(['PageUp','PageDown','Home','End','ArrowUp','ArrowDown',' ']);
 
   class NavigationController{
-    constructor({breakpoint=800,trackingGap=18,epsilon=1,settleDistance=2,stableFrames=6,maxTransitionMs=2200}={}){
+    constructor({breakpoint=800,trackingGap=null,epsilon=1,settleDistance=2,stableFrames=6,maxTransitionMs=2200}={}){
+      trackingGap??=Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navigation-gap'))||18;
       this.options={breakpoint,trackingGap,epsilon,settleDistance,stableFrames,maxTransitionMs};
       this.header=document.getElementById('appHeader');
       this.panel=document.getElementById('tocPanel');
@@ -42,7 +43,7 @@
     }
 
     get active(){return this.state.active||this.items[0]?.id||'';}
-    initialId(){return location.hash&&this.byId.has(location.hash.slice(1))?location.hash.slice(1):this.pickActive()?.id||this.items[0]?.id||'';}
+    initialId(){return this.pickActive()?.id||this.items[0]?.id||'';}
 
     direct(node,className){return[...node.children].find(child=>child.classList.contains(className))||null;}
     row(node){return this.direct(node,'toc-row');}
@@ -86,9 +87,9 @@
 
       window.addEventListener('scroll',()=>this.scheduleRead(),{passive:true});
       window.addEventListener('resize',()=>this.handleResize(),{passive:true});
-      window.addEventListener('wheel',()=>this.cancelTransition(),{passive:true});
-      window.addEventListener('touchstart',()=>this.cancelTransition(),{passive:true});
-      window.addEventListener('pointerdown',()=>this.cancelTransition(),{passive:true});
+      window.addEventListener('wheel',event=>this.cancelTransition({event}),{passive:true});
+      window.addEventListener('touchstart',event=>this.cancelTransition({event}),{passive:true});
+      window.addEventListener('pointerdown',event=>this.cancelTransition({event}),{passive:true});
       document.addEventListener('keydown',event=>this.handleKeydown(event));
     }
 
@@ -122,6 +123,10 @@
       const branch=this.branch(node);
       if(!branch)return;
       branch.hidden?this.openBranch(node):this.closeBranch(node,{deep:true});
+    }
+    pathIsOpen(node){
+      for(let current=node;current;current=this.parentNode(current))if(this.branch(current)?.hidden)return false;
+      return true;
     }
     revealPath(node,{includeSelf=false}={}){
       const ancestors=[];
@@ -290,7 +295,8 @@
     readViewport(){
       if(this.state.owner!=='reader')return;
       const item=this.pickActive();
-      if(item)this.activate(item.id,{reveal:true,keepVisible:true});
+      if(item&&item.id!==this.state.active)this.activate(item.id,{reveal:true,keepVisible:true});
+      else if(item&&!this.pathIsOpen(item.node))this.revealPath(item.node,{includeSelf:true});
     }
 
     highlightTarget(element){
@@ -327,35 +333,54 @@
     }
     restore(id,scrollY,settled){this.beginTransition(id,Math.max(0,scrollY),settled);}
     beginTransition(id,destination,settled){
-      this.cancelTransition({read:false});
+      this.cancelTransition({read:false,force:true});
       const token=++this.state.transition;
       this.state.owner='controller';
       this.activate(id,{reveal:true,keepVisible:true});
       const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({top:destination,behavior:reduced?'auto':'smooth'});
-      this.waitForSettle(destination,token,settled);
+      const reachable=this.reachableDestination(destination);
+      window.scrollTo({top:reachable,behavior:reduced?'auto':'smooth'});
+      this.waitForSettle(reachable,token,settled);
+    }
+    reachableDestination(destination){
+      const max=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+      return Math.min(Math.max(0,destination),max);
     }
     waitForSettle(destination,token,settled){
       const started=performance.now();
       let previous=window.scrollY,stable=0;
+      const finish=()=>{
+        if(token!==this.state.transition)return;
+        this.raf.transition=0;
+        this.state.owner='reader';
+        settled?.();
+        this.refreshGeometry();
+      };
       const inspect=now=>{
         if(token!==this.state.transition)return;
         const current=window.scrollY;
-        stable=Math.abs(current-previous)<=this.options.epsilon?stable+1:0;
+        const reachable=this.reachableDestination(destination);
+        const atDestination=Math.abs(current-reachable)<this.options.settleDistance;
+        stable=atDestination&&Math.abs(current-previous)<=this.options.epsilon?stable+1:0;
         previous=current;
-        const done=Math.abs(current-destination)<this.options.settleDistance||stable>=this.options.stableFrames||now-started>=this.options.maxTransitionMs;
-        if(done){
-          this.raf.transition=0;
-          this.state.owner='reader';
-          settled?.();
+        if(atDestination||stable>=this.options.stableFrames){finish();return;}
+        if(now-started>=this.options.maxTransitionMs){
+          const root=document.documentElement;
+          const previousBehavior=root.style.scrollBehavior;
+          root.style.scrollBehavior='auto';
           this.refreshGeometry();
+          window.scrollTo({top:this.reachableDestination(destination),left:window.scrollX,behavior:'auto'});
+          root.style.scrollBehavior=previousBehavior;
+          this.raf.transition=requestAnimationFrame(finish);
           return;
         }
         this.raf.transition=requestAnimationFrame(inspect);
       };
       this.raf.transition=requestAnimationFrame(inspect);
     }
-    cancelTransition({read=true}={}){
+    cancelTransition({read=true,event=null,force=false}={}){
+      const target=event?.target;
+      if(!force&&target&&(this.panel.contains(target)||this.menuButton.contains(target)||this.collapseButton.contains(target)))return;
       if(this.state.owner!=='controller')return;
       this.state.transition++;
       if(this.raf.transition)cancelAnimationFrame(this.raf.transition);

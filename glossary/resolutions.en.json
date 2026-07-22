@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "policies": [
+    {
+      "match": "core-*",
+      "prefer": "core-rules",
+      "reason": "General rules are defined by the current Core Rules source, not by a faction book summary."
+    },
+    {
+      "match": "death-guard-*",
+      "prefer": "death-guard",
+      "reason": "Death Guard scoped entities are defined by the Death Guard source."
+    },
+    {
+      "match": "adeptus-mechanicus-*",
+      "prefer": "adeptus-mechanicus",
+      "reason": "Mechanicus-only prototype entities remain provisional until an official source is imported."
+    }
+  ],
+  "aliases": {
+    "core-anti-vehicle": {
+      "target": "core-anti",
+      "parameters": {
+        "targetKeyword": "VEHICLE",
+        "threshold": "4+"
+      },
+      "reason": "Anti-Vehicle 4+ is an instance of the parameterised Anti rule, not a separate rule."
+    }
+  }
+}
+

@@ -1,0 +1,788 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-07-22T00:29:25.290Z",
+  "counts": {
+    "terms": 697,
+    "aliases": 524,
+    "variants": 49,
+    "aliasCandidates": 33,
+    "keywordCandidates": 10
+  },
+  "variants": [
+    {
+      "termId": "core-anti",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Certain weapons are the bane of particular foes. This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound. Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a VEHICLE unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a PSYKER unit will result in a critical wound on an unmodified wound roll of 2+.",
+      "rejectedDefinition": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-assault",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Folding stocks, shortened barrels or lightweight construction enable some weapons to be easily fired on the move. Units containing one or more models with an [ASSAULT] weapon can shoot using assault shooting ( 10.05).",
+      "rejectedDefinition": "Units containing one or more models with an [ASSAULT] weapon can shoot using assault shooting (Core Rules 10.05).",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-blast",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "High-explosive rounds can fell several warrior s in a single blast, but firing them too close to comrades is unwise. Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).",
+      "rejectedDefinition": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack die for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], add X additional attack dice for every five such models instead.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-close-quarters",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Weapons designed for close-quarters fight ing can be wielded effectively even in the press of melee combat. Units containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with:\n• One or more of its [CLOSE-QUARTERS] weapons.\n• One or more of its other ranged weapons.",
+      "rejectedDefinition": "Units containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (Core Rules 10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select either one or more of its [CLOSE-QUARTERS] weapons, or one or more of its other ranged weapons, to make attacks with.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-deadly-demise",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "From detonating ammo stores to corrosive innards or frenzied death throes, some targets are deadly even in defeat. This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.",
+      "rejectedDefinition": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after units embarked within it have made emergency disembark moves, roll one D6. On a 6, each unit within 6\" of that model suffers a number of mortal wounds denoted by X. If X is random, roll separately for each unit within 6\".",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-deep-strike",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "There are many ways by which to deploy troops to the field of battle including tunnels, teleportation devices and other esoteric means of transportation. Each time this unit makes an ingress move ( 20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone.",
+      "rejectedDefinition": "Each time this unit makes an ingress move, if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-devastating-wounds",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "The most potent weapons strike with such power that they make a mockery of armour and can cleave through several foes. Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost. CORE ABILITIES ++ BEREFT OF ALL HOPE IS HE WHO SPURNS THE EMPEROR’S BLESSING ++80",
+      "rejectedDefinition": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to that weapon’s D characteristic. These are inflicted after resolving normal damage from those attacks. Mortal wounds inflicted this way can damage a maximum of one model for each critical wound; any remaining mortal wounds from that attack are lost.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-extra-attacks",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Some warriors ride to battle atop trusty mounts that gore and trample nearby foes. Others wield combat weapons that deliver a frenzy of additional blows. Each time a unit containing one or more models with an [EXTRA ATTACKS] weapon fights, those models will make attacks with those weapons in addition to any others. In the Select Weapons step ( 04.01), for each of those models, you must select:\n• All of that model’s [EXTRA ATTACKS] weapons.\n• One of that model’s other melee weapons, if possible.",
+      "rejectedDefinition": "Each time a unit containing one or more models with an [EXTRA ATTACKS] weapon fights, those models make attacks with those weapons in addition to any others. In the Select Weapons step, for each of those models, select all of its [EXTRA ATTACKS] weapons and one of its other melee weapons, if possible.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-feel-no-pain",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "The hardiest warriors refuse to be laid low, even by wounds that should by all rights prove lethal. This ability always takes the form Feel No Pain X+. Each time a model with this ability would lose a wound, roll one D6: on an X+, that wound is not lost.",
+      "rejectedDefinition": "This ability always takes the form Feel No Pain X+. Each time a model with this ability would lose a wound, roll one D6: on an X+, that wound is not lost.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-fights-first",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Those possessed of lightning-fast r eactions may strike before the opponent can react. While every model in a unit has this ability, that unit is a Fights First unit. See the Resolve Fights First Combats step in the Fight phase ( 12.04).",
+      "rejectedDefinition": "While every model in a unit has this ability, that unit is a Fights First unit. See the Resolve Fights First Combats step in the Fight phase (Core Rules 12.04).",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-firing-deck",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Some transports have dedicated platforms or firing ports from which embarked passengers can lay down a withering hail of munitions. This ability always takes the form Firing Deck X. In your Shooting phase, each time this TRANSPORT is selected to shoot, if one or more units are embarked within it, resolve the following sequence: . Select up to X models embarked within this TRANSPORT (excluding models whose units have already been selected to shoot this phase). . For each selected model, select one of its ranged weapons (excluding [ONE SHOT] weapons). . Until this TRANSPORT has resolved all of its attacks, it has all of those selected weapons in addition to its other weapons. . Unt il the end of the turn, units embarked within this TRANSPORT are not eligible to shoot.",
+      "rejectedDefinition": "This ability always takes the form Firing Deck X. In your Shooting phase, when this TRANSPORT is selected to shoot and one or more units are embarked within it: select up to X embarked models whose units have not already been selected to shoot; select one ranged weapon from each selected model (excluding [ONE SHOT]); until this TRANSPORT resolves all attacks it has those weapons in addition to its own; until the end of the turn, embarked units are not eligible to shoot.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-hazardous",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Weapons powered by unstable and dangerous energy sources pose a substantial risk to the wielder and those that stand beside them. Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls ( 06.03 ) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step.",
+      "rejectedDefinition": "Each time a unit is selected to shoot or fight, after it has resolved all of its attacks, make a number of hazard rolls for that unit equal to the number of [HAZARDOUS] weapons selected in the Select Weapons step.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-ignores-cover",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Some weapons are designed to root enemy formations out of entrenched positions. Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack ( 13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth).",
+      "rejectedDefinition": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack, including from rules that give a model or unit the benefit of cover (for example, Stealth).",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-indirect-fire",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Indirect fire weapons launch munitions over or around intervening obstacles-nowhere is safe from their fury. Units containing one or more models with an [INDIRECT FIRE] weapon can shoot using indirect shooting ( 10.07).",
+      "rejectedDefinition": "Units containing one or more models with an [INDIRECT FIRE] weapon can shoot using indirect shooting (Core Rules 10.07).",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-infiltrators",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Many armies employ reconnaissance units who can sit concealed, waiting for the right moment to strike. During deployment, if every model in a unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from your opponent’s deployment zone and all enemy units.",
+      "rejectedDefinition": "During deployment, if every model in a unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from your opponent’s deployment zone and all enemy units.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-leader",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Mighty heroes fight at the forefront of battle. See Attached Units ( 19).",
+      "rejectedDefinition": "Before the battle, in the Muster Armies step, for each Leader and Support unit in your army, you can select one friendly Bodyguard unit that unit can lead. That unit leads that Bodyguard unit for the battle and forms an Attached unit with it. Unless otherwise stated, each Bodyguard unit can only have one Leader unit and one Support unit attached to it.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-lethal-hits",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Many deadly weapons can inflict fatal injuries on any foe, no matter their resilience. Each time an attack made with a [LETHAL HITS] weapon results in a critical hit, you can choose for that attack to automatically wound the target. Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS]. CORE ABILITIES ++ BEWARE THE ENEMY WITHIN ++82",
+      "rejectedDefinition": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit, you can choose for that attack to automatically wound the target. No wound roll is made for an attack that automatically wounds, so it cannot result in a critical wound.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-lone-operative",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Assassins and other covert agents are difficult to pinpoint in the storm of battle. Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\", unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit.",
+      "rejectedDefinition": "Unless part of an Attached unit, this unit is not visible to enemy models unless they are within 12\" of it, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\". If this ability takes the form Lone Operative X\", use X\" instead.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-melta",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Melta weapons are powerful heat rays whose fury is magnified at close range. This ability always takes the form [MELTA X]. Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2.",
+      "rejectedDefinition": "This ability always takes the form [MELTA X]. Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-pistol",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Pistols can be wielded even at point-blank range. [PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. See [CLOSE-QUARTERS]. Designer’s Note: [PISTOL] is a pre-existing ability that will be superseded by [CLOSE-QUARTERS] as this edition of Warhammer 40,000 progresses. Both are functionally the same, but the latter is a more suitable term for weapons that function in this way.",
+      "rejectedDefinition": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. See [CLOSE-QUARTERS]. [PISTOL] is a pre-existing ability that will be superseded by [CLOSE-QUARTERS] as the edition progresses.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-precision",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Precision attacks can pick high-value target s out in a crowd. While resolving attacks made with one or more [PRECISION] weapons, at the start of the Allocation Order step ( 05.03 ), if the target unit contains one or more CHARACTER models visible to one or more of the attacking models, the active player can select one allocation group that contains one of those visible CHARACTER models. If they do, until those attacks are resolved, or until that CHARACTER group is destroyed (whichever happens first), that CHARACTER group is the current allocation group.",
+      "rejectedDefinition": "While resolving attacks made with one or more [PRECISION] weapons, at the start of the Allocation Order step, if the target unit contains one or more CHARACTER models visible to one or more attacking models, the active player can select one allocation group containing one of those visible CHARACTER models. That group remains the current allocation group until those attacks are resolved or that group is destroyed, whichever happens first.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-psychic",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Some weapons can channel the bearer’s psychic might to empower their blows. Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).",
+      "rejectedDefinition": "Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are psychic attacks.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-rapid-fire",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Rapid fire weapons are capable of long-ranged precision shots or controlled bursts at nearby targets. This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).",
+      "rejectedDefinition": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-stealth",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "The stealthiest warriors can evade the attentions, and the bullets, of their foes. If every model in a unit has this ability, each time a ranged attack targets that unit, that unit has the benefit of cover against that attack ( 13.08).",
+      "rejectedDefinition": "If every model in a unit has this ability, each time a ranged attack targets that unit, that unit has the benefit of cover against that attack.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-support",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Specialist combatants may be assigned to front-line squads to bolster their fighting effectiveness. See Attached Units ( 19).",
+      "rejectedDefinition": "Before the battle, in the Muster Armies step, for each Leader and Support unit in your army, you can select one friendly Bodyguard unit that unit can lead. That unit leads that Bodyguard unit for the battle and forms an Attached unit with it. Unless otherwise stated, each Bodyguard unit can only have one Leader unit and one Support unit attached to it.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-sustained-hits",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Some weapons possess a punishing rate of fire, or can land devastating flurries of blows, tearing the foe apart with relentless ferocity. This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X. Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability).",
+      "rejectedDefinition": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-torrent",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Torrent weapons project clouds of fire, gas or other lethal substances that few foes can hope to evade. Each time an attack is made with a [TORRENT] weapon, that attack automatically hits the target.",
+      "rejectedDefinition": "Each time an attack is made with a [TORRENT] weapon, that attack automatically hits the target.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-twin-linked",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Dual weapons are often grafted to the same targeting system for greater lethality. Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll. ++ VIGILANCE IS YOUR SHIELD ++ 85",
+      "rejectedDefinition": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-rule-17-02-frame",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "Some models do not have a base; many of these are MONSTER/VEHICLE models. Such models have the FRAME keyword, as do some other large models. Whenever a rule refers to a model’s position in relation to anything else on the battlefield (e.g. when measuring distances), if that model has the FRAME keyword, unless otherwise stated, measure to and from the closest point on that model (so not necessarily from its base, if it has one). When rotating a FRAME model as part of a move, if that model does not have a base, turn it any amount around its central axis, while keeping it upright.",
+      "rejectedDefinition": "Whenever a rule refers to a model’s position in relation to anything else on the battlefield, if that model has the FRAME keyword, unless otherwise stated, measure to and from the closest point on that model, not necessarily from its base. When rotating a FRAME model as part of a move, if it has no base, turn it any amount around its central axis while keeping it upright.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-attached-unit",
+      "selectedSource": "core-rules",
+      "rejectedSource": "death-guard",
+      "selectedDefinition": "A Leader and/or Support unit joined to a Bodyguard unit.",
+      "rejectedDefinition": "An Attached unit is a single unit for all rules purposes. If it contains Bodyguard models, use the highest T characteristic of its Bodyguard models while resolving attacks against it. If it only contains Leader/Support models, use the highest T among those models. It has all keywords of all component units, but its models do not gain each other’s keywords. Unit-wide abilities apply to every model until the source described in Core Rules 19.04 is destroyed.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-heavy",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Heavy weapons are amongst the biggest guns on the battlefield, but require bracing to fire at full effect. In your Shooting phase, each time an attack is made with a [HEAVY] weapon, add 1 to the hit roll if all of the following apply to the attacking unit:…",
+      "rejectedDefinition": "Weapon ability used by Protector Imperative.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-assault",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "A unit containing an [ASSAULT] weapon can use assault shooting.",
+      "rejectedDefinition": "Weapon ability used by Conqueror Imperative.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-ignores-cover",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "The target cannot have the benefit of cover against this attack.",
+      "rejectedDefinition": "The target cannot receive the Benefit of Cover against this attack.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-feel-no-pain",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Feel No Pain X+: each time the model would lose a wound, on X+ that wound is not lost.",
+      "rejectedDefinition": "A wound-prevention roll made after a model would lose a wound.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-lethal-hits",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "On a critical hit, you can choose for that attack to automatically wound.",
+      "rejectedDefinition": "A Critical Hit automatically wounds the target.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-stealth",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "If every model has Stealth, the unit has the benefit of cover against ranged attacks.",
+      "rejectedDefinition": "A defensive Core ability used by several Mechanicus rules.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-devastating-wounds",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "A critical wound ends the attack sequence and inflicts mortal wounds equal to D.",
+      "rejectedDefinition": "Critical Wounds use the Devastating Wounds sequence.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-sustained-hits",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "[SUSTAINED HITS X]: a critical hit produces X additional hits.",
+      "rejectedDefinition": "Critical Hits score the listed number of additional hits.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-anti",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "[ANTI-X Y+]: against a target with keyword X, an unmodified wound roll of Y+ is a critical wound.",
+      "rejectedDefinition": "Unmodified successful Wound rolls at the listed value score Critical Wounds against VEHICLE units.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-blast",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Adds attack dice according to the number of models in the target unit.",
+      "rejectedDefinition": "Blast weapons gain attacks against larger target units and cannot be fired into Engagement Range.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-lance",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "With the momentum of a warrior at full-tilt, lance weapons are deadly on the charge. Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll.",
+      "rejectedDefinition": "A charging model receives the current Lance wound modifier.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-hazardous",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "After the unit attacks, make hazard rolls for the selected [HAZARDOUS] weapons.",
+      "rejectedDefinition": "After attacking, take Hazardous tests for weapons with this ability.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-infiltrators",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "During deployment, set up more than 8\" horizontally from the enemy deployment zone and all enemy units.",
+      "rejectedDefinition": "Deployment ability granted by Explorator Dispensation.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-lone-operative",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Unless Attached, the unit is only visible to enemies within its specified range.",
+      "rejectedDefinition": "Limits targeting of the unit outside the listed range.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-rapid-fire",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "[RAPID FIRE X]: add X attack dice if the target was within half range.",
+      "rejectedDefinition": "Adds the listed attacks while the target is within half range.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-torrent",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "The attack automatically hits the target.",
+      "rejectedDefinition": "Attacks with this weapon automatically hit.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-melta",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "[MELTA X]: within half range, add X to the weapon’s D characteristic.",
+      "rejectedDefinition": "Adds the listed Damage while the target is within half range.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-pistol",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes.",
+      "rejectedDefinition": "Pistol weapons follow the current close-range shooting permissions.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-twin-linked",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "You can re-roll the wound roll.",
+      "rejectedDefinition": "Attacks made with this weapon can re-roll the Wound roll.",
+      "status": "resolved-by-policy"
+    }
+  ],
+  "aliasCandidates": [
+    {
+      "normalizedTitle": "abilities",
+      "termIds": [
+        "core-rule-02-03-abilities",
+        "core-abilities"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "deep-strike",
+      "termIds": [
+        "core-deep-strike",
+        "adeptus-mechanicus-datasheet-deep-strike"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "hover",
+      "termIds": [
+        "core-hover",
+        "adeptus-mechanicus-datasheet-hover"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "leader",
+      "termIds": [
+        "core-leader",
+        "adeptus-mechanicus-datasheet-leader"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "deaths-heads",
+      "termIds": [
+        "death-guard-stratagem-deaths-heads",
+        "death-guard-ability-deaths-heads-plague-drones",
+        "death-guard-weapon-deaths-heads-plague-drones"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "plague-knives",
+      "termIds": [
+        "death-guard-weapon-plague-knives-biologus-putrifier",
+        "death-guard-weapon-plague-knives-plague-marines"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "combi-bolter",
+      "termIds": [
+        "death-guard-weapon-combi-bolter-blightlord-terminators-chaos-land-raider-chaos-predator-annihilator-chaos-predator-destructor-chaos-rhino-helbrute",
+        "adeptus-mechanicus-weapon-combi-bolter"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "close-combat-weapon",
+      "termIds": [
+        "death-guard-weapon-close-combat-weapon-blightlord-terminators",
+        "death-guard-weapon-close-combat-weapon-foul-blightspawn-tallyman",
+        "death-guard-weapon-close-combat-weapon-helbrute",
+        "adeptus-mechanicus-weapon-close-combat-weapon",
+        "adeptus-mechanicus-weapon-close-combat-weapon-2",
+        "adeptus-mechanicus-weapon-close-combat-weapon-3",
+        "adeptus-mechanicus-weapon-close-combat-weapon-4",
+        "adeptus-mechanicus-weapon-close-combat-weapon-5"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "armoured-tracks",
+      "termIds": [
+        "death-guard-weapon-armoured-tracks-chaos-land-raider",
+        "death-guard-weapon-armoured-tracks-chaos-predator-annihilator-chaos-predator-destructor-chaos-rhino-plagueburst-crawler"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "heavy-bolter",
+      "termIds": [
+        "death-guard-weapon-heavy-bolter-chaos-predator-annihilator-chaos-predator-destructor",
+        "adeptus-mechanicus-weapon-heavy-bolter",
+        "adeptus-mechanicus-weapon-heavy-bolter-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "fire-support",
+      "termIds": [
+        "death-guard-ability-fire-support-chaos-rhino",
+        "adeptus-mechanicus-datasheet-fire-support"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "infernal-cannon",
+      "termIds": [
+        "death-guard-weapon-infernal-cannon-daemon-prince-of-nurgle",
+        "death-guard-weapon-infernal-cannon-daemon-prince-of-nurgle-with-wings"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "manreaper-strike",
+      "termIds": [
+        "death-guard-weapon-manreaper-strike-deathshroud-terminators",
+        "death-guard-weapon-manreaper-strike-lord-of-contagion"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "manreaper-sweep",
+      "termIds": [
+        "death-guard-weapon-manreaper-sweep-deathshroud-terminators",
+        "death-guard-weapon-manreaper-sweep-lord-of-contagion"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "scuttling-walker",
+      "termIds": [
+        "death-guard-ability-scuttling-walker-defiler",
+        "adeptus-mechanicus-datasheet-scuttling-walker"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "heavy-flamer",
+      "termIds": [
+        "death-guard-weapon-heavy-flamer-helbrute",
+        "adeptus-mechanicus-weapon-heavy-flamer"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "multi-melta",
+      "termIds": [
+        "death-guard-weapon-multi-melta-helbrute-myphitic-blight-hauler",
+        "adeptus-mechanicus-weapon-multi-melta"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "plasma-pistol-standard",
+      "termIds": [
+        "death-guard-weapon-plasma-pistol-standard-lord-of-poxes",
+        "death-guard-weapon-plasma-pistol-standard-noxious-blightbringer-plague-marines-tallyman"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "plasma-pistol-supercharge",
+      "termIds": [
+        "death-guard-weapon-plasma-pistol-supercharge-lord-of-poxes",
+        "death-guard-weapon-plasma-pistol-supercharge-noxious-blightbringer",
+        "death-guard-weapon-plasma-pistol-supercharge-plague-marines-tallyman"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "power-fist",
+      "termIds": [
+        "death-guard-weapon-power-fist-lord-of-virulence",
+        "death-guard-weapon-power-fist-plague-marines",
+        "adeptus-mechanicus-weapon-power-fist"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "meltagun",
+      "termIds": [
+        "death-guard-weapon-meltagun-plague-marines",
+        "adeptus-mechanicus-weapon-meltagun"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "transport",
+      "termIds": [
+        "keyword-transport",
+        "adeptus-mechanicus-datasheet-transport"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "radium-jezzail",
+      "termIds": [
+        "adeptus-mechanicus-weapon-radium-jezzail",
+        "adeptus-mechanicus-weapon-radium-jezzail-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "omnissian-axe",
+      "termIds": [
+        "adeptus-mechanicus-weapon-omnissian-axe",
+        "adeptus-mechanicus-weapon-omnissian-axe-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "phosphor-serpenta",
+      "termIds": [
+        "adeptus-mechanicus-weapon-phosphor-serpenta",
+        "adeptus-mechanicus-weapon-phosphor-serpenta-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "twin-cognis-lascannon",
+      "termIds": [
+        "adeptus-mechanicus-weapon-twin-cognis-lascannon",
+        "adeptus-mechanicus-weapon-twin-cognis-lascannon-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "electrostatic-gauntlets",
+      "termIds": [
+        "adeptus-mechanicus-weapon-electrostatic-gauntlets",
+        "adeptus-mechanicus-weapon-electrostatic-gauntlets-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "power-weapon",
+      "termIds": [
+        "adeptus-mechanicus-weapon-power-weapon",
+        "adeptus-mechanicus-weapon-power-weapon-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "heavy-arc-rifle",
+      "termIds": [
+        "adeptus-mechanicus-weapon-heavy-arc-rifle",
+        "adeptus-mechanicus-weapon-heavy-arc-rifle-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "phosphor-blaster",
+      "termIds": [
+        "adeptus-mechanicus-weapon-phosphor-blaster",
+        "adeptus-mechanicus-weapon-phosphor-blaster-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "taser-goad",
+      "termIds": [
+        "adeptus-mechanicus-weapon-taser-goad",
+        "adeptus-mechanicus-weapon-taser-goad-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "arc-lance",
+      "termIds": [
+        "adeptus-mechanicus-weapon-arc-lance",
+        "adeptus-mechanicus-weapon-arc-lance-2"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "alpha-close-combat-weapon",
+      "termIds": [
+        "adeptus-mechanicus-weapon-alpha-close-combat-weapon",
+        "adeptus-mechanicus-weapon-alpha-close-combat-weapon-2"
+      ],
+      "status": "review-required"
+    }
+  ],
+  "keywordCandidates": [
+    {
+      "termId": "keyword-infantry",
+      "candidateRuleIds": [
+        "core-rule-13-11-solid",
+        "core-rule-16-01-performing-actions",
+        "core-rule-17-03-shooting-at-engaged-monsters-and-vehicles",
+        "core-duplicated-abilities"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-character",
+      "candidateRuleIds": [
+        "core-rule-05-04-inflict-damage",
+        "core-rule-15-09-snap-shooting"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-grenades",
+      "candidateRuleIds": [
+        "core-rule-15-09-snap-shooting"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-vehicle",
+      "candidateRuleIds": [
+        "core-rule-03-01-moving-units",
+        "core-rule-04-03-resolve-attacks",
+        "core-rule-08-05-end-of-command-phase",
+        "core-rule-09-07-fall-back-move",
+        "core-rule-10-04-normal-shooting",
+        "core-rule-13-05-dense",
+        "core-rule-13-06-terrain-and-movement",
+        "core-rule-14-03-secured-objectives",
+        "core-rule-15-09-snap-shooting",
+        "core-rule-17-02-frame",
+        "core-rule-21-03-flying-models",
+        "core-abilities",
+        "core-duplicated-abilities",
+        "core-anti",
+        "core-close-quarters",
+        "core-hover",
+        "core-super-heavy-walker"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-transport",
+      "candidateRuleIds": [
+        "core-rule-02-06-unit-composition-and-other-rules",
+        "core-rule-03-02-set-up",
+        "core-rule-12-06-overrun-fight",
+        "core-scouts"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-smoke",
+      "candidateRuleIds": [
+        "core-rule-15-09-snap-shooting"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-monster",
+      "candidateRuleIds": [
+        "core-rule-03-01-moving-units",
+        "core-rule-04-03-resolve-attacks",
+        "core-rule-10-04-normal-shooting",
+        "core-rule-12-03-pile-in-move",
+        "core-rule-12-06-overrun-fight",
+        "core-rule-12-09-end-of-fight-phase",
+        "core-rule-13-05-dense",
+        "core-rule-15-09-snap-shooting",
+        "core-rule-17-02-frame",
+        "core-rule-21-03-flying-models",
+        "core-close-quarters",
+        "core-super-heavy-walker"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-fly",
+      "candidateRuleIds": [
+        "core-rule-21-02-surge-move"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-walker",
+      "candidateRuleIds": [
+        "core-rule-15-09-snap-shooting"
+      ],
+      "status": "review-required"
+    },
+    {
+      "termId": "keyword-psyker",
+      "candidateRuleIds": [
+        "core-rule-19-03-keywords-in-attached-units",
+        "core-anti"
+      ],
+      "status": "review-required"
+    }
+  ]
+}

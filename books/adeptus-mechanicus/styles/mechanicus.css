@@ -1,6 +1,6 @@
 /* Adeptus Mechanicus faction layer over the unchanged Death Guard v4 interaction engine. */
 .app-brand::before { content:"Ω"; border-radius:50%; border-color:var(--pink); color:var(--green); background:linear-gradient(90deg,rgba(79,145,227,.24),rgba(226,82,72,.24)); }
-.am-hero { grid-template-columns:minmax(0,1fr) minmax(220px,.42fr); gap:28px; background:linear-gradient(90deg,rgba(8,11,11,.98) 0%,rgba(8,11,11,.9) 52%,rgba(8,11,11,.45) 100%),linear-gradient(0deg,rgba(8,11,11,.92),transparent 38%),url("../../assets/adeptus-mechanicus-cover.png") center 23%/cover no-repeat; }
+.am-hero { grid-template-columns:minmax(0,1fr) minmax(220px,.42fr); gap:28px; background:linear-gradient(90deg,rgba(8,11,11,.98) 0%,rgba(8,11,11,.9) 52%,rgba(8,11,11,.45) 100%),linear-gradient(0deg,rgba(8,11,11,.92),transparent 38%),url("../assets/mechanicus-cover-800.webp") center 23%/cover no-repeat; }
 .am-hero::after { content:"MARS"; color:rgba(79,145,227,.045); font-family:ui-monospace,monospace; letter-spacing:-.12em; }
 .am-hero h1 em { color:var(--pink); font-style:normal; }
 .hero-mark { position:relative; z-index:1; display:grid; place-items:center; align-content:center; }
@@ -10,6 +10,12 @@
 .detachment-part { scroll-margin-top:calc(var(--header) + 20px); }
 .detachment-part + .detachment-part { margin-top:28px; padding-top:18px; border-top:1px solid var(--soft-line); }
 .detachment-part-title { margin:0 0 14px; color:var(--green); font:800 10px ui-monospace,monospace; letter-spacing:.12em; text-transform:uppercase; }
+.detachment-overview { margin:20px 0 26px; padding:14px 18px; display:flex; flex-wrap:wrap; align-items:center; gap:10px; border-left:3px solid var(--green); }
+.detachment-overview strong { margin-right:auto; color:var(--pink); font:900 24px ui-monospace,monospace; }
+.detachment-overview span,.detachment-meta span,.detachment-meta strong { padding:5px 8px; border:1px solid var(--soft-line); color:var(--muted); font:800 9px ui-monospace,monospace; letter-spacing:.07em; text-transform:uppercase; }
+.detachment-meta { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.detachment-meta span:first-child { border-color:var(--green-deep); color:var(--green); }
+.detachment-meta strong { border-color:var(--pink); color:var(--pink); }
 .doctrina-console { display:grid; grid-template-columns:110px minmax(0,1fr); overflow:hidden; border-radius:0; }
 .doctrina-console::before { display:none; }
 .doctrina-code { padding:24px 16px; display:flex; flex-direction:column; justify-content:space-between; border-right:1px solid var(--line); background:linear-gradient(180deg,rgba(226,82,72,.2),rgba(226,82,72,.035)); }
@@ -39,3 +45,23 @@ html[data-theme="light"] .am-hero { color:#e8e1ce; }
 @media(max-width:900px){.am-hero{grid-template-columns:1fr}.hero-mark{display:none}.update-grid{grid-template-columns:1fr}}
 @media(max-width:800px){.doctrina-console{grid-template-columns:64px 1fr}.protocol-switch{grid-template-columns:1fr}.roster-list{grid-template-columns:1fr}}
 @media(max-width:480px){.doctrina-code{padding:18px 10px}.doctrina-body{padding:22px 16px}}
+
+.source a,.source-link { color:var(--green); text-decoration-thickness:1px; text-underline-offset:3px; }
+.source-transcript { margin-top:16px; border:1px solid var(--soft-line); background:rgba(0,0,0,.13); }
+.source-transcript summary { padding:11px 14px; color:var(--bronze-bright); cursor:pointer; font:800 9px ui-monospace,monospace; letter-spacing:.09em; text-transform:uppercase; }
+.source-transcript h5 { margin:0; padding:14px 14px 0; color:var(--pink); font:800 10px ui-monospace,monospace; }
+.source-transcript pre { margin:0; padding:14px; overflow:auto; white-space:pre-wrap; color:var(--muted); font:12px/1.55 ui-monospace,monospace; }
+.unit-header { display:flex; align-items:flex-start; gap:18px; margin-bottom:18px; }
+.unit-header h3 { margin:4px 0 0; font:800 clamp(30px,5vw,48px)/1 Georgia,serif; letter-spacing:-.035em; }
+.unit-status { margin-left:auto; padding:7px 10px; border:1px solid var(--green-deep); color:var(--green); font:800 9px ui-monospace,monospace; letter-spacing:.1em; }
+.legends-card { border-top-color:var(--pink); }
+.legends-card .unit-status { border-color:var(--pink); color:var(--pink); }
+.weapon-row strong,.weapon-row small { display:block; }
+.weapon-row small { margin-top:5px; color:var(--green); font:700 8px/1.35 ui-monospace,monospace; }
+.invulnerable { border-left:2px solid var(--green-deep); }
+.glossary-full { color:var(--muted); font-size:.92em; }
+.source-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.warning-card { border-left:3px solid var(--pink); }
+.warning-card .eyebrow { color:var(--pink); }
+.source-library code { overflow-wrap:anywhere; color:var(--bronze-bright); }
+@media(max-width:800px){.source-grid{grid-template-columns:1fr}.unit-header{flex-wrap:wrap}.unit-status{margin-left:0}.source-transcript pre{font-size:10px}}

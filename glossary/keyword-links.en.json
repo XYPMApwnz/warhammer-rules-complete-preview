@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "language": "en",
+  "commonRules": ["core-rule-02-05-keywords"],
+  "keywords": {
+    "keyword-infantry": {
+      "forms": ["INFANTRY"],
+      "intrinsicRules": ["core-rule-13-06-terrain-and-movement", "core-rule-13-08-benefit-of-cover", "core-rule-13-09-hidden"],
+      "referencedByRules": ["core-abilities"],
+      "relatedKeywords": ["keyword-beast", "keyword-swarm"]
+    },
+    "keyword-beast": {
+      "forms": ["BEAST", "BEASTS"],
+      "intrinsicRules": ["core-rule-13-06-terrain-and-movement", "core-rule-13-08-benefit-of-cover", "core-rule-13-09-hidden"],
+      "referencedByRules": ["core-abilities"],
+      "relatedKeywords": ["keyword-infantry", "keyword-swarm"]
+    },
+    "keyword-swarm": {
+      "forms": ["SWARM", "SWARMS"],
+      "intrinsicRules": ["core-rule-13-06-terrain-and-movement", "core-rule-13-08-benefit-of-cover", "core-rule-13-09-hidden"],
+      "referencedByRules": [],
+      "relatedKeywords": ["keyword-infantry", "keyword-beast"]
+    },
+    "keyword-fly": {
+      "forms": ["FLY", "FLYING"],
+      "intrinsicRules": ["core-rule-13-06-terrain-and-movement", "core-rule-21-03-flying-models", "core-rule-23-02-movement", "core-rule-23-04-charging-and-fighting"],
+      "referencedByRules": [],
+      "relatedKeywords": []
+    },
+    "keyword-mobile": {
+      "forms": ["MOBILE"],
+      "intrinsicRules": ["core-rule-13-06-terrain-and-movement"],
+      "referencedByRules": [],
+      "relatedKeywords": []
+    },
+    "keyword-monster": {
+      "forms": ["MONSTER", "MONSTERS"],
+      "intrinsicRules": ["core-rule-06-03-hazard-rolls", "core-rule-10-06-close-quarters-shooting", "core-rule-13-06-terrain-and-movement", "core-rule-17-01-moving-monsters-and-vehicles", "core-rule-17-03-shooting-at-engaged-monsters-and-vehicles"],
+      "referencedByRules": ["core-blast"],
+      "relatedKeywords": ["keyword-vehicle"]
+    },
+    "keyword-vehicle": {
+      "forms": ["VEHICLE", "VEHICLES"],
+      "intrinsicRules": ["core-rule-06-03-hazard-rolls", "core-rule-10-06-close-quarters-shooting", "core-rule-17-01-moving-monsters-and-vehicles", "core-rule-17-03-shooting-at-engaged-monsters-and-vehicles"],
+      "referencedByRules": ["core-blast"],
+      "relatedKeywords": ["keyword-monster", "keyword-transport", "keyword-walker"]
+    },
+    "keyword-character": {
+      "forms": ["CHARACTER", "CHARACTERS"],
+      "intrinsicRules": ["core-rule-05-03-save-rolls", "core-rule-06-02-mortal-wounds", "core-precision"],
+      "referencedByRules": [],
+      "relatedKeywords": []
+    },
+    "keyword-transport": {
+      "forms": ["TRANSPORT", "TRANSPORTS"],
+      "intrinsicRules": ["core-rule-09-02-move-units", "core-rule-18-01-transport-capacity", "core-rule-18-02-embarking", "core-rule-18-03-disembarking", "core-rule-18-04-disembark-move", "core-rule-18-05-emergency-disembark-move", "core-rule-20-01-placing-units-in-strategic-reserves", "core-rule-20-04-ingress-move", "core-firing-deck"],
+      "referencedByRules": [],
+      "relatedKeywords": ["keyword-dedicated-transport", "keyword-vehicle"]
+    },
+    "keyword-dedicated-transport": {
+      "forms": ["DEDICATED TRANSPORT", "DEDICATED TRANSPORTS"],
+      "intrinsicRules": [],
+      "referencedByRules": ["core-scouts"],
+      "relatedKeywords": ["keyword-transport"]
+    },
+    "keyword-psyker": {
+      "forms": ["PSYKER", "PSYKERS"],
+      "intrinsicRules": [],
+      "referencedByRules": [],
+      "relatedKeywords": []
+    },
+    "keyword-grenades": {
+      "forms": ["GRENADES"],
+      "intrinsicRules": [],
+      "referencedByRules": [],
+      "relatedKeywords": []
+    },
+    "keyword-smoke": {
+      "forms": ["SMOKE"],
+      "intrinsicRules": [],
+      "referencedByRules": [],
+      "relatedKeywords": []
+    },
+    "keyword-walker": {
+      "forms": ["WALKER", "WALKERS"],
+      "intrinsicRules": [],
+      "referencedByRules": [],
+      "relatedKeywords": ["keyword-vehicle"]
+    }
+  }
+}

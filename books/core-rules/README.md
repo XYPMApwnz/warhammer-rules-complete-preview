@@ -1,30 +1,12 @@
-# Core Rules - Prototype v1
+# Core Rules - Learn to Play
 
-An interactive prototype of the Warhammer 40,000 Core Rules reader.
+An English-only learning interface for the supplied Warhammer 40,000 Core Rules PDF.
 
-## Architecture
+- The study path changes navigation only.
+- Original PDF page images are the authoritative lesson content.
+- The extracted text layer is used only for search and accessibility because its reading order can contain layout artefacts.
+- Every lesson exposes its complete supplied source pages; no rule summaries are rendered.
+- The supplied PDF ends at page 88 even though its contents page refers to an index on page 89.
+- Completion state and the last opened lesson are stored locally in the browser.
 
-- `content/core-rules.source.en.js` - a deterministic snapshot extracted from all 88 pages of the local English PDF.
-- `content/core-rules.en.js` - English document structure, component data and the connected term registry.
-- `tools/extract_core_pdf.py` - reproducibly refreshes the source snapshot from the PDF.
-- `scripts/renderer.js` - renders the document, hierarchical contents and glossary from one data source.
-- `scripts/navigation-controller.js` - scroll spy, controlled navigation, desktop collapse and mobile drawer.
-- `scripts/popup-controller.js` - connected term popup chains and contextual actions.
-- `scripts/journey-controller.js` - internal Back journey with position, navigation and popup-chain restoration.
-- `scripts/ui-controllers.js` - theme, search, glossary filtering and table accessibility.
-- `styles/` - separate tokens, layout, navigation, content and popup layers.
-
-## Prototype scope
-
-The contents include all five parts and all 24 numbered sections from the Core Rules PDF. Key interface components are demonstrated for concepts, Datasheets, movement, attacks, phases, terrain, objectives and connected terms.
-
-Every chapter includes its original extracted English source pages and direct links to the corresponding local PDF pages. Full-text search covers the English source snapshot.
-
-The prototype opens directly from `index.html`; it does not require `fetch`, a build step or a local server.
-
-## Decisions inherited from previous projects
-
-- Square industrial geometry and visual tokens follow the Unified v2 contract and Adeptus Mechanicus Design Code.
-- Navigation, popups, journey and UI remain independent controllers, following Death Guard v5 experience.
-- Navigation and document content are rendered from one model to prevent ID and heading drift.
-- PWA packaging and a full content build pipeline remain deferred until the reader structure is approved.
+Open `index.html` directly. No build step is required.

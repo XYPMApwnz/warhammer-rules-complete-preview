@@ -2,6 +2,8 @@
   "name": "warhammer-rules-complete-preview",
   "private": true,
   "scripts": {
-    "test": "node tests/death-guard-qa.mjs && node books/core-rules/tests/qa.mjs && node books/adeptus-mechanicus/tests/qa.mjs && node tests/integration-qa.mjs"
+    "glossary:build": "node glossary/tools/build-glossary.mjs",
+    "glossary:check": "node glossary/tools/check-glossary.mjs",
+    "test": "node glossary/tools/check-glossary.mjs && node tests/death-guard-qa.mjs && node books/core-rules/tests/qa.mjs && node books/adeptus-mechanicus/tests/qa.mjs && node tests/integration-qa.mjs"
   }
 }

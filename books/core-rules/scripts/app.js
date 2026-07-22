@@ -1,7 +1,8 @@
 (function () {
   'use strict';
   const navigation=new CoreNavigation();
-  const popups=new CorePopups(window.CORE_RULES.terms);
+  const terms=window.WH40K_GLOSSARY?.forBook('core-rules')||window.CORE_RULES.terms;
+  const popups=new CorePopups(terms);
   const glossary=new CoreGlossarySearch();
   const journey=new CoreJourney(navigation,popups,glossary);
   new CoreTheme();

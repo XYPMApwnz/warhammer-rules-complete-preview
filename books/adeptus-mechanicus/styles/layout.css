@@ -49,6 +49,9 @@ html[data-theme="light"] .app-header { background: rgba(231, 223, 202, .95); }
 .app-brand {
   position: relative;
   min-width: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
   padding-left: 38px;
   font: 700 19px/1 Georgia, "Times New Roman", serif;
   letter-spacing: -.025em;

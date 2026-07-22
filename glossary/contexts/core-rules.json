@@ -1,0 +1,954 @@
+{
+  "schema": 1,
+  "bookId": "core-rules",
+  "terms": {
+    "core-rule-01-01-armies": {
+      "termId": "core-rule-01-01-armies",
+      "navigation": {
+        "rule": "core-concepts-rule-01-01"
+      }
+    },
+    "core-rule-01-02-units-and-models": {
+      "termId": "core-rule-01-02-units-and-models",
+      "navigation": {
+        "rule": "core-concepts-rule-01-02"
+      }
+    },
+    "core-rule-01-03-active-player-and-opposing-player": {
+      "termId": "core-rule-01-03-active-player-and-opposing-player",
+      "navigation": {
+        "rule": "core-concepts-rule-01-03"
+      }
+    },
+    "core-rule-01-04-measuring-distances": {
+      "termId": "core-rule-01-04-measuring-distances",
+      "navigation": {
+        "rule": "core-concepts-rule-01-04"
+      }
+    },
+    "core-rule-01-05-dice": {
+      "termId": "core-rule-01-05-dice",
+      "navigation": {
+        "rule": "core-concepts-rule-01-05"
+      }
+    },
+    "core-rule-01-06-leadership-rolls": {
+      "termId": "core-rule-01-06-leadership-rolls",
+      "navigation": {
+        "rule": "core-concepts-rule-01-06"
+      }
+    },
+    "core-rule-01-07-battle-shock-rolls": {
+      "termId": "core-rule-01-07-battle-shock-rolls",
+      "navigation": {
+        "rule": "core-concepts-rule-01-07"
+      }
+    },
+    "core-rule-02-01-datasheet-name": {
+      "termId": "core-rule-02-01-datasheet-name",
+      "navigation": {
+        "rule": "datasheets-rule-02-01"
+      }
+    },
+    "core-rule-02-02-profiles": {
+      "termId": "core-rule-02-02-profiles",
+      "navigation": {
+        "rule": "datasheets-rule-02-02"
+      }
+    },
+    "core-rule-02-03-abilities": {
+      "termId": "core-rule-02-03-abilities",
+      "navigation": {
+        "rule": "datasheets-rule-02-03"
+      }
+    },
+    "core-rule-02-04-weapons": {
+      "termId": "core-rule-02-04-weapons",
+      "navigation": {
+        "rule": "datasheets-rule-02-04"
+      }
+    },
+    "core-rule-02-05-keywords": {
+      "termId": "core-rule-02-05-keywords",
+      "navigation": {
+        "rule": "datasheets-rule-02-05"
+      }
+    },
+    "core-rule-02-06-unit-composition-and-other-rules": {
+      "termId": "core-rule-02-06-unit-composition-and-other-rules",
+      "navigation": {
+        "rule": "datasheets-rule-02-06"
+      }
+    },
+    "core-rule-02-07-wargear-options": {
+      "termId": "core-rule-02-07-wargear-options",
+      "navigation": {
+        "rule": "datasheets-rule-02-07"
+      }
+    },
+    "core-rule-03-01-moving-units": {
+      "termId": "core-rule-03-01-moving-units",
+      "navigation": {
+        "rule": "moving-rule-03-01"
+      }
+    },
+    "core-rule-03-02-set-up": {
+      "termId": "core-rule-03-02-set-up",
+      "navigation": {
+        "rule": "moving-rule-03-02"
+      }
+    },
+    "core-rule-03-03-coherency": {
+      "termId": "core-rule-03-03-coherency",
+      "navigation": {
+        "rule": "moving-rule-03-03"
+      }
+    },
+    "core-rule-03-04-engagement": {
+      "termId": "core-rule-03-04-engagement",
+      "navigation": {
+        "rule": "moving-rule-03-04"
+      }
+    },
+    "core-rule-04-01-select-weapons": {
+      "termId": "core-rule-04-01-select-weapons",
+      "navigation": {
+        "rule": "making-attacks-rule-04-01"
+      }
+    },
+    "core-rule-04-02-select-targets": {
+      "termId": "core-rule-04-02-select-targets",
+      "navigation": {
+        "rule": "making-attacks-rule-04-02"
+      }
+    },
+    "core-rule-04-03-resolve-attacks": {
+      "termId": "core-rule-04-03-resolve-attacks",
+      "navigation": {
+        "rule": "making-attacks-rule-04-03"
+      }
+    },
+    "core-rule-05-01-hit-rolls": {
+      "termId": "core-rule-05-01-hit-rolls",
+      "navigation": {
+        "rule": "attack-sequence-rule-05-01"
+      }
+    },
+    "core-rule-05-02-wound-rolls": {
+      "termId": "core-rule-05-02-wound-rolls",
+      "navigation": {
+        "rule": "attack-sequence-rule-05-02"
+      }
+    },
+    "core-rule-05-03-save-rolls": {
+      "termId": "core-rule-05-03-save-rolls",
+      "navigation": {
+        "rule": "attack-sequence-rule-05-03"
+      }
+    },
+    "core-rule-05-04-inflict-damage": {
+      "termId": "core-rule-05-04-inflict-damage",
+      "navigation": {
+        "rule": "attack-sequence-rule-05-04"
+      }
+    },
+    "core-rule-06-01-visibility": {
+      "termId": "core-rule-06-01-visibility",
+      "navigation": {
+        "rule": "other-concepts-rule-06-01"
+      }
+    },
+    "core-rule-06-02-mortal-wounds": {
+      "termId": "core-rule-06-02-mortal-wounds",
+      "navigation": {
+        "rule": "other-concepts-rule-06-02"
+      }
+    },
+    "core-rule-06-03-hazard-rolls": {
+      "termId": "core-rule-06-03-hazard-rolls",
+      "navigation": {
+        "rule": "other-concepts-rule-06-03"
+      }
+    },
+    "core-rule-07-01-start-of-battle-round": {
+      "termId": "core-rule-07-01-start-of-battle-round",
+      "navigation": {
+        "rule": "battle-round-overview-rule-07-01"
+      }
+    },
+    "core-rule-07-02-player-turns": {
+      "termId": "core-rule-07-02-player-turns",
+      "navigation": {
+        "rule": "battle-round-overview-rule-07-02"
+      }
+    },
+    "core-rule-07-03-end-of-battle-round": {
+      "termId": "core-rule-07-03-end-of-battle-round",
+      "navigation": {
+        "rule": "battle-round-overview-rule-07-03"
+      }
+    },
+    "core-rule-08-01-start-of-command-phase": {
+      "termId": "core-rule-08-01-start-of-command-phase",
+      "navigation": {
+        "rule": "command-phase-rule-08-01"
+      }
+    },
+    "core-rule-08-02-gain-core-cp": {
+      "termId": "core-rule-08-02-gain-core-cp",
+      "navigation": {
+        "rule": "command-phase-rule-08-02"
+      }
+    },
+    "core-rule-08-03-battle-shock": {
+      "termId": "core-rule-08-03-battle-shock",
+      "navigation": {
+        "rule": "command-phase-rule-08-03"
+      }
+    },
+    "core-rule-08-04-command-abilities": {
+      "termId": "core-rule-08-04-command-abilities",
+      "navigation": {
+        "rule": "command-phase-rule-08-04"
+      }
+    },
+    "core-rule-08-05-end-of-command-phase": {
+      "termId": "core-rule-08-05-end-of-command-phase",
+      "navigation": {
+        "rule": "command-phase-rule-08-05"
+      }
+    },
+    "core-rule-09-01-start-of-movement-phase": {
+      "termId": "core-rule-09-01-start-of-movement-phase",
+      "navigation": {
+        "rule": "movement-phase-rule-09-01"
+      }
+    },
+    "core-rule-09-02-move-units": {
+      "termId": "core-rule-09-02-move-units",
+      "navigation": {
+        "rule": "movement-phase-rule-09-02"
+      }
+    },
+    "core-rule-09-03-end-of-movement-phase": {
+      "termId": "core-rule-09-03-end-of-movement-phase",
+      "navigation": {
+        "rule": "movement-phase-rule-09-03"
+      }
+    },
+    "core-rule-09-04-remain-stationary": {
+      "termId": "core-rule-09-04-remain-stationary",
+      "navigation": {
+        "rule": "movement-phase-rule-09-04"
+      }
+    },
+    "core-rule-09-05-normal-move": {
+      "termId": "core-rule-09-05-normal-move",
+      "navigation": {
+        "rule": "movement-phase-rule-09-05"
+      }
+    },
+    "core-rule-09-06-advance-move": {
+      "termId": "core-rule-09-06-advance-move",
+      "navigation": {
+        "rule": "movement-phase-rule-09-06"
+      }
+    },
+    "core-rule-09-07-fall-back-move": {
+      "termId": "core-rule-09-07-fall-back-move",
+      "navigation": {
+        "rule": "movement-phase-rule-09-07"
+      }
+    },
+    "core-rule-10-01-start-of-shooting-phase": {
+      "termId": "core-rule-10-01-start-of-shooting-phase",
+      "navigation": {
+        "rule": "shooting-phase-rule-10-01"
+      }
+    },
+    "core-rule-10-02-shoot": {
+      "termId": "core-rule-10-02-shoot",
+      "navigation": {
+        "rule": "shooting-phase-rule-10-02"
+      }
+    },
+    "core-rule-10-03-end-of-shooting-phase": {
+      "termId": "core-rule-10-03-end-of-shooting-phase",
+      "navigation": {
+        "rule": "shooting-phase-rule-10-03"
+      }
+    },
+    "core-rule-10-04-normal-shooting": {
+      "termId": "core-rule-10-04-normal-shooting",
+      "navigation": {
+        "rule": "shooting-phase-rule-10-04"
+      }
+    },
+    "core-rule-10-05-assault-shooting": {
+      "termId": "core-rule-10-05-assault-shooting",
+      "navigation": {
+        "rule": "shooting-phase-rule-10-05"
+      }
+    },
+    "core-rule-10-06-close-quarters-shooting": {
+      "termId": "core-rule-10-06-close-quarters-shooting",
+      "navigation": {
+        "rule": "shooting-phase-rule-10-06"
+      }
+    },
+    "core-rule-10-07-indirect-shooting": {
+      "termId": "core-rule-10-07-indirect-shooting",
+      "navigation": {
+        "rule": "shooting-phase-rule-10-07"
+      }
+    },
+    "core-rule-11-01-start-of-charge-phase": {
+      "termId": "core-rule-11-01-start-of-charge-phase",
+      "navigation": {
+        "rule": "charge-phase-rule-11-01"
+      }
+    },
+    "core-rule-11-02-charge": {
+      "termId": "core-rule-11-02-charge",
+      "navigation": {
+        "rule": "charge-phase-rule-11-02"
+      }
+    },
+    "core-rule-11-03-end-of-charge-phase": {
+      "termId": "core-rule-11-03-end-of-charge-phase",
+      "navigation": {
+        "rule": "charge-phase-rule-11-03"
+      }
+    },
+    "core-rule-11-04-charge-move": {
+      "termId": "core-rule-11-04-charge-move",
+      "navigation": {
+        "rule": "charge-phase-rule-11-04"
+      }
+    },
+    "core-rule-12-01-start-of-fight-phase": {
+      "termId": "core-rule-12-01-start-of-fight-phase",
+      "navigation": {
+        "rule": "fight-phase-rule-12-01"
+      }
+    },
+    "core-rule-12-02-pile-in": {
+      "termId": "core-rule-12-02-pile-in",
+      "navigation": {
+        "rule": "fight-phase-rule-12-02"
+      }
+    },
+    "core-rule-12-03-pile-in-move": {
+      "termId": "core-rule-12-03-pile-in-move",
+      "navigation": {
+        "rule": "fight-phase-rule-12-03"
+      }
+    },
+    "core-rule-12-04-fight": {
+      "termId": "core-rule-12-04-fight",
+      "navigation": {
+        "rule": "fight-phase-rule-12-04"
+      }
+    },
+    "core-rule-12-05-normal-fight": {
+      "termId": "core-rule-12-05-normal-fight",
+      "navigation": {
+        "rule": "fight-phase-rule-12-05"
+      }
+    },
+    "core-rule-12-06-overrun-fight": {
+      "termId": "core-rule-12-06-overrun-fight",
+      "navigation": {
+        "rule": "fight-phase-rule-12-06"
+      }
+    },
+    "core-rule-12-07-consolidate": {
+      "termId": "core-rule-12-07-consolidate",
+      "navigation": {
+        "rule": "fight-phase-rule-12-07"
+      }
+    },
+    "core-rule-12-08-consolidation-move": {
+      "termId": "core-rule-12-08-consolidation-move",
+      "navigation": {
+        "rule": "fight-phase-rule-12-08"
+      }
+    },
+    "core-rule-12-09-end-of-fight-phase": {
+      "termId": "core-rule-12-09-end-of-fight-phase",
+      "navigation": {
+        "rule": "fight-phase-rule-12-09"
+      }
+    },
+    "core-rule-13-01-placing-terrain": {
+      "termId": "core-rule-13-01-placing-terrain",
+      "navigation": {
+        "rule": "terrain-rule-13-01"
+      }
+    },
+    "core-rule-13-02-terrain-categories": {
+      "termId": "core-rule-13-02-terrain-categories",
+      "navigation": {
+        "rule": "terrain-rule-13-02"
+      }
+    },
+    "core-rule-13-03-exposed": {
+      "termId": "core-rule-13-03-exposed",
+      "navigation": {
+        "rule": "terrain-rule-13-03"
+      }
+    },
+    "core-rule-13-04-light": {
+      "termId": "core-rule-13-04-light",
+      "navigation": {
+        "rule": "terrain-rule-13-04"
+      }
+    },
+    "core-rule-13-05-dense": {
+      "termId": "core-rule-13-05-dense",
+      "navigation": {
+        "rule": "terrain-rule-13-05"
+      }
+    },
+    "core-rule-13-06-terrain-and-movement": {
+      "termId": "core-rule-13-06-terrain-and-movement",
+      "navigation": {
+        "rule": "terrain-rule-13-06"
+      }
+    },
+    "core-rule-13-07-terrain-and-visibility": {
+      "termId": "core-rule-13-07-terrain-and-visibility",
+      "navigation": {
+        "rule": "terrain-rule-13-07"
+      }
+    },
+    "core-rule-13-08-benefit-of-cover": {
+      "termId": "core-rule-13-08-benefit-of-cover",
+      "navigation": {
+        "rule": "terrain-rule-13-08"
+      }
+    },
+    "core-rule-13-09-hidden": {
+      "termId": "core-rule-13-09-hidden",
+      "navigation": {
+        "rule": "terrain-rule-13-09"
+      }
+    },
+    "core-rule-13-10-obscuring": {
+      "termId": "core-rule-13-10-obscuring",
+      "navigation": {
+        "rule": "terrain-rule-13-10"
+      }
+    },
+    "core-rule-13-11-solid": {
+      "termId": "core-rule-13-11-solid",
+      "navigation": {
+        "rule": "terrain-rule-13-11"
+      }
+    },
+    "core-rule-14-01-terrain-objectives": {
+      "termId": "core-rule-14-01-terrain-objectives",
+      "navigation": {
+        "rule": "objectives-rule-14-01"
+      }
+    },
+    "core-rule-14-02-level-of-control": {
+      "termId": "core-rule-14-02-level-of-control",
+      "navigation": {
+        "rule": "objectives-rule-14-02"
+      }
+    },
+    "core-rule-14-03-secured-objectives": {
+      "termId": "core-rule-14-03-secured-objectives",
+      "navigation": {
+        "rule": "objectives-rule-14-03"
+      }
+    },
+    "core-rule-15-01-using-stratagems": {
+      "termId": "core-rule-15-01-using-stratagems",
+      "navigation": {
+        "rule": "stratagems-rule-15-01"
+      }
+    },
+    "core-rule-15-09-snap-shooting": {
+      "termId": "core-rule-15-09-snap-shooting",
+      "navigation": {
+        "rule": "stratagems-rule-15-09"
+      }
+    },
+    "core-rule-16-01-performing-actions": {
+      "termId": "core-rule-16-01-performing-actions",
+      "navigation": {
+        "rule": "actions-rule-16-01"
+      }
+    },
+    "core-rule-17-01-moving-monsters-and-vehicles": {
+      "termId": "core-rule-17-01-moving-monsters-and-vehicles",
+      "navigation": {
+        "rule": "monsters-vehicles-rule-17-01"
+      }
+    },
+    "core-rule-17-02-frame": {
+      "termId": "core-rule-17-02-frame",
+      "navigation": {
+        "rule": "monsters-vehicles-rule-17-02"
+      }
+    },
+    "core-rule-17-03-shooting-at-engaged-monsters-and-vehicles": {
+      "termId": "core-rule-17-03-shooting-at-engaged-monsters-and-vehicles",
+      "navigation": {
+        "rule": "monsters-vehicles-rule-17-03"
+      }
+    },
+    "core-rule-18-01-transport-capacity": {
+      "termId": "core-rule-18-01-transport-capacity",
+      "navigation": {
+        "rule": "transports-rule-18-01"
+      }
+    },
+    "core-rule-18-02-embarking": {
+      "termId": "core-rule-18-02-embarking",
+      "navigation": {
+        "rule": "transports-rule-18-02"
+      }
+    },
+    "core-rule-18-03-disembarking": {
+      "termId": "core-rule-18-03-disembarking",
+      "navigation": {
+        "rule": "transports-rule-18-03"
+      }
+    },
+    "core-rule-18-04-disembark-move": {
+      "termId": "core-rule-18-04-disembark-move",
+      "navigation": {
+        "rule": "transports-rule-18-04"
+      }
+    },
+    "core-rule-18-05-emergency-disembark-move": {
+      "termId": "core-rule-18-05-emergency-disembark-move",
+      "navigation": {
+        "rule": "transports-rule-18-05"
+      }
+    },
+    "core-rule-19-01-forming-attached-units": {
+      "termId": "core-rule-19-01-forming-attached-units",
+      "navigation": {
+        "rule": "attached-units-rule-19-01"
+      }
+    },
+    "core-rule-19-02-attacking-attached-units": {
+      "termId": "core-rule-19-02-attacking-attached-units",
+      "navigation": {
+        "rule": "attached-units-rule-19-02"
+      }
+    },
+    "core-rule-19-03-keywords-in-attached-units": {
+      "termId": "core-rule-19-03-keywords-in-attached-units",
+      "navigation": {
+        "rule": "attached-units-rule-19-03"
+      }
+    },
+    "core-rule-19-04-abilities-in-attached-units": {
+      "termId": "core-rule-19-04-abilities-in-attached-units",
+      "navigation": {
+        "rule": "attached-units-rule-19-04"
+      }
+    },
+    "core-rule-20-01-placing-units-in-strategic-reserves": {
+      "termId": "core-rule-20-01-placing-units-in-strategic-reserves",
+      "navigation": {
+        "rule": "strategic-reserves-rule-20-01"
+      }
+    },
+    "core-rule-20-02-repositioned-units": {
+      "termId": "core-rule-20-02-repositioned-units",
+      "navigation": {
+        "rule": "strategic-reserves-rule-20-02"
+      }
+    },
+    "core-rule-20-03-advanced-arriving-from-strategic-reserves": {
+      "termId": "core-rule-20-03-advanced-arriving-from-strategic-reserves",
+      "navigation": {
+        "rule": "strategic-reserves-rule-20-03"
+      }
+    },
+    "core-rule-20-04-ingress-move": {
+      "termId": "core-rule-20-04-ingress-move",
+      "navigation": {
+        "rule": "strategic-reserves-rule-20-04"
+      }
+    },
+    "core-rule-21-01-surge-moves": {
+      "termId": "core-rule-21-01-surge-moves",
+      "navigation": {
+        "rule": "flying-surging-rule-21-01"
+      }
+    },
+    "core-rule-21-02-surge-move": {
+      "termId": "core-rule-21-02-surge-move",
+      "navigation": {
+        "rule": "flying-surging-rule-21-02"
+      }
+    },
+    "core-rule-21-03-flying-models": {
+      "termId": "core-rule-21-03-flying-models",
+      "navigation": {
+        "rule": "flying-surging-rule-21-03"
+      }
+    },
+    "core-rule-22-01-aura-abilities": {
+      "termId": "core-rule-22-01-aura-abilities",
+      "navigation": {
+        "rule": "other-rules-abilities-rule-22-01"
+      }
+    },
+    "core-rule-22-02-faction-abilities": {
+      "termId": "core-rule-22-02-faction-abilities",
+      "navigation": {
+        "rule": "other-rules-abilities-rule-22-02"
+      }
+    },
+    "core-rule-22-03-psychic-abilities": {
+      "termId": "core-rule-22-03-psychic-abilities",
+      "navigation": {
+        "rule": "other-rules-abilities-rule-22-03"
+      }
+    },
+    "core-rule-22-04-wargear-abilities": {
+      "termId": "core-rule-22-04-wargear-abilities",
+      "navigation": {
+        "rule": "other-rules-abilities-rule-22-04"
+      }
+    },
+    "core-rule-22-05-plunging-fire": {
+      "termId": "core-rule-22-05-plunging-fire",
+      "navigation": {
+        "rule": "other-rules-abilities-rule-22-05"
+      }
+    },
+    "core-rule-23-01-deployment": {
+      "termId": "core-rule-23-01-deployment",
+      "navigation": {
+        "rule": "aircraft-rule-23-01"
+      }
+    },
+    "core-rule-23-02-movement": {
+      "termId": "core-rule-23-02-movement",
+      "navigation": {
+        "rule": "aircraft-rule-23-02"
+      }
+    },
+    "core-rule-23-03-shooting": {
+      "termId": "core-rule-23-03-shooting",
+      "navigation": {
+        "rule": "aircraft-rule-23-03"
+      }
+    },
+    "core-rule-23-04-charging-and-fighting": {
+      "termId": "core-rule-23-04-charging-and-fighting",
+      "navigation": {
+        "rule": "aircraft-rule-23-04"
+      }
+    },
+    "core-abilities": {
+      "termId": "core-abilities",
+      "navigation": {
+        "rule": "core-abilities-rule-24-01"
+      }
+    },
+    "core-duplicated-abilities": {
+      "termId": "core-duplicated-abilities",
+      "navigation": {
+        "rule": "core-abilities-rule-24-02"
+      }
+    },
+    "core-anti": {
+      "termId": "core-anti",
+      "navigation": {
+        "rule": "core-abilities-rule-24-03"
+      }
+    },
+    "core-assault": {
+      "termId": "core-assault",
+      "navigation": {
+        "rule": "core-abilities-rule-24-04"
+      }
+    },
+    "core-blast": {
+      "termId": "core-blast",
+      "navigation": {
+        "rule": "core-abilities-rule-24-05"
+      }
+    },
+    "core-cleave": {
+      "termId": "core-cleave",
+      "navigation": {
+        "rule": "core-abilities-rule-24-06"
+      }
+    },
+    "core-close-quarters": {
+      "termId": "core-close-quarters",
+      "navigation": {
+        "rule": "core-abilities-rule-24-07"
+      }
+    },
+    "core-deadly-demise": {
+      "termId": "core-deadly-demise",
+      "navigation": {
+        "rule": "core-abilities-rule-24-08"
+      }
+    },
+    "core-deep-strike": {
+      "termId": "core-deep-strike",
+      "navigation": {
+        "rule": "core-abilities-rule-24-09"
+      }
+    },
+    "core-devastating-wounds": {
+      "termId": "core-devastating-wounds",
+      "navigation": {
+        "rule": "core-abilities-rule-24-10"
+      }
+    },
+    "core-extra-attacks": {
+      "termId": "core-extra-attacks",
+      "navigation": {
+        "rule": "core-abilities-rule-24-11"
+      }
+    },
+    "core-feel-no-pain": {
+      "termId": "core-feel-no-pain",
+      "navigation": {
+        "rule": "core-abilities-rule-24-12"
+      }
+    },
+    "core-fights-first": {
+      "termId": "core-fights-first",
+      "navigation": {
+        "rule": "core-abilities-rule-24-13"
+      }
+    },
+    "core-firing-deck": {
+      "termId": "core-firing-deck",
+      "navigation": {
+        "rule": "core-abilities-rule-24-14"
+      }
+    },
+    "core-hazardous": {
+      "termId": "core-hazardous",
+      "navigation": {
+        "rule": "core-abilities-rule-24-15"
+      }
+    },
+    "core-heavy": {
+      "termId": "core-heavy",
+      "navigation": {
+        "rule": "core-abilities-rule-24-16"
+      }
+    },
+    "core-hover": {
+      "termId": "core-hover",
+      "navigation": {
+        "rule": "core-abilities-rule-24-17"
+      }
+    },
+    "core-ignores-cover": {
+      "termId": "core-ignores-cover",
+      "navigation": {
+        "rule": "core-abilities-rule-24-18"
+      }
+    },
+    "core-indirect-fire": {
+      "termId": "core-indirect-fire",
+      "navigation": {
+        "rule": "core-abilities-rule-24-19"
+      }
+    },
+    "core-infiltrators": {
+      "termId": "core-infiltrators",
+      "navigation": {
+        "rule": "core-abilities-rule-24-20"
+      }
+    },
+    "core-lance": {
+      "termId": "core-lance",
+      "navigation": {
+        "rule": "core-abilities-rule-24-21"
+      }
+    },
+    "core-leader": {
+      "termId": "core-leader",
+      "navigation": {
+        "rule": "core-abilities-rule-24-22"
+      }
+    },
+    "core-lethal-hits": {
+      "termId": "core-lethal-hits",
+      "navigation": {
+        "rule": "core-abilities-rule-24-23"
+      }
+    },
+    "core-lone-operative": {
+      "termId": "core-lone-operative",
+      "navigation": {
+        "rule": "core-abilities-rule-24-24"
+      }
+    },
+    "core-melta": {
+      "termId": "core-melta",
+      "navigation": {
+        "rule": "core-abilities-rule-24-25"
+      }
+    },
+    "core-one-shot": {
+      "termId": "core-one-shot",
+      "navigation": {
+        "rule": "core-abilities-rule-24-26"
+      }
+    },
+    "core-pistol": {
+      "termId": "core-pistol",
+      "navigation": {
+        "rule": "core-abilities-rule-24-27"
+      }
+    },
+    "core-precision": {
+      "termId": "core-precision",
+      "navigation": {
+        "rule": "core-abilities-rule-24-28"
+      }
+    },
+    "core-psychic": {
+      "termId": "core-psychic",
+      "navigation": {
+        "rule": "core-abilities-rule-24-29"
+      }
+    },
+    "core-rapid-fire": {
+      "termId": "core-rapid-fire",
+      "navigation": {
+        "rule": "core-abilities-rule-24-30"
+      }
+    },
+    "core-scouts": {
+      "termId": "core-scouts",
+      "navigation": {
+        "rule": "core-abilities-rule-24-31"
+      }
+    },
+    "core-scout-move": {
+      "termId": "core-scout-move",
+      "navigation": {
+        "rule": "core-abilities-rule-24-32"
+      }
+    },
+    "core-stealth": {
+      "termId": "core-stealth",
+      "navigation": {
+        "rule": "core-abilities-rule-24-33"
+      }
+    },
+    "core-support": {
+      "termId": "core-support",
+      "navigation": {
+        "rule": "core-abilities-rule-24-34"
+      }
+    },
+    "core-super-heavy-walker": {
+      "termId": "core-super-heavy-walker",
+      "navigation": {
+        "rule": "core-abilities-rule-24-35"
+      }
+    },
+    "core-sustained-hits": {
+      "termId": "core-sustained-hits",
+      "navigation": {
+        "rule": "core-abilities-rule-24-36"
+      }
+    },
+    "core-torrent": {
+      "termId": "core-torrent",
+      "navigation": {
+        "rule": "core-abilities-rule-24-37"
+      }
+    },
+    "core-twin-linked": {
+      "termId": "core-twin-linked",
+      "navigation": {
+        "rule": "core-abilities-rule-24-38"
+      }
+    },
+    "active-player": {
+      "termId": "core-active-player",
+      "navigation": {
+        "rule": "core-concepts"
+      }
+    },
+    "attached-unit": {
+      "termId": "core-attached-unit",
+      "navigation": {
+        "rule": "attached-units"
+      }
+    },
+    "battle-shock": {
+      "termId": "core-rule-08-03-battle-shock",
+      "navigation": {
+        "rule": "core-concepts"
+      }
+    },
+    "benefit-of-cover": {
+      "termId": "core-rule-13-08-benefit-of-cover",
+      "navigation": {
+        "rule": "terrain"
+      }
+    },
+    "coherency": {
+      "termId": "core-rule-03-03-coherency",
+      "navigation": {
+        "rule": "moving"
+      }
+    },
+    "critical-hit": {
+      "termId": "core-critical-hit",
+      "navigation": {
+        "rule": "attack-sequence"
+      }
+    },
+    "critical-wound": {
+      "termId": "core-critical-wound",
+      "navigation": {
+        "rule": "attack-sequence"
+      }
+    },
+    "engagement-range": {
+      "termId": "core-engagement-range",
+      "navigation": {
+        "rule": "moving"
+      }
+    },
+    "objective-control": {
+      "termId": "core-objective-control",
+      "navigation": {
+        "rule": "objectives"
+      }
+    },
+    "visibility": {
+      "termId": "core-rule-06-01-visibility",
+      "navigation": {
+        "rule": "making-attacks"
+      }
+    },
+    "wholly-within": {
+      "termId": "core-wholly-within",
+      "navigation": {
+        "rule": "core-concepts"
+      }
+    },
+    "within": {
+      "termId": "core-within",
+      "navigation": {
+        "rule": "core-concepts"
+      }
+    }
+  }
+}

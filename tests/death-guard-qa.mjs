@@ -57,7 +57,8 @@ check('navigation uses one passive scroll listener',(navigation.match(/addEventL
 check('navigation avoids :scope',!navigation.includes(':scope'));
 check('navigation has explicit reader/controller ownership',navigation.includes("owner:'reader'")&&navigation.includes("owner='controller'")&&navigation.includes("owner='reader'"));
 const settleSource=navigation.match(/waitForSettle\([\s\S]*?\n    cancelTransition/)?.[0]||'';
-check('navigation settles by geometry instead of fixed delay',settleSource.includes('stable>=6')&&settleSource.includes('Math.abs(current-destination)<2')&&settleSource.includes('Date.now()-started>2200')&&!settleSource.includes('setTimeout'));
+check('navigation settles by reachable geometry instead of fixed delay',settleSource.includes('stable=atDestination&&')&&settleSource.includes('atDestination||stable>=6')&&settleSource.includes('Date.now()-started>2200')&&settleSource.includes("top:this.reachableDestination(destination)")&&!settleSource.includes('setTimeout'));
+check('intermediate stable frames cannot release scroll-spy',!settleSource.includes('Math.abs(current-destination)<2||stable>=6')&&!settleSource.includes('||stable>=6||'));
 check('mobile breakpoint clears collapsed state',navigation.includes('if(mobile)this.state.collapsed=false'));
 check('native inert avoids the full tabindex walk',navigation.includes("this.supportsInert='inert'in HTMLElement.prototype")&&navigation.includes('if(this.supportsInert){root.inert=!interactive;return;}'));
 check('tabindex fallback remains available for legacy browsers',navigation.includes('data-nav-saved-tabindex'));
@@ -174,7 +175,7 @@ check('Back has rebuilt-action fallback',journey.includes('this.findRestoredActi
 check('click navigation highlights only after controlled scroll settles',navigation.includes("()=>{this.highlight(element);settled?.();}"));
 
 const cssFiles=['styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css'];
-check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+'?v=4"')));
+check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+'?v=5"')));
 const contentCss=read('styles/content.css');
 const navigationCss=read('styles/navigation.css');
 check('navigation hides horizontal overflow and styles its scrollbar',/\.toc-panel\s*\{[^}]*overflow-x:\s*hidden/.test(navigationCss)&&navigationCss.includes('.toc-panel::-webkit-scrollbar-thumb')&&navigationCss.includes('scrollbar-color:'));
@@ -189,8 +190,8 @@ check('weapon rows receive explicit table semantics',read('scripts/ui-controller
 check('mobile header disables expensive backdrop blur',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.app-header\s*\{[^}]*backdrop-filter:\s*none/.test(read('styles/layout.css')));
 check('book uses the unified root manifest',html.includes('href="../../manifest.webmanifest"'));
 check('complete preview service worker owns its cache family',readProject('service-worker.js').includes('key.startsWith(CACHE_PREFIX)')&&readProject('service-worker.js').includes('warhammer-rules-complete-preview-'));
-check('complete preview PWA cache revision is current',readProject('service-worker.js').includes('`${CACHE_PREFIX}v1`'));
-check('book scripts and styles use the current release token',[...cssFiles,...files].every(file=>html.includes('./'+file+'?v=4')));
+check('complete preview PWA cache revision is current',readProject('service-worker.js').includes('`${CACHE_PREFIX}v6`'));
+check('book scripts and styles use the current release token',[...cssFiles,...files].every(file=>html.includes('./'+file+'?v=5')));
 check('v4 icon is used without legacy v3 PNG references',html.includes('assets/icon-v4.svg')&&!html.includes('icon-180.png'));
 check('navigation and popup specifications are present',['docs/SPEC_NAVIGATION.md','docs/SPEC_POPUPS.md'].every(file=>fs.existsSync(path.join(root,file))));
 const navigationSpec=read('docs/SPEC_NAVIGATION.md');

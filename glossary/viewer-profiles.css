@@ -1,0 +1,61 @@
+.profile-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  max-width: 900px;
+  margin: 8px 0 30px;
+  border: 1px solid var(--gold);
+  background: rgba(185, 154, 87, .08);
+}
+
+.profile-grid div {
+  padding: 18px 14px;
+  border-right: 1px solid rgba(185, 154, 87, .3);
+  text-align: center;
+}
+
+.profile-grid small {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font: 700 9px monospace;
+  text-transform: uppercase;
+}
+
+.profile-grid strong { font: 700 22px Georgia, serif; }
+
+.detail-label {
+  position: relative;
+  margin: 26px 0 9px;
+  color: var(--gold);
+  font: 700 9px monospace;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.reference-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 8px;
+  max-width: 900px;
+}
+
+.reference-card {
+  min-height: 78px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.reference-card:hover {
+  border-color: var(--acid);
+  background: linear-gradient(100deg, rgba(184, 215, 125, .12), rgba(215, 42, 135, .05));
+}
+
+.reference-card strong { display: block; font: 700 16px Georgia, serif; }
+.reference-card small { display: block; margin-top: 8px; color: var(--muted); font: 8px monospace; letter-spacing: .08em; text-transform: uppercase; }
+.reference-remainder { color: var(--muted); font: 9px monospace; text-transform: uppercase; }

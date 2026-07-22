@@ -3,62 +3,90 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0c1011">
+  <meta name="theme-color" content="#0b0f10">
+  <meta name="description" content="Learn Warhammer 40,000 from the complete original Core Rules.">
+  <title>Core Rules - Learn to Play</title>
   <link rel="manifest" href="../../manifest.webmanifest">
-  <meta name="description" content="Interactive Warhammer 40,000 Core Rules prototype.">
-  <title>Core Rules — Prototype</title>
-  <link rel="stylesheet" href="styles/tokens.css">
-  <link rel="stylesheet" href="styles/layout.css">
-  <link rel="stylesheet" href="styles/navigation.css">
-  <link rel="stylesheet" href="styles/content.css">
-  <link rel="stylesheet" href="styles/popups.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="app-header" id="appHeader">
-    <button class="icon-button menu-button" id="navMenu" type="button" aria-label="Open contents" aria-controls="tocPanel" aria-expanded="false">☰</button>
-    <a class="library-link" href="../../index.html" aria-label="Return to library"><span>←</span><b>Library</b></a>
-    <a class="brand" href="#cover" data-header-home>
-      <span class="brand-mark" aria-hidden="true">CR</span>
-      <span>Core Rules <small>11th edition // prototype</small></span>
-    </a>
-    <div class="header-actions">
-      <button class="back-button" id="backButton" type="button" hidden><span>←</span> Back</button>
-      <span class="edition-status"><i></i> RULESET // ACTIVE</span>
+  <header class="topbar">
+    <button class="icon-button menu-button" id="menuButton" type="button" aria-label="Open study path" aria-controls="studyPanel" aria-expanded="false">☰</button>
+    <a class="library-link" href="../../index.html">← <span>Library</span></a>
+    <button class="brand" id="homeButton" type="button">
+      <span class="brand-mark">CR</span>
+      <span>Learn to Play<small>Complete Core Rules</small></span>
+    </button>
+    <div class="top-actions">
+      <span class="progress-label" id="progressLabel">0 / 26</span>
+      <button class="icon-button" id="searchButton" type="button" aria-label="Search the complete rules">⌕</button>
       <button class="icon-button" id="themeButton" type="button" aria-label="Use light theme">☼</button>
     </div>
   </header>
 
-  <aside class="toc-panel" id="tocPanel" aria-label="Contents">
-    <div class="toc-head">
-      <div><span class="micro-label">FIELD MANUAL // INDEX</span><strong>Contents</strong></div>
-      <button class="toc-collapse" id="navCollapse" type="button" aria-label="Collapse contents" aria-expanded="true">◀</button>
+  <aside class="study-panel" id="studyPanel" aria-label="Study path">
+    <div class="study-head">
+      <span class="eyebrow">SOURCE-ORDERED COURSE</span>
+      <h1>Core Rules</h1>
+      <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
     </div>
-    <label class="toc-search" for="navSearch"><span aria-hidden="true">⌕</span><input id="navSearch" type="search" placeholder="Find a section…" autocomplete="off"></label>
-    <nav class="toc-tree" id="tocTree"></nav>
-    <div class="toc-meta"><span>SOURCE</span><strong>PDF</strong><span>LANGUAGE</span><strong>EN</strong><span>STATUS</span><strong>ORIGINAL</strong></div>
+    <nav class="study-nav" id="studyNav"></nav>
+    <div class="source-note"><strong>CANONICAL SOURCE</strong><span>Original English PDF<br>88 supplied pages · 01.06.2026<br>Contents refers to an unavailable page 89.</span></div>
   </aside>
-  <button class="toc-scrim" id="tocScrim" type="button" aria-label="Close contents" aria-hidden="true"></button>
+  <button class="scrim" id="scrim" type="button" aria-label="Close study path" hidden></button>
 
   <main class="main" id="main">
-    <div class="reader-tools" id="readerTools">
-      <label for="globalSearch"><span aria-hidden="true">⌕</span><input id="globalSearch" type="search" placeholder="Search rules and terms…" autocomplete="off"></label>
-      <button id="searchClear" type="button" hidden>Clear</button>
-      <span class="reader-status" id="readerStatus">ORIGINAL PDF SOURCE</span>
-    </div>
-    <section class="search-results" id="searchResults" hidden aria-live="polite"></section>
-    <article class="rules-document" id="rulesDocument"></article>
-    <noscript>JavaScript is required for the interactive prototype.</noscript>
+    <section class="start-screen" id="startScreen">
+      <div class="start-copy">
+        <span class="eyebrow">LEARN TO PLAY // ORIGINAL RULES</span>
+        <h2>Learn the game.<br><em>Read the rules.</em></h2>
+        <p>This course changes navigation only. Original PDF pages are the authoritative lesson content. Extracted text is provided only as a searchable transcript.</p>
+        <div class="start-actions">
+          <button class="primary-action" id="startButton" type="button">Start with Introduction →</button>
+          <button class="secondary-action" id="resumeButton" type="button" hidden>Resume →</button>
+        </div>
+      </div>
+      <div class="source-plate" aria-label="Source information">
+        <span>WARHAMMER 40,000</span><strong>CORE<br>RULES</strong><b>11</b><small>COMPLETE SOURCE</small>
+      </div>
+    </section>
+
+    <section class="lesson" id="lesson" hidden>
+      <header class="lesson-header">
+        <div>
+          <span class="eyebrow" id="lessonModule"></span>
+          <h2 id="lessonTitle"></h2>
+          <p class="lesson-source" id="lessonSource"></p>
+        </div>
+        <button class="complete-button" id="completeButton" type="button" aria-pressed="false">Mark complete</button>
+      </header>
+      <div class="lesson-tabs" role="tablist" aria-label="Rule presentation">
+        <button id="sourceTab" type="button" role="tab" aria-selected="true" aria-controls="sourceView">Original pages</button>
+        <button id="readTab" type="button" role="tab" aria-selected="false" aria-controls="readView">Searchable transcript</button>
+      </div>
+      <section class="source-view" id="sourceView" role="tabpanel" aria-labelledby="sourceTab"></section>
+      <section class="rule-view" id="readView" role="tabpanel" aria-labelledby="readTab" hidden></section>
+      <nav class="lesson-pager" aria-label="Lesson navigation">
+        <button id="previousButton" type="button">← Previous</button>
+        <button id="nextButton" type="button">Next →</button>
+      </nav>
+    </section>
   </main>
 
-  <div class="popup-layer" id="popupLayer" aria-live="polite"></div>
+  <section class="search-dialog" id="searchDialog" role="dialog" aria-modal="true" aria-labelledby="searchTitle" hidden>
+    <div class="search-head">
+      <div><span class="eyebrow">COMPLETE SOURCE SEARCH</span><h2 id="searchTitle">Find a rule</h2></div>
+      <button class="icon-button" id="searchClose" type="button" aria-label="Close search">×</button>
+    </div>
+    <label class="search-field" for="searchInput"><span>⌕</span><input id="searchInput" type="search" placeholder="Rule title, reference or exact wording..." autocomplete="off"></label>
+    <div class="search-results" id="searchResults" aria-live="polite"></div>
+  </section>
 
-  <script src="content/core-rules.source.en.js"></script>
-  <script src="content/core-rules.en.js"></script>
-  <script src="scripts/renderer.js"></script>
-  <script src="scripts/navigation-controller.js"></script>
-  <script src="scripts/popup-controller.js"></script>
-  <script src="scripts/journey-controller.js"></script>
-  <script src="scripts/ui-controllers.js"></script>
-  <script src="scripts/app.js"></script>
+  <script src="../../glossary/generated/glossary.en.js?v=4"></script>
+  <script src="./content/core-rules.source.en.js"></script>
+  <script src="./content/core-rules.en.js"></script>
+  <script src="config.js"></script>
+  <script src="basic-content.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

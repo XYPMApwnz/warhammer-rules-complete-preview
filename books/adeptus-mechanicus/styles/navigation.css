@@ -1,7 +1,7 @@
 .toc-panel {
   position: fixed;
   z-index: 60;
-  inset: calc(var(--header) + env(safe-area-inset-top) + 18px) auto 18px var(--nav-gutter);
+  inset: calc(var(--header) + env(safe-area-inset-top) + var(--navigation-gap)) auto var(--navigation-gap) var(--nav-gutter);
   width: var(--nav);
   padding: 24px 14px 44px;
   overflow: auto;

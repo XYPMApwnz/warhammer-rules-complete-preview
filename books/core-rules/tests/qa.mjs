@@ -2,76 +2,48 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
-import { fileURLToPath } from 'node:url';
+import {fileURLToPath} from 'node:url';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const read = (name) => fs.readFileSync(path.join(root, name), 'utf8');
-const context = { window: {} };
-vm.runInNewContext(read('content/core-rules.source.en.js'), context);
-vm.runInNewContext(read('content/core-rules.en.js'), context);
-const data = context.window.CORE_RULES;
-const pdf = context.window.CORE_PDF_SOURCE;
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const sourceRoot=root;
+const read=(file)=>fs.readFileSync(path.join(root,file),'utf8');
+const context={window:{}};
+vm.runInNewContext(fs.readFileSync(path.join(sourceRoot,'content','core-rules.source.en.js'),'utf8'),context);
+vm.runInNewContext(fs.readFileSync(path.join(sourceRoot,'content','core-rules.en.js'),'utf8'),context);
+vm.runInNewContext(read('config.js'),context);
+vm.runInNewContext(read('basic-content.js'),context);
 
-assert(data, 'CORE_RULES data should load');
-assert.equal(data.groups.length, 5, 'prototype should contain five main groups');
-
-const sections = data.groups.flatMap((group) => group.sections);
-const numbered = sections.filter((section) => /^\d+$/.test(section.number));
-assert.equal(numbered.length, 24, 'prototype should contain all 24 numbered sections');
-assert.equal(pdf.meta.pageCount, 88, 'source snapshot should contain all PDF pages');
-assert.equal(Object.keys(pdf.pages).length, 88, 'source snapshot page map is incomplete');
-assert.deepEqual([...pdf.sections.introduction], [4, 5], 'Introduction must map to PDF pages 4-5');
-assert.equal(pdf.appendix.length, 9, 'Rules Appendix should expose nine source articles');
-const visibleContent = JSON.stringify({
-  title: data.meta.title,
-  notice: data.meta.notice,
-  groups: data.groups,
-  terms: data.terms
-});
-assert(!/[А-Яа-яЁё]/u.test(visibleContent), 'active content model must remain English-only');
-
-const ids = ['cover', ...data.groups.map((group) => group.id), ...sections.map((section) => section.id)];
-assert.equal(new Set(ids).size, ids.length, 'all navigation targets must be unique');
-
-const terms = data.terms;
-for (const [id, term] of Object.entries(terms)) {
-  assert(term.title && term.summary, `${id} must have title and summary`);
-  if (term.rule) assert(ids.includes(term.rule), `${id} points to missing rule ${term.rule}`);
-  for (const related of term.related || []) assert(terms[related], `${id} points to missing related term ${related}`);
-}
-
-for (const section of sections) {
-  for (const block of section.blocks) {
-    for (const termId of block.terms || []) assert(terms[termId], `${section.id} uses missing term ${termId}`);
-  }
-}
-
-const html = read('index.html');
-const requiredFiles = [
-  'styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css',
-  'content/core-rules.source.en.js','content/core-rules.en.js','scripts/renderer.js','scripts/navigation-controller.js','scripts/popup-controller.js',
-  'scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'
-];
-for (const file of requiredFiles) {
-  assert(fs.existsSync(path.join(root, file)), `missing ${file}`);
-  assert(html.includes(file), `index.html does not load ${file}`);
-}
-assert(!fs.existsSync(path.join(root, 'content/core-rules.ru.js')), 'obsolete Russian content model must not remain active');
-for (const file of ['index.html', ...requiredFiles.filter((item) => item.startsWith('scripts/'))]) {
-  assert(!/[А-Яа-яЁё]/u.test(read(file)), `${file} contains non-English interface copy`);
-}
-
-const scriptOrder = requiredFiles.filter((file) => file.endsWith('.js')).map((file) => html.indexOf(file));
-assert(scriptOrder.every((position, index) => index === 0 || position > scriptOrder[index - 1]), 'scripts must load in dependency order');
-for (const section of numbered) assert(pdf.sections[section.id]?.length, `${section.id} has no PDF page mapping`);
-const sourceRules = Object.values(pdf.rules).flat();
-assert.equal(sourceRules.length, 146, 'unexpected source-rule extraction count');
-assert.equal(Object.keys(terms).length + sourceRules.length + pdf.appendix.length, 167, 'unexpected Rules Glossary entry count');
-assert(sourceRules.every((rule) => rule.title && rule.text && /^\d{2}\.\d{2}$/.test(rule.code)), 'source rules must have stable references, titles and text');
-assert(!read('scripts/renderer.js').includes("navNode('cover'"), 'Cover must not appear in the PDF contents tree');
-assert(!read('scripts/renderer.js').includes('section-number'), 'renderer must not expose chapter numbering');
-assert(read('scripts/renderer.js').includes('sourceExcerpt'), 'source rule cards must sanitize multi-column PDF extraction');
-assert(read('scripts/renderer.js').includes("navNode('glossary', 'Rules Glossary'"), 'Rules Glossary must be available from Reader Tools navigation');
-assert(read('scripts/renderer.js').includes('source-glossary-card'), 'Rules Glossary must include PDF source rules');
-assert(!/[\uFFFD]/u.test(requiredFiles.map(read).join('')), 'source files contain replacement characters');
-console.log(`QA passed: ${data.groups.length} groups, ${numbered.length} numbered sections, ${Object.keys(terms).length} terms.`);
+const data=context.window.CORE_RULES,pdf=context.window.CORE_PDF_SOURCE,modules=context.window.CORE_LEARN_MODULES,basic=context.window.CORE_BASIC_LAYOUTS;
+const sourceIds=[data.introduction.id,...data.groups.flatMap((group)=>group.sections.map((section)=>section.id))];
+const studyIds=modules.flatMap((module)=>module.sections);
+assert.deepEqual([...studyIds].sort(),[...sourceIds].sort(),'study path must include every source section exactly once');
+assert.equal(new Set(studyIds).size,studyIds.length,'study path contains duplicate sections');
+assert.equal(studyIds.length,26,'unexpected lesson count');
+for(const id of studyIds){assert(pdf.sections[id]?.length,`${id} has no source pages`);assert(Object.hasOwn(pdf.rules,id),`${id} has no source rule collection`);}
+assert.equal(Object.values(pdf.rules).flat().length,146,'unexpected structured rule count');
+assert.equal(Object.keys(pdf.pages).length,88,'complete page transcript is required');
+for(let page=1;page<=88;page++)assert(fs.existsSync(path.join(root,'assets','pages',`page-${String(page).padStart(2,'0')}.jpg`)),`missing rendered source page ${page}`);
+const app=read('app.js'),html=read('index.html');
+const designedIds=['introduction','core-concepts','datasheets','moving','making-attacks','attack-sequence','other-concepts'];
+assert.deepEqual(Object.keys(basic),designedIds,'only the requested first seven lessons should have designed layouts');
+assert(app.includes('CORE_BASIC_LAYOUTS'),'designed lesson data must be rendered');
+assert(html.includes('basic-content.js'),'designed lesson content must load before the application');
+assert(basic.introduction.paragraphs.length===7,'complete introduction prose is required');
+assert(basic.datasheets.visuals.some((item)=>item.src.includes('datasheet-boyz')),'annotated datasheet visual is required');
+assert(app.includes('renderDatasheetLesson'),'datasheet must use a dedicated annotated-key layout');
+assert(app.includes("datasheet-number',number"),'datasheet text must visibly match markers 1-7');
+assert(app.includes("datasheet-picture-button','PICTURE ↑'"),'every datasheet key needs a picture jump');
+assert(app.includes('map.dataset.returnTarget=item.id'),'picture back action must remember its originating key');
+assert.equal(basic.moving.visuals.length,4,'all requested movement diagrams are required');
+assert.equal(basic['attack-sequence'].visuals.length,7,'attack sequence tables and examples are required');
+assert(basic['other-concepts'].visuals.some((item)=>item.src.includes('visibility')),'visibility examples are required');
+for(const layout of Object.values(basic))for(const visual of layout.visuals||[])assert(fs.existsSync(path.join(root,visual.src)),`missing source crop ${visual.src}`);
+assert(app.includes('rule.text'),'source text must remain searchable');
+assert(app.includes('pdf.pages[String(page)]'),'complete page transcripts must be rendered');
+assert(!app.includes('sourceExcerpt'),'learning version must not truncate source rules');
+assert(!app.includes('section.summary'),'learning version must not render authored section summaries');
+assert(html.includes('Original pages'),'original PDF page view must be available');
+assert(html.includes('Original PDF pages are the authoritative lesson content.'),'source boundary must be explicit');
+assert(html.includes('Contents refers to an unavailable page 89.'),'missing source page 89 must be disclosed');
+for(const file of ['config.js','basic-content.js','app.js','styles.css'])assert(fs.existsSync(path.join(root,file)),`missing ${file}`);
+console.log(`QA passed: ${designedIds.length} designed lessons, ${studyIds.length} total lessons, 146 searchable rule records, 88 authoritative source pages.`);
