@@ -40,7 +40,8 @@ for(const [slug,book] of Object.entries(books)){
 }
 
 check('preview cache namespace is isolated',sw.includes('warhammer-rules-complete-preview-'));
-check('preview cache revision is current',sw.includes('`${CACHE_PREFIX}v8`'));
+check('preview cache revision is current',sw.includes('`${CACHE_PREFIX}v9`'));
+check('library header opens the Mega Glossary',library.includes('class="glossary-link"')&&library.includes('href="glossary/index.html"'));
 check('Core Rules source pages are cached only on demand',!sw.includes('Array.from({length:88}')&&sw.includes('cached || fetchAndCache(request)'));
 check('global glossary runtime exists and is precached',exists('glossary/generated/glossary.en.js')&&sw.includes('"./glossary/generated/glossary.en.js?v=4"'));
 for(const [slug,book] of Object.entries(books)){

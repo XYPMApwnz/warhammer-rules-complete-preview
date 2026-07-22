@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "warhammer-rules-complete-preview-";
-const CACHE_NAME = `${CACHE_PREFIX}v8`;
+const CACHE_NAME = `${CACHE_PREFIX}v9`;
 const LIBRARY_FALLBACK = "./index.html";
 const DEATH_GUARD_FALLBACK = "./books/death-guard/index.html";
 const CORE_RULES_FALLBACK = "./books/core-rules/index.html";
