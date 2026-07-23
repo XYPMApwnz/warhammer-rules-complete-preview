@@ -48,6 +48,7 @@ const APP_SHELL = [
   "./books/death-guard/styles/content.css?v=11",
   "./books/death-guard/styles/popups.css?v=11",
   "./books/death-guard/scripts/data.js?v=9",
+  "./books/death-guard/scripts/tap-diagnostics.js?v=1",
   "./books/death-guard/scripts/navigation-controller.js?v=10",
   "./books/death-guard/scripts/popup-controller.js?v=14",
   "./books/death-guard/scripts/journey-controller.js?v=10",
