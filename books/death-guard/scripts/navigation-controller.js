@@ -76,6 +76,7 @@
       window.addEventListener('wheel',event=>this.cancelTransition(event),{passive:true});
       window.addEventListener('touchstart',event=>this.cancelTransition(event),{passive:true});
       window.addEventListener('pointerdown',event=>this.cancelTransition(event),{passive:true});
+      document.addEventListener('dg:glossary-layout',()=>this.scheduleGeometry());
 
       document.addEventListener('keydown',event=>{
         if(['PageUp','PageDown','Home','End','ArrowUp','ArrowDown',' '].includes(event.key))this.cancelTransition();
@@ -209,7 +210,7 @@
       this.geometry.headerBottom=this.header.getBoundingClientRect().bottom;
       this.geometry.glossaryHeight=document.querySelector('.glossary-tools')?.getBoundingClientRect().height||0;
       this.geometry.ranges=this.items.map(item=>{
-        const rect=item.section.getBoundingClientRect();return{item,top:scrollY+rect.top,bottom:scrollY+rect.bottom};
+        const rect=item.section.getBoundingClientRect();return{item,top:scrollY+rect.top,bottom:scrollY+rect.bottom,measurable:rect.width>0||rect.height>0};
       });
       this.readViewport();
     }
@@ -220,6 +221,7 @@
     lastCrossedDescendant(parent,scrollY){
       let descendant=null;
       for(const range of this.geometry.ranges){
+        if(range.measurable===false)continue;
         if(!this.descendsFrom(range.item,parent.item))continue;
         const line=scrollY+this.geometry.headerBottom+this.trackingGap+this.clearance(range.item);
         if(range.top<=line+this.epsilon&&(!descendant||range.top>descendant.top||range.top===descendant.top&&range.item.depth>descendant.item.depth))descendant=range;
@@ -229,11 +231,13 @@
     pickActive(){
       const scrollY=window.scrollY;let winner=null;
       for(const range of this.geometry.ranges){
+        if(range.measurable===false)continue;
         const line=scrollY+this.geometry.headerBottom+this.trackingGap+this.clearance(range.item);
         if(range.top<=line+this.epsilon&&range.bottom>line&&(!winner||range.item.depth>winner.item.depth||range.item.depth===winner.item.depth&&range.top>winner.top))winner=range;
       }
       if(winner)return this.lastCrossedDescendant(winner,scrollY)?.item||winner.item;
       for(const range of this.geometry.ranges){
+        if(range.measurable===false)continue;
         const line=scrollY+this.geometry.headerBottom+this.trackingGap+this.clearance(range.item);
         if(range.top<=line+this.epsilon&&(!winner||range.top>winner.top||range.top===winner.top&&range.item.depth>winner.item.depth))winner=range;
       }

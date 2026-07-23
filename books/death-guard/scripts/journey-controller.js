@@ -18,7 +18,7 @@
 
     ensureId(element,prefix){if(!element.id)element.id=prefix+'-'+(++this.sequence);return element.id;}
     start(trigger,targetId,type){
-      const target=document.getElementById(targetId);if(!target)return;
+      const target=document.getElementById(targetId)||this.glossary?.resolveTarget?.(targetId);if(!target)return;
       if(target.closest?.('#glossary'))this.glossary?.reveal?.(target);
       const triggerId=this.ensureId(trigger,'journey-trigger');
       const root=this.popups.rootElement();if(root)this.ensureId(root,'journey-popup-root');
@@ -29,6 +29,7 @@
         navId:this.navigation.active,
         popupIds:this.popups.snapshot(),
         popupRootId:root?.id||'',
+        glossaryState:this.glossary?.snapshot?.()||null,
         popupAction:popupCard?{
           level:Number(popupCard.dataset.popupIndex),
           key:trigger.dataset.actionKey||'',
@@ -58,6 +59,7 @@
     back(){
       const record=this.history.pop();if(!record)return;
       this.backButton.hidden=this.history.length===0;
+      this.glossary?.restore?.(record.glossaryState);
       this.navigation.restore(record.navId,record.scrollY,()=>{
         const popupRoot=document.getElementById(record.popupRootId||record.triggerId);
         this.popups.restore(record.popupIds,{root:popupRoot,focus:false});

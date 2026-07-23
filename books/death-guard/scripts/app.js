@@ -8,11 +8,12 @@
   }
   const terms=window.WH40K_GLOSSARY?.forBook('death-guard')||window.DG_TERMS;
   const documentRoot=document.querySelector('.document');
+  const glossary=new window.DGGlossarySearch();
   window.WHGlossaryAutolink?.apply(documentRoot,'death-guard');
   window.WHGlossaryAutolink?.validate(documentRoot,terms);
+  glossary.markReady();
   const navigation=new window.DGNavigation();
   const popups=new window.DGPopups(terms);
-  const glossary=new window.DGGlossarySearch();
   new window.DGJourney(navigation,popups,glossary);
   new window.DGTheme();
   new window.DGTableAccessibility();

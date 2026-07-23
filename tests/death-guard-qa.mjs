@@ -64,6 +64,12 @@ check('generated document contains no acceptance placeholders',!/(small acceptan
 const navigation=read('scripts/navigation-controller.js');
 const popups=read('scripts/popup-controller.js');
 const journey=read('scripts/journey-controller.js');
+const uiControllers=read('scripts/ui-controllers.js');
+const appSource=read('scripts/app.js');
+check('mobile glossary compacts before document autolinking',appSource.indexOf('new window.DGGlossarySearch')<appSource.indexOf('WHGlossaryAutolink?.apply')&&appSource.includes('glossary.markReady()'));
+check('mobile glossary mounts one category and search matches only',uiControllers.includes('group.grid.replaceChildren()')&&uiControllers.includes('group.grid.replaceChildren(...matches)')&&uiControllers.includes('mobile-glossary-categories'));
+check('detached glossary targets resolve before Journey navigation',journey.includes("document.getElementById(targetId)||this.glossary?.resolveTarget?.(targetId)"));
+check('Journey Back restores the previous glossary category',journey.includes('glossaryState:this.glossary?.snapshot?.()')&&journey.includes('this.glossary?.restore?.(record.glossaryState)'));
 check('navigation uses one passive scroll listener',(navigation.match(/addEventListener\('scroll'/g)||[]).length===1&&navigation.includes('{passive:true}'));
 check('navigation avoids :scope',!navigation.includes(':scope'));
 check('navigation has explicit reader/controller ownership',navigation.includes("owner:'reader'")&&navigation.includes("owner='controller'")&&navigation.includes("owner='reader'"));
@@ -76,6 +82,7 @@ check('tabindex fallback remains available for legacy browsers',navigation.inclu
 check('unchanged drawer state is a no-op',navigation.includes('if(next===this.state.drawer)return'));
 const readViewportSource=navigation.match(/readViewport\(\)\{[\s\S]*?\n    \}/)?.[0]||'';
 check('scroll spy performs no layout measurements per frame',!readViewportSource.includes('getBoundingClientRect'));
+check('scroll spy ignores hidden mobile glossary categories',navigation.includes('measurable:rect.width>0||rect.height>0')&&navigation.includes('if(range.measurable===false)continue'));
 check('mobile layout avoids content-visibility geometry jumps',!readProject('books/death-guard/styles/content.css').includes('content-visibility: auto'));
 check('user input cancels controlled scrolling',navigation.includes('cancelTransition()')&&navigation.includes("window.addEventListener('touchstart'"));
 check('navigation branches use strict sibling accordion',navigation.includes("if(peer!==node&&peer.matches('[data-nav-id]'))this.closeBranch(peer,{deep:true})")&&!navigation.includes('isOnActivePath'));
@@ -195,7 +202,7 @@ check('Back has rebuilt-action fallback',journey.includes('this.findRestoredActi
 check('click navigation highlights only after controlled scroll settles',navigation.includes("()=>{this.highlighter.show(targets.highlightTarget);settled?.();}"));
 
 const cssFiles=['styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css'];
-check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=10':file==='styles/popups.css'?'?v=11':'?v=9')+'"')));
+check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=11':file==='styles/popups.css'?'?v=11':'?v=9')+'"')));
 const contentCss=read('styles/content.css');
 const navigationCss=read('styles/navigation.css');
 check('navigation hides horizontal overflow and styles its scrollbar',/\.toc-panel\s*\{[^}]*overflow-x:\s*hidden/.test(navigationCss)&&navigationCss.includes('.toc-panel::-webkit-scrollbar-thumb')&&navigationCss.includes('scrollbar-color:'));
@@ -213,7 +220,7 @@ check('mobile header disables expensive backdrop blur',/@media\s*\(max-width:\s*
 check('book uses the unified root manifest',html.includes('href="../../manifest.webmanifest"'));
 check('complete preview service worker owns its cache family',readProject('service-worker.js').includes('key.startsWith(CACHE_PREFIX)')&&readProject('service-worker.js').includes('warhammer-rules-complete-preview-'));
 check('complete preview PWA cache revision is content-derived',readProject('service-worker.js').includes('self.WH40K_CACHE_REVISION'));
-check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/content.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/popup-controller.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/content.css?v=10')&&html.includes('./styles/popups.css?v=11')&&html.includes('./scripts/popup-controller.js?v=14')&&html.includes('./scripts/app.js?v=13'));
+check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/content.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/content.css?v=11')&&html.includes('./styles/popups.css?v=11')&&html.includes('./scripts/navigation-controller.js?v=10')&&html.includes('./scripts/popup-controller.js?v=14')&&html.includes('./scripts/journey-controller.js?v=10')&&html.includes('./scripts/ui-controllers.js?v=10')&&html.includes('./scripts/app.js?v=14'));
 check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
 check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=4"'));
 check('book loads the shared datasheet layout',html.includes('src="../shared/datasheet-layout.js?v=2"'));
