@@ -59,7 +59,7 @@ const APP_SHELL = [
   "./books/core-rules/styles.css",
   "./books/core-rules/config.js",
   "./books/core-rules/basic-content.js",
-  "./books/core-rules/app.js",
+  "./books/core-rules/app.js?v=1",
   "./books/core-rules/content/core-rules.source.en.js",
   "./books/core-rules/content/core-rules.en.js",
   "./books/adeptus-mechanicus/",
