@@ -13,7 +13,7 @@ const library=read('index.html');
 const sw=read('service-worker.js');
 const books={
   'death-guard':{version:'9',versions:{'styles/content.css':'16','styles/popups.css':'13','scripts/navigation-controller.js':'12','scripts/popup-controller.js':'17','scripts/full-entry-controller.js':'5','scripts/journey-controller.js':'11','scripts/ui-controllers.js':'11','scripts/app.js':'17'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/icon-v4.svg','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']},
-  'core-rules':{version:null,app:'app.js',usesPopupGlossary:false,files:['styles.css','config.js','basic-content.js','app.js','content/core-rules.source.en.js','content/core-rules.en.js']},
+  'core-rules':{version:null,versions:{'app.js':'1'},app:'app.js',usesPopupGlossary:false,files:['styles.css','config.js','basic-content.js','app.js','content/core-rules.source.en.js','content/core-rules.en.js']},
   'adeptus-mechanicus':{version:'13',versions:{'styles/content.css':'14','styles/popups.css':'15','scripts/popup-controller.js':'18','scripts/app.js':'17'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/mechanicus-logo.png','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','styles/mechanicus.css','scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']}
 };
 
@@ -44,6 +44,7 @@ check('preview cache namespace is isolated',sw.includes('warhammer-rules-complet
 check('preview cache revision is content-derived',exists('glossary/generated/cache-revision.js')&&sw.includes('importScripts("./glossary/generated/cache-revision.js")')&&sw.includes('self.WH40K_CACHE_REVISION'));
 check('library header opens the Mega Glossary',library.includes('class="glossary-link"')&&library.includes('href="glossary/index.html"'));
 check('Core Rules source pages are cached only on demand',!sw.includes('Array.from({length:88}')&&sw.includes('cached || fetchAndCache(request)'));
+check('Core Rules app is cache-busted',read('books/core-rules/index.html').includes('src="app.js?v=1"'));
 check('global glossary runtime exists and is precached',exists('glossary/generated/glossary.en.js')&&sw.includes('"./glossary/generated/glossary.en.js?v=2"'));
 check('Mega Glossary return UI is versioned and precached',read('glossary/index.html').includes('id="libraryBack"')&&read('glossary/index.html').includes('viewer.js?v=3')&&sw.includes('"./glossary/viewer.js?v=3"'));
 check('glossary runtime exposes curated matching labels',read('glossary/generated/glossary.en.js').includes('matchLabels'));
