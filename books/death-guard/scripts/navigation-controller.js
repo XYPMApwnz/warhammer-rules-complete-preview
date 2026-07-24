@@ -137,7 +137,7 @@
       this.menuButton.setAttribute('aria-label',this.state.drawer?'Close navigation':'Open navigation');
       this.collapseButton.setAttribute('aria-expanded',String(!this.state.collapsed));
       this.collapseButton.setAttribute('aria-label',this.state.collapsed?'Expand navigation':'Collapse navigation');
-      this.collapseButton.textContent=this.state.collapsed?'▶':'◀';
+      this.collapseButton.textContent=this.state.collapsed?'?':'?';
     }
     setDrawer(open){
       const next=this.mobile&&Boolean(open);if(next===this.state.drawer)return;
@@ -259,7 +259,8 @@
       if(this.state.owner==='controller')this.stopControlledScroll();
       const token=++this.state.transition;this.state.owner='controller';this.activate(id,{behavior:'auto'});
       const reachable=this.reachableDestination(destination);
-      window.scrollTo({top:reachable,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+      const behavior=this.mobile||matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth';
+      window.scrollTo({top:reachable,behavior});
       this.waitForSettle(reachable,token,settled);
     }
     reachableDestination(destination){return Math.min(Math.max(0,destination),Math.max(0,document.documentElement.scrollHeight-window.innerHeight));}
