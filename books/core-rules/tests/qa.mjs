@@ -24,6 +24,7 @@ assert.equal(Object.values(pdf.rules).flat().length,146,'unexpected structured r
 assert.equal(Object.keys(pdf.pages).length,88,'complete page transcript is required');
 for(let page=1;page<=88;page++)assert(fs.existsSync(path.join(root,'assets','pages',`page-${String(page).padStart(2,'0')}.jpg`)),`missing rendered source page ${page}`);
 const app=read('app.js'),html=read('index.html');
+assert(app.includes("main:document.getElementById('main')"),'drawer accessibility must own the main content element');
 const designedIds=['introduction','core-concepts','datasheets','moving','making-attacks','attack-sequence','other-concepts'];
 assert.deepEqual(Object.keys(basic),designedIds,'only the requested first seven lessons should have designed layouts');
 assert(app.includes('CORE_BASIC_LAYOUTS'),'designed lesson data must be rendered');
