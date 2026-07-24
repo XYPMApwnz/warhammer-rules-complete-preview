@@ -14,13 +14,21 @@
     }
 
     bind(){
-      document.addEventListener('pointerup',event=>{
+      document.addEventListener('pointerdown',event=>{
         if(event.pointerType!=='touch')return;
         const trigger=event.target.closest('[data-term]');
         if(!trigger)return;
-        event.preventDefault();
-        this.touchTerm={trigger,until:performance.now()+750};
+        this.touchTerm={trigger,pointerId:event.pointerId,ids:this.ids.slice(),origins:this.origins.slice(),until:0};
         this.open(trigger.dataset.term,trigger);
+      });
+      document.addEventListener('pointerup',event=>{
+        if(event.pointerId!==this.touchTerm?.pointerId)return;
+        event.preventDefault();
+        this.touchTerm.until=performance.now()+750;
+      });
+      document.addEventListener('pointercancel',event=>{
+        if(event.pointerId!==this.touchTerm?.pointerId)return;
+        this.ids=this.touchTerm.ids;this.origins=this.touchTerm.origins;this.touchTerm=null;this.sync();
       });
       document.addEventListener('click',event=>{
         const close=event.target.closest('[data-popup-close]');
