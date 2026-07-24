@@ -12,7 +12,7 @@ const check=(name,ok,detail='')=>results.push({name,ok,detail});
 const library=read('index.html');
 const sw=read('service-worker.js');
 const books={
-  'death-guard':{version:'9',versions:{'styles/content.css':'16','styles/popups.css':'13','scripts/navigation-controller.js':'13','scripts/popup-controller.js':'17','scripts/full-entry-controller.js':'5','scripts/journey-controller.js':'11','scripts/ui-controllers.js':'11','scripts/app.js':'17'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/icon-v4.svg','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']},
+  'death-guard':{version:'9',versions:{'styles/content.css':'16','styles/popups.css':'14','scripts/navigation-controller.js':'13','scripts/popup-controller.js':'17','scripts/full-entry-controller.js':'5','scripts/journey-controller.js':'11','scripts/ui-controllers.js':'11','scripts/app.js':'17'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/icon-v4.svg','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']},
   'core-rules':{version:null,versions:{'app.js':'1'},app:'app.js',usesPopupGlossary:false,files:['styles.css','config.js','basic-content.js','app.js','content/core-rules.source.en.js','content/core-rules.en.js']},
   'adeptus-mechanicus':{version:'13',versions:{'styles/content.css':'14','styles/popups.css':'15','scripts/popup-controller.js':'18','scripts/app.js':'17'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/mechanicus-logo.png','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','styles/mechanicus.css','scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']}
 };
@@ -69,7 +69,7 @@ for(const [slug,book] of Object.entries(books)){
 }
 check('navigation responses keep their own cache URL',sw.includes('fetchAndCache(request);')&&!sw.includes('fetchAndCache(request, LIBRARY_FALLBACK)'));
 
-for(const result of results)console.log(`${result.ok?'PASS':'FAIL'}  ${result.name}${result.detail?' - '+result.detail:''}`);
+for(const result of results)console.log(`${result.ok?'PASS':'FAIL'}  ${result.name}${result.detail?' — '+result.detail:''}`);
 const failed=results.filter(result=>!result.ok);
 console.log(`\n${results.length-failed.length}/${results.length} integration checks passed.`);
 if(failed.length)process.exitCode=1;

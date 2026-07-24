@@ -38,7 +38,7 @@ const walkBlocks=bookData.sections.flatMap(section=>[...(section.blocks||[]),...
 const blockCount=type=>walkBlocks.filter(block=>block.type===type).length;
 check('canonical content audit is 9 detachments, 36 datasheets and 366 terms',bookData.audit.detachments===9&&bookData.audit.datasheets===36&&bookData.glossary.length===366);
 const plagueEntry=glossaryRegistry.terms['death-guard-plague'];
-check('Plague means the chosen Nurgle's Gift effect',plagueEntry.summary.en.includes('selected during Declare Battle Formations')&&plagueEntry.definition.en.includes('Skullsquirm Blight, Rattlejoint Ague or Scabrous Soulrot')&&plagueEntry.related.length===5);
+check('Plague means the chosen Nurgle’s Gift effect',plagueEntry.summary.en.includes('selected during Declare Battle Formations')&&plagueEntry.definition.en.includes('Skullsquirm Blight, Rattlejoint Ague or Scabrous Soulrot')&&plagueEntry.related.length===5);
 const plagueCards=['skullsquirm-blight','rattlejoint-ague','scabrous-soulrot'].map(id=>{
   const start=html.indexOf(`<article class="rule-card surface" id="${id}"`),end=html.indexOf('</article>',start);
   return html.slice(start,end);
@@ -214,7 +214,7 @@ check('Back has rebuilt-action fallback',journey.includes('this.findRestoredActi
 check('click navigation highlights only after controlled scroll settles',navigation.includes("()=>{this.highlighter.show(targets.highlightTarget);settled?.();}"));
 
 const cssFiles=['styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css'];
-check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=16':file==='styles/popups.css'?'?v=13':'?v=9')+'"')));
+check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=16':file==='styles/popups.css'?'?v=14':'?v=9')+'"')));
 const contentCss=read('styles/content.css');
 check('datasheet quick navigation overrides the shared desktop rail and is phone-only',contentCss.includes('body .unit-card > .local-nav { display: none; }')&&contentCss.includes('@media (max-width: 600px)')&&contentCss.includes('position: sticky;')&&contentCss.includes('overflow-x: auto;'));
 const navigationCss=read('styles/navigation.css');
@@ -232,10 +232,11 @@ check('no runtime fetch in document controllers',!files.some(file=>/\bfetch\s*\(
 check('service worker registration is protocol gated',read('scripts/app.js').includes("location.protocol==='http:'||location.protocol==='https:'"));
 check('weapon rows receive explicit table semantics',read('scripts/ui-controllers.js').includes("row.setAttribute('role','row')"));
 check('mobile header disables expensive backdrop blur',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.app-header\s*\{[^}]*backdrop-filter:\s*none/.test(read('styles/layout.css')));
+check('mobile popups disable expensive backdrop blur',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.popup-layer:has\(\.term-popup\)::before\s*\{[^}]*backdrop-filter:\s*none/.test(read('styles/popups.css')));
 check('book uses the unified root manifest',html.includes('href="../../manifest.webmanifest"'));
 check('complete preview service worker owns its cache family',readProject('service-worker.js').includes('key.startsWith(CACHE_PREFIX)')&&readProject('service-worker.js').includes('warhammer-rules-complete-preview-'));
 check('complete preview PWA cache revision is content-derived',readProject('service-worker.js').includes('self.WH40K_CACHE_REVISION'));
-check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/content.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/content.css?v=16')&&html.includes('./styles/popups.css?v=13')&&html.includes('./scripts/navigation-controller.js?v=13')&&html.includes('./scripts/popup-controller.js?v=17')&&html.includes('./scripts/full-entry-controller.js?v=5')&&html.includes('./scripts/journey-controller.js?v=11')&&html.includes('./scripts/ui-controllers.js?v=11')&&html.includes('./scripts/app.js?v=17'));
+check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/content.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/content.css?v=16')&&html.includes('./styles/popups.css?v=14')&&html.includes('./scripts/navigation-controller.js?v=13')&&html.includes('./scripts/popup-controller.js?v=17')&&html.includes('./scripts/full-entry-controller.js?v=5')&&html.includes('./scripts/journey-controller.js?v=11')&&html.includes('./scripts/ui-controllers.js?v=11')&&html.includes('./scripts/app.js?v=17'));
 check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
 check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=4"'));
 check('book loads the shared datasheet layout',html.includes('src="../shared/datasheet-layout.js?v=2"'));
@@ -243,12 +244,12 @@ check('glossary autolinking precedes navigation geometry',read('scripts/app.js')
 check('v4 icon is used without legacy v3 PNG references',html.includes('assets/icon-v4.svg')&&!html.includes('icon-180.png'));
 check('navigation and popup specifications are present',['docs/SPEC_NAVIGATION.md','docs/SPEC_POPUPS.md'].every(file=>fs.existsSync(path.join(root,file))));
 const navigationSpec=read('docs/SPEC_NAVIGATION.md');
-check('navigation spec keeps nested-group behavior independent of item count',navigationSpec.includes('??????? ?? ??????? ?? ?????????? ??????? ? ?????????? ?????')&&!navigationSpec.includes('????????? ??????? Glossary ????? ?????'));
-check('navigation spec delegates concrete inventory to book data',navigationSpec.includes('????? ?????????? ????? ?? ??????????? ? ???? ??')&&navigationSpec.includes('????????? ?????? ?? ?? ????????????????? ??????'));
-check('navigation spec treats 2200ms as recovery rather than success',navigationSpec.includes('??? ?? ???? ?? ????????? ???????? ???????????')&&navigationSpec.includes('????????? ????????? ????????????????'));
-check('navigation spec defines singular label and plural section',navigationSpec.includes('??????? `Enhancement` ????? ? ?????? ????? ? ??????? ?????????? `Enhancements`'));
+check('navigation spec keeps nested-group behavior independent of item count',navigationSpec.includes('Правило не зависит от количества пунктов в конкретной книге')&&!navigationSpec.includes('вложенных пунктов Glossary после клика'));
+check('navigation spec delegates concrete inventory to book data',navigationSpec.includes('Число глобальных целей не фиксируется в этом ТЗ')&&navigationSpec.includes('ожидаемый состав из её структурированных данных'));
+check('navigation spec treats 2200ms as recovery rather than success',navigationSpec.includes('сам по себе не считается успешным завершением')&&navigationSpec.includes('выполняет финальное позиционирование'));
+check('navigation spec defines singular label and plural section',navigationSpec.includes('подпись `Enhancement` ведёт к общему блоку с видимым заголовком `Enhancements`'));
 
-for(const result of results)console.log(`${result.ok?'PASS':'FAIL'}  ${result.name}${result.detail?' - '+result.detail:''}`);
+for(const result of results)console.log(`${result.ok?'PASS':'FAIL'}  ${result.name}${result.detail?' — '+result.detail:''}`);
 const failed=results.filter(result=>!result.ok);
 console.log(`\n${results.length-failed.length}/${results.length} checks passed.`);
 if(failed.length)process.exitCode=1;

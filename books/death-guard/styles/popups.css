@@ -265,6 +265,7 @@ body.full-entry-open { overflow: hidden; }
 }
 @media (max-width: 800px) {
   .popup-layer { position: fixed; }
+  .popup-layer:has(.term-popup)::before { backdrop-filter: none; }
   .term-popup { width: calc(100vw - 28px); max-height: min(72dvh,620px); }
 }
 @media (max-width: 480px) {
