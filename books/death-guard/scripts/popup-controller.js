@@ -9,15 +9,28 @@
       this.ids=[];
       this.origins=[];
       this.originSequence=0;
+      this.touchTerm=null;
       this.bind();
     }
 
     bind(){
+      document.addEventListener('pointerup',event=>{
+        if(event.pointerType!=='touch')return;
+        const trigger=event.target.closest('[data-term]');
+        if(!trigger)return;
+        event.preventDefault();
+        this.touchTerm={trigger,until:performance.now()+750};
+        this.open(trigger.dataset.term,trigger);
+      });
       document.addEventListener('click',event=>{
         const close=event.target.closest('[data-popup-close]');
         if(close&&this.layer.contains(close)){event.preventDefault();this.closeFrom(Number(close.dataset.popupClose));return;}
         const trigger=event.target.closest('[data-term]');
-        if(trigger){event.preventDefault();this.open(trigger.dataset.term,trigger);return;}
+        if(trigger){
+          event.preventDefault();
+          if(this.touchTerm?.trigger===trigger&&performance.now()<this.touchTerm.until){this.touchTerm=null;return;}
+          this.open(trigger.dataset.term,trigger);return;
+        }
         if(this.ids.length&&!event.target.closest('.term-popup,.full-entry-layer'))this.closeFrom(0);
       });
       document.addEventListener('keydown',event=>{
