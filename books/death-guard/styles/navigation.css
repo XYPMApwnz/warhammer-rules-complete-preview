@@ -114,7 +114,8 @@ html[data-theme="light"] .toc-panel { background: rgba(231,223,202,.97); }
 body.nav-collapsed .toc-panel { transform: translateX(-102%); }
 .toc-scrim { display: none; }
 @media (max-width: 800px) {
-  .toc-panel { inset: calc(var(--header) + env(safe-area-inset-top) + 10px) auto 10px 10px; width: min(calc(88vw - 10px), 360px); transform: translateX(calc(-105% - 10px)); box-shadow: 24px 12px 52px rgba(0,0,0,.5); }
+  .toc-panel { inset: calc(var(--header) + env(safe-area-inset-top) + 10px) auto 10px 10px; width: min(calc(88vw - 10px), 360px); transform: translateX(calc(-105% - 10px)); box-shadow: 24px 12px 52px rgba(0,0,0,.5); transition: none; }
+  .toc-toggle::after { transition: none; }
   body.nav-drawer-open .toc-panel { transform: translateX(0); }
   .toc-scrim { position: fixed; z-index: 55; inset: calc(var(--header) + env(safe-area-inset-top)) 0 0; background: rgba(0,0,0,.62); }
   body.nav-drawer-open .toc-scrim { display: block; }
