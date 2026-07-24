@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  const breakpoint=800;
+  const breakpoint=1100;
   const body=document.body;
   const panel=document.getElementById('tocPanel');
   const tree=document.getElementById('tocTree');
@@ -14,10 +14,14 @@
   const termSummary=document.getElementById('termSummary');
   const termFull=document.getElementById('termFull');
   const terms=window.WH40K_GLOSSARY.forBook('death-guard');
+  let destinations=[];
+  let scrollFrame=0;
+  let currentTarget='';
 
   function mobile(){return innerWidth<=breakpoint;}
   function branch(node){return Array.from(node.children).find(child=>child.classList.contains('toc-branch'));}
   function toggle(node){return Array.from(node.children).find(child=>child.classList.contains('toc-row'))?.querySelector('[data-nav-toggle]');}
+  function label(node){return Array.from(node.children).find(child=>child.classList.contains('toc-row'))?.querySelector('[data-nav-target]');}
   function parentItem(node){const list=node.parentElement;return list?.classList.contains('toc-branch')?list.parentElement:null;}
   function setBranch(node,open){
     const list=branch(node),button=toggle(node);if(!list)return;
@@ -31,15 +35,33 @@
     for(const parent of parents){closeSiblings(parent);setBranch(parent,true);}
   }
   function select(button){
+    if(!button||button.dataset.navTarget===currentTarget)return;
     for(const active of tree.querySelectorAll('.is-current,.is-ancestor'))active.classList.remove('is-current','is-ancestor');
     for(const current of tree.querySelectorAll('[aria-current]'))current.removeAttribute('aria-current');
     button.classList.add('is-current');button.setAttribute('aria-current','location');
-    for(let node=parentItem(button.closest('[data-nav-id]'));node;node=parentItem(node))node.querySelector(':scope > .toc-row [data-nav-target]')?.classList.add('is-ancestor');
+    for(let node=parentItem(button.closest('[data-nav-id]'));node;node=parentItem(node))label(node)?.classList.add('is-ancestor');
+    currentTarget=button.dataset.navTarget;
   }
   function setDrawer(open){
     body.classList.toggle('nav-drawer-open',open&&mobile());
     menuButton.setAttribute('aria-expanded',String(open&&mobile()));
     panel.setAttribute('aria-hidden',String(mobile()&&!(open&&mobile())));
+  }
+  function measure(){
+    destinations=Array.from(tree.querySelectorAll('[data-nav-target]')).map(button=>{
+      const target=document.getElementById(button.dataset.navTarget);
+      return target&&{button,target,top:target.getBoundingClientRect().top+scrollY};
+    }).filter(Boolean).sort((a,b)=>a.top-b.top);
+    followScroll();
+  }
+  function followScroll(){
+    scrollFrame=0;
+    const line=scrollY+parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header'))+24;
+    let current=destinations[0];
+    for(const destination of destinations){if(destination.top>line)break;current=destination;}
+    if(!current||current.button.dataset.navTarget===currentTarget)return;
+    const node=current.button.closest('[data-nav-id]');
+    reveal(node);select(current.button);
   }
 
   tree.addEventListener('click',event=>{
@@ -78,7 +100,8 @@
     document.documentElement.dataset.theme=light?'light':'dark';
     themeButton.textContent=light?'☾':'☼';
   });
-  addEventListener('resize',()=>setDrawer(false),{passive:true});
+  addEventListener('scroll',()=>{if(!scrollFrame)scrollFrame=requestAnimationFrame(followScroll);},{passive:true});
+  addEventListener('resize',()=>{setDrawer(false);measure();},{passive:true});
   panel.setAttribute('aria-hidden',String(mobile()));
-  tree.querySelector('[data-nav-target="start"]')?.classList.add('is-current');
+  requestAnimationFrame(measure);
 }());

@@ -1,3 +1,4 @@
+html { scroll-behavior: auto; }
 button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
 .clean-term-dialog {
@@ -19,6 +20,42 @@ button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 
 /* The prototype has no scroll-spy: only a direct navigation click marks a row. */
 .toc-label.is-current { transition: none; }
+.unit-card { scroll-margin-top: calc(var(--header) + 20px); }
+
+/* iPad portrait: use the available width for the rules, not a desktop rail. */
+@media (min-width:801px) and (max-width:1100px) {
+  .nav-menu { display: inline-grid; place-items: center; }
+  .nav-collapse { display: none; }
+  .main, body.nav-collapsed .main {
+    padding: calc(var(--header) + env(safe-area-inset-top) + 24px) 18px 88px;
+  }
+  .toc-panel {
+    inset: calc(var(--header) + env(safe-area-inset-top) + 10px) auto 10px 10px;
+    width: min(calc(88vw - 10px),360px);
+    transform: translateX(calc(-105% - 10px));
+    box-shadow: 24px 12px 52px rgba(0,0,0,.5);
+    transition: none;
+  }
+  body.nav-drawer-open .toc-panel { transform: translateX(0); }
+  .toc-scrim {
+    position: fixed;
+    z-index: 55;
+    inset: calc(var(--header) + env(safe-area-inset-top)) 0 0;
+    background: rgba(0,0,0,.62);
+  }
+  body.nav-drawer-open .toc-scrim { display: block; }
+  .unit-card > :is(.unit-head,.unit-header) { grid-template-columns: 1fr; }
+  .unit-card.ds-layout .points.ds-cost {
+    width: min(100%,520px);
+    min-width: 0;
+    justify-self: start;
+  }
+  .unit-card.ds-layout .ds-main-grid { grid-template-columns: 1fr; }
+  .unit-card.ds-layout .ds-arsenal {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
 
 @media (max-width:800px) {
   .app-header, .toc-panel, .toc-toggle, .term-popup { transition: none !important; }
