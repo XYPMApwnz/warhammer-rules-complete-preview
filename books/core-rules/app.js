@@ -12,7 +12,7 @@
   const sourcePdf='https://assets.warhammer-community.com/eng_01-06_warhammer40k_new40k_core_rules-was6fbu1ix-hfewhmxyiy.pdf';
 
   const elements={
-    body:document.body,panel:document.getElementById('studyPanel'),nav:document.getElementById('studyNav'),scrim:document.getElementById('scrim'),menu:document.getElementById('menuButton'),
+    body:document.body,main:document.getElementById('main'),panel:document.getElementById('studyPanel'),nav:document.getElementById('studyNav'),scrim:document.getElementById('scrim'),menu:document.getElementById('menuButton'),
     home:document.getElementById('homeButton'),start:document.getElementById('startScreen'),lesson:document.getElementById('lesson'),startButton:document.getElementById('startButton'),resumeButton:document.getElementById('resumeButton'),
     module:document.getElementById('lessonModule'),title:document.getElementById('lessonTitle'),source:document.getElementById('lessonSource'),complete:document.getElementById('completeButton'),read:document.getElementById('readView'),sourceView:document.getElementById('sourceView'),
     readTab:document.getElementById('readTab'),sourceTab:document.getElementById('sourceTab'),previous:document.getElementById('previousButton'),next:document.getElementById('nextButton'),progress:document.getElementById('progressLabel'),bar:document.getElementById('progressBar'),
