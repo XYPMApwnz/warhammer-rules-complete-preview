@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0c100c">
+  <title>Death Guard — clean room</title>
+  <link rel="stylesheet" href="./styles.css?v=5">
+</head>
+<body>
+  <header class="topbar">
+    <details class="menu" id="menu" open>
+      <summary aria-label="Toggle navigation"><span class="desktop-icon">◀</span><span class="mobile-icon">☰</span></summary>
+      <nav aria-label="Prototype navigation">
+        <p class="nav-kicker">Codex register // XIV</p>
+        <h2>Contents</h2>
+        <div class="nav-rule" aria-hidden="true"></div>
+        <a class="nav-root is-current" href="#start" aria-current="location">Start</a>
+        <details class="nav-branch" name="toc" open>
+          <summary>Detachments</summary>
+          <div class="nav-children">
+            <a href="#detachment">Virulent Vectorium</a>
+            <a href="#worldblight">Detachment Rule</a>
+            <a href="#enhancements">Enhancements</a>
+          </div>
+        </details>
+        <details class="nav-branch" name="toc">
+          <summary>Datasheets</summary>
+          <div class="nav-children">
+            <a href="#datasheet">Epic Heroes</a>
+            <a href="#datasheet">Mortarion</a>
+          </div>
+        </details>
+        <a class="nav-root" href="../../glossary/index.html">Mega Glossary</a>
+      </nav>
+    </details>
+    <a class="brand" href="#start">
+      <span class="sigil">XIV</span>
+      <span><strong>Death Guard Rules</strong><small>clean-room interaction prototype</small></span>
+    </a>
+    <a class="library" href="../../index.html">← Library</a>
+  </header>
+
+  <main>
+    <section class="hero" id="start">
+      <p class="eyebrow">Death Guard · test build</p>
+      <h1>Fast by default.</h1>
+      <p>This page tests a clean interaction layer. It deliberately contains no scroll spy, popup stack, journey controller or service-worker registration.</p>
+      <div class="actions">
+        <a class="primary" href="#detachment">Open Detachment</a>
+        <a href="#datasheet">Open Datasheet</a>
+      </div>
+    </section>
+
+    <section class="section" id="detachment">
+      <header class="section-title">
+        <p class="eyebrow">Detachment · Take and Hold</p>
+        <h2>Virulent Vectorium</h2>
+      </header>
+
+      <article class="rule-card target-card" id="worldblight">
+        <p class="eyebrow">Detachment Rule</p>
+        <h3>Worldblight</h3>
+        <p>If you control an <button class="term" data-term="objective-marker">objective marker</button> at the end of your Command phase and a <button class="term" data-term="death-guard">DEATH GUARD</button> unit from your army, excluding <button class="term" data-term="battle-shocked">Battle-shocked</button> units, is within range of it, that marker remains under your control until your opponent’s Level of Control is greater than yours at the end of a phase.</p>
+      </article>
+
+      <div class="card-grid" id="enhancements">
+        <article class="rule-card">
+          <p class="eyebrow">Enhancement</p>
+          <h3>Daemon Weapon of Nurgle</h3>
+          <p>Each time the bearer makes a melee attack, an unmodified Hit roll of 5+ scores a <button class="term" data-term="critical-hit">Critical Hit</button>.</p>
+        </article>
+        <article class="rule-card">
+          <p class="eyebrow">Enhancement</p>
+          <h3>Revolting Regeneration</h3>
+          <p>The bearer has the <button class="term" data-term="feel-no-pain">Feel No Pain 5+</button> ability.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="datasheet">
+      <article class="datasheet target-card">
+        <header class="unit-head">
+          <div>
+            <p class="eyebrow">Death Guard · Epic Hero</p>
+            <h2>Mortarion</h2>
+            <div class="tags"><span>Monster</span><span>Character</span><span>Fly</span><span>Primarch</span></div>
+          </div>
+          <strong class="points">400 <small>pts</small></strong>
+        </header>
+
+        <div class="stats" aria-label="Mortarion characteristics">
+          <div><small>M</small><strong>10&quot;</strong></div><div><small>T</small><strong>12</strong></div>
+          <div><small>SV</small><strong>2+</strong></div><div><small>W</small><strong>16</strong></div>
+          <div><small>LD</small><strong>5+</strong></div><div><small>OC</small><strong>6</strong></div>
+          <div><small>INV</small><strong>4+</strong></div>
+        </div>
+
+        <div class="unit-grid">
+          <div>
+            <h3 class="bar-title">Weapons</h3>
+            <div class="weapon-table" role="table" aria-label="Mortarion weapons">
+              <div class="weapon row header" role="row"><span>Weapon</span><span>Range</span><span>A</span><span>BS/WS</span><span>S</span><span>AP</span><span>D</span></div>
+              <div class="weapon row" role="row"><strong>Lantern<small><button class="term tag" data-term="sustained-hits">Sustained Hits D3</button></small></strong><span>24&quot;</span><span>1</span><span>2+</span><span>10</span><span>-3</span><span>3</span></div>
+              <div class="weapon row" role="row"><strong>Silence — strike<small><button class="term tag" data-term="lethal-hits">Lethal Hits</button></small></strong><span>Melee</span><span>5</span><span>2+</span><span>14</span><span>-3</span><span>D6+1</span></div>
+            </div>
+          </div>
+          <aside>
+            <h3 class="bar-title">Abilities</h3>
+            <article class="ability"><strong>Lord of the Death Guard</strong><p>Once per turn, choose one: Diseased Influence, Boon of Death or Inflamed Reprisal.</p></article>
+            <article class="ability"><strong>Nurgle’s Gift (Aura)</strong><p>This model projects the Death Guard faction ability.</p></article>
+          </aside>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <dialog id="termDialog" aria-labelledby="termTitle">
+    <form method="dialog" class="dialog-head"><p class="eyebrow">Mega Glossary</p><button aria-label="Close">×</button></form>
+    <h2 id="termTitle"></h2>
+    <p id="termSummary"></p>
+    <a id="termFull" href="../../glossary/index.html">Open full article →</a>
+  </dialog>
+
+  <script src="./app.js?v=4"></script>
+</body>
+</html>
