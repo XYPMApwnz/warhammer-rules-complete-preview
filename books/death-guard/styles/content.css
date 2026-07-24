@@ -131,7 +131,6 @@
   pointer-events: none;
 }
 .rule-card, .enhancement, .glossary-card { padding: 24px; margin: 16px 0; border-color: rgba(199,174,117,.2); }
-.rule-card:hover, .enhancement:hover, .glossary-card:hover { border-color: rgba(191,213,140,.34); box-shadow: var(--shadow), inset 0 1px rgba(255,255,255,.045), 0 0 30px rgba(125,146,87,.055); }
 .rule-card h3, .enhancement h4, .glossary-card h4 { margin: 0 0 8px; font: 700 24px Georgia, "Times New Roman", serif; }
 .detachment-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
 .detachment-grid > .rule-card, .detachment-grid > .enhancement { margin: 0; }
@@ -270,9 +269,6 @@ body .unit-card > .local-nav { display: none; }
 .weapon-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 6px; }
 .tag { padding: 2px 4px; border: 1px solid var(--line); border-radius: 0; background: rgba(113,129,83,.08); color: var(--green); font: 750 8px system-ui, sans-serif; }
 .tag[data-term] { cursor: pointer; }
-@media (max-width: 800px) {
-  [data-term]:active { opacity: .58; }
-}
 .ability-list { display: grid; gap: 8px; }
 .ability { padding: 15px 16px; border: 1px solid var(--soft-line); border-left: 2px solid var(--green-deep); border-radius: 0; background: rgba(113,129,83,.055); }
 .ability:nth-child(even) { border-left-color: var(--pink); background: rgba(213,72,142,.045); }
