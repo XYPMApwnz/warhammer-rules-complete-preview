@@ -68,6 +68,7 @@
         this.go(label.dataset.navTarget);
       });
 
+      this.menuButton.addEventListener('touchstart',event=>{event.preventDefault();this.menuButton.click();},{passive:false});
       this.menuButton.addEventListener('click',()=>this.setDrawer(!this.state.drawer));
       this.collapseButton.addEventListener('click',()=>this.setCollapsed(!this.state.collapsed));
       this.scrim.addEventListener('click',()=>this.setDrawer(false));
@@ -137,7 +138,7 @@
       this.menuButton.setAttribute('aria-label',this.state.drawer?'Close navigation':'Open navigation');
       this.collapseButton.setAttribute('aria-expanded',String(!this.state.collapsed));
       this.collapseButton.setAttribute('aria-label',this.state.collapsed?'Expand navigation':'Collapse navigation');
-      this.collapseButton.textContent=this.state.collapsed?'?':'?';
+      this.collapseButton.textContent=this.state.collapsed?'▶':'◀';
     }
     setDrawer(open){
       const next=this.mobile&&Boolean(open);if(next===this.state.drawer)return;

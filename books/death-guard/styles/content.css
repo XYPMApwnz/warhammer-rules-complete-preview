@@ -270,6 +270,9 @@ body .unit-card > .local-nav { display: none; }
 .weapon-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 6px; }
 .tag { padding: 2px 4px; border: 1px solid var(--line); border-radius: 0; background: rgba(113,129,83,.08); color: var(--green); font: 750 8px system-ui, sans-serif; }
 .tag[data-term] { cursor: pointer; }
+@media (max-width: 800px) {
+  [data-term]:active { opacity: .58; }
+}
 .ability-list { display: grid; gap: 8px; }
 .ability { padding: 15px 16px; border: 1px solid var(--soft-line); border-left: 2px solid var(--green-deep); border-radius: 0; background: rgba(113,129,83,.055); }
 .ability:nth-child(even) { border-left-color: var(--pink); background: rgba(213,72,142,.045); }

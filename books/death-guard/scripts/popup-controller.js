@@ -93,6 +93,7 @@
       card.setAttribute('role','dialog');card.setAttribute('aria-modal','false');card.setAttribute('aria-labelledby',titleId);
 
       const close=document.createElement('button');close.className='popup-close';close.dataset.popupClose=String(index);close.setAttribute('aria-label','Close '+term.title+' popup');close.textContent='×';
+      close.addEventListener('touchstart',event=>{event.preventDefault();close.click();},{passive:false});
       const title=document.createElement('h3');title.id=titleId;title.textContent=term.title;
       const content=window.WHPopupContent.render(term,this.terms);
       card.classList.add(...content.classes);
