@@ -13,8 +13,9 @@ const datasheetLayout=readProject('books/shared/datasheet-layout.js');
 const datasheetCss=readProject('books/shared/datasheet-system.css');
 const popupContent=readProject('books/shared/popup-content.js');
 const glossaryAutolink=readProject('books/shared/glossary-autolink.js');
+const glossaryRegistry=JSON.parse(readProject('glossary/registry.en.json'));
 const bookData=JSON.parse(read('content/death-guard-rules.en.json'));
-const files=['scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'];
+const files=['scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'];
 const results=[];
 const check=(name,ok,detail='')=>results.push({name,ok,detail});
 
@@ -36,10 +37,21 @@ const trackTargets=[...markup.matchAll(/data-track="([^"]+)"/g)].map(match=>matc
 const walkBlocks=bookData.sections.flatMap(section=>[...(section.blocks||[]),...(section.subsections||[]).flatMap(sub=>sub.blocks||[])]);
 const blockCount=type=>walkBlocks.filter(block=>block.type===type).length;
 check('canonical content audit is 9 detachments, 36 datasheets and 366 terms',bookData.audit.detachments===9&&bookData.audit.datasheets===36&&bookData.glossary.length===366);
+const plagueEntry=glossaryRegistry.terms['death-guard-plague'];
+check('Plague means the chosen Nurgle’s Gift effect',plagueEntry.summary.en.includes('selected during Declare Battle Formations')&&plagueEntry.definition.en.includes('Skullsquirm Blight, Rattlejoint Ague or Scabrous Soulrot')&&plagueEntry.related.length===5);
+const plagueCards=['skullsquirm-blight','rattlejoint-ague','scabrous-soulrot'].map(id=>{
+  const start=html.indexOf(`<article class="rule-card surface" id="${id}"`),end=html.indexOf('</article>',start);
+  return html.slice(start,end);
+});
+check('Plague cards show each rule name only once',plagueCards.every(card=>(card.match(/<h[1-6][^>]*>/g)||[]).length===1&&!card.includes('<article class="ability">')));
+const mortarionAbility=bookData.glossary.find(entry=>entry.id==='ability-lord-of-the-death-guard-90db1c4');
+check('Mortarion lists all three Lord of the Death Guard choices',
+  ['Diseased Influence','Boon of Death','Inflamed Reprisal'].every(title=>mortarionAbility.full.includes(title)&&html.includes(`<h6>${title}</h6>`))&&
+  !mortarionAbility.full.includes('see left')&&!html.includes('Lord of the Death Guard abilities (see left)'));
 check('full gameplay block inventory is present',blockCount('enhancement')===30&&blockCount('rule')===45&&blockCount('statline')===36&&blockCount('weapon')===146,`enhancements ${blockCount('enhancement')}, rules ${blockCount('rule')}, statlines ${blockCount('statline')}, weapons ${blockCount('weapon')}`);
 check('all navigation targets exist',navTargets.every(id=>idSet.has(id)),navTargets.filter(id=>!idSet.has(id)).join(', '));
 check('all navigation targets have tracked ranges',navTargets.every(id=>trackTargets.includes(id)),navTargets.filter(id=>!trackTargets.includes(id)).join(', '));
-check('navigation covers the generated full-content tree',navTargets.length===104,String(navTargets.length));
+check('navigation covers the gameplay tree without inline glossary branches',navTargets.length===93&&!navTargets.some(id=>id==='glossary'||id.startsWith('glossary-')),String(navTargets.length));
 const depths=[...markup.matchAll(/data-nav-depth="(\d+)"/g)].map(match=>Number(match[1]));
 check('navigation depth is at most three',Math.max(...depths)===3);
 const unitIds=bookData.sections.filter(section=>section.kind==='unit').map(section=>section.id);
@@ -56,7 +68,7 @@ const termKeys=Object.keys(termContext.window.DG_TERMS||{});
 const usedTerms=[...markup.matchAll(/data-term="([^"]+)"/g)].map(match=>match[1]);
 check('term registry has all 366 entries',termKeys.length===366,String(termKeys.length));
 check('all term triggers resolve',usedTerms.every(id=>termKeys.includes(id)),usedTerms.filter(id=>!termKeys.includes(id)).join(', '));
-check('every registered term is exercised',termKeys.every(id=>usedTerms.includes(id)),termKeys.filter(id=>!usedTerms.includes(id)).join(', '));
+check('canonical terms remain available to lazy full entries',read('scripts/full-entry-controller.js').includes('const term=this.api.get(id)'));
 const journeyTargets=[...markup.matchAll(/data-journey-target="([^"]+)"/g)].map(match=>match[1]);
 check('all journey targets exist',journeyTargets.every(id=>idSet.has(id)),journeyTargets.filter(id=>!idSet.has(id)).join(', '));
 check('generated document contains no acceptance placeholders',!/(small acceptance set|points not listed|subject to the full rule|qualifying attacks)/i.test(markup));
@@ -66,10 +78,14 @@ const popups=read('scripts/popup-controller.js');
 const journey=read('scripts/journey-controller.js');
 const uiControllers=read('scripts/ui-controllers.js');
 const appSource=read('scripts/app.js');
-check('mobile glossary compacts before document autolinking',appSource.indexOf('new window.DGGlossarySearch')<appSource.indexOf('WHGlossaryAutolink?.apply')&&appSource.includes('glossary.markReady()'));
-check('mobile glossary mounts one category and search matches only',uiControllers.includes('group.grid.replaceChildren()')&&uiControllers.includes('group.grid.replaceChildren(...matches)')&&uiControllers.includes('mobile-glossary-categories'));
-check('detached glossary targets resolve before Journey navigation',journey.includes("document.getElementById(targetId)||this.glossary?.resolveTarget?.(targetId)"));
-check('Journey Back restores the previous glossary category',journey.includes('glossaryState:this.glossary?.snapshot?.()')&&journey.includes('this.glossary?.restore?.(record.glossaryState)'));
+check('inline glossary and its controller are absent',!idSet.has('glossary')&&!html.includes('data-nav-id="glossary"')&&!uiControllers.includes('GlossarySearch'));
+check('navigation exposes one standalone Mega Glossary link',html.includes('<a class="toc-label" href="../../glossary/index.html" data-mega-glossary-link>Mega Glossary</a>'));
+check('book does not load its duplicate term registry',!html.includes('scripts/data.js')&&!readProject('service-worker.js').includes('books/death-guard/scripts/data.js'));
+check('full glossary entry is rendered on demand without runtime fetch',read('scripts/full-entry-controller.js').includes('this.api.get(id)')&&!read('scripts/full-entry-controller.js').includes('fetch('));
+check('full entry uses modal history and restores focus',read('scripts/full-entry-controller.js').includes('history.pushState')&&read('scripts/full-entry-controller.js').includes("window.addEventListener('popstate'")&&read('scripts/full-entry-controller.js').includes('this.returnFocus.focus'));
+check('full entry cross-references stay inside the full-entry modal',read('scripts/full-entry-controller.js').includes('WHGlossaryAutolink?.apply(this.content)')&&read('scripts/full-entry-controller.js').includes('button.dataset.fullEntry=button.dataset.term')&&read('scripts/full-entry-controller.js').includes('delete button.dataset.term'));
+check('full entry is offered only for materially richer records',read('scripts/full-entry-controller.js').includes('isUseful(id)')&&popups.includes("this.fullEntry?.isUseful(term.id)"));
+check('related full entries have an internal history stack',read('scripts/full-entry-controller.js').includes('this.stack.push(term.id)')&&read('scripts/full-entry-controller.js').includes('backEntry()')&&read('scripts/full-entry-controller.js').includes('this.stack.pop()'));
 check('navigation uses one passive scroll listener',(navigation.match(/addEventListener\('scroll'/g)||[]).length===1&&navigation.includes('{passive:true}'));
 check('navigation avoids :scope',!navigation.includes(':scope'));
 check('navigation has explicit reader/controller ownership',navigation.includes("owner:'reader'")&&navigation.includes("owner='controller'")&&navigation.includes("owner='reader'"));
@@ -82,28 +98,27 @@ check('tabindex fallback remains available for legacy browsers',navigation.inclu
 check('unchanged drawer state is a no-op',navigation.includes('if(next===this.state.drawer)return'));
 const readViewportSource=navigation.match(/readViewport\(\)\{[\s\S]*?\n    \}/)?.[0]||'';
 check('scroll spy performs no layout measurements per frame',!readViewportSource.includes('getBoundingClientRect'));
-check('scroll spy ignores hidden mobile glossary categories',navigation.includes('measurable:rect.width>0||rect.height>0')&&navigation.includes('if(range.measurable===false)continue'));
+check('scroll spy ignores hidden navigation ranges',navigation.includes('measurable:rect.width>0||rect.height>0')&&navigation.includes('if(range.measurable===false)continue'));
 check('mobile layout avoids content-visibility geometry jumps',!readProject('books/death-guard/styles/content.css').includes('content-visibility: auto'));
 check('user input cancels controlled scrolling',navigation.includes('cancelTransition()')&&navigation.includes("window.addEventListener('touchstart'"));
 check('navigation branches use strict sibling accordion',navigation.includes("if(peer!==node&&peer.matches('[data-nav-id]'))this.closeBranch(peer,{deep:true})")&&!navigation.includes('isOnActivePath'));
 check('manual accordion state yields back to scroll tracking',navigation.includes('pathIsOpen(node)')&&navigation.includes("else if(item&&!this.pathIsOpen(item.node))this.revealPath(item.node,{includeSelf:true})"));
 check('branch labels and arrows have separate actions',navigation.includes("event.target.closest('[data-nav-toggle]')")&&navigation.includes("event.target.closest('[data-nav-target]')"));
+check('Start closes every open navigation branch before returning to the top',navigation.includes("if(label.dataset.navTarget==='start')this.closeEveryBranch()"));
 const navigationClassSource=navigation.match(/(class NavigationController\{[\s\S]*?\n  \})\n\n  window\.DGNavigation/)?.[1]||'';
 try{
   const NavigationController=Function(`"use strict";return (${navigationClassSource});`)();
   const controller=Object.create(NavigationController.prototype);
   controller.trackingGap=18;
   controller.epsilon=1;
-  controller.geometry={headerBottom:72,glossaryHeight:64,ranges:[]};
+  controller.geometry={headerBottom:72,ranges:[]};
   controller.byId=new Map();
   const previousWindow=globalThis.window,previousDocument=globalThis.document;
   try{
     globalThis.window={scrollY:1000,setTimeout:()=>0};
     globalThis.document={querySelector:()=>null};
-    const glossaryTarget={id:'term',dataset:{},closest:selector=>selector==='#glossary'?{}:null,getBoundingClientRect:()=>({top:200})};
-    check('behavior: glossary destination clears sticky search',controller.destination(glossaryTarget)===1046,String(controller.destination(glossaryTarget)));
-    const glossaryRoot={id:'glossary',dataset:{},closest:selector=>selector==='#glossary'?{}:null,getBoundingClientRect:()=>({top:200})};
-    check('behavior: Glossary root ignores its own sticky search',controller.destination(glossaryRoot)===1110,String(controller.destination(glossaryRoot)));
+    const ordinaryTarget={id:'term',dataset:{},getBoundingClientRect:()=>({top:200})};
+    check('behavior: destination uses only header and tracking gap',controller.destination(ordinaryTarget)===1110,String(controller.destination(ordinaryTarget)));
     const targetContext={window:{},Object};vm.runInNewContext(navigationTargets,targetContext,{filename:'books/shared/navigation-targets.js'});
     const resolve=targetContext.window.WHNavigationTargets.resolve;
     const heading={tagName:'H3',matches:selector=>selector.includes('h3')};
@@ -118,15 +133,11 @@ try{
     const parentNode={};
     const childNode={parentElement:{classList:{contains:name=>name==='toc-branch'},parentElement:parentNode}};
     const nextNode={parentElement:{classList:{contains:name=>name==='toc-branch'},parentElement:parentNode}};
-    let selected='';globalThis.window.scrollY=0;controller.state={owner:'reader',active:''};controller.items=[{id:'parent',depth:1,glossaryNested:false,node:parentNode},{id:'child',depth:2,glossaryNested:false,node:childNode}];controller.geometry.ranges=[{item:controller.items[0],top:0,bottom:500},{item:controller.items[1],top:120,bottom:300}];controller.activate=id=>{selected=id};controller.readViewport();
+    let selected='';globalThis.window.scrollY=0;controller.state={owner:'reader',active:''};controller.items=[{id:'parent',depth:1,node:parentNode},{id:'child',depth:2,node:childNode}];controller.geometry.ranges=[{item:controller.items[0],top:0,bottom:500},{item:controller.items[1],top:120,bottom:300}];controller.activate=id=>{selected=id};controller.readViewport();
     check('behavior: child below tracking line does not pre-activate',selected==='parent',selected);
     selected='';controller.geometry.ranges[1]={item:controller.items[1],top:90.5,bottom:300};controller.readViewport();
     check('behavior: subpixel target at tracking line activates',selected==='child',selected);
-    selected='';controller.items=[{id:'glossary',depth:1,glossaryNested:false,node:parentNode},{id:'glossary-core',depth:2,glossaryNested:true,node:childNode}];controller.geometry.ranges=[{item:controller.items[0],top:0,bottom:500},{item:controller.items[1],top:154.5,bottom:300}];controller.readViewport();
-    check('behavior: nested Glossary group uses sticky tracking line',selected==='glossary-core',selected);
-    selected='';controller.items=[{id:'glossary',depth:1,glossaryNested:false,node:parentNode},{id:'glossary-core',depth:2,glossaryNested:true,node:childNode},{id:'glossary-next',depth:2,glossaryNested:true,node:nextNode}];controller.geometry.ranges=[{item:controller.items[0],top:0,bottom:700},{item:controller.items[1],top:100,bottom:145},{item:controller.items[2],top:180,bottom:320}];controller.readViewport();
-    check('behavior: Glossary root does not flash between nested groups',selected==='glossary-core',selected);
-    selected='';controller.items=[{id:'datasheets',depth:1,glossaryNested:false,node:parentNode},{id:'epic-heroes',depth:2,glossaryNested:false,node:childNode},{id:'characters',depth:2,glossaryNested:false,node:nextNode}];controller.geometry.ranges=[{item:controller.items[0],top:0,bottom:700},{item:controller.items[1],top:40,bottom:80},{item:controller.items[2],top:130,bottom:320}];controller.readViewport();
+    selected='';controller.items=[{id:'datasheets',depth:1,node:parentNode},{id:'epic-heroes',depth:2,node:childNode},{id:'characters',depth:2,node:nextNode}];controller.geometry.ranges=[{item:controller.items[0],top:0,bottom:700},{item:controller.items[1],top:40,bottom:80},{item:controller.items[2],top:130,bottom:320}];controller.readViewport();
     check('behavior: parent does not flash between non-Glossary groups',selected==='epic-heroes',selected);
     let stopped=0,scheduled=0;
     controller.state={owner:'controller',active:'epic-heroes',transition:8};
@@ -148,9 +159,9 @@ check('popup cards suppress self links',popups.includes('relatedId!==id'));
 check('desktop popup coordinates include document scroll',popups.includes("window.scrollY||0")&&/\.popup-layer\s*\{[^}]*position:\s*absolute/.test(read('styles/popups.css')));
 check('mobile popup layer is fixed',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.popup-layer\s*\{[^}]*position:\s*fixed/.test(read('styles/popups.css')));
 check('popup cards expose dialog semantics',popups.includes("setAttribute('role','dialog')")&&popups.includes("setAttribute('aria-modal','false')"));
-check('outside click closes the complete popup chain',popups.includes("this.ids.length&&!event.target.closest('.term-popup')")&&popups.includes('this.closeFrom(0)'));
+check('outside click closes popups but preserves them behind full entry',popups.includes("this.ids.length&&!event.target.closest('.term-popup,.full-entry-layer')")&&popups.includes('this.closeFrom(0)'));
 check('popup actions inherit their originating unit context',popups.includes("contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}")&&popups.includes('contextualStatline'));
-check('Mega Glossary transitions persist a return record',popups.includes('wh40k-mega-glossary-return')&&read('scripts/app.js').includes('wh40k-mega-glossary-return'));
+check('Mega Glossary transitions persist a return record',read('scripts/full-entry-controller.js').includes('wh40k-mega-glossary-return')&&read('scripts/app.js').includes('wh40k-mega-glossary-return'));
 check('popups use the shared semantic profile renderer',popups.includes('WHPopupContent.render')&&popupContent.includes("document.createElement('table')")&&popupContent.includes("document.createElement('dl')"));
 check('unit popup grid has a mobile no-overflow layout',/\.popup-stats\s*\{[^}]*grid-template-columns:\s*repeat\(auto-fit, minmax\(54px, 1fr\)\)/.test(read('styles/popups.css'))&&/@media\s*\(max-width:\s*480px\)[\s\S]*?\.popup-stats\s*\{[^}]*grid-template-columns:\s*repeat\(4, minmax\(0, 1fr\)\)/.test(read('styles/popups.css')));
 
@@ -194,7 +205,7 @@ try{
 }catch(error){check('popup behavioral state machine',false,error.message);}
 
 check('Journey captures full popup context',journey.includes('popupIds:this.popups.snapshot()')&&journey.includes('popupRootId')&&journey.includes('popupAction'));
-check('Journey synchronously reveals filtered glossary targets',journey.includes("target.closest?.('#glossary')")&&journey.includes('this.glossary?.reveal?.(target)'));
+check('Journey carries no removed inline glossary state',!journey.includes('this.glossary')&&!journey.includes('glossaryState'));
 const backSource=journey.match(/back\(\)\{[\s\S]*?\n    \}/)?.[0]||'';
 check('Back restores before highlighting rebuilt action',backSource.indexOf('this.popups.restore(record.popupIds')<backSource.indexOf('this.highlight(restoredPopup||trigger)'));
 check('Back restores popups only after navigation settles',backSource.indexOf('this.navigation.restore')<backSource.indexOf('this.popups.restore(record.popupIds'));
@@ -202,8 +213,9 @@ check('Back has rebuilt-action fallback',journey.includes('this.findRestoredActi
 check('click navigation highlights only after controlled scroll settles',navigation.includes("()=>{this.highlighter.show(targets.highlightTarget);settled?.();}"));
 
 const cssFiles=['styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css'];
-check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=11':file==='styles/popups.css'?'?v=11':'?v=9')+'"')));
+check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=16':file==='styles/popups.css'?'?v=13':'?v=9')+'"')));
 const contentCss=read('styles/content.css');
+check('datasheet quick navigation overrides the shared desktop rail and is phone-only',contentCss.includes('body .unit-card > .local-nav { display: none; }')&&contentCss.includes('@media (max-width: 600px)')&&contentCss.includes('position: sticky;')&&contentCss.includes('overflow-x: auto;'));
 const navigationCss=read('styles/navigation.css');
 check('navigation hides horizontal overflow and styles its scrollbar',/\.toc-panel\s*\{[^}]*overflow-x:\s*hidden/.test(navigationCss)&&navigationCss.includes('.toc-panel::-webkit-scrollbar-thumb')&&navigationCss.includes('scrollbar-color:'));
 check('shared datasheet statlines keep every characteristic on one row',/\.unit-card \.statline\s*\{[^}]*display:\s*flex/.test(datasheetCss));
@@ -211,6 +223,8 @@ check('mobile weapon characteristics use one six-column row',datasheetCss.includ
 check('heading destination highlight uses text glow without outline',/\.destination-highlight:is\(h1,h2,h3,h4,h5,h6\)\s*\{[^}]*animation-name:\s*destination-heading-highlight/.test(contentCss)&&contentCss.includes('@keyframes destination-heading-highlight')&&!contentCss.match(/@keyframes destination-heading-highlight[^}]*outline/));
 check('detachment navigation targets render in separate rows',/\.detachment-content\s*\{[^}]*grid-template-columns:\s*1fr/.test(contentCss));
 check('desktop stratagem cards use two columns with a responsive fallback',contentCss.includes('.detachment-part[id$="-stratagems"] > .detachment-content { grid-template-columns: repeat(2, minmax(0, 1fr))')&&/@media\s*\(max-width:\s*1100px\)[\s\S]*?grid-template-columns:\s*1fr/.test(contentCss));
+check('detachment Stratagems avoid the harmful outer grid',!contentCss.includes('section[id$="-stratagems"]')&&contentCss.includes('.detachment-part[id$="-stratagems"] > .detachment-content'));
+check('full entry becomes a full-screen mobile dialog',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.full-entry-dialog\s*\{[^}]*height:\s*100%/.test(read('styles/popups.css')));
 check('each detachment has a visible Stratagems destination',(markup.match(/class="detachment-part"[^>]*data-track="[^"]+">\s*<h4 class="detachment-part-title">Stratagems<\/h4>/g)||[]).length===bookData.audit.detachments);
 check('no inline style or inline script',!/<style|<script(?![^>]*src=)/i.test(html));
 check('no runtime fetch in document controllers',!files.some(file=>/\bfetch\s*\(/.test(read(file))));
@@ -220,7 +234,7 @@ check('mobile header disables expensive backdrop blur',/@media\s*\(max-width:\s*
 check('book uses the unified root manifest',html.includes('href="../../manifest.webmanifest"'));
 check('complete preview service worker owns its cache family',readProject('service-worker.js').includes('key.startsWith(CACHE_PREFIX)')&&readProject('service-worker.js').includes('warhammer-rules-complete-preview-'));
 check('complete preview PWA cache revision is content-derived',readProject('service-worker.js').includes('self.WH40K_CACHE_REVISION'));
-check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/content.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/content.css?v=11')&&html.includes('./styles/popups.css?v=11')&&html.includes('./scripts/navigation-controller.js?v=10')&&html.includes('./scripts/popup-controller.js?v=14')&&html.includes('./scripts/journey-controller.js?v=10')&&html.includes('./scripts/ui-controllers.js?v=10')&&html.includes('./scripts/app.js?v=14'));
+check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/content.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/content.css?v=16')&&html.includes('./styles/popups.css?v=13')&&html.includes('./scripts/navigation-controller.js?v=12')&&html.includes('./scripts/popup-controller.js?v=17')&&html.includes('./scripts/full-entry-controller.js?v=5')&&html.includes('./scripts/journey-controller.js?v=11')&&html.includes('./scripts/ui-controllers.js?v=11')&&html.includes('./scripts/app.js?v=17'));
 check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
 check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=4"'));
 check('book loads the shared datasheet layout',html.includes('src="../shared/datasheet-layout.js?v=2"'));

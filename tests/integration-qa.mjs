@@ -12,7 +12,7 @@ const check=(name,ok,detail='')=>results.push({name,ok,detail});
 const library=read('index.html');
 const sw=read('service-worker.js');
 const books={
-  'death-guard':{version:'9',versions:{'styles/content.css':'11','styles/popups.css':'11','scripts/navigation-controller.js':'10','scripts/popup-controller.js':'14','scripts/journey-controller.js':'10','scripts/ui-controllers.js':'10','scripts/app.js':'14'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/icon-v4.svg','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']},
+  'death-guard':{version:'9',versions:{'styles/content.css':'16','styles/popups.css':'13','scripts/navigation-controller.js':'12','scripts/popup-controller.js':'17','scripts/full-entry-controller.js':'5','scripts/journey-controller.js':'11','scripts/ui-controllers.js':'11','scripts/app.js':'17'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/icon-v4.svg','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']},
   'core-rules':{version:null,app:'app.js',usesPopupGlossary:false,files:['styles.css','config.js','basic-content.js','app.js','content/core-rules.source.en.js','content/core-rules.en.js']},
   'adeptus-mechanicus':{version:'13',versions:{'styles/content.css':'14','styles/popups.css':'15','scripts/popup-controller.js':'18','scripts/app.js':'17'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/mechanicus-logo.png','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','styles/mechanicus.css','scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']}
 };
@@ -61,7 +61,10 @@ for(const [slug,book] of Object.entries(books)){
   const html=read(`books/${slug}/index.html`);
   const app=read(`books/${slug}/${book.app}`);
   check(`${slug} loads the global glossary`,html.includes('../../glossary/generated/glossary.en.js?v=2'));
-  if(book.usesPopupGlossary)check(`${slug} popup uses the global glossary`,app.includes("WH40K_GLOSSARY?.forBook('"+slug+"')"));
+  if(book.usesPopupGlossary)check(`${slug} popup uses the global glossary`,
+    app.includes("WH40K_GLOSSARY?.forBook('"+slug+"')")||
+    app.includes("WH40K_GLOSSARY.forBook('"+slug+"')")
+  );
 }
 check('navigation responses keep their own cache URL',sw.includes('fetchAndCache(request);')&&!sw.includes('fetchAndCache(request, LIBRARY_FALLBACK)'));
 

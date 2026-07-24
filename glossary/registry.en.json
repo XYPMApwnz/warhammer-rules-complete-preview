@@ -18217,10 +18217,10 @@
         "en": "Lord of the Death Guard"
       },
       "summary": {
-        "en": "Once per turn, this model can use one of the Lord of the Death Guard abilities (see left)."
+        "en": "Once per turn, choose one: a nearby unit can make a reactive 5\" Normal move; fight on death on a 2+; or shoot back after being attacked."
       },
       "definition": {
-        "en": "Once per turn, this model can use one of the Lord of the Death Guard abilities (see left)."
+        "en": "Once per turn, this model can use one of the following abilities. Diseased Influence: Just after an enemy unit ends a Normal, Advance or Fall Back move within 9\" of a friendly DEATH GUARD unit that is within 6\" of this model, if that DEATH GUARD unit is not within Engagement Range of one or more enemy units, it can make a Normal move of up to 5\". Boon of Death: In the Fight phase, when a friendly DEATH GUARD unit within 6\" of this model is selected as the target of an attack, this model can use this ability. Until the end of the phase, each time a model in that unit is destroyed by a melee attack, if it has not fought this phase, roll one D6. On a 2+, do not remove it from play; it can fight after the attacking unit has finished its attacks, then it is removed from play. Inflamed Reprisal: In your opponent’s Shooting phase, when a friendly DEATH GUARD unit within 6\" of this model is selected as the target of an attack, this model can use this ability. After the attacking unit has finished its attacks, that DEATH GUARD unit can shoot as if it were your Shooting phase, but only at that enemy unit and only if it is an eligible target."
       },
       "structured": {},
       "aliases": [
@@ -20647,19 +20647,25 @@
         "en": "Plague"
       },
       "summary": {
-        "en": "A Death Guard rules tag used by Plague weapons, abilities and related faction interactions."
+        "en": "One of three Death Guard Army Rule effects selected during Declare Battle Formations; the chosen Plague applies to every Afflicted enemy unit."
       },
       "definition": {
-        "en": "A Death Guard rules tag used by Plague weapons, abilities and related faction interactions."
+        "en": "During Declare Battle Formations, select one Plague from Nurgle’s Gift: Skullsquirm Blight, Rattlejoint Ague or Scabrous Soulrot. Until the end of the battle, every Afflicted enemy unit has the effect of that chosen Plague in addition to the normal Toughness reduction."
       },
       "aliases": [
         "plagues"
       ],
-      "related": [],
+      "related": [
+        "death-guard-army-rules-nurgles-gift",
+        "death-guard-army-rules-afflicted",
+        "death-guard-plagues-skullsquirm-blight",
+        "death-guard-plagues-rattlejoint-ague",
+        "death-guard-plagues-scabrous-soulrot"
+      ],
       "canonicalSource": {
         "documentId": "death-guard",
         "revision": "11e",
-        "locator": "curated glossary supplement"
+        "locator": "Army Rules — Nurgle’s Gift: Plagues"
       },
       "status": "provisional",
       "sourceRefs": [
