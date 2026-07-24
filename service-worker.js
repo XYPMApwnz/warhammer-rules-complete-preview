@@ -42,7 +42,7 @@ const APP_SHELL = [
   "./books/shared/popup-content.js?v=1",
   "./books/shared/glossary-autolink.js?v=8",
   "./books/death-guard/assets/icon-v4.svg",
-  "./books/death-guard/styles/tokens.css?v=9",
+  "./books/death-guard/styles/tokens.css?v=10",
   "./books/death-guard/styles/layout.css?v=9",
   "./books/death-guard/styles/navigation.css?v=10",
   "./books/death-guard/styles/content.css?v=18",

@@ -74,7 +74,7 @@ body::before {
   mix-blend-mode: overlay;
 }
 button, input { font: inherit; color: inherit; }
-button { touch-action: manipulation; }
+button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 button:focus { outline: none; }
 button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--pink); outline-offset: 4px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
