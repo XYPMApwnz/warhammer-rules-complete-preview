@@ -18,7 +18,7 @@
       this.mobile=window.innerWidth<=this.breakpoint;
       this.state={owner:'reader',active:'',drawer:false,collapsed:false,transition:0};
       this.frames={reader:0,geometry:0};
-      this.geometry={headerBottom:0,glossaryHeight:0,ranges:[]};
+      this.geometry={headerBottom:0,ranges:[]};
       this.activeButtons=new Set();
       this.supportsInert='inert'in HTMLElement.prototype;
       this.highlighter=new window.WHNavigationTargets.Highlighter();
@@ -30,8 +30,7 @@
         const section=id?document.querySelector('[data-track="'+id+'"]'):null;
         return{
           id,node,row,button,section,
-          depth:Number(node.dataset.navDepth),
-          glossaryNested:Boolean(section&&section.id!=='glossary'&&section.closest('#glossary'))
+          depth:Number(node.dataset.navDepth)
         };
       }).filter(item=>item.id&&item.button&&item.section);
       this.byId=new Map(this.items.map(item=>[item.id,item]));
@@ -64,7 +63,8 @@
         if(!label||!this.tree.contains(label))return;
         event.preventDefault();
         const node=label.closest('[data-nav-id]');
-        this.revealPath(node,{includeSelf:true});
+        if(label.dataset.navTarget==='start')this.closeEveryBranch();
+        else this.revealPath(node,{includeSelf:true});
         this.go(label.dataset.navTarget);
       });
 
@@ -76,8 +76,6 @@
       window.addEventListener('wheel',event=>this.cancelTransition(event),{passive:true});
       window.addEventListener('touchstart',event=>this.cancelTransition(event),{passive:true});
       window.addEventListener('pointerdown',event=>this.cancelTransition(event),{passive:true});
-      document.addEventListener('dg:glossary-layout',()=>this.scheduleGeometry());
-
       document.addEventListener('keydown',event=>{
         if(['PageUp','PageDown','Home','End','ArrowUp','ArrowDown',' '].includes(event.key))this.cancelTransition();
         if(event.key==='Tab'&&this.state.drawer)this.trapDrawerFocus(event);
@@ -195,11 +193,8 @@
       else if(item.bottom>panel.bottom-gap)this.panel.scrollTo({top:this.panel.scrollTop+(item.bottom-panel.bottom+gap),behavior});
     }
 
-    clearance(item){return item.glossaryNested?this.geometry.glossaryHeight:0;}
     destination(element){
-      const item=this.byId.get(element.dataset.track||element.id);
-      const clearance=item?this.clearance(item):(element.id!=='glossary'&&element.closest?.('#glossary')?this.geometry.glossaryHeight:0);
-      return Math.max(0,window.scrollY+element.getBoundingClientRect().top-this.geometry.headerBottom-this.trackingGap-clearance);
+      return Math.max(0,window.scrollY+element.getBoundingClientRect().top-this.geometry.headerBottom-this.trackingGap);
     }
     scheduleGeometry(){
       if(this.frames.geometry)return;
@@ -208,7 +203,6 @@
     refreshGeometry(){
       const scrollY=window.scrollY;
       this.geometry.headerBottom=this.header.getBoundingClientRect().bottom;
-      this.geometry.glossaryHeight=document.querySelector('.glossary-tools')?.getBoundingClientRect().height||0;
       this.geometry.ranges=this.items.map(item=>{
         const rect=item.section.getBoundingClientRect();return{item,top:scrollY+rect.top,bottom:scrollY+rect.bottom,measurable:rect.width>0||rect.height>0};
       });
@@ -223,7 +217,7 @@
       for(const range of this.geometry.ranges){
         if(range.measurable===false)continue;
         if(!this.descendsFrom(range.item,parent.item))continue;
-        const line=scrollY+this.geometry.headerBottom+this.trackingGap+this.clearance(range.item);
+        const line=scrollY+this.geometry.headerBottom+this.trackingGap;
         if(range.top<=line+this.epsilon&&(!descendant||range.top>descendant.top||range.top===descendant.top&&range.item.depth>descendant.item.depth))descendant=range;
       }
       return descendant;
@@ -232,13 +226,13 @@
       const scrollY=window.scrollY;let winner=null;
       for(const range of this.geometry.ranges){
         if(range.measurable===false)continue;
-        const line=scrollY+this.geometry.headerBottom+this.trackingGap+this.clearance(range.item);
+        const line=scrollY+this.geometry.headerBottom+this.trackingGap;
         if(range.top<=line+this.epsilon&&range.bottom>line&&(!winner||range.item.depth>winner.item.depth||range.item.depth===winner.item.depth&&range.top>winner.top))winner=range;
       }
       if(winner)return this.lastCrossedDescendant(winner,scrollY)?.item||winner.item;
       for(const range of this.geometry.ranges){
         if(range.measurable===false)continue;
-        const line=scrollY+this.geometry.headerBottom+this.trackingGap+this.clearance(range.item);
+        const line=scrollY+this.geometry.headerBottom+this.trackingGap;
         if(range.top<=line+this.epsilon&&(!winner||range.top>winner.top||range.top===winner.top&&range.item.depth>winner.item.depth))winner=range;
       }
       return winner?.item||this.items[0]||null;

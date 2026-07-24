@@ -6,7 +6,7 @@
 
   const clock=()=>performance.now();
   const round=value=>value==null?'—':Math.max(0,Math.round(value));
-  const actionableSelector='[data-term],[data-nav-target],[data-nav-toggle],[data-glossary-category],[data-popup-close],[data-journey-target],.popup-action,#navMenu,#navCollapse,#themeButton,#backButton,a,button,input';
+  const actionableSelector='[data-term],[data-full-entry],[data-full-entry-close],[data-nav-target],[data-nav-toggle],[data-popup-close],[data-journey-target],.popup-action,#navMenu,#navCollapse,#themeButton,#backButton,a,button,input';
   const entries=[];
   let pointer=null;
   let active=null;
@@ -40,6 +40,8 @@
   function classify(element){
     if(!element)return'unknown';
     if(element.matches('[data-term]'))return'term';
+    if(element.matches('[data-full-entry]'))return'full-entry';
+    if(element.matches('[data-full-entry-close]'))return'full-entry-close';
     if(element.matches('[data-popup-close]'))return'popup-close';
     if(element.matches('[data-journey-target],.popup-action'))return'popup-action';
     if(element.matches('[data-glossary-category]'))return'glossary-category';
