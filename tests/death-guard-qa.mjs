@@ -56,6 +56,14 @@ const depths=[...markup.matchAll(/data-nav-depth="(\d+)"/g)].map(match=>Number(m
 check('navigation depth is at most three',Math.max(...depths)===3);
 const unitIds=bookData.sections.filter(section=>section.kind==='unit').map(section=>section.id);
 check('all 36 datasheets are global navigation destinations',unitIds.length===36&&unitIds.every(id=>navTargets.includes(id)));
+const unitById=id=>bookData.sections.find(section=>section.id===id);
+const requiredWargear=['unit-plague-marines','unit-blightlord-terminators','unit-deathshroud-terminators','unit-chaos-land-raider','unit-chaos-predator-annihilator','unit-chaos-predator-destructor','unit-foetid-bloat-drone','unit-helbrute','unit-plagueburst-crawler','unit-chaos-rhino','unit-great-unclean-one','unit-plague-drones','unit-plaguebearers'];
+check('audited datasheets retain every missing Wargear Options block',requiredWargear.every(id=>unitById(id)?.subsections.some(part=>part.title==='Wargear Options')));
+const auditedAbilities=['mortarion-ability-supreme-commander','plague-marines-ability-icon-of-despair-aura','deathshroud-terminators-ability-icon-of-despair-aura','great-unclean-one-ability-reverberating-summons','plague-drones-ability-daemonic-icon','plague-drones-ability-instrument-of-chaos','plaguebearers-ability-daemonic-icon','plaguebearers-ability-instrument-of-chaos','miasmic-malignifier-ability-fortification-setup'];
+check('audited datasheet abilities remain complete',auditedAbilities.every(id=>bookData.sections.some(section=>(section.subsections||[]).some(part=>(part.blocks||[]).some(block=>block.id===id)))&&html.includes(`id="${id}"`)));
+const pointValue=(id,label)=>unitById(id)?.points.find(row=>row.label===label)?.value;
+check('Death Guard points match Munitorum Field Manual v1.1',bookData.audit.currentMFM==='v1.1'&&pointValue('unit-mortarion','1 model')===390&&pointValue('unit-plague-marines','10 models')===180&&pointValue('unit-deathshroud-terminators','1st–2nd unit: 6 models')===305&&pointValue('unit-defiler','2nd+ unit: 1 model')===340&&pointValue('unit-chaos-rhino','1st–3rd unit: 1 model')===75);
+check('Faction Pack updates contain full wording',!bookData.sections.find(section=>section.id==='rules-updates').blocks.some(block=>block.text.includes('use the replacement wording')));
 const detachmentSections=bookData.sections.filter(section=>section.id.startsWith('detachment-'));
 check('all nine detachment trees expose rule, Enhancement and Stratagems',detachmentSections.length===9&&detachmentSections.every(section=>(section.subsections||[]).length===3)&&detachmentSections.every(section=>['Detachment Rule','Enhancement','Stratagems'].every(label=>markup.includes(`data-nav-target="${section.subsections[['Detachment Rule','Enhancement','Stratagems'].indexOf(label)].id}">${label}</button>`))));
 const unitLocalIds=bookData.sections.filter(section=>section.kind==='unit').flatMap(section=>[`${section.id}-profile`,...(section.subsections||[]).map(sub=>sub.id)]);

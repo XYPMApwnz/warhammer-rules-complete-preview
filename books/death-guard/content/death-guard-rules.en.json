@@ -520,7 +520,7 @@
               "lines": [
                 "WHEN: Your Movement phase, before the Reinforcements step.",
                 "TARGET: One DEATH GUARD CHARACTER unit from your army that is not leading a unit.",
-                "EFFECT: Select one other friendly DEATH GUARD unit (excluding Battle-shocked units and Attached units that already have two Leader units or one of your CHARACTER units leading it] within 2\" horizontally and 5\" vertically of your unit that your unit can lead (as described in the Leader section of its datasheet]. Your unit attaches to that unit as a Leader. Change that unit’s Starting Strength accordingly."
+                "EFFECT: Select one other friendly DEATH GUARD unit (excluding Battle-shocked units and Attached units that already have two Leader units or one of your CHARACTER units leading it) within 2\" horizontally and 5\" vertically of your unit that your unit can lead (as described in the Leader section of its datasheet). Your unit attaches to that unit as a Leader. Change that unit’s Starting Strength accordingly."
               ]
             },
             {
@@ -1292,7 +1292,7 @@
         },
         {
           "type": "p",
-          "text": "Tallyband Summoners - Beckoning Blight: use the replacement wording from Faction Pack v1.0."
+          "text": "Tallyband Summoners - Beckoning Blight: DEATH GUARD model only. Each time a PLAGUE LEGIONS unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within 12\" of the bearer, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 8\"."
         },
         {
           "type": "p",
@@ -1300,7 +1300,7 @@
         },
         {
           "type": "p",
-          "text": "Typhus - Eater Plague: use the replacement wording from Faction Pack v1.0."
+          "text": "Typhus - Eater Plague: In your Shooting phase, you can select one enemy unit within 18\" of and visible to this PSYKER (excluding units with the Lone Operative ability that are not part of an Attached unit and are not within 12\" of this PSYKER) and roll one D6: on a 1, this PSYKER’s unit suffers D3 mortal wounds; on a 2-5, that enemy unit suffers D6 mortal wounds; on a 6, that enemy unit suffers D3+3 mortal wounds."
         },
         {
           "type": "p",
@@ -1308,7 +1308,7 @@
         },
         {
           "type": "p",
-          "text": "Deathshroud Terminators - Death Approaches: use the replacement wording from Faction Pack v1.0."
+          "text": "Deathshroud Terminators - Death Approaches: Each time this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all Afflicted enemy units, and more than 8\" horizontally away from all other enemy units."
         },
         {
           "type": "p",
@@ -1341,7 +1341,7 @@
       "points": [
         {
           "label": "1 model",
-          "value": 400
+          "value": 390
         }
       ],
       "blocks": [
@@ -1350,7 +1350,7 @@
           "values": [
             {
               "label": "1 model",
-              "value": 400
+              "value": 390
             }
           ],
           "wargear": []
@@ -1460,6 +1460,13 @@
               "termId": "ability-host-of-plagues-2f9d0aa",
               "title": "Host of Plagues",
               "text": "At the end of your Movement phase, roll one D6 for each enemy unit within 6\" of this model, adding 1 to the result if that enemy unit is Afflicted: on a 3+, that enemy unit suffers D3 mortal wounds."
+            },
+            {
+              "type": "ability",
+              "termId": null,
+              "id": "mortarion-ability-supreme-commander",
+              "title": "Supreme Commander",
+              "text": "If this model is in your army, it must be your WARLORD."
             }
           ],
           "number": ""
@@ -3495,7 +3502,7 @@
         },
         {
           "label": "10 models",
-          "value": 190
+          "value": 180
         }
       ],
       "blocks": [
@@ -3512,7 +3519,7 @@
             },
             {
               "label": "10 models",
-              "value": 190
+              "value": 180
             }
           ],
           "wargear": []
@@ -3747,6 +3754,13 @@
               "termId": "ability-infused-with-the-blessings-of-nurgle-577c42e",
               "title": "Infused with the Blessings of Nurgle",
               "text": "In your Shooting phase, each time this unit is selected to shoot, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next turn, that enemy unit is Afflicted."
+            },
+            {
+              "type": "ability",
+              "termId": null,
+              "id": "plague-marines-ability-icon-of-despair-aura",
+              "title": "Icon of Despair (Aura)",
+              "text": "While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1."
             }
           ],
           "number": ""
@@ -3758,6 +3772,45 @@
             {
               "type": "p",
               "text": "1 Plague Champion; 4-9 Plague Marines. Every model is equipped with: boltgun; plague knives."
+            }
+          ],
+          "number": ""
+        },
+        {
+          "id": "plague-marines-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The Plague Champion’s boltgun can be replaced with one of the following: 1 bolt pistol; 1 plasma gun; 1 plasma pistol."
+            },
+            {
+              "type": "p",
+              "text": "The Plague Champion’s plague knives can be replaced with one of the following: 1 bubotic weapons; 1 power fist."
+            },
+            {
+              "type": "p",
+              "text": "For every 5 models in this unit, 1 Plague Marine’s boltgun can be replaced with 1 blight launcher."
+            },
+            {
+              "type": "p",
+              "text": "For every 5 models in this unit, 1 Plague Marine’s boltgun can be replaced with 1 plague spewer."
+            },
+            {
+              "type": "p",
+              "text": "For every 5 models in this unit, 1 Plague Marine’s boltgun can be replaced with one of the following: 1 meltagun; 1 plague belcher; 1 plasma gun."
+            },
+            {
+              "type": "p",
+              "text": "For every 5 models in this unit, up to 2 Plague Marines can each have their boltgun replaced with 1 bubotic weapons."
+            },
+            {
+              "type": "p",
+              "text": "For every 5 models in this unit, up to 2 Plague Marines can each have their boltgun replaced with 1 heavy plague weapon."
+            },
+            {
+              "type": "p",
+              "text": "One Plague Marine equipped with a boltgun can be equipped with 1 icon of despair. This model’s boltgun cannot be replaced."
             }
           ],
           "number": ""
@@ -3995,6 +4048,37 @@
           "number": ""
         },
         {
+          "id": "blightlord-terminators-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "For every 5 models in this unit, up to 3 models' combi-bolters can each be replaced with 1 combi-weapon."
+            },
+            {
+              "type": "p",
+              "text": "For every 5 models in this unit, 1 Blightlord Terminator’s combi-bolter and bubotic blade can be replaced with 1 flail of corruption."
+            },
+            {
+              "type": "p",
+              "text": "For every 5 models in this unit, 1 Blightlord Terminator’s combi-bolter can be replaced with 1 blight launcher."
+            },
+            {
+              "type": "p",
+              "text": "For every 5 models in this unit, 1 Blightlord Terminator's combi-bolter can be replaced with 1 reaper autocannon."
+            },
+            {
+              "type": "p",
+              "text": "For every 5 models in this unit, 1 Blightlord Terminator's combi-bolter can be replaced with 1 plague spewer."
+            },
+            {
+              "type": "p",
+              "text": "If this unit contains only 3 models, 1 Blightlord Terminator’s combi-bolter and bubotic blade can be replaced with 1 plague spewer and 1 close combat weapon."
+            }
+          ],
+          "number": ""
+        },
+        {
           "id": "blightlord-terminators-keywords",
           "title": "Keywords",
           "blocks": [
@@ -4023,7 +4107,7 @@
         },
         {
           "label": "1st–2nd unit: 6 models",
-          "value": 320
+          "value": 305
         },
         {
           "label": "3rd+ unit: 3 models",
@@ -4031,7 +4115,7 @@
         },
         {
           "label": "3rd+ unit: 6 models",
-          "value": 330
+          "value": 315
         }
       ],
       "blocks": [
@@ -4044,7 +4128,7 @@
             },
             {
               "label": "1st–2nd unit: 6 models",
-              "value": 320
+              "value": 305
             },
             {
               "label": "3rd+ unit: 3 models",
@@ -4052,7 +4136,7 @@
             },
             {
               "label": "3rd+ unit: 6 models",
-              "value": 330
+              "value": 315
             }
           ],
           "wargear": []
@@ -4148,6 +4232,13 @@
               "termId": "ability-death-approaches-3347016",
               "title": "Death Approaches",
               "text": "Each time this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all Afflicted enemy units, and more than 8\" horizontally away from all other enemy units."
+            },
+            {
+              "type": "ability",
+              "termId": null,
+              "id": "deathshroud-terminators-ability-icon-of-despair-aura",
+              "title": "Icon of Despair (Aura)",
+              "text": "While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1."
             }
           ],
           "number": ""
@@ -4159,6 +4250,21 @@
             {
               "type": "p",
               "text": "1 Deathshroud Champion; 2-5 Deathshroud Terminators. Every model is equipped with: plaguespurt gauntlet; manreaper."
+            }
+          ],
+          "number": ""
+        },
+        {
+          "id": "deathshroud-terminators-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The Deathshroud Champion can be equipped with 1 additional plaguespurt gauntlet."
+            },
+            {
+              "type": "p",
+              "text": "The Deathshroud Champion can be equipped with 1 icon of despair."
             }
           ],
           "number": ""
@@ -4615,6 +4721,21 @@
           "number": ""
         },
         {
+          "id": "chaos-land-raider-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "This model can be equipped with one of the following: 1 combi-bolter; 1 combi-weapon."
+            },
+            {
+              "type": "p",
+              "text": "This model can be equipped with 1 havoc launcher."
+            }
+          ],
+          "number": ""
+        },
+        {
           "id": "chaos-land-raider-keywords",
           "title": "Keywords",
           "blocks": [
@@ -4822,6 +4943,25 @@
             {
               "type": "p",
               "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+            }
+          ],
+          "number": ""
+        },
+        {
+          "id": "chaos-predator-annihilator-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "This model can be equipped with one of the following: 2 lascannons; 2 heavy bolters."
+            },
+            {
+              "type": "p",
+              "text": "This model can be equipped with one of the following: 1 combi-weapon; 1 combi-bolter."
+            },
+            {
+              "type": "p",
+              "text": "This model can be equipped with 1 havoc launcher."
             }
           ],
           "number": ""
@@ -5039,6 +5179,25 @@
           "number": ""
         },
         {
+          "id": "chaos-predator-destructor-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "This model can be equipped with one of the following: 2 heavy bolters; 2 lascannons."
+            },
+            {
+              "type": "p",
+              "text": "This model can be equipped with one of the following: 1 combi-bolter; 1 combi-weapon."
+            },
+            {
+              "type": "p",
+              "text": "This model can be equipped with 1 havoc launcher."
+            }
+          ],
+          "number": ""
+        },
+        {
           "id": "chaos-predator-destructor-keywords",
           "title": "Keywords",
           "blocks": [
@@ -5063,11 +5222,11 @@
       "points": [
         {
           "label": "1st unit: 1 model",
-          "value": 290
+          "value": 300
         },
         {
           "label": "2nd+ unit: 1 model",
-          "value": 320
+          "value": 340
         }
       ],
       "blocks": [
@@ -5076,21 +5235,21 @@
           "values": [
             {
               "label": "1st unit: 1 model",
-              "value": 290
+              "value": 300
             },
             {
               "label": "2nd+ unit: 1 model",
-              "value": 320
+              "value": 340
             }
           ],
           "wargear": [
             {
               "label": "per Heavy reaper autocannon",
-              "value": 10
+              "value": 15
             },
             {
               "label": "per Hades lascannon",
-              "value": 10
+              "value": 15
             }
           ]
         },
@@ -5105,6 +5264,10 @@
             "OC": "5",
             "Inv": "5+"
           }
+        },
+        {
+          "type": "p",
+          "text": "Base: (⌀160mm)."
         },
         {
           "type": "weapon",
@@ -5498,6 +5661,17 @@
             {
               "type": "p",
               "text": "1 Foetid Bloat-drone. This model is equipped with: fleshmower; plague probe."
+            }
+          ],
+          "number": ""
+        },
+        {
+          "id": "foetid-bloat-drone-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "This model’s fleshmower can be replaced with 2 plaguespitters."
             }
           ],
           "number": ""
@@ -5919,6 +6093,29 @@
           "number": ""
         },
         {
+          "id": "helbrute-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "This model’s multi-melta can be replaced with one of the following: 1 plasma cannon; 1 twin autocannon; 1 twin lascannon; 1 twin heavy bolter; 1 additional Helbrute fist."
+            },
+            {
+              "type": "p",
+              "text": "1 of this model’s Helbrute fists can be replaced with 1 missile launcher."
+            },
+            {
+              "type": "p",
+              "text": "1 of this model’s Helbrute fists can be replaced with one of the following: 1 Helbrute hammer; 1 power scourge."
+            },
+            {
+              "type": "p",
+              "text": "For each Helbrute fist this model is equipped with, it can be equipped with one of the following: 1 combi-bolter; 1 heavy flamer. That Helbrute fist cannot then be replaced."
+            }
+          ],
+          "number": ""
+        },
+        {
           "id": "helbrute-keywords",
           "title": "Keywords",
           "blocks": [
@@ -6087,7 +6284,7 @@
           "blocks": [
             {
               "type": "p",
-              "text": "1-2 Myphitic Blight-hulers. Every model is equipped with: bile spurt; missile launcher; multi-melta; gnashing maw."
+              "text": "1-2 Myphitic Blight-haulers. Every model is equipped with: bile spurt; missile launcher; multi-melta; gnashing maw."
             }
           ],
           "number": ""
@@ -6292,6 +6489,21 @@
           "number": ""
         },
         {
+          "id": "plagueburst-crawler-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "This model’s 2 entropy cannons can be replaced with 2 plaguespitters."
+            },
+            {
+              "type": "p",
+              "text": "This model’s heavy slugger can be replaced with 1 rothail volley gun."
+            }
+          ],
+          "number": ""
+        },
+        {
           "id": "plagueburst-crawler-keywords",
           "title": "Keywords",
           "blocks": [
@@ -6323,7 +6535,11 @@
       "kind": "unit",
       "points": [
         {
-          "label": "1 model",
+          "label": "1st–3rd unit: 1 model",
+          "value": 75
+        },
+        {
+          "label": "4th+ unit: 1 model",
           "value": 85
         }
       ],
@@ -6332,7 +6548,11 @@
           "type": "points",
           "values": [
             {
-              "label": "1 model",
+              "label": "1st–3rd unit: 1 model",
+              "value": 75
+            },
+            {
+              "label": "4th+ unit: 1 model",
               "value": 85
             }
           ],
@@ -6462,6 +6682,21 @@
           "number": ""
         },
         {
+          "id": "chaos-rhino-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "This model can be equipped with one of the following: 1 additional combi-bolter; 1 combi-weapon."
+            },
+            {
+              "type": "p",
+              "text": "This model can be equipped with 1 havoc launcher or can replace 1 combi-bolter with 1 havoc launcher."
+            }
+          ],
+          "number": ""
+        },
+        {
           "id": "chaos-rhino-keywords",
           "title": "Keywords",
           "blocks": [
@@ -6577,6 +6812,13 @@
               "termId": "ability-fortification-e581151",
               "title": "Fortification",
               "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll. Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so."
+            },
+            {
+              "type": "ability",
+              "termId": null,
+              "id": "miasmic-malignifier-ability-fortification-setup",
+              "title": "Fortification Setup",
+              "text": "Both parts of this FORTIFICATION must be set up within 1\" of each other. Both parts are then treated as a single model for all rules purposes."
             }
           ],
           "number": ""
@@ -6911,6 +7153,13 @@
               "termId": "ability-nurgles-rot-psychic-80d4e3f",
               "title": "Nurgle’s Rot (Psychic)",
               "text": "At the end of your Movement phase, you can select one enemy unit within 12\" of this model. Until the start of your next Movement phase, that unit is rotted. While a unit is rotted, subtract 1 from the Toughness characteristic of models in that unit."
+            },
+            {
+              "type": "ability",
+              "termId": null,
+              "id": "great-unclean-one-ability-reverberating-summons",
+              "title": "Reverberating Summons",
+              "text": "Each time a model is destroyed by this weapon, you can select one friendly PLAGUEBEARERS unit within 12\" of the bearer and return 1 destroyed Plaguebearer model to that unit."
             }
           ],
           "number": ""
@@ -6933,6 +7182,21 @@
             {
               "type": "p",
               "text": "While this model has 1-7 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+            }
+          ],
+          "number": ""
+        },
+        {
+          "id": "great-unclean-one-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "This model’s plague flail can be replaced with 1 bileblade."
+            },
+            {
+              "type": "p",
+              "text": "This model’s bilesword can be replaced with 1 doomsday bell."
             }
           ],
           "number": ""
@@ -7194,6 +7458,20 @@
               "termId": "ability-deaths-heads-546f077",
               "title": "Death’s Heads",
               "text": "In your Shooting phase, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the end of the turn, each time a friendly PLAGUE LEGIONS unit makes an attack that targets that unit, you can re-roll the Wound roll."
+            },
+            {
+              "type": "ability",
+              "termId": null,
+              "id": "plague-drones-ability-daemonic-icon",
+              "title": "Daemonic Icon",
+              "text": "Models in the bearer’s unit have a Leadership characteristic of 6+."
+            },
+            {
+              "type": "ability",
+              "termId": null,
+              "id": "plague-drones-ability-instrument-of-chaos",
+              "title": "Instrument of Chaos",
+              "text": "Add 1 to Charge rolls made for the bearer’s unit."
             }
           ],
           "number": ""
@@ -7205,6 +7483,21 @@
             {
               "type": "p",
               "text": "1 Plaguebringer; 2-5 Plague Drones. Every model is equipped with: death’s heads; foul mouthparts; plaguesword."
+            }
+          ],
+          "number": ""
+        },
+        {
+          "id": "plague-drones-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "1 Plague Drone that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos."
+            },
+            {
+              "type": "p",
+              "text": "1 Plague Drone that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
             }
           ],
           "number": ""
@@ -7308,6 +7601,20 @@
               "termId": "ability-infected-outbreak-faaf2d1",
               "title": "Infected Outbreak",
               "text": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent’s Level of Control over that objective marker is greater than yours at the end of a phase."
+            },
+            {
+              "type": "ability",
+              "termId": null,
+              "id": "plaguebearers-ability-daemonic-icon",
+              "title": "Daemonic Icon",
+              "text": "Models in the bearer’s unit have a Leadership characteristic of 6+."
+            },
+            {
+              "type": "ability",
+              "termId": null,
+              "id": "plaguebearers-ability-instrument-of-chaos",
+              "title": "Instrument of Chaos",
+              "text": "Add 1 to Charge rolls made for the bearer’s unit."
             }
           ],
           "number": ""
@@ -7319,6 +7626,21 @@
             {
               "type": "p",
               "text": "1 Plagueridden; 9 Plaguebearers. Every model is equipped with: plaguesword."
+            }
+          ],
+          "number": ""
+        },
+        {
+          "id": "plaguebearers-wargear-options",
+          "title": "Wargear Options",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "1 Plaguebearer that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos."
+            },
+            {
+              "type": "p",
+              "text": "1 Plaguebearer that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
             }
           ],
           "number": ""
@@ -8100,7 +8422,7 @@
       "group": "Stratagems",
       "kind": "stratagem",
       "short": "WHEN: Your Movement phase, before the Reinforcements step. TARGET: One DEATH GUARD CHARACTER unit from your army that is not leading a unit.",
-      "full": "WHEN: Your Movement phase, before the Reinforcements step. TARGET: One DEATH GUARD CHARACTER unit from your army that is not leading a unit. EFFECT: Select one other friendly DEATH GUARD unit (excluding Battle-shocked units and Attached units that already have two Leader units or one of your CHARACTER units leading it] within 2\" horizontally and 5\" vertically of your unit that your unit can lead (as described in the Leader section of its datasheet]. Your unit attaches to that unit as a Leader. Change that unit’s Starting Strength accordingly.",
+      "full": "WHEN: Your Movement phase, before the Reinforcements step. TARGET: One DEATH GUARD CHARACTER unit from your army that is not leading a unit. EFFECT: Select one other friendly DEATH GUARD unit (excluding Battle-shocked units and Attached units that already have two Leader units or one of your CHARACTER units leading it) within 2\" horizontally and 5\" vertically of your unit that your unit can lead (as described in the Leader section of its datasheet). Your unit attaches to that unit as a Leader. Change that unit’s Starting Strength accordingly.",
       "sectionId": "stratagem-mobile-vector"
     },
     {
@@ -12984,6 +13306,7 @@
     "detachments": 9,
     "datasheets": 36,
     "currentFactionPack": "v1.0",
-    "officialFactionPackDate": "2026-06-20"
+    "officialFactionPackDate": "2026-06-20",
+    "currentMFM": "v1.1"
   }
 }
