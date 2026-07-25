@@ -36,6 +36,12 @@
     }
 
     bind(){
+      document.addEventListener('pointerdown',event=>{
+        if(event.pointerType==='touch'&&event.target.closest('[data-full-entry-close]')){
+          event.preventDefault();
+          this.requestClose();
+        }
+      });
       document.addEventListener('click',event=>{
         if(event.target.closest('[data-mega-glossary-link]'))this.rememberReturn();
         if(event.target.closest('[data-full-entry-back]')){event.preventDefault();this.backEntry();return;}
@@ -92,8 +98,9 @@
     }
 
     requestClose(){
-      if(history.state?.dgFullEntry)history.back();
-      else this.close({restoreFocus:true});
+      const hasHistory=Boolean(history.state?.dgFullEntry);
+      this.close({restoreFocus:true});
+      if(hasHistory)history.back();
     }
 
     close({restoreFocus=false}={}){

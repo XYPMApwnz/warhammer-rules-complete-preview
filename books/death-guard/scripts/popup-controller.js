@@ -16,6 +16,12 @@
     bind(){
       document.addEventListener('pointerdown',event=>{
         if(event.pointerType!=='touch')return;
+        const close=event.target.closest('[data-popup-close]');
+        if(close&&this.layer.contains(close)){
+          event.preventDefault();
+          this.closeFrom(Number(close.dataset.popupClose));
+          return;
+        }
         const trigger=event.target.closest('[data-term]');
         if(!trigger)return;
         this.touchTerm={trigger,pointerId:event.pointerId,ids:this.ids.slice(),origins:this.origins.slice(),until:0};
@@ -88,9 +94,10 @@
     closeFrom(index){
       if(index<0||index>=this.ids.length)return;
       const returnReference=this.origins[index];
-      this.ids=this.ids.slice(0,index);this.origins=this.origins.slice(0,index);this.sync();
+      this.ids=this.ids.slice(0,index);this.origins=this.origins.slice(0,index);this.sync({reposition:false});
       const target=this.resolveOrigin(returnReference);
       if(target?.isConnected)target.focus({preventScroll:true});else this.focusTop();
+      if(this.ids.length)setTimeout(()=>this.reposition(),0);
     }
 
     contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}
@@ -114,7 +121,6 @@
       card.setAttribute('role','dialog');card.setAttribute('aria-modal','false');card.setAttribute('aria-labelledby',titleId);
 
       const close=document.createElement('button');close.className='popup-close';close.dataset.popupClose=String(index);close.setAttribute('aria-label','Close '+term.title+' popup');close.textContent='×';
-      close.addEventListener('touchstart',event=>{event.preventDefault();close.click();},{passive:false});
       const title=document.createElement('h3');title.id=titleId;title.textContent=term.title;
       const content=window.WHPopupContent.render(term,this.terms);
       card.classList.add(...content.classes);
@@ -145,12 +151,12 @@
       return card;
     }
 
-    sync({focus=false}={}){
+    sync({focus=false,reposition=true}={}){
       const cards=[...this.layer.children];let prefix=0;
       while(prefix<cards.length&&prefix<this.ids.length&&cards[prefix].dataset.popupTerm===this.ids[prefix])prefix++;
       for(let index=cards.length-1;index>=prefix;index--)cards[index].remove();
       for(let index=prefix;index<this.ids.length;index++)this.layer.append(this.createCard(this.ids[index],index));
-      this.reposition();if(focus)this.focusTop();
+      if(reposition)this.reposition();if(focus)this.focusTop();
     }
     focusTop(){this.layer.lastElementChild?.focus({preventScroll:true});}
 
