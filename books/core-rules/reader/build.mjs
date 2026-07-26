@@ -67,12 +67,13 @@ const termByCode=new Map(digital.records.map(rule=>{
   return [rule.code,matches.find(term=>term.title.en.trim().toLowerCase()===title)||matches[0]];
 }).filter(([,term])=>term));
 
+const ignoredAutolinkLabels=new Set(['you','attacks','within','weapons','destroyed','dice','set up','keywords','shoot','shooting','dense']);
 const candidates=new Map();
 for(const term of Object.values(registry.terms)){
   if(term.scope!=='global'&&term.canonicalSource?.documentId!=='core-rules'&&!(term.sourceRefs||[]).includes('core-rules'))continue;
   for(const label of [term.title?.en,...(term.aliases||[]),...(term.matchLabels||[])]){
     const token=normalizeLabel(label);
-    if(token.length<3)continue;
+    if(token.length<3||ignoredAutolinkLabels.has(token))continue;
     const entries=candidates.get(token)||[];
     if(!entries.some(entry=>entry.id===term.id))entries.push(term);
     candidates.set(token,entries);
@@ -87,7 +88,7 @@ function termButton(term,label,extraClass=''){
   return `<button class="term${extraClass?` ${extraClass}`:''}" type="button" data-term="${escapeHtml(term.id)}" data-term-title="${escapeHtml(term.title?.en||label)}" data-term-summary="${escapeHtml(term.summary?.en||term.definition?.en||'Open the complete glossary entry for this term.')}" aria-haspopup="dialog">${escapeHtml(label)}</button>`;
 }
 
-function linkedText(value){
+function linkedText(value,seen=new Set(),excludedId=''){
   const text=normalize(value);
   let cursor=0;
   let html='';
@@ -98,24 +99,25 @@ function linkedText(value){
     const start=match.index+prefix.length;
     const term=terms.get(normalizeLabel(label));
     html+=escapeHtml(text.slice(cursor,start));
-    html+=termButton(term,label);
+    html+=term&&term.id!==excludedId&&!seen.has(term.id)?termButton(term,label):escapeHtml(label);
+    if(term&&term.id!==excludedId)seen.add(term.id);
     cursor=start+label.length;
   }
   return html+escapeHtml(text.slice(cursor));
 }
 
-function prose(text){
+function prose(text,seen=new Set(),excludedId=''){
   const lines=String(text||'').split(/\n+/).map(line=>line.trim()).filter(Boolean);
   const output=[];
   let bullets=[];
   let previous='';
-  const flush=()=>{if(bullets.length){output.push(`<ul>${bullets.map(item=>`<li>${linkedText(item)}</li>`).join('')}</ul>`);bullets=[];}};
+  const flush=()=>{if(bullets.length){output.push(`<ul>${bullets.map(item=>`<li>${linkedText(item,seen,excludedId)}</li>`).join('')}</ul>`);bullets=[];}};
   for(const line of lines){
     if(line===previous)continue;
     previous=line;
     if(/^SEE ALSO$/i.test(line)){flush();output.push('<h4 class="see-also">See also</h4>');continue;}
     if(/^•\s*/.test(line)){bullets.push(line.replace(/^•\s*/,''));continue;}
-    flush();output.push(`<p>${linkedText(line)}</p>`);
+    flush();output.push(`<p>${linkedText(line,seen,excludedId)}</p>`);
   }
   flush();
   return output.join('')||'<p>See the linked source.</p>';
@@ -159,9 +161,10 @@ function ruleVisuals(code){
   return `<div class="rule-visuals" aria-label="Diagrams for ${escapeHtml(ruleLabel)}">${items.map(item=>{const detail=/^ex\d+$/i.test(item.caption||'')?'':item.caption;return `<figure data-visual-rule="${escapeHtml(code)}"><figcaption><small>Diagram for rule</small><strong>${escapeHtml(ruleLabel)}</strong>${detail?`<span>${escapeHtml(detail)}</span>`:''}</figcaption><a href="../assets/diagrams/${escapeHtml(item.file)}"><img src="../assets/diagrams/${escapeHtml(item.file)}" alt="${escapeHtml(detail||ruleLabel)}" loading="lazy" decoding="async"></a></figure>`;}).join('')}</div>`;
 }
 
-function referenceStrip(code){
-  const items=(ruleReferences[code]||[]).map(id=>registry.terms[id]).filter(Boolean);
+function referenceStrip(code,seen=new Set()){
+  const items=(ruleReferences[code]||[]).map(id=>registry.terms[id]).filter(term=>term&&!seen.has(term.id));
   if(!items.length)return '';
+  items.forEach(term=>seen.add(term.id));
   return `<nav class="rule-references" aria-label="Glossary concepts for ${escapeHtml(code)}"><span>Glossary concepts</span>${items.map(term=>termButton(term,term.title.en)).join('')}</nav>`;
 }
 
@@ -180,15 +183,21 @@ function stratagemCard(record){
   const when=fields.find(field=>field.label.toUpperCase()==='WHEN')?.lines.join(' ')||'';
   const turn=/opponent|enemy/i.test(when)?'their':/\byour\b/i.test(when)?'yours':'any';
   const turnLabel=turn==='their'?'THEIR TURN':turn==='yours'?'YOUR TURN':'ANY TURN';
-  const title=termButton(termByCode.get(record.code),record.title,'stratagem-title');
-  return `<article class="stratagem turn-${turn}" id="rule-${slug(record.code)}" data-rule-code="${escapeHtml(record.code)}" data-turn="${turnLabel}"><div class="stratagem-rail">${cp?`<strong class="cp"><span>${escapeHtml(cp)}</span></strong>`:''}</div><header class="stratagem-head"><h3>${title}</h3><p class="stratagem-type">CORE // ${escapeHtml(record.kind.replaceAll('-',' '))}</p>${flavour.length?`<p class="stratagem-flavour">${linkedText(flavour.join(' '))}</p>`:''}</header><div class="stratagem-fields">${fields.map(field=>`<section class="field"><span>${escapeHtml(field.label)}</span>${prose(field.lines.join('\n'))}</section>`).join('')}${ruleVisuals(record.code)}</div></article>`;
+  const excludedId=termByCode.get(record.code)?.id||'';
+  const seen=new Set();
+  const flavourHtml=flavour.length?`<p class="stratagem-flavour">${linkedText(flavour.join(' '),seen,excludedId)}</p>`:'';
+  const fieldsHtml=fields.map(field=>`<section class="field"><span>${escapeHtml(field.label)}</span>${prose(field.lines.join('\n'),seen,excludedId)}</section>`).join('');
+  return `<article class="stratagem turn-${turn}" id="rule-${slug(record.code)}" data-rule-code="${escapeHtml(record.code)}" data-turn="${turnLabel}"><div class="stratagem-rail">${cp?`<strong class="cp"><span>${escapeHtml(cp)}</span></strong>`:''}</div><header class="stratagem-head"><h3>${escapeHtml(record.title)}</h3><p class="stratagem-type">CORE // ${escapeHtml(record.kind.replaceAll('-',' '))}</p>${flavourHtml}</header><div class="stratagem-fields">${fieldsHtml}${ruleVisuals(record.code)}</div></article>`;
 }
 
 function mainRule(record,children=[]){
   const id=`rule-${slug(record.code)}`;
   const special=record.code==='25.03'?musterTable():'';
-  const nested=children.length?`<div class="subrules">${children.map(child=>`<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><span>${termButton(termByCode.get(child.code),child.code)}</span><strong>${termButton(termByCode.get(child.code),child.title)}</strong></summary><div>${prose(child.text)}${referenceStrip(child.code)}${ruleVisuals(child.code)}</div></details>`).join('')}</div>`:'';
-  return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><span class="rule-code">${termButton(termByCode.get(record.code),record.code)}</span><h3>${termButton(termByCode.get(record.code),record.title)}</h3><span class="page">${escapeHtml(record.kind.replaceAll('-',' '))}</span></header><div class="rule-body">${prose(record.text)}${special}${referenceStrip(record.code)}${ruleVisuals(record.code)}${nested}</div></article>`;
+  const nested=children.length?`<div class="subrules">${children.map(child=>{const excludedId=termByCode.get(child.code)?.id||'',seen=new Set();const text=prose(child.text,seen,excludedId);return `<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><span>${escapeHtml(child.code)}</span><strong>${escapeHtml(child.title)}</strong></summary><div>${text}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
+  const excludedId=termByCode.get(record.code)?.id||'';
+  const seen=new Set();
+  const text=prose(record.text,seen,excludedId);
+  return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><a class="rule-code" href="#${id}" aria-label="Permalink to rule ${escapeHtml(record.code)}">${escapeHtml(record.code)}</a><h3>${escapeHtml(record.title)}</h3><span class="page">${escapeHtml(record.kind.replaceAll('-',' '))}</span></header><div class="rule-body">${text}${special}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
 }
 
 function sectionPage(id,index){

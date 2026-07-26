@@ -77,7 +77,6 @@ for(const [index,id] of studyIds.entries()){
     const title=rule.title.replace(/^\d+\.\s*/,'').trim().toLowerCase();
     const term=(coreTermsByCode.get(rule.code)||[]).find(candidate=>candidate.title.en.trim().toLowerCase()===title)||(coreTermsByCode.get(rule.code)||[])[0];
     assert(term,`${rule.code} has no canonical Mega Glossary article`);
-    assert(page.includes(`data-term="${term.id}"`),`${rule.code} does not link to ${term.id}`);
     routedRules++;
   }
   if(index>0)assert(page.includes(`href="${studyIds[index-1]}.html"`),`${id} is missing previous chapter`);
@@ -96,7 +95,17 @@ for(const item of searchIndex){
 }
 assert(!fs.existsSync(path.join(readerRoot,'rules-appendix.html')),'raw Rules Appendix must not be a primary reader chapter');
 const generatedReader=readerFiles.map(file=>fs.readFileSync(path.join(readerRoot,file),'utf8')).join('\n');
-for(const term of Object.values(glossary).filter(term=>term.canonicalSource?.documentId==='core-rules'&&term.kind!=='keyword'))assert(generatedReader.includes(`data-term="${term.id}"`),`${term.id} has no clickable Core Rules equivalent`);
+assert(!generatedReader.includes('<span class="rule-code"><button'),'rule codes must be permalinks, not self-definition buttons');
+assert(!generatedReader.includes('<h3><button class="term'),'rule titles must not open definitions of themselves');
+const ignoredLabels=new Set(['you','attacks','within','weapons','destroyed','dice','set up','keywords','shoot','shooting','dense']);
+for(const button of generatedReader.matchAll(/<button class="term[^"]*"[^>]*>([^<]+)<\/button>/g))assert(!ignoredLabels.has(button[1].trim().toLowerCase()),`${button[1]} must not clutter prose`);
+for(const page of readerFiles.map(file=>fs.readFileSync(path.join(readerRoot,file),'utf8'))){
+  for(const card of page.split(/(?=<(?:article|details)[^>]*data-rule-code=)/).filter(part=>part.startsWith('<article')||part.startsWith('<details'))){
+    const code=card.match(/data-rule-code="([^"]+)"/)?.[1];
+    const ids=[...card.matchAll(/data-term="([^"]+)"/g)].map(match=>match[1]);
+    assert.equal(new Set(ids).size,ids.length,`${code} repeats a glossary button`);
+  }
+}
 for(const artifact of ['ST ARTS','EFFEC T','BLUEBLUE','REDRED','Object ives','Adv ance','Dama ge','Sa ve','W ound','How man y','Each t ime','RULES APPENDIXOBJECTIVES'])assert(!generatedReader.includes(artifact),`PDF extraction artifact leaked into reader: ${artifact}`);
 const diagramCount=Object.values(digital.images).flat().length;
 assert.equal(diagramCount,42,'unexpected diagram inventory');
