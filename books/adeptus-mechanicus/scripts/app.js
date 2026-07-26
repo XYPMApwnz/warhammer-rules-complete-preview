@@ -22,13 +22,11 @@
   new window.AMDoctrina();
   document.querySelector('[data-header-home]')?.addEventListener('click',event=>{event.preventDefault();navigation.go('start');});
   window.DG_APP=Object.freeze({navigation,popups,glossary,journey});
-  try{
-    const record=JSON.parse(sessionStorage.getItem('wh40k-mega-glossary-return')||'null');
-    if(record?.path===location.pathname&&record.popupIds?.length){
-      const scope=document.getElementById(record.unitId)||document;
-      const root=[...scope.querySelectorAll('[data-term]')].find(node=>node.dataset.term===record.rootTerm)||null;
-      requestAnimationFrame(()=>{window.scrollTo(record.scrollX||0,record.scrollY||0);popups.restore(record.popupIds,{root,focus:false});sessionStorage.removeItem('wh40k-mega-glossary-return');});
-    }
-  }catch{}
+  const returnRecord=window.WHGlossaryReturn?.read();
+  if(window.WHGlossaryReturn?.matchesCurrent(returnRecord)&&returnRecord.popupIds?.length){
+    const scope=document.getElementById(returnRecord.unitId)||document;
+    const root=[...scope.querySelectorAll('[data-term]')].find(node=>node.dataset.term===returnRecord.rootTerm)||null;
+    requestAnimationFrame(()=>{window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);popups.restore(returnRecord.popupIds,{root,focus:false});window.WHGlossaryReturn.clear();});
+  }
   if((location.protocol==='http:'||location.protocol==='https:')&&'serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('../../service-worker.js'));
 }());

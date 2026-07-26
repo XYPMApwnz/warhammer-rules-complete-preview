@@ -3,11 +3,19 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const repoRoot=path.resolve(root,'..');
 const registry=JSON.parse(fs.readFileSync(path.join(root,'registry.en.json'),'utf8'));
 const aliases=JSON.parse(fs.readFileSync(path.join(root,'aliases.en.json'),'utf8')).aliases;
 const errors=[];
 const ids=new Set(Object.keys(registry.terms));
 const presentations=new Set(['atomic','article','profile','reference','metadata']);
+function checkFullRulePath(owner,value){
+  if(!value)return;
+  if(value.startsWith('/')||/^[a-z]+:/i.test(value)||value.includes('..')){errors.push(`${owner}: unsafe fullRulePath ${value}`);return;}
+  const [file,anchor='']=value.split('#',2),target=path.join(repoRoot,...file.split('/'));
+  if(!fs.existsSync(target)){errors.push(`${owner}: missing fullRulePath file ${value}`);return;}
+  if(anchor&&!fs.readFileSync(target,'utf8').includes(`id="${anchor}"`))errors.push(`${owner}: missing fullRulePath anchor ${value}`);
+}
 for(const [id,term] of Object.entries(registry.terms)){
   for(const field of ['id','kind','scope','edition','language','title','summary','definition','canonicalSource','status'])if(term[field]==null)errors.push(`${id}: missing ${field}`);
   const summary=String(term.summary?.en||'').replace(/\s+/g,' ').trim();
@@ -31,6 +39,7 @@ for(const [id,term] of Object.entries(registry.terms)){
   if(new Set(keywordReferences).size!==keywordReferences.length)errors.push(`${id}: duplicated keyword reference`);
   for(const target of term.references?.relatedKeywords||[])if(registry.terms[target]?.kind!=='keyword')errors.push(`${id}: related keyword ${target} is not a keyword`);
   if((term.kind==='keyword'||id.startsWith('keyword-'))&&term.references==null)errors.push(`${id}: keyword references were not generated`);
+  checkFullRulePath(id,term.fullRulePath);
 }
 if(ids.has('keyword-flying'))errors.push('keyword-flying: FLYING must resolve to the canonical FLY keyword');
 if(aliases['keyword-flying']!=='keyword-fly')errors.push('keyword-flying: missing legacy alias to keyword-fly');
@@ -44,6 +53,7 @@ for(const bookId of ['core-rules','death-guard','adeptus-mechanicus']){
   for(const [localId,entry] of Object.entries(context.terms)){
     if(!ids.has(aliases[entry.termId]||entry.termId))errors.push(`${bookId}/${localId}: unknown term ${entry.termId}`);
     for(const field of ['title','summary','definition'])if(field in entry)errors.push(`${bookId}/${localId}: context contains canonical field ${field}`);
+    checkFullRulePath(`${bookId}/${localId}`,entry.navigation?.fullRulePath);
   }
 }
 if(errors.length){console.error(errors.join('\n'));process.exit(1);}

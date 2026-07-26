@@ -101,14 +101,12 @@
   new window.DGTableAccessibility();
   initRelatedRules();
   window.DG_APP=Object.freeze({navigation,popups,fullEntry});
-  try{
-    const record=JSON.parse(sessionStorage.getItem('wh40k-mega-glossary-return')||'null');
-    if(record?.path===location.pathname){
-      const scope=document.getElementById(record.unitId)||document;
-      const root=[...scope.querySelectorAll('[data-term]')].find(node=>node.dataset.term===record.rootTerm)||null;
-      requestAnimationFrame(()=>{window.scrollTo(record.scrollX||0,record.scrollY||0);if(record.popupIds?.length)popups.restore(record.popupIds,{root,focus:false});sessionStorage.removeItem('wh40k-mega-glossary-return');});
-    }
-  }catch{}
+  const returnRecord=window.WHGlossaryReturn?.read();
+  if(window.WHGlossaryReturn?.matchesCurrent(returnRecord)){
+    const scope=document.getElementById(returnRecord.unitId)||document;
+    const root=[...scope.querySelectorAll('[data-term]')].find(node=>node.dataset.term===returnRecord.rootTerm)||null;
+    requestAnimationFrame(()=>{window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);if(returnRecord.popupIds?.length)popups.restore(returnRecord.popupIds,{root,focus:false});window.WHGlossaryReturn.clear();});
+  }
   if((location.protocol==='http:'||location.protocol==='https:')&&'serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('../../service-worker.js'));
   if(new URLSearchParams(location.search).get('tapdebug')==='1'){
     const diagnostics=document.createElement('script');diagnostics.src='./scripts/tap-diagnostics.js?v=2';document.body.append(diagnostics);

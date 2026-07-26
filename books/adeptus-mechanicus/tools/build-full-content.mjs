@@ -203,7 +203,10 @@ for(const term of rules.glossary)terms[term.id]={title:term.title,summary:term.s
 const dataJs=`window.DG_TERMS=${JSON.stringify(terms,null,2)};\n`;
 const releaseHtml=html
   .replace('../../glossary/generated/glossary.en.js"','../../glossary/generated/glossary.en.js?v=3"')
-  .replace('../shared/glossary-autolink.js?v=7','../shared/glossary-autolink.js?v=8');
+  .replace('<script src="../shared/navigation-targets.js', '<script src="../../glossary-return.js?v=1"></script><script src="../shared/navigation-targets.js')
+  .replace('../shared/glossary-autolink.js?v=7','../shared/glossary-autolink.js?v=8')
+  .replace('popup-controller.js?v=18','popup-controller.js?v=19')
+  .replace('app.js?v=17','app.js?v=18');
 const outputs=new Map([['index.html',releaseHtml],['scripts/data.js',dataJs]]);
 
 if(/data-term="[^"]*</i.test(html))throw new Error('Generated data-term attributes must never contain markup');

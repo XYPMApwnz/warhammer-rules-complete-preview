@@ -47,7 +47,8 @@ const amRuntime=loadWindow(path.join(root,'books','adeptus-mechanicus','scripts'
 const amFaction=readJson(path.join(root,'books','adeptus-mechanicus','content','adeptus-mechanicus-rules.en.json'));
 const amCodexDetachments=readJson(path.join(root,'books','adeptus-mechanicus','content','adeptus-mechanicus-codex-detachments.en.json'));
 const amDatasheets=readJson(path.join(root,'books','adeptus-mechanicus','content','adeptus-mechanicus-codex-datasheets.en.json'));
-const coreCurated=loadWindow(path.join(root,'books','core-rules','content','core-rules.en.js')).CORE_RULES.terms;
+const coreData=loadWindow(path.join(root,'books','core-rules','content','core-rules.en.js')).CORE_RULES;
+const coreCurated=coreData.terms;
 const coreSource=loadWindow(path.join(root,'books','core-rules','content','core-rules.source.en.js')).CORE_PDF_SOURCE;
 const coreDigital=readJson(path.join(root,'books','core-rules','content','core-rules.digital-11e.json'));
 const resolutions=readJson(path.join(glossaryRoot,'resolutions.en.json'));
@@ -109,6 +110,8 @@ const digitalCoreId=rule=>digitalCanonicalIds[rule.code]||coreIdByCode.get(rule.
 const glossaryExcludedCodes=new Set(['03.03.01']);
 const digitalTitleOverrides={'24.37.01':'Torrent Restrictions'};
 const digitalTitle=rule=>digitalTitleOverrides[rule.code]||rule.title.replace(/^\d+\.\s*/, '');
+const coreSections=[coreData.introduction,...coreData.groups.flatMap(group=>group.sections)];
+const coreSectionByNumber=new Map(coreSections.filter(section=>section.number).map(section=>[section.number.padStart(2,'0'),section.id]));
 
 for(const rule of coreRules){
   const id=coreId(rule);
@@ -312,6 +315,16 @@ for(const term of registry.values()){
   term.mentions=[...new Set((term.mentions||[]).map(value=>aliases[value]||value).filter(value=>registry.has(value)))];
 }
 
+function hasAnchor(relativePath){
+  const [file,anchor='']=relativePath.split('#'),absolute=path.join(root,...file.split('/'));
+  return fs.existsSync(absolute)&&(!anchor||fs.readFileSync(absolute,'utf8').includes(`id="${anchor}"`));
+}
+for(const rule of coreDigital.records){
+  if(glossaryExcludedCodes.has(rule.code))continue;
+  const section=coreSectionByNumber.get(rule.code.slice(0,2));
+  const term=registry.get(digitalCoreId(rule));
+  if(section&&term)term.fullRulePath=`books/core-rules/reader/${section}.html#rule-${slug(rule.code)}`;
+}
 const escapeRegExp=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 function keywordPattern(title){
   const words=title.trim().split(/\s+/);
@@ -462,6 +475,13 @@ for(const term of registry.values()){
   else if(!term.presentation||term.presentation==='atomic'||term.presentation==='article')term.presentation=clean(term.summary?.en)===clean(term.definition?.en)?'atomic':'article';
 }
 
+for(const [bookId,records] of Object.entries(contexts))for(const record of Object.values(records)){
+  const rule=record.navigation?.rule;
+  if(!rule)continue;
+  const candidate=bookId==='death-guard'?`books/death-guard/reader.html#${rule}`:bookId==='adeptus-mechanicus'?`books/adeptus-mechanicus/index.html#${rule}`:'';
+  if(candidate&&hasAnchor(candidate))record.navigation.fullRulePath=candidate;
+}
+for(const term of registry.values())if(term.fullRulePath&&!hasAnchor(term.fullRulePath))throw new Error(`Broken fullRulePath for ${term.id}: ${term.fullRulePath}`);
 const aliasCandidates=[...titleIndex.entries()].filter(([,ids])=>new Set(ids).size>1).map(([normalizedTitle,ids])=>({normalizedTitle,termIds:[...new Set(ids)],status:'review-required'}));
 const registryDocument={schema:1,language:'en',terms:Object.fromEntries([...registry].sort(([a],[b])=>a.localeCompare(b)))};
 const contextDocuments={};
@@ -475,14 +495,14 @@ writeJson(path.join(glossaryRoot,'generated','conflict-report.json'),report);
 
 const preferredMatches=Object.fromEntries(Object.entries(supplemental.preferredMatches||{}).map(([label,id])=>{if(!registry.has(id))throw new Error(`Unknown preferred match target: ${label} -> ${id}`);return [label.toLowerCase(),id];}));
 const runtimePayload={schema:1,language:'en',contentHash:hash(JSON.stringify({registryDocument,contexts:contextDocuments,aliases,preferredMatches})),terms:registryDocument.terms,aliases,preferredMatches,contexts:Object.fromEntries(Object.entries(contextDocuments).map(([id,value])=>[id,value.terms]))};
-const runtime=`(function(){'use strict';\nconst data=${JSON.stringify(runtimePayload)};\nfunction resolve(id){return data.aliases[id]||id;}\nfunction view(term,nav){return Object.freeze({id:term.id,title:term.title.en,summary:(term.summary&&term.summary.en)||term.definition.en,definition:term.definition.en,presentation:term.presentation,structured:term.structured||{},related:term.related||[],mentions:term.mentions||[],source:term.canonicalSource,status:term.status,...(nav||{})});}\nfunction forBook(bookId){const result={};const local=data.contexts[bookId]||{};for(const [id,term] of Object.entries(data.terms))result[id]=view(term,local[id]&&local[id].navigation);for(const [localId,context] of Object.entries(local)){const id=resolve(context.termId);if(data.terms[id])result[localId]=view(data.terms[id],{...(context.navigation||{}),parameters:context.parameters||{}});}return Object.freeze(result);}\nfunction linkables(bookId){const local=data.contexts[bookId]||{},result=[],seenLocal=new Set(),seenCanonical=new Set();for(const [localId,context] of Object.entries(local)){const id=resolve(context.termId),term=data.terms[id];if(!term||seenLocal.has(localId))continue;const owners=[...(context.owners||[]),...(context.navigation?.units||[])];result.push({id:localId,termId:id,title:term.title.en,aliases:term.aliases||[],matchLabels:term.matchLabels||[],owners:[...new Set(owners)]});seenLocal.add(localId);seenCanonical.add(id);}for(const [id,term] of Object.entries(data.terms)){if(seenCanonical.has(id)||(term.scope!=='global'&&term.scope!==bookId))continue;result.push({id,termId:id,title:term.title.en,aliases:term.aliases||[],matchLabels:term.matchLabels||[],owners:[]});seenCanonical.add(id);}return Object.freeze(result.map(entry=>Object.freeze({...entry,owners:Object.freeze(entry.owners),matchLabels:Object.freeze(entry.matchLabels)})));}\nwindow.WH40K_GLOSSARY=Object.freeze({schema:data.schema,language:data.language,contentHash:data.contentHash,resolve,get(id){return data.terms[resolve(id)]||null;},forBook,linkables,counts:Object.freeze({terms:Object.keys(data.terms).length,aliases:Object.keys(data.aliases).length})});\n}());\n`;
+const runtime=`(function(){'use strict';\nconst data=${JSON.stringify(runtimePayload)};\nfunction resolve(id){return data.aliases[id]||id;}\nfunction view(term,nav){return Object.freeze({id:term.id,title:term.title.en,summary:(term.summary&&term.summary.en)||term.definition.en,definition:term.definition.en,presentation:term.presentation,structured:term.structured||{},related:term.related||[],mentions:term.mentions||[],source:term.canonicalSource,status:term.status,fullRulePath:nav?.fullRulePath||term.fullRulePath||'',...(nav||{})});}\nfunction forBook(bookId){const result={};const local=data.contexts[bookId]||{};for(const [id,term] of Object.entries(data.terms))result[id]=view(term,local[id]&&local[id].navigation);for(const [localId,context] of Object.entries(local)){const id=resolve(context.termId);if(data.terms[id])result[localId]=view(data.terms[id],{...(context.navigation||{}),parameters:context.parameters||{}});}return Object.freeze(result);}\nfunction linkables(bookId){const local=data.contexts[bookId]||{},result=[],seenLocal=new Set(),seenCanonical=new Set();for(const [localId,context] of Object.entries(local)){const id=resolve(context.termId),term=data.terms[id];if(!term||seenLocal.has(localId))continue;const owners=[...(context.owners||[]),...(context.navigation?.units||[])];result.push({id:localId,termId:id,title:term.title.en,aliases:term.aliases||[],matchLabels:term.matchLabels||[],owners:[...new Set(owners)]});seenLocal.add(localId);seenCanonical.add(id);}for(const [id,term] of Object.entries(data.terms)){if(seenCanonical.has(id)||(term.scope!=='global'&&term.scope!==bookId))continue;result.push({id,termId:id,title:term.title.en,aliases:term.aliases||[],matchLabels:term.matchLabels||[],owners:[]});seenCanonical.add(id);}return Object.freeze(result.map(entry=>Object.freeze({...entry,owners:Object.freeze(entry.owners),matchLabels:Object.freeze(entry.matchLabels)})));}\nwindow.WH40K_GLOSSARY=Object.freeze({schema:data.schema,language:data.language,contentHash:data.contentHash,resolve,get(id){return data.terms[resolve(id)]||null;},forBook,linkables,counts:Object.freeze({terms:Object.keys(data.terms).length,aliases:Object.keys(data.aliases).length})});\n}());\n`;
 const runtimePreferences=`window.WH40K_GLOSSARY_MATCHES=Object.freeze(${JSON.stringify(preferredMatches)});\n`;
 fs.writeFileSync(path.join(glossaryRoot,'generated','glossary.en.js'),runtime+runtimePreferences);
 const coreReaderFiles=fs.readdirSync(path.join(root,'books','core-rules','reader'))
   .filter(file=>file.endsWith('.html')||file==='styles.css'||file==='app.js'||file==='search-index.json')
   .map(file=>`books/core-rules/reader/${file}`);
 const cacheInputs=[
-  'index.html','manifest.webmanifest','service-worker.js','roster-guides/index.html','roster-guides/app.js',
+  'index.html','manifest.webmanifest','service-worker.js','glossary-return.js','roster-guides/index.html','roster-guides/app.js',
   'books/death-guard/index.html','books/core-rules/index.html','books/adeptus-mechanicus/index.html',
   ...['death-guard','adeptus-mechanicus'].flatMap(book=>['tokens.css','layout.css','navigation.css','content.css','popups.css'].map(file=>`books/${book}/styles/${file}`)),
   'books/shared/navigation-targets.js','books/shared/datasheet-layout.js','books/shared/datasheet-system.css','books/shared/popup-content.js','books/shared/glossary-autolink.js',

@@ -25,7 +25,7 @@ function hydrateTerms(html) {
     if (!term) throw new Error(`Missing glossary term ${id}`);
     const title = term.title?.en || id;
     const summary = term.summary?.en || term.definition?.en || '';
-    return `${start} data-term-title="${attribute(title)}" data-term-summary="${attribute(summary)}"${end}`;
+    return `${start} data-term-title="${attribute(title)}" data-term-summary="${attribute(summary)}"${term.fullRulePath?` data-full-rule-path="${attribute(term.fullRulePath)}"`:''}${end}`;
   });
 }
 const detachments = [...source.matchAll(/<section class="content-group detachment" id="(detachment-[^"]+)"[^>]*>\s*<h3 class="category-title">([^<]+)<\/h3>/g)]
@@ -149,9 +149,11 @@ function page(route) {
   <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
     <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
     <h2 id="termTitle"></h2><p id="termSummary"></p>
-    <a id="termFull" href="../../../glossary/index.html">Open full article &rarr;</a>
+    <a id="termRule" hidden>Open full rule &rarr;</a>
+    <a id="termFull" href="../../../glossary/index.html">Glossary entry &rarr;</a>
   </dialog>
-  <script src="./mobile.js?v=8"></script>
+  <script src="../../../glossary-return.js?v=1"></script>
+  <script src="./mobile.js?v=9"></script>
 </body>
 </html>`;
 }

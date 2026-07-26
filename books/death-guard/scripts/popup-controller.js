@@ -109,7 +109,9 @@
       const unit=this.contextualUnit(),unitId=unit?.id||'';
       const contextualStatline=unit?.querySelector('.unit-part[id$="-profile"]')?.id||'';
       const actions=[];
+      if(term.fullRulePath)actions.push({label:'Open full rule',href:window.WHGlossaryReturn.href(term.fullRulePath)});
       if(term.id&&this.fullEntry?.isUseful(term.id))actions.push({label:'Full entry',fullEntry:term.id});
+      if(term.id)actions.push({label:'Glossary entry',href:'../../glossary/index.html#'+encodeURIComponent(term.id),megaGlossary:true});
       if(term.rule)actions.push({label:'To rule',target:term.rule,type:'rule'});
       if(unitId||term.datasheet)actions.push({label:'Datasheet & Wargear',target:unitId||term.datasheet,type:'datasheet'});
       if(contextualStatline||term.statline)actions.push({label:'Statline',target:contextualStatline||term.statline,type:'datasheet'});
@@ -117,7 +119,7 @@
     }
     rememberMegaReturn(){
       const root=this.rootElement(),unit=root?.closest?.('.unit-card');
-      try{sessionStorage.setItem('wh40k-mega-glossary-return',JSON.stringify({url:location.href,path:location.pathname,scrollX:window.scrollX||0,scrollY:window.scrollY||0,popupIds:this.snapshot(),rootTerm:root?.dataset?.term||'',unitId:unit?.id||''}));}catch{}
+      window.WHGlossaryReturn?.save({popupIds:this.snapshot(),rootTerm:root?.dataset?.term||'',unitId:unit?.id||''});
     }
     createCard(id,index){
       const term=this.terms[id],card=document.createElement('section'),titleId='term-popup-title-'+index+'-'+id;
@@ -144,7 +146,7 @@
         const group=document.createElement('div');group.className='popup-actions';group.setAttribute('aria-label','Popup destinations');
         actions.forEach((action,actionIndex)=>{
           const button=document.createElement(action.href?'a':'button');button.className='popup-action';button.textContent=action.label;
-          if(action.href){button.href=action.href;button.addEventListener('click',()=>this.rememberMegaReturn());}
+          if(action.href){button.href=action.href;if(action.megaGlossary)button.addEventListener('click',()=>this.rememberMegaReturn());}
           else if(action.fullEntry){button.type='button';button.dataset.fullEntry=action.fullEntry;}
           else{button.type='button';button.dataset.journeyTarget=action.target;button.dataset.journeyType=action.type;button.dataset.actionKey=index+'-'+actionIndex+'-'+action.type+'-'+action.target;}
           group.append(button);

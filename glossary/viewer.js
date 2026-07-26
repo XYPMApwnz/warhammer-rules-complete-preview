@@ -4,10 +4,8 @@
   const terms=Object.keys(api.forBook('death-guard')).filter(id=>api.resolve(id)===id).map(id=>api.get(id)).filter(term=>term&&term.presentation!=='metadata').sort((a,b)=>a.title.en.localeCompare(b.title.en));
   const search=document.getElementById('search'),filters=document.getElementById('filters'),list=document.getElementById('termList'),detail=document.getElementById('termDetail'),resultCount=document.getElementById('resultCount'),libraryBack=document.getElementById('libraryBack'),popup=document.getElementById('termPopup'),popupTitle=document.getElementById('termPopupTitle'),popupSummary=document.getElementById('termPopupSummary'),popupFull=document.getElementById('termPopupFull');
   let category='all',selected='',visibleLimit=120,searchTimer=0;
-  try{
-    const record=JSON.parse(sessionStorage.getItem('wh40k-mega-glossary-return')||'null');
-    if(record?.url&&record?.path){libraryBack.href=record.url;libraryBack.textContent='← Back to rulebook';}
-  }catch{}
+  const returnRecord=window.WHGlossaryReturn?.read();
+  if(returnRecord){libraryBack.href=returnRecord.path;libraryBack.textContent='← Return to popup';}
   document.getElementById('termCount').textContent=api.counts.terms;
   document.getElementById('aliasCount').textContent=api.counts.aliases;
   const categories=['all',...new Set(terms.map(term=>term.kind))];

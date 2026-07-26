@@ -7,6 +7,7 @@
   const title = document.getElementById('termTitle');
   const summary = document.getElementById('termSummary');
   const full = document.getElementById('termFull');
+  const rule = document.getElementById('termRule');
   const nav = document.getElementById('mobileNav');
   const relatedRules = document.getElementById('relatedRules');
   const relatedContent = document.getElementById('relatedRulesContent');
@@ -46,8 +47,15 @@
     title.textContent = termTitle;
     summary.textContent = termSummary;
     full.href = `../../../glossary/index.html#${id}`;
+    rule.hidden = !trigger.dataset.fullRulePath;
+    if (trigger.dataset.fullRulePath) rule.href = window.WHGlossaryReturn.href(trigger.dataset.fullRulePath);
     dialog.showModal();
   }
+
+  full.addEventListener('click', () => {
+    const triggers=[...document.querySelectorAll('[data-term]')];
+    window.WHGlossaryReturn?.save({termId:opener?.dataset.term||'',triggerIndex:opener?triggers.indexOf(opener):-1});
+  });
 
   function filterRelated() {
     if (!relatedContent || !unit) return;
@@ -165,4 +173,14 @@
   });
   drawerMedia.addEventListener?.('change', syncDrawerMode);
   syncDrawerMode();
+
+  const returnRecord=window.WHGlossaryReturn?.read();
+  if(window.WHGlossaryReturn?.matchesCurrent(returnRecord))requestAnimationFrame(()=>{
+    const triggers=[...document.querySelectorAll('[data-term]')];
+    const indexed=triggers[returnRecord.triggerIndex];
+    const trigger=indexed?.dataset.term===returnRecord.termId?indexed:triggers.find(node=>node.dataset.term===returnRecord.termId);
+    window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);
+    if(trigger)showTerm(trigger,false);
+    window.WHGlossaryReturn.clear();
+  });
 }());

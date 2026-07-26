@@ -171,7 +171,7 @@
 
     rememberReturn(){
       const popups=window.DG_APP?.popups,root=popups?.rootElement?.(),unit=root?.closest?.('.unit-card');
-      try{sessionStorage.setItem('wh40k-mega-glossary-return',JSON.stringify({url:location.href,path:location.pathname,scrollX:window.scrollX||0,scrollY:window.scrollY||0,popupIds:popups?.snapshot?.()||[],rootTerm:root?.dataset?.term||'',unitId:unit?.id||''}));}catch(error){}
+      window.WHGlossaryReturn?.save({popupIds:popups?.snapshot?.()||[],rootTerm:root?.dataset?.term||'',unitId:unit?.id||''});
     }
 
     trapFocus(event){

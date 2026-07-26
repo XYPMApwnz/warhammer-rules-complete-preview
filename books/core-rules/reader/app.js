@@ -9,6 +9,7 @@
   const title = document.getElementById('termTitle');
   const summary = document.getElementById('termSummary');
   const full = document.getElementById('termFull');
+  const rule = document.getElementById('termRule');
   const imageDialog = document.getElementById('imageDialog');
   const imageClose = document.getElementById('imageClose');
   const imagePreview = document.getElementById('imagePreview');
@@ -19,6 +20,18 @@
   const searchStatus = document.getElementById('searchStatus');
   const searchResults = document.getElementById('searchResults');
   let searchIndex;
+  let termOpener;
+
+  function showTerm(trigger) {
+    termOpener = trigger;
+    title.textContent = trigger.dataset.termTitle || trigger.textContent.trim();
+    summary.textContent = trigger.dataset.termSummary;
+    full.href = `../../../glossary/index.html#${trigger.dataset.term}`;
+    rule.hidden = !trigger.dataset.fullRulePath;
+    if (trigger.dataset.fullRulePath) rule.href = window.WHGlossaryReturn.href(trigger.dataset.fullRulePath);
+    dialog.dataset.term = trigger.dataset.term;
+    dialog.showModal();
+  }
 
   const normalizeSearch = value => String(value || '')
     .toLowerCase()
@@ -49,10 +62,12 @@
     const trigger = event.target.closest('[data-term]');
     if (!trigger) return;
     if (trigger.closest('summary')) event.preventDefault();
-    title.textContent = trigger.dataset.termTitle || trigger.textContent.trim();
-    summary.textContent = trigger.dataset.termSummary;
-    full.href = `../../../glossary/index.html#${trigger.dataset.term}`;
-    dialog.showModal();
+    showTerm(trigger);
+  });
+
+  full.addEventListener('click', () => {
+    const triggers=[...document.querySelectorAll('[data-term]')];
+    window.WHGlossaryReturn?.save({termId:dialog.dataset.term,triggerIndex:termOpener?triggers.indexOf(termOpener):-1});
   });
 
   menu.addEventListener('click', () => drawer(!body.classList.contains('nav-open')));
@@ -103,6 +118,16 @@
     },{rootMargin:'-20% 0px -65% 0px'});
     pageTargets.forEach(target=>observer.observe(target));
   }
+
+  const returnRecord=window.WHGlossaryReturn?.read();
+  if(window.WHGlossaryReturn?.matchesCurrent(returnRecord))requestAnimationFrame(()=>{
+    const triggers=[...document.querySelectorAll('[data-term]')];
+    const indexed=triggers[returnRecord.triggerIndex];
+    const trigger=indexed?.dataset.term===returnRecord.termId?indexed:triggers.find(node=>node.dataset.term===returnRecord.termId);
+    window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);
+    if(trigger)showTerm(trigger);
+    window.WHGlossaryReturn.clear();
+  });
 
   if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('../../../service-worker.js');
 }());
