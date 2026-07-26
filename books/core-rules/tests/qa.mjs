@@ -158,6 +158,13 @@ for(const [id,label] of Object.entries({
   'core-characteristic-damage':'Damage'
 }))assert(new RegExp(`data-term="${id}"[^>]*>${label}<\\/button> \\([^)]*\\):`).test(datasheetsReader),`${label} definition must open its glossary article`);
 assert(!datasheetsReader.includes('aria-label="Glossary concepts for 02.02"')&&!datasheetsReader.includes('aria-label="Glossary concepts for 02.03"')&&!datasheetsReader.includes('aria-label="Glossary concepts for 02.04"'),'characteristics belong on their inline definitions, not in a detached glossary strip');
+const conceptsReader=fs.readFileSync(path.join(readerRoot,'core-concepts.html'),'utf8');
+const unitsArticle=conceptsReader.slice(conceptsReader.indexOf('id="rule-01-02"'),conceptsReader.indexOf('id="rule-01-03"'));
+for(const child of digital.records.filter(record=>record.code.startsWith('01.02.'))){
+  assert(unitsArticle.includes(`>${child.title}</button>`),`Units and Models See also is missing ${child.title}`);
+  assert(unitsArticle.includes(`id="rule-${child.code.replaceAll('.','-')}"`),`Units and Models is missing the full ${child.title} subrule`);
+}
+assert(unitsArticle.includes('>Frame</button>'),'Units and Models See also is missing Frame');
 assert.equal(glossary['core-rule-03-03-01-what-is-coherency'],undefined,'What Is Coherency must not duplicate the Coherency glossary article');
 assert(!glossary['core-rule-03-03-coherency'].definition.en.includes('WHAT IS COHERENCY'),'Coherency glossary article must contain the rule without the duplicate explainer');
 assert(glossary['core-lethal-hits'].summary.en.includes('automatically wounds')&&glossary['core-lethal-hits'].summary.en.includes('No Wound roll'),'Lethal Hits popup must explain the mechanic');

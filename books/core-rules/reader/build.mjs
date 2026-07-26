@@ -204,7 +204,6 @@ function prose(text,seen=new Set(),excludedId='',hiddenReferences=[]){
     if(/^SEE ALSO$/i.test(line)){flush();seeAlso=true;continue;}
     if(seeAlso&&/^\d{2}\.\d{2}(?:\.\d{2})?$/.test(line)&&bullets.length){bullets[bullets.length-1]+=` ${line}`;continue;}
     if(/^\u2022\s*/.test(line)){
-      if(seeAlso&&hiddenReferences.some(code=>line.includes(code)))continue;
       bullets.push(line.replace(/^\u2022\s*/,''));
       continue;
     }
