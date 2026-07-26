@@ -85,6 +85,15 @@ for(const [index,id] of studyIds.entries()){
   for(const termId of [...page.matchAll(/data-term="([^"]+)"/g)].map(match=>match[1]))assert(glossary[termId],`${id} contains unresolved term ${termId}`);
 }
 assert.equal(routedRules,269,'routed reader must contain every 11E reference record');
+const searchIndex=JSON.parse(fs.readFileSync(path.join(readerRoot,'search-index.json'),'utf8'));
+assert.equal(searchIndex.length,269,'search index must contain every 11E reference record');
+assert.equal(new Set(searchIndex.map(item=>item.code)).size,269,'search index codes must be unique');
+for(const item of searchIndex){
+  const [file,anchor]=item.url.split('#');
+  const target=fs.readFileSync(path.join(readerRoot,file),'utf8');
+  assert(target.includes(`id="${anchor}"`),`search result ${item.code} has a broken destination`);
+  assert(item.code&&item.title&&item.chapter&&item.text,`search result ${item.code} is incomplete`);
+}
 assert(!fs.existsSync(path.join(readerRoot,'rules-appendix.html')),'raw Rules Appendix must not be a primary reader chapter');
 const generatedReader=readerFiles.map(file=>fs.readFileSync(path.join(readerRoot,file),'utf8')).join('\n');
 for(const term of Object.values(glossary).filter(term=>term.canonicalSource?.documentId==='core-rules'&&term.kind!=='keyword'))assert(generatedReader.includes(`data-term="${term.id}"`),`${term.id} has no clickable Core Rules equivalent`);
@@ -106,6 +115,9 @@ const muster=fs.readFileSync(path.join(readerRoot,'muster-armies.html'),'utf8');
 for(const value of ['25.01','25.02','25.03','25.04','Incursion','Strike Force','1000','2000'])assert(muster.includes(value),`Muster Armies is missing ${value}`);
 const readerIndex=fs.readFileSync(path.join(readerRoot,'index.html'),'utf8');
 for(const id of studyIds)assert(readerIndex.includes(`href="${id}.html"`),`reader Start is missing ${id}`);
+assert(readerIndex.includes('id="searchDialog"')&&readerIndex.includes('id="searchButton"'),'reader shell must expose local search');
+const readerApp=fs.readFileSync(path.join(readerRoot,'app.js'),'utf8');
+assert(readerApp.includes("fetch('search-index.json')")&&readerApp.includes("event.key.toLowerCase() === 'k'"),'reader search must load locally and support Ctrl/Cmd+K');
 assert(readerIndex.includes('assets.warhammer-community.com')&&readerIndex.includes('Official GW PDF ↗'),'reader Start must promote the official GW PDF');
 assert(!readerIndex.includes('Wahapedia 11E ↗'),'reader Start must not promote a secondary source');
 const sourcePage=fs.readFileSync(path.join(readerRoot,'movement-phase.html'),'utf8');

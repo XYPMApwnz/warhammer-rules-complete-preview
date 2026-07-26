@@ -13,6 +13,12 @@
   const imageClose = document.getElementById('imageClose');
   const imagePreview = document.getElementById('imagePreview');
   const imageCaption = document.getElementById('imageCaption');
+  const searchButton = document.getElementById('searchButton');
+  const searchDialog = document.getElementById('searchDialog');
+  const searchInput = document.getElementById('searchInput');
+  const searchStatus = document.getElementById('searchStatus');
+  const searchResults = document.getElementById('searchResults');
+  let searchIndex;
 
   function drawer(open) {
     body.classList.toggle('nav-open', open);
@@ -50,6 +56,37 @@
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
   imageClose.addEventListener('click', () => imageDialog.close());
   imageDialog.addEventListener('click', event => { if (event.target === imageDialog) imageDialog.close(); });
+
+  async function openSearch() {
+    searchDialog.showModal();
+    searchInput.focus();
+    if (!searchIndex) {
+      searchStatus.textContent = 'Loading search index…';
+      searchIndex = await fetch('search-index.json').then(response => response.json());
+      searchStatus.textContent = 'Type at least two characters.';
+    }
+  }
+
+  searchButton.addEventListener('click', openSearch);
+  searchDialog.addEventListener('click', event => { if (event.target === searchDialog) searchDialog.close(); });
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLowerCase();
+    if (!searchIndex) return;
+    if (query.length < 2) {
+      searchStatus.textContent = 'Type at least two characters.';
+      searchResults.replaceChildren();
+      return;
+    }
+    const matches = searchIndex.filter(item => `${item.code} ${item.title} ${item.chapter} ${item.text}`.toLowerCase().includes(query)).slice(0, 40);
+    searchStatus.textContent = matches.length ? `${matches.length}${matches.length === 40 ? '+' : ''} results` : 'No matching rules.';
+    searchResults.innerHTML = matches.map(item => `<a href="${item.url}"><small>${item.code} · ${item.chapter}</small><strong>${item.title}</strong><span>${item.text.slice(0, 180)}</span></a>`).join('');
+  });
+  addEventListener('keydown', event => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openSearch();
+    }
+  });
 
   const pageLinks=[...document.querySelectorAll('.on-page a')];
   const pageTargets=pageLinks.map(link=>document.getElementById(link.hash.slice(1))).filter(Boolean);

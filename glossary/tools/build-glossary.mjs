@@ -424,7 +424,7 @@ const runtime=`(function(){'use strict';\nconst data=${JSON.stringify(runtimePay
 const runtimePreferences=`window.WH40K_GLOSSARY_MATCHES=Object.freeze(${JSON.stringify(preferredMatches)});\n`;
 fs.writeFileSync(path.join(glossaryRoot,'generated','glossary.en.js'),runtime+runtimePreferences);
 const coreReaderFiles=fs.readdirSync(path.join(root,'books','core-rules','reader'))
-  .filter(file=>file.endsWith('.html')||file==='styles.css'||file==='app.js')
+  .filter(file=>file.endsWith('.html')||file==='styles.css'||file==='app.js'||file==='search-index.json')
   .map(file=>`books/core-rules/reader/${file}`);
 const cacheInputs=[
   'index.html','manifest.webmanifest','service-worker.js',
