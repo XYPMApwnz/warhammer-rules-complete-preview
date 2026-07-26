@@ -13,7 +13,10 @@
     'stratagem-droning-horror':['plague-marines'],
     'stratagem-eye-of-the-swarm':['plague-marines']
   };
-  const contagionEngines=new Set(['foetid-bloat-drone','foetid-bloat-drone-with-heavy-blight-launcher','helbrute','myphitic-blight-hauler']);
+  const detachmentKeywordGrants=Object.freeze([
+    {detachment:'shamblerot-vectorium',units:['poxwalkers'],id:'keyword-battleline',title:'BATTLELINE'},
+    {detachment:'contagion-engines',units:['foetid-bloat-drone','foetid-bloat-drone-with-heavy-blight-launcher','helbrute','myphitic-blight-hauler'],id:'keyword-contagion-engine',title:'CONTAGION ENGINE'}
+  ]);
   const namedUnits={
     'MALIGNANT PLAGUECASTER':'malignant-plaguecaster','LORD OF POXES':'lord-of-poxes',
     'GREAT UNCLEAN ONE':'great-unclean-one','BIOLOGUS PUTRIFIER':'biologus-putrifier',
@@ -33,9 +36,12 @@
       attached:unit.dataset.rosterAttached==='true',
       twoCharacters:unit.dataset.rosterCharacterCount==='2',
       warlord:unit.dataset.rosterWarlord==='true',
-      contagionEngineCandidate:contagionEngines.has(slug),
       deadlyDemise:Boolean(unit.querySelector('[data-term="core-deadly-demise"]'))
     };
+  }
+
+  function grantedKeywords(unitSlug,detachments=[]){
+    return detachmentKeywordGrants.filter(grant=>detachments.includes(grant.detachment)&&grant.units.includes(unitSlug));
   }
 
   function targetText(card){
@@ -89,9 +95,10 @@
   function matches(card,unitRoot){
     const base=unitRoot.slug?unitRoot:profile(unitRoot);
     const detachment=card.closest('[data-detachment]')?.dataset.detachment||'';
-    const unit={...base,contagionEngine:detachment==='contagion-engines'&&base.contagionEngineCandidate};
+    const granted=new Set(grantedKeywords(base.slug,[detachment]).map(grant=>grant.id));
+    const unit={...base,has:id=>base.has(id)||granted.has(id),contagionEngine:granted.has('keyword-contagion-engine')};
     return card.classList.contains('enhancement')?enhancementMatches(card,unit):stratagemMatches(card,unit);
   }
 
-  window.DGRelatedRules=Object.freeze({profile,matches});
+  window.DGRelatedRules=Object.freeze({profile,matches,grantedKeywords});
 }());

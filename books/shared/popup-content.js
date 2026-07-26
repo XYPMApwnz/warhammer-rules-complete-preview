@@ -85,6 +85,14 @@
   }
 
   function render(term,terms){
+    if(term.profiles?.length){
+      const set=document.createElement('div');set.className='popup-weapon-set';
+      term.profiles.forEach(item=>{
+        const section=document.createElement('section'),title=document.createElement('h4'),profile=parseWeapon(item.summary);
+        title.textContent=item.title;section.append(title);if(profile)section.append(renderWeapon(profile,terms));set.append(section);
+      });
+      return{node:set,classes:['popup-profile','popup-weapon','popup-weapon-group']};
+    }
     const weapon=parseWeapon(term.summary);
     if(weapon)return{node:renderWeapon(weapon,terms),classes:['popup-profile','popup-weapon']};
     const unit=renderUnit(splitParts(term.summary));

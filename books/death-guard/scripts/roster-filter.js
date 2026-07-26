@@ -30,6 +30,9 @@
     });
   };
   restoreLegacyLoadouts();
+  const canonicalTerms = window.WH40K_GLOSSARY.forBook('death-guard');
+  const rosterTerms = {};
+  window.DG_ROSTER_TERMS = rosterTerms;
   const renderComposition = (card, units) => {
     const root = card.querySelector('[id$="-composition"] .ability-list');
     if (!root) return;
@@ -47,8 +50,38 @@
     const block = document.createElement('div');block.className='content-block roster-composition';
     const title = document.createElement('strong');title.textContent='Roster loadout';block.append(title);
     const list = document.createElement('ul');
-    rows.forEach((row) => { const item=document.createElement('li');item.textContent=`${row.quantity}× ${row.name}${row.wargear ? ` — ${row.wargear}` : ''}`;list.append(item); });
+    const groups=window.WHRosterEntities.weaponGroups(canonicalTerms,card.id);
+    rows.forEach((row) => {
+      const item=document.createElement('li');item.append(`${row.quantity}× ${row.name}`);
+      if(row.wargear){
+        item.append(' — ');
+        splitLabels(row.wargear).forEach((label,index)=>{
+          if(index)item.append(', ');
+          const family=window.WHRosterEntities.weaponFamily(label),profiles=groups.get(family)||[];
+          if(!profiles.length){item.append(label);return;}
+          const exact=profiles.find(profile=>window.WHRosterEntities.normalize(profile.title)===window.WHRosterEntities.normalize(label));
+          const termId=exact?.id||`roster-${card.id}-${family.replace(/\s+/g,'-')}`;
+          if(!exact)rosterTerms[termId]={title:label,summary:`${profiles.length} weapon profiles`,datasheet:card.id,profiles};
+          const button=document.createElement('button');button.type='button';button.className='term-button';button.dataset.term=termId;button.textContent=label;item.append(button);
+        });
+      }
+      list.append(item);
+    });
     block.append(list);root.replaceChildren(block);
+  };
+  const renderDetachmentKeywords = (card) => {
+    const grants=window.DGRelatedRules.grantedKeywords(card.id.replace(/^unit-/,''),window.DG_ROSTER_GUIDE.detachmentIds);
+    if(!grants.length)return;
+    const root=card.querySelector('[id$="-keywords"] .ability-list');
+    if(!root)return;
+    const block=document.createElement('div');block.className='content-block roster-granted-keywords';
+    const line=document.createElement('p');line.append('Granted by Detachment: ');
+    grants.forEach((grant,index)=>{
+      if(index)line.append(', ');
+      if(!canonicalTerms[grant.id])rosterTerms[grant.id]={title:grant.title,summary:`This unit has the ${grant.title} keyword while using the ${grant.detachment.replace(/-/g,' ')} Detachment.`};
+      const button=document.createElement('button');button.type='button';button.className='term-button';button.dataset.term=grant.id;button.textContent=grant.title;line.append(button);
+    });
+    block.append(line);root.prepend(block);
   };
   const splitLabels = (value) => {
     const labels = [];
@@ -126,13 +159,12 @@
       points.replaceChildren(value);
     }
     renderComposition(card,entry.units);
+    renderDetachmentKeywords(card);
     card.querySelector('[id$="-wargear-options"]')?.remove();
-    const loadout = normalize(entry.loadout.join(", "));
-    if (!loadout) return;
+    if (!entry.loadout.length) return;
     card.querySelectorAll(".weapon-row:not(.weapon-head)").forEach((row) => {
-      const weapon = normalize(row.querySelector(".weapon-button")?.textContent || row.firstElementChild?.textContent)
-        .replace(/\s+(?:strike|sweep|witchfire|focused witchfire)$/,'');
-      if (weapon && !loadout.includes(weapon)) row.remove();
+      const weapon = row.querySelector(".weapon-button")?.textContent || row.firstElementChild?.textContent;
+      if (weapon && !window.WHRosterEntities.loadoutIncludesProfile(entry.loadout,weapon)) row.remove();
     });
     card.querySelectorAll(".weapon-group").forEach((group) => {
       if (!group.querySelector(".weapon-row:not(.weapon-head)")) group.remove();

@@ -89,7 +89,7 @@
     card.dataset.turn=turn;
     card.classList.add(turn==='THEIR TURN'?'turn-their':turn==='YOUR TURN'?'turn-yours':'turn-any');
   }
-  const terms=window.WH40K_GLOSSARY.forBook('death-guard');
+  const terms=Object.freeze({...window.WH40K_GLOSSARY.forBook('death-guard'),...(window.DG_ROSTER_TERMS||{})});
   const documentRoot=document.querySelector('.document');
   window.WHGlossaryAutolink?.apply(documentRoot,'death-guard');
   window.WHGlossaryAutolink?.validate(documentRoot,terms);
