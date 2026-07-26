@@ -46,18 +46,21 @@ for(const [slug,book] of Object.entries(books)){
 
 check('preview cache namespace is isolated',sw.includes('warhammer-rules-complete-preview-'));
 check('preview cache revision is content-derived',exists('glossary/generated/cache-revision.js')&&sw.includes('importScripts("./glossary/generated/cache-revision.js")')&&sw.includes('self.WH40K_CACHE_REVISION'));
-check('library header opens the Mega Glossary',library.includes('class="glossary-link"')&&library.includes('href="glossary/index.html"'));
+check('library header opens the Mega Glossary',library.includes('glossary-link')&&library.includes('href="glossary/index.html"'));
 check('library has no dead book-preview modal',!library.includes('id="overlay"')&&!library.includes('function openBook')&&!library.includes('function closeBook'));
 check('Roster Guides have a dedicated public route',exists('roster-guides/index.html')&&exists('roster-guides/app.js'));
 check('Roster Guides preserve the storage contract',rosterGuidesApp.includes("const STORAGE_KEY='wh40k-rosters-v1'")&&rosterGuidesApp.includes('function rosterId(text)')&&rosterGuidesApp.includes('../books/death-guard/reader.html?roster='));
 check('Roster Guides tolerate malformed saved collections',rosterGuidesApp.includes('Array.isArray(records)?records:[]')&&rosterGuidesApp.includes('.filter(isDisplayable)'));
 check('Roster Guides keep saved records ahead of creation',rosterGuides.indexOf('id="saved-title"')<rosterGuides.indexOf('id="create-title"'));
 check('Roster Guides have a dedicated offline fallback',sw.includes('ROSTER_GUIDES_FALLBACK')&&sw.includes('/roster-guides/'));
-check('Roster Guide is explicitly Death Guard only',library.includes('Create a Death Guard roster guide')&&library.includes('Only Death Guard is supported'));
-check('unsupported roster factions are blocked before save and open',library.includes('function isDeathGuardFaction')&&library.indexOf('if (!isDeathGuardFaction(roster.faction))')<library.indexOf('const record = saveRoster(roster, sourceText)')&&library.includes('if (!isDeathGuardFaction(record.roster?.faction))'));
-check('unsupported backup factions are not imported',library.includes('if (!isDeathGuardFaction(record.roster.faction))')&&library.includes('The file was not imported'));
-check('roster storage key remains compatible',library.includes('const ROSTER_STORAGE_KEY = "wh40k-rosters-v1"'));
-check('roster arithmetic does not claim legality or current points',library.includes('Current points and roster legality were not checked.')&&!library.includes('Roster is ready to build.'));
+check('Library explains the product and separates primary spaces',library.includes('A unified reference for Core Rules')&&library.includes('Army Books')&&library.includes('href="roster-guides/index.html"'));
+check('Library no longer owns roster storage or import controls',!library.includes('localStorage')&&!library.includes('id="roster-input"'));
+check('legacy root roster links keep query and hash',library.includes("new URLSearchParams(location.search).has('roster')")&&library.includes("new URL('books/death-guard/reader.html',location.href)")&&library.includes('target.search=location.search')&&library.includes('target.hash=location.hash'));
+check('Roster Guide is explicitly Death Guard only',rosterGuides.includes('Only Death Guard is supported'));
+check('unsupported roster factions are blocked before save and open',rosterGuidesApp.includes('function isDeathGuardFaction')&&rosterGuidesApp.indexOf('if(!isDeathGuardFaction(roster.faction))')<rosterGuidesApp.indexOf('const record=saveRoster(roster,input.value)')&&rosterGuidesApp.includes('if(!isDeathGuardFaction(record.roster?.faction))'));
+check('unsupported backup factions are not imported',rosterGuidesApp.includes('if(!isDeathGuardFaction(record.roster.faction))')&&rosterGuidesApp.includes('The file was not imported'));
+check('roster storage key remains compatible',rosterGuidesApp.includes("const STORAGE_KEY='wh40k-rosters-v1'"));
+check('roster arithmetic does not claim legality or current points',rosterGuidesApp.includes('Current points and roster legality were not checked.')&&!rosterGuidesApp.includes('Roster is ready to build.'));
 check('Core Rules source pages are cached only on demand',!sw.includes('Array.from({length:88}')&&sw.includes('cached || fetchAndCache(request, event)'));
 check('Core Rules routed chapters and search are available offline',coreReaderFiles.length===27&&coreReaderFiles.every(file=>sw.includes(`./books/core-rules/reader/${file}`))&&sw.includes('./books/core-rules/reader/search-index.json'));
 check('Core Rules heavy source images remain cached on demand',!sw.includes('Array.from({length:88}')&&!sw.includes('./books/core-rules/assets/diagrams/BenefitOfCover.png'));
