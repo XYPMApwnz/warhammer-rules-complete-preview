@@ -20,6 +20,11 @@
   const searchResults = document.getElementById('searchResults');
   let searchIndex;
 
+  const normalizeSearch = value => String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+
   function drawer(open) {
     body.classList.toggle('nav-open', open);
     menu.setAttribute('aria-expanded', String(open));
@@ -70,14 +75,14 @@
   searchButton.addEventListener('click', openSearch);
   searchDialog.addEventListener('click', event => { if (event.target === searchDialog) searchDialog.close(); });
   searchInput.addEventListener('input', () => {
-    const query = searchInput.value.trim().toLowerCase();
+    const query = normalizeSearch(searchInput.value);
     if (!searchIndex) return;
     if (query.length < 2) {
       searchStatus.textContent = 'Type at least two characters.';
       searchResults.replaceChildren();
       return;
     }
-    const matches = searchIndex.filter(item => `${item.code} ${item.title} ${item.chapter} ${item.text}`.toLowerCase().includes(query)).slice(0, 40);
+    const matches = searchIndex.filter(item => normalizeSearch(`${item.code} ${item.title} ${item.chapter} ${item.text}`).includes(query)).slice(0, 40);
     searchStatus.textContent = matches.length ? `${matches.length}${matches.length === 40 ? '+' : ''} results` : 'No matching rules.';
     searchResults.innerHTML = matches.map(item => `<a href="${item.url}"><small>${item.code} · ${item.chapter}</small><strong>${item.title}</strong><span>${item.text.slice(0, 180)}</span></a>`).join('');
   });
