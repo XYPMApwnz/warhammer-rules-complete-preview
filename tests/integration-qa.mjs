@@ -46,11 +46,11 @@ check('preview cache namespace is isolated',sw.includes('warhammer-rules-complet
 check('preview cache revision is content-derived',exists('glossary/generated/cache-revision.js')&&sw.includes('importScripts("./glossary/generated/cache-revision.js")')&&sw.includes('self.WH40K_CACHE_REVISION'));
 check('library header opens the Mega Glossary',library.includes('class="glossary-link"')&&library.includes('href="glossary/index.html"'));
 check('library has no dead book-preview modal',!library.includes('id="overlay"')&&!library.includes('function openBook')&&!library.includes('function closeBook'));
-check('Roster Guide is explicitly Death Guard only',library.includes('Создать гайд по ростеру Death Guard')&&library.includes('Поддерживается только Death Guard'));
+check('Roster Guide is explicitly Death Guard only',library.includes('Create a Death Guard roster guide')&&library.includes('Only Death Guard is supported'));
 check('unsupported roster factions are blocked before save and open',library.includes('function isDeathGuardFaction')&&library.indexOf('if (!isDeathGuardFaction(roster.faction))')<library.indexOf('const record = saveRoster(roster, sourceText)')&&library.includes('if (!isDeathGuardFaction(record.roster?.faction))'));
-check('unsupported backup factions are not imported',library.includes('if (!isDeathGuardFaction(record.roster.faction))')&&library.includes('Файл не был импортирован'));
+check('unsupported backup factions are not imported',library.includes('if (!isDeathGuardFaction(record.roster.faction))')&&library.includes('The file was not imported'));
 check('roster storage key remains compatible',library.includes('const ROSTER_STORAGE_KEY = "wh40k-rosters-v1"'));
-check('roster arithmetic does not claim legality or current points',library.includes('Актуальность очков и легальность ростера не проверялись.')&&!library.includes('Ростер готов к сборке.'));
+check('roster arithmetic does not claim legality or current points',library.includes('Current points and roster legality were not checked.')&&!library.includes('Roster is ready to build.'));
 check('Core Rules source pages are cached only on demand',!sw.includes('Array.from({length:88}')&&sw.includes('cached || fetchAndCache(request, event)'));
 check('Core Rules routed chapters and search are available offline',coreReaderFiles.length===27&&coreReaderFiles.every(file=>sw.includes(`./books/core-rules/reader/${file}`))&&sw.includes('./books/core-rules/reader/search-index.json'));
 check('Core Rules heavy source images remain cached on demand',!sw.includes('Array.from({length:88}')&&!sw.includes('./books/core-rules/assets/diagrams/BenefitOfCover.png'));
