@@ -144,7 +144,7 @@ function shell({title,current='',currentLabel='Start',onPage='',content}){
 
 function sourceLinks(pages){
   const pageLinks=pages.map(page=>`<a href="../assets/pages/page-${String(page).padStart(2,'0')}.jpg" target="_blank" rel="noreferrer">Official page ${page}</a>`).join('');
-  return `<details class="source-pages"><summary>Sources and original pages</summary><div>${pageLinks}<a href="${pdfUrl}" target="_blank" rel="noreferrer">Official GW PDF ↗</a><a href="${wahapediaUrl}" target="_blank" rel="noreferrer">Wahapedia 11E ↗</a></div></details>`;
+  return `<details class="source-pages"><summary>Sources and original pages</summary><div><a href="${pdfUrl}" target="_blank" rel="noreferrer">Official GW PDF ↗</a>${pageLinks}<a href="${wahapediaUrl}" target="_blank" rel="noreferrer">Secondary reference: Wahapedia 11E ↗</a></div></details>`;
 }
 
 function musterTable(){
@@ -209,7 +209,7 @@ function sectionPage(id,index){
   }
   const anchors=(id==='introduction'?[]:records.filter(record=>record.code.split('.').length===2).map(record=>({id:`rule-${slug(record.code)}`,title:record.title}))).slice(0,20);
   const onPage=anchors.length?`<section class="nav-group on-page"><h2>On this page</h2>${anchors.map(item=>`<a href="#${item.id}">${escapeHtml(item.title)}</a>`).join('')}</section>`:'';
-  const actions=[`<a class="button source" href="${wahapediaUrl}" target="_blank" rel="noreferrer">11E reference ↗</a>`];
+  const actions=[`<a class="button source" href="${pdfUrl}" target="_blank" rel="noreferrer">Official GW PDF ↗</a>`];
   if(previous)actions.push(`<a class="button" href="${fileFor(previous)}">← ${escapeHtml(byId.get(previous).title)}</a>`);
   if(next)actions.push(`<a class="button" href="${fileFor(next)}">${escapeHtml(byId.get(next).title)} →</a>`);
   const label=pages.length?pageLabel(pages):'Digital 11E';
@@ -219,7 +219,7 @@ function sectionPage(id,index){
 
 const groups=data.groups.map(group=>`<section class="home-section"><header><span class="eyebrow">${escapeHtml(group.range)} // ${escapeHtml(group.pages)}</span><h2>${escapeHtml(group.title)}</h2><p>${escapeHtml(group.description)}</p></header><div class="home-grid">${group.sections.map(section=>`<a class="home-card" href="${fileFor(section.id)}"><small>${escapeHtml(section.number)} // ${escapeHtml(pageLabel(pdf.sections[section.id]||[]))}</small><strong>${escapeHtml(section.title)}</strong><span>${escapeHtml(section.summary)}</span><em>Open chapter →</em></a>`).join('')}</div></section>`).join('');
 const intro=data.introduction;
-const indexContent=`<section class="chapter-hero" data-number="25"><span class="eyebrow">Warhammer 40,000 // Core Rules 11E</span><h2>Rules,<br>without the weight.</h2><p>Introduction and all 25 numbered chapters, including digital clarifications, Core Stratagems, Muster Armies and the diagrams used by the 11E reference.</p><div class="hero-actions"><a class="button" href="${fileFor(intro.id)}">Start with Introduction →</a><a class="button source" href="${wahapediaUrl}" target="_blank" rel="noreferrer">Wahapedia 11E ↗</a></div></section>${groups}`;
+const indexContent=`<section class="chapter-hero" data-number="25"><span class="eyebrow">Warhammer 40,000 // Core Rules 11E</span><h2>Rules,<br>without the weight.</h2><p>Introduction and all 25 numbered chapters, including digital clarifications, Core Stratagems, Muster Armies and the diagrams used by the 11E reference.</p><div class="hero-actions"><a class="button" href="${fileFor(intro.id)}">Start with Introduction →</a><a class="button source" href="${pdfUrl}" target="_blank" rel="noreferrer">Official GW PDF ↗</a></div></section>${groups}`;
 fs.writeFileSync(path.join(root,'index.html'),shell({title:'Complete Reader',content:indexContent}));
 for(const [index,id] of order.entries())fs.writeFileSync(path.join(root,fileFor(id)),sectionPage(id,index));
 const stale=path.join(root,'rules-appendix.html');

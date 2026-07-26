@@ -90,7 +90,7 @@
   hero.querySelector("h1").textContent = roster.faction;
   hero.querySelector("h1 + p").textContent = detachmentLabel;
   hero.querySelector(".source").textContent = `${roster.units.length} units · ${roster.declared || roster.calculated} pts · generated from New Recruit`;
-  hero.querySelector(".lead").textContent = "This guide contains only the rules, detachment and datasheets used by this roster.";
+  hero.querySelector(".lead").textContent = "This guide is reduced to the selected Death Guard detachments, units and recognised loadout.";
 
   document.querySelectorAll(".content-group.detachment").forEach((section) => {
     if (!detachmentIds.has(section.id)) section.remove();

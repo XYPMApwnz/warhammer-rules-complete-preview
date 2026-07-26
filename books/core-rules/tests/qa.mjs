@@ -106,4 +106,8 @@ const muster=fs.readFileSync(path.join(readerRoot,'muster-armies.html'),'utf8');
 for(const value of ['25.01','25.02','25.03','25.04','Incursion','Strike Force','1000','2000'])assert(muster.includes(value),`Muster Armies is missing ${value}`);
 const readerIndex=fs.readFileSync(path.join(readerRoot,'index.html'),'utf8');
 for(const id of studyIds)assert(readerIndex.includes(`href="${id}.html"`),`reader Start is missing ${id}`);
+assert(readerIndex.includes('assets.warhammer-community.com')&&readerIndex.includes('Official GW PDF ↗'),'reader Start must promote the official GW PDF');
+assert(!readerIndex.includes('Wahapedia 11E ↗'),'reader Start must not promote a secondary source');
+const sourcePage=fs.readFileSync(path.join(readerRoot,'movement-phase.html'),'utf8');
+assert(sourcePage.indexOf('Official GW PDF ↗')<sourcePage.indexOf('Secondary reference: Wahapedia 11E ↗'),'official source must precede the secondary reference');
 console.log(`QA passed: ${designedIds.length} designed lessons, ${studyIds.length} reader chapters, ${digital.records.length} Wahapedia 11E records, ${diagramCount} diagrams, 88 official source pages.`);

@@ -45,9 +45,15 @@ for(const [slug,book] of Object.entries(books)){
 check('preview cache namespace is isolated',sw.includes('warhammer-rules-complete-preview-'));
 check('preview cache revision is content-derived',exists('glossary/generated/cache-revision.js')&&sw.includes('importScripts("./glossary/generated/cache-revision.js")')&&sw.includes('self.WH40K_CACHE_REVISION'));
 check('library header opens the Mega Glossary',library.includes('class="glossary-link"')&&library.includes('href="glossary/index.html"'));
+check('Roster Guide is explicitly Death Guard only',library.includes('Создать гайд по ростеру Death Guard')&&library.includes('Поддерживается только Death Guard'));
+check('unsupported roster factions are blocked before save and open',library.includes('function isDeathGuardFaction')&&library.indexOf('if (!isDeathGuardFaction(roster.faction))')<library.indexOf('const record = saveRoster(roster, sourceText)')&&library.includes('if (!isDeathGuardFaction(record.roster?.faction))'));
+check('unsupported backup factions are not imported',library.includes('if (!isDeathGuardFaction(record.roster.faction))')&&library.includes('Файл не был импортирован'));
+check('roster storage key remains compatible',library.includes('const ROSTER_STORAGE_KEY = "wh40k-rosters-v1"'));
+check('roster arithmetic does not claim legality or current points',library.includes('Актуальность очков и легальность ростера не проверялись.')&&!library.includes('Ростер готов к сборке.'));
 check('Core Rules source pages are cached only on demand',!sw.includes('Array.from({length:88}')&&sw.includes('cached || fetchAndCache(request, event)'));
 check('Core Rules routed chapters are cached on demand',coreReaderFiles.length===27&&!sw.includes('reader/core-concepts.html'));
 check('Core Rules app is cache-busted',read('books/core-rules/index.html').includes('src="app.js?v=1"'));
+check('Core Rules promotes official GW source and labels Wahapedia secondary',read('books/core-rules/reader/index.html').includes('Official GW PDF ↗')&&!read('books/core-rules/reader/index.html').includes('Wahapedia 11E ↗')&&read('books/core-rules/reader/movement-phase.html').includes('Secondary reference: Wahapedia 11E ↗'));
 check('global glossary runtime exists but is cached on demand',exists('glossary/generated/glossary.en.js')&&!sw.includes('"./glossary/generated/glossary.en.js?v=3"'));
 check('Mega Glossary return UI is versioned and precached',read('glossary/index.html').includes('id="libraryBack"')&&read('glossary/index.html').includes('viewer.js?v=3')&&sw.includes('"./glossary/viewer.js?v=3"'));
 check('glossary runtime exposes curated matching labels',read('glossary/generated/glossary.en.js').includes('matchLabels'));

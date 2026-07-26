@@ -353,19 +353,19 @@
       <div class="roster-console">
         <form class="roster-form" id="roster-form">
           <p class="roster-kicker">New Recruit // Roster Guide</p>
-          <h2 id="roster-title">Собрать гайд по ростеру</h2>
-          <p class="roster-help">Вставьте текстовый экспорт из New Recruit. Данные обрабатываются только в вашем браузере.</p>
+          <h2 id="roster-title">Создать гайд по ростеру Death Guard</h2>
+          <p class="roster-help">Поддерживается только Death Guard. Вставьте текстовый экспорт из New Recruit — данные обрабатываются и хранятся только в вашем браузере.</p>
           <label for="roster-input" class="roster-kicker">Текст ростера</label>
           <textarea class="roster-input" id="roster-input" required spellcheck="false" placeholder="+ FACTION KEYWORD: Chaos - Death Guard&#10;+ DETACHMENT: Virulent Vectorium (Worldblight)&#10;+ TOTAL ARMY POINTS: 1205pts&#10;&#10;Char1: 1x Biologus Putrifier (60 pts): ..."></textarea>
           <div class="roster-actions">
-            <button class="roster-action" type="submit">Собрать гайд</button>
+            <button class="roster-action" type="submit">Создать гайд</button>
             <button class="roster-action secondary" id="roster-clear" type="button">Очистить</button>
           </div>
         </form>
         <div class="roster-result" id="roster-result" aria-live="polite">
           <p class="roster-kicker">Предпросмотр</p>
           <h2>Ростер ещё не загружен</h2>
-          <p class="roster-empty">Здесь появятся фракция, detachment, проверка очков и распознанные боевые единицы.</p>
+          <p class="roster-empty">Здесь появятся фракция, detachment, арифметическая сверка экспорта и распознанные боевые единицы.</p>
         </div>
       </div>
     </section>
@@ -514,6 +514,10 @@
     document.querySelectorAll(".status, .checked").forEach(updateFreshness);
     const ROSTER_STORAGE_KEY = "wh40k-rosters-v1";
 
+    function isDeathGuardFaction(value) {
+      return String(value || "").replace(/^Chaos\s*-\s*/i, "").trim().toLowerCase() === "death guard";
+    }
+
     function getSavedRosters() {
       try { return JSON.parse(localStorage.getItem(ROSTER_STORAGE_KEY)) || []; }
       catch { return []; }
@@ -541,7 +545,12 @@
     }
 
     function openSavedRoster(id) {
-      if (!getSavedRosters().some((record) => record.id === id)) return;
+      const record = getSavedRosters().find((item) => item.id === id);
+      if (!record) return;
+      if (!isDeathGuardFaction(record.roster?.faction)) {
+        alert("Эта версия Roster Guide поддерживает только Death Guard. Сохранённая запись не изменена.");
+        return;
+      }
       location.href = `books/death-guard/reader.html?roster=${encodeURIComponent(id)}`;
     }
 
@@ -643,10 +652,10 @@
         <h2>${escapeHtml(roster.faction)}</h2>
         <p class="roster-help">${escapeHtml((roster.detachments || [{ label:roster.detachment }]).map((item) => item.label).join(" + "))} · ${escapeHtml(roster.disposition)}</p>
         <div class="roster-summary">
-          <div class="roster-stat"><small>Заявлено</small><strong>${roster.declared || "—"} pts</strong></div>
-          <div class="roster-stat"><small>Посчитано</small><strong>${roster.calculated} pts</strong></div>
+          <div class="roster-stat"><small>Заявлено в экспорте</small><strong>${roster.declared || "—"} pts</strong></div>
+          <div class="roster-stat"><small>Сумма позиций</small><strong>${roster.calculated} pts</strong></div>
         </div>
-        <div class="roster-status ${matches ? "" : "warn"}">${matches ? "✓ Очки совпадают. Ростер готов к сборке." : "! Проверьте ростер: сумма строк не совпадает с итогом."}</div>
+        <div class="roster-status ${matches ? "" : "warn"}">${matches ? "✓ Сумма позиций совпадает с итогом экспорта.<br>Актуальность очков и легальность ростера не проверялись." : "! Сумма позиций не совпадает с итогом экспорта. Актуальность очков и легальность ростера не проверялись."}</div>
         <ul class="roster-units">${[...grouped.values()].map((unit) => `<li><strong>${escapeHtml(unit.name)}${unit.copies > 1 ? ` ×${unit.copies}` : ""}</strong><span>${unit.total} pts</span></li>`).join("")}</ul>
         <div class="roster-actions"><button class="roster-action" id="open-guide" type="button">Открыть персональный гайд</button></div>`;
       document.querySelector("#open-guide").addEventListener("click", () => openGuide(record.id));
@@ -663,13 +672,17 @@
         document.querySelector("#roster-result").innerHTML = '<p class="roster-kicker">Ошибка импорта</p><h2>Юниты не найдены</h2><p class="roster-empty">Вставьте экспорт New Recruit с позициями вида “1x Unit (100 pts)”.</p>';
         return;
       }
+      if (!isDeathGuardFaction(roster.faction)) {
+        document.querySelector("#roster-result").innerHTML = `<p class="roster-kicker">Фракция не поддерживается</p><h2>${escapeHtml(roster.faction)}</h2><p class="roster-empty">Эта версия Roster Guide работает только с Death Guard. Ростер не был сохранён.</p>`;
+        return;
+      }
       const sourceText = document.querySelector("#roster-input").value;
       const record = saveRoster(roster, sourceText);
       renderRoster(roster, record);
     });
     document.querySelector("#roster-clear").addEventListener("click", () => {
       document.querySelector("#roster-form").reset();
-      document.querySelector("#roster-result").innerHTML = '<p class="roster-kicker">Предпросмотр</p><h2>Ростер ещё не загружен</h2><p class="roster-empty">Здесь появятся фракция, detachment, проверка очков и распознанные боевые единицы.</p>';
+      document.querySelector("#roster-result").innerHTML = '<p class="roster-kicker">Предпросмотр</p><h2>Ростер ещё не загружен</h2><p class="roster-empty">Здесь появятся фракция, detachment, арифметическая сверка экспорта и распознанные боевые единицы.</p>';
       document.querySelector("#roster-input").focus();
     });
 
@@ -690,6 +703,11 @@
       try {
         const record = JSON.parse(await file.text());
         if (!record?.id || !record?.roster?.units?.length) throw new Error();
+        if (!isDeathGuardFaction(record.roster.faction)) {
+          alert("Эта версия Roster Guide поддерживает только Death Guard. Файл не был импортирован.");
+          event.target.value = "";
+          return;
+        }
         const records = getSavedRosters();
         putSavedRosters([{ ...record, updatedAt:new Date().toISOString() }, ...records.filter((item) => item.id !== record.id)]);
         renderSavedRosters();
