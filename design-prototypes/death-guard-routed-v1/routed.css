@@ -1,0 +1,75 @@
+:root { --route-header: 66px; }
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body { margin: 0; min-width: 320px; color: var(--ink); background: var(--void); }
+button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+.route-header {
+  position: fixed; z-index: 80; inset: 0 0 auto; height: calc(var(--route-header) + env(safe-area-inset-top));
+  padding: env(safe-area-inset-top) 18px 0; display: flex; align-items: center; gap: 14px;
+  border-bottom: 1px solid var(--line); background: var(--void);
+}
+.route-menu { display: none; width: 42px; height: 42px; border: 1px solid var(--line); color: var(--ink); background: var(--panel); font-size: 21px; }
+.route-brand { display: grid; min-width: 210px; color: var(--ink); text-decoration: none; }
+.route-brand strong { font: 700 21px/1 Georgia,serif; }
+.route-brand small { color: var(--green); font: 750 9px/1.4 ui-monospace,monospace; letter-spacing: .13em; text-transform: uppercase; }
+.route-current { color: var(--muted); font: 700 13px/1 system-ui,sans-serif; }
+.route-library { margin-left: auto; padding: 11px 13px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font: 750 12px/1 system-ui,sans-serif; }
+
+.route-nav {
+  position: fixed; z-index: 60; inset: calc(var(--route-header) + env(safe-area-inset-top)) auto 0 0;
+  width: 270px; padding: 22px 18px 34px; overflow-y: auto; border-right: 1px solid var(--line); background: var(--panel);
+}
+.route-nav-group { margin-bottom: 20px; }
+.route-nav-group h2 { margin: 0 0 7px; padding: 0 10px; color: var(--bronze-bright); font: 800 10px/1.4 ui-monospace,monospace; letter-spacing: .14em; text-transform: uppercase; }
+.route-nav-group a { display: block; padding: 12px 11px; border-left: 3px solid transparent; color: var(--muted); text-decoration: none; font: 700 15px/1.25 system-ui,sans-serif; }
+.route-nav-group a[aria-current] { border-left-color: var(--pink); color: var(--green); background: linear-gradient(90deg,color-mix(in srgb,var(--green) 12%,transparent),transparent); }
+.route-glossary, .route-legacy { display: block; margin-top: 16px; padding: 13px 11px; border-top: 1px solid var(--line); color: var(--ink); font-weight: 750; }
+.route-legacy { margin-top: 0; border: 0; color: var(--muted); font-size: 12px; }
+.route-scrim { position: fixed; z-index: 50; inset: calc(var(--route-header) + env(safe-area-inset-top)) 0 0; border: 0; background: rgba(0,0,0,.64); }
+
+.route-main { width: min(1260px,calc(100% - 318px)); margin-left: 294px; padding: calc(var(--route-header) + env(safe-area-inset-top) + 28px) 24px 100px 0; }
+.route-main > :is(.content-group,.unit-card) { margin: 0; }
+.route-main :is(.unit-part,.detachment-part) { scroll-margin-top: calc(var(--route-header) + 18px); }
+
+.route-home { min-height: calc(100dvh - var(--route-header) - 128px); padding: clamp(28px,5vw,72px); border: 1px solid var(--line); background: linear-gradient(135deg,color-mix(in srgb,var(--green) 8%,transparent),transparent 42%),var(--glass); }
+.route-home > .eyebrow { color: var(--pink); font: 800 10px/1 ui-monospace,monospace; letter-spacing: .16em; text-transform: uppercase; }
+.route-home h1 { margin: 12px 0 8px; font: 700 clamp(48px,7vw,88px)/.94 Georgia,serif; letter-spacing: -.045em; }
+.route-home > p { max-width: 650px; color: var(--muted); font-size: 18px; }
+.route-cards { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin-top: 38px; }
+.route-cards a { min-height: 150px; padding: 22px; display: grid; align-content: end; border: 1px solid var(--line); border-left: 3px solid var(--green-deep); color: var(--ink); background: var(--panel); text-decoration: none; }
+.route-cards small { color: var(--pink); font: 800 9px/1.4 ui-monospace,monospace; letter-spacing: .12em; text-transform: uppercase; }
+.route-cards strong { margin: 9px 0 14px; font: 700 27px/1 Georgia,serif; }
+.route-cards span { color: var(--muted); font-size: 13px; }
+
+.route-dialog { width: min(560px,calc(100% - 28px)); padding: 0 22px 22px; border: 1px solid var(--bronze); border-top: 4px solid var(--green); color: var(--ink); background: var(--panel); box-shadow: 0 24px 72px rgba(0,0,0,.72); }
+.route-dialog::backdrop { background: rgba(3,5,3,.78); }
+.route-dialog-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; color: var(--pink); font: 800 9px ui-monospace,monospace; letter-spacing: .14em; text-transform: uppercase; }
+.route-dialog-head button { width: 44px; height: 44px; border: 1px solid var(--line); color: var(--ink); background: var(--panel-2); font-size: 24px; }
+.route-dialog h2 { margin: 0 0 12px; font: 700 30px/1 Georgia,serif; }
+.route-dialog p { color: var(--muted); font-size: 17px; line-height: 1.55; }
+.route-dialog > a { display: inline-block; padding: 12px 0; color: var(--green); font-weight: 800; }
+
+@media (max-width:1100px) {
+  .route-menu { display: block; }
+  .route-nav { width: min(360px,88vw); transform: translateX(-102%); box-shadow: 24px 12px 52px rgba(0,0,0,.5); }
+  .route-nav-open .route-nav { transform: translateX(0); }
+  .route-main { width: 100%; margin: 0; padding: calc(var(--route-header) + env(safe-area-inset-top) + 18px) 16px 90px; }
+  .unit-card > :is(.unit-head,.unit-header) { grid-template-columns: 1fr; }
+  .unit-card.ds-layout .points.ds-cost { width: min(100%,520px); min-width: 0; justify-self: start; }
+  .unit-card.ds-layout .ds-main-grid { grid-template-columns: 1fr; }
+  .unit-card.ds-layout .ds-arsenal { border-right: 0; border-bottom: 1px solid var(--line); }
+}
+@media (max-width:620px) {
+  :root { --route-header: 58px; }
+  .route-header { padding-inline: 10px; gap: 8px; }
+  .route-brand { min-width: 0; }
+  .route-brand strong { font-size: 17px; }
+  .route-brand small, .route-current, .route-library { display: none; }
+  .route-main { padding-inline: 8px; }
+  .route-home { padding: 28px 18px; }
+  .route-cards { grid-template-columns: 1fr; }
+  .unit-card > :is(.unit-head,.unit-header) { padding: 20px 18px; }
+  .unit-card :is(.unit-name,.unit-header h3) { font-size: clamp(38px,15vw,56px); }
+  .route-dialog { max-height: calc(100dvh - 24px); overflow: auto; }
+}
