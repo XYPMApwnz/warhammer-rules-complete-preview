@@ -17,7 +17,7 @@ function walk(directory){
   });
 }
 
-const htmlFiles=[path.join(root,'index.html'),...walk(path.join(root,'books')),...walk(path.join(root,'glossary'))];
+const htmlFiles=[path.join(root,'index.html'),...walk(path.join(root,'books')),...walk(path.join(root,'glossary')),...walk(path.join(root,'roster-guides'))];
 for(const file of htmlFiles){
   const relative=path.relative(root,file).replaceAll('\\','/');
   const html=fs.readFileSync(file,'utf8');

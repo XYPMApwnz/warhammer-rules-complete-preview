@@ -2,12 +2,16 @@ importScripts("./glossary/generated/cache-revision.js");
 const CACHE_PREFIX = "warhammer-rules-complete-preview-";
 const CACHE_NAME = `${CACHE_PREFIX}${self.WH40K_CACHE_REVISION || "fallback"}`;
 const LIBRARY_FALLBACK = "./index.html";
+const ROSTER_GUIDES_FALLBACK = "./roster-guides/index.html";
 const DEATH_GUARD_FALLBACK = "./books/death-guard/index.html";
 const CORE_RULES_FALLBACK = "./books/core-rules/reader/index.html";
 const ADEPTUS_MECHANICUS_FALLBACK = "./books/adeptus-mechanicus/index.html";
 const APP_SHELL = [
   "./",
   LIBRARY_FALLBACK,
+  "./roster-guides/",
+  ROSTER_GUIDES_FALLBACK,
+  "./roster-guides/app.js?v=1",
   "./manifest.webmanifest",
   "./assets/apple-touch-icon.png",
   "./assets/icon-192.png",
@@ -151,7 +155,8 @@ self.addEventListener("fetch", (event) => {
 
   if (request.mode === "navigate") {
     let fallback = LIBRARY_FALLBACK;
-    if (url.pathname.includes("/books/death-guard/")) fallback = DEATH_GUARD_FALLBACK;
+    if (url.pathname.includes("/roster-guides/")) fallback = ROSTER_GUIDES_FALLBACK;
+    else if (url.pathname.includes("/books/death-guard/")) fallback = DEATH_GUARD_FALLBACK;
     else if (url.pathname.includes("/books/core-rules/")) fallback = CORE_RULES_FALLBACK;
     else if (url.pathname.includes("/books/adeptus-mechanicus/")) fallback = ADEPTUS_MECHANICUS_FALLBACK;
     const networkUpdate = fetchAndCache(request, event);

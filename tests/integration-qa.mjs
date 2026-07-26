@@ -10,6 +10,8 @@ const results=[];
 const check=(name,ok,detail='')=>results.push({name,ok,detail});
 
 const library=read('index.html');
+const rosterGuides=read('roster-guides/index.html');
+const rosterGuidesApp=read('roster-guides/app.js');
 const sw=read('service-worker.js');
 const coreReaderFiles=fs.readdirSync(path.join(root,'books','core-rules','reader')).filter(name=>name.endsWith('.html'));
 const books={
@@ -46,6 +48,11 @@ check('preview cache namespace is isolated',sw.includes('warhammer-rules-complet
 check('preview cache revision is content-derived',exists('glossary/generated/cache-revision.js')&&sw.includes('importScripts("./glossary/generated/cache-revision.js")')&&sw.includes('self.WH40K_CACHE_REVISION'));
 check('library header opens the Mega Glossary',library.includes('class="glossary-link"')&&library.includes('href="glossary/index.html"'));
 check('library has no dead book-preview modal',!library.includes('id="overlay"')&&!library.includes('function openBook')&&!library.includes('function closeBook'));
+check('Roster Guides have a dedicated public route',exists('roster-guides/index.html')&&exists('roster-guides/app.js'));
+check('Roster Guides preserve the storage contract',rosterGuidesApp.includes("const STORAGE_KEY='wh40k-rosters-v1'")&&rosterGuidesApp.includes('function rosterId(text)')&&rosterGuidesApp.includes('../books/death-guard/reader.html?roster='));
+check('Roster Guides tolerate malformed saved collections',rosterGuidesApp.includes('Array.isArray(records)?records:[]')&&rosterGuidesApp.includes('.filter(isDisplayable)'));
+check('Roster Guides keep saved records ahead of creation',rosterGuides.indexOf('id="saved-title"')<rosterGuides.indexOf('id="create-title"'));
+check('Roster Guides have a dedicated offline fallback',sw.includes('ROSTER_GUIDES_FALLBACK')&&sw.includes('/roster-guides/'));
 check('Roster Guide is explicitly Death Guard only',library.includes('Create a Death Guard roster guide')&&library.includes('Only Death Guard is supported'));
 check('unsupported roster factions are blocked before save and open',library.includes('function isDeathGuardFaction')&&library.indexOf('if (!isDeathGuardFaction(roster.faction))')<library.indexOf('const record = saveRoster(roster, sourceText)')&&library.includes('if (!isDeathGuardFaction(record.roster?.faction))'));
 check('unsupported backup factions are not imported',library.includes('if (!isDeathGuardFaction(record.roster.faction))')&&library.includes('The file was not imported'));
