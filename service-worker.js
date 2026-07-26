@@ -70,7 +70,7 @@ const APP_SHELL = [
   "./books/core-rules/",
   CORE_RULES_FALLBACK,
   "./books/core-rules/reader/styles.css?v=5",
-  "./books/core-rules/reader/app.js?v=6",
+  "./books/core-rules/reader/app.js?v=7",
   "./books/core-rules/reader/search-index.json",
   "./books/core-rules/reader/introduction.html",
   "./books/core-rules/reader/core-concepts.html",

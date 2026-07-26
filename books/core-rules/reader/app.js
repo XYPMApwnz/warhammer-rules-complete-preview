@@ -29,7 +29,7 @@
     full.href = `../../../glossary/index.html#${trigger.dataset.term}`;
     rule.hidden = !trigger.dataset.fullRulePath;
     if (trigger.dataset.fullRulePath) rule.href = window.WHGlossaryReturn.href(trigger.dataset.fullRulePath);
-    dialog.dataset.term = trigger.dataset.term;
+    dialog.dataset.openTerm = trigger.dataset.term;
     dialog.showModal();
   }
 
@@ -67,7 +67,7 @@
 
   full.addEventListener('click', () => {
     const triggers=[...document.querySelectorAll('[data-term]')];
-    window.WHGlossaryReturn?.save({termId:dialog.dataset.term,triggerIndex:termOpener?triggers.indexOf(termOpener):-1});
+    window.WHGlossaryReturn?.save({termId:dialog.dataset.openTerm,triggerIndex:termOpener?triggers.indexOf(termOpener):-1});
   });
 
   menu.addEventListener('click', () => drawer(!body.classList.contains('nav-open')));
