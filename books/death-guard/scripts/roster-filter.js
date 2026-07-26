@@ -120,13 +120,18 @@
       return;
     }
     const points = card.querySelector(".points");
-    if (points) points.innerHTML = `<strong>Roster: ${entry.copies > 1 ? `${entry.copies} units · ` : ""}${entry.points} pts</strong>`;
+    if (points) {
+      const value=document.createElement('strong');
+      value.textContent=`Roster: ${entry.copies > 1 ? `${entry.copies} units · ` : ""}${entry.points} pts`;
+      points.replaceChildren(value);
+    }
     renderComposition(card,entry.units);
     card.querySelector('[id$="-wargear-options"]')?.remove();
     const loadout = normalize(entry.loadout.join(", "));
     if (!loadout) return;
     card.querySelectorAll(".weapon-row:not(.weapon-head)").forEach((row) => {
-      const weapon = normalize(row.querySelector(".weapon-button")?.textContent || row.firstElementChild?.textContent);
+      const weapon = normalize(row.querySelector(".weapon-button")?.textContent || row.firstElementChild?.textContent)
+        .replace(/\s+(?:strike|sweep|witchfire|focused witchfire)$/,'');
       if (weapon && !loadout.includes(weapon)) row.remove();
     });
     card.querySelectorAll(".weapon-group").forEach((group) => {

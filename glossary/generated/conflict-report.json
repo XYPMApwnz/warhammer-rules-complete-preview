@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "counts": {
-    "terms": 891,
-    "aliases": 602,
+    "terms": 1013,
+    "aliases": 606,
     "variants": 57,
-    "aliasCandidates": 31,
+    "aliasCandidates": 32,
     "keywordCandidates": 16
   },
   "variants": [
@@ -479,6 +479,14 @@
       "termIds": [
         "core-leader",
         "adeptus-mechanicus-datasheet-leader"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "explosives",
+      "termIds": [
+        "core-rule-15-05-explosives",
+        "keyword-explosives"
       ],
       "status": "review-required"
     },

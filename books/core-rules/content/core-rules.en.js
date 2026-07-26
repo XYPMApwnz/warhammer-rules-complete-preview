@@ -104,11 +104,11 @@
         ]
       },
       {
-        id: 'reference', title: 'Reference', range: '24', pages: '76-89',
-        description: 'Core abilities, weapon abilities, the Rules Appendix and index.',
+        id: 'reference', title: 'Reference', range: '24-25', pages: 'Digital 11E',
+        description: 'Core abilities and the rules for mustering an army.',
         sections: [
           section('core-abilities', '24', 'Core Abilities', 78, 'The most common unit and weapon abilities used in Warhammer 40,000.'),
-          section('rules-appendix', 'A', 'Rules Appendix', 86, 'Additional definitions and rules clarifications.')
+          section('muster-armies', '25', 'Muster Armies', 0, 'Army faction, battle size, Detachment Points, unit limits, Warlord and Enhancements.')
         ]
       }
     ],

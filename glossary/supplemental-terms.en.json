@@ -132,31 +132,39 @@
       "id": "core-reinforcements-step",
       "title": "Reinforcements step",
       "kind": "step",
-      "summary": "The part of the Movement phase in which eligible Reinforcement units are set up on the battlefield."
+      "summary": "Rules that refer to the Reinforcements step are resolved during the Move Units step; 11E has no separate Reinforcements step.",
+      "locator": "09.02.03"
     },
     {
       "id": "core-starting-strength",
       "title": "Starting Strength",
       "kind": "game-state",
-      "summary": "A unit's original number of models, or its starting Wounds value if it is a single-model unit."
+      "summary": "The number of models in a unit at the start of the first battle round; an Attached unit uses its combined model count.",
+      "definition": "The number of models a unit contains at the start of the first battle round is its Starting Strength. An Attached unit uses the number of models it contains at that time.",
+      "locator": "01.02.01"
     },
     {
       "id": "core-half-strength",
       "title": "Half-strength",
       "kind": "game-state",
-      "summary": "Half of a unit's Starting Strength, used when checking whether that unit is Below Half-strength."
+      "summary": "A unit is at Half-strength when its remaining models equal half its Starting Strength; a one-model unit instead compares remaining wounds with its W characteristic.",
+      "definition": "For a unit with Starting Strength 2 or more, it is at Half-strength when its remaining model count equals half its Starting Strength. For Starting Strength 1, its model is at Half-strength when its remaining wounds equal half its W characteristic. If the relevant value cannot be divided evenly, the unit cannot be exactly at Half-strength.",
+      "locator": "01.02.01"
     },
     {
       "id": "core-below-starting-strength",
       "title": "Below Starting Strength",
       "kind": "game-state",
-      "summary": "A unit has fewer models than its Starting Strength, or a single model has fewer wounds than its starting Wounds."
+      "summary": "A multi-model unit is Below Starting Strength when it has fewer models than its Starting Strength; a one-model unit is below it when remaining wounds are below its W characteristic.",
+      "locator": "01.02.01"
     },
     {
       "id": "core-below-half-strength",
       "title": "Below Half-strength",
       "kind": "game-state",
-      "summary": "A unit has fewer than half its Starting Strength, using the Core Rules rounding convention."
+      "summary": "A multi-model unit is Below Half-strength below half its Starting Strength; a one-model unit is below it when remaining wounds are below half its W characteristic.",
+      "definition": "For Starting Strength 2 or more, compare remaining models with half the Starting Strength. For Starting Strength 1, compare the model's remaining wounds with half its W characteristic. Odd values cannot be exactly at Half-strength, but can still be Below Half-strength.",
+      "locator": "01.02.01"
     },
     {
       "id": "core-destroyed",
@@ -210,7 +218,19 @@
       "id": "core-stratagem-fire-overwatch",
       "title": "Fire Overwatch",
       "kind": "stratagem",
-      "summary": "A Core Stratagem that allows an eligible unit to shoot in response to an enemy unit's movement or charge, using its stated restrictions."
+      "summary": "1CP at the end of the opponent's Movement phase: one friendly unengaged non-TITANIC unit shoots using Snap Shooting.",
+      "definition": "WHEN: End of your opponent's Movement phase. TARGET: One friendly unengaged unit, excluding TITANIC units. EFFECT: That unit shoots using Snap Shooting.",
+      "related": ["core-rule-15-09-snap-shooting"],
+      "locator": "15.08"
+    },
+    {
+      "id": "core-battle-shocked",
+      "title": "Battle-shocked",
+      "kind": "game-state",
+      "summary": "A Battle-shocked unit has OC ‘-’, cannot be targeted by its controller's Stratagems, and cannot start or complete Actions.",
+      "definition": "While a unit is Battle-shocked, every model in it has its OC characteristic modified to ‘-’, its controlling player cannot target it with Stratagems, it cannot start an Action, and any Action it has started cannot be completed.",
+      "related": ["core-rule-01-07-battle-shock-rolls", "core-rule-08-03-battle-shock"],
+      "locator": "01.07"
     },
     {
       "id": "death-guard-plague",
@@ -354,9 +374,33 @@
       "title": "JUMP PACK",
       "kind": "keyword",
       "summary": "Keyword used to identify Jump Pack models and units for rules interactions."
+    },
+    {
+      "id": "core-damage-roll",
+      "title": "Damage roll",
+      "kind": "core-concept",
+      "summary": "A roll made to determine a weapon's random Damage characteristic before that damage is inflicted.",
+      "definition": "When a weapon has a random Damage characteristic, make the indicated roll to determine its Damage value when required by the attack sequence.",
+      "locator": "02.02.03 Random Characteristics"
     }
   ],
   "matchLabels": {
+    "core-rule-09-06-advance-move": [
+      "Advance roll",
+      "Advance rolls"
+    ],
+    "core-rule-11-02-charge": [
+      "Charge roll",
+      "Charge rolls"
+    ],
+    "core-damage-roll": [
+      "Damage roll",
+      "Damage rolls"
+    ],
+    "core-rule-06-03-hazard-rolls": [
+      "Hazard roll",
+      "Hazard rolls"
+    ],
     "core-rule-05-01-hit-rolls": [
       "Hit roll",
       "Hit rolls"
@@ -385,7 +429,7 @@
       "Battle-shock roll",
       "Battle-shock rolls"
     ],
-    "core-rule-08-03-battle-shock": [
+    "core-battle-shocked": [
       "Battle-shocked"
     ],
     "death-guard-plague": [
@@ -423,6 +467,10 @@
     "transport": "keyword-transport"
   },
   "aliases": {
+    "advance-roll": "core-rule-09-06-advance-move",
+    "charge-roll": "core-rule-11-02-charge",
+    "damage-roll": "core-damage-roll",
+    "hazard-roll": "core-rule-06-03-hazard-rolls",
     "hit-roll": "core-rule-05-01-hit-rolls",
     "wound-roll": "core-rule-05-02-wound-rolls",
     "save-roll": "core-rule-05-03-save-rolls",
@@ -432,7 +480,7 @@
     "battle-shock-test": "core-rule-01-07-battle-shock-rolls",
     "battle-shock-tests": "core-rule-01-07-battle-shock-rolls",
     "battle-shock-roll": "core-rule-01-07-battle-shock-rolls",
-    "battle-shocked": "core-rule-08-03-battle-shock",
+    "battle-shocked": "core-battle-shocked",
     "plagues": "death-guard-plague",
     "range-characteristics": "core-characteristic-range",
     "attacks": "core-characteristic-attacks",

@@ -5,7 +5,8 @@
   async function getRelatedRulesTemplate(){
     if(!relatedRulesTemplate)relatedRulesTemplate=fetch('./mobile/related-rules.inc?v=2')
       .then(response=>{if(!response.ok)throw new Error('HTTP '+response.status);return response.text();})
-      .then(html=>{const template=document.createElement('template');template.innerHTML=html;return template;});
+      .then(html=>{const template=document.createElement('template');template.innerHTML=html;return template;})
+      .catch(error=>{relatedRulesTemplate=null;throw error;});
     return relatedRulesTemplate;
   }
 
@@ -65,7 +66,12 @@
           body.replaceChildren(controls,content,empty);
           filterMenu.addEventListener('click',event=>{if(choices.length===1){event.preventDefault();return;}const button=event.target.closest('[data-detachment]');if(!button)return;detachment=button.dataset.detachment;filterMenu.querySelector('summary span').textContent=button.textContent;filterMenu.querySelectorAll('button').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));filterMenu.open=false;if(!rosterMode)try{localStorage.setItem('death-guard-detachment-filter',detachment);}catch{}filter();});
           content.querySelectorAll('.stratagem').forEach(card=>{const when=[...card.querySelectorAll('.field')].find(field=>field.querySelector('b')?.textContent.trim().toLowerCase()==='when')?.textContent||'';const turn=/opponent|enemy/i.test(when)?'THEIR TURN':/your\b/i.test(when)?'YOUR TURN':'ANY TURN';card.dataset.turn=turn;card.classList.add(turn==='THEIR TURN'?'turn-their':turn==='YOUR TURN'?'turn-yours':'turn-any');});
-        }catch{return void(body.innerHTML='<p>Could not load related rules.</p>');}
+        }catch{
+          const retry=document.createElement('button');retry.type='button';retry.className='related-rules-retry';retry.textContent='Try again';
+          retry.addEventListener('click',()=>open(current));
+          const message=document.createElement('p');message.textContent='Could not load related rules.';
+          body.replaceChildren(message,retry);return;
+        }
       }
       filter();
     }
@@ -104,4 +110,7 @@
     }
   }catch{}
   if((location.protocol==='http:'||location.protocol==='https:')&&'serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('../../service-worker.js'));
+  if(new URLSearchParams(location.search).get('tapdebug')==='1'){
+    const diagnostics=document.createElement('script');diagnostics.src='./scripts/tap-diagnostics.js?v=2';document.body.append(diagnostics);
+  }
 }());

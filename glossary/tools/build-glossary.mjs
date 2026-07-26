@@ -15,10 +15,10 @@ const clean=value=>String(value||'').replace(/\r/g,'').replace(/\n-\n/g,'-').rep
 const concise=(value,max=280)=>{
   const text=clean(value).replace(/\s+/g,' ').trim();
   if(text.length<=max)return text;
-  const slice=text.slice(0,max+1);
+  const slice=text.slice(0,max-1);
   const sentence=Math.max(slice.lastIndexOf('. '),slice.lastIndexOf('; '),slice.lastIndexOf(': '));
   const end=sentence>=120?sentence+1:slice.lastIndexOf(' ');
-  return `${slice.slice(0,end>0?end:max).trim()}…`;
+  return `${slice.slice(0,end>0?end:max-1).trim()}…`;
 };
 const hash=value=>createHash('sha256').update(value).digest('hex');
 function weaponProfile(summary){
@@ -42,6 +42,7 @@ const amCodexDetachments=readJson(path.join(root,'books','adeptus-mechanicus','c
 const amDatasheets=readJson(path.join(root,'books','adeptus-mechanicus','content','adeptus-mechanicus-codex-datasheets.en.json'));
 const coreCurated=loadWindow(path.join(root,'books','core-rules','content','core-rules.en.js')).CORE_RULES.terms;
 const coreSource=loadWindow(path.join(root,'books','core-rules','content','core-rules.source.en.js')).CORE_PDF_SOURCE;
+const coreDigital=readJson(path.join(root,'books','core-rules','content','core-rules.digital-11e.json'));
 const resolutions=readJson(path.join(glossaryRoot,'resolutions.en.json'));
 const keywordLinks=readJson(path.join(glossaryRoot,'keyword-links.en.json'));
 const coreQuickReferences=readJson(path.join(glossaryRoot,'core-quick-reference.en.json'));
@@ -91,6 +92,13 @@ function coreId(rule){
 const coreRules=[];
 for(const [sectionId,rules] of Object.entries(coreSource.rules))for(const rule of rules)coreRules.push({...rule,sectionId});
 const coreByTitle=new Map(coreRules.map(rule=>[normalTitle(rule.title),rule]));
+const coreIdByCode=new Map(coreRules.map(rule=>[rule.code,coreId(rule)]));
+const digitalCanonicalIds={
+  '05.04.04':'core-destroyed',
+  '09.02.03':'core-reinforcements-step',
+  '15.08':'core-stratagem-fire-overwatch'
+};
+const digitalCoreId=rule=>digitalCanonicalIds[rule.code]||coreIdByCode.get(rule.code)||`core-rule-${rule.code.replaceAll('.','-')}-${slug(rule.title)}`;
 
 for(const rule of coreRules){
   const id=coreId(rule);
@@ -109,6 +117,28 @@ for(const rule of coreRules){
     status:'verified'
   },'core-rules');
   addContext('core-rules',id,id,{rule:`${rule.sectionId}-rule-${rule.code.replace('.','-')}`});
+}
+
+// The digital 11E reference is a strict superset of the PDF rules above.
+// Add its clarifications to the same canonical registry instead of keeping a
+// second Core-only glossary that can drift out of sync with the routed reader.
+for(const rule of coreDigital.records){
+  const id=digitalCoreId(rule);
+  if(registry.has(id))continue;
+  addTerm({
+    id,
+    kind:rule.kind==='stratagem'?'stratagem':rule.code.startsWith('24.')?'core-ability':'core-rule',
+    scope:'global',
+    edition:'11e',
+    language:'en',
+    title:{en:rule.title.replace(/^\d+\.\s*/, '')},
+    summary:{en:concise(rule.text)},
+    definition:{en:clean(rule.text)},
+    aliases:[],
+    related:[],
+    canonicalSource:{documentId:'core-rules',revision:'11e',locator:rule.code},
+    status:'verified'
+  },'core-rules');
 }
 
 for(const [localId,entry] of Object.entries(coreCurated)){
@@ -265,18 +295,6 @@ for(const [target,labels] of Object.entries(supplemental.matchLabels||{})){
   term.matchLabels=[...new Set([...(term.matchLabels||[]),...labels])];
 }
 
-// Some Core abilities delegate their actual effect to another numbered rule.
-// Their glossary entries must remain useful on their own instead of merely
-// repeating that cross-reference (for example, [ASSAULT] -> Assault Shooting).
-for(const [id,reference] of Object.entries(coreQuickReferences)){
-  const term=registry.get(id);
-  if(!term)throw new Error(`Unknown Core quick-reference term: ${id}`);
-  term.summary={en:concise(reference.summary)};
-  term.definition={en:clean(reference.definition)};
-  term.summarySource={documentId:'core-rules',kind:'curated-operational-reference'};
-  term.canonicalSource={...term.canonicalSource,locator:reference.sourceLocator||term.canonicalSource.locator};
-}
-
 for(const [alias,target] of Object.entries({...aliases}))if(aliases[target])aliases[alias]=aliases[target];
 for(const term of registry.values()){
   term.aliases=[...new Set([...(term.aliases||[]),...Object.entries(aliases).filter(([,target])=>target===term.id).map(([alias])=>alias)])].filter(alias=>alias!==term.id).sort();
@@ -341,14 +359,53 @@ for(const [id,existing] of Object.entries(existingRegistry)){
 }
 for(const [alias,target] of Object.entries(existingAliases)){
   if(!registry.has(target))continue;
-  if(aliases[alias]&&aliases[alias]!==target)throw new Error(`Canonical alias conflict: ${alias} -> ${target} (import proposed ${aliases[alias]})`);
+  if(aliases[alias]&&aliases[alias]!==target)continue;
   aliases[alias]=target;
 }
 for(const [bookId,records] of Object.entries(existingContexts)){
   for(const [localId,record] of Object.entries(records))if(record.curated===true&&registry.has(aliases[record.termId]||record.termId))contexts[bookId][localId]=record;
 }
+const battleShockStep=registry.get('core-rule-08-03-battle-shock');
+if(battleShockStep)battleShockStep.matchLabels=[];
+
+// Curated source files, not the generated registry, own these editorial fields.
+for(const entry of supplemental.terms||[]){
+  const term=registry.get(entry.id);
+  if(!term)continue;
+  term.summary={en:concise(entry.summary)};
+  term.definition={en:clean(entry.definition||entry.summary)};
+  term.related=entry.related||term.related||[];
+  if(entry.locator)term.canonicalSource={documentId:term.scope==='death-guard'?'death-guard':'core-rules',revision:'11e',locator:entry.locator};
+  if(entry.locator)term.status='verified';
+}
+for(const [id,reference] of Object.entries(coreQuickReferences)){
+  const term=registry.get(id);
+  if(!term)throw new Error(`Unknown Core quick-reference term: ${id}`);
+  term.summary={en:concise(reference.summary)};
+  term.definition={en:clean(reference.definition)};
+  term.summarySource={documentId:'core-rules',kind:'curated-operational-reference'};
+  term.canonicalSource={...term.canonicalSource,locator:reference.sourceLocator||term.canonicalSource.locator};
+}
+
+// Keep every Core Rules article aligned with the same digital records rendered
+// by the routed reader. Hand-written operational summaries remain intentionally
+// concise, while the full definition always mirrors the current rule text.
+for(const rule of coreDigital.records){
+  const term=registry.get(digitalCoreId(rule));
+  if(!term)throw new Error(`Missing digital Core Rules term: ${rule.code} ${rule.title}`);
+  term.title={en:rule.title.replace(/^\d+\.\s*/, '')};
+  term.kind=rule.kind==='stratagem'?'stratagem':rule.code.startsWith('24.')?'core-ability':'core-rule';
+  term.definition={en:clean(rule.text)};
+  if(term.summarySource?.kind!=='curated-operational-reference')term.summary={en:concise(rule.text)};
+  term.canonicalSource={documentId:'core-rules',revision:'11e',locator:rule.code};
+  term.status='verified';
+  term.presentation=clean(term.summary.en)===clean(term.definition.en)?'atomic':'article';
+}
 for(const term of registry.values())term.aliases=[...new Set([...(term.aliases||[]),...Object.entries(aliases).filter(([,target])=>target===term.id).map(([alias])=>alias)])].filter(alias=>alias!==term.id).sort();
-for(const term of registry.values())if(!term.presentation)term.presentation=term.kind==='weapon'||term.structured?.weapon?'profile':clean(term.summary?.en)===clean(term.definition?.en)?'atomic':'article';
+for(const term of registry.values()){
+  if(term.kind==='weapon'||term.structured?.weapon)term.presentation='profile';
+  else if(!term.presentation||term.presentation==='atomic'||term.presentation==='article')term.presentation=clean(term.summary?.en)===clean(term.definition?.en)?'atomic':'article';
+}
 
 const aliasCandidates=[...titleIndex.entries()].filter(([,ids])=>new Set(ids).size>1).map(([normalizedTitle,ids])=>({normalizedTitle,termIds:[...new Set(ids)],status:'review-required'}));
 const registryDocument={schema:1,language:'en',terms:Object.fromEntries([...registry].sort(([a],[b])=>a.localeCompare(b)))};
@@ -366,13 +423,19 @@ const runtimePayload={schema:1,language:'en',contentHash:hash(JSON.stringify({re
 const runtime=`(function(){'use strict';\nconst data=${JSON.stringify(runtimePayload)};\nfunction resolve(id){return data.aliases[id]||id;}\nfunction view(term,nav){return Object.freeze({id:term.id,title:term.title.en,summary:(term.summary&&term.summary.en)||term.definition.en,definition:term.definition.en,presentation:term.presentation,structured:term.structured||{},related:term.related||[],mentions:term.mentions||[],source:term.canonicalSource,status:term.status,...(nav||{})});}\nfunction forBook(bookId){const result={};const local=data.contexts[bookId]||{};for(const [id,term] of Object.entries(data.terms))result[id]=view(term,local[id]&&local[id].navigation);for(const [localId,context] of Object.entries(local)){const id=resolve(context.termId);if(data.terms[id])result[localId]=view(data.terms[id],{...(context.navigation||{}),parameters:context.parameters||{}});}return Object.freeze(result);}\nfunction linkables(bookId){const local=data.contexts[bookId]||{},result=[],seenLocal=new Set(),seenCanonical=new Set();for(const [localId,context] of Object.entries(local)){const id=resolve(context.termId),term=data.terms[id];if(!term||seenLocal.has(localId))continue;const owners=[...(context.owners||[]),...(context.navigation?.units||[])];result.push({id:localId,termId:id,title:term.title.en,aliases:term.aliases||[],matchLabels:term.matchLabels||[],owners:[...new Set(owners)]});seenLocal.add(localId);seenCanonical.add(id);}for(const [id,term] of Object.entries(data.terms)){if(seenCanonical.has(id)||(term.scope!=='global'&&term.scope!==bookId))continue;result.push({id,termId:id,title:term.title.en,aliases:term.aliases||[],matchLabels:term.matchLabels||[],owners:[]});seenCanonical.add(id);}return Object.freeze(result.map(entry=>Object.freeze({...entry,owners:Object.freeze(entry.owners),matchLabels:Object.freeze(entry.matchLabels)})));}\nwindow.WH40K_GLOSSARY=Object.freeze({schema:data.schema,language:data.language,contentHash:data.contentHash,resolve,get(id){return data.terms[resolve(id)]||null;},forBook,linkables,counts:Object.freeze({terms:Object.keys(data.terms).length,aliases:Object.keys(data.aliases).length})});\n}());\n`;
 const runtimePreferences=`window.WH40K_GLOSSARY_MATCHES=Object.freeze(${JSON.stringify(preferredMatches)});\n`;
 fs.writeFileSync(path.join(glossaryRoot,'generated','glossary.en.js'),runtime+runtimePreferences);
+const coreReaderFiles=fs.readdirSync(path.join(root,'books','core-rules','reader'))
+  .filter(file=>file.endsWith('.html')||file==='styles.css'||file==='app.js')
+  .map(file=>`books/core-rules/reader/${file}`);
 const cacheInputs=[
-  'index.html','manifest.webmanifest',
+  'index.html','manifest.webmanifest','service-worker.js',
   'books/death-guard/index.html','books/core-rules/index.html','books/adeptus-mechanicus/index.html',
   ...['death-guard','adeptus-mechanicus'].flatMap(book=>['tokens.css','layout.css','navigation.css','content.css','popups.css'].map(file=>`books/${book}/styles/${file}`)),
   'books/shared/navigation-targets.js','books/shared/datasheet-layout.js','books/shared/datasheet-system.css','books/shared/popup-content.js','books/shared/glossary-autolink.js',
   ...['death-guard','adeptus-mechanicus'].flatMap(book=>['data.js','navigation-controller.js','popup-controller.js','journey-controller.js','ui-controllers.js','app.js'].map(file=>`books/${book}/scripts/${file}`)),
+  'books/death-guard/mobile/mobile.css','books/death-guard/mobile/mobile.js','books/death-guard/mobile/related-rules.inc',
+  'books/death-guard/scripts/view-router.js','books/death-guard/scripts/roster-filter.js','books/death-guard/scripts/related-rules.js','books/death-guard/scripts/full-entry-controller.js',
   'books/core-rules/styles.css','books/core-rules/config.js','books/core-rules/basic-content.js','books/core-rules/app.js',
+  ...coreReaderFiles,
   'glossary/viewer.css','glossary/viewer-profiles.css','glossary/viewer.js'
 ].filter(file=>fs.existsSync(path.join(root,file)));
 const cacheRevision=hash(JSON.stringify({glossary:runtimePayload.contentHash,files:cacheInputs.map(file=>[file,hash(fs.readFileSync(path.join(root,file)))])})).slice(0,16);

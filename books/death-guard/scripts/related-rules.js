@@ -14,7 +14,6 @@
     'stratagem-eye-of-the-swarm':['plague-marines']
   };
   const contagionEngines=new Set(['foetid-bloat-drone','foetid-bloat-drone-with-heavy-blight-launcher','helbrute','myphitic-blight-hauler']);
-  const bodyguards=new Set(['plague-marines','blightlord-terminators','deathshroud-terminators','poxwalkers']);
   const namedUnits={
     'MALIGNANT PLAGUECASTER':'malignant-plaguecaster','LORD OF POXES':'lord-of-poxes',
     'GREAT UNCLEAN ONE':'great-unclean-one','BIOLOGUS PUTRIFIER':'biologus-putrifier',
@@ -31,8 +30,9 @@
     return {
       slug,ids,
       has:id=>ids.has(id),
-      attached:Boolean(unit.querySelector('[id$="-leader"]'))||bodyguards.has(slug),
-      twoCharacters:slug==='plague-marines',
+      attached:unit.dataset.rosterAttached==='true',
+      twoCharacters:unit.dataset.rosterCharacterCount==='2',
+      warlord:unit.dataset.rosterWarlord==='true',
       contagionEngineCandidate:contagionEngines.has(slug),
       deadlyDemise:Boolean(unit.querySelector('[data-term="core-deadly-demise"]'))
     };
@@ -54,7 +54,7 @@
       return unit.has('keyword-terminator');
     }
     if(restriction.includes('INFANTRY'))return unit.has('keyword-death-guard')&&unit.has('keyword-infantry');
-    return restriction.includes('DEATH GUARD')&&unit.has('keyword-death-guard');
+    return restriction.includes('DEATH GUARD')&&unit.has('keyword-death-guard')&&unit.has('keyword-character');
   }
 
   function stratagemMatches(card,unit){
@@ -82,7 +82,7 @@
     if(target.includes('ATTACHED UNIT'))return unit.attached;
     if(target.includes('INCLUDES TWO CHARACTER'))return unit.twoCharacters;
     if(target.includes('DEATH GUARD CHARACTER'))return unit.has('keyword-character');
-    if(target.includes('WARLORD'))return unit.has('keyword-character');
+    if(target.includes('WARLORD'))return unit.warlord;
     return target.includes('DEATH GUARD');
   }
 

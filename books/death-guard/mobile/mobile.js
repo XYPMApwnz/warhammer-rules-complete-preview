@@ -70,6 +70,10 @@
     relatedRules.querySelectorAll('[data-related-tab]').forEach(button => {
       button.setAttribute('aria-pressed', String(button.dataset.relatedTab === relatedKind));
     });
+    const hasVisible=[...relatedContent.querySelectorAll('.related-detachment')].some(section=>!section.hidden);
+    let empty=relatedContent.querySelector('.related-empty');
+    if(!hasVisible&&!empty){empty=document.createElement('p');empty.className='related-status related-empty';relatedContent.append(empty);}
+    if(empty){empty.hidden=hasVisible;empty.textContent=`No matching ${relatedKind} for this datasheet.`;}
   }
 
   async function loadRelated() {
@@ -81,7 +85,10 @@
       relatedLoaded = true;
       filterRelated();
     } catch {
-      relatedContent.innerHTML = '<p class="related-status">Could not load related rules. Check the connection and try again.</p>';
+      relatedLoaded = false;
+      const retry=document.createElement('button');retry.type='button';retry.className='related-retry';retry.textContent='Try again';retry.addEventListener('click',loadRelated);
+      const message=document.createElement('p');message.className='related-status';message.textContent='Could not load related rules. Check the connection and try again.';
+      relatedContent.replaceChildren(message,retry);
     }
   }
 

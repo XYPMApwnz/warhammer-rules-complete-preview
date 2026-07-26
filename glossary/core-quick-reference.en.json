@@ -13,5 +13,50 @@
     "summary": "When gathering attack dice, if all of this weapon's attacks target one unit, add X attack dice for every full 5 models in that unit.",
     "definition": "[CLEAVE] always takes the form [CLEAVE X]. Each time you gather attack dice for this weapon, if you selected only one target for all of the weapon's attacks, add X attack dice for every full 5 models that were in the target unit during the Select Targets step. Example: [CLEAVE 1] with A 3 against a 16-model unit adds 3 attack dice, for a total of 6.",
     "sourceLocator": "24.06; page 79"
+  },
+  "core-rule-04-03-resolve-attacks": {
+    "summary": "For each target, gather attack dice for one weapon and any identical attacks, resolve those dice through the Attack Sequence, then repeat for remaining weapons and targets.",
+    "definition": "Resolve attacks target by target. Select an enemy unit, gather attack dice equal to the selected weapon's A characteristic plus any identical attacks, resolve those dice through the Attack Sequence, then repeat for unused weapons against that target and finally for other targets.",
+    "sourceLocator": "04.03"
+  },
+  "core-rule-05-01-hit-rolls": {
+    "summary": "Roll one D6 per attack die: unmodified 1 fails, unmodified 6 is a Critical Hit, otherwise the result must equal or beat the attack's BS/WS.",
+    "definition": "Make one Hit roll for each attack die. Apply the first matching result: an unmodified 1 fails; an unmodified 6 is a Critical Hit; a result equal to or greater than the attack's BS/WS hits; any other result fails. Critical Hits are still hits and can trigger other rules.",
+    "sourceLocator": "05.01"
+  },
+  "core-rule-05-02-wound-rolls": {
+    "summary": "Roll one D6 per hit: unmodified 1 fails and 6 is Critical. Required result by S vs T: twice 2+, greater 3+, equal 4+, lower 5+, half 6+.",
+    "definition": "Make one Wound roll for each hit. An unmodified 1 fails and an unmodified 6 is a Critical Wound. Otherwise compare Strength with Toughness: at least twice T wounds on 2+; greater than T on 3+; equal on 4+; lower on 5+; half or less on 6+.",
+    "sourceLocator": "05.02"
+  },
+  "core-rule-05-03-save-rolls": {
+    "summary": "Group target models by CHARACTER status and matching W/Sv/InSv, declare allocation order, then roll one Save for every attack that wounded.",
+    "definition": "The opposing player groups target models: each CHARACTER is its own group and other models share groups when W, Sv and InSv match. Declare allocation order, prioritising wounded non-CHARACTER models and keeping CHARACTER groups after non-CHARACTER groups, then roll one Save for each attack that wounded.",
+    "sourceLocator": "05.03"
+  },
+  "core-rule-05-04-inflict-damage": {
+    "summary": "Allocate saves from lowest upward. Unmodified 1 inflicts damage; a successful InSv or Sv after AP stops it; otherwise lose wounds equal to D and destroy at 0.",
+    "definition": "For each Save roll from lowest to highest, select a model in the current allocation group, prioritising a wounded model. An unmodified 1 inflicts damage. A result meeting InSv, or meeting Sv after AP, makes the attack fail; any other result inflicts damage. The model loses wounds equal to D and is destroyed at 0 or fewer.",
+    "sourceLocator": "05.04"
+  },
+  "core-rule-15-09-snap-shooting": {
+    "summary": "Shoot one visible enemy within 24 inches; attacks hit only on an unmodified 6, Hit rolls cannot be re-rolled, and the unit cannot start an Action afterward.",
+    "definition": "When another rule allows Snap Shooting, the unit shoots using Making Attacks. It can target only one visible eligible enemy within 24 inches. Attacks hit only on an unmodified 6 regardless of BS or modifiers, Hit rolls cannot be re-rolled, and the unit cannot start an Action for the rest of the phase.",
+    "sourceLocator": "15.09"
+  },
+  "core-active-player": {
+    "summary": "Usually the player whose turn it is; outside a turn it is the first-turn player, with temporary handoff to a selected unit's controller while it moves, shoots or fights.",
+    "definition": "At any time one player is Active and the other Opposing. Outside either player's turn, the player taking the first turn that battle round is Active. During a turn its owner is Active, except that a selected unit's controller becomes Active until its move ends or its shooting/fighting attacks resolve.",
+    "sourceLocator": "01.03"
+  },
+  "core-within": {
+    "summary": "A model is Within a distance when any part of its base is within it; unit-level Within needs at least one model within.",
+    "definition": "A model is Within a distance when any part of its base is within that distance. A unit is Within when at least one model in it is Within. Measure from the Frame instead of the base when the Frame rule says so.",
+    "sourceLocator": "01.04.01; 17.02"
+  },
+  "core-wholly-within": {
+    "summary": "A model is Wholly Within only when every part of its base is within; a unit is Wholly Within only when every model is.",
+    "definition": "A model is Wholly Within a distance when every part of its base is within that distance. A unit is Wholly Within only when every model in it is Wholly Within. Measure from the Frame instead of the base when the Frame rule says so.",
+    "sourceLocator": "01.04.01; 17.02"
   }
 }

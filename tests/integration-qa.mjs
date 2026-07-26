@@ -11,9 +11,10 @@ const check=(name,ok,detail='')=>results.push({name,ok,detail});
 
 const library=read('index.html');
 const sw=read('service-worker.js');
+const coreReaderFiles=fs.readdirSync(path.join(root,'books','core-rules','reader')).filter(name=>name.endsWith('.html'));
 const books={
   'death-guard':{version:'9',reader:'reader.html',versions:{'styles/tokens.css':'10','styles/navigation.css':'10','styles/content.css':'24','styles/popups.css':'15','scripts/roster-filter.js':'9','scripts/navigation-controller.js':'15','scripts/popup-controller.js':'21','scripts/full-entry-controller.js':'6','scripts/journey-controller.js':'11','scripts/ui-controllers.js':'11','scripts/related-rules.js':'5','scripts/app.js':'24'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/icon-v4.svg','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','scripts/roster-filter.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/related-rules.js','scripts/app.js']},
-  'core-rules':{version:null,versions:{'app.js':'1'},app:'app.js',usesPopupGlossary:false,files:['styles.css','config.js','basic-content.js','app.js','content/core-rules.source.en.js','content/core-rules.en.js']},
+  'core-rules':{version:null,reader:'reader/index.html',rootPrefix:'../../../',libraryEntry:'reader/index.html',versions:{'app.js':'1','reader/styles.css':'4','reader/app.js':'3'},app:'app.js',usesPopupGlossary:false,files:['styles.css','config.js','basic-content.js','app.js','content/core-rules.source.en.js','content/core-rules.en.js','reader/index.html','reader/styles.css','reader/app.js']},
   'adeptus-mechanicus':{version:'13',versions:{'styles/content.css':'14','styles/popups.css':'15','scripts/popup-controller.js':'18','scripts/app.js':'17'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/mechanicus-logo.png','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','styles/mechanicus.css','scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']}
 };
 
@@ -25,10 +26,11 @@ for(const file of ['service-worker.js','books/shared/navigation-targets.js','boo
 for(const [slug,book] of Object.entries(books)){
   const html=read(`books/${slug}/${book.reader||'index.html'}`);
   const app=read(`books/${slug}/${book.app}`);
-  check(`${slug} card opens the real reader`,library.includes(`href="books/${slug}/index.html"`));
+  check(`${slug} card opens the real reader`,library.includes(`href="books/${slug}/${book.libraryEntry||'index.html'}"`));
   check(`${slug} reader and shell files exist`,exists(`books/${slug}/index.html`)&&book.files.every(file=>exists(`books/${slug}/${file}`)),book.files.filter(file=>!exists(`books/${slug}/${file}`)).join(', '));
-  check(`${slug} links to the root manifest`,html.includes('href="../../manifest.webmanifest"'));
-  check(`${slug} exposes the shared library link`,html.includes('href="../../index.html"'));
+  const rootPrefix=book.rootPrefix||'../../';
+  check(`${slug} links to the root manifest`,html.includes(`href="${rootPrefix}manifest.webmanifest"`));
+  check(`${slug} exposes the shared library link`,html.includes(`href="${rootPrefix}index.html"`));
   check(`${slug} delegates to the root service worker`,app.includes("register('../../service-worker.js')"));
   check(`${slug} has a dedicated offline fallback`,sw.includes(`${slug.replaceAll('-','_').toUpperCase()}_FALLBACK`)&&sw.includes(`/books/${slug}/`));
   check(`${slug} has no nested PWA ownership`,!app.includes("register('./service-worker.js')"));
@@ -43,9 +45,10 @@ for(const [slug,book] of Object.entries(books)){
 check('preview cache namespace is isolated',sw.includes('warhammer-rules-complete-preview-'));
 check('preview cache revision is content-derived',exists('glossary/generated/cache-revision.js')&&sw.includes('importScripts("./glossary/generated/cache-revision.js")')&&sw.includes('self.WH40K_CACHE_REVISION'));
 check('library header opens the Mega Glossary',library.includes('class="glossary-link"')&&library.includes('href="glossary/index.html"'));
-check('Core Rules source pages are cached only on demand',!sw.includes('Array.from({length:88}')&&sw.includes('cached || fetchAndCache(request)'));
+check('Core Rules source pages are cached only on demand',!sw.includes('Array.from({length:88}')&&sw.includes('cached || fetchAndCache(request, event)'));
+check('Core Rules routed chapters are cached on demand',coreReaderFiles.length===27&&!sw.includes('reader/core-concepts.html'));
 check('Core Rules app is cache-busted',read('books/core-rules/index.html').includes('src="app.js?v=1"'));
-check('global glossary runtime exists and is precached',exists('glossary/generated/glossary.en.js')&&sw.includes('"./glossary/generated/glossary.en.js?v=3"'));
+check('global glossary runtime exists but is cached on demand',exists('glossary/generated/glossary.en.js')&&!sw.includes('"./glossary/generated/glossary.en.js?v=3"'));
 check('Mega Glossary return UI is versioned and precached',read('glossary/index.html').includes('id="libraryBack"')&&read('glossary/index.html').includes('viewer.js?v=3')&&sw.includes('"./glossary/viewer.js?v=3"'));
 check('glossary runtime exposes curated matching labels',read('glossary/generated/glossary.en.js').includes('matchLabels'));
 const bookHtml=slug=>read(`books/${slug}/${books[slug].reader||'index.html'}`);
@@ -55,20 +58,20 @@ check('shared datasheet layout is loaded and precached',['death-guard','adeptus-
 check('shared popup profiles are loaded and precached',['death-guard','adeptus-mechanicus'].every(slug=>bookHtml(slug).includes('src="../shared/popup-content.js?v=1"'))&&sw.includes('"./books/shared/popup-content.js?v=1"'));
 check('shared glossary autolinker is loaded and precached',['death-guard','adeptus-mechanicus'].every(slug=>bookHtml(slug).includes('src="../shared/glossary-autolink.js?v=8"'))&&sw.includes('"./books/shared/glossary-autolink.js?v=8"'));
 check('book navigation measures after glossary autolinking',['death-guard','adeptus-mechanicus'].every(slug=>{const app=read(`books/${slug}/scripts/app.js`);return app.indexOf('WHGlossaryAutolink?.apply')<app.indexOf('new window.DGNavigation');}));
-check('Mechanicus offline data and PDF are owned by the root worker',sw.includes('adeptus-mechanicus-faction-pack-v1.0.pdf')&&sw.includes('adeptus-mechanicus-codex-datasheets.en.json'));
+check('Mechanicus heavy source data and PDF are cached on demand',!sw.includes('adeptus-mechanicus-faction-pack-v1.0.pdf')&&!sw.includes('adeptus-mechanicus-codex-datasheets.en.json'));
 check('nested Mechanicus service worker was removed',!exists('books/adeptus-mechanicus/service-worker.js'));
 const glossaryRegistry=JSON.parse(read('glossary/registry.en.json')).terms;
 for(const id of ['core-characteristic-toughness','core-stratagem-fire-overwatch','death-guard-plague','death-guard-army-rules-pact-of-decay','adeptus-mechanicus-detachment-cohort-acquisitus','adeptus-mechanicus-unit-skitarii-rangers'])check(`Mega Glossary contains ${id}`,Boolean(glossaryRegistry[id]));
 for(const [slug,book] of Object.entries(books)){
   const html=read(`books/${slug}/${book.reader||'index.html'}`);
   const app=read(`books/${slug}/${book.app}`);
-  check(`${slug} loads the global glossary`,html.includes('../../glossary/generated/glossary.en.js?v=3'));
+  check(`${slug} glossary loading matches its runtime`,book.usesPopupGlossary===html.includes('../../glossary/generated/glossary.en.js?v=3'));
   if(book.usesPopupGlossary)check(`${slug} popup uses the global glossary`,
     app.includes("WH40K_GLOSSARY?.forBook('"+slug+"')")||
     app.includes("WH40K_GLOSSARY.forBook('"+slug+"')")
   );
 }
-check('navigation responses keep their own cache URL',sw.includes('fetchAndCache(request);')&&!sw.includes('fetchAndCache(request, LIBRARY_FALLBACK)'));
+check('navigation responses keep their own cache URL',sw.includes('fetchAndCache(request, event);')&&!sw.includes('fetchAndCache(request, event, LIBRARY_FALLBACK)'));
 check('Death Guard entry routes phone and full readers',read('books/death-guard/index.html').includes('scripts/view-router.js?v=2')&&read('books/death-guard/scripts/view-router.js').includes('phoneUserAgent')&&read('books/death-guard/scripts/view-router.js').includes('smallTouchScreen'));
 check('Death Guard Phone Mode contains every canonical route',exists('books/death-guard/mobile/index.html')&&fs.readdirSync(path.join(root,'books','death-guard','mobile')).filter(name=>name.endsWith('.html')).length===48);
 check('Death Guard Phone Mode embeds only page-local glossary summaries',read('books/death-guard/mobile/mortarion.html').includes('data-term-summary=')&&!read('books/death-guard/mobile/mortarion.html').includes('glossary.en.js')&&read('books/death-guard/mobile/mortarion.html').includes('mobile.js?v='));
