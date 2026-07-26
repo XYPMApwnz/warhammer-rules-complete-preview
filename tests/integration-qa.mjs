@@ -45,6 +45,7 @@ for(const [slug,book] of Object.entries(books)){
 check('preview cache namespace is isolated',sw.includes('warhammer-rules-complete-preview-'));
 check('preview cache revision is content-derived',exists('glossary/generated/cache-revision.js')&&sw.includes('importScripts("./glossary/generated/cache-revision.js")')&&sw.includes('self.WH40K_CACHE_REVISION'));
 check('library header opens the Mega Glossary',library.includes('class="glossary-link"')&&library.includes('href="glossary/index.html"'));
+check('library has no dead book-preview modal',!library.includes('id="overlay"')&&!library.includes('function openBook')&&!library.includes('function closeBook'));
 check('Roster Guide is explicitly Death Guard only',library.includes('Создать гайд по ростеру Death Guard')&&library.includes('Поддерживается только Death Guard'));
 check('unsupported roster factions are blocked before save and open',library.includes('function isDeathGuardFaction')&&library.indexOf('if (!isDeathGuardFaction(roster.faction))')<library.indexOf('const record = saveRoster(roster, sourceText)')&&library.includes('if (!isDeathGuardFaction(record.roster?.faction))'));
 check('unsupported backup factions are not imported',library.includes('if (!isDeathGuardFaction(record.roster.faction))')&&library.includes('Файл не был импортирован'));
@@ -80,6 +81,14 @@ for(const [slug,book] of Object.entries(books)){
 }
 check('navigation responses keep their own cache URL',sw.includes('fetchAndCache(request, event);')&&!sw.includes('fetchAndCache(request, event, LIBRARY_FALLBACK)'));
 check('Death Guard entry routes phone and full readers',read('books/death-guard/index.html').includes('scripts/view-router.js?v=2')&&read('books/death-guard/scripts/view-router.js').includes('phoneUserAgent')&&read('books/death-guard/scripts/view-router.js').includes('smallTouchScreen'));
+const viewRouter=read('books/death-guard/scripts/view-router.js');
+check('Death Guard view router preserves public query parameters and anchors',viewRouter.includes("params.delete('view')")&&viewRouter.includes('destination.search = params.toString()')&&viewRouter.includes('destination.hash = location.hash'));
+check('existing public entry routes remain available',[
+  'index.html','glossary/index.html','books/death-guard/index.html','books/death-guard/reader.html','books/death-guard/mobile/index.html',
+  'books/core-rules/index.html','books/core-rules/reader/index.html','books/adeptus-mechanicus/index.html'
+].every(exists));
+check('existing public anchors remain available',read('books/death-guard/reader.html').includes('id="unit-mortarion"')&&read('books/core-rules/reader/movement-phase.html').includes('id="rule-09-07"')&&Boolean(glossaryRegistry['core-lethal-hits']));
+check('product UI hides internal implementation names',!read('books/core-rules/reader/index.html').match(/Quick Reader|Classic reader|Complete Reader/)&&!read('books/death-guard/index.html').match(/Phone Mode|Full Reader/)&&!read('books/death-guard/mobile/index.html').match(/Phone Mode|Full Reader/)&&!read('books/death-guard/reader.html').match(/clean room|unified visual/i));
 check('Death Guard Phone Mode contains every canonical route',exists('books/death-guard/mobile/index.html')&&fs.readdirSync(path.join(root,'books','death-guard','mobile')).filter(name=>name.endsWith('.html')).length===48);
 check('Death Guard Phone Mode embeds only page-local glossary summaries',read('books/death-guard/mobile/mortarion.html').includes('data-term-summary=')&&!read('books/death-guard/mobile/mortarion.html').includes('glossary.en.js')&&read('books/death-guard/mobile/mortarion.html').includes('mobile.js?v='));
 check('Death Guard datasheets load one shared related rule panel on demand',read('books/death-guard/mobile/mobile.js').includes("fetch('./related-rules.inc?v=2')")&&exists('books/death-guard/mobile/related-rules.inc'));

@@ -118,7 +118,7 @@ function page(route) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#11170e">
-  <title>${route.title} &mdash; Death Guard Phone Mode</title>
+  <title>${route.title} &mdash; Death Guard</title>
   <link rel="manifest" href="../../../manifest.webmanifest">
   <link rel="icon" href="../assets/icon-v4.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
@@ -132,7 +132,7 @@ function page(route) {
 <body>
   <header class="app-header" id="appHeader">
     <button class="header-button nav-menu" id="navButton" aria-label="Open navigation" aria-controls="mobileNav" aria-expanded="false">&#9776;</button>
-    <div class="app-brand"><strong>Death Guard Rules</strong><small>Full content &middot; Phone Mode</small></div>
+    <div class="app-brand"><strong>Death Guard Rules</strong><small>11E &middot; Mobile reference</small></div>
     <a class="library-link" href="../../../index.html" aria-label="Back to rulebook library"><span aria-hidden="true">&larr;</span><b>Library</b></a>
     <div class="header-spacer"></div>
   </header>
@@ -141,7 +141,7 @@ function page(route) {
     <h2 class="toc-heading">Contents</h2>
     <div class="phone-tree">${navigation(route)}</div>
     <a class="phone-glossary" href="../../../glossary/index.html">Mega Glossary &rarr;</a>
-    <a class="phone-glossary phone-mode-switch" href="../index.html?view=full">Full Reader &rarr;</a>
+    <a class="phone-glossary phone-mode-switch" href="../index.html?view=full">Desktop / iPad view &rarr;</a>
   </nav>
   <main class="main mobile-main"><article class="document">${hydrateTerms(content(route))}${relatedSection}</article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
@@ -163,4 +163,4 @@ for (const route of routes.filter(route => route.type !== 'start')) {
   if (!html.includes(`id="${route.id}"`)) throw new Error(`Incomplete route ${route.file}`);
 }
 
-console.log(`Phone Mode built: ${routes.length} pages, ${detachments.length} detachments, ${units.length} datasheets.`);
+console.log(`Mobile reference built: ${routes.length} pages, ${detachments.length} detachments, ${units.length} datasheets.`);
