@@ -15,7 +15,7 @@ Primary spaces:
 
 Global services:
 
-- **Search** — a product-wide capability. This stabilization pass implements it only for Core Rules Reference.
+- **Search** — a local capability inside each product space that supports it. Global cross-book search is out of scope.
 - **Mega Glossary** — the canonical shared terminology service used by every book.
 
 Supporting information:
@@ -33,18 +33,27 @@ Supporting information must not compete visually with the primary spaces.
 
 `Quick Reader`, `Classic Reader`, `Clean Room`, prototype names and build names are implementation history, not user-facing mode names.
 
-## Book header contract
+## Product shell contract
 
-Subject to available space, a book header provides:
+The shell contract defines capabilities, not a fixed row of buttons. Subject to available space, every book provides:
 
 - Library;
 - the current book;
 - the current chapter or section;
-- Search when that book supports it;
+- local Search when that book supports it;
 - Mega Glossary;
 - a mode switch when more than one mode exists.
 
-Critical exits must remain available on phones and tablets.
+The current context may be shown in the header, a breadcrumb, the page title or the navigation drawer. Critical exits must remain available on phones and tablets.
+
+## Rule and glossary navigation
+
+- Readable names are the user interface; technical rule codes remain internal metadata.
+- A glossary record that represents a complete rule may provide one explicit `fullRulePath` relative to the published project root.
+- `fullRulePath` never contains a domain, localhost address, leading slash or repository deployment prefix.
+- Popups show **Open full rule** only when that target exists and has been validated during the build.
+- Mega Glossary navigation remembers the originating popup for a short browser session. Its return action restores the source page, scroll position and popup when possible.
+- Normal browser history remains the default navigation stack. No custom router or parallel history system is introduced.
 
 ## Source hierarchy
 
@@ -108,16 +117,17 @@ Existing links must remain functional. New routes are introduced only with backw
 - Heavy diagrams and original pages are not downloaded automatically without an explicit user action.
 - Core Rules Reference may precache its lightweight HTML chapters and search index without precaching heavy images.
 
-## Scope of the stabilization pass
+## Scope of the product-spine pass
 
-Included:
+Included, in order:
 
-- accurate roster and source messaging;
-- Death Guard-only roster validation;
-- local Core Rules Reference search;
-- reduced Core Rules autolink noise;
-- removal of obsolete library modal code and internal implementation names;
-- compatibility and product-contract checks.
+1. content and rendered-output lint;
+2. this product shell contract;
+3. Library information architecture;
+4. a separate Roster Guides space;
+5. the shell contract in existing books;
+6. validated `fullRulePath` actions and popup return from Mega Glossary;
+7. complete compatibility closeout.
 
 Excluded:
 
@@ -126,14 +136,21 @@ Excluded:
 - new books or factions;
 - a legality or current-points validator;
 - global search across all books;
-- redesigning the Library;
-- moving Roster Guides to a new physical route;
 - new roster features;
 - more display modes;
 - automatic download of all diagrams and original pages;
 - favorites, recent rules and localization work.
 
 Any task not required by the stabilization Definition of Done moves to the backlog and is not implemented on the stabilization branch.
+
+## Delivery rules
+
+- Each stage is one reviewable commit.
+- Before a stage, its allowed files are fixed. Unrelated changes move to the backlog.
+- Source generators and their deterministic generated output belong in the same commit.
+- A large generated diff is accepted only when explained by a generator change.
+- Existing path-resolution helpers are reused. If none fits, one minimal helper may be added without creating a router.
+- After every stage, URL, anchor, roster-storage, PWA/offline, old-bookmark and mobile-navigation checks run again.
 
 ## Definition of Done
 
@@ -144,11 +161,16 @@ The pass is complete when:
 - arithmetic reconciliation is not described as legality or current-points validation;
 - official sources have higher priority than Wahapedia;
 - Core Rules Reference has local search by code, title, chapter and text;
-- a rule code is a permalink and its heading does not open its own glossary entry;
+- internal rule codes and anchors remain compatible without appearing in the interface;
 - only the first meaningful use of a canonical external term is autolinked per rule card;
 - basic words and repeated terms no longer create link noise;
 - obsolete modal code and internal mode names are removed from the interface;
 - existing URLs, anchors and `wh40k-rosters-v1` remain compatible;
+- `/?roster=<id>` still opens that saved roster without creating or rewriting it;
+- the Library clearly separates primary spaces, utilities and supporting information;
+- Roster Guides are separate from the Library while retaining the existing storage and JSON format;
+- every existing book exposes the product-shell capabilities it supports;
+- a validated rule reference can open its full rule;
+- Mega Glossary can return to the originating popup anywhere in the product;
 - PWA updates without redirect loops or unintended heavy downloads;
 - product, book and integration checks pass.
-
