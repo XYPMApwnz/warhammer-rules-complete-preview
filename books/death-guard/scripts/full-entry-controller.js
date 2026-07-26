@@ -130,7 +130,7 @@
       const section=document.createElement('section'),grid=document.createElement('div');section.className='full-entry-references';grid.className='full-entry-reference-grid';
       for(const term of terms.slice(0,limit)){
         const button=document.createElement('button');button.type='button';button.dataset.fullEntry=term.id;
-        const title=document.createElement('strong'),meta=document.createElement('small');title.textContent=term.title.en;meta.textContent=term.kind+' // '+(term.canonicalSource?.locator||term.scope);
+        const title=document.createElement('strong'),meta=document.createElement('small');title.textContent=term.title.en;meta.textContent=term.kind+' // '+term.scope;
         button.append(title,meta);grid.append(button);
       }
       section.append(this.sectionLabel(label+' // '+terms.length),grid);return section;
@@ -157,7 +157,7 @@
         ['Related entries',term.related,16]
       ]){const section=this.referenceSection(label,ids,limit);if(section)nodes.push(section);}
       const meta=document.createElement('div');meta.className='full-entry-meta';
-      for(const [label,value] of [['Scope',term.scope],['Status',term.status],['Canonical source',(source.documentId||'unknown')+' · '+(source.locator||'')]]){
+      for(const [label,value] of [['Scope',term.scope],['Status',term.status],['Canonical source',source.documentId||'unknown']]){
         const cell=document.createElement('div'),key=document.createElement('small'),data=document.createElement('b');key.textContent=label;data.textContent=value;cell.append(key,data);meta.append(cell);
       }
       nodes.push(meta);this.content.replaceChildren(...nodes);

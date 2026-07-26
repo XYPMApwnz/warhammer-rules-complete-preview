@@ -1,4 +1,14 @@
 {
+  "core-lethal-hits": {
+    "summary": "When an attack with LETHAL HITS scores a Critical Hit, it automatically wounds. No Wound roll is made, so that attack cannot score a Critical Wound.",
+    "definition": "When an attack with LETHAL HITS scores a Critical Hit, you can make it automatically wound. No Wound roll is made, so that attack cannot score a Critical Wound.",
+    "sourceLocator": "24.23"
+  },
+  "core-devastating-wounds": {
+    "summary": "When an attack with DEVASTATING WOUNDS scores a Critical Wound, the target suffers mortal wounds equal to the weapon's Damage characteristic. Excess mortal wounds are lost.",
+    "definition": "When an attack with DEVASTATING WOUNDS scores a Critical Wound, the target suffers mortal wounds equal to the weapon's Damage characteristic. Those mortal wounds can damage only one model; any excess is lost.",
+    "sourceLocator": "24.10"
+  },
   "core-assault": {
     "summary": "An unengaged unit that Advanced this turn can shoot using only its [ASSAULT] weapons. After shooting, it cannot start an Action until the end of the phase.",
     "definition": "Units containing one or more models with an [ASSAULT] weapon can use Assault Shooting. Assault Shooting is available when the unit is unengaged, made an Advance move this turn and has one or more [ASSAULT] weapons. The unit shoots normally, but only [ASSAULT] weapons can be selected. After it shoots, the unit cannot start an Action until the end of the phase.",

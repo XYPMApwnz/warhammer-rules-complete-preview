@@ -165,7 +165,7 @@
     const rules=node('div','designed-rules');
     for(const rule of pdf.rules[id]||[]){
       const section=node('section','designed-rule');section.id=`rule-${rule.code.replace('.','-')}`;
-      const heading=node('header','designed-rule-head');heading.append(node('span','rule-index',rule.code),node('h3','',rule.title),node('span','rule-page',`PAGE ${rule.page}`));section.append(heading);
+      const heading=node('header','designed-rule-head');heading.append(node('h3','',rule.title),node('span','rule-page',`PAGE ${rule.page}`));section.append(heading);
       const copy=node('div','rule-copy');appendSourceBlocks(copy,ruleText(layout,rule));section.append(copy);rules.append(section);
       const visuals=visualsByRule.get(rule.code);if(visuals?.length){const gallery=node('div','source-gallery');visuals.forEach((visual)=>gallery.append(makeFigure(visual)));rules.append(gallery);}
     }
@@ -209,7 +209,7 @@
       const section=sectionById.get(id),rules=pdf.rules[id]||[];
       entries.push({type:'SECTION',title:section.title,detail:pageLabel(pagesFor(id)),haystack:section.title.toLocaleLowerCase('en'),id,anchor:`page-${pagesFor(id)[0]}`});
       pagesFor(id).forEach((page)=>entries.push({type:'PAGE',title:`${section.title} - page ${page}`,detail:`Original PDF page ${page}`,haystack:`${section.title} ${pdf.pages[String(page)]||''}`.toLocaleLowerCase('en'),id,anchor:`page-${page}`}));
-      rules.forEach((rule)=>entries.push({type:'RULE',title:rule.title,detail:`${rule.code} · PDF page ${rule.page}`,haystack:`${rule.code} ${rule.title} ${rule.text}`.toLocaleLowerCase('en'),id,anchor:`page-${rule.page}`}));
+      rules.forEach((rule)=>entries.push({type:'RULE',title:rule.title,detail:`PDF page ${rule.page}`,haystack:`${rule.code} ${rule.title} ${rule.text}`.toLocaleLowerCase('en'),id,anchor:`page-${rule.page}`}));
     });return entries;
   }
   const searchIndex=buildSearchIndex();

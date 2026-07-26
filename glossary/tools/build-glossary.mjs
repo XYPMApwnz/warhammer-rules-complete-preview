@@ -11,7 +11,14 @@ const writeJson=(file,value)=>{fs.mkdirSync(path.dirname(file),{recursive:true})
 const loadWindow=file=>{const sandbox={window:{}};vm.runInNewContext(fs.readFileSync(file,'utf8'),sandbox,{filename:file});return sandbox.window;};
 const slug=value=>String(value).toLowerCase().replace(/[‘’']/g,'').replace(/\[[^\]]+\]/g,m=>m.slice(1,-1)).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const normalTitle=value=>slug(value).replace(/-+/g,'-');
-const clean=value=>String(value||'').replace(/\r/g,'').replace(/\n-\n/g,'-').replace(/[ \t]*\n[ \t]*/g,' ').replace(/([A-Za-z])\s+-\s+([A-Za-z])/g,'$1-$2').replace(/\s*▪\s*/g,'\n• ').replace(/[ \t]{2,}/g,' ').trim();
+const clean=value=>String(value||'').replace(/\be\.g\./gi,match=>match[0][0]==='E'?'For example':'for example').replace(/\r/g,'').replace(/\n-\n/g,'-').replace(/[ \t]*\n[ \t]*/g,' ').replace(/([A-Za-z])\s+-\s+([A-Za-z])/g,'$1-$2').replace(/\s*▪\s*/g,'\n• ').replace(/[ \t]{2,}/g,' ').trim();
+const cleanRuleText=value=>String(value||'')
+  .replace(/\be\.g\./gi,match=>match[0][0]==='E'?'For example':'for example')
+  .replace(/\r/g,'')
+  .split('\n')
+  .map(line=>line.replace(/[ \t]{2,}/g,' ').trim())
+  .filter(Boolean)
+  .join('\n');
 const concise=(value,max=280)=>{
   const text=clean(value).replace(/\s+/g,' ').trim();
   if(text.length<=max)return text;
@@ -99,6 +106,9 @@ const digitalCanonicalIds={
   '15.08':'core-stratagem-fire-overwatch'
 };
 const digitalCoreId=rule=>digitalCanonicalIds[rule.code]||coreIdByCode.get(rule.code)||`core-rule-${rule.code.replaceAll('.','-')}-${slug(rule.title)}`;
+const glossaryExcludedCodes=new Set(['03.03.01']);
+const digitalTitleOverrides={'24.37.01':'Torrent Restrictions'};
+const digitalTitle=rule=>digitalTitleOverrides[rule.code]||rule.title.replace(/^\d+\.\s*/, '');
 
 for(const rule of coreRules){
   const id=coreId(rule);
@@ -123,6 +133,7 @@ for(const rule of coreRules){
 // Add its clarifications to the same canonical registry instead of keeping a
 // second Core-only glossary that can drift out of sync with the routed reader.
 for(const rule of coreDigital.records){
+  if(glossaryExcludedCodes.has(rule.code))continue;
   const id=digitalCoreId(rule);
   if(registry.has(id))continue;
   addTerm({
@@ -131,7 +142,7 @@ for(const rule of coreDigital.records){
     scope:'global',
     edition:'11e',
     language:'en',
-    title:{en:rule.title.replace(/^\d+\.\s*/, '')},
+    title:{en:digitalTitle(rule)},
     summary:{en:concise(rule.text)},
     definition:{en:clean(rule.text)},
     aliases:[],
@@ -391,15 +402,59 @@ for(const [id,reference] of Object.entries(coreQuickReferences)){
 // by the routed reader. Hand-written operational summaries remain intentionally
 // concise, while the full definition always mirrors the current rule text.
 for(const rule of coreDigital.records){
+  if(glossaryExcludedCodes.has(rule.code))continue;
   const term=registry.get(digitalCoreId(rule));
   if(!term)throw new Error(`Missing digital Core Rules term: ${rule.code} ${rule.title}`);
-  term.title={en:rule.title.replace(/^\d+\.\s*/, '')};
+  term.title={en:digitalTitle(rule)};
   term.kind=rule.kind==='stratagem'?'stratagem':rule.code.startsWith('24.')?'core-ability':'core-rule';
-  term.definition={en:clean(rule.text)};
+  const definition=rule.code==='03.03'?rule.text.split('\nWHAT IS COHERENCY?')[0]:rule.text;
+  term.definition={en:cleanRuleText(definition)};
   if(term.summarySource?.kind!=='curated-operational-reference')term.summary={en:concise(rule.text)};
   term.canonicalSource={documentId:'core-rules',revision:'11e',locator:rule.code};
+  term.matchLabels=[...new Set([...(term.matchLabels||[]),rule.code])];
   term.status='verified';
   term.presentation=clean(term.summary.en)===clean(term.definition.en)?'atomic':'article';
+}
+const coreTermsByCode=new Map(coreDigital.records.filter(rule=>!glossaryExcludedCodes.has(rule.code)).map(rule=>[rule.code,registry.get(digitalCoreId(rule))]).filter(([,term])=>term));
+const coreCodes=[...coreTermsByCode.keys()].sort((a,b)=>b.length-a.length);
+const chapterLabels=new Map([
+  ['03.01','Moving'],['04.01','Making Attacks'],['05.01','Attack Sequence'],['15.01','Stratagems'],['16.01','Actions']
+]);
+for(const [code,label] of chapterLabels){
+  const term=coreTermsByCode.get(code);
+  if(term)term.matchLabels=[...new Set([...(term.matchLabels||[]),label])];
+}
+const sectionReferences=new Map([
+  ['16.00',{label:'Actions',term:coreTermsByCode.get('16.01')}],
+  ['23.00',{label:'Aircraft',term:registry.get('keyword-aircraft')}],
+  ['17.00',{label:'Monsters and Vehicles',term:coreTermsByCode.get('17.01')}],
+  ['20.00',{label:'Strategic Reserves',term:registry.get('core-strategic-reserves')}],
+  ['18.00',{label:'Transports',term:coreTermsByCode.get('18.01')}]
+]);
+for(const {label,term} of sectionReferences.values())if(term)term.matchLabels=[...new Set([...(term.matchLabels||[]),label])];
+function humanizeCoreReferences(value){
+  let text=clean(value);
+  for(const code of coreCodes){
+    const title=coreTermsByCode.get(code)?.title?.en;
+    if(!title)continue;
+    const codePattern=escapeRegExp(code),titlePattern=escapeRegExp(title);
+    text=text
+      .replace(new RegExp(`\\[?(${titlePattern})\\]?(\\s+rule)?\\s*\\(${codePattern}\\)`,'gi'),'$1$2')
+      .replace(new RegExp(`\\[?(${titlePattern})\\]?\\s+${codePattern}(?=$|[^0-9])`,'gi'),'$1')
+      .replace(new RegExp(`\\(${codePattern}\\)`,'g'),title)
+      .replace(new RegExp(`(^|[^0-9.])${codePattern}(?=$|[^0-9.])`,'g'),(_,prefix)=>`${prefix}${title}`);
+  }
+  for(const [code,{label}] of sectionReferences){
+    const codePattern=escapeRegExp(code),labelPattern=escapeRegExp(label);
+    text=text
+      .replace(new RegExp(`(${labelPattern})\\s+${codePattern}(?=$|[^0-9])`,'gi'),'$1')
+      .replace(new RegExp(`(^|[^0-9.])${codePattern}(?=$|[^0-9.])`,'g'),(_,prefix)=>`${prefix}${label}`);
+  }
+  return text.replace(/\s*\((?:03|04|05|15|16|24)\)/g,'');
+}
+for(const term of registry.values()){
+  if(term.summary?.en)term.summary.en=concise(humanizeCoreReferences(term.summary.en));
+  if(term.definition?.en)term.definition.en=humanizeCoreReferences(term.definition.en);
 }
 for(const term of registry.values())term.aliases=[...new Set([...(term.aliases||[]),...Object.entries(aliases).filter(([,target])=>target===term.id).map(([alias])=>alias)])].filter(alias=>alias!==term.id).sort();
 for(const term of registry.values()){

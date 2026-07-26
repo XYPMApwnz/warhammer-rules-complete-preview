@@ -1,0 +1,8 @@
+.term-detail .term-button[data-autolink]{display:inline;width:auto;padding:0;border:0;border-bottom:2px dotted var(--acid);background:none;color:inherit;font:inherit;font-weight:700;cursor:pointer}
+.term-detail .term-button[data-autolink]:hover{box-shadow:none;color:var(--acid)}
+.term-popup{width:min(560px,calc(100% - 28px));padding:28px;border:1px solid var(--gold);border-top:4px solid var(--acid);background:var(--panel);color:var(--text);box-shadow:0 24px 80px #000}
+.term-popup::backdrop{background:rgba(0,0,0,.76)}
+.term-popup h2{margin:0 42px 12px 0;font:700 32px/1 Georgia,serif}
+.term-popup p{color:#c8cfbd;line-height:1.55}
+.term-popup-close{position:absolute;right:12px;top:12px;width:38px;height:38px;border:1px solid var(--line);background:transparent;color:var(--text);font-size:22px;cursor:pointer}
+.term-popup-full{min-height:42px;padding:0 14px;border:1px solid var(--gold);background:transparent;color:var(--text);font-weight:700;cursor:pointer}

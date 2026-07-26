@@ -84,7 +84,7 @@
     }
     const matches = searchIndex.filter(item => normalizeSearch(`${item.code} ${item.title} ${item.chapter} ${item.text}`).includes(query)).slice(0, 40);
     searchStatus.textContent = matches.length ? `${matches.length}${matches.length === 40 ? '+' : ''} results` : 'No matching rules.';
-    searchResults.innerHTML = matches.map(item => `<a href="${item.url}"><small>${item.code} · ${item.chapter}</small><strong>${item.title}</strong><span>${item.text.slice(0, 180)}</span></a>`).join('');
+    searchResults.innerHTML = matches.map(item => `<a href="${item.url}"><small>${item.chapter}</small><strong>${item.title}</strong><span>${item.text.slice(0, 180)}</span></a>`).join('');
   });
   addEventListener('keydown', event => {
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {

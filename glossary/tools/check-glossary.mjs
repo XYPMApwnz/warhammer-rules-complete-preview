@@ -14,6 +14,7 @@ for(const [id,term] of Object.entries(registry.terms)){
   const definition=String(term.definition?.en||'').replace(/\s+/g,' ').trim();
   if(!summary)errors.push(`${id}: empty popup summary`);
   if(!definition)errors.push(`${id}: empty full definition`);
+  if(/\be\.g\./i.test(`${summary} ${definition}`))errors.push(`${id}: use “for example” instead of “e.g.”`);
   if(summary.length>280)errors.push(`${id}: popup summary is longer than 280 characters`);
   if(definition.length>320&&summary===definition)errors.push(`${id}: long definition is duplicated as popup summary`);
   if(!presentations.has(term.presentation))errors.push(`${id}: invalid presentation ${term.presentation}`);

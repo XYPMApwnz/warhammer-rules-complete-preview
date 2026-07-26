@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "counts": {
-    "terms": 1013,
+    "terms": 1014,
     "aliases": 606,
     "variants": 57,
     "aliasCandidates": 32,
@@ -108,7 +108,7 @@
       "termId": "core-ignores-cover",
       "selectedSource": "core-rules",
       "rejectedSource": "death-guard",
-      "selectedDefinition": "Some weapons are designed to root enemy formations out of entrenched positions. Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack ( 13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth).",
+      "selectedDefinition": "Some weapons are designed to root enemy formations out of entrenched positions. Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack ( 13.08), including from rules that give a model or unit the benefit of cover (for example Stealth).",
       "rejectedDefinition": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack, including from rules that give a model or unit the benefit of cover (for example, Stealth).",
       "status": "resolved-by-policy"
     },
@@ -236,7 +236,7 @@
       "termId": "core-rule-17-02-frame",
       "selectedSource": "core-rules",
       "rejectedSource": "death-guard",
-      "selectedDefinition": "Some models do not have a base; many of these are MONSTER/VEHICLE models. Such models have the FRAME keyword, as do some other large models. Whenever a rule refers to a model’s position in relation to anything else on the battlefield (e.g. when measuring distances), if that model has the FRAME keyword, unless otherwise stated, measure to and from the closest point on that model (so not necessarily from its base, if it has one). When rotating a FRAME model as part of a move, if that model does not have a base, turn it any amount around its central axis, while keeping it upright.",
+      "selectedDefinition": "Some models do not have a base; many of these are MONSTER/VEHICLE models. Such models have the FRAME keyword, as do some other large models. Whenever a rule refers to a model’s position in relation to anything else on the battlefield (for example when measuring distances), if that model has the FRAME keyword, unless otherwise stated, measure to and from the closest point on that model (so not necessarily from its base, if it has one). When rotating a FRAME model as part of a move, if that model does not have a base, turn it any amount around its central axis, while keeping it upright.",
       "rejectedDefinition": "Whenever a rule refers to a model’s position in relation to anything else on the battlefield, if that model has the FRAME keyword, unless otherwise stated, measure to and from the closest point on that model, not necessarily from its base. When rotating a FRAME model as part of a move, if it has no base, turn it any amount around its central axis while keeping it upright.",
       "status": "resolved-by-policy"
     },

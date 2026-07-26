@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  const SKIP_SELECTOR='a,button,input,textarea,select,option,script,style,code,pre,[data-no-autolink],.toc-panel,.popup-close,.popup-actions,.term-popup h3';
+  const SKIP_SELECTOR='a,button,input,textarea,select,option,script,style,code,pre,h1,h2,h3,h4,h5,h6,[data-no-autolink],.toc-panel,.popup-close,.popup-actions,.rule-head,.stratagem-head';
   let activeBook='';
   let matcher=null;
   let termsByToken=new Map();
@@ -58,7 +58,8 @@
         ||candidates.find(candidate=>contextTermId===candidate.id)
         ||candidates.find(candidate=>candidate.termId===preferredByToken[normalize(label)])
         ||(candidates.length===1?candidates[0]:null);
-      found.push({start,end:start+label.length,label,id:entry?.id||'',ambiguous:!entry,candidates:candidates.map(candidate=>candidate.id)});
+      const display=/^\d{2}\.\d{2}(?:\.\d{2})?$/.test(label)?entry?.title||label:label;
+      found.push({start,end:start+label.length,label,display,id:entry?.id||'',ambiguous:!entry,candidates:candidates.map(candidate=>candidate.id)});
       if(matcher.lastIndex===match.index)matcher.lastIndex++;
     }
     return found;
@@ -78,7 +79,7 @@
     for(const hit of hits){
       fragment.append(text.slice(cursor,hit.start));
       const button=document.createElement('button');
-      button.type='button';button.className='term-button';button.dataset.term=hit.id;button.dataset.autolink='true';button.textContent=hit.label;
+      button.type='button';button.className='term-button';button.dataset.term=hit.id;button.dataset.autolink='true';button.textContent=hit.display;
       fragment.append(button);cursor=hit.end;
     }
     fragment.append(text.slice(cursor));node.replaceWith(fragment);
