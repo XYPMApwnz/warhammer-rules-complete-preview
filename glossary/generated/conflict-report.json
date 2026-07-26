@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "counts": {
-    "terms": 913,
-    "aliases": 600,
-    "variants": 49,
-    "aliasCandidates": 33,
-    "keywordCandidates": 17
+    "terms": 891,
+    "aliases": 602,
+    "variants": 57,
+    "aliasCandidates": 31,
+    "keywordCandidates": 16
   },
   "variants": [
     {
@@ -399,6 +399,70 @@
       "selectedDefinition": "You can re-roll the wound roll.",
       "rejectedDefinition": "Attacks made with this weapon can re-roll the Wound roll.",
       "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-scouts",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Scouts form the vanguard of many armies. Unnoticed by the enemy, they range ahead of the main force. This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following:…",
+      "rejectedDefinition": "Scouts 6\" is listed on the Skitarii Rangers datasheet.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-deadly-demise",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Deadly Demise X can inflict X mortal wounds on nearby units when the model is destroyed.",
+      "rejectedDefinition": "Deadly Demise D3 is listed on the Skorpius Dunerider datasheet.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-firing-deck",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Firing Deck X lets a Transport use selected ranged weapons of up to X embarked models.",
+      "rejectedDefinition": "Firing Deck 2 is listed on the Skorpius Dunerider datasheet.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-hover",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Some airborne vehicles can use vectored thrusters or anti-gravity technology to hover and skim over the battlefield, the better to hunt their prey or deploy embarked troops. Each time this unit takes to the skies ( 21.03), do not subtract 2\" from the maximum distance.",
+      "rejectedDefinition": "Hover is listed on the Archaeopter Fusilave datasheet.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-deep-strike",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "During an ingress move, set up more than 8\" horizontally from all enemy units.",
+      "rejectedDefinition": "Deep Strike is listed on the Archaeopter Transvector datasheet.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-feel-no-pain",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Feel No Pain X+: each time the model would lose a wound, on X+ that wound is not lost.",
+      "rejectedDefinition": "Feel No Pain 5+ is listed on the Corpuscarii Electro-Priests datasheet.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-deadly-demise",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Deadly Demise X can inflict X mortal wounds on nearby units when the model is destroyed.",
+      "rejectedDefinition": "Deadly Demise 1 is listed on the Ironstrider Ballistarii datasheet.",
+      "status": "resolved-by-policy"
+    },
+    {
+      "termId": "core-scouts",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Scouts form the vanguard of many armies. Unnoticed by the enemy, they range ahead of the main force. This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following:…",
+      "rejectedDefinition": "Scouts 9\" is listed on the Serberys Raiders datasheet.",
+      "status": "resolved-by-policy"
     }
   ],
   "aliasCandidates": [
@@ -407,22 +471,6 @@
       "termIds": [
         "core-rule-02-03-abilities",
         "core-abilities"
-      ],
-      "status": "review-required"
-    },
-    {
-      "normalizedTitle": "deep-strike",
-      "termIds": [
-        "core-deep-strike",
-        "adeptus-mechanicus-datasheet-deep-strike"
-      ],
-      "status": "review-required"
-    },
-    {
-      "normalizedTitle": "hover",
-      "termIds": [
-        "core-hover",
-        "adeptus-mechanicus-datasheet-hover"
       ],
       "status": "review-required"
     },
@@ -792,16 +840,6 @@
         "core-rule-23-01-deployment",
         "core-rule-23-02-movement",
         "core-rule-23-03-shooting",
-        "core-rule-23-04-charging-and-fighting"
-      ],
-      "status": "review-required"
-    },
-    {
-      "termId": "keyword-flying",
-      "candidateRuleIds": [
-        "core-rule-09-07-fall-back-move",
-        "core-rule-21-02-surge-move",
-        "core-rule-21-03-flying-models",
         "core-rule-23-04-charging-and-fighting"
       ],
       "status": "review-required"

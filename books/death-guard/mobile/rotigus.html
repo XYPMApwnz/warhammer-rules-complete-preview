@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
   <link rel="stylesheet" href="../styles/layout.css?v=9">
   <link rel="stylesheet" href="../styles/navigation.css?v=10">
-  <link rel="stylesheet" href="../styles/content.css?v=18">
+  <link rel="stylesheet" href="../styles/content.css?v=24">
   <link rel="stylesheet" href="../styles/popups.css?v=15">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=4">
-  <link rel="stylesheet" href="./mobile.css?v=3">
+  <link rel="stylesheet" href="./mobile.css?v=6">
 </head>
 <body>
   <header class="app-header" id="appHeader">
@@ -121,7 +121,7 @@
 </div>
 </div>
 <div class="content-block">
-<p>Pact of Decay datasheet. This is not a native <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> datasheet; it is included because it is available through the current Pact of Decay army rule.</p>
+<p>Pact of Decay datasheet. This is not a native <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> datasheet; it is included because it is available through the current Pact of Decay army rule.</p>
 </div>
 <div class="content-block">
 <p>Base: (⌀130mm).</p>
@@ -144,7 +144,7 @@
 <button class="weapon-button" data-term="weapon-streams-of-brackish-filth-de31740" data-term-title="Streams of brackish filth" data-term-summary="Range 12&quot; · A 2D6 · BS N/A · S 8 · AP -2 · D 1 · Abilities DEVASTATING WOUNDS, IGNORES COVER, TORRENT">Streams of brackish filth</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-devastating-wounds" data-term-title="DEVASTATING WOUNDS" data-term-summary="A critical wound ends the attack sequence and inflicts mortal wounds equal to D.">DEVASTATING WOUNDS</button>
+<button class="tag" data-term="core-devastating-wounds" data-term-title="DEVASTATING WOUNDS" data-term-summary="On a critical wound, the attack sequence ends and the target suffers mortal wounds equal to D after normal damage; each critical wound can damage only one model and excess wounds are lost.">DEVASTATING WOUNDS</button>
 <button class="tag" data-term="core-ignores-cover" data-term-title="IGNORES COVER" data-term-summary="The target cannot have the benefit of cover against this attack.">IGNORES COVER</button>
 <button class="tag" data-term="core-torrent" data-term-title="TORRENT" data-term-summary="The attack automatically hits the target.">TORRENT</button>
 </div>
@@ -176,7 +176,7 @@
 <button class="weapon-button" data-term="weapon-gnarlrod-strike-1acf103" data-term-title="Gnarlrod – strike" data-term-summary="Range Melee · A 7 · WS 2+ · S 10 · AP -3 · D 3 · Abilities LETHAL HITS, PSYCHIC">Gnarlrod – strike</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 <button class="tag" data-term="core-psychic" data-term-title="PSYCHIC" data-term-summary="Can ignore modifiers to BS/WS and hit rolls for that attack.">PSYCHIC</button>
 </div>
 </div>
@@ -193,7 +193,7 @@
 <button class="weapon-button" data-term="weapon-gnarlrod-sweep-e6644f6" data-term-title="Gnarlrod – sweep" data-term-summary="Range Melee · A 14 · WS 2+ · S 8 · AP -1 · D 1 · Abilities LETHAL HITS, PSYCHIC">Gnarlrod – sweep</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 <button class="tag" data-term="core-psychic" data-term-title="PSYCHIC" data-term-summary="Can ignore modifiers to BS/WS and hit rolls for that attack.">PSYCHIC</button>
 </div>
 </div>
@@ -221,9 +221,9 @@
 </article>
 <article class="ability" id="rotigus-ability-virulent-blessing-psychic">
 <h5>
-<button class="term-button" data-term="ability-virulent-blessing-psychic-62e7cae" data-term-title="Virulent Blessing (Psychic)" data-term-summary="At the start of the Fight phase, you can select one enemy unit within 24&quot; and visible to this model.">Virulent Blessing (Psychic)</button>
+<button class="term-button" data-term="ability-virulent-blessing-psychic-62e7cae" data-term-title="Virulent Blessing (Psychic)" data-term-summary="At the start of the Fight phase, select a visible enemy within 24&quot;. Until phase end, add 1 Damage when a PLAGUE LEGIONS model’s attack is allocated to a model in that unit.">Virulent Blessing (Psychic)</button>
 </h5>
-<p>At the start of the Fight phase, you can select one enemy unit within 24&quot; and visible to this model. Until the end of the phase, each time an attack made by a <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> model is allocated to a model in that unit, add 1 to the Damage characteristic of that attack.</p>
+<p>At the start of the Fight phase, you can select one enemy unit within 24&quot; and visible to this model. Until the end of the phase, each time an attack made by a <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="Rules that specify PLAGUE LEGIONS apply only to models or units with this keyword.">PLAGUE LEGIONS</button> model is allocated to a model in that unit, add 1 to the Damage characteristic of that attack.</p>
 </article>
 <article class="ability" id="rotigus-ability-deluge-of-nurgle-aura">
 <h5>
@@ -237,7 +237,7 @@
 <h4>Unit Composition</h4>
 <div class="ability-list">
 <div class="content-block">
-<p>1 <button class="term-button" data-term="term-rotigus" data-term-title="Rotigus" data-term-summary="M 7&quot; · T 12 · Sv 5+ · W 22 · Ld 6+ · OC 5 · Inv 4+">Rotigus</button> – <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="EPIC HERO has no standalone Core Rules effect; it matters only when another rule explicitly references it.">EPIC HERO</button>. This model is equipped with: <button class="term-button" data-term="weapon-streams-of-brackish-filth-de31740" data-term-title="Streams of brackish filth" data-term-summary="Range 12&quot; · A 2D6 · BS N/A · S 8 · AP -2 · D 1 · Abilities DEVASTATING WOUNDS, IGNORES COVER, TORRENT">streams of brackish filth</button>; gnarlrod.</p>
+<p>1 <button class="term-button" data-term="term-rotigus" data-term-title="Rotigus" data-term-summary="M 7&quot; · T 12 · Sv 5+ · W 22 · Ld 6+ · OC 5 · Inv 4+">Rotigus</button> – <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="Each EPIC HERO has a unit limit of 1 and cannot be given an Enhancement.">EPIC HERO</button>. This model is equipped with: <button class="term-button" data-term="weapon-streams-of-brackish-filth-de31740" data-term-title="Streams of brackish filth" data-term-summary="Range 12&quot; · A 2D6 · BS N/A · S 8 · AP -2 · D 1 · Abilities DEVASTATING WOUNDS, IGNORES COVER, TORRENT">streams of brackish filth</button>; gnarlrod.</p>
 </div>
 </div>
 </section>
@@ -253,18 +253,27 @@
 <h4>Keywords</h4>
 <div class="ability-list">
 <div class="content-block">
-<p>Keywords: <button class="term-button" data-term="keyword-monster" data-term-title="MONSTER" data-term-summary="MONSTER units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, TERRAIN AND MOVEMENT and MOVING MONSTERS AND VEHICLES (+1 more).">MONSTER</button>, <button class="term-button" data-term="keyword-character" data-term-title="CHARACTER" data-term-summary="CHARACTER units use SAVE ROLLS, MORTAL WOUNDS and PRECISION.">CHARACTER</button>, <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="EPIC HERO has no standalone Core Rules effect; it matters only when another rule explicitly references it.">EPIC HERO</button>, <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="PSYKER has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PSYKER</button>, <button class="term-button" data-term="keyword-chaos" data-term-title="CHAOS" data-term-summary="CHAOS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">CHAOS</button>, <button class="term-button" data-term="keyword-nurgle" data-term-title="NURGLE" data-term-summary="NURGLE has no standalone Core Rules effect; it matters only when another rule explicitly references it.">NURGLE</button>, <button class="term-button" data-term="keyword-daemon" data-term-title="DAEMON" data-term-summary="DAEMON has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DAEMON</button>, <button class="term-button" data-term="keyword-summoned" data-term-title="SUMMONED" data-term-summary="SUMMONED has no standalone Core Rules effect; it matters only when another rule explicitly references it.">SUMMONED</button>, <button class="term-button" data-term="term-rotigus" data-term-title="Rotigus" data-term-summary="M 7&quot; · T 12 · Sv 5+ · W 22 · Ld 6+ · OC 5 · Inv 4+">ROTIGUS</button>. Faction Keywords: <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button>.</p>
+<p>Keywords: <button class="term-button" data-term="keyword-monster" data-term-title="MONSTER" data-term-summary="MONSTER units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, TERRAIN AND MOVEMENT and MOVING MONSTERS AND VEHICLES (+1 more).">MONSTER</button>, <button class="term-button" data-term="keyword-character" data-term-title="CHARACTER" data-term-summary="CHARACTER units use SAVE ROLLS, MORTAL WOUNDS and PRECISION.">CHARACTER</button>, <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="Each EPIC HERO has a unit limit of 1 and cannot be given an Enhancement.">EPIC HERO</button>, <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="A PSYKER in an Attached Unit gives that unit the PSYKER keyword, making the whole unit interact with rules such as [ANTI-PSYKER X+].">PSYKER</button>, <button class="term-button" data-term="keyword-chaos" data-term-title="CHAOS" data-term-summary="CHAOS keyword.">CHAOS</button>, <button class="term-button" data-term="keyword-nurgle" data-term-title="NURGLE" data-term-summary="Rules that specify NURGLE apply only to models or units with this keyword.">NURGLE</button>, <button class="term-button" data-term="keyword-daemon" data-term-title="DAEMON" data-term-summary="DAEMON keyword.">DAEMON</button>, <button class="term-button" data-term="keyword-summoned" data-term-title="SUMMONED" data-term-summary="SUMMONED keyword.">SUMMONED</button>, <button class="term-button" data-term="term-rotigus" data-term-title="Rotigus" data-term-summary="M 7&quot; · T 12 · Sv 5+ · W 22 · Ld 6+ · OC 5 · Inv 4+">ROTIGUS</button>. Faction Keywords: <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="Rules that specify PLAGUE LEGIONS apply only to models or units with this keyword.">PLAGUE LEGIONS</button>.</p>
 </div>
 <div class="source">Source: Codex: Death Guard transcription.</div>
 </div>
 </section>
-</article></article></main>
+</article>
+  <section class="related-rules" id="relatedRules" aria-labelledby="relatedRulesTitle">
+    <header class="related-rules-head"><div><span>Datasheet tools</span><h2>Stratagems</h2></div></header>
+    <div class="related-controls">
+      <label>Detachment<select id="relatedDetachment"><option value="all">All detachments</option><option value="virulent-vectorium">Virulent Vectorium</option><option value="mortarions-hammer">Mortarion’s Hammer</option><option value="champions-of-contagion">Champions of Contagion</option><option value="tallyband-summoners">Tallyband Summoners</option><option value="shamblerot-vectorium">Shamblerot Vectorium</option><option value="death-lords-chosen">Death Lord’s Chosen</option><option value="contagion-engines">Contagion Engines</option><option value="flyblown-host">Flyblown Host</option><option value="paragons-of-putrescence">Paragons of Putrescence</option></select></label>
+      
+    </div>
+    <div class="related-content" id="relatedRulesContent"><p class="related-status">Loading rules&hellip;</p></div>
+  </section></article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
+  <script src="../scripts/related-rules.js?v=5"></script>
   <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
     <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
     <h2 id="termTitle"></h2><p id="termSummary"></p>
     <a id="termFull" href="../../../glossary/index.html">Open full article &rarr;</a>
   </dialog>
-  <script src="./mobile.js?v=2"></script>
+  <script src="./mobile.js?v=8"></script>
 </body>
 </html>

@@ -202,7 +202,7 @@ const terms={};
 for(const term of rules.glossary)terms[term.id]={title:term.title,summary:term.summary,full:term.full,glossary:`glossary-${term.id}`,...(term.sectionId?{rule:term.sectionId}:{}),...(term.unitIds?.length?{units:term.unitIds,datasheet:term.unitIds[0],statline:`${term.unitIds[0].replace('unit-','')}-profile`}:{})};
 const dataJs=`window.DG_TERMS=${JSON.stringify(terms,null,2)};\n`;
 const releaseHtml=html
-  .replace('../../glossary/generated/glossary.en.js"','../../glossary/generated/glossary.en.js?v=2"')
+  .replace('../../glossary/generated/glossary.en.js"','../../glossary/generated/glossary.en.js?v=3"')
   .replace('../shared/glossary-autolink.js?v=7','../shared/glossary-autolink.js?v=8');
 const outputs=new Map([['index.html',releaseHtml],['scripts/data.js',dataJs]]);
 

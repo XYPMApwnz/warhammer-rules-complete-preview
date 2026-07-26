@@ -81,6 +81,7 @@
 
     isUseful(id){
       const term=this.api.get(id);if(!term)return false;
+      if(term.presentation)return term.presentation==='article'||term.presentation==='reference';
       const summary=textLength(term.summary?.en),definition=textLength(term.definition?.en);
       return populatedObject(term.structured)||definition>=summary+120||referenceCount(term)>=2;
     }
@@ -143,9 +144,9 @@
       this.megaLink.href='../../glossary/index.html#'+encodeURIComponent(term.id);
       const nodes=[];
       const kind=document.createElement('p');kind.className='full-entry-kind';kind.textContent=term.kind+' // '+term.edition;nodes.push(kind);
-      if(summary&&!placeholder.test(summary)&&summary!==definition){const quick=document.createElement('p');quick.className='full-entry-summary';quick.textContent=summary;nodes.push(this.sectionLabel('Quick reference // popup'),quick);}
+      if(summary&&!placeholder.test(summary)&&summary!==definition&&term.presentation!=='profile'){const quick=document.createElement('p');quick.className='full-entry-summary';quick.textContent=summary;nodes.push(this.sectionLabel('Quick reference // popup'),quick);}
       const profile=this.renderProfile(term.structured);if(profile)nodes.push(this.sectionLabel('Structured profile'),profile);
-      if(definition&&!placeholder.test(definition)){const full=document.createElement('div');full.className='full-entry-definition';full.textContent=definition;nodes.push(this.sectionLabel('Full rule'),full);}
+      if(definition&&!placeholder.test(definition)&&term.presentation!=='profile'){const full=document.createElement('div');full.className='full-entry-definition';full.textContent=definition;nodes.push(this.sectionLabel(term.presentation==='atomic'?'Complete rule // popup-ready':term.presentation==='reference'?'Core concept':'Full rule'),full);}
       const references=term.references||{};
       for(const [label,ids,limit] of [
         ['Rules of this unit type',references.intrinsicRules,16],

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./styles/tokens.css?v=10">
   <link rel="stylesheet" href="./styles/layout.css?v=9">
   <link rel="stylesheet" href="./styles/navigation.css?v=10">
-<link rel="stylesheet" href="./styles/content.css?v=18">
+<link rel="stylesheet" href="./styles/content.css?v=24">
 <link rel="stylesheet" href="./styles/popups.css?v=15">
   <link rel="stylesheet" href="../shared/datasheet-system.css?v=4">
 </head>
@@ -93,6 +93,11 @@
 </div>
 </li>
 </ul>
+</li>
+<li data-nav-id="core-stratagems" data-nav-depth="2">
+<div class="toc-row no-toggle">
+<button class="toc-label" data-nav-target="core-stratagems">Core Stratagems</button>
+</div>
 </li>
 </ul>
 </li>
@@ -707,6 +712,74 @@
 <p>When mustering your army, unless specifically stated otherwise, you cannot select <button class="term-button" data-term="keyword-plague-legions">PLAGUE LEGIONS</button> as your Army Faction.</p>
 </div>
 </article>
+</section>
+<section class="content-group" id="core-stratagems" data-track="core-stratagems">
+<h3 class="category-title">Core Stratagems</h3>
+<p class="lead">Universal Stratagems available to every army. Datasheet tools only show the cards the selected unit can legally target.</p>
+<div class="detachment-content core-stratagem-grid">
+<article class="stratagem surface" id="core-stratagem-command-re-roll">
+<div class="stratagem-head"><div><h3>COMMAND RE-ROLL</h3><span class="stratagem-type">Core – Battle Tactic Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Any phase, just after you make an Advance, Charge, Damage, Hazardous, Hit, Save or Wound roll for a unit from your army, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit.</p>
+<p class="field"><b>TARGET</b><br>That unit or model from your army.</p>
+<p class="field"><b>EFFECT</b><br>Re-roll that roll. If several dice were rolled, select one of them to re-roll; Charge rolls are re-rolled in full.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-epic-challenge">
+<div class="stratagem-head"><div><h3>EPIC CHALLENGE</h3><span class="stratagem-type">Core – Epic Deed Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Fight phase, just after a friendly CHARACTER unit is selected to fight.</p>
+<p class="field"><b>TARGET</b><br>That CHARACTER unit.</p>
+<p class="field"><b>EFFECT</b><br>Select one CHARACTER model in that unit. Until the end of the phase, its melee weapons have the PRECISION ability.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-insane-bravery">
+<div class="stratagem-head"><div><h3>INSANE BRAVERY</h3><span class="stratagem-type">Core – Epic Deed Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Battle-shock step of your Command phase, just before a unit from your army takes a Battle-shock test.</p>
+<p class="field"><b>TARGET</b><br>That unit.</p>
+<p class="field"><b>EFFECT</b><br>That test is automatically successful.</p>
+<p class="field"><b>RESTRICTION</b><br>Once per battle.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-explosives">
+<div class="stratagem-head"><div><h3>EXPLOSIVES</h3><span class="stratagem-type">Core – Wargear Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Your Shooting phase.</p>
+<p class="field"><b>TARGET</b><br>One EXPLOSIVES or GRENADES unit from your army that is eligible to shoot, did not Advance this turn and is not within Engagement Range of enemy units.</p>
+<p class="field"><b>EFFECT</b><br>Select one eligible model, then one visible enemy unit within 8&quot; and outside Engagement Range. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-crushing-impact">
+<div class="stratagem-head"><div><h3>CRUSHING IMPACT</h3><span class="stratagem-type">Core – Strategic Ploy Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Your Charge phase, just after a MONSTER or VEHICLE unit from your army ends a Charge move.</p>
+<p class="field"><b>TARGET</b><br>That MONSTER or VEHICLE unit.</p>
+<p class="field"><b>EFFECT</b><br>Select one enemy unit within Engagement Range and one model in your unit within Engagement Range of it. Roll a number of D6 equal to that model’s Toughness: each 1 inflicts 1 mortal wound on your unit; each 5+ inflicts 1 mortal wound on the enemy unit, to a maximum of 6.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-rapid-ingress">
+<div class="stratagem-head"><div><h3>RAPID INGRESS</h3><span class="stratagem-type">Core – Strategic Ploy Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>End of your opponent’s Movement phase.</p>
+<p class="field"><b>TARGET</b><br>One unit from your army in Strategic Reserves, excluding AIRCRAFT.</p>
+<p class="field"><b>EFFECT</b><br>That unit can make an ingress move.</p>
+<p class="field"><b>RESTRICTION</b><br>Cannot be used during the first battle round.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-fire-overwatch">
+<div class="stratagem-head"><div><h3>FIRE OVERWATCH</h3><span class="stratagem-type">Core – Strategic Ploy Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>End of your opponent’s Movement phase.</p>
+<p class="field"><b>TARGET</b><br>One unit from your army, excluding TITANIC units, that is not within Engagement Range of enemy units.</p>
+<p class="field"><b>EFFECT</b><br>Your unit can shoot one visible enemy unit within 24&quot; using Snap Shooting: only unmodified Hit rolls of 6 score a hit and Hit rolls cannot be re-rolled.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-smokescreen">
+<div class="stratagem-head"><div><h3>SMOKESCREEN</h3><span class="stratagem-type">Core – Wargear Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Start of your opponent’s Shooting phase.</p>
+<p class="field"><b>TARGET</b><br>One SMOKE unit from your army.</p>
+<p class="field"><b>EFFECT</b><br>Until the end of the phase, that unit has the Benefit of Cover.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-heroic-intervention">
+<div class="stratagem-head"><div><h3>HEROIC INTERVENTION</h3><span class="stratagem-type">Core – Strategic Ploy Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>End of your opponent’s Charge phase.</p>
+<p class="field"><b>TARGET</b><br>One unit from your army within 12&quot; of one or more enemy units and not within Engagement Range. A VEHICLE can only be targeted if it is also a CHARACTER or WALKER.</p>
+<p class="field"><b>EFFECT</b><br>Resolve a Charge using Leap to Defend, or pay 1 additional CP to use Into the Fray.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-counteroffensive">
+<div class="stratagem-head"><div><h3>COUNTEROFFENSIVE</h3><span class="stratagem-type">Core – Strategic Ploy Stratagem</span></div><div class="cp">2CP</div></div>
+<p class="field"><b>WHEN</b><br>Fight phase, just after an enemy unit has fought.</p>
+<p class="field"><b>TARGET</b><br>One unit from your army that is eligible to fight.</p>
+<p class="field"><b>EFFECT</b><br>Your unit has Fights First and must be the next unit selected to fight.</p>
+</article>
+</div>
 </section>
 </section>
 <section class="section" id="detachments" data-track="detachments">
@@ -9750,13 +9823,15 @@
 </main>
 <div class="popup-layer" id="popupLayer" aria-live="polite">
 </div>
-<script src="../../glossary/generated/glossary.en.js?v=2"></script>
+<script src="../../glossary/generated/glossary.en.js?v=3"></script>
 <script src="./scripts/tap-diagnostics.js?v=2"></script>
 <script src="../shared/navigation-targets.js?v=1"></script>
 <script src="../shared/datasheet-layout.js?v=2"></script>
 <script src="../shared/popup-content.js?v=1"></script>
 <script src="../shared/glossary-autolink.js?v=8"></script>
-<script src="./scripts/navigation-controller.js?v=14">
+<script src="./scripts/related-rules.js?v=5"></script>
+<script src="./scripts/roster-filter.js?v=9"></script>
+<script src="./scripts/navigation-controller.js?v=15">
 </script>
 <script src="./scripts/popup-controller.js?v=21">
 </script>
@@ -9766,7 +9841,7 @@
 </script>
 <script src="./scripts/ui-controllers.js?v=11">
 </script>
-<script src="./scripts/app.js?v=17">
+<script src="./scripts/app.js?v=24">
 </script>
 </body>
 </html>

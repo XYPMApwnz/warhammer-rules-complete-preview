@@ -205,7 +205,8 @@
       const scrollY=window.scrollY;
       this.geometry.headerBottom=this.header.getBoundingClientRect().bottom;
       this.geometry.ranges=this.items.map(item=>{
-        const rect=item.section.getBoundingClientRect();return{item,top:scrollY+rect.top,bottom:scrollY+rect.bottom,measurable:rect.width>0||rect.height>0};
+        const rect=item.section.getBoundingClientRect(),leadingMargin=parseFloat(getComputedStyle(item.section).marginTop)||0;
+        return{item,top:scrollY+rect.top-leadingMargin,bottom:scrollY+rect.bottom,measurable:rect.width>0||rect.height>0};
       });
       this.readViewport();
     }

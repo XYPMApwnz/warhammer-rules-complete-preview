@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
   <link rel="stylesheet" href="../styles/layout.css?v=9">
   <link rel="stylesheet" href="../styles/navigation.css?v=10">
-  <link rel="stylesheet" href="../styles/content.css?v=18">
+  <link rel="stylesheet" href="../styles/content.css?v=24">
   <link rel="stylesheet" href="../styles/popups.css?v=15">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=4">
-  <link rel="stylesheet" href="./mobile.css?v=3">
+  <link rel="stylesheet" href="./mobile.css?v=6">
 </head>
 <body>
   <header class="app-header" id="appHeader">
@@ -140,7 +140,7 @@
 <br>That CONTAGION ENGINE unit.</p>
 <p class="field">
 <b>EFFECT</b>
-<br>Select one visible enemy unit. That enemy unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="An enemy unit within Contagion Range.">Afflicted</button> until your unit has attacked.</p>
+<br>Select one visible enemy unit. That enemy unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="While an enemy unit is Afflicted, subtract 1 from its models’ Toughness and apply the effect of your chosen Plague to that unit.">Afflicted</button> until your unit has attacked.</p>
 </article>
 <article class="stratagem surface" id="stratagem-soulrot-flux">
 <div class="stratagem-head">
@@ -168,11 +168,12 @@
 <div class="source">Source: Death Guard Faction Pack v1.0, p.2.</div>
 </section></article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
+  <script src="../scripts/related-rules.js?v=5"></script>
   <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
     <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
     <h2 id="termTitle"></h2><p id="termSummary"></p>
     <a id="termFull" href="../../../glossary/index.html">Open full article &rarr;</a>
   </dialog>
-  <script src="./mobile.js?v=2"></script>
+  <script src="./mobile.js?v=8"></script>
 </body>
 </html>

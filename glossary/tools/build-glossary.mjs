@@ -21,6 +21,18 @@ const concise=(value,max=280)=>{
   return `${slice.slice(0,end>0?end:max).trim()}…`;
 };
 const hash=value=>createHash('sha256').update(value).digest('hex');
+function weaponProfile(summary){
+  const parts=clean(summary).split(/\s*[·•]\s*/).filter(Boolean);
+  if(parts.length<6)return null;
+  const profile={},mode=/^(Ranged|Melee)$/i.test(parts[0])?parts.shift():'';
+  if(mode&&parts.length&&!/^(?:Range|A|BS|WS|S|AP|D|Abilities?)\s+/i.test(parts[0]))profile.Range=parts.shift();
+  for(const part of parts){
+    const match=part.match(/^(Range|A|BS|WS|S|AP|D|Abilities?)\s+(.+)$/i);if(!match)continue;
+    profile[match[1].replace(/^Abilities?$/i,'Abilities')]=match[2].trim();
+  }
+  if(!profile.Range&&mode==='Melee')profile.Range='Melee';
+  return profile.Range&&profile.A&&(profile.BS||profile.WS)&&profile.S&&profile.AP&&profile.D?profile:null;
+}
 
 const dgSource=readJson(path.join(root,'books','death-guard','content','death-guard-rules.en.json'));
 const dgRuntime=loadWindow(path.join(root,'books','death-guard','scripts','data.js')).DG_TERMS;
@@ -34,6 +46,12 @@ const resolutions=readJson(path.join(glossaryRoot,'resolutions.en.json'));
 const keywordLinks=readJson(path.join(glossaryRoot,'keyword-links.en.json'));
 const coreQuickReferences=readJson(path.join(glossaryRoot,'core-quick-reference.en.json'));
 const supplemental=readJson(path.join(glossaryRoot,'supplemental-terms.en.json'));
+const existingRegistry=fs.existsSync(path.join(glossaryRoot,'registry.en.json'))?readJson(path.join(glossaryRoot,'registry.en.json')).terms:{};
+const existingAliases=fs.existsSync(path.join(glossaryRoot,'aliases.en.json'))?readJson(path.join(glossaryRoot,'aliases.en.json')).aliases:{};
+const existingContexts=Object.fromEntries(['core-rules','death-guard','adeptus-mechanicus'].map(bookId=>{
+  const file=path.join(glossaryRoot,'contexts',`${bookId}.json`);
+  return [bookId,fs.existsSync(file)?readJson(file).terms:{}];
+}));
 
 const registry=new Map();
 const aliases={};
@@ -132,7 +150,7 @@ for(const entry of dgSource.glossary){
     language:'en',
     title:{en:entry.title},
     summary:{en:concise((entry.weapon||entry.statline)?runtime.summary:(entry.short||runtime.summary||entry.full))},
-    definition:{en:clean(entry.full||entry.short||runtime.summary)},
+    definition:{en:clean(entry.weapon?`${entry.title} profile: ${Object.entries(entry.weapon).map(([key,value])=>`${key} ${value}`).join('; ')}.`:(entry.full||entry.short||runtime.summary))},
     structured:{...(entry.weapon?{weapon:entry.weapon}:{}),...(entry.statline?{statline:entry.statline}:{}),...(entry.points?{points:entry.points}:{})},
     aliases:[entry.id],
     related:[],
@@ -155,7 +173,10 @@ for(const [localId,entry] of Object.entries(amRuntime)){
     const match=coreByTitle.get(normalTitle(entry.title));
     id=match?coreId(match):localId;
   }else id=`adeptus-mechanicus-${localId}`;
-  if(!registry.has(id))addTerm({id,kind:localId.startsWith('weapon-')?'weapon':'faction-term',scope:localId.startsWith('core-')?'global':'adeptus-mechanicus',edition:'11e',language:'en',title:{en:entry.title},summary:{en:concise(entry.summary)},definition:{en:clean(entry.summary)},aliases:[localId],related:[],canonicalSource:{documentId:'adeptus-mechanicus',revision:'prototype',locator:entry.rule||entry.datasheet||localId},status:'provisional'},'adeptus-mechanicus',localId);
+  if(!registry.has(id)){
+    const profile=localId.startsWith('weapon-')?weaponProfile(entry.summary):null;
+    addTerm({id,kind:localId.startsWith('weapon-')?'weapon':'faction-term',scope:localId.startsWith('core-')?'global':'adeptus-mechanicus',edition:'11e',language:'en',title:{en:entry.title},summary:{en:concise(entry.summary)},definition:{en:clean(entry.summary)},structured:profile?{weapon:profile}:{},presentation:profile?'profile':undefined,aliases:[localId],related:[],canonicalSource:{documentId:'adeptus-mechanicus',revision:'prototype',locator:entry.rule||entry.datasheet||localId},status:'provisional'},'adeptus-mechanicus',localId);
+  }
   else{
     if(localId!==id)aliases[localId]=id;
     if(clean(registry.get(id).summary.en)!==clean(entry.summary))variants.push({termId:id,selectedSource:registry.get(id).canonicalSource.documentId,rejectedSource:'adeptus-mechanicus',selectedDefinition:registry.get(id).summary.en,rejectedDefinition:entry.summary,status:'resolved-by-policy'});
@@ -304,6 +325,31 @@ for(const term of registry.values()){
   if(candidates.length)keywordCandidates.push({termId:term.id,candidateRuleIds:[...new Set(candidates)],status:'review-required'});
 }
 
+// registry.en.json is the editorial source of truth. Imports discover new
+// records and rebuild navigation, but never replace existing canonical text.
+for(const [id,existing] of Object.entries(existingRegistry)){
+  if(existing.curated===true&&!registry.has(id))registry.set(id,{...existing,sourceRefs:existing.sourceRefs||['curated-glossary']});
+  const term=registry.get(id);
+  if(!term)continue;
+  for(const field of ['kind','scope','edition','language','title','summary','definition','structured','presentation','related','mentions','references','matchLabels','canonicalSource','summarySource','status','curation']){
+    if(existing[field]==null)continue;
+    if(field==='definition'&&/^(weapon|datasheet) profile\.?$/i.test(existing.definition?.en||''))continue;
+    if(field==='structured'&&existing.kind==='weapon'&&!Object.keys(existing.structured||{}).length)continue;
+    term[field]=existing[field];
+  }
+  if(existing.curated===true)term.curated=true;
+}
+for(const [alias,target] of Object.entries(existingAliases)){
+  if(!registry.has(target))continue;
+  if(aliases[alias]&&aliases[alias]!==target)throw new Error(`Canonical alias conflict: ${alias} -> ${target} (import proposed ${aliases[alias]})`);
+  aliases[alias]=target;
+}
+for(const [bookId,records] of Object.entries(existingContexts)){
+  for(const [localId,record] of Object.entries(records))if(record.curated===true&&registry.has(aliases[record.termId]||record.termId))contexts[bookId][localId]=record;
+}
+for(const term of registry.values())term.aliases=[...new Set([...(term.aliases||[]),...Object.entries(aliases).filter(([,target])=>target===term.id).map(([alias])=>alias)])].filter(alias=>alias!==term.id).sort();
+for(const term of registry.values())if(!term.presentation)term.presentation=term.kind==='weapon'||term.structured?.weapon?'profile':clean(term.summary?.en)===clean(term.definition?.en)?'atomic':'article';
+
 const aliasCandidates=[...titleIndex.entries()].filter(([,ids])=>new Set(ids).size>1).map(([normalizedTitle,ids])=>({normalizedTitle,termIds:[...new Set(ids)],status:'review-required'}));
 const registryDocument={schema:1,language:'en',terms:Object.fromEntries([...registry].sort(([a],[b])=>a.localeCompare(b)))};
 const contextDocuments={};
@@ -317,7 +363,7 @@ writeJson(path.join(glossaryRoot,'generated','conflict-report.json'),report);
 
 const preferredMatches=Object.fromEntries(Object.entries(supplemental.preferredMatches||{}).map(([label,id])=>{if(!registry.has(id))throw new Error(`Unknown preferred match target: ${label} -> ${id}`);return [label.toLowerCase(),id];}));
 const runtimePayload={schema:1,language:'en',contentHash:hash(JSON.stringify({registryDocument,contexts:contextDocuments,aliases,preferredMatches})),terms:registryDocument.terms,aliases,preferredMatches,contexts:Object.fromEntries(Object.entries(contextDocuments).map(([id,value])=>[id,value.terms]))};
-const runtime=`(function(){'use strict';\nconst data=${JSON.stringify(runtimePayload)};\nfunction resolve(id){return data.aliases[id]||id;}\nfunction view(term,nav){return Object.freeze({id:term.id,title:term.title.en,summary:(term.summary&&term.summary.en)||term.definition.en,definition:term.definition.en,related:term.related||[],mentions:term.mentions||[],source:term.canonicalSource,status:term.status,...(nav||{})});}\nfunction forBook(bookId){const result={};const local=data.contexts[bookId]||{};for(const [id,term] of Object.entries(data.terms))result[id]=view(term,local[id]&&local[id].navigation);for(const [localId,context] of Object.entries(local)){const id=resolve(context.termId);if(data.terms[id])result[localId]=view(data.terms[id],context.navigation);}return Object.freeze(result);}\nfunction linkables(bookId){const local=data.contexts[bookId]||{},result=[],seenLocal=new Set(),seenCanonical=new Set();for(const [localId,context] of Object.entries(local)){const id=resolve(context.termId),term=data.terms[id];if(!term||seenLocal.has(localId))continue;const owners=[...(context.owners||[]),...(context.navigation?.units||[])];result.push({id:localId,termId:id,title:term.title.en,aliases:term.aliases||[],matchLabels:term.matchLabels||[],owners:[...new Set(owners)]});seenLocal.add(localId);seenCanonical.add(id);}for(const [id,term] of Object.entries(data.terms)){if(seenCanonical.has(id)||(term.scope!=='global'&&term.scope!==bookId))continue;result.push({id,termId:id,title:term.title.en,aliases:term.aliases||[],matchLabels:term.matchLabels||[],owners:[]});seenCanonical.add(id);}return Object.freeze(result.map(entry=>Object.freeze({...entry,owners:Object.freeze(entry.owners),matchLabels:Object.freeze(entry.matchLabels)})));}\nwindow.WH40K_GLOSSARY=Object.freeze({schema:data.schema,language:data.language,contentHash:data.contentHash,resolve,get(id){return data.terms[resolve(id)]||null;},forBook,linkables,counts:Object.freeze({terms:Object.keys(data.terms).length,aliases:Object.keys(data.aliases).length})});\n}());\n`;
+const runtime=`(function(){'use strict';\nconst data=${JSON.stringify(runtimePayload)};\nfunction resolve(id){return data.aliases[id]||id;}\nfunction view(term,nav){return Object.freeze({id:term.id,title:term.title.en,summary:(term.summary&&term.summary.en)||term.definition.en,definition:term.definition.en,presentation:term.presentation,structured:term.structured||{},related:term.related||[],mentions:term.mentions||[],source:term.canonicalSource,status:term.status,...(nav||{})});}\nfunction forBook(bookId){const result={};const local=data.contexts[bookId]||{};for(const [id,term] of Object.entries(data.terms))result[id]=view(term,local[id]&&local[id].navigation);for(const [localId,context] of Object.entries(local)){const id=resolve(context.termId);if(data.terms[id])result[localId]=view(data.terms[id],{...(context.navigation||{}),parameters:context.parameters||{}});}return Object.freeze(result);}\nfunction linkables(bookId){const local=data.contexts[bookId]||{},result=[],seenLocal=new Set(),seenCanonical=new Set();for(const [localId,context] of Object.entries(local)){const id=resolve(context.termId),term=data.terms[id];if(!term||seenLocal.has(localId))continue;const owners=[...(context.owners||[]),...(context.navigation?.units||[])];result.push({id:localId,termId:id,title:term.title.en,aliases:term.aliases||[],matchLabels:term.matchLabels||[],owners:[...new Set(owners)]});seenLocal.add(localId);seenCanonical.add(id);}for(const [id,term] of Object.entries(data.terms)){if(seenCanonical.has(id)||(term.scope!=='global'&&term.scope!==bookId))continue;result.push({id,termId:id,title:term.title.en,aliases:term.aliases||[],matchLabels:term.matchLabels||[],owners:[]});seenCanonical.add(id);}return Object.freeze(result.map(entry=>Object.freeze({...entry,owners:Object.freeze(entry.owners),matchLabels:Object.freeze(entry.matchLabels)})));}\nwindow.WH40K_GLOSSARY=Object.freeze({schema:data.schema,language:data.language,contentHash:data.contentHash,resolve,get(id){return data.terms[resolve(id)]||null;},forBook,linkables,counts:Object.freeze({terms:Object.keys(data.terms).length,aliases:Object.keys(data.aliases).length})});\n}());\n`;
 const runtimePreferences=`window.WH40K_GLOSSARY_MATCHES=Object.freeze(${JSON.stringify(preferredMatches)});\n`;
 fs.writeFileSync(path.join(glossaryRoot,'generated','glossary.en.js'),runtime+runtimePreferences);
 const cacheInputs=[

@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
   <link rel="stylesheet" href="../styles/layout.css?v=9">
   <link rel="stylesheet" href="../styles/navigation.css?v=10">
-  <link rel="stylesheet" href="../styles/content.css?v=18">
+  <link rel="stylesheet" href="../styles/content.css?v=24">
   <link rel="stylesheet" href="../styles/popups.css?v=15">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=4">
-  <link rel="stylesheet" href="./mobile.css?v=3">
+  <link rel="stylesheet" href="./mobile.css?v=6">
 </head>
 <body>
   <header class="app-header" id="appHeader">
@@ -143,7 +143,7 @@
 <button class="weapon-button" data-term="weapon-combi-bolter-5d7d99e" data-term-title="Combi-bolter" data-term-summary="Range 24&quot; · A 2 · BS 3+ · S 4 · AP 0 · D 1 · Abilities LETHAL HITS, RAPID FIRE 2">Combi-bolter</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 <button class="tag" data-term="core-rapid-fire" data-term-title="RAPID FIRE" data-term-summary="[RAPID FIRE X]: add X attack dice if the target was within half range.">RAPID FIRE 2</button>
 </div>
 </div>
@@ -161,7 +161,7 @@
 </div>
 <div class="weapon-tags">
 <span class="tag">ANTI-INFANTRY 4+</span>
-<button class="tag" data-term="core-devastating-wounds" data-term-title="DEVASTATING WOUNDS" data-term-summary="A critical wound ends the attack sequence and inflicts mortal wounds equal to D.">DEVASTATING WOUNDS</button>
+<button class="tag" data-term="core-devastating-wounds" data-term-title="DEVASTATING WOUNDS" data-term-summary="On a critical wound, the attack sequence ends and the target suffers mortal wounds equal to D after normal damage; each critical wound can damage only one model and excess wounds are lost.">DEVASTATING WOUNDS</button>
 <button class="tag" data-term="core-rapid-fire" data-term-title="RAPID FIRE" data-term-summary="[RAPID FIRE X]: add X attack dice if the target was within half range.">RAPID FIRE 1</button>
 </div>
 </div>
@@ -178,7 +178,7 @@
 <button class="weapon-button" data-term="weapon-heavy-bolter-f39583a" data-term-title="Heavy bolter" data-term-summary="Range 36&quot; · A 3 · BS 3+ · S 5 · AP -1 · D 2 · Abilities LETHAL HITS, SUSTAINED HITS 1">Heavy bolter</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 <button class="tag" data-term="core-sustained-hits" data-term-title="SUSTAINED HITS" data-term-summary="[SUSTAINED HITS X]: a critical hit produces X additional hits.">SUSTAINED HITS 1</button>
 </div>
 </div>
@@ -195,7 +195,7 @@
 <button class="weapon-button" data-term="weapon-havoc-launcher-cf26557" data-term-title="Havoc launcher" data-term-summary="Range 48&quot; · A D6 · BS 3+ · S 5 · AP 0 · D 1 · Abilities BLAST">Havoc launcher</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-blast" data-term-title="BLAST" data-term-summary="For every full 5 models in the target unit, add 1 attack die for this weapon. [BLAST X] adds X attack dice per full 5 models instead.">BLAST</button>
+<button class="tag" data-term="core-blast" data-term-title="BLAST" data-term-summary="When gathering attack dice, add 1 attack die for every full 5 models in the target unit. [BLAST X] adds X attack dice instead.">BLAST</button>
 </div>
 </div>
 <div data-label="Range">48&quot;</div>
@@ -281,13 +281,13 @@
 <article class="ability" id="chaos-predator-annihilator-ability-faction">
 <h5>FACTION</h5>
 <p>
-<button class="term-button" data-term="nurgles-gift" data-term-title="Nurgle’s Gift" data-term-summary="Death Guard Army Rule.">Nurgle’s Gift</button> (Aura)</p>
+<button class="term-button" data-term="nurgles-gift" data-term-title="Nurgle’s Gift" data-term-summary="While an enemy unit is within Contagion Range of one or more DEATH GUARD models from your army, it is Afflicted.">Nurgle’s Gift</button> (Aura)</p>
 </article>
 <article class="ability" id="chaos-predator-annihilator-ability-metalophagic-infection">
 <h5>
 <button class="term-button" data-term="ability-metalophagic-infection-7a47e75" data-term-title="Metalophagic Infection" data-term-summary="In your Shooting phase, after this model has shot, select one enemy MONSTER or VEHICLE unit hit by one or more of those attacks.">Metalophagic Infection</button>
 </h5>
-<p>In your Shooting phase, after this model has shot, select one enemy <button class="term-button" data-term="keyword-monster" data-term-title="MONSTER" data-term-summary="MONSTER units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, TERRAIN AND MOVEMENT and MOVING MONSTERS AND VEHICLES (+1 more).">MONSTER</button> or <button class="term-button" data-term="keyword-vehicle" data-term-title="VEHICLE" data-term-summary="VEHICLE units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, MOVING MONSTERS AND VEHICLES and SHOOTING AT ENGAGED MONSTERS AND VEHICLES.">VEHICLE</button> unit hit by one or more of those attacks. Roll one D6, adding 1 to the result if that unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="An enemy unit within Contagion Range.">Afflicted</button>; on a 5+, that unit suffers D3 mortal wounds.</p>
+<p>In your Shooting phase, after this model has shot, select one enemy <button class="term-button" data-term="keyword-monster" data-term-title="MONSTER" data-term-summary="MONSTER units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, TERRAIN AND MOVEMENT and MOVING MONSTERS AND VEHICLES (+1 more).">MONSTER</button> or <button class="term-button" data-term="keyword-vehicle" data-term-title="VEHICLE" data-term-summary="VEHICLE units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, MOVING MONSTERS AND VEHICLES and SHOOTING AT ENGAGED MONSTERS AND VEHICLES.">VEHICLE</button> unit hit by one or more of those attacks. Roll one D6, adding 1 to the result if that unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="While an enemy unit is Afflicted, subtract 1 from its models’ Toughness and apply the effect of your chosen Plague to that unit.">Afflicted</button>; on a 5+, that unit suffers D3 mortal wounds.</p>
 </article>
 </div>
 </section>
@@ -325,18 +325,27 @@
 <h4>Keywords</h4>
 <div class="ability-list">
 <div class="content-block">
-<p>Keywords: <button class="term-button" data-term="keyword-vehicle" data-term-title="VEHICLE" data-term-summary="VEHICLE units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, MOVING MONSTERS AND VEHICLES and SHOOTING AT ENGAGED MONSTERS AND VEHICLES.">VEHICLE</button>, <button class="term-button" data-term="keyword-smoke" data-term-title="SMOKE" data-term-summary="SMOKE has no standalone Core Rules effect; it matters only when another rule explicitly references it.">SMOKE</button>, <button class="term-button" data-term="keyword-chaos" data-term-title="CHAOS" data-term-summary="CHAOS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">CHAOS</button>, <button class="term-button" data-term="keyword-nurgle" data-term-title="NURGLE" data-term-summary="NURGLE has no standalone Core Rules effect; it matters only when another rule explicitly references it.">NURGLE</button>, <button class="term-button" data-term="keyword-predator-annihilator" data-term-title="PREDATOR ANNIHILATOR" data-term-summary="PREDATOR ANNIHILATOR has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PREDATOR ANNIHILATOR</button>, <button class="term-button" data-term="core-frame" data-term-title="FRAME" data-term-summary="Measure to and from the closest point on a FRAME model.">FRAME</button>. Faction Keywords: <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button>.</p>
+<p>Keywords: <button class="term-button" data-term="keyword-vehicle" data-term-title="VEHICLE" data-term-summary="VEHICLE units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, MOVING MONSTERS AND VEHICLES and SHOOTING AT ENGAGED MONSTERS AND VEHICLES.">VEHICLE</button>, <button class="term-button" data-term="keyword-smoke" data-term-title="SMOKE" data-term-summary="A friendly SMOKE unit can be targeted by the SMOKESCREEN Core Stratagem to gain the Benefit of Cover against eligible attacks for the phase.">SMOKE</button>, <button class="term-button" data-term="keyword-chaos" data-term-title="CHAOS" data-term-summary="CHAOS keyword.">CHAOS</button>, <button class="term-button" data-term="keyword-nurgle" data-term-title="NURGLE" data-term-summary="Rules that specify NURGLE apply only to models or units with this keyword.">NURGLE</button>, <button class="term-button" data-term="keyword-predator-annihilator" data-term-title="PREDATOR ANNIHILATOR" data-term-summary="PREDATOR ANNIHILATOR keyword.">PREDATOR ANNIHILATOR</button>, <button class="term-button" data-term="core-frame" data-term-title="FRAME" data-term-summary="Measure to and from the closest point on a FRAME model.">FRAME</button>. Faction Keywords: <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button>.</p>
 </div>
 <div class="source">Source: Codex: Death Guard transcription.</div>
 </div>
 </section>
-</article></article></main>
+</article>
+  <section class="related-rules" id="relatedRules" aria-labelledby="relatedRulesTitle">
+    <header class="related-rules-head"><div><span>Datasheet tools</span><h2>Stratagems &amp; Enhancements</h2></div></header>
+    <div class="related-controls">
+      <label>Detachment<select id="relatedDetachment"><option value="all">All detachments</option><option value="virulent-vectorium">Virulent Vectorium</option><option value="mortarions-hammer">Mortarion’s Hammer</option><option value="champions-of-contagion">Champions of Contagion</option><option value="tallyband-summoners">Tallyband Summoners</option><option value="shamblerot-vectorium">Shamblerot Vectorium</option><option value="death-lords-chosen">Death Lord’s Chosen</option><option value="contagion-engines">Contagion Engines</option><option value="flyblown-host">Flyblown Host</option><option value="paragons-of-putrescence">Paragons of Putrescence</option></select></label>
+      <div class="related-tabs" role="group" aria-label="Rule type"><button type="button" data-related-tab="stratagems" aria-pressed="true">Stratagems</button><button type="button" data-related-tab="enhancements" aria-pressed="false">Enhancements</button></div>
+    </div>
+    <div class="related-content" id="relatedRulesContent"><p class="related-status">Loading rules&hellip;</p></div>
+  </section></article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
+  <script src="../scripts/related-rules.js?v=5"></script>
   <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
     <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
     <h2 id="termTitle"></h2><p id="termSummary"></p>
     <a id="termFull" href="../../../glossary/index.html">Open full article &rarr;</a>
   </dialog>
-  <script src="./mobile.js?v=2"></script>
+  <script src="./mobile.js?v=8"></script>
 </body>
 </html>

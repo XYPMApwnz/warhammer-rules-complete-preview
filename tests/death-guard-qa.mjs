@@ -15,7 +15,7 @@ const popupContent=readProject('books/shared/popup-content.js');
 const glossaryAutolink=readProject('books/shared/glossary-autolink.js');
 const glossaryRegistry=JSON.parse(readProject('glossary/registry.en.json'));
 const bookData=JSON.parse(read('content/death-guard-rules.en.json'));
-const files=['scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'];
+const files=['scripts/roster-filter.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'];
 const results=[];
 const check=(name,ok,detail='')=>results.push({name,ok,detail});
 
@@ -51,7 +51,7 @@ check('Mortarion lists all three Lord of the Death Guard choices',
 check('full gameplay block inventory is present',blockCount('enhancement')===30&&blockCount('rule')===45&&blockCount('statline')===36&&blockCount('weapon')===146,`enhancements ${blockCount('enhancement')}, rules ${blockCount('rule')}, statlines ${blockCount('statline')}, weapons ${blockCount('weapon')}`);
 check('all navigation targets exist',navTargets.every(id=>idSet.has(id)),navTargets.filter(id=>!idSet.has(id)).join(', '));
 check('all navigation targets have tracked ranges',navTargets.every(id=>trackTargets.includes(id)),navTargets.filter(id=>!trackTargets.includes(id)).join(', '));
-check('navigation covers the gameplay tree without inline glossary branches',navTargets.length===93&&!navTargets.some(id=>id==='glossary'||id.startsWith('glossary-')),String(navTargets.length));
+check('navigation covers the gameplay tree without inline glossary branches',navTargets.length===94&&!navTargets.some(id=>id==='glossary'||id.startsWith('glossary-')),String(navTargets.length));
 const depths=[...markup.matchAll(/data-nav-depth="(\d+)"/g)].map(match=>Number(match[1]));
 check('navigation depth is at most three',Math.max(...depths)===3);
 const unitIds=bookData.sections.filter(section=>section.kind==='unit').map(section=>section.id);
@@ -109,6 +109,7 @@ check('unchanged drawer state is a no-op',navigation.includes('if(next===this.st
 const readViewportSource=navigation.match(/readViewport\(\)\{[\s\S]*?\n    \}/)?.[0]||'';
 check('scroll spy performs no layout measurements per frame',!readViewportSource.includes('getBoundingClientRect'));
 check('scroll spy ignores hidden navigation ranges',navigation.includes('measurable:rect.width>0||rect.height>0')&&navigation.includes('if(range.measurable===false)continue'));
+check('scroll spy assigns visual gaps to the following tracked card',navigation.includes('rect.top-leadingMargin')&&navigation.includes('getComputedStyle(item.section).marginTop'));
 check('mobile layout avoids content-visibility geometry jumps',!readProject('books/death-guard/styles/content.css').includes('content-visibility: auto'));
 check('user input cancels controlled scrolling',navigation.includes('cancelTransition()')&&navigation.includes("window.addEventListener('touchstart'"));
 check('navigation branches use strict sibling accordion',navigation.includes("if(peer!==node&&peer.matches('[data-nav-id]'))this.closeBranch(peer,{deep:true})")&&!navigation.includes('isOnActivePath'));
@@ -223,7 +224,7 @@ check('Back has rebuilt-action fallback',journey.includes('this.findRestoredActi
 check('click navigation highlights only after controlled scroll settles',navigation.includes("()=>{this.highlighter.show(targets.highlightTarget);settled?.();}"));
 
 const cssFiles=['styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css'];
-check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=18':file==='styles/popups.css'?'?v=15':file==='styles/navigation.css'||file==='styles/tokens.css'?'?v=10':'?v=9')+'"')));
+check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=24':file==='styles/popups.css'?'?v=15':file==='styles/navigation.css'||file==='styles/tokens.css'?'?v=10':'?v=9')+'"')));
 const contentCss=read('styles/content.css');
 check('datasheet quick navigation overrides the shared desktop rail and is phone-only',contentCss.includes('body .unit-card > .local-nav { display: none; }')&&contentCss.includes('@media (max-width: 600px)')&&contentCss.includes('position: sticky;')&&contentCss.includes('overflow-x: auto;'));
 const navigationCss=read('styles/navigation.css');
@@ -233,11 +234,15 @@ check('mobile weapon characteristics use one six-column row',datasheetCss.includ
 check('heading destination highlight uses text glow without outline',/\.destination-highlight:is\(h1,h2,h3,h4,h5,h6\)\s*\{[^}]*animation-name:\s*destination-heading-highlight/.test(contentCss)&&contentCss.includes('@keyframes destination-heading-highlight')&&!contentCss.match(/@keyframes destination-heading-highlight[^}]*outline/));
 check('detachment navigation targets render in separate rows',/\.detachment-content\s*\{[^}]*grid-template-columns:\s*1fr/.test(contentCss));
 check('desktop stratagem cards use two columns with a responsive fallback',contentCss.includes('.detachment-part[id$="-stratagems"] > .detachment-content { grid-template-columns: repeat(2, minmax(0, 1fr))')&&/@media\s*\(max-width:\s*1100px\)[\s\S]*?grid-template-columns:\s*1fr/.test(contentCss));
+check('all ten Core Stratagems are present in the shared book source',(markup.match(/id="core-stratagem-[^"]+"/g)||[]).length===10);
+check('Core Stratagems feed the shared related-rules panel',read('mobile/related-rules.inc').includes('data-detachment="core"')&&(read('mobile/related-rules.inc').match(/id="core-stratagem-[^"]+"/g)||[]).length===10);
+check('Core Stratagem eligibility is keyword-aware',read('scripts/related-rules.js').includes("id==='core-stratagem-smokescreen'")&&read('scripts/related-rules.js').includes("id==='core-stratagem-epic-challenge'")&&read('scripts/related-rules.js').includes("id==='core-stratagem-crushing-impact'"));
 check('detachment Stratagems avoid the harmful outer grid',!contentCss.includes('section[id$="-stratagems"]')&&contentCss.includes('.detachment-part[id$="-stratagems"] > .detachment-content'));
 check('full entry becomes a full-screen mobile dialog',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.full-entry-dialog\s*\{[^}]*height:\s*100%/.test(read('styles/popups.css')));
 check('each detachment has a visible Stratagems destination',(markup.match(/class="detachment-part"[^>]*data-track="[^"]+">\s*<h4 class="detachment-part-title">Stratagems<\/h4>/g)||[]).length===bookData.audit.detachments);
 check('no inline style or inline script',!/<style|<script(?![^>]*src=)/i.test(html));
-check('no runtime fetch in document controllers',!files.some(file=>/\bfetch\s*\(/.test(read(file))));
+check('only related rules are fetched at runtime',files.every(file=>file==='scripts/app.js'?((read(file).match(/\bfetch\s*\(/g)||[]).length===1&&read(file).includes("fetch('./mobile/related-rules.inc?v=2')")):!/\bfetch\s*\(/.test(read(file))));
+check('Roster Guide passes its detachments to the shared related-rules view',read('scripts/roster-filter.js').includes('window.DG_ROSTER_GUIDE')&&read('scripts/app.js').includes('window.DG_ROSTER_GUIDE?.detachmentIds')&&read('scripts/app.js').includes('rosterDetachments.has(section.dataset.detachment)'));
 check('service worker registration is protocol gated',read('scripts/app.js').includes("location.protocol==='http:'||location.protocol==='https:'"));
 check('weapon rows receive explicit table semantics',read('scripts/ui-controllers.js').includes("row.setAttribute('role','row')"));
 check('mobile header disables expensive backdrop blur',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.app-header\s*\{[^}]*backdrop-filter:\s*none/.test(read('styles/layout.css')));
@@ -250,7 +255,7 @@ check('touch terms open on pointer-down and roll back cancelled scroll gestures'
 check('book uses the unified root manifest',html.includes('href="../../manifest.webmanifest"'));
 check('complete preview service worker owns its cache family',readProject('service-worker.js').includes('key.startsWith(CACHE_PREFIX)')&&readProject('service-worker.js').includes('warhammer-rules-complete-preview-'));
 check('complete preview PWA cache revision is content-derived',readProject('service-worker.js').includes('self.WH40K_CACHE_REVISION'));
-check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/tokens.css','styles/content.css','styles/navigation.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/tokens.css?v=10')&&html.includes('./styles/content.css?v=18')&&html.includes('./styles/navigation.css?v=10')&&html.includes('./styles/popups.css?v=15')&&html.includes('./scripts/navigation-controller.js?v=14')&&html.includes('./scripts/popup-controller.js?v=21')&&html.includes('./scripts/full-entry-controller.js?v=6')&&html.includes('./scripts/journey-controller.js?v=11')&&html.includes('./scripts/ui-controllers.js?v=11')&&html.includes('./scripts/app.js?v=17'));
+check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/tokens.css','styles/content.css','styles/navigation.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/roster-filter.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/related-rules.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/tokens.css?v=10')&&html.includes('./styles/content.css?v=24')&&html.includes('./styles/navigation.css?v=10')&&html.includes('./styles/popups.css?v=15')&&html.includes('./scripts/roster-filter.js?v=9')&&html.includes('./scripts/navigation-controller.js?v=15')&&html.includes('./scripts/popup-controller.js?v=21')&&html.includes('./scripts/full-entry-controller.js?v=6')&&html.includes('./scripts/journey-controller.js?v=11')&&html.includes('./scripts/ui-controllers.js?v=11')&&html.includes('./scripts/related-rules.js?v=5')&&html.includes('./scripts/app.js?v=24'));
 check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
 check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=4"'));
 check('book loads the shared datasheet layout',html.includes('src="../shared/datasheet-layout.js?v=2"'));

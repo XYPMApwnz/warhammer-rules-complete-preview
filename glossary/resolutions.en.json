@@ -25,7 +25,44 @@
         "threshold": "4+"
       },
       "reason": "Anti-Vehicle 4+ is an instance of the parameterised Anti rule, not a separate rule."
+    },
+    "datasheet-deadly-demise-1": {
+      "target": "core-deadly-demise",
+      "parameters": { "value": "1" },
+      "reason": "Datasheet value of the parameterised Deadly Demise ability."
+    },
+    "datasheet-deadly-demise-d3": {
+      "target": "core-deadly-demise",
+      "parameters": { "value": "D3" },
+      "reason": "Datasheet value of the parameterised Deadly Demise ability."
+    },
+    "datasheet-deep-strike": {
+      "target": "core-deep-strike",
+      "reason": "Datasheet occurrence of the canonical Core ability."
+    },
+    "datasheet-feel-no-pain-5": {
+      "target": "core-feel-no-pain",
+      "parameters": { "threshold": "5+" },
+      "reason": "Datasheet value of the parameterised Feel No Pain ability."
+    },
+    "datasheet-firing-deck-2": {
+      "target": "core-firing-deck",
+      "parameters": { "value": "2" },
+      "reason": "Datasheet value of the parameterised Firing Deck ability."
+    },
+    "datasheet-hover": {
+      "target": "core-hover",
+      "reason": "Datasheet occurrence of the canonical Core ability."
+    },
+    "datasheet-scouts-6": {
+      "target": "core-scouts",
+      "parameters": { "distance": "6\"" },
+      "reason": "Datasheet value of the parameterised Scouts ability."
+    },
+    "datasheet-scouts-9": {
+      "target": "core-scouts",
+      "parameters": { "distance": "9\"" },
+      "reason": "Datasheet value of the parameterised Scouts ability."
     }
   }
 }
-

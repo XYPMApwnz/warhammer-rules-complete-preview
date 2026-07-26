@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
   <link rel="stylesheet" href="../styles/layout.css?v=9">
   <link rel="stylesheet" href="../styles/navigation.css?v=10">
-  <link rel="stylesheet" href="../styles/content.css?v=18">
+  <link rel="stylesheet" href="../styles/content.css?v=24">
   <link rel="stylesheet" href="../styles/popups.css?v=15">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=4">
-  <link rel="stylesheet" href="./mobile.css?v=3">
+  <link rel="stylesheet" href="./mobile.css?v=6">
 </head>
 <body>
   <header class="app-header" id="appHeader">
@@ -144,8 +144,8 @@
 <button class="weapon-button" data-term="weapon-heavy-blight-launcher-989ddb7" data-term-title="Heavy blight launcher" data-term-summary="Range 36&quot; · A D6+2 · BS 3+ · S 10 · AP -2 · D 3 · Abilities BLAST, LETHAL HITS">Heavy blight launcher</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-blast" data-term-title="BLAST" data-term-summary="For every full 5 models in the target unit, add 1 attack die for this weapon. [BLAST X] adds X attack dice per full 5 models instead.">BLAST</button>
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-blast" data-term-title="BLAST" data-term-summary="When gathering attack dice, add 1 attack die for every full 5 models in the target unit. [BLAST X] adds X attack dice instead.">BLAST</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 </div>
 </div>
 <div data-label="Range">36&quot;</div>
@@ -175,7 +175,7 @@
 <button class="weapon-button" data-term="weapon-plague-probe-994d32e" data-term-title="Plague probe" data-term-summary="Range Melee · A 3 · WS 3+ · S 6 · AP -1 · D 1 · Abilities LETHAL HITS">Plague probe</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 </div>
 </div>
 <div data-label="Range">Melee</div>
@@ -199,13 +199,13 @@
 <article class="ability" id="foetid-bloat-drone-with-heavy-blight-launcher-ability-faction">
 <h5>FACTION</h5>
 <p>
-<button class="term-button" data-term="nurgles-gift" data-term-title="Nurgle’s Gift" data-term-summary="Death Guard Army Rule.">Nurgle’s Gift</button> (Aura)</p>
+<button class="term-button" data-term="nurgles-gift" data-term-title="Nurgle’s Gift" data-term-summary="While an enemy unit is within Contagion Range of one or more DEATH GUARD models from your army, it is Afflicted.">Nurgle’s Gift</button> (Aura)</p>
 </article>
 <article class="ability" id="foetid-bloat-drone-with-heavy-blight-launcher-ability-explosive-blight">
 <h5>
-<button class="term-button" data-term="ability-explosive-blight-4fe2f2d" data-term-title="Explosive Blight" data-term-summary="In your Shooting phase, each time this model makes an attack that destroys an enemy unit, before removing the last model in that unit from play, roll a D6, adding 1 to the result if that unit is Afflicted:…">Explosive Blight</button>
+<button class="term-button" data-term="ability-explosive-blight-4fe2f2d" data-term-title="Explosive Blight" data-term-summary="When this model’s shooting destroys a unit, roll D6 before removing its last model (+1 if Afflicted): on 5+, enemy units within 6&quot; of that model are Afflicted until your next turn.">Explosive Blight</button>
 </h5>
-<p>In your Shooting phase, each time this model makes an attack that destroys an enemy unit, before removing the last model in that unit from play, roll a D6, adding 1 to the result if that unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="An enemy unit within Contagion Range.">Afflicted</button>: on a 5+, each enemy unit within 6&quot; of that model is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="An enemy unit within Contagion Range.">Afflicted</button> until the start of your next turn.</p>
+<p>In your Shooting phase, each time this model makes an attack that destroys an enemy unit, before removing the last model in that unit from play, roll a D6, adding 1 to the result if that unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="While an enemy unit is Afflicted, subtract 1 from its models’ Toughness and apply the effect of your chosen Plague to that unit.">Afflicted</button>: on a 5+, each enemy unit within 6&quot; of that model is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="While an enemy unit is Afflicted, subtract 1 from its models’ Toughness and apply the effect of your chosen Plague to that unit.">Afflicted</button> until the start of your next turn.</p>
 </article>
 </div>
 </section>
@@ -221,18 +221,27 @@
 <h4>Keywords</h4>
 <div class="ability-list">
 <div class="content-block">
-<p>Keywords: <button class="term-button" data-term="keyword-vehicle" data-term-title="VEHICLE" data-term-summary="VEHICLE units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, MOVING MONSTERS AND VEHICLES and SHOOTING AT ENGAGED MONSTERS AND VEHICLES.">VEHICLE</button>, <button class="term-button" data-term="keyword-fly" data-term-title="FLY" data-term-summary="FLY units use TERRAIN AND MOVEMENT, FLYING MODELS, MOVEMENT and CHARGING AND FIGHTING.">FLY</button>, <button class="term-button" data-term="keyword-chaos" data-term-title="CHAOS" data-term-summary="CHAOS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">CHAOS</button>, <button class="term-button" data-term="keyword-nurgle" data-term-title="NURGLE" data-term-summary="NURGLE has no standalone Core Rules effect; it matters only when another rule explicitly references it.">NURGLE</button>, <button class="term-button" data-term="keyword-daemon" data-term-title="DAEMON" data-term-summary="DAEMON has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DAEMON</button>, <button class="term-button" data-term="term-foetid-bloat-drone-with-heavy-blight-launcher" data-term-title="Foetid Bloat-drone with Heavy Blight Launcher" data-term-summary="M 10&quot; · T 9 · Sv 3+ · W 10 · Ld 6+ · OC 3 · Inv 5+">FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER</button>. Faction Keywords: <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button>.</p>
+<p>Keywords: <button class="term-button" data-term="keyword-vehicle" data-term-title="VEHICLE" data-term-summary="VEHICLE units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, MOVING MONSTERS AND VEHICLES and SHOOTING AT ENGAGED MONSTERS AND VEHICLES.">VEHICLE</button>, <button class="term-button" data-term="keyword-fly" data-term-title="FLY" data-term-summary="A FLYING unit can take to the skies for a Normal, Advance, Fall-back or Charge move: reduce its maximum distance by 2&quot;, then ignore vertical distance and move through models and terrain.">FLY</button>, <button class="term-button" data-term="keyword-chaos" data-term-title="CHAOS" data-term-summary="CHAOS keyword.">CHAOS</button>, <button class="term-button" data-term="keyword-nurgle" data-term-title="NURGLE" data-term-summary="Rules that specify NURGLE apply only to models or units with this keyword.">NURGLE</button>, <button class="term-button" data-term="keyword-daemon" data-term-title="DAEMON" data-term-summary="DAEMON keyword.">DAEMON</button>, <button class="term-button" data-term="term-foetid-bloat-drone-with-heavy-blight-launcher" data-term-title="Foetid Bloat-drone with Heavy Blight Launcher" data-term-summary="M 10&quot; · T 9 · Sv 3+ · W 10 · Ld 6+ · OC 3 · Inv 5+">FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER</button>. Faction Keywords: <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button>.</p>
 </div>
 <div class="source">Source: Codex: Death Guard transcription.</div>
 </div>
 </section>
-</article></article></main>
+</article>
+  <section class="related-rules" id="relatedRules" aria-labelledby="relatedRulesTitle">
+    <header class="related-rules-head"><div><span>Datasheet tools</span><h2>Stratagems &amp; Enhancements</h2></div></header>
+    <div class="related-controls">
+      <label>Detachment<select id="relatedDetachment"><option value="all">All detachments</option><option value="virulent-vectorium">Virulent Vectorium</option><option value="mortarions-hammer">Mortarion’s Hammer</option><option value="champions-of-contagion">Champions of Contagion</option><option value="tallyband-summoners">Tallyband Summoners</option><option value="shamblerot-vectorium">Shamblerot Vectorium</option><option value="death-lords-chosen">Death Lord’s Chosen</option><option value="contagion-engines">Contagion Engines</option><option value="flyblown-host">Flyblown Host</option><option value="paragons-of-putrescence">Paragons of Putrescence</option></select></label>
+      <div class="related-tabs" role="group" aria-label="Rule type"><button type="button" data-related-tab="stratagems" aria-pressed="true">Stratagems</button><button type="button" data-related-tab="enhancements" aria-pressed="false">Enhancements</button></div>
+    </div>
+    <div class="related-content" id="relatedRulesContent"><p class="related-status">Loading rules&hellip;</p></div>
+  </section></article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
+  <script src="../scripts/related-rules.js?v=5"></script>
   <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
     <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
     <h2 id="termTitle"></h2><p id="termSummary"></p>
     <a id="termFull" href="../../../glossary/index.html">Open full article &rarr;</a>
   </dialog>
-  <script src="./mobile.js?v=2"></script>
+  <script src="./mobile.js?v=8"></script>
 </body>
 </html>

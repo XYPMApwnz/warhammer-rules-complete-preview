@@ -12,7 +12,7 @@ const check=(name,ok,detail='')=>results.push({name,ok,detail});
 const library=read('index.html');
 const sw=read('service-worker.js');
 const books={
-  'death-guard':{version:'9',reader:'reader.html',versions:{'styles/tokens.css':'10','styles/navigation.css':'10','styles/content.css':'18','styles/popups.css':'15','scripts/navigation-controller.js':'14','scripts/popup-controller.js':'21','scripts/full-entry-controller.js':'6','scripts/journey-controller.js':'11','scripts/ui-controllers.js':'11','scripts/app.js':'17'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/icon-v4.svg','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']},
+  'death-guard':{version:'9',reader:'reader.html',versions:{'styles/tokens.css':'10','styles/navigation.css':'10','styles/content.css':'24','styles/popups.css':'15','scripts/roster-filter.js':'9','scripts/navigation-controller.js':'15','scripts/popup-controller.js':'21','scripts/full-entry-controller.js':'6','scripts/journey-controller.js':'11','scripts/ui-controllers.js':'11','scripts/related-rules.js':'5','scripts/app.js':'24'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/icon-v4.svg','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','scripts/roster-filter.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/related-rules.js','scripts/app.js']},
   'core-rules':{version:null,versions:{'app.js':'1'},app:'app.js',usesPopupGlossary:false,files:['styles.css','config.js','basic-content.js','app.js','content/core-rules.source.en.js','content/core-rules.en.js']},
   'adeptus-mechanicus':{version:'13',versions:{'styles/content.css':'14','styles/popups.css':'15','scripts/popup-controller.js':'18','scripts/app.js':'17'},app:'scripts/app.js',usesPopupGlossary:true,files:['assets/mechanicus-logo.png','styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css','styles/mechanicus.css','scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js']}
 };
@@ -45,7 +45,7 @@ check('preview cache revision is content-derived',exists('glossary/generated/cac
 check('library header opens the Mega Glossary',library.includes('class="glossary-link"')&&library.includes('href="glossary/index.html"'));
 check('Core Rules source pages are cached only on demand',!sw.includes('Array.from({length:88}')&&sw.includes('cached || fetchAndCache(request)'));
 check('Core Rules app is cache-busted',read('books/core-rules/index.html').includes('src="app.js?v=1"'));
-check('global glossary runtime exists and is precached',exists('glossary/generated/glossary.en.js')&&sw.includes('"./glossary/generated/glossary.en.js?v=2"'));
+check('global glossary runtime exists and is precached',exists('glossary/generated/glossary.en.js')&&sw.includes('"./glossary/generated/glossary.en.js?v=3"'));
 check('Mega Glossary return UI is versioned and precached',read('glossary/index.html').includes('id="libraryBack"')&&read('glossary/index.html').includes('viewer.js?v=3')&&sw.includes('"./glossary/viewer.js?v=3"'));
 check('glossary runtime exposes curated matching labels',read('glossary/generated/glossary.en.js').includes('matchLabels'));
 const bookHtml=slug=>read(`books/${slug}/${books[slug].reader||'index.html'}`);
@@ -58,11 +58,11 @@ check('book navigation measures after glossary autolinking',['death-guard','adep
 check('Mechanicus offline data and PDF are owned by the root worker',sw.includes('adeptus-mechanicus-faction-pack-v1.0.pdf')&&sw.includes('adeptus-mechanicus-codex-datasheets.en.json'));
 check('nested Mechanicus service worker was removed',!exists('books/adeptus-mechanicus/service-worker.js'));
 const glossaryRegistry=JSON.parse(read('glossary/registry.en.json')).terms;
-for(const id of ['core-characteristic-toughness','core-stratagem-fire-overwatch','death-guard-plague','force-disposition-take-and-hold','adeptus-mechanicus-detachment-cohort-acquisitus','adeptus-mechanicus-unit-skitarii-rangers'])check(`Mega Glossary contains ${id}`,Boolean(glossaryRegistry[id]));
+for(const id of ['core-characteristic-toughness','core-stratagem-fire-overwatch','death-guard-plague','death-guard-army-rules-pact-of-decay','adeptus-mechanicus-detachment-cohort-acquisitus','adeptus-mechanicus-unit-skitarii-rangers'])check(`Mega Glossary contains ${id}`,Boolean(glossaryRegistry[id]));
 for(const [slug,book] of Object.entries(books)){
   const html=read(`books/${slug}/${book.reader||'index.html'}`);
   const app=read(`books/${slug}/${book.app}`);
-  check(`${slug} loads the global glossary`,html.includes('../../glossary/generated/glossary.en.js?v=2'));
+  check(`${slug} loads the global glossary`,html.includes('../../glossary/generated/glossary.en.js?v=3'));
   if(book.usesPopupGlossary)check(`${slug} popup uses the global glossary`,
     app.includes("WH40K_GLOSSARY?.forBook('"+slug+"')")||
     app.includes("WH40K_GLOSSARY.forBook('"+slug+"')")
@@ -71,7 +71,14 @@ for(const [slug,book] of Object.entries(books)){
 check('navigation responses keep their own cache URL',sw.includes('fetchAndCache(request);')&&!sw.includes('fetchAndCache(request, LIBRARY_FALLBACK)'));
 check('Death Guard entry routes phone and full readers',read('books/death-guard/index.html').includes('scripts/view-router.js?v=2')&&read('books/death-guard/scripts/view-router.js').includes('phoneUserAgent')&&read('books/death-guard/scripts/view-router.js').includes('smallTouchScreen'));
 check('Death Guard Phone Mode contains every canonical route',exists('books/death-guard/mobile/index.html')&&fs.readdirSync(path.join(root,'books','death-guard','mobile')).filter(name=>name.endsWith('.html')).length===48);
-check('Death Guard Phone Mode embeds only page-local glossary summaries',read('books/death-guard/mobile/mortarion.html').includes('data-term-summary=')&&!read('books/death-guard/mobile/mortarion.html').includes('glossary.en.js')&&read('books/death-guard/mobile/mortarion.html').includes('mobile.js?v=2'));
+check('Death Guard Phone Mode embeds only page-local glossary summaries',read('books/death-guard/mobile/mortarion.html').includes('data-term-summary=')&&!read('books/death-guard/mobile/mortarion.html').includes('glossary.en.js')&&read('books/death-guard/mobile/mortarion.html').includes('mobile.js?v='));
+check('Death Guard datasheets load one shared related rule panel on demand',read('books/death-guard/mobile/mobile.js').includes("fetch('./related-rules.inc?v=2')")&&exists('books/death-guard/mobile/related-rules.inc'));
+check('Death Guard Phone Mode never offers Enhancements to Epic Heroes',!read('books/death-guard/mobile/mortarion.html').includes('data-related-tab="enhancements"')&&!read('books/death-guard/mobile/typhus.html').includes('data-related-tab="enhancements"'));
+check('Death Guard related rules render inline instead of opening a modal',read('books/death-guard/mobile/mortarion.html').includes('<section class="related-rules"')&&!read('books/death-guard/mobile/mortarion.html').includes('id="relatedRulesDialog"'));
+check('Death Guard Full Reader opens related rules in one fixed modal',read('books/death-guard/scripts/app.js').includes("className='related-rules-layer'")&&read('books/death-guard/styles/content.css').includes('.related-rules-layer{position:fixed'));
+check('Death Guard related cards use one shared unit eligibility matcher',read('books/death-guard/reader.html').includes('scripts/related-rules.js?v=5')&&read('books/death-guard/mobile/mortarion.html').includes('../scripts/related-rules.js?v=5')&&read('books/death-guard/scripts/related-rules.js').includes("target.includes('DEATH GUARD INFANTRY')"));
+check('Detachment-granted CONTAGION ENGINE exists only inside Contagion Engines',read('books/death-guard/scripts/related-rules.js').includes("detachment==='contagion-engines'&&base.contagionEngineCandidate"));
+check('Legacy saved rosters recover nested New Recruit loadouts',read('books/death-guard/scripts/roster-filter.js').includes('restoreLegacyLoadouts();')&&read('books/death-guard/scripts/roster-filter.js').includes('model.loadouts.push'));
 
 for(const result of results)console.log(`${result.ok?'PASS':'FAIL'}  ${result.name}${result.detail?' — '+result.detail:''}`);
 const failed=results.filter(result=>!result.ok);

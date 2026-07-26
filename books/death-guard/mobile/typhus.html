@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
   <link rel="stylesheet" href="../styles/layout.css?v=9">
   <link rel="stylesheet" href="../styles/navigation.css?v=10">
-  <link rel="stylesheet" href="../styles/content.css?v=18">
+  <link rel="stylesheet" href="../styles/content.css?v=24">
   <link rel="stylesheet" href="../styles/popups.css?v=15">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=4">
-  <link rel="stylesheet" href="./mobile.css?v=3">
+  <link rel="stylesheet" href="./mobile.css?v=6">
 </head>
 <body>
   <header class="app-header" id="appHeader">
@@ -141,7 +141,7 @@
 <button class="weapon-button" data-term="weapon-lakrimae-strike-99d1d4f" data-term-title="Lakrimae – strike" data-term-summary="Range Melee · A 6 · WS 2+ · S 9 · AP -2 · D 3 · Abilities LETHAL HITS">Lakrimae – strike</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 </div>
 </div>
 <div data-label="Range">Melee</div>
@@ -157,7 +157,7 @@
 <button class="weapon-button" data-term="weapon-lakrimae-sweep-b7827b0" data-term-title="Lakrimae – sweep" data-term-summary="Range Melee · A 12 · WS 2+ · S 6 · AP -1 · D 1 · Abilities LETHAL HITS">Lakrimae – sweep</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 </div>
 </div>
 <div data-label="Range">Melee</div>
@@ -176,13 +176,13 @@
 <article class="ability" id="typhus-ability-core">
 <h5>CORE</h5>
 <p>
-<button class="term-button" data-term="core-deep-strike" data-term-title="DEEP STRIKE" data-term-summary="During an ingress move, set up more than 8&quot; horizontally from all enemy units.">Deep Strike</button>, <button class="term-button" data-term="core-leader" data-term-title="LEADER" data-term-summary="A Leader can join an eligible Bodyguard unit to form an Attached unit.">Leader</button>
+<button class="term-button" data-term="core-deep-strike" data-term-title="DEEP STRIKE" data-term-summary="During an ingress move, set up more than 8&quot; horizontally from all enemy units.">Deep Strike</button>, <button class="term-button" data-term="core-leader" data-term-title="LEADER" data-term-summary="Before battle, a Leader can join an eligible Bodyguard unit to form an Attached unit; unless stated otherwise, each Bodyguard unit can have one Leader and one Support unit.">Leader</button>
 </p>
 </article>
 <article class="ability" id="typhus-ability-faction">
 <h5>FACTION</h5>
 <p>
-<button class="term-button" data-term="nurgles-gift" data-term-title="Nurgle’s Gift" data-term-summary="Death Guard Army Rule.">Nurgle’s Gift</button> (Aura)</p>
+<button class="term-button" data-term="nurgles-gift" data-term-title="Nurgle’s Gift" data-term-summary="While an enemy unit is within Contagion Range of one or more DEATH GUARD models from your army, it is Afflicted.">Nurgle’s Gift</button> (Aura)</p>
 </article>
 <article class="ability" id="typhus-ability-the-destroyer-hive">
 <h5>
@@ -192,9 +192,9 @@
 </article>
 <article class="ability" id="typhus-ability-eater-plague-psychic">
 <h5>
-<button class="term-button" data-term="ability-eater-plague-psychic-2c7cc41" data-term-title="Eater Plague (Psychic)" data-term-summary="In your Shooting phase, you can select one enemy unit within 18&quot; of and visible to this PSYKER (excluding units with the Lone Operative ability that are not part of an Attached unit and are not within 12&quot; of this PSYKER) and roll one D6:…">Eater Plague (Psychic)</button>
+<button class="term-button" data-term="ability-eater-plague-psychic-2c7cc41" data-term-title="Eater Plague (Psychic)" data-term-summary="In your Shooting phase, select a visible enemy within 18&quot; and roll D6: on 1 your PSYKER’s unit suffers D3 mortal wounds; on 2-5 the enemy suffers D6; on 6 it suffers D3+3. Lone Operative restrictions apply.">Eater Plague (Psychic)</button>
 </h5>
-<p>In your Shooting phase, you can select one enemy unit within 18&quot; of and visible to this <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="PSYKER has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PSYKER</button> (excluding units with the <button class="term-button" data-term="core-lone-operative" data-term-title="LONE OPERATIVE" data-term-summary="Unless Attached, the unit is only visible to enemies within its specified range.">Lone Operative</button> ability that are not part of an <button class="term-button" data-term="core-attached-unit" data-term-title="Attached Unit" data-term-summary="A Leader and/or Support unit joined to a Bodyguard unit; it is one unit for all rules purposes.">Attached unit</button> and are not within 12&quot; of this <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="PSYKER has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PSYKER</button>) and roll one D6: on a 1, this <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="PSYKER has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PSYKER</button>’s unit suffers D3 mortal wounds; on a 2-5, that enemy unit suffers D6 mortal wounds; on a 6, that enemy unit suffers D3+3 mortal wounds.</p>
+<p>In your Shooting phase, you can select one enemy unit within 18&quot; of and visible to this <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="A PSYKER in an Attached Unit gives that unit the PSYKER keyword, making the whole unit interact with rules such as [ANTI-PSYKER X+].">PSYKER</button> (excluding units with the <button class="term-button" data-term="core-lone-operative" data-term-title="LONE OPERATIVE" data-term-summary="Unless Attached, the unit is only visible to enemies within its specified range.">Lone Operative</button> ability that are not part of an <button class="term-button" data-term="core-attached-unit" data-term-title="Attached Unit" data-term-summary="A Leader and/or Support unit joined to a Bodyguard unit; it is one unit for all rules purposes.">Attached unit</button> and are not within 12&quot; of this <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="A PSYKER in an Attached Unit gives that unit the PSYKER keyword, making the whole unit interact with rules such as [ANTI-PSYKER X+].">PSYKER</button>) and roll one D6: on a 1, this <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="A PSYKER in an Attached Unit gives that unit the PSYKER keyword, making the whole unit interact with rules such as [ANTI-PSYKER X+].">PSYKER</button>’s unit suffers D3 mortal wounds; on a 2-5, that enemy unit suffers D6 mortal wounds; on a 6, that enemy unit suffers D3+3 mortal wounds.</p>
 </article>
 </div>
 </section>
@@ -202,7 +202,7 @@
 <h4>Unit Composition</h4>
 <div class="ability-list">
 <div class="content-block">
-<p>1 <button class="term-button" data-term="term-typhus" data-term-title="Typhus" data-term-summary="M 5&quot; · T 7 · Sv 2+ · W 6 · Ld 6+ · OC 1 · Inv 4+">Typhus</button> – <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="EPIC HERO has no standalone Core Rules effect; it matters only when another rule explicitly references it.">EPIC HERO</button>. This model is equipped with: Lakrimae.</p>
+<p>1 <button class="term-button" data-term="term-typhus" data-term-title="Typhus" data-term-summary="M 5&quot; · T 7 · Sv 2+ · W 6 · Ld 6+ · OC 1 · Inv 4+">Typhus</button> – <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="Each EPIC HERO has a unit limit of 1 and cannot be given an Enhancement.">EPIC HERO</button>. This model is equipped with: Lakrimae.</p>
 </div>
 </div>
 </section>
@@ -218,18 +218,27 @@
 <h4>Keywords</h4>
 <div class="ability-list">
 <div class="content-block">
-<p>Keywords: <button class="term-button" data-term="keyword-infantry" data-term-title="INFANTRY" data-term-summary="INFANTRY units use TERRAIN AND MOVEMENT, BENEFIT OF COVER and HIDDEN.">INFANTRY</button>, <button class="term-button" data-term="keyword-character" data-term-title="CHARACTER" data-term-summary="CHARACTER units use SAVE ROLLS, MORTAL WOUNDS and PRECISION.">CHARACTER</button>, <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="PSYKER has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PSYKER</button>, <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="EPIC HERO has no standalone Core Rules effect; it matters only when another rule explicitly references it.">EPIC HERO</button>, <button class="term-button" data-term="keyword-chaos" data-term-title="CHAOS" data-term-summary="CHAOS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">CHAOS</button>, <button class="term-button" data-term="keyword-nurgle" data-term-title="NURGLE" data-term-summary="NURGLE has no standalone Core Rules effect; it matters only when another rule explicitly references it.">NURGLE</button>, <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR has no standalone Core Rules effect; it matters only when another rule explicitly references it.">TERMINATOR</button>, <button class="term-button" data-term="term-typhus" data-term-title="Typhus" data-term-summary="M 5&quot; · T 7 · Sv 2+ · W 6 · Ld 6+ · OC 1 · Inv 4+">TYPHUS</button>. Faction Keywords: <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button>.</p>
+<p>Keywords: <button class="term-button" data-term="keyword-infantry" data-term-title="INFANTRY" data-term-summary="INFANTRY units use TERRAIN AND MOVEMENT, BENEFIT OF COVER and HIDDEN.">INFANTRY</button>, <button class="term-button" data-term="keyword-character" data-term-title="CHARACTER" data-term-summary="CHARACTER units use SAVE ROLLS, MORTAL WOUNDS and PRECISION.">CHARACTER</button>, <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="A PSYKER in an Attached Unit gives that unit the PSYKER keyword, making the whole unit interact with rules such as [ANTI-PSYKER X+].">PSYKER</button>, <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="Each EPIC HERO has a unit limit of 1 and cannot be given an Enhancement.">EPIC HERO</button>, <button class="term-button" data-term="keyword-chaos" data-term-title="CHAOS" data-term-summary="CHAOS keyword.">CHAOS</button>, <button class="term-button" data-term="keyword-nurgle" data-term-title="NURGLE" data-term-summary="Rules that specify NURGLE apply only to models or units with this keyword.">NURGLE</button>, <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button>, <button class="term-button" data-term="term-typhus" data-term-title="Typhus" data-term-summary="M 5&quot; · T 7 · Sv 2+ · W 6 · Ld 6+ · OC 1 · Inv 4+">TYPHUS</button>. Faction Keywords: <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button>.</p>
 </div>
 <div class="source">Source: Codex: Death Guard transcription.</div>
 </div>
 </section>
-</article></article></main>
+</article>
+  <section class="related-rules" id="relatedRules" aria-labelledby="relatedRulesTitle">
+    <header class="related-rules-head"><div><span>Datasheet tools</span><h2>Stratagems</h2></div></header>
+    <div class="related-controls">
+      <label>Detachment<select id="relatedDetachment"><option value="all">All detachments</option><option value="virulent-vectorium">Virulent Vectorium</option><option value="mortarions-hammer">Mortarion’s Hammer</option><option value="champions-of-contagion">Champions of Contagion</option><option value="tallyband-summoners">Tallyband Summoners</option><option value="shamblerot-vectorium">Shamblerot Vectorium</option><option value="death-lords-chosen">Death Lord’s Chosen</option><option value="contagion-engines">Contagion Engines</option><option value="flyblown-host">Flyblown Host</option><option value="paragons-of-putrescence">Paragons of Putrescence</option></select></label>
+      
+    </div>
+    <div class="related-content" id="relatedRulesContent"><p class="related-status">Loading rules&hellip;</p></div>
+  </section></article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
+  <script src="../scripts/related-rules.js?v=5"></script>
   <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
     <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
     <h2 id="termTitle"></h2><p id="termSummary"></p>
     <a id="termFull" href="../../../glossary/index.html">Open full article &rarr;</a>
   </dialog>
-  <script src="./mobile.js?v=2"></script>
+  <script src="./mobile.js?v=8"></script>
 </body>
 </html>

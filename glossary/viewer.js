@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   const api=window.WH40K_GLOSSARY;
-  const terms=Object.keys(api.forBook('death-guard')).filter(id=>api.resolve(id)===id).map(id=>api.get(id)).filter(Boolean).sort((a,b)=>a.title.en.localeCompare(b.title.en));
+  const terms=Object.keys(api.forBook('death-guard')).filter(id=>api.resolve(id)===id).map(id=>api.get(id)).filter(term=>term&&term.presentation!=='metadata').sort((a,b)=>a.title.en.localeCompare(b.title.en));
   const search=document.getElementById('search'),filters=document.getElementById('filters'),list=document.getElementById('termList'),detail=document.getElementById('termDetail'),resultCount=document.getElementById('resultCount'),libraryBack=document.getElementById('libraryBack');
   let category='all',selected='',visibleLimit=120,searchTimer=0;
   try{
@@ -19,7 +19,7 @@
   function renderList(){
     const visible=visibleTerms(),shown=visible.slice(0,visibleLimit);
     resultCount.textContent=`${shown.length} of ${visible.length} entries shown`;
-    const nodes=shown.map(term=>{const node=document.createElement('button');node.type='button';node.className='term-button';node.classList.toggle('active',term.id===selected);const title=document.createElement('strong');title.textContent=term.title.en;const meta=document.createElement('small');meta.textContent=`${term.kind} // ${term.scope}`;node.append(title,meta);node.addEventListener('click',()=>select(term.id));return node;});
+    const nodes=shown.map(term=>{const node=document.createElement('button');node.type='button';node.className='term-button';node.classList.toggle('active',term.id===selected);const title=document.createElement('strong');title.textContent=term.title.en;const meta=document.createElement('small');meta.textContent=`${term.presentation} // ${term.kind} // ${term.scope}`;node.append(title,meta);node.addEventListener('click',()=>select(term.id));return node;});
     if(shown.length<visible.length){const more=document.createElement('button');more.type='button';more.className='term-button load-more';more.textContent=`Show ${Math.min(120,visible.length-shown.length)} more`;more.addEventListener('click',()=>{visibleLimit+=120;renderList();});nodes.push(more);}
     list.replaceChildren(...nodes);
   }
@@ -55,9 +55,9 @@
     renderList();detail.replaceChildren();
     const source=term.canonicalSource||{},kind=document.createElement('p'),title=document.createElement('h2');kind.className='kind';kind.textContent=`${term.kind} // ${term.edition}`;title.textContent=term.title.en;detail.append(kind,title);
     const summaryText=term.summary?.en||'',definitionText=term.definition?.en||'';
-    if(summaryText&&!placeholder.test(summaryText)&&summaryText!==definitionText){const summary=document.createElement('p');summary.className='summary';summary.textContent=summaryText;detail.append(sectionLabel('Quick reference // popup'),summary);}
+    if(summaryText&&!placeholder.test(summaryText)&&summaryText!==definitionText&&term.presentation!=='profile'){const summary=document.createElement('p');summary.className='summary';summary.textContent=summaryText;detail.append(sectionLabel('Quick reference // popup'),summary);}
     const profile=renderProfile(term.structured);if(profile)detail.append(sectionLabel('Structured profile'),profile);
-    if(definitionText&&!placeholder.test(definitionText)){const definition=document.createElement('div');definition.className='definition';definition.textContent=definitionText;detail.append(sectionLabel('Full rule'),definition);}
+    if(definitionText&&!placeholder.test(definitionText)&&term.presentation!=='profile'){const definition=document.createElement('div');definition.className='definition';definition.textContent=definitionText;detail.append(sectionLabel(term.presentation==='atomic'?'Complete rule // popup-ready':term.presentation==='reference'?'Core concept':'Full rule'),definition);}
     const intrinsicReferences=renderReferences('Rules of this unit type',term.references?.intrinsicRules||[]);
     if(intrinsicReferences)detail.append(intrinsicReferences);
     const conditionalReferences=renderReferences('Referenced by core rules',term.references?.referencedByRules||[]);

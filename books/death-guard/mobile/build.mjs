@@ -39,7 +39,8 @@ const categories = [...source.matchAll(/<section class="content-group" id="(data
         const article = extract('article', unitId, section);
         const unitTitle = /<h3 class="unit-name">([\s\S]*?)<\/h3>/.exec(article)?.[1];
         if (!unitTitle) throw new Error(`Missing title for ${unitId}`);
-        return { id: unitId, title: clean(unitTitle), file: `${unitId.slice(5)}.html`, type: 'unit', category: id };
+        const epicHero = article.includes('data-term="keyword-epic-hero"');
+        return { id: unitId, title: clean(unitTitle), file: `${unitId.slice(5)}.html`, type: 'unit', category: id, enhancementsAllowed: !epicHero };
       });
     return { id, title: clean(title), units };
   });
@@ -55,6 +56,21 @@ const staticRoutes = [
   { file: 'army-rules.html', id: 'core-rules', title: 'Army Rules', type: 'section' }
 ];
 const routes = [...staticRoutes, ...detachments, ...units];
+
+function relatedRules() {
+  const core = `<section class="related-detachment related-core" data-detachment="core">
+      <h2>Core Stratagems</h2>
+      <div class="related-kind" data-related-kind="stratagems">${extract('section', 'core-stratagems')}</div>
+    </section>`;
+  return hydrateTerms(core + detachments.map(detachment => {
+    const slug = detachment.id.slice(11);
+    return `<section class="related-detachment" data-detachment="${slug}">
+      <h2>${detachment.title}</h2>
+      <div class="related-kind" data-related-kind="stratagems">${extract('section', `${slug}-stratagems`)}</div>
+      <div class="related-kind" data-related-kind="enhancements" hidden>${extract('section', `${slug}-enhancements`)}</div>
+    </section>`;
+  }).join('\n'));
+}
 
 function link(route, active) {
   return `<a href="./${route.file}"${route.id === active ? ' aria-current="page"' : ''}>${route.title}</a>`;
@@ -87,6 +103,15 @@ function content(route) {
 }
 
 function page(route) {
+  const relatedSection = route.type === 'unit' ? `
+  <section class="related-rules" id="relatedRules" aria-labelledby="relatedRulesTitle">
+    <header class="related-rules-head"><div><span>Datasheet tools</span><h2>${route.enhancementsAllowed ? 'Stratagems &amp; Enhancements' : 'Stratagems'}</h2></div></header>
+    <div class="related-controls">
+      <label>Detachment<select id="relatedDetachment"><option value="all">All detachments</option>${detachments.map(item => `<option value="${item.id.slice(11)}">${item.title}</option>`).join('')}</select></label>
+      ${route.enhancementsAllowed ? '<div class="related-tabs" role="group" aria-label="Rule type"><button type="button" data-related-tab="stratagems" aria-pressed="true">Stratagems</button><button type="button" data-related-tab="enhancements" aria-pressed="false">Enhancements</button></div>' : ''}
+    </div>
+    <div class="related-content" id="relatedRulesContent"><p class="related-status">Loading rules&hellip;</p></div>
+  </section>` : '';
   return `<!doctype html>
 <html lang="en" data-theme="dark">
 <head>
@@ -99,10 +124,10 @@ function page(route) {
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
   <link rel="stylesheet" href="../styles/layout.css?v=9">
   <link rel="stylesheet" href="../styles/navigation.css?v=10">
-  <link rel="stylesheet" href="../styles/content.css?v=18">
+  <link rel="stylesheet" href="../styles/content.css?v=24">
   <link rel="stylesheet" href="../styles/popups.css?v=15">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=4">
-  <link rel="stylesheet" href="./mobile.css?v=3">
+  <link rel="stylesheet" href="./mobile.css?v=6">
 </head>
 <body>
   <header class="app-header" id="appHeader">
@@ -118,19 +143,21 @@ function page(route) {
     <a class="phone-glossary" href="../../../glossary/index.html">Mega Glossary &rarr;</a>
     <a class="phone-glossary phone-mode-switch" href="../index.html?view=full">Full Reader &rarr;</a>
   </nav>
-  <main class="main mobile-main"><article class="document">${hydrateTerms(content(route))}</article></main>
+  <main class="main mobile-main"><article class="document">${hydrateTerms(content(route))}${relatedSection}</article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
+  <script src="../scripts/related-rules.js?v=5"></script>
   <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
     <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
     <h2 id="termTitle"></h2><p id="termSummary"></p>
     <a id="termFull" href="../../../glossary/index.html">Open full article &rarr;</a>
   </dialog>
-  <script src="./mobile.js?v=2"></script>
+  <script src="./mobile.js?v=8"></script>
 </body>
 </html>`;
 }
 
 for (const route of routes) await writeFile(new URL(route.file, import.meta.url), page(route));
+await writeFile(new URL('related-rules.inc', import.meta.url), relatedRules());
 for (const route of routes.filter(route => route.type !== 'start')) {
   const html = await readFile(new URL(route.file, import.meta.url), 'utf8');
   if (!html.includes(`id="${route.id}"`)) throw new Error(`Incomplete route ${route.file}`);

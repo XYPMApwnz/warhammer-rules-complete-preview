@@ -134,6 +134,37 @@
     .hero h1 span { display: block; margin-top: 7px; color: var(--amber); }
 
     .library { max-width: 1240px; margin: auto; padding: 0 clamp(22px, 5vw, 70px); }
+    .roster-import { max-width:1240px; margin:44px auto; padding:0 clamp(22px,5vw,70px); }
+    .roster-console { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr); border:1px solid var(--line); border-top:3px solid var(--toxic); background:var(--metal); box-shadow:0 22px 42px rgba(0,0,0,.3); }
+    .roster-form,.roster-result { min-width:0; padding:clamp(20px,3vw,34px); }
+    .roster-result { border-left:1px solid var(--line); background:rgba(13,15,13,.35); }
+    .roster-kicker { margin:0 0 9px; color:var(--toxic-text); font:800 10px ui-monospace,monospace; letter-spacing:.14em; text-transform:uppercase; }
+    .roster-console h2 { margin:0 0 10px; font:600 clamp(28px,3vw,40px)/1 Georgia,serif; letter-spacing:-.035em; }
+    .roster-help,.roster-empty { margin:0 0 18px; color:var(--dust); font-size:13px; line-height:1.5; }
+    .roster-input { width:100%; min-height:260px; resize:vertical; padding:16px; border:1px solid var(--line); border-radius:0; background:#0d100e; color:var(--parchment); font:12px/1.55 ui-monospace,monospace; }
+    .roster-input:focus { outline:2px solid var(--toxic); outline-offset:2px; }
+    .roster-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:13px; }
+    .roster-action { min-height:44px; padding:0 17px; border:1px solid var(--toxic); background:var(--toxic); color:#10140f; cursor:pointer; font:800 10px ui-monospace,monospace; letter-spacing:.09em; text-transform:uppercase; }
+    .roster-action.secondary { border-color:var(--line); background:transparent; color:var(--parchment); }
+    .roster-action:focus-visible { outline:2px solid var(--amber); outline-offset:3px; }
+    .roster-summary { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin:18px 0; }
+    .roster-stat { padding:12px; border:1px solid var(--line); }
+    .roster-stat small,.roster-stat strong { display:block; }
+    .roster-stat small { color:var(--dust); font:8px ui-monospace,monospace; letter-spacing:.1em; text-transform:uppercase; }
+    .roster-stat strong { margin-top:5px; color:var(--toxic-text); font:700 16px Georgia,serif; }
+    .roster-status { padding:11px 12px; border-left:3px solid var(--toxic); background:rgba(113,129,83,.1); font-size:12px; }
+    .roster-status.warn { border-color:var(--amber); background:rgba(210,150,62,.1); }
+    .roster-units { list-style:none; margin:16px 0 0; padding:0; max-height:250px; overflow:auto; }
+    .roster-units li { display:flex; justify-content:space-between; gap:12px; padding:9px 0; border-bottom:1px solid var(--line); font-size:12px; }
+    .roster-units span { color:var(--dust); white-space:nowrap; }
+    .saved-rosters { max-width:1240px; margin:0 auto 44px; padding:0 clamp(22px,5vw,70px); }
+    .saved-roster-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:20px; }
+    .saved-roster { padding:20px; border:1px solid var(--line); border-top:3px solid var(--toxic); background:var(--metal); }
+    .saved-roster h3 { margin:4px 0 8px; font:600 24px/1 Georgia,serif; }
+    .saved-roster p { margin:0; color:var(--dust); font-size:12px; line-height:1.5; }
+    .saved-roster .roster-actions { margin-top:18px; }
+    .saved-roster .roster-action { min-height:38px; padding:0 12px; }
+    .saved-empty { margin-top:20px; padding:24px; border:1px dashed var(--line); color:var(--dust); }
     .sources { max-width: 1240px; margin: auto; padding: 44px clamp(22px, 5vw, 70px) 104px; }
     .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: 19px; border-bottom: 1px solid var(--line); }
     .section-head h2 { margin: 0; font: 600 clamp(30px, 4vw, 46px) Georgia, serif; letter-spacing: -.035em; }
@@ -216,6 +247,9 @@
     @keyframes rise { from { opacity: 0; transform: translateY(15px) scale(.985); } }
 
     @media (max-width: 900px) {
+      .roster-console { grid-template-columns:1fr; }
+      .roster-result { border-left:0; border-top:1px solid var(--line); }
+      .saved-roster-grid { grid-template-columns:1fr; }
       .topbar::after { display: none; }
       .hero::before { right: -26%; top: -10%; width: 70vw; }
       .book-grid { grid-template-columns: repeat(3, minmax(215px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; }
@@ -313,6 +347,39 @@
           <span class="book-info"><span class="book-type">Faction Pack // Mars</span><strong>Adeptus Mechanicus</strong><span class="book-description">Полный справочник: 10 Detachments и 39 Datasheets</span><span class="open-mark" aria-hidden="true">↗</span></span>
         </a>
       </div>
+    </section>
+
+    <section class="roster-import" aria-labelledby="roster-title">
+      <div class="roster-console">
+        <form class="roster-form" id="roster-form">
+          <p class="roster-kicker">New Recruit // Roster Guide</p>
+          <h2 id="roster-title">Собрать гайд по ростеру</h2>
+          <p class="roster-help">Вставьте текстовый экспорт из New Recruit. Данные обрабатываются только в вашем браузере.</p>
+          <label for="roster-input" class="roster-kicker">Текст ростера</label>
+          <textarea class="roster-input" id="roster-input" required spellcheck="false" placeholder="+ FACTION KEYWORD: Chaos - Death Guard&#10;+ DETACHMENT: Virulent Vectorium (Worldblight)&#10;+ TOTAL ARMY POINTS: 1205pts&#10;&#10;Char1: 1x Biologus Putrifier (60 pts): ..."></textarea>
+          <div class="roster-actions">
+            <button class="roster-action" type="submit">Собрать гайд</button>
+            <button class="roster-action secondary" id="roster-clear" type="button">Очистить</button>
+          </div>
+        </form>
+        <div class="roster-result" id="roster-result" aria-live="polite">
+          <p class="roster-kicker">Предпросмотр</p>
+          <h2>Ростер ещё не загружен</h2>
+          <p class="roster-empty">Здесь появятся фракция, detachment, проверка очков и распознанные боевые единицы.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="saved-rosters" aria-labelledby="saved-rosters-title">
+      <div class="section-head">
+        <div><p class="roster-kicker">Offline collection</p><h2 id="saved-rosters-title">Мои ростеры</h2></div>
+        <span>Хранятся только на этом устройстве</span>
+      </div>
+      <div class="roster-actions">
+        <button class="roster-action secondary" id="import-roster" type="button">Импортировать копию</button>
+        <input id="import-roster-file" type="file" accept="application/json,.json" hidden>
+      </div>
+      <div id="saved-roster-list"></div>
     </section>
 
     <section class="sources" aria-labelledby="sources-title">
@@ -445,6 +512,191 @@
     });
 
     document.querySelectorAll(".status, .checked").forEach(updateFreshness);
+    const ROSTER_STORAGE_KEY = "wh40k-rosters-v1";
+
+    function getSavedRosters() {
+      try { return JSON.parse(localStorage.getItem(ROSTER_STORAGE_KEY)) || []; }
+      catch { return []; }
+    }
+
+    function putSavedRosters(records) {
+      localStorage.setItem(ROSTER_STORAGE_KEY, JSON.stringify(records));
+    }
+
+    function rosterId(text) {
+      let hash = 2166136261;
+      for (const char of text) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
+      return `roster-${(hash >>> 0).toString(36)}`;
+    }
+
+    function saveRoster(roster, sourceText) {
+      const records = getSavedRosters();
+      const id = rosterId(sourceText);
+      const previous = records.find((record) => record.id === id);
+      const record = { id, name:`${roster.faction} · ${roster.declared || roster.calculated} pts`, createdAt:previous?.createdAt || new Date().toISOString(), updatedAt:new Date().toISOString(), sourceText, roster };
+      putSavedRosters([record, ...records.filter((item) => item.id !== id)]);
+      navigator.storage?.persist?.();
+      renderSavedRosters();
+      return record;
+    }
+
+    function openSavedRoster(id) {
+      if (!getSavedRosters().some((record) => record.id === id)) return;
+      location.href = `books/death-guard/reader.html?roster=${encodeURIComponent(id)}`;
+    }
+
+    function exportRoster(id) {
+      const record = getSavedRosters().find((item) => item.id === id);
+      if (!record) return;
+      const url = URL.createObjectURL(new Blob([JSON.stringify(record, null, 2)], { type:"application/json" }));
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${record.id}.json`;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function renderSavedRosters() {
+      const records = getSavedRosters();
+      const host = document.querySelector("#saved-roster-list");
+      if (!records.length) {
+        host.innerHTML = '<div class="saved-empty">Сохранённых ростеров пока нет. Вставьте экспорт New Recruit выше — ростер сохранится автоматически.</div>';
+        return;
+      }
+      host.innerHTML = `<div class="saved-roster-grid">${records.map((record) => `<article class="saved-roster">
+        <p class="roster-kicker">${escapeHtml((record.roster.detachments || [{ label:record.roster.detachment }]).map((item) => item.label).join(" + "))}</p>
+        <h3>${escapeHtml(record.name)}</h3>
+        <p>${record.roster.units.length} units · обновлён ${new Intl.DateTimeFormat("ru-RU").format(new Date(record.updatedAt))}</p>
+        <div class="roster-actions">
+          <button class="roster-action" type="button" data-open-roster="${record.id}">Открыть</button>
+          <button class="roster-action secondary" type="button" data-export-roster="${record.id}">Экспорт</button>
+          <button class="roster-action secondary" type="button" data-delete-roster="${record.id}">Удалить</button>
+        </div>
+      </article>`).join("")}</div>`;
+    }
+
+    function parseRoster(text) {
+      const lines = text.replace(/\u00a0/g, " ").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+      const values = (key) => lines.filter((line) => line.toUpperCase().startsWith(`+ ${key}:`)).map((line) => line.split(":").slice(1).join(":").trim()).filter(Boolean);
+      const value = (key) => values(key)[0] || "—";
+      const splitList = (items) => items.flatMap((item) => {
+        const parts = [];
+        let depth = 0;
+        let start = 0;
+        for (let index = 0; index < item.length; index += 1) {
+          if (item[index] === "(") depth += 1;
+          if (item[index] === ")") depth = Math.max(0, depth - 1);
+          if (item[index] === "," && depth === 0) {
+            parts.push(item.slice(start, index).trim());
+            start = index + 1;
+          }
+        }
+        parts.push(item.slice(start).trim());
+        return parts.filter(Boolean);
+      });
+      const units = [];
+      let currentUnit = null;
+      let currentModel = null;
+      for (const line of lines) {
+        if (line.startsWith("•")) {
+          const model = line.match(/^•\s*(\d+)x\s+([^:]+)(?::\s*(.*))?$/);
+          currentModel = model && currentUnit ? { quantity:Number(model[1]), name:model[2], wargear:model[3] || "", loadouts:[] } : null;
+          if (currentModel) currentUnit.models.push(currentModel);
+          continue;
+        }
+        const loadout = line.match(/^(\d+)\s+with\s+(.+)$/i);
+        if (loadout && currentModel) {
+          currentModel.loadouts.push({ quantity:Number(loadout[1]), wargear:loadout[2] });
+          continue;
+        }
+        if (/^[+\-]/.test(line)) continue;
+        const match = line.match(/^(?:Char\d+:\s*)?(\d+)x\s+(.+?)\s+\((\d+)\s*pts?\)(?::\s*(.*))?$/i);
+        if (!match) continue;
+        currentUnit = { quantity:Number(match[1]), name:match[2], points:Number(match[3]), wargear:match[4] || "", models:[] };
+        currentModel = null;
+        units.push(currentUnit);
+      }
+      const declared = Number(value("TOTAL ARMY POINTS").match(/\d+/)?.[0] || 0);
+      const calculated = units.reduce((total, unit) => total + unit.points, 0);
+      const dispositions = splitList(values("FORCE DISPOSITION"));
+      const detachments = splitList(values("DETACHMENT")).map((label, index) => ({ label, name:label.replace(/\s*\([^)]*\)\s*$/, ""), rule:label.match(/\(([^)]*)\)/)?.[1] || "", disposition:dispositions[index] || dispositions[0] || "—" }));
+      return { faction:value("FACTION KEYWORD").replace(/^Chaos\s*-\s*/i, ""), detachment:detachments[0]?.label || "—", detachments, disposition:dispositions[0] || "—", enhancements:values("ENHANCEMENT"), enhancement:value("ENHANCEMENT"), declared, calculated, units };
+    }
+
+    function escapeHtml(value) {
+      const node = document.createElement("span");
+      node.textContent = value;
+      return node.innerHTML;
+    }
+
+    function renderRoster(roster, record) {
+      const grouped = new Map();
+      roster.units.forEach((unit) => {
+        const entry = grouped.get(unit.name) || { ...unit, copies:0, total:0 };
+        entry.copies += 1;
+        entry.total += unit.points;
+        grouped.set(unit.name, entry);
+      });
+      const matches = roster.declared === roster.calculated;
+      document.querySelector("#roster-result").innerHTML = `
+        <p class="roster-kicker">Предпросмотр // ${roster.units.length} units</p>
+        <h2>${escapeHtml(roster.faction)}</h2>
+        <p class="roster-help">${escapeHtml((roster.detachments || [{ label:roster.detachment }]).map((item) => item.label).join(" + "))} · ${escapeHtml(roster.disposition)}</p>
+        <div class="roster-summary">
+          <div class="roster-stat"><small>Заявлено</small><strong>${roster.declared || "—"} pts</strong></div>
+          <div class="roster-stat"><small>Посчитано</small><strong>${roster.calculated} pts</strong></div>
+        </div>
+        <div class="roster-status ${matches ? "" : "warn"}">${matches ? "✓ Очки совпадают. Ростер готов к сборке." : "! Проверьте ростер: сумма строк не совпадает с итогом."}</div>
+        <ul class="roster-units">${[...grouped.values()].map((unit) => `<li><strong>${escapeHtml(unit.name)}${unit.copies > 1 ? ` ×${unit.copies}` : ""}</strong><span>${unit.total} pts</span></li>`).join("")}</ul>
+        <div class="roster-actions"><button class="roster-action" id="open-guide" type="button">Открыть персональный гайд</button></div>`;
+      document.querySelector("#open-guide").addEventListener("click", () => openGuide(record.id));
+    }
+
+    function openGuide(id) {
+      openSavedRoster(id);
+    }
+
+    document.querySelector("#roster-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const roster = parseRoster(document.querySelector("#roster-input").value);
+      if (!roster.units.length) {
+        document.querySelector("#roster-result").innerHTML = '<p class="roster-kicker">Ошибка импорта</p><h2>Юниты не найдены</h2><p class="roster-empty">Вставьте экспорт New Recruit с позициями вида “1x Unit (100 pts)”.</p>';
+        return;
+      }
+      const sourceText = document.querySelector("#roster-input").value;
+      const record = saveRoster(roster, sourceText);
+      renderRoster(roster, record);
+    });
+    document.querySelector("#roster-clear").addEventListener("click", () => {
+      document.querySelector("#roster-form").reset();
+      document.querySelector("#roster-result").innerHTML = '<p class="roster-kicker">Предпросмотр</p><h2>Ростер ещё не загружен</h2><p class="roster-empty">Здесь появятся фракция, detachment, проверка очков и распознанные боевые единицы.</p>';
+      document.querySelector("#roster-input").focus();
+    });
+
+    document.querySelector("#saved-roster-list").addEventListener("click", (event) => {
+      const button = event.target.closest("button");
+      if (!button) return;
+      if (button.dataset.openRoster) openSavedRoster(button.dataset.openRoster);
+      if (button.dataset.exportRoster) exportRoster(button.dataset.exportRoster);
+      if (button.dataset.deleteRoster && confirm("Удалить этот ростер с устройства?")) {
+        putSavedRosters(getSavedRosters().filter((record) => record.id !== button.dataset.deleteRoster));
+        renderSavedRosters();
+      }
+    });
+    document.querySelector("#import-roster").addEventListener("click", () => document.querySelector("#import-roster-file").click());
+    document.querySelector("#import-roster-file").addEventListener("change", async (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      try {
+        const record = JSON.parse(await file.text());
+        if (!record?.id || !record?.roster?.units?.length) throw new Error();
+        const records = getSavedRosters();
+        putSavedRosters([{ ...record, updatedAt:new Date().toISOString() }, ...records.filter((item) => item.id !== record.id)]);
+        renderSavedRosters();
+      } catch { alert("Не удалось импортировать резервную копию ростера."); }
+      event.target.value = "";
+    });
+    renderSavedRosters();
 
     if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
       addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));

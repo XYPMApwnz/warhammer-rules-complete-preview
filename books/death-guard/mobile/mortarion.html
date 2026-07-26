@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
   <link rel="stylesheet" href="../styles/layout.css?v=9">
   <link rel="stylesheet" href="../styles/navigation.css?v=10">
-  <link rel="stylesheet" href="../styles/content.css?v=18">
+  <link rel="stylesheet" href="../styles/content.css?v=24">
   <link rel="stylesheet" href="../styles/popups.css?v=15">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=4">
-  <link rel="stylesheet" href="./mobile.css?v=3">
+  <link rel="stylesheet" href="./mobile.css?v=6">
 </head>
 <body>
   <header class="app-header" id="appHeader">
@@ -159,9 +159,9 @@
 <button class="weapon-button" data-term="weapon-rotwind-6399c60" data-term-title="Rotwind" data-term-summary="Range 24&quot; · A D6+3 · BS 2+ · S 7 · AP -2 · D 1 · Abilities BLAST, DEVASTATING WOUNDS, LETHAL HITS, PSYCHIC">Rotwind</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-blast" data-term-title="BLAST" data-term-summary="For every full 5 models in the target unit, add 1 attack die for this weapon. [BLAST X] adds X attack dice per full 5 models instead.">BLAST</button>
-<button class="tag" data-term="core-devastating-wounds" data-term-title="DEVASTATING WOUNDS" data-term-summary="A critical wound ends the attack sequence and inflicts mortal wounds equal to D.">DEVASTATING WOUNDS</button>
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-blast" data-term-title="BLAST" data-term-summary="When gathering attack dice, add 1 attack die for every full 5 models in the target unit. [BLAST X] adds X attack dice instead.">BLAST</button>
+<button class="tag" data-term="core-devastating-wounds" data-term-title="DEVASTATING WOUNDS" data-term-summary="On a critical wound, the attack sequence ends and the target suffers mortal wounds equal to D after normal damage; each critical wound can damage only one model and excess wounds are lost.">DEVASTATING WOUNDS</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 <button class="tag" data-term="core-psychic" data-term-title="PSYCHIC" data-term-summary="Can ignore modifiers to BS/WS and hit rolls for that attack.">PSYCHIC</button>
 </div>
 </div>
@@ -192,8 +192,8 @@
 <button class="weapon-button" data-term="weapon-silence-strike-11078ae" data-term-title="Silence – strike" data-term-summary="Range Melee · A 5 · WS 2+ · S 14 · AP -3 · D D6+1 · Abilities DEVASTATING WOUNDS, LETHAL HITS">Silence – strike</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-devastating-wounds" data-term-title="DEVASTATING WOUNDS" data-term-summary="A critical wound ends the attack sequence and inflicts mortal wounds equal to D.">DEVASTATING WOUNDS</button>
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-devastating-wounds" data-term-title="DEVASTATING WOUNDS" data-term-summary="On a critical wound, the attack sequence ends and the target suffers mortal wounds equal to D after normal damage; each critical wound can damage only one model and excess wounds are lost.">DEVASTATING WOUNDS</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 </div>
 </div>
 <div data-label="Range">Melee</div>
@@ -209,7 +209,7 @@
 <button class="weapon-button" data-term="weapon-silence-sweep-280acf3" data-term-title="Silence – sweep" data-term-summary="Range Melee · A 15 · WS 2+ · S 8 · AP -2 · D 2 · Abilities LETHAL HITS, SUSTAINED HITS 1">Silence – sweep</button>
 </div>
 <div class="weapon-tags">
-<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="On a critical hit, you can choose for that attack to automatically wound.">LETHAL HITS</button>
+<button class="tag" data-term="core-lethal-hits" data-term-title="LETHAL HITS" data-term-summary="When a [LETHAL HITS] attack scores a critical hit, you can choose for it to wound automatically; no Wound roll is made, so it cannot score a critical wound.">LETHAL HITS</button>
 <button class="tag" data-term="core-sustained-hits" data-term-title="SUSTAINED HITS" data-term-summary="[SUSTAINED HITS X]: a critical hit produces X additional hits.">SUSTAINED HITS 1</button>
 </div>
 </div>
@@ -234,7 +234,7 @@
 <article class="ability" id="mortarion-ability-faction">
 <h5>FACTION</h5>
 <p>
-<button class="term-button" data-term="nurgles-gift" data-term-title="Nurgle’s Gift" data-term-summary="Death Guard Army Rule.">Nurgle’s Gift</button> (Aura)</p>
+<button class="term-button" data-term="nurgles-gift" data-term-title="Nurgle’s Gift" data-term-summary="While an enemy unit is within Contagion Range of one or more DEATH GUARD models from your army, it is Afflicted.">Nurgle’s Gift</button> (Aura)</p>
 </article>
 <article class="ability" id="mortarion-ability-lord-of-the-death-guard">
 <h5>
@@ -244,15 +244,15 @@
 <div class="ability-choice-list" aria-label="Lord of the Death Guard abilities">
 <div class="ability-choice">
 <h6>Diseased Influence</h6>
-<p>Just after an enemy unit ends a Normal, Advance or Fall Back move within 9&quot; of a friendly <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> unit that is within 6&quot; of this model, if that <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> unit is not within Engagement Range of one or more enemy units, it can make a Normal move of up to 5&quot;.</p>
+<p>Just after an enemy unit ends a Normal, Advance or Fall Back move within 9&quot; of a friendly <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> unit that is within 6&quot; of this model, if that <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> unit is not within Engagement Range of one or more enemy units, it can make a Normal move of up to 5&quot;.</p>
 </div>
 <div class="ability-choice">
 <h6>Boon of Death</h6>
-<p>In the Fight phase, when a friendly <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> unit within 6&quot; of this model is selected as the target of an attack, this model can use this ability. Until the end of the phase, each time a model in that unit is destroyed by a melee attack, if it has not fought this phase, roll one D6. On a 2+, do not remove it from play; it can fight after the attacking unit has finished its attacks, then it is removed from play.</p>
+<p>In the Fight phase, when a friendly <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> unit within 6&quot; of this model is selected as the target of an attack, this model can use this ability. Until the end of the phase, each time a model in that unit is destroyed by a melee attack, if it has not fought this phase, roll one D6. On a 2+, do not remove it from play; it can fight after the attacking unit has finished its attacks, then it is removed from play.</p>
 </div>
 <div class="ability-choice">
 <h6>Inflamed Reprisal</h6>
-<p>In your opponent’s Shooting phase, when a friendly <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> unit within 6&quot; of this model is selected as the target of an attack, this model can use this ability. After the attacking unit has finished its attacks, that <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> unit can shoot as if it were your Shooting phase, but only at that enemy unit and only if it is an eligible target.</p>
+<p>In your opponent’s Shooting phase, when a friendly <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> unit within 6&quot; of this model is selected as the target of an attack, this model can use this ability. After the attacking unit has finished its attacks, that <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> unit can shoot as if it were your Shooting phase, but only at that enemy unit and only if it is an eligible target.</p>
 </div>
 </div>
 </article>
@@ -260,7 +260,7 @@
 <h5>
 <button class="term-button" data-term="ability-host-of-plagues-2f9d0aa" data-term-title="Host of Plagues" data-term-summary="At the end of your Movement phase, roll one D6 for each enemy unit within 6&quot; of this model, adding 1 to the result if that enemy unit is Afflicted: on a 3+, that enemy unit suffers D3 mortal wounds.">Host of Plagues</button>
 </h5>
-<p>At the end of your Movement phase, roll one D6 for each enemy unit within 6&quot; of this model, adding 1 to the result if that enemy unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="An enemy unit within Contagion Range.">Afflicted</button>: on a 3+, that enemy unit suffers D3 mortal wounds.</p>
+<p>At the end of your Movement phase, roll one D6 for each enemy unit within 6&quot; of this model, adding 1 to the result if that enemy unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="While an enemy unit is Afflicted, subtract 1 from its models’ Toughness and apply the effect of your chosen Plague to that unit.">Afflicted</button>: on a 3+, that enemy unit suffers D3 mortal wounds.</p>
 </article>
 </div>
 </section><article class="ability" id="mortarion-ability-supreme-commander">
@@ -272,7 +272,7 @@
 <h4>Unit Composition</h4>
 <div class="ability-list">
 <div class="content-block">
-<p>1 <button class="term-button" data-term="term-mortarion" data-term-title="Mortarion" data-term-summary="M 10&quot; · T 12 · Sv 2+ · W 16 · Ld 5+ · OC 6 · Inv 4+">Mortarion</button> – <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="EPIC HERO has no standalone Core Rules effect; it matters only when another rule explicitly references it.">EPIC HERO</button>. This model is equipped with: <button class="term-button" data-term="weapon-lantern-c3a2ca6" data-term-title="Lantern" data-term-summary="Range 24&quot; · A 1 · BS 2+ · S 10 · AP -3 · D 3 · Abilities PISTOL, SUSTAINED HITS D3">Lantern</button>; <button class="term-button" data-term="weapon-rotwind-6399c60" data-term-title="Rotwind" data-term-summary="Range 24&quot; · A D6+3 · BS 2+ · S 7 · AP -2 · D 1 · Abilities BLAST, DEVASTATING WOUNDS, LETHAL HITS, PSYCHIC">Rotwind</button>; Silence.</p>
+<p>1 <button class="term-button" data-term="term-mortarion" data-term-title="Mortarion" data-term-summary="M 10&quot; · T 12 · Sv 2+ · W 16 · Ld 5+ · OC 6 · Inv 4+">Mortarion</button> – <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="Each EPIC HERO has a unit limit of 1 and cannot be given an Enhancement.">EPIC HERO</button>. This model is equipped with: <button class="term-button" data-term="weapon-lantern-c3a2ca6" data-term-title="Lantern" data-term-summary="Range 24&quot; · A 1 · BS 2+ · S 10 · AP -3 · D 3 · Abilities PISTOL, SUSTAINED HITS D3">Lantern</button>; <button class="term-button" data-term="weapon-rotwind-6399c60" data-term-title="Rotwind" data-term-summary="Range 24&quot; · A D6+3 · BS 2+ · S 7 · AP -2 · D 1 · Abilities BLAST, DEVASTATING WOUNDS, LETHAL HITS, PSYCHIC">Rotwind</button>; Silence.</p>
 </div>
 </div>
 </section>
@@ -288,18 +288,27 @@
 <h4>Keywords</h4>
 <div class="ability-list">
 <div class="content-block">
-<p>Keywords: <button class="term-button" data-term="keyword-monster" data-term-title="MONSTER" data-term-summary="MONSTER units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, TERRAIN AND MOVEMENT and MOVING MONSTERS AND VEHICLES (+1 more).">MONSTER</button>, <button class="term-button" data-term="keyword-character" data-term-title="CHARACTER" data-term-summary="CHARACTER units use SAVE ROLLS, MORTAL WOUNDS and PRECISION.">CHARACTER</button>, <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="PSYKER has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PSYKER</button>, <button class="term-button" data-term="keyword-fly" data-term-title="FLY" data-term-summary="FLY units use TERRAIN AND MOVEMENT, FLYING MODELS, MOVEMENT and CHARGING AND FIGHTING.">FLY</button>, <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="EPIC HERO has no standalone Core Rules effect; it matters only when another rule explicitly references it.">EPIC HERO</button>, <button class="term-button" data-term="keyword-grenades" data-term-title="GRENADES" data-term-summary="GRENADES has no standalone Core Rules effect; it matters only when another rule explicitly references it.">GRENADES</button>, <button class="term-button" data-term="keyword-chaos" data-term-title="CHAOS" data-term-summary="CHAOS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">CHAOS</button>, <button class="term-button" data-term="keyword-nurgle" data-term-title="NURGLE" data-term-summary="NURGLE has no standalone Core Rules effect; it matters only when another rule explicitly references it.">NURGLE</button>, <button class="term-button" data-term="keyword-daemon" data-term-title="DAEMON" data-term-summary="DAEMON has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DAEMON</button>, <button class="term-button" data-term="keyword-primarch" data-term-title="PRIMARCH" data-term-summary="PRIMARCH has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PRIMARCH</button>, <button class="term-button" data-term="term-mortarion" data-term-title="Mortarion" data-term-summary="M 10&quot; · T 12 · Sv 2+ · W 16 · Ld 5+ · OC 6 · Inv 4+">MORTARION</button>. Faction Keywords: <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button>.</p>
+<p>Keywords: <button class="term-button" data-term="keyword-monster" data-term-title="MONSTER" data-term-summary="MONSTER units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, TERRAIN AND MOVEMENT and MOVING MONSTERS AND VEHICLES (+1 more).">MONSTER</button>, <button class="term-button" data-term="keyword-character" data-term-title="CHARACTER" data-term-summary="CHARACTER units use SAVE ROLLS, MORTAL WOUNDS and PRECISION.">CHARACTER</button>, <button class="term-button" data-term="keyword-psyker" data-term-title="PSYKER" data-term-summary="A PSYKER in an Attached Unit gives that unit the PSYKER keyword, making the whole unit interact with rules such as [ANTI-PSYKER X+].">PSYKER</button>, <button class="term-button" data-term="keyword-fly" data-term-title="FLY" data-term-summary="A FLYING unit can take to the skies for a Normal, Advance, Fall-back or Charge move: reduce its maximum distance by 2&quot;, then ignore vertical distance and move through models and terrain.">FLY</button>, <button class="term-button" data-term="keyword-epic-hero" data-term-title="EPIC HERO" data-term-summary="Each EPIC HERO has a unit limit of 1 and cannot be given an Enhancement.">EPIC HERO</button>, <button class="term-button" data-term="keyword-grenades" data-term-title="GRENADES" data-term-summary="An eligible GRENADES unit can be targeted by the EXPLOSIVES Core Stratagem.">GRENADES</button>, <button class="term-button" data-term="keyword-chaos" data-term-title="CHAOS" data-term-summary="CHAOS keyword.">CHAOS</button>, <button class="term-button" data-term="keyword-nurgle" data-term-title="NURGLE" data-term-summary="Rules that specify NURGLE apply only to models or units with this keyword.">NURGLE</button>, <button class="term-button" data-term="keyword-daemon" data-term-title="DAEMON" data-term-summary="DAEMON keyword.">DAEMON</button>, <button class="term-button" data-term="keyword-primarch" data-term-title="PRIMARCH" data-term-summary="PRIMARCH keyword.">PRIMARCH</button>, <button class="term-button" data-term="term-mortarion" data-term-title="Mortarion" data-term-summary="M 10&quot; · T 12 · Sv 2+ · W 16 · Ld 5+ · OC 6 · Inv 4+">MORTARION</button>. Faction Keywords: <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button>.</p>
 </div>
 <div class="source">Source: Codex: Death Guard transcription.</div>
 </div>
 </section>
-</article></article></main>
+</article>
+  <section class="related-rules" id="relatedRules" aria-labelledby="relatedRulesTitle">
+    <header class="related-rules-head"><div><span>Datasheet tools</span><h2>Stratagems</h2></div></header>
+    <div class="related-controls">
+      <label>Detachment<select id="relatedDetachment"><option value="all">All detachments</option><option value="virulent-vectorium">Virulent Vectorium</option><option value="mortarions-hammer">Mortarion’s Hammer</option><option value="champions-of-contagion">Champions of Contagion</option><option value="tallyband-summoners">Tallyband Summoners</option><option value="shamblerot-vectorium">Shamblerot Vectorium</option><option value="death-lords-chosen">Death Lord’s Chosen</option><option value="contagion-engines">Contagion Engines</option><option value="flyblown-host">Flyblown Host</option><option value="paragons-of-putrescence">Paragons of Putrescence</option></select></label>
+      
+    </div>
+    <div class="related-content" id="relatedRulesContent"><p class="related-status">Loading rules&hellip;</p></div>
+  </section></article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
+  <script src="../scripts/related-rules.js?v=5"></script>
   <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
     <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
     <h2 id="termTitle"></h2><p id="termSummary"></p>
     <a id="termFull" href="../../../glossary/index.html">Open full article &rarr;</a>
   </dialog>
-  <script src="./mobile.js?v=2"></script>
+  <script src="./mobile.js?v=8"></script>
 </body>
 </html>

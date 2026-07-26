@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
   <link rel="stylesheet" href="../styles/layout.css?v=9">
   <link rel="stylesheet" href="../styles/navigation.css?v=10">
-  <link rel="stylesheet" href="../styles/content.css?v=18">
+  <link rel="stylesheet" href="../styles/content.css?v=24">
   <link rel="stylesheet" href="../styles/popups.css?v=15">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=4">
-  <link rel="stylesheet" href="./mobile.css?v=3">
+  <link rel="stylesheet" href="./mobile.css?v=6">
 </head>
 <body>
   <header class="app-header" id="appHeader">
@@ -71,7 +71,7 @@
 <h3 class="category-title">Army Rule - Nurgle’s Gift</h3>
 <div class="rule-card surface">
 <div class="content-block">
-<p>If your Army Faction is <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button>, while an enemy unit is within <button class="term-button" data-term="contagion-range" data-term-title="Contagion Range" data-term-summary="3&quot; in battle round 1, 6&quot; in battle round 2, 9&quot; from battle round 3 onward.">Contagion Range</button> of one or more <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> models from your army, it is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="An enemy unit within Contagion Range.">Afflicted</button>.</p>
+<p>If your Army Faction is <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button>, while an enemy unit is within <button class="term-button" data-term="contagion-range" data-term-title="Contagion Range" data-term-summary="Contagion Range is 3&quot; in battle round 1, 6&quot; in round 2 and 9&quot; from round 3 onward; it cannot exceed 12&quot; after modifiers.">Contagion Range</button> of one or more <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> models from your army, it is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="While an enemy unit is Afflicted, subtract 1 from its models’ Toughness and apply the effect of your chosen Plague to that unit.">Afflicted</button>.</p>
 </div>
 <div class="data-table" role="table">
 <div class="data-row data-head">
@@ -93,18 +93,18 @@
 </div>
 <div class="content-block">
 <p>
-<button class="term-button" data-term="contagion-range" data-term-title="Contagion Range" data-term-summary="3&quot; in battle round 1, 6&quot; in battle round 2, 9&quot; from battle round 3 onward.">Contagion Range</button> cannot be greater than 12&quot; after modifiers.</p>
+<button class="term-button" data-term="contagion-range" data-term-title="Contagion Range" data-term-summary="Contagion Range is 3&quot; in battle round 1, 6&quot; in round 2 and 9&quot; from round 3 onward; it cannot exceed 12&quot; after modifiers.">Contagion Range</button> cannot be greater than 12&quot; after modifiers.</p>
 </div>
 </div>
 <article class="rule-card surface" id="afflicted" data-track="afflicted">
 <h3>Afflicted</h3>
 <div class="content-block">
-<p>During the Declare Battle Formations step, select one of the Plagues below. Until the end of the battle, while an enemy unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="An enemy unit within Contagion Range.">Afflicted</button>, subtract 1 from the Toughness characteristic of models in that unit, and that unit has the effect of your chosen Plague.</p>
+<p>During the Declare Battle Formations step, select one of the Plagues below. Until the end of the battle, while an enemy unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="While an enemy unit is Afflicted, subtract 1 from its models’ Toughness and apply the effect of your chosen Plague to that unit.">Afflicted</button>, subtract 1 from the Toughness characteristic of models in that unit, and that unit has the effect of your chosen Plague.</p>
 </div>
 </article>
 <article class="rule-card surface" id="skullsquirm-blight" data-track="skullsquirm-blight">
 <h3>
-<button class="term-button" data-term="skullsquirm-blight" data-term-title="Skullsquirm Blight" data-term-summary="A Plague selected during Declare Battle Formations.">Skullsquirm Blight</button>
+<button class="term-button" data-term="skullsquirm-blight" data-term-title="Skullsquirm Blight" data-term-summary="Each time a model in an Afflicted unit makes a melee attack, subtract 1 from the Hit roll.">Skullsquirm Blight</button>
 </h3>
 <div class="content-block">
 <p>Each time a model in this unit makes a melee attack, subtract 1 from the Hit roll.</p>
@@ -112,7 +112,7 @@
 </article>
 <article class="rule-card surface" id="rattlejoint-ague" data-track="rattlejoint-ague">
 <h3>
-<button class="term-button" data-term="rattlejoint-ague" data-term-title="Rattlejoint Ague" data-term-summary="A Plague selected during Declare Battle Formations.">Rattlejoint Ague</button>
+<button class="term-button" data-term="rattlejoint-ague" data-term-title="Rattlejoint Ague" data-term-summary="Worsen the Save characteristic of models in an Afflicted unit by 1.">Rattlejoint Ague</button>
 </h3>
 <div class="content-block">
 <p>Worsen the Save characteristic of models in this unit by 1.</p>
@@ -120,7 +120,7 @@
 </article>
 <article class="rule-card surface" id="scabrous-soulrot" data-track="scabrous-soulrot">
 <h3>
-<button class="term-button" data-term="scabrous-soulrot" data-term-title="Scabrous Soulrot" data-term-summary="A Plague selected during Declare Battle Formations.">Scabrous Soulrot</button>
+<button class="term-button" data-term="scabrous-soulrot" data-term-title="Scabrous Soulrot" data-term-summary="Worsen the Move, Leadership and Objective Control of models in an Afflicted unit by 1; this rule cannot worsen Objective Control below 1.">Scabrous Soulrot</button>
 </h3>
 <div class="content-block">
 <p>Worsen the Move, Leadership and Objective Control characteristics of models in this unit by 1. This rule can only worsen a model’s Objective Control characteristic to a minimum of 1.</p>
@@ -129,17 +129,86 @@
 <article class="rule-card surface" id="pact-of-decay" data-track="pact-of-decay">
 <h3>Pact of Decay</h3>
 <div class="content-block">
-<p>When mustering your army, unless specifically stated otherwise, you cannot select <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> as your Army Faction.</p>
+<p>When mustering your army, unless specifically stated otherwise, you cannot select <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="Rules that specify PLAGUE LEGIONS apply only to models or units with this keyword.">PLAGUE LEGIONS</button> as your Army Faction.</p>
 </div>
 </article>
 </section>
+<section class="content-group" id="core-stratagems" data-track="core-stratagems">
+<h3 class="category-title">Core Stratagems</h3>
+<p class="lead">Universal Stratagems available to every army. Datasheet tools only show the cards the selected unit can legally target.</p>
+<div class="detachment-content core-stratagem-grid">
+<article class="stratagem surface" id="core-stratagem-command-re-roll">
+<div class="stratagem-head"><div><h3>COMMAND RE-ROLL</h3><span class="stratagem-type">Core – Battle Tactic Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Any phase, just after you make an Advance, Charge, Damage, Hazardous, Hit, Save or Wound roll for a unit from your army, or a roll to determine the number of attacks made with a weapon equipped by a model in that unit.</p>
+<p class="field"><b>TARGET</b><br>That unit or model from your army.</p>
+<p class="field"><b>EFFECT</b><br>Re-roll that roll. If several dice were rolled, select one of them to re-roll; Charge rolls are re-rolled in full.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-epic-challenge">
+<div class="stratagem-head"><div><h3>EPIC CHALLENGE</h3><span class="stratagem-type">Core – Epic Deed Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Fight phase, just after a friendly CHARACTER unit is selected to fight.</p>
+<p class="field"><b>TARGET</b><br>That CHARACTER unit.</p>
+<p class="field"><b>EFFECT</b><br>Select one CHARACTER model in that unit. Until the end of the phase, its melee weapons have the PRECISION ability.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-insane-bravery">
+<div class="stratagem-head"><div><h3>INSANE BRAVERY</h3><span class="stratagem-type">Core – Epic Deed Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Battle-shock step of your Command phase, just before a unit from your army takes a Battle-shock test.</p>
+<p class="field"><b>TARGET</b><br>That unit.</p>
+<p class="field"><b>EFFECT</b><br>That test is automatically successful.</p>
+<p class="field"><b>RESTRICTION</b><br>Once per battle.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-explosives">
+<div class="stratagem-head"><div><h3>EXPLOSIVES</h3><span class="stratagem-type">Core – Wargear Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Your Shooting phase.</p>
+<p class="field"><b>TARGET</b><br>One EXPLOSIVES or GRENADES unit from your army that is eligible to shoot, did not Advance this turn and is not within Engagement Range of enemy units.</p>
+<p class="field"><b>EFFECT</b><br>Select one eligible model, then one visible enemy unit within 8&quot; and outside Engagement Range. Roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-crushing-impact">
+<div class="stratagem-head"><div><h3>CRUSHING IMPACT</h3><span class="stratagem-type">Core – Strategic Ploy Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Your Charge phase, just after a MONSTER or VEHICLE unit from your army ends a Charge move.</p>
+<p class="field"><b>TARGET</b><br>That MONSTER or VEHICLE unit.</p>
+<p class="field"><b>EFFECT</b><br>Select one enemy unit within Engagement Range and one model in your unit within Engagement Range of it. Roll a number of D6 equal to that model’s Toughness: each 1 inflicts 1 mortal wound on your unit; each 5+ inflicts 1 mortal wound on the enemy unit, to a maximum of 6.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-rapid-ingress">
+<div class="stratagem-head"><div><h3>RAPID INGRESS</h3><span class="stratagem-type">Core – Strategic Ploy Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>End of your opponent’s Movement phase.</p>
+<p class="field"><b>TARGET</b><br>One unit from your army in Strategic Reserves, excluding AIRCRAFT.</p>
+<p class="field"><b>EFFECT</b><br>That unit can make an ingress move.</p>
+<p class="field"><b>RESTRICTION</b><br>Cannot be used during the first battle round.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-fire-overwatch">
+<div class="stratagem-head"><div><h3>FIRE OVERWATCH</h3><span class="stratagem-type">Core – Strategic Ploy Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>End of your opponent’s Movement phase.</p>
+<p class="field"><b>TARGET</b><br>One unit from your army, excluding TITANIC units, that is not within Engagement Range of enemy units.</p>
+<p class="field"><b>EFFECT</b><br>Your unit can shoot one visible enemy unit within 24&quot; using Snap Shooting: only unmodified Hit rolls of 6 score a hit and Hit rolls cannot be re-rolled.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-smokescreen">
+<div class="stratagem-head"><div><h3>SMOKESCREEN</h3><span class="stratagem-type">Core – Wargear Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>Start of your opponent’s Shooting phase.</p>
+<p class="field"><b>TARGET</b><br>One SMOKE unit from your army.</p>
+<p class="field"><b>EFFECT</b><br>Until the end of the phase, that unit has the Benefit of Cover.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-heroic-intervention">
+<div class="stratagem-head"><div><h3>HEROIC INTERVENTION</h3><span class="stratagem-type">Core – Strategic Ploy Stratagem</span></div><div class="cp">1CP</div></div>
+<p class="field"><b>WHEN</b><br>End of your opponent’s Charge phase.</p>
+<p class="field"><b>TARGET</b><br>One unit from your army within 12&quot; of one or more enemy units and not within Engagement Range. A VEHICLE can only be targeted if it is also a CHARACTER or WALKER.</p>
+<p class="field"><b>EFFECT</b><br>Resolve a Charge using Leap to Defend, or pay 1 additional CP to use Into the Fray.</p>
+</article>
+<article class="stratagem surface" id="core-stratagem-counteroffensive">
+<div class="stratagem-head"><div><h3>COUNTEROFFENSIVE</h3><span class="stratagem-type">Core – Strategic Ploy Stratagem</span></div><div class="cp">2CP</div></div>
+<p class="field"><b>WHEN</b><br>Fight phase, just after an enemy unit has fought.</p>
+<p class="field"><b>TARGET</b><br>One unit from your army that is eligible to fight.</p>
+<p class="field"><b>EFFECT</b><br>Your unit has Fights First and must be the next unit selected to fight.</p>
+</article>
+</div>
+</section>
 </section></article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
+  <script src="../scripts/related-rules.js?v=5"></script>
   <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
     <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
     <h2 id="termTitle"></h2><p id="termSummary"></p>
     <a id="termFull" href="../../../glossary/index.html">Open full article &rarr;</a>
   </dialog>
-  <script src="./mobile.js?v=2"></script>
+  <script src="./mobile.js?v=8"></script>
 </body>
 </html>

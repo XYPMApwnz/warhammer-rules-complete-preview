@@ -296,7 +296,7 @@
       }
     },
     "datasheet-scouts-6": {
-      "termId": "adeptus-mechanicus-datasheet-scouts-6",
+      "termId": "core-scouts",
       "navigation": {
         "glossary": "glossary-datasheet-scouts-6",
         "rule": "unit-skitarii-rangers",
@@ -305,6 +305,9 @@
         "units": [
           "unit-skitarii-rangers"
         ]
+      },
+      "parameters": {
+        "distance": "6\""
       }
     },
     "weapon-galvanic-rifle": {
@@ -874,7 +877,7 @@
       }
     },
     "datasheet-deadly-demise-d3": {
-      "termId": "adeptus-mechanicus-datasheet-deadly-demise-d3",
+      "termId": "core-deadly-demise",
       "navigation": {
         "glossary": "glossary-datasheet-deadly-demise-d3",
         "rule": "unit-skorpius-dunerider",
@@ -888,10 +891,13 @@
           "unit-onager-dunecrawler",
           "unit-skorpius-disintegrator"
         ]
+      },
+      "parameters": {
+        "value": "D3"
       }
     },
     "datasheet-firing-deck-2": {
-      "termId": "adeptus-mechanicus-datasheet-firing-deck-2",
+      "termId": "core-firing-deck",
       "navigation": {
         "glossary": "glossary-datasheet-firing-deck-2",
         "rule": "unit-skorpius-dunerider",
@@ -900,6 +906,9 @@
         "units": [
           "unit-skorpius-dunerider"
         ]
+      },
+      "parameters": {
+        "value": "2"
       }
     },
     "weapon-cognis-heavy-stubber-array": {
@@ -1166,7 +1175,7 @@
       }
     },
     "datasheet-hover": {
-      "termId": "adeptus-mechanicus-datasheet-hover",
+      "termId": "core-hover",
       "navigation": {
         "glossary": "glossary-datasheet-hover",
         "rule": "unit-archaeopter-fusilave",
@@ -1243,7 +1252,7 @@
       }
     },
     "datasheet-deep-strike": {
-      "termId": "adeptus-mechanicus-datasheet-deep-strike",
+      "termId": "core-deep-strike",
       "navigation": {
         "glossary": "glossary-datasheet-deep-strike",
         "rule": "unit-archaeopter-transvector",
@@ -1269,7 +1278,7 @@
       }
     },
     "datasheet-feel-no-pain-5": {
-      "termId": "adeptus-mechanicus-datasheet-feel-no-pain-5",
+      "termId": "core-feel-no-pain",
       "navigation": {
         "glossary": "glossary-datasheet-feel-no-pain-5",
         "rule": "unit-corpuscarii-electro-priests",
@@ -1279,6 +1288,9 @@
           "unit-corpuscarii-electro-priests",
           "unit-fulgurite-electro-priests"
         ]
+      },
+      "parameters": {
+        "threshold": "5+"
       }
     },
     "weapon-electrostatic-gauntlets": {
@@ -1452,7 +1464,7 @@
       }
     },
     "datasheet-deadly-demise-1": {
-      "termId": "adeptus-mechanicus-datasheet-deadly-demise-1",
+      "termId": "core-deadly-demise",
       "navigation": {
         "glossary": "glossary-datasheet-deadly-demise-1",
         "rule": "unit-ironstrider-ballistarii",
@@ -1464,6 +1476,9 @@
           "unit-sydonian-dragoons-with-radium-jezzails",
           "unit-sydonian-dragoons-with-taser-lances"
         ]
+      },
+      "parameters": {
+        "value": "1"
       }
     },
     "weapon-twin-cognis-autocannon": {
@@ -1977,7 +1992,7 @@
       }
     },
     "datasheet-scouts-9": {
-      "termId": "adeptus-mechanicus-datasheet-scouts-9",
+      "termId": "core-scouts",
       "navigation": {
         "glossary": "glossary-datasheet-scouts-9",
         "rule": "unit-serberys-raiders",
@@ -1986,6 +2001,9 @@
         "units": [
           "unit-serberys-raiders"
         ]
+      },
+      "parameters": {
+        "distance": "9\""
       }
     },
     "weapon-galvanic-carbine": {
