@@ -1,0 +1,91 @@
+html { scroll-behavior: auto; }
+button, a, [data-term] { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+.phone-tree { padding: 8px 0 18px; }
+.phone-tree > a,
+.phone-tree .mobile-nav-branch > a,
+.phone-glossary {
+  display: block;
+  min-height: 42px;
+  padding: 11px 16px;
+  border-left: 3px solid transparent;
+  color: var(--muted);
+  font: 700 14px/1.35 system-ui, sans-serif;
+  text-decoration: none;
+}
+.phone-tree a[aria-current="page"] {
+  border-left-color: var(--pink);
+  color: var(--green);
+  background: linear-gradient(90deg, rgba(190, 230, 119, .12), rgba(209, 38, 121, .05) 72%, transparent);
+}
+.phone-tree details { border-top: 1px solid var(--soft-line); }
+.phone-tree summary {
+  min-height: 44px;
+  padding: 12px 16px;
+  color: var(--ink);
+  cursor: pointer;
+  font: 750 14px/1.35 system-ui, sans-serif;
+}
+.phone-tree summary span {
+  float: right;
+  color: var(--bronze-bright);
+  font: 750 10px/1.7 ui-monospace, monospace;
+}
+.phone-tree .mobile-nav-branch { padding: 0 0 7px 12px; }
+.phone-tree .mobile-unit-groups > details { border-top: 0; }
+.phone-tree .mobile-unit-groups > details > summary { color: var(--green); font-size: 13px; }
+.phone-glossary { margin: 8px 16px 22px; border: 1px solid var(--line); color: var(--ink); }
+.phone-mode-switch { margin-top: -14px; }
+.toc-scrim { padding: 0; border: 0; }
+
+.mobile-main > .document { width: 100%; }
+.mobile-main > .document > :is(.section, .content-group, .unit-card) { margin-top: 0; }
+.mobile-main :is(.unit-part, .detachment-part) { scroll-margin-top: calc(var(--header-height) + 10px); }
+
+.mobile-dialog {
+  width: min(620px, calc(100% - 20px));
+  max-height: calc(100dvh - 20px);
+  padding: 0 20px 20px;
+  overflow: auto;
+  border: 2px solid transparent;
+  color: var(--ink);
+  background: linear-gradient(var(--panel), var(--panel)) padding-box,
+              linear-gradient(90deg, var(--green), var(--bronze) 72%, var(--pink)) border-box;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .7);
+}
+.mobile-dialog::backdrop { background: rgba(3, 5, 3, .76); backdrop-filter: blur(3px); }
+.mobile-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  color: var(--pink);
+  font: 800 9px ui-monospace, monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.mobile-dialog-head button {
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--panel-2);
+  font-size: 24px;
+}
+.mobile-dialog h2 { margin: 0 0 12px; font: 700 30px/1 Georgia, serif; }
+.mobile-dialog p { color: var(--muted); font-size: 17px; line-height: 1.55; }
+.mobile-dialog > a { display: inline-block; padding: 12px 0; color: var(--green); font-weight: 800; }
+.term-button:focus:not(:focus-visible), .weapon-button:focus:not(:focus-visible) { outline: 0; box-shadow: none; }
+.term-button:focus-visible, .weapon-button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+@media (max-width: 800px) {
+  .mobile-main { padding-bottom: calc(44px + env(safe-area-inset-bottom)); }
+  .unit-card > :is(.unit-head, .unit-header) { grid-template-columns: 1fr; }
+  .unit-card.ds-layout .points.ds-cost { width: 100%; min-width: 0; justify-self: stretch; }
+  .unit-card.ds-layout .ds-main-grid { grid-template-columns: 1fr; }
+  .unit-card.ds-layout .ds-arsenal { border-right: 0; border-bottom: 1px solid var(--line); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .phone-tree a:hover, .phone-glossary:hover { color: var(--ink); background: rgba(190, 230, 119, .06); }
+}

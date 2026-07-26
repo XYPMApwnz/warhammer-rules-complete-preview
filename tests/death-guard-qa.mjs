@@ -7,7 +7,7 @@ const projectRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'
 const root=path.join(projectRoot,'books','death-guard');
 const read=name=>fs.readFileSync(path.join(root,name),'utf8');
 const readProject=name=>fs.readFileSync(path.join(projectRoot,name),'utf8');
-const html=read('index.html');
+const html=read('reader.html');
 const navigationTargets=readProject('books/shared/navigation-targets.js');
 const datasheetLayout=readProject('books/shared/datasheet-layout.js');
 const datasheetCss=readProject('books/shared/datasheet-system.css');

@@ -1,0 +1,8 @@
+* { box-sizing: border-box; }
+body { min-height: 100dvh; margin: 0; display: grid; place-items: center; padding: 24px; color: var(--ink); background: var(--void); }
+.entry-card { width: min(520px,100%); padding: 36px; border: 1px solid var(--line); border-top: 4px solid var(--green); background: var(--panel); }
+.entry-mark { width: 52px; height: 52px; display: grid; place-items: center; border: 1px solid var(--bronze); color: var(--bronze-bright); font: 800 12px ui-monospace,monospace; }
+.entry-card p { margin: 24px 0 7px; color: var(--pink); font: 800 10px ui-monospace,monospace; letter-spacing: .15em; text-transform: uppercase; }
+.entry-card h1 { margin: 0 0 28px; font: 700 40px/1 Georgia,serif; }
+.entry-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.entry-actions a { padding: 13px 15px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font: 750 14px system-ui,sans-serif; touch-action: manipulation; }

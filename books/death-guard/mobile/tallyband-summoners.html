@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#11170e">
+  <title>Tallyband Summoners &mdash; Death Guard Phone Mode</title>
+  <link rel="manifest" href="../../../manifest.webmanifest">
+  <link rel="icon" href="../assets/icon-v4.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles/tokens.css?v=10">
+  <link rel="stylesheet" href="../styles/layout.css?v=9">
+  <link rel="stylesheet" href="../styles/navigation.css?v=10">
+  <link rel="stylesheet" href="../styles/content.css?v=18">
+  <link rel="stylesheet" href="../styles/popups.css?v=15">
+  <link rel="stylesheet" href="../../shared/datasheet-system.css?v=4">
+  <link rel="stylesheet" href="./mobile.css?v=3">
+</head>
+<body>
+  <header class="app-header" id="appHeader">
+    <button class="header-button nav-menu" id="navButton" aria-label="Open navigation" aria-controls="mobileNav" aria-expanded="false">&#9776;</button>
+    <div class="app-brand"><strong>Death Guard Rules</strong><small>Full content &middot; Phone Mode</small></div>
+    <a class="library-link" href="../../../index.html" aria-label="Back to rulebook library"><span aria-hidden="true">&larr;</span><b>Library</b></a>
+    <div class="header-spacer"></div>
+  </header>
+  <button class="toc-scrim" id="navScrim" aria-label="Close navigation" hidden></button>
+  <nav class="toc-panel" id="mobileNav" aria-label="Death Guard navigation" aria-hidden="true">
+    <h2 class="toc-heading">Contents</h2>
+    <div class="phone-tree"><a href="./index.html">Start</a><a href="./updates.html">Updates</a><a href="./army-rules.html">Army Rules</a>
+    <details name="mobile-primary" open>
+      <summary>Detachments <span>9</span></summary>
+      <div class="mobile-nav-branch"><a href="./virulent-vectorium.html">Virulent Vectorium</a><a href="./mortarions-hammer.html">Mortarion’s Hammer</a><a href="./champions-of-contagion.html">Champions of Contagion</a><a href="./tallyband-summoners.html" aria-current="page">Tallyband Summoners</a><a href="./shamblerot-vectorium.html">Shamblerot Vectorium</a><a href="./death-lords-chosen.html">Death Lord’s Chosen</a><a href="./contagion-engines.html">Contagion Engines</a><a href="./flyblown-host.html">Flyblown Host</a><a href="./paragons-of-putrescence.html">Paragons of Putrescence</a></div>
+    </details>
+    <details name="mobile-primary">
+      <summary>Datasheets <span>36</span></summary>
+      <div class="mobile-nav-branch mobile-unit-groups"><details>
+        <summary>Epic Heroes <span>2</span></summary>
+        <div class="mobile-nav-branch"><a href="./mortarion.html">Mortarion</a><a href="./typhus.html">Typhus</a></div>
+      </details><details>
+        <summary>Characters <span>12</span></summary>
+        <div class="mobile-nav-branch"><a href="./biologus-putrifier.html">Biologus Putrifier</a><a href="./daemon-prince-of-nurgle.html">Daemon Prince of Nurgle</a><a href="./daemon-prince-of-nurgle-with-wings.html">Daemon Prince of Nurgle with Wings</a><a href="./foul-blightspawn.html">Foul Blightspawn</a><a href="./icon-bearer.html">Icon Bearer</a><a href="./lord-of-contagion.html">Lord of Contagion</a><a href="./lord-of-poxes.html">Lord of Poxes</a><a href="./lord-of-virulence.html">Lord of Virulence</a><a href="./malignant-plaguecaster.html">Malignant Plaguecaster</a><a href="./noxious-blightbringer.html">Noxious Blightbringer</a><a href="./plague-surgeon.html">Plague Surgeon</a><a href="./tallyman.html">Tallyman</a></div>
+      </details><details>
+        <summary>Battleline <span>1</span></summary>
+        <div class="mobile-nav-branch"><a href="./plague-marines.html">Plague Marines</a></div>
+      </details><details>
+        <summary>Infantry <span>3</span></summary>
+        <div class="mobile-nav-branch"><a href="./blightlord-terminators.html">Blightlord Terminators</a><a href="./deathshroud-terminators.html">Deathshroud Terminators</a><a href="./poxwalkers.html">Poxwalkers</a></div>
+      </details><details>
+        <summary>Beasts <span>1</span></summary>
+        <div class="mobile-nav-branch"><a href="./chaos-spawn.html">Chaos Spawn</a></div>
+      </details><details>
+        <summary>Vehicles <span>9</span></summary>
+        <div class="mobile-nav-branch"><a href="./chaos-land-raider.html">Chaos Land Raider</a><a href="./chaos-predator-annihilator.html">Chaos Predator Annihilator</a><a href="./chaos-predator-destructor.html">Chaos Predator Destructor</a><a href="./defiler.html">Defiler</a><a href="./foetid-bloat-drone.html">Foetid Bloat-drone</a><a href="./foetid-bloat-drone-with-heavy-blight-launcher.html">Foetid Bloat-drone with Heavy Blight Launcher</a><a href="./helbrute.html">Helbrute</a><a href="./myphitic-blight-hauler.html">Myphitic Blight-hauler</a><a href="./plagueburst-crawler.html">Plagueburst Crawler</a></div>
+      </details><details>
+        <summary>Dedicated Transports <span>1</span></summary>
+        <div class="mobile-nav-branch"><a href="./chaos-rhino.html">Chaos Rhino</a></div>
+      </details><details>
+        <summary>Fortifications <span>1</span></summary>
+        <div class="mobile-nav-branch"><a href="./miasmic-malignifier.html">Miasmic Malignifier</a></div>
+      </details><details>
+        <summary>Pact of Decay <span>6</span></summary>
+        <div class="mobile-nav-branch"><a href="./beasts-of-nurgle.html">Beasts of Nurgle</a><a href="./great-unclean-one.html">Great Unclean One</a><a href="./nurglings.html">Nurglings</a><a href="./plague-drones.html">Plague Drones</a><a href="./plaguebearers.html">Plaguebearers</a><a href="./rotigus.html">Rotigus</a></div>
+      </details></div>
+    </details></div>
+    <a class="phone-glossary" href="../../../glossary/index.html">Mega Glossary &rarr;</a>
+    <a class="phone-glossary phone-mode-switch" href="../index.html?view=full">Full Reader &rarr;</a>
+  </nav>
+  <main class="main mobile-main"><article class="document"><section class="content-group detachment" id="detachment-tallyband-summoners" data-track="detachment-tallyband-summoners">
+<h3 class="category-title">Tallyband Summoners</h3>
+<div class="content-block">
+<p>Force Disposition: Disruption. Detachment Points: 2DP.</p>
+</div>
+<section class="detachment-part" id="tallyband-summoners-rule" data-track="tallyband-summoners-rule">
+<h4 class="detachment-part-title">Detachment Rule - Reverberant Rancidity</h4>
+<div class="detachment-content">
+<article class="ability" id="rule-reverberant-rancidity">
+<h5>
+<button class="term-button" data-term="detachment-rule-reverberant-rancidity" data-term-title="Reverberant Rancidity" data-term-summary="While a PLAGUE LEGIONS unit from your army is within 7&quot; of one or more DEATH GUARD units from your army, it has the Nurgle’s Gift ability.">Reverberant Rancidity</button>
+</h5>
+<p>While a <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> unit from your army is within 7&quot; of one or more <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> units from your army, it has the <button class="term-button" data-term="nurgles-gift" data-term-title="Nurgle’s Gift" data-term-summary="Death Guard Army Rule.">Nurgle’s Gift</button> ability. While a <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> unit from your army is within 7&quot; of one or more <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> units from your army, add 3&quot; to that <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> unit’s <button class="term-button" data-term="contagion-range" data-term-title="Contagion Range" data-term-summary="3&quot; in battle round 1, 6&quot; in battle round 2, 9&quot; from battle round 3 onward.">Contagion Range</button>.</p>
+</article>
+<div class="content-block">
+<p>You can include <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> units in your army even if your Army Faction is <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button>. The combined points cost of such units depends on the battle size, as shown below.</p>
+</div>
+<div class="data-table" role="table">
+<div class="data-row data-head">
+<div>Battle Size</div>
+<div>Maximum points</div>
+</div>
+<div class="data-row">
+<div>Incursion</div>
+<div>500 pts</div>
+</div>
+<div class="data-row">
+<div>Strike Force</div>
+<div>1000 pts</div>
+</div>
+<div class="data-row">
+<div>Onslaught</div>
+<div>1500 pts</div>
+</div>
+</div>
+<div class="content-block">
+<p>No <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> model from your army can be your WARLORD.</p>
+</div>
+</div>
+</section>
+<section class="detachment-part" id="tallyband-summoners-enhancements" data-track="tallyband-summoners-enhancements">
+<h4 class="detachment-part-title">Enhancements</h4>
+<div class="detachment-content">
+<article class="enhancement surface" id="enhancement-beckoning-blight">
+<div class="eyebrow">Enhancement</div>
+<h4>
+<button class="term-button" data-term="beckoning-blight" data-term-title="Beckoning Blight" data-term-summary="DEATH GUARD model only.">Beckoning Blight</button> - 20 pts</h4>
+<p>
+<button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> model only. Each time a <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> unit from your army is set up on the battlefield using the <button class="term-button" data-term="core-deep-strike" data-term-title="DEEP STRIKE" data-term-summary="During an ingress move, set up more than 8&quot; horizontally from all enemy units.">Deep Strike</button> ability, if it is set up wholly within 12&quot; of the bearer, it can be set up anywhere that is more than 6&quot; horizontally away from all enemy models, instead of more than 8&quot;.</p>
+</article>
+<article class="enhancement surface" id="enhancement-fell-harvester">
+<div class="eyebrow">Enhancement</div>
+<h4>
+<button class="term-button" data-term="fell-harvester" data-term-title="Fell Harvester" data-term-summary="DEATH GUARD model only. Add 2 to the Attacks characteristic of the bearer’s melee weapons.">Fell Harvester</button> - 10 pts</h4>
+<p>
+<button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> model only. Add 2 to the Attacks characteristic of the bearer’s melee weapons.</p>
+</article>
+<article class="enhancement surface" id="enhancement-entropic-knell">
+<div class="eyebrow">Enhancement</div>
+<h4>
+<button class="term-button" data-term="entropic-knell" data-term-title="Entropic Knell" data-term-summary="GREAT UNCLEAN ONE only. In the Battle-shock step of your opponent’s Command phase, each enemy unit within 6&quot; of the bearer that is below its Starting Strength must take a Battle-shock test, subtracting 1 from that test.">Entropic Knell</button> - 15 pts</h4>
+<p>
+<button class="term-button" data-term="term-great-unclean-one" data-term-title="Great Unclean One" data-term-summary="M 7&quot; · T 12 · Sv 5+ · W 20 · Ld 6+ · OC 5 · Inv 4+">GREAT UNCLEAN ONE</button> only. In the Battle-shock step of your opponent’s Command phase, each enemy unit within 6&quot; of the bearer that is below its Starting Strength must take a Battle-shock test, subtracting 1 from that test.</p>
+</article>
+<article class="enhancement surface" id="enhancement-tome-of-bounteous-blessings">
+<div class="eyebrow">Enhancement</div>
+<h4>
+<button class="term-button" data-term="tome-of-bounteous-blessings" data-term-title="Tome of Bounteous Blessings" data-term-summary="MALIGNANT PLAGUECASTER only.">Tome of Bounteous Blessings</button> - 20 pts</h4>
+<p>
+<button class="term-button" data-term="term-malignant-plaguecaster" data-term-title="Malignant Plaguecaster" data-term-summary="M 5&quot; · T 6 · Sv 3+ · W 4 · Ld 6+ · OC 1">MALIGNANT PLAGUECASTER</button> only. Each time a <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> unit within 12&quot; of the bearer takes a Battle-shock test, add 1 to that test and, if that test is passed, one model in that unit regains up to D3 lost wounds (if that unit is a <button class="term-button" data-term="keyword-battleline" data-term-title="BATTLELINE" data-term-summary="BATTLELINE has no standalone Core Rules effect; it matters only when another rule explicitly references it.">BATTLELINE</button> unit and that test is passed, up to D3 destroyed models can be returned to that unit instead).</p>
+</article>
+</div>
+</section>
+<section class="detachment-part" id="tallyband-summoners-stratagems" data-track="tallyband-summoners-stratagems">
+<h4 class="detachment-part-title">Stratagems</h4>
+<div class="detachment-content">
+<article class="stratagem surface" id="stratagem-persistent-pests">
+<div class="stratagem-head">
+<div>
+<h3>
+<button class="term-button" data-term="persistent-pests" data-term-title="PERSISTENT PESTS" data-term-summary="WHEN: Any phase. TARGET: One NURGLINGS unit from your army that was just destroyed. You can target that unit with this Stratagem even though it was just destroyed.">PERSISTENT PESTS</button>
+</h3>
+<span class="stratagem-type">
+<button class="term-button" data-term="tallyband-summoners" data-term-title="Tallyband Summoners" data-term-summary="Disruption, 2DP.">Tallyband Summoners</button> – Strategic Ploy Stratagem</span>
+</div>
+<div class="cp">1CP</div>
+</div>
+<p class="field">
+<b>WHEN</b>
+<br>Any phase.</p>
+<p class="field">
+<b>TARGET</b>
+<br>One <button class="term-button" data-term="term-nurglings" data-term-title="Nurglings" data-term-summary="M 5&quot; · T 3 · Sv 7+ · W 4 · Ld 8+ · OC 0 · Inv 5+">NURGLINGS</button> unit from your army that was just destroyed. You can target that unit with this Stratagem even though it was just destroyed.</p>
+<p class="field">
+<b>EFFECT</b>
+<br>Add a new unit to your army identical to your destroyed unit, in Strategic Reserves, at its Starting Strength and with its full wounds remaining.</p>
+<p class="field">
+<b>RESTRICTIONS</b>
+<br>You can only use this Stratagem once per battle.</p>
+</article>
+<article class="stratagem surface" id="stratagem-clutching-corruption">
+<div class="stratagem-head">
+<div>
+<h3>
+<button class="term-button" data-term="clutching-corruption" data-term-title="CLUTCHING CORRUPTION" data-term-summary="WHEN: Fight phase. TARGET: One DEATH GUARD unit from your army that has not been selected to fight this phase.">CLUTCHING CORRUPTION</button>
+</h3>
+<span class="stratagem-type">
+<button class="term-button" data-term="tallyband-summoners" data-term-title="Tallyband Summoners" data-term-summary="Disruption, 2DP.">Tallyband Summoners</button> – Battle Tactic Stratagem</span>
+</div>
+<div class="cp">1CP</div>
+</div>
+<p class="field">
+<b>WHEN</b>
+<br>Fight phase.</p>
+<p class="field">
+<b>TARGET</b>
+<br>One <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="DEATH GUARD has no standalone Core Rules effect; it matters only when another rule explicitly references it.">DEATH GUARD</button> unit from your army that has not been selected to fight this phase.</p>
+<p class="field">
+<b>EFFECT</b>
+<br>Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit that is within Engagement Range of one or more <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> units from your army, you can re-roll the Hit roll.</p>
+</article>
+<article class="stratagem surface" id="stratagem-all-is-rot">
+<div class="stratagem-head">
+<div>
+<h3>
+<button class="term-button" data-term="all-is-rot" data-term-title="ALL IS ROT" data-term-summary="WHEN: Your Shooting phase. TARGET: One PLAGUE LEGIONS unit from your army that is within Engagement Range of one or more enemy units.">ALL IS ROT</button>
+</h3>
+<span class="stratagem-type">
+<button class="term-button" data-term="tallyband-summoners" data-term-title="Tallyband Summoners" data-term-summary="Disruption, 2DP.">Tallyband Summoners</button> – Strategic Ploy Stratagem</span>
+</div>
+<div class="cp">1CP</div>
+</div>
+<p class="field">
+<b>WHEN</b>
+<br>Your Shooting phase.</p>
+<p class="field">
+<b>TARGET</b>
+<br>One <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> unit from your army that is within Engagement Range of one or more enemy units.</p>
+<p class="field">
+<b>EFFECT</b>
+<br>Until the end of the phase, enemy units are not considered to be within Engagement Range of your unit for the purposes of selecting targets of ranged weapons. Until the end of the phase, each time an enemy model loses a wound, while that model’s unit is within Engagement Range of your unit, roll one D6: on a 5+, your unit suffers 1 mortal wound after the attacking unit has finished making its attacks.</p>
+</article>
+<article class="stratagem surface" id="stratagem-fleshy-avalanche">
+<div class="stratagem-head">
+<div>
+<h3>
+<button class="term-button" data-term="fleshy-avalanche" data-term-title="FLESHY AVALANCHE" data-term-summary="WHEN: Your Movement phase or your Charge phase. TARGET: One PLAGUE LEGIONS MONSTER unit from your army that has not been selected to move or charge this phase.">FLESHY AVALANCHE</button>
+</h3>
+<span class="stratagem-type">
+<button class="term-button" data-term="tallyband-summoners" data-term-title="Tallyband Summoners" data-term-summary="Disruption, 2DP.">Tallyband Summoners</button> – Strategic Ploy Stratagem</span>
+</div>
+<div class="cp">1CP</div>
+</div>
+<p class="field">
+<b>WHEN</b>
+<br>Your Movement phase or your Charge phase.</p>
+<p class="field">
+<b>TARGET</b>
+<br>One <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> <button class="term-button" data-term="keyword-monster" data-term-title="MONSTER" data-term-summary="MONSTER units use HAZARD ROLLS, CLOSE-QUARTERS SHOOTING, TERRAIN AND MOVEMENT and MOVING MONSTERS AND VEHICLES (+1 more).">MONSTER</button> unit from your army that has not been selected to move or charge this phase.</p>
+<p class="field">
+<b>EFFECT</b>
+<br>Until the end of the phase, each time your unit makes a Normal, Advance or Charge move, it can move horizontally through terrain features.</p>
+</article>
+<article class="stratagem surface" id="stratagem-avatars-of-decay">
+<div class="stratagem-head">
+<div>
+<h3>
+<button class="term-button" data-term="avatars-of-decay" data-term-title="AVATARS OF DECAY" data-term-summary="WHEN: Your Shooting phase. TARGET: One PLAGUE LEGIONS unit from your army. EFFECT: Until the end of the phase, while an enemy unit is within 6&quot; of your unit, that enemy unit is Afflicted.">AVATARS OF DECAY</button>
+</h3>
+<span class="stratagem-type">
+<button class="term-button" data-term="tallyband-summoners" data-term-title="Tallyband Summoners" data-term-summary="Disruption, 2DP.">Tallyband Summoners</button> – Strategic Ploy Stratagem</span>
+</div>
+<div class="cp">1CP</div>
+</div>
+<p class="field">
+<b>WHEN</b>
+<br>Your Shooting phase.</p>
+<p class="field">
+<b>TARGET</b>
+<br>One <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> unit from your army.</p>
+<p class="field">
+<b>EFFECT</b>
+<br>Until the end of the phase, while an enemy unit is within 6&quot; of your unit, that enemy unit is <button class="term-button" data-term="afflicted" data-term-title="Afflicted" data-term-summary="An enemy unit within Contagion Range.">Afflicted</button>.</p>
+</article>
+<article class="stratagem surface" id="stratagem-mireslick">
+<div class="stratagem-head">
+<div>
+<h3>
+<button class="term-button" data-term="mireslick" data-term-title="MIRESLICK" data-term-summary="WHEN: Your opponent’s Movement phase, when an enemy unit (excluding MONSTERS and VEHICLES) is selected to Fall Back. TARGET: One PLAGUE LEGIONS unit from your army that is within Engagement Range of that enemy unit.">MIRESLICK</button>
+</h3>
+<span class="stratagem-type">
+<button class="term-button" data-term="tallyband-summoners" data-term-title="Tallyband Summoners" data-term-summary="Disruption, 2DP.">Tallyband Summoners</button> – Strategic Ploy Stratagem</span>
+</div>
+<div class="cp">1CP</div>
+</div>
+<p class="field">
+<b>WHEN</b>
+<br>Your opponent’s Movement phase, when an enemy unit (excluding MONSTERS and VEHICLES) is selected to Fall Back.</p>
+<p class="field">
+<b>TARGET</b>
+<br>One <button class="term-button" data-term="keyword-plague-legions" data-term-title="PLAGUE LEGIONS" data-term-summary="PLAGUE LEGIONS has no standalone Core Rules effect; it matters only when another rule explicitly references it.">PLAGUE LEGIONS</button> unit from your army that is within Engagement Range of that enemy unit.</p>
+<p class="field">
+<b>EFFECT</b>
+<br>Until the end of the phase, while an enemy unit is within Engagement Range of your unit, each time that unit is selected to Fall Back, it must take a Leadership test. If that test is failed, that unit must Remain Stationary this phase instead.</p>
+</article>
+</div>
+</section>
+<div class="source">Source: Codex: Death Guard transcription.</div>
+</section></article></main>
+  <script src="../../shared/datasheet-layout.js?v=2"></script>
+  <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
+    <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
+    <h2 id="termTitle"></h2><p id="termSummary"></p>
+    <a id="termFull" href="../../../glossary/index.html">Open full article &rarr;</a>
+  </dialog>
+  <script src="./mobile.js?v=2"></script>
+</body>
+</html>
