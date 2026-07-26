@@ -102,6 +102,7 @@ check('desktop stratagem cards use two columns with a responsive fallback',read(
 check('navigation cancellation remains wired',navSource.includes("root.style.scrollBehavior='auto'")&&navSource.includes("behavior:'auto'"));
 check('navigation gap has one CSS source',read('styles/tokens.css').includes('--navigation-gap: 18px')&&navSource.includes("getPropertyValue('--navigation-gap')")&&!navSource.includes('trackingGap=18'));
 check('header home does not mutate the URL hash',markup.includes('<button class="app-brand" type="button" data-header-home>')&&!markup.includes('href="#start"'));
+check('header exposes the shared Mega Glossary',markup.includes('href="../../glossary/index.html"')&&markup.includes('Mega Glossary'));
 check('mobile weapon labels stay dynamic',read('scripts/ui-controllers.js').includes('cell.dataset.label=labels[columnIndex]')&&read('styles/content.css').includes('content: attr(data-label)'));
 
 const extractor=spawnSync('C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe',[path.join(root,'tools','extract-faction-pack.py'),'--check'],{encoding:'utf8'});
