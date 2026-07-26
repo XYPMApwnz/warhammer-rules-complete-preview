@@ -62,7 +62,7 @@ const APP_SHELL = [
   "./books/death-guard/scripts/app.js?v=24",
   "./books/core-rules/",
   CORE_RULES_FALLBACK,
-  "./books/core-rules/reader/styles.css?v=4",
+  "./books/core-rules/reader/styles.css?v=5",
   "./books/core-rules/reader/app.js?v=3",
   "./books/core-rules/styles.css",
   "./books/core-rules/config.js",

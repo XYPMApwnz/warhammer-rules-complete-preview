@@ -99,6 +99,9 @@ for(const image of Object.values(digital.images).flat()){
 assert(!generatedReader.includes('Examples & diagrams'),'chapter-level diagram dump must not return');
 assert(generatedReader.includes('id="imageDialog"'),'rule diagrams use one shared image dialog');
 assert(fs.readFileSync(path.join(readerRoot,'app.js'),'utf8').includes("event.target.closest('.rule-visuals a')"),'rule diagram clicks open the shared image dialog');
+const readerStyles=fs.readFileSync(path.join(readerRoot,'styles.css'),'utf8');
+assert(readerStyles.includes('*::-webkit-scrollbar-thumb'),'reader scrollbars use the shared bronze design');
+assert(!readerStyles.includes('.brand small,.current,.library{display:none}'),'mobile header keeps its current chapter and Library action');
 const muster=fs.readFileSync(path.join(readerRoot,'muster-armies.html'),'utf8');
 for(const value of ['25.01','25.02','25.03','25.04','Incursion','Strike Force','1000','2000'])assert(muster.includes(value),`Muster Armies is missing ${value}`);
 const readerIndex=fs.readFileSync(path.join(readerRoot,'index.html'),'utf8');
