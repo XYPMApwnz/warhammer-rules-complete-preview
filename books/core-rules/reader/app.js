@@ -109,7 +109,7 @@
       searchResults.replaceChildren();
       return;
     }
-    const matches = searchIndex.filter(item => normalizeSearch(`${item.code} ${item.title} ${item.chapter} ${item.text}`).includes(query)).slice(0, 40);
+    const matches = searchIndex.filter(item => normalizeSearch(`${item.code} ${item.title} ${item.chapter} ${item.text}`).includes(query)).sort((a,b)=>Number(!normalizeSearch(a.title).includes(query))-Number(!normalizeSearch(b.title).includes(query))).slice(0, 40);
     searchStatus.textContent = matches.length ? `${matches.length}${matches.length === 40 ? '+' : ''} results` : 'No matching rules.';
     searchResults.innerHTML = matches.map(item => `<a href="${item.url}"><small>${item.chapter}</small><strong>${item.title}</strong><span>${item.text.slice(0, 180)}</span></a>`).join('');
   });

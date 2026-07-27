@@ -15,7 +15,7 @@
     showAll(){this.cards.forEach(card=>{card.hidden=false;card.style.order='';});this.empty.hidden=true;}
     filter(query){
       let shown=0;
-      this.cards.forEach(card=>{const title=card.dataset.glossaryTitle.toLocaleLowerCase(),haystack=(title+' '+(card.dataset.glossaryAliases||'')+' '+card.textContent).toLocaleLowerCase(),visible=haystack.includes(query);card.hidden=!visible;card.style.order=title===query?'-1':'';if(visible)shown++;});
+      this.cards.forEach(card=>{const title=card.dataset.glossaryTitle.toLocaleLowerCase(),haystack=(title+' '+(card.dataset.glossaryAliases||'')+' '+card.textContent).toLocaleLowerCase(),visible=haystack.includes(query);card.hidden=!visible;card.style.order=title.includes(query)?'-1':'';if(visible)shown++;});
       this.empty.hidden=shown!==0;
     }
     apply(){
@@ -117,6 +117,7 @@
       const matches=[];
       this.sections.forEach(section=>{if((section.title+' '+section.haystack).toLocaleLowerCase().includes(query))matches.push({type:'section',id:section.id,code:'RULE',title:section.title,copy:section.copy});});
       this.terms.forEach(([id,term])=>{if((term.title+' '+term.summary).toLocaleLowerCase().includes(query))matches.push({type:'term',id,code:'TERM',title:term.title,copy:term.summary});});
+      matches.sort((a,b)=>Number(!a.title.toLocaleLowerCase().includes(query))-Number(!b.title.toLocaleLowerCase().includes(query)));
       matches.slice(0,14).forEach(match=>{
         const button=document.createElement('button');button.type='button';button.className='search-result';button.dataset.searchType=match.type;button.dataset.searchId=match.id;
         const code=document.createElement('b');code.textContent=match.code;

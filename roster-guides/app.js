@@ -87,14 +87,24 @@ function parseRoster(text){
   const declared=Number(value('TOTAL ARMY POINTS').match(/\d+/)?.[0]||0),calculated=units.reduce((total,unit)=>total+unit.points,0),dispositions=splitList(values('FORCE DISPOSITION'));
   const detachments=splitList(values('DETACHMENT')).map((label,index)=>({label,name:label.replace(/\s*\([^)]*\)\s*$/,''),rule:label.match(/\(([^)]*)\)/)?.[1]||'',disposition:dispositions[index]||dispositions[0]||'—'}));
   const factionValue=values('FACTION KEYWORD')[0]||'',factionKey=knownFaction(factionValue),faction=FACTION_LABELS[factionKey]||factionValue;
-  return{faction,detachment:detachments[0]?.label||'—',detachments,disposition:dispositions[0]||'—',enhancements:values('ENHANCEMENT'),enhancement:value('ENHANCEMENT'),declared,calculated,units};
+  const enhancements=splitList(values('ENHANCEMENT')).filter(item=>item&&item!=='—');
+  return{faction,detachment:detachments[0]?.label||'—',detachments,disposition:dispositions[0]||'—',enhancements,enhancement:enhancements[0]||'—',declared,calculated,units};
 }
 
 function renderRoster(roster,record){
   const grouped=new Map();for(const unit of roster.units){const entry=grouped.get(unit.name)||{...unit,copies:0,total:0};entry.copies+=1;entry.total+=unit.points;grouped.set(unit.name,entry);}
-  const matches=roster.declared===roster.calculated;
+  const check=roster.pointsCheck;
+  const complete=check&&check.total!==null&&!check.unresolved.length;
+  const matches=complete&&check.difference===0;
+  const pointsStatus=!check||check.total===null
+    ?'<div class="status warn">! Army Book point data is unavailable. The roster was still saved.</div>'
+    :check.unresolved.length
+      ?`<div class="status warn">! Army Book validation is incomplete. The roster was still saved.<br>${check.unresolved.map(escapeHtml).join('<br>')}</div>`
+      :matches
+        ?'<div class="status">✓ The Army Book total matches the exported total.</div>'
+        :`<div class="status warn">! Points warning: the export declares ${roster.declared} pts, but current Army Book data totals ${check.total} pts (${check.difference>0?'+':''}${check.difference}). The roster was still saved.</div>`;
   const hasReader=Boolean(FACTION_READERS[knownFaction(roster.faction)]);
-  document.querySelector('#roster-result').innerHTML=`<p class="eyebrow">Preview // ${roster.units.length} units</p><h2>${escapeHtml(roster.faction)}</h2><p class="help">${escapeHtml((roster.detachments||[{label:roster.detachment}]).map(item=>item.label).join(' + '))} · ${escapeHtml(roster.disposition)}</p><div class="summary"><div class="stat"><small>Declared in export</small><strong>${roster.declared||'—'} pts</strong></div><div class="stat"><small>Item total</small><strong>${roster.calculated} pts</strong></div></div><div class="status ${matches?'':'warn'}">${matches?'✓ The item total matches the exported total.':'! The item total does not match the exported total.'}<br>Current points and roster legality were not checked.</div><ul class="units">${[...grouped.values()].map(unit=>`<li><strong>${escapeHtml(unit.name)}${unit.copies>1?` ×${unit.copies}`:''}</strong><span>${unit.total} pts</span></li>`).join('')}</ul><div class="actions">${hasReader?'<button class="action primary" id="open-guide" type="button">Open personal guide</button>':'<p class="help">Saved. A personal reader is not available for this faction yet.</p>'}</div>`;
+  document.querySelector('#roster-result').innerHTML=`<p class="eyebrow">Preview // ${roster.units.length} units</p><h2>${escapeHtml(roster.faction)}</h2><p class="help">${escapeHtml((roster.detachments||[{label:roster.detachment}]).map(item=>item.label).join(' + '))} · ${escapeHtml(roster.disposition)}</p><div class="summary"><div class="stat"><small>Declared in export</small><strong>${roster.declared||'—'} pts</strong></div><div class="stat"><small>Army Book total</small><strong>${check?.total??'—'} pts</strong></div></div>${pointsStatus}<p class="help">Roster construction, unit limits, wargear legality and Enhancement eligibility are not checked.</p><ul class="units">${[...grouped.values()].map(unit=>`<li><strong>${escapeHtml(unit.name)}${unit.copies>1?` ×${unit.copies}`:''}</strong><span>${unit.total} pts in export</span></li>`).join('')}</ul><div class="actions">${hasReader?'<button class="action primary" id="open-guide" type="button">Open personal guide</button>':'<p class="help">Saved. A personal reader is not available for this faction yet.</p>'}</div>`;
   if(!hasReader)return;
   document.querySelector('#open-guide').addEventListener('click',()=>openSavedRoster(record.id));
 }
@@ -105,6 +115,7 @@ document.querySelector('#roster-form').addEventListener('submit',event=>{
   const faction=knownFaction(roster.faction);
   if(!faction){document.querySelector('#roster-result').innerHTML=roster.faction?`<p class="eyebrow">Unknown faction</p><h2>${escapeHtml(roster.faction)}</h2><p class="help">This faction is not recognised. The roster was not saved.</p>`:'<p class="eyebrow">Import error</p><h2>Faction not found</h2><p class="help">The export has no FACTION KEYWORD line. The roster was not saved.</p>';return;}
   roster.faction=FACTION_LABELS[faction];
+  roster.pointsCheck=window.WHRosterPoints.check(roster,faction);
   const record=saveRoster(roster,input.value);renderRoster(roster,record);
 });
 document.querySelector('#roster-clear').addEventListener('click',()=>{document.querySelector('#roster-form').reset();document.querySelector('#roster-result').innerHTML='<p class="eyebrow">Preview</p><h2>No roster loaded</h2><p class="help">The faction, Detachment, export total check and recognised units will appear here.</p>';document.querySelector('#roster-input').focus();});

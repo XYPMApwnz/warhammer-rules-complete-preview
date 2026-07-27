@@ -227,7 +227,7 @@
   }
   function search(){
     const query=elements.searchInput.value.trim().toLocaleLowerCase('en');elements.searchResults.replaceChildren();if(query.length<2){elements.searchResults.append(node('p','search-empty','Type at least two characters.'));return;}
-    const matches=searchIndex.filter((entry)=>entry.haystack.includes(query)).sort((a,b)=>{const at=a.title.toLocaleLowerCase('en'),bt=b.title.toLocaleLowerCase('en');return Number(!at.startsWith(query))-Number(!bt.startsWith(query))||at.localeCompare(bt);}).slice(0,40);
+    const matches=searchIndex.filter((entry)=>entry.haystack.includes(query)).sort((a,b)=>{const at=a.title.toLocaleLowerCase('en'),bt=b.title.toLocaleLowerCase('en');return Number(!at.includes(query))-Number(!bt.includes(query))||Number(!at.startsWith(query))-Number(!bt.startsWith(query))||at.localeCompare(bt);}).slice(0,40);
     matches.forEach((entry)=>{const button=node('button','search-result');button.type='button';const badge=node('b','',entry.type),copy=node('span');copy.append(node('strong','',entry.title),node('small','',entry.detail));button.append(badge,copy,node('i','','→'));button.addEventListener('click',()=>{closeSearch();state.view='source';openLesson(entry.id,{anchor:entry.anchor});});elements.searchResults.append(button);});
     if(!matches.length)elements.searchResults.append(node('p','search-empty','No source matches found.'));
   }

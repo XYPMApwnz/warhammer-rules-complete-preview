@@ -206,6 +206,7 @@ const releaseHtml=html
   .replace('<script src="../shared/navigation-targets.js', '<script src="../../glossary-return.js?v=1"></script><script src="../shared/navigation-targets.js')
   .replace('../shared/glossary-autolink.js?v=7','../shared/glossary-autolink.js?v=8')
   .replace('popup-controller.js?v=18','popup-controller.js?v=19')
+  .replace('ui-controllers.js?v=13','ui-controllers.js?v=14')
   .replace('app.js?v=17','app.js?v=18');
 const outputs=new Map([['index.html',releaseHtml],['scripts/data.js',dataJs]]);
 

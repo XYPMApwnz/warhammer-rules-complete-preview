@@ -13,7 +13,7 @@
 
   function filterButton(value){const node=document.createElement('button');node.type='button';node.textContent=value==='all'?'All':value.replaceAll('-',' ');node.classList.toggle('active',value===category);node.addEventListener('click',()=>{category=value;visibleLimit=120;renderFilters();renderList();});return node;}
   function renderFilters(){filters.replaceChildren(...categories.map(filterButton));}
-  function visibleTerms(){const query=search.value.trim().toLowerCase();return terms.filter(term=>(category==='all'||term.kind===category)&&(!query||`${term.title.en} ${term.summary?.en||''} ${term.definition.en} ${(term.aliases||[]).join(' ')}`.toLowerCase().includes(query)));}
+  function visibleTerms(){const query=search.value.trim().toLowerCase();return terms.filter(term=>(category==='all'||term.kind===category)&&(!query||`${term.title.en} ${term.summary?.en||''} ${term.definition.en} ${(term.aliases||[]).join(' ')}`.toLowerCase().includes(query))).sort((a,b)=>Number(!a.title.en.toLowerCase().includes(query))-Number(!b.title.en.toLowerCase().includes(query)));}
   function renderList(){
     const visible=visibleTerms(),shown=visible.slice(0,visibleLimit);
     resultCount.textContent=`${shown.length} of ${visible.length} entries shown`;

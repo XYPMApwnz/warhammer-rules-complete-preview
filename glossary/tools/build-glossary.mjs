@@ -502,7 +502,7 @@ const coreReaderFiles=fs.readdirSync(path.join(root,'books','core-rules','reader
   .filter(file=>file.endsWith('.html')||file==='styles.css'||file==='app.js'||file==='search-index.json')
   .map(file=>`books/core-rules/reader/${file}`);
 const cacheInputs=[
-  'index.html','manifest.webmanifest','service-worker.js','glossary-return.js','roster-guides/index.html','roster-guides/app.js',
+  'index.html','manifest.webmanifest','service-worker.js','glossary-return.js','roster-guides/index.html','roster-guides/app.js','roster-guides/points-data.js','roster-guides/points-validator.js',
   'books/death-guard/index.html','books/core-rules/index.html','books/adeptus-mechanicus/index.html',
   ...['death-guard','adeptus-mechanicus'].flatMap(book=>['tokens.css','layout.css','navigation.css','content.css','popups.css'].map(file=>`books/${book}/styles/${file}`)),
   'books/shared/navigation-targets.js','books/shared/datasheet-layout.js','books/shared/datasheet-system.css','books/shared/popup-content.js','books/shared/glossary-autolink.js',
