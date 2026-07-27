@@ -1,5 +1,5 @@
 importScripts("./glossary/generated/cache-revision.js");
-const CACHE_PREFIX = "warhammer-rules-complete-preview-";
+const CACHE_PREFIX = "warhammer-rules-fe1d435-";
 const CACHE_NAME = `${CACHE_PREFIX}${self.WH40K_CACHE_REVISION || "fallback"}`;
 const LIBRARY_FALLBACK = "./index.html";
 const ROSTER_GUIDES_FALLBACK = "./roster-guides/index.html";
@@ -13,7 +13,7 @@ const APP_SHELL = [
   ROSTER_GUIDES_FALLBACK,
   "./roster-guides/points-data.js?v=3",
   "./roster-guides/points-validator.js?v=2",
-  "./roster-guides/app.js?v=5",
+  "./roster-guides/app.js?v=6",
   "./manifest.webmanifest",
   "./assets/apple-touch-icon.png",
   "./assets/icon-192.png",
@@ -41,7 +41,7 @@ const APP_SHELL = [
   "./glossary/viewer-profiles.css?v=2",
   "./glossary/viewer-progressive.css?v=2",
   "./glossary/viewer-popup.css?v=1",
-  "./glossary/viewer.js?v=7",
+  "./glossary/viewer.js?v=8",
   "./books/death-guard/",
   DEATH_GUARD_FALLBACK,
   "./books/death-guard/reader.html",
@@ -52,7 +52,7 @@ const APP_SHELL = [
   "./books/death-guard/mobile/mobile.js?v=12",
   "./books/shared/navigation-targets.js?v=1",
   "./books/shared/datasheet-layout.js?v=2",
-  "./books/shared/datasheet-system.css?v=5",
+  "./books/shared/datasheet-system.css?v=6",
   "./books/shared/popup-content.js?v=2",
   "./books/shared/glossary-autolink.js?v=8",
   "./books/shared/roster-entities.js?v=1",

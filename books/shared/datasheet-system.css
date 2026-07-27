@@ -615,3 +615,10 @@ button.popup-ability-chip:focus-visible { border-color: var(--pink); color: var(
   .popup-weapon-abilities { grid-template-columns: 1fr; gap: 6px; }
   .popup-abilities-label { padding-top: 0; }
 }
+
+
+/* Review pass: compact single-cost datasheets and clearer tablet labels. */
+.unit-card.ds-layout .points.ds-cost:has(.ds-cost-cell:only-child){width:min(100%,310px);min-width:0;justify-self:start}
+@container (max-width:760px){.unit-card.ds-layout .points.ds-cost:has(.ds-cost-cell:only-child){width:min(100%,310px);justify-self:start}.unit-card .weapon-tags,.unit-card .weapon-row small,.unit-card.ds-layout .ds-identity span{font-size:10px}}
+@media (hover:none){.unit-card button:active,.unit-card a:active{filter:brightness(1.16)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}

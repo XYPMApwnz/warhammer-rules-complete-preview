@@ -84,11 +84,13 @@
     const summaryText=term.summary?.en||'',definitionText=term.definition?.en||'';
     if(summaryText&&!placeholder.test(summaryText)){const quick=renderDefinition(summaryText);quick.classList.add('summary');detail.append(sectionLabel('Quick rule'),quick);}
     const profile=renderProfile(term.structured);if(profile)detail.append(sectionLabel('Profile'),profile);
-    if(definitionText&&!placeholder.test(definitionText)&&term.presentation!=='profile')detail.append(sectionLabel('Full rule'),renderDefinition(definitionText));
+    if(definitionText&&!placeholder.test(definitionText)&&term.presentation!=='profile'&&normalize(definitionText)!==normalize(summaryText))detail.append(sectionLabel('Full rule'),renderDefinition(definitionText));
     if(term.fullRulePath){const action=document.createElement('a');action.className='full-rule-action';action.href=new URL(`../${term.fullRulePath.replace(/^\/+/, '')}`,location.href).href;action.textContent='Open full rule →';detail.append(action);}
     const groups=[['Rules of this unit type',term.references?.intrinsicRules||[]],['Referenced by core rules',term.references?.referencedByRules||[]],['Common rules',term.references?.commonRules||[]],['Faction terms',term.references?.factionTerms||[]],['Related keywords',term.references?.relatedKeywords||[]],['Related terms',term.related||[]]];
-    const connectionCount=new Set(groups.flatMap(([,ids])=>ids).filter(id=>api.get(id))).size;
-    if(connectionCount){const connections=detailsBlock(`Explore connections · ${connectionCount} related rules and terms`,'connection-details');for(const [label,ids] of groups){const section=renderReferences(label,ids,label==='Faction terms'?16:24);if(section)connections.content.append(section);}detail.append(connections.node);}
+    const seenConnections=new Set();
+    const uniqueGroups=groups.map(([label,ids])=>[label,ids.filter(id=>{const linked=api.get(id);if(!linked||seenConnections.has(linked.id))return false;seenConnections.add(linked.id);return true;})]);
+    const connectionCount=seenConnections.size;
+    if(connectionCount){const connections=detailsBlock(`Explore connections · ${connectionCount} related rules and terms`,'connection-details');for(const [label,ids] of uniqueGroups){const section=renderReferences(label,ids,label==='Faction terms'?16:24);if(section)connections.content.append(section);}detail.append(connections.node);}
     const registry=detailsBlock('Registry details','registry-details'),source=term.canonicalSource||{};
     const meta=document.createElement('div');meta.className='meta-grid';
     for(const [label,value] of [['Internal ID',term.id],['Kind',term.kind],['Scope',term.scope],['Presentation',term.presentation],['Status',term.status],['Canonical source',source.documentId||'unknown'],['Aliases',(term.aliases||[]).join(', ')||'None'],['Edition',term.edition]]){const cell=document.createElement('div'),key=document.createElement('small'),data=document.createElement('b');key.textContent=label;data.textContent=value||'—';cell.append(key,data);meta.append(cell);}registry.content.append(meta);detail.append(registry.node);

@@ -1,1 +1,1 @@
-self.WH40K_CACHE_REVISION='b3ac455da40eea3e';
+self.WH40K_CACHE_REVISION='review-pass-20260727-1';
