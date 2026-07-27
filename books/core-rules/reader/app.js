@@ -20,6 +20,7 @@
   const searchStatus = document.getElementById('searchStatus');
   const searchResults = document.getElementById('searchResults');
   let searchIndex;
+  let searchIndexPromise;
   let termOpener;
 
   function showTerm(trigger) {
@@ -78,12 +79,23 @@
   imageDialog.addEventListener('click', event => { if (event.target === imageDialog) imageDialog.close(); });
 
   async function openSearch() {
-    searchDialog.showModal();
+    if (!searchDialog.open) searchDialog.showModal();
     searchInput.focus();
     if (!searchIndex) {
       searchStatus.textContent = 'Loading search index…';
-      searchIndex = await fetch('search-index.json').then(response => response.json());
-      searchStatus.textContent = 'Type at least two characters.';
+      if (!searchIndexPromise) searchIndexPromise = fetch('search-index.json')
+        .then(response => {
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return response.json();
+        })
+        .then(index => { searchIndex = index; return index; })
+        .catch(error => { searchIndexPromise = null; throw error; });
+      try {
+        await searchIndexPromise;
+        searchStatus.textContent = 'Type at least two characters.';
+      } catch {
+        searchStatus.textContent = 'Search unavailable. Close and try again.';
+      }
     }
   }
 

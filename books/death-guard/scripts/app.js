@@ -94,6 +94,26 @@
   window.WHGlossaryAutolink?.apply(documentRoot,'death-guard');
   window.WHGlossaryAutolink?.validate(documentRoot,terms);
   const navigation=new window.DGNavigation();
+  const rosterGuides=document.querySelector('[data-roster-guides-link]');
+  const viewSwitch=document.querySelector('[data-view-switch]');
+  const params=new URLSearchParams(location.search);
+  if(rosterGuides)rosterGuides.hidden=!params.get('roster');
+  viewSwitch?.addEventListener('click',()=>{
+    const active=navigation.active;
+    let route='index.html',anchor='start';
+    for(let node=navigation.byId.get(active)?.node;node;node=node.parentElement?.closest('[data-nav-id]')){
+      const id=node.dataset.navId;
+      if(id==='start'){anchor=active;break;}
+      if(id==='updates'){route='updates.html';anchor=active;break;}
+      if(id==='core-rules'){route='army-rules.html';anchor=active;break;}
+      if(id.startsWith('detachment-')){route=id.slice(11)+'.html';anchor=active;break;}
+      if(id.startsWith('unit-')){route=id.slice(5)+'.html';anchor=active;break;}
+    }
+    const destination=new URL('./mobile/'+route,location.href);
+    destination.search=params.toString();
+    destination.hash=anchor;
+    viewSwitch.href=destination.href;
+  });
   const fullEntry=new window.DGFullEntry(window.WH40K_GLOSSARY);
   const popups=new window.DGPopups(terms,fullEntry);
   new window.DGJourney(navigation,popups);

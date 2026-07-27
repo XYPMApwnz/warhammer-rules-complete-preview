@@ -61,6 +61,8 @@ html[data-theme="light"] .toc-panel { background: rgba(231,223,202,.97); }
   background: var(--faction-gradient);
   box-shadow: 0 0 14px rgba(125,146,87,.18);
 }
+.toc-shortcuts{margin:-8px 0 16px;padding:0 0 12px;border-bottom:1px solid var(--line)}
+.toc-shortcuts .toc-label{display:block;min-height:38px;text-decoration:none}
 .toc-heading::before {
   content: "CODEX REGISTER // XIV";
   display: block;

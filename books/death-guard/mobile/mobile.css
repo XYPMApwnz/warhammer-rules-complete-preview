@@ -1,6 +1,8 @@
 html { scroll-behavior: auto; }
 button, a, [data-term] { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
+.phone-shortcuts { padding: 0 16px 8px; }
+.phone-shortcuts .phone-glossary { margin: 0 0 7px; }
 .phone-tree { padding: 8px 0 18px; }
 .phone-tree > a,
 .phone-tree .mobile-nav-branch > a,
@@ -35,7 +37,6 @@ button, a, [data-term] { touch-action: manipulation; -webkit-tap-highlight-color
 .phone-tree .mobile-unit-groups > details { border-top: 0; }
 .phone-tree .mobile-unit-groups > details > summary { color: var(--green); font-size: 13px; }
 .phone-glossary { margin: 8px 16px 22px; border: 1px solid var(--line); color: var(--ink); }
-.phone-mode-switch { margin-top: -14px; }
 .toc-scrim { padding: 0; border: 0; }
 
 .mobile-main > .document { width: 100%; }

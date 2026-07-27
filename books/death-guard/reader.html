@@ -9,7 +9,7 @@
   <link rel="icon" href="./assets/icon-v4.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles/tokens.css?v=10">
   <link rel="stylesheet" href="./styles/layout.css?v=9">
-  <link rel="stylesheet" href="./styles/navigation.css?v=10">
+  <link rel="stylesheet" href="./styles/navigation.css?v=11">
 <link rel="stylesheet" href="./styles/content.css?v=24">
 <link rel="stylesheet" href="./styles/popups.css?v=15">
   <link rel="stylesheet" href="../shared/datasheet-system.css?v=4">
@@ -23,7 +23,7 @@
 <small>11E · Death Guard reference</small>
 </div>
 <a class="library-link" href="../../index.html" aria-label="Back to rulebook library"><span aria-hidden="true">←</span><b>Library</b></a>
-<a class="library-link" href="./index.html?view=mobile" aria-label="Open phone view"><b>Phone view</b></a>
+<a class="library-link view-switch" href="./index.html?view=mobile" data-view-switch aria-label="Open phone view"><span aria-hidden="true">↔</span><b>Phone view</b></a>
 <button class="back-button" id="backButton" hidden>Back</button>
 <div class="header-spacer">
 </div>
@@ -33,6 +33,10 @@
 </div>
 <nav class="toc-panel" id="tocPanel" aria-label="Rulebook navigation">
 <h2 class="toc-heading">Contents</h2>
+<div class="toc-shortcuts">
+<a class="toc-label" href="../../glossary/index.html" data-mega-glossary-link>Mega Glossary</a>
+<a class="toc-label" href="../../roster-guides/index.html" data-roster-guides-link hidden>← Roster Guides</a>
+</div>
 <ul class="toc-tree" id="tocTree">
 <li data-nav-id="start" data-nav-depth="1">
 <div class="toc-row no-toggle">
@@ -596,11 +600,6 @@
 </li>
 </ul>
 </li>
-<li>
-<div class="toc-row no-toggle">
-<a class="toc-label" href="../../glossary/index.html" data-mega-glossary-link>Mega Glossary</a>
-</div>
-</li>
 </ul>
 </nav>
 <main class="main" id="main">
@@ -608,7 +607,7 @@
 <section class="hero section surface" id="start" data-track="start">
 <div class="eyebrow">Full rules reference</div>
 <h1>Death Guard Rules</h1>
-<p>Army rules, nine detachments, faction updates and current datasheets</p>
+<p>Technical placeholder.</p>
 <div class="source">9 detachments · 36 datasheets · 366 glossary entries</div>
 <p class="lead">Codex transcriptions remain provisional where an official local Codex source is unavailable. Points verified against Munitorum Field Manual v1.1.</p>
 </section>
@@ -9842,7 +9841,7 @@
 </script>
 <script src="./scripts/ui-controllers.js?v=11">
 </script>
-<script src="./scripts/app.js?v=26">
+<script src="./scripts/app.js?v=27">
 </script>
 </body>
 </html>

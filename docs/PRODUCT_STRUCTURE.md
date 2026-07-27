@@ -82,7 +82,13 @@ It does **not** verify:
 - Detachment Points limits;
 - faction compatibility beyond the explicitly supported reader.
 
-The personalized Roster Guide currently supports **Death Guard only**. Unsupported and unknown factions must be rejected before saving or routing. Existing unsupported records are preserved but cannot be opened in the Death Guard reader.
+Roster Guides recognise an explicit whitelist of factions. A recognised roster may be saved even when its personalised reader is not available yet. Currently:
+
+- **Death Guard** rosters can be saved and opened in the personalised Death Guard reader;
+- **Adeptus Mechanicus** rosters can be saved, but the interface must state that a personalised reader is not available yet;
+- unknown factions are rejected before saving or routing.
+
+Only factions with a real roster adapter may expose an **Open personal guide** action. An ordinary army book must never be presented as a personalised reader. Existing unsupported records are preserved and must never be routed into the Death Guard reader.
 
 The guide may claim that it is reduced to recognized selections. It must not claim to contain only applicable rules until semantic eligibility is complete.
 
@@ -157,7 +163,7 @@ Any task not required by the stabilization Definition of Done moves to the backl
 The pass is complete when:
 
 - this contract matches the user-facing interface;
-- unsupported factions cannot be saved or opened in the Death Guard reader;
+- unknown factions cannot be saved, and no faction without a real adapter can be opened in the Death Guard reader;
 - arithmetic reconciliation is not described as legality or current-points validation;
 - official sources have higher priority than Wahapedia;
 - Core Rules Reference has local search by code, title, chapter and text;

@@ -1,24 +1,24 @@
 # Death Guard Rules v4 — test report
 
-Дата: 21 июля 2026.
+Date: July 21, 2026.
 
-## Автоматическая проверка
+## Automated verification
 
-- Команда: `node tests/qa.mjs`.
-- Результат: **48/48 checks passed**.
-- Проверены синтаксис скриптов, уникальность ID, 26 пунктов глобальной навигации, глубина дерева, 20 терминов, popup-state machine, Journey/Back-контракт, разделение CSS/JS, service worker и v4-иконка.
+- Command: `node tests/qa.mjs`.
+- Result: **48/48 checks passed**.
+- The checks covered script syntax, ID uniqueness, 26 global-navigation items, tree depth, 20 terms, the popup state machine, the Journey/Back contract, CSS/JS separation, the service worker, and the v4 icon.
 
-## Живая проверка в браузере
+## Live browser verification
 
-- Страница открывается по HTTP без runtime-ошибок; семантическое дерево содержит все основные разделы, два детачмента и два даташита.
-- Клик по `ASSAULT` открывает один диалог `Assault`.
-- Клик по `Lethal Hits` внутри него даёт цепочку `Assault → Lethal Hits` из двух карточек.
-- Сценарий `Assault → Lethal Hits → Assault` сворачивается обратно до существующего `Assault`, без дубликата.
-- Action `Glossary` закрывает цепочку и переводит к статье; `Back` восстанавливает попап, фокусирует исходную кнопку и добавляет класс `return-highlight`.
-- После ручной прокрутки document-top попапа остаётся постоянным, а карточка естественно движется вместе со статьёй относительно viewport.
-- Чистый переход по трёхуровневому дереву к `Datasheets → Other → Defiler` заканчивается с `aria-current="location"` на `Defiler`; его заголовок расположен под фиксированным header.
-- Регрессия `Assault → popup → Glossary`: расчёт назначения вычитает высоту sticky-поиска, поэтому заголовок карточки Assault остаётся полностью видимым.
+- The page opens over HTTP without runtime errors; the semantic tree contains every main section, two Detachments, and two datasheets.
+- Clicking `ASSAULT` opens one `Assault` dialog.
+- Clicking `Lethal Hits` inside it produces a two-card `Assault → Lethal Hits` chain.
+- The `Assault → Lethal Hits → Assault` scenario collapses back to the existing `Assault` without a duplicate.
+- The `Glossary` action closes the chain and moves to the article; `Back` restores the popup, focuses the originating button, and adds the `return-highlight` class.
+- After manual scrolling, the popup's document-top position remains constant while the card naturally moves with the article relative to the viewport.
+- A clean transition through the three-level tree to `Datasheets → Other → Defiler` ends with `aria-current="location"` on `Defiler`; its heading is positioned below the fixed header.
+- Regression `Assault → popup → Glossary`: destination calculation subtracts the sticky-search height, so the Assault card heading remains fully visible.
 
-## Ревью
+## Review
 
-Отдельное финальное ревью обнаружило и помогло закрыть две геометрические регрессии: сохранение позиции desktop-попапа при resize вне viewport и ограничение mobile-смещения тремя видимыми карточками. После исправлений автоматический набор повторно пройден полностью.
+A separate final review found and helped close two geometry regressions: preserving a desktop popup's position during an off-viewport resize and limiting the mobile offset to three visible cards. After the fixes, the complete automated suite passed again.

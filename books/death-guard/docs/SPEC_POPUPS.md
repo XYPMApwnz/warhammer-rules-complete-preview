@@ -1,112 +1,112 @@
-# Техническое задание: попапы терминов Death Guard Rules
+# Technical specification: Death Guard Rules term popups
 
-## Правило актуализации ТЗ
+## Specification update rule
 
-- Любая правка уровней попапов, циклов, позиционирования, прокрутки, анимации, Journey/Back, фокуса, доступности или связанного теста одновременно вносится в этот документ.
-- Изменение не считается завершённым, пока соответствующее требование и критерий приёмки не отражены в ТЗ.
-- Если правка затрагивает одновременно попапы и навигацию, она фиксируется в обоих ТЗ.
-- Новое поведение должно сопровождаться автоматической проверкой, когда его можно воспроизвести без реального браузера, и ручным сценарием приёмки, когда важна визуальная геометрия.
-- Устаревшие требования не накапливаются: они заменяются актуальной формулировкой согласованного поведения.
+- Any change to popup levels, cycles, positioning, scrolling, animation, Journey/Back, focus, accessibility, or a related test must be reflected in this document at the same time.
+- A change is not complete until the corresponding requirement and acceptance criterion are reflected in the specification.
+- If a change affects both popups and navigation, it must be recorded in both specifications.
+- New behavior must be accompanied by an automated check when it can be reproduced without a real browser, and by a manual acceptance scenario when visual geometry matters.
+- Obsolete requirements do not accumulate: they are replaced by the current wording of the agreed behavior.
 
-## 1. Назначение
+## 1. Purpose
 
-Попап показывает краткое объяснение термина, связанные термины и только существующие переходы к Glossary, правилу, datasheet или statline. Он должен поддерживать последовательное раскрытие терминов без потери контекста.
+A popup shows a brief explanation of a term, related terms, and only existing transitions to Glossary, a rule, a datasheet, or a statline. It must support sequential term expansion without losing context.
 
-## 2. Источник данных
+## 2. Data source
 
-- Все попапы строятся только из единого реестра `TERMS`.
-- Неизвестный `data-term` ничего не открывает и не создаёт ошибку.
-- В карточке отображаются title, summary, связанные термины и доступные actions.
-- Для unit-терминов со стандартной строкой `M / T / Sv / W / Ld / OC / Inv` характеристики выводятся отдельной компактной сеткой, а не одной текстовой строкой.
-- Unit-попап имеет спокойную служебную метку `Datasheet profile`; доступные action-кнопки образуют равномерную адаптивную сетку.
-- Action показывается только при наличии реальной цели.
-- Попап никогда не создаёт кликабельную ссылку на собственный текущий термин.
+- All popups are built only from the single `TERMS` registry.
+- An unknown `data-term` opens nothing and does not produce an error.
+- A card displays its title, summary, related terms, and available actions.
+- For unit terms with the standard `M / T / Sv / W / Ld / OC / Inv` row, characteristics are displayed in a separate compact grid rather than as one text line.
+- A unit popup has the restrained utility label `Datasheet profile`; available action buttons form an even responsive grid.
+- An action is shown only when a real target exists.
+- A popup never creates a clickable link to its own current term.
 
-## 3. Корневая цепочка
+## 3. Root chain
 
-- Клик по термину в статье, таблице оружия, Glossary или другом основном содержимом открывает попап первого уровня.
-- Если в этот момент уже существует цепочка, она полностью закрывается и заменяется новой корневой карточкой.
-- Повторный клик по тому же внешнему термину при единственной открытой карточке не создаёт дубликат и переводит фокус в существующий попап.
+- Clicking a term in the article, weapon table, Glossary, or other main content opens a first-level popup.
+- If a chain already exists, it is closed completely and replaced with the new root card.
+- Clicking the same external term again while only one card is open does not create a duplicate and moves focus into the existing popup.
 
-## 4. Вложенные уровни
+## 4. Nested levels
 
-- Клик по связанному термину внутри попапа сохраняет родительский попап и открывает следующую карточку.
-- Каждый следующий внутренний термин добавляет новый уровень.
-- При добавлении уровня существующие родительские карточки не удаляются и не создаются заново; в DOM добавляется только новая карточка, поэтому цепочка не должна мигать или кратковременно исчезать.
-- Крестик на уровне N закрывает этот уровень и все уровни глубже него.
-- После закрытия фокус возвращается на термин родительского уровня, который открыл закрытую карточку.
-- В интерфейсе не выводятся технические подписи «уровень 1», «уровень 2» и т. п.
+- Clicking a related term inside a popup keeps the parent popup and opens the next card.
+- Every subsequent internal term adds a new level.
+- When a level is added, existing parent cards are neither removed nor recreated; only one new card is added to the DOM, so the chain must not flicker or disappear briefly.
+- The close button on level N closes that level and every deeper level.
+- After closing, focus returns to the term on the parent level that opened the closed card.
+- Technical labels such as “level 1”, “level 2”, and so on are not shown in the interface.
 
-## 5. Повторяющиеся термины и циклы
+## 5. Repeated terms and cycles
 
-- Текущий верхний термин не открывается повторно.
-- Специальное схлопывание применяется только к соседней петле `A → B → A`: карточка B закрывается, остаётся ранее открытая A.
-- Более дальний повтор допустим: `A → B → C → A` создаёт новый уровень A.
-- Система не выполняет глобальный поиск дубликатов по всей цепочке.
+- The current top term is not opened again.
+- Special collapsing applies only to the adjacent loop `A → B → A`: card B closes and the previously open A remains.
+- A more distant repeat is allowed: `A → B → C → A` creates a new A level.
+- The system does not perform a global duplicate search across the entire chain.
 
-## 6. Позиционирование
+## 6. Positioning
 
 ### Desktop
 
-- Первый попап открывается возле нажатого термина.
-- Вложенный попап позиционируется возле термина внутри родительской карточки.
-- Попапы используют координаты документа, а не фиксированное положение в viewport: при прокрутке страницы они уходят вместе с термином и не «едут» за экраном пользователя.
-- Ограничение границами viewport применяется при первоначальном открытии и при resize только пока триггер видим. Если ручная прокрутка уже унесла триггер за экран, resize не возвращает попап искусственно в viewport.
-- Если снизу недостаточно места, карточка автоматически открывается выше триггера.
-- Карточка не выходит за левую, правую, верхнюю или нижнюю границу viewport.
-- При изменении размера окна открытые карточки пересчитывают положение.
+- The first popup opens near the clicked term.
+- A nested popup is positioned near the term inside its parent card.
+- Popups use document coordinates rather than a fixed viewport position: when the page scrolls, they move with the term and do not follow the user down the screen.
+- Viewport boundary constraints are applied on initial opening and on resize only while the trigger is visible. If manual scrolling has already moved the trigger off screen, resize does not force the popup back into the viewport.
+- If there is not enough room below, the card automatically opens above the trigger.
+- The card does not extend beyond the left, right, top, or bottom viewport edge.
+- Open cards recalculate their positions when the window size changes.
 
 ### Mobile
 
-- Попапы центрируются в доступной части динамического viewport между фиксированным header и нижним безопасным отступом.
-- Следующие уровни получают небольшой вертикальный сдвиг; расчёт ведётся относительно последних трёх видимых карточек.
-- Высота карточки ограничена динамическим viewport; внутреннее содержимое прокручивается.
-- Страница не получает горизонтальную прокрутку.
+- Popups are centered in the available part of the dynamic viewport between the fixed header and the bottom safe inset.
+- Subsequent levels receive a small vertical offset; the calculation is based on the last three visible cards.
+- Card height is constrained by the dynamic viewport; internal content scrolls.
+- The page does not gain horizontal scrolling.
 
-## 7. Закрытие и фокус
+## 7. Closing and focus
 
-- Escape закрывает только верхний попап.
-- Крестик закрывает выбранный уровень и всё, что находится глубже.
-- Клик или тап вне границ любой карточки попапа, по свободной области страницы или затемнённому фону, закрывает всю popup-цепочку.
-- Клик внутри карточки, прокрутка её содержимого и взаимодействие с её ссылками, терминами и action-кнопками не считаются внешним кликом и не закрывают попап.
-- На мобильных устройствах внешнее касание должно закрывать цепочку одним обычным тапом, без необходимости сначала активировать фон.
-- Закрытие корневого попапа возвращает фокус исходному термину в документе.
-- Повторный клик по уже открытому верхнему термину не изменяет цепочку.
-- Открываемая верхняя карточка получает программный фокус без прокрутки страницы.
+- Escape closes only the top popup.
+- The close button closes the selected level and everything deeper.
+- Clicking or tapping outside every popup card, in free page space, or on the dimmed background closes the entire popup chain.
+- Clicking inside a card, scrolling its content, and interacting with its links, terms, and action buttons do not count as an outside click and do not close the popup.
+- On mobile devices, an outside touch must close the chain with one ordinary tap, without first having to activate the background.
+- Closing the root popup returns focus to the originating term in the document.
+- Clicking the already open top term again does not change the chain.
+- The newly opened top card receives programmatic focus without scrolling the page.
 
-## 8. Переходы из попапа
+## 8. Transitions from a popup
 
-- Доступные типы: Glossary, To rule, Datasheet & Wargear, Statline.
-- Перед переходом сохраняются полная цепочка term ID, внешний корневой термин, уровень и данные action-кнопки.
-- Перед прокруткой цепочка временно скрывается.
-- Переход Glossary учитывает высоту фиксированного header и sticky-поиска: целевая карточка открывается ниже обоих перекрывающих слоёв, включая сценарий `Assault → popup → Glossary`.
-- Если активный фильтр Glossary скрывает целевую карточку, фильтр синхронно очищается перед вычислением позиции перехода.
-- При Back сначала восстанавливаются активная навигация и точная позиция статьи; после фактической остановки прокрутки без промежуточного мерцания восстанавливается popup-цепочка.
-- После пересоздания карточек система находит action-кнопку на исходном уровне по target и type.
-- Найденная кнопка получает фокус и краткую розово-бронзовую подсветку.
-- Если исходная кнопка недоступна, фокус переходит в верхний восстановленный попап.
+- Available types: Glossary, To rule, Datasheet & Wargear, Statline.
+- Before a transition, the complete term ID chain, external root term, level, and action-button data are saved.
+- Before scrolling, the chain is temporarily hidden.
+- A Glossary transition accounts for the fixed-header and sticky-search heights: the target card opens below both overlapping layers, including the `Assault → popup → Glossary` scenario.
+- If the active Glossary filter hides the target card, the filter is cleared synchronously before the transition position is calculated.
+- On Back, active navigation and the exact article position are restored first; after scrolling actually stops, the popup chain is restored without intermediate flicker.
+- After recreating the cards, the system finds the action button on the original level by target and type.
+- The found button receives focus and a brief pink-bronze highlight.
+- If the original button is unavailable, focus moves to the top restored popup.
 
-## 9. Доступность
+## 9. Accessibility
 
-- Каждая карточка имеет `role="dialog"`, `aria-modal="false"` и `aria-labelledby`.
-- Заголовок каждой карточки имеет уникальный ID.
-- Кнопка закрытия имеет понятное доступное имя с названием термина.
-- Вся функциональность доступна с клавиатуры.
-- Верхний попап имеет заметный `:focus-visible`.
+- Every card has `role="dialog"`, `aria-modal="false"`, and `aria-labelledby`.
+- Every card heading has a unique ID.
+- The close button has a clear accessible name containing the term name.
+- All functionality is keyboard-accessible.
+- The top popup has a visible `:focus-visible` state.
 
-## 10. Критерии приёмки
+## 10. Acceptance criteria
 
-- Внешний новый термин полностью заменяет старую цепочку.
-- Внутренний термин добавляет следующий уровень, не закрывая родителя.
-- `A → B → A` возвращается к A без дубликата.
-- `A → B → C → A` создаёт четвёртый уровень.
-- Попап не содержит активную ссылку на самого себя.
-- Крестик уровня N закрывает N и всё глубже.
-- Escape закрывает только верхний уровень.
-- Desktop-карточки располагаются возле своих триггеров и не выходят за viewport.
-- После ручной прокрутки desktop-карточка может естественно уйти за viewport и не прыгает обратно при resize, если её триггер также невидим.
-- Mobile-карточки центрируются в доступной части viewport и не перекрывают фиксированный header.
-- Unit-попап показывает характеристики отдельными равномерными ячейками; на узком mobile сетка переносится без горизонтального скролла, а action-кнопки складываются в одну колонку.
-- На mobile визуальное смещение пересчитывается относительно последних трёх видимых карточек: они сохраняют порядок `0 / 1 / 2`, а глубина скрытой части цепочки не увеличивает отступ и не может вытолкнуть верхнюю карточку за viewport.
-- Back восстанавливает полную цепочку и красиво подсвечивает именно нажатую action-кнопку.
-- `Assault → popup → Glossary` не прячет заголовок карточки Assault под sticky-панелью поиска.
+- A new external term completely replaces the old chain.
+- An internal term adds the next level without closing its parent.
+- `A → B → A` returns to A without a duplicate.
+- `A → B → C → A` creates a fourth level.
+- A popup contains no active link to itself.
+- The close button on level N closes N and everything deeper.
+- Escape closes only the top level.
+- Desktop cards are positioned near their triggers and remain within the viewport on opening.
+- After manual scrolling, a desktop card may naturally leave the viewport and does not jump back on resize if its trigger is also invisible.
+- Mobile cards are centered in the available viewport area and do not overlap the fixed header.
+- A unit popup shows characteristics in separate even cells; on narrow mobile screens the grid wraps without horizontal scrolling and action buttons stack into one column.
+- On mobile, the visual offset is recalculated from the last three visible cards: they preserve the `0 / 1 / 2` order, while the depth of the hidden part of the chain does not increase the offset and cannot push the top card outside the viewport.
+- Back restores the complete chain and clearly highlights the exact action button that was pressed.
+- `Assault → popup → Glossary` does not hide the Assault card heading beneath the sticky search panel.

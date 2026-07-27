@@ -123,11 +123,11 @@ function page(route) {
   <link rel="icon" href="../assets/icon-v4.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
   <link rel="stylesheet" href="../styles/layout.css?v=9">
-  <link rel="stylesheet" href="../styles/navigation.css?v=10">
+  <link rel="stylesheet" href="../styles/navigation.css?v=11">
   <link rel="stylesheet" href="../styles/content.css?v=24">
   <link rel="stylesheet" href="../styles/popups.css?v=15">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=4">
-  <link rel="stylesheet" href="./mobile.css?v=6">
+  <link rel="stylesheet" href="./mobile.css?v=7">
 </head>
 <body>
   <header class="app-header" id="appHeader">
@@ -139,9 +139,12 @@ function page(route) {
   <button class="toc-scrim" id="navScrim" aria-label="Close navigation" hidden></button>
   <nav class="toc-panel" id="mobileNav" aria-label="Death Guard navigation" aria-hidden="true">
     <h2 class="toc-heading">Contents</h2>
+    <div class="phone-shortcuts">
+      <a class="phone-glossary" href="../../../roster-guides/index.html" data-roster-guides-link hidden>&larr; Roster Guides</a>
+      <a class="phone-glossary" href="../../../glossary/index.html">Mega Glossary &rarr;</a>
+      <a class="phone-glossary phone-mode-switch" href="../reader.html#${route.id}" data-view-switch>Desktop / iPad view &rarr;</a>
+    </div>
     <div class="phone-tree">${navigation(route)}</div>
-    <a class="phone-glossary" href="../../../glossary/index.html">Mega Glossary &rarr;</a>
-    <a class="phone-glossary phone-mode-switch" href="../index.html?view=full">Desktop / iPad view &rarr;</a>
   </nav>
   <main class="main mobile-main"><article class="document">${hydrateTerms(content(route))}${relatedSection}</article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
@@ -153,7 +156,7 @@ function page(route) {
     <a id="termFull" href="../../../glossary/index.html">Glossary entry &rarr;</a>
   </dialog>
   <script src="../../../glossary-return.js?v=1"></script>
-  <script src="./mobile.js?v=9"></script>
+  <script src="./mobile.js?v=10"></script>
 </body>
 </html>`;
 }

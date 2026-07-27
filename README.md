@@ -1,19 +1,19 @@
 # Warhammer Rules — Complete Preview
 
-Отдельная сборка для предварительного просмотра всей библиотеки. Исходные проекты не изменяются.
+A standalone build for previewing the complete library. The source projects remain unchanged.
 
-## Книги
+## Books
 
-- `books/core-rules/` — Core Rules, 24 раздела и исходные карточки правил.
-- `books/death-guard/` — Death Guard, полный reader из Unified Visual v2.
-- `books/adeptus-mechanicus/` — предварительный Adeptus Mechanicus по Faction Pack: 5 Detachments и 4 Datasheets.
+- `books/core-rules/` — Core Rules, 24 sections and the original rule cards.
+- `books/death-guard/` — Death Guard, the complete reader from Unified Visual v2.
+- `books/adeptus-mechanicus/` — an Adeptus Mechanicus preview based on the Faction Pack: 5 Detachments and 4 Datasheets.
 
-У всех книг единый возврат в библиотеку, общий manifest и один root service worker.
+All books share a common return path to the library, a shared manifest and a single root service worker.
 
-## Проверка
+## Verification
 
 ```powershell
 npm test
 ```
 
-Для обычного локального просмотра можно открыть `index.html`. Установка PWA и офлайн-кэш требуют запуска через HTTP/HTTPS.
+For ordinary local viewing, open `index.html`. PWA installation and offline caching require the site to run over HTTP/HTTPS.

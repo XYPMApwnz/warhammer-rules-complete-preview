@@ -9,6 +9,8 @@
   const full = document.getElementById('termFull');
   const rule = document.getElementById('termRule');
   const nav = document.getElementById('mobileNav');
+  const viewSwitch = document.querySelector('[data-view-switch]');
+  const rosterGuides = document.querySelector('[data-roster-guides-link]');
   const relatedRules = document.getElementById('relatedRules');
   const relatedContent = document.getElementById('relatedRulesContent');
   const relatedDetachment = document.getElementById('relatedDetachment');
@@ -20,6 +22,14 @@
   let relatedLoaded = false;
   let relatedKind = 'stratagems';
   const unit = document.querySelector('.unit-card');
+  const params = new URLSearchParams(location.search);
+
+  if (rosterGuides) rosterGuides.hidden = !params.get('roster');
+  if (viewSwitch) {
+    const destination = new URL(viewSwitch.href);
+    destination.search = params.toString();
+    viewSwitch.href = destination.href;
+  }
 
   function drawer(open) {
     document.body.classList.toggle('nav-drawer-open', open);

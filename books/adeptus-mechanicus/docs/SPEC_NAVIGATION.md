@@ -1,188 +1,188 @@
-# Техническое задание: навигация Adeptus Mechanicus Rules
+# Technical Specification: Adeptus Mechanicus Rules Navigation
 
-Этот файл синхронизирован с актуальным контрактом Death Guard. Для Mechanicus сохраняются те же поведение и ограничения; фракционные данные формируют дерево `Datasheets → Faction Pack / Warhammer Legends → unit`, а служебная информация об источниках размещается внутри `Updates`, не создавая дополнительный раздел первого уровня.
+This file is synchronized with the current Death Guard contract. Mechanicus retains the same behavior and constraints; faction data forms the `Datasheets → Faction Pack / Warhammer Legends → unit` tree, while source metadata is placed inside `Updates` instead of creating an additional top-level section.
 
-## Правило актуализации ТЗ
+## Specification Update Rule
 
-- Любая правка навигации, Journey/Back, scroll tracking, responsive-поведения, фокуса, доступности или связанного теста одновременно вносится в этот документ.
-- Изменение не считается завершённым, пока соответствующее требование и критерий приёмки не отражены в ТЗ.
-- Если правка затрагивает одновременно навигацию и попапы, она фиксируется в обоих ТЗ.
-- Новое поведение должно сопровождаться автоматической проверкой, когда его можно воспроизвести без реального браузера, и ручным сценарием приёмки, когда важна визуальная геометрия.
-- Устаревшие требования не оставляются рядом с новыми: ТЗ описывает только действующее согласованное поведение.
+- Any change to navigation, Journey/Back, scroll tracking, responsive behavior, focus, accessibility, or a related test must be reflected in this document at the same time.
+- A change is not considered complete until the corresponding requirement and acceptance criterion are recorded in the specification.
+- If a change affects both navigation and popups, it must be recorded in both specifications.
+- New behavior must be accompanied by an automated check when it can be reproduced without a real browser, and by a manual acceptance scenario when visual geometry matters.
+- Obsolete requirements must not remain beside new ones: the specification describes only the currently agreed behavior.
 
-## Зафиксированные параметры v5
+## Fixed v5 Parameters
 
-- Breakpoint desktop/mobile: `800px`.
-- Контрольная линия scroll-spy, программный destination и применяемые к навигационным целям CSS-отступы используют единый источник `--navigation-gap: 18px`; отдельные литералы `18px` и `20px` в JS/CSS запрещены.
-- Для вложенных групп Glossary обе операции добавляют одну и ту же фактическую высоту sticky-поиска; для корневого Glossary эта добавка равна нулю.
-- Сравнение геометрии с контрольной линией допускает не более `1px` на субпиксельное округление браузера; этот epsilon не считается ранней активацией.
-- Успешное завершение программной прокрутки: отклонение от достижимой позиции назначения менее `2px` либо 6 стабильных animation frames уже на достижимой позиции назначения. Предел `2200ms` является аварийной границей: он останавливает smooth-scroll, повторно вычисляет геометрию и выполняет финальное позиционирование с `behavior: auto`, но сам по себе не считается успешным завершением.
-- Journey создаётся для popup actions и локальных datasheet-кнопок; обычный клик по глобальному дереву не добавляет запись Back.
-- Action идентифицируется стабильным ключом `уровень + порядковый номер + type + target`; `type + target` используется только как fallback.
-- Back восстанавливает сохранённый абсолютный `scrollY`.
-- Если одновременно открыт mobile drawer и popup, первый Escape закрывает верхний popup; следующий Escape закрывает drawer.
+- Desktop/mobile breakpoint: `800px`.
+- The scroll-spy control line, programmatic destination, and CSS offsets applied to navigation targets use the single source `--navigation-gap: 18px`; separate `18px` and `20px` literals in JS/CSS are prohibited.
+- For nested Glossary groups, both operations add the same actual sticky-search height; for the root Glossary, this addition is zero.
+- Geometry comparison against the control line allows no more than `1px` for browser subpixel rounding; this epsilon is not treated as early activation.
+- Successful completion of programmatic scrolling means either a deviation of less than `2px` from the reachable destination position or 6 stable animation frames already at the reachable destination position. The `2200ms` limit is an emergency boundary: it stops smooth scrolling, recalculates geometry, and performs final positioning with `behavior: auto`, but does not by itself count as successful completion.
+- A Journey is created for popup actions and local datasheet buttons; an ordinary click in the global tree does not add a Back record.
+- An action is identified by the stable key `level + ordinal number + type + target`; `type + target` is used only as a fallback.
+- Back restores the saved absolute `scrollY`.
+- If the mobile drawer and a popup are open at the same time, the first Escape closes the top popup; the next Escape closes the drawer.
 
-## 1. Назначение
+## 1. Purpose
 
-Навигация должна позволять быстро переходить между глобальными разделами правил, автоматически показывать фактическое положение читателя в документе и обеспечивать точный возврат после переходов из попапов и локальных элементов datasheet.
+Navigation must allow quick movement between global rules sections, automatically show the reader's actual position in the document, and provide an exact return after transitions from popups and local datasheet elements.
 
-## 2. Структура
+## 2. Structure
 
-- Глобальное дерево содержит не более трёх уровней.
-- Первый уровень: Start, Updates, Core Rules, Detachments, Datasheets, Glossary.
-- В Detachments используется структура: `Detachment → название Detachment → Detachment Rule / Enhancement / Stratagems`.
-- В теле каждого Detachment пункты третьего уровня `Detachment Rule`, `Enhancement`, `Stratagems` располагаются строго последовательными вертикальными блоками. Два навигационных назначения не могут делить одну строку или одинаковую верхнюю координату.
-- Каждый пункт третьего уровня имеет видимое соответствие в теле. Для `Stratagems` перед карточками конкретных стратагем обязателен отдельный заголовок `Stratagems`; переход и визуальная подсветка относятся к этому заголовку, а не к первой карточке внутри раздела.
-- В Datasheets используется структура: `Datasheets → категория → unit`.
-- В Glossary второй уровень содержит отдельные тематические группы.
-- Локальные части datasheet — Profile & Weapons, Abilities, Unit Composition и Keywords — не включаются в глобальное дерево.
-- Каждый пункт глобального дерева обязан иметь существующую секцию в теле документа и собственный `data-track`-диапазон.
+- The global tree contains no more than three levels.
+- First level: Start, Updates, Core Rules, Detachments, Datasheets, Glossary.
+- Detachments use the structure `Detachment → Detachment name → Detachment Rule / Enhancement / Stratagems`.
+- Within each Detachment, the third-level items `Detachment Rule`, `Enhancement`, and `Stratagems` are arranged as strictly sequential vertical blocks. Two navigation destinations cannot share one row or the same top coordinate.
+- Every third-level item has a visible counterpart in the document body. For `Stratagems`, a separate `Stratagems` heading is required before the individual Stratagem cards; navigation and visual highlighting target that heading, not the first card in the section.
+- Datasheets use the structure `Datasheets → category → unit`.
+- In Glossary, the second level contains separate thematic groups.
+- Local datasheet parts — Profile & Weapons, Abilities, Unit Composition, and Keywords — are not included in the global tree.
+- Every global-tree item must have an existing section in the document body and its own `data-track` range.
 
-### 2.1. Выбор цели перехода и подсветки
+### 2.1. Selecting Scroll and Highlight Targets
 
-- Навигационная цель состоит из двух отдельных ссылок: `scrollTarget`, определяющей позицию прокрутки, и `highlightTarget`, определяющей визуально подсвечиваемый элемент. Для разделов обе ссылки указывают на непосредственный видимый заголовок раздела.
-- Пункт, обозначающий раздел, категорию или группу, всегда прокручивает к её заголовку и подсвечивает только этот заголовок. Первая карточка внутри группы не может использоваться как запасная цель.
-- Пункт, обозначающий конкретную сущность, подсвечивает карточку этой сущности: например, конкретный datasheet, правило, Enhancement, Stratagem или термин Glossary.
-- Если для раздела отсутствует собственный видимый заголовок, это ошибка структуры и QA. Контроллер не должен молча подменять его первой карточкой, ближайшим дочерним элементом или контейнером всего раздела.
-- Подсветка раздела применяется только к тексту непосредственного заголовка: краткое изменение цвета и свечение без рамки вокруг всего контейнера. Подсветка конкретной карточки использует мягкую рамку карточки.
-- Примеры: `Stratagems → заголовок Stratagems`; `Enhancement → заголовок Enhancements`; `Datasheets → заголовок Datasheets`; `Epic Heroes → заголовок Epic Heroes`; `Mortarion → карточка Mortarion`; конкретная стратагема, если она когда-либо появится отдельным пунктом дерева, → её карточка.
-- После программной прокрутки подсветка запускается только для сохранённого `highlightTarget`. Scroll-spy не имеет права заменить её первым дочерним элементом, попавшим на контрольную линию во время анимации.
+- A navigation destination consists of two separate references: `scrollTarget`, which determines the scroll position, and `highlightTarget`, which determines the visually highlighted element. For sections, both references point to the section's immediate visible heading.
+- An item representing a section, category, or group always scrolls to its heading and highlights only that heading. The first card inside the group cannot be used as a fallback target.
+- An item representing a specific entity highlights that entity's card, such as a specific datasheet, rule, Enhancement, Stratagem, or Glossary term.
+- If a section has no visible heading of its own, this is a structure and QA error. The controller must not silently substitute the first card, nearest child element, or entire section container.
+- Section highlighting applies only to the text of the immediate heading: a brief color change and glow without a border around the entire container. Highlighting a specific card uses a soft card border.
+- Examples: `Stratagems → Stratagems heading`; `Enhancement → Enhancements heading`; `Datasheets → Datasheets heading`; `Epic Heroes → Epic Heroes heading`; `Mortarion → Mortarion card`; a specific Stratagem, if it is ever added as a separate tree item, → its card.
+- After programmatic scrolling, highlighting starts only for the saved `highlightTarget`. Scroll-spy must not replace it with the first child that crosses the control line during the animation.
 
-## 3. Управление ветками
+## 3. Branch Control
 
-- Название пункта и стрелка являются разными кнопками.
-- Нажатие названия раскрывает его путь и выполняет переход к разделу.
-- Нажатие стрелки только раскрывает или сворачивает ветку, не прокручивая статью.
-- При раскрытии ветки все соседние ветки того же уровня закрываются: одновременно раскрытых соседних разделов быть не может.
-- Ручное раскрытие стрелкой может временно скрыть путь к активному пункту, не меняя сам активный пункт и не прокручивая статью.
-- При следующей ручной прокрутке статьи дерево снова раскрывает путь к фактически активному пункту и закрывает его соседей.
+- The item label and arrow are separate buttons.
+- Pressing the label expands its path and navigates to the section.
+- Pressing the arrow only expands or collapses the branch without scrolling the article.
+- Expanding a branch closes all sibling branches at the same level: multiple sibling sections cannot be expanded simultaneously.
+- Manual expansion with the arrow may temporarily hide the path to the active item without changing the active item or scrolling the article.
+- On the next manual article scroll, the tree expands the path to the actually active item again and closes its siblings.
 
-## 4. Активный раздел
+## 4. Active Section
 
-- При ручной прокрутке активный пункт определяется по реальной геометрии секций относительно линии под фиксированным header.
-- Если линию пересекают родительская и вложенная секции, выбирается наиболее глубокая.
-- Вложенный пункт не активируется заранее по близости к контрольной линии: его `rect.top` обязан фактически пересечь линию с допустимым субпиксельным epsilon не более `1px`. В промежутке перед дочерним блоком активным остаётся пересекающий линию родитель.
-- Группа считается активной на всём диапазоне своих карточек, а не только возле заголовка.
-- В промежутке между любыми соседними дочерними разделами активным остаётся последний пересечённый дочерний пункт; родительский пункт не должен кратковременно активироваться между подразделами. Правило одинаково действует для Core Rules, Detachments, Datasheets и Glossary на всех уровнях дерева.
-- Активный конечный пункт получает `aria-current="location"` и выразительное визуальное выделение.
-- Родители активного пункта получают более спокойное состояние ancestor.
-- Панель навигации самостоятельно прокручивается до активной строки; статья при этом не двигается.
-- Панель не имеет горизонтального скролла: длинные названия переносятся внутри доступной ширины. Вертикальный scrollbar тонкий, квадратный и использует сдержанные зелёно-бронзовые цвета интерфейса.
-- Для scroll tracking существует один владелец и один пассивный обработчик прокрутки.
+- During manual scrolling, the active item is determined from the actual geometry of sections relative to the line below the fixed header.
+- If a parent and nested section both cross the line, the deepest one is selected.
+- A nested item is not activated early based on proximity to the control line: its `rect.top` must actually cross the line within the allowed subpixel epsilon of no more than `1px`. In the gap before a child block, the parent crossing the line remains active.
+- A group remains active throughout the full range of its cards, not only near its heading.
+- In the gap between any adjacent child sections, the last crossed child item remains active; the parent item must not activate briefly between subsections. This rule applies equally to Core Rules, Detachments, Datasheets, and Glossary at every tree level.
+- The active leaf item receives `aria-current="location"` and prominent visual emphasis.
+- Parents of the active item receive a quieter ancestor state.
+- The navigation panel scrolls itself to the active row; the article does not move.
+- The panel has no horizontal scrolling: long names wrap within the available width. The vertical scrollbar is thin, square, and uses restrained green-and-bronze interface colors.
+- Scroll tracking has one owner and one passive scroll handler.
 
-## 5. Программный переход
+## 5. Programmatic Navigation
 
-- Во время программного перехода контроль временно передаётся NavigationController.
-- Конечный пункт выделяется сразу; промежуточные разделы не должны последовательно мигать активным состоянием.
-- Позиция назначения учитывает фактическую высоту фиксированного header и единый `--navigation-gap`, по которому scroll-spy определяет пересечение. Геометрия header проверяется перед каждым переходом и обновляется при изменении его размера.
-- Завершение определяется по фактическому положению и стабилизации прокрутки, а не по истечению фиксированного времени. Аварийный предел запускает финальное позиционирование, а не объявляет промежуточную позицию завершённой.
-- Управление передаётся режиму чтения только после подтверждённого достижения доступной позиции назначения либо после явной ручной отмены пользователем.
+- During programmatic navigation, control temporarily belongs to NavigationController.
+- The destination item is highlighted immediately; intermediate sections must not flash through active states.
+- The destination position accounts for the actual fixed-header height and the shared `--navigation-gap` used by scroll-spy to determine crossings. Header geometry is checked before every transition and updated when its size changes.
+- Completion is determined by actual position and scroll stabilization, not by a fixed elapsed time. The emergency limit triggers final positioning instead of declaring an intermediate position complete.
+- Control returns to reading mode only after confirmed arrival at the reachable destination position or after explicit manual cancellation by the user.
 
-## 6. Journey и Back
+## 6. Journey and Back
 
-Перед переходом сохраняются:
+Before navigation, the system saves:
 
-- точная вертикальная позиция;
-- активный глобальный раздел;
-- идентификатор нажатого элемента;
-- открытая цепочка попапов;
-- внешний термин, к которому привязана цепочка;
-- уровень и данные кнопки, запустившей переход.
+- the exact vertical position;
+- the active global section;
+- the identifier of the activated element;
+- the open popup chain;
+- the outer term to which the chain is attached;
+- the level and data of the button that initiated navigation.
 
-При нажатии Back система обязана:
+When Back is pressed, the system must:
 
-1. Сразу восстановить правильный путь и активный пункт навигации.
-2. Плавно вернуться к сохранённой точной позиции.
-3. Дождаться фактического завершения прокрутки.
-4. Восстановить цепочку попапов, если переход был сделан из неё.
-5. Найти заново созданную кнопку, с которой был выполнен переход.
-6. Вернуть ей клавиатурный фокус и показать краткую розово-бронзовую подсветку.
-7. Не выделять промежуточные разделы во время возврата.
+1. Immediately restore the correct navigation path and active item.
+2. Smoothly return to the saved exact position.
+3. Wait for scrolling to actually finish.
+4. Restore the popup chain if navigation originated from it.
+5. Find the recreated button that initiated navigation.
+6. Return keyboard focus to it and show a brief pink-and-bronze highlight.
+7. Avoid highlighting intermediate sections during the return.
 
-Back ведёт собственную LIFO-историю и не подменяет историю браузера.
+Back maintains its own LIFO history and does not replace browser history.
 
-### 6.1. Взаимодействие навигации с попапами
+### 6.1. Navigation Interaction with Popups
 
-- Обычное открытие термина и добавление вложенного уровня попапа не запускают глобальный навигационный переход.
-- Активный пункт дерева, положение статьи и раскрытые ветки при таком клике не изменяются.
-- При последующей ручной прокрутке desktop-попапы движутся вместе со статьёй в координатах документа; они не закрепляются в viewport и не следуют за пользователем вниз страницы.
-- При открытии вложенного термина существующие родительские попапы остаются в DOM; добавляется только новая карточка. Навигация не должна провоцировать очистку popup-layer, повторную анимацию родителей или кратковременное исчезновение цепочки.
-- Клик по термину основного документа начинает новую корневую цепочку попапов, но также не меняет активный раздел навигации.
-- NavigationController подключается только тогда, когда пользователь нажимает action-переход из попапа: Glossary, To rule, Datasheet & Wargear или Statline.
-- При action-переходе к карточке внутри Glossary точка прокрутки учитывает одновременно фиксированный header и фактическую высоту sticky-панели поиска; заголовок целевой карточки не может оказаться под панелью.
-- Sticky-компенсация применяется только к целям внутри Glossary. Переход к самому корневому пункту `Glossary` не вычитает высоту его собственной панели поиска и обязан поставить корневую секцию на контрольную линию.
-- Scroll-spy измеряет вложенные glossary-группы по линии ниже sticky-поиска, совпадающей с их destination; предыдущая группа не может оставаться активной после завершённого перехода к следующей.
-- После завершения любого перехода, запущенного кликом по глобальной навигации или action-кнопке, точная цель получает одну краткую бронзовую подсветку. У крупных секций подсвечивается непосредственный заголовок только цветом и свечением текста, без прямоугольной обводки; у самостоятельных карточек подсвечивается сама карточка мягкой рамкой. Новый переход удаляет предыдущую навигационную подсветку и отменяет её таймер; одновременно существует не более одной такой подсветки. Отдельные обработчики для конкретных разделов запрещены.
-- Перед action-переходом Journey сохраняет полную цепочку попапов, внешний корневой термин, уровень и данные нажатой action-кнопки.
-- При Back сначала восстанавливаются активный раздел и точная позиция статьи, затем без промежуточных активных состояний восстанавливается popup-цепочка.
-- После пересоздания цепочки система находит action-кнопку на исходном уровне, возвращает ей фокус и запускает краткую розово-бронзовую подсветку.
-- Если исходная action-кнопка больше недоступна, фокус передаётся верхнему восстановленному попапу.
+- Ordinarily opening a term or adding a nested popup level does not start global navigation.
+- The active tree item, article position, and expanded branches do not change on such a click.
+- During later manual scrolling, desktop popups move with the article in document coordinates; they are not fixed in the viewport and do not follow the user down the page.
+- When a nested term opens, existing parent popups remain in the DOM and only a new card is added. Navigation must not clear the popup layer, replay parent animations, or make the chain disappear briefly.
+- Clicking a term in the main document starts a new root popup chain but likewise does not change the active navigation section.
+- NavigationController is engaged only when the user presses a popup action: Glossary, To rule, Datasheet & Wargear, or Statline.
+- For an action transition to a card inside Glossary, the scroll position accounts for both the fixed header and the actual sticky-search panel height; the target card heading cannot end up beneath the panel.
+- Sticky compensation applies only to targets inside Glossary. Navigating to the root `Glossary` item does not subtract the height of its own search panel and must place the root section on the control line.
+- Scroll-spy measures nested Glossary groups against the line below sticky search, matching their destination; the previous group cannot remain active after a completed transition to the next one.
+- After any transition started by a global-navigation click or an action button, the exact target receives one brief bronze highlight. Large sections highlight only the immediate heading with text color and glow, without a rectangular outline; standalone cards receive a soft border. A new transition removes the previous navigation highlight and cancels its timer; no more than one such highlight can exist at a time. Section-specific handlers are prohibited.
+- Before an action transition, Journey saves the complete popup chain, outer root term, level, and data of the activated action button.
+- On Back, the active section and exact article position are restored first, followed by the popup chain without intermediate active states.
+- After recreating the chain, the system finds the action button on the original level, returns focus to it, and starts a brief pink-and-bronze highlight.
+- If the original action button is no longer available, focus moves to the top restored popup.
 
-## 7. Desktop и mobile
+## 7. Desktop and Mobile
 
-- На desktop панель постоянно расположена слева и может быть свёрнута.
-- На mobile панель открывается поверх документа как drawer.
-- Переход с desktop на mobile не должен переносить состояние collapsed и блокировать открытие drawer.
-- Drawer закрывается кнопкой, повторным нажатием menu, кликом по scrim и клавишей Escape.
-- Пока mobile drawer открыт, статья не прокручивается и не изменяет активный пункт; прокручивается только панель Contents. После закрытия статья продолжает работу с прежней позиции.
-- При открытом drawer основное содержимое исключается из фокуса.
-- При скрытой панели её элементы исключаются из фокуса через `inert` и tabindex-fallback.
-- После закрытия фокус возвращается на кнопку открытия; после desktop-collapse — на кнопку раскрытия.
+- On desktop, the panel remains on the left and can be collapsed.
+- On mobile, the panel opens over the document as a drawer.
+- Switching from desktop to mobile must not carry over the collapsed state and block the drawer from opening.
+- The drawer closes through its button, another press of the menu button, a click on the scrim, or Escape.
+- While the mobile drawer is open, the article does not scroll or change its active item; only the Contents panel scrolls. After the drawer closes, the article continues from its previous position.
+- When the drawer is open, the main content is removed from the focus order.
+- When the panel is hidden, its elements are removed from focus through `inert` and a tabindex fallback.
+- After closing, focus returns to the open button; after desktop collapse, it returns to the expand button.
 
-## 8. Доступность
+## 8. Accessibility
 
-- Кнопки открытия и сворачивания имеют `aria-controls="tocPanel"`.
-- Состояния drawer, collapse и веток синхронизированы через `aria-expanded`.
-- Скрытые области получают корректный `aria-hidden`.
-- Все действия доступны с клавиатуры.
-- `:focus-visible` остаётся видимым; touch-взаимодействие не оставляет ложную рамку фокуса.
+- Open and collapse buttons have `aria-controls="tocPanel"`.
+- Drawer, collapse, and branch states are synchronized through `aria-expanded`.
+- Hidden areas receive the correct `aria-hidden`.
+- Every action is keyboard-accessible.
+- `:focus-visible` remains visible; touch interaction does not leave a false focus ring.
 
-## 9. Критерии приёмки
+## 9. Acceptance Criteria
 
-- Все пункты дерева ведут к существующим секциям.
-- Максимальная глубина дерева — три уровня.
-- Быстрая прокрутка вверх и вниз не оставляет неправильный активный пункт.
-- На границе двух вложенных секций активируется фактически видимая глубокая секция.
-- Клик по родительскому пункту первого или второго уровня не переключается самопроизвольно на ближайшего ребёнка, пока ребёнок ещё находится ниже контрольной линии.
-- После клика по корневому `Glossary` активным остаётся `Glossary`, а не предыдущий раздел и не `Core rules`.
-- Каждый существующий вложенный пункт любой группы, включая Glossary, после клика получает собственный `aria-current="location"` и не оставляет активным предыдущего соседа. Правило не зависит от количества пунктов в конкретной книге.
-- При ручной прокрутке между любыми соседними подразделами дерево переключается непосредственно с предыдущего дочернего пункта на следующий без промежуточной подсветки их родителя.
-- Раскрытая глубокая ветка Glossary не создаёт горизонтальный scrollbar в панели навигации; вертикальный scrollbar остаётся видимым и стилизованным.
-- Переходы к `Detachment Rule`, `Enhancement` и `Stratagems` имеют разные вертикальные назначения и не конкурируют за один активный пункт.
-- Клик по `Stratagems` показывает в верхней части целевого блока видимый заголовок `Stratagems`, а не только название конкретной стратагемы.
-- Клик по пункту любого раздела или категории подсвечивает его непосредственный заголовок; первая карточка раздела не подсвечивается. Клик по пункту конкретной сущности, напротив, подсвечивает её карточку.
-- Переход по названию и раскрытие по стрелке выполняют разные действия.
-- На каждом уровне дерева одновременно раскрыта не более чем одна ветка, включая сочетание активного раздела и вручную раскрытого раздела.
-- Desktop-collapse не ломает последующее mobile-меню.
-- Back возвращает точную позицию, навигацию, попапы, фокус и подсветку.
-- Переход `термин → popup → Glossary` оставляет заголовок целевой glossary-карточки полностью видимым ниже sticky-поиска.
-- Каждый переход по клику заканчивается единственной подсветкой цели; новый переход сразу убирает предыдущую подсветку. Back вместо цели подсвечивает исходный элемент, с которого был выполнен переход.
-- Заголовок раздела первого уровня при переходе из навигации не получает рамку или outline вокруг блока: используется только краткое свечение текста.
-- Пункт третьего уровня `Enhancement` ведёт к общему блоку всех Enhancements выбранного detachment и подсвечивает его прямой заголовок. Отдельное улучшение не должно ошибочно изображаться единственной целью категории.
-- Добавление вложенного попапа не вызывает прокрутку, смену активного пункта или мерцание родительских карточек.
-- Скрытая навигация недоступна через Tab.
-- На desktop и при закрытом mobile drawer панель и статья прокручиваются независимо. При открытом mobile drawer прокрутка статьи заблокирована, а Contents сохраняет собственный вертикальный скролл.
-- Изменение высоты header до или во время перехода не скрывает цель и не передаёт scroll-spy устаревшую геометрию.
-- Истечение защитных `2200ms` не активирует промежуточный раздел: контроллер выполняет финальное позиционирование и только затем возвращает управление scroll-spy.
+- Every tree item leads to an existing section.
+- Maximum tree depth is three levels.
+- Fast upward and downward scrolling does not leave the wrong item active.
+- At a boundary between two nested sections, the actually visible deep section becomes active.
+- Clicking a first- or second-level parent does not switch spontaneously to the nearest child while that child remains below the control line.
+- After clicking the root `Glossary`, `Glossary` remains active instead of the previous section or `Core rules`.
+- Every existing nested item in any group, including Glossary, receives its own `aria-current="location"` after a click and does not leave the previous sibling active. The rule does not depend on the number of items in a particular book.
+- During manual scrolling between any adjacent subsections, the tree switches directly from the previous child item to the next without intermediate parent highlighting.
+- An expanded deep Glossary branch does not create a horizontal scrollbar in the navigation panel; the vertical scrollbar remains visible and styled.
+- Transitions to `Detachment Rule`, `Enhancement`, and `Stratagems` have distinct vertical destinations and do not compete for one active item.
+- Clicking `Stratagems` shows a visible `Stratagems` heading at the top of the destination block, not only the name of a specific Stratagem.
+- Clicking any section or category item highlights its immediate heading; the first card in the section is not highlighted. Clicking a specific entity item instead highlights its card.
+- Navigating through the label and expanding through the arrow perform different actions.
+- No more than one branch is expanded at each tree level, including combinations of an active section and a manually expanded section.
+- Desktop collapse does not break the subsequent mobile menu.
+- Back restores the exact position, navigation, popups, focus, and highlight.
+- The `term → popup → Glossary` transition leaves the target Glossary-card heading fully visible below sticky search.
+- Every click transition ends with exactly one target highlight; a new transition immediately removes the previous highlight. Back highlights the original element that initiated the transition instead of the destination.
+- A top-level section heading reached from navigation receives no border or outline around its block; only a brief text glow is used.
+- The third-level `Enhancement` item leads to the common block of all Enhancements for the selected Detachment and highlights its direct heading. An individual Enhancement must not be presented incorrectly as the sole category target.
+- Adding a nested popup does not cause scrolling, change the active item, or make parent cards flicker.
+- Hidden navigation cannot be reached with Tab.
+- On desktop and with the mobile drawer closed, the panel and article scroll independently. While the mobile drawer is open, article scrolling is locked and Contents retains its own vertical scroll.
+- A change in header height before or during a transition does not hide the destination or give scroll-spy stale geometry.
+- Expiration of the protective `2200ms` limit does not activate an intermediate section: the controller performs final positioning before returning control to scroll-spy.
 
-### 9.1. Быстрое переключение между пунктами
+### 9.1. Rapid Switching Between Items
 
-- Серия быстрых кликов или касаний по разным пунктам Contents считается одной заменяемой навигационной операцией: актуальной является только последняя выбранная цель.
-- `pointerdown`, `touchstart` и `wheel` внутри панели Contents не передают управление scroll-spy между началом жеста и обработкой клика.
-- Новый переход атомарно отменяет предыдущий controlled scroll, его callback, таймер и уже показанную навигационную подсветку цели.
-- Пока последний controlled scroll не завершён или не отменён ручным взаимодействием с документом, `aria-current`, `is-current` и раскрытый путь принадлежат последнему выбранному пункту.
-- Промежуточные разделы, пересекаемые во время программной прокрутки, не становятся активными даже на один кадр.
-- Автопрокрутка самой панели Contents к выбранной строке выполняется без отдельной smooth-анимации, чтобы дерево не создавало эффект последовательного выбора соседних пунктов.
-- Ручной скролл или касание основного документа отменяет controlled scroll, останавливает нативную smooth-прокрутку и только после этого возвращает владение scroll-spy.
-- Приёмочная проверка должна быстро выбрать минимум три удалённые цели подряд; в дереве ни разу не должен появиться активный пункт, отличный от последней нажатой цели.
+- A series of rapid clicks or taps on different Contents items is treated as one replaceable navigation operation: only the last selected destination is current.
+- `pointerdown`, `touchstart`, and `wheel` inside the Contents panel do not hand control to scroll-spy between the start of the gesture and click handling.
+- A new transition atomically cancels the previous controlled scroll, its callback, timer, and any displayed navigation target highlight.
+- Until the latest controlled scroll completes or is cancelled by manual interaction with the document, `aria-current`, `is-current`, and the expanded path belong to the last selected item.
+- Intermediate sections crossed during programmatic scrolling do not become active even for one frame.
+- Automatic scrolling of the Contents panel to the selected row uses no separate smooth animation, preventing the tree from appearing to select adjacent items in sequence.
+- Manual scrolling or touching the main document cancels controlled scrolling, stops native smooth scrolling, and only then returns ownership to scroll-spy.
+- The acceptance check must rapidly select at least three distant destinations in succession; the tree must never show an active item other than the last selected destination.
 
-## 10. Полное наполнение и единый источник дерева
+## 10. Complete Content and a Single Tree Source
 
-- Дерево и тело документа генерируются одной сборкой из `content/adeptus-mechanicus-rules.en.json` и `content/adeptus-mechanicus-codex-detachments.en.json`; ручное дублирование структуры запрещено.
-- Число глобальных целей не фиксируется в этом ТЗ и определяется данными конкретной книги. QA обязан получить ожидаемый состав из её структурированных данных и подтвердить, что все сгенерированные пункты представлены в дереве и теле ровно по одному разу.
-- У каждого `data-nav-target` существует ровно один одноимённый `id` и `data-track`; проверка полноты является обязательной частью QA.
-- Внутренние части datasheet (Profile & Weapons, Abilities, Composition, Leader, Wargear, Damaged, Keywords и другие локальные блоки) не добавляются в глобальное дерево.
-- Каждый существующий detachment имеет три отдельные вертикальные цели. В дереве используются подписи `Detachment Rule`, `Enhancement`, `Stratagems`; подпись `Enhancement` ведёт к общему блоку с видимым заголовком `Enhancements`. Заголовок `Stratagems` должен быть видим в теле каждого detachment независимо от их количества.
-- Любое последующее изменение набора разделов выполняется в структурированных данных и генераторе, после чего одновременно пересобираются тело, navigation tree и term registry.
-- Перед переходом popup → Glossary активный поисковый фильтр сбрасывается синхронно, скрытая карточка раскрывается, и только затем вычисляется scroll destination.
-- Сборщик вычисляет версию PWA-кеша из сгенерированных HTML/data и всех runtime assets. `--check` обязан завершаться ошибкой, если артефакты или cache key устарели.
+- The tree and document body are generated in one build from `content/adeptus-mechanicus-rules.en.json` and `content/adeptus-mechanicus-codex-detachments.en.json`; manual duplication of the structure is prohibited.
+- The number of global destinations is not fixed in this specification and is determined by the data for the particular book. QA must derive the expected set from its structured data and confirm that every generated item appears exactly once in the tree and body.
+- Every `data-nav-target` has exactly one matching `id` and `data-track`; completeness verification is a mandatory part of QA.
+- Internal datasheet parts (Profile & Weapons, Abilities, Composition, Leader, Wargear, Damaged, Keywords, and other local blocks) are not added to the global tree.
+- Every existing Detachment has three separate vertical destinations. The tree uses the labels `Detachment Rule`, `Enhancement`, and `Stratagems`; `Enhancement` leads to the common block with the visible `Enhancements` heading. The `Stratagems` heading must be visible in every Detachment body regardless of the number of Stratagems.
+- Any later change to the section set is made in structured data and the generator, after which the body, navigation tree, and term registry are rebuilt together.
+- Before a popup → Glossary transition, the active search filter is cleared synchronously, the hidden card is revealed, and only then is the scroll destination calculated.
+- The builder calculates the PWA cache version from generated HTML/data and all runtime assets. `--check` must fail if artifacts or the cache key are stale.

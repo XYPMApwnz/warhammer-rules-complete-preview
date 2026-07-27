@@ -11,7 +11,7 @@ const APP_SHELL = [
   LIBRARY_FALLBACK,
   "./roster-guides/",
   ROSTER_GUIDES_FALLBACK,
-  "./roster-guides/app.js?v=1",
+  "./roster-guides/app.js?v=2",
   "./manifest.webmanifest",
   "./assets/apple-touch-icon.png",
   "./assets/icon-192.png",
@@ -45,8 +45,8 @@ const APP_SHELL = [
   "./books/death-guard/styles/entry.css?v=2",
   "./books/death-guard/scripts/view-router.js?v=2",
   "./books/death-guard/mobile/index.html",
-  "./books/death-guard/mobile/mobile.css?v=6",
-  "./books/death-guard/mobile/mobile.js?v=9",
+  "./books/death-guard/mobile/mobile.css?v=7",
+  "./books/death-guard/mobile/mobile.js?v=10",
   "./books/shared/navigation-targets.js?v=1",
   "./books/shared/datasheet-layout.js?v=2",
   "./books/shared/datasheet-system.css?v=4",
@@ -56,7 +56,7 @@ const APP_SHELL = [
   "./books/death-guard/assets/icon-v4.svg",
   "./books/death-guard/styles/tokens.css?v=10",
   "./books/death-guard/styles/layout.css?v=9",
-  "./books/death-guard/styles/navigation.css?v=10",
+  "./books/death-guard/styles/navigation.css?v=11",
   "./books/death-guard/styles/content.css?v=24",
   "./books/death-guard/styles/popups.css?v=15",
   "./books/death-guard/scripts/navigation-controller.js?v=15",
@@ -66,11 +66,11 @@ const APP_SHELL = [
   "./books/death-guard/scripts/journey-controller.js?v=11",
   "./books/death-guard/scripts/ui-controllers.js?v=11",
   "./books/death-guard/scripts/related-rules.js?v=6",
-  "./books/death-guard/scripts/app.js?v=26",
+  "./books/death-guard/scripts/app.js?v=27",
   "./books/core-rules/",
   CORE_RULES_FALLBACK,
   "./books/core-rules/reader/styles.css?v=5",
-  "./books/core-rules/reader/app.js?v=7",
+  "./books/core-rules/reader/app.js?v=8",
   "./books/core-rules/reader/search-index.json",
   "./books/core-rules/reader/introduction.html",
   "./books/core-rules/reader/core-concepts.html",
@@ -124,7 +124,7 @@ const APP_SHELL = [
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => Promise.allSettled(APP_SHELL.map((url) => cache.add(url))))
+      .then((cache) => Promise.all(APP_SHELL.map((url) => cache.add(url))))
       .then(() => self.skipWaiting())
   );
 });

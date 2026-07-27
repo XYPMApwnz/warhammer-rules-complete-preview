@@ -1,20 +1,20 @@
-# Техническое задание: глобальный глоссарий Warhammer 40,000
+# Specification: Global Warhammer 40,000 Glossary
 
-## 1. Назначение
+## 1. Purpose
 
-Глобальный глоссарий является единственным источником названий и определений терминов для всей библиотеки. Книги не хранят собственные варианты определения одного и того же канонического термина.
+The global glossary is the single source of term names and definitions for the entire library. Books do not store their own versions of the definition of the same canonical term.
 
-Количество терминов не фиксируется. Реестр включает все встречающиеся в подключённых книгах понятия: core rules, игровые состояния, keywords, faction rules, detachments, enhancements, stratagems, abilities, datasheets, weapons и характеристики.
+The number of terms is not fixed. The registry includes every concept found in connected books: core rules, game states, keywords, faction rules, detachments, enhancements, stratagems, abilities, datasheets, weapons and characteristics.
 
-## 2. Главный инвариант
+## 2. Primary Invariant
 
-- Один канонический ID имеет ровно одно определение на каждом поддерживаемом языке.
-- Книга обращается к термину по каноническому ID.
-- Книга может добавлять только локальный контекст навигации; она не может переопределить название или определение.
-- Изменение канонического определения автоматически применяется во всех книгах после пересборки.
-- Неизвестный, конфликтующий или потерянный ID завершает QA ошибкой, а не создаёт молчаливую копию.
+- A canonical ID has exactly one definition in each supported language.
+- A book refers to a term by its canonical ID.
+- A book may add only local navigation context; it cannot override the name or definition.
+- A change to the canonical definition is applied automatically to every book after rebuilding.
+- An unknown, conflicting or missing ID fails QA instead of silently creating a duplicate.
 
-## 3. Состав канонического термина
+## 3. Canonical Term Structure
 
 ```json
 {
@@ -34,17 +34,17 @@
 }
 ```
 
-Обязательные поля: `id`, `category`, `title`, `definition`, `canonicalSource`, `status`.
+Required fields: `id`, `category`, `title`, `definition`, `canonicalSource`, `status`.
 
-`status` принимает значения:
+`status` accepts the following values:
 
-- `verified` — сверено с выбранным действующим источником;
-- `provisional` — импортировано из локальной книги и ожидает сверки;
-- `deprecated` — сохранено для совместимости как alias и не используется как основная запись.
+- `verified` — checked against the selected current source;
+- `provisional` — imported from a local book and awaiting verification;
+- `deprecated` — retained as an alias for compatibility and not used as the primary entry.
 
-## 4. Локальный контекст книги
+## 4. Book-Local Context
 
-Переходы зависят от структуры конкретной книги и хранятся отдельно:
+Destinations depend on the structure of a particular book and are stored separately:
 
 ```json
 {
@@ -58,102 +58,103 @@
 }
 ```
 
-Поля `glossary`, `rule`, `datasheet`, `statline` и `units` никогда не входят в каноническое определение. Один термин может иметь разные переходы в разных книгах, но текст попапа остаётся одинаковым.
+The `glossary`, `rule`, `datasheet`, `statline` and `units` fields are never part of the canonical definition. A term may have different destinations in different books, but its popup text remains the same.
 
-## 5. ID и aliases
+## 5. IDs and Aliases
 
-- ID стабилен, написан в kebab-case и отражает смысл, а не расположение в HTML.
-- Общие правила используют namespace `core-`.
-- Faction-specific сущности используют namespace фракции, если существует риск совпадения названий.
-- Автоматическое объединение только по одинаковому title запрещено.
-- Разные старые ID объединяются только через явный alias.
-- Alias не содержит собственного определения и всегда разрешается в один канонический ID.
-- Цепочки aliases и циклы запрещены.
+- An ID is stable, written in kebab-case and represents meaning rather than a location in HTML.
+- Shared rules use the `core-` namespace.
+- Faction-specific entities use the faction namespace when names could collide.
+- Automatic merging based only on an identical title is forbidden.
+- Distinct legacy IDs are merged only through an explicit alias.
+- An alias has no definition of its own and always resolves to one canonical ID.
+- Alias chains and cycles are forbidden.
 
-## 6. Источники и приоритет
+## 6. Sources and Priority
 
-При конфликте выбирается не текст книги, а наиболее авторитетный актуальный источник:
+When sources conflict, the most authoritative current source is selected rather than the text from a book:
 
-1. Действующий официальный Core Rules или официальный документ с изменением core rule.
-2. Действующий официальный Codex/Faction Pack для faction-specific правила.
-3. Официальный FAQ, Balance Dataslate или errata, если он явно заменяет предыдущую формулировку.
-4. Локальная транскрипция — только как `provisional`, пока источник не подтверждён.
+1. The current official Core Rules or an official document that changes a core rule.
+2. The current official Codex/Faction Pack for a faction-specific rule.
+3. An official FAQ, Balance Dataslate or errata if it explicitly replaces the previous wording.
+4. A local transcription, only as `provisional` until the source is confirmed.
 
-Дата публикации сама по себе не даёт приоритет: источник должен относиться к той же редакции и явно заменять действующее правило.
+Publication date alone does not grant priority: the source must apply to the same edition and explicitly replace the current rule.
 
-## 7. Разрешение конфликтов
+## 7. Conflict Resolution
 
-- Одинаковый ID с одинаковым нормализованным определением объединяется автоматически; provenance всех книг сохраняется.
-- Одинаковый ID с разными определениями создаёт conflict report и останавливает сборку.
-- Для снятия конфликта требуется явная запись resolution: выбранный источник, причина и отклонённые варианты.
-- Одинаковое title при разных ID создаёт alias-candidate report, но не объединяется автоматически.
-- Различия только в регистре, типографских кавычках и пробелах нормализуются для сравнения, но исходный канонический текст не переписывается.
-- Book-local ссылки объединяются независимо от определения и не считаются конфликтом.
+- Identical IDs with identical normalized definitions are merged automatically; provenance from every book is retained.
+- Identical IDs with different definitions produce a conflict report and stop the build.
+- Resolving a conflict requires an explicit resolution record containing the selected source, the reason and the rejected alternatives.
+- An identical title under different IDs produces an alias-candidate report but is not merged automatically.
+- Differences limited to letter case, typographic quotation marks and whitespace are normalized for comparison, but the original canonical text is not rewritten.
+- Book-local links are merged independently of the definition and are not considered a conflict.
 
-## 8. Runtime и сборка
+## 8. Runtime and Build
 
-- Редактируемый источник хранится в JSON.
-- Сборщик создаёт браузерный JS-реестр, работающий через `file://`, HTTP и GitHub Pages без runtime fetch.
-- Глобальный runtime предоставляет `forBook(bookId)`, возвращающий совместимое представление `{title, summary, related, glossary, rule, datasheet, statline, units}`.
-- Каждая книга загружает глобальный runtime до своего popup controller.
-- Книги не включают копию глобального определения в собственные runtime-файлы.
-- Root service worker кеширует глобальный реестр и повышает ревизию при любом изменении glossary content hash.
+- The editable source is stored in JSON.
+- The builder creates a browser JS registry that works over `file://`, HTTP and GitHub Pages without a runtime fetch.
+- The global runtime provides `forBook(bookId)`, which returns the compatible representation `{title, summary, related, glossary, rule, datasheet, statline, units}`.
+- Each book loads the global runtime before its popup controller.
+- Books do not include a copy of the global definition in their own runtime files.
+- The root service worker caches the global registry and increments the revision whenever the glossary content hash changes.
 
-## 9. Обновление
+## 9. Updating
 
-1. Импортировать новые или изменённые записи из источников книг.
-2. Нормализовать ID и разрешить aliases.
-3. Построить conflict и alias-candidate reports.
-4. Остановить сборку при неразрешённом конфликте.
-5. Обновить канонический источник и `verifiedAt` только после проверки.
-6. Пересобрать browser registry и адаптеры всех книг.
-7. Запустить общие QA и book-specific QA.
+1. Import new or changed entries from book sources.
+2. Normalize IDs and resolve aliases.
+3. Build conflict and alias-candidate reports.
+4. Stop the build when a conflict remains unresolved.
+5. Update the canonical source and `verifiedAt` only after verification.
+6. Rebuild the browser registry and all book adapters.
+7. Run shared QA and book-specific QA.
 
-Еженедельная проверка меняет термин один раз в глобальном реестре, после чего все книги получают новую версию одновременно.
+A weekly verification changes a term once in the global registry, after which every book receives the new version at the same time.
 
 ## 10. QA
 
-- Каждый используемый `data-term` разрешается в канонический ID.
-- Каждый related ID и alias разрешается в существующий канонический ID.
-- У каждого канонического ID ровно одно определение на язык.
-- Книга не содержит локальных полей `title`, `summary` или `definition` для глобального термина.
-- Все локальные targets существуют в DOM соответствующей книги.
-- Нет alias-циклов, цепочек aliases и ID без источника.
-- Любое несовпадающее определение одного ID приводит к ошибке сборки.
-- Генерируемые артефакты соответствуют content hash исходного JSON.
-- Проверка выполняется для любого количества книг и терминов без жёстко заданных чисел.
+- Every used `data-term` resolves to a canonical ID.
+- Every related ID and alias resolves to an existing canonical ID.
+- Each canonical ID has exactly one definition per language.
+- A book contains no local `title`, `summary` or `definition` fields for a global term.
+- All local targets exist in the DOM of the corresponding book.
+- There are no alias cycles, alias chains or IDs without a source.
+- Any mismatched definition under the same ID causes a build error.
+- Generated artifacts match the content hash of the source JSON.
+- Verification works for any number of books and terms without hard-coded counts.
 
-## 11. Пример общего использования
+## 11. Shared-Use Example
 
-`core-lethal-hits` определяется один раз глобально.
+`core-lethal-hits` is defined once globally.
 
-- Death Guard добавляет переход к своей glossary-карточке и связанным правилам.
-- Adeptus Mechanicus добавляет переход к своему detachment или datasheet.
-- Core Rules добавляет переход к исходному разделу атаки.
+- Death Guard adds a destination to its glossary card and related rules.
+- Adeptus Mechanicus adds a destination to its detachment or datasheet.
+- Core Rules adds a destination to the source attack section.
 
-Во всех трёх попапах отображаются одинаковые title и definition. Различаются только кнопки перехода внутри текущей книги.
+All three popups display the same title and definition. Only the destination buttons within the current book differ.
 
-## 12. Короткая и полная формулировки
+## 12. Summary and Full Wording
 
-Каждый термин хранит два разных представления одного правила:
+Each term stores two different representations of the same rule:
 
-- `summary` — короткая практическая формулировка длиной не более 280 символов; используется в попапах, поисковой выдаче и компактных карточках;
-- `definition` — полная каноническая формулировка; используется на странице Mega Glossary и в полном просмотре правила.
+- `summary` — concise practical wording of no more than 280 characters, used in popups, search results and compact cards;
+- `definition` — the complete canonical wording, used on the Mega Glossary page and in the full rule view.
 
-`summary` не является альтернативным правилом и не может менять смысл `definition`. Для длинного правила полное совпадение `summary` и `definition` считается ошибкой сборки. Для оружия, datasheet и других структурированных сущностей вместо технических заглушек отображается профиль характеристик.
+`summary` is not an alternative rule and cannot change the meaning of `definition`. For a long rule, an exact match between `summary` and `definition` is a build error. Weapons, datasheets and other structured entities display a characteristics profile instead of technical placeholders.
 
-## 13. Keywords и связанные правила
+## 13. Keywords and Related Rules
 
-Keyword не считается самостоятельным правилом по умолчанию. Его каноническая запись должна различать:
+A keyword is not considered a standalone rule by default. Its canonical entry must distinguish between:
 
-- значение keyword как идентификатора модели или unit;
-- Core Rules, которые явно ссылаются на этот keyword;
-- faction-specific правила, способности, оружие и ограничения, которые явно ссылаются на него;
-- собственное правило типа unit, если Core Rules действительно определяют его.
+- the keyword's meaning as a model or unit identifier;
+- Core Rules that explicitly refer to this keyword;
+- faction-specific rules, abilities, weapons and restrictions that explicitly refer to it;
+- the unit type's own rule, if the Core Rules actually define one.
 
-Сборщик формирует `references.coreRules` и `references.factionTerms` по точным ссылкам на keyword. Карточка keyword показывает эти правила отдельными переходами. Наличие одинакового слова только в названии другой сущности не превращает его в самостоятельный эффект keyword.
+The builder creates `references.coreRules` and `references.factionTerms` from exact references to the keyword. The keyword card presents these rules as separate destinations. The presence of the same word only in another entity's title does not turn it into a standalone keyword effect.
 
-Пример: `BEAST` сам по себе не добавляет один универсальный эффект, но ведёт к правилам `Terrain and Movement`, `Benefit of Cover`, `Hidden` и другим местам Core Rules, где `BEASTS` назван явно. Единственное и множественное число считаются одной keyword-идентичностью.
+Example: `BEAST` does not add a single universal effect by itself, but it links to `Terrain and Movement`, `Benefit of Cover`, `Hidden` and other Core Rules passages that explicitly name `BEASTS`. Singular and plural forms are treated as one keyword identity.
+
 ### Operational cross-references
 
 If a canonical rule delegates its effect to another numbered rule, both `summary` and the full glossary view must state the resulting gameplay effect. A circular phrase such as "can use Assault Shooting" is insufficient on its own: the entry must also include the eligibility conditions, restrictions and after-effects defined by Assault Shooting. The source locator must cite every combined rule.
