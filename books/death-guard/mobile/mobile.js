@@ -201,7 +201,6 @@
     const indexed=triggers[returnRecord.triggerIndex];
     const trigger=indexed?.dataset.term===returnRecord.termId?indexed:triggers.find(node=>node.dataset.term===returnRecord.termId);
     window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);
-    if(trigger)showTerm(trigger,false);
-    window.WHGlossaryReturn.clear();
+    requestAnimationFrame(()=>{if(trigger)showTerm(trigger,false);window.WHGlossaryReturn.clear();});
   });
 }());

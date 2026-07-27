@@ -137,8 +137,7 @@
     const indexed=triggers[returnRecord.triggerIndex];
     const trigger=indexed?.dataset.term===returnRecord.termId?indexed:triggers.find(node=>node.dataset.term===returnRecord.termId);
     window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);
-    if(trigger)showTerm(trigger);
-    window.WHGlossaryReturn.clear();
+    requestAnimationFrame(()=>{if(trigger)showTerm(trigger);window.WHGlossaryReturn.clear();});
   });
 
   if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('../../../service-worker.js');

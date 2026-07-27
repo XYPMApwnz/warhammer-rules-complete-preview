@@ -92,7 +92,7 @@ check('outside click closes the complete popup chain',popupSource.includes("this
 check('popup actions inherit their originating unit context',popupSource.includes("contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}")&&popupSource.includes('contextualStatline'));
 check('Mega Glossary transitions use the shared return helper',html.includes('../../glossary-return.js?v=1')&&popupSource.includes('WHGlossaryReturn')&&read('scripts/app.js').includes('WHGlossaryReturn'));
 check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
-check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=4"'));
+check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=5"'));
 check('book loads the shared datasheet layout',html.includes('src="../shared/datasheet-layout.js?v=2"'));
 check('glossary autolinking precedes navigation geometry',read('scripts/app.js').indexOf('WHGlossaryAutolink?.apply')<read('scripts/app.js').indexOf('new window.DGNavigation'));
 check('shared datasheet statlines keep every characteristic on one row',/\.unit-card \.statline\s*\{[^}]*display:\s*flex/.test(sharedDatasheetCss));

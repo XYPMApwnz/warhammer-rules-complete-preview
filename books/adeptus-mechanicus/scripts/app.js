@@ -26,7 +26,7 @@
   if(window.WHGlossaryReturn?.matchesCurrent(returnRecord)&&returnRecord.popupIds?.length){
     const scope=document.getElementById(returnRecord.unitId)||document;
     const root=[...scope.querySelectorAll('[data-term]')].find(node=>node.dataset.term===returnRecord.rootTerm)||null;
-    requestAnimationFrame(()=>{window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);popups.restore(returnRecord.popupIds,{root,focus:false});window.WHGlossaryReturn.clear();});
+    requestAnimationFrame(()=>{window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);requestAnimationFrame(()=>{popups.restore(returnRecord.popupIds,{root,focus:false});window.WHGlossaryReturn.clear();});});
   }
   if((location.protocol==='http:'||location.protocol==='https:')&&'serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('../../service-worker.js'));
 }());

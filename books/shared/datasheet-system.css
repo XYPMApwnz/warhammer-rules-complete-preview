@@ -4,6 +4,7 @@
   --ds-ui: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   --ds-data: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   position: relative;
+  container-type: inline-size;
   overflow: hidden;
   padding: 0;
   border: 1px solid var(--line);
@@ -438,6 +439,23 @@
 }
 .unit-card.ds-layout > .unit-part .content-block p:last-child { margin-bottom: 0; }
 .unit-card.ds-layout > .unit-part .source { margin-top: 10px; }
+
+@container (max-width: 760px) {
+  .unit-card > :is(.unit-head, .unit-header) {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+  .unit-card.ds-layout .points.ds-cost {
+    width: min(100%, 520px);
+    min-width: 0;
+    justify-self: stretch;
+  }
+  .unit-card.ds-layout .ds-main-grid { grid-template-columns: 1fr; }
+  .unit-card.ds-layout .ds-arsenal {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
 
 @media (max-width: 800px) {
   .unit-card > :is(.unit-head, .unit-header) {

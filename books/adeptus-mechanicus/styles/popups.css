@@ -1,4 +1,4 @@
-.popup-layer { position: absolute; z-index: 80; inset: 0; pointer-events: none; }
+.popup-layer { position: fixed; z-index: 80; inset: 0; pointer-events: none; }
 html:has(.popup-layer .term-popup),body:has(.popup-layer .term-popup) { overflow: hidden; overscroll-behavior: none; }
 .popup-layer:has(.term-popup)::before {
   content: "";
@@ -10,7 +10,7 @@ html:has(.popup-layer .term-popup),body:has(.popup-layer .term-popup) { overflow
   pointer-events: none;
 }
 .term-popup {
-  position: absolute;
+  position: fixed;
   pointer-events: auto;
   width: min(560px, calc(100vw - 28px));
   max-height: min(76dvh, 640px);

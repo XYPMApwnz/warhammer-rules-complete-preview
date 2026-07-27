@@ -167,7 +167,7 @@ check('popup root clicks replace the chain',popups.includes('this.ids=[];this.or
 check('nested popups preserve the common DOM prefix',popups.includes('while(prefix<cards.length')&&popups.includes('for(let index=prefix;index<this.ids.length'));
 check('adjacent bounce checks only previous level',popups.includes('const previous=this.ids[this.ids.length-2]')&&!popups.includes('lastIndexOf'));
 check('popup cards suppress self links',popups.includes('relatedId!==id'));
-check('desktop popup coordinates include document scroll',popups.includes("window.scrollY||0")&&/\.popup-layer\s*\{[^}]*position:\s*absolute/.test(read('styles/popups.css')));
+check('desktop popup coordinates stay viewport-relative',!popups.includes("window.scrollY||0")&&/\.popup-layer\s*\{[^}]*position:\s*fixed/.test(read('styles/popups.css')));
 check('mobile popup layer is fixed',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.popup-layer\s*\{[^}]*position:\s*fixed/.test(read('styles/popups.css')));
 check('popup cards expose dialog semantics',popups.includes("setAttribute('role','dialog')")&&popups.includes("setAttribute('aria-modal','false')"));
 check('outside click closes popups but preserves them behind full entry',popups.includes("this.ids.length&&!event.target.closest('.term-popup,.full-entry-layer')")&&popups.includes('this.closeFrom(0)'));
@@ -199,11 +199,11 @@ try{
   const previousWindow=globalThis.window,previousDocument=globalThis.document;
   try{
     globalThis.document={getElementById:()=>({getBoundingClientRect:()=>({bottom:72})})};
-    const desktopCard=makeCard('412px','980px');
+    const desktopCard=makeCard('412px','180px');
     globalThis.window={innerWidth:1200,innerHeight:700,scrollX:0,scrollY:800};
     controller.layer={children:[desktopCard]};controller.origins=[{rect:{left:412,top:-300,bottom:-260}}];controller.resolveOrigin=()=>null;
     controller.reposition();
-    check('behavior: offscreen desktop popup preserves both coordinates',desktopCard.style.left==='412px'&&desktopCard.style.top==='980px',desktopCard.style.left+','+desktopCard.style.top);
+    check('behavior: offscreen origin preserves viewport popup coordinates',desktopCard.style.left==='412px'&&desktopCard.style.top==='180px',desktopCard.style.left+','+desktopCard.style.top);
 
     const mobileCards=Array.from({length:5},()=>makeCard());
     globalThis.window={innerWidth:600,innerHeight:700,scrollX:0,scrollY:0};controller.layer={children:mobileCards};controller.origins=[];
@@ -224,7 +224,7 @@ check('Back has rebuilt-action fallback',journey.includes('this.findRestoredActi
 check('click navigation highlights only after controlled scroll settles',navigation.includes("()=>{this.highlighter.show(targets.highlightTarget);settled?.();}"));
 
 const cssFiles=['styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css'];
-check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=27':file==='styles/popups.css'?'?v=16':file==='styles/navigation.css'?'?v=11':file==='styles/tokens.css'?'?v=10':'?v=9')+'"')));
+check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=28':file==='styles/popups.css'?'?v=17':file==='styles/navigation.css'?'?v=11':file==='styles/tokens.css'?'?v=10':'?v=9')+'"')));
 const contentCss=read('styles/content.css');
 check('datasheet quick navigation overrides the shared desktop rail and is phone-only',contentCss.includes('body .unit-card > .local-nav { display: none; }')&&contentCss.includes('@media (max-width: 600px)')&&contentCss.includes('position: sticky;')&&contentCss.includes('overflow-x: auto;'));
 const navigationCss=read('styles/navigation.css');
@@ -237,6 +237,7 @@ check('desktop stratagem cards use two columns with a responsive fallback',conte
 check('all ten Core Stratagems are present in the shared book source',(markup.match(/id="core-stratagem-[^"]+"/g)||[]).length===10);
 check('Core Stratagems feed the shared related-rules panel',read('mobile/related-rules.inc').includes('data-detachment="core"')&&(read('mobile/related-rules.inc').match(/id="core-stratagem-[^"]+"/g)||[]).length===10);
 check('Core Stratagem eligibility is keyword-aware',read('scripts/related-rules.js').includes("id==='core-stratagem-smokescreen'")&&read('scripts/related-rules.js').includes("id==='core-stratagem-epic-challenge'")&&read('scripts/related-rules.js').includes("id==='core-stratagem-crushing-impact'"));
+check('filtered related rules stay hidden despite card display styles',contentCss.includes('.related-rules-layer [hidden],#relatedRulesContent [hidden]{display:none!important}'));
 check('detachment Stratagems avoid the harmful outer grid',!contentCss.includes('section[id$="-stratagems"]')&&contentCss.includes('.detachment-part[id$="-stratagems"] > .detachment-content'));
 check('full entry becomes a full-screen mobile dialog',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.full-entry-dialog\s*\{[^}]*height:\s*100%/.test(read('styles/popups.css')));
 check('each detachment has a visible Stratagems destination',(markup.match(/class="detachment-part"[^>]*data-track="[^"]+">\s*<h4 class="detachment-part-title">Stratagems<\/h4>/g)||[]).length===bookData.audit.detachments);
@@ -257,9 +258,9 @@ check('Contagion Engines uses current MFM disposition',JSON.stringify(bookData).
 check('book uses the unified root manifest',html.includes('href="../../manifest.webmanifest"'));
 check('complete preview service worker owns its cache family',readProject('service-worker.js').includes('key.startsWith(CACHE_PREFIX)')&&readProject('service-worker.js').includes('warhammer-rules-complete-preview-'));
 check('complete preview PWA cache revision is content-derived',readProject('service-worker.js').includes('self.WH40K_CACHE_REVISION'));
-check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/tokens.css','styles/content.css','styles/navigation.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/roster-filter.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/related-rules.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/tokens.css?v=10')&&html.includes('./styles/content.css?v=27')&&html.includes('./styles/navigation.css?v=11')&&html.includes('./styles/popups.css?v=16')&&html.includes('./scripts/roster-filter.js?v=14')&&html.includes('./scripts/navigation-controller.js?v=15')&&html.includes('./scripts/popup-controller.js?v=22')&&html.includes('./scripts/full-entry-controller.js?v=8')&&html.includes('./scripts/journey-controller.js?v=11')&&html.includes('./scripts/ui-controllers.js?v=11')&&html.includes('./scripts/related-rules.js?v=6')&&html.includes('./scripts/app.js?v=27'));
+check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/tokens.css','styles/content.css','styles/navigation.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/roster-filter.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/related-rules.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/tokens.css?v=10')&&html.includes('./styles/content.css?v=28')&&html.includes('./styles/navigation.css?v=11')&&html.includes('./styles/popups.css?v=17')&&html.includes('./scripts/roster-filter.js?v=14')&&html.includes('./scripts/navigation-controller.js?v=15')&&html.includes('./scripts/popup-controller.js?v=23')&&html.includes('./scripts/full-entry-controller.js?v=8')&&html.includes('./scripts/journey-controller.js?v=11')&&html.includes('./scripts/ui-controllers.js?v=11')&&html.includes('./scripts/related-rules.js?v=6')&&html.includes('./scripts/app.js?v=28'));
 check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
-check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=4"'));
+check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=5"'));
 check('book loads the shared datasheet layout',html.includes('src="../shared/datasheet-layout.js?v=2"'));
 check('glossary autolinking precedes navigation geometry',read('scripts/app.js').indexOf('WHGlossaryAutolink?.apply')<read('scripts/app.js').indexOf('new window.DGNavigation'));
 check('v4 icon is used without legacy v3 PNG references',html.includes('assets/icon-v4.svg')&&!html.includes('icon-180.png'));

@@ -149,8 +149,8 @@
         let top=rect?rect.bottom+gap:(window.innerHeight-height)/2;
         if(rect&&top+height>window.innerHeight-margin)top=rect.top-height-gap;
         top=Math.max(headerBottom+margin,Math.min(top,window.innerHeight-height-margin));
-        card.style.left=Math.round(left+(window.scrollX||0))+'px';
-        card.style.top=Math.round(top+(window.scrollY||0))+'px';
+        card.style.left=Math.round(left)+'px';
+        card.style.top=Math.round(top)+'px';
       });
     }
   }
