@@ -19,10 +19,36 @@ for(const section of deathGuard.sections){
       const match=enhancement.title.match(/^(.*?)\s+[-–—]\s+(\d+)\s*pts$/i);
       if(!match)throw new Error(`Enhancement points missing: ${enhancement.title}`);
       const effects={
-        'revolting regeneration':'ability',
-        'furnace of plagues':'furnace',
         'daemon weapon of nurgle':'critical-hit-5',
-        'parasitic woe reaper':'ability'
+        'furnace of plagues':'furnace',
+        'arch contaminator':'conditional',
+        'revolting regeneration':'persistent',
+        'eye of affliction':'conditional',
+        'bilemaw blight':'plague-wind-range-12',
+        'shriekworm familiar':'persistent',
+        'tendrilous emissions':'conditional',
+        'final ingredient':'once',
+        'visions of virulence':'conditional',
+        'needle of nurgle':'narthecium-d3',
+        'cornucophagus':'setup',
+        'beckoning blight':'persistent',
+        'fell harvester':'melee-a-2',
+        'entropic knell':'conditional',
+        'tome of bounteous blessings':'conditional',
+        'witherbone pipes':'attachment',
+        'lord of the walking pox':'attachment',
+        'sorrowsyphon':'attachment',
+        'talisman of burgeoning':'attachment',
+        'face of death':'persistent',
+        'vile vigour':'attachment',
+        'warprot talisman':'once',
+        'helm of the fly king':'attachment',
+        'parasitic woe reaper':'persistent',
+        'lancet of the worldsore':'mobile',
+        'insectile murmuration':'conditional',
+        'plagueveil':'persistent',
+        'rejuvenating swarm':'conditional',
+        'host of the hybridised pox':'once'
       };
       dgEnhancements[normalize(match[1])]={title:match[1],value:Number(match[2]),text:enhancement.text,effect:effects[normalize(match[1])]||''};
     }

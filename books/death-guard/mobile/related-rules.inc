@@ -228,7 +228,7 @@
 <article class="enhancement surface" id="enhancement-revolting-regeneration">
 <div class="eyebrow">Enhancement</div>
 <h4>
-<button class="term-button" data-term="revolting-regeneration" data-term-title="Revolting Regeneration" data-term-summary="DEATH GUARD model only. The bearer has the Feel No Pain 5+ ability.">Revolting Regeneration</button> - 30 pts</h4>
+<button class="term-button" data-term="revolting-regeneration" data-term-title="Revolting Regeneration" data-term-summary="DEATH GUARD model only. The bearer has the Feel No Pain 5+ ability.">Revolting Regeneration</button> - 20 pts</h4>
 <p>
 <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> model only. The bearer has the <button class="term-button" data-term="core-feel-no-pain" data-term-title="FEEL NO PAIN" data-term-summary="The hardiest warriors refuse to be laid low, even by wounds that should by all rights prove lethal. This ability always takes the form Feel No Pain X+. Each time a model with this ability would lose a wound, roll one D6: on an X+, that wound is not lost." data-full-rule-path="books/core-rules/reader/core-abilities.html#rule-24-12">Feel No Pain</button> 5+ ability.</p>
 </article>
@@ -1155,7 +1155,7 @@
 <article class="enhancement surface" id="enhancement-lancet-of-the-worldsore">
 <div class="eyebrow">Enhancement</div>
 <h4>
-<button class="term-button" data-term="lancet-of-the-worldsore" data-term-title="Lancet of the Worldsore" data-term-summary="Friendly HELBRUTE/MYPHITIC BLIGHT-HAULER unit only. This unit has MOBILE.">Lancet of the Worldsore</button> - 15 pts</h4>
+<button class="term-button" data-term="lancet-of-the-worldsore" data-term-title="Lancet of the Worldsore" data-term-summary="Friendly HELBRUTE/MYPHITIC BLIGHT-HAULER unit only. This unit has MOBILE.">Lancet of the Worldsore</button> - 20 pts</h4>
 <p>Friendly <button class="term-button" data-term="term-helbrute" data-term-title="Helbrute" data-term-summary="M 7&quot; · T 9 · Sv 2+ · W 8 · Ld 6+ · OC 3">HELBRUTE</button>/<button class="term-button" data-term="term-myphitic-blight-hauler" data-term-title="Myphitic Blight-hauler" data-term-summary="M 10&quot; · T 9 · Sv 3+ · W 10 · Ld 6+ · OC 3 · Inv 5+">MYPHITIC BLIGHT-HAULER</button> unit only. This unit has <button class="term-button" data-term="core-mobile" data-term-title="Mobile" data-term-summary="MOBILE models can move horizontally through dense terrain features.">MOBILE</button>.</p>
 </article>
 </div>
@@ -1237,14 +1237,14 @@
 <article class="enhancement surface" id="enhancement-insectile-murmuration">
 <div class="eyebrow">Enhancement</div>
 <h4>
-<button class="term-button" data-term="insectile-murmuration" data-term-title="Insectile Murmuration" data-term-summary="PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1.">Insectile Murmuration</button> - 15 pts</h4>
+<button class="term-button" data-term="insectile-murmuration" data-term-title="Insectile Murmuration" data-term-summary="PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1.">Insectile Murmuration</button> - 20 pts</h4>
 <p>
 <button class="term-button" data-term="term-plague-marines" data-term-title="Plague Marines" data-term-summary="M 5&quot; · T 6 · Sv 3+ · W 2 · Ld 6+ · OC 2">PLAGUE MARINES</button> unit only. When this unit’s attacks target a unit within <button class="term-button" data-term="contagion-range" data-term-title="Contagion Range" data-term-summary="Contagion Range is 3&quot; in battle round 1, 6&quot; in round 2 and 9&quot; from round 3 onward; it cannot exceed 12&quot; after modifiers.">Contagion Range</button> of a friendly unit, those attacks can re-roll wound rolls of 1.</p>
 </article>
 <article class="enhancement surface" id="enhancement-plagueveil">
 <div class="eyebrow">Enhancement</div>
 <h4>
-<button class="term-button" data-term="plagueveil" data-term-title="Plagueveil" data-term-summary="PLAGUE MARINES unit only. This unit has -3&quot; detection range.">Plagueveil</button> - 15 pts</h4>
+<button class="term-button" data-term="plagueveil" data-term-title="Plagueveil" data-term-summary="PLAGUE MARINES unit only. This unit has -3&quot; detection range.">Plagueveil</button> - 25 pts</h4>
 <p>
 <button class="term-button" data-term="term-plague-marines" data-term-title="Plague Marines" data-term-summary="M 5&quot; · T 6 · Sv 3+ · W 2 · Ld 6+ · OC 2">PLAGUE MARINES</button> unit only. This unit has -3&quot; <button class="term-button" data-term="core-detection-range" data-term-title="Detection Range" data-term-summary="Hidden models can only be visible to enemies within their Detection Range; normally 15&quot;.">detection range</button>.</p>
 </article>
@@ -1327,14 +1327,14 @@
 <article class="enhancement surface" id="enhancement-rejuvenating-swarm">
 <div class="eyebrow">Enhancement</div>
 <h4>
-<button class="term-button" data-term="rejuvenating-swarm" data-term-title="Rejuvenating Swarm" data-term-summary="DEATH GUARD INFANTRY model only (excluding TERMINATOR models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls.">Rejuvenating Swarm</button> - 20 pts</h4>
+<button class="term-button" data-term="rejuvenating-swarm" data-term-title="Rejuvenating Swarm" data-term-summary="DEATH GUARD INFANTRY model only (excluding TERMINATOR models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls.">Rejuvenating Swarm</button> - 15 pts</h4>
 <p>
 <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> <button class="term-button" data-term="keyword-infantry" data-term-title="INFANTRY" data-term-summary="INFANTRY units use TERRAIN AND MOVEMENT, BENEFIT OF COVER and HIDDEN.">INFANTRY</button> model only (excluding <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls.</p>
 </article>
 <article class="enhancement surface" id="enhancement-host-of-the-hybridised-pox">
 <div class="eyebrow">Enhancement</div>
 <h4>
-<button class="term-button" data-term="host-of-the-hybridised-pox" data-term-title="Host of the Hybridised Pox" data-term-summary="DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift.">Host of the Hybridised Pox</button> - 40 pts</h4>
+<button class="term-button" data-term="host-of-the-hybridised-pox" data-term-title="Host of the Hybridised Pox" data-term-summary="DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift.">Host of the Hybridised Pox</button> - 20 pts</h4>
 <p>
 <button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> <button class="term-button" data-term="keyword-infantry" data-term-title="INFANTRY" data-term-summary="INFANTRY units use TERRAIN AND MOVEMENT, BENEFIT OF COVER and HIDDEN.">INFANTRY</button> model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in <button class="term-button" data-term="nurgles-gift" data-term-title="Nurgle’s Gift" data-term-summary="While an enemy unit is within Contagion Range of one or more DEATH GUARD models from your army, it is Afflicted.">Nurgle’s Gift</button>. Enemy units within <button class="term-button" data-term="contagion-range" data-term-title="Contagion Range" data-term-summary="Contagion Range is 3&quot; in battle round 1, 6&quot; in round 2 and 9&quot; from round 3 onward; it cannot exceed 12&quot; after modifiers.">Contagion Range</button> of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.</p>
 </article>

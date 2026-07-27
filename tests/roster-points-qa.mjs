@@ -38,10 +38,10 @@ Char3: 1x Malignant Plaguecaster (60 pts): Bolt pistol, Corrupted staff, Plague 
 Enhancement: Parasitic Woe-Reaper (+15 pts)
 1x Myphitic Blight-hauler (100 pts): Bile spurt, Gnashing maw, Missile launcher, Multi-melta`;
 
-for(const [declared,name,lordPoints,effect] of [
-  [1025,'Revolting Regeneration',150,'ability'],
-  [1020,'Furnace of Plagues',145,'furnace'],
-  [1005,'Daemon Weapon of Nurgle',130,'critical-hit-5']
+for(const [declared,name,lordPoints,effect,currentTotal] of [
+  [1025,'Revolting Regeneration',150,'persistent',1015],
+  [1020,'Furnace of Plagues',145,'furnace',1020],
+  [1005,'Daemon Weapon of Nurgle',130,'critical-hit-5',1005]
 ]){
   const roster=WHRosterParser.parse(common(declared,name,lordPoints));
   assert.equal(roster.units.length,9);
@@ -57,12 +57,22 @@ for(const [declared,name,lordPoints,effect] of [
   assert.equal(woe.ownerName,'Foetid Bloat-drone with heavy blight launcher');
   assert.equal(woe.exportedCost,15);
   const result=WHRosterPoints.check(roster,'death guard');
-  assert.equal(result.total,declared);
-  assert.equal(result.difference,0);
+  assert.equal(result.total,currentTotal);
+  assert.equal(result.difference,currentTotal-declared);
   assert.equal(result.exportMatches,true);
   assert.equal(result.unresolved.length,0);
   assert.equal(result.enhancements.find(item=>item.name===name).effect,effect);
 }
+
+assert.ok(Object.values(WH_POINTS_CATALOG['death guard'].enhancements).every(item=>item.effect),'every Death Guard Enhancement must declare a presentation mode');
+for(const [name,cost] of Object.entries({
+  'revolting regeneration':20,
+  'lancet of the worldsore':20,
+  'insectile murmuration':20,
+  plagueveil:25,
+  'rejuvenating swarm':15,
+  'host of the hybridised pox':20
+}))assert.equal(WH_POINTS_CATALOG['death guard'].enhancements[name].value,cost,`${name} current cost`);
 
 const mechanicus=WHRosterPoints.check({units:[{quantity:10,name:'Skitarii Rangers',models:[]}],declared:85,unitLineTotal:85,enhancements:[]},'adeptus mechanicus');
 assert.equal(mechanicus.total,85);
