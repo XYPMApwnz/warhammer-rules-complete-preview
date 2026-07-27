@@ -43,23 +43,39 @@
         source:previous.source === item.source ? previous.source : 'header+inline'
       } : item);
     }
-    const entries = [...merged.values()];
-    const ownersByName = new Map();
-    for (const item of entries) {
-      const owners = ownersByName.get(item.normalizedName) || new Set();
-      owners.add(item.ownerUnitId || item.ownerSourceRef || 'unresolved');
-      ownersByName.set(item.normalizedName, owners);
+    let entries = [...merged.values()];
+    for (const name of new Set(entries.map(item => item.normalizedName))) {
+      const group = entries.filter(item => item.normalizedName === name);
+      const headers = group.filter(item => item.source === 'header');
+      const inline = group.filter(item => item.source === 'inline');
+      if (headers.length !== 1 || inline.length !== 1) continue;
+      const header = headers[0], body = inline[0];
+      entries = entries.filter(item => item !== header && item !== body);
+      entries.push({
+        ...header,
+        exportedCost:body.exportedCost ?? header.exportedCost,
+        ownerUnitId:'',
+        ownerName:'',
+        ownerStatus:'ambiguous',
+        ownerCandidates:[header.ownerName || header.ownerLabel, body.ownerName || body.ownerLabel].filter(Boolean),
+        source:'header+inline'
+      });
     }
     for (const item of entries) {
-      if (ownersByName.get(item.normalizedName).size > 1) item.ownerStatus = 'ambiguous';
-      if (item.ownerStatus !== 'resolved') warnings.push(`${item.name}: Enhancement owner could not be resolved.`);
+      if (item.ownerStatus === 'ambiguous') warnings.push(`${item.name}: Enhancement owner conflicts between header and inline metadata.`);
+      else if (item.ownerStatus !== 'resolved') warnings.push(`${item.name}: Enhancement owner could not be resolved.`);
     }
     return entries;
   }
 
   function parse(text) {
     const lines = String(text || '').replace(/\u00a0/g, ' ').split(/\r?\n/).map(line => line.trim()).filter(Boolean);
-    const values = key => lines.filter(line => line.toUpperCase().startsWith(`+ ${key}:`)).map(line => line.split(':').slice(1).join(':').trim()).filter(Boolean);
+    const firstUnit = lines.findIndex(line => /^(?:(?:Char\d+):\s*)?\d+x\s+.+?\s+\(\d+\s*pts?\)/i.test(line));
+    const metadataLines = firstUnit < 0 ? lines : lines.slice(0, firstUnit);
+    const values = key => {
+      const prefix = new RegExp(`^\\+?\\s*${key.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}\\s*:`, 'i');
+      return metadataLines.filter(line => prefix.test(line)).map(line => line.replace(prefix, '').trim()).filter(Boolean);
+    };
     const value = key => values(key)[0] || '—';
     const units = [];
     const rawEnhancements = [];
@@ -77,8 +93,10 @@
       }
       const inline = line.match(/^Enhancement:\s*(.+)$/i);
       if (inline) {
-        const parts = enhancementParts(inline[1]);
-        rawEnhancements.push({ ...parts, source:'inline', ownerUnitId:currentUnit?.id || '', ownerLabel:currentUnit?.name || '' });
+        if (currentUnit) {
+          const parts = enhancementParts(inline[1]);
+          rawEnhancements.push({ ...parts, source:'inline', ownerUnitId:currentUnit.id, ownerLabel:currentUnit.name });
+        }
         continue;
       }
       if (line.startsWith('\u2022')) {

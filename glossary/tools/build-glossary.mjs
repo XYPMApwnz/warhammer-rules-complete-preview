@@ -511,7 +511,7 @@ const cacheInputs=[
   'books/death-guard/scripts/view-router.js','books/death-guard/scripts/roster-filter.js','books/death-guard/scripts/related-rules.js','books/death-guard/scripts/full-entry-controller.js',
   'books/core-rules/styles.css','books/core-rules/config.js','books/core-rules/basic-content.js','books/core-rules/app.js',
   ...coreReaderFiles,
-  'glossary/viewer.css','glossary/viewer-profiles.css','glossary/viewer.js'
+  'glossary/viewer.css','glossary/viewer-profiles.css','glossary/viewer-progressive.css','glossary/viewer.js'
 ].filter(file=>fs.existsSync(path.join(root,file)));
 const cacheRevision=hash(JSON.stringify({glossary:runtimePayload.contentHash,files:cacheInputs.map(file=>[file,hash(fs.readFileSync(path.join(root,file)))])})).slice(0,16);
 fs.writeFileSync(path.join(glossaryRoot,'generated','cache-revision.js'),`self.WH40K_CACHE_REVISION='${cacheRevision}';\n`);

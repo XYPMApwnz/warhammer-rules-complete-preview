@@ -1,0 +1,22 @@
+.article-open .intro{display:none}
+.article-open .shell{padding-top:28px}
+.search-another{display:none;margin:0 0 24px;padding:10px 12px;border:1px solid var(--line);background:var(--panel);color:var(--acid);font:700 10px monospace;letter-spacing:.08em;text-transform:uppercase}
+.summary.definition{border-left:3px solid var(--acid);background:linear-gradient(90deg,rgba(184,215,125,.1),transparent);padding:17px 20px;margin:0 0 28px}
+.summary.definition p{margin:0}
+.full-rule-action{display:inline-block;margin:28px 0 8px;padding:12px 15px;border:1px solid var(--gold);color:var(--text);font-weight:700;text-decoration:none}
+.full-rule-action:hover{border-color:var(--acid);color:var(--acid)}
+.connection-details,.registry-details{position:relative;max-width:900px;margin-top:28px;border:1px solid var(--line);background:rgba(20,25,21,.72)}
+.connection-details summary,.registry-details summary{padding:16px 18px;color:var(--gold);font:700 10px monospace;letter-spacing:.09em;text-transform:uppercase;cursor:pointer}
+.details-content{padding:0 18px 20px}
+.details-content .reference-section:first-child .detail-label{margin-top:8px}
+.registry-details .meta-grid{margin-top:0;max-width:none;grid-template-columns:repeat(2,minmax(0,1fr))}
+.registry-details .meta-grid b{overflow-wrap:anywhere}
+@media(max-width:760px){
+  body:not(.article-open) .term-detail{display:none}
+  .article-open .catalogue{display:none}
+  .article-open .shell{padding-top:14px}
+  .article-open .workspace{border-top:0}
+  .article-open .term-detail{display:block}
+  .search-another{display:block}
+  .registry-details .meta-grid{grid-template-columns:1fr}
+}

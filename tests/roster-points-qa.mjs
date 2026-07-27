@@ -81,4 +81,27 @@ assert.equal(mechanicus.difference,0);
 const unresolved=WHRosterParser.parse(`+ FACTION KEYWORD: Chaos — Death Guard\n+ TOTAL ARMY POINTS: 120pts\n+ ENHANCEMENT: Furnace of Plagues (on Char9: Missing Owner)\n1x Lord of Contagion (120 pts): Manreaper`);
 assert.equal(unresolved.enhancements[0].ownerStatus,'unresolved');
 assert.match(unresolved.warnings[0],/owner could not be resolved/);
+
+const duplicateOwners=WHRosterParser.parse(`FACTION KEYWORD: Chaos - Death Guard
+TOTAL ARMY POINTS: 280pts
+ENHANCEMENT: Furnace of Plagues (on Char1: Lord of Contagion), Furnace of Plagues (on Char2: Lord of Virulence)
+Char1: 1x Lord of Contagion (145 pts): Manreaper
+Enhancement: Furnace of Plagues (+25 pts)
+Char2: 1x Lord of Virulence (135 pts): Heavy plague fist
+Enhancement: Furnace of Plagues (+25 pts)`);
+assert.equal(duplicateOwners.faction,'Chaos - Death Guard','metadata must work without a leading plus');
+assert.equal(duplicateOwners.declared,280);
+assert.equal(duplicateOwners.enhancements.length,2);
+assert.ok(duplicateOwners.enhancements.every(item=>item.ownerStatus==='resolved'),'same Enhancement name on distinct resolved owners is not ambiguous');
+
+const conflictingOwner=WHRosterParser.parse(`FACTION KEYWORD: Chaos - Death Guard
+TOTAL ARMY POINTS: 280pts
+ENHANCEMENT: Furnace of Plagues (on Char1: Lord of Contagion)
+Char1: 1x Lord of Contagion (120 pts): Manreaper
+Char2: 1x Lord of Virulence (160 pts): Heavy plague fist
+Enhancement: Furnace of Plagues (+25 pts)`);
+assert.equal(conflictingOwner.enhancements.length,1,'conflicting header and inline copies remain one priced Enhancement');
+assert.equal(conflictingOwner.enhancements[0].ownerStatus,'ambiguous');
+assert.deepEqual([...conflictingOwner.enhancements[0].ownerCandidates],['Lord of Contagion','Lord of Virulence']);
+assert.match(conflictingOwner.warnings[0],/conflicts between header and inline metadata/);
 console.log('Roster parser and points QA passed.');

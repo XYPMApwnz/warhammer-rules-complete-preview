@@ -38,10 +38,9 @@
     .flatMap(group => [...group.querySelectorAll('.weapon-row:not(.weapon-head)')]);
   const meleeRows = card => weaponRows(card, 'melee');
   const effectLabels = {
-    persistent:'Always active', conditional:'Conditional', attachment:'While leading', once:'Once per battle', setup:'Battle setup',
-    furnace:'Profile applied', 'critical-hit-5':'Melee rule applied', 'melee-a-2':'Profile applied',
-    'plague-wind-range-12':'Shooting profile', 'narthecium-d3':'Ability upgraded', mobile:'Keyword applied'
+    persistent:'Always active', conditional:'Conditional', attachment:'While leading', once:'Once per battle', setup:'Battle setup'
   };
+  const derivedEffects = new Set(['furnace','critical-hit-5','melee-a-2','plague-wind-range-12','narthecium-d3','mobile']);
   const addNote = (group, className, text) => {
     if (!group || group.querySelector(`.${className}`)) return;
     const note = document.createElement('p');
@@ -51,7 +50,8 @@
   };
   const addMobile = card => {
     const paragraph = card.querySelector('[id$="-keywords"] .content-block p');
-    if (!paragraph || paragraph.querySelector('[data-roster-keyword="mobile"]')) return;
+    if (!paragraph) return false;
+    if (paragraph.querySelector('[data-roster-keyword="mobile"]')) return true;
     paragraph.append(document.createTextNode(', '));
     const keyword = document.createElement('button');
     keyword.type = 'button';
@@ -60,8 +60,15 @@
     keyword.dataset.rosterKeyword = 'mobile';
     keyword.textContent = 'MOBILE';
     paragraph.append(keyword);
+    return true;
   };
-  const appendAbility = (card, item) => {
+  const priceText = item => {
+    const exported = Number(item.exportedCost), current = Number(item.currentCost);
+    return Number.isFinite(exported) && Number.isFinite(current) && exported !== current
+      ? `${exported} pts in export · ${current} pts current`
+      : `Included +${item.exportedCost ?? item.currentCost} pts`;
+  };
+  const appendAbility = (card, item, failure) => {
     const rootNode = card.querySelector('[id$="-abilities"] .ability-list');
     if (!rootNode || rootNode.querySelector(`[data-roster-enhancement="${CSS.escape(item.normalizedName || normalize(item.name))}"]`)) return;
     const article = document.createElement('article');
@@ -71,15 +78,68 @@
     heading.textContent = item.name;
     const meta = document.createElement('small');
     meta.className = 'roster-enhancement-cost';
-    meta.textContent = `Included +${item.exportedCost ?? item.currentCost} pts`;
-    const mode = document.createElement('small');
-    mode.className = `roster-enhancement-mode roster-enhancement-mode-${item.effect || 'reference'}`;
-    mode.textContent = effectLabels[item.effect] || 'Rules reference';
+    meta.textContent = priceText(item);
     const text = document.createElement('p');
     text.textContent = item.text || '';
-    article.append(heading, meta, mode, text);
+    article.append(heading, meta);
+    if (effectLabels[item.effect]) {
+      const mode = document.createElement('small');
+      mode.className = `roster-enhancement-mode roster-enhancement-mode-${item.effect}`;
+      mode.textContent = effectLabels[item.effect];
+      article.append(mode);
+    }
+    article.append(text);
+    if (failure) {
+      const error = document.createElement('p');
+      error.className = 'roster-enhancement-failure';
+      error.textContent = `Effect could not be applied automatically. ${failure}`;
+      article.append(error);
+    }
     rootNode.append(article);
   };
+
+  function applyEffect(card, item, safeToDerive) {
+    if (!derivedEffects.has(item.effect)) return '';
+    if (!safeToDerive) return 'This datasheet card matches multiple roster units.';
+    if (item.effect === 'furnace') {
+      const rows = meleeRows(card);
+      if (!rows.length) return 'No matching melee weapon profiles were found.';
+      for (const row of rows) {
+        modifyCell(row.querySelector('[data-label="A"]'), 1);
+        modifyCell(row.querySelector('[data-label="S"]'), 1);
+        addDevastatingWounds(row);
+      }
+    }
+    if (item.effect === 'critical-hit-5') {
+      const group = meleeRows(card)[0]?.closest('.weapon-group');
+      if (!group) return 'No matching melee weapon profiles were found.';
+      if (!group.querySelector('.roster-critical-hit')) {
+        const note = document.createElement('p');
+        note.className = 'roster-critical-hit';
+        note.textContent = 'Enhancement: unmodified Hit rolls of 5+ score a Critical Hit for these melee weapons.';
+        group.querySelector('h5')?.after(note);
+      }
+    }
+    if (item.effect === 'melee-a-2') {
+      const rows = meleeRows(card);
+      if (!rows.length) return 'No matching melee weapon profiles were found.';
+      for (const row of rows) modifyCell(row.querySelector('[data-label="A"]'), 2);
+    }
+    if (item.effect === 'plague-wind-range-12') {
+      const rows = weaponRows(card, 'ranged').filter(row => normalize(row.querySelector('.weapon-button')?.textContent).startsWith('plague wind'));
+      if (!rows.length) return 'The Plague Wind weapon profile was not found.';
+      for (const row of rows) modifyCell(row.querySelector('[data-label="Range"]'), 12);
+      addNote(rows[0].closest('.weapon-group'), 'roster-plague-wind-range', 'Enhancement profile: Plague Wind has +12″ Range during your Shooting phase.');
+    }
+    if (item.effect === 'narthecium-d3') {
+      const ability = card.querySelector('[id*="tainted-narthecium"]');
+      if (!ability) return 'The Tainted Narthecium ability was not found.';
+      ability.classList.add('roster-enhanced-ability');
+      addNote(ability, 'roster-narthecium', 'Enhancement: return D3 destroyed models instead of 1.');
+    }
+    if (item.effect === 'mobile' && !addMobile(card)) return 'The Keywords block was not found.';
+    return '';
+  }
 
   function decorate(card, roster, units) {
     const unitIds = new Set(units.map(unit => unit.id));
@@ -87,38 +147,8 @@
     if (!owned.length) return [];
     const safeToDerive = units.length === 1;
     for (const item of owned) {
-      appendAbility(card, item);
-      if (!safeToDerive) continue;
-      if (item.effect === 'furnace') {
-        for (const row of meleeRows(card)) {
-          modifyCell(row.querySelector('[data-label="A"]'), 1);
-          modifyCell(row.querySelector('[data-label="S"]'), 1);
-          addDevastatingWounds(row);
-        }
-      }
-      if (item.effect === 'critical-hit-5') {
-        const group = meleeRows(card)[0]?.closest('.weapon-group');
-        if (group && !group.querySelector('.roster-critical-hit')) {
-          const note = document.createElement('p');
-          note.className = 'roster-critical-hit';
-          note.textContent = 'Enhancement: unmodified Hit rolls of 5+ score a Critical Hit for these melee weapons.';
-          group.querySelector('h5')?.after(note);
-        }
-      }
-      if (item.effect === 'melee-a-2') {
-        for (const row of meleeRows(card)) modifyCell(row.querySelector('[data-label="A"]'), 2);
-      }
-      if (item.effect === 'plague-wind-range-12') {
-        const rows = weaponRows(card, 'ranged').filter(row => normalize(row.querySelector('.weapon-button')?.textContent).startsWith('plague wind'));
-        for (const row of rows) modifyCell(row.querySelector('[data-label="Range"]'), 12);
-        addNote(rows[0]?.closest('.weapon-group'), 'roster-plague-wind-range', 'Enhancement profile: Plague Wind has +12″ Range during your Shooting phase.');
-      }
-      if (item.effect === 'narthecium-d3') {
-        const ability = card.querySelector('[id*="tainted-narthecium"]');
-        ability?.classList.add('roster-enhanced-ability');
-        addNote(ability, 'roster-narthecium', 'Enhancement: return D3 destroyed models instead of 1.');
-      }
-      if (item.effect === 'mobile') addMobile(card);
+      const failure = applyEffect(card, item, safeToDerive);
+      appendAbility(card, item, failure);
     }
     return owned;
   }
