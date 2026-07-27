@@ -11,7 +11,7 @@ const APP_SHELL = [
   LIBRARY_FALLBACK,
   "./roster-guides/",
   ROSTER_GUIDES_FALLBACK,
-  "./roster-guides/app.js?v=2",
+  "./roster-guides/app.js?v=3",
   "./manifest.webmanifest",
   "./assets/apple-touch-icon.png",
   "./assets/icon-192.png",

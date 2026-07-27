@@ -50,7 +50,7 @@ function saveRoster(roster,sourceText){
 
 function openSavedRoster(id){
   const record=getSavedRosters().find(item=>item?.id===id);
-  if(!record)return;
+  if(!record){alert('Saved roster not found.');return;}
   const faction=knownFaction(record.roster?.faction);
   if(!faction){alert('The saved roster faction is not recognised. The record was not changed.');return;}
   const reader=FACTION_READERS[faction];
@@ -86,7 +86,7 @@ function parseRoster(text){
   }
   const declared=Number(value('TOTAL ARMY POINTS').match(/\d+/)?.[0]||0),calculated=units.reduce((total,unit)=>total+unit.points,0),dispositions=splitList(values('FORCE DISPOSITION'));
   const detachments=splitList(values('DETACHMENT')).map((label,index)=>({label,name:label.replace(/\s*\([^)]*\)\s*$/,''),rule:label.match(/\(([^)]*)\)/)?.[1]||'',disposition:dispositions[index]||dispositions[0]||'—'}));
-  const factionValue=value('FACTION KEYWORD'),factionKey=knownFaction(factionValue),faction=FACTION_LABELS[factionKey]||factionValue;
+  const factionValue=values('FACTION KEYWORD')[0]||'',factionKey=knownFaction(factionValue),faction=FACTION_LABELS[factionKey]||factionValue;
   return{faction,detachment:detachments[0]?.label||'—',detachments,disposition:dispositions[0]||'—',enhancements:values('ENHANCEMENT'),enhancement:value('ENHANCEMENT'),declared,calculated,units};
 }
 
@@ -103,7 +103,7 @@ document.querySelector('#roster-form').addEventListener('submit',event=>{
   event.preventDefault();const input=document.querySelector('#roster-input'),roster=parseRoster(input.value);
   if(!roster.units.length){document.querySelector('#roster-result').innerHTML='<p class="eyebrow">Import error</p><h2>No units found</h2><p class="help">Paste a New Recruit export containing entries such as “1x Unit (100 pts)”.</p>';return;}
   const faction=knownFaction(roster.faction);
-  if(!faction){document.querySelector('#roster-result').innerHTML=`<p class="eyebrow">Unknown faction</p><h2>${escapeHtml(roster.faction)}</h2><p class="help">This faction is not recognised. The roster was not saved.</p>`;return;}
+  if(!faction){document.querySelector('#roster-result').innerHTML=roster.faction?`<p class="eyebrow">Unknown faction</p><h2>${escapeHtml(roster.faction)}</h2><p class="help">This faction is not recognised. The roster was not saved.</p>`:'<p class="eyebrow">Import error</p><h2>Faction not found</h2><p class="help">The export has no FACTION KEYWORD line. The roster was not saved.</p>';return;}
   roster.faction=FACTION_LABELS[faction];
   const record=saveRoster(roster,input.value);renderRoster(roster,record);
 });
