@@ -23,3 +23,4 @@ html[data-theme="light"]{color-scheme:light;--bg:#d1ccbc;--panel:#eee8d5;--raise
 /* Rule locators stay in search and anchors, never in the reading interface. */
 .designed-rule-head{grid-template-columns:minmax(0,1fr) auto}
 @media(max-width:700px){.designed-rule-head{grid-template-columns:minmax(0,1fr) auto}.designed-rule-head .rule-page{grid-column:auto}}
+body.search-open{overflow:hidden;overscroll-behavior:none}

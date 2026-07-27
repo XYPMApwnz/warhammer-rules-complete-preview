@@ -1,4 +1,5 @@
 .popup-layer { position: absolute; z-index: 80; inset: 0; pointer-events: none; }
+html:has(dialog[open]),body:has(dialog[open]),html:has(.popup-layer .term-popup),body:has(.popup-layer .term-popup) { overflow: hidden; overscroll-behavior: none; }
 .popup-layer:has(.term-popup)::before {
   content: "";
   position: fixed;

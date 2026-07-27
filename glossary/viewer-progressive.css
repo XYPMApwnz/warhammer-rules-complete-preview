@@ -1,4 +1,5 @@
 .article-open .intro{display:none}
+html:has(dialog[open]),body:has(dialog[open]){overflow:hidden;overscroll-behavior:none}
 .article-open .shell{padding-top:28px}
 .search-another{display:none;margin:0 0 24px;padding:10px 12px;border:1px solid var(--line);background:var(--panel);color:var(--acid);font:700 10px monospace;letter-spacing:.08em;text-transform:uppercase}
 .summary.definition{border-left:3px solid var(--acid);background:linear-gradient(90deg,rgba(184,215,125,.1),transparent);padding:17px 20px;margin:0 0 28px}

@@ -4,6 +4,7 @@
   --lime:var(--bronze-text); --cyan:var(--bronze-text); --amber:#d2963e; --pink:#9e3d30; --header:66px; --nav:286px;
 }
 *{box-sizing:border-box;scrollbar-color:var(--bronze) #101310;scrollbar-width:thin}
+html:has(dialog[open]),body:has(dialog[open]){overflow:hidden;overscroll-behavior:none}
 *::-webkit-scrollbar{width:10px;height:10px}
 *::-webkit-scrollbar-track{background:#101310}
 *::-webkit-scrollbar-thumb{border:2px solid #101310;border-radius:8px;background:linear-gradient(180deg,var(--bronze-text),var(--bronze))}
