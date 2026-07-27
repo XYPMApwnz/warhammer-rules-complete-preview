@@ -505,7 +505,7 @@ const cacheInputs=[
   'index.html','manifest.webmanifest','service-worker.js','glossary-return.js','roster-guides/index.html','roster-guides/app.js','roster-guides/points-data.js','roster-guides/points-validator.js',
   'books/death-guard/index.html','books/core-rules/index.html','books/adeptus-mechanicus/index.html',
   ...['death-guard','adeptus-mechanicus'].flatMap(book=>['tokens.css','layout.css','navigation.css','content.css','popups.css'].map(file=>`books/${book}/styles/${file}`)),
-  'books/shared/navigation-targets.js','books/shared/datasheet-layout.js','books/shared/datasheet-system.css','books/shared/popup-content.js','books/shared/glossary-autolink.js',
+  'books/shared/navigation-targets.js','books/shared/datasheet-layout.js','books/shared/datasheet-system.css','books/shared/popup-content.js','books/shared/glossary-autolink.js','books/shared/roster-parser.js','books/shared/roster-enhancements.js',
   ...['death-guard','adeptus-mechanicus'].flatMap(book=>['data.js','navigation-controller.js','popup-controller.js','journey-controller.js','ui-controllers.js','app.js'].map(file=>`books/${book}/scripts/${file}`)),
   'books/death-guard/mobile/mobile.css','books/death-guard/mobile/mobile.js','books/death-guard/mobile/related-rules.inc',
   'books/death-guard/scripts/view-router.js','books/death-guard/scripts/roster-filter.js','books/death-guard/scripts/related-rules.js','books/death-guard/scripts/full-entry-controller.js',

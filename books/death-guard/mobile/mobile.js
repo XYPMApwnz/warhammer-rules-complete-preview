@@ -24,6 +24,17 @@
   const unit = document.querySelector('.unit-card');
   const params = new URLSearchParams(location.search);
 
+  if (params.get('roster') && unit && window.WHRosterParser && window.WHRosterEnhancements) {
+    try {
+      const records = JSON.parse(localStorage.getItem('wh40k-rosters-v1')) || [];
+      const record = records.find(item => item?.id === params.get('roster'));
+      const parsed = record?.sourceText ? window.WHRosterParser.parse(record.sourceText) : record?.roster;
+      const unitSlug = unit.id.replace(/^unit-/, '');
+      const matching = (parsed?.units || []).filter(item => String(item.name || '').toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') === unitSlug);
+      if (matching.length) window.WHRosterEnhancements.decorate(unit, parsed, matching);
+    } catch {}
+  }
+
   if (rosterGuides) rosterGuides.hidden = !params.get('roster');
   if (viewSwitch) {
     const destination = new URL(viewSwitch.href);

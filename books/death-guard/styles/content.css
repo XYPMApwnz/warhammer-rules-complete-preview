@@ -398,3 +398,9 @@ html.related-rules-open{overflow:hidden}
 /* Keep the rail visible after the legacy card declarations above. */
 .stratagem{border-left:0;background:radial-gradient(circle at 74% 58%,transparent 0 48px,color-mix(in srgb,var(--strat-color) 10%,transparent) 49px 50px,transparent 51px),linear-gradient(120deg,var(--strat-soft),transparent 46%),var(--glass)}
 .stratagem::before{display:block}
+.roster-enhancement{border-left:3px solid var(--pink)}
+.roster-enhancement-cost{display:block;margin:-4px 0 8px;color:var(--green);font:800 9px ui-monospace,monospace;letter-spacing:.09em;text-transform:uppercase}
+.roster-modified-value{color:var(--green);font-weight:900}
+.roster-critical-hit,.roster-warning{padding:10px 12px;border-left:3px solid var(--pink);background:color-mix(in srgb,var(--pink) 8%,transparent)}
+.roster-critical-hit{margin:8px 0 12px;color:var(--ink);font-size:12px}
+.roster-warning{position:relative;z-index:1;max-width:780px;margin:16px 0 0;color:var(--paper)}

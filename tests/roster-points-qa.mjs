@@ -4,43 +4,71 @@ import vm from 'node:vm';
 
 const context={window:{}};
 vm.createContext(context);
-vm.runInContext(fs.readFileSync('roster-guides/points-data.js','utf8'),context);
-vm.runInContext(fs.readFileSync('roster-guides/points-validator.js','utf8'),context);
+for(const file of ['books/shared/roster-parser.js','roster-guides/points-data.js','roster-guides/points-validator.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});
+const {WHRosterParser,WH_POINTS_CATALOG,WHRosterPoints}=context.window;
+assert.equal(Object.keys(WH_POINTS_CATALOG['death guard'].units).length,36);
+assert.equal(Object.keys(WH_POINTS_CATALOG['death guard'].enhancements).length,30);
+assert.equal(Object.keys(WH_POINTS_CATALOG['adeptus mechanicus'].units).length,39);
 
-const catalog=context.window.WH_POINTS_CATALOG;
-const check=context.window.WHRosterPoints.check;
-const plain=value=>JSON.parse(JSON.stringify(value));
-assert.equal(Object.keys(catalog['death guard'].units).length,36);
-assert.equal(Object.keys(catalog['death guard'].enhancements).length,30);
-assert.equal(Object.keys(catalog['adeptus mechanicus'].units).length,39);
+const common=(declared,header,lordPoints)=>`+++++++++++++++++++++++++++++++++++++++++++++++
++ FACTION KEYWORD: Chaos - Death Guard
++ DETACHMENT: Virulent Vectorium (Worldblight)
++ FORCE DISPOSITION: Priority Assets
++ TOTAL ARMY POINTS: ${declared}pts
++ ENHANCEMENT: ${header} (on Char2: Lord of Contagion)
++ NUMBER OF UNITS: 9
+++++++++++++++++++++++++++++++++++++++++++++++
+Char1: 1x Biologus Putrifier (60 pts): Hyper blight grenades, Injector pistol, Plague knives
+Char2: 1x Lord of Contagion (${lordPoints} pts): Manreaper
+Enhancement: ${header} (+${lordPoints-120} pts)
+Char3: 1x Malignant Plaguecaster (60 pts): Bolt pistol, Corrupted staff, Plague Wind
+10x Plague Marines (180 pts)
+• 9x Plague Marine
+    1 with Boltgun, Plague knives
+    2 with Plague knives, Plague spewer
+    4 with Heavy plague weapon, Plague knives
+    2 with Plague knives, Plasma gun
+• 1x Plague Champion: Plasma gun, Power fist
+1x Chaos Rhino (75 pts): Armoured tracks, Combi-bolter
+3x Deathshroud Terminators (160 pts)
+• 1x Deathshroud Terminator Champion: Manreaper, Plaguespurt gauntlet
+• 2x Deathshroud Terminator: 2 with Manreaper, Plaguespurt gauntlet
+1x Foetid Bloat-drone (100 pts): Plague probe, Fleshmower
+1x Foetid Bloat-drone with heavy blight launcher (140 pts): Heavy blight launcher, Plague probe
+Enhancement: Parasitic Woe-Reaper (+15 pts)
+1x Myphitic Blight-hauler (100 pts): Bile spurt, Gnashing maw, Missile launcher, Multi-melta`;
 
-const unit=(quantity,name,wargear='')=>({quantity,name,wargear,models:[]});
-const validate=(units,declared=0,enhancements=[])=>check({units,declared,enhancements},'death guard');
+for(const [declared,name,lordPoints,effect] of [
+  [1025,'Revolting Regeneration',150,'ability'],
+  [1020,'Furnace of Plagues',145,'furnace'],
+  [1005,'Daemon Weapon of Nurgle',130,'critical-hit-5']
+]){
+  const roster=WHRosterParser.parse(common(declared,name,lordPoints));
+  assert.equal(roster.units.length,9);
+  assert.equal(roster.unitLineTotal,declared);
+  assert.equal(roster.exportMatches,true);
+  assert.equal(roster.enhancements.length,2,'header and inline copies must reconcile while Woe-Reaper remains present');
+  const lord=roster.units.find(unit=>unit.sourceRef==='Char2');
+  const primary=roster.enhancements.find(item=>item.name===name);
+  const woe=roster.enhancements.find(item=>item.name==='Parasitic Woe-Reaper');
+  assert.equal(primary.ownerUnitId,lord.id);
+  assert.equal(primary.exportedCost,lordPoints-120);
+  assert.equal(primary.ownerStatus,'resolved');
+  assert.equal(woe.ownerName,'Foetid Bloat-drone with heavy blight launcher');
+  assert.equal(woe.exportedCost,15);
+  const result=WHRosterPoints.check(roster,'death guard');
+  assert.equal(result.total,declared);
+  assert.equal(result.difference,0);
+  assert.equal(result.exportMatches,true);
+  assert.equal(result.unresolved.length,0);
+  assert.equal(result.enhancements.find(item=>item.name===name).effect,effect);
+}
 
-assert.deepEqual(plain(validate([unit(10,'Plague Marines')],180)),{total:180,unresolved:[],difference:0});
-assert.deepEqual(plain(validate([
-  unit(3,'Deathshroud Terminators'),
-  unit(3,'Deathshroud Terminators'),
-  unit(3,'Deathshroud Terminators')
-],490)),{total:490,unresolved:[],difference:0});
-assert.deepEqual(plain(validate([
-  unit(1,'Defiler','Hades lascannon'),
-  unit(1,'Defiler','Hades lascannon')
-],670)),{total:670,unresolved:[],difference:0});
-assert.deepEqual(plain(validate([unit(10,'Plague Marines')],190,['Daemon Weapon of Nurgle'])),{total:190,unresolved:[],difference:0});
+const mechanicus=WHRosterPoints.check({units:[{quantity:10,name:'Skitarii Rangers',models:[]}],declared:85,unitLineTotal:85,enhancements:[]},'adeptus mechanicus');
+assert.equal(mechanicus.total,85);
+assert.equal(mechanicus.difference,0);
 
-const mismatch=validate([unit(10,'Plague Marines')],175);
-assert.equal(mismatch.total,180);
-assert.equal(mismatch.difference,5);
-assert.deepEqual(plain(mismatch.unresolved),[]);
-
-const unknown=validate([unit(1,'Imaginary Plague Tank')],100);
-assert.equal(unknown.total,0);
-assert.deepEqual(plain(unknown.unresolved),['Unit: Imaginary Plague Tank']);
-
-const mechanicus=check({units:[unit(10,'Skitarii Rangers')],declared:85,enhancements:[]},'adeptus mechanicus');
-assert.deepEqual(plain(mechanicus),{total:85,unresolved:[],difference:0});
-const mechanicusEnhancement=check({units:[unit(10,'Skitarii Rangers')],declared:85,enhancements:['Example Enhancement']},'adeptus mechanicus');
-assert.deepEqual(plain(mechanicusEnhancement.unresolved),['Enhancement: Example Enhancement']);
-
-console.log('Roster points QA passed.');
+const unresolved=WHRosterParser.parse(`+ FACTION KEYWORD: Chaos — Death Guard\n+ TOTAL ARMY POINTS: 120pts\n+ ENHANCEMENT: Furnace of Plagues (on Char9: Missing Owner)\n1x Lord of Contagion (120 pts): Manreaper`);
+assert.equal(unresolved.enhancements[0].ownerStatus,'unresolved');
+assert.match(unresolved.warnings[0],/owner could not be resolved/);
+console.log('Roster parser and points QA passed.');

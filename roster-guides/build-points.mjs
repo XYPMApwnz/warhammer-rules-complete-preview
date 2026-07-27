@@ -18,7 +18,13 @@ for(const section of deathGuard.sections){
     for(const enhancement of (subsection.blocks||[]).filter(block=>block.type==='enhancement')){
       const match=enhancement.title.match(/^(.*?)\s+[-–—]\s+(\d+)\s*pts$/i);
       if(!match)throw new Error(`Enhancement points missing: ${enhancement.title}`);
-      dgEnhancements[normalize(match[1])]={title:match[1],value:Number(match[2])};
+      const effects={
+        'revolting regeneration':'ability',
+        'furnace of plagues':'furnace',
+        'daemon weapon of nurgle':'critical-hit-5',
+        'parasitic woe reaper':'ability'
+      };
+      dgEnhancements[normalize(match[1])]={title:match[1],value:Number(match[2]),text:enhancement.text,effect:effects[normalize(match[1])]||''};
     }
   }
 }

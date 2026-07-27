@@ -2,14 +2,19 @@
   const rosterId = new URLSearchParams(location.search).get("roster");
   if (!rosterId) return;
 
-  let roster, sourceText = "";
+  let roster, sourceText = "", record;
   try {
     const records = JSON.parse(localStorage.getItem("wh40k-rosters-v1")) || [];
-    const record = records.find((record) => record.id === rosterId);
+    record = records.find((record) => record.id === rosterId);
     roster = record?.roster;
     sourceText = record?.sourceText || "";
     if (!roster && rosterId === "1") roster = JSON.parse(sessionStorage.getItem("wh40k-roster-guide"));
   } catch {}
+  if (sourceText && window.WHRosterParser) {
+    const parsed = window.WHRosterParser.parse(sourceText);
+    if (parsed.units.length) roster = parsed;
+  }
+  if (roster?.faction) roster.faction = roster.faction.replace(/^(?:Chaos|Imperium)\s*[-–—]\s*/i, '').trim();
   if (!roster?.units?.length) {
     location.replace("../../index.html");
     return;
@@ -124,6 +129,14 @@
   hero.querySelector("h1 + p").textContent = detachmentLabel;
   hero.querySelector(".source").textContent = `${roster.units.length} units · ${roster.declared || roster.calculated} pts · generated from New Recruit`;
   hero.querySelector(".lead").textContent = "This guide is reduced to the selected Death Guard detachments, units and recognised loadout.";
+  const rosterWarnings = [...(roster.warnings || [])];
+  if (!sourceText) rosterWarnings.push('This legacy roster has no source text, so Enhancement owners and derived effects cannot be rebuilt.');
+  if (rosterWarnings.length) {
+    const warning = document.createElement('p');
+    warning.className = 'roster-warning';
+    warning.textContent = rosterWarnings.join(' ');
+    hero.append(warning);
+  }
 
   document.querySelectorAll(".content-group.detachment").forEach((section) => {
     if (!detachmentIds.has(section.id)) section.remove();
@@ -160,6 +173,7 @@
     }
     renderComposition(card,entry.units);
     renderDetachmentKeywords(card);
+    window.WHRosterEnhancements?.decorate(card,roster,entry.units);
     card.querySelector('[id$="-wargear-options"]')?.remove();
     if (!entry.loadout.length) return;
     card.querySelectorAll(".weapon-row:not(.weapon-head)").forEach((row) => {
