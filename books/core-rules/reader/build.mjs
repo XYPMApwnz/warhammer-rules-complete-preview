@@ -196,7 +196,7 @@ function prose(text,seen=new Set(),excludedId='',hiddenReferences=[]){
   let bullets=[];
   let previous='';
   let seeAlso=false;
-  const flush=()=>{if(bullets.length){if(seeAlso)output.push('<h4 class="see-also">See also</h4>');output.push(`<ul>${bullets.map(item=>`<li>${seeAlso?seeAlsoItem(item):linkedText(item,seen,excludedId)}</li>`).join('')}</ul>`);bullets=[];}};
+  const flush=()=>{if(bullets.length){const items=seeAlso?bullets.filter(item=>!hiddenReferences.includes(item.match(/\b\d{2}\.\d{2}(?:\.\d{2})?\b/)?.[0])):bullets;if(items.length){if(seeAlso)output.push('<h4 class="see-also">See also</h4>');output.push(`<ul>${items.map(item=>`<li>${seeAlso?seeAlsoItem(item):linkedText(item,seen,excludedId)}</li>`).join('')}</ul>`);}bullets=[];}};
   for(const line of lines){
     if(line===previous)continue;
     previous=line;
