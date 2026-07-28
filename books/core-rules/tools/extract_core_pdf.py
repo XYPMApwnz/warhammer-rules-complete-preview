@@ -52,6 +52,14 @@ APPENDIX_ARTICLES = [
     {"id": "faqs", "title": "FAQs", "page": 88},
 ]
 
+FAQ_LINKS = [
+    ("faq-no-ranged-weapons-eligible-to-shoot", "10.02", ["04.01", "16.01"]),
+    ("faq-blast-during-close-quarters-shooting", "10.06", ["24.05", "17.03"]),
+    ("faq-blast-against-engaged-monster-vehicle", "17.03", ["24.05", "10.06"]),
+    ("faq-overrun-fight-without-fight-eligibility", "12.06", ["12.04"]),
+    ("faq-embark-after-scout-move", "18.02", ["24.31", "24.32"]),
+]
+
 
 def clean_text(value: str) -> str:
     value = value.replace("\x08", "").replace("\ufffd", "").replace("\u00ad", "")
@@ -136,6 +144,24 @@ def extract_rules(section_id: str, page_numbers: list[int], pages: dict[str, str
     return rules
 
 
+def extract_faqs(page_text: str) -> list[dict[str, object]]:
+    faq_text = page_text.split("FAQS\n", 1)[1].replace("\nCONTINUED IN THE APP", "")
+    pairs = re.findall(r"Q:\s*(.*?)\nA:\s*(.*?)(?=\nQ:|\Z)", faq_text, re.DOTALL)
+    if len(pairs) != len(FAQ_LINKS):
+        raise ValueError(f"expected {len(FAQ_LINKS)} FAQs on page 88, found {len(pairs)}")
+    return [
+        {
+            "id": faq_id,
+            "question": re.sub(r"\s+", " ", question).strip(),
+            "answer": re.sub(r"\s+", " ", answer).strip(),
+            "page": 88,
+            "primaryRule": primary_rule,
+            "relatedRules": related_rules,
+        }
+        for (faq_id, primary_rule, related_rules), (question, answer) in zip(FAQ_LINKS, pairs)
+    ]
+
+
 def main() -> None:
     if len(sys.argv) != 3:
         raise SystemExit("usage: extract_core_pdf.py INPUT.pdf OUTPUT.js")
@@ -154,6 +180,7 @@ def main() -> None:
         "sections": SECTION_PAGES,
         "rules": rules,
         "appendix": APPENDIX_ARTICLES,
+        "faqs": extract_faqs(pages["88"]),
         "pages": pages,
     }
     destination.parent.mkdir(parents=True, exist_ok=True)

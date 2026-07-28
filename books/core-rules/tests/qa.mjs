@@ -32,6 +32,14 @@ assert.equal(digital.meta.edition,'11E','reader must use the 11E digital referen
 assert.equal(digital.records.length,271,'unexpected Wahapedia 11E record count');
 assert.equal(new Set(digital.records.map(record=>record.code)).size,digital.records.length,'digital rule codes must be unique');
 const recordsByCode=new Map(digital.records.map(record=>[record.code,record]));
+const faqs=pdf.faqs||[];
+assert.equal(faqs.length,5,'Rules Appendix page 88 must provide five FAQs');
+assert.equal(new Set(faqs.map(faq=>faq.id)).size,5,'official FAQ IDs must be unique');
+for(const faq of faqs){
+  assert(recordsByCode.has(faq.primaryRule),`${faq.id} has an unknown primary rule`);
+  for(const code of faq.relatedRules)assert(recordsByCode.has(code),`${faq.id} has an unknown related rule ${code}`);
+  assert(faq.question&&faq.answer,`${faq.id} is incomplete`);
+}
 for(const record of digital.records){
   const parts=record.code.split('.');
   if(parts.length===3)assert(recordsByCode.has(parts.slice(0,2).join('.')),`${record.code} is not placed under an existing parent rule`);
@@ -92,8 +100,8 @@ for(const [index,id] of routeIds.entries()){
 }
 assert.equal(routedRules,271,'routed reader must contain every 11E reference record');
 const searchIndex=JSON.parse(fs.readFileSync(path.join(readerRoot,'search-index.json'),'utf8'));
-assert.equal(searchIndex.length,271,'search index must contain every 11E reference record');
-assert.equal(new Set(searchIndex.map(item=>item.code)).size,271,'search index codes must be unique');
+assert.equal(searchIndex.length,276,'search index must contain every 11E record and official FAQ');
+assert.equal(new Set(searchIndex.map(item=>item.code)).size,276,'search index identifiers must be unique');
 for(const item of searchIndex){
   const [file,anchor]=item.url.split('#');
   const target=fs.readFileSync(path.join(readerRoot,file),'utf8');
@@ -106,6 +114,14 @@ assert(!generatedReader.includes('class="rule-code"'),'rule codes must not be vi
 assert(!generatedReader.includes('<h3><button class="term'),'rule titles must not open definitions of themselves');
 assert(!generatedReader.includes('Introduction 2')&&!generatedReader.includes('Introduction 7'),'introduction prose must not become fake numbered rules');
 const visibleReader=generatedReader.replace(/<script[\s\S]*?<\/script>/g,' ').replace(/<style[\s\S]*?<\/style>/g,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
+for(const faq of faqs){
+  assert.equal((generatedReader.match(new RegExp(`id="${faq.id}"`,'g'))||[]).length,1,`${faq.id} must render exactly once`);
+  assert(generatedReader.includes('Official FAQ &middot; Rules Appendix &middot; page 88'),'official FAQ source label is missing');
+  const searchItem=searchIndex.find(item=>item.code===faq.id);
+  assert(searchItem&&searchItem.title===faq.question&&searchItem.text===faq.answer,`${faq.id} is missing from search`);
+  const term=glossary[faq.id];
+  assert(term&&term.title.en===faq.question&&term.definition.en&&term.canonicalSource.locator==='Rules Appendix; page 88',`${faq.id} is missing from Mega Glossary`);
+}
 assert(!/\b\d{2}\.\d{2}(?:\.\d{2})?\b/.test(visibleReader),'technical rule codes must stay out of visible reader text');
 assert(!/\((?:03|04|05|15|16|24)\)/.test(visibleReader),'chapter references must use clickable names instead of numeric codes');
 assert(generatedReader.includes('<h4 class="see-also">See also</h4>'),'See also index must remain available');

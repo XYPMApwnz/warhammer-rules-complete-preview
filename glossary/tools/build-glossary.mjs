@@ -155,6 +155,27 @@ for(const rule of coreDigital.records){
   },'core-rules');
 }
 
+for(const faq of coreSource.faqs||[]){
+  const section=coreSectionByNumber.get(faq.primaryRule.slice(0,2));
+  const related=faq.relatedRules.map(code=>coreDigital.records.find(rule=>rule.code===code)).filter(Boolean).map(digitalCoreId);
+  addTerm({
+    id:faq.id,
+    kind:'core-faq',
+    scope:'global',
+    edition:'11e',
+    language:'en',
+    title:{en:faq.question},
+    summary:{en:faq.answer},
+    definition:{en:`Q: ${faq.question}\nA: ${faq.answer}`},
+    aliases:[],
+    related,
+    canonicalSource:{documentId:'core-rules',revision:'11e',locator:'Rules Appendix; page 88'},
+    fullRulePath:`books/core-rules/reader/${section}.html#${faq.id}`,
+    status:'verified'
+  },'core-rules');
+  addContext('core-rules',faq.id,faq.id,{fullRulePath:`books/core-rules/reader/${section}.html#${faq.id}`});
+}
+
 for(const [localId,entry] of Object.entries(coreCurated)){
   const match=coreByTitle.get(normalTitle(entry.title));
   const id=match?coreId(match):`core-${slug(entry.title)}`;

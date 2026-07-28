@@ -47,6 +47,9 @@ const ruleReferences={
   '01.02.01':['core-starting-strength','core-half-strength','core-below-half-strength','core-below-starting-strength'],
   '01.03':['core-player-turn']
 };
+const faqs=pdf.faqs||[];
+const faqsByPrimary=new Map();
+for(const faq of faqs)faqsByPrimary.set(faq.primaryRule,[...(faqsByPrimary.get(faq.primaryRule)||[]),faq]);
 
 const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const normalize=value=>String(value||'').replace(/\r/g,'').replace(/\s+/g,' ').trim();
@@ -261,6 +264,12 @@ function referenceStrip(code,seen=new Set()){
   return `<nav class="rule-references" aria-label="Glossary concepts for ${escapeHtml(code)}"><span>Glossary concepts</span>${items.map(term=>termButton(term,term.title.en)).join('')}</nav>`;
 }
 
+function faqCard(faq){
+  const seen=new Set();
+  const related=faq.relatedRules.map(code=>termByCode.get(code)).filter(Boolean);
+  return `<aside class="official-faq" id="${escapeHtml(faq.id)}"><span class="source-label">Official FAQ &middot; Rules Appendix &middot; page 88</span><h4>${linkedText(faq.question,seen)}</h4><p>${linkedText(faq.answer,seen)}</p>${related.length?`<nav aria-label="Related rules"><span>Related rules</span>${related.map(term=>termButton(term,term.title.en,'rule-reference')).join('')}</nav>`:''}</aside>`;
+}
+
 function stratagemCard(record){
   const lines=String(record.text||'').split(/\n+/).map(normalize).filter(Boolean);
   const cp=/^\+?\d+CP$/i.test(lines[0]||'')?lines.shift():'';
@@ -291,7 +300,8 @@ function mainRule(record,children=[]){
   const seen=new Set();
   const sourceText=record.code==='25.03'?record.text.replace(/BATTLE SIZE\nIncursion:[\s\S]*?Unit limit 3\.\n?/,''):record.text;
   const text=prose(sourceText,seen,excludedId,children.map(child=>child.code));
-  return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><h3>${escapeHtml(displayTitle(record))}</h3><span class="page">${escapeHtml(record.kind.replaceAll('-',' '))}</span></header><div class="rule-body">${text}${special}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
+  const faqHtml=(faqsByPrimary.get(record.code)||[]).map(faqCard).join('');
+  return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><h3>${escapeHtml(displayTitle(record))}</h3><span class="page">${escapeHtml(record.kind.replaceAll('-',' '))}</span></header><div class="rule-body">${text}${faqHtml}${special}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
 }
 
 function introductionArticle(){
@@ -334,6 +344,10 @@ const searchIndex=digital.records.map(record=>{
   const sectionId=sectionByNumber.get(record.code.slice(0,2));
   return {code:record.code,title:record.title,chapter:byId.get(sectionId)?.title||'',text:normalize(record.text),url:`${fileFor(sectionId)}#rule-${slug(record.code)}`};
 });
+for(const faq of faqs){
+  const sectionId=sectionByNumber.get(faq.primaryRule.slice(0,2));
+  searchIndex.push({code:faq.id,title:faq.question,chapter:byId.get(sectionId)?.title||'',text:faq.answer,url:`${fileFor(sectionId)}#${faq.id}`});
+}
 fs.writeFileSync(path.join(root,'search-index.json'),JSON.stringify(searchIndex));
 const stale=path.join(root,'rules-appendix.html');
 if(fs.existsSync(stale))fs.unlinkSync(stale);
