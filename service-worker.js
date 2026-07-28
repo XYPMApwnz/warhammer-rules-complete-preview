@@ -106,23 +106,21 @@ const APP_SHELL = [
   "./books/core-rules/reader/muster-armies.html",
   "./books/adeptus-mechanicus/",
   ADEPTUS_MECHANICUS_FALLBACK,
+  "./books/adeptus-mechanicus/reader.html",
+  "./books/adeptus-mechanicus/mobile/index.html",
+  "./books/adeptus-mechanicus/mobile/mobile.css?v=1",
+  "./books/adeptus-mechanicus/mobile/mobile.js?v=1",
   "./books/adeptus-mechanicus/assets/mechanicus-logo.png",
   "./books/adeptus-mechanicus/assets/mechanicus-cover-800.webp",
-  "./books/adeptus-mechanicus/styles/tokens.css?v=13",
-  "./books/adeptus-mechanicus/styles/layout.css?v=14",
-  "./books/adeptus-mechanicus/styles/navigation.css?v=13",
-  "./books/adeptus-mechanicus/styles/content.css?v=15",
-  "./books/adeptus-mechanicus/styles/popups.css?v=16",
-  "./books/adeptus-mechanicus/styles/mechanicus.css?v=15",
+  "./books/adeptus-mechanicus/styles/tokens.css?v=14",
+  "./books/adeptus-mechanicus/styles/mechanicus.css?v=17",
   "./books/adeptus-mechanicus/scripts/data.js?v=1",
-  "./books/adeptus-mechanicus/scripts/navigation-controller.js?v=1",
-  "./books/adeptus-mechanicus/scripts/popup-controller.js?v=21",
-  "./books/adeptus-mechanicus/scripts/journey-controller.js?v=2",
-  "./books/adeptus-mechanicus/scripts/ui-controllers.js?v=1",
-  "./books/adeptus-mechanicus/scripts/related-rules.js?v=3",
+  "./books/adeptus-mechanicus/scripts/faction-ui.js?v=1",
+  "./books/adeptus-mechanicus/scripts/related-rules.js?v=5",
+  "./books/adeptus-mechanicus/mobile/related-rules.inc?v=2",
   "./books/adeptus-mechanicus/scripts/roster-enhancements.js?v=2",
   "./books/adeptus-mechanicus/scripts/roster-filter.js?v=2",
-  "./books/adeptus-mechanicus/scripts/app.js?v=22"
+  "./books/adeptus-mechanicus/scripts/app.js?v=27"
 ];
 
 self.addEventListener("install", (event) => {

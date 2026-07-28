@@ -7,12 +7,16 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=file=>fs.readFileSync(path.join(root,file),'utf8');
 const json=file=>JSON.parse(read(file));
-const html=read('index.html');
+const entry=read('index.html');
+const html=read('reader.html');
+const deathGuardRoot=path.resolve(root,'..','death-guard');
+const deathGuardRead=file=>fs.readFileSync(path.join(deathGuardRoot,file),'utf8');
 const sharedTargets=fs.readFileSync(path.resolve(root,'..','shared','navigation-targets.js'),'utf8');
 const sharedDatasheetLayout=fs.readFileSync(path.resolve(root,'..','shared','datasheet-layout.js'),'utf8');
 const sharedDatasheetCss=fs.readFileSync(path.resolve(root,'..','shared','datasheet-system.css'),'utf8');
 const sharedPopupContent=fs.readFileSync(path.resolve(root,'..','shared','popup-content.js'),'utf8');
 const sharedGlossaryAutolink=fs.readFileSync(path.resolve(root,'..','shared','glossary-autolink.js'),'utf8');
+const glossaryRegistryText=fs.readFileSync(path.resolve(root,'..','..','glossary','registry.en.json'),'utf8');
 const factionRules=json('content/adeptus-mechanicus-rules.en.json');
 const source=json('content/adeptus-mechanicus-source.en.json');
 const codex=json('content/adeptus-mechanicus-codex-detachments.en.json');
@@ -26,7 +30,7 @@ const node=process.execPath;
 const results=[];
 const check=(name,ok,detail='')=>results.push({name,ok,detail});
 
-const scripts=['scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/related-rules.js','scripts/roster-enhancements.js','scripts/roster-filter.js','scripts/app.js'];
+const scripts=['scripts/data.js','scripts/faction-ui.js','scripts/related-rules.js','scripts/roster-enhancements.js','scripts/roster-filter.js','scripts/app.js'];
 for(const file of scripts){try{new vm.Script(read(file),{filename:file});check(`${file} syntax`,true);}catch(error){check(`${file} syntax`,false,error.message);}}
 try{new vm.Script(sharedTargets,{filename:'../shared/navigation-targets.js'});check('shared navigation targets syntax',true);}catch(error){check('shared navigation targets syntax',false,error.message);}
 try{new vm.Script(sharedDatasheetLayout,{filename:'../shared/datasheet-layout.js'});check('shared datasheet layout syntax',true);}catch(error){check('shared datasheet layout syntax',false,error.message);}
@@ -42,7 +46,7 @@ const journeyTargets=[...markup.matchAll(/data-journey-target="([^"]+)"/g)].map(
 const localTargets=[...markup.matchAll(/class="local-tab" data-journey-target="([^"]+)"/g)].map(x=>x[1]);
 const depths=[...markup.matchAll(/data-nav-depth="(\d+)"/g)].map(x=>Number(x[1]));
 const topLevelTargets=[...markup.matchAll(/<li data-nav-id="[^"]+" data-nav-depth="1">[\s\S]*?<button class="toc-label" data-nav-target="([^"]+)"/g)].map(x=>x[1]);
-const required=['appHeader','navMenu','navCollapse','backButton','themeButton','tocScrim','tocPanel','tocTree','navSearch','main','readerTools','globalSearch','globalSearchClear','searchResults','glossary','glossarySearch','searchClear','noResults','popupLayer'];
+const required=['appHeader','navMenu','navCollapse','backButton','themeButton','tocScrim','tocPanel','tocTree','main','popupLayer'];
 
 check('source snapshot has all 26 pages',source.meta.pageCount===26&&Object.keys(source.pages).length===26);
 check('source hash is locked',source.meta.sha256==='7F01DD2CE7E35C762B0AB625ADE779022275574CF2D01EE46EE16B2F5582341C'&&source.meta.sha256===rules.source.sha256);
@@ -69,7 +73,7 @@ check('HTML IDs are unique',ids.length===idSet.size,`${ids.length}/${idSet.size}
 check('all navigation targets exist',navTargets.every(id=>idSet.has(id)),navTargets.filter(id=>!idSet.has(id)).join(', '));
 check('all navigation targets are tracked',navTargets.every(id=>trackTargets.includes(id)),navTargets.filter(id=>!trackTargets.includes(id)).join(', '));
 check('navigation depth stays at three',Math.max(...depths)===3);
-check('top-level navigation matches the DG contract',JSON.stringify(topLevelTargets)===JSON.stringify(['start','updates','core-rules','detachments','datasheets','glossary']),topLevelTargets.join(', '));
+check('top-level navigation matches the DG contract',JSON.stringify(topLevelTargets)===JSON.stringify(['start','updates','core-rules','detachments','datasheets']),topLevelTargets.join(', '));
 check('datasheets use category then unit hierarchy',['datasheets-epic-heroes','datasheets-characters','datasheets-battleline','datasheets-dedicated-transports','datasheets-other','datasheets-warhammer-legends'].every(id=>navTargets.includes(id))&&rules.datasheets.every(unit=>markup.includes(`data-nav-id="${unit.id}" data-nav-depth="3"`)));
 check('detachment navigation uses singular Enhancement label',(markup.match(/data-nav-depth="3"[^>]*>[\s\S]*?data-nav-target="[^"]+-enhancements">Enhancement<\/button>/g)||[]).length===allDetachments.length);
 check('all Journey targets resolve',journeyTargets.every(id=>idSet.has(id)));
@@ -82,24 +86,24 @@ check('local official transcripts are embedded',(markup.match(/class="source-tra
 check('Codex transcription status is explicit',markup.includes('Codex transcription layer')&&markup.includes('39 indexed datasheets'));
 check('official MFM verification is visible',markup.includes('Munitorum Field Manual v1.1')&&markup.includes('All 34 current Enhancement costs'));
 check('removed army points section stays removed',!markup.includes('My Army · 995')&&!markup.includes('army-roster-995'));
-check('no replacement characters in generated/runtime files',!['index.html',...scripts,...['styles/content.css','styles/mechanicus.css']].map(read).join('').includes('\uFFFD'));
+check('no replacement characters in generated/runtime files',!['index.html','reader.html',...scripts,'styles/mechanicus.css'].map(read).join('').includes('\uFFFD'));
+check('known BSData spelling errors stay normalised',!html.includes(' mdel ')&&!glossaryRegistryText.includes(' mdel '));
 check('no inline script or style',!/<style|<script(?![^>]*src=)/i.test(html));
-check('all stylesheet and script assets resolve',[...markup.matchAll(/(?:href|src)="\.\/([^"?#]+)/g)].map(x=>x[1]).filter(x=>!x.endsWith('.pdf')).every(file=>fs.existsSync(path.join(root,file))));
+check('all stylesheet and script assets resolve',[...markup.matchAll(/(?:href|src)="([^"?#]+)"/g)].map(x=>x[1]).filter(file=>!file.endsWith('.pdf')&&!/^(?:https?:|data:)/.test(file)).every(file=>fs.existsSync(path.resolve(root,file))));
 
 const context={window:{},Object};vm.runInNewContext(read('scripts/data.js'),context);
 const terms=context.window.DG_TERMS||{};
 check('term registry expands the canonical glossary',Object.keys(terms).length>=rules.glossary.length+150,`${Object.keys(terms).length} terms`);
-check('term glossary destinations resolve',Object.values(terms).every(term=>idSet.has(term.glossary)));
 check('term rule and unit destinations resolve',Object.values(terms).every(term=>(!term.rule||idSet.has(term.rule))&&(!term.units||term.units.every(id=>idSet.has(id)))));
 check('datasheet abilities and weapons are interactive',(markup.match(/class="ability"/g)||[]).length>100&&(markup.match(/class="weapon-button" data-term=/g)||[]).length>150);
 
-const navSource=read('scripts/navigation-controller.js');
-const popupSource=read('scripts/popup-controller.js');
+const navSource=deathGuardRead('scripts/navigation-controller.js');
+const popupSource=deathGuardRead('scripts/popup-controller.js');
 check('single passive scroll owner remains',(navSource.match(/addEventListener\('scroll'/g)||[]).length===1&&navSource.includes("state={owner:'reader'")&&navSource.includes('{passive:true}'));
 check('scroll spy uses cached geometry',!navSource.slice(navSource.indexOf('pickActive(){'),navSource.indexOf('scheduleRead(){')).includes('getBoundingClientRect'));
-check('manual scroll ignores transient navigation candidates',navSource.includes('readerHoldMs=90')&&navSource.includes('this.readerCandidate'));
+check('manual scroll keeps the last crossed descendant active',navSource.includes('lastCrossedDescendant(parent,scrollY)'));
 check('navigation uses the shared explicit target resolver',navSource.includes('WHNavigationTargets.resolve')&&!navSource.includes("querySelector(':scope > .stratagem')")&&!navSource.includes("querySelector('.stratagem')"));
-check('outside click closes the complete popup chain',popupSource.includes("this.ids.length&&!event.target.closest('.term-popup')")&&popupSource.includes('this.closeFrom(0)'));
+check('outside click closes the complete popup chain',popupSource.includes("this.ids.length&&!event.target.closest('.term-popup,.full-entry-layer')")&&popupSource.includes('this.closeFrom(0)'));
 check('popup actions inherit their originating unit context',popupSource.includes("contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}")&&popupSource.includes('contextualStatline'));
 check('Mega Glossary transitions use the shared return helper',html.includes('../../glossary-return.js?v=2')&&popupSource.includes('WHGlossaryReturn')&&read('scripts/app.js').includes('WHGlossaryReturn'));
 check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
@@ -108,13 +112,46 @@ check('book loads the shared datasheet layout',html.includes('src="../shared/dat
 check('glossary autolinking precedes navigation geometry',read('scripts/app.js').indexOf('WHGlossaryAutolink?.apply')<read('scripts/app.js').indexOf('new window.DGNavigation'));
 check('shared datasheet statlines keep every characteristic on one row',/\.unit-card \.statline\s*\{[^}]*display:\s*flex/.test(sharedDatasheetCss));
 check('mobile weapon characteristics use one six-column row',sharedDatasheetCss.includes('grid-template-columns: repeat(6, minmax(0, 1fr))')&&(html.match(/data-label="(?:Range|A|BS|WS|S|AP|D)"/g)||[]).length===rules.datasheets.reduce((sum,unit)=>sum+unit.weapons.length,0)*6);
-check('mobile layout avoids content-visibility geometry jumps',!read('styles/content.css').includes('content-visibility: auto'));
-check('desktop stratagem cards use two columns with a responsive fallback',read('styles/content.css').includes('.detachment-part[id$="-stratagems"] > .detachment-content { grid-template-columns: repeat(2, minmax(0, 1fr))')&&/@media\s*\(max-width:\s*1100px\)[\s\S]*?grid-template-columns:\s*1fr/.test(read('styles/content.css')));
+check('mobile layout avoids content-visibility geometry jumps',!deathGuardRead('styles/content.css').includes('content-visibility: auto'));
+check('desktop stratagem cards use the DG responsive grid',deathGuardRead('styles/content.css').includes('.detachment-part[id$="-stratagems"]'));
 check('navigation cancellation remains wired',navSource.includes("root.style.scrollBehavior='auto'")&&navSource.includes("behavior:'auto'"));
-check('navigation gap has one CSS source',read('styles/tokens.css').includes('--navigation-gap: 18px')&&navSource.includes("getPropertyValue('--navigation-gap')")&&!navSource.includes('trackingGap=18'));
-check('header home does not mutate the URL hash',markup.includes('<button class="app-brand" type="button" data-header-home>')&&!markup.includes('href="#start"'));
+check('navigation is loaded from the Death Guard runtime contract',html.includes('../death-guard/scripts/navigation-controller.js'));
+check('entry router preserves the DG desktop/phone contract',entry.includes('../death-guard/scripts/view-router.js')&&entry.includes('./reader.html?view=full')&&entry.includes('./mobile/index.html?view=mobile'));
 check('header exposes the shared Mega Glossary',markup.includes('href="../../glossary/index.html"')&&markup.includes('Mega Glossary'));
-check('mobile weapon labels stay dynamic',read('scripts/ui-controllers.js').includes('cell.dataset.label=labels[columnIndex]')&&read('styles/content.css').includes('content: attr(data-label)'));
+check('mobile weapon labels stay dynamic',html.includes('data-label="Range"')&&/content:\s*attr\(data-label\)/.test(sharedDatasheetCss));
+
+const relatedContext={window:{}};
+vm.createContext(relatedContext);
+new vm.Script(read('scripts/related-rules.js'),{filename:'scripts/related-rules.js'}).runInContext(relatedContext);
+const relatedMatcher=relatedContext.window.AMRelatedRules;
+const allStratagems=allDetachments.flatMap(detachment=>detachment.stratagems);
+const allEnhancements=allDetachments.flatMap(detachment=>detachment.enhancements);
+const allEligibleItems=[...allStratagems,...allEnhancements];
+const unitIds=new Set(rules.datasheets.map(unit=>unit.id));
+const knownKeywords=new Set(rules.datasheets.flatMap(unit=>unit.keywords).map(keyword=>keyword.toUpperCase()));
+const eligibilityTargets=allEligibleItems.flatMap(item=>item.eligibility?.targets||[]);
+check('all 51 Stratagems and 34 Enhancements have explicit eligibility',allStratagems.length===51&&allEnhancements.length===34&&allEligibleItems.every(item=>item.id&&item.eligibility?.targets?.some(target=>target.side==='friendly')));
+check('eligibility IDs are stable and unique',new Set(allEligibleItems.map(item=>item.id)).size===allEligibleItems.length&&allStratagems.every(item=>item.id.startsWith('stratagem-'))&&allEnhancements.every(item=>item.id.startsWith('enhancement-')));
+check('eligibility references known datasheets and keywords',eligibilityTargets.every(target=>(target.units||[]).every(id=>unitIds.has(id))&&[...(target.all||[]),...(target.any||[]),...(target.none||[])].every(keyword=>knownKeywords.has(keyword.toUpperCase()))));
+check('Related Rules uses structured eligibility only',read('scripts/related-rules.js').includes("JSON.parse(card.dataset.eligibility||'')")&&!read('scripts/related-rules.js').includes("text.includes("));
+check('Related Rules preserves stable rule IDs when cloning',read('scripts/related-rules.js').includes('if(!node.dataset.ruleId)node.dataset.ruleId=node.id'));
+
+const itemByTitle=title=>allEligibleItems.find(item=>item.title===title);
+const profileById=id=>{
+  const unit=rules.datasheets.find(item=>item.id===id);
+  return{id:unit.id,slug:unit.id.replace(/^unit-/,''),keywords:new Set(unit.keywords.map(keyword=>keyword.toUpperCase())),epic:unit.keywords.some(keyword=>keyword.toUpperCase()==='EPIC HERO')};
+};
+const eligible=(title,unitId)=>relatedMatcher.matches({dataset:{eligibility:JSON.stringify(itemByTitle(title).eligibility)}},profileById(unitId));
+check('exact-unit eligibility distinguishes Dunerider from other Vehicles',eligible('Aggressive Impulse','unit-skorpius-dunerider')&&!eligible('Aggressive Impulse','unit-onager-dunecrawler'));
+check('AND eligibility requires both Skitarii and Vehicle',eligible('Threat-cogitation Targeters','unit-onager-dunecrawler')&&!eligible('Threat-cogitation Targeters','unit-skitarii-vanguard')&&!eligible('Threat-cogitation Targeters','unit-kastelan-robots'));
+check('OR eligibility accepts Legio Cybernetica or Vehicle',eligible('Auto-divinatory Targeting','unit-kastelan-robots')&&eligible('Auto-divinatory Targeting','unit-onager-dunecrawler')&&!eligible('Auto-divinatory Targeting','unit-skitarii-vanguard'));
+check('exclusion eligibility rejects Kataphron Infantry',eligible('Analytical Divination','unit-skitarii-vanguard')&&!eligible('Analytical Divination','unit-kataphron-breachers'));
+check('friendly plus enemy multi-target rules keep the friendly unit eligible',eligible('Tribute of Empathic Veneration','unit-corpuscarii-electro-priests')&&!eligible('Tribute of Empathic Veneration','unit-skitarii-vanguard')&&eligible('Binharic Offence','unit-skitarii-vanguard')&&!eligible('Binharic Offence','unit-corpuscarii-electro-priests'));
+check('different friendly target roles are matched independently',eligible('Incense Exhausts','unit-skitarii-vanguard')&&eligible('Incense Exhausts','unit-skorpius-dunerider')&&!eligible('Incense Exhausts','unit-kastelan-robots'));
+check('named Enhancement eligibility remains exact',eligible('Stealth-screened Cybercanids Upgrade','unit-serberys-raiders')&&!eligible('Stealth-screened Cybercanids Upgrade','unit-serberys-sulphurhounds'));
+check('Tech-Priest Enhancements reject Epic Heroes and non-Characters',eligible('Necromechanic','unit-tech-priest-dominus')&&!eligible('Necromechanic','unit-belisarius-cawl')&&!eligible('Necromechanic','unit-skitarii-vanguard'));
+check('generic Adeptus Mechanicus Enhancements require a non-Epic Character',eligible('Autoclavic Denunciation','unit-tech-priest-dominus')&&!eligible('Autoclavic Denunciation','unit-belisarius-cawl')&&!eligible('Autoclavic Denunciation','unit-skitarii-vanguard'));
+check('Skitarii Enhancements require a non-Epic Character',eligible('Clandestine Infiltrator','unit-skitarii-marshal')&&!eligible('Clandestine Infiltrator','unit-skitarii-vanguard')&&!eligible('Clandestine Infiltrator','unit-onager-dunecrawler'));
 
 const extractor=spawnSync('C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe',[path.join(root,'tools','extract-faction-pack.py'),'--check'],{encoding:'utf8'});
 check('PDF extraction snapshot is current',extractor.status===0,(extractor.stderr||extractor.stdout).trim());

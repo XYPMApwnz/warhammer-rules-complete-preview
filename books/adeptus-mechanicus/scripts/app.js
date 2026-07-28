@@ -1,28 +1,29 @@
 (function(){
   'use strict';
   for(const button of document.querySelectorAll('button:not([type])'))button.type='button';
-  for(const card of document.querySelectorAll('.stratagem')){
-    const when=[...card.querySelectorAll('.field')].find(field=>field.querySelector('b')?.textContent.trim().toLowerCase()==='when')?.textContent||'';
-    const turn=/opponent|enemy/i.test(when)?'THEIR TURN':/your\b/i.test(when)?'YOUR TURN':'ANY TURN';
-    card.dataset.turn=turn;
-    card.classList.add(turn==='THEIR TURN'?'turn-their':turn==='YOUR TURN'?'turn-yours':'turn-any');
-  }
   const terms=window.WH40K_GLOSSARY?.forBook('adeptus-mechanicus')||window.DG_TERMS;
   const documentRoot=document.querySelector('.document');
   window.WHGlossaryAutolink?.apply(documentRoot,'adeptus-mechanicus');
   window.WHGlossaryAutolink?.validate(documentRoot,terms);
   const navigation=new window.DGNavigation();
-  const popups=new window.DGPopups(terms);
-  const glossary=new window.DGGlossarySearch();
+  const fullEntry=new window.DGFullEntry(window.WH40K_GLOSSARY);
+  const popups=new window.DGPopups(terms,fullEntry);
   const relatedRules=window.AMRelatedRules?.install();
-  const journey=new window.DGJourney(navigation,popups,glossary,relatedRules);
+  const journey=new window.DGJourney(navigation,popups,null,relatedRules);
   new window.DGTheme();
   new window.DGTableAccessibility();
-  new window.AMNavigationSearch();
-  new window.AMGlobalSearch(navigation,popups,glossary);
   new window.AMDoctrina();
-  document.querySelector('[data-header-home]')?.addEventListener('click',event=>{event.preventDefault();navigation.go('start');});
-  window.DG_APP=Object.freeze({navigation,popups,glossary,journey});
+  const params=new URLSearchParams(location.search);
+  const rosterGuides=document.querySelector('[data-roster-guides]');
+  const viewSwitch=document.querySelector('[data-view-switch]');
+  if(rosterGuides)rosterGuides.hidden=!params.get('roster');
+  viewSwitch?.addEventListener('click',()=>{
+    const destination=new URL('./mobile/index.html',location.href);
+    destination.search=params.toString();
+    destination.hash=navigation.active;
+    viewSwitch.href=destination.href;
+  });
+  window.DG_APP=Object.freeze({navigation,popups,fullEntry,journey});
   const returnRecord=window.WHGlossaryReturn?.read();
   if(window.WHGlossaryReturn?.shouldRestoreAutomatically(returnRecord)&&returnRecord.popupIds?.length){
     const scope=document.getElementById(returnRecord.unitId)||document;
