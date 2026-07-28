@@ -195,6 +195,7 @@ const readerStyles=fs.readFileSync(path.join(readerRoot,'styles.css'),'utf8');
 assert(readerStyles.includes('*::-webkit-scrollbar-thumb'),'reader scrollbars use the shared bronze design');
 assert(readerStyles.includes('scroll-margin-top:calc(var(--header) + env(safe-area-inset-top) + 18px)'),'reader anchor jumps must clear the fixed header and safe area');
 assert(readerStyles.includes('.see-also+ul .term{width:100%;min-height:50px'),'external See also rules must use the same full-width row shape as local subrules');
+assert(readerStyles.includes('.see-also+ul+.subrules{margin-top:8px}'),'external and local rule rows must form one compact list');
 assert(!readerStyles.includes('.brand small,.current,.library{display:none}'),'mobile header keeps its current chapter and Library action');
 const muster=fs.readFileSync(path.join(readerRoot,'muster-armies.html'),'utf8');
 for(const value of ['25.01','25.02','25.03','25.04','Incursion','Strike Force','1000','2000'])assert(muster.includes(value),`Muster Armies is missing ${value}`);
