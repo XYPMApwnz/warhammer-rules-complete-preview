@@ -75,10 +75,8 @@
     actionList(term){
       const unit=this.contextualUnit(),unitId=unit?.id||'';
       const contextualStatline=unit?.querySelector('.unit-part[id$="-profile"]')?.id||'';
-      const actions=[];
-      if(term.fullRulePath)actions.push({label:'Open full rule',href:window.WHGlossaryReturn.href(term.fullRulePath)});
+      const actions=window.WHPopupRuleActions.resolve(term,{resolveHref:path=>window.WHGlossaryReturn.href(path)});
       if(term.id)actions.push({label:'Glossary entry',href:'../../glossary/index.html#'+encodeURIComponent(term.id),megaGlossary:true});
-      if(term.rule)actions.push({label:'To rule',target:term.rule,type:'rule'});
       if(unitId||term.datasheet)actions.push({label:'Datasheet & Wargear',target:unitId||term.datasheet,type:'datasheet'});
       if(contextualStatline||term.statline)actions.push({label:'Statline',target:contextualStatline||term.statline,type:'datasheet'});
       return actions.filter(action=>action.href||document.getElementById(action.target));
@@ -112,7 +110,7 @@
         const group=document.createElement('div');group.className='popup-actions';
         actions.forEach((action,actionIndex)=>{
           const button=document.createElement(action.href?'a':'button');button.className='popup-action';button.textContent=action.label;
-          if(action.href){button.href=action.href;if(action.megaGlossary)button.addEventListener('click',()=>this.rememberMegaReturn());}
+          if(action.href){button.href=action.href;if(action.megaGlossary||action.canonical)button.addEventListener('click',()=>this.rememberMegaReturn());}
           else{button.type='button';button.dataset.journeyTarget=action.target;button.dataset.journeyType=action.type;button.dataset.actionKey=index+'-'+actionIndex+'-'+action.type+'-'+action.target;}
           group.append(button);
         });

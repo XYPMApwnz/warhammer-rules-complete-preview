@@ -101,7 +101,7 @@ check('manual scroll ignores transient navigation candidates',navSource.includes
 check('navigation uses the shared explicit target resolver',navSource.includes('WHNavigationTargets.resolve')&&!navSource.includes("querySelector(':scope > .stratagem')")&&!navSource.includes("querySelector('.stratagem')"));
 check('outside click closes the complete popup chain',popupSource.includes("this.ids.length&&!event.target.closest('.term-popup')")&&popupSource.includes('this.closeFrom(0)'));
 check('popup actions inherit their originating unit context',popupSource.includes("contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}")&&popupSource.includes('contextualStatline'));
-check('Mega Glossary transitions use the shared return helper',html.includes('../../glossary-return.js?v=1')&&popupSource.includes('WHGlossaryReturn')&&read('scripts/app.js').includes('WHGlossaryReturn'));
+check('Mega Glossary transitions use the shared return helper',html.includes('../../glossary-return.js?v=2')&&popupSource.includes('WHGlossaryReturn')&&read('scripts/app.js').includes('WHGlossaryReturn'));
 check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
 check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=6"'));
 check('book loads the shared datasheet layout',html.includes('src="../shared/datasheet-layout.js?v=2"'));
