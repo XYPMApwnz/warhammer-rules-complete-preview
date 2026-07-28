@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {recordText} from '../books/core-rules/content/record-content.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const glossary=JSON.parse(fs.readFileSync(path.join(root,'glossary','registry.en.json'),'utf8')).terms;
@@ -45,7 +46,7 @@ for(const file of htmlFiles){
 
 const digital=JSON.parse(fs.readFileSync(path.join(root,'books','core-rules','content','core-rules.digital-11e.json'),'utf8'));
 for(const record of digital.records){
-  const text=`${record.title}\n${record.text}`;
+  const text=`${record.title}\n${recordText(record)}`;
   const openings=(text.match(/</g)||[]).length,closings=(text.match(/>/g)||[]).length;
   if(openings!==closings)errors.push(`Core Rules ${record.code}: unmatched angle bracket`);
 }

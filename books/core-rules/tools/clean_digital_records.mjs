@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {recordText} from '../content/record-content.mjs';
 
 const file=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../content/core-rules.digital-11e.json');
 const data=JSON.parse(fs.readFileSync(file,'utf8'));
@@ -14,8 +15,8 @@ const addChild=(code,title,text,kind='digital-clarification')=>{
 };
 const removeSection=(code,start,end='')=>{
   const record=byCode.get(code);
-  if(!record)return;
-  const from=record.text.indexOf(start);
+  if(!record||record.content)return;
+  const from=recordText(record).indexOf(start);
   if(from<0)return;
   const to=end?record.text.indexOf(end,from+start.length):-1;
   record.text=(record.text.slice(0,from)+(to>=0?record.text.slice(to):'')).replace(/\n{3,}/g,'\n\n').trim();
@@ -50,26 +51,122 @@ const battleSize=byCode.get('25.03');
 if(battleSize)battleSize.text=battleSize.text.replace(/BATTLE SIZEPoints TotalDetachment Points \(DP\)Enhancement LimitUnit Limit\*\nINCURSION1000222\nSTRIKE FORCE2000343/,'BATTLE SIZE\nIncursion: 1000 points; 2 Detachment Points; Enhancement limit 2; Unit limit 2.\nStrike Force: 2000 points; 3 Detachment Points; Enhancement limit 4; Unit limit 3.');
 
 for(const record of data.records){
-  let text=record.text||'';
+  if(record.content)continue;
+  let text=recordText(record);
   for(const other of data.records){
-    if(other.code===record.code||!other.text)continue;
+    const otherText=recordText(other);
+    if(other.code===record.code||!otherText)continue;
     const child=other.code.startsWith(record.code+'.');
     const variants=[
-      `${other.code} ${other.title}\n${other.text}`,
-      `${other.title} ${other.code}${other.text}`,
-      `${other.title} ${other.code}\n${other.text}`,
-      `${other.title}\n${other.text}`,
-      `${other.title.toUpperCase()}\n${other.text}`
+      `${other.code} ${other.title}\n${otherText}`,
+      `${other.title} ${other.code}${otherText}`,
+      `${other.title} ${other.code}\n${otherText}`,
+      `${other.title}\n${otherText}`,
+      `${other.title.toUpperCase()}\n${otherText}`
     ];
     for(const block of variants)text=text.replaceAll(block,'');
     if(record.code.split('.').length===2&&other.code.split('.').length===2){
       const marker=`\n${other.title} ${other.code}`;
       const index=text.indexOf(marker);
-      if(index>=0&&text.slice(index+marker.length).replace(/^\s*/,'').startsWith(other.text.slice(0,80)))text=text.slice(0,index);
+      if(index>=0&&text.slice(index+marker.length).replace(/^\s*/,'').startsWith(otherText.slice(0,80)))text=text.slice(0,index);
     }
   }
   const lines=text.replace(/\n{3,}/g,'\n\n').trim().split('\n');
   record.text=lines.filter((line,index)=>!index||line.trim().toLowerCase()!==lines[index-1].trim().toLowerCase()).join('\n');
+}
+
+const lines=record=>recordText(record).split('\n').map(line=>line.trim()).filter(Boolean);
+const paragraph=text=>({type:'paragraph',text});
+const heading=text=>({type:'heading',text});
+const list=items=>({type:'list',items});
+
+const strengthLines=lines(strength);
+if(strength&&!strength.content&&strengthLines.includes('UNIT STRENGTH')){
+  strength.content=[
+    ...strengthLines.slice(0,2).map(paragraph),
+    heading('UNIT STRENGTH'),
+    {type:'comparison-table',columns:['Starting Strength of 1','Starting Strength of 2 or more'],rows:[
+      {label:'Below Starting Strength',cells:[strengthLines[4].replace(/^Starting strength of 1:\s*/i,''),strengthLines[5].replace(/^Starting strength of 2 or more:\s*/i,'')]},
+      {label:'At Half-Strength',cells:[strengthLines[7].replace(/^Starting strength of 1:\s*/i,''),strengthLines[8].replace(/^Starting strength of 2 or more:\s*/i,'')]},
+      {label:'Below Half-Strength',cells:[strengthLines[10].replace(/^Starting strength of 1:\s*/i,''),strengthLines[11].replace(/^Starting strength of 2 or more:\s*/i,'')]}
+    ]},
+    paragraph(strengthLines[12]),
+    heading(strengthLines[13]),
+    paragraph(strengthLines[14])
+  ];
+  delete strength.text;
+}
+
+const wound=byCode.get('05.02'),woundLines=lines(wound);
+if(wound&&!wound.content){
+  wound.content=[
+    paragraph(woundLines[0]),
+    list(woundLines.slice(1,4).map(line=>line.replace(/^•\s*/,''))),
+    heading('ATTACK’S STRENGTH VS TARGET’S TOUGHNESS'),
+    {type:'matrix',caption:'Required result',rows:woundLines.slice(5,11).map(line=>{
+      const match=line.replace(/^•\s*/,'').match(/^(.*?):\s*([^:]+)$/);
+      return {condition:match?.[1]||line,result:match?.[2]||''};
+    })},
+    heading(woundLines[11]),paragraph(woundLines[12]),{type:'see-also',items:[woundLines[14].replace(/^•\s*/,'')]}
+  ];
+  delete wound.text;
+}
+
+const saveRolls=byCode.get('05.03'),saveLines=lines(saveRolls);
+if(saveRolls&&!saveRolls.content){
+  const stepIndexes=saveLines.map((line,index)=>/^• (Create Groups|Allocation Order|Make Save Rolls):/.test(line)?index:-1).filter(index=>index>=0);
+  saveRolls.content=[paragraph(saveLines[0]),{type:'procedure',steps:stepIndexes.map((start,index)=>{
+    const end=stepIndexes[index+1]??saveLines.length;
+    const [label,text]=saveLines[start].replace(/^•\s*/, '').split(/:\s*(.*)/s);
+    return {label,text,items:saveLines.slice(start+1,end).map(line=>line.replace(/^•\s*/,''))};
+  })}];
+  delete saveRolls.text;
+}
+
+const attachedLines=lines(attached);
+if(attached&&!attached.content&&attachedLines.includes('ABILITIES IN ATTACHED UNITS')){
+  attached.content=[
+    ...attachedLines.slice(0,2).map(paragraph),heading('ABILITIES IN ATTACHED UNITS'),
+    {type:'comparison-table',columns:['Source of ability/rule','Applies to the attached unit until'],rows:attachedLines.slice(3,6).map(line=>{
+      const [label,cell]=line.split(/:\s*(.*)/s);return {label,cells:[cell.replace(/^Applies until\s+/i,'')]};
+    })},
+    paragraph(attachedLines[6]),paragraph(attachedLines[7]),{type:'see-also',items:[attachedLines[9].replace(/^•\s*/,'')]}
+  ];
+  delete attached.text;
+}
+
+const headingRules=new Map([
+  ['03.03',['REGAINING COHERENCY','COHERENCY']],
+  ['16.01',['WHERE TO FIND ACTIONS']]
+]);
+for(const [code,headings] of headingRules){
+  const record=byCode.get(code);
+  if(!record||record.content)continue;
+  record.content=lines(record).map(line=>headings.includes(line)?heading(line):/^•\s*/.test(line)?list([line.replace(/^•\s*/,'')]):paragraph(line));
+  delete record.text;
+}
+
+const namedStageCodes=new Set(['09.04','09.05','09.06','09.07','10.04','10.05','10.06','10.07','11.04','12.03','12.05','12.06','12.08','15.09','18.04','18.05','20.04','21.02','24.32']);
+const stagePattern=/^(MAXIMUM DISTANCE|SET-UP DISTANCE|ELIGIBLE IF|EFFECT|BEFORE MOVING|WHILE MOVING|AFTER MOVING|WHILE SHOOTING|AFTER SHOOTING):\s*(.*)$/;
+const trailingHeadings=new Map([['10.07','INDIRECT FIRE'],['12.06','OVERRUN FIGHTS'],['18.04','RAPID DISEMBARK']]);
+for(const code of namedStageCodes){
+  const record=byCode.get(code);
+  if(!record||record.content)continue;
+  const sourceLines=lines(record),trailing=trailingHeadings.get(code),trailingIndex=trailing?sourceLines.indexOf(trailing):-1;
+  const stageLines=trailingIndex>=0?sourceLines.slice(0,trailingIndex):sourceLines;
+  const stages=[];
+  for(const line of stageLines){
+    const match=line.match(stagePattern);
+    if(match){stages.push({label:match[1],text:match[2],items:[]});continue;}
+    const current=stages.at(-1);
+    if(!current)continue;
+    if(/^•\s*/.test(line))current.items.push(line.replace(/^•\s*/,''));
+    else if(current.items.length)current.items[current.items.length-1]+=` ${line}`;
+    else current.text=`${current.text} ${line}`.trim();
+  }
+  record.content=[{type:'named-stages',stages}];
+  if(trailingIndex>=0)record.content.push(heading(trailing),...sourceLines.slice(trailingIndex+1).map(paragraph));
+  delete record.text;
 }
 
 data.records.sort((a,b)=>{

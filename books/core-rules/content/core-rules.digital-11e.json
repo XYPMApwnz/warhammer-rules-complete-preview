@@ -27,8 +27,63 @@
     {
       "code": "01.02.01",
       "title": "Starting Strength and Half-Strength",
-      "text": "The number of models a unit contains at the start of the first battle round is its starting strength. The starting strength of an attached unit is the number of models that unit contains at the start of the first battle round.\nSome rules refer to units being below starting strength, or at – or below – half-strength. The meaning of these terms varies depending on a unit’s starting strength, as shown below.\nUNIT STRENGTH\nBelow Starting Strength\nStarting strength of 1: The model’s remaining wounds are less than its W characteristic.\nStarting strength of 2 or more: The number of remaining models is less than the unit’s starting strength.\nAt Half-Strength\nStarting strength of 1: The model’s remaining wounds are half of its W characteristic.\nStarting strength of 2 or more: The number of remaining models is half of the unit’s starting strength.\nBelow Half-Strength\nStarting strength of 1: The model’s remaining wounds are less than half of its W characteristic.\nStarting strength of 2 or more: The number of remaining models is less than half of the unit’s starting strength.\nExample: A Captain (1 model) is attached to a unit of Intercessors (5 models). This attached unit has a starting strength of 6. If three Intercessors were destroyed, the unit would be at half-strength. If four Intercessors were destroyed, the unit would be below half-strength. If all of the Intercessors were destroyed, the remaining Captain would be below half-strength, despite having his full wounds remaining.\nSOME UNITS CANNOT BE AT HALF-STRENGTH\nIf a model’s W characteristic or a unit’s starting strength cannot be evenly divided in half, that model or unit cannot be at half-strength (but can be below half-strength as described above).",
-      "kind": "digital-clarification"
+      "kind": "digital-clarification",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The number of models a unit contains at the start of the first battle round is its starting strength. The starting strength of an attached unit is the number of models that unit contains at the start of the first battle round."
+        },
+        {
+          "type": "paragraph",
+          "text": "Some rules refer to units being below starting strength, or at – or below – half-strength. The meaning of these terms varies depending on a unit’s starting strength, as shown below."
+        },
+        {
+          "type": "heading",
+          "text": "UNIT STRENGTH"
+        },
+        {
+          "type": "comparison-table",
+          "columns": [
+            "Starting Strength of 1",
+            "Starting Strength of 2 or more"
+          ],
+          "rows": [
+            {
+              "label": "Below Starting Strength",
+              "cells": [
+                "The model’s remaining wounds are less than its W characteristic.",
+                "The number of remaining models is less than the unit’s starting strength."
+              ]
+            },
+            {
+              "label": "At Half-Strength",
+              "cells": [
+                "The model’s remaining wounds are half of its W characteristic.",
+                "The number of remaining models is half of the unit’s starting strength."
+              ]
+            },
+            {
+              "label": "Below Half-Strength",
+              "cells": [
+                "The model’s remaining wounds are less than half of its W characteristic.",
+                "The number of remaining models is less than half of the unit’s starting strength."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Example: A Captain (1 model) is attached to a unit of Intercessors (5 models). This attached unit has a starting strength of 6. If three Intercessors were destroyed, the unit would be at half-strength. If four Intercessors were destroyed, the unit would be below half-strength. If all of the Intercessors were destroyed, the remaining Captain would be below half-strength, despite having his full wounds remaining."
+        },
+        {
+          "type": "heading",
+          "text": "SOME UNITS CANNOT BE AT HALF-STRENGTH"
+        },
+        {
+          "type": "paragraph",
+          "text": "If a model’s W characteristic or a unit’s starting strength cannot be evenly divided in half, that model or unit cannot be at half-strength (but can be below half-strength as described above)."
+        }
+      ]
     },
     {
       "code": "01.02.02",
@@ -399,8 +454,41 @@
     {
       "code": "03.03",
       "title": "Coherency",
-      "text": "A unit that contains more than one model must be set up and end any kind of move in coherency. A unit is in coherency while both of the following apply to every model in that unit:\n• Within 2\" horizontally and 5\" vertically of at least one other model in that unit.\n• Within 9\" horizontally and 5\" vertically of every other model in that unit.\nREGAINING COHERENCY\nIn the End of Turn step of each player’s turn, if one or more units on the battlefield are not in coherency, those units’ controlling players must remove models from them, one at a time, until they are in coherency again. Models removed in this way are destroyed, but they do not trigger rules that apply when a model is destroyed.\nCOHERENCY\nEvery model in this unit is within 2\" of at least one other model in its unit, and every model is within 9\" of every other model in its unit. This unit is therefore in coherency.",
-      "kind": "rule"
+      "kind": "rule",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A unit that contains more than one model must be set up and end any kind of move in coherency. A unit is in coherency while both of the following apply to every model in that unit:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Within 2\" horizontally and 5\" vertically of at least one other model in that unit."
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Within 9\" horizontally and 5\" vertically of every other model in that unit."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "REGAINING COHERENCY"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the End of Turn step of each player’s turn, if one or more units on the battlefield are not in coherency, those units’ controlling players must remove models from them, one at a time, until they are in coherency again. Models removed in this way are destroyed, but they do not trigger rules that apply when a model is destroyed."
+        },
+        {
+          "type": "heading",
+          "text": "COHERENCY"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every model in this unit is within 2\" of at least one other model in its unit, and every model is within 9\" of every other model in its unit. This unit is therefore in coherency."
+        }
+      ]
     },
     {
       "code": "03.03.01",
@@ -537,8 +625,69 @@
     {
       "code": "05.02",
       "title": "2. Wound Roll",
-      "text": "Make one wound roll for each hit by rolling one D6. For each result, check if it fails or is a wound by matching the first condition below that applies:\n• Unmodified 1: FAILS.\n• Unmodified 6: CRITICAL WOUND.\n• Equal to or greater than the required result below: WOUND.\nATTACK’S STRENGTH VS TARGET’S TOUGHNESS — REQUIRED RESULT\n• Strength is twice (or more than twice) the Toughness: 2+.\n• Strength is greater than the Toughness: 3+.\n• Strength is equal to the Toughness: 4+.\n• Strength is less than the Toughness: 5+.\n• Strength is half (or less than half) the Toughness: 6+.\n• Any other result: FAILS.\nCRITICAL WOUNDS\nCritical wounds are still wounds. In addition, other rules can be triggered by a critical wound, such as [DEVASTATING WOUNDS] (24).\nSEE ALSO\n• Multiple Toughness Characteristics 05.02.01",
-      "kind": "rule"
+      "kind": "rule",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Make one wound roll for each hit by rolling one D6. For each result, check if it fails or is a wound by matching the first condition below that applies:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Unmodified 1: FAILS.",
+            "Unmodified 6: CRITICAL WOUND.",
+            "Equal to or greater than the required result below: WOUND."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "ATTACK’S STRENGTH VS TARGET’S TOUGHNESS"
+        },
+        {
+          "type": "matrix",
+          "caption": "Required result",
+          "rows": [
+            {
+              "condition": "Strength is twice (or more than twice) the Toughness",
+              "result": "2+."
+            },
+            {
+              "condition": "Strength is greater than the Toughness",
+              "result": "3+."
+            },
+            {
+              "condition": "Strength is equal to the Toughness",
+              "result": "4+."
+            },
+            {
+              "condition": "Strength is less than the Toughness",
+              "result": "5+."
+            },
+            {
+              "condition": "Strength is half (or less than half) the Toughness",
+              "result": "6+."
+            },
+            {
+              "condition": "Any other result",
+              "result": "FAILS."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "CRITICAL WOUNDS"
+        },
+        {
+          "type": "paragraph",
+          "text": "Critical wounds are still wounds. In addition, other rules can be triggered by a critical wound, such as [DEVASTATING WOUNDS] (24)."
+        },
+        {
+          "type": "see-also",
+          "items": [
+            "Multiple Toughness Characteristics 05.02.01"
+          ]
+        }
+      ]
     },
     {
       "code": "05.02.01",
@@ -549,8 +698,40 @@
     {
       "code": "05.03",
       "title": "3. Save Rolls",
-      "text": "The opposing player resolves the following sequence:\n• Create Groups: Divide all models in the target unit into the following groups, as many times as required:\n• One group for each CHARACTER model.\n• One group for all other models with the same W, Sv and InSv characteristics.\n• Allocation Order: Declare the order in which those groups will have attacks allocated to them, applying all of the following:\n• If a non-CHARACTER group contains a model that has lost one or more wounds, that group must be first in the allocation order.\n• No CHARACTER group can be earlier in the allocation order than a non-CHARACTER group.\n• CHARACTER groups containing a model that has lost one or more wounds must be earlier in the allocation order than CHARACTER groups containing no wounded models.\n• Make Save Rolls: The opposing player makes one save roll for each attack that wounded the target by rolling one D6.",
-      "kind": "rule"
+      "kind": "rule",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The opposing player resolves the following sequence:"
+        },
+        {
+          "type": "procedure",
+          "steps": [
+            {
+              "label": "Create Groups",
+              "text": "Divide all models in the target unit into the following groups, as many times as required:",
+              "items": [
+                "One group for each CHARACTER model.",
+                "One group for all other models with the same W, Sv and InSv characteristics."
+              ]
+            },
+            {
+              "label": "Allocation Order",
+              "text": "Declare the order in which those groups will have attacks allocated to them, applying all of the following:",
+              "items": [
+                "If a non-CHARACTER group contains a model that has lost one or more wounds, that group must be first in the allocation order.",
+                "No CHARACTER group can be earlier in the allocation order than a non-CHARACTER group.",
+                "CHARACTER groups containing a model that has lost one or more wounds must be earlier in the allocation order than CHARACTER groups containing no wounded models."
+              ]
+            },
+            {
+              "label": "Make Save Rolls",
+              "text": "The opposing player makes one save roll for each attack that wounded the target by rolling one D6.",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "05.03.01",
@@ -753,14 +934,61 @@
     {
       "code": "09.04",
       "title": "REMAIN STATIONARY",
-      "text": "MAXIMUM DISTANCE: ‘–’\nELIGIBLE IF: Any unit.\nEFFECT: No models are moved (either in straight lines or rotated). Units that remain stationary do not trigger any rules that are triggered when a unit starts or ends a move.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "MAXIMUM DISTANCE",
+              "text": "‘–’",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "Any unit.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "No models are moved (either in straight lines or rotated). Units that remain stationary do not trigger any rules that are triggered when a unit starts or ends a move.",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "09.05",
       "title": "NORMAL MOVE",
-      "text": "MAXIMUM DISTANCE: Your unit’s M characteristic.\nELIGIBLE IF: Your unit is on the battlefield and unengaged.\nEFFECT: Your unit moves as described in Moving (03).\nAFTER MOVING: Your unit must be unengaged.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "MAXIMUM DISTANCE",
+              "text": "Your unit’s M characteristic.",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "Your unit is on the battlefield and unengaged.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit moves as described in Moving (03).",
+              "items": []
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "Your unit must be unengaged.",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "09.05.01",
@@ -771,14 +999,93 @@
     {
       "code": "09.06",
       "title": "ADVANCE MOVE",
-      "text": "MAXIMUM DISTANCE: Advance roll + your unit’s M characteristic.\nELIGIBLE IF: Your unit is on the battlefield and unengaged.\nEFFECT: Your unit moves as described in Moving (03).\nBEFORE MOVING: Make an advance roll by rolling one D6.\nAFTER MOVING:\n• Your unit must be unengaged.\n• Until the end of the turn, unless otherwise stated, your unit is not eligible to declare a charge or start an action.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "MAXIMUM DISTANCE",
+              "text": "Advance roll + your unit’s M characteristic.",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "Your unit is on the battlefield and unengaged.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit moves as described in Moving (03).",
+              "items": []
+            },
+            {
+              "label": "BEFORE MOVING",
+              "text": "Make an advance roll by rolling one D6.",
+              "items": []
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "",
+              "items": [
+                "Your unit must be unengaged.",
+                "Until the end of the turn, unless otherwise stated, your unit is not eligible to declare a charge or start an action."
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "09.07",
       "title": "FALL-BACK MOVE",
-      "text": "MAXIMUM DISTANCE: Your unit’s M characteristic.\nELIGIBLE IF: Your unit is engaged.\nEFFECT: Your unit moves as described in Moving (03).\nBEFORE MOVING: Select fall-back mode:\n• Ordered Retreat: If your unit is not battle-shocked, you can select this mode.\n• Desperate Escape: Otherwise, you must select this mode. Make a hazard roll for each model in your unit (06.03).\nWHILE MOVING:\n• Desperate Escape: Each model that is moved can be moved through enemy models.\nAFTER MOVING:\n• Your unit must be unengaged.\n• Until the end of the turn, unless otherwise stated, your unit is not eligible to shoot, declare a charge or start an action.\n• Desperate Escape: If your unit is not battle-shocked, you must make a battle-shock roll for your unit (01.07).",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "MAXIMUM DISTANCE",
+              "text": "Your unit’s M characteristic.",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "Your unit is engaged.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit moves as described in Moving (03).",
+              "items": []
+            },
+            {
+              "label": "BEFORE MOVING",
+              "text": "Select fall-back mode:",
+              "items": [
+                "Ordered Retreat: If your unit is not battle-shocked, you can select this mode.",
+                "Desperate Escape: Otherwise, you must select this mode. Make a hazard roll for each model in your unit (06.03)."
+              ]
+            },
+            {
+              "label": "WHILE MOVING",
+              "text": "",
+              "items": [
+                "Desperate Escape: Each model that is moved can be moved through enemy models."
+              ]
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "",
+              "items": [
+                "Your unit must be unengaged.",
+                "Until the end of the turn, unless otherwise stated, your unit is not eligible to shoot, declare a charge or start an action.",
+                "Desperate Escape: If your unit is not battle-shocked, you must make a battle-shock roll for your unit (01.07)."
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "09.07.01",
@@ -807,26 +1114,153 @@
     {
       "code": "10.04",
       "title": "NORMAL SHOOTING",
-      "text": "ELIGIBLE IF: Your unit is unengaged and did not make an advance move this turn.\nEFFECT: Your unit shoots as described in Making Attacks (04).\nAFTER SHOOTING: Until the end of the phase, your unit is not eligible to start an action.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "ELIGIBLE IF",
+              "text": "Your unit is unengaged and did not make an advance move this turn.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit shoots as described in Making Attacks (04).",
+              "items": []
+            },
+            {
+              "label": "AFTER SHOOTING",
+              "text": "Until the end of the phase, your unit is not eligible to start an action.",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "10.05",
       "title": "ASSAULT SHOOTING",
-      "text": "ELIGIBLE IF: All of the following apply to your unit:\n• Unengaged and made an advance move this turn.\n• Has one or more [ASSAULT] weapons.\nEFFECT: Your unit shoots as described in Making Attacks (04).\nWHILE SHOOTING: You can only select [ASSAULT] weapons to make attacks with.\nAFTER SHOOTING: Until the end of the phase, your unit is not eligible to start an action.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "ELIGIBLE IF",
+              "text": "All of the following apply to your unit:",
+              "items": [
+                "Unengaged and made an advance move this turn.",
+                "Has one or more [ASSAULT] weapons."
+              ]
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit shoots as described in Making Attacks (04).",
+              "items": []
+            },
+            {
+              "label": "WHILE SHOOTING",
+              "text": "You can only select [ASSAULT] weapons to make attacks with.",
+              "items": []
+            },
+            {
+              "label": "AFTER SHOOTING",
+              "text": "Until the end of the phase, your unit is not eligible to start an action.",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "10.06",
       "title": "CLOSE-QUARTERS SHOOTING",
-      "text": "ELIGIBLE IF: All of the following apply to your unit:\n• Engaged and did not make an advance move this turn.\n• Has one or more [CLOSE-QUARTERS] weapons or is a MONSTER/VEHICLE unit.\nEFFECT: Your unit shoots as described in Making Attacks (04).\nWHILE SHOOTING: Models in your unit can target enemy units your unit is engaged with.\n• MONSTER/VEHICLE Models: Each time a MONSTER/VEHICLE model in your unit makes an attack:\n• Unless that attack is made with a [CLOSE-QUARTERS] weapon and targets a unit your unit is engaged with, subtract 1 from the hit roll.\n• If that attack is made with a [BLAST] weapon, it still cannot target a unit your unit is engaged with.\n• Non-MONSTER/Non-VEHICLE Models: You can only select [CLOSE-QUARTERS] weapons to make attacks with and you can only select enemy units that are engaged with your unit as targets.\nAFTER SHOOTING: Until the end of the phase, your unit is not eligible to start an action.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "ELIGIBLE IF",
+              "text": "All of the following apply to your unit:",
+              "items": [
+                "Engaged and did not make an advance move this turn.",
+                "Has one or more [CLOSE-QUARTERS] weapons or is a MONSTER/VEHICLE unit."
+              ]
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit shoots as described in Making Attacks (04).",
+              "items": []
+            },
+            {
+              "label": "WHILE SHOOTING",
+              "text": "Models in your unit can target enemy units your unit is engaged with.",
+              "items": [
+                "MONSTER/VEHICLE Models: Each time a MONSTER/VEHICLE model in your unit makes an attack:",
+                "Unless that attack is made with a [CLOSE-QUARTERS] weapon and targets a unit your unit is engaged with, subtract 1 from the hit roll.",
+                "If that attack is made with a [BLAST] weapon, it still cannot target a unit your unit is engaged with.",
+                "Non-MONSTER/Non-VEHICLE Models: You can only select [CLOSE-QUARTERS] weapons to make attacks with and you can only select enemy units that are engaged with your unit as targets."
+              ]
+            },
+            {
+              "label": "AFTER SHOOTING",
+              "text": "Until the end of the phase, your unit is not eligible to start an action.",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "10.07",
       "title": "INDIRECT SHOOTING",
-      "text": "ELIGIBLE IF: All of the following apply to your unit:\n• Unengaged and did not make an advance move this turn.\n• Has one or more [INDIRECT FIRE] weapons.\nEFFECT: Your unit shoots as described in Making Attacks (04).\nWHILE SHOOTING:\n• [INDIRECT FIRE] weapons in your unit can target units that are not visible to the attacking model.\n• Each time an [INDIRECT FIRE] weapon makes an attack:\n• The target has the benefit of cover against that attack (13.08).\n• You cannot re-roll hit rolls.\n• An unmodified hit roll of 1-5 fails, unless your unit remained stationary this turn and the target is visible to one or more friendly units, in which case an unmodified hit roll of 1-3 fails instead.\nAFTER SHOOTING: Until the end of the phase, your unit is not eligible to start an action.\nINDIRECT FIRE\nWhen you select indirect shooting for a unit, its [INDIRECT FIRE] weapons can launch punishing barrages on targets that are not visible, but don’t forget that its other weapons can still target other visible targets.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "ELIGIBLE IF",
+              "text": "All of the following apply to your unit:",
+              "items": [
+                "Unengaged and did not make an advance move this turn.",
+                "Has one or more [INDIRECT FIRE] weapons."
+              ]
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit shoots as described in Making Attacks (04).",
+              "items": []
+            },
+            {
+              "label": "WHILE SHOOTING",
+              "text": "",
+              "items": [
+                "[INDIRECT FIRE] weapons in your unit can target units that are not visible to the attacking model.",
+                "Each time an [INDIRECT FIRE] weapon makes an attack:",
+                "The target has the benefit of cover against that attack (13.08).",
+                "You cannot re-roll hit rolls.",
+                "An unmodified hit roll of 1-5 fails, unless your unit remained stationary this turn and the target is visible to one or more friendly units, in which case an unmodified hit roll of 1-3 fails instead."
+              ]
+            },
+            {
+              "label": "AFTER SHOOTING",
+              "text": "Until the end of the phase, your unit is not eligible to start an action.",
+              "items": []
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "INDIRECT FIRE"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you select indirect shooting for a unit, its [INDIRECT FIRE] weapons can launch punishing barrages on targets that are not visible, but don’t forget that its other weapons can still target other visible targets."
+        }
+      ]
     },
     {
       "code": "11.01",
@@ -855,8 +1289,52 @@
     {
       "code": "11.04",
       "title": "CHARGE MOVE",
-      "text": "MAXIMUM DISTANCE: Charge roll.\nELIGIBLE IF: Your unit declared a charge this phase.\nEFFECT: Your unit moves as described in Moving (03).\nBEFORE MOVING: Select one or more enemy units that are within 12\" of your unit and within the maximum distance of your unit; until the end of this move, each of those enemy units is a charge target.\nWHILE MOVING:\n• Each model must end its move closer to one or more charge targets.\n• Each model that can end its move within 1\" of one or more charge targets must do so.\n• Each model that can end its move engaged with one or more charge targets must do so.\nAFTER MOVING:\n• Your unit must be engaged with all of the charge targets.\n• Your unit cannot be engaged with one or more enemy units that are not charge targets.\n• Until the end of the turn, each model in your unit has the Fights First ability (24.13).",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "MAXIMUM DISTANCE",
+              "text": "Charge roll.",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "Your unit declared a charge this phase.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit moves as described in Moving (03).",
+              "items": []
+            },
+            {
+              "label": "BEFORE MOVING",
+              "text": "Select one or more enemy units that are within 12\" of your unit and within the maximum distance of your unit; until the end of this move, each of those enemy units is a charge target.",
+              "items": []
+            },
+            {
+              "label": "WHILE MOVING",
+              "text": "",
+              "items": [
+                "Each model must end its move closer to one or more charge targets.",
+                "Each model that can end its move within 1\" of one or more charge targets must do so.",
+                "Each model that can end its move engaged with one or more charge targets must do so."
+              ]
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "",
+              "items": [
+                "Your unit must be engaged with all of the charge targets.",
+                "Your unit cannot be engaged with one or more enemy units that are not charge targets.",
+                "Until the end of the turn, each model in your unit has the Fights First ability (24.13)."
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "12.01",
@@ -873,8 +1351,57 @@
     {
       "code": "12.03",
       "title": "PILE-IN MOVE",
-      "text": "MAXIMUM DISTANCE: 3\".\nELIGIBLE IF: It is the Fight phase and one or more of the following apply to your unit:\n• It is engaged.\n• It made a charge move this turn.\n• It was selected to make an overrun fight this phase (12.06).\nEFFECT: Your unit moves as described in Moving (03).\nBEFORE MOVING: Select pile-in targets:\n• If your unit is engaged, select every enemy unit it is engaged with.\n• Otherwise, select one or more enemy units within 5\" of your unit.\nWHILE MOVING:\n• Models in base-contact with one or more enemy models cannot be moved.\n• Each model that is moved must end its move closer to the closest pile-in target, and engaged with it if possible.\nAFTER MOVING:\n• Your unit must be engaged.\n• Each model that started this move engaged with an enemy unit must still be engaged with that enemy unit.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "MAXIMUM DISTANCE",
+              "text": "3\".",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "It is the Fight phase and one or more of the following apply to your unit:",
+              "items": [
+                "It is engaged.",
+                "It made a charge move this turn.",
+                "It was selected to make an overrun fight this phase (12.06)."
+              ]
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit moves as described in Moving (03).",
+              "items": []
+            },
+            {
+              "label": "BEFORE MOVING",
+              "text": "Select pile-in targets:",
+              "items": [
+                "If your unit is engaged, select every enemy unit it is engaged with.",
+                "Otherwise, select one or more enemy units within 5\" of your unit."
+              ]
+            },
+            {
+              "label": "WHILE MOVING",
+              "text": "",
+              "items": [
+                "Models in base-contact with one or more enemy models cannot be moved.",
+                "Each model that is moved must end its move closer to the closest pile-in target, and engaged with it if possible."
+              ]
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "",
+              "items": [
+                "Your unit must be engaged.",
+                "Each model that started this move engaged with an enemy unit must still be engaged with that enemy unit."
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "12.04",
@@ -891,14 +1418,54 @@
     {
       "code": "12.05",
       "title": "NORMAL FIGHT",
-      "text": "ELIGIBLE IF: Your unit is engaged.\nEFFECT: Your unit fights as described in Making Attacks (04).",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "ELIGIBLE IF",
+              "text": "Your unit is engaged.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit fights as described in Making Attacks (04).",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "12.06",
       "title": "OVERRUN FIGHT",
-      "text": "ELIGIBLE IF: Your unit is unengaged, or was unengaged at the start of the Fight step but became engaged during the Fight phase.\nEFFECT: Your unit can make one additional pile-in move, then fights as described in Making Attacks (04).\nOVERRUN FIGHTS\nWhen a unit makes an overrun fight, its models can be moved such that enemy units that were unengaged become engaged. Such enemy units become eligible to fight this phase (and may even be able to fight next if they are Fights First units).",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "ELIGIBLE IF",
+              "text": "Your unit is unengaged, or was unengaged at the start of the Fight step but became engaged during the Fight phase.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit can make one additional pile-in move, then fights as described in Making Attacks (04).",
+              "items": []
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "OVERRUN FIGHTS"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a unit makes an overrun fight, its models can be moved such that enemy units that were unengaged become engaged. Such enemy units become eligible to fight this phase (and may even be able to fight next if they are Fights First units)."
+        }
+      ]
     },
     {
       "code": "12.07",
@@ -909,8 +1476,56 @@
     {
       "code": "12.08",
       "title": "CONSOLIDATION MOVE",
-      "text": "MAXIMUM DISTANCE: 3\"\nELIGIBLE IF: It is the Fight phase and your unit was eligible to fight this phase.\nEFFECT: Your unit moves as described in Moving (03).\nBEFORE MOVING: Select consolidation mode:\n• Ongoing Consolidation:\nIf your unit is engaged, you must select this mode and select every enemy unit it is engaged with.\n• Engaging Consolidation:\nOtherwise, if your unit is within 3\" of one or more enemy units, you must select this mode and select one or more of those enemy units.\n• Objective Consolidation:\nOtherwise, if your unit is within 3\" of one or more objectives, you must select this mode and select one of those objectives.\nWHILE MOVING:\n• Ongoing Consolidation:\nModels in base-contact with one or more enemy models cannot be moved. Each model that is moved must end its move closer to the closest selected enemy unit, and engaged with it if possible.\n• Engaging Consolidation:\nEach model that is moved must end its move closer to the closest selected enemy unit, and engaged with it if possible.\n• Objective Consolidation:\nEach model that is moved must end its move within range of the selected objective if possible, or closer to it if not.\nAFTER MOVING:\n• Ongoing Consolidation:\nEach model that started this move engaged with an enemy unit must still be engaged with that enemy unit.\n• Engaging Consolidation:\nYour unit must be engaged with all of the selected enemy units. If one or more enemy units engaged with your unit have not been selected to fight this phase, your opponent must select each of those units, one at a time; when each is selected, it becomes eligible to fight and is selected to fight (12.04).\n• Objective Consolidation:\nYour unit must be within range of the selected objective.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "MAXIMUM DISTANCE",
+              "text": "3\"",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "It is the Fight phase and your unit was eligible to fight this phase.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit moves as described in Moving (03).",
+              "items": []
+            },
+            {
+              "label": "BEFORE MOVING",
+              "text": "Select consolidation mode:",
+              "items": [
+                "Ongoing Consolidation: If your unit is engaged, you must select this mode and select every enemy unit it is engaged with.",
+                "Engaging Consolidation: Otherwise, if your unit is within 3\" of one or more enemy units, you must select this mode and select one or more of those enemy units.",
+                "Objective Consolidation: Otherwise, if your unit is within 3\" of one or more objectives, you must select this mode and select one of those objectives."
+              ]
+            },
+            {
+              "label": "WHILE MOVING",
+              "text": "",
+              "items": [
+                "Ongoing Consolidation: Models in base-contact with one or more enemy models cannot be moved. Each model that is moved must end its move closer to the closest selected enemy unit, and engaged with it if possible.",
+                "Engaging Consolidation: Each model that is moved must end its move closer to the closest selected enemy unit, and engaged with it if possible.",
+                "Objective Consolidation: Each model that is moved must end its move within range of the selected objective if possible, or closer to it if not."
+              ]
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "",
+              "items": [
+                "Ongoing Consolidation: Each model that started this move engaged with an enemy unit must still be engaged with that enemy unit.",
+                "Engaging Consolidation: Your unit must be engaged with all of the selected enemy units. If one or more enemy units engaged with your unit have not been selected to fight this phase, your opponent must select each of those units, one at a time; when each is selected, it becomes eligible to fight and is selected to fight (12.04).",
+                "Objective Consolidation: Your unit must be within range of the selected objective."
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "12.09",
@@ -1107,8 +1722,38 @@
     {
       "code": "15.09",
       "title": "SNAP SHOOTING",
-      "text": "ELIGIBLE IF: As stated in the rule allowing this shooting type.\nEFFECT: Your unit shoots as described in Making Attacks (04).\nWHILE SHOOTING:\n• You can only target one visible enemy unit within 24\" of your unit (and only if it is an eligible target).\n• Each attack only hits on an unmodified hit roll of 6 (irrespective of the attacking weapon’s BS characteristic or any modifiers).\n• You cannot re-roll hit rolls.\nAFTER SHOOTING: Until the end of the phase, your unit is not eligible to start an action.",
-      "kind": "stratagem"
+      "kind": "stratagem",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "ELIGIBLE IF",
+              "text": "As stated in the rule allowing this shooting type.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit shoots as described in Making Attacks (04).",
+              "items": []
+            },
+            {
+              "label": "WHILE SHOOTING",
+              "text": "",
+              "items": [
+                "You can only target one visible enemy unit within 24\" of your unit (and only if it is an eligible target).",
+                "Each attack only hits on an unmodified hit roll of 6 (irrespective of the attacking weapon’s BS characteristic or any modifiers).",
+                "You cannot re-roll hit rolls."
+              ]
+            },
+            {
+              "label": "AFTER SHOOTING",
+              "text": "Until the end of the phase, your unit is not eligible to start an action.",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "15.10",
@@ -1131,8 +1776,57 @@
     {
       "code": "16.01",
       "title": "Performing Actions",
-      "text": "Some rules allow units to perform actions. Each action states:\n• STARTS: When it is started.\n• UNITS: Which friendly units can perform it.\n• USE LIMIT: How many times friendly units can start it.\n• COMPLETES: When it completes.\n• EFFECT: What the effects of completing it are.\n• Any additional restrictions that may apply.\nWHERE TO FIND ACTIONS\nThe actions players can use can be found in other publications such as mission packs. All players can use core actions, while other actions may have restrictions such as army faction.",
-      "kind": "rule"
+      "kind": "rule",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Some rules allow units to perform actions. Each action states:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "STARTS: When it is started."
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "UNITS: Which friendly units can perform it."
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "USE LIMIT: How many times friendly units can start it."
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "COMPLETES: When it completes."
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "EFFECT: What the effects of completing it are."
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Any additional restrictions that may apply."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "WHERE TO FIND ACTIONS"
+        },
+        {
+          "type": "paragraph",
+          "text": "The actions players can use can be found in other publications such as mission packs. All players can use core actions, while other actions may have restrictions such as army faction."
+        }
+      ]
     },
     {
       "code": "17.01",
@@ -1185,14 +1879,109 @@
     {
       "code": "18.04",
       "title": "DISEMBARK MOVE",
-      "text": "SET-UP DISTANCE:\n- Rapid/Tactical Disembark: 3\"\n- Combat Disembark: 6\"\nELIGIBLE IF: All of the following apply to your unit:\n• Embarked within a TRANSPORT model that is on the battlefield.\n• Did not embark within that TRANSPORT this phase.\n• That TRANSPORT has not made an advance or fall-back move this phase.\nEFFECT: Your unit is set up as described in Set Up (03.02).\nBEFORE MOVING: Select disembark mode:\n• Rapid Disembark:\nIf that TRANSPORT made a normal or ingress move this phase, you must select this mode.\n• Tactical Disembark:\nOtherwise, If that TRANSPORT remained stationary or has not yet been selected to move this phase, and if you can set up your unit as described below, you must select this mode.\n• Combat Disembark:\nOtherwise, you must select this mode. Make a hazard roll for each model in your unit.\nWHILE MOVING: Set up each model in your unit wholly within the set-up distance of that TRANSPORT.\n• Rapid Disembark:\nIf that TRANSPORT made an ingress move this turn, each model must follow the same rules that TRANSPORT had to follow while resolving that move.\n• Combat Disembark:\nEach model can be set up engaged with one or more enemy units that TRANSPORT is engaged with.\nAFTER MOVING:\n• Rapid Disembark:\nUntil the end of the turn, your unit is not eligible to declare a charge.\n• Tactical Disembark:\nSelect your unit to make a normal or advance move.\n• Combat Disembark:\nYour unit is battle-shocked and, until the end of the turn, it is not eligible to declare a charge.\nRAPID DISEMBARK\nWhen a unit uses the rapid disembark mode after its TRANSPORT makes an ingress move, the models must follow the same rules and restrictions as that TRANSPORT did. For example, if that TRANSPORT had to be set up more than 8\" from all enemy units and not within your opponent’s deployment zone, the same applies to the disembarking unit.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "SET-UP DISTANCE",
+              "text": "- Rapid/Tactical Disembark: 3\" - Combat Disembark: 6\"",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "All of the following apply to your unit:",
+              "items": [
+                "Embarked within a TRANSPORT model that is on the battlefield.",
+                "Did not embark within that TRANSPORT this phase.",
+                "That TRANSPORT has not made an advance or fall-back move this phase."
+              ]
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit is set up as described in Set Up (03.02).",
+              "items": []
+            },
+            {
+              "label": "BEFORE MOVING",
+              "text": "Select disembark mode:",
+              "items": [
+                "Rapid Disembark: If that TRANSPORT made a normal or ingress move this phase, you must select this mode.",
+                "Tactical Disembark: Otherwise, If that TRANSPORT remained stationary or has not yet been selected to move this phase, and if you can set up your unit as described below, you must select this mode.",
+                "Combat Disembark: Otherwise, you must select this mode. Make a hazard roll for each model in your unit."
+              ]
+            },
+            {
+              "label": "WHILE MOVING",
+              "text": "Set up each model in your unit wholly within the set-up distance of that TRANSPORT.",
+              "items": [
+                "Rapid Disembark: If that TRANSPORT made an ingress move this turn, each model must follow the same rules that TRANSPORT had to follow while resolving that move.",
+                "Combat Disembark: Each model can be set up engaged with one or more enemy units that TRANSPORT is engaged with."
+              ]
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "",
+              "items": [
+                "Rapid Disembark: Until the end of the turn, your unit is not eligible to declare a charge.",
+                "Tactical Disembark: Select your unit to make a normal or advance move.",
+                "Combat Disembark: Your unit is battle-shocked and, until the end of the turn, it is not eligible to declare a charge."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "RAPID DISEMBARK"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a unit uses the rapid disembark mode after its TRANSPORT makes an ingress move, the models must follow the same rules and restrictions as that TRANSPORT did. For example, if that TRANSPORT had to be set up more than 8\" from all enemy units and not within your opponent’s deployment zone, the same applies to the disembarking unit."
+        }
+      ]
     },
     {
       "code": "18.05",
       "title": "EMERGENCY DISEMBARK MOVE",
-      "text": "SET-UP DISTANCE: 6\"\nELIGIBLE IF: Your unit is embarked within a TRANSPORT model that was just destroyed.\nEFFECT: Your unit is set up as described in Set Up (03.02).\nBEFORE MOVING: Make a hazard roll for each model in your unit (06.03).\nWHILE MOVING: Set up each model in your unit wholly within the set-up distance of that TRANSPORT, and as close as possible to that TRANSPORT. Each model that cannot be set up in this way is destroyed.\nAFTER MOVING: Your unit is battle-shocked and, until the end of the turn, it is not eligible to declare a charge.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "SET-UP DISTANCE",
+              "text": "6\"",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "Your unit is embarked within a TRANSPORT model that was just destroyed.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit is set up as described in Set Up (03.02).",
+              "items": []
+            },
+            {
+              "label": "BEFORE MOVING",
+              "text": "Make a hazard roll for each model in your unit (06.03).",
+              "items": []
+            },
+            {
+              "label": "WHILE MOVING",
+              "text": "Set up each model in your unit wholly within the set-up distance of that TRANSPORT, and as close as possible to that TRANSPORT. Each model that cannot be set up in this way is destroyed.",
+              "items": []
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "Your unit is battle-shocked and, until the end of the turn, it is not eligible to declare a charge.",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "19.01",
@@ -1221,8 +2010,62 @@
     {
       "code": "19.04",
       "title": "Abilities in Attached Units",
-      "text": "Abilities/rules that affect a single specified model (for example from an enhancement or an item of wargear) only ever apply to that model, even while part of an attached unit.\nOtherwise, abilities/rules that affect a unit (or models in it) apply to every model in an attached unit, until the source of that ability/rule is destroyed, as shown below.\nABILITIES IN ATTACHED UNITS\nLeader/support unit: Applies until the last model in that leader/support unit is destroyed.*\nBodyguard unit (for example, from a datasheet ability): Applies until the last model in that bodyguard unit is destroyed.\nA specific model (for example, the bearer of an enhancement or an item of wargear): Applies until that model is destroyed.\n* This means leader/support units continue to benefit from their own ‘while this model is leading a unit’ abilities even after their bodyguard unit is destroyed, provided they started the battle in an attached unit.\nIn all of the above cases, if that last model was destroyed as the result of an attack, the ability it was conferring upon the attached unit applies until the attacking unit has resolved all of its attacks.\nSEE ALSO\n• Revived 01.02.03",
-      "kind": "rule"
+      "kind": "rule",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Abilities/rules that affect a single specified model (for example from an enhancement or an item of wargear) only ever apply to that model, even while part of an attached unit."
+        },
+        {
+          "type": "paragraph",
+          "text": "Otherwise, abilities/rules that affect a unit (or models in it) apply to every model in an attached unit, until the source of that ability/rule is destroyed, as shown below."
+        },
+        {
+          "type": "heading",
+          "text": "ABILITIES IN ATTACHED UNITS"
+        },
+        {
+          "type": "comparison-table",
+          "columns": [
+            "Source of ability/rule",
+            "Applies to the attached unit until"
+          ],
+          "rows": [
+            {
+              "label": "Leader/support unit",
+              "cells": [
+            "The last model in that leader/support unit is destroyed.*"
+              ]
+            },
+            {
+              "label": "Bodyguard unit (for example, from a datasheet ability)",
+              "cells": [
+            "The last model in that bodyguard unit is destroyed."
+              ]
+            },
+            {
+              "label": "A specific model (for example, the bearer of an enhancement or an item of wargear)",
+              "cells": [
+            "That model is destroyed."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "* This means leader/support units continue to benefit from their own ‘while this model is leading a unit’ abilities even after their bodyguard unit is destroyed, provided they started the battle in an attached unit."
+        },
+        {
+          "type": "paragraph",
+          "text": "In all of the above cases, if that last model was destroyed as the result of an attack, the ability it was conferring upon the attached unit applies until the attacking unit has resolved all of its attacks."
+        },
+        {
+          "type": "see-also",
+          "items": [
+            "Revived 01.02.03"
+          ]
+        }
+      ]
     },
     {
       "code": "19.04.01",
@@ -1269,8 +2112,46 @@
     {
       "code": "20.04",
       "title": "INGRESS MOVE",
-      "text": "SET-UP DISTANCE: 6\"\nELIGIBLE IF: Your unit is in strategic reserves (excluding units that are embarked within TRANSPORTS that are themselves in strategic reserves).\nEFFECT: Your unit is set up as described in Set Up (03.02).\nBEFORE MOVING: Your unit is set up as described in Set Up (03.02).\nWHILE MOVING: Set up your unit wholly within the set-up distance of one or more battlefield edges and more than 8\" horizontally from all enemy units.\n• Before the Third Battle Round: While doing so, no models can be set up within your opponent’s deployment zone.\nAFTER MOVING: Unless otherwise stated, until the start of the next Charge phase, your unit is not eligible to make any other type of move.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "SET-UP DISTANCE",
+              "text": "6\"",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "Your unit is in strategic reserves (excluding units that are embarked within TRANSPORTS that are themselves in strategic reserves).",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit is set up as described in Set Up (03.02).",
+              "items": []
+            },
+            {
+              "label": "BEFORE MOVING",
+              "text": "Your unit is set up as described in Set Up (03.02).",
+              "items": []
+            },
+            {
+              "label": "WHILE MOVING",
+              "text": "Set up your unit wholly within the set-up distance of one or more battlefield edges and more than 8\" horizontally from all enemy units.",
+              "items": [
+                "Before the Third Battle Round: While doing so, no models can be set up within your opponent’s deployment zone."
+              ]
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "Unless otherwise stated, until the start of the next Charge phase, your unit is not eligible to make any other type of move.",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "21.01",
@@ -1281,8 +2162,55 @@
     {
       "code": "21.02",
       "title": "SURGE MOVE",
-      "text": "SET-UP DISTANCE: As stated in the rule allowing this move type.\nELIGIBLE IF: All of the following apply:\n• The rule allowing this move type has been triggered.\n• Your unit is not battle-shocked.\n• Your unit is unengaged.\n• Your unit has not moved this phase.\nEFFECT: Your unit moves as described in Moving (03).\nBEFORE MOVING: Select the closest enemy unit to be the surge target.\nWHILE MOVING:\n• Each model must end its move engaged with the surge target if possible.\n• Each model that cannot end its move engaged with the surge target must end its move as close as possible to the surge target.\nAFTER MOVING:\n• Your unit cannot be engaged with one or more enemy units that were not the surge target.\n• Your unit cannot move again this phase.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "SET-UP DISTANCE",
+              "text": "As stated in the rule allowing this move type.",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "All of the following apply:",
+              "items": [
+                "The rule allowing this move type has been triggered.",
+                "Your unit is not battle-shocked.",
+                "Your unit is unengaged.",
+                "Your unit has not moved this phase."
+              ]
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit moves as described in Moving (03).",
+              "items": []
+            },
+            {
+              "label": "BEFORE MOVING",
+              "text": "Select the closest enemy unit to be the surge target.",
+              "items": []
+            },
+            {
+              "label": "WHILE MOVING",
+              "text": "",
+              "items": [
+                "Each model must end its move engaged with the surge target if possible.",
+                "Each model that cannot end its move engaged with the surge target must end its move as close as possible to the surge target."
+              ]
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "",
+              "items": [
+                "Your unit cannot be engaged with one or more enemy units that were not the surge target.",
+                "Your unit cannot move again this phase."
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "21.03",
@@ -1563,8 +2491,34 @@
     {
       "code": "24.32",
       "title": "SCOUT MOVE",
-      "text": "MAXIMUM DISTANCE: The X\" in Scouts X\".\nELIGIBLE IF: It is the Resolve Pre-battle Abilities step, and your unit is wholly within your deployment zone.\nEFFECT: Your unit moves as described in Moving (03).\nAFTER MOVING: Your unit must be more than 8\" horizontally from all enemy units.",
-      "kind": "sequence"
+      "kind": "sequence",
+      "content": [
+        {
+          "type": "named-stages",
+          "stages": [
+            {
+              "label": "MAXIMUM DISTANCE",
+              "text": "The X\" in Scouts X\".",
+              "items": []
+            },
+            {
+              "label": "ELIGIBLE IF",
+              "text": "It is the Resolve Pre-battle Abilities step, and your unit is wholly within your deployment zone.",
+              "items": []
+            },
+            {
+              "label": "EFFECT",
+              "text": "Your unit moves as described in Moving (03).",
+              "items": []
+            },
+            {
+              "label": "AFTER MOVING",
+              "text": "Your unit must be more than 8\" horizontally from all enemy units.",
+              "items": []
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "24.33",

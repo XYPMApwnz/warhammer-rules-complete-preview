@@ -4,6 +4,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 import {verifyPdfParity} from '../tools/verify_pdf_parity.mjs';
+import {recordText} from '../content/record-content.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const sourceRoot=root;
@@ -33,6 +34,14 @@ assert.equal(digital.meta.edition,'11E','reader must use the 11E digital referen
 assert.equal(digital.records.length,271,'unexpected Wahapedia 11E record count');
 assert.equal(new Set(digital.records.map(record=>record.code)).size,digital.records.length,'digital rule codes must be unique');
 const recordsByCode=new Map(digital.records.map(record=>[record.code,record]));
+const structuredTypes=new Set(['comparison-table','matrix','procedure','named-stages','heading']);
+for(const code of ['01.02.01','05.02','05.03','19.04','03.03','16.01','09.04','10.04','12.05']){
+  const record=recordsByCode.get(code);
+  assert(record?.content?.length,`${code} must use canonical structured content`);
+  assert(!Object.hasOwn(record,'text'),`${code} must not duplicate its structured content in text`);
+  assert(record.content.some(block=>structuredTypes.has(block.type)),`${code} is missing its confirmed PDF structure`);
+  assert(recordText(record),`${code} structured content must flatten for search and QA`);
+}
 const parity=verifyPdfParity(pdf,digital);
 assert.equal(parity.verifiedNormalized.length,87,'unexpected normalized PDF parity count');
 assert.equal(parity.digitalExtension.length,26,'unexpected digital extension count');
@@ -47,25 +56,27 @@ for(const faq of faqs){
   assert(faq.question&&faq.answer,`${faq.id} is incomplete`);
 }
 for(const record of digital.records){
+  const text=recordText(record);
   const parts=record.code.split('.');
   if(parts.length===3)assert(recordsByCode.has(parts.slice(0,2).join('.')),`${record.code} is not placed under an existing parent rule`);
-  const lines=record.text.split('\n').map(line=>line.trim()).filter(Boolean);
+  const lines=text.split('\n').map(line=>line.trim()).filter(Boolean);
   for(let index=1;index<lines.length;index++)assert.notEqual(lines[index].toLowerCase(),lines[index-1].toLowerCase(),`${record.code} repeats the line "${lines[index]}"`);
   for(const other of digital.records){
-    if(other===record||!other.text)continue;
-    assert(!record.text.includes(`${other.title}\n${other.text}`)&&!record.text.includes(`${other.title.toUpperCase()}\n${other.text}`),`${record.code} embeds the complete ${other.code} rule instead of keeping it in its own place`);
+    const otherText=recordText(other);
+    if(other===record||!otherText)continue;
+    assert(!text.includes(`${other.title}\n${otherText}`)&&!text.includes(`${other.title.toUpperCase()}\n${otherText}`),`${record.code} embeds the complete ${other.code} rule instead of keeping it in its own place`);
   }
 }
 assert(recordsByCode.get('04.01.02')?.title==='Sidearms','Sidearms must remain under Select Weapons');
 assert(!/SIDEARMS/i.test(recordsByCode.get('04.02')?.text||''),'Sidearms must not leak into Select Targets');
 assert(recordsByCode.get('03.04.01')?.title==='What Is Engagement','What Is Engagement must exist under Engagement');
 assert(recordsByCode.get('19.04.01')?.title==='Only In Death Does Duty End','Only In Death Does Duty End must exist under Abilities in Attached Units');
-assert(!recordsByCode.get('03.04')?.text.includes('WHAT IS ENGAGEMENT?'),'What Is Engagement must not be duplicated in its parent');
-assert(!recordsByCode.get('19.04')?.text.includes('ONLY IN DEATH DOES DUTY END'),'Only In Death Does Duty End must not be duplicated in its parent');
+assert(!recordText(recordsByCode.get('03.04')).includes('WHAT IS ENGAGEMENT?'),'What Is Engagement must not be duplicated in its parent');
+assert(!recordText(recordsByCode.get('19.04')).includes('ONLY IN DEATH DOES DUTY END'),'Only In Death Does Duty End must not be duplicated in its parent');
 assert(recordsByCode.get('02.02.01')?.title==='Modifiers','02.02.01 must remain the complete Modifiers article');
 assert(recordsByCode.get('02.02.01')?.text.includes('WHAT ARE MODIFIERS?')&&recordsByCode.get('02.02.01')?.text.includes('When Modifying Characteristics'),'Modifiers must include its introduction and characteristic rules');
 assert(recordsByCode.get('24.37.01')?.title==='Torrent Restrictions','24.37.01 needs a semantic title');
-for(const artifact of ['STARTING STRENGTH OF 1STARTING STRENGTH','SOURCE OF ABILITY/RULEAPPLIES','INCURSION1000222'])assert(!digital.records.some(record=>record.text.includes(artifact)),`collapsed table leaked into source: ${artifact}`);
+for(const artifact of ['STARTING STRENGTH OF 1STARTING STRENGTH','SOURCE OF ABILITY/RULEAPPLIES','INCURSION1000222'])assert(!digital.records.some(record=>recordText(record).includes(artifact)),`collapsed table leaked into source: ${artifact}`);
 const glossary=JSON.parse(fs.readFileSync(path.resolve(root,'..','..','glossary','registry.en.json'),'utf8')).terms;
 const glossaryExcludedCodes=new Set(['03.03.01']);
 const coreTermsByCode=new Map();

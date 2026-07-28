@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
+import {recordText} from '../content/record-content.mjs';
 
 export function normalizeOfficialText(value){
   return String(value||'').normalize('NFKC').toLowerCase().replace(/e\.g\./g,'for example').replace(/[^a-z0-9]+/g,'');
@@ -16,7 +17,7 @@ export function verifyPdfParity(pdf,digital){
     pages.set(rule.code,rule.page);
     const candidate=digitalByCode.get(rule.code);
     if(!candidate){report.missing.push(rule.code);continue;}
-    const officialText=normalizeOfficialText(rule.text),digitalText=normalizeOfficialText(candidate.text);
+    const officialText=normalizeOfficialText(rule.text),digitalText=normalizeOfficialText(recordText(candidate));
     if(officialText.includes(digitalText))report.verifiedNormalized.push(rule.code);
     else if(digitalText.includes(officialText))report.digitalExtension.push(rule.code);
     else report.requiresStructuralComparison.push(rule.code);

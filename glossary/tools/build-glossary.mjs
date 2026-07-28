@@ -3,6 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {recordText} from '../../books/core-rules/content/record-content.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..','..');
 const glossaryRoot=path.join(root,'glossary');
@@ -122,8 +123,8 @@ for(const rule of coreRules){
     edition:'11e',
     language:'en',
     title:{en:rule.title.replace(/^\[|\]$/g,'')},
-    summary:{en:concise(rule.text)},
-    definition:{en:clean(rule.text)},
+    summary:{en:concise(recordText(rule))},
+    definition:{en:clean(recordText(rule))},
     aliases:[],
     related:[],
     canonicalSource:{documentId:'core-rules',revision:'11e',locator:`${rule.code}; page ${rule.page}`},
@@ -146,8 +147,8 @@ for(const rule of coreDigital.records){
     edition:'11e',
     language:'en',
     title:{en:digitalTitle(rule)},
-    summary:{en:concise(rule.text)},
-    definition:{en:clean(rule.text)},
+    summary:{en:concise(recordText(rule))},
+    definition:{en:clean(recordText(rule))},
     aliases:[],
     related:[],
     canonicalSource:{documentId:'core-rules',revision:'11e',locator:rule.code},
@@ -441,9 +442,10 @@ for(const rule of coreDigital.records){
   if(!term)throw new Error(`Missing digital Core Rules term: ${rule.code} ${rule.title}`);
   term.title={en:digitalTitle(rule)};
   term.kind=rule.kind==='stratagem'?'stratagem':rule.code.startsWith('24.')?'core-ability':'core-rule';
-  const definition=rule.code==='03.03'?rule.text.split('\nWHAT IS COHERENCY?')[0]:rule.text;
+  const text=recordText(rule);
+  const definition=rule.code==='03.03'?text.split('\nWHAT IS COHERENCY?')[0]:text;
   term.definition={en:cleanRuleText(definition)};
-  if(term.summarySource?.kind!=='curated-operational-reference')term.summary={en:concise(rule.text)};
+  if(term.summarySource?.kind!=='curated-operational-reference')term.summary={en:concise(text)};
   term.canonicalSource={documentId:'core-rules',revision:'11e',locator:rule.code};
   term.matchLabels=[...new Set([...(term.matchLabels||[]),rule.code])];
   term.status='verified';

@@ -3,6 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 import {verifyPdfParity} from '../tools/verify_pdf_parity.mjs';
+import {recordText} from '../content/record-content.mjs';
 
 const root=path.dirname(fileURLToPath(import.meta.url));
 const bookRoot=path.dirname(root);
@@ -223,6 +224,30 @@ function prose(text,seen=new Set(),excludedId='',hiddenReferences=[]){
   return output.join('')||'<p>See the linked source.</p>';
 }
 
+function renderTable(block,seen,excludedId){
+  const columns=block.columns.map(column=>`<th>${linkedText(column,seen,excludedId)}</th>`).join('');
+  const rows=block.rows.map(row=>`<tr><th>${linkedText(row.label,seen,excludedId)}</th>${row.cells.map(cell=>`<td>${linkedText(cell,seen,excludedId)}</td>`).join('')}</tr>`).join('');
+  return `<div class="table-scroll"><table class="rules-table"><thead><tr><th></th>${columns}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function renderContent(record,seen=new Set(),excludedId='',hiddenReferences=[]){
+  if(!record.content)return prose(recordText(record),seen,excludedId,hiddenReferences);
+  return record.content.map(block=>{
+    if(block.type==='paragraph')return `<p>${linkedText(block.text,seen,excludedId)}</p>`;
+    if(block.type==='heading')return `<h4 class="official-heading">${linkedText(block.text,seen,excludedId)}</h4>`;
+    if(block.type==='list')return `<ul>${block.items.map(item=>`<li>${linkedText(item,seen,excludedId)}</li>`).join('')}</ul>`;
+    if(block.type==='see-also'){
+      const items=block.items.filter(item=>!hiddenReferences.includes(item.match(/\b\d{2}\.\d{2}(?:\.\d{2})?\b/)?.[0]));
+      return items.length?`<h4 class="see-also">See also</h4><ul>${items.map(item=>`<li>${seeAlsoItem(item)}</li>`).join('')}</ul>`:'';
+    }
+    if(block.type==='comparison-table')return renderTable(block,seen,excludedId);
+    if(block.type==='matrix')return `<div class="table-scroll"><table class="rules-table matrix"><caption>${linkedText(block.caption,seen,excludedId)}</caption><tbody>${block.rows.map(row=>`<tr><th>${linkedText(row.condition,seen,excludedId)}</th><td>${linkedText(row.result,seen,excludedId)}</td></tr>`).join('')}</tbody></table></div>`;
+    if(block.type==='procedure')return `<ol class="procedure">${block.steps.map(step=>`<li><strong>${linkedText(step.label,seen,excludedId)}</strong>${step.text?` <span>${linkedText(step.text,seen,excludedId)}</span>`:''}${step.items?.length?`<ul>${step.items.map(item=>`<li>${linkedText(item,seen,excludedId)}</li>`).join('')}</ul>`:''}</li>`).join('')}</ol>`;
+    if(block.type==='named-stages')return `<dl class="named-stages">${block.stages.map(stage=>`<div><dt>${escapeHtml(stage.label)}</dt><dd>${stage.text?`<p>${linkedText(stage.text,seen,excludedId)}</p>`:''}${stage.items?.length?`<ul>${stage.items.map(item=>`<li>${linkedText(item,seen,excludedId)}</li>`).join('')}</ul>`:''}</dd></div>`).join('')}</dl>`;
+    return '';
+  }).join('');
+}
+
 function fileFor(id){return `${id}.html`;}
 function pageLabel(pages){
   if(!pages.length)return 'Digital 11E';
@@ -241,7 +266,7 @@ function primaryNav(current=''){
 
 function shell({title,current='',currentLabel='Start',onPage='',content}){
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d0f0d"><link rel="manifest" href="../../../manifest.webmanifest"><title>${escapeHtml(title)} — Core Rules</title><link rel="stylesheet" href="styles.css?v=10"></head><body>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d0f0d"><link rel="manifest" href="../../../manifest.webmanifest"><title>${escapeHtml(title)} — Core Rules</title><link rel="stylesheet" href="styles.css?v=12"></head><body>
 <header class="topbar"><button class="menu" id="navButton" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><strong>Core Rules</strong><small>11E · Reference</small></a><span class="current">${escapeHtml(currentLabel)}</span><button class="search-button" id="searchButton" type="button" aria-label="Search Core Rules">Search</button><a class="library" href="../../../index.html">← Library</a></header><button class="scrim" id="navScrim" type="button" aria-label="Close navigation" hidden></button>
 <aside class="sidebar" id="sidebar"><div class="sidebar-head"><span class="eyebrow">Core register // 11E</span><h1>Contents</h1></div><nav><section class="nav-group"><h2>Reference</h2><a href="index.html"${!current?' aria-current="page"':''}>Start</a></section>${primaryNav(current)}${onPage}</nav><a class="mega" href="../../../glossary/index.html">Mega Glossary →</a></aside>
 <main class="main">${content}</main><dialog class="search-dialog" id="searchDialog"><form method="dialog" class="dialog-head"><span>Core Rules // search</span><button type="submit" aria-label="Close search">×</button></form><label for="searchInput">Find a rule</label><input id="searchInput" type="search" autocomplete="off" placeholder="Title or rule text"><p class="search-status" id="searchStatus">Type at least two characters.</p><div class="search-results" id="searchResults"></div></dialog><dialog class="dialog" id="termDialog"><div class="dialog-head"><span>Mega Glossary // quick entry</span><button id="termClose" type="button" aria-label="Close">×</button></div><h2 id="termTitle"></h2><p id="termSummary"></p><a id="termRule" hidden>Open full rule →</a><a id="termFull">Glossary entry →</a></dialog><dialog class="image-dialog" id="imageDialog"><button id="imageClose" type="button" aria-label="Close diagram">×</button><img id="imagePreview" alt=""><p id="imageCaption"></p></dialog><script src="../../../glossary-return.js?v=1"></script><script src="app.js?v=10"></script></body></html>`;
@@ -278,7 +303,7 @@ function faqCard(faq){
 }
 
 function stratagemCard(record){
-  const lines=String(record.text||'').split(/\n+/).map(normalize).filter(Boolean);
+  const lines=recordText(record).split(/\n+/).map(normalize).filter(Boolean);
   const cp=/^\+?\d+CP$/i.test(lines[0]||'')?lines.shift():'';
   if(/^Core Stratagem$/i.test(lines[0]||''))lines.shift();
   const fields=[];
@@ -302,11 +327,10 @@ function stratagemCard(record){
 function mainRule(record,children=[]){
   const id=`rule-${slug(record.code)}`;
   const special=record.code==='25.03'?musterTable():'';
-  const nested=children.length?`<div class="subrules">${children.map(child=>{const excludedId=termByCode.get(child.code)?.id||'',seen=new Set();const text=prose(child.text,seen,excludedId);return `<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><strong>${escapeHtml(displayTitle(child))}</strong></summary><div><span class="source-label">${sourceLabel(child)}</span>${text}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
+  const nested=children.length?`<div class="subrules">${children.map(child=>{const excludedId=termByCode.get(child.code)?.id||'',seen=new Set();const text=renderContent(child,seen,excludedId);return `<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><strong>${escapeHtml(displayTitle(child))}</strong></summary><div><span class="source-label">${sourceLabel(child)}</span>${text}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
   const excludedId=termByCode.get(record.code)?.id||'';
   const seen=new Set();
-  const sourceText=record.code==='25.03'?record.text.replace(/BATTLE SIZE\nIncursion:[\s\S]*?Unit limit 3\.\n?/,''):record.text;
-  const text=prose(sourceText,seen,excludedId,children.map(child=>child.code));
+  const text=record.code==='25.03'?prose(recordText(record).replace(/BATTLE SIZE\nIncursion:[\s\S]*?Unit limit 3\.\n?/,''),seen,excludedId,children.map(child=>child.code)):renderContent(record,seen,excludedId,children.map(child=>child.code));
   const faqHtml=(faqsByPrimary.get(record.code)||[]).map(faqCard).join('');
   return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><h3>${escapeHtml(displayTitle(record))}</h3><span class="page">${sourceLabel(record)}</span></header><div class="rule-body">${text}${faqHtml}${special}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
 }
@@ -349,7 +373,7 @@ fs.writeFileSync(path.join(root,'index.html'),shell({title:'Core Rules Reference
 for(const [index,id] of order.entries())fs.writeFileSync(path.join(root,fileFor(id)),sectionPage(id,index));
 const searchIndex=digital.records.map(record=>{
   const sectionId=sectionByNumber.get(record.code.slice(0,2));
-  return {code:record.code,title:record.title,chapter:byId.get(sectionId)?.title||'',text:normalize(record.text),url:`${fileFor(sectionId)}#rule-${slug(record.code)}`};
+  return {code:record.code,title:record.title,chapter:byId.get(sectionId)?.title||'',text:normalize(recordText(record)),url:`${fileFor(sectionId)}#rule-${slug(record.code)}`};
 });
 for(const faq of faqs){
   const sectionId=sectionByNumber.get(faq.primaryRule.slice(0,2));
