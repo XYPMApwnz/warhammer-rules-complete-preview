@@ -15,7 +15,7 @@
   const scopeLabel=term=>scopeLabels[term.scope]||humanize(term.scope);
   const displayTitle=term=>term.title.en.replace(/^\[(.+)\]$/,'$1');
   const normalize=value=>String(value||'').toLocaleLowerCase().replace(/\s+/g,' ').trim();
-  if(returnRecord){libraryBack.href=returnRecord.path;libraryBack.textContent='← Return to popup';}
+  if(returnRecord){libraryBack.href=returnRecord.path;libraryBack.textContent='← Return to popup';libraryBack.addEventListener('click',()=>window.WHGlossaryReturn?.setRestoreMode('automatic'));}
   document.getElementById('termCount').textContent=api.counts.terms;
   document.getElementById('aliasCount').textContent=api.counts.aliases;
   const categories=['all',...new Set(terms.map(term=>term.kind))];
@@ -76,7 +76,7 @@
   }
   function detailsBlock(label,className){const node=document.createElement('details'),summary=document.createElement('summary'),content=document.createElement('div');node.className=className;summary.textContent=label;content.className='details-content';node.append(summary,content);return{node,content};}
 
-  function renderTerm(id){
+  function renderTerm(id,{scrollToArticle=false}={}){
     const term=api.get(id);if(!term){showCatalogue(false);return;}
     selected=term.id;document.body.classList.add('article-open');renderList();detail.replaceChildren();
     const another=document.createElement('button');another.type='button';another.className='search-another';another.textContent='← Search another term';another.addEventListener('click',()=>showCatalogue(true,true));
@@ -85,7 +85,7 @@
     if(summaryText&&!placeholder.test(summaryText)){const quick=renderDefinition(summaryText);quick.classList.add('summary');detail.append(sectionLabel('Quick rule'),quick);}
     const profile=renderProfile(term.structured);if(profile)detail.append(sectionLabel('Profile'),profile);
     if(definitionText&&!placeholder.test(definitionText)&&term.presentation!=='profile'&&normalize(definitionText)!==normalize(summaryText))detail.append(sectionLabel('Full rule'),renderDefinition(definitionText));
-    if(term.fullRulePath){const action=document.createElement('a');action.className='full-rule-action';action.href=new URL(`../${term.fullRulePath.replace(/^\/+/, '')}`,location.href).href;action.textContent='Open full rule →';detail.append(action);}
+    if(term.fullRulePath){const action=document.createElement('a');action.className='full-rule-action';action.href=new URL(`../${term.fullRulePath.replace(/^\/+/, '')}`,location.href).href;action.textContent='Open full rule →';action.addEventListener('click',()=>window.WHGlossaryReturn?.setRestoreMode('manual'));detail.append(action);}
     const groups=[['Rules of this unit type',term.references?.intrinsicRules||[]],['Referenced by core rules',term.references?.referencedByRules||[]],['Common rules',term.references?.commonRules||[]],['Faction terms',term.references?.factionTerms||[]],['Related keywords',term.references?.relatedKeywords||[]],['Related terms',term.related||[]]];
     const seenConnections=new Set();
     const uniqueGroups=groups.map(([label,ids])=>[label,ids.filter(id=>{const linked=api.get(id);if(!linked||seenConnections.has(linked.id))return false;seenConnections.add(linked.id);return true;})]);
@@ -96,10 +96,10 @@
     for(const [label,value] of [['Internal ID',term.id],['Kind',term.kind],['Scope',term.scope],['Presentation',term.presentation],['Status',term.status],['Canonical source',source.documentId||'unknown'],['Aliases',(term.aliases||[]).join(', ')||'None'],['Edition',term.edition]]){const cell=document.createElement('div'),key=document.createElement('small'),data=document.createElement('b');key.textContent=label;data.textContent=value||'—';cell.append(key,data);meta.append(cell);}registry.content.append(meta);detail.append(registry.node);
     window.WHGlossaryAutolink?.apply(detail,term.scope==='global'?'core-rules':term.scope);
     for(const trigger of detail.querySelectorAll(`[data-autolink][data-term="${CSS.escape(term.id)}"]`))trigger.replaceWith(document.createTextNode(trigger.textContent));
-    if(matchMedia('(max-width:760px)').matches)detail.scrollIntoView({block:'start'});
+    if(scrollToArticle)detail.scrollIntoView({block:'start'});
   }
 
-  function select(id){const term=api.get(id);if(!term)return;const url=new URL(location.href);url.hash=term.id;if(location.hash.slice(1)!==encodeURIComponent(term.id))history.pushState(null,'',url);renderTerm(term.id);}
+  function select(id){const term=api.get(id);if(!term)return;const url=new URL(location.href);url.hash=term.id;if(location.hash.slice(1)!==encodeURIComponent(term.id))history.pushState(null,'',url);renderTerm(term.id,{scrollToArticle:true});}
   function showCatalogue(focus=false,push=false){selected='';document.body.classList.remove('article-open');detail.replaceChildren(Object.assign(document.createElement('p'),{className:'empty',textContent:'Select a term from the archive.'}));renderList();if(push){const url=new URL(location.href);url.hash='';history.pushState(null,'',url);}if(focus){search.focus();document.querySelector('.catalogue')?.scrollIntoView({block:'start'});}}
   function syncFromUrl(){const id=decodeURIComponent(location.hash.slice(1));const term=api.get(id);if(term)renderTerm(term.id);else showCatalogue(false);}
   function openPopup(id){const term=api.get(id);if(!term)return;popup.dataset.term=term.id;popupTitle.textContent=displayTitle(term);popupSummary.textContent=term.summary?.en||term.definition?.en||'';popup.showModal();}

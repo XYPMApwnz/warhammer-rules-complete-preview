@@ -75,6 +75,7 @@
   full.addEventListener('click',rememberPopup);
   rule.addEventListener('click', () => {
     const record=rememberPopup();
+    window.WHGlossaryReturn?.setRestoreMode('manual');
     if(record){popupReturn.href=record.path;popupReturn.hidden=false;}
     dialog.close();
   });
@@ -109,6 +110,7 @@
 
   searchButton.addEventListener('click', openSearch);
   searchDialog.addEventListener('click', event => { if (event.target === searchDialog) searchDialog.close(); });
+  searchResults.addEventListener('click', event => { if (event.target.closest('a')) searchDialog.close(); });
   searchInput.addEventListener('input', () => {
     const query = normalizeSearch(searchInput.value);
     if (!searchIndex) return;
@@ -150,12 +152,13 @@
   const returnRecord=window.WHGlossaryReturn?.read();
   if(returnRecord){
     popupReturn.href=returnRecord.path;
-    if(window.WHGlossaryReturn.matchesCurrent(returnRecord))restorePopup(returnRecord);
+    if(window.WHGlossaryReturn.shouldRestoreAutomatically(returnRecord))restorePopup(returnRecord);
     else popupReturn.hidden=false;
   }
   popupReturn.addEventListener('click',event=>{
     const record=window.WHGlossaryReturn?.read();
-    if(!window.WHGlossaryReturn?.matchesCurrent(record))return;
+    if(!record)return;
+    if(!window.WHGlossaryReturn?.isSameDocument(record)){window.WHGlossaryReturn?.setRestoreMode('automatic');return;}
     event.preventDefault();
     history.pushState(null,'',record.path);
     restorePopup(record);
