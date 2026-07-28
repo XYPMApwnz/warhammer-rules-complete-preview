@@ -328,10 +328,13 @@ function stratagemCard(record){
 function mainRule(record,children=[]){
   const id=`rule-${slug(record.code)}`;
   const special=record.code==='25.03'?musterTable():'';
-  const nested=children.length?`<div class="subrules">${children.map(child=>{const excludedId=termByCode.get(child.code)?.id||'',seen=new Set();const text=renderContent(child,seen,excludedId);return `<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><strong>${escapeHtml(displayTitle(child))}</strong></summary><div><span class="source-label">${sourceLabel(child)}</span>${text}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
+  const inlineChildren=children.filter(child=>child.presentation==='inline');
+  const nestedChildren=children.filter(child=>child.presentation!=='inline');
+  const nested=nestedChildren.length?`<div class="subrules">${nestedChildren.map(child=>{const excludedId=termByCode.get(child.code)?.id||'',seen=new Set();const text=renderContent(child,seen,excludedId);return `<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><strong>${escapeHtml(displayTitle(child))}</strong></summary><div><span class="source-label">${sourceLabel(child)}</span>${text}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
   const excludedId=termByCode.get(record.code)?.id||'';
   const seen=new Set();
-  const text=record.code==='25.03'?prose(recordText(record).replace(/BATTLE SIZE\nIncursion:[\s\S]*?Unit limit 3\.\n?/,''),seen,excludedId,children.map(child=>child.code)):renderContent(record,seen,excludedId,children.map(child=>child.code));
+  const inline=inlineChildren.map(child=>`<div class="inline-clarification" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}">${renderContent(child,seen,termByCode.get(child.code)?.id||'')}</div>`).join('');
+  const text=(record.code==='25.03'?prose(recordText(record).replace(/BATTLE SIZE\nIncursion:[\s\S]*?Unit limit 3\.\n?/,''),seen,excludedId,children.map(child=>child.code)):renderContent(record,seen,excludedId,children.map(child=>child.code)))+inline;
   const faqHtml=(faqsByPrimary.get(record.code)||[]).map(faqCard).join('');
   return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><h3>${escapeHtml(displayTitle(record))}</h3><span class="page">${sourceLabel(record)}</span></header><div class="rule-body">${text}${faqHtml}${special}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
 }

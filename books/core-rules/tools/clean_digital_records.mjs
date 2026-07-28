@@ -33,6 +33,8 @@ if(modifiers){
 }
 const torrentRestriction=byCode.get('24.37.01');
 if(torrentRestriction)torrentRestriction.title='Torrent Restrictions';
+const youClarification=byCode.get('01.01.01');
+if(youClarification)youClarification.presentation='inline';
 
 removeSection('03.02','IF YOU CANNOT SET UP A UNIT');
 removeSection('03.03','WHAT IS COHERENCY?','COHERENCY\n');
