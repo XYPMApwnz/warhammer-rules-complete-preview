@@ -275,8 +275,8 @@ window.DG_TERMS={
   "emperors-children-ability-devastating-wounds": {
     "id": "emperors-children-ability-devastating-wounds",
     "title": "Devastating Wounds",
-    "summary": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*",
-    "full": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*",
+    "summary": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound , the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound ; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds . The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*",
+    "full": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound , the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound ; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds . The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*",
     "glossary": "glossary-emperors-children-ability-devastating-wounds",
     "rule": "unit-daemonettes",
     "units": [
@@ -373,8 +373,8 @@ window.DG_TERMS={
   "emperors-children-ability-pistol": {
     "id": "emperors-children-ability-pistol",
     "title": "Pistol",
-    "summary": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. Units containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: - One or more of its [CLOSE-QUARTERS] weapons. - One or more of its other ranged weapons.",
-    "full": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. Units containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: - One or more of its [CLOSE-QUARTERS] weapons. - One or more of its other ranged weapons.",
+    "summary": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. Units containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type , for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: - One or more of its [CLOSE-QUARTERS] weapons. - One or more of its other ranged weapons.",
+    "full": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. Units containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type , for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: - One or more of its [CLOSE-QUARTERS] weapons. - One or more of its other ranged weapons.",
     "glossary": "glossary-emperors-children-ability-pistol",
     "rule": "unit-infractors",
     "units": [
@@ -412,8 +412,8 @@ window.DG_TERMS={
   "emperors-children-ability-hazardous": {
     "id": "emperors-children-ability-hazardous",
     "title": "Hazardous",
-    "summary": "Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step.",
-    "full": "Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step.",
+    "summary": "Each time a unit is selected to shoot or selected to fight , after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step.",
+    "full": "Each time a unit is selected to shoot or selected to fight , after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step.",
     "glossary": "glossary-emperors-children-ability-hazardous",
     "rule": "unit-infractors",
     "units": [
@@ -430,8 +430,8 @@ window.DG_TERMS={
   "emperors-children-ability-thrill-seekers": {
     "id": "emperors-children-ability-thrill-seekers",
     "title": "Thrill Seekers",
-    "summary": "If your Army Faction is Emperor's Children, this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so: - It cannot target a unit it was within Engagement Range of at the start of the turn - It cannot target a unit that was the target of another unit's charge or attack this phase.",
-    "full": "If your Army Faction is Emperor's Children, this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so: - It cannot target a unit it was within Engagement Range of at the start of the turn - It cannot target a unit that was the target of another unit's charge or attack this phase.",
+    "summary": "If your Army Faction is Emperor's Children , this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so: - It cannot target a unit it was within Engagement Range of at the start of the turn - It cannot target a unit that was the target of another unit's charge or attack this phase.",
+    "full": "If your Army Faction is Emperor's Children , this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so: - It cannot target a unit it was within Engagement Range of at the start of the turn - It cannot target a unit that was the target of another unit's charge or attack this phase.",
     "glossary": "glossary-emperors-children-ability-thrill-seekers",
     "rule": "unit-infractors",
     "units": [
@@ -460,8 +460,8 @@ window.DG_TERMS={
   "emperors-children-ability-scouts-6": {
     "id": "emperors-children-ability-scouts-6",
     "title": "Scouts 6\"",
-    "summary": "This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move. - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move.",
-    "full": "This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move. - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move.",
+    "summary": "This ability always takes the form Scouts X\" . In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves , you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move . - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move .",
+    "full": "This ability always takes the form Scouts X\" . In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves , you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move . - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move .",
     "glossary": "glossary-emperors-children-ability-scouts-6",
     "rule": "unit-infractors",
     "units": [
@@ -575,8 +575,8 @@ window.DG_TERMS={
   "emperors-children-ability-rapid-fire": {
     "id": "emperors-children-ability-rapid-fire",
     "title": "Rapid Fire",
-    "summary": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. *Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*",
-    "full": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. *Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*",
+    "summary": "This ability always takes the form [RAPID FIRE X] . Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. *Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*",
+    "full": "This ability always takes the form [RAPID FIRE X] . Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. *Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*",
     "glossary": "glossary-emperors-children-ability-rapid-fire",
     "rule": "unit-tormentors",
     "units": [
@@ -591,8 +591,8 @@ window.DG_TERMS={
   "emperors-children-ability-melta": {
     "id": "emperors-children-ability-melta",
     "title": "Melta",
-    "summary": "This ability always takes the form [MELTA X]. Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. *Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2.",
-    "full": "This ability always takes the form [MELTA X]. Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. *Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2.",
+    "summary": "This ability always takes the form [MELTA X] . Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. *Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2 .",
+    "full": "This ability always takes the form [MELTA X] . Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. *Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2 .",
     "glossary": "glossary-emperors-children-ability-melta",
     "rule": "unit-tormentors",
     "units": [
@@ -684,8 +684,8 @@ window.DG_TERMS={
   "emperors-children-ability-lord-of-excess": {
     "id": "emperors-children-ability-lord-of-excess",
     "title": "Lord of Excess",
-    "summary": "While this model is within 3\" of one or more friendly Slaanesh Infantry, this model has the Lone Operative ability.",
-    "full": "While this model is within 3\" of one or more friendly Slaanesh Infantry, this model has the Lone Operative ability.",
+    "summary": "While this model is within 3\" of one or more friendly Slaanesh Infantry , this model has the Lone Operative ability.",
+    "full": "While this model is within 3\" of one or more friendly Slaanesh Infantry , this model has the Lone Operative ability.",
     "glossary": "glossary-emperors-children-ability-lord-of-excess",
     "rule": "unit-daemon-prince-of-slaanesh",
     "units": [
@@ -723,8 +723,8 @@ window.DG_TERMS={
   "emperors-children-ability-deadly-demise-d3": {
     "id": "emperors-children-ability-deadly-demise-d3",
     "title": "Deadly Demise D3",
-    "summary": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
-    "full": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "summary": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "full": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
     "glossary": "glossary-emperors-children-ability-deadly-demise-d3",
     "rule": "unit-daemon-prince-of-slaanesh",
     "units": [
@@ -861,8 +861,8 @@ window.DG_TERMS={
   "emperors-children-ability-psychic": {
     "id": "emperors-children-ability-psychic",
     "title": "Psychic",
-    "summary": "Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).",
-    "full": "Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).",
+    "summary": "Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll . Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).",
+    "full": "Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll . Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).",
     "glossary": "glossary-emperors-children-ability-psychic",
     "rule": "unit-keeper-of-secrets",
     "units": [
@@ -908,8 +908,8 @@ window.DG_TERMS={
   "emperors-children-ability-deadly-demise-d6": {
     "id": "emperors-children-ability-deadly-demise-d6",
     "title": "Deadly Demise D6",
-    "summary": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
-    "full": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "summary": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "full": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
     "glossary": "glossary-emperors-children-ability-deadly-demise-d6",
     "rule": "unit-keeper-of-secrets",
     "units": [
@@ -1056,8 +1056,8 @@ window.DG_TERMS={
   "emperors-children-ability-lance": {
     "id": "emperors-children-ability-lance",
     "title": "Lance",
-    "summary": "Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll.",
-    "full": "Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll.",
+    "summary": "Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll .",
+    "full": "Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll .",
     "glossary": "glossary-emperors-children-ability-lance",
     "rule": "unit-lord-exultant",
     "units": [
@@ -1069,8 +1069,8 @@ window.DG_TERMS={
   "emperors-children-ability-ignores-cover": {
     "id": "emperors-children-ability-ignores-cover",
     "title": "Ignores Cover",
-    "summary": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth).",
-    "full": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth).",
+    "summary": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth ).",
+    "full": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth ).",
     "glossary": "glossary-emperors-children-ability-ignores-cover",
     "rule": "unit-lord-exultant",
     "units": [
@@ -1327,8 +1327,8 @@ window.DG_TERMS={
   "emperors-children-ability-anti": {
     "id": "emperors-children-ability-anti",
     "title": "Anti",
-    "summary": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound. *Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*",
-    "full": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound. *Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*",
+    "summary": "This ability always takes the form [ANTI-X Y+] . Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X , an unmodified wound roll of Y+ is a critical wound . *Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*",
+    "full": "This ability always takes the form [ANTI-X Y+] . Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X , an unmodified wound roll of Y+ is a critical wound . *Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*",
     "glossary": "glossary-emperors-children-ability-anti",
     "rule": "unit-chaos-rhino",
     "units": [
@@ -1343,8 +1343,8 @@ window.DG_TERMS={
   "emperors-children-ability-blast": {
     "id": "emperors-children-ability-blast",
     "title": "Blast",
-    "summary": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. *Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*",
-    "full": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. *Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*",
+    "summary": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X] , each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. *Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*",
+    "full": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X] , each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. *Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*",
     "glossary": "glossary-emperors-children-ability-blast",
     "rule": "unit-chaos-rhino",
     "units": [
@@ -1358,8 +1358,8 @@ window.DG_TERMS={
   "emperors-children-ability-firing-deck-2": {
     "id": "emperors-children-ability-firing-deck-2",
     "title": "Firing Deck 2",
-    "summary": "This ability always takes the form Firing Deck X. In your Shooting phase, each time this TRANSPORT is selected to shoot, if one or more units are embarked within it, resolve the following sequence: 1. Select up to X models embarked within this TRANSPORT (excluding models whose units have already been selected to shoot this phase). 2. For each selected model, select one of its ranged weapons (excluding [ONE SHOT] weapons). 3. Until this TRANSPORT has resolved all of its attacks, it has all of those selected weapons in addition to its other weapons. 4. Until the end of the turn, units embarked within this TRANSPORT are not eligible to shoot.",
-    "full": "This ability always takes the form Firing Deck X. In your Shooting phase, each time this TRANSPORT is selected to shoot, if one or more units are embarked within it, resolve the following sequence: 1. Select up to X models embarked within this TRANSPORT (excluding models whose units have already been selected to shoot this phase). 2. For each selected model, select one of its ranged weapons (excluding [ONE SHOT] weapons). 3. Until this TRANSPORT has resolved all of its attacks, it has all of those selected weapons in addition to its other weapons. 4. Until the end of the turn, units embarked within this TRANSPORT are not eligible to shoot.",
+    "summary": "This ability always takes the form Firing Deck X . In your Shooting phase, each time this TRANSPORT is selected to shoot , if one or more units are embarked within it, resolve the following sequence: 1. Select up to X models embarked within this TRANSPORT (excluding models whose units have already been selected to shoot this phase). 2. For each selected model, select one of its ranged weapons (excluding [ONE SHOT] weapons). 3. Until this TRANSPORT has resolved all of its attacks, it has all of those selected weapons in addition to its other weapons. 4. Until the end of the turn, units embarked within this TRANSPORT are not eligible to shoot.",
+    "full": "This ability always takes the form Firing Deck X . In your Shooting phase, each time this TRANSPORT is selected to shoot , if one or more units are embarked within it, resolve the following sequence: 1. Select up to X models embarked within this TRANSPORT (excluding models whose units have already been selected to shoot this phase). 2. For each selected model, select one of its ranged weapons (excluding [ONE SHOT] weapons). 3. Until this TRANSPORT has resolved all of its attacks, it has all of those selected weapons in addition to its other weapons. 4. Until the end of the turn, units embarked within this TRANSPORT are not eligible to shoot.",
     "glossary": "glossary-emperors-children-ability-firing-deck-2",
     "rule": "unit-chaos-rhino",
     "units": [
@@ -1454,8 +1454,8 @@ window.DG_TERMS={
   "emperors-children-ability-supreme-commander": {
     "id": "emperors-children-ability-supreme-commander",
     "title": "Supreme Commander",
-    "summary": "If this model is in your army, it must be your Warlord.",
-    "full": "If this model is in your army, it must be your Warlord.",
+    "summary": "If this model is in your army, it must be your Warlord .",
+    "full": "If this model is in your army, it must be your Warlord .",
     "glossary": "glossary-emperors-children-ability-supreme-commander",
     "rule": "unit-fulgrim",
     "units": [
@@ -1480,8 +1480,8 @@ window.DG_TERMS={
   "emperors-children-ability-sustained-hits": {
     "id": "emperors-children-ability-sustained-hits",
     "title": "Sustained Hits",
-    "summary": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X. *Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability).",
-    "full": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X. *Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability).",
+    "summary": "This ability always takes the form [SUSTAINED HITS X] . Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit , that attack results in a number of additional hits on the target as denoted by X . *Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit . That attack therefore hits the target three times (once from the critical hit , and twice more from the [SUSTAINED HITS 2] ability).",
+    "full": "This ability always takes the form [SUSTAINED HITS X] . Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit , that attack results in a number of additional hits on the target as denoted by X . *Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit . That attack therefore hits the target three times (once from the critical hit , and twice more from the [SUSTAINED HITS 2] ability).",
     "glossary": "glossary-emperors-children-ability-sustained-hits",
     "rule": "unit-fulgrim",
     "units": [
@@ -1589,8 +1589,8 @@ window.DG_TERMS={
   "emperors-children-ability-feel-no-pain-5": {
     "id": "emperors-children-ability-feel-no-pain-5",
     "title": "Feel No Pain 5+",
-    "summary": "This ability always takes the form Feel No Pain X+. Each time a model with this ability would lose a wound, roll one D6: on an X+, that wound is not lost.",
-    "full": "This ability always takes the form Feel No Pain X+. Each time a model with this ability would lose a wound, roll one D6: on an X+, that wound is not lost.",
+    "summary": "This ability always takes the form Feel No Pain X+ . Each time a model with this ability would lose a wound, roll one D6: on an X+ , that wound is not lost.",
+    "full": "This ability always takes the form Feel No Pain X+ . Each time a model with this ability would lose a wound, roll one D6: on an X+ , that wound is not lost.",
     "glossary": "glossary-emperors-children-ability-feel-no-pain-5",
     "rule": "unit-lucius-the-eternal",
     "units": [
@@ -1603,8 +1603,8 @@ window.DG_TERMS={
   "emperors-children-ability-lone-operative": {
     "id": "emperors-children-ability-lone-operative",
     "title": "Lone Operative",
-    "summary": "Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\", unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit.",
-    "full": "Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\", unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit.",
+    "summary": "Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\" , unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit.",
+    "full": "Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\" , unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit.",
     "glossary": "glossary-emperors-children-ability-lone-operative",
     "rule": "unit-lucius-the-eternal",
     "units": [
@@ -1733,8 +1733,8 @@ window.DG_TERMS={
   "emperors-children-ability-lethal-obsession": {
     "id": "emperors-children-ability-lethal-obsession",
     "title": "Lethal Obsession",
-    "summary": "In your Shooting phase, after this unit has shot, you can use this ability. If you do, select one enemy unit hit by those ranged attacks. Until the end of the turn, when this unit declares a charge: - This unit can re-roll that charge roll. - This unit must end that charge move engaged with that enemy unit.",
-    "full": "In your Shooting phase, after this unit has shot, you can use this ability. If you do, select one enemy unit hit by those ranged attacks. Until the end of the turn, when this unit declares a charge: - This unit can re-roll that charge roll. - This unit must end that charge move engaged with that enemy unit.",
+    "summary": "In your Shooting phase, after this unit has shot, you can use this ability. If you do, select one enemy unit hit by those ranged attacks. Until the end of the turn, when this unit declares a charge : - This unit can re-roll that charge roll . - This unit must end that charge move engaged with that enemy unit.",
+    "full": "In your Shooting phase, after this unit has shot, you can use this ability. If you do, select one enemy unit hit by those ranged attacks. Until the end of the turn, when this unit declares a charge : - This unit can re-roll that charge roll . - This unit must end that charge move engaged with that enemy unit.",
     "glossary": "glossary-emperors-children-ability-lethal-obsession",
     "rule": "unit-chaos-terminators",
     "units": [
@@ -1746,8 +1746,8 @@ window.DG_TERMS={
   "emperors-children-ability-twin-linked": {
     "id": "emperors-children-ability-twin-linked",
     "title": "Twin-linked",
-    "summary": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll.",
-    "full": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll.",
+    "summary": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll .",
+    "full": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll .",
     "glossary": "glossary-emperors-children-ability-twin-linked",
     "rule": "unit-chaos-terminators",
     "units": [
@@ -2204,8 +2204,8 @@ window.DG_TERMS={
   "emperors-children-ability-soporific-musk": {
     "id": "emperors-children-ability-soporific-musk",
     "title": "Soporific Musk",
-    "summary": "Each time an enemy unit (excluding Monsters and Vehicles) within Engagement Range of one or more units from your army with this ability Falls Back, models in that unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
-    "full": "Each time an enemy unit (excluding Monsters and Vehicles) within Engagement Range of one or more units from your army with this ability Falls Back, models in that unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
+    "summary": "Each time an enemy unit (excluding Monsters and Vehicles ) within Engagement Range of one or more units from your army with this ability Falls Back, models in that unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
+    "full": "Each time an enemy unit (excluding Monsters and Vehicles ) within Engagement Range of one or more units from your army with this ability Falls Back, models in that unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
     "glossary": "glossary-emperors-children-ability-soporific-musk",
     "rule": "unit-fiends",
     "units": [
@@ -2230,8 +2230,8 @@ window.DG_TERMS={
   "emperors-children-ability-airborne-predator": {
     "id": "emperors-children-ability-airborne-predator",
     "title": "Airborne Predator",
-    "summary": "Each time this model ends a Normal move, you can select one enemy unit that it moved over during that move and roll two D6, adding 1 to each result if that enemy unit can FLY: for each 4+, that enemy unit suffers D3 mortal wounds.",
-    "full": "Each time this model ends a Normal move, you can select one enemy unit that it moved over during that move and roll two D6, adding 1 to each result if that enemy unit can FLY: for each 4+, that enemy unit suffers D3 mortal wounds.",
+    "summary": "Each time this model ends a Normal move, you can select one enemy unit that it moved over during that move and roll two D6, adding 1 to each result if that enemy unit can FLY : for each 4+, that enemy unit suffers D3 mortal wounds.",
+    "full": "Each time this model ends a Normal move, you can select one enemy unit that it moved over during that move and roll two D6, adding 1 to each result if that enemy unit can FLY : for each 4+, that enemy unit suffers D3 mortal wounds.",
     "glossary": "glossary-emperors-children-ability-airborne-predator",
     "rule": "unit-heldrake",
     "units": [
@@ -2243,8 +2243,8 @@ window.DG_TERMS={
   "emperors-children-ability-hover": {
     "id": "emperors-children-ability-hover",
     "title": "Hover",
-    "summary": "Each time this unit takes to the skies (21.03), do not subtract 2\" from the maximum distance.",
-    "full": "Each time this unit takes to the skies (21.03), do not subtract 2\" from the maximum distance.",
+    "summary": "Each time this unit takes to the skies (21.03), do not subtract 2\" from the maximum distance .",
+    "full": "Each time this unit takes to the skies (21.03), do not subtract 2\" from the maximum distance .",
     "glossary": "glossary-emperors-children-ability-hover",
     "rule": "unit-heldrake",
     "units": [
@@ -2360,8 +2360,8 @@ window.DG_TERMS={
   "emperors-children-ability-lethal-hits": {
     "id": "emperors-children-ability-lethal-hits",
     "title": "Lethal Hits",
-    "summary": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit, you can choose for that attack to automatically wound the target. *Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS].*",
-    "full": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit, you can choose for that attack to automatically wound the target. *Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS].*",
+    "summary": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit , you can choose for that attack to automatically wound the target. *Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS].*",
+    "full": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit , you can choose for that attack to automatically wound the target. *Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS].*",
     "glossary": "glossary-emperors-children-ability-lethal-hits",
     "rule": "unit-seekers",
     "units": [
@@ -2373,8 +2373,8 @@ window.DG_TERMS={
   "emperors-children-ability-scouts-9": {
     "id": "emperors-children-ability-scouts-9",
     "title": "Scouts 9\"",
-    "summary": "This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move. - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move.",
-    "full": "This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move. - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move.",
+    "summary": "This ability always takes the form Scouts X\" . In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves , you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move . - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move .",
+    "full": "This ability always takes the form Scouts X\" . In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves , you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move . - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move .",
     "glossary": "glossary-emperors-children-ability-scouts-9",
     "rule": "unit-seekers",
     "units": [
@@ -2407,16 +2407,16 @@ window.DG_TERMS={
   "emperors-children-enhancement-empyric-suffusion": {
     "id": "emperors-children-enhancement-empyric-suffusion",
     "title": "Empyric Suffusion",
-    "summary": "When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
-    "full": "When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
+    "summary": "When you target this unit with the Heroic Intervention stratagem , that use is -1 CP.",
+    "full": "When you target this unit with the Heroic Intervention stratagem , that use is -1 CP.",
     "glossary": "glossary-emperors-children-enhancement-empyric-suffusion",
     "rule": "detachment-carnival-of-excess"
   },
   "emperors-children-enhancement-possessed-blade": {
     "id": "emperors-children-enhancement-possessed-blade",
     "title": "Possessed Blade",
-    "summary": "At the start of the battle, select one melee weapon equipped by the bearer; add 1 to the Attacks characteristic of that weapon. In addition, each time the bearer is selected to fight, it can use this Enhancement. If it does, when resolving those attacks add 1 to the Damage characteristic of that weapon and that weapon has the [Devastating Wounds] and [Hazardous] abilities.",
-    "full": "At the start of the battle, select one melee weapon equipped by the bearer; add 1 to the Attacks characteristic of that weapon. In addition, each time the bearer is selected to fight, it can use this Enhancement. If it does, when resolving those attacks add 1 to the Damage characteristic of that weapon and that weapon has the [Devastating Wounds] and [Hazardous] abilities.",
+    "summary": "At the start of the battle, select one melee weapon equipped by the bearer; add 1 to the Attacks characteristic of that weapon. In addition, each time the bearer is selected to fight, it can use this Enhancement. If it does, when resolving those attacks add 1 to the Damage characteristic of that weapon and that weapon has the [ Devastating Wounds ] and [ Hazardous ] abilities.",
+    "full": "At the start of the battle, select one melee weapon equipped by the bearer; add 1 to the Attacks characteristic of that weapon. In addition, each time the bearer is selected to fight, it can use this Enhancement. If it does, when resolving those attacks add 1 to the Damage characteristic of that weapon and that weapon has the [ Devastating Wounds ] and [ Hazardous ] abilities.",
     "glossary": "glossary-emperors-children-enhancement-possessed-blade",
     "rule": "detachment-carnival-of-excess"
   },
@@ -2511,8 +2511,8 @@ window.DG_TERMS={
   "emperors-children-enhancement-faultless-opportunist": {
     "id": "emperors-children-enhancement-faultless-opportunist",
     "title": "Faultless Opportunist",
-    "summary": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do: - That use is -1 CP. - That use does not prevent any uses of that stratagem on other units this phase.'",
-    "full": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do: - That use is -1 CP. - That use does not prevent any uses of that stratagem on other units this phase.'",
+    "summary": "You can target this unit with the Heroic Intervention stratagem , regardless of any other uses of that stratagem this phase. If you do: - That use is -1 CP. - That use does not prevent any uses of that stratagem on other units this phase.'",
+    "full": "You can target this unit with the Heroic Intervention stratagem , regardless of any other uses of that stratagem this phase. If you do: - That use is -1 CP. - That use does not prevent any uses of that stratagem on other units this phase.'",
     "glossary": "glossary-emperors-children-enhancement-faultless-opportunist",
     "rule": "detachment-peerless-bladesmen"
   },
@@ -2527,8 +2527,8 @@ window.DG_TERMS={
   "emperors-children-enhancement-accomplished-tactician": {
     "id": "emperors-children-enhancement-accomplished-tactician",
     "title": "Accomplished Tactician",
-    "summary": "Once per turn, in your opponent's Shooting phase, just after an enemy unit has shot, you can select one friendly Emperor's Children unit within 9\" of the bearer that was hit by one or more of those attacks, then select one friendly Transport that unit is wholly within 6\" of and is able to embark within. That Emperor's Children unit can embark in that Transport.",
-    "full": "Once per turn, in your opponent's Shooting phase, just after an enemy unit has shot, you can select one friendly Emperor's Children unit within 9\" of the bearer that was hit by one or more of those attacks, then select one friendly Transport that unit is wholly within 6\" of and is able to embark within. That Emperor's Children unit can embark in that Transport.",
+    "summary": "Once per turn, in your opponent's Shooting phase, just after an enemy unit has shot, you can select one friendly Emperor's Children unit within 9\" of the bearer that was hit by one or more of those attacks, then select one friendly Transport that unit is wholly within 6\" of and is able to embark within. That Emperor's Children unit can embark in that Transport .",
+    "full": "Once per turn, in your opponent's Shooting phase, just after an enemy unit has shot, you can select one friendly Emperor's Children unit within 9\" of the bearer that was hit by one or more of those attacks, then select one friendly Transport that unit is wholly within 6\" of and is able to embark within. That Emperor's Children unit can embark in that Transport .",
     "glossary": "glossary-emperors-children-enhancement-accomplished-tactician",
     "rule": "detachment-rapid-evisceration"
   },
@@ -2543,8 +2543,8 @@ window.DG_TERMS={
   "emperors-children-enhancement-spearhead-striker": {
     "id": "emperors-children-enhancement-spearhead-striker",
     "title": "Spearhead Striker",
-    "summary": "Each time the bearer disembarks from a Transport, until the end of the turn, you can re-roll Charge rolls made for the bearer's unit and enemy units cannot use the Fire Overwatch Stratagem to shoot at the bearer's unit.",
-    "full": "Each time the bearer disembarks from a Transport, until the end of the turn, you can re-roll Charge rolls made for the bearer's unit and enemy units cannot use the Fire Overwatch Stratagem to shoot at the bearer's unit.",
+    "summary": "Each time the bearer disembarks from a Transport , until the end of the turn, you can re-roll Charge rolls made for the bearer's unit and enemy units cannot use the Fire Overwatch Stratagem to shoot at the bearer's unit.",
+    "full": "Each time the bearer disembarks from a Transport , until the end of the turn, you can re-roll Charge rolls made for the bearer's unit and enemy units cannot use the Fire Overwatch Stratagem to shoot at the bearer's unit.",
     "glossary": "glossary-emperors-children-enhancement-spearhead-striker",
     "rule": "detachment-rapid-evisceration"
   },
@@ -2583,8 +2583,8 @@ window.DG_TERMS={
   "emperors-children-enhancement-slayer-of-champions": {
     "id": "emperors-children-enhancement-slayer-of-champions",
     "title": "Slayer of Champions",
-    "summary": "The bearer's melee weapons have the [Precision] ability, and each time the bearer makes a melee attack that targets a Character unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
-    "full": "The bearer's melee weapons have the [Precision] ability, and each time the bearer makes a melee attack that targets a Character unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
+    "summary": "The bearer's melee weapons have the [ Precision ] ability, and each time the bearer makes a melee attack that targets a Character unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
+    "full": "The bearer's melee weapons have the [ Precision ] ability, and each time the bearer makes a melee attack that targets a Character unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
     "glossary": "glossary-emperors-children-enhancement-slayer-of-champions",
     "rule": "detachment-slaaneshs-chosen"
   }

@@ -50,6 +50,8 @@ MFM_DETACHMENTS = [
 
 def clean(value: str) -> str:
     value = value.replace("\ufffd", ".").replace("\u00ad", "").replace("\r\n", "\n")
+    value = value.replace("ADEPTUS ASTARTESunits", "ADEPTUS ASTARTES units")
+    value = value.replace("Dark Dge Drsenal", "Dark Age Arsenal")
     return re.sub(r"\n{3,}", "\n\n", re.sub(r"[ \t]+\n", "\n", value)).strip()
 
 

@@ -13,10 +13,14 @@ const config=JSON.parse(fs.readFileSync(configPath,'utf8'));
 const resolvePath=value=>path.resolve(configDir,value);
 const sha256=buffer=>crypto.createHash('sha256').update(buffer).digest('hex').toUpperCase();
 const json=value=>`${JSON.stringify(value,null,2)}\n`;
-const clean=value=>String(value??'')
-  .replaceAll('^^**','').replaceAll('**^^','').replaceAll('**','').replaceAll('^^','')
-  .replaceAll('\u00a0',' ').replaceAll('\u2011','-').replaceAll('\ufffd','')
-  .replace(/[ \t]+/g,' ').trim();
+const textCorrections=new Map(Object.entries(config.textCorrections||{}));
+const clean=value=>{
+  const normalized=String(value??'')
+    .replaceAll('^^**',' ').replaceAll('**^^',' ').replaceAll('**',' ').replaceAll('^^',' ')
+    .replaceAll('\u00a0',' ').replaceAll('\u2011','-').replaceAll('\ufffd','')
+    .replace(/[ \t]+/g,' ').trim();
+  return textCorrections.get(normalized)||normalized;
+};
 const key=value=>clean(value).toLowerCase().replace(/\s*\[legends]\s*$/i,'');
 const slug=value=>key(value).replace(/['’]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const plural=value=>/s$/i.test(value)?value:/x$/i.test(value)?`${value}es`:`${value}s`;
@@ -193,10 +197,26 @@ function pointRows(entry,composition){
       const applies=rule.comparison==='greaterThan'?size>rule.threshold:size>=rule.threshold;
       if(applies)value=rule.type==='set'?rule.value:value+rule.value;
     }
-    rows.push({label:size?`${size} model${size===1?'':'s'}`:'',value});
+    rows.push({label:size?`${size} model${size===1?'':'s'}`:'',value,...(size?{minModels:size,maxModels:size}:{})});
     if(repeat)rows.push({label:`${repeat.start}+ unit${size?`: ${size} models`:''}`,value:value+repeat.increment});
   }
-  return unique(rows,row=>`${row.label}:${row.value}`);
+  const uniqueRows=unique(rows,row=>`${row.label}:${row.value}`);
+  if(repeat||uniqueRows.length<2)return uniqueRows;
+  const modelRows=uniqueRows.filter(row=>Number.isFinite(row.minModels));
+  const boundaries=[...new Set(rules.map(rule=>rule.comparison==='greaterThan'?rule.threshold+1:rule.threshold))].sort((a,b)=>a-b);
+  const maxModels=composition.reduce((sum,item)=>sum+Number(item.max||0),0);
+  const minModels=composition.reduce((sum,item)=>sum+Number(item.min||0),0);
+  if(modelRows.length!==uniqueRows.length||boundaries.length!==modelRows.length-1||maxModels<boundaries.at(-1))return uniqueRows;
+  return modelRows.map((row,index)=>{
+    const rowMin=index===0?minModels:boundaries[index-1];
+    const rowMax=index<boundaries.length?boundaries[index]-1:maxModels;
+    return{
+      ...row,
+      minModels:rowMin,
+      maxModels:rowMax,
+      label:rowMin===rowMax?`${rowMin} model${rowMin===1?'':'s'}`:`${rowMin}-${rowMax} models`
+    };
+  });
 }
 
 function relationTargets(text){

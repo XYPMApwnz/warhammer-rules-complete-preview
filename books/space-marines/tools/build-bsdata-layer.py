@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 import tempfile
 from pathlib import Path
@@ -11,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parents[1]
 CONFIG = ROOT / "sources" / "bsdata-extract.config.json"
 EXTRACTOR = REPO / "books" / "shared" / "tools" / "extract-bsdata-11e.mjs"
-NODE = Path(r"C:\Users\denis\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe")
+NODE = shutil.which("node")
 SNAPSHOT = ROOT / "sources" / "bsdata-space-marines-11e.json"
 DATASHEETS = ROOT / "content" / "space-marines-codex-datasheets.en.json"
 POINTS = ROOT / "content" / "space-marines-points.en.json"
@@ -43,9 +44,11 @@ def absolute_config(config: dict, folder: Path, faction: str) -> Path:
 
 
 def extract(config: dict, folder: Path, faction: str) -> tuple[dict, dict, dict]:
+    if not NODE:
+        raise RuntimeError("Node.js was not found on PATH; install Node.js before rebuilding the Space Marines BSData layer")
     folder.mkdir(parents=True)
     path = absolute_config(config, folder, faction)
-    subprocess.run([str(NODE), str(EXTRACTOR), str(path)], cwd=REPO, check=True)
+    subprocess.run([NODE, str(EXTRACTOR), str(path)], cwd=REPO, check=True)
     return tuple(json.loads((folder / name).read_text(encoding="utf-8")) for name in ("snapshot.json", "datasheets.json", "points.json"))
 
 

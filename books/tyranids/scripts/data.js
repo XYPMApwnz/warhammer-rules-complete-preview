@@ -266,8 +266,8 @@ window.DG_TERMS={
   "tyranids-ability-synapse": {
     "id": "tyranids-ability-synapse",
     "title": "Synapse",
-    "summary": "If your Army Faction is TYRANIDS, while a TYRANIDS unit from your army is within 6\" of one or more friendly SYNAPSE models, that TYRANIDS unit is said to be within Synapse Range of that model and of your army. While a TYRANIDS unit from your army is within Synapse Range of your army: ▪ Each time that unit takes a Battle-shock test, take that test on 3D6 instead of 2D6. ▪ Each time a model in that unit makes a melee attack, add 1 to the Strength characteristic of that attack.",
-    "full": "If your Army Faction is TYRANIDS, while a TYRANIDS unit from your army is within 6\" of one or more friendly SYNAPSE models, that TYRANIDS unit is said to be within Synapse Range of that model and of your army. While a TYRANIDS unit from your army is within Synapse Range of your army: ▪ Each time that unit takes a Battle-shock test, take that test on 3D6 instead of 2D6. ▪ Each time a model in that unit makes a melee attack, add 1 to the Strength characteristic of that attack.",
+    "summary": "If your Army Faction is TYRANIDS , while a TYRANIDS unit from your army is within 6\" of one or more friendly SYNAPSE models, that TYRANIDS unit is said to be within Synapse Range of that model and of your army. While a TYRANIDS unit from your army is within Synapse Range of your army: ▪ Each time that unit takes a Battle-shock test, take that test on 3D6 instead of 2D6. ▪ Each time a model in that unit makes a melee attack, add 1 to the Strength characteristic of that attack.",
+    "full": "If your Army Faction is TYRANIDS , while a TYRANIDS unit from your army is within 6\" of one or more friendly SYNAPSE models, that TYRANIDS unit is said to be within Synapse Range of that model and of your army. While a TYRANIDS unit from your army is within Synapse Range of your army: ▪ Each time that unit takes a Battle-shock test, take that test on 3D6 instead of 2D6. ▪ Each time a model in that unit makes a melee attack, add 1 to the Strength characteristic of that attack.",
     "glossary": "glossary-tyranids-ability-synapse",
     "rule": "unit-gargoyles",
     "units": [
@@ -425,8 +425,8 @@ window.DG_TERMS={
   "tyranids-ability-pistol": {
     "id": "tyranids-ability-pistol",
     "title": "Pistol",
-    "summary": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. Units containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: - One or more of its [CLOSE-QUARTERS] weapons. - One or more of its other ranged weapons.",
-    "full": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. Units containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: - One or more of its [CLOSE-QUARTERS] weapons. - One or more of its other ranged weapons.",
+    "summary": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. Units containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type , for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: - One or more of its [CLOSE-QUARTERS] weapons. - One or more of its other ranged weapons.",
+    "full": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. Units containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type , for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: - One or more of its [CLOSE-QUARTERS] weapons. - One or more of its other ranged weapons.",
     "glossary": "glossary-tyranids-ability-pistol",
     "rule": "unit-termagants",
     "units": [
@@ -441,8 +441,8 @@ window.DG_TERMS={
   "tyranids-ability-twin-linked": {
     "id": "tyranids-ability-twin-linked",
     "title": "Twin-linked",
-    "summary": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll.",
-    "full": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll.",
+    "summary": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll .",
+    "full": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll .",
     "glossary": "glossary-tyranids-ability-twin-linked",
     "rule": "unit-termagants",
     "units": [
@@ -467,8 +467,8 @@ window.DG_TERMS={
   "tyranids-ability-heavy": {
     "id": "tyranids-ability-heavy",
     "title": "Heavy",
-    "summary": "In your Shooting phase, each time an attack is made with a [HEAVY] weapon, add 1 to the hit roll if all of the following apply to the attacking unit: - That unit is unengaged. - That unit was not set up on the battlefield this turn. - No model in that unit has moved more than 3\" this turn.",
-    "full": "In your Shooting phase, each time an attack is made with a [HEAVY] weapon, add 1 to the hit roll if all of the following apply to the attacking unit: - That unit is unengaged. - That unit was not set up on the battlefield this turn. - No model in that unit has moved more than 3\" this turn.",
+    "summary": "In your Shooting phase, each time an attack is made with a [HEAVY] weapon, add 1 to the hit roll if all of the following apply to the attacking unit: - That unit is unengaged . - That unit was not set up on the battlefield this turn. - No model in that unit has moved more than 3\" this turn.",
+    "full": "In your Shooting phase, each time an attack is made with a [HEAVY] weapon, add 1 to the hit roll if all of the following apply to the attacking unit: - That unit is unengaged . - That unit was not set up on the battlefield this turn. - No model in that unit has moved more than 3\" this turn.",
     "glossary": "glossary-tyranids-ability-heavy",
     "rule": "unit-termagants",
     "units": [
@@ -485,8 +485,8 @@ window.DG_TERMS={
   "tyranids-ability-blast": {
     "id": "tyranids-ability-blast",
     "title": "Blast",
-    "summary": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. *Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*",
-    "full": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. *Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*",
+    "summary": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X] , each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. *Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*",
+    "full": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X] , each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. *Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*",
     "glossary": "glossary-tyranids-ability-blast",
     "rule": "unit-termagants",
     "units": [
@@ -513,8 +513,8 @@ window.DG_TERMS={
   "tyranids-ability-devastating-wounds": {
     "id": "tyranids-ability-devastating-wounds",
     "title": "Devastating Wounds",
-    "summary": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*",
-    "full": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*",
+    "summary": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound , the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound ; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds . The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*",
+    "full": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound , the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound ; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds . The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*",
     "glossary": "glossary-tyranids-ability-devastating-wounds",
     "rule": "unit-termagants",
     "units": [
@@ -671,8 +671,8 @@ window.DG_TERMS={
   "tyranids-ability-scouts-8": {
     "id": "tyranids-ability-scouts-8",
     "title": "Scouts 8\"",
-    "summary": "This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move. - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move.",
-    "full": "This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move. - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move.",
+    "summary": "This ability always takes the form Scouts X\" . In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves , you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move . - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move .",
+    "full": "This ability always takes the form Scouts X\" . In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: - If that unit is in strategic reserves , you can set up that unit anywhere that is wholly within your deployment zone. - If that unit is wholly within your deployment zone, it can make a scout move . - If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move .",
     "glossary": "glossary-tyranids-ability-scouts-8",
     "rule": "unit-broodlord",
     "units": [
@@ -685,8 +685,8 @@ window.DG_TERMS={
   "tyranids-ability-shadow-in-the-warp": {
     "id": "tyranids-ability-shadow-in-the-warp",
     "title": "Shadow in the Warp",
-    "summary": "If your Army Faction is TYRANIDS, once per battle, in either player’s Command phase, if one or more units from your army with this ability are on the battlefield, you can unleash the Shadow in the Warp. When you do, each enemy unit on the battlefield must take a Battle-shock test. Each time an enemy unit takes such a Battle-shock test, if it is within 6\" of one or more SYNAPSE units from your army, subtract 1 from that test.",
-    "full": "If your Army Faction is TYRANIDS, once per battle, in either player’s Command phase, if one or more units from your army with this ability are on the battlefield, you can unleash the Shadow in the Warp. When you do, each enemy unit on the battlefield must take a Battle-shock test. Each time an enemy unit takes such a Battle-shock test, if it is within 6\" of one or more SYNAPSE units from your army, subtract 1 from that test.",
+    "summary": "If your Army Faction is TYRANIDS , once per battle, in either player’s Command phase, if one or more units from your army with this ability are on the battlefield, you can unleash the Shadow in the Warp. When you do, each enemy unit on the battlefield must take a Battle-shock test. Each time an enemy unit takes such a Battle-shock test, if it is within 6\" of one or more SYNAPSE units from your army, subtract 1 from that test.",
+    "full": "If your Army Faction is TYRANIDS , once per battle, in either player’s Command phase, if one or more units from your army with this ability are on the battlefield, you can unleash the Shadow in the Warp. When you do, each enemy unit on the battlefield must take a Battle-shock test. Each time an enemy unit takes such a Battle-shock test, if it is within 6\" of one or more SYNAPSE units from your army, subtract 1 from that test.",
     "glossary": "glossary-tyranids-ability-shadow-in-the-warp",
     "rule": "unit-broodlord",
     "units": [
@@ -813,8 +813,8 @@ window.DG_TERMS={
   "tyranids-ability-deadly-demise-d3": {
     "id": "tyranids-ability-deadly-demise-d3",
     "title": "Deadly Demise D3",
-    "summary": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
-    "full": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "summary": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "full": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
     "glossary": "glossary-tyranids-ability-deadly-demise-d3",
     "rule": "unit-hive-tyrant",
     "units": [
@@ -905,8 +905,8 @@ window.DG_TERMS={
   "tyranids-ability-hypersensory-array": {
     "id": "tyranids-ability-hypersensory-array",
     "title": "Hypersensory Array",
-    "summary": "Once per battle round, you can target this unit with the Rapid Ingress/Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do: - That use is -1 CP. - That use does not prevent any uses of that stratagem on other units this phase.",
-    "full": "Once per battle round, you can target this unit with the Rapid Ingress/Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do: - That use is -1 CP. - That use does not prevent any uses of that stratagem on other units this phase.",
+    "summary": "Once per battle round, you can target this unit with the Rapid Ingress/Heroic Intervention stratagem , regardless of any other uses of that stratagem this phase. If you do: - That use is -1 CP. - That use does not prevent any uses of that stratagem on other units this phase.",
+    "full": "Once per battle round, you can target this unit with the Rapid Ingress/Heroic Intervention stratagem , regardless of any other uses of that stratagem this phase. If you do: - That use is -1 CP. - That use does not prevent any uses of that stratagem on other units this phase.",
     "glossary": "glossary-tyranids-ability-hypersensory-array",
     "rule": "unit-hyperadapted-raveners",
     "units": [
@@ -931,8 +931,8 @@ window.DG_TERMS={
   "tyranids-ability-anti": {
     "id": "tyranids-ability-anti",
     "title": "Anti",
-    "summary": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound. *Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*",
-    "full": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound. *Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*",
+    "summary": "This ability always takes the form [ANTI-X Y+] . Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X , an unmodified wound roll of Y+ is a critical wound . *Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*",
+    "full": "This ability always takes the form [ANTI-X Y+] . Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X , an unmodified wound roll of Y+ is a critical wound . *Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*",
     "glossary": "glossary-tyranids-ability-anti",
     "rule": "unit-hyperadapted-raveners",
     "units": [
@@ -951,8 +951,8 @@ window.DG_TERMS={
   "tyranids-ability-ignores-cover": {
     "id": "tyranids-ability-ignores-cover",
     "title": "Ignores Cover",
-    "summary": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth).",
-    "full": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth).",
+    "summary": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth ).",
+    "full": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth ).",
     "glossary": "glossary-tyranids-ability-ignores-cover",
     "rule": "unit-hyperadapted-raveners",
     "units": [
@@ -966,8 +966,8 @@ window.DG_TERMS={
   "tyranids-ability-sustained-hits": {
     "id": "tyranids-ability-sustained-hits",
     "title": "Sustained Hits",
-    "summary": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X. *Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability).",
-    "full": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X. *Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability).",
+    "summary": "This ability always takes the form [SUSTAINED HITS X] . Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit , that attack results in a number of additional hits on the target as denoted by X . *Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit . That attack therefore hits the target three times (once from the critical hit , and twice more from the [SUSTAINED HITS 2] ability).",
+    "full": "This ability always takes the form [SUSTAINED HITS X] . Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit , that attack results in a number of additional hits on the target as denoted by X . *Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit . That attack therefore hits the target three times (once from the critical hit , and twice more from the [SUSTAINED HITS 2] ability).",
     "glossary": "glossary-tyranids-ability-sustained-hits",
     "rule": "unit-hyperadapted-raveners",
     "units": [
@@ -1076,8 +1076,8 @@ window.DG_TERMS={
   "tyranids-ability-psychic": {
     "id": "tyranids-ability-psychic",
     "title": "Psychic",
-    "summary": "Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).",
-    "full": "Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).",
+    "summary": "Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll . Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).",
+    "full": "Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll . Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).",
     "glossary": "glossary-tyranids-ability-psychic",
     "rule": "unit-neurotyrant",
     "units": [
@@ -1144,8 +1144,8 @@ window.DG_TERMS={
   "tyranids-ability-lone-operative": {
     "id": "tyranids-ability-lone-operative",
     "title": "Lone Operative",
-    "summary": "Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\", unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit.",
-    "full": "Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\", unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit.",
+    "summary": "Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\" , unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit.",
+    "full": "Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\" , unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit.",
     "glossary": "glossary-tyranids-ability-lone-operative",
     "rule": "unit-parasite-of-mortrex",
     "units": [
@@ -1254,8 +1254,8 @@ window.DG_TERMS={
   "tyranids-ability-deadly-demise-d6": {
     "id": "tyranids-ability-deadly-demise-d6",
     "title": "Deadly Demise D6",
-    "summary": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
-    "full": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "summary": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "full": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
     "glossary": "glossary-tyranids-ability-deadly-demise-d6",
     "rule": "unit-tervigon",
     "units": [
@@ -1665,8 +1665,8 @@ window.DG_TERMS={
   "tyranids-ability-feel-no-pain-5": {
     "id": "tyranids-ability-feel-no-pain-5",
     "title": "Feel No Pain 5+",
-    "summary": "This ability always takes the form Feel No Pain X+. Each time a model with this ability would lose a wound, roll one D6: on an X+, that wound is not lost.",
-    "full": "This ability always takes the form Feel No Pain X+. Each time a model with this ability would lose a wound, roll one D6: on an X+, that wound is not lost.",
+    "summary": "This ability always takes the form Feel No Pain X+ . Each time a model with this ability would lose a wound, roll one D6: on an X+ , that wound is not lost.",
+    "full": "This ability always takes the form Feel No Pain X+ . Each time a model with this ability would lose a wound, roll one D6: on an X+ , that wound is not lost.",
     "glossary": "glossary-tyranids-ability-feel-no-pain-5",
     "rule": "unit-old-one-eye",
     "units": [
@@ -1705,8 +1705,8 @@ window.DG_TERMS={
   "tyranids-ability-swallow-whole": {
     "id": "tyranids-ability-swallow-whole",
     "title": "Swallow Whole",
-    "summary": "Each time an attack with this model’s gaping maw targets an Infantry, Mounted or Beasts unit, each successful unmodified Wound roll is a Critical Wound. Each time an Infantry, Mounted or Beasts model is destroyed as a result of an attack made by this model’s gaping maw, this model regains up to D3+2 lost wounds.",
-    "full": "Each time an attack with this model’s gaping maw targets an Infantry, Mounted or Beasts unit, each successful unmodified Wound roll is a Critical Wound. Each time an Infantry, Mounted or Beasts model is destroyed as a result of an attack made by this model’s gaping maw, this model regains up to D3+2 lost wounds.",
+    "summary": "Each time an attack with this model’s gaping maw targets an Infantry , Mounted or Beasts unit, each successful unmodified Wound roll is a Critical Wound. Each time an Infantry , Mounted or Beasts model is destroyed as a result of an attack made by this model’s gaping maw, this model regains up to D3+2 lost wounds.",
+    "full": "Each time an attack with this model’s gaping maw targets an Infantry , Mounted or Beasts unit, each successful unmodified Wound roll is a Critical Wound. Each time an Infantry , Mounted or Beasts model is destroyed as a result of an attack made by this model’s gaping maw, this model regains up to D3+2 lost wounds.",
     "glossary": "glossary-tyranids-ability-swallow-whole",
     "rule": "unit-the-red-terror",
     "units": [
@@ -1770,8 +1770,8 @@ window.DG_TERMS={
   "tyranids-ability-malign-presence-aura": {
     "id": "tyranids-ability-malign-presence-aura",
     "title": "Malign Presence (Aura)",
-    "summary": "Once per turn, when your opponent targets a unit from their army within 12\" of this model with a stratagem, you can use this ability. If you do increase the CP cost of that use of that stratagem by 1CP.",
-    "full": "Once per turn, when your opponent targets a unit from their army within 12\" of this model with a stratagem, you can use this ability. If you do increase the CP cost of that use of that stratagem by 1CP.",
+    "summary": "Once per turn, when your opponent targets a unit from their army within 12\" of this model with a stratagem , you can use this ability. If you do increase the CP cost of that use of that stratagem by 1CP.",
+    "full": "Once per turn, when your opponent targets a unit from their army within 12\" of this model with a stratagem , you can use this ability. If you do increase the CP cost of that use of that stratagem by 1CP.",
     "glossary": "glossary-tyranids-ability-malign-presence-aura",
     "rule": "unit-the-swarmlord",
     "units": [
@@ -1888,8 +1888,8 @@ window.DG_TERMS={
   "tyranids-ability-deadly-demise-1": {
     "id": "tyranids-ability-deadly-demise-1",
     "title": "Deadly Demise 1",
-    "summary": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
-    "full": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "summary": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "full": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
     "glossary": "glossary-tyranids-ability-deadly-demise-1",
     "rule": "unit-biovores",
     "units": [
@@ -2140,8 +2140,8 @@ window.DG_TERMS={
   "tyranids-ability-adaptive-instincts-once-per-turn-per-unit": {
     "id": "tyranids-ability-adaptive-instincts-once-per-turn-per-unit",
     "title": "Adaptive Instincts (Once per turn, per unit)",
-    "summary": "In the Fight phase, when this unit is selected to fight or when an enemy unit targets this unit, you can select one of the following: ▪ This unit’s melee attacks have +1 S. ▪ <ins>Or</ins>: This unit has +1 T.",
-    "full": "In the Fight phase, when this unit is selected to fight or when an enemy unit targets this unit, you can select one of the following: ▪ This unit’s melee attacks have +1 S. ▪ <ins>Or</ins>: This unit has +1 T.",
+    "summary": "In the Fight phase, when this unit is selected to fight or when an enemy unit targets this unit, you can select one of the following: ▪ This unit’s melee attacks have +1 S . ▪ <ins>Or</ins>: This unit has +1 T .",
+    "full": "In the Fight phase, when this unit is selected to fight or when an enemy unit targets this unit, you can select one of the following: ▪ This unit’s melee attacks have +1 S . ▪ <ins>Or</ins>: This unit has +1 T .",
     "glossary": "glossary-tyranids-ability-adaptive-instincts-once-per-turn-per-unit",
     "rule": "unit-tyranid-warriors-with-melee-bio-weapons",
     "units": [
@@ -2309,8 +2309,8 @@ window.DG_TERMS={
   "tyranids-ability-foul-spores-aura": {
     "id": "tyranids-ability-foul-spores-aura",
     "title": "Foul Spores (Aura)",
-    "summary": "Friendly TYRANIDS units within 6' of this unit have Stealth.",
-    "full": "Friendly TYRANIDS units within 6' of this unit have Stealth.",
+    "summary": "Friendly TYRANIDS units within 6' of this unit have Stealth .",
+    "full": "Friendly TYRANIDS units within 6' of this unit have Stealth .",
     "glossary": "glossary-tyranids-ability-foul-spores-aura",
     "rule": "unit-venomthropes",
     "units": [
@@ -2335,8 +2335,8 @@ window.DG_TERMS={
   "tyranids-ability-pouncing-leap": {
     "id": "tyranids-ability-pouncing-leap",
     "title": "Pouncing Leap",
-    "summary": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do: ▪ That use is -1 CP. ▪ That use does not prevent any uses of that stratagem on other units this phase.",
-    "full": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do: ▪ That use is -1 CP. ▪ That use does not prevent any uses of that stratagem on other units this phase.",
+    "summary": "You can target this unit with the Heroic Intervention stratagem , regardless of any other uses of that stratagem this phase. If you do: ▪ That use is -1 CP. ▪ That use does not prevent any uses of that stratagem on other units this phase.",
+    "full": "You can target this unit with the Heroic Intervention stratagem , regardless of any other uses of that stratagem this phase. If you do: ▪ That use is -1 CP. ▪ That use does not prevent any uses of that stratagem on other units this phase.",
     "glossary": "glossary-tyranids-ability-pouncing-leap",
     "rule": "unit-von-ryans-leapers",
     "units": [
@@ -2387,8 +2387,8 @@ window.DG_TERMS={
   "tyranids-ability-lethal-hits": {
     "id": "tyranids-ability-lethal-hits",
     "title": "Lethal Hits",
-    "summary": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit, you can choose for that attack to automatically wound the target. *Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS].*",
-    "full": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit, you can choose for that attack to automatically wound the target. *Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS].*",
+    "summary": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit , you can choose for that attack to automatically wound the target. *Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS].*",
+    "full": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit , you can choose for that attack to automatically wound the target. *Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS].*",
     "glossary": "glossary-tyranids-ability-lethal-hits",
     "rule": "unit-zoanthropes",
     "units": [
@@ -2622,8 +2622,8 @@ window.DG_TERMS={
   "tyranids-ability-spore-mine-cysts": {
     "id": "tyranids-ability-spore-mine-cysts",
     "title": "Spore Mine Cysts",
-    "summary": "At the end of your opponent’s Fight phase, you can do one of the following: - Select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit and roll six D6 for that unit: for each 3+, that unit suffers 1 mortal wound. - Add a new SPORE MINES unit containing D3 models to your army and set it up anywhere on the battlefield that is within 6\" of this model and more than 8\" horizontally away from all enemy units. You cannot select this option for more than one model per turn.",
-    "full": "At the end of your opponent’s Fight phase, you can do one of the following: - Select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit and roll six D6 for that unit: for each 3+, that unit suffers 1 mortal wound. - Add a new SPORE MINES unit containing D3 models to your army and set it up anywhere on the battlefield that is within 6\" of this model and more than 8\" horizontally away from all enemy units. You cannot select this option for more than one model per turn.",
+    "summary": "At the end of your opponent’s Fight phase, you can do one of the following: - Select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit and roll six D6 for that unit: for each 3+, that unit suffers 1 mortal wound . - Add a new SPORE MINES unit containing D3 models to your army and set it up anywhere on the battlefield that is within 6\" of this model and more than 8\" horizontally away from all enemy units. You cannot select this option for more than one model per turn.",
+    "full": "At the end of your opponent’s Fight phase, you can do one of the following: - Select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit and roll six D6 for that unit: for each 3+, that unit suffers 1 mortal wound . - Add a new SPORE MINES unit containing D3 models to your army and set it up anywhere on the battlefield that is within 6\" of this model and more than 8\" horizontally away from all enemy units. You cannot select this option for more than one model per turn.",
     "glossary": "glossary-tyranids-ability-spore-mine-cysts",
     "rule": "unit-harpy",
     "units": [
@@ -2965,8 +2965,8 @@ window.DG_TERMS={
   "tyranids-ability-melta": {
     "id": "tyranids-ability-melta",
     "title": "Melta",
-    "summary": "This ability always takes the form [MELTA X]. Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. *Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2.",
-    "full": "This ability always takes the form [MELTA X]. Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. *Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2.",
+    "summary": "This ability always takes the form [MELTA X] . Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. *Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2 .",
+    "full": "This ability always takes the form [MELTA X] . Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. *Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2 .",
     "glossary": "glossary-tyranids-ability-melta",
     "rule": "unit-norn-emissary",
     "units": [
@@ -3421,8 +3421,8 @@ window.DG_TERMS={
   "tyranids-ability-deadly-demise-2d6": {
     "id": "tyranids-ability-deadly-demise-2d6",
     "title": "Deadly Demise 2D6",
-    "summary": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
-    "full": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "summary": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+    "full": "This ability always takes the form Deadly Demise X . Each time a model in this unit is destroyed , after the units embarked within it (if any) have made their emergency disembark moves , roll one D6. On a 6, that model suffers a deadly demise ; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move . Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
     "glossary": "glossary-tyranids-ability-deadly-demise-2d6",
     "rule": "unit-harridan",
     "units": [
@@ -3435,8 +3435,8 @@ window.DG_TERMS={
   "tyranids-ability-hover": {
     "id": "tyranids-ability-hover",
     "title": "Hover",
-    "summary": "Each time this unit takes to the skies (21.03), do not subtract 2\" from the maximum distance.",
-    "full": "Each time this unit takes to the skies (21.03), do not subtract 2\" from the maximum distance.",
+    "summary": "Each time this unit takes to the skies (21.03), do not subtract 2\" from the maximum distance .",
+    "full": "Each time this unit takes to the skies (21.03), do not subtract 2\" from the maximum distance .",
     "glossary": "glossary-tyranids-ability-hover",
     "rule": "unit-harridan",
     "units": [
@@ -3671,8 +3671,8 @@ window.DG_TERMS={
   "tyranids-ability-lance": {
     "id": "tyranids-ability-lance",
     "title": "Lance",
-    "summary": "Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll.",
-    "full": "Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll.",
+    "summary": "Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll .",
+    "full": "Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll .",
     "glossary": "glossary-tyranids-ability-lance",
     "rule": "unit-malanthrope",
     "units": [
@@ -3783,8 +3783,8 @@ window.DG_TERMS={
   "tyranids-enhancement-instinctive-defense": {
     "id": "tyranids-enhancement-instinctive-defense",
     "title": "Instinctive Defense",
-    "summary": "TYRANIDS model only. While the bearer is within 6\" of one or more friendly HARVESTER units, when you target this unit with the Heroic Intervention stratagem, that use is -1 CP. In addition, while the bearer is within 6\" of one or more friendly HARVESTER units, models in the bearer's unit have the Fights First ability.",
-    "full": "TYRANIDS model only. While the bearer is within 6\" of one or more friendly HARVESTER units, when you target this unit with the Heroic Intervention stratagem, that use is -1 CP. In addition, while the bearer is within 6\" of one or more friendly HARVESTER units, models in the bearer's unit have the Fights First ability.",
+    "summary": "TYRANIDS model only. While the bearer is within 6\" of one or more friendly HARVESTER units, when you target this unit with the Heroic Intervention stratagem , that use is -1 CP. In addition, while the bearer is within 6\" of one or more friendly HARVESTER units, models in the bearer's unit have the Fights First ability.",
+    "full": "TYRANIDS model only. While the bearer is within 6\" of one or more friendly HARVESTER units, when you target this unit with the Heroic Intervention stratagem , that use is -1 CP. In addition, while the bearer is within 6\" of one or more friendly HARVESTER units, models in the bearer's unit have the Fights First ability.",
     "glossary": "glossary-tyranids-enhancement-instinctive-defense",
     "rule": "detachment-assimilation-swarm"
   },
@@ -3799,8 +3799,8 @@ window.DG_TERMS={
   "tyranids-enhancement-regenerating-monstrosity": {
     "id": "tyranids-enhancement-regenerating-monstrosity",
     "title": "Regenerating Monstrosity",
-    "summary": "Tyranids model only (excluding Monsters models) The bearer's unit can be regenerated up to twice per phase, instead of once.",
-    "full": "Tyranids model only (excluding Monsters models) The bearer's unit can be regenerated up to twice per phase, instead of once.",
+    "summary": "Tyranids model only (excluding Monster models). The bearer's unit can be regenerated up to twice per phase, instead of once.",
+    "full": "Tyranids model only (excluding Monster models). The bearer's unit can be regenerated up to twice per phase, instead of once.",
     "glossary": "glossary-tyranids-enhancement-regenerating-monstrosity",
     "rule": "detachment-assimilation-swarm"
   },
@@ -3815,8 +3815,8 @@ window.DG_TERMS={
   "tyranids-enhancement-monstrous-nemesis": {
     "id": "tyranids-enhancement-monstrous-nemesis",
     "title": "Monstrous Nemesis",
-    "summary": "Tyranids Monster only. Each time the bearer makes a melee attack that targets a Monsteror Vehicleunit, add 1 to the Wound roll.",
-    "full": "Tyranids Monster only. Each time the bearer makes a melee attack that targets a Monsteror Vehicleunit, add 1 to the Wound roll.",
+    "summary": "Tyranids Monster only. Each time the bearer makes a melee attack that targets a Monster or Vehicle unit, add 1 to the Wound roll.",
+    "full": "Tyranids Monster only. Each time the bearer makes a melee attack that targets a Monster or Vehicle unit, add 1 to the Wound roll.",
     "glossary": "glossary-tyranids-enhancement-monstrous-nemesis",
     "rule": "detachment-crusher-stampede"
   },
@@ -3871,8 +3871,8 @@ window.DG_TERMS={
   "tyranids-enhancement-power-of-the-hive-mind": {
     "id": "tyranids-enhancement-power-of-the-hive-mind",
     "title": "Power of the Hive Mind",
-    "summary": "Tyranids Psyker model only. Improve the Strength and Armour Penetration characteristic of psychic weapons equipped by the wearer of 1.",
-    "full": "Tyranids Psyker model only. Improve the Strength and Armour Penetration characteristic of psychic weapons equipped by the wearer of 1.",
+    "summary": "Tyranids Psyker model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1.",
+    "full": "Tyranids Psyker model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1.",
     "glossary": "glossary-tyranids-enhancement-power-of-the-hive-mind",
     "rule": "detachment-synaptic-nexus"
   },
@@ -3935,8 +3935,8 @@ window.DG_TERMS={
   "tyranids-enhancement-chameleonic": {
     "id": "tyranids-enhancement-chameleonic",
     "title": "Chameleonic",
-    "summary": "VANGUARD INVADER model only. This unit has Stealth.",
-    "full": "VANGUARD INVADER model only. This unit has Stealth.",
+    "summary": "VANGUARD INVADER model only. This unit has Stealth .",
+    "full": "VANGUARD INVADER model only. This unit has Stealth .",
     "glossary": "glossary-tyranids-enhancement-chameleonic",
     "rule": "detachment-vanguard-onslaught"
   },

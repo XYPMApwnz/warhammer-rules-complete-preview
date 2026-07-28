@@ -151,6 +151,9 @@ RELATED_RULES = {
 
 def clean_text(value: str) -> str:
     value = value.replace("\ufffd", ".").replace("\u00ad", "").replace("\r\n", "\n")
+    value = value.replace("Dark DestinyAbility", "Dark Destiny Ability")
+    value = value.replace("tht use", "that use")
+    value = value.replace("HERETIC ASTARTESmodel", "HERETIC ASTARTES model")
     value = re.sub(r"[ \t]+\n", "\n", value)
     value = re.sub(r"\n{3,}", "\n\n", value)
     return value.strip()

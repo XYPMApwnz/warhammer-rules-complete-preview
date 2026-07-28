@@ -110,6 +110,7 @@ def clean(value: str) -> str:
     value = re.sub(r"[ \t]+", " ", value)
     value = re.sub(r"\s*\n\s*", " ", value)
     value = value.replace("Y ou", "You")
+    value = value.replace("ADEPTUS ASTARTES INFANTRYmodels", "ADEPTUS ASTARTES INFANTRY models")
     return value.strip()
 
 
