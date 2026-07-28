@@ -36,7 +36,7 @@ const wahapediaUrl=digital.meta.source;
 
 const diagramRules={
   'DatasheetExample.png':'02.01','ex2.png':'03.01','ex4.png':'03.01','ex5.png':'03.01','ex6.png':'03.03','ex7.png':'03.04',
-  'ex8.png':'04.01','ex9.png':'05.01','ex10.png':'05.01','ex11.png':'19.02','ex12.png':'05.04',
+  'ex8.png':'04.01','ex9.png':'05.04','ex10.png':'05.04','ex11.png':'19.02','ex12.png':'05.04',
   'ModelVisible.png':'06.01','ModelFullyVisible.png':'06.01','UnitVisible.png':'06.01','UnitFullyVisible.png':'06.01',
   'BattleShockExamples1.png':'08.03','BattleShockExamples2.png':'08.03','BattleShockExamples3.png':'08.03','BattleShockExamples4.png':'08.03',
   'MakingAChargeMove.png':'11.02',
@@ -45,6 +45,7 @@ const diagramRules={
   'ControllingATerrainObjective.png':'14.01','ExampleAction.png':'16.01','EngagedMonstersVehiclesShooting.png':'17.03',
   'MakingASurgeMove.png':'21.02','TakingToTheSkies.png':'21.03','PlungingFire.png':'22.05'
 };
+const diagramLabels={'ex9.png':'Resolving attack dice','ex10.png':'Resolving other attacks'};
 const diagrams=Object.values(digital.images).flat();
 const ruleReferences={
   '01.02.01':['core-starting-strength','core-half-strength','core-below-half-strength','core-below-starting-strength'],
@@ -266,7 +267,7 @@ function primaryNav(current=''){
 
 function shell({title,current='',currentLabel='Start',onPage='',content}){
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d0f0d"><link rel="manifest" href="../../../manifest.webmanifest"><title>${escapeHtml(title)} — Core Rules</title><link rel="stylesheet" href="styles.css?v=12"></head><body>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d0f0d"><link rel="manifest" href="../../../manifest.webmanifest"><title>${escapeHtml(title)} — Core Rules</title><link rel="stylesheet" href="styles.css?v=13"></head><body>
 <header class="topbar"><button class="menu" id="navButton" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><strong>Core Rules</strong><small>11E · Reference</small></a><span class="current">${escapeHtml(currentLabel)}</span><button class="search-button" id="searchButton" type="button" aria-label="Search Core Rules">Search</button><a class="library" href="../../../index.html">← Library</a></header><button class="scrim" id="navScrim" type="button" aria-label="Close navigation" hidden></button>
 <aside class="sidebar" id="sidebar"><div class="sidebar-head"><span class="eyebrow">Core register // 11E</span><h1>Contents</h1></div><nav><section class="nav-group"><h2>Reference</h2><a href="index.html"${!current?' aria-current="page"':''}>Start</a></section>${primaryNav(current)}${onPage}</nav><a class="mega" href="../../../glossary/index.html">Mega Glossary →</a></aside>
 <main class="main">${content}</main><dialog class="search-dialog" id="searchDialog"><form method="dialog" class="dialog-head"><span>Core Rules // search</span><button type="submit" aria-label="Close search">×</button></form><label for="searchInput">Find a rule</label><input id="searchInput" type="search" autocomplete="off" placeholder="Title or rule text"><p class="search-status" id="searchStatus">Type at least two characters.</p><div class="search-results" id="searchResults"></div></dialog><dialog class="dialog" id="termDialog"><div class="dialog-head"><span>Mega Glossary // quick entry</span><button id="termClose" type="button" aria-label="Close">×</button></div><h2 id="termTitle"></h2><p id="termSummary"></p><a id="termRule" hidden>Open full rule →</a><a id="termFull">Glossary entry →</a></dialog><dialog class="image-dialog" id="imageDialog"><button id="imageClose" type="button" aria-label="Close diagram">×</button><img id="imagePreview" alt=""><p id="imageCaption"></p></dialog><script src="../../../glossary-return.js?v=1"></script><script src="app.js?v=10"></script></body></html>`;
@@ -286,7 +287,7 @@ function ruleVisuals(code){
   if(!items.length)return '';
   const rule=digital.records.find(record=>record.code===code);
   const ruleLabel=(rule?.title||'Rules diagram').replace(/^\d+\.\s*/,'');
-  return `<div class="rule-visuals" aria-label="Diagrams for ${escapeHtml(ruleLabel)}">${items.map(item=>{const detail=/^ex\d+$/i.test(item.caption||'')?'':item.caption;const imageFile=item.file.replace(/\.png$/i,'.webp');return `<figure data-visual-rule="${escapeHtml(code)}"><figcaption><small>Diagram for rule</small><strong>${escapeHtml(ruleLabel)}</strong>${detail?`<span>${escapeHtml(detail)}</span>`:''}</figcaption><a href="../assets/diagrams/${escapeHtml(imageFile)}"><img src="../assets/diagrams/${escapeHtml(imageFile)}" alt="${escapeHtml(detail||ruleLabel)}" loading="lazy" decoding="async"></a></figure>`;}).join('')}</div>`;
+  return `<div class="rule-visuals" aria-label="Diagrams for ${escapeHtml(ruleLabel)}">${items.map(item=>{const detail=diagramLabels[item.file]||(/^ex\d+$/i.test(item.caption||'')?'':item.caption);const imageFile=item.file.replace(/\.png$/i,'.webp');return `<figure data-visual-rule="${escapeHtml(code)}"><figcaption><small>Diagram for rule</small><strong>${escapeHtml(ruleLabel)}</strong>${detail?`<span>${escapeHtml(detail)}</span>`:''}</figcaption><a href="../assets/diagrams/${escapeHtml(imageFile)}"><img src="../assets/diagrams/${escapeHtml(imageFile)}" alt="${escapeHtml(detail||ruleLabel)}" loading="lazy" decoding="async"></a></figure>`;}).join('')}</div>`;
 }
 
 function referenceStrip(code,seen=new Set()){
@@ -357,7 +358,7 @@ function sectionPage(id,index){
     }else cards=parents.map(record=>mainRule(record,records.filter(child=>child.code.startsWith(`${record.code}.`)))).join('');
   }
   const anchors=id==='introduction'?[]:records.filter(record=>record.code.split('.').length===2).map(record=>({id:`rule-${slug(record.code)}`,title:record.title}));
-  const onPage=anchors.length?`<section class="nav-group on-page"><h2>On this page</h2>${anchors.map(item=>`<a href="#${item.id}">${escapeHtml(item.title)}</a>`).join('')}</section>`:'';
+  const onPage=anchors.length?anchors.length>12?`<details class="nav-group on-page"><summary>On this page <span>${anchors.length}</span></summary>${anchors.map(item=>`<a href="#${item.id}">${escapeHtml(item.title)}</a>`).join('')}</details>`:`<section class="nav-group on-page"><h2>On this page</h2>${anchors.map(item=>`<a href="#${item.id}">${escapeHtml(item.title)}</a>`).join('')}</section>`:'';
   const actions=[`<a class="button source" href="${pdfUrl}" target="_blank" rel="noreferrer">Official GW PDF ↗</a>`];
   if(previous)actions.push(`<a class="button" href="${fileFor(previous)}">← ${escapeHtml(byId.get(previous).title)}</a>`);
   if(next)actions.push(`<a class="button" href="${fileFor(next)}">${escapeHtml(byId.get(next).title)} →</a>`);

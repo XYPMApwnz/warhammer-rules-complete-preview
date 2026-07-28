@@ -63,3 +63,4 @@ a{color:inherit}
 @media(max-width:680px){.rule-head{grid-template-columns:minmax(0,1fr) auto}.page{grid-column:auto}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
 .rules,.rule,.rule-body,.subrules{min-width:0}.table-scroll{width:100%}
+.rule-body>p,.rule-body>ul,.rule-body>ol,.subrule>div>p,.subrule>div>ul{max-width:76ch}.on-page summary{padding:10px 12px;color:var(--bronze-text);font:800 9px ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}.on-page summary span{float:right;color:var(--muted)}.on-page[open] summary{margin-bottom:5px}.on-page a{display:block}

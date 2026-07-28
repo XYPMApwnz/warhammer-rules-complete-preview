@@ -151,6 +151,9 @@ for(const faq of faqs){
 assert(!/\b\d{2}\.\d{2}(?:\.\d{2})?\b/.test(visibleReader),'technical rule codes must stay out of visible reader text');
 assert(!/\((?:03|04|05|15|16|24)\)/.test(visibleReader),'chapter references must use clickable names instead of numeric codes');
 assert(generatedReader.includes('<h4 class="see-also">See also</h4>'),'See also index must remain available');
+assert(!generatedReader.match(/data-visual-rule="05\.01"[\s\S]{0,500}ex(?:9|10)\.webp/),'attack-sequence examples must not be presented as Hit Roll-only diagrams');
+for(const file of ['ex9.webp','ex10.webp'])assert(generatedReader.match(new RegExp(`data-visual-rule="05\\.04"[\\s\\S]{0,1800}${file}`)),`${file} must follow the complete attack-resolution sequence`);
+assert(read('reader/core-abilities.html').includes('<details class="nav-group on-page">'),'long Core Abilities navigation must be collapsible');
 for(const block of generatedReader.matchAll(/<h4 class="see-also">See also<\/h4><ul>([\s\S]*?)<\/ul>/g)){
   for(const item of block[1].matchAll(/<li>([\s\S]*?)<\/li>/g)){
     assert(/^<button class="term rule-reference"/.test(item[1]),'every See also item must be one clickable rule reference');
