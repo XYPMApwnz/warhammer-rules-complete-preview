@@ -139,6 +139,19 @@ for(const block of generatedReader.matchAll(/<h4 class="see-also">See also<\/h4>
     assert(!/>[^<]*\]<\/button>/.test(item[1]),'See also labels must not retain a closing source bracket');
   }
 }
+for(const parent of digital.records.filter(record=>record.code.split('.').length===2)){
+  const children=digital.records.filter(record=>record.code.startsWith(`${parent.code}.`));
+  if(!children.length)continue;
+  const pageFile=readerFiles.find(file=>fs.readFileSync(path.join(readerRoot,file),'utf8').includes(`id="rule-${parent.code.replaceAll('.','-')}"`));
+  assert(pageFile,`${parent.code} has no routed parent card`);
+  const page=fs.readFileSync(path.join(readerRoot,pageFile),'utf8'),start=page.indexOf(`id="rule-${parent.code.replaceAll('.','-')}"`),next=page.indexOf('<article class="rule',start+1);
+  const article=page.slice(start,next<0?page.length:next),parentProse=article.slice(0,article.indexOf('<div class="subrules">'));
+  const seeAlso=parentProse.match(/<h4 class="see-also">See also<\/h4><ul>([\s\S]*?)<\/ul>/)?.[1]||'';
+  for(const child of children){
+    assert(article.includes(`id="rule-${child.code.replaceAll('.','-')}"`),`${parent.code} is missing local subrule ${child.code}`);
+    for(const term of coreTermsByCode.get(child.code)||[])assert(!seeAlso.includes(`data-term="${term.id}"`),`${parent.code} See also duplicates local subrule ${child.code}`);
+  }
+}
 assert(generatedReader.includes('class="term rule-reference" type="button" data-term="core-rule-02-02-01-modifiers"')&&generatedReader.includes('>Modified Characteristics</button>'),'See also keeps source labels clickable');
 const datasheetsReader=fs.readFileSync(path.join(readerRoot,'datasheets.html'),'utf8');
 for(const [id,label] of Object.entries({
