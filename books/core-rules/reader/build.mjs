@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
+import {verifyPdfParity} from '../tools/verify_pdf_parity.mjs';
 
 const root=path.dirname(fileURLToPath(import.meta.url));
 const bookRoot=path.dirname(root);
@@ -18,6 +19,7 @@ const modules=[
   ...data.groups.map(group=>({id:group.id,title:group.title,sections:group.sections.map(section=>section.id)}))
 ];
 const digital=JSON.parse(fs.readFileSync(path.join(bookRoot,'content','core-rules.digital-11e.json'),'utf8'));
+const parity=verifyPdfParity(pdf,digital);
 const registry=JSON.parse(fs.readFileSync(path.join(repoRoot,'glossary','registry.en.json'),'utf8'));
 const sections=[data.introduction,...data.groups.flatMap(group=>group.sections)];
 const byId=new Map(sections.map(section=>[section.id,section]));
@@ -226,6 +228,9 @@ function pageLabel(pages){
   if(!pages.length)return 'Digital 11E';
   return pages.length===1?`page ${pages[0]}`:`pages ${pages[0]}–${pages.at(-1)}`;
 }
+function sourceLabel(record){
+  return parity.verifiedCodes.has(record.code)?`Official PDF &middot; page ${parity.pages.get(record.code)}`:'Digital 11E';
+}
 
 function primaryNav(current=''){
   return modules.map(module=>`<section class="nav-group"><h2>${escapeHtml(module.title)}</h2>${module.sections.map(id=>{
@@ -291,19 +296,19 @@ function stratagemCard(record){
   const seen=new Set();
   const flavourHtml=flavour.length?`<p class="stratagem-flavour">${linkedText(flavour.join(' '),seen,excludedId)}</p>`:'';
   const fieldsHtml=fields.map(field=>`<section class="field"><span>${escapeHtml(field.label)}</span>${prose(field.lines.join('\n'),seen,excludedId)}</section>`).join('');
-  return `<article class="stratagem turn-${turn}" id="rule-${slug(record.code)}" data-rule-code="${escapeHtml(record.code)}" data-turn="${turnLabel}"><div class="stratagem-rail">${cp?`<strong class="cp"><span>${escapeHtml(cp)}</span></strong>`:''}</div><header class="stratagem-head"><h3>${escapeHtml(record.title)}</h3><p class="stratagem-type">CORE // ${escapeHtml(record.kind.replaceAll('-',' '))}</p>${flavourHtml}</header><div class="stratagem-fields">${fieldsHtml}${ruleVisuals(record.code)}</div></article>`;
+  return `<article class="stratagem turn-${turn}" id="rule-${slug(record.code)}" data-rule-code="${escapeHtml(record.code)}" data-turn="${turnLabel}"><div class="stratagem-rail">${cp?`<strong class="cp"><span>${escapeHtml(cp)}</span></strong>`:''}</div><header class="stratagem-head"><h3>${escapeHtml(record.title)}</h3><p class="stratagem-type">${sourceLabel(record)}</p>${flavourHtml}</header><div class="stratagem-fields">${fieldsHtml}${ruleVisuals(record.code)}</div></article>`;
 }
 
 function mainRule(record,children=[]){
   const id=`rule-${slug(record.code)}`;
   const special=record.code==='25.03'?musterTable():'';
-  const nested=children.length?`<div class="subrules">${children.map(child=>{const excludedId=termByCode.get(child.code)?.id||'',seen=new Set();const text=prose(child.text,seen,excludedId);return `<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><strong>${escapeHtml(displayTitle(child))}</strong></summary><div>${text}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
+  const nested=children.length?`<div class="subrules">${children.map(child=>{const excludedId=termByCode.get(child.code)?.id||'',seen=new Set();const text=prose(child.text,seen,excludedId);return `<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><strong>${escapeHtml(displayTitle(child))}</strong></summary><div><span class="source-label">${sourceLabel(child)}</span>${text}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
   const excludedId=termByCode.get(record.code)?.id||'';
   const seen=new Set();
   const sourceText=record.code==='25.03'?record.text.replace(/BATTLE SIZE\nIncursion:[\s\S]*?Unit limit 3\.\n?/,''):record.text;
   const text=prose(sourceText,seen,excludedId,children.map(child=>child.code));
   const faqHtml=(faqsByPrimary.get(record.code)||[]).map(faqCard).join('');
-  return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><h3>${escapeHtml(displayTitle(record))}</h3><span class="page">${escapeHtml(record.kind.replaceAll('-',' '))}</span></header><div class="rule-body">${text}${faqHtml}${special}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
+  return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><h3>${escapeHtml(displayTitle(record))}</h3><span class="page">${sourceLabel(record)}</span></header><div class="rule-body">${text}${faqHtml}${special}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
 }
 
 function introductionArticle(){

@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
+import {verifyPdfParity} from '../tools/verify_pdf_parity.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const sourceRoot=root;
@@ -32,6 +33,11 @@ assert.equal(digital.meta.edition,'11E','reader must use the 11E digital referen
 assert.equal(digital.records.length,271,'unexpected Wahapedia 11E record count');
 assert.equal(new Set(digital.records.map(record=>record.code)).size,digital.records.length,'digital rule codes must be unique');
 const recordsByCode=new Map(digital.records.map(record=>[record.code,record]));
+const parity=verifyPdfParity(pdf,digital);
+assert.equal(parity.verifiedNormalized.length,87,'unexpected normalized PDF parity count');
+assert.equal(parity.digitalExtension.length,26,'unexpected digital extension count');
+assert.equal(parity.requiresStructuralComparison.length,33,'unexpected structural comparison count');
+assert.deepEqual(parity.missing,[],'every official numbered rule must have a digital counterpart');
 const faqs=pdf.faqs||[];
 assert.equal(faqs.length,5,'Rules Appendix page 88 must provide five FAQs');
 assert.equal(new Set(faqs.map(faq=>faq.id)).size,5,'official FAQ IDs must be unique');
@@ -114,6 +120,12 @@ assert(!generatedReader.includes('class="rule-code"'),'rule codes must not be vi
 assert(!generatedReader.includes('<h3><button class="term'),'rule titles must not open definitions of themselves');
 assert(!generatedReader.includes('Introduction 2')&&!generatedReader.includes('Introduction 7'),'introduction prose must not become fake numbered rules');
 const visibleReader=generatedReader.replace(/<script[\s\S]*?<\/script>/g,' ').replace(/<style[\s\S]*?<\/style>/g,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
+for(const record of digital.records){
+  const start=generatedReader.indexOf(`data-rule-code="${record.code}"`);
+  assert(start>=0,`${record.code} has no rendered source label`);
+  const label=parity.verifiedCodes.has(record.code)?`Official PDF &middot; page ${parity.pages.get(record.code)}`:'Digital 11E';
+  assert(generatedReader.slice(start,start+1200).includes(label),`${record.code} has an unverified source label`);
+}
 for(const artifact of ['1&quot;&quot;','modified to ‘-’ Profiles','start an action Actions','Select Battle Size table Select Battle Size'])assert(!generatedReader.includes(artifact),`visible text corruption remains: ${artifact}`);
 assert(generatedReader.includes('>Select Battle Size</button> table'),'Select Battle Size must be linked without duplicating its title');
 assert(generatedReader.includes('>Resolve Attacks</button> step'),'Resolve Attacks must be linked without duplicating its title');
