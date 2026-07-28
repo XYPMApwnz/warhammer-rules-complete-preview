@@ -7,14 +7,16 @@ const root=path.dirname(fileURLToPath(import.meta.url));
 const bookRoot=path.dirname(root);
 const repoRoot=path.resolve(bookRoot,'..','..');
 const context={window:{}};
-for(const file of ['content/core-rules.source.en.js','content/core-rules.en.js','config.js','basic-content.js']){
+for(const file of ['content/core-rules.source.en.js','content/core-rules.en.js']){
   vm.runInNewContext(fs.readFileSync(path.join(bookRoot,file),'utf8'),context);
 }
 
 const data=context.window.CORE_RULES;
 const pdf=context.window.CORE_PDF_SOURCE;
-const modules=context.window.CORE_LEARN_MODULES;
-const basic=context.window.CORE_BASIC_LAYOUTS;
+const modules=[
+  {id:'introduction',title:'Introduction',sections:[data.introduction.id]},
+  ...data.groups.map(group=>({id:group.id,title:group.title,sections:group.sections.map(section=>section.id)}))
+];
 const digital=JSON.parse(fs.readFileSync(path.join(bookRoot,'content','core-rules.digital-11e.json'),'utf8'));
 const registry=JSON.parse(fs.readFileSync(path.join(repoRoot,'glossary','registry.en.json'),'utf8'));
 const sections=[data.introduction,...data.groups.flatMap(group=>group.sections)];
@@ -231,7 +233,7 @@ function shell({title,current='',currentLabel='Start',onPage='',content}){
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d0f0d"><link rel="manifest" href="../../../manifest.webmanifest"><title>${escapeHtml(title)} — Core Rules</title><link rel="stylesheet" href="styles.css?v=10"></head><body>
 <header class="topbar"><button class="menu" id="navButton" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><strong>Core Rules</strong><small>11E · Reference</small></a><span class="current">${escapeHtml(currentLabel)}</span><button class="search-button" id="searchButton" type="button" aria-label="Search Core Rules">Search</button><a class="library" href="../../../index.html">← Library</a></header><button class="scrim" id="navScrim" type="button" aria-label="Close navigation" hidden></button>
-<aside class="sidebar" id="sidebar"><div class="sidebar-head"><span class="eyebrow">Core register // 11E</span><h1>Contents</h1></div><nav><section class="nav-group"><h2>Reference</h2><a href="index.html"${!current?' aria-current="page"':''}>Start</a></section>${primaryNav(current)}${onPage}</nav><a class="mega" href="../index.html">Learn mode →</a><a class="mega" href="../../../glossary/index.html">Mega Glossary →</a></aside>
+<aside class="sidebar" id="sidebar"><div class="sidebar-head"><span class="eyebrow">Core register // 11E</span><h1>Contents</h1></div><nav><section class="nav-group"><h2>Reference</h2><a href="index.html"${!current?' aria-current="page"':''}>Start</a></section>${primaryNav(current)}${onPage}</nav><a class="mega" href="../../../glossary/index.html">Mega Glossary →</a></aside>
 <main class="main">${content}</main><dialog class="search-dialog" id="searchDialog"><form method="dialog" class="dialog-head"><span>Core Rules // search</span><button type="submit" aria-label="Close search">×</button></form><label for="searchInput">Find a rule</label><input id="searchInput" type="search" autocomplete="off" placeholder="Title or rule text"><p class="search-status" id="searchStatus">Type at least two characters.</p><div class="search-results" id="searchResults"></div></dialog><dialog class="dialog" id="termDialog"><div class="dialog-head"><span>Mega Glossary // quick entry</span><button id="termClose" type="button" aria-label="Close">×</button></div><h2 id="termTitle"></h2><p id="termSummary"></p><a id="termRule" hidden>Open full rule →</a><a id="termFull">Glossary entry →</a></dialog><dialog class="image-dialog" id="imageDialog"><button id="imageClose" type="button" aria-label="Close diagram">×</button><img id="imagePreview" alt=""><p id="imageCaption"></p></dialog><script src="../../../glossary-return.js?v=1"></script><script src="app.js?v=10"></script></body></html>`;
 }
 
@@ -293,7 +295,7 @@ function mainRule(record,children=[]){
 }
 
 function introductionArticle(){
-  const paragraphs=(basic.introduction?.paragraphs||[]).map(paragraph=>`<p>${linkedText(paragraph)}</p>`).join('');
+  const paragraphs=(data.introduction.paragraphs||[]).map(paragraph=>`<p>${linkedText(paragraph)}</p>`).join('');
   return `<article class="rule kind-introduction" id="introduction-overview"><header class="rule-head"><h3>Welcome to Warhammer 40,000</h3><span class="page">Introduction</span></header><div class="rule-body">${paragraphs}</div></article>`;
 }
 
@@ -319,7 +321,7 @@ function sectionPage(id,index){
   if(previous)actions.push(`<a class="button" href="${fileFor(previous)}">← ${escapeHtml(byId.get(previous).title)}</a>`);
   if(next)actions.push(`<a class="button" href="${fileFor(next)}">${escapeHtml(byId.get(next).title)} →</a>`);
   const label=pages.length?pageLabel(pages):'Digital 11E';
-  const content=`<header class="chapter-hero" data-number="${escapeHtml(section.number||'00')}"><span class="eyebrow">${escapeHtml(modules.find(module=>module.sections.includes(id))?.title||'Core Rules')} // ${escapeHtml(label)}</span><h2>${escapeHtml(section.title)}</h2><p>${escapeHtml(section.summary||basic[id]?.lead||'Complete rules for this section.')}</p><div class="hero-actions">${actions.join('')}</div></header><div class="rules">${cards}</div>${sourceLinks(pages)}`;
+  const content=`<header class="chapter-hero" data-number="${escapeHtml(section.number||'00')}"><span class="eyebrow">${escapeHtml(modules.find(module=>module.sections.includes(id))?.title||'Core Rules')} // ${escapeHtml(label)}</span><h2>${escapeHtml(section.title)}</h2><p>${escapeHtml(section.summary||'Complete rules for this section.')}</p><div class="hero-actions">${actions.join('')}</div></header><div class="rules">${cards}</div>${sourceLinks(pages)}`;
   return shell({title:section.title,current:id,currentLabel:section.title,onPage,content});
 }
 

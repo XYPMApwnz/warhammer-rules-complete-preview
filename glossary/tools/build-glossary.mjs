@@ -509,7 +509,6 @@ const cacheInputs=[
   ...['death-guard','adeptus-mechanicus'].flatMap(book=>['data.js','navigation-controller.js','popup-controller.js','journey-controller.js','ui-controllers.js','app.js'].map(file=>`books/${book}/scripts/${file}`)),
   'books/death-guard/mobile/mobile.css','books/death-guard/mobile/mobile.js','books/death-guard/mobile/related-rules.inc',
   'books/death-guard/scripts/view-router.js','books/death-guard/scripts/roster-filter.js','books/death-guard/scripts/related-rules.js','books/death-guard/scripts/full-entry-controller.js',
-  'books/core-rules/styles.css','books/core-rules/config.js','books/core-rules/basic-content.js','books/core-rules/app.js',
   ...coreReaderFiles,
   'glossary/viewer.css','glossary/viewer-profiles.css','glossary/viewer-progressive.css','glossary/viewer.js'
 ].filter(file=>fs.existsSync(path.join(root,file)));
