@@ -34,7 +34,7 @@ for(const bookId of supported){
     const enhancementTitles=new Set([...reader.matchAll(/data-enhancement-title="([^"]+)"/g)].map(match=>entities.normalize(match[1])));
     codex.datasheets.forEach(unit=>assert(unitTitles.has(entities.normalize(unit.title)),`adeptus-mechanicus: unit ${unit.title} is absent from Roster Guide`));
     points.enhancements.forEach(item=>assert(enhancementTitles.has(entities.normalize(item.title)),`adeptus-mechanicus: Enhancement ${item.title} is absent from related rules`));
-    assert(reader.includes('./scripts/related-rules.js?v=2'),'adeptus-mechanicus: Related Rules controller is absent');
+    assert(reader.includes('./scripts/related-rules.js?v=3'),'adeptus-mechanicus: Related Rules controller is absent');
     console.log(`PASS  adeptus-mechanicus: ${points.units.length} units, ${points.enhancements.length} Enhancements, single responsive reader`);
     continue;
   }
