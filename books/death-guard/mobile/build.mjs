@@ -3,6 +3,8 @@ import { readFile, writeFile } from 'node:fs/promises';
 const source = await readFile(new URL('../reader.html', import.meta.url), 'utf8');
 const glossary = JSON.parse(await readFile(new URL('../../../glossary/registry.en.json', import.meta.url), 'utf8')).terms;
 const aliases = JSON.parse(await readFile(new URL('../../../glossary/aliases.en.json', import.meta.url), 'utf8')).aliases;
+const glossaryContext = JSON.parse(await readFile(new URL('../../../glossary/contexts/death-guard.json', import.meta.url), 'utf8')).terms;
+const mobileRulePaths = new Map();
 
 function extract(tag, id, html = source) {
   const opener = new RegExp(`<${tag}\\b[^>]*\\bid="${id}"[^>]*>`, 'i').exec(html);
@@ -21,11 +23,14 @@ const clean = value => value.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').trim
 const attribute = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
 function hydrateTerms(html) {
   return html.replace(/(<(?:button|a)\b[^>]*\bdata-term="([^"]+)"[^>]*)(>)/g, (match, start, id, end) => {
-    const term = glossary[aliases[id] || id];
+    const context = glossaryContext[id] || glossaryContext[aliases[id] || id];
+    const term = glossary[aliases[context?.termId] || context?.termId || aliases[id] || id];
     if (!term) throw new Error(`Missing glossary term ${id}`);
     const title = term.title?.en || id;
     const summary = term.summary?.en || term.definition?.en || '';
-    return `${start} data-term-title="${attribute(title)}" data-term-summary="${attribute(summary)}"${term.fullRulePath?` data-full-rule-path="${attribute(term.fullRulePath)}"`:''}${end}`;
+    const fullRulePath = context?.navigation?.fullRulePath || term.fullRulePath || '';
+    const mobileRulePath = fullRulePath.startsWith('books/death-guard/reader.html#') ? mobileRulePaths.get(fullRulePath.slice(fullRulePath.indexOf('#') + 1)) || '' : '';
+    return `${start} data-term-title="${attribute(title)}" data-term-summary="${attribute(summary)}"${fullRulePath?` data-full-rule-path="${attribute(fullRulePath)}"`:''}${mobileRulePath?` data-mobile-rule-path="${attribute(mobileRulePath)}"`:''}${end}`;
   });
 }
 const detachments = [...source.matchAll(/<section class="content-group detachment" id="(detachment-[^"]+)"[^>]*>\s*<h3 class="category-title">([^<]+)<\/h3>/g)]
@@ -102,6 +107,18 @@ function content(route) {
   return extract('article', route.id);
 }
 
+for (const route of routes) {
+  for (const [, id] of content(route).matchAll(/\sid="([^"]+)"/g)) {
+    mobileRulePaths.set(id, `books/death-guard/mobile/${route.file}#${id}`);
+  }
+}
+for (const context of Object.values(glossaryContext)) {
+  const fullRulePath = context.navigation?.fullRulePath || '';
+  if (fullRulePath.startsWith('books/death-guard/reader.html#') && !mobileRulePaths.has(fullRulePath.slice(fullRulePath.indexOf('#') + 1))) {
+    throw new Error(`Missing mobile rule route for ${fullRulePath}`);
+  }
+}
+
 function page(route) {
   const relatedSection = route.type === 'unit' ? `
   <section class="related-rules" id="relatedRules" aria-labelledby="relatedRulesTitle">
@@ -155,11 +172,11 @@ function page(route) {
     <a id="termRule" hidden>Open full rule &rarr;</a>
     <a id="termFull" href="../../../glossary/index.html">Glossary entry &rarr;</a>
   </dialog>
-  <script src="../../../glossary-return.js?v=1"></script>
+  <script src="../../../glossary-return.js?v=2"></script>
   <script src="../../shared/roster-parser.js?v=2"></script>
   <script src="../../../roster-guides/points-data.js?v=3"></script>
   <script src="../../shared/roster-enhancements.js?v=3"></script>
-  <script src="./mobile.js?v=12"></script>
+  <script src="./mobile.js?v=13"></script>
 </body>
 </html>`;
 }

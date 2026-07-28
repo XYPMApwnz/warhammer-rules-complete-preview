@@ -68,8 +68,13 @@
     title.textContent = termTitle;
     summary.textContent = termSummary;
     full.href = `../../../glossary/index.html#${id}`;
-    rule.hidden = !trigger.dataset.fullRulePath;
-    if (trigger.dataset.fullRulePath) rule.href = window.WHGlossaryReturn.href(trigger.dataset.fullRulePath);
+    const rulePath = trigger.dataset.mobileRulePath || trigger.dataset.fullRulePath;
+    rule.hidden = !rulePath;
+    if (rulePath) {
+      const destination = new URL(window.WHGlossaryReturn.href(rulePath));
+      if (trigger.dataset.mobileRulePath) destination.search = location.search;
+      rule.href = destination.href;
+    }
     dialog.showModal();
   }
 
@@ -196,7 +201,7 @@
   syncDrawerMode();
 
   const returnRecord=window.WHGlossaryReturn?.read();
-  if(window.WHGlossaryReturn?.matchesCurrent(returnRecord))requestAnimationFrame(()=>{
+  if(window.WHGlossaryReturn?.shouldRestoreAutomatically(returnRecord))requestAnimationFrame(()=>{
     const triggers=[...document.querySelectorAll('[data-term]')];
     const indexed=triggers[returnRecord.triggerIndex];
     const trigger=indexed?.dataset.term===returnRecord.termId?indexed:triggers.find(node=>node.dataset.term===returnRecord.termId);
