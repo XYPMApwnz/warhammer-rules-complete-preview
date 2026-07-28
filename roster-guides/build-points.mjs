@@ -55,16 +55,19 @@ for(const section of deathGuard.sections){
   }
 }
 
-const mechanicus=read('books/adeptus-mechanicus/content/adeptus-mechanicus-codex-datasheets.en.json');
-const mechanicusUnits={};
-for(const unit of mechanicus.datasheets){
-  const values=(unit.points||[]).map(Number).filter(Number.isFinite);
-  if(values.length===1)mechanicusUnits[normalize(unit.title)]={title:unit.title,points:[{label:'',value:values[0]}],wargear:[]};
-}
+const mechanicus=read('books/adeptus-mechanicus/content/adeptus-mechanicus-points.en.json');
+const mechanicusUnits=Object.fromEntries(mechanicus.units.map(unit=>[normalize(unit.title),unit]));
+const mechanicusEnhancements=Object.fromEntries(mechanicus.enhancements.flatMap(enhancement=>{
+  const entries=[[normalize(enhancement.title),enhancement]];
+  if(enhancement.title==='Autoclavic Denunciation')entries.push([normalize('Autoclavic Denounciation'),enhancement]);
+  if(enhancement.title==='TL-4Ø9')entries.push([normalize('TL-409'),enhancement]);
+  if(enhancement.title==='Stealth-screened Cybercanids Upgrade')entries.push([normalize('Stealth-screened Cybercanids'),enhancement]);
+  return entries;
+}));
 
 const catalog={
   'death guard':{units:dgUnits,enhancements:dgEnhancements},
-  'adeptus mechanicus':{units:mechanicusUnits,enhancements:{}}
+  'adeptus mechanicus':{units:mechanicusUnits,enhancements:mechanicusEnhancements}
 };
 fs.writeFileSync(path.join(root,'roster-guides','points-data.js'),`window.WH_POINTS_CATALOG=Object.freeze(${JSON.stringify(catalog)});\n`);
-console.log(`Points catalog: ${Object.keys(dgUnits).length} Death Guard units, ${Object.keys(dgEnhancements).length} Enhancements, ${Object.keys(mechanicusUnits).length} Adeptus Mechanicus units.`);
+console.log(`Points catalog: ${Object.keys(dgUnits).length} Death Guard units, ${Object.keys(dgEnhancements).length} Death Guard Enhancements, ${Object.keys(mechanicusUnits).length} Adeptus Mechanicus units, ${mechanicus.enhancements.length} Adeptus Mechanicus Enhancements.`);

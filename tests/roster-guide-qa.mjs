@@ -23,6 +23,21 @@ const supported=fs.readdirSync(path.join(root,'books'),{withFileTypes:true})
 
 for(const bookId of supported){
   const bookRoot=path.join(root,'books',bookId);
+  if(bookId==='adeptus-mechanicus'){
+    const readerPath=path.join(bookRoot,'index.html');
+    const reader=fs.readFileSync(readerPath,'utf8');
+    const points=JSON.parse(fs.readFileSync(path.join(bookRoot,'content','adeptus-mechanicus-points.en.json'),'utf8'));
+    const codex=JSON.parse(fs.readFileSync(path.join(bookRoot,'content','adeptus-mechanicus-codex-datasheets.en.json'),'utf8'));
+    assert(points.units.length===39,'adeptus-mechanicus: points catalog is incomplete');
+    assert(points.enhancements.length===34,'adeptus-mechanicus: Enhancement catalog is incomplete');
+    const unitTitles=new Set([...reader.matchAll(/data-unit-title="([^"]+)"/g)].map(match=>entities.normalize(match[1])));
+    const enhancementTitles=new Set([...reader.matchAll(/data-enhancement-title="([^"]+)"/g)].map(match=>entities.normalize(match[1])));
+    codex.datasheets.forEach(unit=>assert(unitTitles.has(entities.normalize(unit.title)),`adeptus-mechanicus: unit ${unit.title} is absent from Roster Guide`));
+    points.enhancements.forEach(item=>assert(enhancementTitles.has(entities.normalize(item.title)),`adeptus-mechanicus: Enhancement ${item.title} is absent from related rules`));
+    assert(reader.includes('./scripts/related-rules.js?v=2'),'adeptus-mechanicus: Related Rules controller is absent');
+    console.log(`PASS  adeptus-mechanicus: ${points.units.length} units, ${points.enhancements.length} Enhancements, single responsive reader`);
+    continue;
+  }
   const dataPath=path.join(bookRoot,'content',`${bookId}-rules.en.json`);
   const readerPath=path.join(bookRoot,'reader.html');
   const relatedPath=path.join(bookRoot,'mobile','related-rules.inc');
@@ -76,6 +91,27 @@ assert(granted('poxwalkers',['shamblerot-vectorium']).some(item=>item.id==='keyw
 assert(!granted('poxwalkers',[]).length,'Poxwalkers receive a Detachment keyword without that Detachment');
 assert(granted('myphitic-blight-hauler',['contagion-engines']).some(item=>item.id==='keyword-contagion-engine'),'Contagion Engines does not grant CONTAGION ENGINE to eligible units');
 assert(!granted('plague-marines',['contagion-engines']).length,'Contagion Engines grants its keyword to an ineligible unit');
+
+const mechanicusRelatedContext={window:{}};
+vm.runInNewContext(fs.readFileSync(path.join(root,'books/adeptus-mechanicus/scripts/related-rules.js'),'utf8'),mechanicusRelatedContext,{filename:'mechanicus-related-rules.js'});
+const amMatches=mechanicusRelatedContext.window.AMRelatedRules.matches;
+const mockCard=(kind,text)=>({classList:{contains:name=>name===kind},dataset:kind==='stratagem'?{target:text}:{},querySelector:()=>({textContent:text})});
+const mockUnit=(keywords,slug='fixture',abilities=[])=>({slug,keywords:new Set(keywords),abilities:new Set(abilities),epic:keywords.includes('EPIC HERO')});
+assert(amMatches(mockCard('stratagem','One ADEPTUS MECHANICUS VEHICLE unit from your army.'),mockUnit(['ADEPTUS MECHANICUS','VEHICLE'])),'Mechanicus Vehicle misses an eligible Stratagem');
+assert(!amMatches(mockCard('stratagem','One ADEPTUS MECHANICUS VEHICLE unit from your army.'),mockUnit(['ADEPTUS MECHANICUS','INFANTRY'])),'Mechanicus Infantry receives a Vehicle-only Stratagem');
+assert(amMatches(mockCard('stratagem','One RECON AUGURY unit from your army.'),mockUnit(['ADEPTUS MECHANICUS','RECON AUGURY'])),'RECON AUGURY unit misses its eligible Stratagem');
+assert(!amMatches(mockCard('stratagem','One RECON AUGURY unit from your army.'),mockUnit(['ADEPTUS MECHANICUS','CHARACTER'])),'unrelated Character receives a RECON AUGURY Stratagem');
+assert(amMatches(mockCard('stratagem','One LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE unit.'),mockUnit(['ADEPTUS MECHANICUS','VEHICLE'])),'Vehicle misses an OR-target Stratagem');
+assert(amMatches(mockCard('stratagem','One LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE unit.'),mockUnit(['ADEPTUS MECHANICUS','LEGIO CYBERNETICA'])),'Legio Cybernetica unit misses an OR-target Stratagem');
+assert(amMatches(mockCard('stratagem','Up to two SICARIAN units, or one SKITARII INFANTRY or MOUNTED unit.'),mockUnit(['ADEPTUS MECHANICUS','SKITARII','MOUNTED'])),'mounted Skitarii misses Programmed Withdrawal');
+assert(!amMatches(mockCard('stratagem','One ADEPTUS MECHANICUS INFANTRY unit, excluding KATAPHRON.'),mockUnit(['ADEPTUS MECHANICUS','INFANTRY','KATAPHRON'])),'Kataphron receives an explicitly excluded Stratagem');
+assert(amMatches(mockCard('enhancement','TECH-PRIEST DOMINUS or TECH-PRIEST MANIPULUS model only.'),mockUnit(['ADEPTUS MECHANICUS','TECH-PRIEST'],'tech-priest-manipulus')),'Manipulus misses Inloaded Lethality');
+assert(amMatches(mockCard('enhancement','ADEPTUS MECHANICUS TECH-PRIEST model only (excluding CYBERNETICA DATASMITH).'),mockUnit(['ADEPTUS MECHANICUS','TECH-PRIEST'],'tech-priest-dominus')),'Datasmith exclusion hides a Tech-Priest Enhancement from other Tech-Priests');
+assert(!amMatches(mockCard('enhancement','ADEPTUS MECHANICUS TECH-PRIEST model only (excluding CYBERNETICA DATASMITH).'),mockUnit(['ADEPTUS MECHANICUS','TECH-PRIEST'],'cybernetica-datasmith')),'Datasmith receives an explicitly excluded Enhancement');
+assert(amMatches(mockCard('stratagem','One ADEPTUS MECHANICUS INFANTRY unit and one friendly ADEPTUS MECHANICUS TRANSPORT unit.'),mockUnit(['ADEPTUS MECHANICUS','TRANSPORT'])),'Transport misses a paired Infantry/Transport Stratagem');
+assert(amMatches(mockCard('stratagem','One ADEPTUS MECHANICUS INFANTRY unit and one friendly ADEPTUS MECHANICUS SMOKE unit.'),mockUnit(['ADEPTUS MECHANICUS','SMOKE'])),'Smoke unit misses a paired Infantry/Smoke Stratagem');
+assert(!amMatches(mockCard('enhancement','SERBERYS RAIDERS unit only.'),mockUnit(['ADEPTUS MECHANICUS','RECON AUGURY'],'skitarii-marshal')),'wrong unit receives named Enhancement');
+assert(!amMatches(mockCard('enhancement','ADEPTUS MECHANICUS CHARACTER model only.'),mockUnit(['ADEPTUS MECHANICUS','CHARACTER','EPIC HERO'])),'Epic Hero receives an Enhancement');
 
 if(failures.length){failures.forEach(message=>console.error(`FAIL  ${message}`));process.exitCode=1;}
 else console.log(`Roster Guide contract passed for ${supported.length} book(s).`);

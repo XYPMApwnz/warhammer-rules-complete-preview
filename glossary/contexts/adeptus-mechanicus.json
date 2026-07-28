@@ -40,10 +40,16 @@
       "termId": "core-stealth",
       "navigation": {
         "glossary": "glossary-core-stealth",
-        "datasheet": "unit-sydonian-skatros",
-        "statline": "sydonian-skatros-profile",
+        "datasheet": "unit-skitarii-rangers",
+        "statline": "skitarii-rangers-profile",
         "units": [
+          "unit-skitarii-rangers",
+          "unit-skitarii-vanguard",
+          "unit-skitarii-marshal",
           "unit-sydonian-skatros",
+          "unit-ironstrider-ballistarii",
+          "unit-serberys-raiders",
+          "unit-serberys-sulphurhounds",
           "unit-sicarian-infiltrators",
           "unit-sicarian-ruststalkers",
           "unit-sydonian-dragoons-with-radium-jezzails",
@@ -201,11 +207,14 @@
           "unit-technoarcheologist",
           "unit-skorpius-dunerider",
           "unit-belisarius-cawl",
+          "unit-thulia-ghuld",
           "unit-archaeopter-fusilave",
           "unit-archaeopter-stratoraptor",
           "unit-archaeopter-transvector",
           "unit-corpuscarii-electro-priests",
           "unit-fulgurite-electro-priests",
+          "unit-hastarii-exterminators",
+          "unit-hastarii-fusiliers",
           "unit-ironstrider-ballistarii",
           "unit-kastelan-robots",
           "unit-kataphron-breachers",
@@ -215,12 +224,17 @@
           "unit-pteraxii-sterylizors",
           "unit-serberys-raiders",
           "unit-serberys-sulphurhounds",
+          "unit-servitor-battleclade",
           "unit-sicarian-infiltrators",
           "unit-sicarian-ruststalkers",
           "unit-skorpius-disintegrator",
           "unit-sydonian-dragoons-with-radium-jezzails",
           "unit-sydonian-dragoons-with-taser-lances",
-          "unit-servitors"
+          "unit-secutarii-hoplites",
+          "unit-secutarii-peltasts",
+          "unit-servitors",
+          "unit-terrax-pattern-termite",
+          "unit-x-101"
         ],
         "fullRulePath": "books/adeptus-mechanicus/index.html#army-rule-doctrina"
       }
@@ -286,7 +300,9 @@
         "units": [
           "unit-skitarii-rangers",
           "unit-skitarii-vanguard",
-          "unit-serberys-raiders"
+          "unit-serberys-raiders",
+          "unit-secutarii-hoplites",
+          "unit-secutarii-peltasts"
         ],
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skitarii-rangers"
       }
@@ -300,7 +316,9 @@
         "statline": "skitarii-rangers-profile",
         "units": [
           "unit-skitarii-rangers",
-          "unit-skitarii-vanguard"
+          "unit-skitarii-vanguard",
+          "unit-secutarii-hoplites",
+          "unit-secutarii-peltasts"
         ],
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skitarii-rangers"
       }
@@ -321,6 +339,20 @@
         "distance": "6\""
       }
     },
+    "weapon-alpha-combat-weapon": {
+      "termId": "adeptus-mechanicus-weapon-alpha-combat-weapon",
+      "navigation": {
+        "glossary": "glossary-weapon-alpha-combat-weapon",
+        "rule": "unit-skitarii-rangers",
+        "datasheet": "unit-skitarii-rangers",
+        "statline": "skitarii-rangers-profile",
+        "units": [
+          "unit-skitarii-rangers",
+          "unit-skitarii-vanguard"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skitarii-rangers"
+      }
+    },
     "weapon-galvanic-rifle": {
       "termId": "adeptus-mechanicus-weapon-galvanic-rifle",
       "navigation": {
@@ -334,16 +366,39 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skitarii-rangers"
       }
     },
-    "weapon-alpha-combat-weapon": {
-      "termId": "adeptus-mechanicus-weapon-alpha-combat-weapon",
+    "weapon-mechanicus-pistol": {
+      "termId": "adeptus-mechanicus-weapon-mechanicus-pistol",
       "navigation": {
-        "glossary": "glossary-weapon-alpha-combat-weapon",
+        "glossary": "glossary-weapon-mechanicus-pistol",
         "rule": "unit-skitarii-rangers",
         "datasheet": "unit-skitarii-rangers",
         "statline": "skitarii-rangers-profile",
         "units": [
           "unit-skitarii-rangers",
-          "unit-skitarii-vanguard"
+          "unit-skitarii-vanguard",
+          "unit-cybernetica-datasmith",
+          "unit-skitarii-marshal",
+          "unit-sydonian-skatros",
+          "unit-tech-priest-enginseer",
+          "unit-technoarcheologist",
+          "unit-serberys-raiders",
+          "unit-serberys-sulphurhounds",
+          "unit-servitor-battleclade"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skitarii-rangers"
+      }
+    },
+    "weapon-close-combat-weapon": {
+      "termId": "adeptus-mechanicus-weapon-close-combat-weapon",
+      "navigation": {
+        "glossary": "glossary-weapon-close-combat-weapon",
+        "rule": "unit-skitarii-rangers",
+        "datasheet": "unit-skitarii-rangers",
+        "statline": "skitarii-rangers-profile",
+        "units": [
+          "unit-skitarii-rangers",
+          "unit-skitarii-vanguard",
+          "unit-secutarii-peltasts"
         ],
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skitarii-rangers"
       }
@@ -404,43 +459,6 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skitarii-rangers"
       }
     },
-    "weapon-close-combat-weapon": {
-      "termId": "adeptus-mechanicus-weapon-close-combat-weapon",
-      "navigation": {
-        "glossary": "glossary-weapon-close-combat-weapon",
-        "rule": "unit-skitarii-rangers",
-        "datasheet": "unit-skitarii-rangers",
-        "statline": "skitarii-rangers-profile",
-        "units": [
-          "unit-skitarii-rangers",
-          "unit-skitarii-vanguard",
-          "unit-secutarii-peltasts"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skitarii-rangers"
-      }
-    },
-    "weapon-mechanicus-pistol": {
-      "termId": "adeptus-mechanicus-weapon-mechanicus-pistol",
-      "navigation": {
-        "glossary": "glossary-weapon-mechanicus-pistol",
-        "rule": "unit-skitarii-rangers",
-        "datasheet": "unit-skitarii-rangers",
-        "statline": "skitarii-rangers-profile",
-        "units": [
-          "unit-skitarii-rangers",
-          "unit-skitarii-vanguard",
-          "unit-cybernetica-datasmith",
-          "unit-skitarii-marshal",
-          "unit-sydonian-skatros",
-          "unit-tech-priest-enginseer",
-          "unit-technoarcheologist",
-          "unit-serberys-raiders",
-          "unit-serberys-sulphurhounds",
-          "unit-servitor-battleclade"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skitarii-rangers"
-      }
-    },
     "datasheet-rad-saturation-aura": {
       "termId": "adeptus-mechanicus-datasheet-rad-saturation-aura",
       "navigation": {
@@ -467,19 +485,16 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skitarii-vanguard"
       }
     },
-    "datasheet-leader": {
-      "termId": "adeptus-mechanicus-datasheet-leader",
+    "datasheet-support": {
+      "termId": "adeptus-mechanicus-datasheet-support",
       "navigation": {
-        "glossary": "glossary-datasheet-leader",
+        "glossary": "glossary-datasheet-support",
         "rule": "unit-cybernetica-datasmith",
         "datasheet": "unit-cybernetica-datasmith",
         "statline": "cybernetica-datasmith-profile",
         "units": [
           "unit-cybernetica-datasmith",
           "unit-skitarii-marshal",
-          "unit-tech-priest-dominus",
-          "unit-tech-priest-enginseer",
-          "unit-tech-priest-manipulus",
           "unit-technoarcheologist"
         ],
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-cybernetica-datasmith"
@@ -496,6 +511,42 @@
           "unit-cybernetica-datasmith"
         ],
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-cybernetica-datasmith"
+      }
+    },
+    "datasheet-data-severed": {
+      "termId": "adeptus-mechanicus-datasheet-data-severed",
+      "navigation": {
+        "glossary": "glossary-datasheet-data-severed",
+        "rule": "unit-cybernetica-datasmith",
+        "datasheet": "unit-cybernetica-datasmith",
+        "statline": "cybernetica-datasmith-profile",
+        "units": [
+          "unit-cybernetica-datasmith"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-cybernetica-datasmith"
+      }
+    },
+    "datasheet-feel-no-pain-5": {
+      "termId": "core-feel-no-pain",
+      "navigation": {
+        "glossary": "glossary-datasheet-feel-no-pain-5",
+        "rule": "unit-cybernetica-datasmith",
+        "datasheet": "unit-cybernetica-datasmith",
+        "statline": "cybernetica-datasmith-profile",
+        "units": [
+          "unit-cybernetica-datasmith",
+          "unit-tech-priest-dominus",
+          "unit-tech-priest-enginseer",
+          "unit-tech-priest-manipulus",
+          "unit-technoarcheologist",
+          "unit-belisarius-cawl",
+          "unit-corpuscarii-electro-priests",
+          "unit-fulgurite-electro-priests"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-cybernetica-datasmith"
+      },
+      "parameters": {
+        "threshold": "5+"
       }
     },
     "weapon-power-fist": {
@@ -626,6 +677,21 @@
           "unit-sydonian-skatros"
         ],
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-sydonian-skatros"
+      }
+    },
+    "datasheet-leader": {
+      "termId": "adeptus-mechanicus-datasheet-leader",
+      "navigation": {
+        "glossary": "glossary-datasheet-leader",
+        "rule": "unit-tech-priest-dominus",
+        "datasheet": "unit-tech-priest-dominus",
+        "statline": "tech-priest-dominus-profile",
+        "units": [
+          "unit-tech-priest-dominus",
+          "unit-tech-priest-enginseer",
+          "unit-tech-priest-manipulus"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-tech-priest-dominus"
       }
     },
     "datasheet-lord-of-the-machine-cult": {
@@ -823,6 +889,19 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-tech-priest-manipulus"
       }
     },
+    "weapon-omnissian-staff": {
+      "termId": "adeptus-mechanicus-weapon-omnissian-staff",
+      "navigation": {
+        "glossary": "glossary-weapon-omnissian-staff",
+        "rule": "unit-tech-priest-manipulus",
+        "datasheet": "unit-tech-priest-manipulus",
+        "statline": "tech-priest-manipulus-profile",
+        "units": [
+          "unit-tech-priest-manipulus"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-tech-priest-manipulus"
+      }
+    },
     "weapon-magnarail-lance": {
       "termId": "adeptus-mechanicus-weapon-magnarail-lance",
       "navigation": {
@@ -840,19 +919,6 @@
       "termId": "adeptus-mechanicus-weapon-transonic-cannon",
       "navigation": {
         "glossary": "glossary-weapon-transonic-cannon",
-        "rule": "unit-tech-priest-manipulus",
-        "datasheet": "unit-tech-priest-manipulus",
-        "statline": "tech-priest-manipulus-profile",
-        "units": [
-          "unit-tech-priest-manipulus"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-tech-priest-manipulus"
-      }
-    },
-    "weapon-omnissian-staff": {
-      "termId": "adeptus-mechanicus-weapon-omnissian-staff",
-      "navigation": {
-        "glossary": "glossary-weapon-omnissian-staff",
         "rule": "unit-tech-priest-manipulus",
         "datasheet": "unit-tech-priest-manipulus",
         "statline": "tech-priest-manipulus-profile",
@@ -969,21 +1035,6 @@
         "value": "2"
       }
     },
-    "weapon-cognis-heavy-stubber-array": {
-      "termId": "adeptus-mechanicus-weapon-cognis-heavy-stubber-array",
-      "navigation": {
-        "glossary": "glossary-weapon-cognis-heavy-stubber-array",
-        "rule": "unit-skorpius-dunerider",
-        "datasheet": "unit-skorpius-dunerider",
-        "statline": "skorpius-dunerider-profile",
-        "units": [
-          "unit-skorpius-dunerider",
-          "unit-archaeopter-fusilave",
-          "unit-archaeopter-transvector"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skorpius-dunerider"
-      }
-    },
     "weapon-armoured-hull": {
       "termId": "adeptus-mechanicus-weapon-armoured-hull",
       "navigation": {
@@ -997,6 +1048,21 @@
           "unit-archaeopter-stratoraptor",
           "unit-archaeopter-transvector",
           "unit-skorpius-disintegrator"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skorpius-dunerider"
+      }
+    },
+    "weapon-cognis-heavy-stubber-array": {
+      "termId": "adeptus-mechanicus-weapon-cognis-heavy-stubber-array",
+      "navigation": {
+        "glossary": "glossary-weapon-cognis-heavy-stubber-array",
+        "rule": "unit-skorpius-dunerider",
+        "datasheet": "unit-skorpius-dunerider",
+        "statline": "skorpius-dunerider-profile",
+        "units": [
+          "unit-skorpius-dunerider",
+          "unit-archaeopter-fusilave",
+          "unit-archaeopter-transvector"
         ],
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-skorpius-dunerider"
       }
@@ -1253,21 +1319,6 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-archaeopter-fusilave"
       }
     },
-    "datasheet-hover": {
-      "termId": "core-hover",
-      "navigation": {
-        "glossary": "glossary-datasheet-hover",
-        "rule": "unit-archaeopter-fusilave",
-        "datasheet": "unit-archaeopter-fusilave",
-        "statline": "archaeopter-fusilave-profile",
-        "units": [
-          "unit-archaeopter-fusilave",
-          "unit-archaeopter-stratoraptor",
-          "unit-archaeopter-transvector"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-archaeopter-fusilave"
-      }
-    },
     "datasheet-strafing-run": {
       "termId": "adeptus-mechanicus-datasheet-strafing-run",
       "navigation": {
@@ -1336,6 +1387,19 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-archaeopter-transvector"
       }
     },
+    "datasheet-hover": {
+      "termId": "core-hover",
+      "navigation": {
+        "glossary": "glossary-datasheet-hover",
+        "rule": "unit-archaeopter-transvector",
+        "datasheet": "unit-archaeopter-transvector",
+        "statline": "archaeopter-transvector-profile",
+        "units": [
+          "unit-archaeopter-transvector"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-archaeopter-transvector"
+      }
+    },
     "datasheet-deep-strike": {
       "termId": "core-deep-strike",
       "navigation": {
@@ -1362,23 +1426,6 @@
           "unit-corpuscarii-electro-priests"
         ],
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-corpuscarii-electro-priests"
-      }
-    },
-    "datasheet-feel-no-pain-5": {
-      "termId": "core-feel-no-pain",
-      "navigation": {
-        "glossary": "glossary-datasheet-feel-no-pain-5",
-        "rule": "unit-corpuscarii-electro-priests",
-        "datasheet": "unit-corpuscarii-electro-priests",
-        "statline": "corpuscarii-electro-priests-profile",
-        "units": [
-          "unit-corpuscarii-electro-priests",
-          "unit-fulgurite-electro-priests"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-corpuscarii-electro-priests"
-      },
-      "parameters": {
-        "threshold": "5+"
       }
     },
     "weapon-electrostatic-gauntlets": {
@@ -1597,19 +1644,6 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-ironstrider-ballistarii"
       }
     },
-    "weapon-twin-cognis-lascannon-2": {
-      "termId": "adeptus-mechanicus-weapon-twin-cognis-lascannon-2",
-      "navigation": {
-        "glossary": "glossary-weapon-twin-cognis-lascannon-2",
-        "rule": "unit-ironstrider-ballistarii",
-        "datasheet": "unit-ironstrider-ballistarii",
-        "statline": "ironstrider-ballistarii-profile",
-        "units": [
-          "unit-ironstrider-ballistarii"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-ironstrider-ballistarii"
-      }
-    },
     "weapon-ironstrider-feet": {
       "termId": "adeptus-mechanicus-weapon-ironstrider-feet",
       "navigation": {
@@ -1620,6 +1654,19 @@
         "units": [
           "unit-ironstrider-ballistarii",
           "unit-sydonian-dragoons-with-radium-jezzails"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-ironstrider-ballistarii"
+      }
+    },
+    "weapon-twin-cognis-lascannon-2": {
+      "termId": "adeptus-mechanicus-weapon-twin-cognis-lascannon-2",
+      "navigation": {
+        "glossary": "glossary-weapon-twin-cognis-lascannon-2",
+        "rule": "unit-ironstrider-ballistarii",
+        "datasheet": "unit-ironstrider-ballistarii",
+        "statline": "ironstrider-ballistarii-profile",
+        "units": [
+          "unit-ironstrider-ballistarii"
         ],
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-ironstrider-ballistarii"
       }
@@ -1741,33 +1788,6 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-kataphron-breachers"
       }
     },
-    "weapon-torsion-cannon": {
-      "termId": "adeptus-mechanicus-weapon-torsion-cannon",
-      "navigation": {
-        "glossary": "glossary-weapon-torsion-cannon",
-        "rule": "unit-kataphron-breachers",
-        "datasheet": "unit-kataphron-breachers",
-        "statline": "kataphron-breachers-profile",
-        "units": [
-          "unit-kataphron-breachers"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-kataphron-breachers"
-      }
-    },
-    "weapon-hydraulic-claw": {
-      "termId": "adeptus-mechanicus-weapon-hydraulic-claw",
-      "navigation": {
-        "glossary": "glossary-weapon-hydraulic-claw",
-        "rule": "unit-kataphron-breachers",
-        "datasheet": "unit-kataphron-breachers",
-        "statline": "kataphron-breachers-profile",
-        "units": [
-          "unit-kataphron-breachers",
-          "unit-x-101"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-kataphron-breachers"
-      }
-    },
     "weapon-arc-claw": {
       "termId": "adeptus-mechanicus-weapon-arc-claw",
       "navigation": {
@@ -1794,6 +1814,33 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-kataphron-breachers"
       }
     },
+    "weapon-hydraulic-claw": {
+      "termId": "adeptus-mechanicus-weapon-hydraulic-claw",
+      "navigation": {
+        "glossary": "glossary-weapon-hydraulic-claw",
+        "rule": "unit-kataphron-breachers",
+        "datasheet": "unit-kataphron-breachers",
+        "statline": "kataphron-breachers-profile",
+        "units": [
+          "unit-kataphron-breachers",
+          "unit-x-101"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-kataphron-breachers"
+      }
+    },
+    "weapon-torsion-cannon": {
+      "termId": "adeptus-mechanicus-weapon-torsion-cannon",
+      "navigation": {
+        "glossary": "glossary-weapon-torsion-cannon",
+        "rule": "unit-kataphron-breachers",
+        "datasheet": "unit-kataphron-breachers",
+        "statline": "kataphron-breachers-profile",
+        "units": [
+          "unit-kataphron-breachers"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-kataphron-breachers"
+      }
+    },
     "datasheet-sentinel-directive": {
       "termId": "adeptus-mechanicus-datasheet-sentinel-directive",
       "navigation": {
@@ -1807,23 +1854,10 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-kataphron-destroyers"
       }
     },
-    "weapon-kataphron-plasma-culverin-standard": {
-      "termId": "adeptus-mechanicus-weapon-kataphron-plasma-culverin-standard",
+    "weapon-heavy-grav-cannon": {
+      "termId": "adeptus-mechanicus-weapon-heavy-grav-cannon",
       "navigation": {
-        "glossary": "glossary-weapon-kataphron-plasma-culverin-standard",
-        "rule": "unit-kataphron-destroyers",
-        "datasheet": "unit-kataphron-destroyers",
-        "statline": "kataphron-destroyers-profile",
-        "units": [
-          "unit-kataphron-destroyers"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-kataphron-destroyers"
-      }
-    },
-    "weapon-kataphron-plasma-culverin-supercharge": {
-      "termId": "adeptus-mechanicus-weapon-kataphron-plasma-culverin-supercharge",
-      "navigation": {
-        "glossary": "glossary-weapon-kataphron-plasma-culverin-supercharge",
+        "glossary": "glossary-weapon-heavy-grav-cannon",
         "rule": "unit-kataphron-destroyers",
         "datasheet": "unit-kataphron-destroyers",
         "statline": "kataphron-destroyers-profile",
@@ -1872,10 +1906,23 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-kataphron-destroyers"
       }
     },
-    "weapon-heavy-grav-cannon": {
-      "termId": "adeptus-mechanicus-weapon-heavy-grav-cannon",
+    "weapon-kataphron-plasma-culverin-standard": {
+      "termId": "adeptus-mechanicus-weapon-kataphron-plasma-culverin-standard",
       "navigation": {
-        "glossary": "glossary-weapon-heavy-grav-cannon",
+        "glossary": "glossary-weapon-kataphron-plasma-culverin-standard",
+        "rule": "unit-kataphron-destroyers",
+        "datasheet": "unit-kataphron-destroyers",
+        "statline": "kataphron-destroyers-profile",
+        "units": [
+          "unit-kataphron-destroyers"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-kataphron-destroyers"
+      }
+    },
+    "weapon-kataphron-plasma-culverin-supercharge": {
+      "termId": "adeptus-mechanicus-weapon-kataphron-plasma-culverin-supercharge",
+      "navigation": {
+        "glossary": "glossary-weapon-kataphron-plasma-culverin-supercharge",
         "rule": "unit-kataphron-destroyers",
         "datasheet": "unit-kataphron-destroyers",
         "statline": "kataphron-destroyers-profile",
@@ -2217,6 +2264,19 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-serberys-sulphurhounds"
       }
     },
+    "weapon-sulphur-breath": {
+      "termId": "adeptus-mechanicus-weapon-sulphur-breath",
+      "navigation": {
+        "glossary": "glossary-weapon-sulphur-breath",
+        "rule": "unit-serberys-sulphurhounds",
+        "datasheet": "unit-serberys-sulphurhounds",
+        "statline": "serberys-sulphurhounds-profile",
+        "units": [
+          "unit-serberys-sulphurhounds"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-serberys-sulphurhounds"
+      }
+    },
     "weapon-phosphor-pistol": {
       "termId": "adeptus-mechanicus-weapon-phosphor-pistol",
       "navigation": {
@@ -2234,19 +2294,6 @@
       "termId": "adeptus-mechanicus-weapon-phosphor-blast-carbine",
       "navigation": {
         "glossary": "glossary-weapon-phosphor-blast-carbine",
-        "rule": "unit-serberys-sulphurhounds",
-        "datasheet": "unit-serberys-sulphurhounds",
-        "statline": "serberys-sulphurhounds-profile",
-        "units": [
-          "unit-serberys-sulphurhounds"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-serberys-sulphurhounds"
-      }
-    },
-    "weapon-sulphur-breath": {
-      "termId": "adeptus-mechanicus-weapon-sulphur-breath",
-      "navigation": {
-        "glossary": "glossary-weapon-sulphur-breath",
         "rule": "unit-serberys-sulphurhounds",
         "datasheet": "unit-serberys-sulphurhounds",
         "statline": "serberys-sulphurhounds-profile",
@@ -2753,6 +2800,19 @@
         "fullRulePath": "books/adeptus-mechanicus/index.html#unit-servitors"
       }
     },
+    "weapon-servitors-tools": {
+      "termId": "adeptus-mechanicus-weapon-servitors-tools",
+      "navigation": {
+        "glossary": "glossary-weapon-servitors-tools",
+        "rule": "unit-servitors",
+        "datasheet": "unit-servitors",
+        "statline": "servitors-profile",
+        "units": [
+          "unit-servitors"
+        ],
+        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-servitors"
+      }
+    },
     "weapon-multi-melta": {
       "termId": "adeptus-mechanicus-weapon-multi-melta",
       "navigation": {
@@ -2783,19 +2843,6 @@
       "termId": "adeptus-mechanicus-weapon-plasma-cannon-supercharge",
       "navigation": {
         "glossary": "glossary-weapon-plasma-cannon-supercharge",
-        "rule": "unit-servitors",
-        "datasheet": "unit-servitors",
-        "statline": "servitors-profile",
-        "units": [
-          "unit-servitors"
-        ],
-        "fullRulePath": "books/adeptus-mechanicus/index.html#unit-servitors"
-      }
-    },
-    "weapon-servitors-tools": {
-      "termId": "adeptus-mechanicus-weapon-servitors-tools",
-      "navigation": {
-        "glossary": "glossary-weapon-servitors-tools",
         "rule": "unit-servitors",
         "datasheet": "unit-servitors",
         "statline": "servitors-profile",

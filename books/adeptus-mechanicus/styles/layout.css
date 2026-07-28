@@ -46,6 +46,7 @@ html[data-theme="light"] .app-header { background: rgba(231, 223, 202, .95); }
   text-transform: uppercase;
 }
 .library-link span { color: var(--pink); font-size: 18px; }
+.app-header [hidden] { display: none !important; }
 .app-brand {
   position: relative;
   min-width: 0;

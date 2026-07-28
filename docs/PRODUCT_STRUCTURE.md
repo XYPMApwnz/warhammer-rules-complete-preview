@@ -26,10 +26,9 @@ Supporting information:
 
 Supporting information must not compete visually with the primary spaces.
 
-## Core Rules modes
+## Core Rules
 
 - **Reference** — direct chapters, exact rule links and fast lookup during play.
-- **Learn** — sequential study, progress, explanatory layouts and original pages.
 
 `Quick Reader`, `Classic Reader`, `Clean Room`, prototype names and build names are implementation history, not user-facing mode names.
 
@@ -71,11 +70,11 @@ The current importer:
 - reads New Recruit text exports;
 - extracts faction, detachments, units, enhancements and declared points;
 - sums the point values printed in the export;
-- compares that sum with the export total.
+- compares that sum with the export total;
+- recomputes current points from the supported Army Book catalogue and reports mismatches without blocking save.
 
 It does **not** verify:
 
-- current point values;
 - roster legality or unit limits;
 - wargear legality;
 - enhancement eligibility;
@@ -85,7 +84,7 @@ It does **not** verify:
 Roster Guides recognise an explicit whitelist of factions. A recognised roster may be saved even when its personalised reader is not available yet. Currently:
 
 - **Death Guard** rosters can be saved and opened in the personalised Death Guard reader;
-- **Adeptus Mechanicus** rosters can be saved, but the interface must state that a personalised reader is not available yet;
+- **Adeptus Mechanicus** rosters can be saved and opened in the responsive personalised Adeptus Mechanicus reader;
 - unknown factions are rejected before saving or routing.
 
 Only factions with a real roster adapter may expose an **Open personal guide** action. An ordinary army book must never be presented as a personalised reader. Existing unsupported records are preserved and must never be routed into the Death Guard reader.
@@ -140,7 +139,7 @@ Excluded:
 - physical directory moves or mass URL changes;
 - a universal reader engine;
 - new books or factions;
-- a legality or current-points validator;
+- roster legality;
 - global search across all books;
 - new roster features;
 - more display modes;

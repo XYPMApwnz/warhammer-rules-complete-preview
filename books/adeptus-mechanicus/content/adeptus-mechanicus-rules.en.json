@@ -148,7 +148,7 @@
         {"title":"Aggressive Impulse","cp":"1CP","category":"Haloscreed Battle Clade - Strategic Ploy Stratagem","when":"Your Movement phase.","target":"One SKORPIUS DUNERIDER model that has not been selected to move this phase.","effect":"Until the end of the turn, ADEPTUS MECHANICUS units that disembark after that model makes a Normal move remain eligible to declare a charge."},
         {"title":"Targeting Override","cp":"1CP","category":"Haloscreed Battle Clade - Battle Tactic Stratagem","when":"Your Shooting phase or the Fight phase.","target":"One ADEPTUS MECHANICUS unit that has not been selected to shoot or fight this phase.","effect":"Until the end of the phase, an unmodified Hit roll of 5+ scores a Critical Hit."},
         {"title":"Guided Retreat","cp":"1CP","category":"Haloscreed Battle Clade - Strategic Ploy Stratagem","when":"Your Movement phase, just after an ADEPTUS MECHANICUS unit Falls Back.","target":"That ADEPTUS MECHANICUS unit.","effect":"Until the end of the turn, it is eligible to shoot and charge after Falling Back. If it is a HALO OVERRIDE unit, Desperate Escape tests for it can be re-rolled."},
-        {"title":"Neural Overload","cp":"1CP","category":"Haloscreed Battle Clade - Strategic Ploy Stratagem","when":"Your Movement phase.","target":"One ADEPTUS MECHANICUS unit from your army.","effect":"If it is a HALO OVERRIDE unit, it suffers D3 mortal wounds. Select one Override ability; it remains active for that unit until your next Command phase."},
+        {"title":"Neural Overload","cp":"1CP","category":"Haloscreed Battle Clade - Strategic Ploy Stratagem","when":"Your Movement phase.","target":"One ADEPTUS MECHANICUS unit from your army.","effect":"If your unit is a HALO OVERRIDE unit, it suffers D3 mortal wounds. Select one Override ability; until the start of your next Command phase, that ability is active for your unit. Designer's Note: a unit that already has HALO OVERRIDE can have several Override abilities active at once, but suffers the mortal wounds. A unit without HALO OVERRIDE gains only the selected Override ability and does not benefit from other active Override abilities."},
         {"title":"Analytical Divination","cp":"1CP","category":"Haloscreed Battle Clade - Strategic Ploy Stratagem","when":"Your opponent's Movement phase, just after an enemy unit ends a Normal, Advance or Fall Back move.","target":"One ADEPTUS MECHANICUS INFANTRY unit, excluding KATAPHRON, within 8\" and not within Engagement Range.","effect":"Your unit can make a Normal move of up to D6\", or up to 6\" instead if it is a HALO OVERRIDE unit."}
       ]
     }
@@ -169,7 +169,7 @@
       "abilities":[
         {"title":"Rod of the War Forge","text":"In your Command phase, select one Icon of War ability. Until your next Command phase, this model has that ability."},
         {"title":"Mechanicus Bodyguard","text":"While this model is within 3\" of one or more other friendly ADEPTUS MECHANICUS units, it has Lone Operative."},
-        {"title":"Cybernetic Augmentation","text":"This model can move through terrain features and can be set up or end a move on any floor of Ruins, provided its base does not overhang."},
+        {"title":"Cybernetic Augmentation","text":"This model can move through terrain features, but cannot end a move within a wall, a floor, etc. It can be set up or end a move on any floor level of Ruins, but if that level is not the ground floor, it can only do so if its base does not overhang the floor at that level."},
         {"title":"Secutor of Olympus","text":"At the start of your Shooting phase, select one enemy VEHICLE within 12\" and roll one D6; on a 2+, it suffers D3+1 mortal wounds."},
         {"title":"Icon of War","text":"Fanatical Devotion lets a friendly SKITARII or THULIA GHULD unit within 6\" shoot and charge after Advancing. Adaptive Tactics lets it shoot and charge after Falling Back. The Fires of Mars makes both Imperatives active for it."}
       ],
@@ -186,7 +186,7 @@
         {"mode":"melee","name":"Power weapon","range":"Melee","a":"2","skill":"4+","s":"5","ap":"-2","d":"1","abilities":""}
       ],
       "abilities":[{"title":"Broad-spectrum Targeting Augurs","text":"Each time a model in this unit attacks with an eradication caster against a unit excluding MONSTER and VEHICLE units, that attack has Sustained Hits 1."}],
-      "composition":"1 Hastarii Exterminator Alpha and 4 Hastarii Exterminators. A Character that can attach to SKITARII RANGERS can attach to this unit instead.",
+      "composition":"1 Hastarii Exterminator Alpha and 4 Hastarii Exterminators. The Alpha is equipped with a Hastarii arc blaster, eradication caster and power weapon. Every other model is equipped with a Hastarii arc blaster, eradication caster and close-combat weapon. A Character that can attach to SKITARII RANGERS can attach to this unit instead.",
       "keywords":["INFANTRY","IMPERIUM","SKITARII","HASTARII","EXTERMINATORS","ADEPTUS MECHANICUS"]
     },
     {
@@ -198,11 +198,15 @@
         {"mode":"melee","name":"Power weapon","range":"Melee","a":"2","skill":"4+","s":"5","ap":"-2","d":"1","abilities":""}
       ],
       "abilities":[{"title":"Monocular Targeting Helms","text":"Each time a model in this unit attacks with a neutron fusil against a MONSTER or VEHICLE unit, that attack has Ignores Cover."}],
-      "composition":"1 Hastarii Fusilier Alpha and 4 Hastarii Fusiliers. A Character that can attach to SKITARII RANGERS can attach to this unit instead.",
+      "composition":"1 Hastarii Fusilier Alpha and 4 Hastarii Fusiliers. The Alpha is equipped with a neutron fusil, Hastarii phosphor blaster and power weapon. Every other model is equipped with a neutron fusil, Hastarii phosphor blaster and close-combat weapon. A Character that can attach to SKITARII RANGERS can attach to this unit instead.",
       "keywords":["INFANTRY","IMPERIUM","SKITARII","HASTARII","FUSILIERS","ADEPTUS MECHANICUS"]
     },
     {
-      "id":"unit-servitor-battleclade","title":"Servitor Battleclade","status":"Faction Pack","sourcePages":[15,16],"invulnerable":"6+","stats":{"M":"6\"","T":"4","SV":"4+","W":"1-2","LD":"7+-8+","OC":"1"},
+      "id":"unit-servitor-battleclade","title":"Servitor Battleclade","status":"Faction Pack","sourcePages":[15,16],"invulnerable":"6+","stats":{"M":"6\"","T":"4","SV":"4+","W":"2","LD":"7+","OC":"1"},
+      "profiles":[
+        {"name":"Servitor Underseer","stats":{"M":"6\"","T":"4","SV":"4+","W":"2","LD":"7+","OC":"1"}},
+        {"name":"Combat Servitors and Gun Servitors","stats":{"M":"6\"","T":"4","SV":"4+","W":"1","LD":"8+","OC":"1"}}
+      ],
       "weapons":[
         {"mode":"ranged","name":"Heavy arc rifle","range":"30\"","a":"1","skill":"4+","s":"8","ap":"-2","d":"3","abilities":"Anti-Vehicle 4+, Rapid Fire 1"},
         {"mode":"ranged","name":"Heavy bolter","range":"36\"","a":"3","skill":"4+","s":"5","ap":"-1","d":"2","abilities":"Heavy, Sustained Hits 1"},
@@ -214,7 +218,7 @@
         {"mode":"melee","name":"Servo-claw","range":"Melee","a":"2","skill":"4+","s":"4","ap":"0","d":"1","abilities":""}
       ],
       "abilities":[{"title":"Network Override","text":"While this unit contains one or more TECH-PRIEST models, it can perform an Action after Advancing and is eligible to shoot in a turn in which it started an Action."}],
-      "composition":"1 Servitor Underseer, 2 Gun Servitors and 6 Combat Servitors. A Character that can attach to KATAPHRON BREACHERS can attach to this unit instead.",
+      "composition":"1 Servitor Underseer, 2 Gun Servitors and 6 Combat Servitors. The Underseer is equipped with a Mechanicus pistol and dataspikes. One Gun Servitor has a heavy arc rifle and servo-claw; the other has a heavy bolter and servo-claw. Every Combat Servitor has a phosphor blaster and servo-claw. A Character that can attach to KATAPHRON BREACHERS can attach to this unit instead.",
       "wargear":"One Combat Servitor can replace its phosphor blaster with a meltagun. Up to three can replace their phosphor blasters with incendine igniters.",
       "keywords":["INFANTRY","IMPERIUM","CULT MECHANICUS","SERVITOR BATTLECLADE","TECH-PRIEST","ADEPTUS MECHANICUS"]
     },
@@ -227,7 +231,7 @@
       "abilities":[
         {"title":"Mindlock","text":"While a TECH-PRIEST model is leading this model's unit, improve the Ballistic Skill and Weapon Skill of this model's weapons by 1."},
         {"title":"Bound Creation","text":"While a TECH-PRIEST model is leading this model's unit, that TECH-PRIEST model has Feel No Pain 5+."},
-        {"title":"Servitor Bodyguard","text":"At the start of Declare Battle Formations, this model can join one unit led by a TECH-PRIEST INFANTRY model and counts as part of that Bodyguard unit."}
+        {"title":"Servitor Bodyguard","text":"At the start of the Declare Battle Formations step, this model can join one other unit from your army that is being led by a TECH-PRIEST INFANTRY model. If it does, until the end of the battle, this model counts as being part of that Bodyguard unit, and that Bodyguard unit's Starting Strength is increased accordingly."}
       ],
       "composition":"1 X-101 - Epic Hero, equipped with grav-gun and hydraulic claw.",
       "keywords":["INFANTRY","IMPERIUM","CHARACTER","EPIC HERO","CULT MECHANICUS","X-101","ADEPTUS MECHANICUS"]
@@ -240,7 +244,11 @@
         {"mode":"melee","name":"Alpha close combat weapon","range":"Melee","a":"3","skill":"4+","s":"5","ap":"-1","d":"1","abilities":""},
         {"mode":"melee","name":"Arc lance","range":"Melee","a":"2","skill":"4+","s":"5","ap":"-1","d":"1","abilities":"Anti-Vehicle 4+, Devastating Wounds, Lance"}
       ],
-      "abilities":[{"title":"Titan Guard","text":"You can target this unit with Heroic Intervention for 0CP even if another unit was targeted. If a friendly ADEPTUS TITANICUS unit is on the battlefield, you can re-roll the charge roll."}],
+      "abilities":[
+        {"title":"Titan Guard","text":"You can target this unit with Heroic Intervention for 0CP even if another unit was targeted. If a friendly ADEPTUS TITANICUS unit is on the battlefield, you can re-roll the charge roll."},
+        {"title":"Enhanced data-tether","text":"Each time you select the bearer's unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."},
+        {"title":"Omnispex","text":"Ranged weapons equipped by models in the bearer's unit have the Ignores Cover ability."}
+      ],
       "wargear":"The Alpha's arc lance can be replaced with an archeotech pistol and can take an Alpha close combat weapon. One Hoplite can take an enhanced data-tether or omnispex.",
       "composition":"1 Hoplite Alpha and 4-9 Secutarii Hoplites. A Leader that can attach to SKITARII VANGUARD can attach to this unit instead.",
       "keywords":["INFANTRY","IMPERIUM","SKITARII","SECUTARII HOPLITES","ADEPTUS MECHANICUS"]
@@ -254,7 +262,11 @@
         {"mode":"melee","name":"Alpha close combat weapon","range":"Melee","a":"2","skill":"4+","s":"5","ap":"-1","d":"1","abilities":""},
         {"mode":"melee","name":"Close combat weapon","range":"Melee","a":"1","skill":"4+","s":"3","ap":"0","d":"1","abilities":""}
       ],
-      "abilities":[{"title":"Blind Barrage","text":"After this unit has shot, select one enemy INFANTRY unit hit by those attacks. Until your next turn, it is blinded; while this unit remains on the battlefield, subtract 1 from Hit rolls for attacks made by models in that enemy unit."}],
+      "abilities":[
+        {"title":"Blind Barrage","text":"After this unit has shot, select one enemy INFANTRY unit hit by those attacks. Until your next turn, it is blinded; while this unit remains on the battlefield, subtract 1 from Hit rolls for attacks made by models in that enemy unit."},
+        {"title":"Enhanced data-tether","text":"Each time you select the bearer's unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."},
+        {"title":"Omnispex","text":"Ranged weapons equipped by models in the bearer's unit have the Ignores Cover ability."}
+      ],
       "wargear":"The Alpha's galvanic caster can be replaced with an archeotech pistol and can take an Alpha close combat weapon. One Peltast can take an enhanced data-tether or omnispex.",
       "composition":"1 Peltast Alpha and 4-9 Secutarii Peltasts. A Leader that can attach to SKITARII VANGUARD can attach to this unit instead.",
       "keywords":["INFANTRY","IMPERIUM","SKITARII","SECUTARII PELTASTS","ADEPTUS MECHANICUS"]
@@ -270,7 +282,7 @@
       ],
       "abilities":[
         {"title":"Core","text":"Deadly Demise D3, Deep Strike."},
-        {"title":"Termite Assault","text":"This model must start in Reserves and can arrive in the Reinforcements step of your first, second or third Movement phase. Embarked units can disembark after it is set up and must be more than 9\" from enemy models."},
+        {"title":"Termite Assault","text":"This model must start the battle in Reserves, but neither it nor any units embarked within it count towards limits on the maximum number of Reserves units. It can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of mission rules. Embarked units can disembark after it is set up and must be more than 9\" from all enemy models."},
         {"title":"Damaged: 1-5 wounds remaining","text":"Each time this model makes an attack, subtract 1 from the Hit roll."},
         {"title":"Transport","text":"Transport capacity 12 ADEPTUS MECHANICUS INFANTRY models. It cannot transport JUMP PACK or KATAPHRON models."}
       ],

@@ -17,6 +17,7 @@ const factionRules=json('content/adeptus-mechanicus-rules.en.json');
 const source=json('content/adeptus-mechanicus-source.en.json');
 const codex=json('content/adeptus-mechanicus-codex-detachments.en.json');
 const codexDatasheets=json('content/adeptus-mechanicus-codex-datasheets.en.json');
+const currentPoints=json('content/adeptus-mechanicus-points.en.json');
 const factionDatasheets=new Map(factionRules.datasheets.map(unit=>[unit.id,unit]));
 const mergedDatasheets=codexDatasheets.datasheets.map(unit=>factionDatasheets.has(unit.id)?{...unit,...factionDatasheets.get(unit.id),category:unit.category}:unit);
 const rules={...factionRules,datasheets:mergedDatasheets};
@@ -25,7 +26,7 @@ const node=process.execPath;
 const results=[];
 const check=(name,ok,detail='')=>results.push({name,ok,detail});
 
-const scripts=['scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/app.js'];
+const scripts=['scripts/data.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/related-rules.js','scripts/roster-enhancements.js','scripts/roster-filter.js','scripts/app.js'];
 for(const file of scripts){try{new vm.Script(read(file),{filename:file});check(`${file} syntax`,true);}catch(error){check(`${file} syntax`,false,error.message);}}
 try{new vm.Script(sharedTargets,{filename:'../shared/navigation-targets.js'});check('shared navigation targets syntax',true);}catch(error){check('shared navigation targets syntax',false,error.message);}
 try{new vm.Script(sharedDatasheetLayout,{filename:'../shared/datasheet-layout.js'});check('shared datasheet layout syntax',true);}catch(error){check('shared datasheet layout syntax',false,error.message);}
@@ -53,6 +54,15 @@ check('detachment card counts are complete',JSON.stringify(rules.detachments.map
 check('codex layer has 39 datasheets',rules.datasheets.length===39&&rules.datasheets.length===codexDatasheets.audit.datasheets);
 check('five datasheets are Legends',rules.datasheets.filter(x=>x.status==='Warhammer Legends').length===5);
 check('every datasheet has stats, weapons, abilities and provenance',rules.datasheets.every(x=>Object.keys(x.stats).length>=6&&x.weapons.length&&x.abilities.length&&(x.sourcePages?.length||x.source?.url)));
+check('official multi-profile datasheet is preserved',factionRules.datasheets.find(unit=>unit.title==='Servitor Battleclade')?.profiles?.length===2);
+check('official Legends and Faction Pack clarifications are complete',[
+  'cannot end a move within a wall',
+  "Starting Strength is increased accordingly",
+  'neither it nor any units embarked within it count towards limits',
+  'Enhanced data-tether',
+  'Designer\'s Note: a unit that already has HALO OVERRIDE'
+].every(text=>JSON.stringify(factionRules).includes(text)));
+check('placeholder compositions are gone',codexDatasheets.datasheets.every(unit=>!/^See the model selections/i.test(unit.composition||'')));
 check('all source pages are represented in the UI',Array.from({length:26},(_,i)=>i+1).every(page=>html.includes(`#page=${page}`)||html.includes(`Page ${page}`)));
 check('required interaction IDs are present',required.every(id=>idSet.has(id)),required.filter(id=>!idSet.has(id)).join(', '));
 check('HTML IDs are unique',ids.length===idSet.size,`${ids.length}/${idSet.size}`);
@@ -69,7 +79,8 @@ check('all 39 unit cards render',(markup.match(/class="unit-card surface/g)||[])
 check('Legends is a datasheet category, not a global section',!topLevelTargets.includes('legends')&&navTargets.includes('datasheets-warhammer-legends')&&legendsCount(markup)===5);
 check('favorite Doctrina console is preserved',markup.includes('class="doctrina-console surface"')&&markup.includes('data-protocol="protector"')&&markup.includes('data-protocol="conqueror"'));
 check('local official transcripts are embedded',(markup.match(/class="source-transcript"/g)||[]).length===rules.updates.length+rules.detachments.length+factionRules.datasheets.length+2);
-check('Codex transcription status is explicit',markup.includes('Codex transcription layer')&&markup.includes('39 complete datasheets'));
+check('Codex transcription status is explicit',markup.includes('Codex transcription layer')&&markup.includes('39 indexed datasheets'));
+check('official MFM verification is visible',markup.includes('Munitorum Field Manual v1.1')&&markup.includes('All 34 current Enhancement costs'));
 check('removed army points section stays removed',!markup.includes('My Army · 995')&&!markup.includes('army-roster-995'));
 check('no replacement characters in generated/runtime files',!['index.html',...scripts,...['styles/content.css','styles/mechanicus.css']].map(read).join('').includes('\uFFFD'));
 check('no inline script or style',!/<style|<script(?![^>]*src=)/i.test(html));
@@ -107,8 +118,22 @@ check('mobile weapon labels stay dynamic',read('scripts/ui-controllers.js').incl
 
 const extractor=spawnSync('C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe',[path.join(root,'tools','extract-faction-pack.py'),'--check'],{encoding:'utf8'});
 check('PDF extraction snapshot is current',extractor.status===0,(extractor.stderr||extractor.stdout).trim());
-const codexExtractor=spawnSync('C:\\Users\\denis\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe',[path.join(root,'tools','extract-bsdata.py'),'--check'],{encoding:'utf8'});
+const codexExtractor=spawnSync(node,[path.join(root,'tools','extract-datasheets.mjs'),'--check'],{encoding:'utf8'});
 check('Codex datasheet snapshot is current',codexExtractor.status===0,(codexExtractor.stderr||codexExtractor.stdout).trim());
+const pointsExtractor=spawnSync(node,[path.join(root,'tools','extract-points.mjs'),'--check'],{encoding:'utf8'});
+check('current points and Enhancements snapshot is current',pointsExtractor.status===0,(pointsExtractor.stderr||pointsExtractor.stdout).trim());
+check('official MFM unit sizes are locked',[
+  ['Ironstrider Ballistarii','3rd+ unit: 3 models'],
+  ['Sydonian Dragoons with radium jezzails','3 models'],
+  ['Sydonian Dragoons with taser lances','3 models'],
+  ['Servitor Battleclade','9 models'],
+  ['Skitarii Rangers','10 models'],
+  ['Sydonian Skatros','1 model']
+].every(([title,label])=>currentPoints.units.find(unit=>unit.title===title)?.points.some(row=>row.label===label)));
+check('official MFM provenance is locked',currentPoints.source.officialVersion==='v1.1'&&currentPoints.source.officialUrl==='https://mfm.warhammer-community.com/en/adeptus-mechanicus');
+check('carried-forward rules no longer use placeholder wording',!JSON.stringify(codex).match(/rule's listed roll|following the rule's unit restrictions|under the listed Acquisition conditions|according to the Stratagem's conditions/));
+check('personal roster integration is loaded',html.includes('../shared/roster-parser.js?v=2')&&html.includes('../../roster-guides/points-validator.js?v=2')&&html.includes('./scripts/roster-filter.js?v=2')&&html.includes('data-roster-guides'));
+check('every Enhancement has a detachment and current cost',json('content/adeptus-mechanicus-points.en.json').enhancements.length===34&&json('content/adeptus-mechanicus-points.en.json').enhancements.every(item=>item.detachment&&item.value>0));
 const build=spawnSync(node,[path.join(root,'tools','build-full-content.mjs'),'--check'],{encoding:'utf8'});
 check('generated project artifacts are current',build.status===0,(build.stderr||build.stdout).trim());
 

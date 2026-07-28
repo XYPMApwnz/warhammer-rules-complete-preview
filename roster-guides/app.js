@@ -2,11 +2,12 @@ const STORAGE_KEY='wh40k-rosters-v1';
 const CORRUPT_BACKUP_KEY='wh40k-rosters-v1-corrupt-backup';
 const KNOWN_FACTIONS=new Set(['death guard','adeptus mechanicus']);
 const FACTION_LABELS=Object.freeze({'death guard':'Death Guard','adeptus mechanicus':'Adeptus Mechanicus'});
-const FACTION_READERS=Object.freeze({'death guard':'../books/death-guard/reader.html'});
+const FACTION_READERS=Object.freeze({'death guard':'../books/death-guard/reader.html','adeptus mechanicus':'../books/adeptus-mechanicus/index.html'});
 const savedHost=document.querySelector('#saved-roster-list');
 
 function normalizeFaction(value){return String(value||'').replace(/^(?:Chaos|Imperium)\s*[-–—]\s*/i,'').replace(/\s+/g,' ').trim().toLowerCase();}
 function knownFaction(value){const key=normalizeFaction(value);return KNOWN_FACTIONS.has(key)?key:'';}
+function pointsLabel(value){return knownFaction(value)==='adeptus mechanicus'?'Official MFM total':'Army Book total';}
 function getSavedRosters(){
   try{const records=JSON.parse(localStorage.getItem(STORAGE_KEY));return Array.isArray(records)?records:[];}
   catch{return [];}
@@ -86,20 +87,21 @@ function parseRoster(text){
 
 function renderRoster(roster,record){
   const check=roster.pointsCheck;
+  const currentPointsLabel=pointsLabel(roster.faction);
   const complete=check&&check.total!==null&&!check.unresolved.length;
   const matches=complete&&check.difference===0;
   const exportStatus=roster.exportMatches
     ?'<div class="status">✓ Export unit lines match the declared total.</div>'
     :`<div class="status warn">! Export arithmetic warning: unit lines total ${roster.unitLineTotal} pts, but the export declares ${roster.declared} pts.</div>`;
   const pointsStatus=!check||check.total===null
-    ?'<div class="status warn">! Army Book point data is unavailable. The roster was still saved.</div>'
+    ?`<div class="status warn">! ${currentPointsLabel} data is unavailable. The roster was still saved.</div>`
     :check.unresolved.length
-      ?`<div class="status warn">! Army Book validation is incomplete. The roster was still saved.<br>${check.unresolved.map(escapeHtml).join('<br>')}</div>`
+      ?`<div class="status warn">! ${currentPointsLabel} validation is incomplete. The roster was still saved.<br>${check.unresolved.map(escapeHtml).join('<br>')}</div>`
       :matches
-        ?'<div class="status">✓ The Army Book total matches the exported total.</div>'
-        :`<div class="status warn">! Points warning: the export declares ${roster.declared} pts, but current Army Book data totals ${check.total} pts (${check.difference>0?'+':''}${check.difference}). The roster was still saved.</div>`;
+        ?`<div class="status">✓ The ${currentPointsLabel} matches the exported total.</div>`
+        :`<div class="status warn">! Points warning: the export declares ${roster.declared} pts, but the ${currentPointsLabel} is ${check.total} pts (${check.difference>0?'+':''}${check.difference}). The roster was still saved.</div>`;
   const hasReader=Boolean(FACTION_READERS[knownFaction(roster.faction)]);
-  document.querySelector('#roster-result').innerHTML=`<p class="eyebrow">Preview // ${roster.units.length} units</p><h2>${escapeHtml(roster.faction)}</h2><p class="help">${escapeHtml((roster.detachments||[{label:roster.detachment}]).map(item=>item.label).join(' + '))} · ${escapeHtml(roster.disposition)}</p><div class="summary"><div class="stat"><small>Declared in export</small><strong>${roster.declared||'—'} pts</strong></div><div class="stat"><small>Army Book total</small><strong>${check?.total??'—'} pts</strong></div></div>${exportStatus}${pointsStatus}<p class="help">Roster construction, unit limits, wargear legality and Enhancement eligibility are not checked.</p><ul class="units">${roster.units.map(unit=>{const owned=(check?.enhancements||[]).filter(item=>item.ownerUnitId===unit.id);return `<li><strong>${escapeHtml(unit.name)}${owned.map(item=>{const exported=Number(item.exportedCost),current=Number(item.currentCost),price=Number.isFinite(exported)&&Number.isFinite(current)&&exported!==current?`${exported} pts in export · ${current} pts current`:`included +${item.exportedCost??item.currentCost} pts`;return `<small class="unit-enhancement">${escapeHtml(item.name)} · ${price}</small>`;}).join('')}</strong><span>${unit.points} pts in export</span></li>`}).join('')}</ul><div class="actions">${hasReader?'<button class="action primary" id="open-guide" type="button">Open personal guide</button>':'<p class="help">Saved. A personal reader is not available for this faction yet.</p>'}</div>`;
+  document.querySelector('#roster-result').innerHTML=`<p class="eyebrow">Preview // ${roster.units.length} units</p><h2>${escapeHtml(roster.faction)}</h2><p class="help">${escapeHtml((roster.detachments||[{label:roster.detachment}]).map(item=>item.label).join(' + '))} · ${escapeHtml(roster.disposition)}</p><div class="summary"><div class="stat"><small>Declared in export</small><strong>${roster.declared||'—'} pts</strong></div><div class="stat"><small>${currentPointsLabel}</small><strong>${check?.total??'—'} pts</strong></div></div>${exportStatus}${pointsStatus}<p class="help">Roster construction, unit limits, wargear legality and Enhancement eligibility are not checked.</p><ul class="units">${roster.units.map(unit=>{const owned=(check?.enhancements||[]).filter(item=>item.ownerUnitId===unit.id);return `<li><strong>${escapeHtml(unit.name)}${owned.map(item=>{const exported=Number(item.exportedCost),current=Number(item.currentCost),price=Number.isFinite(exported)&&Number.isFinite(current)&&exported!==current?`${exported} pts in export · ${current} pts current`:`included +${item.exportedCost??item.currentCost} pts`;return `<small class="unit-enhancement">${escapeHtml(item.name)} · ${price}</small>`;}).join('')}</strong><span>${unit.points} pts in export</span></li>`}).join('')}</ul><div class="actions">${hasReader?'<button class="action primary" id="open-guide" type="button">Open personal guide</button>':'<p class="help">Saved. A personal reader is not available for this faction yet.</p>'}</div>`;
   if(!hasReader)return;
   document.querySelector('#open-guide').addEventListener('click',()=>openSavedRoster(record.id));
 }

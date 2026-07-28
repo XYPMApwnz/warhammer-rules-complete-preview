@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "core:build": "node books/core-rules/reader/build.mjs",
+    "mechanicus:build": "node books/adeptus-mechanicus/tools/extract-points.mjs && node books/adeptus-mechanicus/tools/extract-datasheets.mjs && node roster-guides/build-points.mjs && node books/adeptus-mechanicus/tools/build-full-content.mjs && node glossary/tools/build-glossary.mjs && node books/adeptus-mechanicus/tools/build-full-content.mjs",
     "points:build": "node roster-guides/build-points.mjs",
     "glossary:build": "node glossary/tools/build-glossary.mjs",
     "glossary:check": "node glossary/tools/check-glossary.mjs",

@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "counts": {
-    "terms": 1019,
-    "aliases": 606,
+    "terms": 1021,
+    "aliases": 608,
     "variants": 57,
-    "aliasCandidates": 32,
+    "aliasCandidates": 33,
     "keywordCandidates": 16
   },
   "variants": [
@@ -409,6 +409,14 @@
       "status": "resolved-by-policy"
     },
     {
+      "termId": "core-feel-no-pain",
+      "selectedSource": "core-rules",
+      "rejectedSource": "adeptus-mechanicus",
+      "selectedDefinition": "Feel No Pain X+: each time the model would lose a wound, on X+ that wound is not lost.",
+      "rejectedDefinition": "Feel No Pain 5+ is listed on the Cybernetica Datasmith datasheet.",
+      "status": "resolved-by-policy"
+    },
+    {
       "termId": "core-deadly-demise",
       "selectedSource": "core-rules",
       "rejectedSource": "adeptus-mechanicus",
@@ -429,7 +437,7 @@
       "selectedSource": "core-rules",
       "rejectedSource": "adeptus-mechanicus",
       "selectedDefinition": "Some airborne vehicles can use vectored thrusters or anti-gravity technology to hover and skim over the battlefield, the better to hunt their prey or deploy embarked troops. Each time this unit takes to the skies ( 21.03), do not subtract 2\" from the maximum distance.",
-      "rejectedDefinition": "Hover is listed on the Archaeopter Fusilave datasheet.",
+      "rejectedDefinition": "Hover is listed on the Archaeopter Transvector datasheet.",
       "status": "resolved-by-policy"
     },
     {
@@ -438,14 +446,6 @@
       "rejectedSource": "adeptus-mechanicus",
       "selectedDefinition": "During an ingress move, set up more than 8\" horizontally from all enemy units.",
       "rejectedDefinition": "Deep Strike is listed on the Archaeopter Transvector datasheet.",
-      "status": "resolved-by-policy"
-    },
-    {
-      "termId": "core-feel-no-pain",
-      "selectedSource": "core-rules",
-      "rejectedSource": "adeptus-mechanicus",
-      "selectedDefinition": "Feel No Pain X+: each time the model would lose a wound, on X+ that wound is not lost.",
-      "rejectedDefinition": "Feel No Pain 5+ is listed on the Corpuscarii Electro-Priests datasheet.",
       "status": "resolved-by-policy"
     },
     {
@@ -479,6 +479,14 @@
       "termIds": [
         "core-leader",
         "adeptus-mechanicus-datasheet-leader"
+      ],
+      "status": "review-required"
+    },
+    {
+      "normalizedTitle": "support",
+      "termIds": [
+        "core-support",
+        "adeptus-mechanicus-datasheet-support"
       ],
       "status": "review-required"
     },

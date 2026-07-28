@@ -20,6 +20,7 @@
   new window.AMNavigationSearch();
   new window.AMGlobalSearch(navigation,popups,glossary);
   new window.AMDoctrina();
+  window.AMRelatedRules?.install();
   document.querySelector('[data-header-home]')?.addEventListener('click',event=>{event.preventDefault();navigation.go('start');});
   window.DG_APP=Object.freeze({navigation,popups,glossary,journey});
   const returnRecord=window.WHGlossaryReturn?.read();

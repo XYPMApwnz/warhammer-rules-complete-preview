@@ -9,6 +9,7 @@ const {WHRosterParser,WH_POINTS_CATALOG,WHRosterPoints}=context.window;
 assert.equal(Object.keys(WH_POINTS_CATALOG['death guard'].units).length,36);
 assert.equal(Object.keys(WH_POINTS_CATALOG['death guard'].enhancements).length,30);
 assert.equal(Object.keys(WH_POINTS_CATALOG['adeptus mechanicus'].units).length,39);
+assert.equal(new Set(Object.values(WH_POINTS_CATALOG['adeptus mechanicus'].enhancements).map(item=>item.title)).size,34);
 
 const common=(declared,header,lordPoints)=>`+++++++++++++++++++++++++++++++++++++++++++++++
 + FACTION KEYWORD: Chaos - Death Guard
@@ -77,6 +78,23 @@ for(const [name,cost] of Object.entries({
 const mechanicus=WHRosterPoints.check({units:[{quantity:10,name:'Skitarii Rangers',models:[]}],declared:85,unitLineTotal:85,enhancements:[]},'adeptus mechanicus');
 assert.equal(mechanicus.total,85);
 assert.equal(mechanicus.difference,0);
+
+const mechanicusRoster=WHRosterParser.parse(`FACTION KEYWORD: Imperium - Adeptus Mechanicus
+DETACHMENT: Haloscreed Battle Clade
+TOTAL ARMY POINTS: 840pts
+ENHANCEMENT: Sanctified Ordnance (on Char1: Tech-Priest Manipulus)
+NUMBER OF UNITS: 4
+Char1: 1x Tech-Priest Manipulus (70 pts): Magnarail lance
+Enhancement: Sanctified Ordnance (+10 pts)
+4x Kastelan Robots (320 pts): Incendine combustor, Kastelan fist
+6x Kataphron Breachers (310 pts): Heavy arc rifle, Hydraulic claw
+2x Ironstrider Ballistarii (140 pts): Twin cognis lascannon`);
+assert.equal(mechanicusRoster.faction,'Imperium - Adeptus Mechanicus');
+assert.equal(mechanicusRoster.enhancements[0].ownerStatus,'resolved');
+const mechanicusCheck=WHRosterPoints.check(mechanicusRoster,'adeptus mechanicus');
+assert.equal(mechanicusCheck.total,880,'current total includes current unit size, Enhancement and paid lascannons');
+assert.equal(mechanicusCheck.difference,40);
+assert.equal(mechanicusCheck.enhancements[0].effect,'ranged-range-6');
 
 const unresolved=WHRosterParser.parse(`+ FACTION KEYWORD: Chaos — Death Guard\n+ TOTAL ARMY POINTS: 120pts\n+ ENHANCEMENT: Furnace of Plagues (on Char9: Missing Owner)\n1x Lord of Contagion (120 pts): Manreaper`);
 assert.equal(unresolved.enhancements[0].ownerStatus,'unresolved');
