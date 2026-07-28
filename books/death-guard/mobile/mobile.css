@@ -41,7 +41,7 @@ button, a, [data-term] { touch-action: manipulation; -webkit-tap-highlight-color
 
 .mobile-main > .document { width: 100%; }
 .mobile-main > .document > :is(.section, .content-group, .unit-card) { margin-top: 0; }
-.mobile-main :is(.unit-part, .detachment-part) { scroll-margin-top: calc(var(--header-height) + 10px); }
+.mobile-main :is(.unit-part, .detachment-part) { scroll-margin-top: calc(var(--header) + env(safe-area-inset-top) + 10px); }
 
 .related-rules {
   margin-top: 12px;

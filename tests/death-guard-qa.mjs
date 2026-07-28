@@ -248,6 +248,8 @@ check('service worker registration is protocol gated',read('scripts/app.js').inc
 check('weapon rows receive explicit table semantics',read('scripts/ui-controllers.js').includes("row.setAttribute('role','row')"));
 check('mobile header disables expensive backdrop blur',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.app-header\s*\{[^}]*backdrop-filter:\s*none/.test(read('styles/layout.css')));
 check('mobile popups disable expensive backdrop blur',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.popup-layer:has\(\.term-popup\)::before\s*\{[^}]*backdrop-filter:\s*none/.test(read('styles/popups.css')));
+const mobileCss=read('mobile/mobile.css');
+check('mobile section jumps clear the fixed header and safe area',mobileCss.includes('scroll-margin-top: calc(var(--header) + env(safe-area-inset-top) + 10px)')&&!mobileCss.includes('var(--header-height)'));
 check('mobile controls have no delayed decorative motion',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.toc-panel\s*\{[^}]*transition:\s*none/.test(read('styles/navigation.css'))&&/@media\s*\(max-width:\s*800px\)[\s\S]*?\.term-popup\s*\{[^}]*animation:\s*none/.test(read('styles/popups.css')));
 check('safe mobile controls activate on touch-down',navigation.includes("this.menuButton.addEventListener('touchstart'")&&popups.includes("const close=event.target.closest('[data-popup-close]')")&&fullEntry.includes("event.target.closest('[data-full-entry-close]')"));
 check('static content cards do not impersonate controls',!contentCss.includes('.rule-card:hover')&&!contentCss.includes('.enhancement:hover')&&!contentCss.includes('.glossary-card:hover')&&!contentCss.includes('[data-term]:active'));

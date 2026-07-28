@@ -127,7 +127,7 @@ function page(route) {
   <link rel="stylesheet" href="../styles/content.css?v=28">
   <link rel="stylesheet" href="../styles/popups.css?v=17">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=6">
-  <link rel="stylesheet" href="./mobile.css?v=7">
+  <link rel="stylesheet" href="./mobile.css?v=8">
 </head>
 <body>
   <header class="app-header" id="appHeader">
