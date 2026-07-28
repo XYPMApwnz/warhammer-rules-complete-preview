@@ -14,17 +14,17 @@
   const navigation=new window.DGNavigation();
   const popups=new window.DGPopups(terms);
   const glossary=new window.DGGlossarySearch();
-  const journey=new window.DGJourney(navigation,popups,glossary);
+  const relatedRules=window.AMRelatedRules?.install();
+  const journey=new window.DGJourney(navigation,popups,glossary,relatedRules);
   new window.DGTheme();
   new window.DGTableAccessibility();
   new window.AMNavigationSearch();
   new window.AMGlobalSearch(navigation,popups,glossary);
   new window.AMDoctrina();
-  window.AMRelatedRules?.install();
   document.querySelector('[data-header-home]')?.addEventListener('click',event=>{event.preventDefault();navigation.go('start');});
   window.DG_APP=Object.freeze({navigation,popups,glossary,journey});
   const returnRecord=window.WHGlossaryReturn?.read();
-  if(window.WHGlossaryReturn?.matchesCurrent(returnRecord)&&returnRecord.popupIds?.length){
+  if(window.WHGlossaryReturn?.shouldRestoreAutomatically(returnRecord)&&returnRecord.popupIds?.length){
     const scope=document.getElementById(returnRecord.unitId)||document;
     const root=[...scope.querySelectorAll('[data-term]')].find(node=>node.dataset.term===returnRecord.rootTerm)||null;
     requestAnimationFrame(()=>{window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);requestAnimationFrame(()=>{popups.restore(returnRecord.popupIds,{root,focus:false});window.WHGlossaryReturn.clear();});});

@@ -2,9 +2,10 @@
   'use strict';
 
   class JourneyController{
-    constructor(navigation,popups){
+    constructor(navigation,popups,glossary=null,overlay=null){
       this.navigation=navigation;
       this.popups=popups;
+      this.overlay=overlay;
       this.history=[];
       this.sequence=0;
       this.backButton=document.getElementById('backButton');
@@ -20,6 +21,7 @@
       const target=document.getElementById(targetId);if(!target)return;
       const triggerId=this.ensureId(trigger,'journey-trigger');
       const root=this.popups.rootElement();if(root)this.ensureId(root,'journey-popup-root');
+      const overlay=this.overlay?.snapshot?.(root)||null;
       const popupCard=trigger.closest('.term-popup');
       this.history.push({
         triggerId,
@@ -27,6 +29,7 @@
         navId:this.navigation.active,
         popupIds:this.popups.snapshot(),
         popupRootId:root?.id||'',
+        overlay,
         popupAction:popupCard?{
           level:Number(popupCard.dataset.popupIndex),
           key:trigger.dataset.actionKey||'',
@@ -36,6 +39,7 @@
         type
       });
       this.backButton.hidden=false;
+      if(overlay)this.overlay.close();
       this.popups.restore([],{focus:false});
       const unit=target.closest('.unit-card');
       this.navigation.navigate(unit?.id||targetId,target);
@@ -53,18 +57,17 @@
       element.classList.remove('return-highlight');void element.offsetWidth;element.classList.add('return-highlight');
       window.setTimeout(()=>element.classList.remove('return-highlight'),2300);
     }
-    back(){
+    async back(){
       const record=this.history.pop();if(!record)return;
       this.backButton.hidden=this.history.length===0;
-      this.navigation.restore(record.navId,record.scrollY,()=>{
-        const popupRoot=document.getElementById(record.popupRootId||record.triggerId);
+      await new Promise(resolve=>this.navigation.restore(record.navId,record.scrollY,resolve));
+        const popupRoot=record.overlay?await this.overlay?.restore?.(record.overlay):document.getElementById(record.popupRootId||record.triggerId);
         this.popups.restore(record.popupIds,{root:popupRoot,focus:false});
         this.popups.reposition();
         const trigger=document.getElementById(record.triggerId)||this.findRestoredAction(record.popupAction);
         const restoredPopup=trigger?.closest?.('.term-popup');
         this.highlight(restoredPopup||trigger);
         if(trigger)trigger.focus({preventScroll:true});else if(record.popupIds.length)this.popups.focusTop();
-      });
     }
   }
 

@@ -42,8 +42,8 @@
       const button=event.target.closest('[data-kind]');if(button){kind=button.dataset.kind;filter();}
     });
     document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!layer.hidden)close();});
-    async function open(current){
-      unit=current;kind='stratagems';title.textContent=current.querySelector('.unit-name')?.textContent.trim()||'Related rules';
+    async function open(current,state={}){
+      unit=current;kind=state.kind||'stratagems';title.textContent=current.querySelector('.unit-name')?.textContent.trim()||'Related rules';
       layer.hidden=false;document.documentElement.classList.add('related-rules-open');
       if(!content){
         try{
@@ -73,7 +73,10 @@
           body.replaceChildren(message,retry);return;
         }
       }
+      if(state.detachment&&sections.some(section=>section.dataset.detachment===state.detachment))detachment=state.detachment;
       filter();
+      if(filterMenu)filterMenu.querySelector('summary span').textContent=filterMenu.querySelector('[data-detachment="'+CSS.escape(detachment)+'"]')?.textContent||filterMenu.querySelector('summary span').textContent;
+      layer.querySelector('.related-rules-dialog').scrollTop=state.scrollTop||0;
     }
     for(const current of document.querySelectorAll('.unit-card')){
       const keywords=[...current.querySelectorAll('.unit-part')].find(part=>part.id.endsWith('-keywords'));
@@ -81,6 +84,22 @@
       const button=document.createElement('button');button.type='button';button.className='related-rules-trigger';button.textContent='Stratagems & Enhancements';
       button.addEventListener('click',()=>open(current));keywords.after(button);
     }
+    return{
+      layer,close,
+      snapshot(origin){
+        if(layer.hidden||!layer.contains(origin))return null;
+        const card=origin.closest('[data-rule-id]'),termId=origin.dataset.term||'';
+        const matches=card&&termId?[...card.querySelectorAll('[data-term="'+CSS.escape(termId)+'"]')]:[];
+        return{type:'related-rules',unitId:unit?.id||'',detachment,kind,scrollTop:layer.querySelector('.related-rules-dialog').scrollTop,ruleId:card?.dataset.ruleId||'',termId,occurrence:Math.max(0,matches.indexOf(origin))};
+      },
+      async restore(state){
+        const restoredUnit=document.getElementById(state?.unitId);if(!restoredUnit)return null;
+        await open(restoredUnit,state);
+        const card=layer.querySelector('[data-rule-id="'+CSS.escape(state.ruleId||'')+'"]');
+        const matches=card&&state.termId?[...card.querySelectorAll('[data-term="'+CSS.escape(state.termId)+'"]')]:[];
+        return matches[state.occurrence]||matches[0]||null;
+      }
+    };
   }
 
   for(const card of document.querySelectorAll('.stratagem')){
@@ -116,13 +135,13 @@
   });
   const fullEntry=new window.DGFullEntry(window.WH40K_GLOSSARY);
   const popups=new window.DGPopups(terms,fullEntry);
-  new window.DGJourney(navigation,popups);
+  const relatedRules=initRelatedRules();
+  new window.DGJourney(navigation,popups,null,relatedRules);
   new window.DGTheme();
   new window.DGTableAccessibility();
-  initRelatedRules();
   window.DG_APP=Object.freeze({navigation,popups,fullEntry});
   const returnRecord=window.WHGlossaryReturn?.read();
-  if(window.WHGlossaryReturn?.matchesCurrent(returnRecord)){
+  if(window.WHGlossaryReturn?.shouldRestoreAutomatically(returnRecord)){
     const scope=document.getElementById(returnRecord.unitId)||document;
     const root=[...scope.querySelectorAll('[data-term]')].find(node=>node.dataset.term===returnRecord.rootTerm)||null;
     requestAnimationFrame(()=>{window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);requestAnimationFrame(()=>{if(returnRecord.popupIds?.length)popups.restore(returnRecord.popupIds,{root,focus:false});window.WHGlossaryReturn.clear();});});
