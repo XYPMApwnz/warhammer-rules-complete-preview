@@ -114,6 +114,9 @@ assert(!generatedReader.includes('class="rule-code"'),'rule codes must not be vi
 assert(!generatedReader.includes('<h3><button class="term'),'rule titles must not open definitions of themselves');
 assert(!generatedReader.includes('Introduction 2')&&!generatedReader.includes('Introduction 7'),'introduction prose must not become fake numbered rules');
 const visibleReader=generatedReader.replace(/<script[\s\S]*?<\/script>/g,' ').replace(/<style[\s\S]*?<\/style>/g,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
+for(const artifact of ['1&quot;&quot;','modified to ‘-’ Profiles','start an action Actions','Select Battle Size table Select Battle Size'])assert(!generatedReader.includes(artifact),`visible text corruption remains: ${artifact}`);
+assert(generatedReader.includes('>Select Battle Size</button> table'),'Select Battle Size must be linked without duplicating its title');
+assert(generatedReader.includes('>Resolve Attacks</button> step'),'Resolve Attacks must be linked without duplicating its title');
 for(const faq of faqs){
   assert.equal((generatedReader.match(new RegExp(`id="${faq.id}"`,'g'))||[]).length,1,`${faq.id} must render exactly once`);
   assert(generatedReader.includes('Official FAQ &middot; Rules Appendix &middot; page 88'),'official FAQ source label is missing');

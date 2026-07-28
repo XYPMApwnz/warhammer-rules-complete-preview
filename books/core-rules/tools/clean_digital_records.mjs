@@ -28,6 +28,7 @@ const modifiers=byCode.get('02.02.01');
 if(modifiers){
   modifiers.title='Modifiers';
   if(!modifiers.text.startsWith('WHAT ARE MODIFIERS?'))modifiers.text=`WHAT ARE MODIFIERS?\nMany rules in the game modify a value, characteristic or roll elsewhere in the game. A rule that does so is known as a modifier. A value that has been changed is a modified rule (for example, a modified characteristic, modified roll or modified value).\nOne of the most common ways for modifiers to be presented is as +1 or -1 to a characteristic, roll or value.\nIf a rule has +1 to a characteristic, it improves it by the value after the \u2018+\u2019 symbol. For example, \u2018This weapon has +1 AP\u2019 would improve an AP characteristic of -2 to -3.\nIf a rule has -1 to a characteristic, it worsens it by the value after the \u2018-\u2019 symbol. For example, \u2018This unit has -1 Sv\u2019 would worsen a Sv characteristic of 3+ to 4+.\n\n${modifiers.text}`;
+  modifiers.text=modifiers.text.replaceAll('1""','1"');
 }
 const torrentRestriction=byCode.get('24.37.01');
 if(torrentRestriction)torrentRestriction.title='Torrent Restrictions';

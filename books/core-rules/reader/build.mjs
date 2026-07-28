@@ -167,14 +167,16 @@ function linkedText(value,seen=new Set(),excludedId=''){
       continue;
     }
     const title=sectionReference?.label||chapterReference?.label||term.title?.en||code;
-    const duplicate=new RegExp(`\\[?(${escapeRegExp(title)})\\]?(\\s+rule)?\\s*$`,'i').exec(before);
+    const singular=title.endsWith('s')?title.slice(0,-1):title;
+    const duplicate=new RegExp(`\\[?(${escapeRegExp(title)}|${escapeRegExp(singular)})\\]?(\\s+(?:rule|table|step))?\\s*$`,'i').exec(before);
     if(duplicate){
       html+=linkedTerms(before.slice(0,duplicate.index),seen,excludedId);
       html+=termButton(term,duplicate[1],'rule-reference');
       if(duplicate[2])html+=escapeHtml(duplicate[2]);
     }else{
       html+=linkedTerms(before,seen,excludedId);
-      html+=termButton(term,title,'rule-reference');
+      const button=termButton(term,title,'rule-reference');
+      html+=match[0].startsWith('(')?`(${button})`:button;
     }
     seen.add(term.id);
     cursor=match.index+match[0].length;
