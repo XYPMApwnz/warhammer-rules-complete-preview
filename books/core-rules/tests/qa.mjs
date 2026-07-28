@@ -241,6 +241,7 @@ for(const id of routeIds)assert(readerIndex.includes(`href="${id}.html"`),`reade
 assert(readerIndex.includes('id="searchDialog"')&&readerIndex.includes('id="searchButton"'),'reader shell must expose local search');
 const readerApp=fs.readFileSync(path.join(readerRoot,'app.js'),'utf8');
 assert(readerApp.includes("fetch('search-index.json')")&&readerApp.includes("event.key.toLowerCase() === 'k'"),'reader search must load locally and support Ctrl/Cmd+K');
+assert(readerIndex.includes('id="popupReturn"')&&readerApp.includes('restorePopup(returnRecord)'),'full-rule targets must expose a return to their originating popup');
 assert(readerIndex.includes('assets.warhammer-community.com')&&readerIndex.includes('Official GW PDF ↗'),'reader Start must promote the official GW PDF');
 assert(!readerIndex.includes('Wahapedia 11E ↗'),'reader Start must not promote a secondary source');
 const sourcePage=fs.readFileSync(path.join(readerRoot,'movement-phase.html'),'utf8');

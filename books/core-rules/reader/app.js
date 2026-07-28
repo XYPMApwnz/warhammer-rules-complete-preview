@@ -10,6 +10,7 @@
   const summary = document.getElementById('termSummary');
   const full = document.getElementById('termFull');
   const rule = document.getElementById('termRule');
+  const popupReturn = document.getElementById('popupReturn');
   const imageDialog = document.getElementById('imageDialog');
   const imageClose = document.getElementById('imageClose');
   const imagePreview = document.getElementById('imagePreview');
@@ -66,9 +67,16 @@
     showTerm(trigger);
   });
 
-  full.addEventListener('click', () => {
+  function rememberPopup(){
     const triggers=[...document.querySelectorAll('[data-term]')];
     window.WHGlossaryReturn?.save({termId:dialog.dataset.openTerm,triggerIndex:termOpener?triggers.indexOf(termOpener):-1});
+    return window.WHGlossaryReturn?.read();
+  }
+  full.addEventListener('click',rememberPopup);
+  rule.addEventListener('click', () => {
+    const record=rememberPopup();
+    if(record){popupReturn.href=record.path;popupReturn.hidden=false;}
+    dialog.close();
   });
 
   menu.addEventListener('click', () => drawer(!body.classList.contains('nav-open')));
@@ -131,13 +139,26 @@
     pageTargets.forEach(target=>observer.observe(target));
   }
 
-  const returnRecord=window.WHGlossaryReturn?.read();
-  if(window.WHGlossaryReturn?.matchesCurrent(returnRecord))requestAnimationFrame(()=>{
+  function restorePopup(returnRecord){requestAnimationFrame(()=>{
     const triggers=[...document.querySelectorAll('[data-term]')];
     const indexed=triggers[returnRecord.triggerIndex];
     const trigger=indexed?.dataset.term===returnRecord.termId?indexed:triggers.find(node=>node.dataset.term===returnRecord.termId);
     window.scrollTo(returnRecord.scrollX||0,returnRecord.scrollY||0);
-    requestAnimationFrame(()=>{if(trigger)showTerm(trigger);window.WHGlossaryReturn.clear();});
+    requestAnimationFrame(()=>{if(trigger)showTerm(trigger);popupReturn.hidden=true;window.WHGlossaryReturn.clear();});
+  });}
+
+  const returnRecord=window.WHGlossaryReturn?.read();
+  if(returnRecord){
+    popupReturn.href=returnRecord.path;
+    if(window.WHGlossaryReturn.matchesCurrent(returnRecord))restorePopup(returnRecord);
+    else popupReturn.hidden=false;
+  }
+  popupReturn.addEventListener('click',event=>{
+    const record=window.WHGlossaryReturn?.read();
+    if(!window.WHGlossaryReturn?.matchesCurrent(record))return;
+    event.preventDefault();
+    history.pushState(null,'',record.path);
+    restorePopup(record);
   });
 
   if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('../../../service-worker.js');
