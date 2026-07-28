@@ -1,0 +1,430 @@
+{
+  "schema": 1,
+  "faction": "Dark Angels",
+  "stratagems": {
+    "searing-bursts": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-hellblaster-squad"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "unit-has-shot"
+      ]
+    },
+    "no-sacrifice-too-great": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "revelation-of-guilt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "skyborne-surveillance": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "RAVENWING",
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "unit-has-shot"
+      ]
+    },
+    "wings-of-shadow": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "RAVENWING",
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "we-are-vengeance": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "RAVENWING",
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "enemy-unit-that-targeted-this-unit-has-shot",
+        "not-within-engagement-range"
+      ]
+    },
+    "exacting-punishment": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "CHAPLAIN"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-attack"
+      ]
+    },
+    "terrifying-zeal": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "CHAPLAIN"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "ended-charge-move"
+      ]
+    },
+    "wages-of-cowardice": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "CHAPLAIN"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "enemy-ended-fall-back-after-engagement",
+        "not-within-engagement-range"
+      ]
+    },
+    "overpowering-exaction": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "knights-of-iron": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "RAVENWING"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "lion-s-blade-task-force-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "illuminating-fire": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "RAVENWING"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "strength-in-unity": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "inescapable-wrath": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "DEATHWING",
+                  "INFANTRY"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "DEATHWING",
+                  "WALKER"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "within-6-of-enemy-unit",
+        "eligible-to-declare-charge"
+      ]
+    },
+    "inescapable-justice": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "CHARACTER"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "on-battlefield",
+        "oath-of-moment-target-destroyed"
+      ]
+    },
+    "tactical-mastery": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "lion-s-will": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "within-engagement-range"
+      ]
+    },
+    "relics-of-the-dark-age": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "INFANTRY"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "MOUNTED"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot"
+      ]
+    },
+    "wrath-of-the-rock-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "leonine-aggression": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "within-3-of-enemy-or-deathwing-within-6",
+        "eligible-to-declare-charge"
+      ]
+    }
+  }
+}

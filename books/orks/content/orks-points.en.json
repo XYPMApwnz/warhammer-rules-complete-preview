@@ -1,0 +1,1666 @@
+{
+  "schema": 1,
+  "source": {
+    "title": "BSData Warhammer 40,000 11th Edition · Orks",
+    "repository": "https://github.com/BSData/wh40k-11e",
+    "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+    "revision": "2",
+    "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/Orks.json",
+    "snapshotSha256": "CEE42FD82C52B24525D4C9AC48B8B88E825E6DBF551F57C67941D39301703235"
+  },
+  "units": [
+    {
+      "id": "unit-attack-fighta",
+      "title": "Attack Fighta",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 100
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-bannernob",
+      "title": "Bannernob",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 50
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-battlewagon",
+      "title": "Battlewagon",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 145
+        }
+      ],
+      "paidWargear": [
+        {
+          "name": "’Ard Case",
+          "value": 15,
+          "modifiers": []
+        }
+      ]
+    },
+    {
+      "id": "unit-beast-snagga-boyz",
+      "title": "Beast Snagga Boyz",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "10 models",
+          "value": 90
+        },
+        {
+          "label": "20 models",
+          "value": 170
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-beastboss",
+      "title": "Beastboss",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-beastboss-on-squigosaur",
+      "title": "Beastboss on Squigosaur",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 95
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-big-gunz",
+      "title": "Big Gunz",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-big-mek",
+      "title": "Big Mek",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-big-mek-dakkarig",
+      "title": "Big Mek Dakkarig",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 115
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-big-mek-in-mega-armour",
+      "title": "Big Mek in Mega Armour",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-big-mek-on-warbike",
+      "title": "Big Mek on Warbike",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 105
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-big-mek-with-kustom-force-field",
+      "title": "Big Mek with Kustom Force Field",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 55
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-big-mek-with-shokk-attack-gun",
+      "title": "Big Mek with Shokk Attack Gun",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        },
+        {
+          "label": "2+ unit: 1 models",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-big-trakk",
+      "title": "Big Trakk",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 90
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-biged-bossbunka",
+      "title": "Big'ed Bossbunka",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 135
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-bigboss",
+      "title": "Bigboss",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 55
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-blitza-bommer",
+      "title": "Blitza-bommer",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 105
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-boomdakka-snazzwagon",
+      "title": "Boomdakka Snazzwagon",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-boss-snikrot",
+      "title": "Boss Snikrot",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 75
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-boss-zagstruk",
+      "title": "Boss Zagstruk",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 90
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-boyz",
+      "title": "Boyz",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "10 models",
+          "value": 75
+        },
+        {
+          "label": "4+ unit: 10 models",
+          "value": 85
+        },
+        {
+          "label": "20 models",
+          "value": 160
+        },
+        {
+          "label": "4+ unit: 20 models",
+          "value": 170
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-breaka-boyz",
+      "title": "Breaka Boyz",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "6 models",
+          "value": 125
+        },
+        {
+          "label": "3+ unit: 6 models",
+          "value": 135
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-burna-boyz",
+      "title": "Burna Boyz",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 60
+        },
+        {
+          "label": "10 models",
+          "value": 120
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-burna-bommer",
+      "title": "Burna-bommer",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 115
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-chinork-warkopta",
+      "title": "Chinork Warkopta",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 105
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-da-red-gobbo",
+      "title": "Da Red Gobbo",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 40
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-dakkajet",
+      "title": "Dakkajet",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 125
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-deff-dread",
+      "title": "Deff Dread",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 110
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 120
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-deff-rolla-battle-fortress",
+      "title": "Deff Rolla Battle Fortress",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 250
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-deffkilla-wartrike",
+      "title": "Deffkilla Wartrike",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-deffkoptas",
+      "title": "Deffkoptas",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 75
+        },
+        {
+          "label": "6 models",
+          "value": 140
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-deffkoptas-with-big-shootas",
+      "title": "Deffkoptas with Big Shootas",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 130
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-fighta-bommer",
+      "title": "Fighta-Bommer",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 100
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-flash-gitz",
+      "title": "Flash Gitz",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 75
+        },
+        {
+          "label": "3+ unit: 5 models",
+          "value": 85
+        },
+        {
+          "label": "10 models",
+          "value": 150
+        },
+        {
+          "label": "3+ unit: 10 models",
+          "value": 160
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-gargantuan-squiggoth",
+      "title": "Gargantuan Squiggoth",
+      "status": "Current",
+      "sourceLayer": "imperial-armour",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 440
+        },
+        {
+          "label": "2+ unit: 1 models",
+          "value": 490
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-ghazghkull-thraka",
+      "title": "Ghazghkull Thraka",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 235
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-gorkanaut",
+      "title": "Gorkanaut",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 255
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 275
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-gretchin",
+      "title": "Gretchin",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "11 models",
+          "value": 45
+        },
+        {
+          "label": "22 models",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-grot-bomm-launcha",
+      "title": "Grot Bomm Launcha",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 50
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-grot-mega-tank",
+      "title": "Grot Mega-Tank",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 110
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-grot-tanks",
+      "title": "Grot Tanks",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "4 models",
+          "value": 155
+        },
+        {
+          "label": "8 models",
+          "value": 310
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-hunta-rig",
+      "title": "Hunta Rig",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 125
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kannonwagon",
+      "title": "Kannonwagon",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 115
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kaptin-badrukk",
+      "title": "Kaptin Badrukk",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kill-krusha",
+      "title": "Kill Krusha",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 230
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kill-rig",
+      "title": "Kill Rig",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 145
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kill-tank",
+      "title": "Kill Tank",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 295
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-killa-kans",
+      "title": "Killa Kans",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 120
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 130
+        },
+        {
+          "label": "6 models",
+          "value": 240
+        },
+        {
+          "label": "3+ unit: 6 models",
+          "value": 250
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kommandos",
+      "title": "Kommandos",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "10 models",
+          "value": 120
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kustom-boosta-blasta",
+      "title": "Kustom Boosta-blasta",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-lifta-wagon",
+      "title": "Lifta Wagon",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 135
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-lootas",
+      "title": "Lootas",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 50
+        },
+        {
+          "label": "3+ unit: 5 models",
+          "value": 60
+        },
+        {
+          "label": "10 models",
+          "value": 100
+        },
+        {
+          "label": "3+ unit: 10 models",
+          "value": 110
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-mad-dok-grotsnik",
+      "title": "Mad Dok Grotsnik",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 65
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-mega-dread",
+      "title": "Mega Dread",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 225
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-meganobz",
+      "title": "Meganobz",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 60
+        },
+        {
+          "label": "3+ unit: 2 models",
+          "value": 80
+        },
+        {
+          "label": "3 models",
+          "value": 90
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 110
+        },
+        {
+          "label": "4 models",
+          "value": 150
+        },
+        {
+          "label": "3+ unit: 4 models",
+          "value": 170
+        },
+        {
+          "label": "5 models",
+          "value": 150
+        },
+        {
+          "label": "3+ unit: 5 models",
+          "value": 170
+        },
+        {
+          "label": "6 models",
+          "value": 180
+        },
+        {
+          "label": "3+ unit: 6 models",
+          "value": 200
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-megatrakk-scrapjet",
+      "title": "Megatrakk Scrapjet",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 75
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-mek",
+      "title": "Mek",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 55
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-mek-gunz",
+      "title": "Mek Gunz",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 45
+        },
+        {
+          "label": "3+ unit: 2 models",
+          "value": 55
+        },
+        {
+          "label": "3 models",
+          "value": 135
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 145
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-meka-dread",
+      "title": "Meka-Dread",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 210
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-mekboy-workshop",
+      "title": "Mekboy Workshop",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-morkanaut",
+      "title": "Morkanaut",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 270
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 290
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-mozrog-skragbad",
+      "title": "Mozrog Skragbad",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 125
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-nobz",
+      "title": "Nobz",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 105
+        },
+        {
+          "label": "3+ unit: 5 models",
+          "value": 115
+        },
+        {
+          "label": "10 models",
+          "value": 210
+        },
+        {
+          "label": "3+ unit: 10 models",
+          "value": 220
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-nobz-on-warbikes",
+      "title": "Nobz on Warbikes",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 125
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-painboss",
+      "title": "Painboss",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-painboy",
+      "title": "Painboy",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 90
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-painboy-on-warbike",
+      "title": "Painboy on Warbike",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 85
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-rukkatrukk-squigbuggy",
+      "title": "Rukkatrukk Squigbuggy",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 85
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-shokkjump-dragsta",
+      "title": "Shokkjump Dragsta",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-skorchas",
+      "title": "Skorchas",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-squiggoth",
+      "title": "Squiggoth",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 150
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-squighog-boyz",
+      "title": "Squighog Boyz",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "4 models",
+          "value": 140
+        },
+        {
+          "label": "8 models",
+          "value": 270
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-stompa",
+      "title": "Stompa",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 600
+        },
+        {
+          "label": "2+ unit: 1 models",
+          "value": 700
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-stormboyz",
+      "title": "Stormboyz",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 65
+        },
+        {
+          "label": "10 models",
+          "value": 130
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-tankbustas",
+      "title": "Tankbustas",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "6 models",
+          "value": 125
+        },
+        {
+          "label": "3+ unit: 6 models",
+          "value": 135
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-trukk",
+      "title": "Trukk",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 55
+        },
+        {
+          "label": "4+ unit: 1 models",
+          "value": 65
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-ufthak-blackhawk",
+      "title": "Ufthak Blackhawk",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-warbikers",
+      "title": "Warbikers",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 60
+        },
+        {
+          "label": "6 models",
+          "value": 120
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-warboss",
+      "title": "Warboss",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 85
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-warboss-in-mega-armour",
+      "title": "Warboss in Mega Armour",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-warboss-on-warbike",
+      "title": "Warboss on Warbike",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 75
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-warbuggies",
+      "title": "Warbuggies",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-wartrakk",
+      "title": "Wartrakk",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 60
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-wazbom-blastajet",
+      "title": "Wazbom Blastajet",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 165
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-wazdakka-gutsmek",
+      "title": "Wazdakka Gutsmek",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 175
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-weirdboy",
+      "title": "Weirdboy",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 65
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-wurrboy",
+      "title": "Wurrboy",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 60
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-zodgrod-wortsnagga",
+      "title": "Zodgrod Wortsnagga",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "enhancement-blitzkaptin",
+      "title": "Blitzkaptin",
+      "detachment": "Blitz Brigade",
+      "value": 25,
+      "text": "Orks Character model only. After both players have deployed their armies, if the bearer’s unit (or any Transport it is embarked within) is on the battlefield, select up to three Orks Vehicle units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-runnin-boots",
+      "title": "Runnin' Boots",
+      "detachment": "Blitz Brigade",
+      "value": 10,
+      "text": "Orks Infantry Character model only. Each time you make a Charge roll for the bearer’s unit, if that unit disembarked from a Transport this turn, add 1 to the result.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-supercharged-squig-oil",
+      "title": "Supercharged Squig Oil",
+      "detachment": "Blitz Brigade",
+      "value": 10,
+      "text": "Mek model only. Each time the bearer uses its Mekaniak ability, until the end of the turn, you can re-roll Charge rolls for the selected Vehicle model’s unit.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-tuff-git",
+      "title": "Tuff Git",
+      "detachment": "Blitz Brigade",
+      "value": 5,
+      "text": "Orks Infantry Character model only. At the end of a phase in which the bearer’s unit disembarked from a Transport, if that unit is Battle-shocked, it is no longer Battle-shocked.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-eadstompa",
+      "title": "'Eadstompa",
+      "detachment": "Bully Boyz",
+      "value": 10,
+      "text": "Infantry Warboss model only. Each time the bearer makes an attack that targets a unit that is below its Starting Strength, re-roll a Wound roll of 1. If that unit is Below Half-strength, you can re-roll the Wound roll instead.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-big-gob",
+      "title": "Big Gob",
+      "detachment": "Bully Boyz",
+      "value": 20,
+      "text": "Infantry Warboss model only. At the start of the Fight phase, select one enemy unit within Engagement range of the bearer. That unit must take a Battle-shock test, and when doing so, subtract 1 from the result.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-da-biggest-boss",
+      "title": "Da Biggest Boss",
+      "detachment": "Bully Boyz",
+      "value": 15,
+      "text": "Infantry Warboss model only. Add 2 to the bearer's Wounds characteristic.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-tellyporta",
+      "title": "Tellyporta",
+      "detachment": "Bully Boyz",
+      "value": 25,
+      "text": "Warboss In Mega Armour model only. Models in the bearer's unit have the Deep Strike ability.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-glory-hog",
+      "title": "Glory Hog",
+      "detachment": "Da Big Hunt",
+      "value": 30,
+      "text": "Beastboss On Squigosaur model only. Models in the bearer's unit have the Scouts 9\" ability.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-proper-killy",
+      "title": "Proper Killy",
+      "detachment": "Da Big Hunt",
+      "value": 15,
+      "text": "Beast Snagga model only. Add 1 to the Damage characteristic of melee weapons equipped by the bearer.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-skrag-every-stash",
+      "title": "Skrag Every Stash!",
+      "detachment": "Da Big Hunt",
+      "value": 25,
+      "text": "Beast Snagga model only. At the end of your Command phase, if the bearer is within range of an objective marker you control, that objective market remains under your control, even if you have no models within range of it, until your opponent controls it at the start of end of any turn.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-surly-as-a-squiggoth",
+      "title": "Surly As A Squiggoth",
+      "detachment": "Da Big Hunt",
+      "value": 20,
+      "text": "Beastboss On Squigosaur model only. While the bearer is leading a unit, each time an attack targets that unit, if the Strength characteristic of that attack is greater than the Toughness characteristic of that unit, subtract 1 from the Wound roll.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-gitfinder-gogglez",
+      "title": "Gitfinder Gogglez",
+      "detachment": "Dread Mob",
+      "value": 10,
+      "text": "Mek model only. Ranged weapons equipped by models in the bearer's unit have the [IGNORES COVER] ability.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-press-it-fasta",
+      "title": "Press It Fasta!",
+      "detachment": "Dread Mob",
+      "value": 35,
+      "text": "Mek model only. Each time the bearer's unit is selected to shoot, when rolling to determine which ability that unit's weapons gain from the Try Dat Button! Detachment rule, roll one additional D6; until the end of the phase, ranged weapons equipped by models in that unit gain both Button Effects generated by those rolls. If a duplicate Button Effect is rolled, it has no additional effect.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-smoky-gubbinz",
+      "title": "Smoky Gubbinz",
+      "detachment": "Dread Mob",
+      "value": 15,
+      "text": "Mek model only. Models in the bearer's unit have the Stealth ability.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-supa-glowy-fing",
+      "title": "Supa-glowy Fing",
+      "detachment": "Dread Mob",
+      "value": 20,
+      "text": "Mek model only. In your Command phase, select one enemy unit within 18\" and visible to the bearer, then roll one D6: on a 1-2, that enemy unit must take a Battle-shock test; on a 3-4, that enemy unit suffers D3 mortal wounds; on a 5-6, until the start of your next Command phase, each time a model in that enemy unit makes an attack, subtract 1 from the Hit roll.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-bionik-workshop",
+      "title": "Bionik Workshop",
+      "detachment": "Freebooter Krew",
+      "value": 15,
+      "text": "Big Mek or Painboy model only. At the start of the battle, roll one D3 and compare the result to the list below. Until the end of the battle, models in the bearer’s unit have that bioniks ability.\n1. Bionik Legs: Add 2\" to the Move characteristic of this model.\n2. Bionik Arms: Add 1 to the Strength characteristic of melee weapons equipped by this model.\n3. Bionik Bonce: Improve the Weapon Skill characteristic of melee weapons equipped by this model by 1.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-da-kaptin",
+      "title": "Da Kaptin",
+      "detachment": "Freebooter Krew",
+      "value": 10,
+      "text": "Warboss model only. Once per battle round, at the start of any phase, you can select one friendly Orks unit that is Battle-shocked and within 12\" of the bearer. That unit suffers D3 mortal wounds and it is no longer Battle-shocked.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-git-spotter-squig",
+      "title": "Git-spotter Squig",
+      "detachment": "Freebooter Krew",
+      "value": 20,
+      "text": "Orks model only. Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-razgits-magik-map",
+      "title": "Razgit's Magik Map",
+      "detachment": "Freebooter Krew",
+      "value": 25,
+      "text": "Orks model only. After both players have deployed their armies, select up to three Orks Infantry units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-bloodthirsty-belligerence",
+      "title": "Bloodthirsty Belligerence",
+      "detachment": "Green Tide",
+      "value": 15,
+      "text": "Orks Infantry model only. While the bearer is leading a unit, you can re-roll Advance rolls made for that unit. While that unit contains 10 or more models, you can re-roll Charge rolls made for that unit as well.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-brutal-but-kunnin",
+      "title": "Brutal But Kunnin'",
+      "detachment": "Green Tide",
+      "value": 25,
+      "text": "Orks Infantry model only. In your Command phase, if the bearer is on the battlefield (or is embarked within a Transport that is on the battlefield), roll one D6, adding 2 to the result if the bearer's unit contains 10 or more models: on a 5+, you gain 1 CP.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-ferocious-show-off",
+      "title": "Ferocious Show Off",
+      "detachment": "Green Tide",
+      "value": 10,
+      "text": "Orks Infantry model only. Each time the bearer fights, while resolving those attacks, add 1 to the Strength characteristic of the bearer's melee weapons. If the bearer's unit contains 10 or more models, while resolving those attacks, add 3 to the Strength characteristic instead.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-raucous-warcaller",
+      "title": "Raucous Warcaller",
+      "detachment": "Green Tide",
+      "value": 20,
+      "text": "Orks Infantry model only. While the bearer is leading a unit, that unit always counts as containing 10 or more models for the purposes of your Detachment rule and any Stratagems you use.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-fasta-than-yooz",
+      "title": "Fasta Than Yooz",
+      "detachment": "Kult of Speed",
+      "value": 35,
+      "text": "Orks Infantry model only. Each time the bearer's unit disembarks from a Transport after that Transport has made a Normal move, the bearer's unit is still eligible to declare a charge this turn.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-speed-makes-right",
+      "title": "Speed Makes Right",
+      "detachment": "Kult of Speed",
+      "value": 25,
+      "text": "Orks model only. In your Command phase, if the bearer (or a Transport the bearer is embarked within) is within 9\" of one or more enemy units, roll one D6; on a 3+, you gain 1CP.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-squig-hide-tyres",
+      "title": "Squig-hide Tyres",
+      "detachment": "Kult of Speed",
+      "value": 15,
+      "text": "Deffkilla Wartrike model only. Each time a model in the bearer's unit makes a Consolidation move, it can move up to 6\" instead of up to 3\".",
+      "profile": null
+    },
+    {
+      "id": "enhancement-wazblasta",
+      "title": "Wazblasta",
+      "detachment": "Kult of Speed",
+      "value": 10,
+      "text": "Deffkilla Wartrike model only. In your Shooting phase, after the bearer's unit has shot, if it is not within Engagement Range of one or more enemy units, it can make a Normal move of up to 6\". If it does, until the end of the turn, it is not eligible to declare a charge.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-da-gobshot-thunderbuss",
+      "title": "Da Gobshot Thunderbuss",
+      "detachment": "More Dakka!",
+      "value": 15,
+      "text": "ORKS INFANTRY model only. This model’s ranged attacks have:\n- [DEVASTATING WOUNDS].\n- [HAZARDOUS].",
+      "profile": null
+    },
+    {
+      "id": "enhancement-dead-shiny-shootas",
+      "title": "Dead Shiny Shootas",
+      "detachment": "More Dakka!",
+      "value": 15,
+      "text": "ORKS INFANTRY unit only. This unit’s ranged attacks have:\n- [RAPID FIRE 1].\n- <ins>Or:</ins> If that attack already has [RAPID FIRE], +1 to the value of that [RAPID FIRE] (e.g. [RAPID FIRE 1] becomes [RAPID FIRE 2]).",
+      "profile": null
+    },
+    {
+      "id": "enhancement-boarding-ramps",
+      "title": "Boarding Ramps",
+      "detachment": "Rollin' Deff",
+      "value": 10,
+      "text": "WAGON unit only. When a unit embarked within this unit is selected to make a disembark move, that unit has +1 to charge rolls until the end of the turn.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-targetin-gizmos",
+      "title": "Targetin' Gizmos",
+      "detachment": "Rollin' Deff",
+      "value": 15,
+      "text": "WAGON unit only. While a BIG MEK model is embarked within this unit:\n▪ This unit’s ranged attacks have [IGNORES COVER].\n▪ If the Waaagh! is active for this unit, this unit’s ranged attacks have [SUSTAINED HITS 1].",
+      "profile": null
+    },
+    {
+      "id": "enhancement-dakkamek",
+      "title": "Dakkamek",
+      "detachment": "Speedwaaagh!",
+      "value": 25,
+      "text": "Mek model only. Each time the bearer uses its Mekaniak ability, until the start of your next Command phase, ranged weapons equipped by the selected Vehicle model have the [RAPID FIRE 1] ability",
+      "profile": null
+    },
+    {
+      "id": "enhancement-kustom-shokk-box",
+      "title": "Kustom Shokk Box",
+      "detachment": "Speedwaaagh!",
+      "value": 10,
+      "text": "Deffkilla Wartrike model only. Each time the bearer uses its turbo, its unit can move horizontally through terrain features.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-master-meknologist",
+      "title": "Master Meknologist",
+      "detachment": "Speedwaaagh!",
+      "value": 20,
+      "text": "Big Mek model only. Improve the Ballistic Skill characteristic of the bearer’s ranged weapons by 1.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-supa-burny-fuel",
+      "title": "Supa-burny Fuel",
+      "detachment": "Speedwaaagh!",
+      "value": 15,
+      "text": "Deffkilla Wartrike model only. Change the Attacks characteristic of the bearer’s killa jet – burna weapon to 3D6, and change the Attacks characteristic of the bearer’s killa jet – cutta weapon to 3.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-morks-kunnin",
+      "title": "Mork's Kunnin'",
+      "detachment": "Taktikal Brigade",
+      "value": 20,
+      "text": "ORKS model only. When both players have deployed their armies, you can redeploy up to three friendly ORKS INFANTRY units. When doing so, you can set those units up in strategic reserves, regardless of how many units are already in strategic reserves.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-slippery-git",
+      "title": "Slippery Git",
+      "detachment": "Taktikal Brigade",
+      "value": 15,
+      "text": "INFANTRY WARBOSS model only (excluding MEGA ARMOUR models). This model has Infiltrators and Stealth.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-follow-me-ladz",
+      "title": "Follow Me Ladz",
+      "detachment": "War Horde",
+      "value": 25,
+      "text": "Orks model only. While the bearer is leading a unit, add 2\" to the Move characteristic of models in that unit.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-headwoppas-killchoppa",
+      "title": "Headwoppa’s Killchoppa",
+      "detachment": "War Horde",
+      "value": 20,
+      "text": "Orks model only. Melee weapons equipped by the bearer (excluding Extra Attacks weapons) have the [DEVASTATING WOUNDS] ability.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-kunnin-but-brutal",
+      "title": "Kunnin’ But Brutal",
+      "detachment": "War Horde",
+      "value": 15,
+      "text": "Orks model only. While the bearer is leading a unit, that unit is eligible to shoot and declare a charge in a turn in which it Fell Back.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-supa-cybork-body",
+      "title": "Supa-Cybork Body",
+      "detachment": "War Horde",
+      "value": 15,
+      "text": "Orks model only. The bearer has the Feel No Pain 4+ ability.",
+      "profile": null
+    }
+  ],
+  "audit": {
+    "units": 88,
+    "enhancements": 42
+  }
+}

@@ -104,7 +104,7 @@ check('scroll spy uses cached geometry',!navSource.slice(navSource.indexOf('pick
 check('manual scroll keeps the last crossed descendant active',navSource.includes('lastCrossedDescendant(parent,scrollY)'));
 check('navigation uses the shared explicit target resolver',navSource.includes('WHNavigationTargets.resolve')&&!navSource.includes("querySelector(':scope > .stratagem')")&&!navSource.includes("querySelector('.stratagem')"));
 check('outside click closes the complete popup chain',popupSource.includes("this.ids.length&&!event.target.closest('.term-popup,.full-entry-layer')")&&popupSource.includes('this.closeFrom(0)'));
-check('popup actions inherit their originating unit context',popupSource.includes("contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}")&&popupSource.includes('contextualStatline'));
+check('datasheet actions appear only inside Related Rules',!popupSource.includes('Datasheet & Wargear')&&!popupSource.includes("label:'Statline'")&&popupSource.includes("label:'Open datasheet'")&&popupSource.includes("closest?.('.related-rules-layer')"));
 check('Mega Glossary transitions use the shared return helper',html.includes('../../glossary-return.js?v=2')&&popupSource.includes('WHGlossaryReturn')&&read('scripts/app.js').includes('WHGlossaryReturn'));
 check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
 check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=6"'));
@@ -122,6 +122,7 @@ check('mobile weapon labels stay dynamic',html.includes('data-label="Range"')&&/
 
 const relatedContext={window:{}};
 vm.createContext(relatedContext);
+new vm.Script(read('../shared/related-rules-matcher.js'),{filename:'../shared/related-rules-matcher.js'}).runInContext(relatedContext);
 new vm.Script(read('scripts/related-rules.js'),{filename:'scripts/related-rules.js'}).runInContext(relatedContext);
 const relatedMatcher=relatedContext.window.AMRelatedRules;
 const allStratagems=allDetachments.flatMap(detachment=>detachment.stratagems);

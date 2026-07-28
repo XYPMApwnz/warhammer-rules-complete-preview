@@ -107,7 +107,7 @@ Back maintains its own LIFO history and does not replace browser history.
 - During later manual scrolling, desktop popups move with the article in document coordinates; they are not fixed in the viewport and do not follow the user down the page.
 - When a nested term opens, existing parent popups remain in the DOM; only one new card is added. Navigation must not cause the popup layer to be cleared, parent animations to restart, or the chain to disappear briefly.
 - Clicking a term in the main document starts a new root popup chain but also does not change the active navigation section.
-- NavigationController participates only when the user presses an action transition from a popup: Glossary, To rule, Datasheet & Wargear, or Statline.
+- NavigationController participates only when the user presses a rule transition or Open datasheet from a Related Rules popup.
 - For an action transition to a card inside Glossary, the scroll position accounts for both the fixed header and the actual height of the sticky search panel; the target card heading cannot end up beneath the panel.
 - Sticky compensation applies only to targets inside Glossary. Navigation to the root `Glossary` item does not subtract the height of its own search panel and must place the root section on the reference line.
 - Scroll-spy measures nested Glossary groups against the line below sticky search, matching their destination; the previous group cannot remain active after a completed transition to the next group.

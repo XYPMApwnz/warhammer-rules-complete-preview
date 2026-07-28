@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "space-marines",
+  "title": "Space Marines",
+  "shortTitle": "Space Marines Rules",
+  "edition": "11E",
+  "factionKeyword": "ADEPTUS ASTARTES",
+  "expected": {
+    "matchedDetachments": 22,
+    "factionPackDetachments": 15,
+    "legendsDatasheets": 75
+  },
+  "sources": {
+    "factionPack": "content/space-marines-faction-pack.en.json",
+    "codexDatasheets": "content/space-marines-codex-datasheets.en.json",
+    "relatedRules": "content/space-marines-related-rules.en.json",
+    "manifest": "sources/source-manifest.json"
+  }
+}

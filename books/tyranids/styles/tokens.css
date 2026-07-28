@@ -1,0 +1,106 @@
+:root {
+  color-scheme: dark;
+  --header: 70px;
+  --nav: 286px;
+  --nav-gutter: clamp(16px, 2vw, 28px);
+  --content-gap: clamp(20px, 2.4vw, 38px);
+  --navigation-gap: 18px;
+  --bg: #0a0b0d;
+  --underhive: #111016;
+  --panel: #19161d;
+  --panel-2: #261e29;
+  --ink: #eee9df;
+  --muted: #b8afa4;
+  --green: #a86bb0;
+  --green-deep: #71417b;
+  --bronze: #527e80;
+  --bronze-bright: #78b8b8;
+  --pink: #829b54;
+  --pink-deep: #4f6230;
+  --faction-gradient: linear-gradient(90deg, #71417b 0 48%, #eee7d8 48% 55%, #16858c 55% 82%, #b51d2a 82% 100%);
+  --line: rgba(197, 138, 208, .18);
+  --soft-line: rgba(197, 138, 208, .09);
+  --glass: rgba(25, 22, 29, .95);
+  --shadow: 0 26px 58px rgba(0, 0, 0, .5), 0 0 0 1px rgba(0, 0, 0, .48);
+  --radius: 2px;
+  --body-size: 17px;
+  --data-size: 14px;
+  --faction-primary: #71417b;
+  --faction-primary-bright: #a86bb0;
+  --faction-secondary: #829b54;
+  --faction-synapse: #16858c;
+  --faction-danger: #b51d2a;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #d8d0c4;
+  --underhive: #eee7d8;
+  --panel: #f5efe4;
+  --panel-2: #ded3c6;
+  --ink: #28232c;
+  --muted: #665d69;
+  --green: #71417b;
+  --green-deep: #59315f;
+  --bronze: #376f73;
+  --bronze-bright: #285e62;
+  --pink: #62783c;
+  --pink-deep: #46572a;
+  --line: rgba(63, 42, 69, .22);
+  --soft-line: rgba(63, 42, 69, .11);
+  --glass: rgba(245, 239, 228, .97);
+  --shadow: 0 20px 45px rgba(52, 36, 56, .2);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 84% 7%, rgba(113, 65, 123, .24), transparent 31rem),
+    radial-gradient(circle at 8% 32%, rgba(22, 133, 140, .15), transparent 27rem),
+    repeating-radial-gradient(ellipse at 15% 20%, transparent 0 32px, rgba(130, 155, 84, .025) 33px 35px, transparent 36px 68px),
+    var(--underhive);
+  font: var(--body-size)/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: .14;
+  background: repeating-linear-gradient(104deg, transparent 0 17px, rgba(255,255,255,.025) 18px, transparent 19px 37px);
+}
+button, input { font: inherit; color: inherit; }
+button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+button:focus { outline: none; }
+button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.surface {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(255,255,255,.045), transparent 22%), var(--glass);
+  box-shadow: var(--shadow), inset 0 1px rgba(255,255,255,.04), inset 0 -1px rgba(0,0,0,.48);
+}
+.surface::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--green-deep), var(--faction-synapse) 58%, var(--pink));
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+@media (max-width: 800px) {
+  body { text-rendering: auto; }
+  body::before { display: none; }
+  .surface { box-shadow: inset 0 1px rgba(255,255,255,.04), inset 0 -1px rgba(0,0,0,.48); }
+}

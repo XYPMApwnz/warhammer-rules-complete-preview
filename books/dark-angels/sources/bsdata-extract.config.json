@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "faction": { "id": "dark-angels", "title": "Dark Angels" },
+  "source": {
+    "repository": "https://github.com/BSData/wh40k-11e",
+    "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+    "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/Imperium%20-%20Dark%20Angels.json"
+  },
+  "inputs": [
+    { "role": "faction", "path": "../../../tmp/bsdata-wh40k-11e/Imperium - Dark Angels.json" },
+    { "role": "space-marines-supplement-base", "path": "../../../tmp/bsdata-wh40k-11e/Imperium - Space Marines.json" },
+    { "role": "imperial-knights-library", "path": "../../../tmp/bsdata-wh40k-11e/Imperium - Imperial Knights - Library.json" },
+    { "role": "agents-of-the-imperium", "path": "../../../tmp/bsdata-wh40k-11e/Imperium - Agents of the Imperium.json" },
+    { "role": "game-system", "path": "../../../tmp/bsdata-wh40k-11e/Warhammer 40,000.json" }
+  ],
+  "outputs": {
+    "snapshot": "bsdata-dark-angels-11e.json",
+    "datasheets": "../content/dark-angels-codex-datasheets.en.json",
+    "points": "../content/dark-angels-points.en.json"
+  },
+  "filters": {
+    "excludeNames": ["Detachment", "Show/Hide Options", "Order of Battle"],
+    "excludeNamePatterns": ["\\[Crucible\\]$"],
+    "excludePrimaryCategories": ["Configuration", "Order of Battle", "Reference"],
+    "blockedBranches": [
+      "^Crusade$", "Enhancements$", "^Detachment$", "^Order of Battle$",
+      "^Show/Hide Options$", "^Specialisms$", "^Weapon Modifications$",
+      "^Battle Honours$", "^Relic Upgrades$", "\\[Crucible\\]"
+    ],
+    "imperialArmourNames": []
+  },
+  "enhancements": {
+    "detachments": [
+      "Company of Hunters", "Dark Age Arsenal", "Darkflight Pursuit",
+      "Inner Circle Task Force", "Interrogation Conclave", "Lion's Blade Task Force",
+      "Unforgiven Task Force", "Wrath of the Rock"
+    ]
+  }
+}

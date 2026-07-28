@@ -1,0 +1,37 @@
+.app-brand::before{content:"CSM"}.toc-heading::before{content:"FACTION REGISTER // CSM"}.faction-hero{overflow:hidden;background:radial-gradient(circle at 78% 28%,color-mix(in srgb,var(--faction-primary-bright,var(--green)) 22%,transparent),transparent 26rem),radial-gradient(ellipse at 64% 78%,color-mix(in srgb,var(--faction-secondary,var(--pink)) 15%,transparent),transparent 31rem),linear-gradient(115deg,var(--underhive),var(--panel-2))}.faction-hero::after{content:"CSM"}.faction-hero .hero-mark{display:grid;place-items:center;min-width:15rem;aspect-ratio:1;border:1px solid var(--line);border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 18px,var(--soft-line) 19px 20px),radial-gradient(circle,var(--panel-2),transparent 68%);color:var(--green);font:800 clamp(1.1rem,2vw,1.8rem)/1 ui-monospace,monospace;letter-spacing:.16em;text-align:center}.source-warning{border-left:3px solid var(--bronze-bright)}.subheading{margin:2rem 0 1rem;color:var(--bronze-bright);text-transform:uppercase;letter-spacing:.12em}.unit-status{white-space:pre-line;max-width:20rem;text-align:right}.related-rules-layer{z-index:140}.related-rules-open .popup-layer{z-index:160}@media(max-width:800px){.faction-hero .hero-mark{display:none}.unit-status{max-width:none;text-align:left}}
+
+html[data-view="mobile"]{--header:64px;--body-size:16.5px}
+html[data-view="mobile"] .app-header{backdrop-filter:none}
+html[data-view="mobile"] .nav-menu{display:inline-grid;place-items:center}
+html[data-view="mobile"] .nav-collapse{display:none}
+html[data-view="mobile"] .main,
+html[data-view="mobile"] body.nav-collapsed .main{padding:calc(var(--header) + env(safe-area-inset-top) + 20px) 14px 82px}
+html[data-view="mobile"] .app-brand{font-size:16px}
+html[data-view="mobile"] .back-button{position:fixed;z-index:75;right:14px;bottom:calc(16px + env(safe-area-inset-bottom));box-shadow:0 14px 32px rgba(0,0,0,.38)}
+html[data-view="mobile"] .toc-panel{inset:calc(var(--header) + env(safe-area-inset-top) + 10px) auto 10px 10px;width:min(calc(88vw - 10px),360px);transform:translateX(calc(-105% - 10px));box-shadow:24px 12px 52px rgba(0,0,0,.5);transition:none}
+html[data-view="mobile"] .toc-toggle::after{transition:none}
+html[data-view="mobile"] body.nav-drawer-open .toc-panel{transform:translateX(0)}
+html[data-view="mobile"] .toc-scrim{position:fixed;z-index:55;inset:calc(var(--header) + env(safe-area-inset-top)) 0 0;background:rgba(0,0,0,.62)}
+html[data-view="mobile"] body.nav-drawer-open .toc-scrim{display:block}
+html[data-view="mobile"] .faction-hero .hero-mark{display:none}
+html[data-view="mobile"] .unit-status{max-width:none;text-align:left}
+html[data-view="mobile"] .unit-card>:is(.unit-head,.unit-header){grid-template-columns:1fr;gap:17px;padding:24px 20px 21px}
+html[data-view="mobile"] .unit-card :is(.unit-name,.unit-header h3){font-size:clamp(38px,12vw,54px)}
+html[data-view="mobile"] .unit-card :is(.points,.unit-status){justify-self:start;min-width:0;padding:10px 12px;font-size:17px}
+html[data-view="mobile"] .unit-card>.local-nav{position:sticky;z-index:7;top:calc(var(--header) + 6px);display:flex;flex-wrap:nowrap;gap:6px;margin:14px -8px 4px;padding:7px 8px;overflow-x:auto;overscroll-behavior-inline:contain;background:color-mix(in srgb,var(--panel) 94%,transparent);border-block:1px solid var(--soft-line);box-shadow:0 8px 18px rgba(0,0,0,.24);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+html[data-view="mobile"] .unit-card>.local-nav::-webkit-scrollbar{display:none}
+html[data-view="mobile"] .unit-card>.local-nav .local-tab{flex:0 0 auto;min-height:36px;padding:7px 10px;white-space:nowrap;font-size:12px}
+html[data-view="mobile"] .unit-card>.unit-part{padding:24px 15px 27px}
+html[data-view="mobile"] .unit-card>.unit-part>h4{font-size:22px}
+html[data-view="mobile"] .unit-card .weapon-head{display:none}
+html[data-view="mobile"] .unit-card .weapon-row:not(.weapon-head){grid-template-columns:repeat(6,minmax(0,1fr));border-top:0}
+html[data-view="mobile"] .unit-card .weapon-row:not(.weapon-head)>div{display:grid;place-items:center;min-height:54px;padding:8px 2px;border-top:0;font-size:clamp(12px,3.7vw,14px)}
+html[data-view="mobile"] .unit-card .weapon-row:not(.weapon-head)>div::before{content:attr(data-label);display:block;margin-bottom:3px;color:var(--muted);font:700 9px var(--ds-data);letter-spacing:.03em;text-transform:uppercase}
+html[data-view="mobile"] .unit-card .weapon-row:not(.weapon-head)>div:first-child{grid-column:1/-1;display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px;min-height:0;padding:11px 12px;border-bottom:1px solid var(--line)}
+html[data-view="mobile"] .unit-card .weapon-row:not(.weapon-head)>div:first-child::before{display:none}
+html[data-view="mobile"] .unit-card .weapon-row:not(.weapon-head)>div:nth-child(2){border-left:0}
+html[data-view="mobile"] .unit-card.ds-layout .points.ds-cost{width:min(100%,520px);min-width:0}
+html[data-view="mobile"] .unit-card.ds-layout .ds-main-grid{grid-template-columns:1fr}
+html[data-view="mobile"] .unit-card.ds-layout .ds-arsenal{border-right:0;border-bottom:1px solid var(--line)}
+html[data-view="mobile"] .detachment-part[id$="-stratagems"]>.detachment-content,
+html[data-view="mobile"] .core-stratagem-grid{grid-template-columns:1fr}

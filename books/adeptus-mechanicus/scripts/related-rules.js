@@ -2,24 +2,16 @@
   'use strict';
   let templatePromise;
   const normalize=value=>String(value||'').replace(/\s+/g,' ').trim().toUpperCase();
-  const profile=card=>({
-    id:card.id,
-    slug:card.id.replace(/^unit-/,''),
-    keywords:new Set((card.dataset.keywords||'').split('|').map(normalize)),
-    epic:(card.dataset.keywords||'').toUpperCase().includes('EPIC HERO')
-  });
-  function targetMatches(target,unit){
-    if(target.side!=='friendly')return false;
-    const unitId=unit.id||`unit-${unit.slug}`;
-    if(target.units?.length&&!target.units.includes(unitId))return false;
-    if(target.all?.some(keyword=>!unit.keywords.has(normalize(keyword))))return false;
-    if(target.any?.length&&!target.any.some(keyword=>unit.keywords.has(normalize(keyword))))return false;
-    if(target.none?.some(keyword=>unit.keywords.has(normalize(keyword))))return false;
-    return true;
-  }
+  const profile=card=>{
+    const keywords=new Set((card.dataset.keywords||'').split('|').map(normalize).filter(Boolean));
+    let candidates=[];
+    try{candidates=JSON.parse(card.dataset.relatedCandidates||'').map(candidate=>({...candidate,keywords:new Set(candidate.keywords.map(normalize))}));}catch{}
+    return {unitId:card.id,id:card.id,slug:card.id.replace(/^unit-/,''),keywords,intrinsicKeywords:keywords,candidates:candidates.length?candidates:undefined,epic:keywords.has('EPIC HERO')};
+  };
+  function targetMatches(target,unit){return root.WHRelatedRules.matches({targets:[target]},unit);}
   function matches(card,unitCard){
-    const unit=unitCard.slug?unitCard:profile(unitCard);
-    try{return JSON.parse(card.dataset.eligibility||'').targets?.some(target=>targetMatches(target,unit))||false;}
+    const unit=unitCard.slug?{...unitCard,unitId:unitCard.unitId||unitCard.id||`unit-${unitCard.slug}`,intrinsicKeywords:unitCard.intrinsicKeywords||unitCard.keywords}:profile(unitCard);
+    try{return root.WHRelatedRules.matches(JSON.parse(card.dataset.eligibility||''),unit);}
     catch{return false;}
   }
   function getTemplate(){
@@ -64,7 +56,7 @@
     document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!layer.hidden)close();});
     async function open(current,state={}){
       if(!current)return null;
-      unit=current;kind=state.kind||'stratagems';title.textContent=current.dataset.unitTitle||current.querySelector('.unit-name,h3')?.textContent.trim()||'Related rules';
+      unit=current;layer.dataset.unitId=current.id;kind=state.kind||'stratagems';title.textContent=current.dataset.unitTitle||current.querySelector('.unit-name,h3')?.textContent.trim()||'Related rules';
       layer.hidden=false;document.documentElement.classList.add('related-rules-open');
       if(!content){
         try{

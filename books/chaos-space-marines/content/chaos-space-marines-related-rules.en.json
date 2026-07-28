@@ -1,0 +1,2003 @@
+{
+  "schema": 1,
+  "faction": "Chaos Space Marines",
+  "keywordGrants": {
+    "cult-of-the-arkifane": [
+      {
+        "keyword": "DAEMON",
+        "selector": {
+          "allKeywords": [
+            "HERETIC ASTARTES",
+            "VEHICLE"
+          ]
+        }
+      },
+      {
+        "keyword": "SOUL FORGE",
+        "selector": {
+          "alternatives": [
+            {
+              "allKeywords": [
+                "HERETIC ASTARTES",
+                "VEHICLE"
+              ]
+            },
+            {
+              "unitIds": [
+                "unit-lord-discordant-on-helstalker",
+                "unit-vashtorr-the-arkifane"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "stratagems": {
+    "infernal-vigour": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "anyKeywords": [
+              "PSYKER",
+              "DAEMON"
+            ],
+            "noneKeywords": [
+              "KHORNE"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "fleshy-curse": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "PSYKER"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "wreathed-in-warpflame": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "PSYKER"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "ruination-s-bounty": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-havocs",
+              "unit-obliterators"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "snare-of-fire": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-havocs"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "enemy-ended-move-within-8",
+        "not-within-engagement-range"
+      ]
+    },
+    "devotees-of-destruction-undying-hatred": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-havocs",
+              "unit-obliterators"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "plunging-talons": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY",
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "made-charge-move-this-turn",
+        "selected-to-fight"
+      ]
+    },
+    "raking-pass": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY",
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-fall-back"
+      ]
+    },
+    "warp-twisted-terrors": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-warp-talons"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "ended-move"
+      ]
+    },
+    "empyric-dislocation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "noneKeywords": [
+              "DAMNED"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "warp-tainted": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "anyKeywords": [
+              "TERMINATOR",
+              "OBLITERATORS",
+              "MUTILATORS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "within-range-of-controlled-objective"
+      ]
+    },
+    "armour-of-corruption": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "anyKeywords": [
+              "TERMINATOR",
+              "OBLITERATORS",
+              "MUTILATORS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "siegebreaker-strike": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 2,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "set-up-using-deep-strike-this-turn",
+        "not-selected-to-shoot",
+        "up-to-two-targets"
+      ]
+    },
+    "warp-flicker": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "anyKeywords": [
+              "TERMINATOR",
+              "OBLITERATORS",
+              "MUTILATORS"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "portal-of-spite": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "set-up-using-deep-strike-this-turn",
+        "not-declared-charge"
+      ]
+    },
+    "touch-of-the-arkifane": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "noneKeywords": [
+              "DAMNED"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot-or-fight"
+      ]
+    },
+    "biomechanoid-regeneration": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "noneKeywords": [
+              "DAMNED"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "balefire-boon": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "SOUL FORGE"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot-or-fight"
+      ]
+    },
+    "forge-fire-surge": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "just-advanced"
+      ]
+    },
+    "soul-tally-offering": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "SOUL FORGE"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot-or-fight"
+      ]
+    },
+    "unholy-fortitude": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "SOUL FORGE"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "monstrous-visages": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "delayed-mutations": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY"
+            ],
+            "noneKeywords": [
+              "DAMNED"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "masters-are-watching": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "diabolic-regeneration": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY"
+            ],
+            "noneKeywords": [
+              "DAMNED"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "specimens-for-the-spider": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-fight"
+      ]
+    },
+    "autostimulants": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "talons-sunk-deep": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot-or-fight"
+      ]
+    },
+    "malicious-surge": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "prey-on-the-weak": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot-or-fight"
+      ]
+    },
+    "relentless-terror": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "just-fell-back"
+      ]
+    },
+    "sadistic-display": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "destroyed-enemy-unit-this-fight-phase"
+      ]
+    },
+    "horrific-incursion": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "arrived-from-reserves-this-turn"
+      ]
+    },
+    "hardened-killers": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "DAMNED"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "reavers-flurry": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "made-charge-move-this-turn"
+      ]
+    },
+    "at-the-tyrant-s-command": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "noneKeywords": [
+              "MONSTER",
+              "VEHICLE"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "to-the-favoured-the-spoils": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "lost-wounds-from-last-enemy-shooting"
+      ]
+    },
+    "seize-the-prize": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "noneKeywords": [
+              "MONSTER",
+              "VEHICLE"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-advance"
+      ]
+    },
+    "encircling-surge": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "noneKeywords": [
+              "MONSTER",
+              "VEHICLE"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "within-6-of-battlefield-edge",
+        "not-within-engagement-range"
+      ]
+    },
+    "never-outgunned": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot-or-fight"
+      ]
+    },
+    "renegade-claim": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "within-range-of-controlled-objective"
+      ]
+    },
+    "vengeful-destruction": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "anyKeywords": [
+              "INFANTRY",
+              "MOUNTED"
+            ],
+            "noneKeywords": [
+              "DAMNED"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot-or-fight"
+      ]
+    },
+    "corrupted-munitions": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "renegade-warband-undying-hatred": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "reavers-reaction": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "noneKeywords": [
+              "MONSTER",
+              "VEHICLE"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "hit-by-last-enemy-shooting"
+      ]
+    }
+  },
+  "enhancements": {
+    "touched-by-the-warp": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-cultist-firebrand",
+              "unit-dark-apostle",
+              "unit-dark-commune",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-renegade-enforcer",
+              "unit-rogue-psyker",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "conduit-of-chaos": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-mutilators",
+              "unit-obliterators",
+              "unit-possessed",
+              "unit-warp-talons",
+              "unit-defiler",
+              "unit-forgefiend",
+              "unit-heldrake",
+              "unit-maulerfiend",
+              "unit-venomcrawler",
+              "unit-decimator"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "pact-of-destruction": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-warpsmith"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "eye-of-oblivion": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-warpsmith"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "shadowcowl-talisman": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord-with-jump-pack"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "pact-of-cursed-pinions": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord-with-jump-pack"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "infernal-fulgurite": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-dark-apostle",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "eye-of-the-warp": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-sorcerer-in-terminator-armour"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "akshur-s-binding-runes": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-sorcerer-in-terminator-armour"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "tzagulla": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-sorcerer-in-terminator-armour"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "wyredjinn": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-dark-apostle",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "cybinfernal-font": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-dark-apostle",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "mark-of-the-soul-forges": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-dark-apostle",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "crown-of-worms": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-warpsmith"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "surgical-precision": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-dark-apostle",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "living-carapace": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "helm-of-all-seeing": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-dark-apostle",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-khorne-berzerkers",
+              "unit-legionaries",
+              "unit-plague-marines",
+              "unit-rubric-marines",
+              "unit-chaos-terminator-squad",
+              "unit-chosen",
+              "unit-havocs",
+              "unit-mutilators",
+              "unit-nemesis-claw",
+              "unit-noise-marines",
+              "unit-obliterators",
+              "unit-possessed",
+              "unit-raptors",
+              "unit-red-corsairs-raiders",
+              "unit-warp-talons",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-exalted-champion",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "prime-test-subject": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-dark-apostle",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-khorne-berzerkers",
+              "unit-legionaries",
+              "unit-plague-marines",
+              "unit-rubric-marines",
+              "unit-chaos-terminator-squad",
+              "unit-chosen",
+              "unit-havocs",
+              "unit-mutilators",
+              "unit-nemesis-claw",
+              "unit-noise-marines",
+              "unit-obliterators",
+              "unit-possessed",
+              "unit-raptors",
+              "unit-red-corsairs-raiders",
+              "unit-warp-talons",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-exalted-champion",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "greyveil-hex": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-cultist-firebrand",
+              "unit-dark-apostle",
+              "unit-dark-commune",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-renegade-enforcer",
+              "unit-rogue-psyker",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "warp-fuelled-thrusters": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord-with-jump-pack"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "terrorglut-parasite": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-cultist-firebrand",
+              "unit-dark-apostle",
+              "unit-dark-commune",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-renegade-enforcer",
+              "unit-rogue-psyker",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "sorrowscent-vulture": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord-with-jump-pack"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "voice-of-the-tyrant": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-dark-apostle",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "raid-leader": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-dark-apostle",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "dread-reputation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-dark-apostle",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "eager-for-bloodshed": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-cultist-firebrand",
+              "unit-dark-apostle",
+              "unit-dark-commune",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-renegade-enforcer",
+              "unit-rogue-psyker",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "weaponised-hatred": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-cultist-firebrand",
+              "unit-dark-apostle",
+              "unit-dark-commune",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-renegade-enforcer",
+              "unit-rogue-psyker",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "eyes-of-the-hunter": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-cultist-firebrand",
+              "unit-dark-apostle",
+              "unit-dark-commune",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-renegade-enforcer",
+              "unit-rogue-psyker",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "fratricidal-trophies": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-chaos-terminator-squad"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "empyric-symbiote": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-lord",
+              "unit-chaos-lord-in-terminator-armour",
+              "unit-chaos-lord-with-jump-pack",
+              "unit-cultist-firebrand",
+              "unit-dark-apostle",
+              "unit-dark-commune",
+              "unit-heretic-astartes-daemon-prince",
+              "unit-heretic-astartes-daemon-prince-with-wings",
+              "unit-lord-discordant-on-helstalker",
+              "unit-master-of-executions",
+              "unit-master-of-possession",
+              "unit-red-corsairs-reave-captain",
+              "unit-sorcerer",
+              "unit-sorcerer-in-terminator-armour",
+              "unit-warpsmith",
+              "unit-chaos-lord-on-bike",
+              "unit-chaos-lord-on-disc-of-tzeentch",
+              "unit-chaos-lord-on-juggernaut",
+              "unit-chaos-lord-on-palanquin-of-nurgle",
+              "unit-chaos-lord-on-steed-of-slaanesh",
+              "unit-exalted-champion",
+              "unit-renegade-enforcer",
+              "unit-rogue-psyker",
+              "unit-sorcerer-on-bike",
+              "unit-sorcerer-on-disc-of-tzeentch",
+              "unit-sorcerer-on-palanquin-of-nurgle",
+              "unit-sorcerer-on-steed-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    }
+  }
+}

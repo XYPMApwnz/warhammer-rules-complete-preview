@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "faction": {
+    "id": "tau-empire",
+    "title": "T'au Empire"
+  },
+  "source": {
+    "repository": "https://github.com/BSData/wh40k-11e",
+    "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+    "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/T%27au%20Empire.json"
+  },
+  "inputs": [
+    {
+      "role": "faction",
+      "path": "../../../tmp/bsdata-wh40k-11e/T'au Empire.json"
+    },
+    {
+      "role": "game-system",
+      "path": "../../../tmp/bsdata-wh40k-11e/Warhammer 40,000.json"
+    }
+  ],
+  "outputs": {
+    "snapshot": "bsdata-tau-empire-11e.json",
+    "datasheets": "../content/tau-empire-codex-datasheets.en.json",
+    "points": "../content/tau-empire-points.en.json"
+  },
+  "filters": {
+    "excludeNames": [
+      "Detachment",
+      "Show/Hide Options",
+      "Order of Battle"
+    ],
+    "excludeNamePatterns": [
+      "\\[Crucible\\]$"
+    ],
+    "excludePrimaryCategories": [
+      "Configuration",
+      "Order of Battle",
+      "Reference",
+      "Service"
+    ],
+    "blockedBranches": [
+      "^Crusade$",
+      "Enhancements$",
+      "^Detachment$",
+      "^Order of Battle$",
+      "^Show/Hide Options$",
+      "^Specialisms$",
+      "^Weapon Modifications$",
+      "^Battle Honours$",
+      "^Relic Upgrades$",
+      "^Reference$",
+      "^Service$",
+      "\\[Crucible\\]"
+    ],
+    "imperialArmourNames": [
+      "Ta'unar Supremacy Armour",
+      "Tiger Shark",
+      "AX-1-0 Tiger Shark",
+      "Manta"
+    ]
+  },
+  "enhancements": {
+    "detachments": [
+      "Advanced Acquisition Cadre",
+      "Auxiliary Cadre",
+      "Breaching Operation",
+      "Experimental Prototype Cadre",
+      "Kauyon",
+      "Kroot Hunting Pack",
+      "Kroot Raiding Party",
+      "Mont'ka",
+      "Retaliation Cadre",
+      "Starfire Cadre"
+    ]
+  }
+}

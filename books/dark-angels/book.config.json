@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "id": "dark-angels",
+  "title": "Dark Angels",
+  "shortTitle": "Dark Angels Rules",
+  "edition": "11E",
+  "factionKeyword": "DARK ANGELS",
+  "dependencies": ["space-marines"],
+  "expected": {
+    "matchedDetachments": 8,
+    "factionPackDetachments": 5,
+    "legendsDatasheets": 3
+  },
+  "sources": {
+    "factionPack": "content/dark-angels-faction-pack.en.json",
+    "codexDatasheets": "content/dark-angels-codex-datasheets.en.json",
+    "relatedRules": "content/dark-angels-related-rules.en.json",
+    "manifest": "sources/source-manifest.json"
+  }
+}

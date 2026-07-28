@@ -1,0 +1,1779 @@
+{
+  "schema": 1,
+  "faction": "Space Marines",
+  "sourceId": "space-marines-faction-pack-v1.0",
+  "stratagems": {
+    "fulguris-task-force-data-link-augury": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-land-speeder",
+              "unit-storm-speeder-hailstrike",
+              "unit-storm-speeder-hammerstrike",
+              "unit-storm-speeder-thunderstrike"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "fulguris-task-force-reactive-evasion": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-land-speeder",
+              "unit-storm-speeder-hailstrike",
+              "unit-storm-speeder-hammerstrike",
+              "unit-storm-speeder-thunderstrike"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "fulguris-task-force-anti-grav-surge": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-land-speeder",
+              "unit-storm-speeder-hailstrike",
+              "unit-storm-speeder-hammerstrike",
+              "unit-storm-speeder-thunderstrike"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "subversion-assets-adaptive-operations": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "PHOBOS"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-scout-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "subversion-assets-strike-from-the-shadows": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "PHOBOS"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-scout-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "subversion-assets-cloaked-position": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "PHOBOS"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-scout-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "armoured-speartip-machine-wrath": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "TRANSPORT"
+            ],
+            "noneKeywords": [
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "wounds-characteristic-14-or-more",
+        "detachment-grants-heavy-transport",
+        "deadly-demise-roll-was-6"
+      ]
+    },
+    "armoured-speartip-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "armoured-speartip-rapid-embarkation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-infantry",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        },
+        {
+          "id": "friendly-heavy-transport",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "TRANSPORT"
+            ],
+            "noneKeywords": [
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "transport-wounds-characteristic-14-or-more",
+        "infantry-able-to-embark",
+        "infantry-wholly-within-6"
+      ]
+    },
+    "armoured-speartip-ceramite-sledgehammer": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "TRANSPORT"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "armoured-speartip-advanced-deployment": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "TRANSPORT"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "armoured-speartip-purgation-doctrine": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "headhunter-task-force-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "headhunter-task-force-target-weak-point": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "VEHICLE"
+            ],
+            "noneKeywords": [
+              "FORTIFICATION",
+              "DROP POD",
+              "WALKER",
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-grants-tank-ace"
+      ]
+    },
+    "headhunter-task-force-kill-shot": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "VEHICLE"
+            ],
+            "noneKeywords": [
+              "FORTIFICATION",
+              "DROP POD",
+              "WALKER",
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-grants-tank-ace"
+      ]
+    },
+    "headhunter-task-force-rapid-gunnery": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "headhunter-task-force-reactive-repositioning": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "VEHICLE"
+            ],
+            "noneKeywords": [
+              "FORTIFICATION",
+              "DROP POD",
+              "WALKER",
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-grants-tank-ace",
+        "unit-contains-no-model-with-16-or-more-wounds"
+      ]
+    },
+    "headhunter-task-force-machine-vengeance": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "VEHICLE"
+            ],
+            "noneKeywords": [
+              "FORTIFICATION",
+              "DROP POD",
+              "WALKER",
+              "FLY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-grants-tank-ace",
+        "unit-contains-no-model-with-16-or-more-wounds"
+      ]
+    },
+    "ceramite-sentinels-unyielding-might": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "ceramite-sentinels-priority-strike": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "INFANTRY"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "MOUNTED"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "ceramite-sentinels-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "ceramite-sentinels-stand-to-the-end": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "ceramite-sentinels-augmented-targeting": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "ceramite-sentinels-evasive-repositioning": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "INFANTRY"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "MOUNTED"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "blade-of-ultramar-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "blade-of-ultramar-tactical-foresight": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "blade-of-ultramar-courage-and-honour": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "blade-of-ultramar-ultramarian-adaptivity": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "blade-of-ultramar-exemplary-vigilance": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "blade-of-ultramar-practical-tactics": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "hammer-of-avernii-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-iron-hands"
+      ]
+    },
+    "hammer-of-avernii-ruthless-butchery": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "DREADNOUGHT"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "TERMINATOR"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-bladeguard-veteran-squad",
+                  "unit-sternguard-veteran-squad",
+                  "unit-vanguard-veteran-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-iron-hands"
+      ]
+    },
+    "hammer-of-avernii-dominator-beacon": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "DREADNOUGHT"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "TERMINATOR"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-bladeguard-veteran-squad",
+                  "unit-sternguard-veteran-squad",
+                  "unit-vanguard-veteran-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-iron-hands"
+      ]
+    },
+    "hammer-of-avernii-cogitated-ferocity": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "DREADNOUGHT"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "TERMINATOR"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-bladeguard-veteran-squad",
+                  "unit-sternguard-veteran-squad",
+                  "unit-vanguard-veteran-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-iron-hands"
+      ]
+    },
+    "hammer-of-avernii-augmetic-fortitude": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "TERMINATOR"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-bladeguard-veteran-squad",
+                  "unit-sternguard-veteran-squad",
+                  "unit-vanguard-veteran-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-iron-hands"
+      ]
+    },
+    "hammer-of-avernii-dropship-extraction": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "TERMINATOR"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-iron-hands"
+      ]
+    },
+    "spearpoint-task-force-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-white-scars"
+      ]
+    },
+    "spearpoint-task-force-spear-thrust-and-sabre-swing": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-white-scars"
+      ]
+    },
+    "spearpoint-task-force-mobile-lethality": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-white-scars"
+      ]
+    },
+    "spearpoint-task-force-hunter-s-instincts": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "INFANTRY"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "MOUNTED"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-white-scars"
+      ]
+    },
+    "spearpoint-task-force-evasive-manoeuvres": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "MOUNTED"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "VEHICLE",
+                  "FLY"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-white-scars"
+      ]
+    },
+    "spearpoint-task-force-withdraw-and-regroup": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "MOUNTED"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "VEHICLE",
+                  "FLY"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-white-scars"
+      ]
+    },
+    "forgefather-s-seekers-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-salamanders"
+      ]
+    },
+    "forgefather-s-seekers-crucible-of-battle": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-salamanders"
+      ]
+    },
+    "forgefather-s-seekers-wrathful-inferno": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-salamanders"
+      ]
+    },
+    "forgefather-s-seekers-immolation-protocols": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-salamanders"
+      ]
+    },
+    "forgefather-s-seekers-burning-vengeance": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "TRANSPORT"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-salamanders"
+      ]
+    },
+    "forgefather-s-seekers-blazing-earth": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-salamanders",
+        "unit-equipped-with-torrent-weapon"
+      ]
+    },
+    "emperor-s-shield-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-imperial-fists"
+      ]
+    },
+    "emperor-s-shield-fury-of-the-first": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "TERMINATOR"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-bladeguard-veteran-squad",
+                  "unit-sternguard-veteran-squad",
+                  "unit-vanguard-veteran-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-imperial-fists"
+      ]
+    },
+    "emperor-s-shield-obdurate-vengeance": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "TERMINATOR"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-bladeguard-veteran-squad",
+                  "unit-sternguard-veteran-squad",
+                  "unit-vanguard-veteran-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-imperial-fists"
+      ]
+    },
+    "emperor-s-shield-wrathful-conquerors": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "TERMINATOR"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-bladeguard-veteran-squad",
+                  "unit-sternguard-veteran-squad",
+                  "unit-vanguard-veteran-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-imperial-fists"
+      ]
+    },
+    "emperor-s-shield-disciplined-extermination": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "TERMINATOR"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-bladeguard-veteran-squad",
+                  "unit-sternguard-veteran-squad",
+                  "unit-vanguard-veteran-squad"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-imperial-fists"
+      ]
+    },
+    "emperor-s-shield-dropship-extraction": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "TERMINATOR"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-imperial-fists"
+      ]
+    },
+    "shadowmark-talon-armour-of-contempt": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-raven-guard"
+      ]
+    },
+    "shadowmark-talon-lay-low-the-tyrants": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-raven-guard"
+      ]
+    },
+    "shadowmark-talon-feint-and-thrust": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-raven-guard"
+      ]
+    },
+    "shadowmark-talon-stunning-fusillade": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-raven-guard"
+      ]
+    },
+    "shadowmark-talon-raptorial-vigilance": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "INFANTRY"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "MOUNTED"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-raven-guard"
+      ]
+    },
+    "shadowmark-talon-into-darkness": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 2,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "PHOBOS"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-scout-squad"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "INFANTRY"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-raven-guard",
+        "up-to-two-phobos-or-scout-units-or-one-other-infantry-unit"
+      ]
+    },
+    "bastion-task-force-codex-discipline": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "bastion-task-force-guided-disruption": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "BATTLELINE"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "bastion-task-force-light-of-vengeance": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "bastion-task-force-shock-bombardment": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "BATTLELINE"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "bastion-task-force-angels-defiant": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "BATTLELINE"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "bastion-task-force-heresy-undone": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ],
+            "noneKeywords": [
+              "BATTLELINE"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "orbital-assault-force-suppression-strafing": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "orbital-assault-force-tactical-decapitation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "orbital-assault-force-shock-onslaught": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "orbital-assault-force-auto-sense-coordination": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "orbital-assault-force-blind-screen": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ],
+            "noneKeywords": [
+              "TITANIC"
+            ]
+          }
+        },
+        {
+          "id": "friendly-screening-unit",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ADEPTUS ASTARTES",
+                  "VEHICLE",
+                  "SMOKE"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-drop-pod"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "screening-unit-within-9"
+      ]
+    },
+    "orbital-assault-force-onward-for-the-emperor": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES",
+              "INFANTRY"
+            ]
+          }
+        },
+        {
+          "id": "friendly-transport",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "TRANSPORT"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "infantry-not-set-up-this-turn",
+        "infantry-able-to-embark"
+      ]
+    },
+    "reclamation-force-crusading-conquerors": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "reclamation-force-furious-dedication": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "reclamation-force-fight-to-the-end": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "reclamation-force-scions-of-guilliman": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "reclamation-force-ultramarian-destiny": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    },
+    "reclamation-force-marching-ever-on": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ADEPTUS ASTARTES"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "detachment-army-restricted-to-ultramarines"
+      ]
+    }
+  }
+}

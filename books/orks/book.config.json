@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "orks",
+  "title": "Orks",
+  "shortTitle": "Orks Rules",
+  "edition": "11E",
+  "factionKeyword": "ORKS",
+  "expected": {
+    "matchedDetachments": 12,
+    "factionPackDetachments": 6,
+    "legendsDatasheets": 30
+  },
+  "sources": {
+    "factionPack": "content/orks-faction-pack.en.json",
+    "codexDatasheets": "content/orks-codex-datasheets.en.json",
+    "relatedRules": "content/orks-related-rules.en.json",
+    "manifest": "sources/source-manifest.json"
+  }
+}

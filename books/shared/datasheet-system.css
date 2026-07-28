@@ -66,7 +66,7 @@
   font: inherit;
 }
 
-.unit-card.legends-card > .unit-header .unit-status {
+.unit-card.legends-card > :is(.unit-head, .unit-header) :is(.points, .unit-status) {
   border-color: color-mix(in srgb, var(--pink) 68%, transparent);
   color: var(--pink);
 }

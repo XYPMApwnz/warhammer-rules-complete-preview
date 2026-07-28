@@ -3725,30 +3725,6 @@
       "owners": [],
       "visible": false
     },
-    "keyword-chaos": {
-      "termId": "keyword-chaos",
-      "navigation": {
-        "glossary": "glossary-keyword-chaos"
-      },
-      "owners": [],
-      "visible": false
-    },
-    "keyword-nurgle": {
-      "termId": "keyword-nurgle",
-      "navigation": {
-        "glossary": "glossary-keyword-nurgle"
-      },
-      "owners": [],
-      "visible": false
-    },
-    "keyword-daemon": {
-      "termId": "keyword-daemon",
-      "navigation": {
-        "glossary": "glossary-keyword-daemon"
-      },
-      "owners": [],
-      "visible": false
-    },
     "keyword-summoned": {
       "termId": "keyword-summoned",
       "navigation": {
@@ -3765,42 +3741,10 @@
       "owners": [],
       "visible": false
     },
-    "keyword-infantry": {
-      "termId": "keyword-infantry",
-      "navigation": {
-        "glossary": "glossary-keyword-infantry"
-      },
-      "owners": [],
-      "visible": false
-    },
-    "keyword-character": {
-      "termId": "keyword-character",
-      "navigation": {
-        "glossary": "glossary-keyword-character"
-      },
-      "owners": [],
-      "visible": false
-    },
-    "keyword-grenades": {
-      "termId": "keyword-grenades",
-      "navigation": {
-        "glossary": "glossary-keyword-grenades"
-      },
-      "owners": [],
-      "visible": false
-    },
     "keyword-death-guard": {
       "termId": "keyword-death-guard",
       "navigation": {
         "glossary": "glossary-keyword-death-guard"
-      },
-      "owners": [],
-      "visible": false
-    },
-    "keyword-terminator": {
-      "termId": "keyword-terminator",
-      "navigation": {
-        "glossary": "glossary-keyword-terminator"
       },
       "owners": [],
       "visible": false
@@ -3909,14 +3853,6 @@
       "owners": [],
       "visible": false
     },
-    "keyword-psyker": {
-      "termId": "keyword-psyker",
-      "navigation": {
-        "glossary": "glossary-keyword-psyker"
-      },
-      "owners": [],
-      "visible": false
-    },
     "keyword-epic-hero": {
       "termId": "keyword-epic-hero",
       "navigation": {
@@ -3955,6 +3891,572 @@
         "glossary": "glossary-keyword-battleline"
       },
       "owners": [],
+      "visible": false
+    },
+    "keyword-infantry": {
+      "termId": "keyword-infantry",
+      "navigation": {
+        "glossary": "glossary-keyword-infantry"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "keyword-chaos": {
+      "termId": "keyword-chaos",
+      "navigation": {
+        "glossary": "glossary-keyword-chaos"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "keyword-daemon": {
+      "termId": "keyword-daemon",
+      "navigation": {
+        "glossary": "glossary-keyword-daemon"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "keyword-character": {
+      "termId": "keyword-character",
+      "navigation": {
+        "glossary": "glossary-keyword-character"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "keyword-nurgle": {
+      "termId": "keyword-nurgle",
+      "navigation": {
+        "glossary": "glossary-keyword-nurgle"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "keyword-grenades": {
+      "termId": "keyword-grenades",
+      "navigation": {
+        "glossary": "glossary-keyword-grenades"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "keyword-terminator": {
+      "termId": "keyword-terminator",
+      "navigation": {
+        "glossary": "glossary-keyword-terminator"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "keyword-psyker": {
+      "termId": "keyword-psyker",
+      "navigation": {
+        "glossary": "glossary-keyword-psyker"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "term-death-guard-possessed": {
+      "termId": "death-guard-unit-death-guard-possessed",
+      "navigation": {
+        "glossary": "glossary-term-death-guard-possessed",
+        "rule": "unit-death-guard-possessed",
+        "fullRulePath": "books/death-guard/reader.html#unit-death-guard-possessed"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "weapon-legends-hideous-mutations": {
+      "termId": "death-guard-weapon-hideous-mutations-death-guard-possessed",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-hideous-mutations",
+        "datasheet": "unit-death-guard-possessed",
+        "statline": "unit-death-guard-possessed-profile"
+      },
+      "owners": [
+        "unit-death-guard-possessed"
+      ],
+      "visible": false
+    },
+    "ability-legends-infectious-bloodshed": {
+      "termId": "death-guard-ability-infectious-bloodshed-death-guard-possessed",
+      "navigation": {
+        "glossary": "glossary-ability-legends-infectious-bloodshed",
+        "rule": "death-guard-possessed-infectious-bloodshed",
+        "datasheet": "unit-death-guard-possessed",
+        "statline": "unit-death-guard-possessed-profile"
+      },
+      "owners": [
+        "unit-death-guard-possessed"
+      ],
+      "visible": false
+    },
+    "ability-legends-diseased-icon": {
+      "termId": "death-guard-ability-diseased-icon-death-guard-possessed",
+      "navigation": {
+        "glossary": "glossary-ability-legends-diseased-icon",
+        "rule": "death-guard-possessed-diseased-icon",
+        "datasheet": "unit-death-guard-possessed",
+        "statline": "unit-death-guard-possessed-profile"
+      },
+      "owners": [
+        "unit-death-guard-possessed"
+      ],
+      "visible": false
+    },
+    "term-death-guard-chaos-lord": {
+      "termId": "death-guard-unit-death-guard-chaos-lord",
+      "navigation": {
+        "glossary": "glossary-term-death-guard-chaos-lord",
+        "rule": "unit-death-guard-chaos-lord",
+        "fullRulePath": "books/death-guard/reader.html#unit-death-guard-chaos-lord"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "weapon-legends-combi-weapon-chaos-lord": {
+      "termId": "death-guard-weapon-combi-weapon-death-guard-chaos-lord",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-combi-weapon-chaos-lord",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord"
+      ],
+      "visible": false
+    },
+    "weapon-legends-plague-bolt-pistol": {
+      "termId": "death-guard-weapon-plague-bolt-pistol-death-guard-chaos-lord",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-plague-bolt-pistol",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord"
+      ],
+      "visible": false
+    },
+    "weapon-legends-plague-combi-bolter-chaos-lord": {
+      "termId": "death-guard-weapon-plague-combi-bolter-death-guard-chaos-lord",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-plague-combi-bolter-chaos-lord",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord"
+      ],
+      "visible": false
+    },
+    "weapon-legends-plasma-pistol-standard": {
+      "termId": "death-guard-weapon-plasma-pistol-standard-death-guard-chaos-lord",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-plasma-pistol-standard",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord"
+      ],
+      "visible": false
+    },
+    "weapon-legends-plasma-pistol-supercharge": {
+      "termId": "death-guard-weapon-plasma-pistol-supercharge-death-guard-chaos-lord",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-plasma-pistol-supercharge",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord"
+      ],
+      "visible": false
+    },
+    "weapon-legends-astartes-chainsword": {
+      "termId": "death-guard-weapon-astartes-chainsword-death-guard-chaos-lord",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-astartes-chainsword",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord"
+      ],
+      "visible": false
+    },
+    "weapon-legends-plague-fist-chaos-lord": {
+      "termId": "death-guard-weapon-plague-fist-death-guard-chaos-lord",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-plague-fist-chaos-lord",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord"
+      ],
+      "visible": false
+    },
+    "weapon-legends-exalted-weapon-chaos-lord": {
+      "termId": "death-guard-weapon-plague-encrusted-exalted-weapon-death-guard-chaos-lord",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-exalted-weapon-chaos-lord",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord"
+      ],
+      "visible": false
+    },
+    "weapon-legends-twin-lightning-claws-chaos-lord": {
+      "termId": "death-guard-weapon-twin-lightning-claws-death-guard-chaos-lord",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-twin-lightning-claws-chaos-lord",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord"
+      ],
+      "visible": false
+    },
+    "ability-legends-chaos-lord": {
+      "termId": "death-guard-ability-chaos-lord-death-guard-chaos-lord-death-guard-chaos-lord-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-ability-legends-chaos-lord",
+        "rule": "death-guard-chaos-lord-chaos-lord",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord",
+        "unit-death-guard-chaos-lord-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "ability-legends-desiccation-conduit": {
+      "termId": "death-guard-ability-desiccation-conduit-aura-death-guard-chaos-lord-death-guard-chaos-lord-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-ability-legends-desiccation-conduit",
+        "rule": "death-guard-chaos-lord-desiccation-conduit-aura",
+        "datasheet": "unit-death-guard-chaos-lord",
+        "statline": "unit-death-guard-chaos-lord-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord",
+        "unit-death-guard-chaos-lord-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "term-death-guard-chaos-lord-in-terminator-armour": {
+      "termId": "death-guard-unit-death-guard-chaos-lord-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-term-death-guard-chaos-lord-in-terminator-armour",
+        "rule": "unit-death-guard-chaos-lord-in-terminator-armour",
+        "fullRulePath": "books/death-guard/reader.html#unit-death-guard-chaos-lord-in-terminator-armour"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "weapon-legends-combi-weapon-terminator-lord": {
+      "termId": "death-guard-weapon-combi-weapon-death-guard-chaos-lord-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-combi-weapon-terminator-lord",
+        "datasheet": "unit-death-guard-chaos-lord-in-terminator-armour",
+        "statline": "unit-death-guard-chaos-lord-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-plague-combi-bolter-terminator-lord": {
+      "termId": "death-guard-weapon-plague-combi-bolter-death-guard-chaos-lord-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-plague-combi-bolter-terminator-lord",
+        "datasheet": "unit-death-guard-chaos-lord-in-terminator-armour",
+        "statline": "unit-death-guard-chaos-lord-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-chainfist-terminator-lord": {
+      "termId": "death-guard-weapon-chainfist-death-guard-chaos-lord-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-chainfist-terminator-lord",
+        "datasheet": "unit-death-guard-chaos-lord-in-terminator-armour",
+        "statline": "unit-death-guard-chaos-lord-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-plague-fist-terminator-lord": {
+      "termId": "death-guard-weapon-plague-fist-death-guard-chaos-lord-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-plague-fist-terminator-lord",
+        "datasheet": "unit-death-guard-chaos-lord-in-terminator-armour",
+        "statline": "unit-death-guard-chaos-lord-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-exalted-weapon-terminator-lord": {
+      "termId": "death-guard-weapon-plague-encrusted-exalted-weapon-death-guard-chaos-lord-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-exalted-weapon-terminator-lord",
+        "datasheet": "unit-death-guard-chaos-lord-in-terminator-armour",
+        "statline": "unit-death-guard-chaos-lord-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-twin-lightning-claws-terminator-lord": {
+      "termId": "death-guard-weapon-twin-lightning-claws-death-guard-chaos-lord-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-twin-lightning-claws-terminator-lord",
+        "datasheet": "unit-death-guard-chaos-lord-in-terminator-armour",
+        "statline": "unit-death-guard-chaos-lord-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-chaos-lord-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "term-death-guard-cultists": {
+      "termId": "death-guard-unit-death-guard-cultists",
+      "navigation": {
+        "glossary": "glossary-term-death-guard-cultists",
+        "rule": "unit-death-guard-cultists",
+        "fullRulePath": "books/death-guard/reader.html#unit-death-guard-cultists"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "weapon-legends-cultist-firearm": {
+      "termId": "death-guard-weapon-cultist-firearm-death-guard-cultists",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-cultist-firearm",
+        "datasheet": "unit-death-guard-cultists",
+        "statline": "unit-death-guard-cultists-profile"
+      },
+      "owners": [
+        "unit-death-guard-cultists"
+      ],
+      "visible": false
+    },
+    "weapon-legends-flamer": {
+      "termId": "death-guard-weapon-flamer-death-guard-cultists",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-flamer",
+        "datasheet": "unit-death-guard-cultists",
+        "statline": "unit-death-guard-cultists-profile"
+      },
+      "owners": [
+        "unit-death-guard-cultists"
+      ],
+      "visible": false
+    },
+    "weapon-legends-grenade-launcher-frag": {
+      "termId": "death-guard-weapon-grenade-launcher-frag-death-guard-cultists",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-grenade-launcher-frag",
+        "datasheet": "unit-death-guard-cultists",
+        "statline": "unit-death-guard-cultists-profile"
+      },
+      "owners": [
+        "unit-death-guard-cultists"
+      ],
+      "visible": false
+    },
+    "weapon-legends-grenade-launcher-krak": {
+      "termId": "death-guard-weapon-grenade-launcher-krak-death-guard-cultists",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-grenade-launcher-krak",
+        "datasheet": "unit-death-guard-cultists",
+        "statline": "unit-death-guard-cultists-profile"
+      },
+      "owners": [
+        "unit-death-guard-cultists"
+      ],
+      "visible": false
+    },
+    "weapon-legends-heavy-stubber": {
+      "termId": "death-guard-weapon-heavy-stubber-death-guard-cultists",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-heavy-stubber",
+        "datasheet": "unit-death-guard-cultists",
+        "statline": "unit-death-guard-cultists-profile"
+      },
+      "owners": [
+        "unit-death-guard-cultists"
+      ],
+      "visible": false
+    },
+    "weapon-legends-brutal-assault-weapon": {
+      "termId": "death-guard-weapon-brutal-assault-weapon-death-guard-cultists",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-brutal-assault-weapon",
+        "datasheet": "unit-death-guard-cultists",
+        "statline": "unit-death-guard-cultists-profile"
+      },
+      "owners": [
+        "unit-death-guard-cultists"
+      ],
+      "visible": false
+    },
+    "term-death-guard-sorcerer-in-terminator-armour": {
+      "termId": "death-guard-unit-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-term-death-guard-sorcerer-in-terminator-armour",
+        "rule": "unit-death-guard-sorcerer-in-terminator-armour",
+        "fullRulePath": "books/death-guard/reader.html#unit-death-guard-sorcerer-in-terminator-armour"
+      },
+      "owners": [],
+      "visible": false
+    },
+    "weapon-legends-combi-weapon-sorcerer": {
+      "termId": "death-guard-weapon-combi-weapon-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-combi-weapon-sorcerer",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-curse-of-the-leper-witchfire": {
+      "termId": "death-guard-weapon-curse-of-the-leper-witchfire-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-curse-of-the-leper-witchfire",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-curse-of-the-leper-focused": {
+      "termId": "death-guard-weapon-curse-of-the-leper-focused-witchfire-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-curse-of-the-leper-focused",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-plague-combi-bolter-sorcerer": {
+      "termId": "death-guard-weapon-plague-combi-bolter-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-plague-combi-bolter-sorcerer",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-chainfist-sorcerer": {
+      "termId": "death-guard-weapon-chainfist-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-chainfist-sorcerer",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-force-weapon": {
+      "termId": "death-guard-weapon-force-weapon-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-force-weapon",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-plague-fist-sorcerer": {
+      "termId": "death-guard-weapon-plague-fist-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-plague-fist-sorcerer",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-exalted-weapon-sorcerer": {
+      "termId": "death-guard-weapon-plague-encrusted-exalted-weapon-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-exalted-weapon-sorcerer",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "weapon-legends-twin-lightning-claws-sorcerer": {
+      "termId": "death-guard-weapon-twin-lightning-claws-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-weapon-legends-twin-lightning-claws-sorcerer",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "ability-legends-putrescent-vitality": {
+      "termId": "death-guard-ability-putrescent-vitality-psychic-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-ability-legends-putrescent-vitality",
+        "rule": "death-guard-sorcerer-in-terminator-armour-putrescent-vitality-psychic",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
+      "visible": false
+    },
+    "ability-legends-pestilent-familiar": {
+      "termId": "death-guard-ability-pestilent-familiar-psychic-death-guard-sorcerer-in-terminator-armour",
+      "navigation": {
+        "glossary": "glossary-ability-legends-pestilent-familiar",
+        "rule": "death-guard-sorcerer-in-terminator-armour-pestilent-familiar-psychic",
+        "datasheet": "unit-death-guard-sorcerer-in-terminator-armour",
+        "statline": "unit-death-guard-sorcerer-in-terminator-armour-profile"
+      },
+      "owners": [
+        "unit-death-guard-sorcerer-in-terminator-armour"
+      ],
       "visible": false
     },
     "pact-of-decay": {

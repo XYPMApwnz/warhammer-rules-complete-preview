@@ -1,18 +1,6 @@
 (function(){
   'use strict';
 
-  const exactTargets={
-    'stratagem-deaths-heads':['biologus-putrifier'],
-    'stratagem-persistent-pests':['nurglings'],
-    'stratagem-grip-of-the-walking-pox':['poxwalkers'],
-    'stratagem-smeared-with-filth':['poxwalkers'],
-    'stratagem-gnawing-hunger':['poxwalkers'],
-    'stratagem-hidden-amongst-the-dead':['poxwalkers'],
-    'stratagem-signal-pox':['lord-of-virulence'],
-    'stratagem-nauseating-paroxysms':['plague-marines'],
-    'stratagem-droning-horror':['plague-marines'],
-    'stratagem-eye-of-the-swarm':['plague-marines']
-  };
   const detachmentKeywordGrants=Object.freeze([
     {detachment:'shamblerot-vectorium',units:['poxwalkers'],id:'keyword-battleline',title:'BATTLELINE'},
     {detachment:'contagion-engines',units:['foetid-bloat-drone','foetid-bloat-drone-with-heavy-blight-launcher','helbrute','myphitic-blight-hauler'],id:'keyword-contagion-engine',title:'CONTAGION ENGINE'}
@@ -30,23 +18,55 @@
     const keywordLine=keywords.querySelector('.content-block p')||keywords;
     const ids=new Set([...keywordLine.querySelectorAll('[data-term]')].map(node=>node.dataset.term));
     const slug=(unit.id||'').replace(/^unit-/,'');
+    let candidates=[];
+    try{candidates=JSON.parse(unit.dataset.relatedCandidates||'').map(candidate=>({...candidate,keywords:new Set(candidate.keywords.map(normalized))}));}catch{}
+    const labels=new Set([...keywordLine.querySelectorAll('[data-term]')].map(node=>normalized(node)));
     return {
       slug,ids,
+      unitId:unit.id,keywords:labels,intrinsicKeywords:labels,candidates:candidates.length?candidates:undefined,
+      abilities:new Set(unit.querySelector('[data-term="core-deadly-demise"]')?['DEADLY DEMISE']:[]),
       has:id=>ids.has(id),
-      attached:unit.dataset.rosterAttached==='true',
-      twoCharacters:unit.dataset.rosterCharacterCount==='2',
-      warlord:unit.dataset.rosterWarlord==='true',
+      attached:unit.hasAttribute('data-roster-attached')?unit.dataset.rosterAttached==='true':null,
+      twoCharacters:unit.hasAttribute('data-roster-character-count')?unit.dataset.rosterCharacterCount==='2':null,
+      warlord:unit.hasAttribute('data-roster-warlord')?unit.dataset.rosterWarlord==='true':null,
       deadlyDemise:Boolean(unit.querySelector('[data-term="core-deadly-demise"]'))
     };
   }
 
+  const eligibilityByRule={};
+  const add=(ids,targets,conditions=[])=>ids.forEach(id=>eligibilityByRule[id]={targets,conditions});
+  const unit=(all=[],options={})=>({side:'friendly',count:1,all,...options});
+  add(['core-stratagem-command-re-roll','core-stratagem-insane-bravery','core-stratagem-counteroffensive'],[unit()]);
+  add(['core-stratagem-fire-overwatch'],[unit([], {none:['TITANIC']})]);
+  add(['core-stratagem-heroic-intervention'],[unit([], {alternatives:[{noneKeywords:['VEHICLE']},{allKeywords:['WALKER']}]})]);
+  add(['core-stratagem-rapid-ingress'],[unit([], {none:['AIRCRAFT']})]);
+  add(['core-stratagem-epic-challenge'],[unit(['CHARACTER'])]);
+  add(['core-stratagem-explosives'],[unit([], {any:['EXPLOSIVES','GRENADES']})]);
+  add(['core-stratagem-crushing-impact'],[unit([], {any:['MONSTER','VEHICLE']})]);
+  add(['core-stratagem-smokescreen'],[unit(['SMOKE'])]);
+  add(['stratagem-putrid-detonation'],[unit(['DEATH GUARD'],{subject:'model',any:['VEHICLE','MONSTER'],allAbilities:['DEADLY DEMISE']})]);
+  add(['stratagem-disgustingly-resilient','stratagem-leechspore-eruption','stratagem-drawn-to-despair','stratagem-clutching-corruption','stratagem-shock-and-horror'],[unit(['DEATH GUARD'])]);
+  add(['stratagem-overwhelming-generosity','stratagem-territorial-infection','stratagem-aggravus-spasms','stratagem-simultaneous-contamination'],[unit(['DEATH GUARD','CHARACTER'])]);
+  add(['stratagem-creeping-blight'],[unit(['DEATH GUARD','INFANTRY'])]);
+  add(['stratagem-plaguesurge'],[unit(['DEATH GUARD','CHARACTER'],{subject:'model',warlord:true})]);
+  add(['stratagem-blighted-land','stratagem-relentless-grind','stratagem-font-of-filth','stratagem-eyestinger-storm','stratagem-stinking-mire'],[unit(['DEATH GUARD','VEHICLE'])]);
+  add(['stratagem-blessings-of-filth','stratagem-malignance-magnified','stratagem-grotesque-fortitude'],[unit(['DEATH GUARD'],{attached:true})]);
+  add(['stratagem-rabid-infusion'],[unit(['DEATH GUARD'],{minCharacters:2})]);
+  add(['stratagem-mobile-vector'],[unit(['DEATH GUARD','CHARACTER'],{attached:false})]);
+  add(['stratagem-deaths-heads'],[unit([],{units:['unit-biologus-putrifier']})]);
+  add(['stratagem-persistent-pests'],[unit([],{units:['unit-nurglings']})]);
+  add(['stratagem-all-is-rot','stratagem-avatars-of-decay','stratagem-mireslick'],[unit(['PLAGUE LEGIONS'])]);
+  add(['stratagem-fleshy-avalanche'],[unit(['PLAGUE LEGIONS','MONSTER'])]);
+  add(['stratagem-grip-of-the-walking-pox','stratagem-smeared-with-filth','stratagem-gnawing-hunger'],[unit([],{units:['unit-poxwalkers']})]);
+  add(['stratagem-hidden-amongst-the-dead'],[unit([],{units:['unit-poxwalkers'],attached:false})]);
+  add(['stratagem-shambling-wall'],[unit(['DEATH GUARD']),unit([],{units:['unit-poxwalkers']})]);
+  add(['stratagem-blooming-pestilence','stratagem-grim-reapers','stratagem-undying-spite','stratagem-mortarion-s-teachings','stratagem-sickening-impact'],[unit(['TERMINATOR'])]);
+  add(['stratagem-signal-pox'],[unit([],{units:['unit-lord-of-virulence']})]);
+  add(['stratagem-fresh-vectors','stratagem-bloodrust-deluge','stratagem-soulrot-flux'],[unit(['CONTAGION ENGINE'])]);
+  add(['stratagem-nauseating-paroxysms','stratagem-droning-horror','stratagem-eye-of-the-swarm'],[unit([],{units:['unit-plague-marines']})]);
+
   function grantedKeywords(unitSlug,detachments=[]){
     return detachmentKeywordGrants.filter(grant=>detachments.includes(grant.detachment)&&grant.units.includes(unitSlug));
-  }
-
-  function targetText(card){
-    const target=[...card.querySelectorAll('.field')].find(field=>normalized(field.querySelector('b'))==='TARGET');
-    return normalized(target);
   }
 
   function enhancementMatches(card,unit){
@@ -65,40 +85,18 @@
 
   function stratagemMatches(card,unit){
     const id=card.dataset.ruleId||card.id;
-    if(id.startsWith('core-stratagem-')){
-      if(id==='core-stratagem-epic-challenge')return unit.has('keyword-character');
-      if(id==='core-stratagem-explosives')return unit.has('keyword-explosives')||unit.has('keyword-grenades');
-      if(id==='core-stratagem-crushing-impact')return unit.has('keyword-monster')||unit.has('keyword-vehicle');
-      if(id==='core-stratagem-rapid-ingress')return !unit.has('keyword-aircraft');
-      if(id==='core-stratagem-fire-overwatch')return !unit.has('keyword-titanic');
-      if(id==='core-stratagem-smokescreen')return unit.has('keyword-smoke');
-      if(id==='core-stratagem-heroic-intervention')return !unit.has('keyword-vehicle')||unit.has('keyword-character')||unit.has('keyword-walker');
-      return true;
-    }
-    if(exactTargets[id])return exactTargets[id].includes(unit.slug);
-    const target=targetText(card);
-    if(!target)return false;
-    if(target.includes('CONTAGION ENGINE'))return unit.contagionEngine;
-    if(target.includes('PLAGUE LEGIONS MONSTER'))return unit.has('keyword-plague-legions')&&unit.has('keyword-monster');
-    if(target.includes('PLAGUE LEGIONS'))return unit.has('keyword-plague-legions');
-    if(target.includes('VEHICLE OR DEATH GUARD MONSTER'))return (unit.has('keyword-vehicle')||unit.has('keyword-monster'))&&(!target.includes('DEADLY DEMISE')||unit.deadlyDemise);
-    if(target.includes('DEATH GUARD VEHICLE'))return unit.has('keyword-vehicle');
-    if(target.includes('DEATH GUARD INFANTRY'))return unit.has('keyword-infantry');
-    if(target.includes('TERMINATOR'))return unit.has('keyword-terminator');
-    if(target.includes('ATTACHED UNIT'))return unit.attached;
-    if(target.includes('INCLUDES TWO CHARACTER'))return unit.twoCharacters;
-    if(target.includes('DEATH GUARD CHARACTER'))return unit.has('keyword-character');
-    if(target.includes('WARLORD'))return unit.warlord;
-    return target.includes('DEATH GUARD');
+    const eligibility=eligibilityByRule[id];
+    return eligibility?window.WHRelatedRules.matches(eligibility,unit):false;
   }
 
   function matches(card,unitRoot){
     const base=unitRoot.slug?unitRoot:profile(unitRoot);
     const detachment=card.closest('[data-detachment]')?.dataset.detachment||'';
-    const granted=new Set(grantedKeywords(base.slug,[detachment]).map(grant=>grant.id));
-    const unit={...base,has:id=>base.has(id)||granted.has(id),contagionEngine:granted.has('keyword-contagion-engine')};
+    const grants=grantedKeywords(base.slug,[detachment]),granted=new Set(grants.map(grant=>grant.id)),labels=grants.map(grant=>normalized({textContent:grant.title}));
+    const candidates=(base.candidates||[base]).map(candidate=>({...candidate,keywords:new Set([...(candidate.keywords||base.keywords),...labels])}));
+    const unit={...base,keywords:candidates[0].keywords,candidates,has:id=>base.has(id)||granted.has(id),contagionEngine:granted.has('keyword-contagion-engine')};
     return card.classList.contains('enhancement')?enhancementMatches(card,unit):stratagemMatches(card,unit);
   }
 
-  window.DGRelatedRules=Object.freeze({profile,matches,grantedKeywords});
+  window.DGRelatedRules=Object.freeze({profile,matches,grantedKeywords,eligibilityByRule});
 }());

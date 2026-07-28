@@ -2,11 +2,19 @@
   "name": "warhammer-rules-complete-preview",
   "private": true,
   "scripts": {
+    "death-guard:build": "node books/death-guard/tools/build-legends.mjs && node roster-guides/build-points.mjs && node glossary/tools/build-glossary.mjs && node books/death-guard/mobile/build.mjs",
     "core:build": "node books/core-rules/reader/build.mjs",
     "mechanicus:build": "node books/adeptus-mechanicus/tools/extract-points.mjs && node books/adeptus-mechanicus/tools/extract-datasheets.mjs && node roster-guides/build-points.mjs && node books/adeptus-mechanicus/tools/build-full-content.mjs && node glossary/tools/build-glossary.mjs && node books/adeptus-mechanicus/tools/build-full-content.mjs && node books/adeptus-mechanicus/mobile/build.mjs",
+    "tyranids:build": "node books/shared/tools/extract-bsdata-11e.mjs books/tyranids/sources/bsdata-extract.config.json && node books/shared/tools/build-army-book.mjs books/tyranids/book.config.json && node glossary/tools/build-glossary.mjs && node books/shared/tools/build-army-book.mjs books/tyranids/book.config.json",
+    "tau:build": "node books/shared/tools/extract-bsdata-11e.mjs books/tau-empire/sources/bsdata-extract.config.json && node books/shared/tools/build-army-book.mjs books/tau-empire/book.config.json && node glossary/tools/build-glossary.mjs && node books/shared/tools/build-army-book.mjs books/tau-empire/book.config.json",
+    "csm:build": "node books/shared/tools/extract-bsdata-11e.mjs books/chaos-space-marines/sources/bsdata-extract.config.json && node books/shared/tools/build-army-book.mjs books/chaos-space-marines/book.config.json && node glossary/tools/build-glossary.mjs && node books/shared/tools/build-army-book.mjs books/chaos-space-marines/book.config.json",
+    "orks:build": "node books/shared/tools/extract-bsdata-11e.mjs books/orks/sources/bsdata-extract.config.json && node books/shared/tools/build-army-book.mjs books/orks/book.config.json && node glossary/tools/build-glossary.mjs && node books/shared/tools/build-army-book.mjs books/orks/book.config.json",
+    "ec:build": "node books/emperors-children/tools/build-bsdata-enhancement-index.mjs && node books/shared/tools/extract-bsdata-11e.mjs books/emperors-children/sources/bsdata-extract.config.json && node books/shared/tools/build-army-book.mjs books/emperors-children/book.config.json && node glossary/tools/build-glossary.mjs && node books/shared/tools/build-army-book.mjs books/emperors-children/book.config.json",
+    "space-marines:build": "python books/space-marines/tools/extract-faction-pack.py && python books/space-marines/tools/build-bsdata-layer.py && node books/shared/tools/build-army-book.mjs books/space-marines/book.config.json && node glossary/tools/build-glossary.mjs && node books/shared/tools/build-army-book.mjs books/space-marines/book.config.json",
+    "dark-angels:build": "python books/dark-angels/tools/extract-faction-pack.py && node books/shared/tools/build-army-book.mjs books/dark-angels/book.config.json && node glossary/tools/build-glossary.mjs && node books/shared/tools/build-army-book.mjs books/dark-angels/book.config.json",
     "points:build": "node roster-guides/build-points.mjs",
     "glossary:build": "node glossary/tools/build-glossary.mjs",
     "glossary:check": "node glossary/tools/check-glossary.mjs",
-    "test": "node glossary/tools/check-glossary.mjs && node tests/rendered-output-qa.mjs && node tests/roster-guide-qa.mjs && node tests/roster-points-qa.mjs && node tests/death-guard-qa.mjs && node books/core-rules/tests/qa.mjs && node books/adeptus-mechanicus/tests/qa.mjs && node tests/integration-qa.mjs"
+    "test": "node glossary/tools/check-glossary.mjs && node tests/rendered-output-qa.mjs && node tests/roster-guide-qa.mjs && node tests/roster-points-qa.mjs && node tests/army-book-eligibility-qa.mjs && node tests/death-guard-qa.mjs && node books/core-rules/tests/qa.mjs && node books/adeptus-mechanicus/tests/qa.mjs && node books/tyranids/tests/qa.mjs && node tests/integration-qa.mjs"
   }
 }

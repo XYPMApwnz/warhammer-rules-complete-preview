@@ -6,10 +6,15 @@ const context={window:{}};
 vm.createContext(context);
 for(const file of ['books/shared/roster-parser.js','roster-guides/points-data.js','roster-guides/points-validator.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});
 const {WHRosterParser,WH_POINTS_CATALOG,WHRosterPoints}=context.window;
-assert.equal(Object.keys(WH_POINTS_CATALOG['death guard'].units).length,36);
+assert.equal(Object.keys(WH_POINTS_CATALOG['death guard'].units).length,41);
 assert.equal(Object.keys(WH_POINTS_CATALOG['death guard'].enhancements).length,30);
 assert.equal(Object.keys(WH_POINTS_CATALOG['adeptus mechanicus'].units).length,39);
 assert.equal(new Set(Object.values(WH_POINTS_CATALOG['adeptus mechanicus'].enhancements).map(item=>item.title)).size,34);
+assert.equal(WH_POINTS_CATALOG['death guard'].units['death guard possessed'].points[0].value,155);
+assert.equal(WH_POINTS_CATALOG['death guard'].units['death guard chaos lord'].points[0].value,65);
+assert.equal(WH_POINTS_CATALOG['death guard'].units['death guard chaos lord in terminator armour'].points[0].value,85);
+assert.equal(WH_POINTS_CATALOG['death guard'].units['death guard cultists'].points[1].value,100);
+assert.equal(WH_POINTS_CATALOG['death guard'].units['death guard sorcerer in terminator armour'].points[0].value,70);
 
 const common=(declared,header,lordPoints)=>`+++++++++++++++++++++++++++++++++++++++++++++++
 + FACTION KEYWORD: Chaos - Death Guard

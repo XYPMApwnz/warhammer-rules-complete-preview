@@ -76,7 +76,7 @@ A popup shows a brief explanation of a term, related terms, and only existing tr
 
 ## 8. Transitions from a popup
 
-- Available types: Glossary, To rule, Datasheet & Wargear, Statline.
+- Available types: Glossary and rule destinations. A popup opened inside Related Rules also exposes Open datasheet.
 - Before a transition, the complete term ID chain, external root term, level, and action-button data are saved.
 - Before scrolling, the chain is temporarily hidden.
 - A Glossary transition accounts for the fixed-header and sticky-search heights: the target card opens below both overlapping layers, including the `Assault → popup → Glossary` scenario.

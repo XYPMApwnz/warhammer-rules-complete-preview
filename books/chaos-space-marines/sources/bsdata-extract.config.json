@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "faction": {
+    "id": "chaos-space-marines",
+    "title": "Chaos Space Marines"
+  },
+  "source": {
+    "repository": "https://github.com/BSData/wh40k-11e",
+    "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+    "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/Chaos%20-%20Chaos%20Space%20Marines.json"
+  },
+  "inputs": [
+    {
+      "role": "faction",
+      "path": "../../../tmp/bsdata-wh40k-11e/Chaos - Chaos Space Marines.json"
+    },
+    {
+      "role": "chaos-knights-library",
+      "path": "../../../tmp/bsdata-wh40k-11e/Chaos - Chaos Knights Library.json"
+    },
+    {
+      "role": "chaos-daemons-library",
+      "path": "../../../tmp/bsdata-wh40k-11e/Chaos - Chaos Daemons Library.json"
+    },
+    {
+      "role": "heresy-legends-library",
+      "path": "../../../tmp/bsdata-wh40k-11e/Library - Astartes Heresy Legends.json"
+    },
+    {
+      "role": "titans-library",
+      "path": "../../../tmp/bsdata-wh40k-11e/Library - Titans.json"
+    },
+    {
+      "role": "game-system",
+      "path": "../../../tmp/bsdata-wh40k-11e/Warhammer 40,000.json"
+    }
+  ],
+  "outputs": {
+    "snapshot": "bsdata-chaos-space-marines-11e.json",
+    "datasheets": "../content/chaos-space-marines-codex-datasheets.en.json",
+    "points": "../content/chaos-space-marines-points.en.json"
+  },
+  "filters": {
+    "excludeNames": [
+      "Detachment",
+      "Show/Hide Options",
+      "Order of Battle"
+    ],
+    "excludeNamePatterns": [
+      "\\[Crucible\\]$"
+    ],
+    "excludePrimaryCategories": [
+      "Configuration",
+      "Order of Battle",
+      "Reference"
+    ],
+    "blockedBranches": [
+      "^Crusade$",
+      "Enhancements$",
+      "^Detachment$",
+      "^Order of Battle$",
+      "^Show/Hide Options$",
+      "^Specialisms$",
+      "^Weapon Modifications$",
+      "^Battle Honours$",
+      "^Relic Upgrades$",
+      "\\[Crucible\\]"
+    ],
+    "imperialArmourNames": []
+  },
+  "enhancements": {
+    "detachments": [
+      "Cabal of Chaos",
+      "Chaos Cult",
+      "Creations of Bile",
+      "Cult of the Arkifane",
+      "Deceptors",
+      "Devotees of Destruction",
+      "Dread Talons",
+      "Fellhammer Siege-host",
+      "Huron's Marauders",
+      "Murdertalon Raiders",
+      "Nightmare Hunt",
+      "Pactbound Zealots",
+      "Renegade Raiders",
+      "Renegade Warband",
+      "Soulforged Warpack",
+      "Veterans of the Long War",
+      "Warpstrike Champions"
+    ]
+  }
+}

@@ -927,7 +927,7 @@
 <br>Start of any phase.</p>
 <p class="field">
 <b>TARGET</b>
-<br>One <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> unit from your army.</p>
+<br>One <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> unit from your army.</p>
 <p class="field">
 <b>EFFECT</b>
 <br>Until the end of the phase, add 3&quot; to the <button class="term-button" data-term="contagion-range" data-term-title="Contagion Range" data-term-summary="Contagion Range is 3&quot; in battle round 1, 6&quot; in round 2 and 9&quot; from round 3 onward; it cannot exceed 12&quot; after modifiers.">Contagion Range</button> of models in your unit.</p>
@@ -948,7 +948,7 @@
 <br>Fight phase.</p>
 <p class="field">
 <b>TARGET</b>
-<br>One <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> unit from your army that has not been selected to fight this phase.</p>
+<br>One <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> unit from your army that has not been selected to fight this phase.</p>
 <p class="field">
 <b>EFFECT</b>
 <br>Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit (excluding MONSTERS and VEHICLES) you can re-roll the Hit roll.</p>
@@ -969,7 +969,7 @@
 <br>Fight phase, just after an enemy unit has selected its targets.</p>
 <p class="field">
 <b>TARGET</b>
-<br>One <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> unit from your army that was selected as the target of one or more of the attacking unit’s attacks.</p>
+<br>One <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> unit from your army that was selected as the target of one or more of the attacking unit’s attacks.</p>
 <p class="field">
 <b>EFFECT</b>
 <br>Until the end of the phase, each time a model in your unit is destroyed, if that model has not fought this phase, roll one D6. On a 4+, do not remove the destroyed model from play; it can fight after the attacking unit has finished making its attacks, and is then removed from play.</p>
@@ -1011,7 +1011,7 @@
 <br>Your Shooting phase.</p>
 <p class="field">
 <b>TARGET</b>
-<br>One <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> unit from your army that has not been selected to shoot this phase.</p>
+<br>One <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> unit from your army that has not been selected to shoot this phase.</p>
 <p class="field">
 <b>EFFECT</b>
 <br>Until the end of the phase, ranged weapons equipped by models in your unit have the [<button class="term-button" data-term="core-assault" data-term-title="[ASSAULT]" data-term-summary="An unengaged unit that Advanced this turn can shoot using only its [ASSAULT] weapons. After shooting, it cannot start an Action until the end of the phase." data-full-rule-path="books/core-rules/reader/core-abilities.html#rule-24-04">ASSAULT</button>] and [HEAVY] abilities.</p>
@@ -1029,10 +1029,10 @@
 </div>
 <p class="field">
 <b>WHEN</b>
-<br>Your Charge phase, just after a <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> unit from your army ends a Charge move.</p>
+<br>Your Charge phase, just after a <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> unit from your army ends a Charge move.</p>
 <p class="field">
 <b>TARGET</b>
-<br>That <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> unit.</p>
+<br>That <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> unit.</p>
 <p class="field">
 <b>EFFECT</b>
 <br>Select one enemy unit within Engagement Range of your unit, then roll one D6 for each model in your unit that is within Engagement Range of that enemy unit: for each 2+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).</p>
@@ -1047,28 +1047,28 @@
 <h4>
 <button class="term-button" data-term="face-of-death" data-term-title="Face of Death" data-term-summary="TERMINATOR model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer’s unit must take a Battle-shock test." data-full-rule-path="books/death-guard/reader.html#enhancement-face-of-death" data-mobile-rule-path="books/death-guard/mobile/death-lords-chosen.html#enhancement-face-of-death">Face of Death</button> - 10 pts</h4>
 <p>
-<button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer’s unit must take a Battle-shock test.</p>
+<button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer’s unit must take a Battle-shock test.</p>
 </article>
 <article class="enhancement surface" id="enhancement-vile-vigour">
 <div class="eyebrow">Enhancement</div>
 <h4>
 <button class="term-button" data-term="vile-vigour" data-term-title="Vile Vigour" data-term-summary="TERMINATOR model only. While the bearer is leading a unit, add 1&quot; to the Movement characteristic of models in that unit and you can re-roll Advance rolls made for that unit." data-full-rule-path="books/death-guard/reader.html#enhancement-vile-vigour" data-mobile-rule-path="books/death-guard/mobile/death-lords-chosen.html#enhancement-vile-vigour">Vile Vigour</button> - 15 pts</h4>
 <p>
-<button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> model only. While the bearer is leading a unit, add 1&quot; to the Movement characteristic of models in that unit and you can re-roll Advance rolls made for that unit.</p>
+<button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> model only. While the bearer is leading a unit, add 1&quot; to the Movement characteristic of models in that unit and you can re-roll Advance rolls made for that unit.</p>
 </article>
 <article class="enhancement surface" id="enhancement-warprot-talisman">
 <div class="eyebrow">Enhancement</div>
 <h4>
 <button class="term-button" data-term="warprot-talisman" data-term-title="Warprot Talisman" data-term-summary="TERMINATOR model only." data-full-rule-path="books/death-guard/reader.html#enhancement-warprot-talisman" data-mobile-rule-path="books/death-guard/mobile/death-lords-chosen.html#enhancement-warprot-talisman">Warprot Talisman</button> - 30 pts</h4>
 <p>
-<button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> model only. Once per battle, at the end of your opponent’s turn, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves.</p>
+<button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> model only. Once per battle, at the end of your opponent’s turn, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves.</p>
 </article>
 <article class="enhancement surface" id="enhancement-helm-of-the-fly-king">
 <div class="eyebrow">Enhancement</div>
 <h4>
 <button class="term-button" data-term="helm-of-the-fly-king" data-term-title="Helm of the Fly King" data-term-summary="TERMINATOR model only. While the bearer is leading a unit, models in that unit cannot be targeted by ranged attacks unless the attacking model is within 18&quot;." data-full-rule-path="books/death-guard/reader.html#enhancement-helm-of-the-fly-king" data-mobile-rule-path="books/death-guard/mobile/death-lords-chosen.html#enhancement-helm-of-the-fly-king">Helm of the Fly King</button> - 20 pts</h4>
 <p>
-<button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> model only. While the bearer is leading a unit, models in that unit cannot be targeted by ranged attacks unless the attacking model is within 18&quot;.</p>
+<button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> model only. While the bearer is leading a unit, models in that unit cannot be targeted by ranged attacks unless the attacking model is within 18&quot;.</p>
 </article>
 </div>
 </section></div>
@@ -1329,7 +1329,7 @@
 <h4>
 <button class="term-button" data-term="rejuvenating-swarm" data-term-title="Rejuvenating Swarm" data-term-summary="DEATH GUARD INFANTRY model only (excluding TERMINATOR models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls." data-full-rule-path="books/death-guard/reader.html#enhancement-rejuvenating-swarm" data-mobile-rule-path="books/death-guard/mobile/paragons-of-putrescence.html#enhancement-rejuvenating-swarm">Rejuvenating Swarm</button> - 15 pts</h4>
 <p>
-<button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> <button class="term-button" data-term="keyword-infantry" data-term-title="INFANTRY" data-term-summary="INFANTRY units use TERRAIN AND MOVEMENT, BENEFIT OF COVER and HIDDEN.">INFANTRY</button> model only (excluding <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="Rules that specify TERMINATOR apply only to models or units with this keyword.">TERMINATOR</button> models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls.</p>
+<button class="term-button" data-term="keyword-death-guard" data-term-title="DEATH GUARD" data-term-summary="Rules that specify DEATH GUARD apply only to models or units with this keyword.">DEATH GUARD</button> <button class="term-button" data-term="keyword-infantry" data-term-title="INFANTRY" data-term-summary="INFANTRY units use TERRAIN AND MOVEMENT, BENEFIT OF COVER and HIDDEN.">INFANTRY</button> model only (excluding <button class="term-button" data-term="keyword-terminator" data-term-title="TERMINATOR" data-term-summary="TERMINATOR identifies models whose transport capacity and other rules can be handled differently.">TERMINATOR</button> models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls.</p>
 </article>
 <article class="enhancement surface" id="enhancement-host-of-the-hybridised-pox">
 <div class="eyebrow">Enhancement</div>

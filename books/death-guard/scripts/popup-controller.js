@@ -104,15 +104,12 @@
       if(this.ids.length)setTimeout(()=>this.reposition(),0);
     }
 
-    contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}
     actionList(term){
-      const unit=this.contextualUnit(),unitId=unit?.id||'';
-      const contextualStatline=unit?.querySelector('.unit-part[id$="-profile"]')?.id||'';
       const actions=window.WHPopupRuleActions.resolve(term,{resolveHref:path=>window.WHGlossaryReturn.href(path)});
       if(term.id&&this.fullEntry?.isUseful(term.id))actions.push({label:'Full entry',fullEntry:term.id});
       if(term.id)actions.push({label:'Glossary entry',href:'../../glossary/index.html#'+encodeURIComponent(term.id),megaGlossary:true});
-      if(unitId||term.datasheet)actions.push({label:'Datasheet & Wargear',target:unitId||term.datasheet,type:'datasheet'});
-      if(contextualStatline||term.statline)actions.push({label:'Statline',target:contextualStatline||term.statline,type:'datasheet'});
+      const relatedUnitId=this.rootElement()?.closest?.('.related-rules-layer')?.dataset.unitId||'';
+      if(relatedUnitId)actions.push({label:'Open datasheet',target:relatedUnitId,type:'datasheet'});
       return actions.filter(action=>action.href||action.fullEntry||document.getElementById(action.target));
     }
     rememberMegaReturn(){

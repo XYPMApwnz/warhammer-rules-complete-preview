@@ -51,8 +51,8 @@ const categories = [...source.matchAll(/<section class="content-group" id="(data
   });
 
 const units = categories.flatMap(category => category.units);
-if (detachments.length !== 9 || units.length !== 36) {
-  throw new Error(`Expected 9 detachments and 36 datasheets, found ${detachments.length} and ${units.length}: ${categories.map(item => `${item.id}=${item.units.length}`).join(', ')}`);
+if (detachments.length !== 9 || units.length !== 41) {
+  throw new Error(`Expected 9 detachments and 41 datasheets, found ${detachments.length} and ${units.length}: ${categories.map(item => `${item.id}=${item.units.length}`).join(', ')}`);
 }
 
 const staticRoutes = [
@@ -141,7 +141,7 @@ function page(route) {
   <link rel="stylesheet" href="../styles/tokens.css?v=10">
   <link rel="stylesheet" href="../styles/layout.css?v=9">
   <link rel="stylesheet" href="../styles/navigation.css?v=11">
-  <link rel="stylesheet" href="../styles/content.css?v=28">
+  <link rel="stylesheet" href="../styles/content.css?v=29">
   <link rel="stylesheet" href="../styles/popups.css?v=17">
   <link rel="stylesheet" href="../../shared/datasheet-system.css?v=6">
   <link rel="stylesheet" href="./mobile.css?v=8">
@@ -165,7 +165,8 @@ function page(route) {
   </nav>
   <main class="main mobile-main"><article class="document">${hydrateTerms(content(route))}${relatedSection}</article></main>
   <script src="../../shared/datasheet-layout.js?v=2"></script>
-  <script src="../scripts/related-rules.js?v=6"></script>
+  <script src="../../shared/related-rules-matcher.js?v=1"></script>
+  <script src="../scripts/related-rules.js?v=7"></script>
   <dialog class="mobile-dialog" id="termDialog" aria-labelledby="termTitle">
     <form method="dialog" class="mobile-dialog-head"><span>Mega Glossary</span><button aria-label="Close popup">&times;</button></form>
     <h2 id="termTitle"></h2><p id="termSummary"></p>
@@ -174,7 +175,7 @@ function page(route) {
   </dialog>
   <script src="../../../glossary-return.js?v=2"></script>
   <script src="../../shared/roster-parser.js?v=2"></script>
-  <script src="../../../roster-guides/points-data.js?v=3"></script>
+  <script src="../../../roster-guides/points-data.js?v=5"></script>
   <script src="../../shared/roster-enhancements.js?v=3"></script>
   <script src="./mobile.js?v=13"></script>
 </body>

@@ -1,0 +1,152 @@
+{
+  "source": "Death Guard Faction Pack v1.0, pages 8-17",
+  "group": {
+    "id": "datasheets-legends",
+    "title": "Legends",
+    "number": "4.9",
+    "description": "Official Warhammer Legends datasheets from Death Guard Faction Pack v1.0."
+  },
+  "units": [
+    {
+      "id": "unit-death-guard-possessed",
+      "title": "Death Guard Possessed",
+      "number": "4.9.1",
+      "points": [{"label": "5 models", "value": 155}, {"label": "10 models", "value": 310}],
+      "statline": {"M": "9\"", "T": "6", "Sv": "3+", "W": "3", "Ld": "6+", "OC": "1", "Inv": "5+"},
+      "weapons": [
+        {"id": "weapon-legends-hideous-mutations", "name": "Hideous mutations", "mode": "melee", "range": "Melee", "a": "4", "skill": "3+", "s": "5", "ap": "-1", "d": "2", "abilities": []}
+      ],
+      "abilities": [
+        {"type": "faction", "title": "FACTION", "text": "Nurgle's Gift (Aura)"},
+        {"id": "ability-legends-infectious-bloodshed", "title": "Infectious Bloodshed", "text": "Each time this unit makes a Charge move, until the end of the turn, weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability."}
+      ],
+      "wargearAbilities": [
+        {"id": "ability-legends-diseased-icon", "title": "Diseased Icon", "text": "Melee weapons in the bearer's unit have the [LETHAL HITS] ability."}
+      ],
+      "wargearOptions": ["1 model can be equipped with 1 diseased icon."],
+      "composition": "1 Possessed Champion; 4-9 Possessed. Each model is equipped with: hideous mutations.",
+      "transport": "For the purposes of embarking within Transports, each Death Guard Possessed model counts as one Terminator model.",
+      "keywords": ["INFANTRY", "CHAOS", "DAEMON", "POSSESSED"]
+    },
+    {
+      "id": "unit-death-guard-chaos-lord",
+      "title": "Death Guard Chaos Lord",
+      "number": "4.9.2",
+      "points": [{"label": "1 model", "value": 65}],
+      "statline": {"M": "5\"", "T": "5", "Sv": "3+", "W": "5", "Ld": "6+", "OC": "1", "Inv": "4+"},
+      "weapons": [
+        {"id": "weapon-legends-combi-weapon-chaos-lord", "name": "Combi-weapon", "mode": "ranged", "range": "24\"", "a": "1", "skill": "2+", "s": "4", "ap": "0", "d": "1", "abilities": ["ANTI-INFANTRY 4+", "DEVASTATING WOUNDS", "RAPID FIRE 1"]},
+        {"id": "weapon-legends-plague-bolt-pistol", "name": "Plague bolt pistol", "mode": "ranged", "range": "12\"", "a": "1", "skill": "2+", "s": "4", "ap": "0", "d": "1", "abilities": ["LETHAL HITS", "PISTOL"]},
+        {"id": "weapon-legends-plague-combi-bolter-chaos-lord", "name": "Plague combi-bolter", "mode": "ranged", "range": "24\"", "a": "2", "skill": "2+", "s": "4", "ap": "0", "d": "1", "abilities": ["LETHAL HITS", "RAPID FIRE 2"]},
+        {"id": "weapon-legends-plasma-pistol-standard", "name": "Plasma pistol - standard", "mode": "ranged", "range": "12\"", "a": "1", "skill": "2+", "s": "7", "ap": "-2", "d": "1", "abilities": ["PISTOL"]},
+        {"id": "weapon-legends-plasma-pistol-supercharge", "name": "Plasma pistol - supercharge", "mode": "ranged", "range": "12\"", "a": "1", "skill": "2+", "s": "8", "ap": "-3", "d": "2", "abilities": ["HAZARDOUS", "PISTOL"]},
+        {"id": "weapon-legends-astartes-chainsword", "name": "Astartes chainsword", "mode": "melee", "range": "Melee", "a": "7", "skill": "2+", "s": "4", "ap": "-1", "d": "1", "abilities": []},
+        {"id": "weapon-legends-plague-fist-chaos-lord", "name": "Plague fist", "mode": "melee", "range": "Melee", "a": "5", "skill": "3+", "s": "8", "ap": "-2", "d": "2", "abilities": ["LETHAL HITS"]},
+        {"id": "weapon-legends-exalted-weapon-chaos-lord", "name": "Plague-encrusted exalted weapon", "mode": "melee", "range": "Melee", "a": "6", "skill": "2+", "s": "5", "ap": "-2", "d": "1", "abilities": ["LETHAL HITS"]},
+        {"id": "weapon-legends-twin-lightning-claws-chaos-lord", "name": "Twin lightning claws", "mode": "melee", "range": "Melee", "a": "7", "skill": "2+", "s": "5", "ap": "-2", "d": "1", "abilities": ["TWIN-LINKED"]}
+      ],
+      "abilities": [
+        {"type": "core", "title": "CORE", "text": "Leader"},
+        {"type": "faction", "title": "FACTION", "text": "Nurgle's Gift (Aura)"},
+        {"id": "ability-legends-chaos-lord", "title": "Chaos Lord", "text": "While this model is leading a unit, each time a model in that unit makes an attack, re-roll a Hit roll of 1."},
+        {"id": "ability-legends-desiccation-conduit", "title": "Desiccation Conduit (Aura)", "text": "While an enemy unit is within Contagion Range of this model, at the end of the turn, roll one D6: on a 4+, that enemy unit suffers D3 mortal wounds."}
+      ],
+      "wargearOptions": [
+        "This model's plague bolt pistol can be replaced with 1 combi-weapon, 1 plague combi-bolter, 1 plague fist, 1 plague-encrusted exalted weapon or 1 plasma pistol.",
+        "This model's Astartes chainsword can be replaced with 1 plague fist or 1 plague-encrusted exalted weapon.",
+        "This model's plague bolt pistol and Astartes chainsword can be replaced with 1 twin lightning claws."
+      ],
+      "composition": "1 Death Guard Chaos Lord. This model is equipped with: plague bolt pistol; Astartes chainsword.",
+      "leader": "This model can be attached to: Plague Marines.",
+      "keywords": ["INFANTRY", "CHARACTER", "CHAOS", "NURGLE", "GRENADES", "CHAOS LORD"]
+    },
+    {
+      "id": "unit-death-guard-chaos-lord-in-terminator-armour",
+      "title": "Death Guard Chaos Lord in Terminator Armour",
+      "number": "4.9.3",
+      "points": [{"label": "1 model", "value": 85}],
+      "statline": {"M": "4\"", "T": "6", "Sv": "2+", "W": "6", "Ld": "6+", "OC": "1", "Inv": "4+"},
+      "weapons": [
+        {"id": "weapon-legends-combi-weapon-terminator-lord", "name": "Combi-weapon", "mode": "ranged", "range": "24\"", "a": "1", "skill": "3+", "s": "4", "ap": "0", "d": "1", "abilities": ["ANTI-INFANTRY 4+", "DEVASTATING WOUNDS", "RAPID FIRE 1"]},
+        {"id": "weapon-legends-plague-combi-bolter-terminator-lord", "name": "Plague combi-bolter", "mode": "ranged", "range": "24\"", "a": "2", "skill": "2+", "s": "4", "ap": "0", "d": "1", "abilities": ["LETHAL HITS", "RAPID FIRE 2"]},
+        {"id": "weapon-legends-chainfist-terminator-lord", "name": "Chainfist", "mode": "melee", "range": "Melee", "a": "5", "skill": "3+", "s": "8", "ap": "-2", "d": "2", "abilities": ["ANTI-VEHICLE 3+"]},
+        {"id": "weapon-legends-plague-fist-terminator-lord", "name": "Plague fist", "mode": "melee", "range": "Melee", "a": "5", "skill": "2+", "s": "8", "ap": "-2", "d": "2", "abilities": ["LETHAL HITS"]},
+        {"id": "weapon-legends-exalted-weapon-terminator-lord", "name": "Plague-encrusted exalted weapon", "mode": "melee", "range": "Melee", "a": "6", "skill": "2+", "s": "5", "ap": "-2", "d": "1", "abilities": ["LETHAL HITS"]},
+        {"id": "weapon-legends-twin-lightning-claws-terminator-lord", "name": "Twin lightning claws", "mode": "melee", "range": "Melee", "a": "7", "skill": "2+", "s": "5", "ap": "-2", "d": "1", "abilities": ["TWIN-LINKED"]}
+      ],
+      "abilities": [
+        {"type": "core", "title": "CORE", "text": "Deep Strike, Leader"},
+        {"type": "faction", "title": "FACTION", "text": "Nurgle's Gift (Aura)"},
+        {"id": "ability-legends-chaos-lord", "title": "Chaos Lord", "text": "While this model is leading a unit, each time a model in that unit makes an attack, re-roll a Hit roll of 1."},
+        {"id": "ability-legends-desiccation-conduit", "title": "Desiccation Conduit (Aura)", "text": "While an enemy unit is within Contagion Range of this model, at the end of the turn, roll one D6: on a 4+, that enemy unit suffers D3 mortal wounds."}
+      ],
+      "wargearOptions": [
+        "This model's plague combi-bolter can be replaced with 1 combi-weapon or 1 plague-encrusted exalted weapon.",
+        "This model's plague-encrusted exalted weapon can be replaced with 1 chainfist or 1 plague fist.",
+        "This model's plague combi-bolter and plague-encrusted exalted weapon can be replaced with 1 twin lightning claws."
+      ],
+      "composition": "1 Death Guard Chaos Lord in Terminator Armour. This model is equipped with: plague combi-bolter; plague-encrusted exalted weapon.",
+      "leader": "This model can be attached to: Blightlord Terminators; Deathshroud Terminators.",
+      "keywords": ["INFANTRY", "CHARACTER", "CHAOS", "NURGLE", "TERMINATOR", "CHAOS LORD"]
+    },
+    {
+      "id": "unit-death-guard-cultists",
+      "title": "Death Guard Cultists",
+      "number": "4.9.4",
+      "points": [{"label": "10 models", "value": 50}, {"label": "20 models", "value": 100}],
+      "statline": {"M": "6\"", "T": "3", "Sv": "6+", "W": "1", "Ld": "7+", "OC": "1"},
+      "weapons": [
+        {"id": "weapon-legends-cultist-firearm", "name": "Cultist firearm", "mode": "ranged", "range": "24\"", "a": "1", "skill": "4+", "s": "3", "ap": "0", "d": "1", "abilities": []},
+        {"id": "weapon-legends-flamer", "name": "Flamer", "mode": "ranged", "range": "12\"", "a": "D6", "skill": "N/A", "s": "4", "ap": "0", "d": "1", "abilities": ["IGNORES COVER", "TORRENT"]},
+        {"id": "weapon-legends-grenade-launcher-frag", "name": "Grenade launcher - frag", "mode": "ranged", "range": "24\"", "a": "D3", "skill": "4+", "s": "4", "ap": "0", "d": "1", "abilities": ["BLAST"]},
+        {"id": "weapon-legends-grenade-launcher-krak", "name": "Grenade launcher - krak", "mode": "ranged", "range": "24\"", "a": "1", "skill": "4+", "s": "9", "ap": "-2", "d": "D3", "abilities": []},
+        {"id": "weapon-legends-heavy-stubber", "name": "Heavy stubber", "mode": "ranged", "range": "36\"", "a": "3", "skill": "5+", "s": "4", "ap": "0", "d": "1", "abilities": ["RAPID FIRE 3"]},
+        {"id": "weapon-legends-brutal-assault-weapon", "name": "Brutal assault weapon", "mode": "melee", "range": "Melee", "a": "2", "skill": "4+", "s": "3", "ap": "0", "d": "1", "abilities": []}
+      ],
+      "abilities": [
+        {"type": "core", "title": "CORE", "text": "Scouts 6\""},
+        {"type": "faction", "title": "FACTION", "text": "Nurgle's Gift (Aura)"}
+      ],
+      "wargearOptions": [
+        "For every 10 models in the unit, 1 Death Guard Cultist's Cultist firearm can be replaced with 1 flamer.",
+        "For every 10 models in the unit, 1 Death Guard Cultist's Cultist firearm can be replaced with 1 heavy stubber.",
+        "For every 10 models in the unit, 1 Death Guard Cultist's Cultist firearm can be replaced with 1 grenade launcher."
+      ],
+      "composition": "1 Death Guard Cultist Champion; 9-19 Death Guard Cultists. Every model is equipped with: Cultist firearm; brutal assault weapon.",
+      "keywords": ["INFANTRY", "CHAOS", "NURGLE", "CULTISTS"]
+    },
+    {
+      "id": "unit-death-guard-sorcerer-in-terminator-armour",
+      "title": "Death Guard Sorcerer in Terminator Armour",
+      "number": "4.9.5",
+      "points": [{"label": "1 model", "value": 70}],
+      "statline": {"M": "4\"", "T": "6", "Sv": "2+", "W": "5", "Ld": "6+", "OC": "1", "Inv": "4+"},
+      "weapons": [
+        {"id": "weapon-legends-combi-weapon-sorcerer", "name": "Combi-weapon", "mode": "ranged", "range": "24\"", "a": "1", "skill": "4+", "s": "4", "ap": "0", "d": "1", "abilities": ["ANTI-INFANTRY 4+", "DEVASTATING WOUNDS", "RAPID FIRE 1"]},
+        {"id": "weapon-legends-curse-of-the-leper-witchfire", "name": "Curse of the Leper - witchfire", "mode": "ranged", "range": "24\"", "a": "D6", "skill": "3+", "s": "6", "ap": "-1", "d": "1", "abilities": ["PSYCHIC"]},
+        {"id": "weapon-legends-curse-of-the-leper-focused", "name": "Curse of the Leper - focused witchfire", "mode": "ranged", "range": "24\"", "a": "2D6", "skill": "3+", "s": "6", "ap": "-2", "d": "1", "abilities": ["HAZARDOUS", "PSYCHIC"]},
+        {"id": "weapon-legends-plague-combi-bolter-sorcerer", "name": "Plague combi-bolter", "mode": "ranged", "range": "24\"", "a": "2", "skill": "3+", "s": "4", "ap": "0", "d": "1", "abilities": ["LETHAL HITS", "RAPID FIRE 2"]},
+        {"id": "weapon-legends-chainfist-sorcerer", "name": "Chainfist", "mode": "melee", "range": "Melee", "a": "3", "skill": "4+", "s": "8", "ap": "-2", "d": "2", "abilities": ["ANTI-VEHICLE 3+"]},
+        {"id": "weapon-legends-force-weapon", "name": "Force weapon", "mode": "melee", "range": "Melee", "a": "4", "skill": "3+", "s": "6", "ap": "-1", "d": "D3", "abilities": ["PSYCHIC"]},
+        {"id": "weapon-legends-plague-fist-sorcerer", "name": "Plague fist", "mode": "melee", "range": "Melee", "a": "3", "skill": "3+", "s": "8", "ap": "-2", "d": "2", "abilities": ["LETHAL HITS"]},
+        {"id": "weapon-legends-exalted-weapon-sorcerer", "name": "Plague-encrusted exalted weapon", "mode": "melee", "range": "Melee", "a": "4", "skill": "3+", "s": "5", "ap": "-2", "d": "1", "abilities": ["LETHAL HITS"]},
+        {"id": "weapon-legends-twin-lightning-claws-sorcerer", "name": "Twin lightning claws", "mode": "melee", "range": "Melee", "a": "5", "skill": "3+", "s": "5", "ap": "-2", "d": "1", "abilities": ["TWIN-LINKED"]}
+      ],
+      "abilities": [
+        {"type": "core", "title": "CORE", "text": "Deep Strike, Leader"},
+        {"type": "faction", "title": "FACTION", "text": "Nurgle's Gift (Aura)"},
+        {"id": "ability-legends-putrescent-vitality", "title": "Putrescent Vitality (Psychic)", "text": "At the start of the Fight phase, you can roll one D6: on a 1, this Psyker's unit suffers D3 mortal wounds; on a 2+, until the end of the phase, each time an attack is allocated to a model in this Psyker's unit, subtract 1 from the Damage characteristic of that attack."},
+        {"id": "ability-legends-pestilent-familiar", "title": "Pestilent Familiar (Psychic)", "text": "Once per battle, after selecting targets for a Psychic weapon equipped by this model, until the end of the phase, improve the Strength and Damage characteristics of that weapon by 2."}
+      ],
+      "designerNote": "Place a Pestilent Familiar token next to this model, removing it once this ability has been used.",
+      "wargearOptions": [
+        "This model's plague combi-bolter can be replaced with 1 combi-weapon or 1 plague-encrusted exalted weapon.",
+        "This model's force weapon can be replaced with 1 chainfist, 1 plague fist or 1 plague-encrusted exalted weapon.",
+        "This model's plague combi-bolter and force weapon can be replaced with 1 twin lightning claws."
+      ],
+      "composition": "1 Death Guard Sorcerer in Terminator Armour. This model is equipped with: Curse of the Leper; plague combi-bolter; force weapon.",
+      "leader": "This model can be attached to: Blightlord Terminators; Deathshroud Terminators.",
+      "keywords": ["INFANTRY", "CHARACTER", "PSYKER", "CHAOS", "NURGLE", "TERMINATOR", "SORCERER"]
+    }
+  ]
+}

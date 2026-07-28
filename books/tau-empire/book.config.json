@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "tau-empire",
+  "title": "T'au Empire",
+  "shortTitle": "T'au Empire Rules",
+  "edition": "11E",
+  "factionKeyword": "T'AU EMPIRE",
+  "expected": {
+    "matchedDetachments": 7,
+    "factionPackDetachments": 3,
+    "legendsDatasheets": 20
+  },
+  "sources": {
+    "factionPack": "content/tau-empire-faction-pack.en.json",
+    "codexDatasheets": "content/tau-empire-codex-datasheets.en.json",
+    "relatedRules": "content/tau-empire-related-rules.en.json",
+    "manifest": "sources/source-manifest.json"
+  }
+}

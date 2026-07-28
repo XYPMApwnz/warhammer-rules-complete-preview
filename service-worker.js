@@ -6,6 +6,13 @@ const ROSTER_GUIDES_FALLBACK = "./roster-guides/index.html";
 const DEATH_GUARD_FALLBACK = "./books/death-guard/index.html";
 const CORE_RULES_FALLBACK = "./books/core-rules/reader/index.html";
 const ADEPTUS_MECHANICUS_FALLBACK = "./books/adeptus-mechanicus/index.html";
+const TYRANIDS_FALLBACK = "./books/tyranids/index.html";
+const TAU_EMPIRE_FALLBACK = "./books/tau-empire/index.html";
+const CHAOS_SPACE_MARINES_FALLBACK = "./books/chaos-space-marines/index.html";
+const ORKS_FALLBACK = "./books/orks/index.html";
+const EMPERORS_CHILDREN_FALLBACK = "./books/emperors-children/index.html";
+const SPACE_MARINES_FALLBACK = "./books/space-marines/index.html";
+const DARK_ANGELS_FALLBACK = "./books/dark-angels/index.html";
 const APP_SHELL = [
   "./",
   LIBRARY_FALLBACK,
@@ -49,13 +56,14 @@ const APP_SHELL = [
   "./books/death-guard/scripts/view-router.js?v=2",
   "./books/death-guard/mobile/index.html",
   "./books/death-guard/mobile/mobile.css?v=8",
-  "./books/death-guard/mobile/mobile.js?v=12",
+  "./books/death-guard/mobile/mobile.js?v=13",
   "./books/shared/navigation-targets.js?v=1",
   "./books/shared/popup-rule-actions.js?v=1",
   "./books/shared/datasheet-layout.js?v=2",
   "./books/shared/datasheet-system.css?v=6",
   "./books/shared/popup-content.js?v=2",
   "./books/shared/glossary-autolink.js?v=8",
+  "./books/shared/related-rules-matcher.js?v=1",
   "./books/shared/roster-entities.js?v=1",
   "./books/shared/roster-parser.js?v=2",
   "./books/shared/roster-enhancements.js?v=3",
@@ -63,16 +71,16 @@ const APP_SHELL = [
   "./books/death-guard/styles/tokens.css?v=10",
   "./books/death-guard/styles/layout.css?v=9",
   "./books/death-guard/styles/navigation.css?v=11",
-  "./books/death-guard/styles/content.css?v=28",
+  "./books/death-guard/styles/content.css?v=29",
   "./books/death-guard/styles/popups.css?v=17",
   "./books/death-guard/scripts/navigation-controller.js?v=15",
   "./books/death-guard/scripts/roster-filter.js?v=14",
-  "./books/death-guard/scripts/popup-controller.js?v=24",
+  "./books/death-guard/scripts/popup-controller.js?v=25",
   "./books/death-guard/scripts/full-entry-controller.js?v=8",
   "./books/death-guard/scripts/journey-controller.js?v=12",
   "./books/death-guard/scripts/ui-controllers.js?v=11",
-  "./books/death-guard/scripts/related-rules.js?v=6",
-  "./books/death-guard/scripts/app.js?v=30",
+  "./books/death-guard/scripts/related-rules.js?v=7",
+  "./books/death-guard/scripts/app.js?v=31",
   "./books/core-rules/",
   CORE_RULES_FALLBACK,
   "./books/core-rules/reader/styles.css?v=14",
@@ -116,11 +124,76 @@ const APP_SHELL = [
   "./books/adeptus-mechanicus/styles/mechanicus.css?v=17",
   "./books/adeptus-mechanicus/scripts/data.js?v=1",
   "./books/adeptus-mechanicus/scripts/faction-ui.js?v=1",
-  "./books/adeptus-mechanicus/scripts/related-rules.js?v=5",
+  "./books/adeptus-mechanicus/scripts/related-rules.js?v=7",
   "./books/adeptus-mechanicus/mobile/related-rules.inc?v=2",
   "./books/adeptus-mechanicus/scripts/roster-enhancements.js?v=2",
   "./books/adeptus-mechanicus/scripts/roster-filter.js?v=2",
   "./books/adeptus-mechanicus/scripts/app.js?v=27"
+  ,"./books/tyranids/"
+  ,TYRANIDS_FALLBACK
+  ,"./books/tyranids/reader.html"
+  ,"./books/tyranids/mobile/index.html"
+  ,"./books/tyranids/mobile/related-rules.inc?v=3"
+  ,"./books/tyranids/styles/tokens.css?v=1"
+  ,"./books/tyranids/styles/book.css?v=2"
+  ,"./books/tyranids/scripts/data.js?v=2"
+  ,"./books/tyranids/scripts/app.js?v=2"
+  ,"./books/tau-empire/"
+  ,TAU_EMPIRE_FALLBACK
+  ,"./books/tau-empire/reader.html"
+  ,"./books/tau-empire/mobile/index.html"
+  ,"./books/tau-empire/mobile/related-rules.inc?v=3"
+  ,"./books/tau-empire/styles/tokens.css?v=1"
+  ,"./books/tau-empire/styles/book.css?v=2"
+  ,"./books/tau-empire/scripts/data.js?v=2"
+  ,"./books/tau-empire/scripts/app.js?v=2"
+  ,"./books/chaos-space-marines/"
+  ,CHAOS_SPACE_MARINES_FALLBACK
+  ,"./books/chaos-space-marines/reader.html"
+  ,"./books/chaos-space-marines/mobile/index.html"
+  ,"./books/chaos-space-marines/mobile/related-rules.inc?v=3"
+  ,"./books/chaos-space-marines/styles/tokens.css?v=1"
+  ,"./books/chaos-space-marines/styles/book.css?v=2"
+  ,"./books/chaos-space-marines/scripts/data.js?v=2"
+  ,"./books/chaos-space-marines/scripts/app.js?v=2"
+  ,"./books/orks/"
+  ,ORKS_FALLBACK
+  ,"./books/orks/reader.html"
+  ,"./books/orks/mobile/index.html"
+  ,"./books/orks/mobile/related-rules.inc?v=3"
+  ,"./books/orks/styles/tokens.css?v=1"
+  ,"./books/orks/styles/book.css?v=2"
+  ,"./books/orks/scripts/data.js?v=2"
+  ,"./books/orks/scripts/app.js?v=2"
+  ,"./books/emperors-children/"
+  ,EMPERORS_CHILDREN_FALLBACK
+  ,"./books/emperors-children/reader.html"
+  ,"./books/emperors-children/mobile/index.html"
+  ,"./books/emperors-children/mobile/related-rules.inc?v=3"
+  ,"./books/emperors-children/styles/tokens.css?v=1"
+  ,"./books/emperors-children/styles/book.css?v=2"
+  ,"./books/emperors-children/scripts/data.js?v=2"
+  ,"./books/emperors-children/scripts/app.js?v=2"
+  ,"./books/space-marines/"
+  ,SPACE_MARINES_FALLBACK
+  ,"./books/space-marines/reader.html"
+  ,"./books/space-marines/mobile/index.html"
+  ,"./books/space-marines/mobile/related-rules.inc?v=3"
+  ,"./books/space-marines/styles/tokens.css?v=1"
+  ,"./books/space-marines/styles/book.css?v=2"
+  ,"./books/space-marines/scripts/data.js?v=2"
+  ,"./books/space-marines/scripts/app.js?v=2"
+  ,"./books/dark-angels/"
+  ,DARK_ANGELS_FALLBACK
+  ,"./books/dark-angels/reader.html"
+  ,"./books/dark-angels/mobile/index.html"
+  ,"./books/dark-angels/mobile/related-rules.inc?v=3"
+  ,"./books/dark-angels/styles/tokens.css?v=1"
+  ,"./books/dark-angels/styles/book.css?v=2"
+  ,"./books/dark-angels/scripts/data.js?v=2"
+  ,"./books/dark-angels/scripts/app.js?v=2"
+  ,"./books/shared/army-related-rules.js?v=3"
+  ,"./books/shared/army-book-app.js?v=5"
 ];
 
 self.addEventListener("install", (event) => {
@@ -162,6 +235,13 @@ self.addEventListener("fetch", (event) => {
     else if (url.pathname.includes("/books/death-guard/")) fallback = DEATH_GUARD_FALLBACK;
     else if (url.pathname.includes("/books/core-rules/")) fallback = CORE_RULES_FALLBACK;
     else if (url.pathname.includes("/books/adeptus-mechanicus/")) fallback = ADEPTUS_MECHANICUS_FALLBACK;
+    else if (url.pathname.includes("/books/tyranids/")) fallback = TYRANIDS_FALLBACK;
+    else if (url.pathname.includes("/books/tau-empire/")) fallback = TAU_EMPIRE_FALLBACK;
+    else if (url.pathname.includes("/books/chaos-space-marines/")) fallback = CHAOS_SPACE_MARINES_FALLBACK;
+    else if (url.pathname.includes("/books/orks/")) fallback = ORKS_FALLBACK;
+    else if (url.pathname.includes("/books/emperors-children/")) fallback = EMPERORS_CHILDREN_FALLBACK;
+    else if (url.pathname.includes("/books/space-marines/")) fallback = SPACE_MARINES_FALLBACK;
+    else if (url.pathname.includes("/books/dark-angels/")) fallback = DARK_ANGELS_FALLBACK;
     const networkUpdate = fetchAndCache(request, event);
     event.respondWith(
       networkUpdate.catch(async () => (await caches.match(request)) || caches.match(fallback))

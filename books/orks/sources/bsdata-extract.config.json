@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "faction": {
+    "id": "orks",
+    "title": "Orks"
+  },
+  "source": {
+    "repository": "https://github.com/BSData/wh40k-11e",
+    "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+    "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/Orks.json"
+  },
+  "inputs": [
+    {
+      "role": "faction",
+      "path": "../../../tmp/bsdata-wh40k-11e/Orks.json"
+    },
+    {
+      "role": "game-system",
+      "path": "../../../tmp/bsdata-wh40k-11e/Warhammer 40,000.json"
+    }
+  ],
+  "outputs": {
+    "snapshot": "bsdata-orks-11e.json",
+    "datasheets": "../content/orks-codex-datasheets.en.json",
+    "points": "../content/orks-points.en.json"
+  },
+  "filters": {
+    "excludeNames": [
+      "Detachment",
+      "Show/Hide Options",
+      "Order of Battle",
+      "Warboss (Armageddon)",
+      "Boyz (Armageddon)",
+      "Gretchin (Armageddon)",
+      "Grotmas Gitz [Legends]",
+      "Da Red Gobbo's A-bomb-inable Snowman [Legends]",
+      "Da Red Gobbo's Tinboy [Legends]"
+    ],
+    "excludeNamePatterns": [
+      "\\[Crucible\\]$"
+    ],
+    "excludePrimaryCategories": [
+      "Configuration",
+      "Order of Battle",
+      "Reference"
+    ],
+    "blockedBranches": [
+      "^Crusade$",
+      "Enhancements$",
+      "^Detachment$",
+      "^Order of Battle$",
+      "^Show/Hide Options$",
+      "^Specialisms$",
+      "^Weapon Modifications$",
+      "^Battle Honours$",
+      "^Relic Upgrades$",
+      "\\[Crucible\\]"
+    ],
+    "imperialArmourNames": [
+      "Gargantuan Squiggoth"
+    ]
+  },
+  "enhancements": {
+    "detachments": [
+      "War Horde",
+      "Da Big Hunt",
+      "Dread Mob",
+      "Green Tide",
+      "Bully Boyz",
+      "Kult of Speed",
+      "Taktikal Brigade",
+      "More Dakka!",
+      "Freebooter Krew",
+      "Speedwaaagh!",
+      "Blitz Brigade",
+      "Rollin' Deff"
+    ]
+  },
+  "quarantine": {
+    "detachments": [
+      {
+        "name": "Ramship Raiders",
+        "reason": "Present in the pinned community catalogue but not in the verified matched-play source set."
+      },
+      {
+        "name": "Kaptin Killers",
+        "reason": "Present in the pinned community catalogue but not in the verified matched-play source set."
+      }
+    ],
+    "seasonalLegends": [
+      "Grotmas Gitz [Legends]",
+      "Da Red Gobbo's A-bomb-inable Snowman [Legends]",
+      "Da Red Gobbo's Tinboy [Legends]"
+    ]
+  },
+  "pendingOverlays": [
+    {
+      "name": "Equatorial Hordes",
+      "authority": "official",
+      "status": "pending-structured-source",
+      "relatedEntries": [
+        "Warboss (Armageddon)",
+        "Boyz (Armageddon)",
+        "Gretchin (Armageddon)"
+      ]
+    }
+  ]
+}

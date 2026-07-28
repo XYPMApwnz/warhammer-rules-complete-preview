@@ -36,7 +36,7 @@ const navTargets=[...markup.matchAll(/data-nav-target="([^"]+)"/g)].map(match=>m
 const trackTargets=[...markup.matchAll(/data-track="([^"]+)"/g)].map(match=>match[1]);
 const walkBlocks=bookData.sections.flatMap(section=>[...(section.blocks||[]),...(section.subsections||[]).flatMap(sub=>sub.blocks||[])]);
 const blockCount=type=>walkBlocks.filter(block=>block.type===type).length;
-check('canonical content audit is 9 detachments, 36 datasheets and 366 terms',bookData.audit.detachments===9&&bookData.audit.datasheets===36&&bookData.glossary.length===366);
+check('canonical content audit is 9 detachments, 41 datasheets and 408 terms',bookData.audit.detachments===9&&bookData.audit.datasheets===41&&bookData.glossary.length===408);
 const plagueEntry=glossaryRegistry.terms['death-guard-plague'];
 check('Plague means the chosen Nurgle’s Gift effect',plagueEntry.summary.en.includes('selected during Declare Battle Formations')&&plagueEntry.definition.en.includes('Skullsquirm Blight, Rattlejoint Ague or Scabrous Soulrot')&&plagueEntry.related.length===5);
 const plagueCards=['skullsquirm-blight','rattlejoint-ague','scabrous-soulrot'].map(id=>{
@@ -48,15 +48,17 @@ const mortarionAbility=bookData.glossary.find(entry=>entry.id==='ability-lord-of
 check('Mortarion lists all three Lord of the Death Guard choices',
   ['Diseased Influence','Boon of Death','Inflamed Reprisal'].every(title=>mortarionAbility.full.includes(title)&&html.includes(`<h6>${title}</h6>`))&&
   !mortarionAbility.full.includes('see left')&&!html.includes('Lord of the Death Guard abilities (see left)'));
-check('full gameplay block inventory is present',blockCount('enhancement')===30&&blockCount('rule')===45&&blockCount('statline')===36&&blockCount('weapon')===146,`enhancements ${blockCount('enhancement')}, rules ${blockCount('rule')}, statlines ${blockCount('statline')}, weapons ${blockCount('weapon')}`);
+check('full gameplay block inventory is present',blockCount('enhancement')===30&&blockCount('rule')===45&&blockCount('statline')===41&&blockCount('weapon')===177,`enhancements ${blockCount('enhancement')}, rules ${blockCount('rule')}, statlines ${blockCount('statline')}, weapons ${blockCount('weapon')}`);
 check('all navigation targets exist',navTargets.every(id=>idSet.has(id)),navTargets.filter(id=>!idSet.has(id)).join(', '));
 check('all navigation targets have tracked ranges',navTargets.every(id=>trackTargets.includes(id)),navTargets.filter(id=>!trackTargets.includes(id)).join(', '));
-check('navigation covers the gameplay tree without inline glossary branches',navTargets.length===94&&!navTargets.some(id=>id==='glossary'||id.startsWith('glossary-')),String(navTargets.length));
+check('navigation covers the gameplay tree without inline glossary branches',navTargets.length===100&&!navTargets.some(id=>id==='glossary'||id.startsWith('glossary-')),String(navTargets.length));
 const depths=[...markup.matchAll(/data-nav-depth="(\d+)"/g)].map(match=>Number(match[1]));
 check('navigation depth is at most three',Math.max(...depths)===3);
 const unitIds=bookData.sections.filter(section=>section.kind==='unit').map(section=>section.id);
-check('all 36 datasheets are global navigation destinations',unitIds.length===36&&unitIds.every(id=>navTargets.includes(id)));
+check('all 41 datasheets are global navigation destinations',unitIds.length===41&&unitIds.every(id=>navTargets.includes(id)));
 const unitById=id=>bookData.sections.find(section=>section.id===id);
+const legendIds=['unit-death-guard-possessed','unit-death-guard-chaos-lord','unit-death-guard-chaos-lord-in-terminator-armour','unit-death-guard-cultists','unit-death-guard-sorcerer-in-terminator-armour'];
+check('all official Death Guard Legends datasheets are complete and labelled',legendIds.every(id=>unitById(id)?.legends&&html.includes(`class="unit-card surface legends-card" id="${id}"`)&&unitById(id).subsections.some(part=>part.title==='Keywords')));
 const requiredWargear=['unit-plague-marines','unit-blightlord-terminators','unit-deathshroud-terminators','unit-chaos-land-raider','unit-chaos-predator-annihilator','unit-chaos-predator-destructor','unit-foetid-bloat-drone','unit-helbrute','unit-plagueburst-crawler','unit-chaos-rhino','unit-great-unclean-one','unit-plague-drones','unit-plaguebearers'];
 check('audited datasheets retain every missing Wargear Options block',requiredWargear.every(id=>unitById(id)?.subsections.some(part=>part.title==='Wargear Options')));
 const auditedAbilities=['mortarion-ability-supreme-commander','plague-marines-ability-icon-of-despair-aura','deathshroud-terminators-ability-icon-of-despair-aura','great-unclean-one-ability-reverberating-summons','plague-drones-ability-daemonic-icon','plague-drones-ability-instrument-of-chaos','plaguebearers-ability-daemonic-icon','plaguebearers-ability-instrument-of-chaos','miasmic-malignifier-ability-fortification-setup'];
@@ -74,7 +76,7 @@ const termContext={window:{},Object};
 vm.runInNewContext(dataSource,termContext,{filename:'scripts/data.js'});
 const termKeys=Object.keys(termContext.window.DG_TERMS||{});
 const usedTerms=[...markup.matchAll(/data-term="([^"]+)"/g)].map(match=>match[1]);
-check('term registry has all 366 entries',termKeys.length===366,String(termKeys.length));
+check('term registry has all 408 entries',termKeys.length===408,String(termKeys.length));
 check('all term triggers resolve',usedTerms.every(id=>termKeys.includes(id)),usedTerms.filter(id=>!termKeys.includes(id)).join(', '));
 check('canonical terms remain available to lazy full entries',read('scripts/full-entry-controller.js').includes('const term=this.api.get(id)'));
 const journeyTargets=[...markup.matchAll(/data-journey-target="([^"]+)"/g)].map(match=>match[1]);
@@ -171,7 +173,7 @@ check('desktop popup coordinates stay viewport-relative',!popups.includes("windo
 check('mobile popup layer is fixed',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.popup-layer\s*\{[^}]*position:\s*fixed/.test(read('styles/popups.css')));
 check('popup cards expose dialog semantics',popups.includes("setAttribute('role','dialog')")&&popups.includes("setAttribute('aria-modal','false')"));
 check('outside click closes popups but preserves them behind full entry',popups.includes("this.ids.length&&!event.target.closest('.term-popup,.full-entry-layer')")&&popups.includes('this.closeFrom(0)'));
-check('popup actions inherit their originating unit context',popups.includes("contextualUnit(){return this.rootElement()?.closest?.('.unit-card')||null;}")&&popups.includes('contextualStatline'));
+check('datasheet actions appear only inside Related Rules',!popups.includes('Datasheet & Wargear')&&!popups.includes("label:'Statline'")&&popups.includes("label:'Open datasheet'")&&popups.includes("closest?.('.related-rules-layer')"));
 check('Mega Glossary transitions use the shared return helper',html.includes('../../glossary-return.js?v=2')&&read('scripts/full-entry-controller.js').includes('WHGlossaryReturn')&&read('scripts/app.js').includes('WHGlossaryReturn'));
 check('popups use the shared semantic profile renderer',popups.includes('WHPopupContent.render')&&popupContent.includes("document.createElement('table')")&&popupContent.includes("document.createElement('dl')"));
 check('unit popup grid has a mobile no-overflow layout',/\.popup-stats\s*\{[^}]*grid-template-columns:\s*repeat\(auto-fit, minmax\(54px, 1fr\)\)/.test(read('styles/popups.css'))&&/@media\s*\(max-width:\s*480px\)[\s\S]*?\.popup-stats\s*\{[^}]*grid-template-columns:\s*repeat\(4, minmax\(0, 1fr\)\)/.test(read('styles/popups.css')));
@@ -224,19 +226,19 @@ check('Back has rebuilt-action fallback',journey.includes('this.findRestoredActi
 check('click navigation highlights only after controlled scroll settles',navigation.includes("()=>{this.highlighter.show(targets.highlightTarget);settled?.();}"));
 
 const cssFiles=['styles/tokens.css','styles/layout.css','styles/navigation.css','styles/content.css','styles/popups.css'];
-check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=28':file==='styles/popups.css'?'?v=17':file==='styles/navigation.css'?'?v=11':file==='styles/tokens.css'?'?v=10':'?v=9')+'"')));
+check('all five style layers are linked',cssFiles.every(file=>html.includes('href="./'+file+(file==='styles/content.css'?'?v=29':file==='styles/popups.css'?'?v=17':file==='styles/navigation.css'?'?v=11':file==='styles/tokens.css'?'?v=10':'?v=9')+'"')));
 const contentCss=read('styles/content.css');
 check('datasheet quick navigation overrides the shared desktop rail and is phone-only',contentCss.includes('body .unit-card > .local-nav { display: none; }')&&contentCss.includes('@media (max-width: 600px)')&&contentCss.includes('position: sticky;')&&contentCss.includes('overflow-x: auto;'));
 const navigationCss=read('styles/navigation.css');
 check('navigation hides horizontal overflow and styles its scrollbar',/\.toc-panel\s*\{[^}]*overflow-x:\s*hidden/.test(navigationCss)&&navigationCss.includes('.toc-panel::-webkit-scrollbar-thumb')&&navigationCss.includes('scrollbar-color:'));
 check('shared datasheet statlines keep every characteristic on one row',/\.unit-card \.statline\s*\{[^}]*display:\s*flex/.test(datasheetCss));
-check('mobile weapon characteristics use one six-column row',datasheetCss.includes('grid-template-columns: repeat(6, minmax(0, 1fr))')&&(markup.match(/data-label="(?:Range|A|BS|WS|S|AP|D)"/g)||[]).length===146*6);
+check('mobile weapon characteristics use one six-column row',datasheetCss.includes('grid-template-columns: repeat(6, minmax(0, 1fr))')&&(markup.match(/data-label="(?:Range|A|BS|WS|S|AP|D)"/g)||[]).length===177*6);
 check('heading destination highlight uses text glow without outline',/\.destination-highlight:is\(h1,h2,h3,h4,h5,h6\)\s*\{[^}]*animation-name:\s*destination-heading-highlight/.test(contentCss)&&contentCss.includes('@keyframes destination-heading-highlight')&&!contentCss.match(/@keyframes destination-heading-highlight[^}]*outline/));
 check('detachment navigation targets render in separate rows',/\.detachment-content\s*\{[^}]*grid-template-columns:\s*1fr/.test(contentCss));
 check('desktop stratagem cards use two columns with a responsive fallback',contentCss.includes('.detachment-part[id$="-stratagems"] > .detachment-content { grid-template-columns: repeat(2, minmax(0, 1fr))')&&/@media\s*\(max-width:\s*1100px\)[\s\S]*?grid-template-columns:\s*1fr/.test(contentCss));
 check('all ten Core Stratagems are present in the shared book source',(markup.match(/id="core-stratagem-[^"]+"/g)||[]).length===10);
 check('Core Stratagems feed the shared related-rules panel',read('mobile/related-rules.inc').includes('data-detachment="core"')&&(read('mobile/related-rules.inc').match(/id="core-stratagem-[^"]+"/g)||[]).length===10);
-check('Core Stratagem eligibility is keyword-aware',read('scripts/related-rules.js').includes("id==='core-stratagem-smokescreen'")&&read('scripts/related-rules.js').includes("id==='core-stratagem-epic-challenge'")&&read('scripts/related-rules.js').includes("id==='core-stratagem-crushing-impact'"));
+check('Core Stratagem eligibility is keyword-aware',read('scripts/related-rules.js').includes("add(['core-stratagem-smokescreen']")&&read('scripts/related-rules.js').includes("add(['core-stratagem-epic-challenge']")&&read('scripts/related-rules.js').includes("add(['core-stratagem-crushing-impact']"));
 check('filtered related rules stay hidden despite card display styles',contentCss.includes('.related-rules-layer [hidden],#relatedRulesContent [hidden]{display:none!important}'));
 check('detachment Stratagems avoid the harmful outer grid',!contentCss.includes('section[id$="-stratagems"]')&&contentCss.includes('.detachment-part[id$="-stratagems"] > .detachment-content'));
 check('full entry becomes a full-screen mobile dialog',/@media\s*\(max-width:\s*800px\)[\s\S]*?\.full-entry-dialog\s*\{[^}]*height:\s*100%/.test(read('styles/popups.css')));
@@ -266,7 +268,7 @@ check('Contagion Engines uses current MFM disposition',JSON.stringify(bookData).
 check('book uses the unified root manifest',html.includes('href="../../manifest.webmanifest"'));
 check('release service worker owns its cache family',readProject('service-worker.js').includes('key.startsWith(CACHE_PREFIX)')&&readProject('service-worker.js').includes('warhammer-rules-fe1d435-'));
 check('release PWA cache revision is content-derived',readProject('service-worker.js').includes('self.WH40K_CACHE_REVISION'));
-check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/tokens.css','styles/content.css','styles/navigation.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/roster-filter.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/related-rules.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/tokens.css?v=10')&&html.includes('./styles/content.css?v=28')&&html.includes('./styles/navigation.css?v=11')&&html.includes('./styles/popups.css?v=17')&&html.includes('./scripts/roster-filter.js?v=14')&&html.includes('./scripts/navigation-controller.js?v=15')&&html.includes('./scripts/popup-controller.js?v=24')&&html.includes('./scripts/full-entry-controller.js?v=8')&&html.includes('./scripts/journey-controller.js?v=12')&&html.includes('./scripts/ui-controllers.js?v=11')&&html.includes('./scripts/related-rules.js?v=6')&&html.includes('./scripts/app.js?v=30'));
+check('book scripts and styles use the current release token',[...cssFiles.filter(file=>!['styles/tokens.css','styles/content.css','styles/navigation.css','styles/popups.css'].includes(file)),...files.filter(file=>!['scripts/roster-filter.js','scripts/navigation-controller.js','scripts/popup-controller.js','scripts/full-entry-controller.js','scripts/journey-controller.js','scripts/ui-controllers.js','scripts/related-rules.js','scripts/app.js'].includes(file))].every(file=>html.includes('./'+file+'?v=9'))&&html.includes('./styles/tokens.css?v=10')&&html.includes('./styles/content.css?v=29')&&html.includes('./styles/navigation.css?v=11')&&html.includes('./styles/popups.css?v=17')&&html.includes('./scripts/roster-filter.js?v=14')&&html.includes('./scripts/navigation-controller.js?v=15')&&html.includes('./scripts/popup-controller.js?v=25')&&html.includes('./scripts/full-entry-controller.js?v=8')&&html.includes('./scripts/journey-controller.js?v=12')&&html.includes('./scripts/ui-controllers.js?v=11')&&html.includes('./scripts/related-rules.js?v=7')&&html.includes('./scripts/app.js?v=31'));
 check('book loads the shared navigation target resolver',html.includes('src="../shared/navigation-targets.js?v=1"'));
 check('book loads the shared datasheet design',html.includes('href="../shared/datasheet-system.css?v=6"'));
 check('book loads the shared datasheet layout',html.includes('src="../shared/datasheet-layout.js?v=2"'));

@@ -1,0 +1,637 @@
+{
+  "schema": 1,
+  "source": {
+    "title": "BSData Warhammer 40,000 11th Edition · Emperor's Children",
+    "repository": "https://github.com/BSData/wh40k-11e",
+    "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+    "revision": "4",
+    "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/Chaos%20-%20Emperor%27s%20Children.json",
+    "snapshotSha256": "BB3756C2524B383BBB0B351504B0B6CC9567E1FE9AE53B284212452273EB6969"
+  },
+  "units": [
+    {
+      "id": "unit-chaos-land-raider",
+      "title": "Chaos Land Raider",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 220
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 240
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-chaos-rhino",
+      "title": "Chaos Rhino",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        },
+        {
+          "label": "4+ unit: 1 models",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-chaos-spawn",
+      "title": "Chaos Spawn",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-chaos-terminators",
+      "title": "Chaos Terminators",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 145
+        },
+        {
+          "label": "6 models",
+          "value": 360
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-daemon-prince-of-slaanesh",
+      "title": "Daemon Prince of Slaanesh",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 170
+        },
+        {
+          "label": "2+ unit: 1 models",
+          "value": 185
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-daemon-prince-of-slaanesh-with-wings",
+      "title": "Daemon Prince of Slaanesh with Wings",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 205
+        },
+        {
+          "label": "2+ unit: 1 models",
+          "value": 235
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-daemonettes",
+      "title": "Daemonettes",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "10 models",
+          "value": 90
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-defiler",
+      "title": "Defiler",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 300
+        },
+        {
+          "label": "2+ unit: 1 models",
+          "value": 340
+        }
+      ],
+      "paidWargear": [
+        {
+          "name": "Hades lascannon",
+          "value": 15,
+          "modifiers": []
+        },
+        {
+          "name": "Heavy reaper autocannon",
+          "value": 15,
+          "modifiers": []
+        }
+      ]
+    },
+    {
+      "id": "unit-fiends",
+      "title": "Fiends",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 90
+        },
+        {
+          "label": "4 models",
+          "value": 180
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-flawless-blades",
+      "title": "Flawless Blades",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 95
+        },
+        {
+          "label": "6 models",
+          "value": 190
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-fulgrim",
+      "title": "Fulgrim",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 340
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-heldrake",
+      "title": "Heldrake",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 175
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-infractors",
+      "title": "Infractors",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 85
+        },
+        {
+          "label": "10 models",
+          "value": 160
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-keeper-of-secrets",
+      "title": "Keeper of Secrets",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 255
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 270
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-lord-exultant",
+      "title": "Lord Exultant",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 90
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-lord-kakophonist",
+      "title": "Lord Kakophonist",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-lucius-the-eternal",
+      "title": "Lucius the Eternal",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 120
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-maulerfiend",
+      "title": "Maulerfiend",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 120
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 130
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-noise-marines",
+      "title": "Noise Marines",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "6 models",
+          "value": 145
+        },
+        {
+          "label": "3+ unit: 6 models",
+          "value": 160
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-seekers",
+      "title": "Seekers",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 80
+        },
+        {
+          "label": "6 models",
+          "value": 155
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-shalaxi-helbane",
+      "title": "Shalaxi Helbane",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 315
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-sorcerer",
+      "title": "Sorcerer",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 55
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-tormentors",
+      "title": "Tormentors",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 80
+        },
+        {
+          "label": "10 models",
+          "value": 160
+        }
+      ],
+      "paidWargear": []
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "enhancement-dark-blessings",
+      "title": "Dark Blessings",
+      "detachment": "Carnival of Excess",
+      "value": 10,
+      "text": "Once per battle, just after an enemy unit has selected its targets, the bearer can use this Enhancement. If it does, until the end of the phase, the bearer has a 3+ invulnerable save.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-empyric-suffusion",
+      "title": "Empyric Suffusion",
+      "detachment": "Carnival of Excess",
+      "value": 15,
+      "text": "When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-possessed-blade",
+      "title": "Possessed Blade",
+      "detachment": "Carnival of Excess",
+      "value": 25,
+      "text": "At the start of the battle, select one melee weapon equipped by the bearer; add 1 to the Attacks characteristic of that weapon. In addition, each time the bearer is selected to fight, it can use this Enhancement. If it does, when resolving those attacks add 1 to the Damage characteristic of that weapon and that weapon has the [Devastating Wounds] and [Hazardous] abilities.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-warp-walker",
+      "title": "Warp Walker",
+      "detachment": "Carnival of Excess",
+      "value": 30,
+      "text": "Each time the bearer's unit Advances, do not make an Advance roll. Instead, until the end of the phase, add 6\" to the Movement characteristic of models in that unit. Each time a model in the bearer's unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-pledge-of-dark-glory",
+      "title": "Pledge of Dark Glory",
+      "detachment": "Coterie of the Conceited",
+      "value": 25,
+      "text": "While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-pledge-of-eternal-servitude",
+      "title": "Pledge of Eternal Servitude",
+      "detachment": "Coterie of the Conceited",
+      "value": 25,
+      "text": "The first time the bearer is destroyed, take a Leadership test for the bearer at the end of the phase. if that test is passed, set the bearer back up on the battlefield as close as possible to where it was destroyed and not within Engagement Range of any enemy units, with D6 wounds remaining (up to its Wounds characteristic).",
+      "profile": null
+    },
+    {
+      "id": "enhancement-pledge-of-mortal-pain",
+      "title": "Pledge of Mortal Pain",
+      "detachment": "Coterie of the Conceited",
+      "value": 15,
+      "text": "At the start of your Shooting phase, select one enemy unit within 12\" of and visible to the bearer. That unit must take a Leadership test, subtracting 2 from the result if it is Battle-shocked: if failed, that enemy unit suffers 3 mortal wounds.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-pledge-of-unholy-fortune",
+      "title": "Pledge of Unholy Fortune",
+      "detachment": "Coterie of the Conceited",
+      "value": 30,
+      "text": "Once per turn, after making a Hit roll, a Wound roll or a saving throw for a model in the bearer's unit, if the bearer is not Battle-shocked, it can use this Enhancement. If it does, treat the result as an unmodified roll of 6 instead.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-exalted-patron",
+      "title": "Exalted Patron",
+      "detachment": "Court of the Phoenician",
+      "value": 15,
+      "text": "Add 1\" to the Move characteristic of the bearer.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-soulstain-made-manifest",
+      "title": "Soulstain Made Manifest",
+      "detachment": "Court of the Phoenician",
+      "value": 15,
+      "text": "At the start of the Fight phase, you can select one enemy unit within Engagement Range of the bearer; that unit must take a Battle-shock test, subtracting 1 from the result.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-spiritsliver",
+      "title": "Spiritsliver",
+      "detachment": "Court of the Phoenician",
+      "value": 20,
+      "text": "Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-tears-of-the-phoenix",
+      "title": "Tears of the Phoenix",
+      "detachment": "Court of the Phoenician",
+      "value": 25,
+      "text": "Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-cacophonic-accompaniment",
+      "title": "Cacophonic Accompaniment",
+      "detachment": "Elegant Brutes",
+      "value": 20,
+      "text": "- This model has Deep Strike. \n- This unit’s ranged attacks have [IGNORES COVER].",
+      "profile": null
+    },
+    {
+      "id": "enhancement-euphoric-crown",
+      "title": "Euphoric Crown",
+      "detachment": "Frenzied Host",
+      "value": 20,
+      "text": "This model’s melee attacks have +1 S.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-howling-plate",
+      "title": "Howling Plate",
+      "detachment": "Frenzied Host",
+      "value": 20,
+      "text": "This unit’s ranged attacks have +1 AP.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-intoxicating-musk",
+      "title": "Intoxicating Musk",
+      "detachment": "Mercurial Host",
+      "value": 20,
+      "text": "Each time a melee attack targets the bearer's unit, if the Strength characteristic of that attack is greater than the Toughness characteristic of that unit, subtract 1 from the Wound roll.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-loathsome-dexterity",
+      "title": "Loathsome Dexterity",
+      "detachment": "Mercurial Host",
+      "value": 10,
+      "text": "Each time a model in the bearer's unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-steeped-in-suffering",
+      "title": "Steeped in Suffering",
+      "detachment": "Mercurial Host",
+      "value": 20,
+      "text": "Each time a model in the bearer's unit makes an attack that targets an enemy unit below its Starting Strength, add 1 to the Hit roll. If that target is also Below Half-Strength, add 1 to the Wound roll as well.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-tactical-perfection",
+      "title": "Tactical Perfection",
+      "detachment": "Mercurial Host",
+      "value": 15,
+      "text": "After both players have deployed their armies, select up to two Emperor's Children units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves if you wish, regardless of how many units are already in Strategic Reserves.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-blinding-speed",
+      "title": "Blinding Speed",
+      "detachment": "Peerless Bladesmen",
+      "value": 25,
+      "text": "Once per battle, at the start of the Fight phase, the bearer can use this Enhancement. If it does so, until the end of the phase, models in the bearer's unit have the Fights First ability.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-distortion",
+      "title": "Distortion",
+      "detachment": "Peerless Bladesmen",
+      "value": 25,
+      "text": "Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-faultless-opportunist",
+      "title": "Faultless Opportunist",
+      "detachment": "Peerless Bladesmen",
+      "value": 15,
+      "text": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do: \n- That use is -1 CP. \n- That use does not prevent any uses of that stratagem on other units this phase.'",
+      "profile": null
+    },
+    {
+      "id": "enhancement-rise-to-the-challenge",
+      "title": "Rise to the Challenge",
+      "detachment": "Peerless Bladesmen",
+      "value": 30,
+      "text": "Once per battle, at the end of the Fight phase, if the bearer is within Engagement Range of three or more enemy models, it can use this Enhancement. If it does, the bearer can fight one additional time. When doing so, you can select one ability using the Exquisite Swordsmanship Detachment rule to apply to those attacks.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-accomplished-tactician",
+      "title": "Accomplished Tactician",
+      "detachment": "Rapid Evisceration",
+      "value": 35,
+      "text": "Once per turn, in your opponent's Shooting phase, just after an enemy unit has shot, you can select one friendly Emperor's Children unit within 9\" of the bearer that was hit by one or more of those attacks, then select one friendly Transport that unit is wholly within 6\" of and is able to embark within. That Emperor's Children unit can embark in that Transport.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-heretek-adept",
+      "title": "Heretek Adept",
+      "detachment": "Rapid Evisceration",
+      "value": 35,
+      "text": "Once per battle round, when a saving throw is failed for a friendly Emperor's Children Vehicle model within 6\" of the bearer, you can change the Damage characteristic of that attack to 0.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-spearhead-striker",
+      "title": "Spearhead Striker",
+      "detachment": "Rapid Evisceration",
+      "value": 20,
+      "text": "Each time the bearer disembarks from a Transport, until the end of the turn, you can re-roll Charge rolls made for the bearer's unit and enemy units cannot use the Fire Overwatch Stratagem to shoot at the bearer's unit.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-sublime-presence",
+      "title": "Sublime Presence",
+      "detachment": "Rapid Evisceration",
+      "value": 25,
+      "text": "Once per turn, in your Movement phase, the bearer can use this Enhancement. If it does, select one friendly Emperor's Children Transport that is in Strategic Reserves. Until the end of the phase, for the purposes of setting up that Transport on the battlefield, treat the current battle round number as being one higher than it actually is.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-eager-to-prove",
+      "title": "Eager to Prove",
+      "detachment": "Slaanesh's Chosen",
+      "value": 15,
+      "text": "You can re-roll Charge rolls made for the bearer's unit. While the bearer's unit is your army's Favoured Champions, add 2\" to the Move characteristic of models in that unit.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-proud-and-vainglorious",
+      "title": "Proud and Vainglorious",
+      "detachment": "Slaanesh's Chosen",
+      "value": 20,
+      "text": "You can re-roll Battle-shock and Leadership tests taken for the bearer's unit. While the bearer's unit is your army's Favoured Champions, add 1 to the Objective Control characteristics of models in that unit.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-repulsed-by-weakness",
+      "title": "Repulsed by Weakness",
+      "detachment": "Slaanesh's Chosen",
+      "value": 25,
+      "text": "Each time an enemy unit (excluding Monster and Vehicle units) within Engagement Range of the bearer's unit Falls Back, models in that enemy unit must take Desperate Escape tests. When doing so, if the bearer's unit is your army's Favoured Champions, subtract 1 from each of those Desperate Escape tests.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-slayer-of-champions",
+      "title": "Slayer of Champions",
+      "detachment": "Slaanesh's Chosen",
+      "value": 15,
+      "text": "The bearer's melee weapons have the [Precision] ability, and each time the bearer makes a melee attack that targets a Character unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
+      "profile": null
+    }
+  ],
+  "audit": {
+    "units": 23,
+    "enhancements": 31
+  }
+}

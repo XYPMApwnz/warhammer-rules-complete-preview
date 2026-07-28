@@ -1,0 +1,1159 @@
+{
+  "schema": 1,
+  "source": {
+    "title": "BSData Warhammer 40,000 11th Edition · T'au Empire",
+    "repository": "https://github.com/BSData/wh40k-11e",
+    "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+    "revision": "2",
+    "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/T%27au%20Empire.json",
+    "snapshotSha256": "62B7E7256C013BD3707768246708A8CA5372FE4A4AF0B0731A4F35582FE7120A"
+  },
+  "units": [
+    {
+      "id": "unit-aunshi",
+      "title": "Aun'shi",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 50
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-aunva",
+      "title": "Aun'va",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 65
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-ax-1-0-tiger-shark",
+      "title": "AX-1-0 Tiger Shark",
+      "status": "Current",
+      "sourceLayer": "imperial-armour",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 315
+        },
+        {
+          "label": "2+ unit: 1 models",
+          "value": 375
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-barracuda",
+      "title": "Barracuda",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 220
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-breacher-team",
+      "title": "Breacher Team",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "10 models",
+          "value": 90
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-broadside-battlesuits",
+      "title": "Broadside Battlesuits",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 75
+        },
+        {
+          "label": "3+ unit: 2 models",
+          "value": 95
+        },
+        {
+          "label": "3 models",
+          "value": 255
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 275
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-cadre-fireblade",
+      "title": "Cadre Fireblade",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 50
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-commander-farsight",
+      "title": "Commander Farsight",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-commander-in-coldstar-battlesuit",
+      "title": "Commander in Coldstar Battlesuit",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 95
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-commander-in-crisis-battlesuit",
+      "title": "Commander in Crisis Battlesuit",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-commander-in-enforcer-battlesuit",
+      "title": "Commander in Enforcer Battlesuit",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-commander-shadowsun",
+      "title": "Commander Shadowsun",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 100
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-crisis-battlesuits",
+      "title": "Crisis Battlesuits",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 200
+        },
+        {
+          "label": "6 models",
+          "value": 400
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-crisis-fireknife-battlesuits",
+      "title": "Crisis Fireknife Battlesuits",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 100
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 110
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-crisis-starscythe-battlesuits",
+      "title": "Crisis Starscythe Battlesuits",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 90
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 100
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-crisis-sunforge-battlesuits",
+      "title": "Crisis Sunforge Battlesuits",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 125
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 135
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-darkstrider",
+      "title": "Darkstrider",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 60
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-devilfish",
+      "title": "Devilfish",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 75
+        },
+        {
+          "label": "4+ unit: 1 models",
+          "value": 85
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-drone-sentry-turret",
+      "title": "Drone Sentry Turret",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 50
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-ethereal",
+      "title": "Ethereal",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 50
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-firesight-team",
+      "title": "Firesight Team",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 55
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-ghostkeel-battlesuit",
+      "title": "Ghostkeel Battlesuit",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 150
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 165
+        }
+      ],
+      "paidWargear": [
+        {
+          "name": "Cyclic ion raker",
+          "value": 15,
+          "modifiers": []
+        }
+      ]
+    },
+    {
+      "id": "unit-great-knarloc",
+      "title": "Great Knarloc",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 100
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-hammerhead-gunship",
+      "title": "Hammerhead Gunship",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 150
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 160
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-heavy-gun-drones",
+      "title": "Heavy Gun Drones",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 45
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-knarloc-riders",
+      "title": "Knarloc Riders",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 110
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kroot-carnivores",
+      "title": "Kroot Carnivores",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "10 models",
+          "value": 65
+        },
+        {
+          "label": "20 models",
+          "value": 130
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kroot-farstalkers",
+      "title": "Kroot Farstalkers",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "12 models",
+          "value": 75
+        },
+        {
+          "label": "3+ unit: 12 models",
+          "value": 85
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kroot-flesh-shaper",
+      "title": "Kroot Flesh Shaper",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 45
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kroot-hounds",
+      "title": "Kroot Hounds",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 45
+        },
+        {
+          "label": "10 models",
+          "value": 65
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kroot-lone-spear",
+      "title": "Kroot Lone-spear",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kroot-trail-shaper",
+      "title": "Kroot Trail Shaper",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 50
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-kroot-war-shaper",
+      "title": "Kroot War Shaper",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 60
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-krootox-rampagers",
+      "title": "Krootox Rampagers",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 85
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 95
+        },
+        {
+          "label": "4 models",
+          "value": 170
+        },
+        {
+          "label": "3+ unit: 4 models",
+          "value": 180
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-krootox-riders",
+      "title": "Krootox Riders",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 45
+        },
+        {
+          "label": "3 models",
+          "value": 90
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-longstrike",
+      "title": "Longstrike",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 140
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-manta",
+      "title": "Manta",
+      "status": "Current",
+      "sourceLayer": "imperial-armour",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 2100
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-orca-dropship",
+      "title": "Orca Dropship",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 275
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-pathfinder-team",
+      "title": "Pathfinder Team",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "10 models",
+          "value": 85
+        },
+        {
+          "label": "3+ unit: 10 models",
+          "value": 100
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-piranhas",
+      "title": "Piranhas",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 65
+        },
+        {
+          "label": "3+ unit: 2 models",
+          "value": 75
+        },
+        {
+          "label": "3 models",
+          "value": 165
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 175
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-rvarna-battlesuit",
+      "title": "R'varna Battlesuit",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 200
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-razorshark-strike-fighter",
+      "title": "Razorshark Strike Fighter",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 160
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-remora-stealth-drones",
+      "title": "Remora Stealth Drones",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 160
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-remote-sensor-tower",
+      "title": "Remote Sensor Tower",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 50
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-riptide-battlesuit",
+      "title": "Riptide Battlesuit",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 190
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 220
+        }
+      ],
+      "paidWargear": [
+        {
+          "name": "Ion accelerator",
+          "value": 25,
+          "modifiers": []
+        }
+      ]
+    },
+    {
+      "id": "unit-shaso-ralai",
+      "title": "Shas'o R'alai",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-sky-ray-gunship",
+      "title": "Sky Ray Gunship",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 140
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-stealth-battlesuits",
+      "title": "Stealth Battlesuits",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 100
+        },
+        {
+          "label": "3+ unit: 5 models",
+          "value": 110
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-stormsurge",
+      "title": "Stormsurge",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 375
+        },
+        {
+          "label": "2+ unit: 1 models",
+          "value": 400
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-strike-team",
+      "title": "Strike Team",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "10 models",
+          "value": 70
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-sun-shark-bomber",
+      "title": "Sun Shark Bomber",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 150
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-taunar-supremacy-armour",
+      "title": "Ta'unar Supremacy Armour",
+      "status": "Current",
+      "sourceLayer": "imperial-armour",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 790
+        },
+        {
+          "label": "2+ unit: 1 models",
+          "value": 890
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-tactical-drones",
+      "title": "Tactical Drones",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "4 models",
+          "value": 70
+        },
+        {
+          "label": "8 models",
+          "value": 140
+        },
+        {
+          "label": "16 models",
+          "value": 210
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-tetras",
+      "title": "Tetras",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 80
+        },
+        {
+          "label": "4 models",
+          "value": 160
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-the-twin-lance",
+      "title": "The Twin Lance",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "2 models",
+          "value": 220
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-tidewall-droneport",
+      "title": "Tidewall Droneport",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 85
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-tidewall-gunrig",
+      "title": "Tidewall Gunrig",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 90
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-tidewall-shieldline",
+      "title": "Tidewall Shieldline",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 85
+        }
+      ],
+      "paidWargear": [
+        {
+          "name": "Tidewall Defence Platform",
+          "value": 20,
+          "modifiers": []
+        }
+      ]
+    },
+    {
+      "id": "unit-tiger-shark",
+      "title": "Tiger Shark",
+      "status": "Current",
+      "sourceLayer": "imperial-armour",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 375
+        },
+        {
+          "label": "2+ unit: 1 models",
+          "value": 425
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-tx42-piranha",
+      "title": "TX42 Piranha",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 60
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-vespid-stingwings",
+      "title": "Vespid Stingwings",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 70
+        },
+        {
+          "label": "6 models",
+          "value": 115
+        }
+      ],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-xv9-hazard-battlesuits",
+      "title": "XV9 Hazard Battlesuits",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [],
+      "paidWargear": []
+    },
+    {
+      "id": "unit-yvahra-battlesuit",
+      "title": "Y'vahra Battlesuit",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 210
+        }
+      ],
+      "paidWargear": []
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "enhancement-negation-emitters",
+      "title": "Negation Emitters",
+      "detachment": "Advanced Acquisition Cadre",
+      "value": 15,
+      "text": "STEALTH BATTLESUITS unit only. This unit has -3\" detection range.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-unmasking-suite",
+      "title": "Unmasking Suite",
+      "detachment": "Advanced Acquisition Cadre",
+      "value": 15,
+      "text": "GHOSTKEEL BATTLESUIT/PATHFINDER TEAM/STEALTH BATTLESUITS unit only. When this unit is selected to shoot, you can select one enemy unit within 24\" of this unit. That enemy unit has +9\" detection range until this unit has shot.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-admired-leader",
+      "title": "Admired Leader",
+      "detachment": "Auxiliary Cadre",
+      "value": 20,
+      "text": "T’AU EMPIRE model only (excluding KROOT models). In your Command phase, you can select one KROOT/VESPID STINGWINGS unit within 12\" of this model. If you do, that unit has +1 Ld and OC until the start of your next Command phase.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-student-of-kauyon",
+      "title": "Student of Kauyon",
+      "detachment": "Auxiliary Cadre",
+      "value": 20,
+      "text": "KROOT SHAPER model only. In the Declare Battle Formations step, you can select up to three friendly KROOT CARNIVORES/FARSTALKERS units. Those units have Deep Strike.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-plasma-accelerator-rifle",
+      "title": "Plasma Accelerator Rifle",
+      "detachment": "Experimental Prototype Cadre",
+      "value": 20,
+      "text": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Plasma Rifle weapons. That weapon’s attacks have:\n- +2 S\n- +1 A, AP and D.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-supernova-launcher",
+      "title": "Supernova Launcher",
+      "detachment": "Experimental Prototype Cadre",
+      "value": 15,
+      "text": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Airbursting Fragmentation Projector weapons. That weapon’s attacks have:\n- +3 S\n- +1 AP and D.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-thermoneutronic-projector",
+      "title": "Thermoneutronic Projector",
+      "detachment": "Experimental Prototype Cadre",
+      "value": 15,
+      "text": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s T’au Flamer weapons. That weapon’s attacks have:\n- +2 S\n- +1 AP and D.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-exemplar-of-the-kauyon",
+      "title": "Exemplar of the Kauyon",
+      "detachment": "Kauyon",
+      "value": 20,
+      "text": "T’au Empire model only (excluding Kroot Shaper models). While the bearer is leading a unit, the Patient Hunter Detachment rule applies to that unit from the second battle round onwards instead of the third.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-precision-of-the-patient-hunter",
+      "title": "Precision of the Patient Hunter",
+      "detachment": "Kauyon",
+      "value": 15,
+      "text": "T’au Empire model only. Each time the bearer makes a ranged attack, add 1 to the Hit roll. From the third battle round onwards, add 1 to the Wound roll as well.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-solid-image-projection-unit",
+      "title": "Solid-image Projection Unit",
+      "detachment": "Kauyon",
+      "value": 20,
+      "text": "T’au Empire model only. After both players have deployed their armies, select up to three T’au Empire units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves if you wish, regardless of how many units are already in Strategic Reserves.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-through-unity-devastation",
+      "title": "Through Unity, Devastation",
+      "detachment": "Kauyon",
+      "value": 30,
+      "text": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-borthrod-gland",
+      "title": "Borthrod Gland",
+      "detachment": "Kroot Hunting Pack",
+      "value": 15,
+      "text": "Kroot Flesh Shaper only. While the bearer is leading a unit, each time a model in that unit makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-kroothawk-flock",
+      "title": "Kroothawk Flock",
+      "detachment": "Kroot Hunting Pack",
+      "value": 10,
+      "text": "Kroot model only. Ranged weapons equipped by models in the bearer's unit have the [IGNORES COVER] ability, and enemy units that are set up on the battlefield as Reinforcements cannot be set up within 12\" horizontally of the bearer.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-nomadic-hunter",
+      "title": "Nomadic Hunter",
+      "detachment": "Kroot Hunting Pack",
+      "value": 20,
+      "text": "Kroot Trail Shaper model only. While the bearer is leading a unit, add 3\" to the Move characteristic of models in that unit and ranged weapons equipped by the models in that unit have the [ASSAULT] ability.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-root-carved-weapons",
+      "title": "Root-carved Weapons",
+      "detachment": "Kroot Hunting Pack",
+      "value": 10,
+      "text": "Kroot War Shaper model only. All weapons equipped by the bearer have the [PRECISION] and [DEVASTATING WOUNDS] abilities.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-coordinated-exploitation",
+      "title": "Coordinated Exploitation",
+      "detachment": "Mont'ka",
+      "value": 30,
+      "text": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-exemplar-of-the-montka",
+      "title": "Exemplar of the Mont'ka",
+      "detachment": "Mont'ka",
+      "value": 10,
+      "text": "T’au Empire model only (excluding Kroot Shaper models). While the bearer is leading a unit, the Killing Blow Detachment rule applies to that unit during the fourth battle round as well.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-strategic-conqueror",
+      "title": "Strategic Conqueror",
+      "detachment": "Mont'ka",
+      "value": 15,
+      "text": "T’au Empire model only. At the start of the first battle round, before the first turn begins, select one objective marker on the battlefield. While a friendly T’au Empire model is within range of that objective marker and the bearer is on the battlefield, add 1 to that friendly model's Objective Control characteristic.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-strike-swiftly",
+      "title": "Strike Swiftly",
+      "detachment": "Mont'ka",
+      "value": 35,
+      "text": "In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-internal-grenade-racks",
+      "title": "Internal Grenade Racks",
+      "detachment": "Retaliation Cadre",
+      "value": 20,
+      "text": "T’au Empire Battlesuit model only. The bearer has the Grenades keyword, and each time the bearer ends a Normal move, you can select one enemy unit that it moved over during that move. If you do, roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-prototype-weapon-system",
+      "title": "Prototype Weapon System",
+      "detachment": "Retaliation Cadre",
+      "value": 15,
+      "text": "T’au Empire Battlesuit model only. Each time the bearer is select to shoot, select either the [LETHAL HITS] or [SUSTAINED HITS 1] ability. Until those attacks are resolved, ranged weapons equipped by the bearer have the select ability.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-puretide-engram-neurochip",
+      "title": "Puretide Engram Neurochip",
+      "detachment": "Retaliation Cadre",
+      "value": 15,
+      "text": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP.",
+      "profile": null
+    },
+    {
+      "id": "enhancement-starflare-ignition-system",
+      "title": "Starflare Ignition System",
+      "detachment": "Retaliation Cadre",
+      "value": 20,
+      "text": "T’au Empire Battlesuit model only. At the end of your opponent's turn, if the bearer's unit is not within Engagement Range of one or more enemy units, you can remove that unit from the battlefield and place it into Strategic Reserves.",
+      "profile": null
+    }
+  ],
+  "audit": {
+    "units": 63,
+    "enhancements": 23
+  }
+}

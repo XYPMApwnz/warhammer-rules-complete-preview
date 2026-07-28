@@ -43,7 +43,7 @@
     });
     document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!layer.hidden)close();});
     async function open(current,state={}){
-      unit=current;kind=state.kind||'stratagems';title.textContent=current.querySelector('.unit-name')?.textContent.trim()||'Related rules';
+      unit=current;layer.dataset.unitId=current.id;kind=state.kind||'stratagems';title.textContent=current.querySelector('.unit-name')?.textContent.trim()||'Related rules';
       layer.hidden=false;document.documentElement.classList.add('related-rules-open');
       if(!content){
         try{

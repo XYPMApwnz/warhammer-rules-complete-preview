@@ -65,15 +65,39 @@
     },
     "keyword-psyker": {
       "forms": ["PSYKER", "PSYKERS"],
-      "intrinsicRules": [],
+      "intrinsicRules": ["core-rule-22-03-psychic-abilities"],
       "referencedByRules": [],
       "relatedKeywords": []
     },
     "keyword-grenades": {
       "forms": ["GRENADES"],
       "intrinsicRules": [],
+      "referencedByRules": ["core-rule-15-05-explosives"],
+      "relatedKeywords": []
+    },
+    "keyword-chaos": {
+      "forms": ["CHAOS"],
+      "intrinsicRules": ["core-rule-02-05-keywords"],
       "referencedByRules": [],
       "relatedKeywords": []
+    },
+    "keyword-daemon": {
+      "forms": ["DAEMON", "DAEMONS"],
+      "intrinsicRules": ["core-rule-02-05-keywords"],
+      "referencedByRules": [],
+      "relatedKeywords": []
+    },
+    "keyword-nurgle": {
+      "forms": ["NURGLE"],
+      "intrinsicRules": ["core-rule-02-05-keywords"],
+      "referencedByRules": [],
+      "relatedKeywords": []
+    },
+    "keyword-terminator": {
+      "forms": ["TERMINATOR", "TERMINATORS"],
+      "intrinsicRules": ["core-rule-18-01-transport-capacity"],
+      "referencedByRules": [],
+      "relatedKeywords": ["keyword-transport"]
     },
     "keyword-smoke": {
       "forms": ["SMOKE"],

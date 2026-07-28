@@ -1,0 +1,2940 @@
+{
+  "schema": 1,
+  "source": {
+    "title": "BSData Warhammer 40,000 11th Edition · Dark Angels",
+    "repository": "https://github.com/BSData/wh40k-11e",
+    "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+    "revision": "3",
+    "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/Imperium%20-%20Dark%20Angels.json",
+    "snapshotSha256": "6DFEE5B8C4B159FE401301999C215EEE242E71822A1C4C9B05D49B30714872D0"
+  },
+  "datasheets": [
+    {
+      "id": "unit-ravenwing-command-squad",
+      "title": "Ravenwing Command Squad",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Characters",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 105
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 115
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Ravenwing Ancient",
+          "stats": {
+            "M": "12\"",
+            "T": "5",
+            "Sv": "3+",
+            "W": "4",
+            "Ld": "6+",
+            "OC": "2",
+            "Invulnerable": "5+"
+          }
+        },
+        {
+          "name": "Ravenwing Apothecary",
+          "stats": {
+            "M": "12\"",
+            "T": "5",
+            "Sv": "3+",
+            "W": "4",
+            "Ld": "6+",
+            "OC": "2",
+            "Invulnerable": "5+"
+          }
+        },
+        {
+          "name": "Ravenwing Champion",
+          "stats": {
+            "M": "12\"",
+            "T": "5",
+            "Sv": "3+",
+            "W": "4",
+            "Ld": "6+",
+            "OC": "2",
+            "Invulnerable": "5+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Bolt Pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "➤ Astartes grenade launcher - krak",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "1",
+          "skill": "3+",
+          "s": "9",
+          "ap": "-2",
+          "d": "D3",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Astartes grenade launcher - frag",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "D3",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Blast"
+        },
+        {
+          "name": "➤ Plasma talon - Standard",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "7",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Rapid Fire 1"
+        },
+        {
+          "name": "➤ Plasma talon - Supercharged",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Hazardous, Rapid Fire 1"
+        },
+        {
+          "name": "Black Knight combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Devastating Wounds"
+        },
+        {
+          "name": "Master-crafted power weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "6",
+          "skill": "2+",
+          "s": "5",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Support",
+          "text": "This unit can be attached to the following units:\n■ Outrider Squad\n■ Ravenwing Black Knights"
+        },
+        {
+          "title": "Narthecium",
+          "text": "While this unit contains a Ravenwing Apothecary, in your Command phase, you can return 1 destroyed model (excluding Character and Invader ATV models) to this unit."
+        },
+        {
+          "title": "Astartes Banner",
+          "text": "While this unit contains a Ravenwing Ancient, add 1 to the Objective Control characteristic of models in this unit."
+        },
+        {
+          "title": "Honour or Death",
+          "text": "While this unit contains a Ravenwing Champion, add 1 to Advance and Charge rolls made for this unit and you can target this unit with the Heroic Intervention Stratagem for 0CP."
+        },
+        {
+          "title": "Pistol",
+          "text": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. \n\nUnits containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: \n- One or more of its [CLOSE-QUARTERS] weapons. \n- One or more of its other ranged weapons."
+        },
+        {
+          "title": "Blast",
+          "text": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. \n*Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*"
+        },
+        {
+          "title": "Hazardous",
+          "text": "Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step."
+        },
+        {
+          "title": "Rapid Fire",
+          "text": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. \n*Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*"
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        }
+      ],
+      "keywords": [
+        "Mounted",
+        "Grenades",
+        "Imperium",
+        "Ravenwing Command Squad",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Ravenwing",
+        "Character",
+        "Support"
+      ],
+      "composition": [
+        {
+          "name": "Ravenwing Ancient",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Ravenwing Ancient"
+          ]
+        },
+        {
+          "name": "Ravenwing Apothecary",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Ravenwing Apothecary"
+          ]
+        },
+        {
+          "name": "Ravenwing Champion",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Ravenwing Champion"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-asmodai",
+      "title": "Asmodai",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Epic Heroes",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Asmodai",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "3+",
+            "W": "4",
+            "Ld": "5+",
+            "OC": "1",
+            "Invulnerable": "4+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Heavy Bolt Pistol",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "1",
+          "skill": "3+",
+          "s": "4",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "➤ Crozius Arcanum and Power Weapon - strike",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Crozius Arcanum and Power Weapon - sweep",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "8",
+          "skill": "2+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Exemplar of Hate",
+          "text": "While this model is leading a unit, each time a model in that unit makes a melee attack, you can re-roll the Hit roll."
+        },
+        {
+          "title": "Feared Interrogator",
+          "text": "At the start of the Fight phase, each enemy Character unit within 6\" of this model must take a Battle-shock test, subtracting 1 from that test when they do. In addition, each time this model destroys an enemy Character model with a melee attack, you gain 1CP."
+        },
+        {
+          "title": "Leader",
+          "text": "This model can be attached to the following units:\n■ Assault Intercessor Squad\n■ Bladeguard Veteran Squad\n■ Hellblaster Squad\n■ Infernus Squad\n■ Inner Circle Companions\n■ Intercessor Squad\n■ Sternguard Veteran Squad\n■ Tactical Squad"
+        },
+        {
+          "title": "Pistol",
+          "text": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. \n\nUnits containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: \n- One or more of its [CLOSE-QUARTERS] weapons. \n- One or more of its other ranged weapons."
+        }
+      ],
+      "keywords": [
+        "Character",
+        "Epic Hero",
+        "Infantry",
+        "Grenades",
+        "Imperium",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Asmodai",
+        "Chaplain",
+        "Tacticus",
+        "Deathwing"
+      ],
+      "composition": [
+        {
+          "name": "Asmodai",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Asmodai"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-azrael",
+      "title": "Azrael",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Epic Heroes",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 140
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Azrael",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "2+",
+            "W": "6",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": "4+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Lion's Wrath",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "2+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
+        },
+        {
+          "name": "The Sword of Secrets",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "6",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-4",
+          "d": "2",
+          "abilities": "Devastating Wounds"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Supreme Grand Master",
+          "text": "While this model is leading a unit, weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+        },
+        {
+          "title": "Masterful Tactician",
+          "text": "At the start of your Command phase, if this model is on the battlefield, you gain 1CP."
+        },
+        {
+          "title": "The Lion Helm",
+          "text": "Models in the bearer’s unit have a 4+ invulnerable save. In addition, once per battle, in any phase, the bearer can summon a Watcher in the Dark. When it does, until the end of the phase, models in the bearer’s unit have the Feel No Pain 4+ ability against mortal wounds."
+        },
+        {
+          "title": "Leader",
+          "text": "This model can be attached to the following units:\n■ Assault Intercessor Squad\n■ Bladeguard Veteran Squad\n■ Hellblaster Squad\n■ Infernus Squad\n■ Inner Circle Companions\n■ Intercessor Squad\n■ Sternguard Veteran Squad\n■ Tactical Squad"
+        },
+        {
+          "title": "Anti",
+          "text": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound.\n*Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*"
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        },
+        {
+          "title": "Rapid Fire",
+          "text": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. \n*Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*"
+        }
+      ],
+      "keywords": [
+        "Character",
+        "Epic Hero",
+        "Infantry",
+        "Grenades",
+        "Imperium",
+        "Tacticus",
+        "Azrael",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Chapter Master",
+        "Deathwing"
+      ],
+      "composition": [
+        {
+          "name": "Azrael",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Azrael"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-belial",
+      "title": "Belial",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Epic Heroes",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 75
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Belial",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "6",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": "4+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Master-crafted storm bolter",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "2+",
+          "s": "4",
+          "ap": "0",
+          "d": "2",
+          "abilities": "Precision, Rapid Fire 2"
+        },
+        {
+          "name": "The Sword of Silence",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "6",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Precision"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Grand Master of the Deathwing",
+          "text": "While this model is leading a unit, each time a model in that unit makes an attack, if a Critical Hit is scored, that attack has the [PRECISION] ability."
+        },
+        {
+          "title": "Strikes of Retribution",
+          "text": "Each time a melee attack is allocated to this model, after the attacking model’s unit has finished making its attacks, roll one D6 (to a maximum of six D6 per attacking unit): for each 4+, the attacking unit suffers 1 mortal wound."
+        },
+        {
+          "title": "Leader",
+          "text": "This unit can be attached to the following units:\n■ Deathwing Knights\n■ Deathwing Terminator Squad\n■ Terminator Assault Squad\n■ Terminator Squad"
+        },
+        {
+          "title": "Precision",
+          "text": "While resolving attacks made with one or more [PRECISION] weapons, at the start of the Allocation Order step (05.03), if the target unit contains one or more CHARACTER models visible to one or more of the attacking models, the active player can select one allocation group that contains one of those visible CHARACTER models. If they do, until those attacks are resolved, or until that CHARACTER group is destroyed (whichever happens first), that CHARACTER group is the current allocation group."
+        },
+        {
+          "title": "Rapid Fire",
+          "text": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. \n*Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*"
+        },
+        {
+          "title": "Deep Strike",
+          "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone."
+        }
+      ],
+      "keywords": [
+        "Character",
+        "Epic Hero",
+        "Infantry",
+        "Captain",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Imperium",
+        "Belial",
+        "Terminator",
+        "Deathwing"
+      ],
+      "composition": [
+        {
+          "name": "Belial",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Belial"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-ezekiel",
+      "title": "Ezekiel",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Epic Heroes",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 75
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Ezekiel",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "2+",
+            "W": "4",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": "4+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "The Deliverer",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "2+",
+          "s": "4",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Pistol, Precision"
+        },
+        {
+          "name": "➤ Mind Wipe - witchfire",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-2",
+          "d": "D6",
+          "abilities": "Devastating Wounds, Precision, Psychic"
+        },
+        {
+          "name": "➤ Mind Wipe - focussed witchfire",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-2",
+          "d": "D6",
+          "abilities": "Anti-Character 4+, Devastating Wounds, Hazardous, Precision, Psychic"
+        },
+        {
+          "name": "Traitor's Bane",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-2",
+          "d": "D3",
+          "abilities": "Anti-Chaos 2+, Psychic"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Engulfing Fear [Psychic]",
+          "text": "In your Shooting phase, you can select one enemy unit within 18\" of this model. That enemy unit must take a Battle-shock test."
+        },
+        {
+          "title": "Book of Salvation",
+          "text": "While this model is leading a unit, add 1 to the Attacks characteristic of melee weapons equipped by models in that unit. When this model is destroyed, each friendly Adeptus Astartes unit within 6\" of this model must take a Battle-shock test."
+        },
+        {
+          "title": "Leader",
+          "text": "This model can be attached to the following units:\n■ Assault Intercessor Squad\n■ Bladeguard Veteran Squad\n■ Hellblaster Squad\n■ Infernus Squad\n■ Inner Circle Companions\n■ Intercessor Squad\n■ Sternguard Veterans Squad\n■ Tactical Squad"
+        },
+        {
+          "title": "Psychic Hood",
+          "text": "While this model is leading a unit, models in that unit have the Feel No Pain 4+ ability against Psychic Attacks."
+        },
+        {
+          "title": "Pistol",
+          "text": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. \n\nUnits containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: \n- One or more of its [CLOSE-QUARTERS] weapons. \n- One or more of its other ranged weapons."
+        },
+        {
+          "title": "Precision",
+          "text": "While resolving attacks made with one or more [PRECISION] weapons, at the start of the Allocation Order step (05.03), if the target unit contains one or more CHARACTER models visible to one or more of the attacking models, the active player can select one allocation group that contains one of those visible CHARACTER models. If they do, until those attacks are resolved, or until that CHARACTER group is destroyed (whichever happens first), that CHARACTER group is the current allocation group."
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        },
+        {
+          "title": "Psychic",
+          "text": "Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules)."
+        },
+        {
+          "title": "Hazardous",
+          "text": "Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step."
+        },
+        {
+          "title": "Anti",
+          "text": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound.\n*Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*"
+        }
+      ],
+      "keywords": [
+        "Character",
+        "Epic Hero",
+        "Infantry",
+        "Grenades",
+        "Imperium",
+        "Psyker",
+        "Ezekiel",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Librarian",
+        "Deathwing"
+      ],
+      "composition": [
+        {
+          "name": "Ezekiel",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Ezekiel"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-lazarus",
+      "title": "Lazarus",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Epic Heroes",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Lazarus",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "3+",
+            "W": "5",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": "4+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Bolt pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "2+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "Enmity’s Edge",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "6",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Anti-Psyker 2+"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Intractable Will",
+          "text": "While this model is leading a unit, each time a model in that unit is destroyed by a melee attack, if that model has not fought this phase, roll one D6. On a 4+, do not remove it from play; that destroyed model can fight after the attacking unit has finished making its attacks, and is then removed from play."
+        },
+        {
+          "title": "The Spiritshield Helm",
+          "text": "This model has the Feel No Pain 3+ ability against Psychic Attacks and mortal wounds."
+        },
+        {
+          "title": "Leader",
+          "text": "This model can be attached to the following units:\n■ Assault Intercessor Squad\n■ Bladeguard Veteran Squad\n■ Infernus Squad\n■ Inner Circle Companions\n■ Intercessor Squad\n■ Sternguard Veteran Squad\n■ Tactical Squad"
+        }
+      ],
+      "keywords": [
+        "Character",
+        "Epic Hero",
+        "Infantry",
+        "Captain",
+        "Grenades",
+        "Imperium",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Lazarus",
+        "Tacticus",
+        "Deathwing"
+      ],
+      "composition": [
+        {
+          "name": "Lazarus",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Lazarus"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-lion-eljonson",
+      "title": "Lion El'Jonson",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Epic Heroes",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 265
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Lion El'Jonson",
+          "stats": {
+            "M": "8\"",
+            "T": "9",
+            "Sv": "2+",
+            "W": "10",
+            "Ld": "5+",
+            "OC": "4",
+            "Invulnerable": "3+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "➤ Arma Luminis - bolt",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "4",
+          "skill": "2+",
+          "s": "4",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "➤ Arma Luminis - plasma",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "2",
+          "skill": "2+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "➤ Fealty - strike",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "8",
+          "skill": "2+",
+          "s": "12",
+          "ap": "-4",
+          "d": "4",
+          "abilities": "Lethal Hits"
+        },
+        {
+          "name": "➤ Fealty - sweep",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "16",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Sustained Hits 1"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Primarch of the First Legion",
+          "text": "At the start of your Command phase, select two Primarch of the First Legion abilities. Until the start of your next Command phase, this model has those abilities."
+        },
+        {
+          "title": "The Emperor's Shield",
+          "text": "Each time an attack is allocated to this model, if the Strength characteristic of that attack is greater than the Toughness characteristic of this model, subtract 1 from the Wound roll."
+        },
+        {
+          "title": "Dark Angels Bodyguard",
+          "text": "While this model is within 3\" of one or more friendly Adeptus Astartes Infantry units, this model has the Lone Operative ability."
+        },
+        {
+          "title": "Pistol",
+          "text": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. \n\nUnits containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: \n- One or more of its [CLOSE-QUARTERS] weapons. \n- One or more of its other ranged weapons."
+        },
+        {
+          "title": "Lethal Hits",
+          "text": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit, you can choose for that attack to automatically wound the target. \n*Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS].*"
+        },
+        {
+          "title": "Sustained Hits",
+          "text": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X.\n*Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability)."
+        },
+        {
+          "title": "Deep Strike",
+          "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone."
+        },
+        {
+          "title": "Fights First",
+          "text": "While every model in a unit has this ability, that unit is a Fights First unit. \nSee the Resolve Fights First Combats step in the Fight phase (12.04)."
+        }
+      ],
+      "keywords": [
+        "Character",
+        "Epic Hero",
+        "Monster",
+        "Imperium",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Primarch",
+        "Lion El'Jonson",
+        "Mobile"
+      ],
+      "composition": [
+        {
+          "name": "Lion El'Jonson",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Lion El'Jonson"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-sammael",
+      "title": "Sammael",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Epic Heroes",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 95
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Sammael",
+          "stats": {
+            "M": "12\"",
+            "T": "5",
+            "Sv": "3+",
+            "W": "7",
+            "Ld": "6+",
+            "OC": "2",
+            "Invulnerable": "4+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Bolt Pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "2+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "Master-crafted plasma cannon",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D3",
+          "skill": "2+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Blast"
+        },
+        {
+          "name": "Twin storm bolter",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "2+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 2, Twin-Linked"
+        },
+        {
+          "name": "The Raven Sword",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "6",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Sustained Hits 2"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Leader",
+          "text": "This model can be attached to the following units:\n■ Outrider Squad\n■ Ravenwing Black Knights"
+        },
+        {
+          "title": "Grand Master of the Ravenwing",
+          "text": "▪ This unit’s ranged attacks have [ASSAULT].\n▪ When this unit is selected to make an advance move, that advance move does not prevent this unit from being eligible to declare a charge.\n▪ This unit has MOBILE"
+        },
+        {
+          "title": "Cut Off Their Escape",
+          "text": "Each time an enemy unit (excluding Monsters and Vehicles) within Engagement Range of this model’s unit is selected to Fall Back, models in that enemy unit must take Desperate Escape tests as if their unit was Battle-shocked. When doing so, if that enemy unit is also Battle-shocked by other means, subtract 1 from each of those Desperate Escape tests."
+        },
+        {
+          "title": "Master of the Ravenwing",
+          "text": "Ravenwing model only. This model's unit can declare a charge in a turn in which it Advanced, and you can re-roll Charge rolls made for that unit."
+        },
+        {
+          "title": "Pistol",
+          "text": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. \n\nUnits containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: \n- One or more of its [CLOSE-QUARTERS] weapons. \n- One or more of its other ranged weapons."
+        },
+        {
+          "title": "Blast",
+          "text": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. \n*Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*"
+        },
+        {
+          "title": "Rapid Fire",
+          "text": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. \n*Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*"
+        },
+        {
+          "title": "Twin-linked",
+          "text": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll."
+        },
+        {
+          "title": "Sustained Hits",
+          "text": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X.\n*Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability)."
+        }
+      ],
+      "keywords": [
+        "Character",
+        "Epic Hero",
+        "Mounted",
+        "Captain",
+        "Imperium",
+        "Fly",
+        "Grenades",
+        "Sammael",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Ravenwing",
+        "Frame"
+      ],
+      "composition": [
+        {
+          "name": "Sammael",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Sammael"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-deathwing-knights",
+      "title": "Deathwing Knights",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Infantry",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 240
+        },
+        {
+          "label": "3+ unit: 5 models",
+          "value": 260
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Deathwing Knight",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "4",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": "4+"
+          }
+        },
+        {
+          "name": "Knight Master",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "4",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": "4+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Mace of absolution",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Anti-Monster 4+, Anti-Vehicle 4+"
+        },
+        {
+          "name": "Power Weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Great Weapon of the Unforgiven",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Devastating Wounds, Sustained Hits 1"
+        },
+        {
+          "name": "Relic Weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "6",
+          "skill": "2+",
+          "s": "7",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Lethal Hits"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Inner Circle",
+          "text": "Each time an attack is allocated to a model in this unit, subtract 1 from the Damage characteristic of that attack."
+        },
+        {
+          "title": "Attached Unit",
+          "text": "If a Character unit from your army with the Leader ability can be attached to a Terminator Squad, it can be attached to this unit instead."
+        },
+        {
+          "title": "Teleport Homer",
+          "text": "At the start of the battle, you can set up one Teleport Homer token for this unit anywhere on the battlefield that is not in your opponent’s deployment zone. If you do, once per battle, you can target this unit with the Rapid Ingress Stratagem for 0CP, but when resolving that Stratagem, you must set this unit up within 3\" horizontally of that token and not within 8\" horizontally of any enemy models. That token is then removed."
+        },
+        {
+          "title": "Watcher in the Dark",
+          "text": "Once per battle, in any phase, just after a mortal wound is allocated to an Adeptus Astartes model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds."
+        },
+        {
+          "title": "Anti",
+          "text": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound.\n*Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*"
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        },
+        {
+          "title": "Sustained Hits",
+          "text": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X.\n*Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability)."
+        },
+        {
+          "title": "Lethal Hits",
+          "text": "Each time an attack made with a [LETHAL HITS] weapon results in a critical hit, you can choose for that attack to automatically wound the target. \n*Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS].*"
+        },
+        {
+          "title": "Deep Strike",
+          "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone."
+        }
+      ],
+      "keywords": [
+        "Infantry",
+        "Imperium",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Deathwing Knights",
+        "Terminator",
+        "Deathwing"
+      ],
+      "composition": [
+        {
+          "name": "Deathwing Knights",
+          "min": 5,
+          "max": 5,
+          "models": [
+            "Deathwing Knight",
+            "Knight Master"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-deathwing-terminator-squad",
+      "title": "Deathwing Terminator Squad",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Infantry",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 165
+        },
+        {
+          "label": "10 models",
+          "value": 330
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Deathwing Sergeant",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "3",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": "4+"
+          }
+        },
+        {
+          "name": "Deathwing Terminator",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "3",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": "4+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Storm Bolter",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 2"
+        },
+        {
+          "name": "Power Weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Power Fist",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Chainfist",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Anti-Vehicle 3+"
+        },
+        {
+          "name": "➤ Cyclone missile launcher - frag",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "2D6",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Blast"
+        },
+        {
+          "name": "➤ Cyclone missile launcher - krak",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "9",
+          "ap": "-2",
+          "d": "D6",
+          "abilities": ""
+        },
+        {
+          "name": "Storm bolter",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 2"
+        },
+        {
+          "name": "➤ Plasma cannon - standard",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D3",
+          "skill": "3+",
+          "s": "7",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Blast"
+        },
+        {
+          "name": "➤ Plasma cannon - supercharge",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D3",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Blast, Hazardous"
+        },
+        {
+          "name": "Assault cannon",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "6",
+          "skill": "3+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Devastating Wounds"
+        },
+        {
+          "name": "Heavy Flamer",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "D6",
+          "skill": "N/A",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Ignores Cover, Torrent"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Deathwing",
+          "text": "Each time a model in this unit makes an attack, you can ignore any or all modifiers to that attack’s Ballistic Skill or Weapon Skill characteristics and/or to the Hit roll.\nIn addition, each time a model in this unit makes an attack that targets your Oath of Moment target (see Codex: Space Marines), add 1 to the Hit roll."
+        },
+        {
+          "title": "Attached Unit",
+          "text": "If a Character unit from your army with the Leader ability can be attached to a Terminator Squad, it can be attached to this unit instead."
+        },
+        {
+          "title": "Teleport Homer",
+          "text": "At the start of the battle, you can set up one Teleport Homer token for this unit anywhere on the battlefield that is not in your opponent’s deployment zone. If you do, once per battle, you can target this unit with the Rapid Ingress Stratagem for 0CP, but when resolving that Stratagem, you must set this unit up within 3\" horizontally of that token and not within 8\" horizontally of any enemy models. That token is then removed."
+        },
+        {
+          "title": "Watcher in the Dark",
+          "text": "Once per battle, in any phase, just after a mortal wound is allocated to an Adeptus Astartes model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds."
+        },
+        {
+          "title": "Anti",
+          "text": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound.\n*Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*"
+        },
+        {
+          "title": "Blast",
+          "text": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. \n*Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*"
+        },
+        {
+          "title": "Rapid Fire",
+          "text": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. \n*Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*"
+        },
+        {
+          "title": "Hazardous",
+          "text": "Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step."
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        },
+        {
+          "title": "Ignores Cover",
+          "text": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth)."
+        },
+        {
+          "title": "Torrent",
+          "text": "Each time an attack is made with a [TORRENT] weapon, that attack automatically hits the target."
+        },
+        {
+          "title": "Deep Strike",
+          "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone."
+        }
+      ],
+      "keywords": [
+        "Infantry",
+        "Imperium",
+        "Deathwing Terminator Squad",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Terminator",
+        "Deathwing"
+      ],
+      "composition": [
+        {
+          "name": "Squad Members",
+          "min": 5,
+          "max": 10,
+          "models": [
+            "Deathwing Sergeant",
+            "Deathwing Terminator",
+            "Deathwing Terminator w/ Chainfist",
+            "Deathwing Terminator w/ Heavy Weapon"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-inner-circle-companions",
+      "title": "Inner Circle Companions",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Infantry",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 80
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 90
+        },
+        {
+          "label": "6 models",
+          "value": 160
+        },
+        {
+          "label": "3+ unit: 6 models",
+          "value": 170
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Inner Circle Companion",
+          "stats": {
+            "M": "6\"",
+            "T": "4",
+            "Sv": "3+",
+            "W": "3",
+            "Ld": "6+",
+            "OC": "2",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Heavy Bolt Pistol",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "1",
+          "skill": "3+",
+          "s": "4",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "➤ Calibanite Greatsword - Strike",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "3+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Lethal Hits"
+        },
+        {
+          "name": "➤ Calibanite Greatsword - Sweep",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "3+",
+          "s": "6",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Sustained Hits 2"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Attached Unit",
+          "text": "If a Character unit from your army with the Leader ability can be attached to a Sternguard Veteran Squad, it can be attached to this unit instead."
+        },
+        {
+          "title": "Braziers of Judgement",
+          "text": "Inner Circle Companions, Braziers of Judgement ability Change to:\n\n\n▪ This unit has Stealth.\n▪ Melee attacks that target this unit have -1 to hit rolls."
+        },
+        {
+          "title": "Emnity for the Unworthy",
+          "text": "Each time a model in this unit makes an attack that targets a Character unit, add 1 to the Hit roll."
+        }
+      ],
+      "keywords": [
+        "Infantry",
+        "Imperium",
+        "Dark Angels",
+        "Tacticus",
+        "Inner Circle Companions",
+        "Adeptus Astartes",
+        "Deathwing"
+      ],
+      "composition": [
+        {
+          "name": "Companions",
+          "min": 3,
+          "max": 6,
+          "models": [
+            "Inner Circle Companion"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-land-speeder-vengeance",
+      "title": "Land Speeder Vengeance",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Other",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 130
+        },
+        {
+          "label": "3+ unit: 1 models",
+          "value": 140
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Land Speeder Vengeance",
+          "stats": {
+            "M": "14\"",
+            "T": "8",
+            "Sv": "3+",
+            "W": "10",
+            "Ld": "6+",
+            "OC": "3",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Close Combat Weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Plasma storm battery - standard",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D6+1",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Blast, Twin-Linked"
+        },
+        {
+          "name": "➤ Plasma storm battery - supercharge",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D6+1",
+          "skill": "3+",
+          "s": "9",
+          "ap": "-3",
+          "d": "3",
+          "abilities": "Blast, Hazardous, Twin-Linked"
+        },
+        {
+          "name": "Assault cannon",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "6",
+          "skill": "3+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Devastating Wounds"
+        },
+        {
+          "name": "Heavy bolter",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Sustained Hits 1"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Invulnerable Save",
+          "text": "5+"
+        },
+        {
+          "title": "Storm of Vengeance",
+          "text": "Once per turn, in your opponent’s Shooting phase, when another friendly Adeptus Astartes unit within 6\" of this model is destroyed, one model with this ability can use it. If it does, after the attacking unit has finished making its attacks, that model can shoot as if it were your Shooting phase, but when resolving those attacks it can only target that enemy unit (and only if it is an eligible target)."
+        },
+        {
+          "title": "Blast",
+          "text": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. \n*Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*"
+        },
+        {
+          "title": "Twin-linked",
+          "text": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll."
+        },
+        {
+          "title": "Hazardous",
+          "text": "Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step."
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        },
+        {
+          "title": "Sustained Hits",
+          "text": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X.\n*Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability)."
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n*Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*"
+        }
+      ],
+      "keywords": [
+        "Fly",
+        "Imperium",
+        "Vehicle",
+        "Land Speeder Vengeance",
+        "Adeptus Astartes",
+        "Dark Angels",
+        "Ravenwing",
+        "Frame"
+      ],
+      "composition": [
+        {
+          "name": "Land Speeder Vengeance",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Land Speeder Vengeance"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-nephilim-jetfighter",
+      "title": "Nephilim Jetfighter",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Other",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 180
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Nephilim Jetfighter",
+          "stats": {
+            "M": "-",
+            "T": "8",
+            "Sv": "3+",
+            "W": "11",
+            "Ld": "6+",
+            "OC": "-",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Armoured hull",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Blacksword missiles",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-2",
+          "d": "D6",
+          "abilities": "Anti-Fly 2+"
+        },
+        {
+          "name": "Twin heavy bolter",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Sustained Hits 1, Twin-Linked"
+        },
+        {
+          "name": "Avenger mega bolter",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "10",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Sustained Hits 1"
+        },
+        {
+          "name": "Nephilim lascannons",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "12",
+          "ap": "-3",
+          "d": "D6+1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Lightning-fast Manoeuvres",
+          "text": "Ranged attacks that target this unit have -1 to wound rolls"
+        },
+        {
+          "title": "Damaged: 1-3 Wounds Remaining",
+          "text": "While this model has 1-3 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+        },
+        {
+          "title": "Invulnerable Save",
+          "text": "5+"
+        },
+        {
+          "title": "Anti",
+          "text": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound.\n*Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*"
+        },
+        {
+          "title": "Sustained Hits",
+          "text": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X.\n*Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability)."
+        },
+        {
+          "title": "Twin-linked",
+          "text": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll."
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n*Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*"
+        }
+      ],
+      "keywords": [
+        "Vehicle",
+        "Fly",
+        "Aircraft",
+        "Imperium",
+        "Nephilim Jetfighter",
+        "Adeptus Astartes",
+        "Dark Angels",
+        "Ravenwing"
+      ],
+      "composition": [
+        {
+          "name": "Nephilim Jetfighter",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Nephilim Jetfighter"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-ravenwing-black-knights",
+      "title": "Ravenwing Black Knights",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Other",
+      "points": [
+        {
+          "label": "3 models",
+          "value": 75
+        },
+        {
+          "label": "3+ unit: 3 models",
+          "value": 85
+        },
+        {
+          "label": "6 models",
+          "value": 150
+        },
+        {
+          "label": "3+ unit: 6 models",
+          "value": 160
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Ravenwing Huntmaster",
+          "stats": {
+            "M": "12\"",
+            "T": "5",
+            "Sv": "3+",
+            "W": "3",
+            "Ld": "6+",
+            "OC": "2",
+            "Invulnerable": "5+"
+          }
+        },
+        {
+          "name": "Ravenwing Black Knight",
+          "stats": {
+            "M": "12\"",
+            "T": "5",
+            "Sv": "3+",
+            "W": "3",
+            "Ld": "6+",
+            "OC": "2",
+            "Invulnerable": "5+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Bolt Pistol",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "1",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Pistol"
+        },
+        {
+          "name": "➤ Astartes grenade launcher - krak",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "1",
+          "skill": "3+",
+          "s": "9",
+          "ap": "-2",
+          "d": "D3",
+          "abilities": ""
+        },
+        {
+          "name": "➤ Astartes grenade launcher - frag",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "D3",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Blast"
+        },
+        {
+          "name": "➤ Plasma talon - Standard",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "7",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Rapid Fire 1"
+        },
+        {
+          "name": "➤ Plasma talon - Supercharged",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Hazardous, Rapid Fire 1"
+        },
+        {
+          "name": "Black Knight combat weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Devastating Wounds"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Knights of Caliban",
+          "text": "Each time this unit is selected to fight, if it made a Charge move this turn, until the end of the phase, melee weapons equipped by models in this unit have the [ANTI-MONSTER 4+] and [ANTI-VEHICLE 4+] abilities."
+        },
+        {
+          "title": "Attached Unit",
+          "text": "If a Character unit from your army with the Leader ability can be attached to an Outrider Squad, it can be attached to this unit instead."
+        },
+        {
+          "title": "Pistol",
+          "text": "[PISTOL] and [CLOSE-QUARTERS] are identical for all rules purposes. \n\nUnits containing one or more models with a [CLOSE-QUARTERS] weapon can shoot using close-quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: \n- One or more of its [CLOSE-QUARTERS] weapons. \n- One or more of its other ranged weapons."
+        },
+        {
+          "title": "Blast",
+          "text": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. \n*Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*"
+        },
+        {
+          "title": "Hazardous",
+          "text": "Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step."
+        },
+        {
+          "title": "Rapid Fire",
+          "text": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. \n*Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*"
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        }
+      ],
+      "keywords": [
+        "Mounted",
+        "Grenades",
+        "Imperium",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Ravenwing Black Knights",
+        "Ravenwing"
+      ],
+      "composition": [
+        {
+          "name": "Ravenwing Black Knights",
+          "min": 3,
+          "max": 6,
+          "models": [
+            "Ravenwing Huntmaster",
+            "Ravenwing Black Knight",
+            "Ravenwing Black Knight w/ Grenade Launcher"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-ravenwing-dark-talon",
+      "title": "Ravenwing Dark Talon",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Other",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 200
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Ravenwing Dark Talon",
+          "stats": {
+            "M": "-",
+            "T": "8",
+            "Sv": "3+",
+            "W": "11",
+            "Ld": "6+",
+            "OC": "-",
+            "Invulnerable": "5+"
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Armoured Hull",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Hurricane bolter",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "6",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 6, Twin-Linked"
+        },
+        {
+          "name": "Rift cannon",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "D3+1",
+          "skill": "3+",
+          "s": "16",
+          "ap": "-4",
+          "d": "3",
+          "abilities": "Blast, Devastating Wounds"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Stasis Bomb",
+          "text": "At the end of your opponent’s Fight phase, select one visible enemy unit (excluding AIRCRAFT/Lone Operative units) within 24\" of this unit. That enemy unit is slowed until the end of your opponent’s next Movement phase:\n\n\n▪ While a unit is slowed, in your opponent’s Movement phase, when that unit is selected to move, unless that unit remains stationary, roll one D6:\n ▫ On a 1-4, that unit suffers D3 mortal wounds and that unit has -2\" M.\n ▫ On a 5-6, that unit suffers 2D3 mortal wounds and that unit has -3\" M.’"
+        },
+        {
+          "title": "Damaged: 1-3 Wounds Remaining",
+          "text": "While this model has 1-3 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+        },
+        {
+          "title": "Rapid Fire",
+          "text": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. \n*Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*"
+        },
+        {
+          "title": "Twin-linked",
+          "text": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll."
+        },
+        {
+          "title": "Blast",
+          "text": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. \n*Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*"
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n*Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*"
+        }
+      ],
+      "keywords": [
+        "Imperium",
+        "Fly",
+        "Vehicle",
+        "Aircraft",
+        "Dark Talon",
+        "Adeptus Astartes",
+        "Dark Angels",
+        "Ravenwing"
+      ],
+      "composition": [
+        {
+          "name": "Ravenwing Dark Talon",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Ravenwing Dark Talon"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-ravenwing-darkshroud",
+      "title": "Ravenwing Darkshroud",
+      "status": "Current",
+      "sourceLayer": "codex",
+      "category": "Other",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 70
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Ravenwing Darkshroud",
+          "stats": {
+            "M": "14\"",
+            "T": "8",
+            "Sv": "3+",
+            "W": "10",
+            "Ld": "6+",
+            "OC": "3",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Close Combat Weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Assault cannon",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "6",
+          "skill": "3+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Devastating Wounds"
+        },
+        {
+          "name": "Heavy bolter",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Sustained Hits 1"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Invulnerable Save",
+          "text": "5+"
+        },
+        {
+          "title": "Icon of Old Caliban (Aura)",
+          "text": "Friendly ADEPTUS ASTARTES units within 6\" of this unit have Stealth"
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        },
+        {
+          "title": "Sustained Hits",
+          "text": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X.\n*Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability)."
+        },
+        {
+          "title": "Deadly Demise D3",
+          "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n*Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*"
+        }
+      ],
+      "keywords": [
+        "Darkshroud",
+        "Imperium",
+        "Fly",
+        "Vehicle",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Ravenwing",
+        "Frame"
+      ],
+      "composition": [
+        {
+          "name": "Ravenwing Darkshroud",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Ravenwing Darkshroud"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    }
+  ],
+  "imperialArmour": [],
+  "legends": [
+    {
+      "id": "unit-deathwing-command-squad",
+      "title": "Deathwing Command Squad",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "category": "Warhammer Legends",
+      "points": [
+        {
+          "label": "5 models",
+          "value": 200
+        },
+        {
+          "label": "10 models",
+          "value": 400
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Deathwing Ancient",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "3",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": ""
+          }
+        },
+        {
+          "name": "Deathwing Apothecary",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "3",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": ""
+          }
+        },
+        {
+          "name": "Deathwing Champion",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "3",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": ""
+          }
+        },
+        {
+          "name": "Deathwing Command Terminator",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "3",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": ""
+          }
+        },
+        {
+          "name": "Deathwing Command Terminator w/ Shield",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "4",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Power Fist",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Storm Bolter",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 2"
+        },
+        {
+          "name": "Chainfist",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Anti-Vehicle 3+"
+        },
+        {
+          "name": "Halberd of Caliban",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "3+",
+          "s": "6",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Precision"
+        },
+        {
+          "name": "Storm Bolter",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 1"
+        },
+        {
+          "name": "Storm bolter",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 2"
+        },
+        {
+          "name": "➤ Cyclone missile launcher - frag",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "2D6",
+          "skill": "3+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Blast"
+        },
+        {
+          "name": "➤ Cyclone missile launcher - krak",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "2",
+          "skill": "3+",
+          "s": "9",
+          "ap": "-2",
+          "d": "D6",
+          "abilities": ""
+        },
+        {
+          "name": "Assault cannon",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "6",
+          "skill": "3+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Devastating Wounds"
+        },
+        {
+          "name": "Heavy Flamer",
+          "mode": "ranged",
+          "range": "12\"",
+          "a": "D6",
+          "skill": "N/A",
+          "s": "5",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Ignores Cover, Torrent"
+        },
+        {
+          "name": "➤ Plasma cannon - standard",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D3",
+          "skill": "3+",
+          "s": "7",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Blast"
+        },
+        {
+          "name": "➤ Plasma cannon - supercharge",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D3",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": "Blast, Hazardous"
+        },
+        {
+          "name": "Power Weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Twin lightning claws",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Twin-linked"
+        },
+        {
+          "name": "Thunder Hammer",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Devastating Wounds"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Attached Unit",
+          "text": "If a Character unit from your army with the Leader ability can be attached to a Terminator Squad, it can be attached to this unit instead."
+        },
+        {
+          "title": "Watcher in the Dark",
+          "text": "Once per battle, in any phase, just after a mortal wound is allocated to an Adeptus Astartes model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds."
+        },
+        {
+          "title": "Invulnerable Save",
+          "text": "4+"
+        },
+        {
+          "title": "Astartes Banner",
+          "text": "While this unit contains an Ancient, add 1 to the Objective Control characteristic of its models."
+        },
+        {
+          "title": "Narthecium",
+          "text": "While this unit contains an Apothecary, in your Command phase, you can return 1 destroyed model (excluding Character models) to this unit."
+        },
+        {
+          "title": "Honour or Death",
+          "text": "While this unit contains a Company Champion, add 1 to Advance and Charge rolls made for this unit and you can target this unit with the Heroic Intervention Stratagem for 0CP."
+        },
+        {
+          "title": "Storm Shield",
+          "text": "The bearer has a Wounds characteristic of 4."
+        },
+        {
+          "title": "Anti",
+          "text": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound.\n*Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*"
+        },
+        {
+          "title": "Precision",
+          "text": "While resolving attacks made with one or more [PRECISION] weapons, at the start of the Allocation Order step (05.03), if the target unit contains one or more CHARACTER models visible to one or more of the attacking models, the active player can select one allocation group that contains one of those visible CHARACTER models. If they do, until those attacks are resolved, or until that CHARACTER group is destroyed (whichever happens first), that CHARACTER group is the current allocation group."
+        },
+        {
+          "title": "Rapid Fire",
+          "text": "This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. \n*Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon).*"
+        },
+        {
+          "title": "Blast",
+          "text": "Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. \n*Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon).*"
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        },
+        {
+          "title": "Ignores Cover",
+          "text": "Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth)."
+        },
+        {
+          "title": "Torrent",
+          "text": "Each time an attack is made with a [TORRENT] weapon, that attack automatically hits the target."
+        },
+        {
+          "title": "Hazardous",
+          "text": "Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step."
+        },
+        {
+          "title": "Twin-linked",
+          "text": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll."
+        },
+        {
+          "title": "Deep Strike",
+          "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone."
+        }
+      ],
+      "keywords": [
+        "Infantry",
+        "Imperium",
+        "Deathwing",
+        "Deathwing Command Squad",
+        "Terminator",
+        "Dark Angels",
+        "Adeptus Astartes"
+      ],
+      "composition": [
+        {
+          "name": "Deathwing Command Squad Members",
+          "min": 5,
+          "max": 10,
+          "models": [
+            "Deathwing Ancient",
+            "Deathwing Apothecary",
+            "Deathwing Champion",
+            "Deathwing Command Terminator",
+            "Deathwing Terminator w/ Chainfist",
+            "Deathwing Terminator w/ Heavy Weapon",
+            "Deathwing Command Terminator w/ Power Weapon",
+            "Deathwing Command Terminator w/ Twin Claws",
+            "Deathwing Command Terminator w/ Hammer & Shield"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-deathwing-strikemaster",
+      "title": "Deathwing Strikemaster",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "category": "Warhammer Legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 80
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Deathwing Strikemaster [Legends]",
+          "stats": {
+            "M": "5\"",
+            "T": "5",
+            "Sv": "2+",
+            "W": "5",
+            "Ld": "6+",
+            "OC": "1",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Storm Bolter",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2",
+          "skill": "2+",
+          "s": "4",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Rapid Fire 2"
+        },
+        {
+          "name": "Master-crafted Power Weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "2+",
+          "s": "5",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Chainfist",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Anti-Vehicle 3+"
+        },
+        {
+          "name": "Mace of Absolution",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "2+",
+          "s": "6",
+          "ap": "-1",
+          "d": "3",
+          "abilities": ""
+        },
+        {
+          "name": "Power Fist",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "2+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Thunder Hammer",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "4",
+          "skill": "3+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Devastating Wounds"
+        },
+        {
+          "name": "Twin Lightning Claws",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "6",
+          "skill": "2+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": "Twin-Linked"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Invulnerable Save",
+          "text": "4+"
+        },
+        {
+          "title": "Leader",
+          "text": "This unit can be attached to the following units:\n■ Deathwing Command Squad\n■ Deathwing Terminator Squad\n\n■ Relic Terminator Squad\n■ Terminator Assault Squad\n■ Terminator Squad"
+        },
+        {
+          "title": "Tactical Precision",
+          "text": "While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+        },
+        {
+          "title": "Vanquish the Foe",
+          "text": "Each time this model makes an attack that targets an enemy unit that is Below Half-strength, add 1 to the Hit roll and add 1 to the Wound roll."
+        },
+        {
+          "title": "Storm Shield",
+          "text": "The bearer has a Wounds characteristic of 6."
+        },
+        {
+          "title": "Anti",
+          "text": "This ability always takes the form [ANTI-X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound.\n*Example: An attack made with an [ANTI-VEHICLE 4+] weapon against a Vehicle unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI-PSYKER 2+] weapon against a Psyker unit will result in a critical wound on an unmodified wound roll of 2+.*"
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        },
+        {
+          "title": "Twin-linked",
+          "text": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll."
+        },
+        {
+          "title": "Deep Strike",
+          "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone."
+        }
+      ],
+      "keywords": [
+        "Character",
+        "Infantry",
+        "Imperium",
+        "Dark Angels",
+        "Adeptus Astartes",
+        "Deathwing",
+        "Deathwing Strikemaster",
+        "Terminator",
+        "Lieutenant"
+      ],
+      "composition": [
+        {
+          "name": "Deathwing Strikemaster",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Deathwing Strikemaster"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-ravenwing-talonmaster",
+      "title": "Ravenwing Talonmaster",
+      "status": "Warhammer Legends",
+      "sourceLayer": "legends",
+      "category": "Warhammer Legends",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 105
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Ravenwing Talonmaster [Legends]",
+          "stats": {
+            "M": "16\"",
+            "T": "7",
+            "Sv": "3+",
+            "W": "6",
+            "Ld": "6+",
+            "OC": "2",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Twin Heavy Bolter",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "3",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Sustained Hits 1, Twin-Linked"
+        },
+        {
+          "name": "Power Weapon",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "5",
+          "skill": "3+",
+          "s": "5",
+          "ap": "-2",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Twin Assault Cannon",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "6",
+          "skill": "3+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Devastating Wounds, Twin-Linked"
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Talonmaster",
+          "text": "While this model is within 3\" of one or more other friendly Adeptus Astartes Mounted or Adeptus Astartes Fly Vehicle units, this model has the Lone Operative ability."
+        },
+        {
+          "title": "Nowhere To Hide",
+          "text": "While a friendly Adeptus Astartes Mounted or Adeptus Astartes Fly Vehicle unit is within 6\" of this model, ranged weapons equipped by models in that unit have the [IGNORES COVER] ability."
+        },
+        {
+          "title": "Master of Manoeuvre",
+          "text": "Once per turn, when an enemy unit ends a Normal, Advance or Fall Back move within 9\" of this model, if this model is not within Engagement Range of one or more enemy units, this model can make a Normal move of up to 6\"."
+        },
+        {
+          "title": "Invulnerable Save",
+          "text": "5+"
+        },
+        {
+          "title": "Twin-linked",
+          "text": "Each time an attack is made with a [TWIN-LINKED] weapon, you can re-roll the wound roll."
+        },
+        {
+          "title": "Sustained Hits",
+          "text": "This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X.\n*Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability)."
+        },
+        {
+          "title": "Devastating Wounds",
+          "text": "Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. \nMortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. \nExample: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost.*"
+        },
+        {
+          "title": "Deadly Demise 1",
+          "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n*Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*"
+        }
+      ],
+      "keywords": [
+        "Vehicle",
+        "Character",
+        "Fly",
+        "Ravenwing",
+        "Ravenwing Talonmaster",
+        "Adeptus Astartes",
+        "Dark Angels",
+        "Imperium"
+      ],
+      "composition": [
+        {
+          "name": "Ravenwing Talonmaster",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Ravenwing Talonmaster"
+          ]
+        }
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    }
+  ],
+  "audit": {
+    "rootEntries": 19,
+    "excludedEntries": 0,
+    "datasheets": 16,
+    "imperialArmour": 0,
+    "imperialArmourLegends": 0,
+    "currentImperialArmour": 0,
+    "legends": 3
+  }
+}

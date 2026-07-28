@@ -1,0 +1,4938 @@
+{
+  "schema": 1,
+  "bookId": "tau-empire",
+  "terms": {
+    "tau-empire-detachment-rule-expert-fieldcraft": {
+      "termId": "tau-empire-detachment-rule-expert-fieldcraft",
+      "navigation": {
+        "glossary": "glossary-tau-empire-detachment-rule-expert-fieldcraft",
+        "rule": "detachment-advanced-acquisition-cadre"
+      }
+    },
+    "tau-empire-enhancement-negation-emitters-upgrade": {
+      "termId": "tau-empire-enhancement-negation-emitters-upgrade",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-negation-emitters-upgrade",
+        "rule": "detachment-advanced-acquisition-cadre"
+      }
+    },
+    "tau-empire-enhancement-unmasking-suite-upgrade": {
+      "termId": "tau-empire-enhancement-unmasking-suite-upgrade",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-unmasking-suite-upgrade",
+        "rule": "detachment-advanced-acquisition-cadre"
+      }
+    },
+    "tau-empire-stratagem-marker-beacon": {
+      "termId": "tau-empire-stratagem-marker-beacon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-stratagem-marker-beacon",
+        "rule": "detachment-advanced-acquisition-cadre"
+      }
+    },
+    "tau-empire-stratagem-microdrone-support": {
+      "termId": "tau-empire-stratagem-microdrone-support",
+      "navigation": {
+        "glossary": "glossary-tau-empire-stratagem-microdrone-support",
+        "rule": "detachment-advanced-acquisition-cadre"
+      }
+    },
+    "tau-empire-stratagem-autoreactive-camouflage": {
+      "termId": "tau-empire-stratagem-autoreactive-camouflage",
+      "navigation": {
+        "glossary": "glossary-tau-empire-stratagem-autoreactive-camouflage",
+        "rule": "detachment-advanced-acquisition-cadre"
+      }
+    },
+    "tau-empire-detachment-rule-integrated-command-structure": {
+      "termId": "tau-empire-detachment-rule-integrated-command-structure",
+      "navigation": {
+        "glossary": "glossary-tau-empire-detachment-rule-integrated-command-structure",
+        "rule": "detachment-auxiliary-cadre"
+      }
+    },
+    "tau-empire-enhancement-student-of-kauyon": {
+      "termId": "tau-empire-enhancement-student-of-kauyon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-student-of-kauyon",
+        "rule": "detachment-auxiliary-cadre"
+      }
+    },
+    "tau-empire-enhancement-admired-leader": {
+      "termId": "tau-empire-enhancement-admired-leader",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-admired-leader",
+        "rule": "detachment-auxiliary-cadre"
+      }
+    },
+    "tau-empire-stratagem-experimental-modifications": {
+      "termId": "tau-empire-stratagem-experimental-modifications",
+      "navigation": {
+        "glossary": "glossary-tau-empire-stratagem-experimental-modifications",
+        "rule": "detachment-auxiliary-cadre"
+      }
+    },
+    "tau-empire-stratagem-alien-expertise": {
+      "termId": "tau-empire-stratagem-alien-expertise",
+      "navigation": {
+        "glossary": "glossary-tau-empire-stratagem-alien-expertise",
+        "rule": "detachment-auxiliary-cadre"
+      }
+    },
+    "tau-empire-stratagem-guided-by-unity": {
+      "termId": "tau-empire-stratagem-guided-by-unity",
+      "navigation": {
+        "glossary": "glossary-tau-empire-stratagem-guided-by-unity",
+        "rule": "detachment-auxiliary-cadre"
+      }
+    },
+    "tau-empire-detachment-rule-superior-craftsmanship": {
+      "termId": "tau-empire-detachment-rule-superior-craftsmanship",
+      "navigation": {
+        "glossary": "glossary-tau-empire-detachment-rule-superior-craftsmanship",
+        "rule": "detachment-experimental-prototype-cadre"
+      }
+    },
+    "tau-empire-enhancement-thermoneutronic-projector": {
+      "termId": "tau-empire-enhancement-thermoneutronic-projector",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-thermoneutronic-projector",
+        "rule": "detachment-experimental-prototype-cadre"
+      }
+    },
+    "tau-empire-enhancement-plasma-accelerator-rifle": {
+      "termId": "tau-empire-enhancement-plasma-accelerator-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-plasma-accelerator-rifle",
+        "rule": "detachment-experimental-prototype-cadre"
+      }
+    },
+    "tau-empire-enhancement-supernova-launcher": {
+      "termId": "tau-empire-enhancement-supernova-launcher",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-supernova-launcher",
+        "rule": "detachment-experimental-prototype-cadre"
+      }
+    },
+    "tau-empire-stratagem-experimental-ammunition": {
+      "termId": "tau-empire-stratagem-experimental-ammunition",
+      "navigation": {
+        "glossary": "glossary-tau-empire-stratagem-experimental-ammunition",
+        "rule": "detachment-experimental-prototype-cadre"
+      }
+    },
+    "tau-empire-ability-breach-and-clear": {
+      "termId": "tau-empire-ability-breach-and-clear",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-breach-and-clear",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team"
+        ]
+      }
+    },
+    "tau-empire-ability-ds8-support-turret": {
+      "termId": "tau-empire-ability-ds8-support-turret",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-ds8-support-turret",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team"
+        ]
+      }
+    },
+    "tau-empire-ability-marker-drone": {
+      "termId": "tau-empire-ability-marker-drone",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-marker-drone",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-cadre-fireblade",
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-ethereal",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits",
+          "unit-broadside-battlesuits",
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-shield-drone": {
+      "termId": "tau-empire-ability-shield-drone",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-shield-drone",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-cadre-fireblade",
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-ethereal",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits",
+          "unit-broadside-battlesuits",
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-guardian-drone": {
+      "termId": "tau-empire-ability-guardian-drone",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-guardian-drone",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-cadre-fireblade",
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-ethereal",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits",
+          "unit-broadside-battlesuits",
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-pistol": {
+      "termId": "tau-empire-ability-pistol",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-pistol",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-firesight-team",
+          "unit-kroot-war-shaper",
+          "unit-commander-shadowsun",
+          "unit-the-twin-lance",
+          "unit-kroot-carnivores",
+          "unit-kroot-farstalkers",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits",
+          "unit-krootox-rampagers"
+        ]
+      }
+    },
+    "tau-empire-ability-assault": {
+      "termId": "tau-empire-ability-assault",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-assault",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-cadre-fireblade",
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-ethereal",
+          "unit-kroot-flesh-shaper",
+          "unit-kroot-lone-spear",
+          "unit-kroot-war-shaper",
+          "unit-devilfish",
+          "unit-darkstrider",
+          "unit-the-twin-lance",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits",
+          "unit-vespid-stingwings",
+          "unit-broadside-battlesuits",
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-krootox-rampagers",
+          "unit-piranhas",
+          "unit-sky-ray-gunship",
+          "unit-tidewall-droneport",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-longstrike",
+          "unit-tactical-drones",
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-indirect-fire": {
+      "termId": "tau-empire-ability-indirect-fire",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-indirect-fire",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-devilfish",
+          "unit-broadside-battlesuits",
+          "unit-hammerhead-gunship",
+          "unit-riptide-battlesuit",
+          "unit-sky-ray-gunship",
+          "unit-stormsurge",
+          "unit-taunar-supremacy-armour",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-ability-twin-linked": {
+      "termId": "tau-empire-ability-twin-linked",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-twin-linked",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-cadre-fireblade",
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-ethereal",
+          "unit-kroot-flesh-shaper",
+          "unit-devilfish",
+          "unit-the-twin-lance",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits",
+          "unit-broadside-battlesuits",
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-ghostkeel-battlesuit",
+          "unit-hammerhead-gunship",
+          "unit-piranhas",
+          "unit-razorshark-strike-fighter",
+          "unit-riptide-battlesuit",
+          "unit-sky-ray-gunship",
+          "unit-stormsurge",
+          "unit-sun-shark-bomber",
+          "unit-tidewall-droneport",
+          "unit-tidewall-gunrig",
+          "unit-ax-1-0-tiger-shark",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-drone-sentry-turret",
+          "unit-great-knarloc",
+          "unit-heavy-gun-drones",
+          "unit-longstrike",
+          "unit-remora-stealth-drones",
+          "unit-tactical-drones",
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-for-the-greater-good": {
+      "termId": "tau-empire-ability-for-the-greater-good",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-for-the-greater-good",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-cadre-fireblade",
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-ethereal",
+          "unit-firesight-team",
+          "unit-devilfish",
+          "unit-commander-farsight",
+          "unit-commander-shadowsun",
+          "unit-darkstrider",
+          "unit-the-twin-lance",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits",
+          "unit-broadside-battlesuits",
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-ghostkeel-battlesuit",
+          "unit-hammerhead-gunship",
+          "unit-piranhas",
+          "unit-razorshark-strike-fighter",
+          "unit-riptide-battlesuit",
+          "unit-sky-ray-gunship",
+          "unit-stormsurge",
+          "unit-sun-shark-bomber",
+          "unit-ax-1-0-tiger-shark",
+          "unit-manta",
+          "unit-taunar-supremacy-armour",
+          "unit-tiger-shark",
+          "unit-barracuda",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-longstrike",
+          "unit-orca-dropship",
+          "unit-rvarna-battlesuit",
+          "unit-remora-stealth-drones",
+          "unit-shaso-ralai",
+          "unit-tetras",
+          "unit-tx42-piranha",
+          "unit-xv9-hazard-battlesuits",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-pulse-pistol": {
+      "termId": "tau-empire-weapon-pulse-pistol",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-pulse-pistol",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-close-combat-weapon": {
+      "termId": "tau-empire-weapon-close-combat-weapon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-close-combat-weapon",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-pulse-blaster": {
+      "termId": "tau-empire-weapon-pulse-blaster",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-pulse-blaster",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-support-turret": {
+      "termId": "tau-empire-weapon-support-turret",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-support-turret",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-pulse-carbine": {
+      "termId": "tau-empire-weapon-twin-pulse-carbine",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-pulse-carbine",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-cadre-fireblade",
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-ethereal",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits",
+          "unit-broadside-battlesuits",
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-tactical-drones",
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-missile-pod": {
+      "termId": "tau-empire-weapon-missile-pod",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-missile-pod",
+        "rule": "unit-breacher-team",
+        "datasheet": "unit-breacher-team",
+        "statline": "breacher-team-profile",
+        "units": [
+          "unit-breacher-team",
+          "unit-strike-team",
+          "unit-cadre-fireblade",
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-ethereal",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits",
+          "unit-broadside-battlesuits",
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-riptide-battlesuit",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-rvarna-battlesuit",
+          "unit-xv9-hazard-battlesuits",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-suppression-volley": {
+      "termId": "tau-empire-ability-suppression-volley",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-suppression-volley",
+        "rule": "unit-strike-team",
+        "datasheet": "unit-strike-team",
+        "statline": "strike-team-profile",
+        "units": [
+          "unit-strike-team"
+        ]
+      }
+    },
+    "tau-empire-ability-rapid-fire": {
+      "termId": "tau-empire-ability-rapid-fire",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-rapid-fire",
+        "rule": "unit-strike-team",
+        "datasheet": "unit-strike-team",
+        "statline": "strike-team-profile",
+        "units": [
+          "unit-strike-team",
+          "unit-cadre-fireblade",
+          "unit-kroot-trail-shaper",
+          "unit-the-twin-lance",
+          "unit-kroot-carnivores",
+          "unit-kroot-farstalkers",
+          "unit-krootox-riders",
+          "unit-great-knarloc",
+          "unit-knarloc-riders",
+          "unit-tetras"
+        ]
+      }
+    },
+    "tau-empire-weapon-pulse-carbine": {
+      "termId": "tau-empire-weapon-pulse-carbine",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-pulse-carbine",
+        "rule": "unit-strike-team",
+        "datasheet": "unit-strike-team",
+        "statline": "strike-team-profile",
+        "units": [
+          "unit-strike-team",
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-pulse-rifle": {
+      "termId": "tau-empire-weapon-pulse-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-pulse-rifle",
+        "rule": "unit-strike-team",
+        "datasheet": "unit-strike-team",
+        "statline": "strike-team-profile",
+        "units": [
+          "unit-strike-team",
+          "unit-tetras"
+        ]
+      }
+    },
+    "tau-empire-ability-volley-fire": {
+      "termId": "tau-empire-ability-volley-fire",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-volley-fire",
+        "rule": "unit-cadre-fireblade",
+        "datasheet": "unit-cadre-fireblade",
+        "statline": "cadre-fireblade-profile",
+        "units": [
+          "unit-cadre-fireblade"
+        ]
+      }
+    },
+    "tau-empire-ability-crack-shot": {
+      "termId": "tau-empire-ability-crack-shot",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-crack-shot",
+        "rule": "unit-cadre-fireblade",
+        "datasheet": "unit-cadre-fireblade",
+        "statline": "cadre-fireblade-profile",
+        "units": [
+          "unit-cadre-fireblade"
+        ]
+      }
+    },
+    "tau-empire-ability-leader": {
+      "termId": "tau-empire-ability-leader",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-leader",
+        "rule": "unit-cadre-fireblade",
+        "datasheet": "unit-cadre-fireblade",
+        "statline": "cadre-fireblade-profile",
+        "units": [
+          "unit-cadre-fireblade",
+          "unit-ethereal"
+        ]
+      }
+    },
+    "tau-empire-ability-leader-2": {
+      "termId": "tau-empire-ability-leader-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-leader-2",
+        "rule": "unit-cadre-fireblade",
+        "datasheet": "unit-cadre-fireblade",
+        "statline": "cadre-fireblade-profile",
+        "units": [
+          "unit-cadre-fireblade",
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-ethereal",
+          "unit-kroot-flesh-shaper",
+          "unit-kroot-trail-shaper",
+          "unit-kroot-war-shaper",
+          "unit-commander-farsight",
+          "unit-darkstrider",
+          "unit-aunshi",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-shaso-ralai"
+        ]
+      }
+    },
+    "tau-empire-weapon-fireblade-pulse-rifle": {
+      "termId": "tau-empire-weapon-fireblade-pulse-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-fireblade-pulse-rifle",
+        "rule": "unit-cadre-fireblade",
+        "datasheet": "unit-cadre-fireblade",
+        "statline": "cadre-fireblade-profile",
+        "units": [
+          "unit-cadre-fireblade"
+        ]
+      }
+    },
+    "tau-empire-weapon-close-combat-weapon-2": {
+      "termId": "tau-empire-weapon-close-combat-weapon-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-close-combat-weapon-2",
+        "rule": "unit-cadre-fireblade",
+        "datasheet": "unit-cadre-fireblade",
+        "statline": "cadre-fireblade-profile",
+        "units": [
+          "unit-cadre-fireblade",
+          "unit-darkstrider"
+        ]
+      }
+    },
+    "tau-empire-ability-leader-3": {
+      "termId": "tau-empire-ability-leader-3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-leader-3",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-farsight",
+          "unit-commander-in-crisis-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-coldstar-commander": {
+      "termId": "tau-empire-ability-coldstar-commander",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-coldstar-commander",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-battlesuit-support-system": {
+      "termId": "tau-empire-ability-battlesuit-support-system",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-battlesuit-support-system",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-riptide-battlesuit",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-rvarna-battlesuit",
+          "unit-xv9-hazard-battlesuits",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-shield-generator": {
+      "termId": "tau-empire-ability-shield-generator",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-shield-generator",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-weapon-support-system": {
+      "termId": "tau-empire-ability-weapon-support-system",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-weapon-support-system",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-broadside-battlesuits",
+          "unit-riptide-battlesuit",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-rvarna-battlesuit",
+          "unit-xv9-hazard-battlesuits",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-blast": {
+      "termId": "tau-empire-ability-blast",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-blast",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-kroot-lone-spear",
+          "unit-kroot-carnivores",
+          "unit-vespid-stingwings",
+          "unit-hammerhead-gunship",
+          "unit-krootox-riders",
+          "unit-stormsurge",
+          "unit-manta",
+          "unit-taunar-supremacy-armour",
+          "unit-tiger-shark",
+          "unit-barracuda",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-longstrike",
+          "unit-rvarna-battlesuit",
+          "unit-shaso-ralai",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-hazardous": {
+      "termId": "tau-empire-ability-hazardous",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-hazardous",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-the-twin-lance",
+          "unit-pathfinder-team",
+          "unit-ghostkeel-battlesuit",
+          "unit-hammerhead-gunship",
+          "unit-razorshark-strike-fighter",
+          "unit-riptide-battlesuit",
+          "unit-sun-shark-bomber",
+          "unit-ax-1-0-tiger-shark",
+          "unit-manta",
+          "unit-taunar-supremacy-armour",
+          "unit-tiger-shark",
+          "unit-barracuda",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-longstrike",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-torrent": {
+      "termId": "tau-empire-ability-torrent",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-torrent",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-kroot-farstalkers",
+          "unit-vespid-stingwings",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-ghostkeel-battlesuit",
+          "unit-stormsurge",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-ignores-cover": {
+      "termId": "tau-empire-ability-ignores-cover",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-ignores-cover",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-the-twin-lance",
+          "unit-kroot-farstalkers",
+          "unit-pathfinder-team",
+          "unit-vespid-stingwings",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-ghostkeel-battlesuit",
+          "unit-stormsurge",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-melta": {
+      "termId": "tau-empire-ability-melta",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-melta",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-shadowsun",
+          "unit-the-twin-lance",
+          "unit-stealth-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-ghostkeel-battlesuit",
+          "unit-piranhas",
+          "unit-riptide-battlesuit",
+          "unit-taunar-supremacy-armour",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-drone-sentry-turret",
+          "unit-tx42-piranha",
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-deep-strike": {
+      "termId": "tau-empire-ability-deep-strike",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-deep-strike",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-farsight",
+          "unit-the-twin-lance",
+          "unit-vespid-stingwings",
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits",
+          "unit-shaso-ralai",
+          "unit-tactical-drones",
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-high-output-burst-cannon": {
+      "termId": "tau-empire-weapon-high-output-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-high-output-burst-cannon",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-missile-pod-2": {
+      "termId": "tau-empire-weapon-missile-pod-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-missile-pod-2",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-in-crisis-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-burst-cannon": {
+      "termId": "tau-empire-weapon-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-burst-cannon",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-in-crisis-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-airbursting-fragmentation-projector": {
+      "termId": "tau-empire-weapon-airbursting-fragmentation-projector",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-airbursting-fragmentation-projector",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-in-crisis-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-cyclic-ion-blaster-standard": {
+      "termId": "tau-empire-weapon-cyclic-ion-blaster-standard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-cyclic-ion-blaster-standard",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-in-crisis-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-cyclic-ion-blaster-overcharge": {
+      "termId": "tau-empire-weapon-cyclic-ion-blaster-overcharge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-cyclic-ion-blaster-overcharge",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-in-crisis-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-tau-flamer": {
+      "termId": "tau-empire-weapon-tau-flamer",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-tau-flamer",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-vespid-stingwings",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-crisis-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-fusion-blaster": {
+      "termId": "tau-empire-weapon-fusion-blaster",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-fusion-blaster",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-in-crisis-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-plasma-rifle": {
+      "termId": "tau-empire-weapon-plasma-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-plasma-rifle",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-in-crisis-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-battlesuit-fists": {
+      "termId": "tau-empire-weapon-battlesuit-fists",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-battlesuit-fists",
+        "rule": "unit-commander-in-coldstar-battlesuit",
+        "datasheet": "unit-commander-in-coldstar-battlesuit",
+        "statline": "commander-in-coldstar-battlesuit-profile",
+        "units": [
+          "unit-commander-in-coldstar-battlesuit",
+          "unit-commander-in-enforcer-battlesuit",
+          "unit-commander-shadowsun",
+          "unit-commander-in-crisis-battlesuit",
+          "unit-shaso-ralai"
+        ]
+      }
+    },
+    "tau-empire-ability-enforcer-commander": {
+      "termId": "tau-empire-ability-enforcer-commander",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-enforcer-commander",
+        "rule": "unit-commander-in-enforcer-battlesuit",
+        "datasheet": "unit-commander-in-enforcer-battlesuit",
+        "statline": "commander-in-enforcer-battlesuit-profile",
+        "units": [
+          "unit-commander-in-enforcer-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-coordinated-leadership": {
+      "termId": "tau-empire-ability-coordinated-leadership",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-coordinated-leadership",
+        "rule": "unit-ethereal",
+        "datasheet": "unit-ethereal",
+        "statline": "ethereal-profile",
+        "units": [
+          "unit-ethereal"
+        ]
+      }
+    },
+    "tau-empire-ability-failure-is-not-an-option": {
+      "termId": "tau-empire-ability-failure-is-not-an-option",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-failure-is-not-an-option",
+        "rule": "unit-ethereal",
+        "datasheet": "unit-ethereal",
+        "statline": "ethereal-profile",
+        "units": [
+          "unit-ethereal"
+        ]
+      }
+    },
+    "tau-empire-ability-hover-drone": {
+      "termId": "tau-empire-ability-hover-drone",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-hover-drone",
+        "rule": "unit-ethereal",
+        "datasheet": "unit-ethereal",
+        "statline": "ethereal-profile",
+        "units": [
+          "unit-ethereal"
+        ]
+      }
+    },
+    "tau-empire-ability-feel-no-pain": {
+      "termId": "tau-empire-ability-feel-no-pain",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-feel-no-pain",
+        "rule": "unit-ethereal",
+        "datasheet": "unit-ethereal",
+        "statline": "ethereal-profile",
+        "units": [
+          "unit-ethereal",
+          "unit-kroot-flesh-shaper",
+          "unit-broadside-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-honour-stave": {
+      "termId": "tau-empire-weapon-honour-stave",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-honour-stave",
+        "rule": "unit-ethereal",
+        "datasheet": "unit-ethereal",
+        "statline": "ethereal-profile",
+        "units": [
+          "unit-ethereal"
+        ]
+      }
+    },
+    "tau-empire-ability-precise-targeting": {
+      "termId": "tau-empire-ability-precise-targeting",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-precise-targeting",
+        "rule": "unit-firesight-team",
+        "datasheet": "unit-firesight-team",
+        "statline": "firesight-team-profile",
+        "units": [
+          "unit-firesight-team"
+        ]
+      }
+    },
+    "tau-empire-ability-heavy": {
+      "termId": "tau-empire-ability-heavy",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-heavy",
+        "rule": "unit-firesight-team",
+        "datasheet": "unit-firesight-team",
+        "statline": "firesight-team-profile",
+        "units": [
+          "unit-firesight-team",
+          "unit-kroot-lone-spear",
+          "unit-kroot-war-shaper",
+          "unit-kroot-farstalkers",
+          "unit-pathfinder-team",
+          "unit-broadside-battlesuits",
+          "unit-hammerhead-gunship",
+          "unit-krootox-riders",
+          "unit-stormsurge",
+          "unit-taunar-supremacy-armour",
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-ability-precision": {
+      "termId": "tau-empire-ability-precision",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-precision",
+        "rule": "unit-firesight-team",
+        "datasheet": "unit-firesight-team",
+        "statline": "firesight-team-profile",
+        "units": [
+          "unit-firesight-team",
+          "unit-kroot-lone-spear",
+          "unit-aunshi"
+        ]
+      }
+    },
+    "tau-empire-ability-infiltrators": {
+      "termId": "tau-empire-ability-infiltrators",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-infiltrators",
+        "rule": "unit-firesight-team",
+        "datasheet": "unit-firesight-team",
+        "statline": "firesight-team-profile",
+        "units": [
+          "unit-firesight-team",
+          "unit-kroot-flesh-shaper",
+          "unit-kroot-trail-shaper",
+          "unit-kroot-war-shaper",
+          "unit-commander-shadowsun",
+          "unit-darkstrider",
+          "unit-kroot-farstalkers",
+          "unit-pathfinder-team",
+          "unit-stealth-battlesuits",
+          "unit-ghostkeel-battlesuit",
+          "unit-remora-stealth-drones",
+          "unit-tetras"
+        ]
+      }
+    },
+    "tau-empire-ability-lone-operative": {
+      "termId": "tau-empire-ability-lone-operative",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-lone-operative",
+        "rule": "unit-firesight-team",
+        "datasheet": "unit-firesight-team",
+        "statline": "firesight-team-profile",
+        "units": [
+          "unit-firesight-team",
+          "unit-kroot-lone-spear",
+          "unit-commander-shadowsun",
+          "unit-ghostkeel-battlesuit",
+          "unit-aunva"
+        ]
+      }
+    },
+    "tau-empire-ability-stealth": {
+      "termId": "tau-empire-ability-stealth",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-stealth",
+        "rule": "unit-firesight-team",
+        "datasheet": "unit-firesight-team",
+        "statline": "firesight-team-profile",
+        "units": [
+          "unit-firesight-team",
+          "unit-kroot-flesh-shaper",
+          "unit-kroot-lone-spear",
+          "unit-kroot-trail-shaper",
+          "unit-kroot-war-shaper",
+          "unit-commander-shadowsun",
+          "unit-kroot-carnivores",
+          "unit-kroot-farstalkers",
+          "unit-stealth-battlesuits",
+          "unit-ghostkeel-battlesuit",
+          "unit-kroot-hounds",
+          "unit-knarloc-riders",
+          "unit-remora-stealth-drones"
+        ]
+      }
+    },
+    "tau-empire-weapon-close-combat-weapons": {
+      "termId": "tau-empire-weapon-close-combat-weapons",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-close-combat-weapons",
+        "rule": "unit-firesight-team",
+        "datasheet": "unit-firesight-team",
+        "statline": "firesight-team-profile",
+        "units": [
+          "unit-firesight-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-longshot-pulse-rifles": {
+      "termId": "tau-empire-weapon-longshot-pulse-rifles",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-longshot-pulse-rifles",
+        "rule": "unit-firesight-team",
+        "datasheet": "unit-firesight-team",
+        "statline": "firesight-team-profile",
+        "units": [
+          "unit-firesight-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-pulse-pistol-2": {
+      "termId": "tau-empire-weapon-pulse-pistol-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-pulse-pistol-2",
+        "rule": "unit-firesight-team",
+        "datasheet": "unit-firesight-team",
+        "statline": "firesight-team-profile",
+        "units": [
+          "unit-firesight-team",
+          "unit-commander-shadowsun"
+        ]
+      }
+    },
+    "tau-empire-ability-leader-4": {
+      "termId": "tau-empire-ability-leader-4",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-leader-4",
+        "rule": "unit-kroot-flesh-shaper",
+        "datasheet": "unit-kroot-flesh-shaper",
+        "statline": "kroot-flesh-shaper-profile",
+        "units": [
+          "unit-kroot-flesh-shaper",
+          "unit-kroot-trail-shaper",
+          "unit-kroot-war-shaper"
+        ]
+      }
+    },
+    "tau-empire-ability-rites-of-feasting": {
+      "termId": "tau-empire-ability-rites-of-feasting",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-rites-of-feasting",
+        "rule": "unit-kroot-flesh-shaper",
+        "datasheet": "unit-kroot-flesh-shaper",
+        "statline": "kroot-flesh-shaper-profile",
+        "units": [
+          "unit-kroot-flesh-shaper"
+        ]
+      }
+    },
+    "tau-empire-ability-ritual-butchery": {
+      "termId": "tau-empire-ability-ritual-butchery",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-ritual-butchery",
+        "rule": "unit-kroot-flesh-shaper",
+        "datasheet": "unit-kroot-flesh-shaper",
+        "statline": "kroot-flesh-shaper-profile",
+        "units": [
+          "unit-kroot-flesh-shaper"
+        ]
+      }
+    },
+    "tau-empire-ability-harnessed-alien-instincts": {
+      "termId": "tau-empire-ability-harnessed-alien-instincts",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-harnessed-alien-instincts",
+        "rule": "unit-kroot-flesh-shaper",
+        "datasheet": "unit-kroot-flesh-shaper",
+        "statline": "kroot-flesh-shaper-profile",
+        "units": [
+          "unit-kroot-flesh-shaper",
+          "unit-kroot-lone-spear",
+          "unit-kroot-trail-shaper",
+          "unit-kroot-war-shaper",
+          "unit-kroot-carnivores",
+          "unit-kroot-farstalkers",
+          "unit-kroot-hounds",
+          "unit-krootox-rampagers",
+          "unit-krootox-riders",
+          "unit-great-knarloc",
+          "unit-knarloc-riders"
+        ]
+      }
+    },
+    "tau-empire-ability-scouts-7": {
+      "termId": "tau-empire-ability-scouts-7",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-scouts-7",
+        "rule": "unit-kroot-flesh-shaper",
+        "datasheet": "unit-kroot-flesh-shaper",
+        "statline": "kroot-flesh-shaper-profile",
+        "units": [
+          "unit-kroot-flesh-shaper",
+          "unit-kroot-lone-spear",
+          "unit-kroot-trail-shaper",
+          "unit-kroot-war-shaper",
+          "unit-darkstrider",
+          "unit-kroot-carnivores",
+          "unit-pathfinder-team",
+          "unit-kroot-hounds",
+          "unit-krootox-rampagers",
+          "unit-krootox-riders",
+          "unit-great-knarloc",
+          "unit-knarloc-riders"
+        ]
+      }
+    },
+    "tau-empire-ability-sustained-hits": {
+      "termId": "tau-empire-ability-sustained-hits",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-sustained-hits",
+        "rule": "unit-kroot-flesh-shaper",
+        "datasheet": "unit-kroot-flesh-shaper",
+        "statline": "kroot-flesh-shaper-profile",
+        "units": [
+          "unit-kroot-flesh-shaper",
+          "unit-the-twin-lance",
+          "unit-krootox-rampagers",
+          "unit-aunshi",
+          "unit-great-knarloc"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-ritualistic-blades": {
+      "termId": "tau-empire-weapon-twin-ritualistic-blades",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-ritualistic-blades",
+        "rule": "unit-kroot-flesh-shaper",
+        "datasheet": "unit-kroot-flesh-shaper",
+        "statline": "kroot-flesh-shaper-profile",
+        "units": [
+          "unit-kroot-flesh-shaper"
+        ]
+      }
+    },
+    "tau-empire-weapon-kroot-scattergun": {
+      "termId": "tau-empire-weapon-kroot-scattergun",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-kroot-scattergun",
+        "rule": "unit-kroot-flesh-shaper",
+        "datasheet": "unit-kroot-flesh-shaper",
+        "statline": "kroot-flesh-shaper-profile",
+        "units": [
+          "unit-kroot-flesh-shaper"
+        ]
+      }
+    },
+    "tau-empire-ability-fire-and-fade": {
+      "termId": "tau-empire-ability-fire-and-fade",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-fire-and-fade",
+        "rule": "unit-kroot-lone-spear",
+        "datasheet": "unit-kroot-lone-spear",
+        "statline": "kroot-lone-spear-profile",
+        "units": [
+          "unit-kroot-lone-spear"
+        ]
+      }
+    },
+    "tau-empire-ability-advanced-scouting": {
+      "termId": "tau-empire-ability-advanced-scouting",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-advanced-scouting",
+        "rule": "unit-kroot-lone-spear",
+        "datasheet": "unit-kroot-lone-spear",
+        "statline": "kroot-lone-spear-profile",
+        "units": [
+          "unit-kroot-lone-spear"
+        ]
+      }
+    },
+    "tau-empire-ability-lance": {
+      "termId": "tau-empire-ability-lance",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-lance",
+        "rule": "unit-kroot-lone-spear",
+        "datasheet": "unit-kroot-lone-spear",
+        "statline": "kroot-lone-spear-profile",
+        "units": [
+          "unit-kroot-lone-spear",
+          "unit-krootox-rampagers"
+        ]
+      }
+    },
+    "tau-empire-ability-extra-attacks": {
+      "termId": "tau-empire-ability-extra-attacks",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-extra-attacks",
+        "rule": "unit-kroot-lone-spear",
+        "datasheet": "unit-kroot-lone-spear",
+        "statline": "kroot-lone-spear-profile",
+        "units": [
+          "unit-kroot-lone-spear",
+          "unit-the-twin-lance",
+          "unit-krootox-rampagers",
+          "unit-krootox-riders",
+          "unit-knarloc-riders"
+        ]
+      }
+    },
+    "tau-empire-weapon-close-combat-weapon-3": {
+      "termId": "tau-empire-weapon-close-combat-weapon-3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-close-combat-weapon-3",
+        "rule": "unit-kroot-lone-spear",
+        "datasheet": "unit-kroot-lone-spear",
+        "statline": "kroot-lone-spear-profile",
+        "units": [
+          "unit-kroot-lone-spear"
+        ]
+      }
+    },
+    "tau-empire-weapon-hunting-javelin": {
+      "termId": "tau-empire-weapon-hunting-javelin",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-hunting-javelin",
+        "rule": "unit-kroot-lone-spear",
+        "datasheet": "unit-kroot-lone-spear",
+        "statline": "kroot-lone-spear-profile",
+        "units": [
+          "unit-kroot-lone-spear"
+        ]
+      }
+    },
+    "tau-empire-weapon-blast-javelin": {
+      "termId": "tau-empire-weapon-blast-javelin",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-blast-javelin",
+        "rule": "unit-kroot-lone-spear",
+        "datasheet": "unit-kroot-lone-spear",
+        "statline": "kroot-lone-spear-profile",
+        "units": [
+          "unit-kroot-lone-spear"
+        ]
+      }
+    },
+    "tau-empire-weapon-kroot-long-gun": {
+      "termId": "tau-empire-weapon-kroot-long-gun",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-kroot-long-gun",
+        "rule": "unit-kroot-lone-spear",
+        "datasheet": "unit-kroot-lone-spear",
+        "statline": "kroot-lone-spear-profile",
+        "units": [
+          "unit-kroot-lone-spear"
+        ]
+      }
+    },
+    "tau-empire-weapon-kalamandras-bite": {
+      "termId": "tau-empire-weapon-kalamandras-bite",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-kalamandras-bite",
+        "rule": "unit-kroot-lone-spear",
+        "datasheet": "unit-kroot-lone-spear",
+        "statline": "kroot-lone-spear-profile",
+        "units": [
+          "unit-kroot-lone-spear"
+        ]
+      }
+    },
+    "tau-empire-ability-kroot-ambush": {
+      "termId": "tau-empire-ability-kroot-ambush",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-kroot-ambush",
+        "rule": "unit-kroot-trail-shaper",
+        "datasheet": "unit-kroot-trail-shaper",
+        "statline": "kroot-trail-shaper-profile",
+        "units": [
+          "unit-kroot-trail-shaper"
+        ]
+      }
+    },
+    "tau-empire-ability-trail-finding": {
+      "termId": "tau-empire-ability-trail-finding",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-trail-finding",
+        "rule": "unit-kroot-trail-shaper",
+        "datasheet": "unit-kroot-trail-shaper",
+        "statline": "kroot-trail-shaper-profile",
+        "units": [
+          "unit-kroot-trail-shaper"
+        ]
+      }
+    },
+    "tau-empire-weapon-kroot-rifle": {
+      "termId": "tau-empire-weapon-kroot-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-kroot-rifle",
+        "rule": "unit-kroot-trail-shaper",
+        "datasheet": "unit-kroot-trail-shaper",
+        "statline": "kroot-trail-shaper-profile",
+        "units": [
+          "unit-kroot-trail-shaper",
+          "unit-kroot-carnivores"
+        ]
+      }
+    },
+    "tau-empire-weapon-shapers-blade": {
+      "termId": "tau-empire-weapon-shapers-blade",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-shapers-blade",
+        "rule": "unit-kroot-trail-shaper",
+        "datasheet": "unit-kroot-trail-shaper",
+        "statline": "kroot-trail-shaper-profile",
+        "units": [
+          "unit-kroot-trail-shaper",
+          "unit-kroot-war-shaper"
+        ]
+      }
+    },
+    "tau-empire-ability-root-of-honour": {
+      "termId": "tau-empire-ability-root-of-honour",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-root-of-honour",
+        "rule": "unit-kroot-war-shaper",
+        "datasheet": "unit-kroot-war-shaper",
+        "statline": "kroot-war-shaper-profile",
+        "units": [
+          "unit-kroot-war-shaper"
+        ]
+      }
+    },
+    "tau-empire-ability-war-leader": {
+      "termId": "tau-empire-ability-war-leader",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-war-leader",
+        "rule": "unit-kroot-war-shaper",
+        "datasheet": "unit-kroot-war-shaper",
+        "statline": "kroot-war-shaper-profile",
+        "units": [
+          "unit-kroot-war-shaper"
+        ]
+      }
+    },
+    "tau-empire-ability-lethal-hits": {
+      "termId": "tau-empire-ability-lethal-hits",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-lethal-hits",
+        "rule": "unit-kroot-war-shaper",
+        "datasheet": "unit-kroot-war-shaper",
+        "statline": "kroot-war-shaper-profile",
+        "units": [
+          "unit-kroot-war-shaper"
+        ]
+      }
+    },
+    "tau-empire-ability-anti": {
+      "termId": "tau-empire-ability-anti",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-anti",
+        "rule": "unit-kroot-war-shaper",
+        "datasheet": "unit-kroot-war-shaper",
+        "statline": "kroot-war-shaper-profile",
+        "units": [
+          "unit-kroot-war-shaper",
+          "unit-kroot-farstalkers",
+          "unit-pathfinder-team",
+          "unit-vespid-stingwings",
+          "unit-ax-1-0-tiger-shark",
+          "unit-taunar-supremacy-armour",
+          "unit-tiger-shark",
+          "unit-shaso-ralai"
+        ]
+      }
+    },
+    "tau-empire-weapon-bladestave-and-prey-hook": {
+      "termId": "tau-empire-weapon-bladestave-and-prey-hook",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-bladestave-and-prey-hook",
+        "rule": "unit-kroot-war-shaper",
+        "datasheet": "unit-kroot-war-shaper",
+        "statline": "kroot-war-shaper-profile",
+        "units": [
+          "unit-kroot-war-shaper"
+        ]
+      }
+    },
+    "tau-empire-weapon-dart-bow-and-tri-blade": {
+      "termId": "tau-empire-weapon-dart-bow-and-tri-blade",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-dart-bow-and-tri-blade",
+        "rule": "unit-kroot-war-shaper",
+        "datasheet": "unit-kroot-war-shaper",
+        "statline": "kroot-war-shaper-profile",
+        "units": [
+          "unit-kroot-war-shaper"
+        ]
+      }
+    },
+    "tau-empire-weapon-kroot-pistol": {
+      "termId": "tau-empire-weapon-kroot-pistol",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-kroot-pistol",
+        "rule": "unit-kroot-war-shaper",
+        "datasheet": "unit-kroot-war-shaper",
+        "statline": "kroot-war-shaper-profile",
+        "units": [
+          "unit-kroot-war-shaper",
+          "unit-kroot-carnivores",
+          "unit-kroot-farstalkers"
+        ]
+      }
+    },
+    "tau-empire-ability-rapid-deployment": {
+      "termId": "tau-empire-ability-rapid-deployment",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-rapid-deployment",
+        "rule": "unit-devilfish",
+        "datasheet": "unit-devilfish",
+        "statline": "devilfish-profile",
+        "units": [
+          "unit-devilfish"
+        ]
+      }
+    },
+    "tau-empire-ability-one-shot": {
+      "termId": "tau-empire-ability-one-shot",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-one-shot",
+        "rule": "unit-devilfish",
+        "datasheet": "unit-devilfish",
+        "statline": "devilfish-profile",
+        "units": [
+          "unit-devilfish",
+          "unit-broadside-battlesuits",
+          "unit-hammerhead-gunship",
+          "unit-piranhas",
+          "unit-razorshark-strike-fighter",
+          "unit-sun-shark-bomber",
+          "unit-ax-1-0-tiger-shark",
+          "unit-manta",
+          "unit-tiger-shark",
+          "unit-barracuda",
+          "unit-longstrike",
+          "unit-remora-stealth-drones"
+        ]
+      }
+    },
+    "tau-empire-ability-deadly-demise-d3": {
+      "termId": "tau-empire-ability-deadly-demise-d3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-deadly-demise-d3",
+        "rule": "unit-devilfish",
+        "datasheet": "unit-devilfish",
+        "statline": "devilfish-profile",
+        "units": [
+          "unit-devilfish",
+          "unit-ghostkeel-battlesuit",
+          "unit-hammerhead-gunship",
+          "unit-razorshark-strike-fighter",
+          "unit-sky-ray-gunship",
+          "unit-sun-shark-bomber",
+          "unit-tidewall-droneport",
+          "unit-tidewall-gunrig",
+          "unit-tidewall-shieldline",
+          "unit-barracuda",
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-pulse-carbine-2": {
+      "termId": "tau-empire-weapon-twin-pulse-carbine-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-pulse-carbine-2",
+        "rule": "unit-devilfish",
+        "datasheet": "unit-devilfish",
+        "statline": "devilfish-profile",
+        "units": [
+          "unit-devilfish",
+          "unit-piranhas",
+          "unit-sky-ray-gunship",
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-weapon-smart-missile-system": {
+      "termId": "tau-empire-weapon-smart-missile-system",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-smart-missile-system",
+        "rule": "unit-devilfish",
+        "datasheet": "unit-devilfish",
+        "statline": "devilfish-profile",
+        "units": [
+          "unit-devilfish",
+          "unit-hammerhead-gunship",
+          "unit-sky-ray-gunship",
+          "unit-taunar-supremacy-armour",
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-weapon-seeker-missile": {
+      "termId": "tau-empire-weapon-seeker-missile",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-seeker-missile",
+        "rule": "unit-devilfish",
+        "datasheet": "unit-devilfish",
+        "statline": "devilfish-profile",
+        "units": [
+          "unit-devilfish",
+          "unit-broadside-battlesuits",
+          "unit-hammerhead-gunship",
+          "unit-piranhas",
+          "unit-razorshark-strike-fighter",
+          "unit-sun-shark-bomber",
+          "unit-ax-1-0-tiger-shark",
+          "unit-manta",
+          "unit-tiger-shark",
+          "unit-barracuda",
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-weapon-accelerator-burst-cannon": {
+      "termId": "tau-empire-weapon-accelerator-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-accelerator-burst-cannon",
+        "rule": "unit-devilfish",
+        "datasheet": "unit-devilfish",
+        "statline": "devilfish-profile",
+        "units": [
+          "unit-devilfish",
+          "unit-hammerhead-gunship",
+          "unit-razorshark-strike-fighter",
+          "unit-sky-ray-gunship",
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-weapon-armoured-hull": {
+      "termId": "tau-empire-weapon-armoured-hull",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-armoured-hull",
+        "rule": "unit-devilfish",
+        "datasheet": "unit-devilfish",
+        "statline": "devilfish-profile",
+        "units": [
+          "unit-devilfish",
+          "unit-hammerhead-gunship",
+          "unit-razorshark-strike-fighter",
+          "unit-sky-ray-gunship",
+          "unit-sun-shark-bomber",
+          "unit-ax-1-0-tiger-shark",
+          "unit-tiger-shark",
+          "unit-barracuda",
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-ability-way-of-the-short-blade": {
+      "termId": "tau-empire-ability-way-of-the-short-blade",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-way-of-the-short-blade",
+        "rule": "unit-commander-farsight",
+        "datasheet": "unit-commander-farsight",
+        "statline": "commander-farsight-profile",
+        "units": [
+          "unit-commander-farsight"
+        ]
+      }
+    },
+    "tau-empire-ability-puretides-teachings": {
+      "termId": "tau-empire-ability-puretides-teachings",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-puretides-teachings",
+        "rule": "unit-commander-farsight",
+        "datasheet": "unit-commander-farsight",
+        "statline": "commander-farsight-profile",
+        "units": [
+          "unit-commander-farsight"
+        ]
+      }
+    },
+    "tau-empire-weapon-high-intensity-plasma-rifle": {
+      "termId": "tau-empire-weapon-high-intensity-plasma-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-high-intensity-plasma-rifle",
+        "rule": "unit-commander-farsight",
+        "datasheet": "unit-commander-farsight",
+        "statline": "commander-farsight-profile",
+        "units": [
+          "unit-commander-farsight"
+        ]
+      }
+    },
+    "tau-empire-weapon-dawn-blade-strike": {
+      "termId": "tau-empire-weapon-dawn-blade-strike",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-dawn-blade-strike",
+        "rule": "unit-commander-farsight",
+        "datasheet": "unit-commander-farsight",
+        "statline": "commander-farsight-profile",
+        "units": [
+          "unit-commander-farsight"
+        ]
+      }
+    },
+    "tau-empire-weapon-dawn-blade-sweep": {
+      "termId": "tau-empire-weapon-dawn-blade-sweep",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-dawn-blade-sweep",
+        "rule": "unit-commander-farsight",
+        "datasheet": "unit-commander-farsight",
+        "statline": "commander-farsight-profile",
+        "units": [
+          "unit-commander-farsight"
+        ]
+      }
+    },
+    "tau-empire-ability-agile-combatant": {
+      "termId": "tau-empire-ability-agile-combatant",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-agile-combatant",
+        "rule": "unit-commander-shadowsun",
+        "datasheet": "unit-commander-shadowsun",
+        "statline": "commander-shadowsun-profile",
+        "units": [
+          "unit-commander-shadowsun"
+        ]
+      }
+    },
+    "tau-empire-ability-hero-of-the-empire-aura": {
+      "termId": "tau-empire-ability-hero-of-the-empire-aura",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-hero-of-the-empire-aura",
+        "rule": "unit-commander-shadowsun",
+        "datasheet": "unit-commander-shadowsun",
+        "statline": "commander-shadowsun-profile",
+        "units": [
+          "unit-commander-shadowsun"
+        ]
+      }
+    },
+    "tau-empire-ability-advanced-guardian-drone": {
+      "termId": "tau-empire-ability-advanced-guardian-drone",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-advanced-guardian-drone",
+        "rule": "unit-commander-shadowsun",
+        "datasheet": "unit-commander-shadowsun",
+        "statline": "commander-shadowsun-profile",
+        "units": [
+          "unit-commander-shadowsun"
+        ]
+      }
+    },
+    "tau-empire-ability-command-link-drone-aura": {
+      "termId": "tau-empire-ability-command-link-drone-aura",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-command-link-drone-aura",
+        "rule": "unit-commander-shadowsun",
+        "datasheet": "unit-commander-shadowsun",
+        "statline": "commander-shadowsun-profile",
+        "units": [
+          "unit-commander-shadowsun"
+        ]
+      }
+    },
+    "tau-empire-ability-supreme-commander": {
+      "termId": "tau-empire-ability-supreme-commander",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-supreme-commander",
+        "rule": "unit-commander-shadowsun",
+        "datasheet": "unit-commander-shadowsun",
+        "statline": "commander-shadowsun-profile",
+        "units": [
+          "unit-commander-shadowsun"
+        ]
+      }
+    },
+    "tau-empire-weapon-light-missile-pod": {
+      "termId": "tau-empire-weapon-light-missile-pod",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-light-missile-pod",
+        "rule": "unit-commander-shadowsun",
+        "datasheet": "unit-commander-shadowsun",
+        "statline": "commander-shadowsun-profile",
+        "units": [
+          "unit-commander-shadowsun"
+        ]
+      }
+    },
+    "tau-empire-weapon-high-energy-fusion-blaster": {
+      "termId": "tau-empire-weapon-high-energy-fusion-blaster",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-high-energy-fusion-blaster",
+        "rule": "unit-commander-shadowsun",
+        "datasheet": "unit-commander-shadowsun",
+        "statline": "commander-shadowsun-profile",
+        "units": [
+          "unit-commander-shadowsun"
+        ]
+      }
+    },
+    "tau-empire-weapon-flechette-launcher": {
+      "termId": "tau-empire-weapon-flechette-launcher",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-flechette-launcher",
+        "rule": "unit-commander-shadowsun",
+        "datasheet": "unit-commander-shadowsun",
+        "statline": "commander-shadowsun-profile",
+        "units": [
+          "unit-commander-shadowsun"
+        ]
+      }
+    },
+    "tau-empire-ability-structural-analyser": {
+      "termId": "tau-empire-ability-structural-analyser",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-structural-analyser",
+        "rule": "unit-darkstrider",
+        "datasheet": "unit-darkstrider",
+        "statline": "darkstrider-profile",
+        "units": [
+          "unit-darkstrider"
+        ]
+      }
+    },
+    "tau-empire-ability-jammer-array": {
+      "termId": "tau-empire-ability-jammer-array",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-jammer-array",
+        "rule": "unit-darkstrider",
+        "datasheet": "unit-darkstrider",
+        "statline": "darkstrider-profile",
+        "units": [
+          "unit-darkstrider"
+        ]
+      }
+    },
+    "tau-empire-ability-leader-5": {
+      "termId": "tau-empire-ability-leader-5",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-leader-5",
+        "rule": "unit-darkstrider",
+        "datasheet": "unit-darkstrider",
+        "statline": "darkstrider-profile",
+        "units": [
+          "unit-darkstrider"
+        ]
+      }
+    },
+    "tau-empire-weapon-shade": {
+      "termId": "tau-empire-weapon-shade",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-shade",
+        "rule": "unit-darkstrider",
+        "datasheet": "unit-darkstrider",
+        "statline": "darkstrider-profile",
+        "units": [
+          "unit-darkstrider"
+        ]
+      }
+    },
+    "tau-empire-ability-neocapacitor-shields": {
+      "termId": "tau-empire-ability-neocapacitor-shields",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-neocapacitor-shields",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-ability-exemplars-of-montka": {
+      "termId": "tau-empire-ability-exemplars-of-montka",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-exemplars-of-montka",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-ability-retro-thrusters": {
+      "termId": "tau-empire-ability-retro-thrusters",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-retro-thrusters",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-ability-mv15-gun-drone": {
+      "termId": "tau-empire-ability-mv15-gun-drone",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-mv15-gun-drone",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-ability-scouts-8": {
+      "termId": "tau-empire-ability-scouts-8",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-scouts-8",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-weapon-fusion-eliminator": {
+      "termId": "tau-empire-weapon-fusion-eliminator",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-fusion-eliminator",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-weapon-fusion-eliminator-2": {
+      "termId": "tau-empire-weapon-fusion-eliminator-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-fusion-eliminator-2",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-weapon-shardstorm-burst-system": {
+      "termId": "tau-empire-weapon-shardstorm-burst-system",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-shardstorm-burst-system",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-pulse-blaster": {
+      "termId": "tau-empire-weapon-twin-pulse-blaster",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-pulse-blaster",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-weapon-xv-pulse-pistol": {
+      "termId": "tau-empire-weapon-xv-pulse-pistol",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-xv-pulse-pistol",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-weapon-xv-pulse-pistol-2": {
+      "termId": "tau-empire-weapon-xv-pulse-pistol-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-xv-pulse-pistol-2",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-scattercannon-overcharge": {
+      "termId": "tau-empire-weapon-ion-scattercannon-overcharge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-scattercannon-overcharge",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-scattercannon": {
+      "termId": "tau-empire-weapon-ion-scattercannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-scattercannon",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-scattercannon-standard": {
+      "termId": "tau-empire-weapon-ion-scattercannon-standard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-scattercannon-standard",
+        "rule": "unit-the-twin-lance",
+        "datasheet": "unit-the-twin-lance",
+        "statline": "the-twin-lance-profile",
+        "units": [
+          "unit-the-twin-lance"
+        ]
+      }
+    },
+    "tau-empire-ability-fieldcraft": {
+      "termId": "tau-empire-ability-fieldcraft",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-fieldcraft",
+        "rule": "unit-kroot-carnivores",
+        "datasheet": "unit-kroot-carnivores",
+        "statline": "kroot-carnivores-profile",
+        "units": [
+          "unit-kroot-carnivores"
+        ]
+      }
+    },
+    "tau-empire-ability-bodyguard": {
+      "termId": "tau-empire-ability-bodyguard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-bodyguard",
+        "rule": "unit-kroot-carnivores",
+        "datasheet": "unit-kroot-carnivores",
+        "statline": "kroot-carnivores-profile",
+        "units": [
+          "unit-kroot-carnivores"
+        ]
+      }
+    },
+    "tau-empire-weapon-close-combat-weapon-4": {
+      "termId": "tau-empire-weapon-close-combat-weapon-4",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-close-combat-weapon-4",
+        "rule": "unit-kroot-carnivores",
+        "datasheet": "unit-kroot-carnivores",
+        "statline": "kroot-carnivores-profile",
+        "units": [
+          "unit-kroot-carnivores",
+          "unit-kroot-farstalkers",
+          "unit-krootox-riders"
+        ]
+      }
+    },
+    "tau-empire-weapon-tanglebomb-launcher": {
+      "termId": "tau-empire-weapon-tanglebomb-launcher",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-tanglebomb-launcher",
+        "rule": "unit-kroot-carnivores",
+        "datasheet": "unit-kroot-carnivores",
+        "statline": "kroot-carnivores-profile",
+        "units": [
+          "unit-kroot-carnivores"
+        ]
+      }
+    },
+    "tau-empire-weapon-kroot-carbine": {
+      "termId": "tau-empire-weapon-kroot-carbine",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-kroot-carbine",
+        "rule": "unit-kroot-carnivores",
+        "datasheet": "unit-kroot-carnivores",
+        "statline": "kroot-carnivores-profile",
+        "units": [
+          "unit-kroot-carnivores"
+        ]
+      }
+    },
+    "tau-empire-ability-devastating-wounds": {
+      "termId": "tau-empire-ability-devastating-wounds",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-devastating-wounds",
+        "rule": "unit-kroot-farstalkers",
+        "datasheet": "unit-kroot-farstalkers",
+        "statline": "kroot-farstalkers-profile",
+        "units": [
+          "unit-kroot-farstalkers",
+          "unit-pathfinder-team",
+          "unit-vespid-stingwings",
+          "unit-broadside-battlesuits",
+          "unit-hammerhead-gunship",
+          "unit-riptide-battlesuit",
+          "unit-tidewall-gunrig",
+          "unit-ax-1-0-tiger-shark",
+          "unit-manta",
+          "unit-taunar-supremacy-armour",
+          "unit-tiger-shark",
+          "unit-aunshi",
+          "unit-barracuda",
+          "unit-longstrike",
+          "unit-shaso-ralai",
+          "unit-tx42-piranha"
+        ]
+      }
+    },
+    "tau-empire-weapon-ripping-fangs": {
+      "termId": "tau-empire-weapon-ripping-fangs",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ripping-fangs",
+        "rule": "unit-kroot-farstalkers",
+        "datasheet": "unit-kroot-farstalkers",
+        "statline": "kroot-farstalkers-profile",
+        "units": [
+          "unit-kroot-farstalkers",
+          "unit-kroot-hounds"
+        ]
+      }
+    },
+    "tau-empire-weapon-farstalker-firearm": {
+      "termId": "tau-empire-weapon-farstalker-firearm",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-farstalker-firearm",
+        "rule": "unit-kroot-farstalkers",
+        "datasheet": "unit-kroot-farstalkers",
+        "statline": "kroot-farstalkers-profile",
+        "units": [
+          "unit-kroot-farstalkers"
+        ]
+      }
+    },
+    "tau-empire-weapon-dvorgite-skinner": {
+      "termId": "tau-empire-weapon-dvorgite-skinner",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-dvorgite-skinner",
+        "rule": "unit-kroot-farstalkers",
+        "datasheet": "unit-kroot-farstalkers",
+        "statline": "kroot-farstalkers-profile",
+        "units": [
+          "unit-kroot-farstalkers"
+        ]
+      }
+    },
+    "tau-empire-weapon-londaxi-tribalest": {
+      "termId": "tau-empire-weapon-londaxi-tribalest",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-londaxi-tribalest",
+        "rule": "unit-kroot-farstalkers",
+        "datasheet": "unit-kroot-farstalkers",
+        "statline": "kroot-farstalkers-profile",
+        "units": [
+          "unit-kroot-farstalkers"
+        ]
+      }
+    },
+    "tau-empire-weapon-ritual-blade": {
+      "termId": "tau-empire-weapon-ritual-blade",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ritual-blade",
+        "rule": "unit-kroot-farstalkers",
+        "datasheet": "unit-kroot-farstalkers",
+        "statline": "kroot-farstalkers-profile",
+        "units": [
+          "unit-kroot-farstalkers"
+        ]
+      }
+    },
+    "tau-empire-weapon-tau-tech-rifle": {
+      "termId": "tau-empire-weapon-tau-tech-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-tau-tech-rifle",
+        "rule": "unit-kroot-farstalkers",
+        "datasheet": "unit-kroot-farstalkers",
+        "statline": "kroot-farstalkers-profile",
+        "units": [
+          "unit-kroot-farstalkers"
+        ]
+      }
+    },
+    "tau-empire-ability-target-uploaded": {
+      "termId": "tau-empire-ability-target-uploaded",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-target-uploaded",
+        "rule": "unit-pathfinder-team",
+        "datasheet": "unit-pathfinder-team",
+        "statline": "pathfinder-team-profile",
+        "units": [
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-ability-grav-inhibitor-drone": {
+      "termId": "tau-empire-ability-grav-inhibitor-drone",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-grav-inhibitor-drone",
+        "rule": "unit-pathfinder-team",
+        "datasheet": "unit-pathfinder-team",
+        "statline": "pathfinder-team-profile",
+        "units": [
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-ability-pulse-accelerator-drone": {
+      "termId": "tau-empire-ability-pulse-accelerator-drone",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-pulse-accelerator-drone",
+        "rule": "unit-pathfinder-team",
+        "datasheet": "unit-pathfinder-team",
+        "statline": "pathfinder-team-profile",
+        "units": [
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-ability-recon-drone": {
+      "termId": "tau-empire-ability-recon-drone",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-recon-drone",
+        "rule": "unit-pathfinder-team",
+        "datasheet": "unit-pathfinder-team",
+        "statline": "pathfinder-team-profile",
+        "units": [
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-semi-automatic-grenade-launcher-emp": {
+      "termId": "tau-empire-weapon-semi-automatic-grenade-launcher-emp",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-semi-automatic-grenade-launcher-emp",
+        "rule": "unit-pathfinder-team",
+        "datasheet": "unit-pathfinder-team",
+        "statline": "pathfinder-team-profile",
+        "units": [
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-semi-automatic-grenade-launcher-fusion": {
+      "termId": "tau-empire-weapon-semi-automatic-grenade-launcher-fusion",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-semi-automatic-grenade-launcher-fusion",
+        "rule": "unit-pathfinder-team",
+        "datasheet": "unit-pathfinder-team",
+        "statline": "pathfinder-team-profile",
+        "units": [
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-rifle-standard": {
+      "termId": "tau-empire-weapon-ion-rifle-standard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-rifle-standard",
+        "rule": "unit-pathfinder-team",
+        "datasheet": "unit-pathfinder-team",
+        "statline": "pathfinder-team-profile",
+        "units": [
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-rifle-overcharge": {
+      "termId": "tau-empire-weapon-ion-rifle-overcharge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-rifle-overcharge",
+        "rule": "unit-pathfinder-team",
+        "datasheet": "unit-pathfinder-team",
+        "statline": "pathfinder-team-profile",
+        "units": [
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-rail-rifle": {
+      "termId": "tau-empire-weapon-rail-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-rail-rifle",
+        "rule": "unit-pathfinder-team",
+        "datasheet": "unit-pathfinder-team",
+        "statline": "pathfinder-team-profile",
+        "units": [
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-weapon-drone-burst-cannon": {
+      "termId": "tau-empire-weapon-drone-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-drone-burst-cannon",
+        "rule": "unit-pathfinder-team",
+        "datasheet": "unit-pathfinder-team",
+        "statline": "pathfinder-team-profile",
+        "units": [
+          "unit-pathfinder-team"
+        ]
+      }
+    },
+    "tau-empire-ability-forward-observers": {
+      "termId": "tau-empire-ability-forward-observers",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-forward-observers",
+        "rule": "unit-stealth-battlesuits",
+        "datasheet": "unit-stealth-battlesuits",
+        "statline": "stealth-battlesuits-profile",
+        "units": [
+          "unit-stealth-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-homing-beacon": {
+      "termId": "tau-empire-ability-homing-beacon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-homing-beacon",
+        "rule": "unit-stealth-battlesuits",
+        "datasheet": "unit-stealth-battlesuits",
+        "statline": "stealth-battlesuits-profile",
+        "units": [
+          "unit-stealth-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-localised-stealth-projectors-aura": {
+      "termId": "tau-empire-ability-localised-stealth-projectors-aura",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-localised-stealth-projectors-aura",
+        "rule": "unit-stealth-battlesuits",
+        "datasheet": "unit-stealth-battlesuits",
+        "statline": "stealth-battlesuits-profile",
+        "units": [
+          "unit-stealth-battlesuits",
+          "unit-ghostkeel-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-battlesuit-fists-2": {
+      "termId": "tau-empire-weapon-battlesuit-fists-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-battlesuit-fists-2",
+        "rule": "unit-stealth-battlesuits",
+        "datasheet": "unit-stealth-battlesuits",
+        "statline": "stealth-battlesuits-profile",
+        "units": [
+          "unit-stealth-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-burst-cannon-2": {
+      "termId": "tau-empire-weapon-burst-cannon-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-burst-cannon-2",
+        "rule": "unit-stealth-battlesuits",
+        "datasheet": "unit-stealth-battlesuits",
+        "statline": "stealth-battlesuits-profile",
+        "units": [
+          "unit-stealth-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-ax-1-0-tiger-shark",
+          "unit-taunar-supremacy-armour",
+          "unit-tiger-shark",
+          "unit-crisis-battlesuits",
+          "unit-heavy-gun-drones"
+        ]
+      }
+    },
+    "tau-empire-weapon-fusion-blaster-2": {
+      "termId": "tau-empire-weapon-fusion-blaster-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-fusion-blaster-2",
+        "rule": "unit-stealth-battlesuits",
+        "datasheet": "unit-stealth-battlesuits",
+        "statline": "stealth-battlesuits-profile",
+        "units": [
+          "unit-stealth-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-crisis-battlesuits",
+          "unit-tx42-piranha"
+        ]
+      }
+    },
+    "tau-empire-ability-airborne-agility": {
+      "termId": "tau-empire-ability-airborne-agility",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-airborne-agility",
+        "rule": "unit-vespid-stingwings",
+        "datasheet": "unit-vespid-stingwings",
+        "statline": "vespid-stingwings-profile",
+        "units": [
+          "unit-vespid-stingwings"
+        ]
+      }
+    },
+    "tau-empire-ability-oversight-drone": {
+      "termId": "tau-empire-ability-oversight-drone",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-oversight-drone",
+        "rule": "unit-vespid-stingwings",
+        "datasheet": "unit-vespid-stingwings",
+        "statline": "vespid-stingwings-profile",
+        "units": [
+          "unit-vespid-stingwings"
+        ]
+      }
+    },
+    "tau-empire-weapon-stingwing-claws": {
+      "termId": "tau-empire-weapon-stingwing-claws",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-stingwing-claws",
+        "rule": "unit-vespid-stingwings",
+        "datasheet": "unit-vespid-stingwings",
+        "statline": "vespid-stingwings-profile",
+        "units": [
+          "unit-vespid-stingwings"
+        ]
+      }
+    },
+    "tau-empire-weapon-neutron-blaster": {
+      "termId": "tau-empire-weapon-neutron-blaster",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-neutron-blaster",
+        "rule": "unit-vespid-stingwings",
+        "datasheet": "unit-vespid-stingwings",
+        "statline": "vespid-stingwings-profile",
+        "units": [
+          "unit-vespid-stingwings"
+        ]
+      }
+    },
+    "tau-empire-weapon-neutron-grenade-launcher": {
+      "termId": "tau-empire-weapon-neutron-grenade-launcher",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-neutron-grenade-launcher",
+        "rule": "unit-vespid-stingwings",
+        "datasheet": "unit-vespid-stingwings",
+        "statline": "vespid-stingwings-profile",
+        "units": [
+          "unit-vespid-stingwings"
+        ]
+      }
+    },
+    "tau-empire-weapon-neutron-rail-rifle": {
+      "termId": "tau-empire-weapon-neutron-rail-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-neutron-rail-rifle",
+        "rule": "unit-vespid-stingwings",
+        "datasheet": "unit-vespid-stingwings",
+        "statline": "vespid-stingwings-profile",
+        "units": [
+          "unit-vespid-stingwings"
+        ]
+      }
+    },
+    "tau-empire-ability-advanced-armour": {
+      "termId": "tau-empire-ability-advanced-armour",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-advanced-armour",
+        "rule": "unit-broadside-battlesuits",
+        "datasheet": "unit-broadside-battlesuits",
+        "statline": "broadside-battlesuits-profile",
+        "units": [
+          "unit-broadside-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-heavy-rail-rifle": {
+      "termId": "tau-empire-weapon-heavy-rail-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-heavy-rail-rifle",
+        "rule": "unit-broadside-battlesuits",
+        "datasheet": "unit-broadside-battlesuits",
+        "statline": "broadside-battlesuits-profile",
+        "units": [
+          "unit-broadside-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-high-yield-missile-pods": {
+      "termId": "tau-empire-weapon-high-yield-missile-pods",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-high-yield-missile-pods",
+        "rule": "unit-broadside-battlesuits",
+        "datasheet": "unit-broadside-battlesuits",
+        "statline": "broadside-battlesuits-profile",
+        "units": [
+          "unit-broadside-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-plasma-rifle": {
+      "termId": "tau-empire-weapon-twin-plasma-rifle",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-plasma-rifle",
+        "rule": "unit-broadside-battlesuits",
+        "datasheet": "unit-broadside-battlesuits",
+        "statline": "broadside-battlesuits-profile",
+        "units": [
+          "unit-broadside-battlesuits",
+          "unit-riptide-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-smart-missile-system": {
+      "termId": "tau-empire-weapon-twin-smart-missile-system",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-smart-missile-system",
+        "rule": "unit-broadside-battlesuits",
+        "datasheet": "unit-broadside-battlesuits",
+        "statline": "broadside-battlesuits-profile",
+        "units": [
+          "unit-broadside-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-crushing-bulk": {
+      "termId": "tau-empire-weapon-crushing-bulk",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-crushing-bulk",
+        "rule": "unit-broadside-battlesuits",
+        "datasheet": "unit-broadside-battlesuits",
+        "statline": "broadside-battlesuits-profile",
+        "units": [
+          "unit-broadside-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-fireknife": {
+      "termId": "tau-empire-ability-fireknife",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-fireknife",
+        "rule": "unit-crisis-fireknife-battlesuits",
+        "datasheet": "unit-crisis-fireknife-battlesuits",
+        "statline": "crisis-fireknife-battlesuits-profile",
+        "units": [
+          "unit-crisis-fireknife-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-weapon-support-system-2": {
+      "termId": "tau-empire-ability-weapon-support-system-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-weapon-support-system-2",
+        "rule": "unit-crisis-fireknife-battlesuits",
+        "datasheet": "unit-crisis-fireknife-battlesuits",
+        "statline": "crisis-fireknife-battlesuits-profile",
+        "units": [
+          "unit-crisis-fireknife-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-plasma-rifle-2": {
+      "termId": "tau-empire-weapon-plasma-rifle-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-plasma-rifle-2",
+        "rule": "unit-crisis-fireknife-battlesuits",
+        "datasheet": "unit-crisis-fireknife-battlesuits",
+        "statline": "crisis-fireknife-battlesuits-profile",
+        "units": [
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-battlesuits",
+          "unit-tx42-piranha"
+        ]
+      }
+    },
+    "tau-empire-weapon-missile-pod-3": {
+      "termId": "tau-empire-weapon-missile-pod-3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-missile-pod-3",
+        "rule": "unit-crisis-fireknife-battlesuits",
+        "datasheet": "unit-crisis-fireknife-battlesuits",
+        "statline": "crisis-fireknife-battlesuits-profile",
+        "units": [
+          "unit-crisis-fireknife-battlesuits",
+          "unit-razorshark-strike-fighter",
+          "unit-sun-shark-bomber",
+          "unit-ax-1-0-tiger-shark",
+          "unit-manta",
+          "unit-tiger-shark",
+          "unit-barracuda",
+          "unit-crisis-battlesuits",
+          "unit-orca-dropship",
+          "unit-tx42-piranha"
+        ]
+      }
+    },
+    "tau-empire-weapon-battlesuit-fists-3": {
+      "termId": "tau-empire-weapon-battlesuit-fists-3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-battlesuit-fists-3",
+        "rule": "unit-crisis-fireknife-battlesuits",
+        "datasheet": "unit-crisis-fireknife-battlesuits",
+        "statline": "crisis-fireknife-battlesuits-profile",
+        "units": [
+          "unit-crisis-fireknife-battlesuits",
+          "unit-crisis-starscythe-battlesuits",
+          "unit-crisis-sunforge-battlesuits",
+          "unit-crisis-battlesuits",
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-starscythe": {
+      "termId": "tau-empire-ability-starscythe",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-starscythe",
+        "rule": "unit-crisis-starscythe-battlesuits",
+        "datasheet": "unit-crisis-starscythe-battlesuits",
+        "statline": "crisis-starscythe-battlesuits-profile",
+        "units": [
+          "unit-crisis-starscythe-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-battlesuit-support-system-2": {
+      "termId": "tau-empire-ability-battlesuit-support-system-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-battlesuit-support-system-2",
+        "rule": "unit-crisis-starscythe-battlesuits",
+        "datasheet": "unit-crisis-starscythe-battlesuits",
+        "statline": "crisis-starscythe-battlesuits-profile",
+        "units": [
+          "unit-crisis-starscythe-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-sunforge": {
+      "termId": "tau-empire-ability-sunforge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-sunforge",
+        "rule": "unit-crisis-sunforge-battlesuits",
+        "datasheet": "unit-crisis-sunforge-battlesuits",
+        "statline": "crisis-sunforge-battlesuits-profile",
+        "units": [
+          "unit-crisis-sunforge-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-stealth-drones": {
+      "termId": "tau-empire-ability-stealth-drones",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-stealth-drones",
+        "rule": "unit-ghostkeel-battlesuit",
+        "datasheet": "unit-ghostkeel-battlesuit",
+        "statline": "ghostkeel-battlesuit-profile",
+        "units": [
+          "unit-ghostkeel-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-battlesuit-support-system-3": {
+      "termId": "tau-empire-ability-battlesuit-support-system-3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-battlesuit-support-system-3",
+        "rule": "unit-ghostkeel-battlesuit",
+        "datasheet": "unit-ghostkeel-battlesuit",
+        "statline": "ghostkeel-battlesuit-profile",
+        "units": [
+          "unit-ghostkeel-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-damaged-1-4-wounds-remaining": {
+      "termId": "tau-empire-ability-damaged-1-4-wounds-remaining",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-damaged-1-4-wounds-remaining",
+        "rule": "unit-ghostkeel-battlesuit",
+        "datasheet": "unit-ghostkeel-battlesuit",
+        "statline": "ghostkeel-battlesuit-profile",
+        "units": [
+          "unit-ghostkeel-battlesuit",
+          "unit-razorshark-strike-fighter",
+          "unit-riptide-battlesuit",
+          "unit-sun-shark-bomber"
+        ]
+      }
+    },
+    "tau-empire-weapon-ghostkeel-fists": {
+      "termId": "tau-empire-weapon-ghostkeel-fists",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ghostkeel-fists",
+        "rule": "unit-ghostkeel-battlesuit",
+        "datasheet": "unit-ghostkeel-battlesuit",
+        "statline": "ghostkeel-battlesuit-profile",
+        "units": [
+          "unit-ghostkeel-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-burst-cannon": {
+      "termId": "tau-empire-weapon-twin-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-burst-cannon",
+        "rule": "unit-ghostkeel-battlesuit",
+        "datasheet": "unit-ghostkeel-battlesuit",
+        "statline": "ghostkeel-battlesuit-profile",
+        "units": [
+          "unit-ghostkeel-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-tau-flamer": {
+      "termId": "tau-empire-weapon-twin-tau-flamer",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-tau-flamer",
+        "rule": "unit-ghostkeel-battlesuit",
+        "datasheet": "unit-ghostkeel-battlesuit",
+        "statline": "ghostkeel-battlesuit-profile",
+        "units": [
+          "unit-ghostkeel-battlesuit",
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-fusion-blaster": {
+      "termId": "tau-empire-weapon-twin-fusion-blaster",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-fusion-blaster",
+        "rule": "unit-ghostkeel-battlesuit",
+        "datasheet": "unit-ghostkeel-battlesuit",
+        "statline": "ghostkeel-battlesuit-profile",
+        "units": [
+          "unit-ghostkeel-battlesuit",
+          "unit-riptide-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-fusion-collider": {
+      "termId": "tau-empire-weapon-fusion-collider",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-fusion-collider",
+        "rule": "unit-ghostkeel-battlesuit",
+        "datasheet": "unit-ghostkeel-battlesuit",
+        "statline": "ghostkeel-battlesuit-profile",
+        "units": [
+          "unit-ghostkeel-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-cyclic-ion-raker-standard": {
+      "termId": "tau-empire-weapon-cyclic-ion-raker-standard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-cyclic-ion-raker-standard",
+        "rule": "unit-ghostkeel-battlesuit",
+        "datasheet": "unit-ghostkeel-battlesuit",
+        "statline": "ghostkeel-battlesuit-profile",
+        "units": [
+          "unit-ghostkeel-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-cyclic-ion-raker-overcharge": {
+      "termId": "tau-empire-weapon-cyclic-ion-raker-overcharge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-cyclic-ion-raker-overcharge",
+        "rule": "unit-ghostkeel-battlesuit",
+        "datasheet": "unit-ghostkeel-battlesuit",
+        "statline": "ghostkeel-battlesuit-profile",
+        "units": [
+          "unit-ghostkeel-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-armour-hunter": {
+      "termId": "tau-empire-ability-armour-hunter",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-armour-hunter",
+        "rule": "unit-hammerhead-gunship",
+        "datasheet": "unit-hammerhead-gunship",
+        "statline": "hammerhead-gunship-profile",
+        "units": [
+          "unit-hammerhead-gunship",
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-ability-damaged-1-5-wounds-remaining": {
+      "termId": "tau-empire-ability-damaged-1-5-wounds-remaining",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-damaged-1-5-wounds-remaining",
+        "rule": "unit-hammerhead-gunship",
+        "datasheet": "unit-hammerhead-gunship",
+        "statline": "hammerhead-gunship-profile",
+        "units": [
+          "unit-hammerhead-gunship",
+          "unit-sky-ray-gunship",
+          "unit-barracuda",
+          "unit-longstrike",
+          "unit-rvarna-battlesuit",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-targeting-array": {
+      "termId": "tau-empire-ability-targeting-array",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-targeting-array",
+        "rule": "unit-hammerhead-gunship",
+        "datasheet": "unit-hammerhead-gunship",
+        "statline": "hammerhead-gunship-profile",
+        "units": [
+          "unit-hammerhead-gunship",
+          "unit-sky-ray-gunship",
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-weapon-railgun": {
+      "termId": "tau-empire-weapon-railgun",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-railgun",
+        "rule": "unit-hammerhead-gunship",
+        "datasheet": "unit-hammerhead-gunship",
+        "statline": "hammerhead-gunship-profile",
+        "units": [
+          "unit-hammerhead-gunship"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-cannon-standard": {
+      "termId": "tau-empire-weapon-ion-cannon-standard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-cannon-standard",
+        "rule": "unit-hammerhead-gunship",
+        "datasheet": "unit-hammerhead-gunship",
+        "statline": "hammerhead-gunship-profile",
+        "units": [
+          "unit-hammerhead-gunship",
+          "unit-manta",
+          "unit-tiger-shark",
+          "unit-barracuda"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-cannon-overcharge": {
+      "termId": "tau-empire-weapon-ion-cannon-overcharge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-cannon-overcharge",
+        "rule": "unit-hammerhead-gunship",
+        "datasheet": "unit-hammerhead-gunship",
+        "statline": "hammerhead-gunship-profile",
+        "units": [
+          "unit-hammerhead-gunship",
+          "unit-manta",
+          "unit-tiger-shark",
+          "unit-barracuda"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-pulse-carbine-3": {
+      "termId": "tau-empire-weapon-twin-pulse-carbine-3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-pulse-carbine-3",
+        "rule": "unit-hammerhead-gunship",
+        "datasheet": "unit-hammerhead-gunship",
+        "statline": "hammerhead-gunship-profile",
+        "units": [
+          "unit-hammerhead-gunship"
+        ]
+      }
+    },
+    "tau-empire-ability-loping-pounce": {
+      "termId": "tau-empire-ability-loping-pounce",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-loping-pounce",
+        "rule": "unit-kroot-hounds",
+        "datasheet": "unit-kroot-hounds",
+        "statline": "kroot-hounds-profile",
+        "units": [
+          "unit-kroot-hounds"
+        ]
+      }
+    },
+    "tau-empire-ability-hunting-hounds": {
+      "termId": "tau-empire-ability-hunting-hounds",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-hunting-hounds",
+        "rule": "unit-kroot-hounds",
+        "datasheet": "unit-kroot-hounds",
+        "statline": "kroot-hounds-profile",
+        "units": [
+          "unit-kroot-hounds"
+        ]
+      }
+    },
+    "tau-empire-ability-kroot-linebreakers": {
+      "termId": "tau-empire-ability-kroot-linebreakers",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-kroot-linebreakers",
+        "rule": "unit-krootox-rampagers",
+        "datasheet": "unit-krootox-rampagers",
+        "statline": "krootox-rampagers-profile",
+        "units": [
+          "unit-krootox-rampagers"
+        ]
+      }
+    },
+    "tau-empire-weapon-hunting-blades": {
+      "termId": "tau-empire-weapon-hunting-blades",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-hunting-blades",
+        "rule": "unit-krootox-rampagers",
+        "datasheet": "unit-krootox-rampagers",
+        "statline": "krootox-rampagers-profile",
+        "units": [
+          "unit-krootox-rampagers"
+        ]
+      }
+    },
+    "tau-empire-weapon-kroot-pistol-and-hunting-javelins": {
+      "termId": "tau-empire-weapon-kroot-pistol-and-hunting-javelins",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-kroot-pistol-and-hunting-javelins",
+        "rule": "unit-krootox-rampagers",
+        "datasheet": "unit-krootox-rampagers",
+        "statline": "krootox-rampagers-profile",
+        "units": [
+          "unit-krootox-rampagers"
+        ]
+      }
+    },
+    "tau-empire-weapon-rampager-fists": {
+      "termId": "tau-empire-weapon-rampager-fists",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-rampager-fists",
+        "rule": "unit-krootox-rampagers",
+        "datasheet": "unit-krootox-rampagers",
+        "statline": "krootox-rampagers-profile",
+        "units": [
+          "unit-krootox-rampagers"
+        ]
+      }
+    },
+    "tau-empire-ability-kroot-packmates": {
+      "termId": "tau-empire-ability-kroot-packmates",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-kroot-packmates",
+        "rule": "unit-krootox-riders",
+        "datasheet": "unit-krootox-riders",
+        "statline": "krootox-riders-profile",
+        "units": [
+          "unit-krootox-riders"
+        ]
+      }
+    },
+    "tau-empire-weapon-krootox-fists": {
+      "termId": "tau-empire-weapon-krootox-fists",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-krootox-fists",
+        "rule": "unit-krootox-riders",
+        "datasheet": "unit-krootox-riders",
+        "statline": "krootox-riders-profile",
+        "units": [
+          "unit-krootox-riders"
+        ]
+      }
+    },
+    "tau-empire-weapon-repeater-cannon": {
+      "termId": "tau-empire-weapon-repeater-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-repeater-cannon",
+        "rule": "unit-krootox-riders",
+        "datasheet": "unit-krootox-riders",
+        "statline": "krootox-riders-profile",
+        "units": [
+          "unit-krootox-riders"
+        ]
+      }
+    },
+    "tau-empire-weapon-tanglecannon": {
+      "termId": "tau-empire-weapon-tanglecannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-tanglecannon",
+        "rule": "unit-krootox-riders",
+        "datasheet": "unit-krootox-riders",
+        "statline": "krootox-riders-profile",
+        "units": [
+          "unit-krootox-riders"
+        ]
+      }
+    },
+    "tau-empire-ability-drone-harassment-tactics": {
+      "termId": "tau-empire-ability-drone-harassment-tactics",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-drone-harassment-tactics",
+        "rule": "unit-piranhas",
+        "datasheet": "unit-piranhas",
+        "statline": "piranhas-profile",
+        "units": [
+          "unit-piranhas"
+        ]
+      }
+    },
+    "tau-empire-ability-deadly-demise-1": {
+      "termId": "tau-empire-ability-deadly-demise-1",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-deadly-demise-1",
+        "rule": "unit-piranhas",
+        "datasheet": "unit-piranhas",
+        "statline": "piranhas-profile",
+        "units": [
+          "unit-piranhas",
+          "unit-tetras",
+          "unit-tx42-piranha"
+        ]
+      }
+    },
+    "tau-empire-ability-scouts-9": {
+      "termId": "tau-empire-ability-scouts-9",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-scouts-9",
+        "rule": "unit-piranhas",
+        "datasheet": "unit-piranhas",
+        "statline": "piranhas-profile",
+        "units": [
+          "unit-piranhas",
+          "unit-tx42-piranha"
+        ]
+      }
+    },
+    "tau-empire-weapon-piranha-burst-cannon": {
+      "termId": "tau-empire-weapon-piranha-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-piranha-burst-cannon",
+        "rule": "unit-piranhas",
+        "datasheet": "unit-piranhas",
+        "statline": "piranhas-profile",
+        "units": [
+          "unit-piranhas"
+        ]
+      }
+    },
+    "tau-empire-weapon-piranha-fusion-blaster": {
+      "termId": "tau-empire-weapon-piranha-fusion-blaster",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-piranha-fusion-blaster",
+        "rule": "unit-piranhas",
+        "datasheet": "unit-piranhas",
+        "statline": "piranhas-profile",
+        "units": [
+          "unit-piranhas"
+        ]
+      }
+    },
+    "tau-empire-weapon-armoured-hull-2": {
+      "termId": "tau-empire-weapon-armoured-hull-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-armoured-hull-2",
+        "rule": "unit-piranhas",
+        "datasheet": "unit-piranhas",
+        "statline": "piranhas-profile",
+        "units": [
+          "unit-piranhas",
+          "unit-tx42-piranha"
+        ]
+      }
+    },
+    "tau-empire-ability-ground-strike-fighter": {
+      "termId": "tau-empire-ability-ground-strike-fighter",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-ground-strike-fighter",
+        "rule": "unit-razorshark-strike-fighter",
+        "datasheet": "unit-razorshark-strike-fighter",
+        "statline": "razorshark-strike-fighter-profile",
+        "units": [
+          "unit-razorshark-strike-fighter"
+        ]
+      }
+    },
+    "tau-empire-weapon-quad-ion-turret-standard": {
+      "termId": "tau-empire-weapon-quad-ion-turret-standard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-quad-ion-turret-standard",
+        "rule": "unit-razorshark-strike-fighter",
+        "datasheet": "unit-razorshark-strike-fighter",
+        "statline": "razorshark-strike-fighter-profile",
+        "units": [
+          "unit-razorshark-strike-fighter"
+        ]
+      }
+    },
+    "tau-empire-weapon-quad-ion-turret-overcharge": {
+      "termId": "tau-empire-weapon-quad-ion-turret-overcharge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-quad-ion-turret-overcharge",
+        "rule": "unit-razorshark-strike-fighter",
+        "datasheet": "unit-razorshark-strike-fighter",
+        "statline": "razorshark-strike-fighter-profile",
+        "units": [
+          "unit-razorshark-strike-fighter"
+        ]
+      }
+    },
+    "tau-empire-ability-nova-charge": {
+      "termId": "tau-empire-ability-nova-charge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-nova-charge",
+        "rule": "unit-riptide-battlesuit",
+        "datasheet": "unit-riptide-battlesuit",
+        "statline": "riptide-battlesuit-profile",
+        "units": [
+          "unit-riptide-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-deadly-demise-d6": {
+      "termId": "tau-empire-ability-deadly-demise-d6",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-deadly-demise-d6",
+        "rule": "unit-riptide-battlesuit",
+        "datasheet": "unit-riptide-battlesuit",
+        "statline": "riptide-battlesuit-profile",
+        "units": [
+          "unit-riptide-battlesuit",
+          "unit-rvarna-battlesuit",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-riptide-fists": {
+      "termId": "tau-empire-weapon-riptide-fists",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-riptide-fists",
+        "rule": "unit-riptide-battlesuit",
+        "datasheet": "unit-riptide-battlesuit",
+        "statline": "riptide-battlesuit-profile",
+        "units": [
+          "unit-riptide-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-heavy-burst-cannon": {
+      "termId": "tau-empire-weapon-heavy-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-heavy-burst-cannon",
+        "rule": "unit-riptide-battlesuit",
+        "datasheet": "unit-riptide-battlesuit",
+        "statline": "riptide-battlesuit-profile",
+        "units": [
+          "unit-riptide-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-accelerator-standard": {
+      "termId": "tau-empire-weapon-ion-accelerator-standard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-accelerator-standard",
+        "rule": "unit-riptide-battlesuit",
+        "datasheet": "unit-riptide-battlesuit",
+        "statline": "riptide-battlesuit-profile",
+        "units": [
+          "unit-riptide-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-accelerator-overcharge": {
+      "termId": "tau-empire-weapon-ion-accelerator-overcharge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-accelerator-overcharge",
+        "rule": "unit-riptide-battlesuit",
+        "datasheet": "unit-riptide-battlesuit",
+        "statline": "riptide-battlesuit-profile",
+        "units": [
+          "unit-riptide-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-smart-missile-system-2": {
+      "termId": "tau-empire-weapon-twin-smart-missile-system-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-smart-missile-system-2",
+        "rule": "unit-riptide-battlesuit",
+        "datasheet": "unit-riptide-battlesuit",
+        "statline": "riptide-battlesuit-profile",
+        "units": [
+          "unit-riptide-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-velocity-tracker": {
+      "termId": "tau-empire-ability-velocity-tracker",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-velocity-tracker",
+        "rule": "unit-sky-ray-gunship",
+        "datasheet": "unit-sky-ray-gunship",
+        "statline": "sky-ray-gunship-profile",
+        "units": [
+          "unit-sky-ray-gunship"
+        ]
+      }
+    },
+    "tau-empire-weapon-seeker-missile-rack": {
+      "termId": "tau-empire-weapon-seeker-missile-rack",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-seeker-missile-rack",
+        "rule": "unit-sky-ray-gunship",
+        "datasheet": "unit-sky-ray-gunship",
+        "statline": "sky-ray-gunship-profile",
+        "units": [
+          "unit-sky-ray-gunship"
+        ]
+      }
+    },
+    "tau-empire-ability-damaged-1-5-wounds-remaining-2": {
+      "termId": "tau-empire-ability-damaged-1-5-wounds-remaining-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-damaged-1-5-wounds-remaining-2",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-ability-heavy-walker": {
+      "termId": "tau-empire-ability-heavy-walker",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-heavy-walker",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-ability-support-system": {
+      "termId": "tau-empire-ability-support-system",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-support-system",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-ability-titan-killer": {
+      "termId": "tau-empire-ability-titan-killer",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-titan-killer",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-ability-deadly-demise-d6-2": {
+      "termId": "tau-empire-ability-deadly-demise-d6-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-deadly-demise-d6-2",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge",
+          "unit-ax-1-0-tiger-shark",
+          "unit-tiger-shark",
+          "unit-orca-dropship"
+        ]
+      }
+    },
+    "tau-empire-weapon-cluster-rocket-system": {
+      "termId": "tau-empire-weapon-cluster-rocket-system",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-cluster-rocket-system",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-weapon-destroyer-missiles": {
+      "termId": "tau-empire-weapon-destroyer-missiles",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-destroyer-missiles",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-weapon-thunderous-footfalls": {
+      "termId": "tau-empire-weapon-thunderous-footfalls",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-thunderous-footfalls",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-smart-missile-system-3": {
+      "termId": "tau-empire-weapon-twin-smart-missile-system-3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-smart-missile-system-3",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-weapon-pulse-driver-cannon": {
+      "termId": "tau-empire-weapon-pulse-driver-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-pulse-driver-cannon",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-weapon-pulse-blast-cannon-focused": {
+      "termId": "tau-empire-weapon-pulse-blast-cannon-focused",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-pulse-blast-cannon-focused",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-weapon-pulse-blast-cannon-dispersed": {
+      "termId": "tau-empire-weapon-pulse-blast-cannon-dispersed",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-pulse-blast-cannon-dispersed",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-airbursting-fragmentation-projector": {
+      "termId": "tau-empire-weapon-twin-airbursting-fragmentation-projector",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-airbursting-fragmentation-projector",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-burst-cannon-2": {
+      "termId": "tau-empire-weapon-twin-burst-cannon-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-burst-cannon-2",
+        "rule": "unit-stormsurge",
+        "datasheet": "unit-stormsurge",
+        "statline": "stormsurge-profile",
+        "units": [
+          "unit-stormsurge"
+        ]
+      }
+    },
+    "tau-empire-ability-pulse-bombs": {
+      "termId": "tau-empire-ability-pulse-bombs",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-pulse-bombs",
+        "rule": "unit-sun-shark-bomber",
+        "datasheet": "unit-sun-shark-bomber",
+        "statline": "sun-shark-bomber-profile",
+        "units": [
+          "unit-sun-shark-bomber"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-ion-rifle-standard": {
+      "termId": "tau-empire-weapon-twin-ion-rifle-standard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-ion-rifle-standard",
+        "rule": "unit-sun-shark-bomber",
+        "datasheet": "unit-sun-shark-bomber",
+        "statline": "sun-shark-bomber-profile",
+        "units": [
+          "unit-sun-shark-bomber"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-ion-rifle-overcharged": {
+      "termId": "tau-empire-weapon-twin-ion-rifle-overcharged",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-ion-rifle-overcharged",
+        "rule": "unit-sun-shark-bomber",
+        "datasheet": "unit-sun-shark-bomber",
+        "statline": "sun-shark-bomber-profile",
+        "units": [
+          "unit-sun-shark-bomber"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-missile-pod": {
+      "termId": "tau-empire-weapon-twin-missile-pod",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-missile-pod",
+        "rule": "unit-sun-shark-bomber",
+        "datasheet": "unit-sun-shark-bomber",
+        "statline": "sun-shark-bomber-profile",
+        "units": [
+          "unit-sun-shark-bomber"
+        ]
+      }
+    },
+    "tau-empire-ability-droneport": {
+      "termId": "tau-empire-ability-droneport",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-droneport",
+        "rule": "unit-tidewall-droneport",
+        "datasheet": "unit-tidewall-droneport",
+        "statline": "tidewall-droneport-profile",
+        "units": [
+          "unit-tidewall-droneport"
+        ]
+      }
+    },
+    "tau-empire-ability-fortification": {
+      "termId": "tau-empire-ability-fortification",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-fortification",
+        "rule": "unit-tidewall-droneport",
+        "datasheet": "unit-tidewall-droneport",
+        "statline": "tidewall-droneport-profile",
+        "units": [
+          "unit-tidewall-droneport",
+          "unit-tidewall-gunrig",
+          "unit-tidewall-shieldline",
+          "unit-drone-sentry-turret",
+          "unit-remote-sensor-tower"
+        ]
+      }
+    },
+    "tau-empire-ability-tidewall-cover": {
+      "termId": "tau-empire-ability-tidewall-cover",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-tidewall-cover",
+        "rule": "unit-tidewall-droneport",
+        "datasheet": "unit-tidewall-droneport",
+        "statline": "tidewall-droneport-profile",
+        "units": [
+          "unit-tidewall-droneport",
+          "unit-tidewall-gunrig",
+          "unit-tidewall-shieldline"
+        ]
+      }
+    },
+    "tau-empire-ability-firing-deck-11": {
+      "termId": "tau-empire-ability-firing-deck-11",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-firing-deck-11",
+        "rule": "unit-tidewall-droneport",
+        "datasheet": "unit-tidewall-droneport",
+        "statline": "tidewall-droneport-profile",
+        "units": [
+          "unit-tidewall-droneport",
+          "unit-tidewall-gunrig"
+        ]
+      }
+    },
+    "tau-empire-weapon-drone-defenders": {
+      "termId": "tau-empire-weapon-drone-defenders",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-drone-defenders",
+        "rule": "unit-tidewall-droneport",
+        "datasheet": "unit-tidewall-droneport",
+        "statline": "tidewall-droneport-profile",
+        "units": [
+          "unit-tidewall-droneport"
+        ]
+      }
+    },
+    "tau-empire-weapon-supremacy-railgun": {
+      "termId": "tau-empire-weapon-supremacy-railgun",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-supremacy-railgun",
+        "rule": "unit-tidewall-gunrig",
+        "datasheet": "unit-tidewall-gunrig",
+        "statline": "tidewall-gunrig-profile",
+        "units": [
+          "unit-tidewall-gunrig"
+        ]
+      }
+    },
+    "tau-empire-ability-tidewall-defence-platform": {
+      "termId": "tau-empire-ability-tidewall-defence-platform",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-tidewall-defence-platform",
+        "rule": "unit-tidewall-shieldline",
+        "datasheet": "unit-tidewall-shieldline",
+        "statline": "tidewall-shieldline-profile",
+        "units": [
+          "unit-tidewall-shieldline"
+        ]
+      }
+    },
+    "tau-empire-ability-firing-deck-20": {
+      "termId": "tau-empire-ability-firing-deck-20",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-firing-deck-20",
+        "rule": "unit-tidewall-shieldline",
+        "datasheet": "unit-tidewall-shieldline",
+        "statline": "tidewall-shieldline-profile",
+        "units": [
+          "unit-tidewall-shieldline"
+        ]
+      }
+    },
+    "tau-empire-ability-titan-hunter": {
+      "termId": "tau-empire-ability-titan-hunter",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-titan-hunter",
+        "rule": "unit-ax-1-0-tiger-shark",
+        "datasheet": "unit-ax-1-0-tiger-shark",
+        "statline": "ax-1-0-tiger-shark-profile",
+        "units": [
+          "unit-ax-1-0-tiger-shark"
+        ]
+      }
+    },
+    "tau-empire-ability-damaged-1-6-wounds-remaining": {
+      "termId": "tau-empire-ability-damaged-1-6-wounds-remaining",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-damaged-1-6-wounds-remaining",
+        "rule": "unit-ax-1-0-tiger-shark",
+        "datasheet": "unit-ax-1-0-tiger-shark",
+        "statline": "ax-1-0-tiger-shark-profile",
+        "units": [
+          "unit-ax-1-0-tiger-shark",
+          "unit-tiger-shark"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-heavy-rail-cannon": {
+      "termId": "tau-empire-weapon-twin-heavy-rail-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-heavy-rail-cannon",
+        "rule": "unit-ax-1-0-tiger-shark",
+        "datasheet": "unit-ax-1-0-tiger-shark",
+        "statline": "ax-1-0-tiger-shark-profile",
+        "units": [
+          "unit-ax-1-0-tiger-shark"
+        ]
+      }
+    },
+    "tau-empire-weapon-cyclic-ion-blaster-standard-2": {
+      "termId": "tau-empire-weapon-cyclic-ion-blaster-standard-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-cyclic-ion-blaster-standard-2",
+        "rule": "unit-ax-1-0-tiger-shark",
+        "datasheet": "unit-ax-1-0-tiger-shark",
+        "statline": "ax-1-0-tiger-shark-profile",
+        "units": [
+          "unit-ax-1-0-tiger-shark",
+          "unit-tiger-shark",
+          "unit-barracuda",
+          "unit-crisis-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-cyclic-ion-blaster-overcharge-2": {
+      "termId": "tau-empire-weapon-cyclic-ion-blaster-overcharge-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-cyclic-ion-blaster-overcharge-2",
+        "rule": "unit-ax-1-0-tiger-shark",
+        "datasheet": "unit-ax-1-0-tiger-shark",
+        "statline": "ax-1-0-tiger-shark-profile",
+        "units": [
+          "unit-ax-1-0-tiger-shark",
+          "unit-tiger-shark",
+          "unit-barracuda",
+          "unit-crisis-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-aggressive-deployment": {
+      "termId": "tau-empire-ability-aggressive-deployment",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-aggressive-deployment",
+        "rule": "unit-manta",
+        "datasheet": "unit-manta",
+        "statline": "manta-profile",
+        "units": [
+          "unit-manta"
+        ]
+      }
+    },
+    "tau-empire-ability-air-caste-colossus": {
+      "termId": "tau-empire-ability-air-caste-colossus",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-air-caste-colossus",
+        "rule": "unit-manta",
+        "datasheet": "unit-manta",
+        "statline": "manta-profile",
+        "units": [
+          "unit-manta"
+        ]
+      }
+    },
+    "tau-empire-ability-damaged-1-20-wounds-remaining": {
+      "termId": "tau-empire-ability-damaged-1-20-wounds-remaining",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-damaged-1-20-wounds-remaining",
+        "rule": "unit-manta",
+        "datasheet": "unit-manta",
+        "statline": "manta-profile",
+        "units": [
+          "unit-manta"
+        ]
+      }
+    },
+    "tau-empire-ability-deadly-demise-3d6": {
+      "termId": "tau-empire-ability-deadly-demise-3d6",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-deadly-demise-3d6",
+        "rule": "unit-manta",
+        "datasheet": "unit-manta",
+        "statline": "manta-profile",
+        "units": [
+          "unit-manta"
+        ]
+      }
+    },
+    "tau-empire-ability-hover": {
+      "termId": "tau-empire-ability-hover",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-hover",
+        "rule": "unit-manta",
+        "datasheet": "unit-manta",
+        "statline": "manta-profile",
+        "units": [
+          "unit-manta",
+          "unit-orca-dropship"
+        ]
+      }
+    },
+    "tau-empire-weapon-armoured-hull-3": {
+      "termId": "tau-empire-weapon-armoured-hull-3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-armoured-hull-3",
+        "rule": "unit-manta",
+        "datasheet": "unit-manta",
+        "statline": "manta-profile",
+        "units": [
+          "unit-manta"
+        ]
+      }
+    },
+    "tau-empire-weapon-heavy-rail-cannon": {
+      "termId": "tau-empire-weapon-heavy-rail-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-heavy-rail-cannon",
+        "rule": "unit-manta",
+        "datasheet": "unit-manta",
+        "statline": "manta-profile",
+        "units": [
+          "unit-manta"
+        ]
+      }
+    },
+    "tau-empire-weapon-long-barrelled-burst-cannon-array": {
+      "termId": "tau-empire-weapon-long-barrelled-burst-cannon-array",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-long-barrelled-burst-cannon-array",
+        "rule": "unit-manta",
+        "datasheet": "unit-manta",
+        "statline": "manta-profile",
+        "units": [
+          "unit-manta"
+        ]
+      }
+    },
+    "tau-empire-ability-coordinated-strike": {
+      "termId": "tau-empire-ability-coordinated-strike",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-coordinated-strike",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-ability-damaged-1-10-wounds-remaining": {
+      "termId": "tau-empire-ability-damaged-1-10-wounds-remaining",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-damaged-1-10-wounds-remaining",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-ability-deadly-demise-d6-3": {
+      "termId": "tau-empire-ability-deadly-demise-d6-3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-deadly-demise-d6-3",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-ability-super-heavy-walker": {
+      "termId": "tau-empire-ability-super-heavy-walker",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-super-heavy-walker",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-weapon-crushing-feet": {
+      "termId": "tau-empire-weapon-crushing-feet",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-crushing-feet",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-weapon-tri-axis-ion-cannon-standard": {
+      "termId": "tau-empire-weapon-tri-axis-ion-cannon-standard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-tri-axis-ion-cannon-standard",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-weapon-tri-axis-ion-cannon-supercharge": {
+      "termId": "tau-empire-weapon-tri-axis-ion-cannon-supercharge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-tri-axis-ion-cannon-supercharge",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-weapon-fusion-eradicator": {
+      "termId": "tau-empire-weapon-fusion-eradicator",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-fusion-eradicator",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-weapon-pulse-ordnance-driver": {
+      "termId": "tau-empire-weapon-pulse-ordnance-driver",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-pulse-ordnance-driver",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-weapon-nexus-missile-launcher": {
+      "termId": "tau-empire-weapon-nexus-missile-launcher",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-nexus-missile-launcher",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-weapon-heavy-rail-cannon-array": {
+      "termId": "tau-empire-weapon-heavy-rail-cannon-array",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-heavy-rail-cannon-array",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-weapon-fragmentation-cluster-shell-launcher": {
+      "termId": "tau-empire-weapon-fragmentation-cluster-shell-launcher",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-fragmentation-cluster-shell-launcher",
+        "rule": "unit-taunar-supremacy-armour",
+        "datasheet": "unit-taunar-supremacy-armour",
+        "statline": "taunar-supremacy-armour-profile",
+        "units": [
+          "unit-taunar-supremacy-armour"
+        ]
+      }
+    },
+    "tau-empire-ability-strafing-run": {
+      "termId": "tau-empire-ability-strafing-run",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-strafing-run",
+        "rule": "unit-tiger-shark",
+        "datasheet": "unit-tiger-shark",
+        "statline": "tiger-shark-profile",
+        "units": [
+          "unit-tiger-shark"
+        ]
+      }
+    },
+    "tau-empire-ability-transport-bay": {
+      "termId": "tau-empire-ability-transport-bay",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-transport-bay",
+        "rule": "unit-tiger-shark",
+        "datasheet": "unit-tiger-shark",
+        "statline": "tiger-shark-profile",
+        "units": [
+          "unit-tiger-shark"
+        ]
+      }
+    },
+    "tau-empire-weapon-swiftstrike-burst-cannon": {
+      "termId": "tau-empire-weapon-swiftstrike-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-swiftstrike-burst-cannon",
+        "rule": "unit-tiger-shark",
+        "datasheet": "unit-tiger-shark",
+        "statline": "tiger-shark-profile",
+        "units": [
+          "unit-tiger-shark",
+          "unit-barracuda"
+        ]
+      }
+    },
+    "tau-empire-weapon-swiftstrike-railgun": {
+      "termId": "tau-empire-weapon-swiftstrike-railgun",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-swiftstrike-railgun",
+        "rule": "unit-tiger-shark",
+        "datasheet": "unit-tiger-shark",
+        "statline": "tiger-shark-profile",
+        "units": [
+          "unit-tiger-shark",
+          "unit-barracuda"
+        ]
+      }
+    },
+    "tau-empire-weapon-skyspear-missile-rack": {
+      "termId": "tau-empire-weapon-skyspear-missile-rack",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-skyspear-missile-rack",
+        "rule": "unit-tiger-shark",
+        "datasheet": "unit-tiger-shark",
+        "statline": "tiger-shark-profile",
+        "units": [
+          "unit-tiger-shark"
+        ]
+      }
+    },
+    "tau-empire-ability-inspirational-defiance": {
+      "termId": "tau-empire-ability-inspirational-defiance",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-inspirational-defiance",
+        "rule": "unit-aunshi",
+        "datasheet": "unit-aunshi",
+        "statline": "aunshi-profile",
+        "units": [
+          "unit-aunshi"
+        ]
+      }
+    },
+    "tau-empire-ability-leader-6": {
+      "termId": "tau-empire-ability-leader-6",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-leader-6",
+        "rule": "unit-aunshi",
+        "datasheet": "unit-aunshi",
+        "statline": "aunshi-profile",
+        "units": [
+          "unit-aunshi"
+        ]
+      }
+    },
+    "tau-empire-ability-martial-warrior": {
+      "termId": "tau-empire-ability-martial-warrior",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-martial-warrior",
+        "rule": "unit-aunshi",
+        "datasheet": "unit-aunshi",
+        "statline": "aunshi-profile",
+        "units": [
+          "unit-aunshi"
+        ]
+      }
+    },
+    "tau-empire-weapon-fidelity": {
+      "termId": "tau-empire-weapon-fidelity",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-fidelity",
+        "rule": "unit-aunshi",
+        "datasheet": "unit-aunshi",
+        "statline": "aunshi-profile",
+        "units": [
+          "unit-aunshi"
+        ]
+      }
+    },
+    "tau-empire-ability-duality-shield": {
+      "termId": "tau-empire-ability-duality-shield",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-duality-shield",
+        "rule": "unit-aunva",
+        "datasheet": "unit-aunva",
+        "statline": "aunva-profile",
+        "units": [
+          "unit-aunva"
+        ]
+      }
+    },
+    "tau-empire-ability-paradox-of-duality": {
+      "termId": "tau-empire-ability-paradox-of-duality",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-paradox-of-duality",
+        "rule": "unit-aunva",
+        "datasheet": "unit-aunva",
+        "statline": "aunva-profile",
+        "units": [
+          "unit-aunva"
+        ]
+      }
+    },
+    "tau-empire-ability-supreme-loyalty-aura": {
+      "termId": "tau-empire-ability-supreme-loyalty-aura",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-supreme-loyalty-aura",
+        "rule": "unit-aunva",
+        "datasheet": "unit-aunva",
+        "statline": "aunva-profile",
+        "units": [
+          "unit-aunva"
+        ]
+      }
+    },
+    "tau-empire-weapon-close-combat-weapon-5": {
+      "termId": "tau-empire-weapon-close-combat-weapon-5",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-close-combat-weapon-5",
+        "rule": "unit-aunva",
+        "datasheet": "unit-aunva",
+        "statline": "aunva-profile",
+        "units": [
+          "unit-aunva"
+        ]
+      }
+    },
+    "tau-empire-weapon-supreme-honour-blade": {
+      "termId": "tau-empire-weapon-supreme-honour-blade",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-supreme-honour-blade",
+        "rule": "unit-aunva",
+        "datasheet": "unit-aunva",
+        "statline": "aunva-profile",
+        "units": [
+          "unit-aunva"
+        ]
+      }
+    },
+    "tau-empire-ability-agile-dogfighter": {
+      "termId": "tau-empire-ability-agile-dogfighter",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-agile-dogfighter",
+        "rule": "unit-barracuda",
+        "datasheet": "unit-barracuda",
+        "statline": "barracuda-profile",
+        "units": [
+          "unit-barracuda"
+        ]
+      }
+    },
+    "tau-empire-weapon-long-barrelled-burst-cannon": {
+      "termId": "tau-empire-weapon-long-barrelled-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-long-barrelled-burst-cannon",
+        "rule": "unit-barracuda",
+        "datasheet": "unit-barracuda",
+        "statline": "barracuda-profile",
+        "units": [
+          "unit-barracuda"
+        ]
+      }
+    },
+    "tau-empire-ability-crisis-commander": {
+      "termId": "tau-empire-ability-crisis-commander",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-crisis-commander",
+        "rule": "unit-commander-in-crisis-battlesuit",
+        "datasheet": "unit-commander-in-crisis-battlesuit",
+        "statline": "commander-in-crisis-battlesuit-profile",
+        "units": [
+          "unit-commander-in-crisis-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-turbo-jets": {
+      "termId": "tau-empire-ability-turbo-jets",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-turbo-jets",
+        "rule": "unit-crisis-battlesuits",
+        "datasheet": "unit-crisis-battlesuits",
+        "statline": "crisis-battlesuits-profile",
+        "units": [
+          "unit-crisis-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-crisis-bodyguard": {
+      "termId": "tau-empire-ability-crisis-bodyguard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-crisis-bodyguard",
+        "rule": "unit-crisis-battlesuits",
+        "datasheet": "unit-crisis-battlesuits",
+        "statline": "crisis-battlesuits-profile",
+        "units": [
+          "unit-crisis-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-airbursting-fragmentation-projector-2": {
+      "termId": "tau-empire-weapon-airbursting-fragmentation-projector-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-airbursting-fragmentation-projector-2",
+        "rule": "unit-crisis-battlesuits",
+        "datasheet": "unit-crisis-battlesuits",
+        "statline": "crisis-battlesuits-profile",
+        "units": [
+          "unit-crisis-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-reinforced-cover": {
+      "termId": "tau-empire-ability-reinforced-cover",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-reinforced-cover",
+        "rule": "unit-drone-sentry-turret",
+        "datasheet": "unit-drone-sentry-turret",
+        "statline": "drone-sentry-turret-profile",
+        "units": [
+          "unit-drone-sentry-turret",
+          "unit-remote-sensor-tower"
+        ]
+      }
+    },
+    "tau-empire-ability-sentinel-protocols": {
+      "termId": "tau-empire-ability-sentinel-protocols",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-sentinel-protocols",
+        "rule": "unit-drone-sentry-turret",
+        "datasheet": "unit-drone-sentry-turret",
+        "statline": "drone-sentry-turret-profile",
+        "units": [
+          "unit-drone-sentry-turret"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-plasma-rifle-2": {
+      "termId": "tau-empire-weapon-twin-plasma-rifle-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-plasma-rifle-2",
+        "rule": "unit-drone-sentry-turret",
+        "datasheet": "unit-drone-sentry-turret",
+        "statline": "drone-sentry-turret-profile",
+        "units": [
+          "unit-drone-sentry-turret"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-fusion-blaster-2": {
+      "termId": "tau-empire-weapon-twin-fusion-blaster-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-fusion-blaster-2",
+        "rule": "unit-drone-sentry-turret",
+        "datasheet": "unit-drone-sentry-turret",
+        "statline": "drone-sentry-turret-profile",
+        "units": [
+          "unit-drone-sentry-turret"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-missile-pod-2": {
+      "termId": "tau-empire-weapon-twin-missile-pod-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-missile-pod-2",
+        "rule": "unit-drone-sentry-turret",
+        "datasheet": "unit-drone-sentry-turret",
+        "statline": "drone-sentry-turret-profile",
+        "units": [
+          "unit-drone-sentry-turret"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-burst-cannon-3": {
+      "termId": "tau-empire-weapon-twin-burst-cannon-3",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-burst-cannon-3",
+        "rule": "unit-drone-sentry-turret",
+        "datasheet": "unit-drone-sentry-turret",
+        "statline": "drone-sentry-turret-profile",
+        "units": [
+          "unit-drone-sentry-turret",
+          "unit-heavy-gun-drones"
+        ]
+      }
+    },
+    "tau-empire-ability-loping-stride": {
+      "termId": "tau-empire-ability-loping-stride",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-loping-stride",
+        "rule": "unit-great-knarloc",
+        "datasheet": "unit-great-knarloc",
+        "statline": "great-knarloc-profile",
+        "units": [
+          "unit-great-knarloc"
+        ]
+      }
+    },
+    "tau-empire-ability-baggage-harness-aura": {
+      "termId": "tau-empire-ability-baggage-harness-aura",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-baggage-harness-aura",
+        "rule": "unit-great-knarloc",
+        "datasheet": "unit-great-knarloc",
+        "statline": "great-knarloc-profile",
+        "units": [
+          "unit-great-knarloc"
+        ]
+      }
+    },
+    "tau-empire-weapon-great-knarloc-beak-and-talons": {
+      "termId": "tau-empire-weapon-great-knarloc-beak-and-talons",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-great-knarloc-beak-and-talons",
+        "rule": "unit-great-knarloc",
+        "datasheet": "unit-great-knarloc",
+        "statline": "great-knarloc-profile",
+        "units": [
+          "unit-great-knarloc"
+        ]
+      }
+    },
+    "tau-empire-weapon-kroot-bolt-thrower": {
+      "termId": "tau-empire-weapon-kroot-bolt-thrower",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-kroot-bolt-thrower",
+        "rule": "unit-great-knarloc",
+        "datasheet": "unit-great-knarloc",
+        "statline": "great-knarloc-profile",
+        "units": [
+          "unit-great-knarloc"
+        ]
+      }
+    },
+    "tau-empire-weapon-kroot-rifle-ranged": {
+      "termId": "tau-empire-weapon-kroot-rifle-ranged",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-kroot-rifle-ranged",
+        "rule": "unit-great-knarloc",
+        "datasheet": "unit-great-knarloc",
+        "statline": "great-knarloc-profile",
+        "units": [
+          "unit-great-knarloc",
+          "unit-knarloc-riders"
+        ]
+      }
+    },
+    "tau-empire-weapon-kroot-rifle-melee": {
+      "termId": "tau-empire-weapon-kroot-rifle-melee",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-kroot-rifle-melee",
+        "rule": "unit-great-knarloc",
+        "datasheet": "unit-great-knarloc",
+        "statline": "great-knarloc-profile",
+        "units": [
+          "unit-great-knarloc",
+          "unit-knarloc-riders"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-kroot-gun": {
+      "termId": "tau-empire-weapon-twin-kroot-gun",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-kroot-gun",
+        "rule": "unit-great-knarloc",
+        "datasheet": "unit-great-knarloc",
+        "statline": "great-knarloc-profile",
+        "units": [
+          "unit-great-knarloc"
+        ]
+      }
+    },
+    "tau-empire-ability-drone-escort": {
+      "termId": "tau-empire-ability-drone-escort",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-drone-escort",
+        "rule": "unit-heavy-gun-drones",
+        "datasheet": "unit-heavy-gun-drones",
+        "statline": "heavy-gun-drones-profile",
+        "units": [
+          "unit-heavy-gun-drones"
+        ]
+      }
+    },
+    "tau-empire-weapon-close-combat-weapon-6": {
+      "termId": "tau-empire-weapon-close-combat-weapon-6",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-close-combat-weapon-6",
+        "rule": "unit-heavy-gun-drones",
+        "datasheet": "unit-heavy-gun-drones",
+        "statline": "heavy-gun-drones-profile",
+        "units": [
+          "unit-heavy-gun-drones",
+          "unit-tactical-drones"
+        ]
+      }
+    },
+    "tau-empire-weapon-knarloc-beak-and-talons": {
+      "termId": "tau-empire-weapon-knarloc-beak-and-talons",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-knarloc-beak-and-talons",
+        "rule": "unit-knarloc-riders",
+        "datasheet": "unit-knarloc-riders",
+        "statline": "knarloc-riders-profile",
+        "units": [
+          "unit-knarloc-riders"
+        ]
+      }
+    },
+    "tau-empire-weapon-railgun-2": {
+      "termId": "tau-empire-weapon-railgun-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-railgun-2",
+        "rule": "unit-longstrike",
+        "datasheet": "unit-longstrike",
+        "statline": "longstrike-profile",
+        "units": [
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-cannon-standard-2": {
+      "termId": "tau-empire-weapon-ion-cannon-standard-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-cannon-standard-2",
+        "rule": "unit-longstrike",
+        "datasheet": "unit-longstrike",
+        "statline": "longstrike-profile",
+        "units": [
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-weapon-ion-cannon-overcharge-2": {
+      "termId": "tau-empire-weapon-ion-cannon-overcharge-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ion-cannon-overcharge-2",
+        "rule": "unit-longstrike",
+        "datasheet": "unit-longstrike",
+        "statline": "longstrike-profile",
+        "units": [
+          "unit-longstrike"
+        ]
+      }
+    },
+    "tau-empire-ability-jet-pack-insertion": {
+      "termId": "tau-empire-ability-jet-pack-insertion",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-jet-pack-insertion",
+        "rule": "unit-orca-dropship",
+        "datasheet": "unit-orca-dropship",
+        "statline": "orca-dropship-profile",
+        "units": [
+          "unit-orca-dropship"
+        ]
+      }
+    },
+    "tau-empire-ability-damaged-1-9-wounds-remaining": {
+      "termId": "tau-empire-ability-damaged-1-9-wounds-remaining",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-damaged-1-9-wounds-remaining",
+        "rule": "unit-orca-dropship",
+        "datasheet": "unit-orca-dropship",
+        "statline": "orca-dropship-profile",
+        "units": [
+          "unit-orca-dropship"
+        ]
+      }
+    },
+    "tau-empire-weapon-armoured-hull-4": {
+      "termId": "tau-empire-weapon-armoured-hull-4",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-armoured-hull-4",
+        "rule": "unit-orca-dropship",
+        "datasheet": "unit-orca-dropship",
+        "statline": "orca-dropship-profile",
+        "units": [
+          "unit-orca-dropship"
+        ]
+      }
+    },
+    "tau-empire-weapon-long-barrelled-burst-cannon-2": {
+      "termId": "tau-empire-weapon-long-barrelled-burst-cannon-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-long-barrelled-burst-cannon-2",
+        "rule": "unit-orca-dropship",
+        "datasheet": "unit-orca-dropship",
+        "statline": "orca-dropship-profile",
+        "units": [
+          "unit-orca-dropship"
+        ]
+      }
+    },
+    "tau-empire-ability-nova-shielding": {
+      "termId": "tau-empire-ability-nova-shielding",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-nova-shielding",
+        "rule": "unit-rvarna-battlesuit",
+        "datasheet": "unit-rvarna-battlesuit",
+        "statline": "rvarna-battlesuit-profile",
+        "units": [
+          "unit-rvarna-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-pulse-submunitions-cannon": {
+      "termId": "tau-empire-weapon-pulse-submunitions-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-pulse-submunitions-cannon",
+        "rule": "unit-rvarna-battlesuit",
+        "datasheet": "unit-rvarna-battlesuit",
+        "statline": "rvarna-battlesuit-profile",
+        "units": [
+          "unit-rvarna-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-battlesuit-fists-4": {
+      "termId": "tau-empire-weapon-battlesuit-fists-4",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-battlesuit-fists-4",
+        "rule": "unit-rvarna-battlesuit",
+        "datasheet": "unit-rvarna-battlesuit",
+        "statline": "rvarna-battlesuit-profile",
+        "units": [
+          "unit-rvarna-battlesuit",
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-ability-aerial-disengagement": {
+      "termId": "tau-empire-ability-aerial-disengagement",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-aerial-disengagement",
+        "rule": "unit-remora-stealth-drones",
+        "datasheet": "unit-remora-stealth-drones",
+        "statline": "remora-stealth-drones-profile",
+        "units": [
+          "unit-remora-stealth-drones"
+        ]
+      }
+    },
+    "tau-empire-weapon-close-combat-weapon-7": {
+      "termId": "tau-empire-weapon-close-combat-weapon-7",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-close-combat-weapon-7",
+        "rule": "unit-remora-stealth-drones",
+        "datasheet": "unit-remora-stealth-drones",
+        "statline": "remora-stealth-drones-profile",
+        "units": [
+          "unit-remora-stealth-drones"
+        ]
+      }
+    },
+    "tau-empire-weapon-remora-seeker-missile": {
+      "termId": "tau-empire-weapon-remora-seeker-missile",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-remora-seeker-missile",
+        "rule": "unit-remora-stealth-drones",
+        "datasheet": "unit-remora-stealth-drones",
+        "statline": "remora-stealth-drones-profile",
+        "units": [
+          "unit-remora-stealth-drones"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-long-barrelled-burst-cannon": {
+      "termId": "tau-empire-weapon-twin-long-barrelled-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-long-barrelled-burst-cannon",
+        "rule": "unit-remora-stealth-drones",
+        "datasheet": "unit-remora-stealth-drones",
+        "statline": "remora-stealth-drones-profile",
+        "units": [
+          "unit-remora-stealth-drones"
+        ]
+      }
+    },
+    "tau-empire-ability-orbital-comms-array-aura": {
+      "termId": "tau-empire-ability-orbital-comms-array-aura",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-orbital-comms-array-aura",
+        "rule": "unit-remote-sensor-tower",
+        "datasheet": "unit-remote-sensor-tower",
+        "statline": "remote-sensor-tower-profile",
+        "units": [
+          "unit-remote-sensor-tower"
+        ]
+      }
+    },
+    "tau-empire-ability-eclipse-field-generator": {
+      "termId": "tau-empire-ability-eclipse-field-generator",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-eclipse-field-generator",
+        "rule": "unit-shaso-ralai",
+        "datasheet": "unit-shaso-ralai",
+        "statline": "shaso-ralai-profile",
+        "units": [
+          "unit-shaso-ralai"
+        ]
+      }
+    },
+    "tau-empire-ability-assassin": {
+      "termId": "tau-empire-ability-assassin",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-assassin",
+        "rule": "unit-shaso-ralai",
+        "datasheet": "unit-shaso-ralai",
+        "statline": "shaso-ralai-profile",
+        "units": [
+          "unit-shaso-ralai"
+        ]
+      }
+    },
+    "tau-empire-ability-leader-7": {
+      "termId": "tau-empire-ability-leader-7",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-leader-7",
+        "rule": "unit-shaso-ralai",
+        "datasheet": "unit-shaso-ralai",
+        "statline": "shaso-ralai-profile",
+        "units": [
+          "unit-shaso-ralai"
+        ]
+      }
+    },
+    "tau-empire-ability-blacklight-marker-drones": {
+      "termId": "tau-empire-ability-blacklight-marker-drones",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-blacklight-marker-drones",
+        "rule": "unit-shaso-ralai",
+        "datasheet": "unit-shaso-ralai",
+        "statline": "shaso-ralai-profile",
+        "units": [
+          "unit-shaso-ralai"
+        ]
+      }
+    },
+    "tau-empire-weapon-experimental-pulse-submunitions-rifle-emp": {
+      "termId": "tau-empire-weapon-experimental-pulse-submunitions-rifle-emp",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-experimental-pulse-submunitions-rifle-emp",
+        "rule": "unit-shaso-ralai",
+        "datasheet": "unit-shaso-ralai",
+        "statline": "shaso-ralai-profile",
+        "units": [
+          "unit-shaso-ralai"
+        ]
+      }
+    },
+    "tau-empire-weapon-experimental-pulse-submunitions-rifle-ionic-cluster-beam-shell": {
+      "termId": "tau-empire-weapon-experimental-pulse-submunitions-rifle-ionic-cluster-beam-shell",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-experimental-pulse-submunitions-rifle-ionic-cluster-beam-shell",
+        "rule": "unit-shaso-ralai",
+        "datasheet": "unit-shaso-ralai",
+        "statline": "shaso-ralai-profile",
+        "units": [
+          "unit-shaso-ralai"
+        ]
+      }
+    },
+    "tau-empire-ability-high-intensity-markerlights": {
+      "termId": "tau-empire-ability-high-intensity-markerlights",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-high-intensity-markerlights",
+        "rule": "unit-tetras",
+        "datasheet": "unit-tetras",
+        "statline": "tetras-profile",
+        "units": [
+          "unit-tetras"
+        ]
+      }
+    },
+    "tau-empire-weapon-close-combat-weapons-2": {
+      "termId": "tau-empire-weapon-close-combat-weapons-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-close-combat-weapons-2",
+        "rule": "unit-tetras",
+        "datasheet": "unit-tetras",
+        "statline": "tetras-profile",
+        "units": [
+          "unit-tetras"
+        ]
+      }
+    },
+    "tau-empire-ability-outflank": {
+      "termId": "tau-empire-ability-outflank",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-outflank",
+        "rule": "unit-tx42-piranha",
+        "datasheet": "unit-tx42-piranha",
+        "statline": "tx42-piranha-profile",
+        "units": [
+          "unit-tx42-piranha"
+        ]
+      }
+    },
+    "tau-empire-weapon-rail-rifle-2": {
+      "termId": "tau-empire-weapon-rail-rifle-2",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-rail-rifle-2",
+        "rule": "unit-tx42-piranha",
+        "datasheet": "unit-tx42-piranha",
+        "statline": "tx42-piranha-profile",
+        "units": [
+          "unit-tx42-piranha"
+        ]
+      }
+    },
+    "tau-empire-ability-photon-casters": {
+      "termId": "tau-empire-ability-photon-casters",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-photon-casters",
+        "rule": "unit-xv9-hazard-battlesuits",
+        "datasheet": "unit-xv9-hazard-battlesuits",
+        "statline": "xv9-hazard-battlesuits-profile",
+        "units": [
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-fusion-cascade": {
+      "termId": "tau-empire-weapon-fusion-cascade",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-fusion-cascade",
+        "rule": "unit-xv9-hazard-battlesuits",
+        "datasheet": "unit-xv9-hazard-battlesuits",
+        "statline": "xv9-hazard-battlesuits-profile",
+        "units": [
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-phased-ion-gun": {
+      "termId": "tau-empire-weapon-phased-ion-gun",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-phased-ion-gun",
+        "rule": "unit-xv9-hazard-battlesuits",
+        "datasheet": "unit-xv9-hazard-battlesuits",
+        "statline": "xv9-hazard-battlesuits-profile",
+        "units": [
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-weapon-twin-hazard-burst-cannon": {
+      "termId": "tau-empire-weapon-twin-hazard-burst-cannon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-twin-hazard-burst-cannon",
+        "rule": "unit-xv9-hazard-battlesuits",
+        "datasheet": "unit-xv9-hazard-battlesuits",
+        "statline": "xv9-hazard-battlesuits-profile",
+        "units": [
+          "unit-xv9-hazard-battlesuits"
+        ]
+      }
+    },
+    "tau-empire-ability-nova-burst": {
+      "termId": "tau-empire-ability-nova-burst",
+      "navigation": {
+        "glossary": "glossary-tau-empire-ability-nova-burst",
+        "rule": "unit-yvahra-battlesuit",
+        "datasheet": "unit-yvahra-battlesuit",
+        "statline": "yvahra-battlesuit-profile",
+        "units": [
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-flechette-pod": {
+      "termId": "tau-empire-weapon-flechette-pod",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-flechette-pod",
+        "rule": "unit-yvahra-battlesuit",
+        "datasheet": "unit-yvahra-battlesuit",
+        "statline": "yvahra-battlesuit-profile",
+        "units": [
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-ionic-discharge-cannon-standard": {
+      "termId": "tau-empire-weapon-ionic-discharge-cannon-standard",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ionic-discharge-cannon-standard",
+        "rule": "unit-yvahra-battlesuit",
+        "datasheet": "unit-yvahra-battlesuit",
+        "statline": "yvahra-battlesuit-profile",
+        "units": [
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-ionic-discharge-cannon-overcharge": {
+      "termId": "tau-empire-weapon-ionic-discharge-cannon-overcharge",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-ionic-discharge-cannon-overcharge",
+        "rule": "unit-yvahra-battlesuit",
+        "datasheet": "unit-yvahra-battlesuit",
+        "statline": "yvahra-battlesuit-profile",
+        "units": [
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-weapon-phased-plasma-flamer": {
+      "termId": "tau-empire-weapon-phased-plasma-flamer",
+      "navigation": {
+        "glossary": "glossary-tau-empire-weapon-phased-plasma-flamer",
+        "rule": "unit-yvahra-battlesuit",
+        "datasheet": "unit-yvahra-battlesuit",
+        "statline": "yvahra-battlesuit-profile",
+        "units": [
+          "unit-yvahra-battlesuit"
+        ]
+      }
+    },
+    "tau-empire-enhancement-exemplar-of-the-kauyon": {
+      "termId": "tau-empire-enhancement-exemplar-of-the-kauyon",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-exemplar-of-the-kauyon",
+        "rule": "detachment-kauyon"
+      }
+    },
+    "tau-empire-enhancement-precision-of-the-patient-hunter": {
+      "termId": "tau-empire-enhancement-precision-of-the-patient-hunter",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-precision-of-the-patient-hunter",
+        "rule": "detachment-kauyon"
+      }
+    },
+    "tau-empire-enhancement-solid-image-projection-unit": {
+      "termId": "tau-empire-enhancement-solid-image-projection-unit",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-solid-image-projection-unit",
+        "rule": "detachment-kauyon"
+      }
+    },
+    "tau-empire-enhancement-through-unity-devastation": {
+      "termId": "tau-empire-enhancement-through-unity-devastation",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-through-unity-devastation",
+        "rule": "detachment-kauyon"
+      }
+    },
+    "tau-empire-enhancement-borthrod-gland": {
+      "termId": "tau-empire-enhancement-borthrod-gland",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-borthrod-gland",
+        "rule": "detachment-kroot-hunting-pack"
+      }
+    },
+    "tau-empire-enhancement-kroothawk-flock": {
+      "termId": "tau-empire-enhancement-kroothawk-flock",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-kroothawk-flock",
+        "rule": "detachment-kroot-hunting-pack"
+      }
+    },
+    "tau-empire-enhancement-nomadic-hunter": {
+      "termId": "tau-empire-enhancement-nomadic-hunter",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-nomadic-hunter",
+        "rule": "detachment-kroot-hunting-pack"
+      }
+    },
+    "tau-empire-enhancement-root-carved-weapons": {
+      "termId": "tau-empire-enhancement-root-carved-weapons",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-root-carved-weapons",
+        "rule": "detachment-kroot-hunting-pack"
+      }
+    },
+    "tau-empire-enhancement-coordinated-exploitation": {
+      "termId": "tau-empire-enhancement-coordinated-exploitation",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-coordinated-exploitation",
+        "rule": "detachment-montka"
+      }
+    },
+    "tau-empire-enhancement-exemplar-of-the-montka": {
+      "termId": "tau-empire-enhancement-exemplar-of-the-montka",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-exemplar-of-the-montka",
+        "rule": "detachment-montka"
+      }
+    },
+    "tau-empire-enhancement-strategic-conqueror": {
+      "termId": "tau-empire-enhancement-strategic-conqueror",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-strategic-conqueror",
+        "rule": "detachment-montka"
+      }
+    },
+    "tau-empire-enhancement-strike-swiftly": {
+      "termId": "tau-empire-enhancement-strike-swiftly",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-strike-swiftly",
+        "rule": "detachment-montka"
+      }
+    },
+    "tau-empire-enhancement-internal-grenade-racks": {
+      "termId": "tau-empire-enhancement-internal-grenade-racks",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-internal-grenade-racks",
+        "rule": "detachment-retaliation-cadre"
+      }
+    },
+    "tau-empire-enhancement-prototype-weapon-system": {
+      "termId": "tau-empire-enhancement-prototype-weapon-system",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-prototype-weapon-system",
+        "rule": "detachment-retaliation-cadre"
+      }
+    },
+    "tau-empire-enhancement-puretide-engram-neurochip": {
+      "termId": "tau-empire-enhancement-puretide-engram-neurochip",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-puretide-engram-neurochip",
+        "rule": "detachment-retaliation-cadre"
+      }
+    },
+    "tau-empire-enhancement-starflare-ignition-system": {
+      "termId": "tau-empire-enhancement-starflare-ignition-system",
+      "navigation": {
+        "glossary": "glossary-tau-empire-enhancement-starflare-ignition-system",
+        "rule": "detachment-retaliation-cadre"
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "faction": {
+    "id": "emperors-children",
+    "title": "Emperor's Children"
+  },
+  "source": {
+    "repository": "https://github.com/BSData/wh40k-11e",
+    "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+    "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/Chaos%20-%20Emperor%27s%20Children.json"
+  },
+  "inputs": [
+    {
+      "role": "faction",
+      "path": "../../../tmp/bsdata-wh40k-11e/Chaos - Emperor's Children.json"
+    },
+    {
+      "role": "chaos-daemons-library",
+      "path": "../../../tmp/bsdata-wh40k-11e/Chaos - Chaos Daemons Library.json"
+    },
+    {
+      "role": "enhancement-index",
+      "path": "bsdata-enhancement-index.json"
+    },
+    {
+      "role": "game-system",
+      "path": "../../../tmp/bsdata-wh40k-11e/Warhammer 40,000.json"
+    }
+  ],
+  "outputs": {
+    "snapshot": "bsdata-emperors-children-11e.json",
+    "datasheets": "../content/emperors-children-codex-datasheets.en.json",
+    "points": "../content/emperors-children-points.en.json"
+  },
+  "filters": {
+    "excludeNames": [
+      "Detachment",
+      "Show/Hide Options",
+      "Order of Battle",
+      "Combat Elixirs equipped in Current Battle"
+    ],
+    "excludeNamePatterns": [
+      "\\[Crucible\\]$"
+    ],
+    "excludePrimaryCategories": [
+      "Configuration",
+      "Order of Battle",
+      "Reference",
+      "Service"
+    ],
+    "blockedBranches": [
+      "^Crusade$",
+      "Enhancements$",
+      "^Detachment$",
+      "^Order of Battle$",
+      "^Show/Hide Options$",
+      "^Specialisms$",
+      "^Weapon Modifications$",
+      "^Battle Honours$",
+      "^Relic Upgrades$",
+      "^Reference$",
+      "^Service$",
+      "\\[Crucible\\]"
+    ],
+    "imperialArmourNames": []
+  },
+  "enhancements": {
+    "detachments": [
+      "Carnival of Excess",
+      "Coterie of the Conceited",
+      "Court of the Phoenician",
+      "Elegant Brutes",
+      "Frenzied Host",
+      "Mercurial Host",
+      "Peerless Bladesmen",
+      "Rapid Evisceration",
+      "Slaanesh's Chosen",
+      "Spectacle of Slaughter"
+    ]
+  },
+  "quarantine": {
+    "seasonalAndServiceEntries": [
+      "Combat Elixirs equipped in Current Battle"
+    ],
+    "reason": "Runtime state and Crucible/service entries are not canonical matched-play datasheets."
+  }
+}

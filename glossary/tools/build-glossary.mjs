@@ -48,6 +48,15 @@ const amRuntime=loadWindow(path.join(root,'books','adeptus-mechanicus','scripts'
 const amFaction=readJson(path.join(root,'books','adeptus-mechanicus','content','adeptus-mechanicus-rules.en.json'));
 const amCodexDetachments=readJson(path.join(root,'books','adeptus-mechanicus','content','adeptus-mechanicus-codex-detachments.en.json'));
 const amDatasheets=readJson(path.join(root,'books','adeptus-mechanicus','content','adeptus-mechanicus-codex-datasheets.en.json'));
+const genericArmyBooks=fs.readdirSync(path.join(root,'books'),{withFileTypes:true})
+  .filter(entry=>entry.isDirectory())
+  .flatMap(entry=>{
+    const bookRoot=path.join(root,'books',entry.name),configFile=path.join(bookRoot,'book.config.json'),runtimeFile=path.join(bookRoot,'scripts','data.js');
+    if(!fs.existsSync(configFile)||!fs.existsSync(runtimeFile))return[];
+    const config=readJson(configFile),packFile=path.join(bookRoot,config.sources?.factionPack||'');
+    if(!config.sources?.relatedRules||!fs.existsSync(packFile))return[];
+    return [{id:config.id,title:config.title,root:bookRoot,config,runtime:loadWindow(runtimeFile).DG_TERMS,pack:readJson(packFile)}];
+  });
 const coreData=loadWindow(path.join(root,'books','core-rules','content','core-rules.en.js')).CORE_RULES;
 const coreCurated=coreData.terms;
 const coreSource=loadWindow(path.join(root,'books','core-rules','content','core-rules.source.en.js')).CORE_PDF_SOURCE;
@@ -58,14 +67,15 @@ const coreQuickReferences=readJson(path.join(glossaryRoot,'core-quick-reference.
 const supplemental=readJson(path.join(glossaryRoot,'supplemental-terms.en.json'));
 const existingRegistry=fs.existsSync(path.join(glossaryRoot,'registry.en.json'))?readJson(path.join(glossaryRoot,'registry.en.json')).terms:{};
 const existingAliases=fs.existsSync(path.join(glossaryRoot,'aliases.en.json'))?readJson(path.join(glossaryRoot,'aliases.en.json')).aliases:{};
-const existingContexts=Object.fromEntries(['core-rules','death-guard','adeptus-mechanicus'].map(bookId=>{
+const contextIds=['core-rules','death-guard','adeptus-mechanicus',...genericArmyBooks.map(book=>book.id)];
+const existingContexts=Object.fromEntries(contextIds.map(bookId=>{
   const file=path.join(glossaryRoot,'contexts',`${bookId}.json`);
   return [bookId,fs.existsSync(file)?readJson(file).terms:{}];
 }));
 
 const registry=new Map();
 const aliases={};
-const contexts={"core-rules":{},"death-guard":{},"adeptus-mechanicus":{}};
+const contexts=Object.fromEntries(contextIds.map(bookId=>[bookId,{}]));
 const variants=[];
 const titleIndex=new Map();
 
@@ -311,6 +321,29 @@ for(const datasheet of amDatasheets.datasheets||[]){
   addContext('adeptus-mechanicus',datasheet.id,id,{datasheet:datasheet.id,statline:`${datasheet.id.replace(/^unit-/,'')}-profile`});
 }
 
+for(const book of genericArmyBooks){
+  const officialTitles=new Set(book.pack.detachments.flatMap(detachment=>[
+    detachment.rule?.title,
+    ...(detachment.enhancements||[]).map(item=>item.title),
+    ...(detachment.stratagems||[]).map(item=>item.title)
+  ]).filter(Boolean).map(normalTitle));
+  for(const [localId,entry] of Object.entries(book.runtime)){
+    const official=officialTitles.has(normalTitle(entry.title));
+    const prefix=`${book.id}-`,isWeapon=localId.startsWith(`${prefix}weapon-`);
+    const profile=isWeapon?weaponProfile(entry.summary):null;
+    addTerm({
+      id:localId,
+      kind:isWeapon?'weapon':localId.startsWith(`${prefix}stratagem-`)?'stratagem':localId.startsWith(`${prefix}enhancement-`)?'enhancement':localId.startsWith(`${prefix}detachment-rule-`)?'detachment-rule':'datasheet-ability',
+      scope:book.id,edition:'11e',language:'en',title:{en:entry.title},summary:{en:concise(entry.summary)},definition:{en:clean(entry.full||entry.summary)},
+      structured:profile?{weapon:profile}:{},presentation:profile?'profile':undefined,aliases:[],related:[],
+      canonicalSource:{documentId:official?`${book.id}-faction-pack-v1.0`:`${book.id}-codex-transcription`,revision:official?'1.0':'pinned BSData',locator:entry.rule||entry.datasheet||localId},
+      fullRulePath:entry.rule?`books/${book.id}/reader.html#${entry.rule}`:undefined,
+      status:official?'verified':'provisional'
+    },book.id,localId);
+    addContext(book.id,localId,localId,entry);
+  }
+}
+
 for(const entry of supplemental.terms||[]){
   if(registry.has(entry.id))continue;
   const scope=entry.scope||'global';
@@ -395,6 +428,7 @@ for(const [id,existing] of Object.entries(existingRegistry)){
   if(existing.curated===true&&!registry.has(id))registry.set(id,{...existing,sourceRefs:existing.sourceRefs||['curated-glossary']});
   const term=registry.get(id);
   if(!term)continue;
+  if(genericArmyBooks.some(book=>book.id===term.scope)&&existing.curated!==true)continue;
   for(const field of ['kind','scope','edition','language','title','summary','definition','structured','presentation','related','mentions','references','matchLabels','canonicalSource','summarySource','status','curation']){
     if(existing[field]==null)continue;
     if(field==='definition'&&/^(weapon|datasheet) profile\.?$/i.test(existing.definition?.en||''))continue;
@@ -524,9 +558,13 @@ fs.writeFileSync(path.join(glossaryRoot,'generated','glossary.en.js'),runtime+ru
 const coreReaderFiles=fs.readdirSync(path.join(root,'books','core-rules','reader'))
   .filter(file=>file.endsWith('.html')||file==='styles.css'||file==='app.js'||file==='search-index.json')
   .map(file=>`books/core-rules/reader/${file}`);
+const genericArmyCacheInputs=genericArmyBooks.flatMap(book=>[
+  `books/${book.id}/index.html`,`books/${book.id}/reader.html`,`books/${book.id}/styles/tokens.css`,`books/${book.id}/styles/book.css`,
+  `books/${book.id}/scripts/data.js`,`books/${book.id}/scripts/app.js`,`books/${book.id}/mobile/index.html`,`books/${book.id}/mobile/related-rules.inc`
+]);
 const cacheInputs=[
   'index.html','manifest.webmanifest','service-worker.js','glossary-return.js','roster-guides/index.html','roster-guides/app.js','roster-guides/points-data.js','roster-guides/points-validator.js',
-  'books/death-guard/index.html','books/core-rules/index.html','books/adeptus-mechanicus/index.html',
+  'books/death-guard/index.html','books/core-rules/index.html','books/adeptus-mechanicus/index.html',...genericArmyCacheInputs,'books/shared/army-related-rules.js','books/shared/army-book-app.js',
   ...['death-guard','adeptus-mechanicus'].flatMap(book=>['tokens.css','layout.css','navigation.css','content.css','popups.css'].map(file=>`books/${book}/styles/${file}`)),
   'books/shared/navigation-targets.js','books/shared/datasheet-layout.js','books/shared/datasheet-system.css','books/shared/popup-content.js','books/shared/glossary-autolink.js','books/shared/roster-parser.js','books/shared/roster-enhancements.js',
   ...['death-guard','adeptus-mechanicus'].flatMap(book=>['data.js','navigation-controller.js','popup-controller.js','journey-controller.js','ui-controllers.js','app.js'].map(file=>`books/${book}/scripts/${file}`)),

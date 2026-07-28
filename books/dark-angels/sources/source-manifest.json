@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "verifiedAt": "2026-07-28",
+  "layers": [
+    {
+      "id": "faction-pack-v1.0",
+      "authority": "official",
+      "role": "11e-overlay",
+      "title": "Dark Angels Faction Pack v1.0",
+      "legalFrom": "2026-06-20",
+      "url": "https://assets.warhammer-community.com/eng_08-06_warhammer40000_faction_pack_dark_angels-fw4ot2jwtw-hplla1qiky.pdf",
+      "localFile": "dark-angels-faction-pack-v1.0.pdf"
+    },
+    {
+      "id": "codex-transcription",
+      "authority": "community",
+      "role": "codex-structure",
+      "title": "BSData Warhammer 40,000 11th Edition - Dark Angels",
+      "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
+      "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/Imperium%20-%20Dark%20Angels.json",
+      "localFile": "bsdata-dark-angels-11e.json",
+      "status": "requires-codex-verification"
+    },
+    {
+      "id": "mfm",
+      "authority": "official",
+      "role": "points-and-roster-contract",
+      "title": "Munitorum Field Manual",
+      "updated": "2026-07-22",
+      "url": "https://mfm.warhammer-community.com/en/dark-angels",
+      "status": "snapshot-required"
+    }
+  ],
+  "gates": {
+    "publishAsComplete": false,
+    "reason": "Faction Pack v1.0 supplements the Codex. Codex text and the current MFM snapshot must be verified before this book can be labelled complete."
+  }
+}

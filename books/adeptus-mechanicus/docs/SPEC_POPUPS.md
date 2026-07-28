@@ -74,7 +74,7 @@ A popup displays a brief explanation of a term, related terms, and only existing
 
 ## 8. Transitions from a Popup
 
-- Available types: Glossary, To rule, Datasheet & Wargear, Statline.
+- Available types: Glossary and rule destinations. A popup opened inside Related Rules also exposes Open datasheet.
 - Before navigation, the complete term ID chain, external root term, level, and action-button data are saved.
 - Before scrolling, the chain is temporarily hidden.
 - A Glossary transition accounts for the heights of the fixed header and sticky search: the target card opens below both overlapping layers, including the `Assault → popup → Glossary` scenario.
@@ -111,7 +111,7 @@ A popup displays a brief explanation of a term, related terms, and only existing
 
 - The term registry is validated together with the document body: unknown `data-term` values, orphaned records, and missing `rule`, `glossary`, `datasheet`, `statline`, `related`, or `units` values are QA errors.
 - Action buttons are created only for destinations that exist in the DOM.
-- For a shared term or weapon, the `Datasheet & Wargear` and `Statline` actions are determined from the outer `.unit-card` that opened the current popup chain; global `datasheet` and `statline` values are used as fallbacks outside that context.
+- Datasheet shortcuts are hidden in ordinary popups. Inside Related Rules, `Open datasheet` uses the unit that opened the overlay.
 - The contextual datasheet must be included in `term.units`; an arbitrary neighboring card cannot replace the destination.
 - A transition to Glossary first reveals a card hidden by search. Back restores the original query, results, position, chain, and focus.
 - Glossary stores the short summary in a separate highlighted paragraph. Full text is not duplicated when it matches the summary verbatim.

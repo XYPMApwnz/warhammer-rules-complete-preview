@@ -382,6 +382,54 @@
       "summary": "A roll made to determine a weapon's random Damage characteristic before that damage is inflicted.",
       "definition": "When a weapon has a random Damage characteristic, make the indicated roll to determine its Damage value when required by the attack sequence.",
       "locator": "02.02.03 Random Characteristics"
+    },
+    {
+      "id": "keyword-chaos",
+      "title": "CHAOS",
+      "kind": "keyword",
+      "summary": "A faction keyword used by rules that explicitly select CHAOS models or units.",
+      "definition": "CHAOS identifies models and units for any rule whose target or effect explicitly requires the CHAOS keyword.",
+      "locator": "02.05 Keywords"
+    },
+    {
+      "id": "keyword-daemon",
+      "title": "DAEMON",
+      "kind": "keyword",
+      "summary": "A keyword used by rules that explicitly select DAEMON models or units.",
+      "definition": "DAEMON identifies models and units for any rule whose target or effect explicitly requires the DAEMON keyword.",
+      "locator": "02.05 Keywords"
+    },
+    {
+      "id": "keyword-grenades",
+      "title": "GRENADES",
+      "kind": "keyword",
+      "summary": "An eligible GRENADES unit can be selected for the EXPLOSIVES Core Stratagem.",
+      "definition": "GRENADES identifies units that can be selected as the target of the EXPLOSIVES Core Stratagem while they meet that Stratagem's other requirements.",
+      "locator": "15.05 EXPLOSIVES"
+    },
+    {
+      "id": "keyword-nurgle",
+      "title": "NURGLE",
+      "kind": "keyword",
+      "summary": "A faction keyword used by rules that explicitly select NURGLE models or units.",
+      "definition": "NURGLE identifies models and units for any rule whose target or effect explicitly requires the NURGLE keyword.",
+      "locator": "02.05 Keywords"
+    },
+    {
+      "id": "keyword-psyker",
+      "title": "PSYKER",
+      "kind": "keyword",
+      "summary": "PSYKER identifies models and units that use or interact with Psychic abilities and weapons.",
+      "definition": "PSYKER identifies models and units for Psychic abilities, Psychic weapons and any rule whose target or effect explicitly requires a PSYKER.",
+      "locator": "22.03 Psychic Abilities"
+    },
+    {
+      "id": "keyword-terminator",
+      "title": "TERMINATOR",
+      "kind": "keyword",
+      "summary": "TERMINATOR identifies models whose transport capacity and other rules can be handled differently.",
+      "definition": "TERMINATOR identifies models for Transport Capacity restrictions and any other rule whose target or effect explicitly requires a TERMINATOR.",
+      "locator": "18.01 Transport Capacity"
     }
   ],
   "matchLabels": {

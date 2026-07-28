@@ -1,0 +1,1059 @@
+{
+  "schema": 1,
+  "faction": "Emperor's Children",
+  "stratagems": {
+    "delight-in-agony": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN",
+              "TERMINATOR"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "psychedelic-soulflame": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN",
+              "TERMINATOR"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-attack"
+      ]
+    },
+    "warp-plunge": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN",
+              "TERMINATOR"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-within-engagement-range"
+      ]
+    },
+    "possessive-mania": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN",
+              "BATTLELINE"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "within-range-of-objective",
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "agonised-cacophony": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN",
+              "BATTLELINE"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "absolute-sensory-overload": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN",
+              "BATTLELINE"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "honour-is-for-fools": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-flawless-blades"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-fight"
+      ]
+    },
+    "single-minded-strike": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-flawless-blades"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "started-charge-move"
+      ]
+    },
+    "intoxicated-by-triumph": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-flawless-blades"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "enemy-ended-fall-back-after-engagement",
+        "not-within-engagement-range"
+      ]
+    },
+    "contemptuous-disregard": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "prideful-superiority": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-fight"
+      ]
+    },
+    "sinuous-breach": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN",
+              "DAEMON"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-move-or-charge"
+      ]
+    },
+    "close-quarters-excruciation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot"
+      ]
+    },
+    "euphoric-inspiration": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN",
+              "DAEMON"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "catalytic-stimulus": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "EMPEROR'S CHILDREN"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "lost-wounds-to-triggering-attacks"
+      ]
+    }
+  },
+  "enhancements": {
+    "enhancement-dark-blessings": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-empyric-suffusion": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-possessed-blade": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-warp-walker": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-pledge-of-dark-glory": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-pledge-of-eternal-servitude": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-pledge-of-mortal-pain": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-pledge-of-unholy-fortune": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "tears-of-the-phoenix": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "exalted-patron": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-lord-exultant"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "soulstain-made-manifest": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "spiritsliver": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "cacophonic-accompaniment": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-lord-kakophonist"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "frenzied-ferocity": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-chaos-terminators"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "euphoric-crown": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-lord-exultant"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "howling-plate": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-lord-exultant"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-intoxicating-musk": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-loathsome-dexterity": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-steeped-in-suffering": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-tactical-perfection": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-blinding-speed": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-distortion": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-rise-to-the-challenge": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-accomplished-tactician": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-heretek-adept": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-spearhead-striker": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-sublime-presence": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-eager-to-prove": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-proud-and-vainglorious": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-repulsed-by-weakness": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-slayer-of-champions": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-daemon-prince-of-slaanesh",
+              "unit-daemon-prince-of-slaanesh-with-wings",
+              "unit-lord-exultant",
+              "unit-lord-kakophonist",
+              "unit-sorcerer"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "eager-patrons": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-flawless-blades"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "beguiling-grotesquerie": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-flawless-blades"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    }
+  }
+}

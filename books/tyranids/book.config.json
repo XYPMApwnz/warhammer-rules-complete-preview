@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "id": "tyranids",
+  "title": "Tyranids",
+  "shortTitle": "Tyranids Rules",
+  "mark": "TYR",
+  "edition": "11E",
+  "factionKeyword": "TYRANIDS",
+  "expected": {
+    "matchedDetachments": 10,
+    "factionPackDetachments": 4,
+    "legendsDatasheets": 5
+  },
+  "sources": {
+    "factionPack": "content/tyranids-faction-pack.en.json",
+    "codexDatasheets": "content/tyranids-codex-datasheets.en.json",
+    "relatedRules": "content/tyranids-related-rules.en.json",
+    "manifest": "sources/source-manifest.json"
+  }
+}

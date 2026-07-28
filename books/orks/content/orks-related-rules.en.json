@@ -1,0 +1,1884 @@
+{
+  "schema": 1,
+  "faction": "Orks",
+  "sourceId": "orks-faction-pack-v1.0",
+  "stratagems": {
+    "brutal-broadside": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-battlewagon"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "impending-crunch": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-battlewagon",
+              "unit-hunta-rig",
+              "unit-kill-rig"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "ended-charge-move"
+      ]
+    },
+    "devastating-drift": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-battlewagon",
+              "unit-hunta-rig",
+              "unit-kill-rig"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "made-charge-move-this-turn",
+        "selected-to-fight"
+      ]
+    },
+    "long-uncontrolled-bursts": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "speshul-shells": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot",
+        "attack-target-within-9"
+      ]
+    },
+    "call-dat-dakka": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "enemy-unit-that-targeted-this-unit-has-shot"
+      ]
+    },
+    "taktikal-retreat": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-kommandos",
+              "unit-stormboyz"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-fall-back"
+      ]
+    },
+    "on-to-da-next": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-boyz",
+              "unit-kommandos",
+              "unit-stormboyz"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-within-engagement-range",
+        "was-engaged-at-start-of-phase"
+      ]
+    },
+    "ded-sneaky": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-kommandos",
+              "unit-stormboyz"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-within-engagement-range"
+      ]
+    },
+    "on-da-move": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-move",
+        "cannot-charge-if-used-turbo"
+      ]
+    },
+    "mobile-dakkastorm": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ],
+            "anyKeywords": [
+              "SPEED FREEKS",
+              "TRUKK"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "unit-has-shot",
+        "enemy-unit-hit-by-non-indirect-attack"
+      ]
+    },
+    "speshul-ammo": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot",
+        "effect-excludes-torrent-weapons"
+      ]
+    },
+    "ded-killy-construction": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ],
+            "anyKeywords": [
+              "SPEED FREEKS",
+              "TRUKK"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-fight",
+        "damage-bonus-requires-charge-move"
+      ]
+    },
+    "dust-trails": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-as-target-of-enemy-attack"
+      ]
+    },
+    "evasive-manoova": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ],
+            "anyKeywords": [
+              "SPEED FREEKS",
+              "TRUKK"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-within-engagement-range"
+      ]
+    },
+    "mount-up-ladz": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-infantry",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS",
+              "INFANTRY"
+            ]
+          }
+        },
+        {
+          "id": "friendly-transport",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "TRANSPORT"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "infantry-not-within-engagement-range",
+        "infantry-able-to-embark",
+        "infantry-wholly-within-6-of-transport"
+      ]
+    },
+    "mekanised-brutality": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-battlewagon",
+              "unit-kill-rig",
+              "unit-hunta-rig"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-move"
+      ]
+    },
+    "run-em-down": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-battlewagon",
+              "unit-kill-rig",
+              "unit-hunta-rig"
+            ]
+          }
+        },
+        {
+          "id": "other-friendly-units",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 2,
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "ORKS",
+                  "VEHICLE"
+                ]
+              },
+              {
+                "allKeywords": [
+                  "ORKS",
+                  "MONSTER"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-move",
+        "up-to-two-other-units-within-6"
+      ]
+    },
+    "armoured-duellists": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS",
+              "VEHICLE"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot",
+        "attack-target-is-monster-or-vehicle"
+      ]
+    },
+    "impervious": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-battlewagon",
+              "unit-kill-rig",
+              "unit-hunta-rig"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-as-target-of-enemy-attack",
+        "attacking-strength-greater-than-toughness"
+      ]
+    },
+    "yooz-in-trouble-now": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-transport",
+          "side": "friendly",
+          "subject": "model",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-battlewagon",
+              "unit-hunta-rig",
+              "unit-kill-rig"
+            ]
+          }
+        },
+        {
+          "id": "embarked-friendly-infantry",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS",
+              "INFANTRY"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "transport-hit-by-enemy-attack",
+        "infantry-embarked-in-transport"
+      ]
+    },
+    "bash-and-grab": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-fight",
+        "enemy-target-within-range-of-loot-objective"
+      ]
+    },
+    "grab-and-bash": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ],
+            "noneKeywords": [
+              "GRETCHIN"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "within-range-of-loot-objective"
+      ]
+    },
+    "boardin-rush": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-move"
+      ]
+    },
+    "deck-fraggers": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot",
+        "attack-target-is-infantry"
+      ]
+    },
+    "rolling-loot-heap": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-flash-gitz"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-selected-to-shoot"
+      ]
+    },
+    "krump-and-run": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "ORKS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "enemy-unit-just-fell-back",
+        "was-within-engagement-range-of-that-enemy-at-start-of-phase",
+        "not-within-engagement-range"
+      ]
+    }
+  },
+  "enhancements": {
+    "runnin-boots": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "blitzkaptin": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-deffkilla-wartrike",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field",
+              "unit-painboy-on-warbike",
+              "unit-warboss-on-warbike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "supercharged-squig-oil": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-mek",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "tuff-git": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-eadstompa": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-beastboss",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-big-gob": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-beastboss",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-da-biggest-boss": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-beastboss",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-tellyporta": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-warboss-in-mega-armour"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-glory-hog": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-beastboss-on-squigosaur"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-proper-killy": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-painboss",
+              "unit-wurrboy",
+              "unit-beast-snagga-boyz",
+              "unit-hunta-rig",
+              "unit-kill-rig",
+              "unit-squighog-boyz"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-skrag-every-stash": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-painboss",
+              "unit-wurrboy",
+              "unit-beast-snagga-boyz",
+              "unit-hunta-rig",
+              "unit-kill-rig",
+              "unit-squighog-boyz"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-surly-as-a-squiggoth": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-beastboss-on-squigosaur"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-gitfinder-gogglez": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-mek",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-press-it-fasta": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-mek",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-smoky-gubbinz": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-mek",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-supa-glowy-fing": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-mek",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "da-kaptin": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-deffkilla-wartrike",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-warboss-on-warbike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "git-spotter-squig": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-deffkilla-wartrike",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field",
+              "unit-painboy-on-warbike",
+              "unit-warboss-on-warbike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "bionik-workshop": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-big-mek",
+              "unit-painboy",
+              "unit-big-mek-dakkarig",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "razgits-magik-map": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-deffkilla-wartrike",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field",
+              "unit-painboy-on-warbike",
+              "unit-warboss-on-warbike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-bloodthirsty-belligerence": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-beast-snagga-boyz",
+              "unit-boyz",
+              "unit-breaka-boyz",
+              "unit-burna-boyz",
+              "unit-flash-gitz",
+              "unit-gretchin",
+              "unit-kommandos",
+              "unit-lootas",
+              "unit-meganobz",
+              "unit-nobz",
+              "unit-stormboyz",
+              "unit-tankbustas",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-brutal-but-kunnin": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-beast-snagga-boyz",
+              "unit-boyz",
+              "unit-breaka-boyz",
+              "unit-burna-boyz",
+              "unit-flash-gitz",
+              "unit-gretchin",
+              "unit-kommandos",
+              "unit-lootas",
+              "unit-meganobz",
+              "unit-nobz",
+              "unit-stormboyz",
+              "unit-tankbustas",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-ferocious-show-off": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-beast-snagga-boyz",
+              "unit-boyz",
+              "unit-breaka-boyz",
+              "unit-burna-boyz",
+              "unit-flash-gitz",
+              "unit-gretchin",
+              "unit-kommandos",
+              "unit-lootas",
+              "unit-meganobz",
+              "unit-nobz",
+              "unit-stormboyz",
+              "unit-tankbustas",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-raucous-warcaller": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-beast-snagga-boyz",
+              "unit-boyz",
+              "unit-breaka-boyz",
+              "unit-burna-boyz",
+              "unit-flash-gitz",
+              "unit-gretchin",
+              "unit-kommandos",
+              "unit-lootas",
+              "unit-meganobz",
+              "unit-nobz",
+              "unit-stormboyz",
+              "unit-tankbustas",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-fasta-than-yooz": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-beast-snagga-boyz",
+              "unit-boyz",
+              "unit-breaka-boyz",
+              "unit-burna-boyz",
+              "unit-flash-gitz",
+              "unit-gretchin",
+              "unit-kommandos",
+              "unit-lootas",
+              "unit-meganobz",
+              "unit-nobz",
+              "unit-stormboyz",
+              "unit-tankbustas",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-speed-makes-right": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-deffkilla-wartrike",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field",
+              "unit-painboy-on-warbike",
+              "unit-warboss-on-warbike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-squig-hide-tyres": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-deffkilla-wartrike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-wazblasta": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-deffkilla-wartrike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "dead-shiny-shootas": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-beast-snagga-boyz",
+              "unit-boyz",
+              "unit-breaka-boyz",
+              "unit-burna-boyz",
+              "unit-flash-gitz",
+              "unit-gretchin",
+              "unit-kommandos",
+              "unit-lootas",
+              "unit-meganobz",
+              "unit-nobz",
+              "unit-stormboyz",
+              "unit-tankbustas",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "da-gobshot-thunderbuss": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-beast-snagga-boyz",
+              "unit-boyz",
+              "unit-breaka-boyz",
+              "unit-burna-boyz",
+              "unit-flash-gitz",
+              "unit-gretchin",
+              "unit-kommandos",
+              "unit-lootas",
+              "unit-meganobz",
+              "unit-nobz",
+              "unit-stormboyz",
+              "unit-tankbustas",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "boarding-ramps": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-hunta-rig",
+              "unit-kill-rig",
+              "unit-battlewagon"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "targetin-gizmos": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-hunta-rig",
+              "unit-kill-rig",
+              "unit-battlewagon"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "kustom-shokk-box": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-deffkilla-wartrike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "dakkamek": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-mek",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "supa-burny-fuel": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-deffkilla-wartrike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "master-meknologist": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-big-mek",
+              "unit-big-mek-dakkarig",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "morks-kunnin": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-deffkilla-wartrike",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field",
+              "unit-painboy-on-warbike",
+              "unit-warboss-on-warbike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "slippery-git": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-beastboss",
+              "unit-warboss"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-follow-me-ladz": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-deffkilla-wartrike",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field",
+              "unit-painboy-on-warbike",
+              "unit-warboss-on-warbike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-headwoppas-killchoppa": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-deffkilla-wartrike",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field",
+              "unit-painboy-on-warbike",
+              "unit-warboss-on-warbike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-kunnin-but-brutal": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-deffkilla-wartrike",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field",
+              "unit-painboy-on-warbike",
+              "unit-warboss-on-warbike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-supa-cybork-body": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-bannernob",
+              "unit-beastboss",
+              "unit-beastboss-on-squigosaur",
+              "unit-big-mek",
+              "unit-big-mek-in-mega-armour",
+              "unit-big-mek-with-shokk-attack-gun",
+              "unit-bigboss",
+              "unit-deffkilla-wartrike",
+              "unit-mek",
+              "unit-painboss",
+              "unit-painboy",
+              "unit-warboss",
+              "unit-warboss-in-mega-armour",
+              "unit-weirdboy",
+              "unit-wurrboy",
+              "unit-big-mek-on-warbike",
+              "unit-big-mek-with-kustom-force-field",
+              "unit-painboy-on-warbike",
+              "unit-warboss-on-warbike"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    }
+  }
+}

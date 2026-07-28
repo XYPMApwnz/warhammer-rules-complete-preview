@@ -1,0 +1,1312 @@
+{
+  "schema": 1,
+  "faction": "Tyranids",
+  "stratagems": {
+    "counterpredation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-deathleaper",
+              "unit-lictor",
+              "unit-neurolictor",
+              "unit-von-ryans-leapers"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "hypersensory-adaptations": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-deathleaper",
+              "unit-lictor",
+              "unit-neurolictor",
+              "unit-von-ryans-leapers"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "scanner-gheist": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-deathleaper",
+              "unit-lictor",
+              "unit-neurolictor"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-within-engagement-range"
+      ]
+    },
+    "catalytic-biofortification": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-norn-assimilator"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "lesser-prey": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-norn-assimilator",
+              "unit-norn-emissary"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot-or-fight"
+      ]
+    },
+    "tanglestrike-rounds": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-norn-assimilator"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "alien-physiology": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-tyranid-warriors-with-melee-bio-weapons",
+              "unit-tyranid-warriors-with-ranged-bio-weapons"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "synaptic-micronodes": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-tyranid-warriors-with-melee-bio-weapons",
+              "unit-tyranid-warriors-with-ranged-bio-weapons"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "unit-destroyed-enemy-unit"
+      ]
+    },
+    "parasitic-payload": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-tyranid-warriors-with-melee-bio-weapons",
+              "unit-tyranid-warriors-with-ranged-bio-weapons"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "adaptive-optimisation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-mawloc",
+              "unit-trygon"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot-or-fight"
+      ]
+    },
+    "replenishing-swarms": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "TYRANIDS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "wholly-within-9-of-tunnel-marker"
+      ]
+    },
+    "enfilading-emergence": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "TYRANIDS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "set-up-as-reinforcements-this-turn"
+      ]
+    },
+    "tunnel-network": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "TYRANIDS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "wholly-within-9-of-tunnel-marker",
+        "not-within-engagement-range"
+      ]
+    },
+    "swarming-assault": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "TYRANIDS",
+              "MONSTER"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "set-up-as-reinforcements-this-turn"
+      ]
+    },
+    "retreat-below": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "TYRANIDS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "not-within-engagement-range",
+        "up-to-two-targets-if-burrower"
+      ]
+    }
+  },
+  "enhancements": {
+    "encircling-horrors": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-lictor",
+              "unit-neurolictor",
+              "unit-von-ryans-leapers"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "cryptophotaic-camouflage": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-von-ryans-leapers"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-biophagic-flow-aura": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-instinctive-defense": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-parasitic-biomorphology": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-regenerating-monstrosity": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hyperadapted-raveners",
+              "unit-parasite-of-mortrex",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-enraged-reserves": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-hive-tyrant",
+              "unit-neurotyrant",
+              "unit-tervigon",
+              "unit-winged-hive-tyrant",
+              "unit-tyrannocyte",
+              "unit-carnifexes",
+              "unit-exocrine",
+              "unit-harpy",
+              "unit-haruspex",
+              "unit-hive-crone",
+              "unit-maleceptor",
+              "unit-mawloc",
+              "unit-norn-assimilator",
+              "unit-norn-emissary",
+              "unit-psychophage",
+              "unit-screamer-killer",
+              "unit-sporocyst",
+              "unit-toxicrene",
+              "unit-trygon",
+              "unit-tyrannofex",
+              "unit-harridan",
+              "unit-hierophant",
+              "unit-barbed-hierodule",
+              "unit-dimachaeron",
+              "unit-scythed-hierodule"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-monstrous-nemesis": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-hive-tyrant",
+              "unit-neurotyrant",
+              "unit-tervigon",
+              "unit-winged-hive-tyrant",
+              "unit-tyrannocyte",
+              "unit-carnifexes",
+              "unit-exocrine",
+              "unit-harpy",
+              "unit-haruspex",
+              "unit-hive-crone",
+              "unit-maleceptor",
+              "unit-mawloc",
+              "unit-norn-assimilator",
+              "unit-norn-emissary",
+              "unit-psychophage",
+              "unit-screamer-killer",
+              "unit-sporocyst",
+              "unit-toxicrene",
+              "unit-trygon",
+              "unit-tyrannofex",
+              "unit-harridan",
+              "unit-hierophant",
+              "unit-barbed-hierodule",
+              "unit-dimachaeron",
+              "unit-scythed-hierodule"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-null-nodules": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-hive-tyrant",
+              "unit-neurotyrant",
+              "unit-tervigon",
+              "unit-winged-hive-tyrant",
+              "unit-tyrannocyte",
+              "unit-carnifexes",
+              "unit-exocrine",
+              "unit-harpy",
+              "unit-haruspex",
+              "unit-hive-crone",
+              "unit-maleceptor",
+              "unit-mawloc",
+              "unit-norn-assimilator",
+              "unit-norn-emissary",
+              "unit-psychophage",
+              "unit-screamer-killer",
+              "unit-sporocyst",
+              "unit-toxicrene",
+              "unit-trygon",
+              "unit-tyrannofex",
+              "unit-harridan",
+              "unit-hierophant",
+              "unit-barbed-hierodule",
+              "unit-dimachaeron",
+              "unit-scythed-hierodule"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-ominous-presence": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-hive-tyrant",
+              "unit-neurotyrant",
+              "unit-tervigon",
+              "unit-winged-hive-tyrant",
+              "unit-tyrannocyte",
+              "unit-carnifexes",
+              "unit-exocrine",
+              "unit-harpy",
+              "unit-haruspex",
+              "unit-hive-crone",
+              "unit-maleceptor",
+              "unit-mawloc",
+              "unit-norn-assimilator",
+              "unit-norn-emissary",
+              "unit-psychophage",
+              "unit-screamer-killer",
+              "unit-sporocyst",
+              "unit-toxicrene",
+              "unit-trygon",
+              "unit-tyrannofex",
+              "unit-harridan",
+              "unit-hierophant",
+              "unit-barbed-hierodule",
+              "unit-dimachaeron",
+              "unit-scythed-hierodule"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-adaptive-biology": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-alien-cunning": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-perfectly-adapted": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-synaptic-linchpin": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "synaptic-strategy": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "tremor-senses": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "vanguard-intellect": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-hyperadapted-raveners",
+              "unit-parasite-of-mortrex",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "trygon-prime": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-trygon"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-power-of-the-hive-mind": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-neurotyrant",
+              "unit-tervigon",
+              "unit-winged-hive-tyrant",
+              "unit-maleceptor",
+              "unit-norn-emissary",
+              "unit-zoanthropes"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-psychostatic-disruption-aura": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-maleceptor",
+              "unit-norn-assimilator",
+              "unit-norn-emissary",
+              "unit-neurolictor",
+              "unit-tyranid-warriors-with-melee-bio-weapons",
+              "unit-tyranid-warriors-with-ranged-bio-weapons",
+              "unit-zoanthropes",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-synaptic-control": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-maleceptor",
+              "unit-norn-assimilator",
+              "unit-norn-emissary",
+              "unit-neurolictor",
+              "unit-tyranid-warriors-with-melee-bio-weapons",
+              "unit-tyranid-warriors-with-ranged-bio-weapons",
+              "unit-zoanthropes",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-the-dirgeheart-of-kharis-aura": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-maleceptor",
+              "unit-norn-assimilator",
+              "unit-norn-emissary",
+              "unit-neurolictor",
+              "unit-tyranid-warriors-with-melee-bio-weapons",
+              "unit-tyranid-warriors-with-ranged-bio-weapons",
+              "unit-zoanthropes",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "destabilising-predation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-norn-emissary"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "synaptoprescience": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-norn-assimilator"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-adrenalised-onslaught": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-naturalised-camoflage": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-piercing-talons": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-relentless-hunger": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-chameleonic": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hyperadapted-raveners",
+              "unit-parasite-of-mortrex",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-gargoyles",
+              "unit-tyrannocyte",
+              "unit-harpy",
+              "unit-hive-crone",
+              "unit-mawloc",
+              "unit-trygon",
+              "unit-genestealers",
+              "unit-lictor",
+              "unit-neurolictor",
+              "unit-raveners",
+              "unit-von-ryans-leapers"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-hunting-grounds": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-neuronode": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hive-tyrant",
+              "unit-hyperadapted-raveners",
+              "unit-neurotyrant",
+              "unit-parasite-of-mortrex",
+              "unit-tervigon",
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-malanthrope"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-stalker": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-broodlord",
+              "unit-hyperadapted-raveners",
+              "unit-parasite-of-mortrex",
+              "unit-winged-hive-tyrant",
+              "unit-winged-tyranid-prime",
+              "unit-gargoyles",
+              "unit-tyrannocyte",
+              "unit-harpy",
+              "unit-hive-crone",
+              "unit-mawloc",
+              "unit-trygon",
+              "unit-genestealers",
+              "unit-lictor",
+              "unit-neurolictor",
+              "unit-raveners",
+              "unit-von-ryans-leapers"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "elevated-might": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-tyranid-prime"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "ocular-adaptation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-tyranid-prime-with-lash-whip",
+              "unit-winged-tyranid-prime"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    }
+  }
+}

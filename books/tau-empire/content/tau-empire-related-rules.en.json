@@ -1,0 +1,782 @@
+{
+  "schema": 1,
+  "faction": "T'au Empire",
+  "stratagems": {
+    "marker-beacon": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-pathfinder-team",
+              "unit-stealth-battlesuits"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "controls-objective"
+      ]
+    },
+    "microdrone-support": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-pathfinder-team",
+              "unit-stealth-battlesuits"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "started-action"
+      ]
+    },
+    "autoreactive-camouflage": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-pathfinder-team",
+              "unit-stealth-battlesuits"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "hidden",
+        "targeted-by-enemy-attack"
+      ]
+    },
+    "experimental-modifications": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "anyKeywords": [
+              "KROOT",
+              "VESPID STINGWINGS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-attack"
+      ]
+    },
+    "alien-expertise": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "anyKeywords": [
+              "KROOT",
+              "VESPID STINGWINGS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-advance"
+      ]
+    },
+    "guided-by-unity": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "T'AU EMPIRE"
+            ],
+            "noneKeywords": [
+              "KROOT",
+              "VESPID STINGWINGS"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    },
+    "experimental-ammunition": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "allKeywords": [
+              "BATTLESUIT",
+              "CHARACTER"
+            ]
+          }
+        }
+      ],
+      "conditions": [
+        "selected-to-shoot"
+      ]
+    }
+  },
+  "enhancements": {
+    "negation-emitters-upgrade": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-stealth-battlesuits"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "unmasking-suite-upgrade": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-pathfinder-team",
+              "unit-stealth-battlesuits",
+              "unit-ghostkeel-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "student-of-kauyon": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-kroot-flesh-shaper",
+              "unit-kroot-trail-shaper",
+              "unit-kroot-war-shaper"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "admired-leader": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-cadre-fireblade",
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-ethereal",
+              "unit-firesight-team",
+              "unit-commander-in-crisis-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "thermoneutronic-projector": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-stealth-battlesuits",
+              "unit-broadside-battlesuits",
+              "unit-crisis-fireknife-battlesuits",
+              "unit-crisis-starscythe-battlesuits",
+              "unit-crisis-sunforge-battlesuits",
+              "unit-ghostkeel-battlesuit",
+              "unit-riptide-battlesuit",
+              "unit-commander-in-crisis-battlesuit",
+              "unit-crisis-battlesuits",
+              "unit-rvarna-battlesuit",
+              "unit-xv9-hazard-battlesuits",
+              "unit-yvahra-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "plasma-accelerator-rifle": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-stealth-battlesuits",
+              "unit-broadside-battlesuits",
+              "unit-crisis-fireknife-battlesuits",
+              "unit-crisis-starscythe-battlesuits",
+              "unit-crisis-sunforge-battlesuits",
+              "unit-ghostkeel-battlesuit",
+              "unit-riptide-battlesuit",
+              "unit-commander-in-crisis-battlesuit",
+              "unit-crisis-battlesuits",
+              "unit-rvarna-battlesuit",
+              "unit-xv9-hazard-battlesuits",
+              "unit-yvahra-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "supernova-launcher": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-stealth-battlesuits",
+              "unit-broadside-battlesuits",
+              "unit-crisis-fireknife-battlesuits",
+              "unit-crisis-starscythe-battlesuits",
+              "unit-crisis-sunforge-battlesuits",
+              "unit-ghostkeel-battlesuit",
+              "unit-riptide-battlesuit",
+              "unit-commander-in-crisis-battlesuit",
+              "unit-crisis-battlesuits",
+              "unit-rvarna-battlesuit",
+              "unit-xv9-hazard-battlesuits",
+              "unit-yvahra-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-exemplar-of-the-kauyon": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-cadre-fireblade",
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-ethereal",
+              "unit-firesight-team",
+              "unit-kroot-lone-spear",
+              "unit-commander-in-crisis-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-precision-of-the-patient-hunter": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-cadre-fireblade",
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-ethereal",
+              "unit-firesight-team",
+              "unit-kroot-flesh-shaper",
+              "unit-kroot-lone-spear",
+              "unit-kroot-trail-shaper",
+              "unit-kroot-war-shaper",
+              "unit-commander-in-crisis-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-solid-image-projection-unit": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-cadre-fireblade",
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-ethereal",
+              "unit-firesight-team",
+              "unit-kroot-flesh-shaper",
+              "unit-kroot-lone-spear",
+              "unit-kroot-trail-shaper",
+              "unit-kroot-war-shaper",
+              "unit-commander-in-crisis-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-through-unity-devastation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-cadre-fireblade",
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-ethereal",
+              "unit-firesight-team",
+              "unit-kroot-lone-spear",
+              "unit-commander-in-crisis-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-borthrod-gland": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-kroot-flesh-shaper"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-kroothawk-flock": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-kroot-flesh-shaper",
+              "unit-kroot-lone-spear",
+              "unit-kroot-trail-shaper",
+              "unit-kroot-war-shaper",
+              "unit-kroot-carnivores",
+              "unit-kroot-farstalkers",
+              "unit-kroot-hounds",
+              "unit-krootox-rampagers",
+              "unit-krootox-riders",
+              "unit-great-knarloc",
+              "unit-knarloc-riders"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-nomadic-hunter": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-kroot-trail-shaper"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-root-carved-weapons": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-kroot-war-shaper"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-coordinated-exploitation": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-cadre-fireblade",
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-ethereal",
+              "unit-firesight-team",
+              "unit-kroot-lone-spear",
+              "unit-commander-in-crisis-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-exemplar-of-the-montka": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-cadre-fireblade",
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-ethereal",
+              "unit-firesight-team",
+              "unit-kroot-lone-spear",
+              "unit-commander-in-crisis-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-strategic-conqueror": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-cadre-fireblade",
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-ethereal",
+              "unit-firesight-team",
+              "unit-kroot-flesh-shaper",
+              "unit-kroot-lone-spear",
+              "unit-kroot-trail-shaper",
+              "unit-kroot-war-shaper",
+              "unit-commander-in-crisis-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-strike-swiftly": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-cadre-fireblade",
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-ethereal",
+              "unit-firesight-team",
+              "unit-kroot-flesh-shaper",
+              "unit-kroot-lone-spear",
+              "unit-kroot-trail-shaper",
+              "unit-kroot-war-shaper",
+              "unit-commander-in-crisis-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-internal-grenade-racks": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-stealth-battlesuits",
+              "unit-broadside-battlesuits",
+              "unit-crisis-fireknife-battlesuits",
+              "unit-crisis-starscythe-battlesuits",
+              "unit-crisis-sunforge-battlesuits",
+              "unit-ghostkeel-battlesuit",
+              "unit-riptide-battlesuit",
+              "unit-commander-in-crisis-battlesuit",
+              "unit-crisis-battlesuits",
+              "unit-rvarna-battlesuit",
+              "unit-xv9-hazard-battlesuits",
+              "unit-yvahra-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-prototype-weapon-system": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-stealth-battlesuits",
+              "unit-broadside-battlesuits",
+              "unit-crisis-fireknife-battlesuits",
+              "unit-crisis-starscythe-battlesuits",
+              "unit-crisis-sunforge-battlesuits",
+              "unit-ghostkeel-battlesuit",
+              "unit-riptide-battlesuit",
+              "unit-commander-in-crisis-battlesuit",
+              "unit-crisis-battlesuits",
+              "unit-rvarna-battlesuit",
+              "unit-xv9-hazard-battlesuits",
+              "unit-yvahra-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-puretide-engram-neurochip": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-stealth-battlesuits",
+              "unit-broadside-battlesuits",
+              "unit-crisis-fireknife-battlesuits",
+              "unit-crisis-starscythe-battlesuits",
+              "unit-crisis-sunforge-battlesuits",
+              "unit-ghostkeel-battlesuit",
+              "unit-riptide-battlesuit",
+              "unit-commander-in-crisis-battlesuit",
+              "unit-crisis-battlesuits",
+              "unit-rvarna-battlesuit",
+              "unit-xv9-hazard-battlesuits",
+              "unit-yvahra-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    },
+    "enhancement-starflare-ignition-system": {
+      "v": 1,
+      "roles": [
+        {
+          "id": "friendly-target",
+          "side": "friendly",
+          "subject": "unit",
+          "count": 1,
+          "selector": {
+            "unitIds": [
+              "unit-commander-in-coldstar-battlesuit",
+              "unit-commander-in-enforcer-battlesuit",
+              "unit-stealth-battlesuits",
+              "unit-broadside-battlesuits",
+              "unit-crisis-fireknife-battlesuits",
+              "unit-crisis-starscythe-battlesuits",
+              "unit-crisis-sunforge-battlesuits",
+              "unit-ghostkeel-battlesuit",
+              "unit-riptide-battlesuit",
+              "unit-commander-in-crisis-battlesuit",
+              "unit-crisis-battlesuits",
+              "unit-rvarna-battlesuit",
+              "unit-xv9-hazard-battlesuits",
+              "unit-yvahra-battlesuit"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      ],
+      "conditions": []
+    }
+  }
+}
