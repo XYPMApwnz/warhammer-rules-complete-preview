@@ -1,0 +1,96 @@
+{
+  "schema": "waha-core-known-source-defects/v1",
+  "corpusBinding": {
+    "corpusSchema": "waha-11e-core-corpus/v1",
+    "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+    "corePageRawSha256": "E3414B6A2E45F15BF2146370B2BDBF92581517D4F17E2533C6B49759927FEEB8",
+    "appendixPageRawSha256": "C9AE762F12EE05BF43CC6AC58987BA4D7701651CB60AD06CFBCAFFD5A451BA02"
+  },
+  "defects": [
+    {
+      "id": "waha-core-18-07-suspect-after-moving-clause",
+      "kind": "KNOWN_SOURCE_SEMANTIC_ANOMALY",
+      "status": "ADJUDICATED_DETERMINISTIC_SOURCE_CONTENT",
+      "source": {
+        "page": "core",
+        "unitId": "waha-core-rule-18-07",
+        "code": "18.07",
+        "stableDomId": "SHOCK-DISEMBARK-MOVE",
+        "sourceOrder": 115,
+        "unitContentHash": "2A2D028F019C35F97B6812B665CFFD07A8C4B2D2644F23726A6CB58479483402",
+        "occurrenceContentHash": "636CC3AC24F01AABE74475DA4FE29BADCFF24E945738C393E4D66F7472C873A1",
+        "suspectClauseNormalizedSha256": "22C33642C45DC2EE3105F753370F19C4254EA3E0681B497CF78DBD575CF76F6B"
+      },
+      "anomalyEvidence": {
+        "summary": "The After Moving clause uses engagement and Fight-step semantics that are internally inconsistent with an embarked unit beginning a disembark move.",
+        "unexpectedReferenceTargets": [
+          "code:03.04",
+          "/wh40k11ed/the-rules/core-rules/#When-a-Unit-is-Selected-to-Fight",
+          "/wh40k11ed/the-rules/core-rules/#3.-Fight-Step"
+        ],
+        "officialBoundary": "Universal Rules Updates v1.1 establishes the 18.07 identity and advance-move trigger but does not publish the full move sequence."
+      },
+      "disposition": {
+        "capture": "RETAIN_VERBATIM_IN_PINNED_CORPUS",
+        "canonicalUse": "PRESERVE_AND_CERTIFY_EXACT_CURRENT_WAHA_WORDING",
+        "suspectClauseUse": "INCLUDE_AS_ACCEPTED_OPERATIONAL_CONTENT",
+        "repair": "NO_MODEL_CORRECTION_OR_INVENTED_REPLACEMENT",
+        "overridePolicy": "STRONGER_ENROLLED_CURRENT_GW_DIRECT_CONTRADICTION_WINS",
+        "certificationBehavior": "NON_BLOCKING_KNOWN_SOURCE_SEMANTIC_ANOMALY",
+        "recertification": "REQUIRE_NEW_ADJUDICATION_IF_ANY_BOUND_HASH_OR_REFERENCE_TARGET_CHANGES"
+      }
+    },
+    {
+      "id": "waha-core-24-23-devastating-wounds-dangling-fragment",
+      "kind": "KNOWN_SOURCE_NAVIGATION_DEFECT",
+      "status": "ADJUDICATED_SOURCE_DEFECT",
+      "source": {
+        "page": "core",
+        "unitId": "waha-core-rule-24-23",
+        "code": "24.23",
+        "sourceOrder": 162,
+        "unitContentHash": "7B813BF9E9AC2A97F43998103868D6A4215263E24B77953E1659A780F78F02CD",
+        "occurrenceContentHash": "2C505B07F0095FD4E20A36F42DE0D1B70BA16A3AFD8C899F1306F293E2D608C1",
+        "label": "[DEVASTATING WOUNDS]",
+        "rawTarget": "/wh40k11ed/the-rules/core-rules/#Assault-"
+      },
+      "adjudicatedTarget": {
+        "page": "core",
+        "unitId": "waha-core-rule-24-10",
+        "code": "24.10",
+        "unitContentHash": "8146890C9AEEED47EA0F374DF8C0A15D00DD7E0D736160542F6C23392FF49F3D",
+        "occurrenceContentHash": "F99365825F361D07C2CE2C21F286AB3381B855451E896129638B78BBC49990FC"
+      },
+      "disposition": {
+        "capture": "RETAIN_RAW_TARGET_IN_PINNED_CORPUS",
+        "canonicalNavigation": "MAP_TO_ADJUDICATED_TARGET_CODE",
+        "allowanceScope": "EXACTLY_ONE_MATCHING_DANGLING_REFERENCE",
+        "recertification": "REQUIRE_NEW_ADJUDICATION_IF_ANY_BOUND_HASH_LABEL_TARGET_OR_OCCURRENCE_COUNT_CHANGES",
+        "overridePolicy": "STRICT_UNIQUE_DEFINED_TERM_TARGET_ONLY",
+        "certificationBehavior": "RESOLVE_TO_CANONICAL_24_10_WITHOUT_REPRODUCING_BROKEN_HREF"
+      }
+    },
+    {
+      "id": "waha-appendix-19-01-01-stray-angle-marker",
+      "kind": "KNOWN_SOURCE_MARKUP_DEFECT",
+      "status": "ADJUDICATED_SOURCE_ARTIFACT",
+      "source": {
+        "page": "appendix",
+        "unitId": "waha-appendix-rule-19-01-01",
+        "code": "19.01.01",
+        "sourceOrder": 95,
+        "unitContentHash": "333A6F5CF472DEEA8DAC198A163564FD97E883EED77995568D00B1BBB8131A53",
+        "occurrenceContentHash": "1831CFF0C9334F48D0D99DD5A8E3D691D38BB28B8F807EA892838DBAA5592703",
+        "rawFragment": "when the <bodyguard unit"
+      },
+      "disposition": {
+        "capture": "RETAIN_VERBATIM_IN_PINNED_CORPUS",
+        "canonicalText": "REMOVE_UNMATCHED_MARKUP_DELIMITER_BEFORE_BODYGUARD",
+        "allowanceScope": "EXACT_BOUND_FRAGMENT_ONLY",
+        "semanticEffect": "NONE",
+        "recertification": "REQUIRE_NEW_ADJUDICATION_IF_ANY_BOUND_HASH_OR_FRAGMENT_CHANGES",
+        "certificationBehavior": "NORMALIZE_SOURCE_MARKUP_ARTIFACT_WITHOUT_CHANGING_GAMEPLAY_SEMANTICS"
+      }
+    }
+  ]
+}

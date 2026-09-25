@@ -16,6 +16,7 @@ function fixture(){
   fs.mkdirSync(path.join(stagedCore,'reader'),{recursive:true});
   fs.mkdirSync(path.join(root,'books','shared'),{recursive:true});
   fs.cpSync(path.join(coreRoot,'content'),path.join(stagedCore,'content'),{recursive:true});
+  fs.cpSync(path.join(coreRoot,'sources'),path.join(stagedCore,'sources'),{recursive:true});
   fs.cpSync(path.join(coreRoot,'tools'),path.join(stagedCore,'tools'),{recursive:true});
   fs.copyFileSync(path.join(coreRoot,'reader','build.mjs'),path.join(stagedCore,'reader','build.mjs'));
   fs.copyFileSync(path.join(repoRoot,'books','shared','runtime-asset-versions.json'),path.join(root,'books','shared','runtime-asset-versions.json'));
@@ -56,6 +57,11 @@ const override=buildAndRead(({core})=>{
   oldOverride=record.currentLine;
   record.currentLine=overrideMarker;
   fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
+  const baseFile=path.join(core,'content','core-rules.digital-11e.json');
+  const base=JSON.parse(fs.readFileSync(baseFile,'utf8'));
+  const baseRecord=base.records.find(record=>record.code==='17.03');
+  baseRecord.text=baseRecord.text.replace(oldOverride,overrideMarker);
+  fs.writeFileSync(baseFile,JSON.stringify(base,null,2)+'\n');
 });
 assert(override.html.includes(overrideMarker)&&override.search.includes(overrideMarker),'official override mutation did not reach Reader card/search');
 assert(new RegExp(`data-term="core-rule-17-03-shooting-at-engaged-monsters-and-vehicles"[^>]*data-term-definition="[^"]*${overrideMarker}`).test(override.html),'official override mutation did not reach Reader popup projection');

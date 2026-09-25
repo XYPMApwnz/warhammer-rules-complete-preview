@@ -34,6 +34,9 @@ assert.equal(effective.records.filter(record=>record.code==='17.03').length,1,'t
 const older=structuredClone(base);
 const oldRevival=older.records.find(record=>record.code==='01.02.03');
 const oldCp=older.records.find(record=>record.code==='08.02.01');
+oldRevival.text=source.ruleOverrides.find(update=>update.code==='01.02.03').previousLine;
+oldRevival.lists=[];
+oldCp.text=oldCp.text.replace(/\s*In addition[^\n]*single extra CP per battle round\.?/i,'');
 const repaired=applyCoreCurrentOfficial(older,source);
 assert(recordText(repaired.records.find(record=>record.code==='01.02.03')).includes('returns on its own as a unit of one'),'later GW override must defeat older secondary revival text');
 assert(!recordText(repaired.records.find(record=>record.code==='01.02.03')).includes('still part of that attached unit'),'superseded revival semantics must disappear');
@@ -78,8 +81,11 @@ assert(search.find(item=>item.code==='15.06')?.text.includes('Tank Shock'),'form
 assert(search.find(item=>item.code==='15.05')?.text.includes('Grenade Stratagem'),'former Grenade name must find Explosives');
 assert(search.find(item=>item.code==='17.03')?.text.includes('(excluding attacks made with [BLAST] weapons)'),'Reader search must use current effective main-rule text');
 const moveUpdate=effective.universalRulesUpdates.find(update=>update.id==='uru-2026-08-26-disembark-move-types');
-assert(moveUpdate?.sourceScope==='GLOBAL_CORE'&&moveUpdate.text.includes('assault disembark move')&&moveUpdate.text.includes('shock disembark move')&&new Set(moveUpdate.canonicalReferences).size===2&&moveUpdate.canonicalReferences.includes('18.06')&&moveUpdate.canonicalReferences.includes('18.07'),'August global disembark mapping must bind both move types without fabricating full definitions');
-assert(!byCode.has('18.06')&&!byCode.has('18.07'),'unverified full disembark definitions must not be invented from incomplete secondary copies');
+assert(moveUpdate?.sourceScope==='GLOBAL_CORE'&&moveUpdate.text.includes('assault disembark move')&&moveUpdate.text.includes('shock disembark move')&&new Set(moveUpdate.canonicalReferences).size===2&&moveUpdate.canonicalReferences.includes('18.06')&&moveUpdate.canonicalReferences.includes('18.07'),'August global disembark mapping must bind both move types');
+assert(byCode.has('18.06')&&byCode.has('18.07'),'accepted deterministic Waha definitions must be available as full Core records');
+assert.equal(byCode.get('18.06').title,'ASSAULT DISEMBARK MOVE');
+assert.equal(byCode.get('18.07').title,'SHOCK DISEMBARK MOVE');
+assert(recordText(byCode.get('18.06')).includes('SET-UP DISTANCE')&&recordText(byCode.get('18.07')).includes('SET-UP DISTANCE'),'accepted Waha move definitions must survive normalization');
 assert(recordText(byCode.get('18.04')).includes('same rules and restrictions')&&recordText(byCode.get('18.05'))===recordText(base.records.find(record=>record.code==='18.05')),'the accepted Transport base and pending Emergency sequence must not be silently replaced');
 const faqs=projection.coreSource.faqs||[];
 assert.equal(new Set(faqs.map(faq=>faq.id)).size,faqs.length,'Core FAQ identities must remain unique');

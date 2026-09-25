@@ -11,7 +11,9 @@
       "urlOrLocalArtifact": "https://assets.warhammer-community.com/eng_01-06_warhammer40k_new40k_core_rules-was6fbu1ix-hfewhmxyiy.pdf",
       "authorityLevel": "GLOBAL_OFFICIAL",
       "supersedes": [],
-      "supersededBy": ["gw-july-update-2026-07-22"],
+      "supersededBy": [
+        "gw-july-update-2026-07-22"
+      ],
       "notes": "Partial later clarification for revival and extra CP only; original Core remains authoritative elsewhere."
     },
     {
@@ -118,7 +120,9 @@
       "scope": "GLOBAL_CORE",
       "urlOrLocalArtifact": "https://www.warhammer-community.com/en-gb/articles/rgqanids/warhammer-40000-july-update-what-you-need-to-know/",
       "authorityLevel": "GLOBAL_OFFICIAL",
-      "supersedes": ["gw-core-original-2026-06-01"],
+      "supersedes": [
+        "gw-core-original-2026-06-01"
+      ],
       "supersededBy": [],
       "notes": "Confirms revived Leader/Support returns alone and the one-extra-CP-per-battle-round cap; supersession is limited to those semantics."
     },
@@ -131,7 +135,9 @@
       "urlOrLocalArtifact": "https://assets.warhammer-community.com/eng_22-07_warhammer_40,000_universal_rules_updates-coltxp7ngi-3kvdfxwyon.pdf",
       "authorityLevel": "GLOBAL_OFFICIAL",
       "supersedes": [],
-      "supersededBy": ["gw-universal-rules-updates-2026-08-26-v1-1"],
+      "supersededBy": [
+        "gw-universal-rules-updates-2026-08-26-v1-1"
+      ],
       "notes": "Four global update clauses, retained in v1.1."
     },
     {
@@ -154,7 +160,9 @@
       "scope": "GLOBAL_CORE",
       "urlOrLocalArtifact": "https://assets.warhammer-community.com/eng_wh40k_core&key_universal_rules_updates-lu3grocned-rphh78bl6k.pdf",
       "authorityLevel": "GLOBAL_OFFICIAL",
-      "supersedes": ["gw-universal-rules-updates-2026-07-22-v1-0"],
+      "supersedes": [
+        "gw-universal-rules-updates-2026-07-22-v1-0"
+      ],
       "supersededBy": [],
       "notes": "Matched-play effective 26 August. Retains all four v1.0 clauses and adds Move Types for Disembarking Units; it cites but does not print full 18.06/18.07 definitions."
     },
@@ -265,10 +273,39 @@
       "supersedes": [],
       "supersededBy": [],
       "notes": "Reports 18.04.01 Rapid Disembark and Limitations; no direct official global text or independent official corroboration captured."
+    },
+    {
+      "sourceId": "waha-core-corpus-2026-09-25",
+      "title": "Wahapedia Warhammer 40,000 11E Core Rules and Rules Appendix deterministic corpus",
+      "date": "2026-09-25",
+      "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+      "scope": "GLOBAL_CORE",
+      "urlOrLocalArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+      "authorityLevel": "OPERATIONAL_CONTENT_BASELINE",
+      "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+      "precedence": "Stronger explicit current GW evidence overrides direct conflicts"
     }
   ],
   "supersessionEdges": [
-    {"older": "gw-core-original-2026-06-01", "newer": "gw-july-update-2026-07-22", "ruleIds": ["01.02.03", "08.02.01"], "scope": "GLOBAL_CORE"},
-    {"older": "gw-universal-rules-updates-2026-07-22-v1-0", "newer": "gw-universal-rules-updates-2026-08-26-v1-1", "ruleIds": ["uru-2026-07-22-stratagem-cp-cost", "uru-2026-07-22-stratagem-reuse", "uru-2026-07-22-defensive-stratagem-range", "uru-2026-07-22-identical-destroyed-unit"], "scope": "GLOBAL_CORE"}
+    {
+      "older": "gw-core-original-2026-06-01",
+      "newer": "gw-july-update-2026-07-22",
+      "ruleIds": [
+        "01.02.03",
+        "08.02.01"
+      ],
+      "scope": "GLOBAL_CORE"
+    },
+    {
+      "older": "gw-universal-rules-updates-2026-07-22-v1-0",
+      "newer": "gw-universal-rules-updates-2026-08-26-v1-1",
+      "ruleIds": [
+        "uru-2026-07-22-stratagem-cp-cost",
+        "uru-2026-07-22-stratagem-reuse",
+        "uru-2026-07-22-defensive-stratagem-range",
+        "uru-2026-07-22-identical-destroyed-unit"
+      ],
+      "scope": "GLOBAL_CORE"
+    }
   ]
 }

@@ -28,6 +28,7 @@ try{
   copyRepoPath('books/shared/tools/army-core-ability-binding.mjs');
   copyRepoPath('books/shared/content/army-ability-source-bindings.v1.json');
   copyRepoPath('books/core-rules/content');
+  copyRepoPath('books/core-rules/sources/waha-core-2026-09-25');
 
   const absent=run();
   assert.equal(absent.status,0,`${absent.stdout||''}${absent.stderr||''}`);

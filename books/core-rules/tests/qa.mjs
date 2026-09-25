@@ -54,9 +54,9 @@ for(const code of ['01.02.01','05.02','05.03','19.04','03.03','16.01','09.04','1
   assert(recordText(record),`${code} structured content must flatten for search and QA`);
 }
 const parity=verifyPdfParity(pdf,digital);
-assert.equal(parity.verifiedNormalized.length,87,'unexpected normalized PDF parity count');
-assert.equal(parity.digitalExtension.length,26,'unexpected digital extension count');
-assert.equal(parity.requiresStructuralComparison.length,33,'unexpected structural comparison count');
+assert.equal(parity.verifiedNormalized.length,76,'unexpected normalized PDF parity count');
+assert.equal(parity.digitalExtension.length,34,'unexpected digital extension count');
+assert.equal(parity.requiresStructuralComparison.length,36,'unexpected structural comparison count');
 assert.deepEqual(parity.missing,[],'every official numbered rule must have a digital counterpart');
 const faqs=pdf.faqs||[];
 assert.equal(faqs.length,5,'Rules Appendix page 88 must provide five FAQs');
@@ -71,7 +71,7 @@ for(const record of digital.records){
   const parts=record.code.split('.');
   if(parts.length===3)assert(recordsByCode.has(parts.slice(0,2).join('.')),`${record.code} is not placed under an existing parent rule`);
   const lines=text.split('\n').map(line=>line.trim()).filter(Boolean);
-  for(let index=1;index<lines.length;index++)assert.notEqual(lines[index].toLowerCase(),lines[index-1].toLowerCase(),`${record.code} repeats the line "${lines[index]}"`);
+  if(!record.content?.some(block=>block.type==='comparison-table'||block.type==='matrix'))for(let index=1;index<lines.length;index++)assert.notEqual(lines[index].toLowerCase(),lines[index-1].toLowerCase(),`${record.code} repeats the line "${lines[index]}"`);
   for(const other of digital.records){
     const otherText=recordText(other);
     if(other===record||!otherText)continue;
@@ -129,7 +129,7 @@ for(const [index,id] of routeIds.entries()){
 }
 assert.equal(routedRules,digital.records.length,'routed reader must contain every 11E reference record');
 const searchIndex=JSON.parse(fs.readFileSync(path.join(readerRoot,'search-index.json'),'utf8'));
-const expectedSearchCodes=new Set([...digital.records.map(record=>record.code),...effectiveDigital.universalRulesUpdates.map(update=>update.id),...faqs.map(faq=>faq.id)]);
+const expectedSearchCodes=new Set([...digital.records.map(record=>record.code),...effectiveDigital.universalRulesUpdates.map(update=>update.id),...coreProjection.catalog.faqs.map(faq=>faq.id)]);
 assert.deepEqual(new Set(searchIndex.map(item=>item.code)),expectedSearchCodes,'search index must contain every base record, current official update and FAQ exactly once');
 for(const item of searchIndex){
   const [file,anchor]=item.url.split('#');

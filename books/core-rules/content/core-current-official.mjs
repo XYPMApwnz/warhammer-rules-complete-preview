@@ -71,15 +71,14 @@ export function applyCoreCurrentOfficial(base,source=loadCoreCurrentOfficial(),r
       if(typeof record.text!=='string'||!update.previousLine||!update.currentLine)throw new Error(`Invalid text override: ${update.code}`);
       const lines=record.text.split('\n');
       const matches=lines.flatMap((line,index)=>line===update.previousLine?[index]:[]);
-      if(matches.length!==1)throw new Error(`Ambiguous or missing official override anchor: ${update.code}`);
-      if(lines.includes(update.currentLine))throw new Error(`Duplicate official semantic owner: ${update.code}`);
-      lines[matches[0]]=update.currentLine;
+      if(matches.length===1&&lines.includes(update.currentLine))throw new Error(`Conflicting duplicate official semantic owner: ${update.code}`);
+      if(matches.length===1)lines[matches[0]]=update.currentLine;
+      else if(!lines.includes(update.currentLine))throw new Error(`Ambiguous or missing official override anchor: ${update.code}`);
       record.text=lines.join('\n');
     }else if(update.operation==='append-line'){
       if(typeof record.text!=='string'||!update.currentLine)throw new Error(`Invalid text override: ${update.code}`);
       const lines=record.text.split('\n');
-      if(lines.includes(update.currentLine))throw new Error(`Duplicate official semantic owner: ${update.code}`);
-      lines.push(update.currentLine);
+      if(!lines.includes(update.currentLine))lines.push(update.currentLine);
       record.text=lines.join('\n');
     }else if(update.operation==='compatibility-alias'){
       if(record.title!==update.canonicalTitle||!Array.isArray(update.aliases)||!update.aliases.length)throw new Error(`Incorrect official Core compatibility identity: ${update.code}`);

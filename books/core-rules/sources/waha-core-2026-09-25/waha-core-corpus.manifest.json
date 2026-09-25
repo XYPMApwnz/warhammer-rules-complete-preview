@@ -1,0 +1,81 @@
+{
+  "schema": "waha-11e-core-corpus-manifest/v1",
+  "captureDate": "2026-09-25",
+  "sources": [
+    {
+      "id": "core",
+      "url": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/",
+      "rawBytes": 767213,
+      "rawSha256": "E3414B6A2E45F15BF2146370B2BDBF92581517D4F17E2533C6B49759927FEEB8"
+    },
+    {
+      "id": "appendix",
+      "url": "https://wahapedia.ru/wh40k11ed/the-rules/rules-appendix/",
+      "rawBytes": 357589,
+      "rawSha256": "C9AE762F12EE05BF43CC6AC58987BA4D7701651CB60AD06CFBCAFFD5A451BA02"
+    }
+  ],
+  "counts": {
+    "core": {
+      "numbered": 177,
+      "faq": 66,
+      "errata": 6,
+      "uru": 0,
+      "total": 249,
+      "gameplayListItems": 323,
+      "seeAlsoItems": 151,
+      "tables": 80,
+      "tableRows": 173,
+      "faqTableRows": 132,
+      "notes": 29,
+      "examples": 13,
+      "referenceOccurrences": 885
+    },
+    "appendix": {
+      "numbered": 106,
+      "faq": 0,
+      "errata": 1,
+      "uru": 5,
+      "total": 112,
+      "gameplayListItems": 107,
+      "seeAlsoItems": 0,
+      "tables": 2,
+      "tableRows": 6,
+      "faqTableRows": 0,
+      "notes": 1,
+      "examples": 13,
+      "referenceOccurrences": 202
+    },
+    "effective": {
+      "numbered": 275,
+      "faq": 66,
+      "errata": 7,
+      "uru": 5,
+      "total": 353,
+      "numberedOverlap": 8
+    }
+  },
+  "numberedOverlapCodes": [
+    "06.01.01",
+    "06.03.01",
+    "13.09.01",
+    "13.11.01",
+    "14.01.01",
+    "14.02.01",
+    "18.02.01",
+    "20.01.02"
+  ],
+  "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+  "corpusFile": "waha-core-corpus.v1.json",
+  "corpusFileSha256": "7761005215C03F9D0E0A5BC217894F8605662FC41F04052150FF73218A3D588E",
+  "unresolvedReferences": [
+    {
+      "page": "core",
+      "kind": "href",
+      "label": "[DEVASTATING WOUNDS]",
+      "rawTarget": "/wh40k11ed/the-rules/core-rules/#Assault-",
+      "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Assault-",
+      "internalCore": true
+    }
+  ]
+}

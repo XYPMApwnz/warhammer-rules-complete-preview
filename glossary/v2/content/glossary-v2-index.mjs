@@ -49,7 +49,7 @@ function semanticText(value,{skip=new Set()}={}){
 
 function factsWithoutPresentation(record){
   const result=clone(record);
-  for(const field of ['publicationRecord','compatibilityIdentity','referenceUrl','fullRulePath','runtimeTitle'])delete result[field];
+  for(const field of ['publicationRecord','compatibilityIdentity','referenceUrl','runtimeTitle'])delete result[field];
   return result;
 }
 

@@ -198,7 +198,10 @@
     "18.02.01": "core-rule-18-02-01-able-to-embark",
     "18.03": "core-rule-18-03-disembarking",
     "18.04": "core-rule-18-04-disembark-move",
+    "18.04.01": "core-rule-18-04-01-rapid-disembark-and-limitations",
     "18.05": "core-rule-18-05-emergency-disembark-move",
+    "18.06": "core-rule-18-06-assault-disembark-move",
+    "18.07": "core-rule-18-07-shock-disembark-move",
     "19.01": "core-rule-19-01-forming-attached-units",
     "19.01.01": "core-rule-19-01-01-attached-units-after-their-bodyguard-unit-is-destroyed",
     "19.02": "core-rule-19-02-attacking-attached-units",
@@ -218,6 +221,7 @@
     "22.01": "core-rule-22-01-aura-abilities",
     "22.02": "core-rule-22-02-faction-abilities",
     "22.03": "core-rule-22-03-psychic-abilities",
+    "22.03.01": "core-rule-22-03-01-psychic-abilities-with-a-psychic-level",
     "22.04": "core-rule-22-04-wargear-abilities",
     "22.05": "core-rule-22-05-plunging-fire",
     "23.01": "core-rule-23-01-deployment",
@@ -268,6 +272,7 @@
     "24.37": "core-torrent",
     "24.37.01": "core-rule-24-37-01-torrent-restrictions",
     "24.38": "core-twin-linked",
+    "24.39": "core-damaged",
     "25.01": "core-rule-25-01-start-your-army-roster",
     "25.02": "core-rule-25-02-select-army-faction",
     "25.03": "core-rule-25-03-select-battle-size",
@@ -315,18 +320,7 @@
       "id": "core-within"
     }
   },
-  "pending": {
-    "18.06": {
-      "id": "core-rule-18-06-assault-disembark-move",
-      "title": "Assault Disembark Move",
-      "state": "IDENTITY_ONLY"
-    },
-    "18.07": {
-      "id": "core-rule-18-07-shock-disembark-move",
-      "title": "Shock Disembark Move",
-      "state": "IDENTITY_ONLY"
-    }
-  },
+  "pending": {},
   "derivedConcepts": {
     "bodyguard": {
       "id": "core-bodyguard",

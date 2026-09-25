@@ -42,7 +42,7 @@ accepted factual source
   -> generated artifact and UI
 ```
 
-- Core facts: `books/core-rules/content/`, exposed by `createEffectiveCoreCatalog()` in `effective-core-catalog.mjs`.
+- Core facts: the pinned Wahapedia 11E Core + Rules Appendix corpus is the operational completeness/content baseline, normalized in `books/core-rules/content/` and exposed by `createEffectiveCoreCatalog()` in `effective-core-catalog.mjs`. Explicit stronger current GW evidence overrides only direct conflicts.
 - Army facts: each book's accepted canonical sources and explicit overrides, normalized into `wh40k-effective-book-model/v1` by the shared Army builders. Generated `data.js`, `roster-data.js`, HTML and mobile stubs are projections.
 - MFM facts: `mfm/content/canonical-mfm-facts.mjs`, exposed by `createEffectiveMfmCatalog()` and projected to Army models through `books/shared/tools/effective-mfm-army-projection.mjs`.
 - Mission facts: `missions/content/chapter-approved-2026-27.canonical.json`, validated by `mission-model-contract.mjs` and exposed through `createEffectiveMissionCatalog()`.
@@ -153,7 +153,7 @@ Certified examples and decisions:
 
 Glossary V2 is the production factual/search projection. Its canonical input contract is `glossary/v2/content/glossary-v2-index.mjs`; generated `index.en.json` is disposable output. Search, Army/Core popup and full article must resolve the same V2 identity. There is no legacy Glossary gameplay fallback.
 
-At this baseline the generated index contains 4,630 entries: 1,738 standalone browse articles and 2,892 parent-scoped children. Main browse exposes standalone entries; scoped children remain searchable and directly openable with parent/book context. Same-name profiles retain visible parent context and may not resolve to an arbitrary global entity.
+The current generated index contains 4,705 entries: 1,813 standalone browse articles and 2,892 parent-scoped children. Main browse exposes standalone entries; scoped children remain searchable and directly openable with parent/book context. Same-name profiles retain visible parent context and may not resolve to an arbitrary global entity.
 
 Shared canonical entries can expose context-specific effective facts through `resolveView(bookId, id)`. Filter/search changes must reconcile the active article with the visible result set while deep-link and Back/Forward behavior remain coherent.
 
@@ -173,9 +173,11 @@ Accepted source artifacts are enrolled with authority, edition/version, currentn
 
 Official current evidence outranks secondary evidence where available. Secondary sources can support discovery, transcription or corroboration within their declared authority; they cannot override a newer applicable official source. Missing evidence stays missing.
 
+For Core completeness and operational wording, the versioned Waha 11E Core + Rules Appendix capture is pinned by exact corpus and raw-page hashes. Deterministic defects in an accepted source are recorded in a bound source-defect ledger rather than guessed away. A known semantic anomaly does not by itself block exact-content certification when the captured wording is deterministic; a stronger enrolled current GW source still wins a direct conflict. Changed source bytes or bound defect hashes require fresh adjudication.
+
 Current evidence limitations:
 
-- Core `18.06` Assault Disembark Move and `18.07` Shock Disembark Move are accepted `IDENTITY_ONLY` records with `EVIDENCE_PENDING`; their full move definitions are not invented.
+- Core `18.06` Assault Disembark Move and `18.07` Shock Disembark Move have full deterministic accepted Waha definitions. The unusual `18.07` After Moving clause is retained verbatim and classified as `KNOWN_SOURCE_SEMANTIC_ANOMALY`; it is not silently corrected.
 - Masters of Misdirection has identity/context but no accepted substantive body.
 - Abaddon's `The Warmaster` instruction is accepted, but its verified option definitions are not present in the enrolled CSM evidence; choices remain absent rather than reconstructed.
 - Mirrored World has accepted rule, options, D6 metadata and reroll-6 fact, but no proven roll-to-option mapping; option order must not be turned into die results.
@@ -211,7 +213,6 @@ Certification is scoped to what these controls prove; it is not permission to ig
 
 **EVIDENCE GAP**
 
-- Core 18.06/18.07 full definitions.
 - Masters of Misdirection substantive text.
 - Abaddon/The Warmaster verified option definitions.
 - Mirrored World exact D6-to-option mapping.

@@ -45,8 +45,8 @@ try{
     page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
 
     await page.goto(`${base}/glossary/index.html`);
-    await page.waitForFunction(()=>window.WH40K_GLOSSARY?.counts?.standalone===1738);
-    assert.equal(await page.locator('#termCount').innerText(),'1738',`${viewport.name}: standalone browse count`);
+    await page.waitForFunction(()=>window.WH40K_GLOSSARY?.counts?.standalone===1813);
+    assert.equal(await page.locator('#termCount').innerText(),'1813',`${viewport.name}: standalone browse count`);
     assert.equal(await page.locator('.term-button').count(),121,`${viewport.name}: bounded initial browse plus load-more`);
     await page.locator('#search').fill('transport');await page.waitForTimeout(180);
     const preferred=page.locator('.term-button').first();assert.match(await preferred.innerText(),/Transport Capacity/i,`${viewport.name}: preferred alias result`);
@@ -259,7 +259,7 @@ try{
       assert.equal(decodeURIComponent(new URL(href,base).hash.slice(1)),'core::core-rule-19-01-forming-attached-units',`${viewport.name}/${control.term}: popup/viewer identity`);
       await page.keyboard.press('Escape');
     }
-    observations.push({viewport:viewport.name,corePopup:true,armyPopup:true,standalone:1738,scoped:index.counts.scopedChildren});
+    observations.push({viewport:viewport.name,corePopup:true,armyPopup:true,standalone:1813,scoped:index.counts.scopedChildren});
     assert.deepEqual(errors,[],`${viewport.name}: browser errors`);await context.close();
   }
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

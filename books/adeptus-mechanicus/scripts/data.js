@@ -41,10 +41,17 @@ window.DG_TERMS={
     "glossary": "glossary-core-close-quarters",
     "fullRulePath": "books/core-rules/reader/core-abilities.html#rule-24-07"
   },
+  "core-damaged": {
+    "title": "DAMAGED",
+    "summary": "Damaged X. While a model’s remaining wounds are equal to or less than X, that model is damaged: while damaged, that model’s attacks have -1 to hit rolls.",
+    "full": "Damaged X. While a model’s remaining wounds are equal to or less than X, that model is damaged: while damaged, that model’s attacks have -1 to hit rolls.",
+    "glossary": "glossary-core-damaged",
+    "fullRulePath": "books/core-rules/reader/core-abilities.html#rule-24-39"
+  },
   "core-deadly-demise": {
     "title": "DEADLY DEMISE",
     "summary": "From detonating ammo stores to corrosive innards or frenzied death throes, some targets are deadly even in defeat. This ability always takes the form Deadly Demise X.…",
-    "full": "From detonating ammo stores to corrosive innards or frenzied death throes, some targets are deadly even in defeat. This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.",
+    "full": "From detonating ammo stores to corrosive innards or frenzied death throes, some targets are deadly even in defeat. This ability always takes the form Deadly Demise X. Each time a model with this ability is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\").",
     "glossary": "glossary-core-deadly-demise",
     "fullRulePath": "books/core-rules/reader/core-abilities.html#rule-24-08",
     "units": [

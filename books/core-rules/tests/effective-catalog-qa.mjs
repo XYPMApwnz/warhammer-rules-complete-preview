@@ -18,9 +18,11 @@ const catalog=createEffectiveCoreCatalog({root:contentRoot});
 
 assert.equal(catalog.schema,'wh40k-effective-core-catalog/v1');
 assert.equal(catalog.mainRules.length,base.records.length,'effective main partition must cover every accepted base rule');
-assert.equal(catalog.errata.length,current.ruleOverrides.length,'effective errata partition must preserve every accepted update identity');
-assert.equal(catalog.faqs.length,coreSource.faqs.length,'effective FAQ partition must preserve every accepted FAQ identity');
+assert.equal(catalog.errata.length,9,'effective errata partition must preserve seven Waha units plus two stronger GW-only identities');
+assert.equal(catalog.faqs.length,71,'effective FAQ partition must preserve 66 Waha units plus five stronger GW records');
 assert.equal(catalog.universalUpdates.length,current.universalRulesUpdates.length,'effective URU partition must preserve every accepted update identity');
+assert.equal(catalog.sourceMappings.length,353,'every effective Waha source unit must have an explicit canonical mapping');
+assert.equal(catalog.wahaCorpusFingerprint,'7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F');
 assert.equal(catalog.records.length,new Set(catalog.records.map(record=>record.id)).size,'effective Core IDs must be unique');
 validateEffectiveCoreCatalog(catalog);
 
@@ -41,11 +43,19 @@ for(const record of catalog.identityOnly){
   assert.equal(record.semanticContent,null,`${record.id}: pending identity fabricated semantic content`);
 }
 const moveUpdate=catalog.getById('uru-2026-08-26-disembark-move-types');
-assert.deepEqual(new Set(moveUpdate.relationships.canonicalReferenceIds),new Set(catalog.identityOnly.map(record=>record.id)),'URU pending references must resolve to identity-only records');
+assert.deepEqual(new Set(moveUpdate.relationships.canonicalReferenceIds),new Set([
+  'core-rule-18-06-assault-disembark-move','core-rule-18-07-shock-disembark-move'
+]),'URU references must resolve to full accepted Waha canonical records');
+assert.equal(catalog.identityOnly.length,0,'the certified corpus must not leave Core identities pending');
+for(const mapping of catalog.sourceMappings){
+  assert(mapping.canonicalIds.length>0,`${mapping.sourceEffectiveId}: source unit has no canonical owner`);
+  for(const id of mapping.canonicalIds)assert(catalog.getById(id),`${mapping.sourceEffectiveId}: unknown canonical owner ${id}`);
+}
+assert.equal(catalog.getByCode('18.07').sourceStructure.text.includes('AFTER MOVING'),true,'known Waha 18.07 anomaly must be preserved verbatim as operational source content');
 
 const duplicateOwnerBase=structuredClone(base);
-duplicateOwnerBase.records.find(record=>record.code==='08.02.01').text+='\nYou can only generate a single extra CP per battle round.';
-assert.throws(()=>createEffectiveCoreCatalog({root:contentRoot,base:duplicateOwnerBase}),/Duplicate official semantic owner/,'duplicated base/current semantics must fail closed');
+duplicateOwnerBase.records.find(record=>record.code==='01.02.03').text+='\n'+current.ruleOverrides.find(update=>update.code==='01.02.03').previousLine;
+assert.throws(()=>createEffectiveCoreCatalog({root:contentRoot,base:duplicateOwnerBase}),/(?:Duplicate official semantic owner|Ambiguous or missing official override anchor)/,'duplicated base/current semantics must fail closed');
 
 const mainMutation=structuredClone(base);
 mainMutation.records.find(record=>record.code==='02.01').text+='\nSYNTHETIC MAIN PROPAGATION';
