@@ -10,6 +10,7 @@ import {
   verifyCaptureManifest,verifyFrozenSource
 } from '../books/shared/tools/source-ingestion-contract.mjs';
 import {verifyBsdataSource} from '../books/shared/tools/verify-bsdata-source.mjs';
+import {buildSourceEnrollment} from '../books/shared/tools/source-enrollment-contract.mjs';
 import {buildSourceStatus} from '../books/shared/tools/source-freshness.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -17,12 +18,17 @@ const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const packageJson=JSON.parse(read('package.json'));
 const registry=readSourceRegistry();
 const freshness=buildSourceStatus();
+const enrollment=buildSourceEnrollment({repo:root,includeFreshnessOnly:true});
 assert.equal(freshness.summary.REGISTERED_SOURCE_COUNT,registry.sources.length);
 const registeredBookSources=registry.sources.filter(source=>source.book!=='shared');
-const registeredPublicSources=registeredBookSources.filter(source=>source.book!=='orks');
-assert.equal(freshness.summary.DECLARED_SOURCE_COUNT,registeredBookSources.length);
-assert.equal(freshness.summary.CLASSIFIED_DECLARED_SOURCE_COUNT,registeredBookSources.length);
+const activeKeys=new Set(enrollment.rows.map(source=>`${source.book}\0${source.sourceId}`));
+const registeredActiveBookSources=registeredBookSources.filter(source=>activeKeys.has(`${source.book}\0${source.sourceId}`));
+const registeredPublicSources=registeredActiveBookSources.filter(source=>source.book!=='orks');
+assert.equal(freshness.summary.DECLARED_SOURCE_COUNT,registeredActiveBookSources.length);
+assert.equal(freshness.summary.CLASSIFIED_DECLARED_SOURCE_COUNT,registeredActiveBookSources.length);
 assert.equal(freshness.summary.PUBLIC_ACTIVE_SOURCE_COUNT,registeredPublicSources.length);
+assert.equal(registeredBookSources.length-registeredActiveBookSources.length,1);
+assert(registry.sources.some(source=>source.sourceId==='death-guard-mfm-v1.3-capture-2026-08-27'),'Historical DG MFM v1.3 provenance must remain registered');
 assert.equal(freshness.summary.FRESHNESS_ONLY_ACTIVE_SOURCE_COUNT,3);
 assert.equal(freshness.summary.UNCLASSIFIED_SOURCE_COUNT,0);
 assert.equal(freshness.summary.REGISTERED_WITHOUT_MANIFEST_DECLARATION_COUNT,freshness.registeredWithoutManifest.length);
@@ -132,35 +138,39 @@ try{
   assert.throws(()=>createCaptureSession({repoRoot:root,sourceId:'repo-root',authority:'official',sourceType:'html',candidateDir:root,extractorPath:'tests/source-ingestion-contract-qa.mjs'}),/repository root/);
   assert.throws(()=>createCaptureSession({repoRoot:root,sourceId:'repo-parent',authority:'official',sourceType:'html',candidateDir:path.dirname(root),extractorPath:'tests/source-ingestion-contract-qa.mjs'}),/contain accepted production paths/);
 
-  const capture=createCaptureSession({repoRoot:root,sourceId:'probe-live',authority:'official',sourceType:'html',candidateDir:path.join(temp,'capture'),extractorPath:'package.json',localInputs:[{path:'books/source-ingestion-contract.json',kind:'config-input',owner:'source registry'}]});
+  const captureRepo=path.join(temp,'capture-repo');fs.mkdirSync(path.join(captureRepo,'books'),{recursive:true});
+  fs.writeFileSync(path.join(captureRepo,'package.json'),'{}\n');fs.writeFileSync(path.join(captureRepo,'books','source-ingestion-contract.json'),'{}\n');
+  const captureGit=(...args)=>{const result=spawnSync('git',args,{cwd:captureRepo,encoding:'utf8'});assert.equal(result.status,0,result.stderr||result.stdout);};
+  captureGit('init');captureGit('config','user.name','Source Contract QA');captureGit('config','user.email','source-contract@example.invalid');captureGit('add','.');captureGit('commit','-m','fixture');
+  const capture=createCaptureSession({repoRoot:captureRepo,sourceId:'probe-live',authority:'official',sourceType:'html',candidateDir:path.join(temp,'capture'),extractorPath:'package.json',localInputs:[{path:'books/source-ingestion-contract.json',kind:'config-input',owner:'source registry'}]});
   assert.equal(JSON.parse(fs.readFileSync(path.join(capture.root,'capture-state.json'),'utf8')).status,'INCOMPLETE');
   capture.captureText({requestedUrl:'https://example.invalid/requested',finalUrl:'https://example.invalid/final',content:'<html>retained</html>',name:'index'});
   capture.writeCandidate('candidate.json','{"candidate":true}\n');
   const manifest=capture.finalize(),manifestPath=path.join(capture.root,'capture-manifest.json');
   assert.deepEqual(manifest.normalizationInputs.map(input=>input.path),['books/source-ingestion-contract.json']);
   assert.equal(JSON.parse(fs.readFileSync(path.join(capture.root,'capture-state.json'),'utf8')).status,'COMPLETE');
-  assert.equal(verifyCaptureManifest(manifestPath).aggregateManifestHash,manifest.aggregateManifestHash);
-  assert.throws(()=>createCaptureSession({repoRoot:root,sourceId:'reused',authority:'official',sourceType:'html',candidateDir:path.join(temp,'capture'),extractorPath:'package.json'}),/fresh isolated destination/);
+  assert.equal(verifyCaptureManifest(manifestPath,{repoRoot:captureRepo}).aggregateManifestHash,manifest.aggregateManifestHash);
+  assert.throws(()=>createCaptureSession({repoRoot:captureRepo,sourceId:'reused',authority:'official',sourceType:'html',candidateDir:path.join(temp,'capture'),extractorPath:'package.json'}),/fresh isolated destination/);
   fs.writeFileSync(path.join(capture.root,'capture-state.json'),stableJson({schema:'warhammer-source-capture-state/v1',captureId:manifest.captureId,status:'INCOMPLETE'}));
-  assert.throws(()=>verifyCaptureManifest(manifestPath),/completion state/);
+  assert.throws(()=>verifyCaptureManifest(manifestPath,{repoRoot:captureRepo}),/completion state/);
   fs.writeFileSync(path.join(capture.root,'capture-state.json'),stableJson({schema:'warhammer-source-capture-state/v1',captureId:manifest.captureId,status:'COMPLETE',manifestSha256:sha256(stableJson(manifest))}));
   const candidatePath=path.join(capture.root,manifest.normalizedArtifacts[0].path),candidateBytes=fs.readFileSync(candidatePath);
   fs.appendFileSync(candidatePath,'tampered');
-  assert.throws(()=>verifyCaptureManifest(manifestPath),/normalized artifact hash mismatch/);
+  assert.throws(()=>verifyCaptureManifest(manifestPath,{repoRoot:captureRepo}),/normalized artifact hash mismatch/);
   fs.writeFileSync(candidatePath,candidateBytes);fs.rmSync(candidatePath);
-  assert.throws(()=>verifyCaptureManifest(manifestPath),/normalized artifact is missing/);
+  assert.throws(()=>verifyCaptureManifest(manifestPath,{repoRoot:captureRepo}),/normalized artifact is missing/);
   fs.writeFileSync(candidatePath,candidateBytes);
   fs.appendFileSync(path.join(capture.root,manifest.rawArtifacts[0].path),'tampered');
-  assert.throws(()=>verifyCaptureManifest(manifestPath),/artifact hash mismatch/);
+  assert.throws(()=>verifyCaptureManifest(manifestPath,{repoRoot:captureRepo}),/artifact hash mismatch/);
 
-  const fetchCapture=createCaptureSession({repoRoot:root,sourceId:'fetch-probe',authority:'secondary',sourceType:'html',candidateDir:path.join(temp,'fetch-capture'),extractorPath:'package.json'});
+  const fetchCapture=createCaptureSession({repoRoot:captureRepo,sourceId:'fetch-probe',authority:'secondary',sourceType:'html',candidateDir:path.join(temp,'fetch-capture'),extractorPath:'package.json'});
   const fetched=await captureFetchText(fetchCapture,'data:text/html,%3Cmain%3Eretained%3C%2Fmain%3E',{name:'local-data-input'});
   assert.equal(fetched,'<main>retained</main>');
   fetchCapture.writeCandidate('candidate.json','{"candidate":true}\n');
   const fetchManifest=fetchCapture.finalize();
   assert.equal(fetchManifest.rawArtifacts.length,1);
   assert.equal(fetchManifest.normalizedArtifacts.length,1);
-  assert.equal(verifyCaptureManifest(path.join(fetchCapture.root,'capture-manifest.json')).aggregateManifestHash,fetchManifest.aggregateManifestHash);
+  assert.equal(verifyCaptureManifest(path.join(fetchCapture.root,'capture-manifest.json'),{repoRoot:captureRepo}).aggregateManifestHash,fetchManifest.aggregateManifestHash);
 
   const trackedRoot=path.join(temp,'tracked-inputs');fs.mkdirSync(trackedRoot);
   const git=(...args)=>{const result=spawnSync('git',args,{cwd:trackedRoot,encoding:'utf8'});assert.equal(result.status,0,result.stderr||result.stdout);};

@@ -438,7 +438,7 @@
       if(values.length)return values.join('\n');
       return JSON.stringify(body,null,2);
     }
-    if(entry.recordType==='STRATAGEM')return [['WHEN',facts.when],['TARGET',facts.target],['EFFECT',facts.effect],['RESTRICTIONS',facts.restrictions]].filter(([,value])=>text(value)).map(([label,value])=>`${label}: ${value}`).join('\n');
+    if(entry.recordType==='STRATAGEM'){if(Array.isArray(facts.lines)&&facts.lines.length)return facts.lines.map(line=>text(line)).filter(Boolean).join('\n');return [['WHEN',facts.when],['TARGET',facts.target],['EFFECT',facts.effect],['RESTRICTIONS',facts.restrictions]].filter(([,value])=>text(value)).map(([label,value])=>`${label}: ${value}`).join('\n');}
     if(entry.recordType==='WEAPON_PROFILE')return weaponProfileDefinition(facts);
     if(entry.recordType==='UNIT')return unitDefinition(entry);
     if(Array.isArray(facts.requirements))return facts.requirements.map(item=>typeof item==='string'?item:item?.type||JSON.stringify(item)).join('\n');

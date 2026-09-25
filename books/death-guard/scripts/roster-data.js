@@ -5297,7 +5297,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-land-raider-ability-assault-ramp",
             "sectionId": "chaos-land-raider-ability-assault-ramp",
             "title": "Assault Ramp",
-            "text": "Each time a unit disembarks from this model after it has made a Normal move, that unit is still eligible to declare a charge this turn.",
+            "text": "Each time a unit disembarks from this model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
             "sourceUnitId": "unit-chaos-land-raider"
           }
         ],
@@ -8501,7 +8501,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "miasmic-malignifier-ability-fortification",
             "sectionId": "miasmic-malignifier-ability-fortification",
             "title": "Fortification",
-            "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll. Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
+            "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n• That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n• Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
             "sourceUnitId": "unit-miasmic-malignifier"
           },
           {
@@ -10057,7 +10057,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "detachment-rule-worldblight",
       "title": "Worldblight",
-      "text": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted (pg 71).",
+      "text": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.",
       "sectionId": "rule-worldblight",
       "detachmentId": "detachment-virulent-vectorium",
       "detachmentTitle": "Virulent Vectorium",
@@ -10084,7 +10084,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "detachment-rule-reverberant-rancidity",
       "title": "Reverberant Rancidity",
-      "text": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, it has the Nurgle’s Gift ability. While a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD unit’s Contagion Range.",
+      "text": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability. While a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD unit’s Contagion Range.",
       "sectionId": "rule-reverberant-rancidity",
       "detachmentId": "detachment-tallyband-summoners",
       "detachmentTitle": "Tallyband Summoners",
@@ -10111,7 +10111,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "detachment-rule-warped-and-rusted-animus",
       "title": "Warped and Rusted Animus",
-      "text": "Friendly FOETID BLOAT-DRONE/FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER/HELBRUTE/MYPHITIC BLIGHT-HAULER units have CONTAGION ENGINE. Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT]. ",
+      "text": "Friendly FOETID BLOAT-DRONE/FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER/HELBRUTE/MYPHITIC BLIGHT-HAULER units have CONTAGION ENGINE. Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT]. This detachment has the ENGINES tag and cannot be taken with another ENGINES detachment.",
       "sectionId": "rule-warped-and-rusted-animus",
       "detachmentId": "detachment-contagion-engines",
       "detachmentTitle": "Contagion Engines",

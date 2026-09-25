@@ -47,18 +47,14 @@
       "captureSha256": "6AD17A84133D348DC782A39AC73EFBFA223E906F52AD0471EE81C27A40EA1FD6",
       "localSha256": "133142DA78862684FBA85C1DF534593D6EAF382146B6175C037FF2E8BC6D7F1F",
       "sourceId": "death-guard-mfm-v1.3-capture-2026-08-27",
-      "active": true,
+      "active": false,
       "sourceType": "official-json-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "factsOwned": [
         "points",
         "costs"
       ],
-      "consumers": [
-        "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "POINTS_PROJECTION"
-      ],
+      "consumers": [],
       "paths": [
         "books/death-guard/sources/official-mfm-v1.3.json"
       ]
@@ -234,12 +230,42 @@
         "legends-pricing"
       ],
       "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION",
         "SOURCE_FRESHNESS"
       ],
       "paths": [
         "books/death-guard/sources/official-mfm-v1.4.json",
         "books/death-guard/sources/official-mfm-v1.4.html",
         "books/death-guard/sources/official-mfm-v1.4-legends.html"
+      ]
+    },
+    {
+      "id": "death-guard-waha-11e-current-2026-09-25",
+      "sourceId": "death-guard-waha-11e-current-2026-09-25",
+      "title": "Wahapedia Death Guard 11E current corpus",
+      "authority": "community-secondary-operational-baseline",
+      "version": "current-capture-2026-09-25",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/death-guard/",
+      "capturedAt": "2026-09-25",
+      "currentnessCutoff": "2026-09-22",
+      "active": true,
+      "sourceType": "deterministic-web-corpus",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "factsOwned": [
+        "non-MFM Death Guard gameplay text",
+        "datasheet structure",
+        "detachment gameplay text"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "CERTIFICATION_QA",
+        "GLOSSARY_V2"
+      ],
+      "paths": [
+        "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+        "books/death-guard/sources/waha-11e-current-2026-09-25/source-defects.json"
       ]
     }
   ],

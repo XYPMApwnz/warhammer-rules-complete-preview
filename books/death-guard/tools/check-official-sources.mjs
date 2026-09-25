@@ -69,7 +69,7 @@ for(const captured of capture.detachments){
 }
 assert.equal(capture.enhancements.length,30);
 
-const worldblight='At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted (pg 71).';
+const worldblight='At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.';
 const mortarion=content.sections.find(section=>section.id==='unit-mortarion');
 assert.equal(content.sections.find(section=>section.id==='detachment-virulent-vectorium').subsections[0].blocks[0].text,worldblight);
 assert.ok(JSON.stringify(mortarion).includes('If it does, after the attacking unit has finished making its attacks'));
@@ -77,6 +77,10 @@ assert.ok(published.includes('Virulent Vectorium - Worldblight:')&&published.inc
 assert.ok(published.includes('If it does, after the attacking unit has finished making its attacks'));
 assert.equal(ledger.updates.length,10);
 assert.ok(ledger.updates.every(update=>update.source.documentId==='death-guard-faction-pack-v1.2'));
-assert.equal(content.audit.currentMFM,'v1.3');
+assert.equal(content.audit.currentMFM,'v1.4');
+const currentMfm=readJson('death-guard/sources/official-mfm-v1.4.json');
+assert.equal(currentMfm.version,'v1.4');
+assert.equal(currentMfm.currentness,'CURRENT');
+assert.equal(currentMfm.counts.currentUnits,36);
 
 console.log(`Death Guard official source QA passed: ${capture.counts.units} units, ${capture.counts.detachments} detachments, ${capture.counts.enhancements} enhancements, ${capture.counts.pricedOptions} priced options.`);

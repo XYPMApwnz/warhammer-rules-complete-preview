@@ -307,8 +307,8 @@ for(const id of dgComponents){
     assert.deepEqual(entry.facts,sourceRule.subsections.find(record=>record.id===id),`${id}: child semantics must come from the accepted Army rule`);
   }
 }
-assert.equal(index.counts.standalone,1813,'false Support occurrences must not enter standalone browse');
-assert.equal(index.counts.scopedChildren,2892,'only the five Death Guard components may extend scoped children');
+assert.equal(index.counts.standalone,1807,'false Support occurrences must not enter standalone browse');
+assert.equal(index.counts.scopedChildren,2898,'only the five Death Guard components may extend scoped children');
 
 const missingAmFactInputs={...inputs,armyModels:structuredClone(inputs.armyModels)};
 const missingAmModel=missingAmFactInputs.armyModels.find(model=>model.book.id==='adeptus-mechanicus');

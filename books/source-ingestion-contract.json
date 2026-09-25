@@ -694,7 +694,7 @@
       "authority": "accepted-canonical-transcription",
       "sourceType": "accepted-canonical-transcription",
       "acceptedRevision": "accepted-canonical-2026-09-14",
-      "acceptedHash": "541fed1f7e8e99bf2f0631c208f75e83be19039f107be76911bbb169cb512791",
+      "acceptedHash": "f01e02c2ca4198b151efd91c30001bb4f5296c6251fc956a5716a8ac914a3dad",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "UNKNOWN",
@@ -705,7 +705,7 @@
         {
           "path": "books/death-guard/content/death-guard-rules.en.json",
           "normalization": "lf",
-          "sha256": "3182c5cd85763a3885ce3ad46c80412e18e05b4933271a71cd6c6756a2c45b87"
+          "sha256": "49ec864b798f34c25c0b4cb0f09f7ac36a2ecd620a37f18601f911c8601280cd"
         },
         {
           "path": "books/death-guard/content/death-guard-legends.en.json",
@@ -809,7 +809,7 @@
       "authority": "official-pdf",
       "sourceType": "official-pdf",
       "acceptedRevision": "v1.2",
-      "acceptedHash": "cf90cb4b26ec31252374c1e9e8aaf60cdb08fe9fddaa80b9b0f17fc0c29c7dba",
+      "acceptedHash": "9fab778ae0feef0d948b8550d4ce62be8161effb73c1b41e86e57284d0299c6a",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "UNKNOWN",
@@ -825,7 +825,7 @@
         {
           "path": "books/death-guard/content/official-update-ledger.en.json",
           "normalization": "lf",
-          "sha256": "86cefc841b05852a150611cb327ebc07788b0714f1f652f8dc8af7316edafc9e"
+          "sha256": "73dbf12335363b33f2889fbe825ff3082562cde8ecbcc91bd36dc0b2f2d5c6bf"
         }
       ],
       "notes": "Enrolled factual owner for faction-pack-rules, official-updates."
@@ -1968,6 +1968,34 @@
         }
       ],
       "notes": "Current official MFM v1.4 capture at the 2026-09-22 cutoff. Raw server-rendered HTML is retained because the official application exposed no public structured payload endpoint."
+    },
+    {
+      "book": "death-guard",
+      "sourceId": "death-guard-waha-11e-current-2026-09-25",
+      "authority": "community-secondary-operational-baseline",
+      "sourceType": "deterministic-web-corpus",
+      "acceptedRevision": "current-capture-2026-09-25",
+      "acceptedHash": "28d59094946fc0e371b45727f4767e1e9d2f123649695e9f65da8bfb4fede441",
+      "lastChecked": "2026-09-25",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "RETAINED_WEB_CORPUS",
+      "reproducible": "repository-artifact",
+      "extractor": "books/death-guard/tools/import-waha-current-corpus.py",
+      "artifacts": [
+        {
+          "path": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "normalization": "bytes",
+          "sha256": "6c1ae25df0fcdcfe87e40764b71321b63c69c0fdb1a0af983ef8f0dcc7d1e582"
+        },
+        {
+          "path": "books/death-guard/sources/waha-11e-current-2026-09-25/source-defects.json",
+          "normalization": "bytes",
+          "sha256": "17b2d0bf3b3b918425afd718780ced3504203bf2879fcc928218ee09fc01f255"
+        }
+      ],
+      "notes": "Frozen secondary 11E Death Guard corpus captured for complete source-to-canonical certification at the 2026-09-22 currentness cutoff."
     },
     {
       "book": "adeptus-mechanicus",

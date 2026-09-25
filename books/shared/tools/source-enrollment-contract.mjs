@@ -7,7 +7,8 @@ export const SOURCE_LIFECYCLES=new Set(['ACCEPTED_SOURCE','AUTHORITATIVE_RUNTIME
 export const UPSTREAM_CURRENTNESS=new Set(['UNKNOWN','CURRENT','UPDATE_AVAILABLE','N/A']);
 export const SOURCE_CLASSIFICATIONS=new Set(['VERIFIED_FROZEN','VERIFIED_CURRENT','UPDATE_AVAILABLE','REVIEW_REQUIRED','SOURCE_LIMITED','LEGACY_UNVERIFIABLE']);
 export const SOURCE_CONSUMERS=new Set([
-  'CANONICAL_BUILD','EFFECTIVE_MODEL','POINTS_PROJECTION','RELATED_RULES','COMPATIBLE_RULES','RUNTIME_PUBLICATION','SOURCE_FRESHNESS'
+  'CANONICAL_BUILD','EFFECTIVE_MODEL','POINTS_PROJECTION','RELATED_RULES','COMPATIBLE_RULES','RUNTIME_PUBLICATION','SOURCE_FRESHNESS',
+  'CERTIFICATION_QA','GLOSSARY_V2'
 ]);
 
 const toPosix=value=>String(value).replaceAll('\\','/');
@@ -140,7 +141,7 @@ export function buildSourceEnrollment({repo=path.resolve(process.cwd()),includeF
       if(!referenced)throw new Error(`${book}/${sourceIdentity(source)}: active source has no declared consumer graph reference`);
     }
     const bookRegistered=registry.sources.filter(source=>source.book===book),registeredIds=new Set(bookRegistered.map(source=>source.sourceId));
-    const undeclared=bookRegistered.filter(source=>!activeIds.has(source.sourceId));
+    const undeclared=bookRegistered.filter(source=>!ids.has(source.sourceId));
     const unregistered=active.filter(source=>!registeredIds.has(sourceIdentity(source)));
     if(undeclared.length)throw new Error(`${book}: registered sources are not actively declared: ${undeclared.map(source=>source.sourceId).join(', ')}`);
     if(unregistered.length)throw new Error(`${book}: active manifest sources are not registered: ${unregistered.map(sourceIdentity).join(', ')}`);

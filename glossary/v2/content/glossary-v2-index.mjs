@@ -139,18 +139,19 @@ function addGenericUnitChildren(entries,lookups,model,unit){
 
 function addStructuredUnitChildren(entries,lookups,model,unit){
   const unitEntry=lookups.unit.get(`${model.book.id}::${unit.id}`),ownerBook=sourceBook(unit,model.book.id);
-  const blocks=[...(unit.blocks||[]),...(unit.subsections||[]).flatMap(section=>section.blocks||[])];
-  for(const block of blocks){
+  const blocks=[...(unit.blocks||[]).map(block=>({block,sectionTitle:''})),...(unit.subsections||[]).flatMap(section=>(section.blocks||[]).map(block=>({block,sectionTitle:section.title||''})))];
+  for(const {block,sectionTitle} of blocks){
     if(block.type==='ability'){
       const stableId=block.termId||block.id;
       if(!stableId)throw new Error(`${model.book.id}/${unit.id}: structured ability ${block.title} has no stable identity`);
       const aggregate=['CORE','FACTION'].includes(block.title)&&!block.termId;
-      addArmyEntry(entries,model,'ABILITY',block,{parentId:aggregate?unit.id:null,canonicalId:stableId,ownerBookId:ownerBook,contextData:{parentUnitId:unit.id},references:[{domain:'ARMY',id:unitEntry.id,canonicalId:unit.id,relationType:'PARENT_UNIT'}]});
+      const recordType=sectionTitle==='Wargear Abilities'?'WARGEAR_ABILITY':'ABILITY';
+      addArmyEntry(entries,model,recordType,block,{parentId:recordType==='WARGEAR_ABILITY'||aggregate?unit.id:null,canonicalId:stableId,ownerBookId:ownerBook,contextData:{parentUnitId:unit.id},references:[{domain:'ARMY',id:unitEntry.id,canonicalId:unit.id,relationType:'PARENT_UNIT'}]});
     }
     if(block.type==='weapon')for(const profile of block.profiles?.length?block.profiles:[block]){
       const stableId=profile.id||profile.termId;
       if(!stableId)throw new Error(`${model.book.id}/${unit.id}: structured weapon ${profile.name||block.title} has no stable identity`);
-      addArmyEntry(entries,model,'WEAPON_PROFILE',profile,{parentId:unit.id,canonicalId:stableId,label:profile.name||block.title,ownerBookId:ownerBook,contextData:{parentUnitId:unit.id},references:[{domain:'ARMY',id:unitEntry.id,canonicalId:unit.id,relationType:'PARENT_UNIT'}]});
+      addArmyEntry(entries,model,'WEAPON_PROFILE',profile,{parentId:unit.id,canonicalId:stableId,label:profile.name||block.title,aliases:profile.termId?[profile.termId]:[],ownerBookId:ownerBook,contextData:{parentUnitId:unit.id},references:[{domain:'ARMY',id:unitEntry.id,canonicalId:unit.id,relationType:'PARENT_UNIT'}]});
     }
   }
 }
@@ -309,6 +310,21 @@ function addArmyEntries(entries,models){
   return lookups;
 }
 
+function attachDeathGuardCompatibility(entries,models){
+  const model=models.find(item=>item.book.id==='death-guard');if(!model)return;
+  const armyBindings=new Map([['nurgles-gift','army-rule-nurgles-gift']]);
+  const coreBindings=new Map([['core-mobile','core::core-rule-13-06-terrain-and-movement'],['core-detection-range','core::core-rule-13-09-hidden'],['core-frame','core::core-rule-17-02-frame']]);
+  const values=[...entries.values()],byCanonical=new Map();for(const entry of values){const id=entry.sourceOwner?.canonicalId;if(!byCanonical.has(id))byCanonical.set(id,[]);byCanonical.get(id).push(entry);}
+  for(const legacy of model.glossary||[]){
+    let candidates=[...(byCanonical.get(legacy.sectionId)||[]),...(byCanonical.get(legacy.id)||[])].filter(entry=>entry.sourceOwner?.bookId==='death-guard'||entry.domain==='CORE');
+    if(!candidates.length&&legacy.kind==='detachment'&&legacy.sectionId){const owner=model.detachments.find(detachment=>(detachment.subsections||[]).some(section=>section.id===legacy.sectionId));if(owner)candidates=values.filter(entry=>entry.domain==='ARMY'&&entry.sourceOwner?.bookId==='death-guard'&&entry.recordType==='DETACHMENT'&&entry.sourceOwner.canonicalId===owner.id);}
+    candidates=[...new Map(candidates.map(entry=>[entry.id,entry])).values()];
+    if(candidates.length===1){candidates[0].aliases=sortStrings([...candidates[0].aliases,legacy.id]);continue;}
+    const armyTarget=armyBindings.get(legacy.id),army=armyTarget&&values.find(entry=>entry.domain==='ARMY'&&entry.sourceOwner?.bookId==='death-guard'&&entry.sourceOwner.canonicalId===armyTarget);if(army){army.aliases=sortStrings([...army.aliases,legacy.id]);continue;}
+    const core=coreBindings.get(legacy.id)&&entries.get(coreBindings.get(legacy.id));if(core)core.aliases=sortStrings([...core.aliases,legacy.id]);
+  }
+}
+
 function addMissionEntries(entries,missionCatalogs){
   for(const missionCatalog of missionCatalogs){
     const scope=missionCatalog.scope;
@@ -367,7 +383,7 @@ export async function loadGlossaryV2Inputs(){
 }
 
 export function createGlossaryV2Index({coreCatalog,armyModels,mfmCatalog,missionCatalogs,editorial,resolutions,supplemental}){
-  const entries=new Map();addCoreEntries(entries,coreCatalog);const armyLookups=addArmyEntries(entries,armyModels);addMissionEntries(entries,missionCatalogs);const mfmAugmentation=attachMfm(entries,armyLookups,mfmCatalog);const legacy=applyLegacyPresentation(entries,coreCatalog,editorial,resolutions,supplemental);
+  const entries=new Map();addCoreEntries(entries,coreCatalog);const armyLookups=addArmyEntries(entries,armyModels);attachDeathGuardCompatibility(entries,armyModels);addMissionEntries(entries,missionCatalogs);const mfmAugmentation=attachMfm(entries,armyLookups,mfmCatalog);const legacy=applyLegacyPresentation(entries,coreCatalog,editorial,resolutions,supplemental);
   const ordered=[...entries.values()].map(entry=>{entry.aliases=sortStrings(entry.aliases);entry.contexts.sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)));entry.canonicalReferences=entry.canonicalReferences.filter(ref=>ref.id).sort((a,b)=>`${a.relationType}:${a.id}`.localeCompare(`${b.relationType}:${b.id}`));if(entry.mfm?.assignedDetachmentIds)entry.mfm.assignedDetachmentIds=sortStrings(entry.mfm.assignedDetachmentIds);for(const context of entry.contexts||[])if(context.mfm?.assignedDetachmentIds)context.mfm.assignedDetachmentIds=sortStrings(context.mfm.assignedDetachmentIds);return entry;}).sort((a,b)=>a.id.localeCompare(b.id));
   const counts={total:ordered.length,standalone:ordered.filter(entry=>!entry.parent).length,scopedChildren:ordered.filter(entry=>entry.parent).length,byDomain:{},byType:{}};for(const entry of ordered){counts.byDomain[entry.domain]=(counts.byDomain[entry.domain]||0)+1;const key=`${entry.domain}:${entry.recordType}`;counts.byType[key]=(counts.byType[key]||0)+1;}
   const index={schema:'wh40k-glossary-v2-index/v1',language:'en',currentnessCutoff:'2026-09-22',factualAuthority:false,factualInputs:[...FACTUAL_INPUTS],presentationInputs:[...PRESENTATION_INPUTS],supportedArmyBooks:[...BOOK_IDS],counts,coverage:{coreEffectiveRecords:coreCatalog.records.length,coreIndexed:counts.byDomain.CORE||0,coreNotIndexed:{identityOnly:coreCatalog.identityOnly.map(record=>record.id).sort(),aliasOnlyErrata:[...CORE_ALIAS_ONLY_ERRATA].sort()},armyEffectiveBooks:armyModels.map(model=>model.book.id),missionsScopes:missionCatalogs.map(catalog=>catalog.scope),mfm:{sourceVersion:mfmCatalog.sourceVersion,scope:mfmCatalog.scope,standaloneArticles:0,augmentation:mfmAugmentation},legacy},entries:ordered};

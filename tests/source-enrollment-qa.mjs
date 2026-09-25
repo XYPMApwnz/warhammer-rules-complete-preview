@@ -23,6 +23,7 @@ try{
     copy(root,fixture,book.config);
     copy(root,fixture,`books/${book.id}/sources/source-manifest.json`);
     copyTree(root,fixture,`books/${book.id}/tools`);
+    copyTree(root,fixture,`books/${book.id}/tests`);
     const sourceDirectory=path.join(root,'books',book.id,'sources');
     for(const entry of fs.readdirSync(sourceDirectory,{withFileTypes:true}))if(entry.isFile()&&entry.name.endsWith('.config.json'))copy(root,fixture,`books/${book.id}/sources/${entry.name}`);
     if(book.mobile)copy(root,fixture,`books/${book.id}/mobile/build.mjs`);

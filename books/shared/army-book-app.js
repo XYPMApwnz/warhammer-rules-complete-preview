@@ -66,6 +66,8 @@
       relatedRules?.enhance?.(mountRoot);
       tableAccessibility.apply(mountRoot);
       extensions.forEach(extension=>extension(Object.freeze({...runtimeContext,app,mountRoot})));
+      root.WH40K_GLOSSARY?.bindArmyRoot?.(mountRoot,config.bookId);
+      root.WHGlossaryAutolink?.validate(mountRoot,root.WH40K_GLOSSARY?.forBook(config.bookId)||terms);
       navigation.scheduleGeometry();
       return mountRoot;
     };

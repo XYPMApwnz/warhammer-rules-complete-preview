@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import {fileURLToPath} from 'node:url';
+
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
+const corpus=JSON.parse(fs.readFileSync(path.join(root,'books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json'),'utf8'));
+const index=JSON.parse(fs.readFileSync(path.join(root,'glossary/v2/generated/index.en.json'),'utf8'));
+const targetSource=fs.readFileSync(path.join(root,'books/death-guard/scripts/target-data.js'),'utf8');
+const sandbox={window:{}};vm.runInNewContext(targetSource,sandbox);const html=sandbox.window.WH_ARMY_BOOK_TARGETS.html;
+const termIds=[...html.matchAll(/data-term="([^"]+)"/g)].map(match=>match[1]);
+const byId=new Set(index.entries.map(entry=>entry.id)),byKey=new Set(index.entries.flatMap(entry=>[entry.sourceOwner?.canonicalId,...(entry.aliases||[])]).filter(Boolean));
+const unresolved=[...new Set(termIds.filter(id=>!byId.has(id)&&!byKey.has(id)))];
+assert.deepEqual(unresolved,[]);
+const units=index.entries.filter(entry=>entry.recordType==='UNIT'&&entry.contexts?.some(context=>context.effectiveBookId==='death-guard'));assert.equal(units.length,36);
+const det=index.entries.filter(entry=>entry.recordType==='DETACHMENT'&&entry.contexts?.some(context=>context.effectiveBookId==='death-guard'));assert.equal(det.length,9);
+const strats=index.entries.filter(entry=>entry.recordType==='STRATAGEM'&&entry.contexts?.some(context=>context.effectiveBookId==='death-guard'));assert.equal(strats.length,45);assert.ok(strats.every(entry=>entry.facts.lines?.length));
+assert.equal(corpus.inventory.ruleReference,1250);
+assert.match(fs.readFileSync(path.join(root,'books/shared/army-book-app.js'),'utf8'),/extensions\.forEach[\s\S]*bindArmyRoot[\s\S]*validate/);
+console.log(`Death Guard player-visible/reference census QA passed: ${termIds.length} visible term occurrences resolve; ${corpus.inventory.ruleReference} source references inventoried.`);

@@ -195,7 +195,7 @@ export function buildDeathGuardEffectiveModelInput(context,canonicalModel=buildD
   const effectivePointsProjection=createEffectivePointsProjection(pointsProjectionInput),acceptedSourceConflicts=structuredClone(canonicalModel.book.acceptedSourceConflicts||[]),book={...canonicalModel.book,id:config.id,title:config.title,publicationTitle:canonicalModel.book.title,parentBookId:null};
   delete book.acceptedSourceConflicts;
   for(const conflict of acceptedSourceConflicts){
-    if(!conflict?.id||!conflict.field||!conflict.canonicalValue||!conflict.productionValue||conflict.status!=='unresolved'||conflict.renderingPolicy!=='preserve-production-until-resolved')throw new Error('Death Guard accepted source conflict contract is invalid');
+    const unresolved=conflict?.status==='unresolved'&&conflict?.productionValue&&conflict?.renderingPolicy==='preserve-production-until-resolved',resolved=conflict?.status==='resolved'&&conflict?.wahaValue&&conflict?.authority==='official-primary'&&conflict?.resolution&&conflict?.renderingPolicy==='use-canonical-official';if(!conflict?.id||!conflict.field||!conflict.canonicalValue||!unresolved&&!resolved)throw new Error('Death Guard accepted source conflict contract is invalid');
   }
   const unitGroups=[];
   for(let index=0;index<canonicalModel.book.sections.length;index++){

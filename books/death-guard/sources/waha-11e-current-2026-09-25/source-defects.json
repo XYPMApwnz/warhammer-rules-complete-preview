@@ -1,0 +1,11 @@
+{
+  "schema": "wh40k-source-defect-ledger/v1",
+  "bookId": "death-guard",
+  "captureDate": "2026-09-25",
+  "records": [
+    {"id":"waha-dg-leechspore-missing-from","sourceId":"detachment-virulent-vectorium:stratagem:4","classification":"SOURCE_TEXT_DEFECT","wahaObservation":"Target sentence omits one connective word.","resolution":"Official Death Guard Faction Pack v1.2 wording is authoritative.","applicationValue":"official-primary"},
+    {"id":"waha-dg-mobile-vector-brackets","sourceId":"detachment-champions-of-contagion:stratagem:4","classification":"SOURCE_MARKUP_DEFECT","wahaObservation":"Two closing parentheses render as square brackets.","resolution":"Accepted canonical punctuation retained.","applicationValue":"source-semantic-equivalent"},
+    {"id":"waha-dg-blight-hauler-spelling","sourceId":"datasheet-myphitic-blight-hauler:section:2","classification":"SOURCE_TEXT_DEFECT","wahaObservation":"Unit composition misspells Blight-haulers.","resolution":"Accepted canonical datasheet spelling retained.","applicationValue":"source-semantic-equivalent"},
+    {"id":"waha-dg-keyword-strikethrough-markup","sourceId":"detachment-contagion-engines:rule","classification":"SOURCE_MARKUP_DEFECT","wahaObservation":"ENGINES/FLYBLOWN keyword markup uses strike styling.","resolution":"Official Faction Pack v1.2 confirms both tag restrictions are current.","applicationValue":"official-primary"}
+  ]
+}

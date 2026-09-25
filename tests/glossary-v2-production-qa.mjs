@@ -271,11 +271,11 @@ vm.runInNewContext(read('glossary/v2/runtime/glossary-v2-runtime.js'),duplicateV
 assert.equal(duplicateVisualScope.window.WH40K_GLOSSARY.get(duplicateVisualA.id).definition.en,'','cross-wired Terrain Layout visuals must fail closed');
 
 assert.equal(index.counts.total,4705);
-assert.equal(index.counts.standalone,1813);
-assert.equal(index.counts.scopedChildren,2892);
+assert.equal(index.counts.standalone,1807);
+assert.equal(index.counts.scopedChildren,2898);
 assert.equal(api.entries().length,4705);
-assert.equal(api.standaloneEntries().length,1813);
-assert.equal(api.counts.scopedChildren,2892);
+assert.equal(api.standaloneEntries().length,1807);
+assert.equal(api.counts.scopedChildren,2898);
 
 const detachments=api.standaloneEntries().filter(entry=>entry.recordType==='DETACHMENT');
 assert.equal(detachments.length,102,'standalone browse must retain exactly 102 Detachments');
@@ -410,4 +410,4 @@ const popupRuleTypes=new Set(['ABILITY','ARMY_RULE','DETACHMENT_RULE','FACTION_T
 const noDefinition=api.entries().filter(entry=>popupRuleTypes.has(entry.recordType)&&!entry.definition.en.trim());
 assert.equal([...noDefinition].map(entry=>entry.id).join(','),'army::chaos-space-marines::detachment_rule::deceptors::chaos-space-marines-detachment-rule-masters-of-misdirection','only the accepted Masters of Misdirection evidence gap may remain without a definition');
 
-console.log('Glossary V2 production contract QA passed: 1813 standalone browse entries, 2892 scoped searchable children, explicit/context-safe identity resolution; no-definition entries 1.');
+console.log('Glossary V2 production contract QA passed: 1807 standalone browse entries, 2898 scoped searchable children, explicit/context-safe identity resolution; no-definition entries 1.');

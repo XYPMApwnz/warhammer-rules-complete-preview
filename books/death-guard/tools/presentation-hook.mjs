@@ -19,7 +19,7 @@ function presentation(model){
   const ownerOf=id=>ownership.get(id)||null;
   const applyOwnership=(id,parentId)=>{if(ownership.get(id)!==parentId)throw new Error(`Ownership mismatch for ${id}: ${parentId}`);appliedOwnership.add(id);};
   const assertOwnershipComplete=()=>{if(appliedOwnership.size!==ownership.size)throw new Error(`Unapplied ownership records: ${[...ownership.keys()].filter(id=>!appliedOwnership.has(id)).join(', ')}`);};
-  const resolveLine=(blockId,line)=>{const conflict=(model.rules.acceptedSourceConflicts||[]).find(record=>record.id===blockId&&record.canonicalValue===line);if(!conflict)return line;if(conflict.status!=='unresolved'||conflict.renderingPolicy!=='preserve-production-until-resolved')throw new Error(`Unsupported source conflict policy for ${blockId}`);return conflict.productionValue;};
+  const resolveLine=(blockId,line)=>{const conflict=(model.rules.acceptedSourceConflicts||[]).find(record=>record.id===blockId&&record.canonicalValue===line);if(!conflict)return line;if(conflict.status==='resolved'&&conflict.renderingPolicy==='use-canonical-official')return line;if(conflict.status==='unresolved'&&conflict.renderingPolicy==='preserve-production-until-resolved')return conflict.productionValue;throw new Error(`Unsupported source conflict policy for ${blockId}`);};
   const persistent=metadata.sectionOwnership.persistentSourceField;
   const sourceField=(blockId,field)=>blockId===persistent.ruleId&&field.toLowerCase()===persistent.field?` data-source-field="${persistent.field}"`:'';
   return {metadata,at,termButton,maybeTermButton,decorate,provenance,ownerOf,applyOwnership,assertOwnershipComplete,resolveLine,sourceField};
@@ -39,7 +39,7 @@ function applyCuratedTermPlacements(html,metadata){
   if(stack.length!==1)throw new Error('Generated reader HTML is not balanced before curated term placement');
   const elementChildren=node=>node.children.filter(child=>child.type==='element');
   const textContent=node=>node.type==='text'?node.value:node.children.map(textContent).join('');
-  const buttonNode=(record,parent)=>({type:'element',tag:'button',open:`<button class="${record.className}" data-term="${record.termId}">`,close:'</button>',children:[{type:'text',value:esc(record.label)}],parent});
+  const buttonNode=(record,parent)=>record.termId.startsWith('keyword-')?({type:'element',tag:'span',open:'<span>',close:'</span>',children:[{type:'text',value:esc(record.label)}],parent}):({type:'element',tag:'button',open:`<button class="${record.className}" data-term="${record.termId}">`,close:'</button>',children:[{type:'text',value:esc(record.label)}],parent});
   for(const record of [...metadata.termLinks.placements].sort((a,b)=>a.order-b.order)){
     let parent=ids.get(record.anchorId);if(!parent)throw new Error(`Missing curated term anchor: ${record.anchorId}`);
     for(const index of record.path.slice(0,-1)){const child=elementChildren(parent)[index];if(!child)throw new Error(`Invalid curated term path for ${record.key}`);parent=child;}
@@ -55,7 +55,7 @@ function applyCuratedTermPlacements(html,metadata){
       const replacement=[];if(offset)replacement.push({type:'text',value:child.value.slice(0,offset),parent});replacement.push(buttonNode(record,parent));if(offset+rawLabel.length<child.value.length)replacement.push({type:'text',value:child.value.slice(offset+rawLabel.length),parent});parent.children.splice(childIndex,1,...replacement);applied=true;break;
     }
     if(!applied)throw new Error(`Curated term placement does not match rendered DOM: ${record.key}`);
-    const resolved=elementChildren(parent)[targetIndex];if(resolved?.tag!=='button'||textContent(resolved)!==rawLabel||!/\sdata-term="([^"]+)"/.test(resolved.open)||RegExp.$1!==record.termId)throw new Error(`Curated term placement verification failed: ${record.key}`);
+    const resolved=elementChildren(parent)[targetIndex],keyword=record.termId.startsWith('keyword-');if(textContent(resolved)!==rawLabel||keyword&&resolved?.tag!=='span'||!keyword&&(resolved?.tag!=='button'||!/\sdata-term="([^"]+)"/.test(resolved.open)||RegExp.$1!==record.termId))throw new Error(`Curated term placement verification failed: ${record.key}`);
   }
   const serialize=node=>node.type==='text'?node.value:node.type==='root'?node.children.map(serialize).join(''):`${node.open}${node.children.map(serialize).join('')}${node.close}`;
   return serialize(root);

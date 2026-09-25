@@ -290,3 +290,7 @@ The new implementation should preserve proven contracts and observable behavior 
 > - Evidence gaps remain gaps; do not guess rules or geometry.
 > - Effects and attachments operate on physical instances and must not leak between duplicate datasheets.
 > - Reuse the shared structured effect runtime instead of duplicating rule-specific behavior.
+
+## Death Guard content certification
+
+The complete supported/current Death Guard gameplay corpus is certified source-first against the 2026-09-25 Waha 11E capture, with official MFM v1.4 ownership and official Faction Pack precedence. See [DEATH_GUARD_WAHA_CONTENT_CERTIFICATION.md](certification/DEATH_GUARD_WAHA_CONTENT_CERTIFICATION.md).
