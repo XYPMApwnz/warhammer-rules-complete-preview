@@ -196,6 +196,28 @@
     if(!body||typeof body!=='object')return'';
     const lines=[];
     if(text(body.flavorText))lines.push(`FLAVOR\n${text(body.flavorText)}`);
+    if(entry.recordType==='PRIMARY_MISSION'){
+      const factReferences=Array.isArray(facts.references)?facts.references:[],canonicalReferences=Array.isArray(entry.canonicalReferences)?entry.canonicalReferences:[];
+      const playerReferences=factReferences.filter(reference=>reference.relationType==='PLAYER_FORCE_DISPOSITION');
+      const opponentReferences=factReferences.filter(reference=>reference.relationType==='OPPONENT_FORCE_DISPOSITION');
+      const coreReferences=factReferences.filter(reference=>reference.relationType==='CORE_RULE');
+      if(factReferences.length!==playerReferences.length+opponentReferences.length+coreReferences.length||playerReferences.length!==1||opponentReferences.length!==1)return'';
+      if(playerReferences[0].id!==facts.playerForceDispositionId||opponentReferences[0].id!==facts.opponentForceDispositionId)return'';
+      const player=byId.get(`missions::${facts.playerForceDispositionId}`),opponent=byId.get(`missions::${facts.opponentForceDispositionId}`);
+      if(player?.recordType!=='FORCE_DISPOSITION'||opponent?.recordType!=='FORCE_DISPOSITION')return'';
+      const canonicalRelation=(relationType,canonicalId,domain)=>canonicalReferences.filter(reference=>reference.relationType===relationType&&reference.canonicalId===canonicalId&&reference.domain===domain);
+      if(canonicalRelation('PLAYER_FORCE_DISPOSITION',facts.playerForceDispositionId,'MISSIONS').length!==1||canonicalRelation('OPPONENT_FORCE_DISPOSITION',facts.opponentForceDispositionId,'MISSIONS').length!==1)return'';
+      const coreRuleRefs=Array.isArray(body.coreRuleRefs)?body.coreRuleRefs:[];
+      if(coreReferences.length!==coreRuleRefs.length||new Set(coreRuleRefs).size!==coreRuleRefs.length||coreReferences.some(reference=>!coreRuleRefs.includes(reference.id)))return'';
+      const coreTargets=[];
+      for(const coreId of coreRuleRefs){
+        if(canonicalRelation('CORE_RULE',coreId,'CORE').length!==1)return'';
+        const target=byId.get(`core::${coreId}`);if(target?.domain!=='CORE')return'';coreTargets.push(target);
+      }
+      if(canonicalReferences.length!==2+coreTargets.length)return'';
+      lines.push(`FORCE DISPOSITION CONTEXT\nPLAYER: ${player.label}\nOPPONENT: ${opponent.label}`);
+      if(coreTargets.length)lines.push(`CORE RULE REFERENCES\n${coreTargets.map(target=>target.label).join('\n')}`);
+    }
     if(entry.recordType==='SECONDARY_MISSION'){
       const eligibility=facts.eligibility;
       if(!eligibility||typeof eligibility.fixed!=='boolean'||typeof eligibility.tactical!=='boolean')return'';

@@ -82,7 +82,22 @@ for(const source of missionCards){
     if(overlay.clarification.appliesToClauseText)assert(definition.includes(overlay.clarification.appliesToClauseText),`${source.id}: FAQ target clause`);
     assert(definition.includes(overlay.clarification.sourceText),`${source.id}: effective FAQ answer`);
   }
+  if(source.recordType==='PRIMARY_MISSION'){
+    const player=index.entries.find(entry=>entry.id===`missions::${source.facts.playerForceDispositionId}`),opponent=index.entries.find(entry=>entry.id===`missions::${source.facts.opponentForceDispositionId}`);
+    assert(player&&opponent,`${source.id}: exact Force Disposition targets`);
+    assert(definition.includes(`PLAYER: ${player.label}\nOPPONENT: ${opponent.label}`),`${source.id}: directed Force Disposition context`);
+    for(const coreId of source.facts.ruleBody.coreRuleRefs){
+      const core=index.entries.find(entry=>entry.id===`core::${coreId}`);assert(core,`${source.id}: exact Core target ${coreId}`);
+      assert(definition.includes(core.label),`${source.id}: visible Core reference ${coreId}`);
+      assert(article.related.includes(core.id),`${source.id}: clickable Core reference ${coreId}`);
+    }
+    assert(article.related.includes(player.id)&&article.related.includes(opponent.id),`${source.id}: clickable directed Force Disposition targets`);
+  }
 }
+const delayingAction=api.get('missions::primary-delaying-action');
+assert.match(delayingAction.definition.en,/FORCE DISPOSITION CONTEXT\nPLAYER: Disruption\nOPPONENT: Purge the Foe/,'Delaying Action directed Force Disposition relation');
+assert.match(delayingAction.definition.en,/CORE RULE REFERENCES\n5\. End of Command Phase\nLevel of Control/,'Delaying Action Core references');
+assert.deepEqual(new Set(delayingAction.related),new Set(['missions::force-disposition-disruption','missions::force-disposition-purge-the-foe','core::core-rule-08-05-end-of-command-phase','core::core-rule-14-02-level-of-control']),'Delaying Action exact clickable targets');
 const battlefieldDominance=api.get('missions::primary-battlefield-dominance');
 assert.match(battlefieldDominance.definition.en,/For each objective you control[\s\S]*VP: 3VP[\s\S]*cumulative with the previous scoring condition[\s\S]*ADDITIONAL VP: 2VP/i,'Primary multi-branch scoring must remain explicit');
 const deathTrap=api.get('missions::primary-death-trap');
@@ -102,6 +117,17 @@ unknownCard.facts.ruleBody.scoringClauses[0].victoryPointAwards[0].operation='UN
 const unknownCardScope={window:{WH40K_GLOSSARY_V2_INDEX:unknownCardIndex}};
 vm.runInNewContext(read('glossary/v2/runtime/glossary-v2-runtime.js'),unknownCardScope);
 assert.equal(unknownCardScope.window.WH40K_GLOSSARY.get(unknownCard.id).definition.en,'','unknown Mission card operations must fail closed instead of exposing internal codes');
+
+for(const mutation of [
+  entry=>entry.canonicalReferences=entry.canonicalReferences.filter(reference=>reference.relationType!=='PLAYER_FORCE_DISPOSITION'),
+  entry=>{const player=entry.canonicalReferences.find(reference=>reference.relationType==='PLAYER_FORCE_DISPOSITION'),opponent=entry.canonicalReferences.find(reference=>reference.relationType==='OPPONENT_FORCE_DISPOSITION');[player.relationType,opponent.relationType]=[opponent.relationType,player.relationType];},
+  entry=>entry.canonicalReferences.find(reference=>reference.relationType==='CORE_RULE').canonicalId='core-rule-wrong-target',
+  entry=>entry.canonicalReferences.push({domain:'CORE',id:'core::core-deep-strike',canonicalId:'core-deep-strike',relationType:'CORE_RULE'})
+]){
+  const mutatedIndex=structuredClone(index),mutated=mutatedIndex.entries.find(entry=>entry.id==='missions::primary-delaying-action');mutation(mutated);
+  const mutatedScope={window:{WH40K_GLOSSARY_V2_INDEX:mutatedIndex}};vm.runInNewContext(read('glossary/v2/runtime/glossary-v2-runtime.js'),mutatedScope);
+  assert.equal(mutatedScope.window.WH40K_GLOSSARY.get(mutated.id).definition.en,'','missing, reversed, wrong or extra Primary relation/reference must fail closed');
+}
 
 const twists=index.entries.filter(entry=>entry.recordType==='TWIST');
 assert.equal(twists.length,6,'all six Twist identities must remain standalone');

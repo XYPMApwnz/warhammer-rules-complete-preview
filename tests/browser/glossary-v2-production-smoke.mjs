@@ -19,6 +19,7 @@ const admechUpdateId='army::adeptus-mechanicus::update::rules-updates';
 const redeployId='missions::mission-sequence-redeploy-units';
 const createBattlefieldId='missions::mission-sequence-create-battlefield';
 const primaryMissionId='missions::primary-death-trap';
+const delayingActionId='missions::primary-delaying-action';
 const secondaryMissionId='missions::secondary-plunder';
 const twistIds=['missions::twist-night-fighting','missions::twist-mirrored-world'];
 const forceDispositionId='missions::force-disposition-disruption';
@@ -95,6 +96,16 @@ try{
       assert.equal(compact(await page.locator('#termPopupSummary').innerText()),article,`${viewport.name}: Mission card popup/article parity ${control.id}`);
       await page.locator('#termPopupClose').click();
     }
+    await page.goto(`${base}/glossary/index.html#${encodeURIComponent(delayingActionId)}`);await page.locator('body.article-open').waitFor();
+    const delayingActionArticle=compact(await page.locator('#termDetail .definition').last().innerText());
+    assert.match(delayingActionArticle,/FORCE DISPOSITION CONTEXT PLAYER: Disruption OPPONENT: Purge the Foe/i,`${viewport.name}: Delaying Action directed relation`);
+    assert.match(delayingActionArticle,/CORE RULE REFERENCES 5\. End of Command Phase Level of Control/i,`${viewport.name}: Delaying Action Core references`);
+    await page.locator('.connection-details > summary').click();
+    for(const target of ['missions::force-disposition-disruption','missions::force-disposition-purge-the-foe','core::core-rule-08-05-end-of-command-phase','core::core-rule-14-02-level-of-control'])assert(await page.locator('.reference-card').filter({hasText:byId.get(target).label}).count(),`${viewport.name}: Delaying Action clickable target ${target}`);
+    await page.locator('.reference-card').filter({hasText:byId.get('core::core-rule-14-02-level-of-control').label}).click();
+    assert.equal(decodeURIComponent(new URL(page.url()).hash.slice(1)),'core::core-rule-14-02-level-of-control',`${viewport.name}: Delaying Action Core navigation identity`);
+    await page.goBack();await page.locator('body.article-open').waitFor();
+    assert.equal(decodeURIComponent(new URL(page.url()).hash.slice(1)),delayingActionId,`${viewport.name}: Delaying Action Back navigation identity`);
     for(const id of twistIds){
       await page.goto(`${base}/glossary/index.html#${encodeURIComponent(id)}`);await page.locator('body.article-open').waitFor();
       const article=compact(await page.locator('#termDetail .definition').last().innerText());

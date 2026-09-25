@@ -7,6 +7,8 @@ import {BOOK_IDS,FACTUAL_INPUTS,buildGlossaryV2Index,createGlossaryV2Index,loadG
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const generated=JSON.parse(fs.readFileSync(path.join(root,'glossary/v2/generated/index.en.json'),'utf8'));
 const terrainReferences=JSON.parse(fs.readFileSync(path.join(root,'missions/sources/game-data-missions-terrain-reference-2026-09-22.json'),'utf8'));
+const missionEvidence=JSON.parse(fs.readFileSync(path.join(root,'missions/sources/chapter-approved-2026-27-evidence.json'),'utf8'));
+const missionCanonical=JSON.parse(fs.readFileSync(path.join(root,'missions/content/chapter-approved-2026-27.canonical.json'),'utf8'));
 const inputs=await loadGlossaryV2Inputs();
 const index=createGlossaryV2Index(inputs);
 assert.deepEqual(generated,index,'generated Glossary V2 index must equal the effective-domain projection');
@@ -53,6 +55,28 @@ assert.equal(secondaryMissions.filter(entry=>entry.facts.ruleBody.whenDrawn.leng
 assert.equal(secondaryMissions.filter(entry=>entry.facts.ruleBody.caps).length,4,'all Secondary per-card caps must remain projected');
 assert.equal(primaryMissions.filter(entry=>entry.facts.effectiveClarifications?.length).length,3,'all effective Primary FAQ clarifications must remain projected');
 assert.equal(secondaryMissions.filter(entry=>entry.facts.effectiveClarifications?.length).length,2,'all effective Secondary FAQ clarifications must remain projected');
+assert.equal(missionEvidence.directedPrimaryMatrix.length,25,'accepted Mission evidence must contain all 25 directed Primary relations');
+assert.equal(new Set(missionEvidence.directedPrimaryMatrix.map(relation=>relation.primaryMissionId)).size,25,'each accepted Primary Mission must own one directed relation');
+let acceptedCoreReferenceCount=0;
+for(const accepted of missionCanonical.primaryMissions){
+  const evidenceRelation=missionEvidence.directedPrimaryMatrix.find(relation=>relation.primaryMissionId===accepted.id);
+  assert(evidenceRelation,`${accepted.id}: accepted directed relation evidence`);
+  assert.equal(accepted.playerForceDispositionId,evidenceRelation.playerForceDispositionId,`${accepted.id}: canonical player Force Disposition`);
+  assert.equal(accepted.opponentForceDispositionId,evidenceRelation.opponentForceDispositionId,`${accepted.id}: canonical opponent Force Disposition`);
+  const projected=primaryMissions.find(entry=>entry.id===`missions::${accepted.id}`);
+  assert(projected,`${accepted.id}: V2 Primary Mission projection`);
+  assert.equal(projected.facts.playerForceDispositionId,evidenceRelation.playerForceDispositionId,`${accepted.id}: projected player Force Disposition`);
+  assert.equal(projected.facts.opponentForceDispositionId,evidenceRelation.opponentForceDispositionId,`${accepted.id}: projected opponent Force Disposition`);
+  const expectedReferences=[
+    ['MISSIONS',evidenceRelation.playerForceDispositionId,'PLAYER_FORCE_DISPOSITION'],
+    ['MISSIONS',evidenceRelation.opponentForceDispositionId,'OPPONENT_FORCE_DISPOSITION'],
+    ...accepted.ruleBody.coreRuleRefs.map(id=>['CORE',id,'CORE_RULE'])
+  ].map(([domain,canonicalId,relationType])=>`${domain}|${canonicalId}|${relationType}`).sort();
+  const projectedReferences=projected.canonicalReferences.map(reference=>`${reference.domain}|${reference.canonicalId}|${reference.relationType}`).sort();
+  assert.deepEqual(projectedReferences,expectedReferences,`${accepted.id}: exact accepted relation/reference projection`);
+  acceptedCoreReferenceCount+=accepted.ruleBody.coreRuleRefs.length;
+}
+assert.equal(acceptedCoreReferenceCount,60,'accepted Primary Mission canonical facts must contain all 60 Core references');
 const twists=index.entries.filter(entry=>entry.recordType==='TWIST');
 assert.equal(twists.length,6,'all six accepted Twist identities must be projected');
 assert.equal(new Set(twists.map(entry=>entry.id)).size,6,'Twist identities must remain unique');
