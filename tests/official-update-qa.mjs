@@ -130,6 +130,7 @@ assert.deepEqual(
   'Nemesis Claw paired accursed weapons must match the official v1.2 profile'
 );
 const glossary=json('glossary/registry.en.json').terms;
+const glossaryV2=json('glossary/v2/generated/index.en.json').entries;
 const glossaryContexts=Object.fromEntries(['death-guard','adeptus-mechanicus','tyranids','tau-empire'].map(bookId=>[
   bookId,json(`glossary/contexts/${bookId}.json`).terms
 ]));
@@ -327,7 +328,7 @@ function surfaceObserved(bookId,target,html){
     return decode(exactlyOne([...stat.matchAll(/<span\b[^>]*>([\s\S]*?)<\/span>/gi)].map(match=>match[1]),`stat ${target.field} value`));
   }
   if(target.kind==='weapon-profile')return weaponField(scope,target.profileKey);
-  if(target.kind==='weapon-stat'){
+  if(['weapon-stat','weapon-profile-replacement'].includes(target.kind)&&target.field){
     const row=exactlyOne(field(scope,`weapons.${slug(target.title)}`),`weapon ${target.title}`);
     return textField(row,target.field);
   }
@@ -440,7 +441,17 @@ function verifyGlossary(bookId,update,target){
     assert.deepStrictEqual(glossaryMappings(bookId,target),[],`${bookId}/${update.id}: glossary not-applicable has an addressable mapping`);
     return;
   }
-  const term=glossary[target.glossaryTermId];
+  const v2Matches=bookId==='death-guard'?glossaryV2.filter(entry=>
+    entry.contexts?.some(context=>context.effectiveBookId===bookId)
+    &&[entry.sourceOwner?.canonicalId,entry.facts?.id,entry.facts?.termId].includes(target.owner)
+  ):[];
+  assert.ok(v2Matches.length<=1,`${bookId}/${update.id}: ambiguous Glossary V2 owner ${target.owner}`);
+  const v2Entry=v2Matches[0],facts=v2Entry?.facts;
+  const term=v2Entry?{
+    title:{en:v2Entry.label},
+    definition:{en:facts?.text||facts?.abilities||v2Entry.searchableContent||''},
+    structured:facts?.type==='weapon'?{weapon:{Range:facts.range,A:facts.a,[facts.mode==='ranged'?'BS':'WS']:facts.skill,S:facts.s,AP:facts.ap,D:facts.d}}:undefined
+  }:glossary[target.glossaryTermId];
   assert.ok(term,`${bookId}/${update.id}: missing glossary ${target.glossaryTermId}`);
   if(target.kind==='army-rule'){
     assert.equal(ruleText(term.definition?.en||''),ruleText(target.effectiveAfter),`${bookId}/${update.id}: glossary army rule differs`);
@@ -461,7 +472,7 @@ function verifyGlossary(bookId,update,target){
     assert.ok(clean(term.definition.en).includes(clean(value.abilities)),`${target.glossaryTermId}: abilities`);
     return;
   }
-  if(target.kind==='weapon-stat'){
+  if(['weapon-stat','weapon-profile-replacement'].includes(target.kind)&&target.field){
     const fieldName={range:'Range',a:'A',skill:'BS',s:'S',ap:'AP',d:'D'}[target.field];
     assert.ok(fieldName,`${target.glossaryTermId}: unsupported weapon field ${target.field}`);
     assert.equal(clean(term.structured?.weapon?.[fieldName]),clean(value),`${target.glossaryTermId}.${fieldName}`);
