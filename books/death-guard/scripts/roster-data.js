@@ -13284,6 +13284,47 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "confidence": "SOURCE_LIMITED"
     },
     {
+      "canonicalRecordId": "lord-of-poxes-ability-gift-of-poxes",
+      "sourceKind": "datasheet-ability",
+      "sourceBookId": "death-guard",
+      "effectiveBookIds": [
+        "death-guard"
+      ],
+      "sourceUnitId": "unit-lord-of-poxes",
+      "scope": "source-model",
+      "selector": {
+        "kind": "source-datasheet-ability",
+        "sourceUnitId": "unit-lord-of-poxes"
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "gift-of-poxes-contagion-range",
+              "type": "CHARACTERISTIC_ADD",
+              "canonicalTarget": "Contagion Range",
+              "parameters": {
+                "value": 3,
+                "maximum": 12,
+                "modifierOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "always"
+      },
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "death-guard-waha-11e-current-2026-09-25",
+        "locator": "sources/waha-11e-current-2026-09-25/corpus.json#lord-of-poxes-ability-gift-of-poxes"
+      },
+      "confidence": "VERIFIED_FROZEN"
+    },
+    {
       "canonicalRecordId": "lord-of-poxes-ability-shroud-of-disease",
       "sourceKind": "datasheet-ability",
       "sourceBookId": "death-guard",
@@ -13602,11 +13643,22 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "selector": {
             "subject": "unit",
             "allKeywords": [
+              "DEATH GUARD",
               "CHARACTER"
             ]
           },
           "conditions": [],
           "operations": [
+            {
+              "id": "hypervirulent-strains-contagion-range",
+              "type": "CHARACTERISTIC_ADD",
+              "canonicalTarget": "Contagion Range",
+              "parameters": {
+                "value": 3,
+                "maximum": 12,
+                "modifierOnly": true
+              }
+            },
             {
               "id": "canonical-detachment-rule-hypervirulent-strains",
               "type": "CANONICAL_REFERENCE",

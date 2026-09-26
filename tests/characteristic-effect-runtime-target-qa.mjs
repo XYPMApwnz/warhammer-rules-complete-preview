@@ -20,7 +20,7 @@ const catalogs=new Map(books.map(book=>[book,loadCatalog(book)])),operations=[],
 for(const [book,catalog] of catalogs){
   for(const contract of values(catalog.effectContracts))for(const clause of values(contract.clauses))for(const operation of values(clause.operations)){
     if(!['CHARACTERISTIC_ADD','CHARACTERISTIC_SET'].includes(operation.type))continue;
-    operations.push({book,contractId:contract.canonicalRecordId,operationId:operation.id});
+    operations.push({book,contractId:contract.canonicalRecordId,operationId:operation.id,modifierOnly:operation.parameters?.modifierOnly===true});
     const target=targetId(operation);
     for(const unitId of scopedUnitIds(contract,clause)){
       const unit=catalog.units.find(item=>item.id===unitId);
@@ -29,9 +29,11 @@ for(const [book,catalog] of catalogs){
     }
   }
 }
-assert.equal(operations.length,80,'effective characteristic operation inventory');
-assert.equal(new Set(operations.map(item=>item.operationId)).size,54,'unique characteristic operation inventory');
-assert.deepEqual(operations.filter(item=>item.operationId==='plagueveil-detection-range'),[
+assert.equal(operations.length,82,'effective characteristic operation inventory');
+assert.equal(new Set(operations.map(item=>item.operationId)).size,56,'unique characteristic operation inventory');
+assert.deepEqual(operations.filter(item=>item.modifierOnly).map(({book,contractId,operationId})=>({book,contractId,operationId})),[
+  {book:'death-guard',contractId:'lord-of-poxes-ability-gift-of-poxes',operationId:'gift-of-poxes-contagion-range'},
+  {book:'death-guard',contractId:'detachment-rule-hypervirulent-strains',operationId:'hypervirulent-strains-contagion-range'},
   {book:'death-guard',contractId:'enhancement-plagueveil',operationId:'plagueveil-detection-range'}
 ],'modifier-only characteristics remain explicit source-backed effect operations');
 assert.deepEqual(unsupported.map(item=>[item.book,item.unitId,item.target]),[
@@ -93,4 +95,4 @@ for(const book of ['space-marines','dark-angels','blood-angels']){
   assert.equal(wrongEffects.some(effect=>effect.source?.id===shieldId),false,`${book}: wrong unit must not receive Storm Shield`);
 }
 
-console.log('Characteristic effect runtime target QA: PASS (80 effective / 54 unique stat operations; 1 explicit modifier-only operation; 0 unresolved missing base fields; 4 excluded dependency target shapes classified; AM Invulnerable 5+ -> 4+; Storm Shield 3 -> 4 in SM/DA/BA).');
+console.log('Characteristic effect runtime target QA: PASS (82 effective / 56 unique stat operations; 3 explicit modifier-only operations; 0 unresolved missing base fields; 4 excluded dependency target shapes classified; AM Invulnerable 5+ -> 4+; Storm Shield 3 -> 4 in SM/DA/BA).');
