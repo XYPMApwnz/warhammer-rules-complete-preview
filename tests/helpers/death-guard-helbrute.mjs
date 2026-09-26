@@ -19,8 +19,7 @@ const fixtures = [
   {id:'two-melee-bolter', wargear:'Close combat weapon, Helbrute fist, Helbrute hammer, Combi-bolter', attacks:{'close-combat-weapon':'5','helbrute-fist':'7','helbrute-hammer':'6','combi-bolter':'2'}, boosted:['helbrute-fist','helbrute-hammer']},
   {id:'two-fists-quantity', wargear:'Close combat weapon, 2x Helbrute fist', attacks:{'close-combat-weapon':'5','helbrute-fist':'7'}, boosted:['helbrute-fist']},
   {id:'two-fists-records', wargear:'Close combat weapon, Helbrute fist, Helbrute fist', attacks:{'close-combat-weapon':'5','helbrute-fist':'7'}, boosted:['helbrute-fist']},
-  {id:'one-fist', wargear:'Close combat weapon, Helbrute fist', attacks:{'close-combat-weapon':'5','helbrute-fist':'5'}, boosted:[]},
-  {id:'three-fists', wargear:'Close combat weapon, 3x Helbrute fist', attacks:{'close-combat-weapon':'5','helbrute-fist':'5'}, boosted:[]}
+  {id:'one-fist', wargear:'Close combat weapon, Helbrute fist', attacks:{'close-combat-weapon':'5','helbrute-fist':'5'}, boosted:[]}
 ];
 const expectedAttacks = fixture => Object.fromEntries(Object.entries(fixture.attacks).map(([id,a])=>[profileId(id),a]));
 function assertUnit(unit, fixture) {
@@ -98,6 +97,7 @@ export function runHelbruteProviderQa({root, sourceOverrides={}}) {
   noEffect('unknown-loadout',raw('unknown-loadout',fixtures[1].wargear+', Unresolved equipment'));
   noEffect('zero-equipment',raw('zero-equipment','Close combat weapon, 0x Helbrute fist, Helbrute hammer'));
   noEffect('three-physical-items',raw('three-physical-items','Close combat weapon, 2x Helbrute fist, Helbrute hammer'));
+  noEffect('three-fists',raw('three-fists','Close combat weapon, 3x Helbrute fist'));
   noEffect('multiple-models',{...raw('multiple-models','Close combat weapon, Helbrute fist'),quantity:2});
   noEffect('missing-model-quantity',{...raw('missing-model-quantity',fixtures[1].wargear),quantity:undefined});
   noEffect('unknown-selection-id',raw('unknown-selection-id',fixtures[1].wargear),catalog,draft=>{

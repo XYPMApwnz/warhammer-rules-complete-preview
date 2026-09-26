@@ -61,7 +61,14 @@ const validateAll=(catalogSet=catalogs,targetSet=targets,pointsSet=points)=>{
         if(selected){
           const raw=id=>({id,canonicalUnitId:unit.id,name:unit.title,quantity:1,models:[]}),base={faction:catalog.book.title,detachments:[],enhancements:[]};
           const unselected=runtime.project({catalog,roster:{...base,units:[raw('unselected')]},record:{id:'unselected',attachments:{}}}).game.units[0];
-          const selectedRaw=raw('selected');selectedRaw.models=[{name:unit.title,quantity:1,wargear:selected.title}];
+          const selectedRaw=raw('selected'),contracts=unit.gameSelections?.wargearOptionContracts||[];
+          const option=contracts.map(contract=>({contract,choice:contract.choices.find(choice=>choice.add.some(item=>item.selectionId===selected.id))})).find(item=>item.choice);
+          if(option){
+            const modelId=option.contract.eligibleModelIds[0],model=unit.gameSelections.models.find(item=>item.id===modelId),defaults=unit.gameSelections.wargearDefaults.find(item=>item.modelId===modelId),quantities=new Map(defaults.selections.map(item=>[item.selectionId,item.quantity]));
+            for(const item of option.choice.remove)quantities.set(item.selectionId,(quantities.get(item.selectionId)||0)-item.quantity);
+            for(const item of option.choice.add)quantities.set(item.selectionId,(quantities.get(item.selectionId)||0)+item.quantity);
+            selectedRaw.models=[{name:model.title,quantity:1,wargear:[...quantities].filter(([,quantity])=>quantity>0).map(([id,quantity])=>{const title=selections.find(item=>item.id===id).title;return quantity===1?title:`${quantity}x ${title}`;}).join(', ')}];
+          }else selectedRaw.models=[{name:unit.title,quantity:1,wargear:selected.title}];
           const selectedGame=runtime.project({catalog,roster:{...base,units:[selectedRaw]},record:{id:'selected',attachments:{}}}).game.units[0];
           if(unselected.effective.abilities.some(item=>item.id===ability.id)||selectedGame.selection.loadout.wargearResolution.state!=='resolved'||!selectedGame.selection.loadout.selectedWargearAbilityIds.includes(ability.id))runtimeLeaks+=1;
         }

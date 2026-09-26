@@ -4209,7 +4209,367 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-plague-marines-selection-icon-of-despair"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-plague-marines-model-436dbe8b2e",
+            "selections": [
+              {
+                "selectionId": "unit-plague-marines-selection-boltgun",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-plague-marines-selection-plague-knives",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-plague-marines-model-9c3a7a113e",
+            "selections": [
+              {
+                "selectionId": "unit-plague-marines-selection-boltgun",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-plague-marines-selection-plague-knives",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-plague-marines:wargear:1",
+            "eligibleModelIds": [
+              "unit-plague-marines-model-436dbe8b2e"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-bolt-pistol",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-weapon-family-plasma-gun-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-weapon-family-plasma-pistol-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-plague-marines:wargear:2",
+            "eligibleModelIds": [
+              "unit-plague-marines-model-436dbe8b2e"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-plague-knives",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-bubotic-weapons",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-plague-knives",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-power-fist",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-plague-marines:wargear:3",
+            "eligibleModelIds": [
+              "unit-plague-marines-model-9c3a7a113e"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 1
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-blight-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-plague-marines:wargear:4",
+            "eligibleModelIds": [
+              "unit-plague-marines-model-9c3a7a113e"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 1
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-plague-spewer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-plague-marines:wargear:5",
+            "eligibleModelIds": [
+              "unit-plague-marines-model-9c3a7a113e"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 1
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-meltagun",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-plague-belcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-weapon-family-plasma-gun-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-plague-marines:wargear:6",
+            "eligibleModelIds": [
+              "unit-plague-marines-model-9c3a7a113e"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 2
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-bubotic-weapons",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-plague-marines:wargear:7",
+            "eligibleModelIds": [
+              "unit-plague-marines-model-9c3a7a113e"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 2
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-heavy-plague-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-plague-marines:wargear:8",
+            "eligibleModelIds": [
+              "unit-plague-marines-model-9c3a7a113e"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-marines-selection-icon-of-despair",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [
+                  "unit-plague-marines-selection-boltgun"
+                ],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4594,7 +4954,243 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-blightlord-terminators-model-eba248135a",
+            "selections": [
+              {
+                "selectionId": "unit-blightlord-terminators-selection-combi-bolter",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-blightlord-terminators-selection-bubotic-blade",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-blightlord-terminators-model-d1d8690192",
+            "selections": [
+              {
+                "selectionId": "unit-blightlord-terminators-selection-combi-bolter",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-blightlord-terminators-selection-bubotic-blade",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-blightlord-terminators:wargear:1",
+            "eligibleModelIds": [
+              "unit-blightlord-terminators-model-eba248135a",
+              "unit-blightlord-terminators-model-d1d8690192"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 3
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-combi-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-blightlord-terminators:wargear:2",
+            "eligibleModelIds": [
+              "unit-blightlord-terminators-model-d1d8690192"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 1
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-combi-bolter",
+                    "quantity": 1
+                  },
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-bubotic-blade",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-flail-of-corruption",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-blightlord-terminators:wargear:3",
+            "eligibleModelIds": [
+              "unit-blightlord-terminators-model-d1d8690192"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 1
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-blight-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-blightlord-terminators:wargear:4",
+            "eligibleModelIds": [
+              "unit-blightlord-terminators-model-d1d8690192"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 1
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-reaper-autocannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-blightlord-terminators:wargear:5",
+            "eligibleModelIds": [
+              "unit-blightlord-terminators-model-d1d8690192"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 1
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-plague-spewer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-blightlord-terminators:wargear:6",
+            "eligibleModelIds": [
+              "unit-blightlord-terminators-model-d1d8690192"
+            ],
+            "when": {
+              "unitModelCountEquals": 3
+            },
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-combi-bolter",
+                    "quantity": 1
+                  },
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-bubotic-blade",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-plague-spewer",
+                    "quantity": 1
+                  },
+                  {
+                    "selectionId": "unit-blightlord-terminators-selection-close-combat-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4900,7 +5496,89 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-deathshroud-terminators-selection-icon-of-despair"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-deathshroud-terminators-model-bbfb38a9d8",
+            "aliases": [
+              "Deathshroud Terminator Champion"
+            ],
+            "selections": [
+              {
+                "selectionId": "unit-deathshroud-terminators-selection-plaguespurt-gauntlet",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-deathshroud-terminators-weapon-family-manreaper-selection",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-deathshroud-terminators-model-eaf728af78",
+            "selections": [
+              {
+                "selectionId": "unit-deathshroud-terminators-selection-plaguespurt-gauntlet",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-deathshroud-terminators-weapon-family-manreaper-selection",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-deathshroud-terminators:wargear:1",
+            "eligibleModelIds": [
+              "unit-deathshroud-terminators-model-bbfb38a9d8"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-deathshroud-terminators-selection-plaguespurt-gauntlet",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-deathshroud-terminators:wargear:2",
+            "eligibleModelIds": [
+              "unit-deathshroud-terminators-model-bbfb38a9d8"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-deathshroud-terminators-selection-icon-of-despair",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5527,7 +6205,89 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-chaos-land-raider-model-8a15b8b0db",
+            "selections": [
+              {
+                "selectionId": "unit-chaos-land-raider-selection-soulshatter-lascannon",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-chaos-land-raider-selection-twin-heavy-bolter",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-chaos-land-raider-selection-armoured-tracks",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-chaos-land-raider:wargear:1",
+            "eligibleModelIds": [
+              "unit-chaos-land-raider-model-8a15b8b0db"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-land-raider-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-land-raider-selection-combi-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-land-raider:wargear:2",
+            "eligibleModelIds": [
+              "unit-chaos-land-raider-model-8a15b8b0db"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-land-raider-selection-havoc-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5848,7 +6608,121 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-chaos-predator-annihilator-model-82546cc94c",
+            "selections": [
+              {
+                "selectionId": "unit-chaos-predator-annihilator-selection-predator-twin-lascannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-chaos-predator-annihilator-selection-armoured-tracks",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-chaos-predator-annihilator:wargear:1",
+            "eligibleModelIds": [
+              "unit-chaos-predator-annihilator-model-82546cc94c"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-predator-annihilator-selection-lascannon",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-predator-annihilator-selection-heavy-bolter",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-predator-annihilator:wargear:2",
+            "eligibleModelIds": [
+              "unit-chaos-predator-annihilator-model-82546cc94c"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-predator-annihilator-selection-combi-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-predator-annihilator-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-predator-annihilator:wargear:3",
+            "eligibleModelIds": [
+              "unit-chaos-predator-annihilator-model-82546cc94c"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-predator-annihilator-selection-havoc-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6169,7 +7043,121 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-chaos-predator-destructor-model-c17bde4f31",
+            "selections": [
+              {
+                "selectionId": "unit-chaos-predator-destructor-selection-predator-autocannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-chaos-predator-destructor-selection-armoured-tracks",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-chaos-predator-destructor:wargear:1",
+            "eligibleModelIds": [
+              "unit-chaos-predator-destructor-model-c17bde4f31"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-predator-destructor-selection-heavy-bolter",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-predator-destructor-selection-lascannon",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-predator-destructor:wargear:2",
+            "eligibleModelIds": [
+              "unit-chaos-predator-destructor-model-c17bde4f31"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-predator-destructor-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-predator-destructor-selection-combi-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-predator-destructor:wargear:3",
+            "eligibleModelIds": [
+              "unit-chaos-predator-destructor-model-c17bde4f31"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-predator-destructor-selection-havoc-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6697,7 +7685,230 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-defiler-model-5f9d1a0197",
+            "selections": [
+              {
+                "selectionId": "unit-defiler-selection-hades-battle-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-defiler-selection-excruciator-cannon",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-defiler-weapon-family-heavy-missile-launcher-selection",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-defiler-selection-heavy-baleflamer",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-defiler-weapon-family-shearing-claws-selection",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-defiler:wargear:1",
+            "eligibleModelIds": [
+              "unit-defiler-model-5f9d1a0197"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-selection-hades-battle-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-ectoplasma-destructor",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-defiler:wargear:2",
+            "eligibleModelIds": [
+              "unit-defiler-model-5f9d1a0197"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-selection-excruciator-cannon",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-magma-cutters",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-defiler:wargear:3",
+            "eligibleModelIds": [
+              "unit-defiler-model-5f9d1a0197"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-selection-heavy-baleflamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-hades-lascannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-selection-heavy-baleflamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-heavy-reaper-autocannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-selection-heavy-baleflamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-electroscourge",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "electroscourge"
+                ]
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-defiler:wargear:4",
+            "eligibleModelIds": [
+              "unit-defiler-model-5f9d1a0197"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-weapon-family-heavy-missile-launcher-selection",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-hades-lascannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-weapon-family-heavy-missile-launcher-selection",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-heavy-reaper-autocannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-weapon-family-heavy-missile-launcher-selection",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-electroscourge",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "electroscourge"
+                ]
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "electroscourge",
+            "max": 1
+          }
+        ]
       }
     },
     {
@@ -6907,7 +8118,54 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-foetid-bloat-drone-model-78a1e84ebc",
+            "selections": [
+              {
+                "selectionId": "unit-foetid-bloat-drone-selection-fleshmower",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-foetid-bloat-drone-selection-plague-probe",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-foetid-bloat-drone:wargear:1",
+            "eligibleModelIds": [
+              "unit-foetid-bloat-drone-model-78a1e84ebc"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-foetid-bloat-drone-selection-fleshmower",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-foetid-bloat-drone-selection-plaguespitter",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7612,7 +8870,240 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-helbrute-model-34b32f3d20",
+            "selections": [
+              {
+                "selectionId": "unit-helbrute-selection-multi-melta",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-helbrute-selection-helbrute-fist",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-helbrute-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-helbrute:wargear:1",
+            "eligibleModelIds": [
+              "unit-helbrute-model-34b32f3d20"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-helbrute-selection-multi-melta",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-helbrute-selection-plasma-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-helbrute-selection-multi-melta",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-helbrute-selection-twin-autocannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-helbrute-selection-multi-melta",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-helbrute-selection-twin-lascannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-helbrute-selection-multi-melta",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-helbrute-selection-twin-heavy-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-helbrute-selection-multi-melta",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-helbrute-selection-helbrute-fist",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-helbrute:wargear:2",
+            "eligibleModelIds": [
+              "unit-helbrute-model-34b32f3d20"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-helbrute-selection-helbrute-fist",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-helbrute-weapon-family-missile-launcher-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-helbrute:wargear:3",
+            "eligibleModelIds": [
+              "unit-helbrute-model-34b32f3d20"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-helbrute-selection-helbrute-fist",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-helbrute-selection-helbrute-hammer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-helbrute-selection-helbrute-fist",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-helbrute-selection-power-scourge",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-helbrute:wargear:4",
+            "eligibleModelIds": [
+              "unit-helbrute-model-34b32f3d20"
+            ],
+            "limit": {
+              "capacitySelectionId": "unit-helbrute-selection-helbrute-fist"
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-helbrute-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [
+                  "unit-helbrute-selection-helbrute-fist"
+                ],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-helbrute-selection-heavy-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [
+                  "unit-helbrute-selection-helbrute-fist"
+                ],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8202,7 +9693,91 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-plagueburst-crawler-model-c8e49602ea",
+            "selections": [
+              {
+                "selectionId": "unit-plagueburst-crawler-selection-entropy-cannon",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-plagueburst-crawler-selection-heavy-slugger",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-plagueburst-crawler-selection-plagueburst-mortar",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-plagueburst-crawler-selection-armoured-tracks",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-plagueburst-crawler:wargear:1",
+            "eligibleModelIds": [
+              "unit-plagueburst-crawler-model-c8e49602ea"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plagueburst-crawler-selection-entropy-cannon",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plagueburst-crawler-selection-plaguespitter",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-plagueburst-crawler:wargear:2",
+            "eligibleModelIds": [
+              "unit-plagueburst-crawler-model-c8e49602ea"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-plagueburst-crawler-selection-heavy-slugger",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-plagueburst-crawler-selection-rothail-volley-gun",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8448,7 +10023,102 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-chaos-rhino-model-74ad18f164",
+            "selections": [
+              {
+                "selectionId": "unit-chaos-rhino-selection-combi-bolter",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-chaos-rhino-selection-armoured-tracks",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-chaos-rhino:wargear:1",
+            "eligibleModelIds": [
+              "unit-chaos-rhino-model-74ad18f164"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-rhino-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-rhino-selection-combi-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-rhino:wargear:2",
+            "eligibleModelIds": [
+              "unit-chaos-rhino-model-74ad18f164"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-rhino-selection-havoc-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-chaos-rhino-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-rhino-selection-havoc-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9129,7 +10799,87 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-great-unclean-one-model-76eb32cfe2",
+            "selections": [
+              {
+                "selectionId": "unit-great-unclean-one-selection-plague-flail",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-great-unclean-one-selection-putrid-vomit",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-great-unclean-one-weapon-family-bilesword-selection",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-great-unclean-one:wargear:1",
+            "eligibleModelIds": [
+              "unit-great-unclean-one-model-76eb32cfe2"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-great-unclean-one-selection-plague-flail",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-great-unclean-one-selection-bileblade",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-great-unclean-one:wargear:2",
+            "eligibleModelIds": [
+              "unit-great-unclean-one-model-76eb32cfe2"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-great-unclean-one-weapon-family-bilesword-selection",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-great-unclean-one-selection-doomsday-bell",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9559,7 +11309,98 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-plague-drones-selection-instrument-of-chaos"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-plague-drones-model-3d58b8dae0",
+            "selections": [
+              {
+                "selectionId": "unit-plague-drones-selection-deaths-heads",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-plague-drones-selection-foul-mouthparts",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-plague-drones-selection-plaguesword",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-plague-drones-model-f1979e9e47",
+            "selections": [
+              {
+                "selectionId": "unit-plague-drones-selection-deaths-heads",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-plague-drones-selection-foul-mouthparts",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-plague-drones-selection-plaguesword",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-plague-drones:wargear:1",
+            "eligibleModelIds": [
+              "unit-plague-drones-model-f1979e9e47"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-drones-selection-instrument-of-chaos",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [
+                  "unit-plague-drones-selection-daemonic-icon"
+                ],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-plague-drones:wargear:2",
+            "eligibleModelIds": [
+              "unit-plague-drones-model-f1979e9e47"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-plague-drones-selection-daemonic-icon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [
+                  "unit-plague-drones-selection-instrument-of-chaos"
+                ],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9777,7 +11618,82 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-plaguebearers-selection-instrument-of-chaos"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-plaguebearers-model-d21114f2db",
+            "selections": [
+              {
+                "selectionId": "unit-plaguebearers-selection-plaguesword",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-plaguebearers-model-55fc8e4fdf",
+            "selections": [
+              {
+                "selectionId": "unit-plaguebearers-selection-plaguesword",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-plaguebearers:wargear:1",
+            "eligibleModelIds": [
+              "unit-plaguebearers-model-55fc8e4fdf"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-plaguebearers-selection-instrument-of-chaos",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [
+                  "unit-plaguebearers-selection-daemonic-icon"
+                ],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-plaguebearers:wargear:2",
+            "eligibleModelIds": [
+              "unit-plaguebearers-model-55fc8e4fdf"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-plaguebearers-selection-daemonic-icon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [
+                  "unit-plaguebearers-selection-instrument-of-chaos"
+                ],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": []
       }
     },
     {

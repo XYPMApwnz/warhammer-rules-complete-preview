@@ -10,6 +10,27 @@ const legacyWeaponProfileId=(unit,profile,index=0)=>`${unit.id}-profile-${slug(p
 const legacyWargearAbilityId=(unit,ability,index=0)=>`${unit.id}-wargear-ability-${slug(ability.title)}${index?'-'+(index+1):''}`;
 const weaponIdentityFacts=profile=>({sourceName:profile.name||'',mode:profile.mode||'weapon',range:profile.range||'',a:profile.a||'',skill:profile.skill||'',s:profile.s||'',ap:profile.ap||'',d:profile.d||'',abilities:profile.abilities||''});
 const abilityIdentityFacts=ability=>({sourceTitle:ability.title||'',text:ability.text||ability.summary||''});
+const structuredWargearLegality=(unit,models,selections)=>{
+  const source=unit.rosterWargearLegality;if(!source)return{};
+  const modelIds=new Set(models.map(item=>item.id)),selectionIds=new Set(selections.map(item=>item.id)),optionIds=new Set(),sharedCaps=new Map();
+  const quantity=(value,label)=>{if(!Number.isInteger(value)||value<1)throw new Error(`${unit.id}: ${label} requires a positive integer quantity`);return value;};
+  for(const cap of values(source.sharedCaps)){if(!cap?.id||sharedCaps.has(cap.id))throw new Error(`${unit.id}: duplicate or missing wargear shared cap ${cap?.id||'<missing>'}`);sharedCaps.set(cap.id,quantity(cap.max,`wargear shared cap ${cap.id}`));}
+  const defaults=values(source.defaults).map(record=>{if(!modelIds.has(record?.modelId))throw new Error(`${unit.id}: wargear default references unknown model ${record?.modelId||'<missing>'}`);const aliases=values(record.aliases);if(aliases.some(alias=>typeof alias!=='string'||!alias.trim())||new Set(aliases.map(normalize)).size!==aliases.length)throw new Error(`${unit.id}: wargear default ${record.modelId} has invalid model aliases`);const seen=new Set(),entries=values(record.selections).map(item=>{if(!selectionIds.has(item?.selectionId))throw new Error(`${unit.id}: wargear default references unknown selection ${item?.selectionId||'<missing>'}`);if(seen.has(item.selectionId))throw new Error(`${unit.id}: duplicate wargear default selection ${record.modelId}/${item.selectionId}`);seen.add(item.selectionId);return{selectionId:item.selectionId,quantity:quantity(item.quantity,`wargear default ${record.modelId}/${item.selectionId}`)};});return{modelId:record.modelId,...(aliases.length?{aliases:[...aliases]}:{}),selections:entries};});
+  if(new Set(defaults.map(item=>item.modelId)).size!==defaults.length||defaults.length!==modelIds.size)throw new Error(`${unit.id}: wargear defaults must cover each canonical model exactly once`);
+  const references=(items,label)=>values(items).map(item=>{if(!selectionIds.has(item?.selectionId))throw new Error(`${unit.id}: ${label} references unknown selection ${item?.selectionId||'<missing>'}`);return{selectionId:item.selectionId,quantity:quantity(item.quantity,`${label}/${item.selectionId}`)};});
+  const optionContracts=values(source.options).map(option=>{
+    if(!option?.sourceId||optionIds.has(option.sourceId))throw new Error(`${unit.id}: duplicate or missing wargear option source identity ${option?.sourceId||'<missing>'}`);optionIds.add(option.sourceId);
+    const eligibleModelIds=values(option.eligibleModelIds);if(!eligibleModelIds.length||eligibleModelIds.some(id=>!modelIds.has(id))||new Set(eligibleModelIds).size!==eligibleModelIds.length)throw new Error(`${unit.id}: ${option.sourceId} has invalid eligible model identities`);
+    const limit={...(option.limit||{})};for(const key of ['perModel','perUnit'])if(limit[key]!==undefined)limit[key]=quantity(limit[key],`${option.sourceId} ${key}`);
+    if(limit.perModels){limit.perModels={models:quantity(limit.perModels.models,`${option.sourceId} perModels.models`),uses:quantity(limit.perModels.uses,`${option.sourceId} perModels.uses`)}};
+    if(limit.capacitySelectionId&&!selectionIds.has(limit.capacitySelectionId))throw new Error(`${unit.id}: ${option.sourceId} capacity references unknown selection ${limit.capacitySelectionId}`);
+    const choices=values(option.choices).map((choice,index)=>{const result={remove:references(choice.remove,`${option.sourceId} choice ${index+1} remove`),add:references(choice.add,`${option.sourceId} choice ${index+1} add`)};if(!result.remove.length&&!result.add.length)throw new Error(`${unit.id}: ${option.sourceId} has an empty choice`);for(const key of ['requiresFinal','forbidsFinal']){result[key]=values(choice[key]);if(result[key].some(id=>!selectionIds.has(id)))throw new Error(`${unit.id}: ${option.sourceId} ${key} references an unknown selection`);}result.sharedUses=values(choice.sharedUses);if(result.sharedUses.some(id=>!sharedCaps.has(id)))throw new Error(`${unit.id}: ${option.sourceId} references unknown shared cap`);return result;});
+    if(!choices.length)throw new Error(`${unit.id}: ${option.sourceId} requires at least one atomic choice`);
+    const when=option.when?{...option.when}:null;if(when&&(!Number.isInteger(when.unitModelCountEquals)||when.unitModelCountEquals<1))throw new Error(`${unit.id}: ${option.sourceId} has invalid unit-model condition`);
+    return{sourceId:option.sourceId,eligibleModelIds:[...eligibleModelIds],...(when?{when}:{}),limit,choices};
+  });
+  return{wargearDefaults:defaults,wargearOptionContracts:optionContracts,wargearSharedCaps:[...sharedCaps].map(([id,max])=>({id,max}))};
+};
 export const canonicalWeaponProfileId=(unit,profile)=>{
   if(!profile?.id)throw new Error(`${unit?.id||'unit'}: weapon profile has no pre-model canonical ID`);
   if(profile.sourceUnitId!==unit?.id)throw new Error(`${profile.id}: weapon profile belongs to wrong parent ${profile.sourceUnitId||'<missing>'}`);
@@ -145,7 +166,8 @@ const gameSelectionsFor=(unit,options={})=>{
   const ordinaryAbilityRecords=assignCanonicalChildIdentities(unit,canonicalAbilities.map(ability=>{const id=ability.id||ability.termId;return id&&explicitCounts.get(id)===1?{...ability,id}:ability;}),{kind:'ability',titleOf:ability=>ability.title,semanticOf:abilityIdentityFacts,legacyIdOf:(ability,index)=>ability.termId||`${unit.id}-ability-${slug(ability.title)}${index?'-'+(index+1):''}`}).map(ability=>({...canonicalAbilityRecord(unit,ability,ability.id),...(ability.legacyIds?.length?{legacyIds:ability.legacyIds}:{})}));
   assertMatchingAbilityRecords(unit,ordinaryAbilityRecords,wargearAbilities);
   const wargearAbilityIds=new Set(wargearAbilities.map(ability=>ability.id)),abilities=ordinaryAbilityRecords.filter(ability=>!wargearAbilityIds.has(ability.id));
-  return {stats:{...stats},abilities,models:canonicalRosterModelsFor(unit,options),selections,weaponFamilies,...(weaponClasses.length?{weaponClasses}:{}),weaponProfiles:profileRecords.map(profile=>({...profile,sourceSelectionIds:selections.filter(selection=>selection.profileIds.includes(profile.id)).map(selection=>selection.id)})),wargearAbilities};
+  const models=canonicalRosterModelsFor(unit,options),wargearLegality=structuredWargearLegality(unit,models,selections);
+  return {stats:{...stats},abilities,models,selections,weaponFamilies,...(weaponClasses.length?{weaponClasses}:{}),weaponProfiles:profileRecords.map(profile=>({...profile,sourceSelectionIds:selections.filter(selection=>selection.profileIds.includes(profile.id)).map(selection=>selection.id)})),wargearAbilities,...wargearLegality};
 };
 
 const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;
@@ -194,7 +216,7 @@ export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits
     const abilities=exactProjection(currentGame.abilities,canonicalGame.abilities,{unitId:unit.id,kind:'ability'});
     const wargearAbilities=exactProjection(currentGame.wargearAbilities,canonicalGame.wargearAbilities,{unitId:unit.id,kind:'wargear ability',preserve:current=>({requiredSelectionIds:[...values(current.requiredSelectionIds)]})});
     const models=exactProjection(currentGame.models,canonicalGame.models,{unitId:unit.id,kind:'model'});
-    const gameSelections={...currentGame,abilities,wargearAbilities,models};validateSelectionProjection(unit.id,gameSelections);
+    const gameSelections={...currentGame,abilities,wargearAbilities,models,wargearDefaults:structuredClone(canonicalGame.wargearDefaults||[]),wargearOptionContracts:structuredClone(canonicalGame.wargearOptionContracts||[]),wargearSharedCaps:structuredClone(canonicalGame.wargearSharedCaps||[])};validateSelectionProjection(unit.id,gameSelections);
     const relations=relationsFor(relationGraphs,unit.id);
     return {...item,intrinsicKeywords:canonicalIntrinsicKeywords(unit),relations,gameSelections};
   });
@@ -207,7 +229,7 @@ export function assertRosterUnitGameplayProjection(units,relationGraphs,catalogU
   for(let index=0;index<projected.length;index++){
     const expected=projected[index],actual=catalogUnits[index],partitions=[
       ['intrinsicKeywords',expected.intrinsicKeywords,actual?.intrinsicKeywords],['relations',expected.relations,actual?.relations],
-      ['abilities',expected.gameSelections.abilities,actual?.gameSelections?.abilities],['wargearAbilities',expected.gameSelections.wargearAbilities,actual?.gameSelections?.wargearAbilities],['models',expected.gameSelections.models,actual?.gameSelections?.models]
+      ['abilities',expected.gameSelections.abilities,actual?.gameSelections?.abilities],['wargearAbilities',expected.gameSelections.wargearAbilities,actual?.gameSelections?.wargearAbilities],['models',expected.gameSelections.models,actual?.gameSelections?.models],['wargearDefaults',expected.gameSelections.wargearDefaults||[],actual?.gameSelections?.wargearDefaults||[]],['wargearOptionContracts',expected.gameSelections.wargearOptionContracts||[],actual?.gameSelections?.wargearOptionContracts||[]],['wargearSharedCaps',expected.gameSelections.wargearSharedCaps||[],actual?.gameSelections?.wargearSharedCaps||[]]
     ];
     for(const [partition,left,right] of partitions)if(!sameFact(left,right))throw new Error(`${label}: ${expected.id} has conflicting canonical ${partition} facts`);
   }
