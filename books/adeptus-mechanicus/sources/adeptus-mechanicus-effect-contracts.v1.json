@@ -3,6 +3,186 @@
   "bookId": "adeptus-mechanicus",
   "contracts": [
     {
+      "canonicalRecordId": "unit-archaeopter-fusilave-wargear-ability-12711a645a",
+      "sourceKind": "selected-wargear",
+      "sourceBookId": "adeptus-mechanicus",
+      "effectiveBookIds": ["adeptus-mechanicus"],
+      "sourceUnitId": "unit-archaeopter-fusilave",
+      "scope": "selected-wargear",
+      "selector": {
+        "kind": "selected-canonical-wargear-ability",
+        "sourceUnitIds": ["unit-archaeopter-fusilave"],
+        "selectedWargearAbilityIds": ["unit-archaeopter-fusilave-wargear-ability-12711a645a"]
+      },
+      "clauses": [{
+        "selector": {"subject": "unit"},
+        "conditions": [],
+        "operations": [{
+          "id": "archaeopter-fusilave-chaff-launcher-smoke",
+          "type": "KEYWORD_GRANT",
+          "canonicalTarget": "SMOKE",
+          "parameters": {}
+        }]
+      }],
+      "timingState": {"kind": "while-selected"},
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "adeptus-mechanicus-waha-11e-current-2026-09-25",
+        "locator": "content/adeptus-mechanicus-codex-datasheets.en.json#unit-archaeopter-fusilave#unit-archaeopter-fusilave-wargear-ability-12711a645a"
+      },
+      "confidence": "VERIFIED_CURRENT"
+    },
+    {
+      "canonicalRecordId": "unit-archaeopter-stratoraptor-wargear-ability-12711a645a",
+      "sourceKind": "selected-wargear",
+      "sourceBookId": "adeptus-mechanicus",
+      "effectiveBookIds": ["adeptus-mechanicus"],
+      "sourceUnitId": "unit-archaeopter-stratoraptor",
+      "scope": "selected-wargear",
+      "selector": {
+        "kind": "selected-canonical-wargear-ability",
+        "sourceUnitIds": ["unit-archaeopter-stratoraptor"],
+        "selectedWargearAbilityIds": ["unit-archaeopter-stratoraptor-wargear-ability-12711a645a"]
+      },
+      "clauses": [{
+        "selector": {"subject": "unit"},
+        "conditions": [],
+        "operations": [{
+          "id": "archaeopter-stratoraptor-chaff-launcher-smoke",
+          "type": "KEYWORD_GRANT",
+          "canonicalTarget": "SMOKE",
+          "parameters": {}
+        }]
+      }],
+      "timingState": {"kind": "while-selected"},
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "adeptus-mechanicus-waha-11e-current-2026-09-25",
+        "locator": "content/adeptus-mechanicus-codex-datasheets.en.json#unit-archaeopter-stratoraptor#unit-archaeopter-stratoraptor-wargear-ability-12711a645a"
+      },
+      "confidence": "VERIFIED_CURRENT"
+    },
+    {
+      "canonicalRecordId": "unit-archaeopter-transvector-wargear-ability-12711a645a",
+      "sourceKind": "selected-wargear",
+      "sourceBookId": "adeptus-mechanicus",
+      "effectiveBookIds": ["adeptus-mechanicus"],
+      "sourceUnitId": "unit-archaeopter-transvector",
+      "scope": "selected-wargear",
+      "selector": {
+        "kind": "selected-canonical-wargear-ability",
+        "sourceUnitIds": ["unit-archaeopter-transvector"],
+        "selectedWargearAbilityIds": ["unit-archaeopter-transvector-wargear-ability-12711a645a"]
+      },
+      "clauses": [{
+        "selector": {"subject": "unit"},
+        "conditions": [],
+        "operations": [{
+          "id": "archaeopter-transvector-chaff-launcher-smoke",
+          "type": "KEYWORD_GRANT",
+          "canonicalTarget": "SMOKE",
+          "parameters": {}
+        }]
+      }],
+      "timingState": {"kind": "while-selected"},
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "adeptus-mechanicus-waha-11e-current-2026-09-25",
+        "locator": "content/adeptus-mechanicus-codex-datasheets.en.json#unit-archaeopter-transvector#unit-archaeopter-transvector-wargear-ability-12711a645a"
+      },
+      "confidence": "VERIFIED_CURRENT"
+    },
+    {
+      "canonicalRecordId": "unit-onager-dunecrawler-wargear-ability-7c2b04fe30",
+      "sourceKind": "selected-wargear",
+      "sourceBookId": "adeptus-mechanicus",
+      "effectiveBookIds": ["adeptus-mechanicus"],
+      "sourceUnitId": "unit-onager-dunecrawler",
+      "scope": "selected-wargear",
+      "selector": {
+        "kind": "selected-canonical-wargear-ability",
+        "sourceUnitIds": ["unit-onager-dunecrawler"],
+        "selectedWargearAbilityIds": ["unit-onager-dunecrawler-wargear-ability-7c2b04fe30"]
+      },
+      "clauses": [{
+        "selector": {"subject": "unit"},
+        "conditions": [],
+        "operations": [{
+          "id": "onager-broad-spectrum-data-tether-remove-smoke",
+          "type": "KEYWORD_REMOVE",
+          "canonicalTarget": "SMOKE",
+          "parameters": {}
+        }]
+      }],
+      "timingState": {"kind": "while-selected"},
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "adeptus-mechanicus-waha-11e-current-2026-09-25",
+        "locator": "content/adeptus-mechanicus-codex-datasheets.en.json#unit-onager-dunecrawler#unit-onager-dunecrawler-wargear-ability-7c2b04fe30"
+      },
+      "confidence": "VERIFIED_CURRENT"
+    },
+    {
+      "canonicalRecordId": "unit-skitarii-rangers-wargear-ability-2e4de9ef20",
+      "sourceKind": "selected-wargear",
+      "sourceBookId": "adeptus-mechanicus",
+      "effectiveBookIds": ["adeptus-mechanicus"],
+      "sourceUnitId": "unit-skitarii-rangers",
+      "scope": "owner-or-attached-group",
+      "selector": {
+        "kind": "selected-canonical-wargear-ability",
+        "sourceUnitIds": ["unit-skitarii-rangers"],
+        "selectedWargearAbilityIds": ["unit-skitarii-rangers-wargear-ability-2e4de9ef20"]
+      },
+      "clauses": [{
+        "selector": {"subject": "unit", "weaponMode": "ranged"},
+        "conditions": [],
+        "operations": [{
+          "id": "skitarii-rangers-omnispex-ignores-cover",
+          "type": "WEAPON_TAG_GRANT",
+          "canonicalTarget": "ranged",
+          "parameters": {"tag": "IGNORES COVER", "termId": "core-ignores-cover"}
+        }]
+      }],
+      "timingState": {"kind": "while-selected"},
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "adeptus-mechanicus-waha-11e-current-2026-09-25",
+        "locator": "content/adeptus-mechanicus-codex-datasheets.en.json#unit-skitarii-rangers#unit-skitarii-rangers-wargear-ability-2e4de9ef20"
+      },
+      "confidence": "VERIFIED_CURRENT"
+    },
+    {
+      "canonicalRecordId": "unit-skitarii-vanguard-wargear-ability-2e4de9ef20",
+      "sourceKind": "selected-wargear",
+      "sourceBookId": "adeptus-mechanicus",
+      "effectiveBookIds": ["adeptus-mechanicus"],
+      "sourceUnitId": "unit-skitarii-vanguard",
+      "scope": "owner-or-attached-group",
+      "selector": {
+        "kind": "selected-canonical-wargear-ability",
+        "sourceUnitIds": ["unit-skitarii-vanguard"],
+        "selectedWargearAbilityIds": ["unit-skitarii-vanguard-wargear-ability-2e4de9ef20"]
+      },
+      "clauses": [{
+        "selector": {"subject": "unit", "weaponMode": "ranged"},
+        "conditions": [],
+        "operations": [{
+          "id": "skitarii-vanguard-omnispex-ignores-cover",
+          "type": "WEAPON_TAG_GRANT",
+          "canonicalTarget": "ranged",
+          "parameters": {"tag": "IGNORES COVER", "termId": "core-ignores-cover"}
+        }]
+      }],
+      "timingState": {"kind": "while-selected"},
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "adeptus-mechanicus-waha-11e-current-2026-09-25",
+        "locator": "content/adeptus-mechanicus-codex-datasheets.en.json#unit-skitarii-vanguard#unit-skitarii-vanguard-wargear-ability-2e4de9ef20"
+      },
+      "confidence": "VERIFIED_CURRENT"
+    },
+    {
       "canonicalRecordId": "enhancement-clandestine-infiltrator",
       "sourceKind": "enhancement",
       "sourceBookId": "adeptus-mechanicus",

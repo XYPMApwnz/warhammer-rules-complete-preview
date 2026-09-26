@@ -8,7 +8,7 @@ import {EFFECT_TYPES,effectBindingKey,effectiveEffectContracts,validateEffectCon
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const books=['death-guard','adeptus-mechanicus','tyranids','tau-empire','emperors-children','chaos-space-marines','space-marines','dark-angels','blood-angels'];
 const expected={
-  'death-guard':49,'adeptus-mechanicus':42,tyranids:56,'tau-empire':37,'emperors-children':40,
+  'death-guard':49,'adeptus-mechanicus':48,tyranids:56,'tau-empire':37,'emperors-children':40,
   'chaos-space-marines':94,'space-marines':133,'dark-angels':159,'blood-angels':159
 };
 const clone=value=>structuredClone(value);
@@ -23,7 +23,7 @@ for(const book of books){
   assert.equal(set.contracts.every(contract=>contract.sourceBookId===book),true,`${book}: source ownership`);
   sets.set(book,set);catalogs.set(book,catalog);
 }
-assert.equal([...sets.values()].reduce((sum,set)=>sum+set.contracts.length,0),543,'unique source effect contracts');
+assert.equal([...sets.values()].reduce((sum,set)=>sum+set.contracts.length,0),549,'unique source effect contracts');
 assert.deepEqual(new Set([...sets.values()].flatMap(set=>set.contracts.flatMap(contract=>contract.clauses.flatMap(clause=>clause.operations.map(operation=>operation.type))))),EFFECT_TYPES,'exact supported effect operation vocabulary');
 
 const localSets=[...sets.values()];
@@ -39,7 +39,7 @@ for(const book of books){
   assertFullEffectPayload(published,effective,book);
   assert.deepEqual(effectiveEffectContracts([...localSets].reverse(),book).map(effectBindingKey),effective.map(effectBindingKey),`${book}: source construction order cannot change effective bindings`);
 }
-assert.equal(Object.values(expected).reduce((sum,value)=>sum+value,0),769,'effective book-scoped bindings');
+assert.equal(Object.values(expected).reduce((sum,value)=>sum+value,0),775,'effective book-scoped bindings');
 
 const runtimeFiles=[
   'books/extensions/book-roster-enhancement-providers.js','books/death-guard/scripts/roster-semantics.js','books/death-guard/scripts/roster-filter.js',
@@ -92,4 +92,4 @@ assert.ok(unknownContract,'unknown conditional state contract');
 const runtimeScope={window:{WH_BOOK_ROSTER_CATALOG:{...am,effectContracts:[unknownContract]}}};vm.runInNewContext(read('books/shared/effect-contract-runtime.js'),runtimeScope);
 assert.match(read('books/shared/effect-contract-runtime.js'),/effect\.state='conditional';effect\.certainty='unknown'/,'unknown conditional state must not become active');
 
-console.log('Effect contract ownership QA: PASS (543 source contracts, 769 effective bindings, 10 operations, runtime factual maps removed, 14 adversarial controls).');
+console.log('Effect contract ownership QA: PASS (549 source contracts, 775 effective bindings, 10 operations, runtime factual maps removed, 14 adversarial controls).');

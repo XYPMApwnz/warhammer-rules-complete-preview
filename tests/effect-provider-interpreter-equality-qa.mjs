@@ -106,8 +106,8 @@ for(const bookId of books){
   }
   assert.ok(emitted>0,`${bookId}: representative current provider states emitted no canonical effects`);nonEmptyBooks+=1;
 }
-assert.equal(sourceContracts,543,'unique source effect contracts');
-assert.equal(effectiveBindings,769,'effective effect bindings');
+assert.equal(sourceContracts,549,'unique source effect contracts');
+assert.equal(effectiveBindings,775,'effective effect bindings');
 assert.equal(effectTypes.size,10,'canonical effect operation vocabulary');
 assert.equal(nonEmptyBooks,9,'all supported books must exercise a non-empty actual interpreter result');
 
