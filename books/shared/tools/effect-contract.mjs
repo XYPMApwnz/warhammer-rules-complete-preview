@@ -57,7 +57,11 @@ const validateOperation=(operation,label,operationIds)=>{
   const target=targetId(operation.canonicalTarget);if(!target)throw new Error(`${id}: canonicalTarget must be a string or {kind,id}`);
   if(record(operation.canonicalTarget)){const kind=scalar(operation.canonicalTarget.kind,`${id}.canonicalTarget.kind`);if(!CANONICAL_TARGET_KINDS.has(kind))throw new Error(`${id}: unsupported canonical target kind ${kind}`);dataOnly(operation.canonicalTarget,`${id}.canonicalTarget`);}
   if(!record(operation.parameters))throw new Error(`${id}: parameters must be an object`);dataOnly(operation.parameters,`${id}.parameters`);
-  if(operation.type==='CHARACTERISTIC_ADD'&&typeof operation.parameters.delta!=='number'&&typeof operation.parameters.value!=='number')throw new Error(`${id}: CHARACTERISTIC_ADD requires numeric delta`);
+  if(operation.type==='CHARACTERISTIC_ADD'){
+    if(typeof operation.parameters.delta!=='number'&&typeof operation.parameters.value!=='number')throw new Error(`${id}: CHARACTERISTIC_ADD requires numeric delta`);
+    if(operation.parameters.modifierOnly!==undefined&&operation.parameters.modifierOnly!==true)throw new Error(`${id}: CHARACTERISTIC_ADD modifierOnly must be true when declared`);
+    for(const key of ['minimum','maximum'])if(operation.parameters[key]!==undefined&&typeof operation.parameters[key]!=='number')throw new Error(`${id}: CHARACTERISTIC_ADD ${key} must be numeric`);
+  }
   if(operation.type==='CHARACTERISTIC_SET'&&!['number','string'].includes(typeof operation.parameters.to)&&!['number','string'].includes(typeof operation.parameters.value))throw new Error(`${id}: CHARACTERISTIC_SET requires a value`);
   if(operation.type==='WEAPON_CHARACTERISTIC_ADD'&&!((typeof operation.parameters.stat==='string'&&typeof operation.parameters.delta==='number')||(typeof operation.parameters.characteristic==='string'&&typeof operation.parameters.value==='number')))throw new Error(`${id}: WEAPON_CHARACTERISTIC_ADD requires a characteristic and numeric modifier`);
   if(operation.type==='WEAPON_TAG_GRANT'&&typeof operation.parameters.tag!=='string')throw new Error(`${id}: WEAPON_TAG_GRANT requires tag`);

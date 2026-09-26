@@ -25,12 +25,15 @@ for(const [book,catalog] of catalogs){
     for(const unitId of scopedUnitIds(contract,clause)){
       const unit=catalog.units.find(item=>item.id===unitId);
       if(!unit){unsupported.push({book,contractId:contract.canonicalRecordId,operationId:operation.id,unitId,target});continue;}
-      if(unit.gameSelections?.stats?.[target]==null)missing.push({book,contractId:contract.canonicalRecordId,operationId:operation.id,unitId,target});
+      if(unit.gameSelections?.stats?.[target]==null&&operation.parameters?.modifierOnly!==true)missing.push({book,contractId:contract.canonicalRecordId,operationId:operation.id,unitId,target});
     }
   }
 }
-assert.equal(operations.length,79,'effective characteristic operation inventory');
-assert.equal(new Set(operations.map(item=>item.operationId)).size,53,'unique characteristic operation inventory');
+assert.equal(operations.length,80,'effective characteristic operation inventory');
+assert.equal(new Set(operations.map(item=>item.operationId)).size,54,'unique characteristic operation inventory');
+assert.deepEqual(operations.filter(item=>item.operationId==='plagueveil-detection-range'),[
+  {book:'death-guard',contractId:'enhancement-plagueveil',operationId:'plagueveil-detection-range'}
+],'modifier-only characteristics remain explicit source-backed effect operations');
 assert.deepEqual(unsupported.map(item=>[item.book,item.unitId,item.target]),[
   ['dark-angels','unit-wardens-of-ultramar','OC'],['dark-angels','unit-wardens-of-ultramar','Ld'],
   ['blood-angels','unit-wardens-of-ultramar','OC'],['blood-angels','unit-wardens-of-ultramar','Ld']
@@ -90,4 +93,4 @@ for(const book of ['space-marines','dark-angels','blood-angels']){
   assert.equal(wrongEffects.some(effect=>effect.source?.id===shieldId),false,`${book}: wrong unit must not receive Storm Shield`);
 }
 
-console.log('Characteristic effect runtime target QA: PASS (79 effective / 53 unique stat operations; 0 unresolved missing base fields; 4 excluded dependency target shapes classified; AM Invulnerable 5+ -> 4+; Storm Shield 3 -> 4 in SM/DA/BA).');
+console.log('Characteristic effect runtime target QA: PASS (80 effective / 54 unique stat operations; 1 explicit modifier-only operation; 0 unresolved missing base fields; 4 excluded dependency target shapes classified; AM Invulnerable 5+ -> 4+; Storm Shield 3 -> 4 in SM/DA/BA).');

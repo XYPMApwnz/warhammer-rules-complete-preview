@@ -1376,26 +1376,28 @@
         "death-guard"
       ],
       "detachmentId": "detachment-flyblown-host",
-      "scope": "unit-upgrade",
+      "scope": "owner-or-attached-group",
       "selector": {
         "kind": "assigned-enhancement",
-        "canonicalRecordId": "enhancement-plagueveil"
+        "canonicalRecordId": "enhancement-plagueveil",
+        "unitIds": [
+          "unit-plague-marines"
+        ]
       },
       "clauses": [
         {
-          "selector": {
-            "subject": "upgraded-unit",
-            "unitIds": [
-              "unit-plague-marines"
-            ]
-          },
-          "conditions": [
-            {
-              "kind": "manual-resolution",
-              "state": "unknown"
-            }
-          ],
+          "selector": {},
+          "conditions": [],
           "operations": [
+            {
+              "id": "plagueveil-detection-range",
+              "type": "CHARACTERISTIC_ADD",
+              "canonicalTarget": "Detection Range",
+              "parameters": {
+                "value": -3,
+                "modifierOnly": true
+              }
+            },
             {
               "id": "canonical-enhancement-plagueveil",
               "type": "CANONICAL_REFERENCE",
@@ -1408,8 +1410,7 @@
         }
       ],
       "timingState": {
-        "kind": "always",
-        "state": "unknown"
+        "kind": "always"
       },
       "stackingPolicy": "apply-once-per-source",
       "source": {
