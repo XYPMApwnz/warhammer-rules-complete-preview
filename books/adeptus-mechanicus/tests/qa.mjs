@@ -236,7 +236,9 @@ check('official Legends and Faction Pack clarifications are complete',[
   "Starting Strength is increased accordingly",
   'neither it nor any units embarked within it count towards limits',
   'Enhanced data-tether',
-  'Designer\'s Note: a unit that already has HALO OVERRIDE'
+  'Designer’s Note: This means that if the targeted unit already has the HALO OVERRIDE keyword',
+  'it can be affected by multiple Override abilities at the same time',
+  'does not have the HALO OVERRIDE keyword'
 ].every(text=>JSON.stringify(factionRules).includes(text)));
 check('placeholder compositions are gone',codexDatasheets.datasheets.every(unit=>!/^See the model selections/i.test(unit.composition||'')));
 const ranger=codexDatasheets.datasheets.find(unit=>unit.title==='Skitarii Rangers');

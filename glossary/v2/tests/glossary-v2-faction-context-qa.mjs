@@ -9,9 +9,9 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..')
 const index=await buildGlossaryV2Index();
 const repeat=await buildGlossaryV2Index();
 assert.deepEqual(repeat,index,'context-aware Glossary V2 projection must remain deterministic');
-assert.equal(index.counts.total,4630);
-assert.equal(index.counts.standalone,1738);
-assert.equal(index.counts.scopedChildren,2892);
+assert.equal(index.counts.total,4706);
+assert.equal(index.counts.standalone,1808);
+assert.equal(index.counts.scopedChildren,2898);
 
 const byId=new Map(index.entries.map(entry=>[entry.id,entry]));
 const stormId='army::space-marines::detachment::stormlance-task-force';

@@ -1,0 +1,46 @@
+{
+  "schema": "wh40k-waha-source-defects/v1",
+  "bookId": "adeptus-mechanicus",
+  "captureDate": "2026-09-25",
+  "currentnessCutoff": "2026-09-22",
+  "records": [
+    {
+      "id": "servitor-battleclade-heterogeneous-keywords",
+      "classification": "SOURCE_STRUCTURE_VARIANT",
+      "sourceId": "datasheet-servitor-battleclade",
+      "resolution": "Parse KEYWORDS – ALL MODELS and UNDERSEER model keywords separately; official Faction Pack v1.2 page 16 corroborates the split."
+    },
+    {
+      "id": "bionic-endurance-concatenated-or-the",
+      "classification": "SECONDARY_SOURCE_TEXT_DEFECT",
+      "sourceId": "detachment-skitarii-hunter-cohort:stratagem:1",
+      "resolution": "Use accepted official wording 'or the'; do not propagate Waha's concatenated 'orthe'."
+    },
+    {
+      "id": "binharic-offence-bracket-typo",
+      "classification": "SECONDARY_SOURCE_TEXT_DEFECT",
+      "sourceId": "detachment-skitarii-hunter-cohort:stratagem:2",
+      "resolution": "Use accepted official closing parenthesis; do not propagate Waha's closing square bracket."
+    },
+    {
+      "id": "stealth-screened-cybercanids-mfm-title",
+      "classification": "EXPLICIT_CROSS_SOURCE_ALIAS",
+      "sourceId": "detachment-cohort-acquisitus:enhancement:2",
+      "resolution": "Bind Waha 'Stealth-Screened Cybercanids' to official MFM v1.4 'Stealth-screened Cybercanids (Upgrade)' within Cohort Acquisitus."
+    },
+    {
+      "id": "auto-divinatory-faq-duplicate-presentation",
+      "classification": "DUPLICATE_SOURCE_PRESENTATION",
+      "sourceId": "faq-auto-divinatory-targeting",
+      "resolution": "Deduplicate the identical hub and inline FAQ presentation into one factual record."
+    },
+    {
+      "id": "tribute-emphatic-veneration-title",
+      "classification": "SECONDARY_SOURCE_TITLE_DEFECT",
+      "sourceId": "detachment-data-psalm-conclave:stratagem:1",
+      "wahaValue": "Tribute of Emphatic Veneration",
+      "acceptedValue": "Tribute of Empathic Veneration",
+      "resolution": "Use the accepted Codex carry-forward title; Waha content is semantically applicable but its title spelling does not override the stronger enrolled source."
+    }
+  ]
+}

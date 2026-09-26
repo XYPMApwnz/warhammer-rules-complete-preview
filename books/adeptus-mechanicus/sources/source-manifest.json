@@ -190,9 +190,16 @@
       "active": true,
       "sourceType": "structured-contract",
       "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": ["attachment-group-constraints"],
-      "consumers": ["EFFECTIVE_MODEL", "RUNTIME_PUBLICATION"],
-      "paths": ["books/adeptus-mechanicus/sources/adeptus-mechanicus-attachment-group-constraints.v1.json"]
+      "factsOwned": [
+        "attachment-group-constraints"
+      ],
+      "consumers": [
+        "EFFECTIVE_MODEL",
+        "RUNTIME_PUBLICATION"
+      ],
+      "paths": [
+        "books/adeptus-mechanicus/sources/adeptus-mechanicus-attachment-group-constraints.v1.json"
+      ]
     },
     {
       "id": "adeptus-mechanicus-mfm-v1.4",
@@ -228,7 +235,43 @@
         "books/adeptus-mechanicus/sources/official-mfm-v1.4.html",
         "books/adeptus-mechanicus/sources/official-mfm-v1.4-legends.html"
       ]
+    },
+    {
+      "id": "adeptus-mechanicus-waha-11e-current-2026-09-25",
+      "sourceId": "adeptus-mechanicus-waha-11e-current-2026-09-25",
+      "title": "Wahapedia Adeptus Mechanicus 11E current corpus",
+      "authority": "community-secondary-operational-baseline",
+      "version": "current-capture-2026-09-25",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/adeptus-mechanicus/",
+      "capturedAt": "2026-09-25",
+      "currentnessCutoff": "2026-09-22",
+      "active": true,
+      "sourceType": "deterministic-web-corpus",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "factsOwned": [
+        "non-MFM Adeptus Mechanicus gameplay text",
+        "datasheet structure",
+        "detachment gameplay text"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "CERTIFICATION_QA",
+        "GLOSSARY_V2"
+      ],
+      "paths": [
+        "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/source-defects.json"
+      ]
     }
   ],
-  "enrollmentScope": "PUBLIC_BOOK"
+  "enrollmentScope": "PUBLIC_BOOK",
+  "currentScope": {
+    "units": 34,
+    "detachments": 10,
+    "enhancements": 34,
+    "legendsExcluded": 4,
+    "otherScope": 0,
+    "removedOrSuperseded": 0,
+    "unresolved": 0
+  }
 }

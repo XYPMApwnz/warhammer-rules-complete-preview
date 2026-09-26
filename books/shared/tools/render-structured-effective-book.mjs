@@ -170,11 +170,36 @@ const abilityKind=item=>{
 };
 const abilityCard=(item,unit,wargearAbilityId='')=>`<article class="ability"${wargearAbilityId?` data-roster-wargear-ability-id="${esc(wargearAbilityId)}"`:''} data-source-field="abilities.${esc(slugKey(item.title))}"><h5 data-source-field="title"><button class="term-button" data-term="${item.termId}">${esc(item.title)}</button></h5>${item.openingText?`<p data-source-field="openingText">${decorate(item.openingText,unit.id)}</p>`:''}${(item.options||[]).map(option=>`<div class="ability-option" data-source-field="options.${esc(option.id)}"><h6>${esc(option.title)}</h6><p data-source-field="text">${decorate(option.text,unit.id)}</p></div>`).join('')}${item.text?`<p data-source-field="text">${decorate(item.text,unit.id)}</p>`:''}</article>`;
 const compactAbilities=(title,items,unit)=>items.length?`<div class="shared-ability-group" data-ability-class="${esc(slugKey(title))}"><h5>${title}</h5><div class="keyword-list shared-abilities">${items.map(item=>/^core$/i.test(item.title)?decorate(abilityText(item),unit.id):`<button class="term-button" data-term="${item.termId}" data-source-field="abilities.${esc(slugKey(item.title))}">${esc(item.title)}</button>`).join(' ')}</div></div>`:'';
+const compositionWeaponTerms=unit=>{
+  const variants=new Map();
+  const add=(label,term)=>{
+    const key=String(label||'').toLowerCase();if(!key)return;
+    const records=variants.get(key)||[];if(!records.some(record=>record.id===term.id))records.push(term);variants.set(key,records);
+  };
+  for(const weapon of unit.weapons||[]){
+    const term={id:weapon.termId,label:weapon.name};
+    for(const label of [weapon.name,weapon.name.replaceAll(' & ',' and '),weapon.name.replaceAll(' and ',' & '),weapon.name.replaceAll('-', ' '),weapon.name.endsWith('s')?weapon.name:`${weapon.name}s`])add(label,term);
+  }
+  const keys=[...variants].filter(([,records])=>records.length===1).map(([key])=>key).sort((a,b)=>b.length-a.length);
+  const pattern=keys.length?new RegExp(`(^|[^A-Za-z0-9])(${keys.map(escapeRegExp).join('|')})(?=$|[^A-Za-z0-9])`,'gi'):null;
+  return {variants,pattern};
+};
+const decorateComposition=(value,unit)=>{
+  const raw=String(value??'').replace(/[ \t]+\n/g,'\n'),{variants,pattern}=compositionWeaponTerms(unit);
+  if(!pattern)return esc(raw);
+  const output=[];let cursor=0;pattern.lastIndex=0;
+  for(let match=pattern.exec(raw);match;match=pattern.exec(raw)){
+    const prefix=match[1]||'',token=match[2],start=match.index+prefix.length,records=variants.get(token.toLowerCase())||[];
+    if(records.length!==1)continue;
+    output.push(esc(raw.slice(cursor,start)),`<button class="term-button" data-term="${esc(records[0].id)}">${esc(token)}</button>`);cursor=start+token.length;
+  }
+  output.push(esc(raw.slice(cursor)));return output.join('');
+};
 const composition=unit=>unit.compositionText
-  ?`<p>${decorate(unit.compositionText,unit.id)}</p>`
+  ?`<p>${decorateComposition(unit.compositionText,unit)}</p>`
   :Array.isArray(unit.composition)
     ?`<ul>${unit.composition.map(model=>`<li>${model.min}${model.max!==model.min?`–${model.max}`:''} ${esc(model.name)}</li>`).join('')}</ul>`
-    :`<p>${decorate(unit.composition,unit.id)}</p>`;
+    :`<p>${decorateComposition(unit.composition,unit)}</p>`;
 const modelKeywords=unit=>canonicalRosterModelsFor(unit).filter(model=>model.intrinsicKeywords?.length).map(model=>`<p class="model-keywords" data-roster-model-id="${esc(model.id)}"><b>${esc(model.title)}</b> only: ${model.intrinsicKeywords.map(keyword=>`<span data-model-keyword="${esc(keyword)}">${esc(keyword)}</span>`).join(', ')}</p>`).join('');
 const unitCard=unit=>{
   const slug=unit.id.replace('unit-','');

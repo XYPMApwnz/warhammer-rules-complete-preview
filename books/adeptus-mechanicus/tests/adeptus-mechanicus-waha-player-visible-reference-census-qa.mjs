@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import vm from 'node:vm';import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
+const corpus=JSON.parse(fs.readFileSync(path.join(root,'books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json'),'utf8'));
+const index=JSON.parse(fs.readFileSync(path.join(root,'glossary/v2/generated/index.en.json'),'utf8'));
+const sandbox={window:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'books/adeptus-mechanicus/scripts/target-data.js'),'utf8'),sandbox);const publication=sandbox.window.WH_ARMY_BOOK_TARGETS,html=publication.html;
+const termIds=[...html.matchAll(/data-term="([^"]+)"/g)].map(m=>m[1]);const byId=new Set(index.entries.map(e=>e.id)),byKey=new Set(index.entries.flatMap(e=>[e.sourceOwner?.canonicalId,...(e.aliases||[])]).filter(Boolean));assert.deepEqual([...new Set(termIds.filter(id=>!byId.has(id)&&!byKey.has(id)))],[]);assert.equal(termIds.length,763);
+const context=entry=>entry.contexts?.some(c=>c.effectiveBookId==='adeptus-mechanicus')||entry.sourceOwner?.bookId==='adeptus-mechanicus';const entries=index.entries.filter(context),count=type=>entries.filter(e=>e.recordType===type).length;
+assert.equal(entries.length,360);assert.equal(count('UNIT'),34);assert.equal(count('DETACHMENT'),10);assert.equal(count('DETACHMENT_RULE'),10);assert.equal(count('ENHANCEMENT'),34);assert.equal(count('STRATAGEM'),51);assert.equal(count('WEAPON_PROFILE'),138);assert.equal(count('ABILITY'),54);assert.equal(count('WARGEAR_ABILITY'),12);
+assert.equal(corpus.inventory.ruleReference,1045);assert.ok(entries.flatMap(e=>e.canonicalReferences||[]).every(ref=>byId.has(ref.id)), 'dead V2 canonical reference');
+const section=id=>{const target=publication.targets[id];assert.ok(target,`missing target ${id}`);return html.slice(target.start,target.end);};
+const cawl=section('unit-belisarius-cawl');assert.match(cawl,/data-term="weapon-cawls-omnissian-axe"[^>]*>Cawl(?:'|’|&#39;)s Omnissian axe/i);assert.doesNotMatch(cawl,/data-term="weapon-omnissian-axe"[^>]*>Cawl/i);
+const raiders=section('unit-serberys-raiders');assert.match(raiders,/data-term="weapon-cavalry-sabre-clawed-limbs"[^>]*>cavalry sabre and clawed limbs/i);
+const rust=section('unit-sicarian-ruststalkers');assert.match(rust,/data-term="weapon-transonic-razor-chordclaw"[^>]*>transonic razor and chordclaw/i);
+const servitor=section('unit-servitor-battleclade');assert.match(servitor,/data-term="weapon-servo-claw"[^>]*>servo-claw/i);
+const corpuscarii=section('unit-corpuscarii-electro-priests');const composition=corpuscarii.match(/id="corpuscarii-electro-priests-composition"[\s\S]*?<\/section>/)?.[0]||'';assert.doesNotMatch(composition,/data-term="weapon-electrostatic-gauntlets/,'ambiguous same-name ranged/melee composition must not choose one profile');
+assert.match(fs.readFileSync(path.join(root,'books/shared/army-book-app.js'),'utf8'),/extensions\.forEach[\s\S]*bindArmyRoot[\s\S]*validate/);
+console.log(`Adeptus Mechanicus player-visible/reference census QA passed: ${termIds.length} visible term occurrences resolve; ${corpus.inventory.ruleReference} source references inventoried.`);

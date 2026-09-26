@@ -245,8 +245,13 @@ export function buildAdeptusMechanicusEffectiveModelInput(context,canonicalModel
     for(const item of grouped.faction)ids.push(...(/^core$/i.test(item.title)?decoratedTermIds(abilityText(item),unit.id):[item.termId]));
     const abilityTerms=item=>[item.termId,...decoratedTermIds(item.openingText,unit.id),...(item.options||[]).flatMap(option=>decoratedTermIds(option.text,unit.id)),...decoratedTermIds(item.text,unit.id)];
     for(const kind of ['datasheet','relation','transport','damaged'])for(const item of grouped[kind])ids.push(...abilityTerms(item));
-    if(unit.compositionText)ids.push(...decoratedTermIds(unit.compositionText,unit.id));
-    else if(!Array.isArray(unit.composition))ids.push(...decoratedTermIds(unit.composition,unit.id));
+    const compositionText=unit.compositionText||(!Array.isArray(unit.composition)?unit.composition:'');
+    if(compositionText){
+      const normalized=String(compositionText).toLowerCase().replaceAll(' & ',' and ').replaceAll('-', ' ');
+      const candidates=new Map();
+      for(const weapon of unit.weapons||[]){const key=String(weapon.name).toLowerCase().replaceAll(' & ',' and ').replaceAll('-', ' ');const values=candidates.get(key)||[];if(!values.includes(weapon.termId))values.push(weapon.termId);candidates.set(key,values);}
+      for(const [key,values] of candidates)if(values.length===1&&(normalized.includes(key)||normalized.includes(`${key}s`)))ids.push(values[0]);
+    }
     for(const item of Array.isArray(unit.wargear)?unit.wargear:[unit.wargear])ids.push(...decoratedTermIds(item,unit.id));
     const wargearAbilities=unit.wargearAbilities||[],gatedTermIds=new Set(wargearAbilities.map(item=>item.termId).filter(Boolean));
     for(const item of wargearAbilities)ids.push(...abilityTerms(item));

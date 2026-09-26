@@ -294,3 +294,7 @@ The new implementation should preserve proven contracts and observable behavior 
 ## Death Guard content certification
 
 The complete supported/current Death Guard gameplay corpus is certified source-first against the 2026-09-25 Waha 11E capture, with official MFM v1.4 ownership and official Faction Pack precedence. See [DEATH_GUARD_WAHA_CONTENT_CERTIFICATION.md](certification/DEATH_GUARD_WAHA_CONTENT_CERTIFICATION.md).
+
+## Adeptus Mechanicus content certification
+
+The complete supported/current Adeptus Mechanicus gameplay corpus is certified source-first against the 2026-09-25 Waha 11E capture, with official MFM v1.4 ownership and stronger enrolled official evidence taking precedence on direct conflicts. See [ADEPTUS_MECHANICUS_WAHA_CONTENT_CERTIFICATION.md](certification/ADEPTUS_MECHANICUS_WAHA_CONTENT_CERTIFICATION.md).

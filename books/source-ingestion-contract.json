@@ -196,7 +196,7 @@
       "authority": "official-pdf",
       "sourceType": "official-pdf",
       "acceptedRevision": "v1.2",
-      "acceptedHash": "b822f37d8c2d9e033b2c796240922728cedc002fca0f6d4ae9bccc16601e399d",
+      "acceptedHash": "0895ccc088e141710b36cb15055cc61102ffcd327d0fccc8a4c436d65e587f65",
       "lastChecked": "2026-09-14",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "UNKNOWN",
@@ -217,7 +217,7 @@
         {
           "path": "books/adeptus-mechanicus/content/adeptus-mechanicus-rules.en.json",
           "normalization": "lf",
-          "sha256": "8d7ea808c93c6b7793d85d82013d7a0d3505d254aec93faf386e269dd4ef493d"
+          "sha256": "0f791eb43b17b4230cb7803aaef9c2220624dde44b2f3a37a8ed6b38797b7347"
         }
       ],
       "notes": "Enrolled factual owner for faction-pack-rules, faction-pack-datasheets."
@@ -228,7 +228,7 @@
       "authority": "official-json-capture",
       "sourceType": "official-json-capture",
       "acceptedRevision": "v1.3",
-      "acceptedHash": "0dc97447d215380f23e7c59b58a514227c3f423269ae90aa9667e33cc211358f",
+      "acceptedHash": "4385aea2ebe6ef8b0ac5d8f21407cd90678d1c01d8576388ec3c928c5c0c4769",
       "lastChecked": "2026-09-22",
       "upstreamUpdateKnown": true,
       "upstreamCurrentness": "UPDATE_AVAILABLE",
@@ -244,7 +244,7 @@
         {
           "path": "books/adeptus-mechanicus/content/adeptus-mechanicus-points.en.json",
           "normalization": "lf",
-          "sha256": "dd4698768f5d3a5f1a45519e45b4c5282736dcade0300eac8ea4c7b46f7cc105"
+          "sha256": "fe784d486d18d0049636946ffca438d22d48a8ce1b2902b50f19c8ac28d80b4e"
         }
       ],
       "notes": "Enrolled factual owner for points, costs."
@@ -2292,6 +2292,34 @@
         }
       ],
       "notes": "Official Warhammer Community Downloads currentness evidence: MFM updated 2026-09-02; all nine supported live pages reported v1.4 at the 2026-09-22 cutoff."
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "sourceId": "adeptus-mechanicus-waha-11e-current-2026-09-25",
+      "authority": "community-secondary-operational-baseline",
+      "sourceType": "deterministic-web-corpus",
+      "acceptedRevision": "current-capture-2026-09-25",
+      "acceptedHash": "1eea9803315f4c5a01165ae33583c203f837426341ce988df364f8a71d5dad12",
+      "lastChecked": "2026-09-25",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "RETAINED_WEB_CORPUS",
+      "reproducible": "repository-artifact",
+      "extractor": "books/adeptus-mechanicus/tools/import-waha-current-corpus.py",
+      "artifacts": [
+        {
+          "path": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+          "normalization": "bytes",
+          "sha256": "977dce523fe59b95bc3251c7d53145a0ffa7d14fbd670ce4091de5c6fd75454d"
+        },
+        {
+          "path": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/source-defects.json",
+          "normalization": "bytes",
+          "sha256": "9b2e438f28a50da37451755023a1df7770ab5bdca95c77c8d35b660c6dc14428"
+        }
+      ],
+      "notes": "Frozen secondary 11E Adeptus Mechanicus corpus captured for complete source-to-canonical certification at the 2026-09-22 currentness cutoff."
     }
   ],
   "dormantLiveTools": [

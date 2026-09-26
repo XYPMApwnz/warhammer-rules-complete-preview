@@ -270,11 +270,11 @@ const duplicateVisualScope={window:{WH40K_GLOSSARY_V2_INDEX:duplicateVisualIndex
 vm.runInNewContext(read('glossary/v2/runtime/glossary-v2-runtime.js'),duplicateVisualScope);
 assert.equal(duplicateVisualScope.window.WH40K_GLOSSARY.get(duplicateVisualA.id).definition.en,'','cross-wired Terrain Layout visuals must fail closed');
 
-assert.equal(index.counts.total,4705);
-assert.equal(index.counts.standalone,1807);
+assert.equal(index.counts.total,4706);
+assert.equal(index.counts.standalone,1808);
 assert.equal(index.counts.scopedChildren,2898);
-assert.equal(api.entries().length,4705);
-assert.equal(api.standaloneEntries().length,1807);
+assert.equal(api.entries().length,4706);
+assert.equal(api.standaloneEntries().length,1808);
 assert.equal(api.counts.scopedChildren,2898);
 
 const detachments=api.standaloneEntries().filter(entry=>entry.recordType==='DETACHMENT');

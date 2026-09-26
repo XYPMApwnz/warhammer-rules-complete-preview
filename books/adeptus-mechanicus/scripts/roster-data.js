@@ -2955,44 +2955,39 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "datasheet-rod-of-the-war-forge",
             "sectionId": "datasheet-rod-of-the-war-forge",
             "title": "Rod of the War Forge",
-            "text": "In your Command phase, select one Icon of War ability. Until your next Command phase, this model has that ability.",
+            "text": "In your Command phase, select one of the abilities in the Icon of War section (see next page). Until the start of your next Command phase, this model has that ability.",
             "sourceUnitId": "unit-thulia-ghuld"
           },
           {
             "id": "datasheet-mechanicus-bodyguard",
             "sectionId": "datasheet-mechanicus-bodyguard",
             "title": "Mechanicus Bodyguard",
-            "text": "While this model is within 3\" of one or more other friendly ADEPTUS MECHANICUS units, it has Lone Operative.",
+            "text": "While this model is within 3\" of one or more other friendly ADEPTUS MECHANICUS units, this model has the Lone Operative ability.",
             "sourceUnitId": "unit-thulia-ghuld"
           },
           {
             "id": "datasheet-secutor-of-olympus",
             "sectionId": "datasheet-secutor-of-olympus",
             "title": "Secutor of Olympus",
-            "text": "At the start of your Shooting phase, select one enemy VEHICLE within 12\" and roll one D6; on a 2+, it suffers D3+1 mortal wounds.",
+            "text": "At the start of your Shooting phase, select one enemy VEHICLE unit within 12\" of this model and roll one D6: on a 2+, that enemy unit suffers D3+1 mortal wounds.",
+            "sourceUnitId": "unit-thulia-ghuld"
+          },
+          {
+            "id": "datasheet-supreme-commander",
+            "sectionId": "datasheet-supreme-commander",
+            "title": "Supreme Commander",
+            "text": "If this model is in your army, it must be your Warlord.",
             "sourceUnitId": "unit-thulia-ghuld"
           },
           {
             "id": "datasheet-icon-of-war",
             "sectionId": "datasheet-icon-of-war",
             "title": "Icon of War",
-            "text": "Fanatical Devotion lets a friendly SKITARII or THULIA GHULD unit within 6\" shoot and charge after Advancing. Adaptive Tactics lets it shoot and charge after Falling Back. The Fires of Mars makes both Imperatives active for it.",
+            "text": "",
             "sourceUnitId": "unit-thulia-ghuld"
           }
         ],
-        "models": [
-          {
-            "id": "unit-thulia-ghuld-model-c93390198d",
-            "title": "Archmagos Terminus Thulia Ghuld",
-            "aliases": [
-              "Archmagos Terminus Thulia Ghuld",
-              "Archmagos Terminus Thulia Ghuld - Epic Hero"
-            ],
-            "legacyIds": [
-              "unit-thulia-ghuld-model-archmagos-terminus-thulia-ghuld"
-            ]
-          }
-        ],
+        "models": [],
         "selections": [
           {
             "id": "unit-thulia-ghuld-selection-jericho-class-conversion-resonator-titanic-impact",
@@ -3557,22 +3552,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "datasheet-broad-spectrum-targeting-augurs",
             "sectionId": "datasheet-broad-spectrum-targeting-augurs",
             "title": "Broad-spectrum Targeting Augurs",
-            "text": "Each time a model in this unit attacks with an eradication caster against a unit excluding MONSTER and VEHICLE units, that attack has Sustained Hits 1.",
+            "text": "Each time a model in this unit makes an attack with an eradication caster that targets a unit (excluding MONSTER and VEHICLE units), that attack has the [SUSTAINED HITS 1] ability.",
+            "sourceUnitId": "unit-hastarii-exterminators"
+          },
+          {
+            "id": "datasheet-attached-unit",
+            "sectionId": "datasheet-attached-unit",
+            "title": "Attached Unit",
+            "text": "If a CHARACTER unit from your army can be attached to a SKITARII RANGERS unit, it can be attached to this unit instead",
             "sourceUnitId": "unit-hastarii-exterminators"
           }
         ],
-        "models": [
-          {
-            "id": "unit-hastarii-exterminators-model-53103ae2b2",
-            "title": "Hastarii Exterminator Alpha and 4 Hastarii Exterminators",
-            "aliases": [
-              "Hastarii Exterminator Alpha and 4 Hastarii Exterminators"
-            ],
-            "legacyIds": [
-              "unit-hastarii-exterminators-model-hastarii-exterminator-alpha-and-4-hastarii-exterminators"
-            ]
-          }
-        ],
+        "models": [],
         "selections": [
           {
             "id": "unit-hastarii-exterminators-selection-hastarii-arc-blaster",
@@ -3852,22 +3843,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "datasheet-monocular-targeting-helms",
             "sectionId": "datasheet-monocular-targeting-helms",
             "title": "Monocular Targeting Helms",
-            "text": "Each time a model in this unit attacks with a neutron fusil against a MONSTER or VEHICLE unit, that attack has Ignores Cover.",
+            "text": "Each time a model in this unit makes an attack with a neutron fusil against a MONSTER or VEHICLE unit, that attack has the [IGNORES COVER] ability.",
+            "sourceUnitId": "unit-hastarii-fusiliers"
+          },
+          {
+            "id": "datasheet-attached-unit",
+            "sectionId": "datasheet-attached-unit",
+            "title": "Attached Unit",
+            "text": "If a CHARACTER unit from your army can be attached to a SKITARII RANGERS unit, it can be attached to this unit instead",
             "sourceUnitId": "unit-hastarii-fusiliers"
           }
         ],
-        "models": [
-          {
-            "id": "unit-hastarii-fusiliers-model-288d7b9252",
-            "title": "Hastarii Fusilier Alpha and 4 Hastarii Fusiliers",
-            "aliases": [
-              "Hastarii Fusilier Alpha and 4 Hastarii Fusiliers"
-            ],
-            "legacyIds": [
-              "unit-hastarii-fusiliers-model-hastarii-fusilier-alpha-and-4-hastarii-fusiliers"
-            ]
-          }
-        ],
+        "models": [],
         "selections": [
           {
             "id": "unit-hastarii-fusiliers-selection-neutron-fusil",
@@ -4983,7 +4970,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "datasheet-network-override",
             "sectionId": "datasheet-network-override",
             "title": "Network Override",
-            "text": "While this unit contains one or more TECH-PRIEST models, it can perform an Action after Advancing and is eligible to shoot in a turn in which it started an Action.",
+            "text": "While this unit contains one or more Tech-Priest models, this unit is:\n- Eligible to perform an Action in a turn in which it Advanced.\n- Eligible to shoot in a turn in which it started an Action.",
+            "sourceUnitId": "unit-servitor-battleclade"
+          },
+          {
+            "id": "datasheet-attached-unit",
+            "sectionId": "datasheet-attached-unit",
+            "title": "Attached Unit",
+            "text": "If a CHARACTER unit from your army with the Leader ability can be attached to a KATAPHRON BREACHERS unit, it can be attached to this unit instead.",
             "sourceUnitId": "unit-servitor-battleclade"
           }
         ],
@@ -8221,7 +8215,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "cohort-acquisitus-rule",
       "title": "Noospheric Recon",
-      "text": "Friendly PTERAXII, INFILTRATORS, RANGERS, SERBERYS RAIDERS and SERBERYS SULPHURHOUNDS units have RECON AUGURY. Friendly RECON AUGURY units have Enhanced Augurs: in your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is analysed. While a unit is analysed, that unit has +3\" detection range.",
+      "text": "- Friendly PTERAXII/INFILTRATORS/RANGERS/SERBERYS RAIDERS/ SERBERYS SULPHURHOUNDS units have RECON AUGURY.\n- Friendly RECON AUGURY units have the following ability:\nEnhanced Augurs: In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is analysed:\n- While a unit is analysed, that unit has +3\" detection range.",
       "sectionId": "cohort-acquisitus-rule",
       "detachmentId": "detachment-cohort-acquisitus",
       "detachmentTitle": "Cohort Acquisitus",
@@ -8230,7 +8224,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "lords-of-the-forge-rule",
       "title": "War-form Mantles",
-      "text": "Friendly TECH-PRIEST models have a 4+ invulnerable save and Feel No Pain 5+. They also have Baffling Data Screed: in your Shooting phase, when this unit is selected to shoot and is not Battle-shocked, roll one D6. On a 2+, select one enemy VEHICLE unit within 12\"; it makes a Battle-shock test with -1. A unit cannot be selected more than once per turn. Alternatively, on a 2+, those ranged attacks do not prevent this unit from being hidden.",
+      "text": "Friendly TECH-PRIEST models have:\n- 4+ InSv.\n- Feel No Pain 5+.\nFriendly TECH-PRIEST models have the following ability:\nBaffling Data Screed: In your Shooting phase, when this unit is selected to shoot, if this unit is not battle-shocked, you can use this ability. If you do, roll one D6:\n- On a 2+, select one enemy VEHICLE unit within 12\" of this unit. That enemy unit makes a battle-shock roll, with -1 to that battle-shock roll. A unit cannot be selected for this ability more than once per turn.\n- Or: On 2+, those ranged attacks do not prevent this unit from being hidden.",
       "sectionId": "lords-of-the-forge-rule",
       "detachmentId": "detachment-lords-of-the-forge",
       "detachmentTitle": "Lords of the Forge",
@@ -8239,7 +8233,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "luminen-auto-choir-rule",
       "title": "Cyber-static Canticles",
-      "text": "Friendly CORPUSCARII units' ranged attacks have [LETHAL HITS]. When a friendly FULGURITE unit has fought, that unit heals D3 wounds. This Detachment has the DATA-PSALM tag and cannot be taken with another DATA-PSALM Detachment.",
+      "text": "- Friendly CORPUSCARII units’ ranged attacks have [LETHAL HITS].\n- When a friendly FULGURITE unit has fought, that unit heals D3 wounds.\nThis detachment has the DATA-PSALM tag and cannot be taken with another DATA-PSALM detachment.",
       "sectionId": "luminen-auto-choir-rule",
       "detachmentId": "detachment-luminen-auto-choir",
       "detachmentTitle": "Luminen Auto-choir",
@@ -8266,7 +8260,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "eradication-cohort-rule",
       "title": "Murderous Imperative",
-      "text": "Each time a model in a SKITARII unit from your army makes an attack: if the Protector Imperative is active for that unit, re-roll a Hit roll of 1; if the Conqueror Imperative is active for that unit, re-roll a Wound roll of 1.",
+      "text": "Each time a model in a SKITARII unit from your army makes an attack:\n- If the Protector Imperative is active for that unit, re-roll a Hit roll of 1.\n- If the Conqueror Imperative is active for that unit, re-roll a Wound roll of 1.",
       "sectionId": "eradication-cohort-rule",
       "detachmentId": "detachment-eradication-cohort",
       "detachmentTitle": "Eradication Cohort",
@@ -8284,7 +8278,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "haloscreed-battle-clade-rule",
       "title": "Noospheric Transference",
-      "text": "In your Command phase, select one or more ADEPTUS MECHANICUS units, including embarked units: 1 at Incursion, 2 at Strike Force, or 3 at Onslaught. Until your next Command phase, they gain HALO OVERRIDE. Select one Override ability: Electromotive Energisation (+2\" Move), Microactuator Bracing (+1 Toughness), Predation Protocols (eligible to charge after Advancing), or Muted Servomotors (Stealth).",
+      "text": "In your Command phase, select one or more ADEPTUS MECHANICUS units from your army (including units that are embarked within TRANSPORTS). The maximum number of units you can select depends on the battle size, as follows:\nINCURSION:1 UNITSTRIKE FORCE2 UNITSONSLAUGHT3 UNITS\nUntil the start of your next Command phase, those units gain the HALO OVERRIDE keyword. Then, select one of the Override abilities below. Until the start of your next Command phase, units from your army with the HALO OVERRIDE keyword have the selected Override ability:\nElectromotive Energisation\nAdd 2\" to the Move characteristic of models in this unit.\nMicroactuator Bracing\nAdd 1 to the Toughness characteristic of models in this unit.\nPredation Protocols\nThis unit is eligible to declare a charge in a turn in which it Advanced.\nMuted Servomotors\nModels in this unit have the Stealth ability.",
       "sectionId": "haloscreed-battle-clade-rule",
       "detachmentId": "detachment-haloscreed-battle-clade",
       "detachmentTitle": "Haloscreed Battle Clade",
@@ -8312,7 +8306,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
   "enhancements": [
     {
       "title": "Explorator Dispensation",
-      "text": "SKITARII MARSHAL model only. This unit has Infiltrators.",
+      "text": "SKITARII MARSHAL model only. This unit has Infiltrators",
       "id": "enhancement-explorator-dispensation",
       "eligibility": {
         "v": 1,
@@ -8390,7 +8384,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Vingh's Wafers of Dynamism",
-      "text": "CYBERNETICA DATASMITH model only. At the start of the first battle round, if this unit is an Attached unit, this unit has MOBILE until the end of the battle.",
+      "text": "CYBERNETICA DATASMITH model only. At the start of the first battle round, if this unit is an attached unit, this unit has MOBILE until the end of the battle.",
       "id": "enhancement-vinghs-wafers-of-dynamism",
       "eligibility": {
         "v": 1,
@@ -8467,7 +8461,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Voltagheist Reliquary",
-      "text": "TECH-PRIEST model only. Enemy units cannot target this unit with Snap Shooting attacks.",
+      "text": "TECH-PRIEST model only. Enemy units cannot target this unit with snap shooting attacks",
       "id": "enhancement-voltagheist-reliquary",
       "eligibility": {
         "v": 1,
@@ -8867,7 +8861,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Omnicogitator",
-      "text": "SKITARII MARSHAL model only. The Conqueror Imperative and Protector Imperative are both active for the bearer's unit.",
+      "text": "SKITARII MARSHAL model only. The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit.",
       "id": "enhancement-omnicogitator",
       "eligibility": {
         "v": 1,
@@ -8904,7 +8898,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Martial Signatum Amplificator",
-      "text": "TECH-PRIEST model only. Models in the bearer's unit have the SKITARII keyword.",
+      "text": "TECH-PRIEST model only. Models in the bearer’s unit have the SKITARII keyword.",
       "id": "enhancement-martial-signatum-amplificator",
       "eligibility": {
         "v": 1,
@@ -8944,7 +8938,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Belicosa-class Capacitor Vanes",
-      "text": "ADEPTUS MECHANICUS model only. Add 6\" to the Range characteristic and 1 to the Strength characteristic of ranged weapons equipped by models in the bearer's unit.",
+      "text": "ADEPTUS MECHANICUS model only. Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit, and add 1 to the Strength characteristic of those weapons.",
       "id": "enhancement-belicosa-class-capacitor-vanes",
       "eligibility": {
         "v": 1,
@@ -8984,7 +8978,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Omnissiah's Fury",
-      "text": "SKITARII MARSHAL model only. Add 2 to the Attacks characteristic of the bearer's melee weapons, and improve the Armour Penetration and Damage characteristics of those weapons by 1.",
+      "text": "SKITARII MARSHAL model only. Add 2 to the Attacks characteristic of melee weapons equipped by the bearer, and improve the Armour Penetration and Damage characteristics of those weapons by 1.",
       "id": "enhancement-omnissiahs-fury",
       "eligibility": {
         "v": 1,
@@ -9181,7 +9175,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Transoracular Dyad Wafers",
-      "text": "CYBERNETICA DATASMITH model only. When attached to KASTELAN ROBOTS, models in that unit gain HALO OVERRIDE until the end of the battle. That unit cannot be selected for Noospheric Transference.",
+      "text": "CYBERNETICA DATASMITH model only. When the bearer is attached to a KASTELAN ROBOTS unit, until the end of the battle, models in that unit gain the HALO OVERRIDE keyword. That unit cannot be selected when selecting units as part of the Noospheric Transference Detachment rule.",
       "id": "enhancement-transoracular-dyad-wafers",
       "eligibility": {
         "v": 1,
@@ -9218,7 +9212,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Cognitive Reinforcement",
-      "text": "ADEPTUS MECHANICUS model only, excluding CYBERNETICA DATASMITH. The Conqueror and Protector Imperatives are both active for the bearer's unit.",
+      "text": "ADEPTUS MECHANICUS model only (excluding CYBERNETICA DATASMITH models). The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit.",
       "id": "enhancement-cognitive-reinforcement",
       "eligibility": {
         "v": 1,
@@ -9259,7 +9253,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Sanctified Ordnance",
-      "text": "ADEPTUS MECHANICUS model only. Add 6\" to the Range of ranged weapons equipped by models in the bearer's unit; Hazardous tests for that unit can be re-rolled.",
+      "text": "ADEPTUS MECHANICUS model only. Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit and, each time a Hazardous test is taken for that unit, you can re-roll the result.",
       "id": "enhancement-sanctified-ordnance",
       "eligibility": {
         "v": 1,
@@ -9299,7 +9293,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Inloaded Lethality",
-      "text": "TECH-PRIEST DOMINUS or TECH-PRIEST MANIPULUS model only. Add 3 to the Attacks and 1 to the Damage characteristics of the bearer's melee weapons.",
+      "text": "TECH-PRIEST DOMINUS or TECH-PRIEST MANIPULUS model only. Add 3 to the Attacks characteristic of the bearer’s melee weapons and add 1 to the Damage characteristic of the bearer’s melee weapons.",
       "id": "enhancement-inloaded-lethality",
       "eligibility": {
         "v": 1,
