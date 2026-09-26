@@ -190,7 +190,7 @@
         "adeptus-mechanicus"
       ],
       "detachmentId": "detachment-skitarii-hunter-cohort",
-      "scope": "bearer",
+      "scope": "owner-or-attached-group",
       "selector": {
         "kind": "assigned-enhancement",
         "canonicalRecordId": "enhancement-clandestine-infiltrator"
@@ -198,7 +198,7 @@
       "clauses": [
         {
           "selector": {
-            "subject": "bearer"
+            "scope": "owner-or-attached-group"
           },
           "conditions": [],
           "operations": [
@@ -784,7 +784,7 @@
         "adeptus-mechanicus"
       ],
       "detachmentId": "detachment-cohort-acquisitus",
-      "scope": "bearer",
+      "scope": "owner-or-attached-group",
       "selector": {
         "kind": "assigned-enhancement",
         "canonicalRecordId": "enhancement-explorator-dispensation"
@@ -792,7 +792,7 @@
       "clauses": [
         {
           "selector": {
-            "subject": "bearer"
+            "scope": "owner-or-attached-group"
           },
           "conditions": [],
           "operations": [
@@ -1123,7 +1123,7 @@
         "adeptus-mechanicus"
       ],
       "detachmentId": "detachment-eradication-cohort",
-      "scope": "bearer",
+      "scope": "owner-or-attached-group",
       "selector": {
         "kind": "assigned-enhancement",
         "canonicalRecordId": "enhancement-martial-signatum-amplificator"
@@ -1131,7 +1131,7 @@
       "clauses": [
         {
           "selector": {
-            "subject": "bearer"
+            "scope": "owner-or-attached-group"
           },
           "conditions": [],
           "operations": [

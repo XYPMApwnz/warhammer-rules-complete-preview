@@ -11327,7 +11327,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "adeptus-mechanicus"
       ],
       "detachmentId": "detachment-skitarii-hunter-cohort",
-      "scope": "bearer",
+      "scope": "owner-or-attached-group",
       "selector": {
         "kind": "assigned-enhancement",
         "canonicalRecordId": "enhancement-clandestine-infiltrator"
@@ -11335,7 +11335,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "clauses": [
         {
           "selector": {
-            "subject": "bearer"
+            "scope": "owner-or-attached-group"
           },
           "conditions": [],
           "operations": [
@@ -11578,7 +11578,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "adeptus-mechanicus"
       ],
       "detachmentId": "detachment-cohort-acquisitus",
-      "scope": "bearer",
+      "scope": "owner-or-attached-group",
       "selector": {
         "kind": "assigned-enhancement",
         "canonicalRecordId": "enhancement-explorator-dispensation"
@@ -11586,7 +11586,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "clauses": [
         {
           "selector": {
-            "subject": "bearer"
+            "scope": "owner-or-attached-group"
           },
           "conditions": [],
           "operations": [
@@ -11815,7 +11815,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "adeptus-mechanicus"
       ],
       "detachmentId": "detachment-eradication-cohort",
-      "scope": "bearer",
+      "scope": "owner-or-attached-group",
       "selector": {
         "kind": "assigned-enhancement",
         "canonicalRecordId": "enhancement-martial-signatum-amplificator"
@@ -11823,7 +11823,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "clauses": [
         {
           "selector": {
-            "subject": "bearer"
+            "scope": "owner-or-attached-group"
           },
           "conditions": [],
           "operations": [
