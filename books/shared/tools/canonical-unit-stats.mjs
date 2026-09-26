@@ -15,6 +15,12 @@ const sourceStatsFor=unit=>[
   ...values(unit?.profiles).map(profile=>statRecord(profile?.stats)),
   ...values(unit?.blocks).filter(block=>block?.type==='statline').map(block=>statRecord(block?.values))
 ].filter(Boolean);
+const withCanonicalInvulnerable=(unit,stats)=>{
+  const value=String(unit?.invulnerable||'').trim();
+  if(!value)return stats;
+  if(stats.Invulnerable!==undefined&&String(stats.Invulnerable)!==value)throw new Error(`${unit?.id||'unit'}: conflicting canonical Invulnerable characteristic`);
+  return {...stats,Invulnerable:value};
+};
 const deriveRequiredBaseStat=(sources,target,operations)=>{
   const sourceValues=[...new Set(sources.filter(source=>Object.prototype.hasOwnProperty.call(source,target)).map(source=>String(source[target])))];
   if(sourceValues.length===1)return sourceValues[0];
@@ -28,10 +34,10 @@ export function canonicalBaseStatsForUnit(unit,{effectContracts=[]}={}){
   const profileSources=values(unit?.profiles).map(profile=>statRecord(profile?.stats)).filter(Boolean);
   if(explicit){
     if(profileSources.length&&!profileSources.some(source=>canonicalStats(source)===canonicalStats(explicit)))throw new Error(`${unit?.id||'unit'}: canonical unit stats do not resolve to one source profile`);
-    return {...explicit};
+    return withCanonicalInvulnerable(unit,{...explicit});
   }
   const sources=sourceStatsFor(unit);
-  if(!sources.length)return {};
+  if(!sources.length)return withCanonicalInvulnerable(unit,{});
   const keys=[...new Set(sources.flatMap(source=>Object.keys(source)))];
   const stats=Object.fromEntries(keys
     .filter(key=>sources.every(source=>Object.prototype.hasOwnProperty.call(source,key)&&String(source[key])===String(sources[0][key])))
@@ -42,7 +48,7 @@ export function canonicalBaseStatsForUnit(unit,{effectContracts=[]}={}){
     const base=deriveRequiredBaseStat(sources,target,required);
     if(base!=null)stats[target]=base;
   }
-  return stats;
+  return withCanonicalInvulnerable(unit,stats);
 }
 
 const canonicalStats=value=>JSON.stringify(Object.entries(value||{}).sort(([left],[right])=>left.localeCompare(right)));

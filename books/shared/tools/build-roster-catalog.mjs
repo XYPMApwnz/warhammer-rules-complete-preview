@@ -53,11 +53,17 @@ const canonicalCompositionModelsFor=unit=>{
   const text=typeof unit.composition==='string'?unit.composition:values(section?.blocks).filter(block=>block?.type==='p').map(block=>block.text||'').join(' ');
   if(!text.trim())return [];
   const records=[];
-  for(const clause of text.split(/\s*[.;]\s*/).map(item=>item.trim()).filter(Boolean)){
+  const clauses=text.replace(/\r\n?/g,'\n').split(/\n|\s*[.;]\s*/).flatMap(line=>{
+    const candidate=line.replace(/^\s*[-\u2022]\s*/,'').trim();
+    if(!candidate||/^(?:this|the|every)\b.*\b(?:equipped|armed)\b/i.test(candidate))return [candidate];
+    const composition=candidate.replace(/,\s*(?:equipped|armed)\b.*$/i,'').trim();
+    return composition.split(/\s+and\s+(?=\d+(?:\s*[-\u2013]\s*\d+)?\s+)/i);
+  }).map(item=>item.trim()).filter(Boolean);
+  for(const clause of clauses){
     const match=clause.match(/^(\d+)(?:\s*[-\u2013]\s*(\d+))?\s+(.+?)$/);
-    if(!match)break;
+    if(!match){if(records.length)break;return [];}
     const sourceTitle=match[3].trim(),max=Number(match[2]||match[1]);
-    if(!sourceTitle||/\b(?:equipped|armed)\b/i.test(sourceTitle))return [];
+    if(!sourceTitle||/\b(?:equipped|armed)\b/i.test(sourceTitle)){if(records.length)break;return [];}
     const name=singularModelTitle(sourceTitle,max);
     if(!name)return [];
     records.push({name,aliases:[sourceTitle],identityFacts:{sourceModels:[sourceTitle],min:Number(match[1]),max}});

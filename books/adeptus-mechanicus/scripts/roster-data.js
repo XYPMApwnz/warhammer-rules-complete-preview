@@ -86,7 +86,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "4+",
           "W": "1",
           "Ld": "7+",
-          "OC": "2"
+          "OC": "2",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -111,7 +112,29 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-skitarii-rangers"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-skitarii-rangers-model-9be412b31a",
+            "title": "Skitarii Ranger Alpha",
+            "aliases": [
+              "Skitarii Ranger Alpha"
+            ],
+            "legacyIds": [
+              "unit-skitarii-rangers-model-skitarii-ranger-alpha"
+            ]
+          },
+          {
+            "id": "unit-skitarii-rangers-model-9c3ba13355",
+            "title": "Skitarii Ranger",
+            "aliases": [
+              "Skitarii Ranger",
+              "Skitarii Rangers"
+            ],
+            "legacyIds": [
+              "unit-skitarii-rangers-model-skitarii-ranger-2"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-skitarii-rangers-selection-alpha-combat-weapon",
@@ -518,7 +541,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "4+",
           "W": "1",
           "Ld": "7+",
-          "OC": "2"
+          "OC": "2",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -536,7 +560,28 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-skitarii-vanguard"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-skitarii-vanguard-model-2156948b48",
+            "title": "Skitarii Vanguard Alpha",
+            "aliases": [
+              "Skitarii Vanguard Alpha"
+            ],
+            "legacyIds": [
+              "unit-skitarii-vanguard-model-skitarii-vanguard-alpha"
+            ]
+          },
+          {
+            "id": "unit-skitarii-vanguard-model-03abab7285",
+            "title": "Skitarii Vanguard",
+            "aliases": [
+              "Skitarii Vanguard"
+            ],
+            "legacyIds": [
+              "unit-skitarii-vanguard-model-skitarii-vanguard-2"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-skitarii-vanguard-selection-alpha-combat-weapon",
@@ -976,7 +1021,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "2+",
           "W": "3",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -1015,7 +1061,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-cybernetica-datasmith"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-cybernetica-datasmith-model-418c307135",
+            "title": "Cybernetica Datasmith",
+            "aliases": [
+              "Cybernetica Datasmith"
+            ],
+            "legacyIds": [
+              "unit-cybernetica-datasmith-model-cybernetica-datasmith"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-cybernetica-datasmith-selection-power-fist",
@@ -1152,7 +1209,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "4+",
           "W": "3",
           "Ld": "6+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -1184,7 +1242,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-skitarii-marshal"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-skitarii-marshal-model-1e5a158896",
+            "title": "Skitarii Marshal",
+            "aliases": [
+              "Skitarii Marshal"
+            ],
+            "legacyIds": [
+              "unit-skitarii-marshal-model-skitarii-marshal"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-skitarii-marshal-selection-control-stave",
@@ -1288,7 +1357,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "4+",
           "W": "4",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -1334,7 +1404,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-sydonian-skatros"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-sydonian-skatros-model-0b7f5e8420",
+            "title": "Sydonian Skatros",
+            "aliases": [
+              "Sydonian Skatros"
+            ],
+            "legacyIds": [
+              "unit-sydonian-skatros-model-sydonian-skatros"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-sydonian-skatros-selection-sydonian-feet",
@@ -1572,7 +1653,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "2+",
           "W": "4",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -1611,7 +1693,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-tech-priest-dominus"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-tech-priest-dominus-model-c72dc63d16",
+            "title": "Tech-Priest Dominus",
+            "aliases": [
+              "Tech-Priest Dominus"
+            ],
+            "legacyIds": [
+              "unit-tech-priest-dominus-model-tech-priest-dominus"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-tech-priest-dominus-selection-omnissian-axe",
@@ -1938,7 +2031,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "3+",
           "W": "3",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -1984,7 +2078,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-tech-priest-enginseer"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-tech-priest-enginseer-model-3952182cb5",
+            "title": "Tech-Priest Enginseer",
+            "aliases": [
+              "Tech-Priest Enginseer"
+            ],
+            "legacyIds": [
+              "unit-tech-priest-enginseer-model-tech-priest-enginseer"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-tech-priest-enginseer-selection-servo-arm",
@@ -2192,7 +2297,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "2+",
           "W": "4",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -2231,7 +2337,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-tech-priest-manipulus"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-tech-priest-manipulus-model-644ccb0bae",
+            "title": "Tech-Priest Manipulus",
+            "aliases": [
+              "Tech-Priest Manipulus"
+            ],
+            "legacyIds": [
+              "unit-tech-priest-manipulus-model-tech-priest-manipulus"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-tech-priest-manipulus-selection-omnissian-staff",
@@ -2439,7 +2556,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "3+",
           "W": "3",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -2478,7 +2596,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-technoarcheologist"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-technoarcheologist-model-12d5a023ca",
+            "title": "Technoarcheologist",
+            "aliases": [
+              "Technoarcheologist"
+            ],
+            "legacyIds": [
+              "unit-technoarcheologist-model-technoarcheologist"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-technoarcheologist-selection-servo-arc-claw",
@@ -2623,7 +2752,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-skorpius-dunerider"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-skorpius-dunerider-model-214150d8aa",
+            "title": "Skorpius Dunerider",
+            "aliases": [
+              "Skorpius Dunerider"
+            ],
+            "legacyIds": [
+              "unit-skorpius-dunerider-model-skorpius-dunerider"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-skorpius-dunerider-selection-armoured-hull",
@@ -2729,7 +2869,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "2+",
           "W": "10",
           "Ld": "6+",
-          "OC": "3"
+          "OC": "3",
+          "Invulnerable": "4+"
         },
         "abilities": [
           {
@@ -2775,7 +2916,19 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-belisarius-cawl"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-belisarius-cawl-model-4f263c7145",
+            "title": "Belisarius Cawl",
+            "aliases": [
+              "Belisarius Cawl",
+              "Belisarius Cawl – EPIC HERO"
+            ],
+            "legacyIds": [
+              "unit-belisarius-cawl-model-belisarius-cawl"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-belisarius-cawl-selection-arc-scourge",
@@ -2941,7 +3094,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "SV": "2+",
           "W": "10",
           "LD": "6+",
-          "OC": "3"
+          "OC": "3",
+          "Invulnerable": "4+"
         },
         "abilities": [
           {
@@ -2987,7 +3141,19 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-thulia-ghuld"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-thulia-ghuld-model-263b6b505e",
+            "title": "Archmagos Terminus Thulia Ghuld",
+            "aliases": [
+              "Archmagos Terminus Thulia Ghuld",
+              "Archmagos Terminus Thulia Ghuld – EPIC HERO"
+            ],
+            "legacyIds": [
+              "unit-thulia-ghuld-model-archmagos-terminus-thulia-ghuld"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-thulia-ghuld-selection-jericho-class-conversion-resonator-titanic-impact",
@@ -3243,7 +3409,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "7+",
           "W": "1",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -3268,7 +3435,19 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-corpuscarii-electro-priests"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-corpuscarii-electro-priests-model-2987d8d562",
+            "title": "Corpuscarii Electro-Priest",
+            "aliases": [
+              "Corpuscarii Electro-Priest",
+              "Corpuscarii Electro-Priests"
+            ],
+            "legacyIds": [
+              "unit-corpuscarii-electro-priests-model-corpuscarii-electro-priest"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-corpuscarii-electro-priests-selection-electrostatic-gauntlets",
@@ -3396,7 +3575,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "7+",
           "W": "1",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -3421,7 +3601,19 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-fulgurite-electro-priests"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-fulgurite-electro-priests-model-c83171f21e",
+            "title": "Fulgurite Electro-Priest",
+            "aliases": [
+              "Fulgurite Electro-Priest",
+              "Fulgurite Electro-Priests"
+            ],
+            "legacyIds": [
+              "unit-fulgurite-electro-priests-model-fulgurite-electro-priest"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-fulgurite-electro-priests-selection-electroleech-stave",
@@ -3538,7 +3730,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "SV": "3+",
           "W": "2",
           "LD": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -3563,7 +3756,29 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-hastarii-exterminators"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-hastarii-exterminators-model-0474657a77",
+            "title": "Hastarii Exterminator Alpha",
+            "aliases": [
+              "Hastarii Exterminator Alpha"
+            ],
+            "legacyIds": [
+              "unit-hastarii-exterminators-model-hastarii-exterminator-alpha"
+            ]
+          },
+          {
+            "id": "unit-hastarii-exterminators-model-f608737ee3",
+            "title": "Hastarii Exterminator",
+            "aliases": [
+              "Hastarii Exterminator",
+              "Hastarii Exterminators"
+            ],
+            "legacyIds": [
+              "unit-hastarii-exterminators-model-hastarii-exterminator-2"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-hastarii-exterminators-selection-hastarii-arc-blaster",
@@ -3829,7 +4044,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "SV": "3+",
           "W": "2",
           "LD": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -3854,7 +4070,29 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-hastarii-fusiliers"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-hastarii-fusiliers-model-2600ea4edd",
+            "title": "Hastarii Fusilier Alpha",
+            "aliases": [
+              "Hastarii Fusilier Alpha"
+            ],
+            "legacyIds": [
+              "unit-hastarii-fusiliers-model-hastarii-fusilier-alpha"
+            ]
+          },
+          {
+            "id": "unit-hastarii-fusiliers-model-aa21de4b7c",
+            "title": "Hastarii Fusilier",
+            "aliases": [
+              "Hastarii Fusilier",
+              "Hastarii Fusiliers"
+            ],
+            "legacyIds": [
+              "unit-hastarii-fusiliers-model-hastarii-fusilier-2"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-hastarii-fusiliers-selection-neutron-fusil",
@@ -4053,7 +4291,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "3+",
           "W": "3",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "6+"
         },
         "abilities": [
           {
@@ -4071,7 +4310,19 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-kataphron-breachers"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-kataphron-breachers-model-199b80a4d7",
+            "title": "Kataphron Breacher",
+            "aliases": [
+              "Kataphron Breacher",
+              "Kataphron Breachers"
+            ],
+            "legacyIds": [
+              "unit-kataphron-breachers-model-kataphron-breacher"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-kataphron-breachers-selection-arc-claw",
@@ -4270,7 +4521,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "3+",
           "W": "3",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "6+"
         },
         "abilities": [
           {
@@ -4288,7 +4540,19 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-kataphron-destroyers"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-kataphron-destroyers-model-811b07395a",
+            "title": "Kataphron Destroyer",
+            "aliases": [
+              "Kataphron Destroyer",
+              "Kataphron Destroyers"
+            ],
+            "legacyIds": [
+              "unit-kataphron-destroyers-model-kataphron-destroyer"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-kataphron-destroyers-selection-heavy-grav-cannon",
@@ -4543,7 +4807,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "4+",
           "W": "2",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -4568,7 +4833,29 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-pteraxii-skystalkers"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-pteraxii-skystalkers-model-8f1d0f1bb9",
+            "title": "Pteraxii Skystalker Alpha",
+            "aliases": [
+              "Pteraxii Skystalker Alpha"
+            ],
+            "legacyIds": [
+              "unit-pteraxii-skystalkers-model-pteraxii-skystalker-alpha"
+            ]
+          },
+          {
+            "id": "unit-pteraxii-skystalkers-model-3cf02decad",
+            "title": "Pteraxii Skystalker",
+            "aliases": [
+              "Pteraxii Skystalker",
+              "Pteraxii Skystalkers"
+            ],
+            "legacyIds": [
+              "unit-pteraxii-skystalkers-model-pteraxii-skystalker-2"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-pteraxii-skystalkers-selection-flechette-blaster",
@@ -4733,7 +5020,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "4+",
           "W": "2",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -4758,7 +5046,29 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-pteraxii-sterylizors"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-pteraxii-sterylizors-model-038f173130",
+            "title": "Pteraxii Sterylizor Alpha",
+            "aliases": [
+              "Pteraxii Sterylizor Alpha"
+            ],
+            "legacyIds": [
+              "unit-pteraxii-sterylizors-model-pteraxii-sterylizor-alpha"
+            ]
+          },
+          {
+            "id": "unit-pteraxii-sterylizors-model-4c6b25c7e6",
+            "title": "Pteraxii Sterylizor",
+            "aliases": [
+              "Pteraxii Sterylizor",
+              "Pteraxii Sterylizors"
+            ],
+            "legacyIds": [
+              "unit-pteraxii-sterylizors-model-pteraxii-sterylizor-2"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-pteraxii-sterylizors-selection-flechette-blaster",
@@ -4956,7 +5266,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "SV": "4+",
           "W": "2",
           "LD": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "6+"
         },
         "abilities": [
           {
@@ -5298,7 +5609,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "4+",
           "W": "2",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -5330,7 +5642,29 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-sicarian-infiltrators"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-sicarian-infiltrators-model-586163f72e",
+            "title": "Sicarian Infiltrator Princeps",
+            "aliases": [
+              "Sicarian Infiltrator Princeps"
+            ],
+            "legacyIds": [
+              "unit-sicarian-infiltrators-model-sicarian-infiltrator-princeps"
+            ]
+          },
+          {
+            "id": "unit-sicarian-infiltrators-model-8a866b0500",
+            "title": "Sicarian Infiltrator",
+            "aliases": [
+              "Sicarian Infiltrator",
+              "Sicarian Infiltrators"
+            ],
+            "legacyIds": [
+              "unit-sicarian-infiltrators-model-sicarian-infiltrator-2"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-sicarian-infiltrators-selection-power-weapon",
@@ -5493,7 +5827,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "4+",
           "W": "2",
           "Ld": "7+",
-          "OC": "1"
+          "OC": "1",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -5518,7 +5853,29 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-sicarian-ruststalkers"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-sicarian-ruststalkers-model-878f533098",
+            "title": "Sicarian Ruststalker Princeps",
+            "aliases": [
+              "Sicarian Ruststalker Princeps"
+            ],
+            "legacyIds": [
+              "unit-sicarian-ruststalkers-model-sicarian-ruststalker-princeps"
+            ]
+          },
+          {
+            "id": "unit-sicarian-ruststalkers-model-7350654f59",
+            "title": "Sicarian Ruststalker",
+            "aliases": [
+              "Sicarian Ruststalker",
+              "Sicarian Ruststalkers"
+            ],
+            "legacyIds": [
+              "unit-sicarian-ruststalkers-model-sicarian-ruststalker-2"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-sicarian-ruststalkers-selection-transonic-razor-chordclaw",
@@ -5650,7 +6007,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "4+",
           "W": "2",
           "Ld": "7+",
-          "OC": "2"
+          "OC": "2",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -5675,7 +6033,29 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-serberys-raiders"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-serberys-raiders-model-69da2842bc",
+            "title": "Serberys Raider Alpha",
+            "aliases": [
+              "Serberys Raider Alpha"
+            ],
+            "legacyIds": [
+              "unit-serberys-raiders-model-serberys-raider-alpha"
+            ]
+          },
+          {
+            "id": "unit-serberys-raiders-model-498375f1e9",
+            "title": "Serberys Raider",
+            "aliases": [
+              "Serberys Raider",
+              "Serberys Raiders"
+            ],
+            "legacyIds": [
+              "unit-serberys-raiders-model-serberys-raider-2"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-serberys-raiders-selection-galvanic-carbine",
@@ -5833,7 +6213,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "4+",
           "W": "2",
           "Ld": "7+",
-          "OC": "2"
+          "OC": "2",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -5851,7 +6232,29 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-serberys-sulphurhounds"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-serberys-sulphurhounds-model-58e4f93be9",
+            "title": "Serberys Sulphurhound Alpha",
+            "aliases": [
+              "Serberys Sulphurhound Alpha"
+            ],
+            "legacyIds": [
+              "unit-serberys-sulphurhounds-model-serberys-sulphurhound-alpha"
+            ]
+          },
+          {
+            "id": "unit-serberys-sulphurhounds-model-46586c65d4",
+            "title": "Serberys Sulphurhound",
+            "aliases": [
+              "Serberys Sulphurhound",
+              "Serberys Sulphurhounds"
+            ],
+            "legacyIds": [
+              "unit-serberys-sulphurhounds-model-serberys-sulphurhound-2"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-serberys-sulphurhounds-selection-cavalry-arc-maul",
@@ -6100,7 +6503,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-archaeopter-fusilave"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-archaeopter-fusilave-model-a88be19f55",
+            "title": "Archaeopter Fusilave",
+            "aliases": [
+              "Archaeopter Fusilave"
+            ],
+            "legacyIds": [
+              "unit-archaeopter-fusilave-model-archaeopter-fusilave"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-archaeopter-fusilave-selection-armoured-hull",
@@ -6280,7 +6694,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-archaeopter-stratoraptor"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-archaeopter-stratoraptor-model-66d3ff3786",
+            "title": "Archaeopter Stratoraptor",
+            "aliases": [
+              "Archaeopter Stratoraptor"
+            ],
+            "legacyIds": [
+              "unit-archaeopter-stratoraptor-model-archaeopter-stratoraptor"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-archaeopter-stratoraptor-selection-cognis-heavy-stubber",
@@ -6534,7 +6959,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-archaeopter-transvector"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-archaeopter-transvector-model-f7b2e1e1b1",
+            "title": "Archaeopter Transvector",
+            "aliases": [
+              "Archaeopter Transvector"
+            ],
+            "legacyIds": [
+              "unit-archaeopter-transvector-model-archaeopter-transvector"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-archaeopter-transvector-selection-armoured-hull",
@@ -6689,7 +7125,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "3+",
           "W": "7",
           "Ld": "7+",
-          "OC": "2"
+          "OC": "2",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -6721,7 +7158,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-ironstrider-ballistarii"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-ironstrider-ballistarii-model-ba104582c3",
+            "title": "Ironstrider Ballistarii",
+            "aliases": [
+              "Ironstrider Ballistarii"
+            ],
+            "legacyIds": [
+              "unit-ironstrider-ballistarii-model-ironstrider-ballistarii"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-ironstrider-ballistarii-selection-twin-cognis-autocannon",
@@ -6928,7 +7376,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "2+",
           "W": "7",
           "Ld": "7+",
-          "OC": "2"
+          "OC": "2",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -6960,7 +7409,19 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-kastelan-robots"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-kastelan-robots-model-e34f8a203b",
+            "title": "Kastelan Robot",
+            "aliases": [
+              "Kastelan Robot",
+              "Kastelan Robots"
+            ],
+            "legacyIds": [
+              "unit-kastelan-robots-model-kastelan-robot"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-kastelan-robots-selection-close-combat-weapon",
@@ -7214,7 +7675,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "2+",
           "W": "11",
           "Ld": "7+",
-          "OC": "3"
+          "OC": "3",
+          "Invulnerable": "4+"
         },
         "abilities": [
           {
@@ -7253,7 +7715,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-onager-dunecrawler"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-onager-dunecrawler-model-51387d3bda",
+            "title": "Onager Dunecrawler",
+            "aliases": [
+              "Onager Dunecrawler"
+            ],
+            "legacyIds": [
+              "unit-onager-dunecrawler-model-onager-dunecrawler"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-onager-dunecrawler-selection-cognis-heavy-stubber",
@@ -7631,7 +8104,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-skorpius-disintegrator"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-skorpius-disintegrator-model-13ac76b395",
+            "title": "Skorpius Disintegrator",
+            "aliases": [
+              "Skorpius Disintegrator"
+            ],
+            "legacyIds": [
+              "unit-skorpius-disintegrator-model-skorpius-disintegrator"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-skorpius-disintegrator-selection-cognis-heavy-stubber",
@@ -7826,7 +8310,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "3+",
           "W": "7",
           "Ld": "7+",
-          "OC": "2"
+          "OC": "2",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -7865,7 +8350,19 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-sydonian-dragoons-with-radium-jezzails"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-sydonian-dragoons-with-radium-jezzails-model-763f36de8e",
+            "title": "Sydonian Dragoon",
+            "aliases": [
+              "Sydonian Dragoon",
+              "Sydonian Dragoons"
+            ],
+            "legacyIds": [
+              "unit-sydonian-dragoons-with-radium-jezzails-model-sydonian-dragoon"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-sydonian-dragoons-with-radium-jezzails-selection-phosphor-serpenta",
@@ -8000,7 +8497,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "3+",
           "W": "7",
           "Ld": "7+",
-          "OC": "2"
+          "OC": "2",
+          "Invulnerable": "5+"
         },
         "abilities": [
           {
@@ -8039,7 +8537,19 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-sydonian-dragoons-with-taser-lances"
           }
         ],
-        "models": [],
+        "models": [
+          {
+            "id": "unit-sydonian-dragoons-with-taser-lances-model-763f36de8e",
+            "title": "Sydonian Dragoon",
+            "aliases": [
+              "Sydonian Dragoon",
+              "Sydonian Dragoons"
+            ],
+            "legacyIds": [
+              "unit-sydonian-dragoons-with-taser-lances-model-sydonian-dragoon"
+            ]
+          }
+        ],
         "selections": [
           {
             "id": "unit-sydonian-dragoons-with-taser-lances-selection-phosphor-serpenta",

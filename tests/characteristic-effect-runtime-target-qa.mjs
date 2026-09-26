@@ -42,10 +42,7 @@ const lordsMissingBase=mechanicusCatalog.units.filter(unit=>
   values(unit.intrinsicKeywords).some(keyword=>String(keyword).toUpperCase()==='TECH-PRIEST')
   &&unit.gameSelections?.stats?.Invulnerable==null
 );
-assert.deepEqual([...lordsMissingBase].map(unit=>unit.id),[
-  'unit-cybernetica-datasmith','unit-tech-priest-dominus','unit-tech-priest-enginseer','unit-tech-priest-manipulus',
-  'unit-technoarcheologist','unit-belisarius-cawl','unit-thulia-ghuld'
-],'Lords of the Forge SET targets with no base Invulnerable field');
+assert.deepEqual([...lordsMissingBase].map(unit=>unit.id),[],'source-backed AM Invulnerable fields must exist before Lords of the Forge');
 const farstalkers=catalogs.get('tau-empire').units.find(unit=>unit.id==='unit-kroot-farstalkers');
 assert.equal(farstalkers.gameSelections?.stats?.M,undefined,'heterogeneous Farstalker model movement has no single unit-level base value');
 
@@ -64,11 +61,11 @@ function runtimeFor(book){
   ]});
   const roster=runtime.WHRosterParser.parse(fixture.record.sourceText),projection=runtime.WHArmyRosterContext.project({catalog,roster,record:fixture.record,provider:{gameEffects:context=>runtime.WHEffectContractRuntime.project(context)}}),dominus=projection.game.units[0],rangers=projection.game.units[1];
   const effect=dominus.effects.find(item=>item.id==='lords-invulnerable');
-  assert.equal(effect?.base,null,'Lords of the Forge does not invent a prior invulnerable-save value');
+  assert.equal(effect?.base,'5+','Lords of the Forge uses the canonical prior invulnerable-save value');
   assert.equal(effect?.effective,'4+','Lords of the Forge materializes its canonical SET value');
   assert.equal(dominus.effective.stats.Invulnerable,'4+','eligible Tech-Priest receives the source-required invulnerable save');
   assert.equal(rangers.effects.some(item=>item.id==='lords-invulnerable'),false,'unrelated unit does not receive Lords of the Forge');
-  assert.equal(rangers.effective.stats.Invulnerable,undefined,'unrelated missing field remains absent');
+  assert.equal(rangers.effective.stats.Invulnerable,'5+','unrelated unit retains its canonical invulnerable save');
 }
 const shieldId='unit-terminator-assault-squad-wargear-ability-7aab29187a',unitId='unit-terminator-assault-squad';
 for(const book of ['space-marines','dark-angels','blood-angels']){
@@ -93,4 +90,4 @@ for(const book of ['space-marines','dark-angels','blood-angels']){
   assert.equal(wrongEffects.some(effect=>effect.source?.id===shieldId),false,`${book}: wrong unit must not receive Storm Shield`);
 }
 
-console.log('Characteristic effect runtime target QA: PASS (79 effective / 53 unique stat operations; 11 missing-field cases classified: 3 Storm Shield projection omissions, 7 Lords SET targets, 1 heterogeneous Farstalker target shape; 2 dormant source effects fixed; Storm Shield 3 -> 4 in SM/DA/BA).');
+console.log('Characteristic effect runtime target QA: PASS (79 effective / 53 unique stat operations; 0 unresolved missing base fields; 4 excluded dependency target shapes classified; AM Invulnerable 5+ -> 4+; Storm Shield 3 -> 4 in SM/DA/BA).');
