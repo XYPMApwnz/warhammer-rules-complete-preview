@@ -45,7 +45,7 @@ export async function buildEffectiveBook(context,{projectionOnly=false}={}){
   assertWeaponProfileIdentityProjection(model.units,rosterCatalog.units,{label:`${context.config.id} effective roster projection`});
   assertRosterBaseStatProjection(model.units,rosterCatalog.units,{label:`${context.config.id} effective roster base-stat projection`,effectContracts:model.effectContracts});
   assertRosterWeaponFactProjection(model.units,rosterCatalog.units,{label:`${context.config.id} effective roster weapon-fact projection`});
-  assertRosterUnitGameplayProjection(model.units,model.relationGraphs,rosterCatalog.units,{label:`${context.config.id} effective roster unit-gameplay projection`});
+  assertRosterUnitGameplayProjection(model.units,model.relationGraphs,rosterCatalog.units,{label:`${context.config.id} effective roster unit-gameplay projection`,enforceCompositionConstraints:rosterCatalog.compositionConstraints===true});
   validateEffectContractsAgainstCatalog(model.effectContractSet,rosterCatalog);
 
   const renderer=await moduleFor(context,spec.renderer,'effectiveModel.renderer');

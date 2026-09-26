@@ -7,6 +7,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     "parentBookId": null,
     "dependencies": []
   },
+  "compositionConstraints": true,
   "units": [
     {
       "id": "unit-mortarion",
@@ -163,6 +164,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Mortarion",
               "Mortarion – EPIC HERO"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-mortarion-model-mortarion"
             ]
@@ -471,6 +474,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Typhus",
               "Typhus – EPIC HERO"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-typhus-model-typhus"
             ]
@@ -710,6 +715,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Biologus Putrifier"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-biologus-putrifier-model-biologus-putrifier"
             ]
@@ -936,6 +943,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Daemon Prince of Nurgle"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-daemon-prince-of-nurgle-model-daemon-prince-of-nurgle"
             ]
@@ -1187,6 +1196,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Daemon Prince of Nurgle with Wings"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-daemon-prince-of-nurgle-with-wings-model-daemon-prince-of-nurgle-with-wings"
             ]
@@ -1451,6 +1462,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Foul Blightspawn"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-foul-blightspawn-model-foul-blightspawn"
             ]
@@ -1659,6 +1672,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Icon Bearer"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-icon-bearer-model-icon-bearer"
             ]
@@ -1871,6 +1886,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Lord of Contagion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-lord-of-contagion-model-lord-of-contagion"
             ]
@@ -2100,6 +2117,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Lord of Poxes"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-lord-of-poxes-model-lord-of-poxes"
             ]
@@ -2364,6 +2383,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Lord of Virulence"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-lord-of-virulence-model-lord-of-virulence"
             ]
@@ -2572,6 +2593,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Malignant Plaguecaster"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-malignant-plaguecaster-model-malignant-plaguecaster"
             ]
@@ -2876,6 +2899,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Noxious Blightbringer"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-noxious-blightbringer-model-noxious-blightbringer"
             ]
@@ -3136,6 +3161,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Plague Surgeon"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-plague-surgeon-model-plague-surgeon"
             ]
@@ -3341,6 +3368,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tallyman"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tallyman-model-tallyman"
             ]
@@ -3696,6 +3725,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Plague Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-plague-marines-model-plague-champion"
             ]
@@ -3707,6 +3738,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Plague Marine",
               "Plague Marines"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-plague-marines-model-plague-marine-2"
             ]
@@ -4320,6 +4353,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Blightlord Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-blightlord-terminators-model-blightlord-champion"
             ]
@@ -4331,6 +4366,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Blightlord Terminator",
               "Blightlord Terminators"
             ],
+            "min": 2,
+            "max": 9,
             "legacyIds": [
               "unit-blightlord-terminators-model-blightlord-terminator-2"
             ]
@@ -4705,6 +4742,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Deathshroud Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-deathshroud-terminators-model-deathshroud-champion"
             ]
@@ -4716,6 +4755,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Deathshroud Terminator",
               "Deathshroud Terminators"
             ],
+            "min": 2,
+            "max": 5,
             "legacyIds": [
               "unit-deathshroud-terminators-model-deathshroud-terminator-2"
             ]
@@ -5003,6 +5044,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Poxwalker",
               "Poxwalkers"
             ],
+            "min": 10,
+            "max": 20,
             "legacyIds": [
               "unit-poxwalkers-model-poxwalker"
             ]
@@ -5148,6 +5191,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Spawn"
             ],
+            "min": 2,
+            "max": 2,
             "legacyIds": [
               "unit-chaos-spawn-model-chaos-spawn"
             ]
@@ -5308,6 +5353,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Land Raider"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-land-raider-model-chaos-land-raider"
             ]
@@ -5600,6 +5647,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Predator Annihilator"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-predator-annihilator-model-chaos-predator-annihilator"
             ]
@@ -5919,6 +5968,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Predator Destructor"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-predator-destructor-model-chaos-predator-destructor"
             ]
@@ -6253,6 +6304,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Defiler"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-defiler-model-defiler"
             ]
@@ -6761,6 +6814,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Foetid Bloat-drone"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-foetid-bloat-drone-model-foetid-bloat-drone"
             ]
@@ -6968,6 +7023,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Foetid Bloat-drone"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-foetid-bloat-drone-with-heavy-blight-launcher-model-foetid-bloat-drone"
             ]
@@ -7163,6 +7220,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Helbrute"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-helbrute-model-helbrute"
             ]
@@ -7673,6 +7732,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Myphitic Blight-hauler",
               "Myphitic Blight-haulers"
             ],
+            "min": 1,
+            "max": 2,
             "legacyIds": [
               "unit-myphitic-blight-hauler-model-myphitic-blight-hauler"
             ]
@@ -7967,6 +8028,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Plagueburst Crawler"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-plagueburst-crawler-model-plagueburst-crawler"
             ]
@@ -8265,6 +8328,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Rhino"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-rhino-model-chaos-rhino"
             ]
@@ -8519,6 +8584,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Miasmic Malignifier"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-miasmic-malignifier-model-miasmic-malignifier"
             ]
@@ -8673,6 +8740,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Beasts of Nurgle"
             ],
+            "min": 1,
+            "max": 2,
             "legacyIds": [
               "unit-beasts-of-nurgle-model-beasts-of-nurgle"
             ]
@@ -8857,6 +8926,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Great Unclean One"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-great-unclean-one-model-great-unclean-one"
             ]
@@ -9175,6 +9246,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Nurgling Swarm",
               "Nurgling Swarms"
             ],
+            "min": 3,
+            "max": 6,
             "legacyIds": [
               "unit-nurglings-model-nurgling-swarm"
             ]
@@ -9333,6 +9406,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Plaguebringer"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-plague-drones-model-plaguebringer"
             ]
@@ -9344,6 +9419,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Plague Drone",
               "Plague Drones"
             ],
+            "min": 2,
+            "max": 5,
             "legacyIds": [
               "unit-plague-drones-model-plague-drone-2"
             ]
@@ -9601,6 +9678,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Plagueridden"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-plaguebearers-model-plagueridden"
             ]
@@ -9612,6 +9691,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Plaguebearer",
               "Plaguebearers"
             ],
+            "min": 9,
+            "max": 9,
             "legacyIds": [
               "unit-plaguebearers-model-plaguebearer-2"
             ]
@@ -9837,6 +9918,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Rotigus",
               "Rotigus – EPIC HERO"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-rotigus-model-rotigus"
             ]

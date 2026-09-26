@@ -79,10 +79,16 @@ const assertMatchingAbilityRecords=(unit,abilities,wargearAbilities)=>{
     for(const field of ['sectionId','title','text','sourceUnitId'])if(ordinary[field]&&wargearAbility[field]&&ordinary[field]!==wargearAbility[field])throw new Error(`${unit.id}: conflicting canonical ability ${wargearAbility.id} field ${field}`);
   }
 };
-export const canonicalRosterModelsFor=unit=>assignCanonicalChildIdentities(unit,canonicalCompositionModelsFor(unit),{kind:'model',titleOf:model=>model.name,semanticOf:model=>({...model.identityFacts,sourceName:model.name}),legacyIdOf:(model,index)=>`${unit.id}-model-${slug(model.name)}${index?'-'+(index+1):''}`}).map(model=>{
+export const canonicalRosterModelsFor=(unit,{enforceCompositionConstraints=false}={})=>assignCanonicalChildIdentities(unit,canonicalCompositionModelsFor(unit),{kind:'model',titleOf:model=>model.name,semanticOf:model=>({...model.identityFacts,sourceName:model.name}),legacyIdOf:(model,index)=>`${unit.id}-model-${slug(model.name)}${index?'-'+(index+1):''}`}).map(model=>{
   const keywords=model.intrinsicKeywords;
   if(keywords!==undefined&&(!Array.isArray(keywords)||keywords.some(keyword=>typeof keyword!=='string'||!keyword.trim())||new Set(keywords.map(normalize)).size!==keywords.length))throw new Error(`${unit.id}: invalid model-scoped intrinsic keywords for ${model.name}`);
-  return {id:model.id,title:model.name||'',aliases:[...new Set([model.name,...values(model.aliases)].filter(Boolean))],...(model.legacyIds?.length?{legacyIds:model.legacyIds}:{}),...(keywords===undefined?{}:{intrinsicKeywords:[...keywords]})};
+  const bounds={};
+  if(enforceCompositionConstraints){
+    const min=Number(model.identityFacts?.min),max=Number(model.identityFacts?.max);
+    if(!Number.isInteger(min)||min<0||!Number.isInteger(max)||max<min)throw new Error(`${unit.id}: invalid canonical model-count bounds for ${model.name}`);
+    bounds.min=min;bounds.max=max;
+  }
+  return {id:model.id,title:model.name||'',aliases:[...new Set([model.name,...values(model.aliases)].filter(Boolean))],...bounds,...(model.legacyIds?.length?{legacyIds:model.legacyIds}:{}),...(keywords===undefined?{}:{intrinsicKeywords:[...keywords]})};
 });
 const gameSelectionsFor=(unit,options={})=>{
   if(unit.gameSelections&&!options.deriveCanonicalFacts)return {...projectUnitRosterWeaponFacts(unit,unit.gameSelections),stats:canonicalBaseStatsForUnit(unit,{effectContracts:options.effectContracts})};
@@ -139,7 +145,7 @@ const gameSelectionsFor=(unit,options={})=>{
   const ordinaryAbilityRecords=assignCanonicalChildIdentities(unit,canonicalAbilities.map(ability=>{const id=ability.id||ability.termId;return id&&explicitCounts.get(id)===1?{...ability,id}:ability;}),{kind:'ability',titleOf:ability=>ability.title,semanticOf:abilityIdentityFacts,legacyIdOf:(ability,index)=>ability.termId||`${unit.id}-ability-${slug(ability.title)}${index?'-'+(index+1):''}`}).map(ability=>({...canonicalAbilityRecord(unit,ability,ability.id),...(ability.legacyIds?.length?{legacyIds:ability.legacyIds}:{})}));
   assertMatchingAbilityRecords(unit,ordinaryAbilityRecords,wargearAbilities);
   const wargearAbilityIds=new Set(wargearAbilities.map(ability=>ability.id)),abilities=ordinaryAbilityRecords.filter(ability=>!wargearAbilityIds.has(ability.id));
-  return {stats:{...stats},abilities,models:canonicalRosterModelsFor(unit),selections,weaponFamilies,...(weaponClasses.length?{weaponClasses}:{}),weaponProfiles:profileRecords.map(profile=>({...profile,sourceSelectionIds:selections.filter(selection=>selection.profileIds.includes(profile.id)).map(selection=>selection.id)})),wargearAbilities};
+  return {stats:{...stats},abilities,models:canonicalRosterModelsFor(unit,options),selections,weaponFamilies,...(weaponClasses.length?{weaponClasses}:{}),weaponProfiles:profileRecords.map(profile=>({...profile,sourceSelectionIds:selections.filter(selection=>selection.profileIds.includes(profile.id)).map(selection=>selection.id)})),wargearAbilities};
 };
 
 const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;
@@ -178,13 +184,13 @@ const validateSelectionProjection=(unitId,gameSelections)=>{
 };
 const canonicalIntrinsicKeywords=unit=>[...new Set(values(unit.intrinsicKeywords).length?unit.intrinsicKeywords:values(unit.keywords).length?unit.keywords:values((unit.ruleFacts||unit.facts||{}).intrinsicKeywords).length?(unit.ruleFacts||unit.facts).intrinsicKeywords:values((unit.ruleFacts||unit.facts||{}).keywords))];
 
-export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection'}={}){
+export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false}={}){
   const sourceById=new Map(values(units).map(unit=>[unit.id,unit])),seen=new Set();
   if(sourceById.size!==values(units).length)throw new Error(`${label}: duplicate canonical unit identity`);
   const projected=values(catalogUnits).map(item=>{
     const unit=sourceById.get(item?.id);if(!unit)throw new Error(`${label}: unknown canonical unit ${item?.id||'<missing>'}`);
     if(seen.has(item.id))throw new Error(`${label}: duplicate roster unit identity ${item.id}`);seen.add(item.id);
-    const canonicalGame=gameSelectionsFor(unit,{deriveCanonicalFacts:true}),currentGame=item.gameSelections||{};
+    const canonicalGame=gameSelectionsFor(unit,{deriveCanonicalFacts:true,enforceCompositionConstraints}),currentGame=item.gameSelections||{};
     const abilities=exactProjection(currentGame.abilities,canonicalGame.abilities,{unitId:unit.id,kind:'ability'});
     const wargearAbilities=exactProjection(currentGame.wargearAbilities,canonicalGame.wargearAbilities,{unitId:unit.id,kind:'wargear ability',preserve:current=>({requiredSelectionIds:[...values(current.requiredSelectionIds)]})});
     const models=exactProjection(currentGame.models,canonicalGame.models,{unitId:unit.id,kind:'model'});
@@ -196,8 +202,8 @@ export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits
   return projected;
 }
 
-export function assertRosterUnitGameplayProjection(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection'}={}){
-  const projected=projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label});
+export function assertRosterUnitGameplayProjection(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false}={}){
+  const projected=projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label,enforceCompositionConstraints});
   for(let index=0;index<projected.length;index++){
     const expected=projected[index],actual=catalogUnits[index],partitions=[
       ['intrinsicKeywords',expected.intrinsicKeywords,actual?.intrinsicKeywords],['relations',expected.relations,actual?.relations],
@@ -294,7 +300,7 @@ export function createRosterCatalog({config,units=[],detachments=[],relationGrap
     for(const [legacyKey,item] of legacyEntries){if(enhancements.some(record=>record.legacyKey===legacyKey)||rosterCatalog.dedupeLegacyEnhancementsByTitle&&enhancements.some(record=>normalize(record.title)===normalize(item.title)))continue;enhancements.push({...item,id:item.ruleId||item.id||legacyKey,legacyKey,sourceBookId:item.sourceBookId||config.id});}
   }
   const projectedEnhancements=Array.isArray(enhancementContracts)?projectRosterEnhancementFacts(enhancementContracts,enhancements,{label:`${config.id} roster Enhancement projection`}):enhancements;
-  return {schema:'wh40k-army-roster-catalog/v1',book:{id:config.id,title:config.title||config.bookTitle||config.id,factionKeyword:config.factionKeyword||null,parentBookId:dependencies[0]?.bookId||dependencies[0]?.id||null,dependencies:dependencies.map(item=>({bookId:item.bookId||item.id,title:item.title||null}))},units:catalogUnits,detachments:catalogDetachments,detachmentRules,enhancements:projectedEnhancements,effectContracts};
+  return {schema:'wh40k-army-roster-catalog/v1',book:{id:config.id,title:config.title||config.bookTitle||config.id,factionKeyword:config.factionKeyword||null,parentBookId:dependencies[0]?.bookId||dependencies[0]?.id||null,dependencies:dependencies.map(item=>({bookId:item.bookId||item.id,title:item.title||null}))},compositionConstraints:rosterCatalog.enforceCompositionConstraints===true,units:catalogUnits,detachments:catalogDetachments,detachmentRules,enhancements:projectedEnhancements,effectContracts};
 }
 
 export function serializeRosterCatalog(catalog,legacyEnhancements={}){
