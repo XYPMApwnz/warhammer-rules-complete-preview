@@ -14,7 +14,7 @@ const structuredWargearLegality=(unit,models,selections)=>{
   const source=unit.rosterWargearLegality;if(!source)return{};
   const modelIds=new Set(models.map(item=>item.id)),selectionIds=new Set(selections.map(item=>item.id)),optionIds=new Set(),sharedCaps=new Map();
   const quantity=(value,label)=>{if(!Number.isInteger(value)||value<1)throw new Error(`${unit.id}: ${label} requires a positive integer quantity`);return value;};
-  for(const cap of values(source.sharedCaps)){if(!cap?.id||sharedCaps.has(cap.id))throw new Error(`${unit.id}: duplicate or missing wargear shared cap ${cap?.id||'<missing>'}`);sharedCaps.set(cap.id,quantity(cap.max,`wargear shared cap ${cap.id}`));}
+  for(const cap of values(source.sharedCaps)){if(!cap?.id||sharedCaps.has(cap.id))throw new Error(`${unit.id}: duplicate or missing wargear shared cap ${cap?.id||'<missing>'}`);const sourceIds=values(cap.sourceIds);if(sourceIds.some(id=>typeof id!=='string'||!id.trim())||new Set(sourceIds).size!==sourceIds.length)throw new Error(`${unit.id}: wargear shared cap ${cap.id} has invalid source identities`);sharedCaps.set(cap.id,{max:quantity(cap.max,`wargear shared cap ${cap.id}`),sourceIds:[...sourceIds]});}
   const defaults=values(source.defaults).map(record=>{if(!modelIds.has(record?.modelId))throw new Error(`${unit.id}: wargear default references unknown model ${record?.modelId||'<missing>'}`);const aliases=values(record.aliases);if(aliases.some(alias=>typeof alias!=='string'||!alias.trim())||new Set(aliases.map(normalize)).size!==aliases.length)throw new Error(`${unit.id}: wargear default ${record.modelId} has invalid model aliases`);const seen=new Set(),entries=values(record.selections).map(item=>{if(!selectionIds.has(item?.selectionId))throw new Error(`${unit.id}: wargear default references unknown selection ${item?.selectionId||'<missing>'}`);if(seen.has(item.selectionId))throw new Error(`${unit.id}: duplicate wargear default selection ${record.modelId}/${item.selectionId}`);seen.add(item.selectionId);return{selectionId:item.selectionId,quantity:quantity(item.quantity,`wargear default ${record.modelId}/${item.selectionId}`)};});return{modelId:record.modelId,...(aliases.length?{aliases:[...aliases]}:{}),selections:entries};});
   if(new Set(defaults.map(item=>item.modelId)).size!==defaults.length||defaults.length!==modelIds.size)throw new Error(`${unit.id}: wargear defaults must cover each canonical model exactly once`);
   const references=(items,label)=>values(items).map(item=>{if(!selectionIds.has(item?.selectionId))throw new Error(`${unit.id}: ${label} references unknown selection ${item?.selectionId||'<missing>'}`);return{selectionId:item.selectionId,quantity:quantity(item.quantity,`${label}/${item.selectionId}`)};});
@@ -29,7 +29,7 @@ const structuredWargearLegality=(unit,models,selections)=>{
     const when=option.when?{...option.when}:null;if(when&&(!Number.isInteger(when.unitModelCountEquals)||when.unitModelCountEquals<1))throw new Error(`${unit.id}: ${option.sourceId} has invalid unit-model condition`);
     return{sourceId:option.sourceId,eligibleModelIds:[...eligibleModelIds],...(when?{when}:{}),limit,choices};
   });
-  return{wargearDefaults:defaults,wargearOptionContracts:optionContracts,wargearSharedCaps:[...sharedCaps].map(([id,max])=>({id,max}))};
+  return{wargearDefaults:defaults,wargearOptionContracts:optionContracts,wargearSharedCaps:[...sharedCaps].map(([id,record])=>({id,max:record.max,...(record.sourceIds.length?{sourceIds:record.sourceIds}:{})}))};
 };
 export const canonicalWeaponProfileId=(unit,profile)=>{
   if(!profile?.id)throw new Error(`${unit?.id||'unit'}: weapon profile has no pre-model canonical ID`);
@@ -338,5 +338,3 @@ export function createRosterCatalog({config,units=[],detachments=[],relationGrap
 export function serializeRosterCatalog(catalog,legacyEnhancements={}){
   return `window.WH_BOOK_ROSTER_CATALOG=Object.freeze(${JSON.stringify(catalog,null,2)});\nwindow.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze(${JSON.stringify(legacyEnhancements||{},null,2)});\n`;
 }
-
-\n

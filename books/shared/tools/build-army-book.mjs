@@ -46,6 +46,9 @@ const manifest=readJson(config.sources.manifest);
 let relatedRules=config.sources.relatedRules?readJson(config.sources.relatedRules):{stratagems:{}};
 let enhancementOwners=config.sources.enhancementOwners?readJson(config.sources.enhancementOwners):null;
 const effectContractSet=config.sources.effectContracts?validateEffectContractSet(readJson(config.sources.effectContracts),{expectedBookId:config.id}):{schema:'wh40k-effect-contracts/v1',bookId:config.id,contracts:[]};
+const wargearLegalitySet=config.sources.wargearOptionContracts?readJson(config.sources.wargearOptionContracts):{schema:'wh40k-wargear-option-contracts/v1',bookId:config.id,units:[]};
+if(wargearLegalitySet?.schema!=='wh40k-wargear-option-contracts/v1'||wargearLegalitySet.bookId!==config.id||!Array.isArray(wargearLegalitySet.units))throw new Error(`${config.id}: wargear-option contract is invalid`);
+const wargearLegalityByUnit=new Map();for(const record of wargearLegalitySet.units){if(!record?.unitId||wargearLegalityByUnit.has(record.unitId))throw new Error(`${config.id}: duplicate or missing wargear-option unit identity ${record?.unitId||'<missing>'}`);wargearLegalityByUnit.set(record.unitId,record);}
 const esc=value=>String(value??'').replace(/\s+/g,' ').trim().replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const heroMark=config.coverImage?'':`<div class="hero-mark" aria-hidden="true"><span>${esc(config.factionKeyword)}</span></div>`;
 const escLines=value=>String(value??'').replace(/\r\n?/g,'\n').split('\n').map(esc).join('\n');
@@ -112,11 +115,13 @@ const ownUnits=config.currentDatasheetLayers?config.currentDatasheetLayers.flatM
 const pointsById=indexCanonicalById(points.units,{label:`${config.id} points unit`});
 const boundWargear=bindRowsToCanonicalIds(codexWargear?.units||[],ownUnits,{label:`${config.id} wargear unit`,rowId:sourceUnitId});
 const wargearByUnitId=new Map(boundWargear.map(item=>[item.canonicalId,item]));
+const ownUnitIds=new Set(ownUnits.map(unit=>unit.id));for(const unitId of wargearLegalityByUnit.keys())if(!ownUnitIds.has(unitId))throw new Error(`${config.id}: wargear-option contract references unknown canonical unit ${unitId}`);
 const mergedUnits=new Map();
 if(dependencyScope.render!==false)for(const unit of dependencyUnits)mergedUnits.set(unit.id,unit);
 for(const unit of ownUnits){
   const point=pointsById.get(unit.id),exact=wargearByUnitId.get(unit.id);
-  mergedUnits.set(unit.id,{...unit,...(point?{points:point.points,paidWargear:point.paidWargear,pointsSource:point.pointsSource}:{}),...(exact?{wargear:exact.wargear,compositionText:exact.composition,wargearSource:{label:codexWargear.source?.label||'Current 11e reference',url:exact.url}}:{})});
+  const rosterWargearLegality=wargearLegalityByUnit.get(unit.id);
+  mergedUnits.set(unit.id,{...unit,...(point?{points:point.points,paidWargear:point.paidWargear,pointsSource:point.pointsSource}:{}),...(exact?{wargear:exact.wargear,compositionText:exact.composition,wargearSource:{label:codexWargear.source?.label||'Current 11e reference',url:exact.url}}:{}),...(rosterWargearLegality?{rosterWargearLegality:structuredClone(rosterWargearLegality)}:{})});
 }
 const boundOfficialDatasheets=bindRowsToCanonicalIds(Object.values(pack.datasheets||{}).flat(),unitInventory(codex),{label:`${config.id} Faction Pack Datasheet`,rowId:sourceUnitId,allowUnbound:true});
 const officialByUnitId=new Map(boundOfficialDatasheets.filter(item=>item.canonicalId).map(item=>[item.canonicalId,item]));

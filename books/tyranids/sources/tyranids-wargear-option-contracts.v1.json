@@ -1,0 +1,1096 @@
+{
+  "schema": "wh40k-wargear-option-contracts/v1",
+  "bookId": "tyranids",
+  "units": [
+    {
+      "unitId": "unit-carnifexes",
+      "defaults": [
+        {
+          "modelId": "unit-carnifexes-model-14a678786f",
+          "selections": [
+            {
+              "selectionId": "unit-carnifexes-selection-carnifex-scything-talons",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-carnifexes-selection-carnifex-extra-scything-talons",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-carnifexes-selection-chitinous-claws-and-teeth",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-carnifexes:wargear:1",
+          "eligibleModelIds": [
+            "unit-carnifexes-model-14a678786f"
+          ],
+          "limit": {
+            "perModel": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-carnifexes-selection-carnifex-extra-scything-talons",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-carnifexes-selection-deathspitters-with-slimer-maggots",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-carnifexes-selection-carnifex-extra-scything-talons",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-carnifexes-selection-devourers-with-brainleech-worms",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-carnifexes-selection-carnifex-extra-scything-talons",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-carnifexes-selection-heavy-venom-cannon",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-carnifexes-selection-carnifex-extra-scything-talons",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-carnifexes-selection-stranglethorn-cannon",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-carnifexes-selection-carnifex-extra-scything-talons",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-carnifexes-selection-carnifex-crushing-claws",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-carnifexes:wargear:2",
+          "eligibleModelIds": [
+            "unit-carnifexes-model-14a678786f"
+          ],
+          "limit": {
+            "perModel": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-carnifexes-selection-carnifex-scything-talons",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-carnifexes-selection-deathspitters-with-slimer-maggots",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-carnifexes-selection-carnifex-scything-talons",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-carnifexes-selection-devourers-with-brainleech-worms",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-carnifexes-selection-carnifex-scything-talons",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-carnifexes-selection-carnifex-crushing-claws",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-carnifexes:wargear:3",
+          "eligibleModelIds": [
+            "unit-carnifexes-model-14a678786f"
+          ],
+          "limit": {
+            "perModel": 1
+          },
+          "choices": [
+            {
+              "remove": [],
+              "add": [
+                {
+                  "selectionId": "unit-carnifexes-selection-bio-plasma",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-carnifexes:wargear:4",
+          "eligibleModelIds": [
+            "unit-carnifexes-model-14a678786f"
+          ],
+          "limit": {
+            "perModel": 1
+          },
+          "choices": [
+            {
+              "remove": [],
+              "add": [
+                {
+                  "selectionId": "unit-carnifexes-selection-spine-banks",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": []
+    },
+    {
+      "unitId": "unit-harpy",
+      "defaults": [
+        {
+          "modelId": "unit-harpy-model-abcaf4a94c",
+          "selections": [
+            {
+              "selectionId": "unit-harpy-selection-twin-stranglethorn-cannon",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-harpy-selection-stinger-salvoes",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-harpy-selection-scything-wings",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-harpy:wargear:1",
+          "eligibleModelIds": [
+            "unit-harpy-model-abcaf4a94c"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perUnit": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-harpy-selection-twin-stranglethorn-cannon",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-harpy-selection-twin-heavy-venom-cannon",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": []
+    },
+    {
+      "unitId": "unit-hive-guard",
+      "defaults": [
+        {
+          "modelId": "unit-hive-guard-model-7d7ca4bd71",
+          "selections": [
+            {
+              "selectionId": "unit-hive-guard-selection-shockcannon",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-hive-guard-selection-chitinous-claws-and-teeth",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-hive-guard:wargear:1",
+          "eligibleModelIds": [
+            "unit-hive-guard-model-7d7ca4bd71"
+          ],
+          "limit": {
+            "perModel": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-hive-guard-selection-shockcannon",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-hive-guard-selection-impaler-cannon",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": []
+    },
+    {
+      "unitId": "unit-hive-tyrant",
+      "defaults": [
+        {
+          "modelId": "unit-hive-tyrant-model-ba46a2dc47",
+          "selections": [
+            {
+              "selectionId": "unit-hive-tyrant-selection-monstrous-bonesword-and-lash-whip",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-hive-tyrant-selection-monstrous-scything-talons",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-hive-tyrant:wargear:1",
+          "eligibleModelIds": [
+            "unit-hive-tyrant-model-ba46a2dc47"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perUnit": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-hive-tyrant-selection-monstrous-bonesword-and-lash-whip",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-hive-tyrant-selection-heavy-venom-cannon",
+                  "quantity": 1
+                }
+              ],
+              "sharedUses": [
+                "hive-tyrant-cannon-exclusion"
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-hive-tyrant-selection-monstrous-bonesword-and-lash-whip",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-hive-tyrant-selection-stranglethorn-cannon",
+                  "quantity": 1
+                }
+              ],
+              "sharedUses": [
+                "hive-tyrant-cannon-exclusion"
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-hive-tyrant-selection-monstrous-bonesword-and-lash-whip",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-hive-tyrant-selection-monstrous-scything-talons",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-hive-tyrant:wargear:2",
+          "eligibleModelIds": [
+            "unit-hive-tyrant-model-ba46a2dc47"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perUnit": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-hive-tyrant-selection-monstrous-scything-talons",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-hive-tyrant-selection-heavy-venom-cannon",
+                  "quantity": 1
+                }
+              ],
+              "sharedUses": [
+                "hive-tyrant-cannon-exclusion"
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-hive-tyrant-selection-monstrous-scything-talons",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-hive-tyrant-selection-stranglethorn-cannon",
+                  "quantity": 1
+                }
+              ],
+              "sharedUses": [
+                "hive-tyrant-cannon-exclusion"
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": [
+        {
+          "id": "hive-tyrant-cannon-exclusion",
+          "max": 1,
+          "sourceIds": [
+            "datasheet-hive-tyrant:wargear:3"
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-ripper-swarms",
+      "defaults": [
+        {
+          "modelId": "unit-ripper-swarms-model-8fef8abe57",
+          "selections": [
+            {
+              "selectionId": "unit-ripper-swarms-selection-chitinous-claws-and-teeth",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-ripper-swarms:wargear:1",
+          "eligibleModelIds": [
+            "unit-ripper-swarms-model-8fef8abe57"
+          ],
+          "limit": {
+            "perModel": 1
+          },
+          "choices": [
+            {
+              "remove": [],
+              "add": [
+                {
+                  "selectionId": "unit-ripper-swarms-selection-spinemaws",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": []
+    },
+    {
+      "unitId": "unit-termagants",
+      "defaults": [
+        {
+          "modelId": "unit-termagants-model-8a07b9f73c",
+          "aliases": [
+            "Termagant"
+          ],
+          "selections": [
+            {
+              "selectionId": "unit-termagants-selection-fleshborer",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-termagants-selection-chitinous-claws-and-teeth",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-termagants:wargear:1",
+          "eligibleModelIds": [
+            "unit-termagants-model-8a07b9f73c"
+          ],
+          "limit": {
+            "perModel": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-fleshborer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-termagant-devourer",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-termagants:wargear:2",
+          "eligibleModelIds": [
+            "unit-termagants-model-8a07b9f73c"
+          ],
+          "limit": {
+            "perModel": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-fleshborer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-termagant-spinefists",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-termagants:wargear:3",
+          "eligibleModelIds": [
+            "unit-termagants-model-8a07b9f73c"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perModels": {
+              "models": 10,
+              "uses": 1
+            }
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-fleshborer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-shardlauncher",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-termagant-devourer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-shardlauncher",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-termagant-spinefists",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-shardlauncher",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-termagants:wargear:4",
+          "eligibleModelIds": [
+            "unit-termagants-model-8a07b9f73c"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perModels": {
+              "models": 10,
+              "uses": 1
+            }
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-fleshborer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-spike-rifle",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-termagant-devourer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-spike-rifle",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-termagant-spinefists",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-spike-rifle",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-termagants:wargear:5",
+          "eligibleModelIds": [
+            "unit-termagants-model-8a07b9f73c"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perModels": {
+              "models": 10,
+              "uses": 1
+            }
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-fleshborer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-strangleweb",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-termagant-devourer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-strangleweb",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-termagants-selection-termagant-spinefists",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-termagants-selection-strangleweb",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": []
+    },
+    {
+      "unitId": "unit-tervigon",
+      "defaults": [
+        {
+          "modelId": "unit-tervigon-model-6382866772",
+          "selections": [
+            {
+              "selectionId": "unit-tervigon-weapon-family-massive-scything-talons-selection",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-tervigon-selection-stinger-salvoes",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-tervigon:wargear:1",
+          "eligibleModelIds": [
+            "unit-tervigon-model-6382866772"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perUnit": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-tervigon-weapon-family-massive-scything-talons-selection",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-tervigon-selection-massive-crushing-claws",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": []
+    },
+    {
+      "unitId": "unit-tyranid-warriors-with-ranged-bio-weapons",
+      "defaults": [
+        {
+          "modelId": "unit-tyranid-warriors-with-ranged-bio-weapons-model-f913c25b59",
+          "selections": [
+            {
+              "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-devourer",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-tyranid-warrior-claws-and-talons",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "modelId": "unit-tyranid-warriors-with-ranged-bio-weapons-model-2baba44032",
+          "selections": [
+            {
+              "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-devourer",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-tyranid-warrior-claws-and-talons",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:wargear:1",
+          "eligibleModelIds": [
+            "unit-tyranid-warriors-with-ranged-bio-weapons-model-f913c25b59",
+            "unit-tyranid-warriors-with-ranged-bio-weapons-model-2baba44032"
+          ],
+          "limit": {
+            "perModel": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-devourer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-deathspitter",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-devourer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-spinefists",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:wargear:2",
+          "eligibleModelIds": [
+            "unit-tyranid-warriors-with-ranged-bio-weapons-model-f913c25b59",
+            "unit-tyranid-warriors-with-ranged-bio-weapons-model-2baba44032"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perModels": {
+              "models": 3,
+              "uses": 1
+            }
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-devourer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-barbed-strangler",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:wargear:3",
+          "eligibleModelIds": [
+            "unit-tyranid-warriors-with-ranged-bio-weapons-model-f913c25b59",
+            "unit-tyranid-warriors-with-ranged-bio-weapons-model-2baba44032"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perModels": {
+              "models": 3,
+              "uses": 1
+            }
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-devourer",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-venom-cannon",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": []
+    },
+    {
+      "unitId": "unit-tyrannofex",
+      "defaults": [
+        {
+          "modelId": "unit-tyrannofex-model-9dc5f9bf1a",
+          "selections": [
+            {
+              "selectionId": "unit-tyrannofex-selection-fleshborer-hive",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-tyrannofex-selection-stinger-salvoes",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-tyrannofex-selection-powerful-limbs",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-tyrannofex:wargear:1",
+          "eligibleModelIds": [
+            "unit-tyrannofex-model-9dc5f9bf1a"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perUnit": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-tyrannofex-selection-fleshborer-hive",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-tyrannofex-selection-acid-spray",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-tyrannofex-selection-fleshborer-hive",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-tyrannofex-selection-rupture-cannon",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": []
+    },
+    {
+      "unitId": "unit-tyrant-guard",
+      "defaults": [
+        {
+          "modelId": "unit-tyrant-guard-model-811009486b",
+          "selections": [
+            {
+              "selectionId": "unit-tyrant-guard-selection-scything-talons-and-rending-claws",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-tyrant-guard:wargear:1",
+          "eligibleModelIds": [
+            "unit-tyrant-guard-model-811009486b"
+          ],
+          "limit": {
+            "perModel": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-tyrant-guard-selection-scything-talons-and-rending-claws",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-tyrant-guard-selection-bone-cleaver-lash-whip-and-rending-claws",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-tyrant-guard-selection-scything-talons-and-rending-claws",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-tyrant-guard-selection-crushing-claws-and-rending-claws",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": []
+    },
+    {
+      "unitId": "unit-winged-hive-tyrant",
+      "defaults": [
+        {
+          "modelId": "unit-winged-hive-tyrant-model-903aea15b9",
+          "selections": [
+            {
+              "selectionId": "unit-winged-hive-tyrant-selection-monstrous-bonesword-and-lash-whip",
+              "quantity": 1
+            },
+            {
+              "selectionId": "unit-winged-hive-tyrant-selection-tyrant-talons",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "sourceId": "datasheet-winged-hive-tyrant:wargear:1",
+          "eligibleModelIds": [
+            "unit-winged-hive-tyrant-model-903aea15b9"
+          ],
+          "limit": {
+            "perModel": 1,
+            "perUnit": 1
+          },
+          "choices": [
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-winged-hive-tyrant-selection-monstrous-bonesword-and-lash-whip",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-winged-hive-tyrant-selection-heavy-venom-cannon",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-winged-hive-tyrant-selection-monstrous-bonesword-and-lash-whip",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-winged-hive-tyrant-selection-stranglethorn-cannon",
+                  "quantity": 1
+                }
+              ]
+            },
+            {
+              "remove": [
+                {
+                  "selectionId": "unit-winged-hive-tyrant-selection-monstrous-bonesword-and-lash-whip",
+                  "quantity": 1
+                }
+              ],
+              "add": [
+                {
+                  "selectionId": "unit-winged-hive-tyrant-selection-monstrous-scything-talons",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sharedCaps": []
+    }
+  ]
+}
