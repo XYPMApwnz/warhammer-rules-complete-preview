@@ -12818,6 +12818,49 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "confidence": "SOURCE_LIMITED"
     },
     {
+      "canonicalRecordId": "tyranids-ability-synapse",
+      "sourceKind": "ability",
+      "sourceBookId": "tyranids",
+      "effectiveBookIds": [
+        "tyranids"
+      ],
+      "scope": "unit",
+      "selector": {
+        "abilityId": "tyranids-ability-synapse"
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "unit-keyword",
+              "keyword": "SYNAPSE"
+            }
+          ],
+          "operations": [
+            {
+              "id": "synapse:melee-strength",
+              "canonicalTarget": "melee",
+              "parameters": {
+                "stat": "S",
+                "delta": 1
+              },
+              "type": "WEAPON_CHARACTERISTIC_ADD"
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      },
+      "stackingPolicy": "dedupe-effect-id",
+      "source": {
+        "sourceId": "tyranids-waha-11e-current-2026-09-27",
+        "locator": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json#army-rule-synapse"
+      },
+      "confidence": "VERIFIED_CURRENT"
+    },
+    {
       "canonicalRecordId": "tyranids-ability-vicious-insight",
       "sourceKind": "ability",
       "sourceBookId": "tyranids",
@@ -12916,6 +12959,52 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "locator": "books/tyranids/content/tyranids-codex-parity.en.json#tyranids-ability-will-of-the-hive-mind"
       },
       "confidence": "SOURCE_LIMITED"
+    },
+    {
+      "canonicalRecordId": "tyranids-ability-neurocytes",
+      "sourceKind": "datasheet-ability",
+      "sourceBookId": "tyranids",
+      "effectiveBookIds": [
+        "tyranids"
+      ],
+      "sourceUnitId": "unit-neurogaunts",
+      "scope": "owner",
+      "selector": {
+        "sourceUnitId": "unit-neurogaunts",
+        "abilityId": "tyranids-ability-neurocytes",
+        "groupContainsUnitIds": [
+          "unit-neurotyrant"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {
+            "unitIds": [
+              "unit-neurogaunts"
+            ]
+          },
+          "conditions": [],
+          "operations": [
+            {
+              "id": "neurocytes:synapse",
+              "canonicalTarget": "SYNAPSE",
+              "parameters": {
+                "keyword": "SYNAPSE"
+              },
+              "type": "KEYWORD_GRANT"
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      },
+      "stackingPolicy": "dedupe-effect-id",
+      "source": {
+        "sourceId": "tyranids-waha-11e-current-2026-09-27",
+        "locator": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json#datasheet-neurogaunts:section:1"
+      },
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "tyranids-detachment-rule-enraged-behemoths",
@@ -13134,6 +13223,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           },
           "conditions": [],
           "operations": [
+            {
+              "id": "leader-beasts:tyranid-warriors",
+              "canonicalTarget": "TYRANID WARRIORS",
+              "parameters": {
+                "keyword": "TYRANID WARRIORS"
+              },
+              "type": "KEYWORD_GRANT"
+            },
             {
               "id": "leader-beasts:battleline",
               "canonicalTarget": "BATTLELINE",

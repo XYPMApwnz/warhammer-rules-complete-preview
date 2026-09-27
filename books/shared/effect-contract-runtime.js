@@ -6,7 +6,7 @@
   const instanceId=unit=>unit?.identity?.instanceId||unit?.id||'';
   const catalogUnit=unit=>unit?.item?.catalogUnit||list(root.WH_BOOK_ROSTER_CATALOG?.units).find(item=>item.id===canonicalId(unit))||{};
   const keywordValues=unit=>[...list(unit?.rosterState?.keywordProfile?.effective),...list(unit?.rosterState?.keywordProfile?.intrinsic),...list(unit?.rosterState?.keywordProfile?.added),...list(catalogUnit(unit)?.intrinsicKeywords)];
-  const keywords=unit=>new Set(keywordValues(unit).map(normalize));
+  const keywords=(unit,env)=>new Set([...keywordValues(unit),...(env?.effectiveKeywordGrants?.get(instanceId(unit))||[])].map(normalize));
   const abilityIds=unit=>new Set([...list(catalogUnit(unit)?.gameSelections?.abilities),...list(catalogUnit(unit)?.gameSelections?.wargearAbilities)].flatMap(item=>[item?.id,item?.sectionId]).filter(Boolean));
   const selectedIds=(unit,key)=>new Set(list(unit?.selection?.loadout?.[key]).map(item=>typeof item==='string'?item:item?.id).filter(Boolean));
   const selectedDetachmentIds=context=>{const unitValues=list(context.gameUnit?.rosterState?.detachments),values=unitValues.length?unitValues:list(context.detachments);return new Set(values.map(item=>item?.id||item).filter(Boolean));};
@@ -121,7 +121,14 @@
     const declared=declaredSourceUnitIds(contract),expected=declared.length?declared:list(contract.selector?.unitIds);
     const rosterWide=['roster-reference','roster-unit-pair'].includes(scopeKey(contract.scope));
     const candidates=[env.draft,...list(env.group),...(rosterWide?list(env.gameUnits):[])].filter((item,index,items)=>item&&items.indexOf(item)===index);
-    return candidates.find(unit=>expected.includes(canonicalId(unit)))||null;
+    if(expected.length)return candidates.find(unit=>expected.includes(canonicalId(unit)))||null;
+    const selector=contract.selector||{};
+    return candidates.find(unit=>{
+      const abilities=abilityIds(unit);
+      return (!selector.abilityId||abilities.has(selector.abilityId))
+        &&(!selector.abilityIds||list(selector.abilityIds).every(value=>abilities.has(value)))
+        &&(!selector.allAbilities||list(selector.allAbilities).every(value=>abilities.has(value)));
+    })||null;
   };
   function activation(contract,context,base){
     const env={...base,owner:null,sourceUnit:null,ownerIsLeader:false,sourceIsLeader:false,attachmentState:base.group?'attached':'unattached'};
@@ -154,8 +161,8 @@
       if(condition.kind==='ATTACHMENT_MEMBER_PRESENT'||condition.kind==='attachment-group-contains'){const wanted=list(condition.unitIds||[condition.unitId]);if(!wanted.some(id=>list(env.group).some(unit=>canonicalId(unit)===id)))return {applies:false,unknown:false};continue;}
       if(condition.kind==='attachment-group-excludes'){if(list(env.group).some(unit=>canonicalId(unit)===condition.unitId))return {applies:false,unknown:false};continue;}
       if(condition.kind==='source-unit-present'){if(!list(env.group).some(unit=>canonicalId(unit)===condition.unitId))return {applies:false,unknown:false};continue;}
-      if(condition.kind==='unit-keyword'){if(!list(env.group||[env.draft]).some(unit=>keywords(unit).has(normalize(condition.keyword))))return {applies:false,unknown:false};continue;}
-      if(condition.kind==='unit-keyword-absent'){if(list(env.group||[env.draft]).some(unit=>keywords(unit).has(normalize(condition.keyword))))return {applies:false,unknown:false};continue;}
+      if(condition.kind==='unit-keyword'){if(!list(env.group||[env.draft]).some(unit=>keywords(unit,env).has(normalize(condition.keyword))))return {applies:false,unknown:false};continue;}
+      if(condition.kind==='unit-keyword-absent'){if(list(env.group||[env.draft]).some(unit=>keywords(unit,env).has(normalize(condition.keyword))))return {applies:false,unknown:false};continue;}
       if(condition.state==='unknown'||condition.certainty==='unknown'){unknown=true;continue;}
       unknown=true;
     }
@@ -211,15 +218,27 @@
     return true;
   };
   function project(context){
-    const contracts=list(root.WH_BOOK_ROSTER_CATALOG?.effectContracts),draft=context.gameUnit,byInstance=context.byInstance||new Map(),attachment=attachmentGroup(draft,byInstance),groupEnhancementIds=new Set(list(context.enhancements).filter(item=>item?.input?.ownerStatus==='resolved'&&list(attachment.group).some(unit=>instanceId(unit)===item.input.ownerUnitId)).map(item=>item.catalog?.id).filter(Boolean)),base={draft,byInstance,gameUnits:list(context.gameUnits),group:attachment.group,bodyguard:attachment.bodyguard,leaders:attachment.leaders,detachmentIds:selectedDetachmentIds(context),groupEnhancementIds},output=[];
+    const contracts=list(root.WH_BOOK_ROSTER_CATALOG?.effectContracts),draft=context.gameUnit,byInstance=context.byInstance||new Map(),attachment=attachmentGroup(draft,byInstance),groupEnhancementIds=new Set(list(context.enhancements).filter(item=>item?.input?.ownerStatus==='resolved'&&list(attachment.group).some(unit=>instanceId(unit)===item.input.ownerUnitId)).map(item=>item.catalog?.id).filter(Boolean)),effectiveKeywordGrants=new Map(),base={draft,byInstance,gameUnits:list(context.gameUnits),group:attachment.group,bodyguard:attachment.bodyguard,leaders:attachment.leaders,detachmentIds:selectedDetachmentIds(context),groupEnhancementIds,effectiveKeywordGrants},output=[];
     if(byInstance.size&&byInstance.get(instanceId(draft))!==draft)return [];
-    for(const contract of contracts){
-      const env=activation(contract,context,base);if(!env||!scopeMatches(contract.scope,env))continue;
-      for(const clause of list(contract.clauses)){
-        if(clause.selector?.scope&&!scopeMatches(clause.selector.scope,env))continue;
-        if(!matches(clause.selector||{},env))continue;
-        const state=conditionState(clause.conditions,env),timingUnknown=contract.timingState?.state==='unknown';if(!state.applies)continue;
-        for(const operation of list(clause.operations)){if(!operationAllowed(operation,contract,env))continue;const effect=operationRecord(operation,contract,env,state.unknown||timingUnknown,clause.selector);if(effect)output.push(effect);}
+    let changed=true,pass=0;
+    while(changed&&pass<=contracts.length){
+      changed=false;pass++;
+      for(const contract of contracts){
+        const env=activation(contract,context,base);if(!env||!scopeMatches(contract.scope,env))continue;
+        for(const clause of list(contract.clauses)){
+          if(clause.selector?.scope&&!scopeMatches(clause.selector.scope,env))continue;
+          if(!matches(clause.selector||{},env))continue;
+          const state=conditionState(clause.conditions,env),timingUnknown=contract.timingState?.state==='unknown';if(!state.applies)continue;
+          for(const operation of list(clause.operations)){
+            if(!operationAllowed(operation,contract,env))continue;
+            const effect=operationRecord(operation,contract,env,state.unknown||timingUnknown,clause.selector);if(!effect)continue;
+            output.push(effect);
+            if(effect.component==='keyword'&&effect.operation==='grant'&&effect.state!=='conditional'){
+              const id=instanceId(draft),values=effectiveKeywordGrants.get(id)||new Set(),value=normalize(effect.targetId);
+              if(value&&!values.has(value)){values.add(value);effectiveKeywordGrants.set(id,values);changed=true;}
+            }
+          }
+        }
       }
     }
     const seen=new Set();return output.filter(effect=>{const key=`${effect.id}\0${effect.source?.ownerInstanceId||''}`;if(seen.has(key))return false;seen.add(key);return true;});
