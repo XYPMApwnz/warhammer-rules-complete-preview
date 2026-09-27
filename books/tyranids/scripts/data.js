@@ -1983,8 +1983,8 @@ window.DG_TERMS={
   "tyranids-ability-neurocytes": {
     "id": "tyranids-ability-neurocytes",
     "title": "Neurocytes",
-    "summary": "While this unit is within Synapse Range of a friendly TYRANIDS unit (excluding NEUROGAUNTS units), it has the SYNAPSE keyword.",
-    "full": "While this unit is within Synapse Range of a friendly TYRANIDS unit (excluding NEUROGAUNTS units), it has the SYNAPSE keyword.",
+    "summary": "While this unit is within Synapse Range of a friendly TYRANIDS unit (excluding NEUROGAUNT units), it has the SYNAPSE keyword.",
+    "full": "While this unit is within Synapse Range of a friendly TYRANIDS unit (excluding NEUROGAUNT units), it has the SYNAPSE keyword.",
     "glossary": "glossary-tyranids-ability-neurocytes",
     "rule": "unit-neurogaunts",
     "units": [
@@ -2321,8 +2321,8 @@ window.DG_TERMS={
   "tyranids-ability-spirit-leech-aura-psychic": {
     "id": "tyranids-ability-spirit-leech-aura-psychic",
     "title": "Spirit Leech (Aura, Psychic)",
-    "summary": "While an enemy unit is within 6\" of this unit, if it contains a Neurothrope, each time that enemy unit fails a Battle-shock test, it suffers D3 mortal wounds and one model in this unit regains up to D3 lost wounds.",
-    "full": "While an enemy unit is within 6\" of this unit, if it contains a Neurothrope, each time that enemy unit fails a Battle-shock test, it suffers D3 mortal wounds and one model in this unit regains up to D3 lost wounds.",
+    "summary": "While an enemy unit is within 6\" of this unit, if this unit contains a Neurothrope, each time that enemy unit fails a Battle-shock test, it suffers D3 mortal wounds and one model in this unit regains up to D3 lost wounds.",
+    "full": "While an enemy unit is within 6\" of this unit, if this unit contains a Neurothrope, each time that enemy unit fails a Battle-shock test, it suffers D3 mortal wounds and one model in this unit regains up to D3 lost wounds.",
     "glossary": "glossary-tyranids-ability-spirit-leech-aura-psychic",
     "rule": "unit-zoanthropes",
     "units": [

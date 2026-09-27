@@ -54,7 +54,8 @@
   "rosterSupport": true,
   "rosterCatalog": {
     "inferCanonicalDetachmentRuleIds": true,
-    "dedupeLegacyEnhancementsByTitle": true
+    "dedupeLegacyEnhancementsByTitle": true,
+    "preserveStructuredFields": true
   },
   "compatibleRulesMatrix": true,
   "legacyRelatedRuleAttributes": false,
@@ -148,5 +149,6 @@
       "tracked": true,
       "lifecycle": "QA_CAPTURE_OUTPUT"
     }
-  ]
+  ],
+  "glossaryV2CompatibilityTerms": true
 }

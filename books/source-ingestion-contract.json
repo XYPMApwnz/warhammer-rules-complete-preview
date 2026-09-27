@@ -1728,8 +1728,8 @@
       "authority": "bsdata-snapshot",
       "sourceType": "bsdata-snapshot",
       "acceptedRevision": "fa30730fca11fbfe87be90684d481d50e0efaf66",
-      "acceptedHash": "5fb4e247674aaff1bce65a4fcbd53b5d34e7d2774e236ac2a61c6271a828cf2e",
-      "lastChecked": "2026-09-14",
+      "acceptedHash": "21e8f4f3ed0dc87fb7651ad6571219340207a64634b0b03c5d2bc5f183f979f7",
+      "lastChecked": "2026-09-27",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "UNKNOWN",
       "status": "SOURCE_LIMITED",
@@ -1744,10 +1744,10 @@
         {
           "path": "books/tyranids/content/tyranids-codex-datasheets.en.json",
           "normalization": "lf",
-          "sha256": "edc243a8773f5e4ecd3fbd5ac3bcdf8f911e260710b3ff9271eab0e92bb96ca2"
+          "sha256": "12e853ed4e67f6cd468f02518a37f4eef25494b30c706efa9c52abc188ec5bdb"
         }
       ],
-      "notes": "Enrolled factual owner for datasheets, profiles, points-structure."
+      "notes": "Pinned BSData structure plus the source-backed canonical Tyranids datasheet projection certified against the current Waha 11E operational corpus and stronger enrolled official evidence."
     },
     {
       "book": "tyranids",
@@ -2320,6 +2320,34 @@
         }
       ],
       "notes": "Frozen secondary 11E Adeptus Mechanicus corpus captured for complete source-to-canonical certification at the 2026-09-22 currentness cutoff."
+    },
+    {
+      "book": "tyranids",
+      "sourceId": "tyranids-waha-11e-current-2026-09-27",
+      "authority": "community-secondary-operational-baseline",
+      "sourceType": "deterministic-web-corpus",
+      "acceptedRevision": "current-capture-2026-09-27",
+      "acceptedHash": "c4425e4b1e133ffe452f692de5861ea180d4ff298e968cac9affd70522dd9945",
+      "lastChecked": "2026-09-27",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "RETAINED_WEB_CORPUS",
+      "reproducible": "repository-artifact",
+      "extractor": "books/tyranids/tools/import-waha-current-corpus.py",
+      "artifacts": [
+        {
+          "path": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "normalization": "bytes",
+          "sha256": "bdb6b4e438a2fc6a079dee12263056737874e7d4bc73b0a74552de57d2005744"
+        },
+        {
+          "path": "books/tyranids/sources/waha-11e-current-2026-09-27/source-defects.json",
+          "normalization": "bytes",
+          "sha256": "94fa9a970978de9b97f6745911bd27c6a5221143a6e7b2eb21c6aa0bcf0133e9"
+        }
+      ],
+      "notes": "Frozen secondary 11E Tyranids corpus captured for complete source-to-canonical certification on 2026-09-27."
     }
   ],
   "dormantLiveTools": [

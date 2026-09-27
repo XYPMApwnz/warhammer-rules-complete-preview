@@ -3,7 +3,7 @@
   "bookId": "tyranids",
   "edition": "11th Edition",
   "language": "en",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-09-27",
   "precedence": [
     "official-current-update",
     "official-base-publication",
@@ -150,7 +150,7 @@
       "url": "https://mfm.warhammer-community.com/en/tyranids",
       "sha256": "7BD69647103214E6E2F2FE9ADDC741701C0F62C0F2D2374E0D43719041CC99F4",
       "authority": "official",
-      "role": "points-and-roster-contract",
+      "role": "historical-mfm-snapshot",
       "scope": [
         "unit-points",
         "enhancement-points",
@@ -178,18 +178,11 @@
       "verifiedAt": "2026-08-27",
       "localFile": "official-mfm-v1.3.json",
       "sourceId": "tyranids-mfm-v1.3",
-      "active": true,
+      "active": false,
       "sourceType": "official-json-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "points",
-        "costs"
-      ],
-      "consumers": [
-        "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "POINTS_PROJECTION"
-      ],
+      "lifecycle": "HISTORICAL_EVIDENCE",
+      "factsOwned": [],
+      "consumers": [],
       "paths": [
         "books/tyranids/sources/official-mfm-v1.3.json",
         "books/tyranids/content/tyranids-points.en.json"
@@ -362,7 +355,7 @@
       "capturedAt": "2026-09-22",
       "currentnessCutoff": "2026-09-22",
       "url": "https://mfm.warhammer-community.com/en/tyranids",
-      "role": "current-mfm-source-capture",
+      "role": "current-mfm-owner",
       "factsOwned": [
         "unit-points",
         "model-count-schedules",
@@ -376,23 +369,67 @@
         "legends-pricing"
       ],
       "consumers": [
-        "SOURCE_FRESHNESS"
+        "SOURCE_FRESHNESS",
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION"
       ],
       "paths": [
         "books/tyranids/sources/official-mfm-v1.4.json",
         "books/tyranids/sources/official-mfm-v1.4.html",
         "books/tyranids/sources/official-mfm-v1.4-legends.html"
       ]
+    },
+    {
+      "id": "waha-11e-current-2026-09-27",
+      "sourceId": "tyranids-waha-11e-current-2026-09-27",
+      "active": true,
+      "sourceType": "deterministic-web-corpus",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Current Wahapedia 11E Tyranids operational corpus",
+      "authority": "community-secondary-operational-baseline",
+      "version": "current-capture-2026-09-27",
+      "capturedAt": "2026-09-27",
+      "currentnessCutoff": "2026-09-27",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/",
+      "role": "operational-content-baseline",
+      "factsOwned": [
+        "operational-army-rules",
+        "operational-datasheets",
+        "operational-detachments",
+        "operational-enhancements",
+        "operational-stratagems",
+        "source-references"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "GLOSSARY_V2",
+        "CERTIFICATION_QA"
+      ],
+      "paths": [
+        "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "books/tyranids/sources/waha-11e-current-2026-09-27/source-defects.json"
+      ],
+      "coverage": {
+        "pages": 53,
+        "sourceUnits": 2827,
+        "datasheets": 52,
+        "weaponProfiles": 133,
+        "detachments": 10,
+        "enhancements": 34,
+        "stratagems": 51,
+        "references": 1507
+      },
+      "knownGaps": []
     }
   ],
   "knownGaps": [
-    "Authoritative official Codex source is absent from the frozen repository.",
-    "All-content Wahapedia parity is incomplete outside Compatible Rules and selected Codex parity layers.",
     "Manual/public SHA-bound publication acceptance is not recorded."
   ],
   "gates": {
-    "publishAsComplete": false,
-    "reason": "Official Faction Pack v1.2 is frozen; official live MFM v1.3 is preserved as a dated repository capture verified 27 August 2026. Codex rule-bearing content remains a frozen community transcription and is explicitly identified as such."
+    "publishAsComplete": true,
+    "reason": "Current Waha 11E operational content is exhaustively certified against canonical and effective Tyranids facts; stronger current GW evidence and official MFM v1.4 retain precedence in their owned domains."
   },
   "enrollmentScope": "PUBLIC_BOOK"
 }

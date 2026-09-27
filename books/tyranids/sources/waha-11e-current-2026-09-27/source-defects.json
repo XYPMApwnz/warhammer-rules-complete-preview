@@ -1,0 +1,54 @@
+{
+  "schema": "wh40k-waha-source-defects/v1",
+  "bookId": "tyranids",
+  "captureDate": "2026-09-27",
+  "currentnessCutoff": "2026-09-27",
+  "records": [
+    {
+      "id": "swarmlord-malign-presence-official-override",
+      "classification": "STRONGER_OFFICIAL_TEXT_OVERRIDE",
+      "sourceId": "datasheet-the-swarmlord",
+      "wahaValue": "Current hub wording differs from the enrolled official Faction Pack update.",
+      "acceptedValueOwner": "tyranids-faction-pack-v1.2#swarmlord-malign-presence",
+      "resolution": "Keep the exact official Faction Pack v1.2 effectiveAfter text."
+    },
+    {
+      "id": "regenerating-monstrosity-keyword-grammar",
+      "classification": "SECONDARY_SOURCE_TEXT_DEFECT",
+      "sourceId": "detachment-crusher-stampede:enhancement:2",
+      "resolution": "Use the enrolled official singular MONSTER keyword wording; do not propagate Waha's MONSTERS grammar."
+    },
+    {
+      "id": "synaptic-goading-bracket-typo",
+      "classification": "SECONDARY_SOURCE_TEXT_DEFECT",
+      "sourceId": "detachment-synaptic-nexus:stratagem:4",
+      "resolution": "Use the enrolled official closing parenthesis; do not propagate Waha's closing square bracket."
+    },
+    {
+      "id": "enhancement-duplicate-presentation",
+      "classification": "DUPLICATE_SOURCE_PRESENTATION",
+      "sourceId": "hub-enhancement-presentation",
+      "resolution": "One canonical Enhancement identity owns each fact; repeated page presentations are occurrences only."
+    },
+    {
+      "id": "faq-duplicate-presentation",
+      "classification": "DUPLICATE_SOURCE_PRESENTATION",
+      "sourceId": "hub-faq-presentation",
+      "resolution": "Deduplicate repeated Unseen Lurkers and forced-move FAQ tables by their accepted question identity."
+    },
+    {
+      "id": "canonical-shared-statline-expansion",
+      "classification": "SOURCE_STRUCTURE_VARIANT",
+      "sourceId": "datasheet-statline-profiles",
+      "resolution": "Three canonical model identities may share a displayed source statline; every canonical profile must equal its accepted source row."
+    },
+    {
+      "id": "will-of-the-hive-mind-official-wording",
+      "classification": "STRONGER_OFFICIAL_TEXT_OVERRIDE",
+      "sourceId": "datasheet-hive-tyrant",
+      "wahaValue": "Current hub uses \"usage of that Stratagem\".",
+      "acceptedValueOwner": "tyranids-faction-pack-v1.2#hive-tyrants-will-of-the-hive-mind",
+      "resolution": "Keep the enrolled official Faction Pack wording \"use of that Stratagem\" for both Hive Tyrants."
+    }
+  ]
+}

@@ -7,6 +7,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     "parentBookId": null,
     "dependencies": []
   },
+  "compositionConstraints": false,
   "units": [
     {
       "id": "unit-gargoyles",
@@ -157,7 +158,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -270,7 +274,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -563,7 +570,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -719,7 +729,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -964,7 +977,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1199,7 +1215,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1401,7 +1420,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1571,7 +1593,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1822,7 +1847,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2053,7 +2081,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2308,7 +2339,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2480,7 +2514,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2630,7 +2667,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2776,7 +2816,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2982,7 +3025,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3132,7 +3178,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3326,7 +3375,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3457,7 +3509,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3468,7 +3523,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "intrinsicKeywords": [
         "Infantry",
         "Great Devourer",
-        "Biovore",
+        "Biovores",
         "Tyranids"
       ],
       "relations": {
@@ -3595,7 +3650,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3714,7 +3772,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3875,7 +3936,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4012,7 +4076,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4066,7 +4133,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tyranids-ability-neurocytes",
             "sectionId": "tyranids-ability-neurocytes",
             "title": "Neurocytes",
-            "text": "While this unit is within Synapse Range of a friendly TYRANIDS unit (excluding NEUROGAUNTS units), it has the SYNAPSE keyword.",
+            "text": "While this unit is within Synapse Range of a friendly TYRANIDS unit (excluding NEUROGAUNT units), it has the SYNAPSE keyword.",
             "sourceUnitId": "unit-neurogaunts"
           },
           {
@@ -4134,7 +4201,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4279,7 +4349,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4418,7 +4491,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4538,7 +4614,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4551,8 +4630,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Tyranids",
         "Tyranid Warriors with Melee Bio-weapons",
         "Great Devourer",
-        "Synapse",
-        "Tyranid Warriors"
+        "Synapse"
       ],
       "relations": {
         "canLead": [],
@@ -4676,7 +4754,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4963,7 +5044,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5150,7 +5234,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5259,7 +5346,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5382,7 +5472,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5438,7 +5531,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tyranids-ability-spirit-leech-aura-psychic",
             "sectionId": "tyranids-ability-spirit-leech-aura-psychic",
             "title": "Spirit Leech (Aura, Psychic)",
-            "text": "While an enemy unit is within 6\" of this unit, if it contains a Neurothrope, each time that enemy unit fails a Battle-shock test, it suffers D3 mortal wounds and one model in this unit regains up to D3 lost wounds.",
+            "text": "While an enemy unit is within 6\" of this unit, if this unit contains a Neurothrope, each time that enemy unit fails a Battle-shock test, it suffers D3 mortal wounds and one model in this unit regains up to D3 lost wounds.",
             "sourceUnitId": "unit-zoanthropes"
           },
           {
@@ -5609,7 +5702,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5997,7 +6093,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6142,7 +6241,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6350,7 +6452,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6526,7 +6631,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6764,7 +6872,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6977,7 +7088,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6990,7 +7104,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Monster",
         "Great Devourer",
         "Tyranids",
-        "Vanguard Invader"
+        "Vanguard Invader",
+        "Burrower"
       ],
       "relations": {
         "canLead": [],
@@ -7123,7 +7238,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7310,7 +7428,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7593,7 +7714,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7747,7 +7871,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7885,7 +8012,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8030,7 +8160,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8172,7 +8305,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8185,7 +8321,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Monster",
         "Great Devourer",
         "Tyranids",
-        "Vanguard Invader"
+        "Vanguard Invader",
+        "Burrower"
       ],
       "relations": {
         "canLead": [],
@@ -8318,7 +8455,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8554,7 +8694,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8638,7 +8781,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "selections": [],
         "weaponFamilies": [],
         "weaponProfiles": [],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8647,7 +8793,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tyranids",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Ripper Swarm",
+        "Ripper Swarms",
         "Swarm",
         "Great Devourer",
         "Tyranids",
@@ -8777,7 +8923,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8861,7 +9010,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "selections": [],
         "weaponFamilies": [],
         "weaponProfiles": [],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8876,8 +9028,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Fly",
         "Transport",
         "Great Devourer",
-        "Harridan",
-        "Frame"
+        "Harridan"
       ],
       "relations": {
         "canLead": [],
@@ -9017,7 +9168,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9233,7 +9387,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     }
   ],
@@ -9341,90 +9498,138 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
   ],
   "detachmentRules": [
     {
-      "id": "tyranids-detachment-rule-mindhunger",
       "title": "Mindhunger",
       "text": "Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike. Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1.",
+      "sourcePages": [
+        2
+      ],
+      "provenance": {
+        "sourceId": "tyranids-faction-pack-v1.2",
+        "sourcePages": [
+          2
+        ]
+      },
+      "presentationTermId": "tyranids-detachment-rule-mindhunger",
+      "id": "tyranids-detachment-rule-mindhunger",
       "sectionId": "ambush-predators-rule",
       "detachmentId": "ambush-predators",
       "detachmentTitle": "AMBUSH PREDATORS",
       "sourceBookId": "tyranids"
     },
     {
-      "id": "tyranids-detachment-rule-surprise-assault",
       "title": "Surprise Assault",
       "text": "Each time a Tyranids model from your army makes an attack, re-roll a Hit roll of 1. Each time a Burrower unit from your army is set up on the battlefield from Reserves, place a circular 40mm Tunnel Marker anywhere on the battlefield within 1\" of that unit and more than 3\" horizontally away from all enemy units. In the Reinforcements step of your Movement phase, when you set up a unit on the battlefield from Reserves, you can set that unit up wholly within 9\" of one of your Tunnel Markers and more than 6\" horizontally away from any enemy units. If an enemy model (excluding Aircraft) ends any kind of move within 3\" of one of your Tunnel Markers, that Tunnel Marker is removed from the battlefield.",
+      "keywordRules": "Mawloc and Trygon units from your army have the Burrower keyword. In the Muster Armies step, you can select up to 2 Trygon models from your army. The selected units gain the Character keyword.",
+      "designerNote": "This means that the selected models can be given Enhancements and one of them can be selected as your Warlord.",
+      "sourcePages": [
+        5
+      ],
+      "provenance": {
+        "sourceId": "tyranids-faction-pack-v1.2",
+        "sourcePages": [
+          5
+        ]
+      },
+      "presentationTermId": "tyranids-detachment-rule-surprise-assault",
+      "id": "tyranids-detachment-rule-surprise-assault",
       "sectionId": "subterranean-assault-rule",
       "detachmentId": "subterranean-assault",
       "detachmentTitle": "SUBTERRANEAN ASSAULT",
       "sourceBookId": "tyranids"
     },
     {
-      "id": "tyranids-detachment-rule-enraged-behemoths",
       "title": "Enraged Behemoths",
       "text": "Each time a TYRANIDS MONSTER model from your army makes an attack, add 1 to the Hit roll if that model’s unit is below its Starting Strength, and add 1 to the Wound roll as well if that model’s unit is Below Half-strength. In addition, while a TYRANIDS MONSTER unit from your army (excluding Battle-shocked units) is at its Starting Strength, add 2 to the Objective Control characteristic of models in that unit.",
+      "presentationTermId": "tyranids-detachment-rule-enraged-behemoths",
+      "id": "tyranids-detachment-rule-enraged-behemoths",
       "sectionId": "crusher-stampede-rule",
       "detachmentId": "crusher-stampede",
       "detachmentTitle": "CRUSHER STAMPEDE",
       "sourceBookId": "tyranids"
     },
     {
-      "id": "tyranids-detachment-rule-questing-tendrils",
       "title": "Questing Tendrils",
       "text": "TYRANIDS units with this ability are eligible to charge in a turn in which they Fell Back. VANGUARD INVADER units with this ability are eligible to charge in a turn in which they Advanced.",
+      "presentationTermId": "tyranids-detachment-rule-questing-tendrils",
+      "id": "tyranids-detachment-rule-questing-tendrils",
       "sectionId": "vanguard-onslaught-rule",
       "detachmentId": "vanguard-onslaught",
       "detachmentTitle": "VANGUARD ONSLAUGHT",
       "sourceBookId": "tyranids"
     },
     {
-      "id": "tyranids-detachment-rule-hyper-adaptations",
       "title": "Hyper-adaptations",
       "text": "At the start of the first battle round, select one of the following Hyper-adaptations to be active for TYRANIDS units from your army until the end of the battle:\n\nSwarming Instincts\nEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets an INFANTRY or SWARM unit, that attack has the [SUSTAINED HITS 1] ability.\n\nHyper-aggression\nEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets a MONSTER or VEHICLE unit, that attack has the [LETHAL HITS] ability.\n\nHive Predators\nEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets a CHARACTER unit, on a Critical Hit, that attack has the [PRECISION] ability.",
+      "presentationTermId": "tyranids-detachment-rule-hyper-adaptations",
+      "id": "tyranids-detachment-rule-hyper-adaptations",
       "sectionId": "invasion-fleet-rule",
       "detachmentId": "invasion-fleet",
       "detachmentTitle": "INVASION FLEET",
       "sourceBookId": "tyranids"
     },
     {
-      "id": "tyranids-detachment-rule-synaptic-imperatives",
       "title": "Synaptic Imperatives",
       "text": "At the start of the battle round, you can select one of the Synaptic Imperatives shown below. Until the end of the battle round, that Synaptic Imperative is active for your army and while a TYRANIDS unit from your army is within Synapse Range of your army, it will benefit from it. Each Synaptic Imperative can only be selected once per battle.\n\nSynaptic Augmentation:\n While this unit is within Synapse Range of your army, models in this unit have a 5+ invulnerable save.\n\nSurging Vitality:\n While this unit is within Synapse Range of your army, add 1 to Advance and Charge rolls made for this unit.\n\nGoaded to Slaughter:\n While this unit is within Synapse Range of your army, each time a model in this unit makes a melee attack, add 1 to the Hit roll.",
+      "presentationTermId": "tyranids-detachment-rule-synaptic-imperatives",
+      "id": "tyranids-detachment-rule-synaptic-imperatives",
       "sectionId": "synaptic-nexus-rule",
       "detachmentId": "synaptic-nexus",
       "detachmentTitle": "SYNAPTIC NEXUS",
       "sourceBookId": "tyranids"
     },
     {
-      "id": "tyranids-detachment-rule-higher-imperatives",
       "title": "Higher Imperatives",
       "text": "Friendly NORN EMISSARY/NORN ASSIMILATOR units have the following ability: Protean Purpose: (Once per battle, per unit) In your Command phase, you can use this ability. If you do, this unit can make a selection for its Singular Purpose ability (this replaces the previous selection).",
+      "sourcePages": [
+        3
+      ],
+      "provenance": {
+        "sourceId": "tyranids-faction-pack-v1.2",
+        "sourcePages": [
+          3
+        ]
+      },
+      "presentationTermId": "tyranids-detachment-rule-higher-imperatives",
+      "id": "tyranids-detachment-rule-higher-imperatives",
       "sectionId": "talons-of-the-norn-queen-rule",
       "detachmentId": "talons-of-the-norn-queen",
       "detachmentTitle": "TALONS OF THE NORN QUEEN",
       "sourceBookId": "tyranids"
     },
     {
-      "id": "tyranids-detachment-rule-leader-beasts",
       "title": "Leader-beasts",
       "text": "Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have TYRANID WARRIORS and BATTLELINE. TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv.",
+      "sourcePages": [
+        4
+      ],
+      "provenance": {
+        "sourceId": "tyranids-faction-pack-v1.2",
+        "sourcePages": [
+          4
+        ]
+      },
+      "presentationTermId": "tyranids-detachment-rule-leader-beasts",
+      "id": "tyranids-detachment-rule-leader-beasts",
       "sectionId": "warrior-bioform-onslaught-rule",
       "detachmentId": "warrior-bioform-onslaught",
       "detachmentTitle": "WARRIOR BIOFORM ONSLAUGHT",
       "sourceBookId": "tyranids"
     },
     {
-      "id": "tyranids-detachment-rule-insurmountable-odds",
       "title": "Insurmountable Odds",
       "text": "In your opponent’s Shooting phase, when an enemy unit has shot, if a model from a friendly ENDLESS MULTITUDE unit was destroyed as a result of those attacks, that friendly unit can make a surge move of up to D6\".",
+      "presentationTermId": "tyranids-detachment-rule-insurmountable-odds",
+      "id": "tyranids-detachment-rule-insurmountable-odds",
       "sectionId": "unending-swarm-rule",
       "detachmentId": "unending-swarm",
       "detachmentTitle": "UNENDING SWARM",
       "sourceBookId": "tyranids"
     },
     {
-      "id": "tyranids-detachment-rule-feed-the-swarm",
       "title": "Feed the Swarm",
       "text": "In your Command phase, each HARVESTER unit from your army can Regenerate one friendly TYRANIDS unit that is within 6\" of it. A unit can only be regenerated once per phase. Each time a unit regenerates, do one of the following:\n\nOne model in that unit regains up to D3+1 lost wounds.\n\nOne destroyed INFANTRY model (excluding CHARACTERS) is returned to that unit with its full wounds remaining. If that unit is an ENDLESS MULTITUDE unit, up to 3 destroyed models are returned instead.",
+      "presentationTermId": "tyranids-detachment-rule-feed-the-swarm",
+      "id": "tyranids-detachment-rule-feed-the-swarm",
       "sectionId": "assimilation-swarm-rule",
       "detachmentId": "assimilation-swarm",
       "detachmentTitle": "ASSIMILATION SWARM",
@@ -9449,6 +9654,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "UPGRADE"
       ],
       "value": 20,
+      "termId": "tyranids-enhancement-encircling-horrors",
       "detachmentId": "ambush-predators",
       "sourceBookId": "tyranids",
       "legacyKey": "encircling-horrors",
@@ -9490,6 +9696,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "UPGRADE"
       ],
       "value": 15,
+      "termId": "tyranids-enhancement-cryptophotaic-camouflage",
       "detachmentId": "ambush-predators",
       "sourceBookId": "tyranids",
       "legacyKey": "cryptophotaic-camouflage",
@@ -9527,6 +9734,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 15,
+      "termId": "tyranids-enhancement-synaptic-strategy",
       "detachmentId": "subterranean-assault",
       "sourceBookId": "tyranids",
       "legacyKey": "synaptic-strategy",
@@ -9575,6 +9783,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 20,
+      "termId": "tyranids-enhancement-tremor-senses",
       "detachmentId": "subterranean-assault",
       "sourceBookId": "tyranids",
       "legacyKey": "tremor-senses",
@@ -9623,6 +9832,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 15,
+      "termId": "tyranids-enhancement-vanguard-intellect",
       "detachmentId": "subterranean-assault",
       "sourceBookId": "tyranids",
       "legacyKey": "vanguard-intellect",
@@ -9666,6 +9876,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 20,
+      "termId": "tyranids-enhancement-trygon-prime",
       "detachmentId": "subterranean-assault",
       "sourceBookId": "tyranids",
       "legacyKey": "trygon-prime",
@@ -9696,6 +9907,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Enraged Reserves",
       "value": 20,
       "text": "TYRANIDS MONSTER model only. If the bearer is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 3+, do not remove it from play. It can fight after the attacking model’s unit has finished making its attacks, and is then removed from play.",
+      "termId": "tyranids-enhancement-enraged-reserves",
       "detachmentId": "crusher-stampede",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-enraged-reserves",
@@ -9727,6 +9939,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Monstrous Nemesis",
       "value": 25,
       "text": "TYRANIDS MONSTER model only. Each time the bearer makes a melee attack that targets a MONSTER or VEHICLE unit, add 1 to the Wound roll.",
+      "termId": "tyranids-enhancement-monstrous-nemesis",
       "detachmentId": "crusher-stampede",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-monstrous-nemesis",
@@ -9758,6 +9971,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Null Nodules",
       "value": 10,
       "text": "TYRANIDS MONSTER model only. Once per battle, when a Psychic Attack is allocated to the bearer, it can use this ability. If it does, until the end of the phase, the bearer has the Feel No Pain 5+ ability against Psychic Attacks.",
+      "termId": "tyranids-enhancement-null-nodules",
       "detachmentId": "crusher-stampede",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-null-nodules",
@@ -9789,6 +10003,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Ominous Presence",
       "value": 15,
       "text": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic.",
+      "termId": "tyranids-enhancement-ominous-presence",
       "detachmentId": "crusher-stampede",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-ominous-presence",
@@ -9820,6 +10035,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Chameleonic",
       "value": 15,
       "text": "VANGUARD INVADER model only. This unit has Stealth.",
+      "termId": "tyranids-enhancement-chameleonic",
       "detachmentId": "vanguard-onslaught",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-chameleonic",
@@ -9851,6 +10067,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Hunting Grounds",
       "value": 30,
       "text": "TYRANIDS model only. While the bearer is on the battlefield, each time your opponent sets up a Reserves unit on the battlefield, roll one D6: on a 2+, that unit must take a Battle-shock test.",
+      "termId": "tyranids-enhancement-hunting-grounds",
       "detachmentId": "vanguard-onslaught",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-hunting-grounds",
@@ -9886,6 +10103,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Neuronode",
       "value": 20,
       "text": "TYRANIDS model only. After both players have deployed their armies, you can select up to three VANGUARD INVADER units from your army and redeploy all of those units. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+      "termId": "tyranids-enhancement-neuronode",
       "detachmentId": "vanguard-onslaught",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-neuronode",
@@ -9921,6 +10139,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Stalker",
       "value": 10,
       "text": "VANGUARD INVADER model only. At the start of the battle, select one enemy unit. Each time the bearer makes an attack that targets that enemy unit, add 1 to the Hit roll and add 1 to the Wound roll.",
+      "termId": "tyranids-enhancement-stalker",
       "detachmentId": "vanguard-onslaught",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-stalker",
@@ -9952,6 +10171,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Adaptive Biology",
       "value": 25,
       "text": "TYRANIDS model only. The bearer has the Feel No Pain 5+ ability. At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead.",
+      "termId": "tyranids-enhancement-adaptive-biology",
       "detachmentId": "invasion-fleet",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-adaptive-biology",
@@ -9987,6 +10207,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Alien Cunning",
       "value": 30,
       "text": "TYRANIDS model only. After both players have deployed their armies, select up to three TYRANIDS units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves if you wish, regardless of how many units are already in Strategic Reserves.",
+      "termId": "tyranids-enhancement-alien-cunning",
       "detachmentId": "invasion-fleet",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-alien-cunning",
@@ -10022,6 +10243,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Perfectly Adapted",
       "value": 15,
       "text": "TYRANIDS model only. Once per turn, you can re-roll one Hit roll, one Wound roll, one Damage roll, one Advance roll, one Charge roll or one saving throw made for the bearer.",
+      "termId": "tyranids-enhancement-perfectly-adapted",
       "detachmentId": "invasion-fleet",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-perfectly-adapted",
@@ -10057,6 +10279,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Synaptic Linchpin",
       "value": 20,
       "text": "TYRANIDS model only. While a friendly TYRANIDS unit is within 9\" of the bearer, that unit is within Synapse Range of your army.",
+      "termId": "tyranids-enhancement-synaptic-linchpin",
       "detachmentId": "invasion-fleet",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-synaptic-linchpin",
@@ -10092,6 +10315,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Power of the Hive Mind",
       "value": 10,
       "text": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1.",
+      "termId": "tyranids-enhancement-power-of-the-hive-mind",
       "detachmentId": "synaptic-nexus",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-power-of-the-hive-mind",
@@ -10124,6 +10348,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Psychostatic Disruption",
       "value": 30,
       "text": "TYRANIDS SYNAPSE model only. Enemy units that arrive on the battlefield from Reserves cannot be set up within 12\" of the bearer. In addition, once per battle, during the first or second battle round, when your opponent declares that a unit will arrive on the battlefield from Strategic Reserves, the bearer can use this Enhancement. If it does, roll one D6: on a 4+, that enemy unit cannot arrive on the battlefield this turn.",
+      "termId": "tyranids-enhancement-psychostatic-disruption",
       "detachmentId": "synaptic-nexus",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-psychostatic-disruption-aura",
@@ -10159,6 +10384,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Synaptic Control",
       "value": 20,
       "text": "TYRANIDS SYNAPSE model only. Each time an attack is allocated to the bearer, subtract 1 from the Damage characteristic of that attack.",
+      "termId": "tyranids-enhancement-synaptic-control",
       "detachmentId": "synaptic-nexus",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-synaptic-control",
@@ -10194,6 +10420,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "The Dirgeheart of Kharis (Aura)",
       "value": 15,
       "text": "TYRANIDS SYNAPSE model only. While an enemy unit is within 9\" of the bearer, worsen that unit’s Leadership characteristic by 1.",
+      "termId": "tyranids-enhancement-the-dirgeheart-of-kharis-aura",
       "detachmentId": "synaptic-nexus",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-the-dirgeheart-of-kharis-aura",
@@ -10241,6 +10468,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "UPGRADE"
       ],
       "value": 20,
+      "termId": "tyranids-enhancement-destabilising-predation",
       "detachmentId": "talons-of-the-norn-queen",
       "sourceBookId": "tyranids",
       "legacyKey": "destabilising-predation",
@@ -10280,6 +10508,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "UPGRADE"
       ],
       "value": 30,
+      "termId": "tyranids-enhancement-synaptoprescience",
       "detachmentId": "talons-of-the-norn-queen",
       "sourceBookId": "tyranids",
       "legacyKey": "synaptoprescience",
@@ -10317,6 +10546,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 30,
+      "termId": "tyranids-enhancement-elevated-might",
       "detachmentId": "warrior-bioform-onslaught",
       "sourceBookId": "tyranids",
       "legacyKey": "elevated-might",
@@ -10355,6 +10585,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 20,
+      "termId": "tyranids-enhancement-ocular-adaptation",
       "detachmentId": "warrior-bioform-onslaught",
       "sourceBookId": "tyranids",
       "legacyKey": "ocular-adaptation",
@@ -10383,6 +10614,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Adrenalised Onslaught",
       "value": 15,
       "text": "TYRANIDS model only. Each time the bearer’s unit Piles In or Consolidates, models in this unit can move an additional 3\".",
+      "termId": "tyranids-enhancement-adrenalised-onslaught",
       "detachmentId": "unending-swarm",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-adrenalised-onslaught",
@@ -10418,6 +10650,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Naturalised Camouflage",
       "value": 30,
       "text": "TYRANIDS model only. At the start of the first battle round, select up to three friendly ENDLESS MULTITUDE units within 9\" of the bearer. Until the end of the battle round, each time a ranged attack targets one of those units, models in that unit have the Benefit of Cover against that attack.",
+      "termId": "tyranids-enhancement-naturalised-camouflage",
       "detachmentId": "unending-swarm",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-naturalised-camoflage",
@@ -10453,6 +10686,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Piercing Talons",
       "value": 25,
       "text": "TYRANIDS model only. Each time a model in the bearer’s unit makes an attack, on a Critical Wound, improve the Armour Penetration characteristic of that attack by 1.",
+      "termId": "tyranids-enhancement-piercing-talons",
       "detachmentId": "unending-swarm",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-piercing-talons",
@@ -10488,6 +10722,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Relentless Hunger",
       "value": 20,
       "text": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit.",
+      "termId": "tyranids-enhancement-relentless-hunger",
       "detachmentId": "unending-swarm",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-relentless-hunger",
@@ -10523,6 +10758,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Biophagic Flow (Aura)",
       "value": 10,
       "text": "TYRANIDS model only. While a friendly HARVESTER model is within 12\" of the bearer, when using the Feed the Swarm ability, that HARVESTER model can Regenerate one friendly TYRANIDS unit that is within 9\" of it, instead of one within 6\".",
+      "termId": "tyranids-enhancement-biophagic-flow-aura",
       "detachmentId": "assimilation-swarm",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-biophagic-flow-aura",
@@ -10558,6 +10794,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Instinctive Defence",
       "value": 15,
       "text": "TYRANIDS model only. While the bearer is within 6\" of one or more friendly HARVESTER units, when you target this unit with the Heroic Intervention stratagem, that use is -1 CP. In addition, while the bearer is within 6\" of one or more friendly HARVESTER units, models in the bearer’s unit have the Fights First ability.",
+      "termId": "tyranids-enhancement-instinctive-defence",
       "detachmentId": "assimilation-swarm",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-instinctive-defense",
@@ -10593,6 +10830,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Parasitic Biomorphology",
       "value": 25,
       "text": "TYRANIDS model only. Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit. The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit.",
+      "termId": "tyranids-enhancement-parasitic-biomorphology",
       "detachmentId": "assimilation-swarm",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-parasitic-biomorphology",
@@ -10628,6 +10866,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Regenerating Monstrosity",
       "value": 20,
       "text": "TYRANIDS model only (excluding MONSTER models). The bearer’s unit can be regenerated up to twice per phase, instead of once.",
+      "termId": "tyranids-enhancement-regenerating-monstrosity",
       "detachmentId": "assimilation-swarm",
       "sourceBookId": "tyranids",
       "legacyKey": "enhancement-regenerating-monstrosity",
