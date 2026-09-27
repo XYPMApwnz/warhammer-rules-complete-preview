@@ -7,7 +7,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     "parentBookId": null,
     "dependencies": []
   },
-  "compositionConstraints": false,
+  "compositionConstraints": true,
+  "statProfiles": true,
   "units": [
     {
       "id": "unit-gargoyles",
@@ -58,6 +59,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-winged-swarm",
@@ -88,11 +90,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Gargoyles"
             ],
+            "min": 10,
+            "max": 20,
             "legacyIds": [
               "unit-gargoyles-model-gargoyles"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-gargoyles-selection-blinding-venom",
@@ -211,6 +216,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-bounding-leap",
@@ -232,13 +238,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-hormagaunts-model-407cbd64f7",
             "title": "10-20 Hormagaunts",
             "aliases": [
-              "10-20 Hormagaunts"
+              "10-20 Hormagaunts",
+              "Hormagaunts"
             ],
+            "min": 10,
+            "max": 20,
             "legacyIds": [
               "unit-hormagaunts-model-10-20-hormagaunts"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-hormagaunts-selection-hormagaunt-talons",
@@ -327,6 +337,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-skulking-horrors",
@@ -348,13 +359,20 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-termagants-model-8a07b9f73c",
             "title": "10-20 Termagants",
             "aliases": [
-              "10-20 Termagants"
+              "10-20 Termagants",
+              "Termagants",
+              "Termagant w/ Shardlauncher",
+              "Termagant w/ Spike rifle",
+              "Termagant w/ Strangleweb"
             ],
+            "min": 10,
+            "max": 20,
             "legacyIds": [
               "unit-termagants-model-10-20-termagants"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-termagants-selection-fleshborer",
@@ -625,6 +643,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-vicious-insight",
@@ -689,11 +708,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Broodlord"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-broodlord-model-broodlord"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-broodlord-selection-broodlord-claws-and-talons",
@@ -783,6 +805,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-onslaught-aura-psychic",
@@ -847,11 +870,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Hive Tyrant"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-hive-tyrant-model-hive-tyrant"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-hive-tyrant-selection-monstrous-bonesword-and-lash-whip",
@@ -1030,6 +1056,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-hyperadapted-raveners-stat-profile-9e57038a6f",
+            "title": "Ravener Prime",
+            "stats": {
+              "M": "10\"",
+              "T": "5",
+              "Sv": "4+",
+              "W": "6",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-hyperadapted-raveners-stat-profile-ravener-prime"
+            ]
+          },
+          {
+            "id": "unit-hyperadapted-raveners-stat-profile-3e95bbb988",
+            "title": "Ravener",
+            "stats": {
+              "M": "10\"",
+              "T": "5",
+              "Sv": "4+",
+              "W": "3",
+              "Ld": "8+",
+              "OC": "1",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-hyperadapted-raveners-stat-profile-ravener"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tyranids-ability-alpha-invader",
@@ -1101,6 +1161,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Ravener Prime"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-hyperadapted-raveners-model-ravener-prime"
             ],
@@ -1113,13 +1175,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-hyperadapted-raveners-model-eb3f20c310",
             "title": "Raveners",
             "aliases": [
-              "Raveners"
+              "Raveners",
+              "Ravener",
+              "Ravener w/ Venom bolt"
             ],
+            "min": 4,
+            "max": 4,
             "legacyIds": [
               "unit-hyperadapted-raveners-model-raveners-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-hyperadapted-raveners-selection-prime-claws-and-talons",
@@ -1286,6 +1353,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-node-lash-psychic",
@@ -1350,11 +1418,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Neurotyrant"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-neurotyrant-model-neurotyrant"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-neurotyrant-selection-neurotyrant-claws-and-lashes",
@@ -1465,6 +1536,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-parasitic-infection",
@@ -1523,11 +1595,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Parasite of Mortrex"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-parasite-of-mortrex-model-parasite-of-mortrex"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-parasite-of-mortrex-selection-barbed-ovipositor",
@@ -1637,6 +1712,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "5",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-spawn-termagants",
@@ -1688,11 +1764,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tervigon"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tervigon-model-tervigon"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tervigon-selection-massive-scything-talons-strike",
@@ -1924,6 +2003,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-alpha-warrior",
@@ -1981,11 +2061,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tyranid Prime with Lash Whip"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tyranid-prime-with-lash-whip-model-tyranid-prime-with-lash-whip"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tyranid-prime-with-lash-whip-selection-rending-claw",
@@ -2128,6 +2211,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-paroxysm-psychic",
@@ -2179,11 +2263,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Winged Hive Tyrant"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-winged-hive-tyrant-model-winged-hive-tyrant"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-winged-hive-tyrant-selection-tyrant-talons",
@@ -2410,6 +2497,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-alpha-warrior-2",
@@ -2474,11 +2562,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Winged Tyranid Prime"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-winged-tyranid-prime-model-winged-tyranid-prime"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-winged-tyranid-prime-selection-prime-talons",
@@ -2560,6 +2651,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-aerial-seeding",
@@ -2597,11 +2689,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tyrannocyte"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tyrannocyte-model-tyrannocyte"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tyrannocyte-selection-flensing-whips",
@@ -2711,6 +2806,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-fear-of-the-unseen-aura",
@@ -2776,11 +2872,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Deathleaper"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-deathleaper-model-deathleaper"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-deathleaper-selection-lictor-claws-and-talons",
@@ -2869,6 +2968,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-alpha-leader",
@@ -2926,11 +3026,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Old One Eye"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-old-one-eye-model-old-one-eye"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-old-one-eye-selection-old-one-eyes-claws-and-talons-strike",
@@ -3071,6 +3174,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-swallow-whole",
@@ -3108,11 +3212,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "The Red Terror"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-the-red-terror-model-the-red-terror"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-the-red-terror-selection-gaping-maw",
@@ -3234,6 +3341,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-hive-commander",
@@ -3305,11 +3413,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "The Swarmlord"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-the-swarmlord-model-the-swarmlord"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-the-swarmlord-selection-bone-sabres",
@@ -3416,6 +3527,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-disruption-bombardment",
@@ -3439,11 +3551,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Barbgaunt"
             ],
+            "min": 5,
+            "max": 10,
             "legacyIds": [
               "unit-barbgaunts-model-barbgaunt"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-barbgaunts-selection-barblauncher",
@@ -3550,6 +3665,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-seed-spore-mines",
@@ -3580,11 +3696,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Biovore"
             ],
+            "min": 1,
+            "max": 3,
             "legacyIds": [
               "unit-biovores-model-biovore"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-biovores-selection-spore-mine-launcher",
@@ -3702,6 +3821,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "5+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-vanguard-predator",
@@ -3730,13 +3850,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-genestealers-model-966cee1b09",
             "title": "5-10 Genestealers",
             "aliases": [
-              "5-10 Genestealers"
+              "5-10 Genestealers",
+              "Genestealer"
             ],
+            "min": 5,
+            "max": 10,
             "legacyIds": [
               "unit-genestealers-model-5-10-genestealers"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-genestealers-selection-genestealer-claws-and-talons",
@@ -3813,6 +3937,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-defensive-stance",
@@ -3834,13 +3959,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-hive-guard-model-7d7ca4bd71",
             "title": "3-6 Hive Guard",
             "aliases": [
-              "3-6 Hive Guard"
+              "3-6 Hive Guard",
+              "Hive Guard w/ shockcannon",
+              "Hive Guard w/ impaler cannon"
             ],
+            "min": 3,
+            "max": 6,
             "legacyIds": [
               "unit-hive-guard-model-3-6-hive-guard"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-hive-guard-selection-shockcannon",
@@ -3978,6 +4108,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-pheromone-trail",
@@ -4036,11 +4167,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Lictor"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-lictor-model-lictor"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-lictor-selection-lictor-claws-and-talons",
@@ -4128,6 +4262,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-neurocytes",
@@ -4146,11 +4281,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         ],
         "models": [
           {
-            "id": "unit-neurogaunts-model-c37f3e9fc9",
+            "id": "unit-neurogaunts-model-f5803b9ba4",
             "title": "1-2 Neurogaunt Nodebeasts",
             "aliases": [
-              "1-2 Neurogaunt Nodebeasts"
+              "1-2 Neurogaunt Nodebeasts",
+              "Neurogaunt Nodebeast"
             ],
+            "min": 1,
+            "max": 2,
             "legacyIds": [
               "unit-neurogaunts-model-1-2-neurogaunt-nodebeasts"
             ]
@@ -4159,11 +4297,26 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-neurogaunts-model-ccb344f98e",
             "title": "10-20 Neurogaunts",
             "aliases": [
-              "10-20 Neurogaunts"
+              "10-20 Neurogaunts",
+              "Neurogaunt"
             ],
+            "min": 10,
+            "max": 20,
             "legacyIds": [
               "unit-neurogaunts-model-10-20-neurogaunts-2"
             ]
+          }
+        ],
+        "compositionRules": [
+          {
+            "id": "tyranids-neurogaunts-second-nodebeast",
+            "type": "MODEL_QUANTITY_REQUIRES",
+            "targetModelId": "unit-neurogaunts-model-f5803b9ba4",
+            "targetQuantityAtLeast": 2,
+            "requires": {
+              "modelId": "unit-neurogaunts-model-ccb344f98e",
+              "quantityEquals": 20
+            }
           }
         ],
         "selections": [
@@ -4244,6 +4397,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-feeder-tendrils-2",
@@ -4309,11 +4463,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Neurolictor"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-neurolictor-model-neurolictor"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-neurolictor-selection-piercing-claws-and-talons",
@@ -4391,6 +4548,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-burning-spray",
@@ -4419,13 +4577,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-pyrovores-model-e7edc4e0a9",
             "title": "1-3 Pyrovores",
             "aliases": [
-              "1-3 Pyrovores"
+              "1-3 Pyrovores",
+              "Pyrovore"
             ],
+            "min": 1,
+            "max": 3,
             "legacyIds": [
               "unit-pyrovores-model-1-3-pyrovores"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-pyrovores-selection-flamespurt",
@@ -4544,6 +4706,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-death-from-below",
@@ -4572,13 +4735,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-raveners-model-4a10e5e416",
             "title": "5 Raveners",
             "aliases": [
-              "5 Raveners"
+              "5 Raveners",
+              "Ravener"
             ],
+            "min": 5,
+            "max": 5,
             "legacyIds": [
               "unit-raveners-model-5-raveners"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-raveners-selection-ravener-claws-and-talons",
@@ -4674,6 +4841,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-adaptive-instincts-once-per-turn-per-unit",
@@ -4704,6 +4872,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tyranid Prime"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tyranid-warriors-with-melee-bio-weapons-model-tyranid-prime"
             ]
@@ -4712,13 +4882,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-tyranid-warriors-with-melee-bio-weapons-model-2baba44032",
             "title": "2-5 Tyranid Warriors",
             "aliases": [
-              "2-5 Tyranid Warriors"
+              "2-5 Tyranid Warriors",
+              "Tyranid Warrior"
             ],
+            "min": 2,
+            "max": 5,
             "legacyIds": [
               "unit-tyranid-warriors-with-melee-bio-weapons-model-2-5-tyranid-warriors-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tyranid-warriors-with-melee-bio-weapons-selection-tyranid-warrior-claws-and-talons",
@@ -4814,6 +4988,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-adaptable-predators",
@@ -4844,6 +5019,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tyranid Prime"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tyranid-warriors-with-ranged-bio-weapons-model-tyranid-prime"
             ]
@@ -4852,13 +5029,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-tyranid-warriors-with-ranged-bio-weapons-model-2baba44032",
             "title": "2-5 Tyranid Warriors",
             "aliases": [
-              "2-5 Tyranid Warriors"
+              "2-5 Tyranid Warriors",
+              "Tyranid Warrior"
             ],
+            "min": 2,
+            "max": 5,
             "legacyIds": [
               "unit-tyranid-warriors-with-ranged-bio-weapons-model-2-5-tyranid-warriors-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tyranid-warriors-with-ranged-bio-weapons-selection-deathspitter",
@@ -5111,6 +5292,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-guardian-organism",
@@ -5132,13 +5314,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-tyrant-guard-model-811009486b",
             "title": "3-6 Tyrant Guard",
             "aliases": [
-              "3-6 Tyrant Guard"
+              "3-6 Tyrant Guard",
+              "Tyrant Guard"
             ],
+            "min": 3,
+            "max": 6,
             "legacyIds": [
               "unit-tyrant-guard-model-3-6-tyrant-guard"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tyrant-guard-selection-scything-talons-and-rending-claws",
@@ -5276,6 +5462,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-foul-spores-aura",
@@ -5304,13 +5491,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-venomthropes-model-13718ac606",
             "title": "3-6 Venomthropes",
             "aliases": [
-              "3-6 Venomthropes"
+              "3-6 Venomthropes",
+              "Venomthrope"
             ],
+            "min": 3,
+            "max": 6,
             "legacyIds": [
               "unit-venomthropes-model-3-6-venomthropes"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-venomthropes-selection-toxic-lashes",
@@ -5388,6 +5579,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "6+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-pouncing-leap",
@@ -5430,13 +5622,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-von-ryans-leapers-model-f9ab31a3cc",
             "title": "3-6 Von Ryan's Leapers",
             "aliases": [
-              "3-6 Von Ryan's Leapers"
+              "3-6 Von Ryan's Leapers",
+              "Von Ryan's Leaper"
             ],
+            "min": 3,
+            "max": 6,
             "legacyIds": [
               "unit-von-ryans-leapers-model-3-6-von-ryans-leapers"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-von-ryans-leapers-selection-leapers-talons",
@@ -5526,6 +5722,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-spirit-leech-aura-psychic",
@@ -5563,6 +5760,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Neurothrope"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-zoanthropes-model-neurothrope"
             ]
@@ -5571,13 +5770,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-zoanthropes-model-cd59a635e0",
             "title": "2-5 Zoanthropes",
             "aliases": [
-              "2-5 Zoanthropes"
+              "2-5 Zoanthropes",
+              "Zoanthrope"
             ],
+            "min": 2,
+            "max": 5,
             "legacyIds": [
               "unit-zoanthropes-model-2-5-zoanthropes-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-zoanthropes-selection-chitinous-claws-and-teeth",
@@ -5753,6 +5956,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-blistering-assault",
@@ -5783,11 +5987,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Carnifex"
             ],
+            "min": 1,
+            "max": 2,
             "legacyIds": [
               "unit-carnifexes-model-carnifex"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-carnifexes-selection-chitinous-claws-and-teeth",
@@ -6134,6 +6341,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "4",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-symbiotic-targeting",
@@ -6171,11 +6379,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Exocrine"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-exocrine-model-exocrine"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-exocrine-selection-bio-plasmic-cannon",
@@ -6285,6 +6496,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "-",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-spore-mine-cysts",
@@ -6322,11 +6534,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Harpy"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-harpy-model-harpy"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-harpy-selection-twin-stranglethorn-cannon",
@@ -6494,6 +6709,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "4",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-grisly-spectacle",
@@ -6531,11 +6747,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Haruspex"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-haruspex-model-haruspex"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-haruspex-selection-grasping-tongue",
@@ -6675,6 +6894,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "-",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-airborne-predator",
@@ -6712,11 +6932,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Hive Crone"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-hive-crone-model-hive-crone"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-hive-crone-selection-drool-cannon",
@@ -6915,6 +7138,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "4",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-encephalic-diffusion-aura-psychic",
@@ -6959,11 +7183,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Maleceptor"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-maleceptor-model-maleceptor"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-maleceptor-selection-massive-scything-talons-strike",
@@ -7131,6 +7358,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "4",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-terror-from-the-deep",
@@ -7168,11 +7396,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Mawloc"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-mawloc-model-mawloc"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-mawloc-selection-distensible-jaw",
@@ -7281,6 +7512,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "5",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-harpoon-barbs",
@@ -7339,11 +7571,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Norn Assimilator"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-norn-assimilator-model-norn-assimilator"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-norn-assimilator-selection-monstrous-scything-talons",
@@ -7471,6 +7706,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "5",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-singular-purpose",
@@ -7522,11 +7758,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Norn Emissary"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-norn-emissary-model-norn-emissary"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-norn-emissary-selection-monstrous-rending-claws",
@@ -7757,6 +7996,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-bio-stimulus",
@@ -7801,11 +8041,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Psychophage"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-psychophage-model-psychophage"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-psychophage-selection-talons-and-betentacled-maw",
@@ -7912,6 +8155,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-death-scream",
@@ -7942,11 +8186,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Screamer-killer"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-screamer-killer-model-screamer-killer"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-screamer-killer-selection-bio-plasmic-scream",
@@ -8053,6 +8300,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "0",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-seed-mucolids",
@@ -8090,11 +8338,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Sporocyst"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-sporocyst-model-sporocyst"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-sporocyst-selection-flensing-whips",
@@ -8202,6 +8453,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "4",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-grasping-tendrils",
@@ -8246,11 +8498,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Toxicrene"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-toxicrene-model-toxicrene"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-toxicrene-selection-massive-toxic-lashes",
@@ -8348,6 +8603,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "4",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-subterranean-tunnels",
@@ -8385,11 +8641,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Trygon"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-trygon-model-trygon"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-trygon-selection-trygon-scything-talons",
@@ -8497,6 +8756,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "5",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-resilient-organism",
@@ -8534,11 +8794,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tyrannofex"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tyrannofex-model-tyrannofex"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tyrannofex-selection-powerful-limbs",
@@ -8736,6 +8999,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "0",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-bio-minefield",
@@ -8773,11 +9037,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Mucolid Spore"
             ],
+            "min": 1,
+            "max": 2,
             "legacyIds": [
               "unit-mucolid-spores-model-mucolid-spore"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [],
         "weaponFamilies": [],
         "weaponProfiles": [],
@@ -8823,6 +9090,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "0",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-chitinous-horrors-aura",
@@ -8853,11 +9121,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Ripper Swarm"
             ],
+            "min": 1,
+            "max": 3,
             "legacyIds": [
               "unit-ripper-swarms-model-ripper-swarm"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-ripper-swarms-selection-spinemaws",
@@ -8965,6 +9236,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "0",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-bio-minefield",
@@ -9002,11 +9274,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Spore Mine"
             ],
+            "min": 3,
+            "max": 6,
             "legacyIds": [
               "unit-spore-mines-model-spore-mine"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [],
         "weaponFamilies": [],
         "weaponProfiles": [],
@@ -9054,6 +9329,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "0",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-damaged-1-10-wounds-remaining",
@@ -9098,11 +9374,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Harridan"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-harridan-model-harridan"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-harridan-selection-dire-bio-cannon",
@@ -9213,6 +9492,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "12",
           "Invulnerable": "5+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tyranids-ability-damaged-1-10-wounds-remaining-2",
@@ -9257,11 +9537,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Hierophant"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-hierophant-model-hierophant"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-hierophant-selection-bio-plasma-torrent",

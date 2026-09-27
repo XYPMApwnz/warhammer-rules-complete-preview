@@ -2731,7 +2731,7 @@
         {
           "name": "1-2 Neurogaunt Nodebeasts",
           "min": 1,
-          "max": 1,
+          "max": 2,
           "models": [
             "Neurogaunt Nodebeast"
           ]
@@ -2743,6 +2743,18 @@
           "models": [
             "Neurogaunt"
           ]
+        }
+      ],
+      "rosterCompositionRules": [
+        {
+          "id": "tyranids-neurogaunts-second-nodebeast",
+          "type": "MODEL_QUANTITY_REQUIRES",
+          "targetModelId": "unit-neurogaunts-model-f5803b9ba4",
+          "targetQuantityAtLeast": 2,
+          "requires": {
+            "modelId": "unit-neurogaunts-model-ccb344f98e",
+            "quantityEquals": 20
+          }
         }
       ],
       "paidWargear": [],

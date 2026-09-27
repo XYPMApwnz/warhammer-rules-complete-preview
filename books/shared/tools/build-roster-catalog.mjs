@@ -1,5 +1,5 @@
 import {assignCanonicalChildIdentities,requireCanonicalChildIdentity} from './canonical-join-contract.mjs';
-import {canonicalBaseStatsForUnit} from './canonical-unit-stats.mjs';
+import {canonicalBaseStatsForUnit,canonicalStatProfilesForUnit} from './canonical-unit-stats.mjs';
 import {projectUnitRosterWeaponFacts} from './canonical-weapon-profile-facts.mjs';
 
 const normalize=value=>String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
@@ -109,10 +109,20 @@ export const canonicalRosterModelsFor=(unit,{enforceCompositionConstraints=false
     if(!Number.isInteger(min)||min<0||!Number.isInteger(max)||max<min)throw new Error(`${unit.id}: invalid canonical model-count bounds for ${model.name}`);
     bounds.min=min;bounds.max=max;
   }
-  return {id:model.id,title:model.name||'',aliases:[...new Set([model.name,...values(model.aliases)].filter(Boolean))],...bounds,...(model.legacyIds?.length?{legacyIds:model.legacyIds}:{}),...(keywords===undefined?{}:{intrinsicKeywords:[...keywords]})};
+  return {id:model.id,title:model.name||'',aliases:[...new Set([model.name,...values(model.aliases),...values(model.identityFacts?.sourceModels)].filter(Boolean))],...bounds,...(model.legacyIds?.length?{legacyIds:model.legacyIds}:{}),...(keywords===undefined?{}:{intrinsicKeywords:[...keywords]})};
 });
+const canonicalCompositionRulesFor=(unit,models)=>{
+  const modelIds=new Set(models.map(model=>model.id)),seen=new Set();
+  return values(unit.rosterCompositionRules).map(rule=>{
+    if(!rule?.id||seen.has(rule.id))throw new Error(`${unit.id}: duplicate or missing roster composition rule identity ${rule?.id||'<missing>'}`);seen.add(rule.id);
+    if(rule.type!=='MODEL_QUANTITY_REQUIRES')throw new Error(`${unit.id}: ${rule.id} has unsupported roster composition rule type ${rule.type||'<missing>'}`);
+    if(!modelIds.has(rule.targetModelId)||!modelIds.has(rule.requires?.modelId))throw new Error(`${unit.id}: ${rule.id} references an unknown canonical model identity`);
+    if(!Number.isInteger(rule.targetQuantityAtLeast)||rule.targetQuantityAtLeast<1||!Number.isInteger(rule.requires.quantityEquals)||rule.requires.quantityEquals<0)throw new Error(`${unit.id}: ${rule.id} has invalid model quantities`);
+    return{id:rule.id,type:rule.type,targetModelId:rule.targetModelId,targetQuantityAtLeast:rule.targetQuantityAtLeast,requires:{modelId:rule.requires.modelId,quantityEquals:rule.requires.quantityEquals}};
+  });
+};
 const gameSelectionsFor=(unit,options={})=>{
-  if(unit.gameSelections&&!options.deriveCanonicalFacts)return {...projectUnitRosterWeaponFacts(unit,unit.gameSelections),stats:canonicalBaseStatsForUnit(unit,{effectContracts:options.effectContracts})};
+  if(unit.gameSelections&&!options.deriveCanonicalFacts){const models=canonicalRosterModelsFor(unit,options);return {...projectUnitRosterWeaponFacts(unit,unit.gameSelections),stats:canonicalBaseStatsForUnit(unit,{effectContracts:options.effectContracts}),...(options.projectStatProfiles?{statProfiles:canonicalStatProfilesForUnit(unit)}:{}),models,compositionRules:canonicalCompositionRulesFor(unit,models)};}
   const canonicalWeapons=values(unit.weapons).length?values(unit.weapons):values(unit.blocks).filter(block=>block?.type==='weapon');
   const canonicalWargearAbilities=values(unit.wargearAbilities).length?values(unit.wargearAbilities):values(unit.subsections).filter(section=>normalize(section?.title)==='wargear abilities').flatMap(section=>values(section.blocks).filter(block=>block?.type==='ability'));
   const canonicalAbilities=[...values(unit.abilities),...values(unit.blocks).filter(block=>block?.type==='ability'),...values(unit.subsections).flatMap(section=>values(section?.blocks).filter(block=>block?.type==='ability'))];
@@ -166,8 +176,8 @@ const gameSelectionsFor=(unit,options={})=>{
   const ordinaryAbilityRecords=assignCanonicalChildIdentities(unit,canonicalAbilities.map(ability=>{const id=ability.id||ability.termId;return id&&explicitCounts.get(id)===1?{...ability,id}:ability;}),{kind:'ability',titleOf:ability=>ability.title,semanticOf:abilityIdentityFacts,legacyIdOf:(ability,index)=>ability.termId||`${unit.id}-ability-${slug(ability.title)}${index?'-'+(index+1):''}`}).map(ability=>({...canonicalAbilityRecord(unit,ability,ability.id),...(ability.legacyIds?.length?{legacyIds:ability.legacyIds}:{})}));
   assertMatchingAbilityRecords(unit,ordinaryAbilityRecords,wargearAbilities);
   const wargearAbilityIds=new Set(wargearAbilities.map(ability=>ability.id)),abilities=ordinaryAbilityRecords.filter(ability=>!wargearAbilityIds.has(ability.id));
-  const models=canonicalRosterModelsFor(unit,options),wargearLegality=structuredWargearLegality(unit,models,selections);
-  return {stats:{...stats},abilities,models,selections,weaponFamilies,...(weaponClasses.length?{weaponClasses}:{}),weaponProfiles:profileRecords.map(profile=>({...profile,sourceSelectionIds:selections.filter(selection=>selection.profileIds.includes(profile.id)).map(selection=>selection.id)})),wargearAbilities,...wargearLegality};
+  const models=canonicalRosterModelsFor(unit,options),compositionRules=canonicalCompositionRulesFor(unit,models),wargearLegality=structuredWargearLegality(unit,models,selections);
+  return {stats:{...stats},...(options.projectStatProfiles?{statProfiles:canonicalStatProfilesForUnit(unit)}:{}),abilities,models,compositionRules,selections,weaponFamilies,...(weaponClasses.length?{weaponClasses}:{}),weaponProfiles:profileRecords.map(profile=>({...profile,sourceSelectionIds:selections.filter(selection=>selection.profileIds.includes(profile.id)).map(selection=>selection.id)})),wargearAbilities,...wargearLegality};
 };
 
 const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;
@@ -206,17 +216,17 @@ const validateSelectionProjection=(unitId,gameSelections)=>{
 };
 const canonicalIntrinsicKeywords=unit=>[...new Set(values(unit.intrinsicKeywords).length?unit.intrinsicKeywords:values(unit.keywords).length?unit.keywords:values((unit.ruleFacts||unit.facts||{}).intrinsicKeywords).length?(unit.ruleFacts||unit.facts).intrinsicKeywords:values((unit.ruleFacts||unit.facts||{}).keywords))];
 
-export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false}={}){
+export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false,projectStatProfiles=false}={}){
   const sourceById=new Map(values(units).map(unit=>[unit.id,unit])),seen=new Set();
   if(sourceById.size!==values(units).length)throw new Error(`${label}: duplicate canonical unit identity`);
   const projected=values(catalogUnits).map(item=>{
     const unit=sourceById.get(item?.id);if(!unit)throw new Error(`${label}: unknown canonical unit ${item?.id||'<missing>'}`);
     if(seen.has(item.id))throw new Error(`${label}: duplicate roster unit identity ${item.id}`);seen.add(item.id);
-    const canonicalGame=gameSelectionsFor(unit,{deriveCanonicalFacts:true,enforceCompositionConstraints}),currentGame=item.gameSelections||{};
+    const canonicalGame=gameSelectionsFor(unit,{deriveCanonicalFacts:true,enforceCompositionConstraints,projectStatProfiles}),currentGame=item.gameSelections||{};
     const abilities=exactProjection(currentGame.abilities,canonicalGame.abilities,{unitId:unit.id,kind:'ability'});
     const wargearAbilities=exactProjection(currentGame.wargearAbilities,canonicalGame.wargearAbilities,{unitId:unit.id,kind:'wargear ability',preserve:current=>({requiredSelectionIds:[...values(current.requiredSelectionIds)]})});
     const models=exactProjection(currentGame.models,canonicalGame.models,{unitId:unit.id,kind:'model'});
-    const gameSelections={...currentGame,abilities,wargearAbilities,models,wargearDefaults:structuredClone(canonicalGame.wargearDefaults||[]),wargearOptionContracts:structuredClone(canonicalGame.wargearOptionContracts||[]),wargearSharedCaps:structuredClone(canonicalGame.wargearSharedCaps||[])};validateSelectionProjection(unit.id,gameSelections);
+    const gameSelections={...currentGame,...(projectStatProfiles?{statProfiles:structuredClone(canonicalGame.statProfiles||[])}:{}),abilities,wargearAbilities,models,compositionRules:structuredClone(canonicalGame.compositionRules||[]),wargearDefaults:structuredClone(canonicalGame.wargearDefaults||[]),wargearOptionContracts:structuredClone(canonicalGame.wargearOptionContracts||[]),wargearSharedCaps:structuredClone(canonicalGame.wargearSharedCaps||[])};validateSelectionProjection(unit.id,gameSelections);
     const relations=relationsFor(relationGraphs,unit.id);
     return {...item,intrinsicKeywords:canonicalIntrinsicKeywords(unit),relations,gameSelections};
   });
@@ -224,12 +234,12 @@ export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits
   return projected;
 }
 
-export function assertRosterUnitGameplayProjection(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false}={}){
-  const projected=projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label,enforceCompositionConstraints});
+export function assertRosterUnitGameplayProjection(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false,projectStatProfiles=false}={}){
+  const projected=projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label,enforceCompositionConstraints,projectStatProfiles});
   for(let index=0;index<projected.length;index++){
     const expected=projected[index],actual=catalogUnits[index],partitions=[
       ['intrinsicKeywords',expected.intrinsicKeywords,actual?.intrinsicKeywords],['relations',expected.relations,actual?.relations],
-      ['abilities',expected.gameSelections.abilities,actual?.gameSelections?.abilities],['wargearAbilities',expected.gameSelections.wargearAbilities,actual?.gameSelections?.wargearAbilities],['models',expected.gameSelections.models,actual?.gameSelections?.models],['wargearDefaults',expected.gameSelections.wargearDefaults||[],actual?.gameSelections?.wargearDefaults||[]],['wargearOptionContracts',expected.gameSelections.wargearOptionContracts||[],actual?.gameSelections?.wargearOptionContracts||[]],['wargearSharedCaps',expected.gameSelections.wargearSharedCaps||[],actual?.gameSelections?.wargearSharedCaps||[]]
+      ['statProfiles',expected.gameSelections.statProfiles||[],actual?.gameSelections?.statProfiles||[]],['abilities',expected.gameSelections.abilities,actual?.gameSelections?.abilities],['wargearAbilities',expected.gameSelections.wargearAbilities,actual?.gameSelections?.wargearAbilities],['models',expected.gameSelections.models,actual?.gameSelections?.models],['compositionRules',expected.gameSelections.compositionRules||[],actual?.gameSelections?.compositionRules||[]],['wargearDefaults',expected.gameSelections.wargearDefaults||[],actual?.gameSelections?.wargearDefaults||[]],['wargearOptionContracts',expected.gameSelections.wargearOptionContracts||[],actual?.gameSelections?.wargearOptionContracts||[]],['wargearSharedCaps',expected.gameSelections.wargearSharedCaps||[],actual?.gameSelections?.wargearSharedCaps||[]]
     ];
     for(const [partition,left,right] of partitions)if(!sameFact(left,right))throw new Error(`${label}: ${expected.id} has conflicting canonical ${partition} facts`);
   }
@@ -322,9 +332,11 @@ export function createRosterCatalog({config,units=[],detachments=[],relationGrap
     for(const [legacyKey,item] of legacyEntries){if(enhancements.some(record=>record.legacyKey===legacyKey)||rosterCatalog.dedupeLegacyEnhancementsByTitle&&enhancements.some(record=>normalize(record.title)===normalize(item.title)))continue;enhancements.push({...item,id:item.ruleId||item.id||legacyKey,legacyKey,sourceBookId:item.sourceBookId||config.id});}
   }
   const projectedEnhancements=Array.isArray(enhancementContracts)?projectRosterEnhancementFacts(enhancementContracts,enhancements,{label:`${config.id} roster Enhancement projection`}):enhancements;
-  return {schema:'wh40k-army-roster-catalog/v1',book:{id:config.id,title:config.title||config.bookTitle||config.id,factionKeyword:config.factionKeyword||null,parentBookId:dependencies[0]?.bookId||dependencies[0]?.id||null,dependencies:dependencies.map(item=>({bookId:item.bookId||item.id,title:item.title||null}))},compositionConstraints:rosterCatalog.enforceCompositionConstraints===true,units:catalogUnits,detachments:catalogDetachments,detachmentRules,enhancements:projectedEnhancements,effectContracts};
+  return {schema:'wh40k-army-roster-catalog/v1',book:{id:config.id,title:config.title||config.bookTitle||config.id,factionKeyword:config.factionKeyword||null,parentBookId:dependencies[0]?.bookId||dependencies[0]?.id||null,dependencies:dependencies.map(item=>({bookId:item.bookId||item.id,title:item.title||null}))},compositionConstraints:rosterCatalog.enforceCompositionConstraints===true,statProfiles:rosterCatalog.projectStatProfiles===true,units:catalogUnits,detachments:catalogDetachments,detachmentRules,enhancements:projectedEnhancements,effectContracts};
 }
 
 export function serializeRosterCatalog(catalog,legacyEnhancements={}){
   return `window.WH_BOOK_ROSTER_CATALOG=Object.freeze(${JSON.stringify(catalog,null,2)});\nwindow.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze(${JSON.stringify(legacyEnhancements||{},null,2)});\n`;
 }
+
+\n

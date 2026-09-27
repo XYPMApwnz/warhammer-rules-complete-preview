@@ -55,7 +55,9 @@
   "rosterCatalog": {
     "inferCanonicalDetachmentRuleIds": true,
     "dedupeLegacyEnhancementsByTitle": true,
-    "preserveStructuredFields": true
+    "preserveStructuredFields": true,
+    "enforceCompositionConstraints": true,
+    "projectStatProfiles": true
   },
   "compatibleRulesMatrix": true,
   "legacyRelatedRuleAttributes": false,

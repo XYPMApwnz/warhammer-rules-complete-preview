@@ -218,9 +218,9 @@ function validateRosterProjection(model,unitIds,detachmentIds,enhancementIds){
   if(catalog==null)return;
   if(!record(catalog)||catalog.book?.id!==model.book.id)throw new Error('roster catalog has a conflicting book identity');
   sameIds(new Set(list(catalog.units,'rosterCatalog.units').map(item=>item.id)),unitIds,'roster unit');
-  assertRosterBaseStatProjection(model.units,catalog.units,{label:`${model.book.id} effective roster base-stat projection`,effectContracts:model.effectContracts});
+  assertRosterBaseStatProjection(model.units,catalog.units,{label:`${model.book.id} effective roster base-stat projection`,effectContracts:model.effectContracts,projectStatProfiles:catalog.statProfiles===true});
   assertRosterWeaponFactProjection(model.units,catalog.units,{label:`${model.book.id} effective roster weapon-fact projection`});
-  assertRosterUnitGameplayProjection(model.units,model.relationGraphs,catalog.units,{label:`${model.book.id} effective roster unit-gameplay projection`,enforceCompositionConstraints:catalog.compositionConstraints===true});
+  assertRosterUnitGameplayProjection(model.units,model.relationGraphs,catalog.units,{label:`${model.book.id} effective roster unit-gameplay projection`,enforceCompositionConstraints:catalog.compositionConstraints===true,projectStatProfiles:catalog.statProfiles===true});
   sameIds(new Set(list(catalog.detachments,'rosterCatalog.detachments').map(item=>item.id)),detachmentIds,'roster Detachment');
   assertRosterDetachmentRuleProjection(model.detachments,list(catalog.detachmentRules,'rosterCatalog.detachmentRules'),{bookId:model.book.id,canonicalRules:model.detachmentRules,label:`${model.book.id} effective roster Detachment-rule projection`});
   const canonicalByCandidate=new Map();
@@ -306,9 +306,9 @@ export function validateEffectiveBookModel(model){
 export function createEffectiveBookModel(input){
   const model=structuredClone(input);
   if(model.rosterCatalog?.units){
-    let units=projectRosterBaseStats(model.units,model.rosterCatalog.units,{label:`${model.book?.id||'book'} effective roster base-stat projection`,effectContracts:model.effectContracts});
+    let units=projectRosterBaseStats(model.units,model.rosterCatalog.units,{label:`${model.book?.id||'book'} effective roster base-stat projection`,effectContracts:model.effectContracts,projectStatProfiles:model.rosterCatalog.statProfiles===true});
     units=projectRosterWeaponFacts(model.units,units,{label:`${model.book?.id||'book'} effective roster weapon-fact projection`});
-    units=projectRosterUnitGameplayFacts(model.units,model.relationGraphs,units,{label:`${model.book?.id||'book'} effective roster unit-gameplay projection`,enforceCompositionConstraints:model.rosterCatalog.compositionConstraints===true});
+    units=projectRosterUnitGameplayFacts(model.units,model.relationGraphs,units,{label:`${model.book?.id||'book'} effective roster unit-gameplay projection`,enforceCompositionConstraints:model.rosterCatalog.compositionConstraints===true,projectStatProfiles:model.rosterCatalog.statProfiles===true});
     const detachmentRules=projectRosterDetachmentRuleFacts(model.detachments,model.rosterCatalog.detachmentRules,{bookId:model.book?.id,canonicalRules:model.detachmentRules,label:`${model.book?.id||'book'} effective roster Detachment-rule projection`});
     const enhancements=projectRosterEnhancementFacts(model.enhancements,model.rosterCatalog.enhancements,{label:`${model.book?.id||'book'} effective roster Enhancement projection`});
     model.rosterCatalog={...model.rosterCatalog,units,detachmentRules,enhancements};
