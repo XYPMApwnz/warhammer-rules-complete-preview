@@ -94,12 +94,13 @@
     const name=record(value)?own(value,'name'):value;
     return typeof name==='string'?name.replace(/\s+[-–—]\s+\d+\s*pts?\s*$/i,'').trim():'';
   };
+  const list=value=>Array.isArray(value)?value:[];
   const keywords=unit=>new Set((unit?.keywords||[]).map(keyword));
   const grantedKeywords=(faction,detachment,unit)=>faction==='death guard'&&normalize(detachment)==='contagion engines'&&['unit-foetid-bloat-drone','unit-foetid-bloat-drone-with-heavy-blight-launcher','unit-helbrute','unit-myphitic-blight-hauler'].includes(unit?.unitId)?['CONTAGION ENGINE']:[];
-  const ownerMatches=(enhancement,unit,faction)=>{
+  const ownerMatches=(enhancement,unit,faction,additionalKeywords=[])=>{
     if(!enhancement.owner||!unit)return false;
     const selector=enhancement.owner.selector||{},unitKeywords=keywords(unit),abilities=new Set([...(unit.abilities||[]),...(unit.termIds||[])].map(normalize));
-    grantedKeywords(faction,enhancement.detachment,unit).forEach(keyword=>unitKeywords.add(keyword));
+    [...grantedKeywords(faction,enhancement.detachment,unit),...additionalKeywords].forEach(value=>unitKeywords.add(keyword(value)));
     const matches=selector=>{
       if(selector.alternatives?.length)return selector.alternatives.some(matches);
       if((selector.unitIds||[]).length&&!selector.unitIds.includes(unit.unitId))return false;
@@ -112,7 +113,7 @@
     return matches(selector);
   };
 
-function assessEnhancements(roster, faction, catalog=catalogFor(faction)) {
+function assessEnhancements(roster, faction, catalog=catalogFor(faction), options={}) {
   const enhancements = [], enhancementWarnings = [], unresolved = [];
   const assignments = (roster.enhancements || []).map((input, inputIndex) => ({
     inputIndex, input, catalog: null, assessment: null,
@@ -138,7 +139,7 @@ function assessEnhancements(roster, faction, catalog=catalogFor(faction)) {
     if (raw.ownerStatus !== 'resolved' || !rosterUnit || !owner) { ownerEligibility = 'invalid'; ownerMessage = 'Invalid Enhancement owner'; }
     else if ((enhancement.detachmentId||enhancement.canonicalDetachmentId||enhancement.detachment) && !selectedDetachments.has(normalize(enhancement.detachmentId||enhancement.canonicalDetachmentId||enhancement.detachment))) { ownerEligibility = 'invalid'; ownerMessage = 'Enhancement is not available in the selected Detachment'; }
     else if (!enhancement.owner?.selector) { ownerEligibility = 'unresolved'; ownerMessage = 'Enhancement owner contract is unavailable'; }
-    else if (!ownerMatches(enhancement, owner, faction)) { ownerEligibility = 'invalid'; ownerMessage = keywords(owner).has('EPIC HERO') ? 'Epic Hero cannot receive this Enhancement' : 'Invalid Enhancement owner'; }
+    else if (!ownerMatches(enhancement, owner, faction, list(options.keywordOverrides?.[rosterUnit.id]))) { ownerEligibility = 'invalid'; ownerMessage = keywords(owner).has('EPIC HERO') ? 'Epic Hero cannot receive this Enhancement' : 'Invalid Enhancement owner'; }
     const result = {...raw, id: enhancement.id, name: enhancement.title, currentCost: Number(enhancement.value), text: enhancement.text || '', effect: enhancement.effect || '', tags: enhancement.tags || [], assignment: enhancement.assignment || null, ownerEligibility, ownerMessage, sourceCoverage, sourceMessage};
     assignment.catalog = enhancement;
     assignment.assessment = result;

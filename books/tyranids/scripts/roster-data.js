@@ -10836,7 +10836,20 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "SUBTERRANEAN ASSAULT",
       "sourceBookId": "tyranids",
       "chapterRestriction": null,
-      "keywordGrants": [],
+      "keywordGrants": [
+        {
+          "sourceRuleId": "tyranids-detachment-rule-surprise-assault",
+          "subject": "model",
+          "selector": {
+            "unitIds": [
+              "unit-trygon"
+            ]
+          },
+          "keyword": "CHARACTER",
+          "selectionRequired": true,
+          "maxSelected": 2
+        }
+      ],
       "detachmentRuleIds": [
         "tyranids-detachment-rule-surprise-assault"
       ]
