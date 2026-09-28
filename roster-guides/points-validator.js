@@ -218,7 +218,7 @@ function assessEnhancements(roster, faction, catalog=catalogFor(faction), option
     for(const row of assessment.assignments)if(row.catalog){const nextTotal=safeAdd(total,row.catalog.value);if(nextTotal===null){unresolved.push(`Enhancement points: ${row.catalog.title}`);break;}total=nextTotal;}
     const enhancementChoices=assessment.enhancementChoices;
     const declared=safeInteger(roster.declared)?roster.declared:0,unitLineTotal=safeInteger(roster.unitLineTotal??roster.calculated)?roster.unitLineTotal??roster.calculated:0;
-    return{total,unresolved,enhancements,enhancementWarnings,enhancementChoices,enhancementAssignments:enhancements.length,detachmentPoints,detachmentPointLimit,detachmentWarnings,difference:total-declared,unitLineTotal,exportMatches:declared===unitLineTotal};
+    return{total,unresolved,enhancements,enhancementWarnings,enhancementChoices,enhancementAssignments:enhancements.length,detachmentPoints,detachmentPointLimit,detachmentWarnings,difference:total-declared,unitLineTotal,exportMatches:declared>0&&!unresolved.length&&declared===total};
   }
   root.WHRosterPoints=Object.freeze({check,normalize,assessEnhancements,tierContract});
 }(typeof window==='undefined'?globalThis:window));

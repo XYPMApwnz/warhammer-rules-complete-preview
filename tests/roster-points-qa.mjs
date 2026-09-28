@@ -120,7 +120,7 @@ for(const [declared,name,lordPoints,effect,currentTotal] of [
   const result=WHRosterPoints.check(roster,'death guard');
   assert.equal(result.total,currentTotal);
   assert.equal(result.difference,currentTotal-declared);
-  assert.equal(result.exportMatches,true);
+  assert.equal(result.exportMatches,currentTotal===declared,'authoritative reconciliation must follow current total, not exported unit lines');
   assert.equal(result.unresolved.length,0);
   assert.equal(result.enhancements.find(item=>item.name===name).effect,effect);
 }

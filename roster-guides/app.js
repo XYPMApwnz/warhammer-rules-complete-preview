@@ -151,9 +151,9 @@ function renderRoster(roster,record){
   const currentPointsLabel=pointsLabel(roster.faction);
   const complete=check&&check.total!==null&&!check.unresolved.length;
   const matches=complete&&check.difference===0;
-  const exportStatus=roster.exportMatches
-    ?'<div class="status">✓ Export unit lines match the declared total.</div>'
-    :`<div class="status warn">! Export arithmetic warning: unit lines total ${roster.unitLineTotal} pts, but the export declares ${roster.declared} pts.</div>`;
+  const exportStatus=check?.exportMatches
+    ?'<div class="status">✓ Declared total matches the current authoritative roster total.</div>'
+    :`<div class="status warn">! Roster total warning: the export declares ${roster.declared} pts, but the current authoritative total is ${check?.total??'—'} pts.</div>`;
   const pointsStatus=!check||check.total===null
     ?`<div class="status warn">! ${currentPointsLabel} data is unavailable. The roster was still saved.</div>`
     :check.unresolved.length
