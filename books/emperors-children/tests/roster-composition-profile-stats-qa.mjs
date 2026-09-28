@@ -48,7 +48,7 @@ assert.equal(profileUnitIds.flatMap(unitId=>expectedProfiles(unitId).slice(1)).r
 
 const rawUnit=(unit,models,instanceId='parsed-unit-1')=>({
   id:instanceId,canonicalUnitId:unit.id,name:unit.title,quantity:models.reduce((sum,item)=>sum+item.quantity,0),points:0,wargear:'',
-  models:models.map(item=>({quantity:item.quantity,name:item.name,wargear:'',loadouts:[]})),warlord:null
+  models:models.map(item=>({quantity:item.quantity,name:item.name,wargear:'',loadouts:[]})),warlord:unit.id==='unit-fulgrim'
 });
 const rosterFor=units=>({faction:"Emperor's Children",declared:0,calculated:0,unitLineTotal:0,detachments:[],enhancements:[],warnings:[],units});
 const project=units=>api.project({catalog,roster:rosterFor(units),record:{id:'ec-roster-composition-profile-qa',attachments:{}},provider:{gameEffects:()=>[]}}).game;

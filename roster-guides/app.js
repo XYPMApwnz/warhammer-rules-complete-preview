@@ -89,13 +89,13 @@ function saveRoster(roster,sourceText){
 
 function unitKey(value){return String(value||'').replace(/[^a-z0-9]+/gi,' ').trim().toLowerCase();}
 function attachmentUnits(roster){const catalog=window.WH_POINTS_CATALOG?.[knownFaction(roster?.faction)]?.units||{},byId=new Map(Object.values(catalog).map(unit=>[unit.unitId||unit.id,unit]));return (roster?.units||[]).map(unit=>{const canonicalId=unit?.canonicalUnitId||unit?.canonicalDatasheetId;return{instanceId:unit.id,canonicalUnit:canonicalId?byId.get(canonicalId):catalog[unitKey(unit.name)],rosterUnit:unit};}).filter(item=>item.instanceId&&item.canonicalUnit);}
-function attachmentState(roster,record){const api=window.WHArmyRosterContext?.attachments,units=attachmentUnits(roster);if(!api)return{api:null,units,attachments:{},rejected:[]};return{api,units,...api.sanitize({units,attachments:record?.attachments||{}})};}
+function attachmentState(roster,record){const api=window.WHArmyRosterContext?.attachments,units=attachmentUnits(roster),enhancementCatalog=window.WH_POINTS_CATALOG?.[knownFaction(roster?.faction)],enhancements=roster?.enhancements||[];if(!api)return{api:null,units,attachments:{},rejected:[],enhancementCatalog,enhancements};return{api,units,enhancementCatalog,enhancements,...api.sanitize({units,attachments:record?.attachments||{},enhancementCatalog,enhancements})};}
 function validatedAttachmentRecord(record,roster){const state=attachmentState(roster,record);return state.api?{...record,attachments:state.attachments}:record;}
 function instanceLabel(roster,unit){const copies=roster.units.filter(item=>unitKey(item.name)===unitKey(unit.name));return copies.length>1?`${unit.name} #${copies.indexOf(unit)+1}`:unit.name;}
 function attachmentOption(value,label,selected=false){const option=document.createElement('option');option.value=value;option.textContent=label;option.defaultSelected=selected;option.selected=selected;return option;}
 function attachmentEditor(roster,record,bodyguard,model=attachmentState(roster,record)){
   if(!model.api||!model.units.some(item=>item.instanceId===bodyguard.id))return null;
-  const current=(model.attachments[bodyguard.id]||[]).map(id=>roster.units.find(unit=>unit.id===id)).filter(Boolean),candidates=model.api.candidates({units:model.units,attachments:model.attachments,bodyguardInstanceId:bodyguard.id}).map(item=>roster.units.find(unit=>unit.id===item.instanceId)).filter(Boolean);
+  const current=(model.attachments[bodyguard.id]||[]).map(id=>roster.units.find(unit=>unit.id===id)).filter(Boolean),candidates=model.api.candidates({units:model.units,attachments:model.attachments,bodyguardInstanceId:bodyguard.id,enhancementCatalog:model.enhancementCatalog,enhancements:model.enhancements}).map(item=>roster.units.find(unit=>unit.id===item.instanceId)).filter(Boolean);
   if(!current.length&&!candidates.length)return null;
   const fragment=document.createDocumentFragment();
   const control=caption=>{const label=document.createElement('label'),small=document.createElement('small'),select=document.createElement('select');label.className='unit-attachment';small.textContent=caption;select.dataset.rosterId=record.id;select.dataset.attachmentBodyguard=bodyguard.id;label.append(small,select);fragment.append(label);return{label,select};};
@@ -106,7 +106,7 @@ function attachmentEditor(roster,record,bodyguard,model=attachmentState(roster,r
 function updateAttachment(recordId,bodyguardId,action){
   const records=getSavedRosters(),record=records.find(item=>item?.id===recordId),roster=freshRoster(record);
   if(!record||!roster||!action)return;
-  const model=attachmentState(roster,record);if(!model.api)return;const result=action.startsWith('remove:')?model.api.detach({units:model.units,attachments:model.attachments,bodyguardInstanceId:bodyguardId,leaderInstanceId:action.slice(7)}):model.api.attach({units:model.units,attachments:model.attachments,bodyguardInstanceId:bodyguardId,leaderInstanceId:action});if(!result.changed&&JSON.stringify(result.attachments)===JSON.stringify(record.attachments||{}))return;
+  const model=attachmentState(roster,record);if(!model.api)return;const input={units:model.units,attachments:model.attachments,bodyguardInstanceId:bodyguardId,enhancementCatalog:model.enhancementCatalog,enhancements:model.enhancements},result=action.startsWith('remove:')?model.api.detach({...input,leaderInstanceId:action.slice(7)}):model.api.attach({...input,leaderInstanceId:action});if(!result.changed&&JSON.stringify(result.attachments)===JSON.stringify(record.attachments||{}))return;
   const updated={...record,attachments:result.attachments,updatedAt:new Date().toISOString()};
   putSavedRosters(records.map(item=>item?.id===recordId?updated:item));renderSavedRosters();renderRoster(roster,updated);
 }

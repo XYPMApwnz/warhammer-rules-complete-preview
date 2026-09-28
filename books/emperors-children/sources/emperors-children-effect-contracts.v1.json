@@ -1711,5 +1711,76 @@
       },
       "confidence": "SOURCE_LIMITED"
     }
-  ]
+  ],
+  "rosterLegality": {
+    "schema": "wh40k-roster-legality-contracts/v1",
+    "bookId": "emperors-children",
+    "enhancementQualifiers": [
+      {
+        "id": "exalted-patron-leading-flawless-blades",
+        "sourceRuleId": "enhancement-exalted-patron",
+        "enhancementId": "enhancement-exalted-patron",
+        "qualifier": {
+          "kind": "LEADER",
+          "values": [
+            "FLAWLESS BLADES"
+          ]
+        },
+        "targetUnitIds": [
+          "unit-flawless-blades"
+        ]
+      }
+    ],
+    "mandatoryWarlords": [
+      {
+        "id": "fulgrim-supreme-commander",
+        "sourceRuleId": "emperors-children-ability-supreme-commander",
+        "unitIds": [
+          "unit-fulgrim"
+        ]
+      }
+    ],
+    "pointCaps": [
+      {
+        "id": "daemonic-empowerment-legions-of-excess-cap",
+        "sourceRuleId": "emperors-children-detachment-rule-daemonic-empowerment",
+        "detachmentIds": [
+          "carnival-of-excess"
+        ],
+        "selector": {
+          "allKeywords": [
+            "LEGIONS OF EXCESS"
+          ]
+        },
+        "limits": [
+          {
+            "pointsLimit": 1000,
+            "maxPoints": 500
+          },
+          {
+            "pointsLimit": 2000,
+            "maxPoints": 1000
+          },
+          {
+            "pointsLimit": 3000,
+            "maxPoints": 1500
+          }
+        ]
+      }
+    ],
+    "warlordProhibitions": [
+      {
+        "id": "daemonic-empowerment-legions-of-excess-warlord",
+        "sourceRuleId": "emperors-children-detachment-rule-daemonic-empowerment",
+        "detachmentIds": [
+          "carnival-of-excess"
+        ],
+        "selector": {
+          "allKeywords": [
+            "LEGIONS OF EXCESS"
+          ]
+        }
+      }
+    ]
+  }
 }

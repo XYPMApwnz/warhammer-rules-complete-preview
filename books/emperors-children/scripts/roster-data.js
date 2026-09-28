@@ -8952,6 +8952,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           ],
           "noneKeywords": [
             "EPIC HERO"
+          ],
+          "leadingUnitIds": [
+            "unit-flawless-blades"
           ]
         }
       },
@@ -8975,6 +8978,44 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "detachmentId": "court-of-the-phoenician",
       "sourceBookId": "emperors-children",
       "legacyKey": "enhancement-exalted-patron",
+      "mfmQualifiers": [
+        {
+          "id": "mfm-qualifier-2c135ed536a65870",
+          "label": "LEADER: FLAWLESS BLADES",
+          "recordType": "MFM_QUALIFIER",
+          "aliases": [],
+          "references": [
+            "mfm-enhancement-c96e91c539b4419f"
+          ],
+          "provenance": {
+            "sourceId": "emperors-children-mfm-v1.4",
+            "sourceVersion": "v1.4",
+            "currentness": "CURRENT",
+            "currentnessCutoff": "2026-09-22",
+            "sourceCaptureSha256": "C25ED3C996914E2AB9FCDC5A35A01BF89149A8AA4E1F39A2E42CA48AA2103D8B",
+            "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+            "sourceLocator": {
+              "partition": "detachments.enhancements.qualifiers",
+              "factionId": "emperors-children",
+              "detachmentSourceTitle": "COURT OF THE PHOENICIAN",
+              "sourceTitle": "Exalted Patron",
+              "kind": "LEADER",
+              "values": [
+                "FLAWLESS BLADES"
+              ]
+            }
+          },
+          "factionId": "emperors-children",
+          "ownerKind": "ENHANCEMENT",
+          "ownerId": "mfm-enhancement-c96e91c539b4419f",
+          "armyBookId": "emperors-children",
+          "armyOwnerId": "enhancement-exalted-patron",
+          "kind": "LEADER",
+          "values": [
+            "FLAWLESS BLADES"
+          ]
+        }
+      ],
       "canonicalEnhancementId": "enhancement-exalted-patron",
       "canonicalDetachmentId": "court-of-the-phoenician"
     },
@@ -10898,7 +10939,78 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "confidence": "SOURCE_LIMITED"
     }
-  ]
+  ],
+  "rosterLegality": {
+    "schema": "wh40k-roster-legality-contracts/v1",
+    "bookId": "emperors-children",
+    "enhancementQualifiers": [
+      {
+        "id": "exalted-patron-leading-flawless-blades",
+        "sourceRuleId": "enhancement-exalted-patron",
+        "enhancementId": "enhancement-exalted-patron",
+        "qualifier": {
+          "kind": "LEADER",
+          "values": [
+            "FLAWLESS BLADES"
+          ]
+        },
+        "targetUnitIds": [
+          "unit-flawless-blades"
+        ]
+      }
+    ],
+    "mandatoryWarlords": [
+      {
+        "id": "fulgrim-supreme-commander",
+        "sourceRuleId": "emperors-children-ability-supreme-commander",
+        "unitIds": [
+          "unit-fulgrim"
+        ]
+      }
+    ],
+    "pointCaps": [
+      {
+        "id": "daemonic-empowerment-legions-of-excess-cap",
+        "sourceRuleId": "emperors-children-detachment-rule-daemonic-empowerment",
+        "detachmentIds": [
+          "carnival-of-excess"
+        ],
+        "selector": {
+          "allKeywords": [
+            "LEGIONS OF EXCESS"
+          ]
+        },
+        "limits": [
+          {
+            "pointsLimit": 1000,
+            "maxPoints": 500
+          },
+          {
+            "pointsLimit": 2000,
+            "maxPoints": 1000
+          },
+          {
+            "pointsLimit": 3000,
+            "maxPoints": 1500
+          }
+        ]
+      }
+    ],
+    "warlordProhibitions": [
+      {
+        "id": "daemonic-empowerment-legions-of-excess-warlord",
+        "sourceRuleId": "emperors-children-detachment-rule-daemonic-empowerment",
+        "detachmentIds": [
+          "carnival-of-excess"
+        ],
+        "selector": {
+          "allKeywords": [
+            "LEGIONS OF EXCESS"
+          ]
+        }
+      }
+    ]
+  }
 });
 window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   "empyric suffusion": {
