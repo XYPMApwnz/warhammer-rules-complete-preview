@@ -7,6 +7,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     "parentBookId": null,
     "dependencies": []
   },
+  "compositionConstraints": false,
+  "statProfiles": false,
+  "preserveMultipartStatProfiles": false,
   "units": [
     {
       "id": "unit-daemonettes",
@@ -14,14 +17,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Infantry",
-        "Battleline",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Daemonettes",
-        "Legions of Excess",
-        "Summoned"
+        "INFANTRY",
+        "BATTLELINE",
+        "CHAOS",
+        "DAEMON",
+        "SUMMONED",
+        "SLAANESH",
+        "DAEMONETTES",
+        "LEGIONS OF EXCESS"
       ],
       "relations": {
         "canLead": [],
@@ -52,7 +55,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-horrifying-beauty",
             "sectionId": "emperors-children-ability-horrifying-beauty",
             "title": "Horrifying Beauty",
-            "text": "At the start of the Fight phase, each enemy unit in Engagement Range of one or more units from your army with this ability must take a Battle-shock test, subtracting 1 from that test if that enemy unit is Below Half-strength.",
+            "text": "At the start of the Fight phase, each enemy unit within Engagement Range of one or more units from your army with this ability must take a Battle-shock test, subtracting 1 from the result if that enemy unit is Below Half-strength.",
             "sourceUnitId": "unit-daemonettes"
           },
           {
@@ -67,6 +70,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sectionId": "core-fights-first",
             "title": "Fights First",
             "text": "While every model in a unit has this ability, that unit is a Fights First unit. \nSee the Resolve Fights First Combats step in the Fight phase (12.04).",
+            "sourceUnitId": "unit-daemonettes"
+          },
+          {
+            "id": "emperors-children-ability-pact-of-excess",
+            "sectionId": "emperors-children-ability-pact-of-excess",
+            "title": "Pact of Excess",
+            "text": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction.",
             "sourceUnitId": "unit-daemonettes"
           }
         ],
@@ -92,6 +102,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-daemonettes-selection-slashing-claws",
@@ -126,7 +137,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "kind": "wargear",
             "profileIds": [],
             "wargearAbilityIds": [
-              "unit-daemonettes-wargear-ability-afa43288c6"
+              "unit-daemonettes-wargear-ability-6721ceb7d6"
             ]
           }
         ],
@@ -156,7 +167,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-daemonettes-wargear-ability-b3dad0463e",
             "sectionId": "unit-daemonettes-wargear-ability-b3dad0463e",
             "title": "Daemonic Icon",
-            "text": "Models in the bearer's unit have a Leadership characteristic of 6+.",
+            "text": "Models in the bearer’s unit have a Leadership characteristic of 6+.",
             "sourceUnitId": "unit-daemonettes",
             "legacyIds": [
               "unit-daemonettes-wargear-ability-daemonic-icon"
@@ -166,10 +177,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-daemonettes-wargear-ability-afa43288c6",
-            "sectionId": "unit-daemonettes-wargear-ability-afa43288c6",
+            "id": "unit-daemonettes-wargear-ability-6721ceb7d6",
+            "sectionId": "unit-daemonettes-wargear-ability-6721ceb7d6",
             "title": "Instrument of Chaos",
-            "text": "Add 1 to Charge rolls made for the bearer's unit.",
+            "text": "Add 1 to Charge rolls made for the bearer’s unit.",
             "sourceUnitId": "unit-daemonettes",
             "legacyIds": [
               "unit-daemonettes-wargear-ability-instrument-of-chaos-2"
@@ -178,7 +189,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-daemonettes-selection-instrument-of-chaos"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -187,13 +201,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Infantry",
-        "Battleline",
-        "Grenades",
-        "Chaos",
-        "Slaanesh",
-        "Infractors",
-        "Emperor's Children"
+        "INFANTRY",
+        "BATTLELINE",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "INFRACTORS",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -275,13 +289,15 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-infractors-model-273cdc19c8",
             "title": "Infractors",
             "aliases": [
-              "Infractors"
+              "Infractors",
+              "Infractor"
             ],
             "legacyIds": [
               "unit-infractors-model-infractors-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-infractors-selection-bolt-pistol",
@@ -327,7 +343,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-infractors-profile-c2c5795df5"
+              "unit-infractors-profile-0519034968"
             ],
             "wargearAbilityIds": []
           },
@@ -339,7 +355,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-infractors-profile-9f1035c6f5"
+              "unit-infractors-profile-ca0e686e44"
             ],
             "wargearAbilityIds": []
           },
@@ -378,7 +394,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "kind": "wargear",
             "profileIds": [],
             "wargearAbilityIds": [
-              "unit-infractors-wargear-ability-f8902b8511"
+              "unit-infractors-wargear-ability-464d30bdad"
             ]
           }
         ],
@@ -454,7 +470,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-infractors-profile-c2c5795df5",
+            "id": "unit-infractors-profile-0519034968",
             "legacyIds": [
               "unit-infractors-profile-rapture-lash-melee-4"
             ],
@@ -466,13 +482,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "s": "4",
             "ap": "-1",
             "d": "1",
-            "abilities": "",
+            "abilities": "Precision",
             "sourceSelectionIds": [
               "unit-infractors-selection-rapture-lash"
             ]
           },
           {
-            "id": "unit-infractors-profile-9f1035c6f5",
+            "id": "unit-infractors-profile-ca0e686e44",
             "legacyIds": [
               "unit-infractors-profile-power-sword-melee-5"
             ],
@@ -484,7 +500,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "s": "5",
             "ap": "-2",
             "d": "1",
-            "abilities": "",
+            "abilities": "Precision",
             "sourceSelectionIds": [
               "unit-infractors-selection-power-sword"
             ]
@@ -510,10 +526,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         ],
         "wargearAbilities": [
           {
-            "id": "unit-infractors-wargear-ability-f8902b8511",
-            "sectionId": "unit-infractors-wargear-ability-f8902b8511",
+            "id": "unit-infractors-wargear-ability-464d30bdad",
+            "sectionId": "unit-infractors-wargear-ability-464d30bdad",
             "title": "Icon of Excess",
-            "text": "At the end of your Shooting phase or the Fight phase, if the bearer's unit destroyed one or more enemy units this phase, the bearer's unit takes a Leadership test. If that test is passed, you gain 1CP.",
+            "text": "At the end of your Shooting phase or the Fight phase, if the bearer’s unit destroyed one or more enemy units that phase, the bearer’s unit takes a Leadership test. If that test is passed, you gain 1CP.",
             "sourceUnitId": "unit-infractors",
             "legacyIds": [
               "unit-infractors-wargear-ability-icon-of-excess"
@@ -522,7 +538,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-infractors-selection-icon-of-excess"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -531,13 +550,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Infantry",
-        "Battleline",
-        "Grenades",
-        "Chaos",
-        "Slaanesh",
-        "Tormentors",
-        "Emperor's Children"
+        "INFANTRY",
+        "BATTLELINE",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "TORMENTORS",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -586,7 +605,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-objective-defiled",
             "sectionId": "emperors-children-ability-objective-defiled",
             "title": "Objective Defiled",
-            "text": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent's Level of Control over that objective marker is greater than yours at the end of a phase.",
+            "text": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent’s Level of Control over that objective marker is greater than yours at the end of a phase.",
             "sourceUnitId": "unit-tormentors"
           },
           {
@@ -619,13 +638,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-tormentors-model-205e960003",
             "title": "Tormentors",
             "aliases": [
-              "Tormentors"
+              "Tormentors",
+              "Tormentor",
+              "Tormentor w/ plasma gun",
+              "Tormentor w/ meltagun"
             ],
             "legacyIds": [
               "unit-tormentors-model-tormentors-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tormentors-selection-bolt-pistol",
@@ -784,7 +807,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "kind": "wargear",
             "profileIds": [],
             "wargearAbilityIds": [
-              "unit-tormentors-wargear-ability-f8902b8511"
+              "unit-tormentors-wargear-ability-464d30bdad"
             ]
           }
         ],
@@ -1002,10 +1025,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         ],
         "wargearAbilities": [
           {
-            "id": "unit-tormentors-wargear-ability-f8902b8511",
-            "sectionId": "unit-tormentors-wargear-ability-f8902b8511",
+            "id": "unit-tormentors-wargear-ability-464d30bdad",
+            "sectionId": "unit-tormentors-wargear-ability-464d30bdad",
             "title": "Icon of Excess",
-            "text": "At the end of your Shooting phase or the Fight phase, if the bearer's unit destroyed one or more enemy units this phase, the bearer's unit takes a Leadership test. If that test is passed, you gain 1CP.",
+            "text": "At the end of your Shooting phase or the Fight phase, if the bearer’s unit destroyed one or more enemy units that phase, the bearer’s unit takes a Leadership test. If that test is passed, you gain 1CP.",
             "sourceUnitId": "unit-tormentors",
             "legacyIds": [
               "unit-tormentors-wargear-ability-icon-of-excess"
@@ -1014,7 +1037,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-tormentors-selection-icon-of-excess"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1023,13 +1049,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Emperor's Children",
-        "Monster",
-        "Character",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Daemon Prince"
+        "MONSTER",
+        "CHARACTER",
+        "CHAOS",
+        "DAEMON",
+        "SLAANESH",
+        "DAEMON PRINCE",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -1060,14 +1086,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-lord-of-excess",
             "sectionId": "emperors-children-ability-lord-of-excess",
             "title": "Lord of Excess",
-            "text": "While this model is within 3\" of one or more friendly Slaanesh Infantry, this model has the Lone Operative ability.",
+            "text": "While this model is within 3\" of one or more friendly SLAANESH INFANTRY units, this model has the Lone Operative ability.",
             "sourceUnitId": "unit-daemon-prince-of-slaanesh"
           },
           {
             "id": "emperors-children-ability-excessive-vigour-aura",
             "sectionId": "emperors-children-ability-excessive-vigour-aura",
             "title": "Excessive Vigour (Aura)",
-            "text": "While a friendly Slaanesh unit is within 6\" of this model, if that unit made a Charge move this turn, improve the Armour Penetration characteristic of melee weapons equipped by that unit by 1.",
+            "text": "While a friendly SLAANESH unit is within 6\" of this model, if that unit made a Charge move this turn, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1.",
             "sourceUnitId": "unit-daemon-prince-of-slaanesh"
           },
           {
@@ -1104,6 +1130,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-daemon-prince-of-slaanesh-selection-hellforged-weapons-strike",
@@ -1228,7 +1255,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1237,14 +1267,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Emperor's Children",
-        "Monster",
-        "Character",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Fly",
-        "Daemon Prince with Wings"
+        "MONSTER",
+        "FLY",
+        "CHARACTER",
+        "CHAOS",
+        "DAEMON",
+        "SLAANESH",
+        "DAEMON PRINCE WITH WINGS",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -1275,7 +1305,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-daemonic-destruction",
             "sectionId": "emperors-children-ability-daemonic-destruction",
             "title": "Daemonic Destruction",
-            "text": "Each time this model ends a Charge move, select one enemy unit within Engagement Range of this model and roll one D6 for each of this model's remaining wounds: for each 4+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+            "text": "Each time this model ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6 for each of this model’s remaining wounds: for each 4+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
             "sourceUnitId": "unit-daemon-prince-of-slaanesh-with-wings"
           },
           {
@@ -1319,6 +1349,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-daemon-prince-of-slaanesh-with-wings-selection-hellforged-weapons-strike",
@@ -1443,7 +1474,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1452,14 +1486,15 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Monster",
-        "Character",
-        "Psyker",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Legions of Excess",
-        "Keeper of Secrets"
+        "MONSTER",
+        "CHARACTER",
+        "PSYKER",
+        "CHAOS",
+        "DAEMON",
+        "SUMMONED",
+        "SLAANESH",
+        "KEEPER OF SECRETS",
+        "LEGIONS OF EXCESS"
       ],
       "relations": {
         "canLead": [],
@@ -1490,7 +1525,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-daemon-lord-of-slaanesh-aura",
             "sectionId": "emperors-children-ability-daemon-lord-of-slaanesh-aura",
             "title": "Daemon Lord of Slaanesh (Aura)",
-            "text": "While a friendly Legions of Excess unit is within 6\" of this model, improve the Armour Penetration of melee weapons in that unit by 1.",
+            "text": "While a friendly LEGIONS OF EXCESS unit is within 6\" of this model, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1.",
             "sourceUnitId": "unit-keeper-of-secrets"
           },
           {
@@ -1520,6 +1555,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "title": "Deep Strike",
             "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone.",
             "sourceUnitId": "unit-keeper-of-secrets"
+          },
+          {
+            "id": "emperors-children-ability-pact-of-excess",
+            "sectionId": "emperors-children-ability-pact-of-excess",
+            "title": "Pact of Excess",
+            "text": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction.",
+            "sourceUnitId": "unit-keeper-of-secrets"
           }
         ],
         "models": [
@@ -1534,6 +1576,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-keeper-of-secrets-selection-phantasmagoria-witchfire",
@@ -1774,7 +1817,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-keeper-of-secrets-selection-shining-aegis"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1783,13 +1829,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Character",
-        "Emperor's Children",
-        "Infantry",
-        "Grenades",
-        "Chaos",
-        "Slaanesh",
-        "Lord Exultant"
+        "INFANTRY",
+        "CHARACTER",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "LORD EXULTANT",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [
@@ -1845,35 +1891,22 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-euphoric-strikes",
             "sectionId": "emperors-children-ability-euphoric-strikes",
             "title": "Euphoric Strikes",
-            "text": "Once per battle, at the start of the Fight phase, this model can use this ability. If it does so, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
+            "text": "Once per battle, at the start of the Fight phase, this model can use this ability. If it does, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
             "sourceUnitId": "unit-lord-exultant"
           },
           {
             "id": "emperors-children-ability-lord-of-the-host",
             "sectionId": "emperors-children-ability-lord-of-the-host",
             "title": "Lord of the Host",
-            "text": "If this model is attached to an Emperor's Children Battleline unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" ability.",
+            "text": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities.",
             "sourceUnitId": "unit-lord-exultant"
           },
           {
-            "id": "unit-lord-exultant-ability-8d5aa8c8cf",
-            "sectionId": "unit-lord-exultant-ability-8d5aa8c8cf",
+            "id": "core-leader",
+            "sectionId": "core-leader",
             "title": "Leader",
             "text": "This model can be attached to the following units: INFRACTORS, TORMENTORS.",
-            "sourceUnitId": "unit-lord-exultant",
-            "legacyIds": [
-              "core-leader"
-            ]
-          },
-          {
-            "id": "unit-lord-exultant-ability-3c19dd15aa",
-            "sectionId": "unit-lord-exultant-ability-3c19dd15aa",
-            "title": "Leader",
-            "text": "While a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack successfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\nEach time the last model in a Bodyguard unit is destroyed, each CHARACTER unit that is part of that Attached unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time the last model in a CHARACTER unit that is attached to a Bodyguard unit is destroyed and there is not another CHARACTER unit attached, that Attached unit’s Bodyguard unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time a unit that is part of an Attached unit is destroyed, it does not have the keywords of any other units that make up that Attached unit (unless it has those keywords on its own datasheet) for the purposes of any rules that would be triggered when that unit is destroyed.",
-            "sourceUnitId": "unit-lord-exultant",
-            "legacyIds": [
-              "core-leader"
-            ]
+            "sourceUnitId": "unit-lord-exultant"
           },
           {
             "id": "emperors-children-ability-thrill-seekers",
@@ -1895,6 +1928,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-lord-exultant-selection-close-combat-weapon",
@@ -1928,7 +1962,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-lord-exultant-profile-d02e622c84"
+              "unit-lord-exultant-profile-d55ca3e187"
             ],
             "wargearAbilityIds": []
           },
@@ -1940,7 +1974,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-lord-exultant-profile-08f1080123"
+              "unit-lord-exultant-profile-efe950ff19"
             ],
             "wargearAbilityIds": []
           },
@@ -2000,7 +2034,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-lord-exultant-profile-a16d0444b0"
+              "unit-lord-exultant-profile-6b166e96e4"
             ],
             "wargearAbilityIds": []
           },
@@ -2013,8 +2047,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "kind": "weapon",
             "familyId": "unit-lord-exultant-weapon-family-plasma-pistol",
             "profileIds": [
-              "unit-lord-exultant-profile-d02e622c84",
-              "unit-lord-exultant-profile-08f1080123"
+              "unit-lord-exultant-profile-d55ca3e187",
+              "unit-lord-exultant-profile-efe950ff19"
             ],
             "wargearAbilityIds": []
           }
@@ -2027,8 +2061,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "➤ Plasma pistol"
             ],
             "profileIds": [
-              "unit-lord-exultant-profile-d02e622c84",
-              "unit-lord-exultant-profile-08f1080123"
+              "unit-lord-exultant-profile-d55ca3e187",
+              "unit-lord-exultant-profile-efe950ff19"
             ],
             "ambiguousAlias": false
           }
@@ -2071,7 +2105,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-lord-exultant-profile-d02e622c84",
+            "id": "unit-lord-exultant-profile-d55ca3e187",
             "legacyIds": [
               "unit-lord-exultant-profile-plasma-pistol-standard-ranged-3"
             ],
@@ -2079,7 +2113,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "mode": "ranged",
             "range": "12\"",
             "a": "1",
-            "skill": "3+",
+            "skill": "2+",
             "s": "7",
             "ap": "-2",
             "d": "1",
@@ -2090,7 +2124,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-lord-exultant-profile-08f1080123",
+            "id": "unit-lord-exultant-profile-efe950ff19",
             "legacyIds": [
               "unit-lord-exultant-profile-plasma-pistol-supercharge-ranged-4"
             ],
@@ -2098,7 +2132,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "mode": "ranged",
             "range": "12\"",
             "a": "1",
-            "skill": "3+",
+            "skill": "2+",
             "s": "8",
             "ap": "-3",
             "d": "2",
@@ -2181,7 +2215,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-lord-exultant-profile-a16d0444b0",
+            "id": "unit-lord-exultant-profile-6b166e96e4",
             "legacyIds": [
               "unit-lord-exultant-profile-bolt-pistol-ranged-9"
             ],
@@ -2189,7 +2223,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "mode": "ranged",
             "range": "12\"",
             "a": "1",
-            "skill": "3+",
+            "skill": "2+",
             "s": "4",
             "ap": "0",
             "d": "1",
@@ -2199,7 +2233,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2208,13 +2245,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Character",
-        "Grenades",
-        "Infantry",
-        "Chaos",
-        "Slaanesh",
-        "Emperor's Children",
-        "Lord Kakophonist"
+        "INFANTRY",
+        "CHARACTER",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "LORD KAKOPHONIST",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [
@@ -2260,38 +2297,25 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         },
         "abilities": [
           {
-            "id": "unit-lord-kakophonist-ability-8d52139d0f",
-            "sectionId": "unit-lord-kakophonist-ability-8d52139d0f",
+            "id": "core-leader",
+            "sectionId": "core-leader",
             "title": "Leader",
             "text": "This model can be attached to the following units: CHAOS TERMINATORS, NOISE MARINES.",
-            "sourceUnitId": "unit-lord-kakophonist",
-            "legacyIds": [
-              "core-leader"
-            ]
+            "sourceUnitId": "unit-lord-kakophonist"
           },
           {
             "id": "emperors-children-ability-obsessive-annunciation",
             "sectionId": "emperors-children-ability-obsessive-annunciation",
             "title": "Obsessive Annunciation",
-            "text": "While this model is leading a unit, ranged weapons equipped by that unit have the [SUSTAINED HITS 1] ability.",
+            "text": "While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
             "sourceUnitId": "unit-lord-kakophonist"
           },
           {
             "id": "emperors-children-ability-doom-siren",
             "sectionId": "emperors-children-ability-doom-siren",
             "title": "Doom Siren",
-            "text": "In your Shooting phase, after this model's unit has shot, select one enemy Infantry unit hit by one or more of those attacks and roll three D6: for each 4+, that enemy unit suffers 1 mortal wound. If an enemy suffers one or more mortal wounds as a result of this ability, it must take a Battle-shock test.",
+            "text": "In your Shooting phase, after this model’s unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks and roll three D6: for each 4+, that enemy unit suffers 1 mortal wound. If an enemy unit suffers one or more mortal wounds as a result of this ability, it must take a Battle-shock test.",
             "sourceUnitId": "unit-lord-kakophonist"
-          },
-          {
-            "id": "unit-lord-kakophonist-ability-3c19dd15aa",
-            "sectionId": "unit-lord-kakophonist-ability-3c19dd15aa",
-            "title": "Leader",
-            "text": "While a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack successfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\nEach time the last model in a Bodyguard unit is destroyed, each CHARACTER unit that is part of that Attached unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time the last model in a CHARACTER unit that is attached to a Bodyguard unit is destroyed and there is not another CHARACTER unit attached, that Attached unit’s Bodyguard unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time a unit that is part of an Attached unit is destroyed, it does not have the keywords of any other units that make up that Attached unit (unless it has those keywords on its own datasheet) for the purposes of any rules that would be triggered when that unit is destroyed.",
-            "sourceUnitId": "unit-lord-kakophonist",
-            "legacyIds": [
-              "core-leader"
-            ]
           },
           {
             "id": "emperors-children-ability-thrill-seekers",
@@ -2313,6 +2337,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-lord-kakophonist-selection-power-sword",
@@ -2408,7 +2433,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2417,14 +2445,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Emperor's Children",
-        "Character",
-        "Infantry",
-        "Psyker",
-        "Chaos",
-        "Slaanesh",
-        "Grenades",
-        "Sorcerer"
+        "INFANTRY",
+        "CHARACTER",
+        "PSYKER",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "SORCERER",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [
@@ -2478,14 +2506,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         },
         "abilities": [
           {
-            "id": "unit-sorcerer-ability-9f70b80c7b",
-            "sectionId": "unit-sorcerer-ability-9f70b80c7b",
+            "id": "core-leader",
+            "sectionId": "core-leader",
             "title": "Leader",
             "text": "This model can be attached to the following units: INFRACTORS, NOISE MARINES, TORMENTORS.",
-            "sourceUnitId": "unit-sorcerer",
-            "legacyIds": [
-              "core-leader"
-            ]
+            "sourceUnitId": "unit-sorcerer"
           },
           {
             "id": "emperors-children-ability-warped-interference-psychic",
@@ -2498,18 +2523,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-wracking-agonies-psychic",
             "sectionId": "emperors-children-ability-wracking-agonies-psychic",
             "title": "Wracking Agonies (Psychic)",
-            "text": "In your Shooting phase, after this model has shot, select one INFANTRY unit hit by one or more of those attacks made with its Agonising Energies. Until the start of your next turn, that unit is wracked with agonies. While a unit is wracked with agonies, subtract 2\" from its Move characteristic and subtract 2 from charge rolls made for it.",
+            "text": "In your Shooting phase, after this model has shot, select one INFANTRY unit hit by one or more of those attacks made with its Agonising Energies. Until the start of your next turn, that unit is wracked with agonies. While a unit is wracked with agonies, subtract 2\" from its Move characteristic and subtract 2 from Charge rolls made for it.",
             "sourceUnitId": "unit-sorcerer"
-          },
-          {
-            "id": "unit-sorcerer-ability-3c19dd15aa",
-            "sectionId": "unit-sorcerer-ability-3c19dd15aa",
-            "title": "Leader",
-            "text": "While a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack successfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\nEach time the last model in a Bodyguard unit is destroyed, each CHARACTER unit that is part of that Attached unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time the last model in a CHARACTER unit that is attached to a Bodyguard unit is destroyed and there is not another CHARACTER unit attached, that Attached unit’s Bodyguard unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time a unit that is part of an Attached unit is destroyed, it does not have the keywords of any other units that make up that Attached unit (unless it has those keywords on its own datasheet) for the purposes of any rules that would be triggered when that unit is destroyed.",
-            "sourceUnitId": "unit-sorcerer",
-            "legacyIds": [
-              "core-leader"
-            ]
           },
           {
             "id": "emperors-children-ability-thrill-seekers",
@@ -2531,6 +2546,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-sorcerer-selection-agonising-energies-witchfire",
@@ -2685,7 +2701,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2694,15 +2713,15 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Vehicle",
-        "Transport",
-        "Dedicated Transport",
-        "Chaos",
-        "Rhino",
-        "Smoke",
-        "Emperor's Children",
-        "Slaanesh",
-        "Frame"
+        "VEHICLE",
+        "TRANSPORT",
+        "FRAME",
+        "DEDICATED TRANSPORT",
+        "SMOKE",
+        "CHAOS",
+        "SLAANESH",
+        "RHINO",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -2733,7 +2752,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-assault-vehicle",
             "sectionId": "emperors-children-ability-assault-vehicle",
             "title": "Assault Vehicle",
-            "text": "Units can disembark from this Vehicle after it has Advanced. Units that do so count as having made a Normal move that phase, and cannot declare a charge in the same turn, but can otherwise act normally.",
+            "text": "Units can disembark from this TRANSPORT after it has Advanced. Units that do so make a shock disembark move (Core Rules, 18.07) for that disembarkation.",
             "sourceUnitId": "unit-chaos-rhino"
           },
           {
@@ -2770,6 +2789,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-rhino-selection-armoured-tracks",
@@ -2803,7 +2823,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-chaos-rhino-profile-a0e05510db"
+              "unit-chaos-rhino-profile-42bcc6f259"
             ],
             "wargearAbilityIds": []
           },
@@ -2859,7 +2879,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-chaos-rhino-profile-a0e05510db",
+            "id": "unit-chaos-rhino-profile-42bcc6f259",
             "legacyIds": [
               "unit-chaos-rhino-profile-combi-weapon-ranged-3"
             ],
@@ -2871,7 +2891,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "s": "4",
             "ap": "0",
             "d": "1",
-            "abilities": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1",
+            "abilities": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1",
             "sourceSelectionIds": [
               "unit-chaos-rhino-selection-combi-weapon"
             ]
@@ -2895,7 +2915,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2904,17 +2927,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Emperor's Children",
-        "Chaos",
-        "Slaanesh",
-        "Fulgrim",
-        "Primarch",
-        "Daemon",
-        "Monster",
-        "Fly",
-        "Epic Hero",
-        "Character",
-        "Mobile"
+        "MONSTER",
+        "MOBILE",
+        "FLY",
+        "CHARACTER",
+        "EPIC HERO",
+        "DAEMON",
+        "CHAOS",
+        "SLAANESH",
+        "PRIMARCH",
+        "FULGRIM",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -2945,14 +2968,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-daemonic-poisons",
             "sectionId": "emperors-children-ability-daemonic-poisons",
             "title": "Daemonic Poisons",
-            "text": "In your Shooting phase and the Fight phase, after this model has finished making its attacks, select one enemy unit hit by one or more of those attacks. Until the end of the battle, that enemy unit is poisoned. At the start of each player's Command phase, roll one D6 for each poisoned enemy unit on the battlefield: on a 4+, that enemy unit suffers D3 mortal wounds.",
+            "text": "In your Shooting phase and the Fight phase, after this model has finished making its attacks, select one enemy unit hit by one or more of those attacks. Until the end of the battle, that enemy unit is poisoned. At the start of each player’s Command phase, roll one D6 for each poisoned enemy unit on the battlefield: on a 4+,that enemy unit suffers D3 mortal wounds.",
             "sourceUnitId": "unit-fulgrim"
           },
           {
             "id": "emperors-children-ability-daemon-primarch-of-slaanesh",
             "sectionId": "emperors-children-ability-daemon-primarch-of-slaanesh",
             "title": "Daemon Primarch of Slaanesh",
-            "text": "At the start of your opponent’s Command phase, select one of the abilities in the Daemon Primarch of Slaanesh section (see below). Until the start of your opponent’s next Command phase, this model has that ability.",
+            "text": "At the start of your opponent’s Command phase, select one of the abilities in the Daemon Primarch of Slaanesh section. Until the start of your opponent’s next Command phase, this model has that ability.",
             "sourceUnitId": "unit-fulgrim"
           },
           {
@@ -2987,14 +3010,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-supreme-commander",
             "sectionId": "emperors-children-ability-supreme-commander",
             "title": "Supreme Commander",
-            "text": "If this model is in your army, it must be your Warlord.",
-            "sourceUnitId": "unit-fulgrim"
-          },
-          {
-            "id": "emperors-children-ability-serpentine",
-            "sectionId": "emperors-children-ability-serpentine",
-            "title": "Serpentine",
-            "text": "Each time this model makes a Normal, Advance or Fall Back move, it can move over sections of terrain features that are 4\" or less in height.",
+            "text": "If this model is in your army, it must be your WARLORD.",
             "sourceUnitId": "unit-fulgrim"
           },
           {
@@ -3031,6 +3047,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-fulgrim-selection-malefic-lash",
@@ -3185,7 +3202,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3194,13 +3214,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Infantry",
-        "Character",
-        "Epic Hero",
-        "Chaos",
-        "Slaanesh",
-        "Emperor's Children",
-        "Lucius the Eternal"
+        "INFANTRY",
+        "CHARACTER",
+        "EPIC HERO",
+        "CHAOS",
+        "SLAANESH",
+        "LUCIUS THE ETERNAL",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [
@@ -3238,38 +3258,25 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         },
         "abilities": [
           {
-            "id": "unit-lucius-the-eternal-ability-cb0e22552b",
-            "sectionId": "unit-lucius-the-eternal-ability-cb0e22552b",
+            "id": "core-leader",
+            "sectionId": "core-leader",
             "title": "Leader",
             "text": "This model can be attached to the following units: FLAWLESS BLADES.",
-            "sourceUnitId": "unit-lucius-the-eternal",
-            "legacyIds": [
-              "core-leader"
-            ]
+            "sourceUnitId": "unit-lucius-the-eternal"
           },
           {
             "id": "emperors-children-ability-duellists-hubris",
             "sectionId": "emperors-children-ability-duellists-hubris",
             "title": "Duellist’s Hubris",
-            "text": "At the start of the Fight phase, if this model is not leading a unit, until the end of the phase, it has the Fights First ability.",
+            "text": "At the start of the Fight phase; if this model is not leading a unit, until the end of the phase, it has the Fights First ability.",
             "sourceUnitId": "unit-lucius-the-eternal"
           },
           {
             "id": "emperors-children-ability-a-challenge-worthy-of-skill",
             "sectionId": "emperors-children-ability-a-challenge-worthy-of-skill",
             "title": "A Challenge Worthy of Skill",
-            "text": "Each time this model makes an attack that targets a Character, Monster or Walker unit, you can re-roll the Hit roll and re-roll the Wound roll.",
+            "text": "Each time this model makes an attack that targets a CHARACTER, MONSTER or WALKER unit, you can re-roll the Hit roll and you can re-roll the Wound roll.",
             "sourceUnitId": "unit-lucius-the-eternal"
-          },
-          {
-            "id": "unit-lucius-the-eternal-ability-3c19dd15aa",
-            "sectionId": "unit-lucius-the-eternal-ability-3c19dd15aa",
-            "title": "Leader",
-            "text": "While a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack successfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\nEach time the last model in a Bodyguard unit is destroyed, each CHARACTER unit that is part of that Attached unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time the last model in a CHARACTER unit that is attached to a Bodyguard unit is destroyed and there is not another CHARACTER unit attached, that Attached unit’s Bodyguard unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time a unit that is part of an Attached unit is destroyed, it does not have the keywords of any other units that make up that Attached unit (unless it has those keywords on its own datasheet) for the purposes of any rules that would be triggered when that unit is destroyed.",
-            "sourceUnitId": "unit-lucius-the-eternal",
-            "legacyIds": [
-              "core-leader"
-            ]
           },
           {
             "id": "emperors-children-ability-thrill-seekers",
@@ -3305,6 +3312,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-lucius-the-eternal-selection-blade-of-the-laer",
@@ -3370,7 +3378,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3379,15 +3390,16 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Monster",
-        "Character",
-        "Epic Hero",
-        "Psyker",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Legions of Excess",
-        "Shalaxi Helbane"
+        "MONSTER",
+        "CHARACTER",
+        "EPIC HERO",
+        "PSYKER",
+        "CHAOS",
+        "DAEMON",
+        "SUMMONED",
+        "SLAANESH",
+        "SHALAXI HELBANE",
+        "LEGIONS OF EXCESS"
       ],
       "relations": {
         "canLead": [],
@@ -3425,7 +3437,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-monarch-of-the-hunt",
             "sectionId": "emperors-children-ability-monarch-of-the-hunt",
             "title": "Monarch of the Hunt",
-            "text": "At the start of the first battle round, select one enemy unit to be this model's quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model's quarry is destroyed, select one new enemy unit to be this model's quarry.",
+            "text": "At the start of the first battle round, select one enemy unit to be this model’s quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model’s quarry is destroyed, select one new enemy unit to be this model’s quarry.",
             "sourceUnitId": "unit-shalaxi-helbane"
           },
           {
@@ -3448,6 +3460,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "title": "Deep Strike",
             "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone.",
             "sourceUnitId": "unit-shalaxi-helbane"
+          },
+          {
+            "id": "emperors-children-ability-pact-of-excess",
+            "sectionId": "emperors-children-ability-pact-of-excess",
+            "title": "Pact of Excess",
+            "text": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction.",
+            "sourceUnitId": "unit-shalaxi-helbane"
           }
         ],
         "models": [
@@ -3462,6 +3481,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-shalaxi-helbane-selection-lash-of-slaanesh",
@@ -3646,7 +3666,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3655,12 +3678,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Infantry",
-        "Chaos",
-        "Terminator",
-        "Emperor's Children",
-        "Slaanesh",
-        "Terminator Squad"
+        "INFANTRY",
+        "CHAOS",
+        "SLAANESH",
+        "TERMINATOR",
+        "TERMINATOR SQUAD",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -3701,7 +3724,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-lethal-obsession",
             "sectionId": "emperors-children-ability-lethal-obsession",
             "title": "Lethal Obsession",
-            "text": "In your Shooting phase, after this unit has shot, you can use this ability. If you do, select one enemy unit hit by those ranged attacks. Until the end of the turn, when this unit declares a charge: \n- This unit can re-roll that charge roll. \n- This unit must end that charge move engaged with that enemy unit.",
+            "text": "In your Shooting phase, after this unit has shot, you can use this ability. If you do, select one enemy unit hit by those ranged attacks. Until the end of the turn, when this unit declares a charge:\n- This unit can re-roll that charge roll.\n- This unit must end that charge move engaged with that enemy unit.",
             "sourceUnitId": "unit-chaos-terminators"
           },
           {
@@ -3734,13 +3757,22 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-chaos-terminators-model-1538ad2e04",
             "title": "Terminators",
             "aliases": [
-              "Terminators"
+              "Terminators",
+              "Accursed weapon and combi-bolter",
+              "Accursed weapon and combi-weapon",
+              "Power fist and combi-weapon",
+              "Chainfist and combi-bolter",
+              "Heavy weapon",
+              "Power fist and combi-bolter",
+              "Chainfist and combi-weapon",
+              "Paired accursed weapons"
             ],
             "legacyIds": [
               "unit-chaos-terminators-model-terminators-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-terminators-selection-combi-bolter",
@@ -3774,7 +3806,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-chaos-terminators-profile-a0e05510db"
+              "unit-chaos-terminators-profile-42bcc6f259"
             ],
             "wargearAbilityIds": []
           },
@@ -3786,7 +3818,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-chaos-terminators-profile-8f7b4e3d36"
+              "unit-chaos-terminators-profile-2f36a3a7ab"
             ],
             "wargearAbilityIds": []
           },
@@ -3810,7 +3842,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-chaos-terminators-profile-62f65f2b1a"
+              "unit-chaos-terminators-profile-3fc4e1417d"
             ],
             "wargearAbilityIds": []
           },
@@ -3878,7 +3910,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-chaos-terminators-profile-a0e05510db",
+            "id": "unit-chaos-terminators-profile-42bcc6f259",
             "legacyIds": [
               "unit-chaos-terminators-profile-combi-weapon-ranged-3"
             ],
@@ -3890,13 +3922,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "s": "4",
             "ap": "0",
             "d": "1",
-            "abilities": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1",
+            "abilities": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1",
             "sourceSelectionIds": [
               "unit-chaos-terminators-selection-combi-weapon"
             ]
           },
           {
-            "id": "unit-chaos-terminators-profile-8f7b4e3d36",
+            "id": "unit-chaos-terminators-profile-2f36a3a7ab",
             "legacyIds": [
               "unit-chaos-terminators-profile-chainfist-melee-4"
             ],
@@ -3908,7 +3940,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "s": "8",
             "ap": "-2",
             "d": "2",
-            "abilities": "Anti-VEHICLE 3+",
+            "abilities": "Anti-Vehicle 3+",
             "sourceSelectionIds": [
               "unit-chaos-terminators-selection-chainfist"
             ]
@@ -3932,7 +3964,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-chaos-terminators-profile-62f65f2b1a",
+            "id": "unit-chaos-terminators-profile-3fc4e1417d",
             "legacyIds": [
               "unit-chaos-terminators-profile-paired-accursed-weapons-melee-6"
             ],
@@ -3944,7 +3976,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "s": "5",
             "ap": "-2",
             "d": "1",
-            "abilities": "Twin-linked",
+            "abilities": "Twin-Linked",
             "sourceSelectionIds": [
               "unit-chaos-terminators-selection-paired-accursed-weapons"
             ]
@@ -3986,7 +4018,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3995,12 +4030,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Infantry",
-        "Grenades",
-        "Chaos",
-        "Slaanesh",
-        "Flawless Blades",
-        "Emperor's Children"
+        "INFANTRY",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "FLAWLESS BLADES",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -4041,7 +4076,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-daemonic-patrons",
             "sectionId": "emperors-children-ability-daemonic-patrons",
             "title": "Daemonic Patrons",
-            "text": "Each time this unit is selected to fight, it can call upon daemonic patrons. If it does, until the end of the phase, each time a model in this unit makes an attack. an unmodified Wound roll of 3+ scores a Critical Wound. At the end of the Fight phase, if this unit called upon daemonic patrons this phase and no enemy models were destroyed by attacks made by models in this unit this phase, one model in this unit is destroyed.",
+            "text": "Each time this unit is selected to fight, it can call upon daemonic patrons. If it does, until the end of the phase, each time a model in this unit makes an attack, an unmodified Wound roll of 3+ scores a Critical Wound. At the end of the Fight phase, if this unit called upon daemonic patrons this phase and no enemy models were destroyed by attacks made by models in this unit this phase, one model in this unit is destroyed.",
             "sourceUnitId": "unit-flawless-blades"
           },
           {
@@ -4049,13 +4084,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sectionId": "emperors-children-ability-thrill-seekers",
             "title": "Thrill Seekers",
             "text": "If your Army Faction is Emperor's Children, this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so:\n- It cannot target a unit it was within Engagement Range of at the start of the turn\n- It cannot target a unit that was the target of another unit's charge or attack this phase.",
-            "sourceUnitId": "unit-flawless-blades"
-          },
-          {
-            "id": "core-fights-first",
-            "sectionId": "core-fights-first",
-            "title": "Fights First",
-            "text": "While every model in a unit has this ability, that unit is a Fights First unit. \nSee the Resolve Fights First Combats step in the Fight phase (12.04).",
             "sourceUnitId": "unit-flawless-blades"
           }
         ],
@@ -4071,6 +4099,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-flawless-blades-selection-blissblade",
@@ -4136,7 +4165,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4145,11 +4177,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Infantry",
-        "Chaos",
-        "Slaanesh",
-        "Emperor's Children",
-        "Noise Marines"
+        "INFANTRY",
+        "CHAOS",
+        "SLAANESH",
+        "NOISE MARINES",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -4224,13 +4256,16 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-noise-marines-model-6a223b9b75",
             "title": "Noise Marines",
             "aliases": [
-              "Noise Marines"
+              "Noise Marines",
+              "Noise Marine w/ sonic blaster",
+              "Noise Marine w/ blastmaster"
             ],
             "legacyIds": [
               "unit-noise-marines-model-noise-marines-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-noise-marines-selection-power-sword",
@@ -4445,7 +4480,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4454,14 +4492,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Vehicle",
-        "Transport",
-        "Smoke",
-        "Chaos",
-        "Slaanesh",
-        "Emperor's Children",
-        "Land Raider",
-        "Frame"
+        "VEHICLE",
+        "TRANSPORT",
+        "FRAME",
+        "SMOKE",
+        "CHAOS",
+        "SLAANESH",
+        "LAND RAIDER",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -4492,7 +4530,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-assault-ramp",
             "sectionId": "emperors-children-ability-assault-ramp",
             "title": "Assault Ramp",
-            "text": "Each time a unit disembarks from this model after it has made a Normal move, that unit is still eligible to declare a charge this turn.",
+            "text": "Each time a unit disembarks from this model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
             "sourceUnitId": "unit-chaos-land-raider"
           },
           {
@@ -4529,6 +4567,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-land-raider-selection-armoured-tracks",
@@ -4574,7 +4613,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-chaos-land-raider-profile-a0e05510db"
+              "unit-chaos-land-raider-profile-42bcc6f259"
             ],
             "wargearAbilityIds": []
           },
@@ -4598,7 +4637,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-chaos-land-raider-profile-82e687d22a"
+              "unit-chaos-land-raider-profile-3dd886aad0"
             ],
             "wargearAbilityIds": []
           }
@@ -4660,7 +4699,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-chaos-land-raider-profile-a0e05510db",
+            "id": "unit-chaos-land-raider-profile-42bcc6f259",
             "legacyIds": [
               "unit-chaos-land-raider-profile-combi-weapon-ranged-4"
             ],
@@ -4672,7 +4711,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "s": "4",
             "ap": "0",
             "d": "1",
-            "abilities": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1",
+            "abilities": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1",
             "sourceSelectionIds": [
               "unit-chaos-land-raider-selection-combi-weapon"
             ]
@@ -4696,7 +4735,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-chaos-land-raider-profile-82e687d22a",
+            "id": "unit-chaos-land-raider-profile-3dd886aad0",
             "legacyIds": [
               "unit-chaos-land-raider-profile-twin-heavy-bolter-ranged-6"
             ],
@@ -4708,13 +4747,16 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "s": "5",
             "ap": "-1",
             "d": "2",
-            "abilities": "Sustained Hits 1, Twin-linked",
+            "abilities": "Sustained Hits 1, Twin-Linked",
             "sourceSelectionIds": [
               "unit-chaos-land-raider-selection-twin-heavy-bolter"
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4723,11 +4765,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Beast",
-        "Chaos",
-        "Emperor's Children",
-        "Slaanesh",
-        "Chaos Spawn"
+        "BEAST",
+        "CHAOS",
+        "SLAANESH",
+        "CHAOS SPAWN",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -4758,7 +4800,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-scuttling-horrors",
             "sectionId": "emperors-children-ability-scuttling-horrors",
             "title": "Scuttling Horrors",
-            "text": "In your opponent's Movement phase, if an enemy unit ends a move within 8” of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to 6”.",
+            "text": "In your opponent's Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to 6\".",
             "sourceUnitId": "unit-chaos-spawn"
           },
           {
@@ -4788,6 +4830,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-spawn-selection-hideous-mutations",
@@ -4823,7 +4866,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4832,13 +4878,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "faction-pack",
       "intrinsicKeywords": [
-        "Vehicle",
-        "Walker",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Emperor's Children",
-        "Defiler"
+        "VEHICLE",
+        "WALKER",
+        "CHAOS",
+        "SLAANESH",
+        "DAEMON",
+        "DEFILER",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -4869,7 +4915,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-scuttling-walker",
             "sectionId": "emperors-children-ability-scuttling-walker",
             "title": "Scuttling Walker",
-            "text": "Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding Titanic models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+            "text": "Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
             "sourceUnitId": "unit-defiler"
           },
           {
@@ -4913,6 +4959,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-defiler-selection-shearing-claws-strike",
@@ -5335,7 +5382,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5344,13 +5394,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Beast",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Fiends",
-        "Legions of Excess",
-        "Summoned"
+        "BEAST",
+        "CHAOS",
+        "DAEMON",
+        "SUMMONED",
+        "SLAANESH",
+        "FIENDS",
+        "LEGIONS OF EXCESS"
       ],
       "relations": {
         "canLead": [],
@@ -5381,7 +5431,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-soporific-musk",
             "sectionId": "emperors-children-ability-soporific-musk",
             "title": "Soporific Musk",
-            "text": "Each time an enemy unit (excluding Monsters and Vehicles ) within Engagement Range of one or more units from your army with this ability Falls Back, models in that unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
+            "text": "Each time an enemy unit (excluding MONSTERS and VEHICLES) within Engagement Range of one or more units from your army with this ability Falls Back, models in that enemy unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
             "sourceUnitId": "unit-fiends"
           },
           {
@@ -5389,6 +5439,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sectionId": "core-deep-strike",
             "title": "Deep Strike",
             "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone.",
+            "sourceUnitId": "unit-fiends"
+          },
+          {
+            "id": "emperors-children-ability-pact-of-excess",
+            "sectionId": "emperors-children-ability-pact-of-excess",
+            "title": "Pact of Excess",
+            "text": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction.",
             "sourceUnitId": "unit-fiends"
           }
         ],
@@ -5414,6 +5471,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-fiends-selection-barbed-tail-and-dissecting-claws",
@@ -5449,7 +5507,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5458,13 +5519,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Vehicle",
-        "Fly",
-        "Chaos",
-        "Daemon",
-        "Heldrake",
-        "Emperor's Children",
-        "Slaanesh"
+        "VEHICLE",
+        "FLY",
+        "CHAOS",
+        "DAEMON",
+        "SLAANESH",
+        "HELDRAKE",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -5518,6 +5579,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "title": "Thrill Seekers",
             "text": "If your Army Faction is Emperor's Children, this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so:\n- It cannot target a unit it was within Engagement Range of at the start of the turn\n- It cannot target a unit that was the target of another unit's charge or attack this phase.",
             "sourceUnitId": "unit-heldrake"
+          },
+          {
+            "id": "emperors-children-ability-damaged-1-4-wounds-remaining",
+            "sectionId": "emperors-children-ability-damaged-1-4-wounds-remaining",
+            "title": "Damaged: 1-4 Wounds Remaining",
+            "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+            "sourceUnitId": "unit-heldrake"
           }
         ],
         "models": [
@@ -5532,6 +5600,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-heldrake-selection-heldrake-claws",
@@ -5541,7 +5610,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-heldrake-profile-9efab2a6a1"
+              "unit-heldrake-profile-cabe001943"
             ],
             "wargearAbilityIds": []
           },
@@ -5573,7 +5642,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "weaponFamilies": [],
         "weaponProfiles": [
           {
-            "id": "unit-heldrake-profile-9efab2a6a1",
+            "id": "unit-heldrake-profile-cabe001943",
             "legacyIds": [
               "unit-heldrake-profile-heldrake-claws-melee"
             ],
@@ -5585,7 +5654,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "s": "7",
             "ap": "-1",
             "d": "2",
-            "abilities": "Anti-FLY 2+, Devastating Wounds",
+            "abilities": "Anti-Fly 2+, Devastating Wounds",
             "sourceSelectionIds": [
               "unit-heldrake-selection-heldrake-claws"
             ]
@@ -5627,7 +5696,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5636,13 +5708,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Vehicle",
-        "Walker",
-        "Chaos",
-        "Daemon",
-        "Emperor's Children",
-        "Slaanesh",
-        "Maulerfiend"
+        "VEHICLE",
+        "WALKER",
+        "CHAOS",
+        "DAEMON",
+        "SLAANESH",
+        "MAULERFIEND",
+        "EMPEROR’S CHILDREN"
       ],
       "relations": {
         "canLead": [],
@@ -5673,7 +5745,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "emperors-children-ability-glutton-for-punishment",
             "sectionId": "emperors-children-ability-glutton-for-punishment",
             "title": "Glutton for Punishment",
-            "text": "Each time this model makes an attack, if it is below its Starting Strength, add 1 to the Hit roll. If this model is also Below Half-Strength, add 1 to the Wound roll as well.",
+            "text": "Each time this model makes an attack, if it is below its Starting Strength, add 1 to the Hit roll. If this model is also Below Half-strength, add 1 to the Wound roll as well.",
             "sourceUnitId": "unit-maulerfiend"
           },
           {
@@ -5689,6 +5761,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "title": "Thrill Seekers",
             "text": "If your Army Faction is Emperor's Children, this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so:\n- It cannot target a unit it was within Engagement Range of at the start of the turn\n- It cannot target a unit that was the target of another unit's charge or attack this phase.",
             "sourceUnitId": "unit-maulerfiend"
+          },
+          {
+            "id": "emperors-children-ability-damaged-1-4-wounds-remaining",
+            "sectionId": "emperors-children-ability-damaged-1-4-wounds-remaining",
+            "title": "Damaged: 1-4 Wounds Remaining",
+            "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+            "sourceUnitId": "unit-maulerfiend"
           }
         ],
         "models": [
@@ -5703,6 +5782,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-maulerfiend-selection-maulerfiend-fists",
@@ -5717,14 +5797,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "wargearAbilityIds": []
           },
           {
-            "id": "unit-maulerfiend-selection-magma-cutter",
-            "title": "Magma cutter",
+            "id": "unit-maulerfiend-selection-magma-cutters",
+            "title": "Magma cutters",
             "aliases": [
-              "Magma cutter"
+              "Magma cutters"
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-maulerfiend-profile-7573253c7f"
+              "unit-maulerfiend-profile-97d891f70c"
             ],
             "wargearAbilityIds": []
           },
@@ -5762,11 +5842,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-maulerfiend-profile-7573253c7f",
+            "id": "unit-maulerfiend-profile-97d891f70c",
             "legacyIds": [
-              "unit-maulerfiend-profile-magma-cutter-ranged-2"
+              "unit-maulerfiend-profile-magma-cutters-ranged-2"
             ],
-            "title": "Magma cutter",
+            "title": "Magma cutters",
             "mode": "ranged",
             "range": "6\"",
             "a": "2",
@@ -5776,7 +5856,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "d": "D6",
             "abilities": "Melta 2",
             "sourceSelectionIds": [
-              "unit-maulerfiend-selection-magma-cutter"
+              "unit-maulerfiend-selection-magma-cutters"
             ]
           },
           {
@@ -5798,7 +5878,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5807,13 +5890,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "emperors-children",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Mounted",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Seekers",
-        "Summoned",
-        "Legions of Excess"
+        "MOUNTED",
+        "CHAOS",
+        "DAEMON",
+        "SUMMONED",
+        "SLAANESH",
+        "SEEKERS",
+        "LEGIONS OF EXCESS"
       ],
       "relations": {
         "canLead": [],
@@ -5860,6 +5943,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "title": "Scouts 9\"",
             "text": "This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: \n- If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. \n- If that unit is wholly within your deployment zone, it can make a scout move. \n- If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move.",
             "sourceUnitId": "unit-seekers"
+          },
+          {
+            "id": "emperors-children-ability-pact-of-excess",
+            "sectionId": "emperors-children-ability-pact-of-excess",
+            "title": "Pact of Excess",
+            "text": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction.",
+            "sourceUnitId": "unit-seekers"
           }
         ],
         "models": [
@@ -5884,6 +5974,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-seekers-selection-lashing-tongue",
@@ -5930,7 +6021,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "kind": "wargear",
             "profileIds": [],
             "wargearAbilityIds": [
-              "unit-seekers-wargear-ability-afa43288c6"
+              "unit-seekers-wargear-ability-6721ceb7d6"
             ]
           }
         ],
@@ -5978,7 +6069,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-seekers-wargear-ability-b3dad0463e",
             "sectionId": "unit-seekers-wargear-ability-b3dad0463e",
             "title": "Daemonic Icon",
-            "text": "Models in the bearer's unit have a Leadership characteristic of 6+.",
+            "text": "Models in the bearer’s unit have a Leadership characteristic of 6+.",
             "sourceUnitId": "unit-seekers",
             "legacyIds": [
               "unit-seekers-wargear-ability-daemonic-icon"
@@ -5988,10 +6079,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-seekers-wargear-ability-afa43288c6",
-            "sectionId": "unit-seekers-wargear-ability-afa43288c6",
+            "id": "unit-seekers-wargear-ability-6721ceb7d6",
+            "sectionId": "unit-seekers-wargear-ability-6721ceb7d6",
             "title": "Instrument of Chaos",
-            "text": "Add 1 to Charge rolls made for the bearer's unit.",
+            "text": "Add 1 to Charge rolls made for the bearer’s unit.",
             "sourceUnitId": "unit-seekers",
             "legacyIds": [
               "unit-seekers-wargear-ability-instrument-of-chaos-2"
@@ -6000,7 +6091,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-seekers-selection-instrument-of-chaos"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     }
   ],
@@ -6236,6 +6330,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-empyric-suffusion",
+      "termId": "emperors-children-enhancement-empyric-suffusion",
       "ruleId": "enhancement-empyric-suffusion",
       "detachmentId": "carnival-of-excess",
       "sourceBookId": "emperors-children",
@@ -6270,6 +6365,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-dark-blessings",
+      "termId": "emperors-children-enhancement-dark-blessings",
       "ruleId": "enhancement-dark-blessings",
       "detachmentId": "carnival-of-excess",
       "sourceBookId": "emperors-children",
@@ -6304,6 +6400,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-possessed-blade",
+      "termId": "emperors-children-enhancement-possessed-blade",
       "ruleId": "enhancement-possessed-blade",
       "detachmentId": "carnival-of-excess",
       "sourceBookId": "emperors-children",
@@ -6338,6 +6435,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-warp-walker",
+      "termId": "emperors-children-enhancement-warp-walker",
       "ruleId": "enhancement-warp-walker",
       "detachmentId": "carnival-of-excess",
       "sourceBookId": "emperors-children",
@@ -6372,6 +6470,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-pledge-of-eternal-servitude",
+      "termId": "emperors-children-enhancement-pledge-of-eternal-servitude",
       "ruleId": "enhancement-pledge-of-eternal-servitude",
       "detachmentId": "coterie-of-the-conceited",
       "sourceBookId": "emperors-children",
@@ -6406,6 +6505,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-pledge-of-dark-glory",
+      "termId": "emperors-children-enhancement-pledge-of-dark-glory",
       "ruleId": "enhancement-pledge-of-dark-glory",
       "detachmentId": "coterie-of-the-conceited",
       "sourceBookId": "emperors-children",
@@ -6440,6 +6540,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-pledge-of-mortal-pain",
+      "termId": "emperors-children-enhancement-pledge-of-mortal-pain",
       "ruleId": "enhancement-pledge-of-mortal-pain",
       "detachmentId": "coterie-of-the-conceited",
       "sourceBookId": "emperors-children",
@@ -6474,6 +6575,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-pledge-of-unholy-fortune",
+      "termId": "emperors-children-enhancement-pledge-of-unholy-fortune",
       "ruleId": "enhancement-pledge-of-unholy-fortune",
       "detachmentId": "coterie-of-the-conceited",
       "sourceBookId": "emperors-children",
@@ -6508,6 +6610,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-steeped-in-suffering",
+      "termId": "emperors-children-enhancement-steeped-in-suffering",
       "ruleId": "enhancement-steeped-in-suffering",
       "detachmentId": "mercurial-host",
       "sourceBookId": "emperors-children",
@@ -6542,6 +6645,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-intoxicating-musk",
+      "termId": "emperors-children-enhancement-intoxicating-musk",
       "ruleId": "enhancement-intoxicating-musk",
       "detachmentId": "mercurial-host",
       "sourceBookId": "emperors-children",
@@ -6576,6 +6680,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-tactical-perfection",
+      "termId": "emperors-children-enhancement-tactical-perfection",
       "ruleId": "enhancement-tactical-perfection",
       "detachmentId": "mercurial-host",
       "sourceBookId": "emperors-children",
@@ -6610,6 +6715,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-loathsome-dexterity",
+      "termId": "emperors-children-enhancement-loathsome-dexterity",
       "ruleId": "enhancement-loathsome-dexterity",
       "detachmentId": "mercurial-host",
       "sourceBookId": "emperors-children",
@@ -6644,6 +6750,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-faultless-opportunist",
+      "termId": "emperors-children-enhancement-faultless-opportunist",
       "ruleId": "enhancement-faultless-opportunist",
       "detachmentId": "peerless-bladesmen",
       "sourceBookId": "emperors-children",
@@ -6678,6 +6785,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-blinding-speed",
+      "termId": "emperors-children-enhancement-blinding-speed",
       "ruleId": "enhancement-blinding-speed",
       "detachmentId": "peerless-bladesmen",
       "sourceBookId": "emperors-children",
@@ -6712,6 +6820,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-distortion",
+      "termId": "emperors-children-enhancement-distortion",
       "ruleId": "enhancement-distortion",
       "detachmentId": "peerless-bladesmen",
       "sourceBookId": "emperors-children",
@@ -6746,6 +6855,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-rise-to-the-challenge",
+      "termId": "emperors-children-enhancement-rise-to-the-challenge",
       "ruleId": "enhancement-rise-to-the-challenge",
       "detachmentId": "peerless-bladesmen",
       "sourceBookId": "emperors-children",
@@ -6780,6 +6890,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-eager-to-prove",
+      "termId": "emperors-children-enhancement-eager-to-prove",
       "ruleId": "enhancement-eager-to-prove",
       "detachmentId": "slaaneshs-chosen",
       "sourceBookId": "emperors-children",
@@ -6814,6 +6925,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-repulsed-by-weakness",
+      "termId": "emperors-children-enhancement-repulsed-by-weakness",
       "ruleId": "enhancement-repulsed-by-weakness",
       "detachmentId": "slaaneshs-chosen",
       "sourceBookId": "emperors-children",
@@ -6848,6 +6960,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-proud-and-vainglorious",
+      "termId": "emperors-children-enhancement-proud-and-vainglorious",
       "ruleId": "enhancement-proud-and-vainglorious",
       "detachmentId": "slaaneshs-chosen",
       "sourceBookId": "emperors-children",
@@ -6882,6 +6995,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-slayer-of-champions",
+      "termId": "emperors-children-enhancement-slayer-of-champions",
       "ruleId": "enhancement-slayer-of-champions",
       "detachmentId": "slaaneshs-chosen",
       "sourceBookId": "emperors-children",
@@ -6916,6 +7030,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-sublime-prescience",
+      "termId": "emperors-children-enhancement-sublime-prescience",
       "ruleId": "enhancement-sublime-prescience",
       "detachmentId": "rapid-evisceration",
       "sourceBookId": "emperors-children",
@@ -6950,6 +7065,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-spearhead-striker",
+      "termId": "emperors-children-enhancement-spearhead-striker",
       "ruleId": "enhancement-spearhead-striker",
       "detachmentId": "rapid-evisceration",
       "sourceBookId": "emperors-children",
@@ -6984,6 +7100,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-accomplished-tactician",
+      "termId": "emperors-children-enhancement-accomplished-tactician",
       "ruleId": "enhancement-accomplished-tactician",
       "detachmentId": "rapid-evisceration",
       "sourceBookId": "emperors-children",
@@ -7018,6 +7135,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "payPointsPerOwner": true
       },
       "id": "enhancement-heretek-adept",
+      "termId": "emperors-children-enhancement-heretek-adept",
       "ruleId": "enhancement-heretek-adept",
       "detachmentId": "rapid-evisceration",
       "sourceBookId": "emperors-children",
@@ -7057,6 +7175,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           3
         ]
       },
+      "termId": "emperors-children-enhancement-euphoric-crown",
       "ruleId": "enhancement-euphoric-crown",
       "detachmentId": "frenzied-host",
       "sourceBookId": "emperors-children",
@@ -7096,6 +7215,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           3
         ]
       },
+      "termId": "emperors-children-enhancement-howling-plate",
       "ruleId": "enhancement-howling-plate",
       "detachmentId": "frenzied-host",
       "sourceBookId": "emperors-children",
@@ -7139,6 +7259,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           5
         ]
       },
+      "termId": "emperors-children-enhancement-tears-of-the-phoenix",
       "ruleId": "enhancement-tears-of-the-phoenix",
       "detachmentId": "court-of-the-phoenician",
       "sourceBookId": "emperors-children",
@@ -7178,6 +7299,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           5
         ]
       },
+      "termId": "emperors-children-enhancement-exalted-patron",
       "ruleId": "enhancement-exalted-patron",
       "detachmentId": "court-of-the-phoenician",
       "sourceBookId": "emperors-children",
@@ -7221,6 +7343,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           5
         ]
       },
+      "termId": "emperors-children-enhancement-soulstain-made-manifest",
       "ruleId": "enhancement-soulstain-made-manifest",
       "detachmentId": "court-of-the-phoenician",
       "sourceBookId": "emperors-children",
@@ -7260,6 +7383,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           5
         ]
       },
+      "termId": "emperors-children-enhancement-spiritsliver",
       "ruleId": "enhancement-spiritsliver",
       "detachmentId": "court-of-the-phoenician",
       "sourceBookId": "emperors-children",
@@ -7300,6 +7424,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           4
         ]
       },
+      "termId": "emperors-children-enhancement-eager-patrons",
       "ruleId": "enhancement-eager-patrons",
       "detachmentId": "spectacle-of-slaughter",
       "sourceBookId": "emperors-children",
@@ -7340,6 +7465,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           4
         ]
       },
+      "termId": "emperors-children-enhancement-beguiling-grotesquerie",
       "ruleId": "enhancement-beguiling-grotesquerie",
       "detachmentId": "spectacle-of-slaughter",
       "sourceBookId": "emperors-children",
@@ -7379,6 +7505,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           2
         ]
       },
+      "termId": "emperors-children-enhancement-cacophonic-accompaniment",
       "ruleId": "enhancement-cacophonic-accompaniment",
       "detachmentId": "elegant-brutes",
       "sourceBookId": "emperors-children",
@@ -7419,6 +7546,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           2
         ]
       },
+      "termId": "emperors-children-enhancement-frenzied-ferocity",
       "ruleId": "enhancement-frenzied-ferocity",
       "detachmentId": "elegant-brutes",
       "sourceBookId": "emperors-children",

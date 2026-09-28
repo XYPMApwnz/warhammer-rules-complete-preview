@@ -66,12 +66,14 @@
     "factionPack": "content/emperors-children-faction-pack.en.json",
     "codexParity": "content/emperors-children-codex-parity.en.json",
     "codexDatasheets": "content/emperors-children-codex-datasheets.en.json",
+    "codexWargear": "content/emperors-children-codex-wargear.en.json",
     "relatedRules": "content/emperors-children-related-rules.en.json",
     "enhancementOwners": "sources/enhancement-owner-matrix.json",
-    "officialMfm": "sources/official-mfm-v1.3.json",
+    "officialMfm": "sources/official-mfm-v1.4.json",
     "manifest": "sources/source-manifest.json",
     "effectContracts": "sources/emperors-children-effect-contracts.v1.json",
-    "mfmCurrentCapture": "sources/official-mfm-v1.4.json"
+    "mfmCurrentCapture": "sources/official-mfm-v1.4.json",
+    "wahaCurrentCorpus": "sources/waha-11e-current-2026-09-28/corpus.json"
   },
   "compactSharedAbilities": [
     "Anti",
@@ -99,6 +101,7 @@
     "Lone Operative",
     "Melta",
     "Pistol",
+    "Pact of Excess",
     "Precision",
     "Psychic",
     "Rapid Fire",
@@ -186,5 +189,6 @@
       "tracked": true,
       "lifecycle": "QA_CAPTURE_OUTPUT"
     }
-  ]
+  ],
+  "glossaryV2CompatibilityTerms": true
 }

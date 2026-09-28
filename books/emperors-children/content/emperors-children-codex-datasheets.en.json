@@ -53,7 +53,7 @@
       "abilities": [
         {
           "title": "Horrifying Beauty",
-          "text": "At the start of the Fight phase, each enemy unit in Engagement Range of one or more units from your army with this ability must take a Battle-shock test, subtracting 1 from that test if that enemy unit is Below Half-strength.",
+          "text": "At the start of the Fight phase, each enemy unit within Engagement Range of one or more units from your army with this ability must take a Battle-shock test, subtracting 1 from the result if that enemy unit is Below Half-strength.",
           "sourceAbilityId": "b21d-e2b2-9f2e-080f"
         },
         {
@@ -67,30 +67,34 @@
           "text": "While every model in a unit has this ability, that unit is a Fights First unit. \nSee the Resolve Fights First Combats step in the Fight phase (12.04).",
           "sourceAbilityId": "24-c886-e8ba-5a89",
           "coreAbilityId": "core-fights-first"
+        },
+        {
+          "title": "Pact of Excess",
+          "text": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction."
         }
       ],
       "wargearAbilities": [
         {
           "title": "Daemonic Icon",
-          "text": "Models in the bearer's unit have a Leadership characteristic of 6+.",
+          "text": "Models in the bearer’s unit have a Leadership characteristic of 6+.",
           "sourceAbilityId": "dacf-941e-a9f5-1af2",
           "sourceChildId": "dacf-941e-a9f5-1af2"
         },
         {
           "title": "Instrument of Chaos",
-          "text": "Add 1 to Charge rolls made for the bearer's unit.",
+          "text": "Add 1 to Charge rolls made for the bearer’s unit.",
           "sourceAbilityId": "8432-21e4-e194-f594"
         }
       ],
       "keywords": [
-        "Infantry",
-        "Battleline",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Daemonettes",
-        "Legions of Excess",
-        "Summoned"
+        "INFANTRY",
+        "BATTLELINE",
+        "CHAOS",
+        "DAEMON",
+        "SUMMONED",
+        "SLAANESH",
+        "DAEMONETTES",
+        "LEGIONS OF EXCESS"
       ],
       "composition": [
         {
@@ -195,7 +199,7 @@
           "s": "4",
           "ap": "-1",
           "d": "1",
-          "abilities": ""
+          "abilities": "Precision"
         },
         {
           "name": "Power sword",
@@ -206,7 +210,7 @@
           "s": "5",
           "ap": "-2",
           "d": "1",
-          "abilities": ""
+          "abilities": "Precision"
         },
         {
           "name": "Duelling sabre",
@@ -241,18 +245,18 @@
       "wargearAbilities": [
         {
           "title": "Icon of Excess",
-          "text": "At the end of your Shooting phase or the Fight phase, if the bearer's unit destroyed one or more enemy units this phase, the bearer's unit takes a Leadership test. If that test is passed, you gain 1CP.",
+          "text": "At the end of your Shooting phase or the Fight phase, if the bearer’s unit destroyed one or more enemy units that phase, the bearer’s unit takes a Leadership test. If that test is passed, you gain 1CP.",
           "sourceAbilityId": "f61d-01f1-ace6-1243"
         }
       ],
       "keywords": [
-        "Infantry",
-        "Battleline",
-        "Grenades",
-        "Chaos",
-        "Slaanesh",
-        "Infractors",
-        "Emperor's Children"
+        "INFANTRY",
+        "BATTLELINE",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "INFRACTORS",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -429,7 +433,7 @@
       "abilities": [
         {
           "title": "Objective Defiled",
-          "text": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent's Level of Control over that objective marker is greater than yours at the end of a phase.",
+          "text": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent’s Level of Control over that objective marker is greater than yours at the end of a phase.",
           "sourceAbilityId": "b7d5-8896-8643-e2a9"
         },
         {
@@ -447,18 +451,18 @@
       "wargearAbilities": [
         {
           "title": "Icon of Excess",
-          "text": "At the end of your Shooting phase or the Fight phase, if the bearer's unit destroyed one or more enemy units this phase, the bearer's unit takes a Leadership test. If that test is passed, you gain 1CP.",
+          "text": "At the end of your Shooting phase or the Fight phase, if the bearer’s unit destroyed one or more enemy units that phase, the bearer’s unit takes a Leadership test. If that test is passed, you gain 1CP.",
           "sourceAbilityId": "54b6-52b7-2959-e73b"
         }
       ],
       "keywords": [
-        "Infantry",
-        "Battleline",
-        "Grenades",
-        "Chaos",
-        "Slaanesh",
-        "Tormentors",
-        "Emperor's Children"
+        "INFANTRY",
+        "BATTLELINE",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "TORMENTORS",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -558,12 +562,12 @@
       "abilities": [
         {
           "title": "Lord of Excess",
-          "text": "While this model is within 3\" of one or more friendly Slaanesh Infantry, this model has the Lone Operative ability.",
+          "text": "While this model is within 3\" of one or more friendly SLAANESH INFANTRY units, this model has the Lone Operative ability.",
           "sourceAbilityId": "e6ea-7b81-ac62-18b5"
         },
         {
           "title": "Excessive Vigour (Aura)",
-          "text": "While a friendly Slaanesh unit is within 6\" of this model, if that unit made a Charge move this turn, improve the Armour Penetration characteristic of melee weapons equipped by that unit by 1.",
+          "text": "While a friendly SLAANESH unit is within 6\" of this model, if that unit made a Charge move this turn, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1.",
           "sourceAbilityId": "222f-a01c-620b-a089"
         },
         {
@@ -585,13 +589,13 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Emperor's Children",
-        "Monster",
-        "Character",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Daemon Prince"
+        "MONSTER",
+        "CHARACTER",
+        "CHAOS",
+        "DAEMON",
+        "SLAANESH",
+        "DAEMON PRINCE",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -681,7 +685,7 @@
       "abilities": [
         {
           "title": "Daemonic Destruction",
-          "text": "Each time this model ends a Charge move, select one enemy unit within Engagement Range of this model and roll one D6 for each of this model's remaining wounds: for each 4+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+          "text": "Each time this model ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6 for each of this model’s remaining wounds: for each 4+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
           "sourceAbilityId": "33de-9a37-baa6-5a99"
         },
         {
@@ -709,14 +713,14 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Emperor's Children",
-        "Monster",
-        "Character",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Fly",
-        "Daemon Prince with Wings"
+        "MONSTER",
+        "FLY",
+        "CHARACTER",
+        "CHAOS",
+        "DAEMON",
+        "SLAANESH",
+        "DAEMON PRINCE WITH WINGS",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -839,7 +843,7 @@
       "abilities": [
         {
           "title": "Daemon Lord of Slaanesh (Aura)",
-          "text": "While a friendly Legions of Excess unit is within 6\" of this model, improve the Armour Penetration of melee weapons in that unit by 1.",
+          "text": "While a friendly LEGIONS OF EXCESS unit is within 6\" of this model, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1.",
           "sourceAbilityId": "30a1-8f15-f406-fa7b"
         },
         {
@@ -863,6 +867,10 @@
           "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone.",
           "sourceAbilityId": "7cb5-dd6b-dd87-ad3b",
           "coreAbilityId": "core-deep-strike"
+        },
+        {
+          "title": "Pact of Excess",
+          "text": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction."
         }
       ],
       "wargearAbilities": [
@@ -874,14 +882,15 @@
         }
       ],
       "keywords": [
-        "Monster",
-        "Character",
-        "Psyker",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Legions of Excess",
-        "Keeper of Secrets"
+        "MONSTER",
+        "CHARACTER",
+        "PSYKER",
+        "CHAOS",
+        "DAEMON",
+        "SUMMONED",
+        "SLAANESH",
+        "KEEPER OF SECRETS",
+        "LEGIONS OF EXCESS"
       ],
       "composition": [
         {
@@ -961,7 +970,7 @@
           "mode": "ranged",
           "range": "12\"",
           "a": "1",
-          "skill": "3+",
+          "skill": "2+",
           "s": "7",
           "ap": "-2",
           "d": "1",
@@ -972,7 +981,7 @@
           "mode": "ranged",
           "range": "12\"",
           "a": "1",
-          "skill": "3+",
+          "skill": "2+",
           "s": "8",
           "ap": "-3",
           "d": "2",
@@ -1027,7 +1036,7 @@
           "mode": "ranged",
           "range": "12\"",
           "a": "1",
-          "skill": "3+",
+          "skill": "2+",
           "s": "4",
           "ap": "0",
           "d": "1",
@@ -1042,24 +1051,18 @@
         },
         {
           "title": "Euphoric Strikes",
-          "text": "Once per battle, at the start of the Fight phase, this model can use this ability. If it does so, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
+          "text": "Once per battle, at the start of the Fight phase, this model can use this ability. If it does, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
           "sourceAbilityId": "828a-cdf4-e64a-cf75"
         },
         {
           "title": "Lord of the Host",
-          "text": "If this model is attached to an Emperor's Children Battleline unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" ability.",
+          "text": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities.",
           "sourceAbilityId": "3cf5-ff3c-e78d-51c8"
         },
         {
           "title": "Leader",
           "text": "This model can be attached to the following units: INFRACTORS, TORMENTORS.",
           "sourceAbilityId": "8799-26c2-ca52-3969",
-          "coreAbilityId": "core-leader"
-        },
-        {
-          "title": "Leader",
-          "text": "While a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack successfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\nEach time the last model in a Bodyguard unit is destroyed, each CHARACTER unit that is part of that Attached unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time the last model in a CHARACTER unit that is attached to a Bodyguard unit is destroyed and there is not another CHARACTER unit attached, that Attached unit’s Bodyguard unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time a unit that is part of an Attached unit is destroyed, it does not have the keywords of any other units that make up that Attached unit (unless it has those keywords on its own datasheet) for the purposes of any rules that would be triggered when that unit is destroyed.",
-          "sourceAbilityId": "b4dd-3e1f-41cb-218f",
           "coreAbilityId": "core-leader"
         },
         {
@@ -1070,13 +1073,13 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Character",
-        "Emperor's Children",
-        "Infantry",
-        "Grenades",
-        "Chaos",
-        "Slaanesh",
-        "Lord Exultant"
+        "INFANTRY",
+        "CHARACTER",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "LORD EXULTANT",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -1171,19 +1174,13 @@
         },
         {
           "title": "Obsessive Annunciation",
-          "text": "While this model is leading a unit, ranged weapons equipped by that unit have the [SUSTAINED HITS 1] ability.",
+          "text": "While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
           "sourceAbilityId": "8fdb-0d21-37f4-ecca"
         },
         {
           "title": "Doom Siren",
-          "text": "In your Shooting phase, after this model's unit has shot, select one enemy Infantry unit hit by one or more of those attacks and roll three D6: for each 4+, that enemy unit suffers 1 mortal wound. If an enemy suffers one or more mortal wounds as a result of this ability, it must take a Battle-shock test.",
+          "text": "In your Shooting phase, after this model’s unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks and roll three D6: for each 4+, that enemy unit suffers 1 mortal wound. If an enemy unit suffers one or more mortal wounds as a result of this ability, it must take a Battle-shock test.",
           "sourceAbilityId": "f8bf-39ff-4779-40f2"
-        },
-        {
-          "title": "Leader",
-          "text": "While a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack successfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\nEach time the last model in a Bodyguard unit is destroyed, each CHARACTER unit that is part of that Attached unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time the last model in a CHARACTER unit that is attached to a Bodyguard unit is destroyed and there is not another CHARACTER unit attached, that Attached unit’s Bodyguard unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time a unit that is part of an Attached unit is destroyed, it does not have the keywords of any other units that make up that Attached unit (unless it has those keywords on its own datasheet) for the purposes of any rules that would be triggered when that unit is destroyed.",
-          "sourceAbilityId": "b4dd-3e1f-41cb-218f",
-          "coreAbilityId": "core-leader"
         },
         {
           "title": "Thrill Seekers",
@@ -1193,13 +1190,13 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Character",
-        "Grenades",
-        "Infantry",
-        "Chaos",
-        "Slaanesh",
-        "Emperor's Children",
-        "Lord Kakophonist"
+        "INFANTRY",
+        "CHARACTER",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "LORD KAKOPHONIST",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -1310,14 +1307,8 @@
         },
         {
           "title": "Wracking Agonies (Psychic)",
-          "text": "In your Shooting phase, after this model has shot, select one INFANTRY unit hit by one or more of those attacks made with its Agonising Energies. Until the start of your next turn, that unit is wracked with agonies. While a unit is wracked with agonies, subtract 2\" from its Move characteristic and subtract 2 from charge rolls made for it.",
+          "text": "In your Shooting phase, after this model has shot, select one INFANTRY unit hit by one or more of those attacks made with its Agonising Energies. Until the start of your next turn, that unit is wracked with agonies. While a unit is wracked with agonies, subtract 2\" from its Move characteristic and subtract 2 from Charge rolls made for it.",
           "sourceAbilityId": "7485-ffb5-b729-f8b2"
-        },
-        {
-          "title": "Leader",
-          "text": "While a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack successfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\nEach time the last model in a Bodyguard unit is destroyed, each CHARACTER unit that is part of that Attached unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time the last model in a CHARACTER unit that is attached to a Bodyguard unit is destroyed and there is not another CHARACTER unit attached, that Attached unit’s Bodyguard unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time a unit that is part of an Attached unit is destroyed, it does not have the keywords of any other units that make up that Attached unit (unless it has those keywords on its own datasheet) for the purposes of any rules that would be triggered when that unit is destroyed.",
-          "sourceAbilityId": "b4dd-3e1f-41cb-218f",
-          "coreAbilityId": "core-leader"
         },
         {
           "title": "Thrill Seekers",
@@ -1327,14 +1318,14 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Emperor's Children",
-        "Character",
-        "Infantry",
-        "Psyker",
-        "Chaos",
-        "Slaanesh",
-        "Grenades",
-        "Sorcerer"
+        "INFANTRY",
+        "CHARACTER",
+        "PSYKER",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "SORCERER",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -1422,7 +1413,7 @@
           "s": "4",
           "ap": "0",
           "d": "1",
-          "abilities": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1"
+          "abilities": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
         },
         {
           "name": "Havoc launcher",
@@ -1439,7 +1430,7 @@
       "abilities": [
         {
           "title": "Assault Vehicle",
-          "text": "Units can disembark from this Vehicle after it has Advanced. Units that do so count as having made a Normal move that phase, and cannot declare a charge in the same turn, but can otherwise act normally.",
+          "text": "Units can disembark from this TRANSPORT after it has Advanced. Units that do so make a shock disembark move (Core Rules, 18.07) for that disembarkation.",
           "sourceAbilityId": "629b-52e7-f21d-1c5f"
         },
         {
@@ -1462,15 +1453,15 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Vehicle",
-        "Transport",
-        "Dedicated Transport",
-        "Chaos",
-        "Rhino",
-        "Smoke",
-        "Emperor's Children",
-        "Slaanesh",
-        "Frame"
+        "VEHICLE",
+        "TRANSPORT",
+        "FRAME",
+        "DEDICATED TRANSPORT",
+        "SMOKE",
+        "CHAOS",
+        "SLAANESH",
+        "RHINO",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -1569,12 +1560,12 @@
       "abilities": [
         {
           "title": "Daemonic Poisons",
-          "text": "In your Shooting phase and the Fight phase, after this model has finished making its attacks, select one enemy unit hit by one or more of those attacks. Until the end of the battle, that enemy unit is poisoned. At the start of each player's Command phase, roll one D6 for each poisoned enemy unit on the battlefield: on a 4+, that enemy unit suffers D3 mortal wounds.",
+          "text": "In your Shooting phase and the Fight phase, after this model has finished making its attacks, select one enemy unit hit by one or more of those attacks. Until the end of the battle, that enemy unit is poisoned. At the start of each player’s Command phase, roll one D6 for each poisoned enemy unit on the battlefield: on a 4+,that enemy unit suffers D3 mortal wounds.",
           "sourceAbilityId": "444e-1e09-a6c8-f8ec"
         },
         {
           "title": "Daemon Primarch of Slaanesh",
-          "text": "At the start of your opponent’s Command phase, select one of the abilities in the Daemon Primarch of Slaanesh section (see below). Until the start of your opponent’s next Command phase, this model has that ability.",
+          "text": "At the start of your opponent’s Command phase, select one of the abilities in the Daemon Primarch of Slaanesh section. Until the start of your opponent’s next Command phase, this model has that ability.",
           "sourceAbilityId": "ca20-91b8-b9e8-c14d"
         },
         {
@@ -1596,13 +1587,8 @@
         },
         {
           "title": "Supreme Commander",
-          "text": "If this model is in your army, it must be your Warlord.",
+          "text": "If this model is in your army, it must be your WARLORD.",
           "sourceAbilityId": "498c-ad14-6e2b-bbfb"
-        },
-        {
-          "title": "Serpentine",
-          "text": "Each time this model makes a Normal, Advance or Fall Back move, it can move over sections of terrain features that are 4\" or less in height.",
-          "sourceAbilityId": "9842-31b9-4cb1-d821"
         },
         {
           "title": "Thrill Seekers",
@@ -1624,17 +1610,17 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Emperor's Children",
-        "Chaos",
-        "Slaanesh",
-        "Fulgrim",
-        "Primarch",
-        "Daemon",
-        "Monster",
-        "Fly",
-        "Epic Hero",
-        "Character",
-        "Mobile"
+        "MONSTER",
+        "MOBILE",
+        "FLY",
+        "CHARACTER",
+        "EPIC HERO",
+        "DAEMON",
+        "CHAOS",
+        "SLAANESH",
+        "PRIMARCH",
+        "FULGRIM",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -1715,19 +1701,13 @@
         },
         {
           "title": "Duellist’s Hubris",
-          "text": "At the start of the Fight phase, if this model is not leading a unit, until the end of the phase, it has the Fights First ability.",
+          "text": "At the start of the Fight phase; if this model is not leading a unit, until the end of the phase, it has the Fights First ability.",
           "sourceAbilityId": "5909-fd1b-aabd-8cf6"
         },
         {
           "title": "A Challenge Worthy of Skill",
-          "text": "Each time this model makes an attack that targets a Character, Monster or Walker unit, you can re-roll the Hit roll and re-roll the Wound roll.",
+          "text": "Each time this model makes an attack that targets a CHARACTER, MONSTER or WALKER unit, you can re-roll the Hit roll and you can re-roll the Wound roll.",
           "sourceAbilityId": "01a5-5e86-b905-a68c"
-        },
-        {
-          "title": "Leader",
-          "text": "While a Bodyguard unit contains a Leader, it is known as an Attached unit and, with the exception of rules that are triggered when units are destroyed (pg 12), it is treated as a single unit for all rules purposes. Each time an attack targets an Attached unit, until the attacking unit has resolved all of its attacks, you must use the Toughness characteristic of the Bodyguard models in that unit, even if a Leader in that unit has a different Toughness characteristic. Each time an attack successfully wounds an Attached unit, that attack cannot be allocated to a Character model in that unit, even if that Character model has lost one or more wounds or has already had attacks allocated to it this phase. As soon as the last Bodyguard model in an Attached unit has been destroyed, any attacks made against that unit that have yet to be allocated can then be allocated to Character models in that unit.\n\nEach time the last model in a Bodyguard unit is destroyed, each CHARACTER unit that is part of that Attached unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time the last model in a CHARACTER unit that is attached to a Bodyguard unit is destroyed and there is not another CHARACTER unit attached, that Attached unit’s Bodyguard unit becomes a separate unit, with its original Starting Strength. If this happens as the result of an attack, they become separate units after the attacking unit has resolved all of its attacks. \n\nEach time a unit that is part of an Attached unit is destroyed, it does not have the keywords of any other units that make up that Attached unit (unless it has those keywords on its own datasheet) for the purposes of any rules that would be triggered when that unit is destroyed.",
-          "sourceAbilityId": "b4dd-3e1f-41cb-218f",
-          "coreAbilityId": "core-leader"
         },
         {
           "title": "Thrill Seekers",
@@ -1749,13 +1729,13 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Infantry",
-        "Character",
-        "Epic Hero",
-        "Chaos",
-        "Slaanesh",
-        "Emperor's Children",
-        "Lucius the Eternal"
+        "INFANTRY",
+        "CHARACTER",
+        "EPIC HERO",
+        "CHAOS",
+        "SLAANESH",
+        "LUCIUS THE ETERNAL",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -1870,7 +1850,7 @@
         },
         {
           "title": "Monarch of the Hunt",
-          "text": "At the start of the first battle round, select one enemy unit to be this model's quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model's quarry is destroyed, select one new enemy unit to be this model's quarry.",
+          "text": "At the start of the first battle round, select one enemy unit to be this model’s quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model’s quarry is destroyed, select one new enemy unit to be this model’s quarry.",
           "sourceAbilityId": "712d-b14d-a795-ba99"
         },
         {
@@ -1889,19 +1869,24 @@
           "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone.",
           "sourceAbilityId": "7cb5-dd6b-dd87-ad3b",
           "coreAbilityId": "core-deep-strike"
+        },
+        {
+          "title": "Pact of Excess",
+          "text": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction."
         }
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Monster",
-        "Character",
-        "Epic Hero",
-        "Psyker",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Legions of Excess",
-        "Shalaxi Helbane"
+        "MONSTER",
+        "CHARACTER",
+        "EPIC HERO",
+        "PSYKER",
+        "CHAOS",
+        "DAEMON",
+        "SUMMONED",
+        "SLAANESH",
+        "SHALAXI HELBANE",
+        "LEGIONS OF EXCESS"
       ],
       "composition": [
         {
@@ -1987,7 +1972,7 @@
           "s": "4",
           "ap": "0",
           "d": "1",
-          "abilities": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1"
+          "abilities": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
         },
         {
           "name": "Chainfist",
@@ -1998,7 +1983,7 @@
           "s": "8",
           "ap": "-2",
           "d": "2",
-          "abilities": "Anti-VEHICLE 3+"
+          "abilities": "Anti-Vehicle 3+"
         },
         {
           "name": "Power fist",
@@ -2020,7 +2005,7 @@
           "s": "5",
           "ap": "-2",
           "d": "1",
-          "abilities": "Twin-linked"
+          "abilities": "Twin-Linked"
         },
         {
           "name": "Heavy flamer",
@@ -2048,7 +2033,7 @@
       "abilities": [
         {
           "title": "Lethal Obsession",
-          "text": "In your Shooting phase, after this unit has shot, you can use this ability. If you do, select one enemy unit hit by those ranged attacks. Until the end of the turn, when this unit declares a charge: \n- This unit can re-roll that charge roll. \n- This unit must end that charge move engaged with that enemy unit.",
+          "text": "In your Shooting phase, after this unit has shot, you can use this ability. If you do, select one enemy unit hit by those ranged attacks. Until the end of the turn, when this unit declares a charge:\n- This unit can re-roll that charge roll.\n- This unit must end that charge move engaged with that enemy unit.",
           "sourceAbilityId": "9123-44f5-7680-f937"
         },
         {
@@ -2065,12 +2050,12 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Infantry",
-        "Chaos",
-        "Terminator",
-        "Emperor's Children",
-        "Slaanesh",
-        "Terminator Squad"
+        "INFANTRY",
+        "CHAOS",
+        "SLAANESH",
+        "TERMINATOR",
+        "TERMINATOR SQUAD",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -2166,29 +2151,23 @@
       "abilities": [
         {
           "title": "Daemonic Patrons",
-          "text": "Each time this unit is selected to fight, it can call upon daemonic patrons. If it does, until the end of the phase, each time a model in this unit makes an attack. an unmodified Wound roll of 3+ scores a Critical Wound. At the end of the Fight phase, if this unit called upon daemonic patrons this phase and no enemy models were destroyed by attacks made by models in this unit this phase, one model in this unit is destroyed.",
+          "text": "Each time this unit is selected to fight, it can call upon daemonic patrons. If it does, until the end of the phase, each time a model in this unit makes an attack, an unmodified Wound roll of 3+ scores a Critical Wound. At the end of the Fight phase, if this unit called upon daemonic patrons this phase and no enemy models were destroyed by attacks made by models in this unit this phase, one model in this unit is destroyed.",
           "sourceAbilityId": "49c8-2d8a-5a03-49bb"
         },
         {
           "title": "Thrill Seekers",
           "text": "If your Army Faction is Emperor's Children, this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so:\n- It cannot target a unit it was within Engagement Range of at the start of the turn\n- It cannot target a unit that was the target of another unit's charge or attack this phase.",
           "sourceAbilityId": "1674-23e6-eacf-9624"
-        },
-        {
-          "title": "Fights First",
-          "text": "While every model in a unit has this ability, that unit is a Fights First unit. \nSee the Resolve Fights First Combats step in the Fight phase (12.04).",
-          "sourceAbilityId": "24-c886-e8ba-5a89",
-          "coreAbilityId": "core-fights-first"
         }
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Infantry",
-        "Grenades",
-        "Chaos",
-        "Slaanesh",
-        "Flawless Blades",
-        "Emperor's Children"
+        "INFANTRY",
+        "GRENADES",
+        "CHAOS",
+        "SLAANESH",
+        "FLAWLESS BLADES",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -2334,11 +2313,11 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Infantry",
-        "Chaos",
-        "Slaanesh",
-        "Emperor's Children",
-        "Noise Marines"
+        "INFANTRY",
+        "CHAOS",
+        "SLAANESH",
+        "NOISE MARINES",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -2442,7 +2421,7 @@
           "s": "4",
           "ap": "0",
           "d": "1",
-          "abilities": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1"
+          "abilities": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
         },
         {
           "name": "Havoc launcher",
@@ -2464,13 +2443,13 @@
           "s": "5",
           "ap": "-1",
           "d": "2",
-          "abilities": "Sustained Hits 1, Twin-linked"
+          "abilities": "Sustained Hits 1, Twin-Linked"
         }
       ],
       "abilities": [
         {
           "title": "Assault Ramp",
-          "text": "Each time a unit disembarks from this model after it has made a Normal move, that unit is still eligible to declare a charge this turn.",
+          "text": "Each time a unit disembarks from this model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
           "sourceAbilityId": "1e99-a2be-7d7b-1972"
         },
         {
@@ -2492,14 +2471,14 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Vehicle",
-        "Transport",
-        "Smoke",
-        "Chaos",
-        "Slaanesh",
-        "Emperor's Children",
-        "Land Raider",
-        "Frame"
+        "VEHICLE",
+        "TRANSPORT",
+        "FRAME",
+        "SMOKE",
+        "CHAOS",
+        "SLAANESH",
+        "LAND RAIDER",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -2565,7 +2544,7 @@
       "abilities": [
         {
           "title": "Scuttling Horrors",
-          "text": "In your opponent's Movement phase, if an enemy unit ends a move within 8” of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to 6”.",
+          "text": "In your opponent's Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to 6\".",
           "sourceAbilityId": "d63b-edb5-4839-ab4f"
         },
         {
@@ -2582,11 +2561,11 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Beast",
-        "Chaos",
-        "Emperor's Children",
-        "Slaanesh",
-        "Chaos Spawn"
+        "BEAST",
+        "CHAOS",
+        "SLAANESH",
+        "CHAOS SPAWN",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -2775,7 +2754,7 @@
       "abilities": [
         {
           "title": "Scuttling Walker",
-          "text": "Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding Titanic models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+          "text": "Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
           "sourceAbilityId": "09a9-3808-cae7-a9ca"
         },
         {
@@ -2801,13 +2780,13 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Vehicle",
-        "Walker",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Emperor's Children",
-        "Defiler"
+        "VEHICLE",
+        "WALKER",
+        "CHAOS",
+        "SLAANESH",
+        "DAEMON",
+        "DEFILER",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -2888,7 +2867,7 @@
       "abilities": [
         {
           "title": "Soporific Musk",
-          "text": "Each time an enemy unit (excluding Monsters and Vehicles ) within Engagement Range of one or more units from your army with this ability Falls Back, models in that unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
+          "text": "Each time an enemy unit (excluding MONSTERS and VEHICLES) within Engagement Range of one or more units from your army with this ability Falls Back, models in that enemy unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
           "sourceAbilityId": "a4c2-5801-31fa-8504"
         },
         {
@@ -2896,17 +2875,21 @@
           "text": "Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone.",
           "sourceAbilityId": "7cb5-dd6b-dd87-ad3b",
           "coreAbilityId": "core-deep-strike"
+        },
+        {
+          "title": "Pact of Excess",
+          "text": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction."
         }
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Beast",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Fiends",
-        "Legions of Excess",
-        "Summoned"
+        "BEAST",
+        "CHAOS",
+        "DAEMON",
+        "SUMMONED",
+        "SLAANESH",
+        "FIENDS",
+        "LEGIONS OF EXCESS"
       ],
       "composition": [
         {
@@ -2972,7 +2955,7 @@
           "s": "7",
           "ap": "-1",
           "d": "2",
-          "abilities": "Anti-FLY 2+, Devastating Wounds"
+          "abilities": "Anti-Fly 2+, Devastating Wounds"
         },
         {
           "name": "Baleflamer",
@@ -3019,17 +3002,21 @@
           "title": "Thrill Seekers",
           "text": "If your Army Faction is Emperor's Children, this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so:\n- It cannot target a unit it was within Engagement Range of at the start of the turn\n- It cannot target a unit that was the target of another unit's charge or attack this phase.",
           "sourceAbilityId": "1674-23e6-eacf-9624"
+        },
+        {
+          "title": "Damaged: 1-4 Wounds Remaining",
+          "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
         }
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Vehicle",
-        "Fly",
-        "Chaos",
-        "Daemon",
-        "Heldrake",
-        "Emperor's Children",
-        "Slaanesh"
+        "VEHICLE",
+        "FLY",
+        "CHAOS",
+        "DAEMON",
+        "SLAANESH",
+        "HELDRAKE",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -3094,7 +3081,7 @@
           "abilities": ""
         },
         {
-          "name": "Magma cutter",
+          "name": "Magma cutters",
           "mode": "ranged",
           "range": "6\"",
           "a": "2",
@@ -3119,7 +3106,7 @@
       "abilities": [
         {
           "title": "Glutton for Punishment",
-          "text": "Each time this model makes an attack, if it is below its Starting Strength, add 1 to the Hit roll. If this model is also Below Half-Strength, add 1 to the Wound roll as well.",
+          "text": "Each time this model makes an attack, if it is below its Starting Strength, add 1 to the Hit roll. If this model is also Below Half-strength, add 1 to the Wound roll as well.",
           "sourceAbilityId": "c3f4-464b-3d82-f42f"
         },
         {
@@ -3132,17 +3119,21 @@
           "title": "Thrill Seekers",
           "text": "If your Army Faction is Emperor's Children, this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so:\n- It cannot target a unit it was within Engagement Range of at the start of the turn\n- It cannot target a unit that was the target of another unit's charge or attack this phase.",
           "sourceAbilityId": "1674-23e6-eacf-9624"
+        },
+        {
+          "title": "Damaged: 1-4 Wounds Remaining",
+          "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
         }
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Vehicle",
-        "Walker",
-        "Chaos",
-        "Daemon",
-        "Emperor's Children",
-        "Slaanesh",
-        "Maulerfiend"
+        "VEHICLE",
+        "WALKER",
+        "CHAOS",
+        "DAEMON",
+        "SLAANESH",
+        "MAULERFIEND",
+        "EMPEROR’S CHILDREN"
       ],
       "composition": [
         {
@@ -3249,29 +3240,33 @@
           "text": "This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: \n- If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. \n- If that unit is wholly within your deployment zone, it can make a scout move. \n- If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move.",
           "sourceAbilityId": "ada6-bac1-ffe0-d6f7",
           "coreAbilityId": "core-scouts"
+        },
+        {
+          "title": "Pact of Excess",
+          "text": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction."
         }
       ],
       "wargearAbilities": [
         {
           "title": "Daemonic Icon",
-          "text": "Models in the bearer's unit have a Leadership characteristic of 6+.",
+          "text": "Models in the bearer’s unit have a Leadership characteristic of 6+.",
           "sourceAbilityId": "2f44-0faf-9294-6a0d",
           "sourceChildId": "2f44-0faf-9294-6a0d"
         },
         {
           "title": "Instrument of Chaos",
-          "text": "Add 1 to Charge rolls made for the bearer's unit.",
+          "text": "Add 1 to Charge rolls made for the bearer’s unit.",
           "sourceAbilityId": "50c4-326e-7b28-e07f"
         }
       ],
       "keywords": [
-        "Mounted",
-        "Chaos",
-        "Daemon",
-        "Slaanesh",
-        "Seekers",
-        "Summoned",
-        "Legions of Excess"
+        "MOUNTED",
+        "CHAOS",
+        "DAEMON",
+        "SUMMONED",
+        "SLAANESH",
+        "SEEKERS",
+        "LEGIONS OF EXCESS"
       ],
       "composition": [
         {

@@ -506,8 +506,8 @@ window.DG_TERMS={
   "emperors-children-stratagem-ceaseless-onslaught": {
     "id": "emperors-children-stratagem-ceaseless-onslaught",
     "title": "CEASELESS ONSLAUGHT",
-    "summary": "Your Charge phase. One EMPEROR’S CHILDREN unit from your army that disembarked from a TRANSPORT that made a Normal move this turn. Until the end of the phase, your EMPEROR’S CHILDREN unit is eligible to declare a charge.",
-    "full": "Your Charge phase. One EMPEROR’S CHILDREN unit from your army that disembarked from a TRANSPORT that made a Normal move this turn. Until the end of the phase, your EMPEROR’S CHILDREN unit is eligible to declare a charge.",
+    "summary": "Your Charge phase. One EMPEROR’S CHILDREN unit from your army that disembarked from a TRANSPORT that made a Normal move this turn. Your EMPEROR’S CHILDREN unit is treated as having made an assault disembark move (Core Rules, 18.06) for that disembarkation.",
+    "full": "Your Charge phase. One EMPEROR’S CHILDREN unit from your army that disembarked from a TRANSPORT that made a Normal move this turn. Your EMPEROR’S CHILDREN unit is treated as having made an assault disembark move (Core Rules, 18.06) for that disembarkation.",
     "glossary": "glossary-emperors-children-stratagem-ceaseless-onslaught",
     "rule": "detachment-rapid-evisceration"
   },
@@ -770,8 +770,8 @@ window.DG_TERMS={
   "emperors-children-ability-horrifying-beauty": {
     "id": "emperors-children-ability-horrifying-beauty",
     "title": "Horrifying Beauty",
-    "summary": "At the start of the Fight phase, each enemy unit in Engagement Range of one or more units from your army with this ability must take a Battle-shock test, subtracting 1 from that test if that enemy unit is Below Half-strength.",
-    "full": "At the start of the Fight phase, each enemy unit in Engagement Range of one or more units from your army with this ability must take a Battle-shock test, subtracting 1 from that test if that enemy unit is Below Half-strength.",
+    "summary": "At the start of the Fight phase, each enemy unit within Engagement Range of one or more units from your army with this ability must take a Battle-shock test, subtracting 1 from the result if that enemy unit is Below Half-strength.",
+    "full": "At the start of the Fight phase, each enemy unit within Engagement Range of one or more units from your army with this ability must take a Battle-shock test, subtracting 1 from the result if that enemy unit is Below Half-strength.",
     "glossary": "glossary-emperors-children-ability-horrifying-beauty",
     "rule": "unit-daemonettes",
     "units": [
@@ -780,11 +780,28 @@ window.DG_TERMS={
     "datasheet": "unit-daemonettes",
     "statline": "daemonettes-profile"
   },
+  "emperors-children-ability-pact-of-excess": {
+    "id": "emperors-children-ability-pact-of-excess",
+    "title": "Pact of Excess",
+    "summary": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction.",
+    "full": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction.",
+    "glossary": "glossary-emperors-children-ability-pact-of-excess",
+    "rule": "unit-daemonettes",
+    "units": [
+      "unit-daemonettes",
+      "unit-keeper-of-secrets",
+      "unit-shalaxi-helbane",
+      "unit-fiends",
+      "unit-seekers"
+    ],
+    "datasheet": "unit-daemonettes",
+    "statline": "daemonettes-profile"
+  },
   "emperors-children-ability-daemonic-icon": {
     "id": "emperors-children-ability-daemonic-icon",
     "title": "Daemonic Icon",
-    "summary": "Models in the bearer's unit have a Leadership characteristic of 6+.",
-    "full": "Models in the bearer's unit have a Leadership characteristic of 6+.",
+    "summary": "Models in the bearer’s unit have a Leadership characteristic of 6+.",
+    "full": "Models in the bearer’s unit have a Leadership characteristic of 6+.",
     "glossary": "glossary-emperors-children-ability-daemonic-icon",
     "rule": "unit-daemonettes",
     "units": [
@@ -797,8 +814,8 @@ window.DG_TERMS={
   "emperors-children-ability-instrument-of-chaos": {
     "id": "emperors-children-ability-instrument-of-chaos",
     "title": "Instrument of Chaos",
-    "summary": "Add 1 to Charge rolls made for the bearer's unit.",
-    "full": "Add 1 to Charge rolls made for the bearer's unit.",
+    "summary": "Add 1 to Charge rolls made for the bearer’s unit.",
+    "full": "Add 1 to Charge rolls made for the bearer’s unit.",
     "glossary": "glossary-emperors-children-ability-instrument-of-chaos",
     "rule": "unit-daemonettes",
     "units": [
@@ -868,8 +885,8 @@ window.DG_TERMS={
   "emperors-children-ability-icon-of-excess": {
     "id": "emperors-children-ability-icon-of-excess",
     "title": "Icon of Excess",
-    "summary": "At the end of your Shooting phase or the Fight phase, if the bearer's unit destroyed one or more enemy units this phase, the bearer's unit takes a Leadership test. If that test is passed, you gain 1CP.",
-    "full": "At the end of your Shooting phase or the Fight phase, if the bearer's unit destroyed one or more enemy units this phase, the bearer's unit takes a Leadership test. If that test is passed, you gain 1CP.",
+    "summary": "At the end of your Shooting phase or the Fight phase, if the bearer’s unit destroyed one or more enemy units that phase, the bearer’s unit takes a Leadership test. If that test is passed, you gain 1CP.",
+    "full": "At the end of your Shooting phase or the Fight phase, if the bearer’s unit destroyed one or more enemy units that phase, the bearer’s unit takes a Leadership test. If that test is passed, you gain 1CP.",
     "glossary": "glossary-emperors-children-ability-icon-of-excess",
     "rule": "unit-infractors",
     "units": [
@@ -888,7 +905,6 @@ window.DG_TERMS={
     "rule": "unit-infractors",
     "units": [
       "unit-infractors",
-      "unit-lord-exultant",
       "unit-sorcerer",
       "unit-flawless-blades"
     ],
@@ -903,8 +919,7 @@ window.DG_TERMS={
     "glossary": "glossary-emperors-children-weapon-plasma-pistol-standard",
     "rule": "unit-infractors",
     "units": [
-      "unit-infractors",
-      "unit-lord-exultant"
+      "unit-infractors"
     ],
     "datasheet": "unit-infractors",
     "statline": "infractors-profile"
@@ -917,8 +932,7 @@ window.DG_TERMS={
     "glossary": "glossary-emperors-children-weapon-plasma-pistol-supercharge",
     "rule": "unit-infractors",
     "units": [
-      "unit-infractors",
-      "unit-lord-exultant"
+      "unit-infractors"
     ],
     "datasheet": "unit-infractors",
     "statline": "infractors-profile"
@@ -926,13 +940,12 @@ window.DG_TERMS={
   "emperors-children-weapon-rapture-lash": {
     "id": "emperors-children-weapon-rapture-lash",
     "title": "Rapture lash",
-    "summary": "Melee · Melee · A 6 · WS 3+ · S 4 · AP -1 · D 1",
-    "full": "Melee · Melee · A 6 · WS 3+ · S 4 · AP -1 · D 1",
+    "summary": "Melee · Melee · A 6 · WS 3+ · S 4 · AP -1 · D 1 · Precision",
+    "full": "Melee · Melee · A 6 · WS 3+ · S 4 · AP -1 · D 1 · Precision",
     "glossary": "glossary-emperors-children-weapon-rapture-lash",
     "rule": "unit-infractors",
     "units": [
-      "unit-infractors",
-      "unit-tormentors"
+      "unit-infractors"
     ],
     "datasheet": "unit-infractors",
     "statline": "infractors-profile"
@@ -940,14 +953,12 @@ window.DG_TERMS={
   "emperors-children-weapon-power-sword": {
     "id": "emperors-children-weapon-power-sword",
     "title": "Power sword",
-    "summary": "Melee · Melee · A 4 · WS 3+ · S 5 · AP -2 · D 1",
-    "full": "Melee · Melee · A 4 · WS 3+ · S 5 · AP -2 · D 1",
+    "summary": "Melee · Melee · A 4 · WS 3+ · S 5 · AP -2 · D 1 · Precision",
+    "full": "Melee · Melee · A 4 · WS 3+ · S 5 · AP -2 · D 1 · Precision",
     "glossary": "glossary-emperors-children-weapon-power-sword",
     "rule": "unit-infractors",
     "units": [
-      "unit-infractors",
-      "unit-tormentors",
-      "unit-noise-marines"
+      "unit-infractors"
     ],
     "datasheet": "unit-infractors",
     "statline": "infractors-profile"
@@ -968,8 +979,8 @@ window.DG_TERMS={
   "emperors-children-ability-objective-defiled": {
     "id": "emperors-children-ability-objective-defiled",
     "title": "Objective Defiled",
-    "summary": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent's Level of Control over that objective marker is greater than yours at the end of a phase.",
-    "full": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent's Level of Control over that objective marker is greater than yours at the end of a phase.",
+    "summary": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent’s Level of Control over that objective marker is greater than yours at the end of a phase.",
+    "full": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent’s Level of Control over that objective marker is greater than yours at the end of a phase.",
     "glossary": "glossary-emperors-children-ability-objective-defiled",
     "rule": "unit-tormentors",
     "units": [
@@ -1013,6 +1024,33 @@ window.DG_TERMS={
     "rule": "unit-tormentors",
     "units": [
       "unit-tormentors"
+    ],
+    "datasheet": "unit-tormentors",
+    "statline": "tormentors-profile"
+  },
+  "emperors-children-weapon-rapture-lash-2": {
+    "id": "emperors-children-weapon-rapture-lash-2",
+    "title": "Rapture lash",
+    "summary": "Melee · Melee · A 6 · WS 3+ · S 4 · AP -1 · D 1",
+    "full": "Melee · Melee · A 6 · WS 3+ · S 4 · AP -1 · D 1",
+    "glossary": "glossary-emperors-children-weapon-rapture-lash-2",
+    "rule": "unit-tormentors",
+    "units": [
+      "unit-tormentors"
+    ],
+    "datasheet": "unit-tormentors",
+    "statline": "tormentors-profile"
+  },
+  "emperors-children-weapon-power-sword-2": {
+    "id": "emperors-children-weapon-power-sword-2",
+    "title": "Power sword",
+    "summary": "Melee · Melee · A 4 · WS 3+ · S 5 · AP -2 · D 1",
+    "full": "Melee · Melee · A 4 · WS 3+ · S 5 · AP -2 · D 1",
+    "glossary": "glossary-emperors-children-weapon-power-sword-2",
+    "rule": "unit-tormentors",
+    "units": [
+      "unit-tormentors",
+      "unit-noise-marines"
     ],
     "datasheet": "unit-tormentors",
     "statline": "tormentors-profile"
@@ -1086,8 +1124,8 @@ window.DG_TERMS={
   "emperors-children-ability-lord-of-excess": {
     "id": "emperors-children-ability-lord-of-excess",
     "title": "Lord of Excess",
-    "summary": "While this model is within 3\" of one or more friendly Slaanesh Infantry, this model has the Lone Operative ability.",
-    "full": "While this model is within 3\" of one or more friendly Slaanesh Infantry, this model has the Lone Operative ability.",
+    "summary": "While this model is within 3\" of one or more friendly SLAANESH INFANTRY units, this model has the Lone Operative ability.",
+    "full": "While this model is within 3\" of one or more friendly SLAANESH INFANTRY units, this model has the Lone Operative ability.",
     "glossary": "glossary-emperors-children-ability-lord-of-excess",
     "rule": "unit-daemon-prince-of-slaanesh",
     "units": [
@@ -1099,8 +1137,8 @@ window.DG_TERMS={
   "emperors-children-ability-excessive-vigour-aura": {
     "id": "emperors-children-ability-excessive-vigour-aura",
     "title": "Excessive Vigour (Aura)",
-    "summary": "While a friendly Slaanesh unit is within 6\" of this model, if that unit made a Charge move this turn, improve the Armour Penetration characteristic of melee weapons equipped by that unit by 1.",
-    "full": "While a friendly Slaanesh unit is within 6\" of this model, if that unit made a Charge move this turn, improve the Armour Penetration characteristic of melee weapons equipped by that unit by 1.",
+    "summary": "While a friendly SLAANESH unit is within 6\" of this model, if that unit made a Charge move this turn, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1.",
+    "full": "While a friendly SLAANESH unit is within 6\" of this model, if that unit made a Charge move this turn, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1.",
     "glossary": "glossary-emperors-children-ability-excessive-vigour-aura",
     "rule": "unit-daemon-prince-of-slaanesh",
     "units": [
@@ -1167,8 +1205,8 @@ window.DG_TERMS={
   "emperors-children-ability-daemonic-destruction": {
     "id": "emperors-children-ability-daemonic-destruction",
     "title": "Daemonic Destruction",
-    "summary": "Each time this model ends a Charge move, select one enemy unit within Engagement Range of this model and roll one D6 for each of this model's remaining wounds: for each 4+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
-    "full": "Each time this model ends a Charge move, select one enemy unit within Engagement Range of this model and roll one D6 for each of this model's remaining wounds: for each 4+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+    "summary": "Each time this model ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6 for each of this model’s remaining wounds: for each 4+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+    "full": "Each time this model ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6 for each of this model’s remaining wounds: for each 4+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
     "glossary": "glossary-emperors-children-ability-daemonic-destruction",
     "rule": "unit-daemon-prince-of-slaanesh-with-wings",
     "units": [
@@ -1193,8 +1231,8 @@ window.DG_TERMS={
   "emperors-children-ability-daemon-lord-of-slaanesh-aura": {
     "id": "emperors-children-ability-daemon-lord-of-slaanesh-aura",
     "title": "Daemon Lord of Slaanesh (Aura)",
-    "summary": "While a friendly Legions of Excess unit is within 6\" of this model, improve the Armour Penetration of melee weapons in that unit by 1.",
-    "full": "While a friendly Legions of Excess unit is within 6\" of this model, improve the Armour Penetration of melee weapons in that unit by 1.",
+    "summary": "While a friendly LEGIONS OF EXCESS unit is within 6\" of this model, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1.",
+    "full": "While a friendly LEGIONS OF EXCESS unit is within 6\" of this model, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1.",
     "glossary": "glossary-emperors-children-ability-daemon-lord-of-slaanesh-aura",
     "rule": "unit-keeper-of-secrets",
     "units": [
@@ -1339,8 +1377,8 @@ window.DG_TERMS={
   "emperors-children-ability-euphoric-strikes": {
     "id": "emperors-children-ability-euphoric-strikes",
     "title": "Euphoric Strikes",
-    "summary": "Once per battle, at the start of the Fight phase, this model can use this ability. If it does so, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
-    "full": "Once per battle, at the start of the Fight phase, this model can use this ability. If it does so, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
+    "summary": "Once per battle, at the start of the Fight phase, this model can use this ability. If it does, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
+    "full": "Once per battle, at the start of the Fight phase, this model can use this ability. If it does, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
     "glossary": "glossary-emperors-children-ability-euphoric-strikes",
     "rule": "unit-lord-exultant",
     "units": [
@@ -1352,8 +1390,8 @@ window.DG_TERMS={
   "emperors-children-ability-lord-of-the-host": {
     "id": "emperors-children-ability-lord-of-the-host",
     "title": "Lord of the Host",
-    "summary": "If this model is attached to an Emperor's Children Battleline unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" ability.",
-    "full": "If this model is attached to an Emperor's Children Battleline unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" ability.",
+    "summary": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities.",
+    "full": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities.",
     "glossary": "glossary-emperors-children-ability-lord-of-the-host",
     "rule": "unit-lord-exultant",
     "units": [
@@ -1376,12 +1414,38 @@ window.DG_TERMS={
     "datasheet": "unit-lord-exultant",
     "statline": "lord-exultant-profile"
   },
-  "emperors-children-weapon-rapture-lash-2": {
-    "id": "emperors-children-weapon-rapture-lash-2",
+  "emperors-children-weapon-rapture-lash-3": {
+    "id": "emperors-children-weapon-rapture-lash-3",
     "title": "Rapture lash",
     "summary": "Melee · Melee · A 4 · WS 2+ · S 4 · AP -1 · D 1 · Extra Attacks",
     "full": "Melee · Melee · A 4 · WS 2+ · S 4 · AP -1 · D 1 · Extra Attacks",
-    "glossary": "glossary-emperors-children-weapon-rapture-lash-2",
+    "glossary": "glossary-emperors-children-weapon-rapture-lash-3",
+    "rule": "unit-lord-exultant",
+    "units": [
+      "unit-lord-exultant"
+    ],
+    "datasheet": "unit-lord-exultant",
+    "statline": "lord-exultant-profile"
+  },
+  "emperors-children-weapon-plasma-pistol-standard-3": {
+    "id": "emperors-children-weapon-plasma-pistol-standard-3",
+    "title": "➤ Plasma pistol - standard",
+    "summary": "Ranged · 12\" · A 1 · BS 2+ · S 7 · AP -2 · D 1 · Pistol",
+    "full": "Ranged · 12\" · A 1 · BS 2+ · S 7 · AP -2 · D 1 · Pistol",
+    "glossary": "glossary-emperors-children-weapon-plasma-pistol-standard-3",
+    "rule": "unit-lord-exultant",
+    "units": [
+      "unit-lord-exultant"
+    ],
+    "datasheet": "unit-lord-exultant",
+    "statline": "lord-exultant-profile"
+  },
+  "emperors-children-weapon-plasma-pistol-supercharge-3": {
+    "id": "emperors-children-weapon-plasma-pistol-supercharge-3",
+    "title": "➤ Plasma pistol - supercharge",
+    "summary": "Ranged · 12\" · A 1 · BS 2+ · S 8 · AP -3 · D 2 · Hazardous, Pistol",
+    "full": "Ranged · 12\" · A 1 · BS 2+ · S 8 · AP -3 · D 2 · Hazardous, Pistol",
+    "glossary": "glossary-emperors-children-weapon-plasma-pistol-supercharge-3",
     "rule": "unit-lord-exultant",
     "units": [
       "unit-lord-exultant"
@@ -1442,11 +1506,24 @@ window.DG_TERMS={
     "datasheet": "unit-lord-exultant",
     "statline": "lord-exultant-profile"
   },
+  "emperors-children-weapon-bolt-pistol-3": {
+    "id": "emperors-children-weapon-bolt-pistol-3",
+    "title": "Bolt pistol",
+    "summary": "Ranged · 12\" · A 1 · BS 2+ · S 4 · AP 0 · D 1 · Pistol",
+    "full": "Ranged · 12\" · A 1 · BS 2+ · S 4 · AP 0 · D 1 · Pistol",
+    "glossary": "glossary-emperors-children-weapon-bolt-pistol-3",
+    "rule": "unit-lord-exultant",
+    "units": [
+      "unit-lord-exultant"
+    ],
+    "datasheet": "unit-lord-exultant",
+    "statline": "lord-exultant-profile"
+  },
   "emperors-children-ability-obsessive-annunciation": {
     "id": "emperors-children-ability-obsessive-annunciation",
     "title": "Obsessive Annunciation",
-    "summary": "While this model is leading a unit, ranged weapons equipped by that unit have the [SUSTAINED HITS 1] ability.",
-    "full": "While this model is leading a unit, ranged weapons equipped by that unit have the [SUSTAINED HITS 1] ability.",
+    "summary": "While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
+    "full": "While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
     "glossary": "glossary-emperors-children-ability-obsessive-annunciation",
     "rule": "unit-lord-kakophonist",
     "units": [
@@ -1458,8 +1535,8 @@ window.DG_TERMS={
   "emperors-children-ability-doom-siren": {
     "id": "emperors-children-ability-doom-siren",
     "title": "Doom Siren",
-    "summary": "In your Shooting phase, after this model's unit has shot, select one enemy Infantry unit hit by one or more of those attacks and roll three D6: for each 4+, that enemy unit suffers 1 mortal wound. If an enemy suffers one or more mortal wounds as a result of this ability, it must take a Battle-shock test.",
-    "full": "In your Shooting phase, after this model's unit has shot, select one enemy Infantry unit hit by one or more of those attacks and roll three D6: for each 4+, that enemy unit suffers 1 mortal wound. If an enemy suffers one or more mortal wounds as a result of this ability, it must take a Battle-shock test.",
+    "summary": "In your Shooting phase, after this model’s unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks and roll three D6: for each 4+, that enemy unit suffers 1 mortal wound. If an enemy unit suffers one or more mortal wounds as a result of this ability, it must take a Battle-shock test.",
+    "full": "In your Shooting phase, after this model’s unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks and roll three D6: for each 4+, that enemy unit suffers 1 mortal wound. If an enemy unit suffers one or more mortal wounds as a result of this ability, it must take a Battle-shock test.",
     "glossary": "glossary-emperors-children-ability-doom-siren",
     "rule": "unit-lord-kakophonist",
     "units": [
@@ -1468,12 +1545,12 @@ window.DG_TERMS={
     "datasheet": "unit-lord-kakophonist",
     "statline": "lord-kakophonist-profile"
   },
-  "emperors-children-weapon-power-sword-2": {
-    "id": "emperors-children-weapon-power-sword-2",
+  "emperors-children-weapon-power-sword-3": {
+    "id": "emperors-children-weapon-power-sword-3",
     "title": "Power sword",
     "summary": "Melee · Melee · A 6 · WS 2+ · S 5 · AP -2 · D 1",
     "full": "Melee · Melee · A 6 · WS 2+ · S 5 · AP -2 · D 1",
-    "glossary": "glossary-emperors-children-weapon-power-sword-2",
+    "glossary": "glossary-emperors-children-weapon-power-sword-3",
     "rule": "unit-lord-kakophonist",
     "units": [
       "unit-lord-kakophonist"
@@ -1497,8 +1574,8 @@ window.DG_TERMS={
   "emperors-children-ability-wracking-agonies-psychic": {
     "id": "emperors-children-ability-wracking-agonies-psychic",
     "title": "Wracking Agonies (Psychic)",
-    "summary": "In your Shooting phase, after this model has shot, select one INFANTRY unit hit by one or more of those attacks made with its Agonising Energies. Until the start of your next turn, that unit is wracked with agonies. While a unit is wracked with agonies, subtract 2\" from its Move characteristic and subtract 2 from charge rolls made for it.",
-    "full": "In your Shooting phase, after this model has shot, select one INFANTRY unit hit by one or more of those attacks made with its Agonising Energies. Until the start of your next turn, that unit is wracked with agonies. While a unit is wracked with agonies, subtract 2\" from its Move characteristic and subtract 2 from charge rolls made for it.",
+    "summary": "In your Shooting phase, after this model has shot, select one INFANTRY unit hit by one or more of those attacks made with its Agonising Energies. Until the start of your next turn, that unit is wracked with agonies. While a unit is wracked with agonies, subtract 2\" from its Move characteristic and subtract 2 from Charge rolls made for it.",
+    "full": "In your Shooting phase, after this model has shot, select one INFANTRY unit hit by one or more of those attacks made with its Agonising Energies. Until the start of your next turn, that unit is wracked with agonies. While a unit is wracked with agonies, subtract 2\" from its Move characteristic and subtract 2 from Charge rolls made for it.",
     "glossary": "glossary-emperors-children-ability-wracking-agonies-psychic",
     "rule": "unit-sorcerer",
     "units": [
@@ -1549,8 +1626,8 @@ window.DG_TERMS={
   "emperors-children-ability-assault-vehicle": {
     "id": "emperors-children-ability-assault-vehicle",
     "title": "Assault Vehicle",
-    "summary": "Units can disembark from this Vehicle after it has Advanced. Units that do so count as having made a Normal move that phase, and cannot declare a charge in the same turn, but can otherwise act normally.",
-    "full": "Units can disembark from this Vehicle after it has Advanced. Units that do so count as having made a Normal move that phase, and cannot declare a charge in the same turn, but can otherwise act normally.",
+    "summary": "Units can disembark from this TRANSPORT after it has Advanced. Units that do so make a shock disembark move (Core Rules, 18.07) for that disembarkation.",
+    "full": "Units can disembark from this TRANSPORT after it has Advanced. Units that do so make a shock disembark move (Core Rules, 18.07) for that disembarkation.",
     "glossary": "glossary-emperors-children-ability-assault-vehicle",
     "rule": "unit-chaos-rhino",
     "units": [
@@ -1590,8 +1667,8 @@ window.DG_TERMS={
   "emperors-children-weapon-combi-weapon": {
     "id": "emperors-children-weapon-combi-weapon",
     "title": "Combi-weapon",
-    "summary": "Ranged · 24\" · A 1 · BS 4+ · S 4 · AP 0 · D 1 · Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1",
-    "full": "Ranged · 24\" · A 1 · BS 4+ · S 4 · AP 0 · D 1 · Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1",
+    "summary": "Ranged · 24\" · A 1 · BS 4+ · S 4 · AP 0 · D 1 · Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1",
+    "full": "Ranged · 24\" · A 1 · BS 4+ · S 4 · AP 0 · D 1 · Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1",
     "glossary": "glossary-emperors-children-weapon-combi-weapon",
     "rule": "unit-chaos-rhino",
     "units": [
@@ -1619,8 +1696,8 @@ window.DG_TERMS={
   "emperors-children-ability-daemonic-poisons": {
     "id": "emperors-children-ability-daemonic-poisons",
     "title": "Daemonic Poisons",
-    "summary": "In your Shooting phase and the Fight phase, after this model has finished making its attacks, select one enemy unit hit by one or more of those attacks. Until the end of the battle, that enemy unit is poisoned. At the start of each player's Command phase, roll one D6 for each poisoned enemy unit on the battlefield: on a 4+, that enemy unit suffers D3 mortal wounds.",
-    "full": "In your Shooting phase and the Fight phase, after this model has finished making its attacks, select one enemy unit hit by one or more of those attacks. Until the end of the battle, that enemy unit is poisoned. At the start of each player's Command phase, roll one D6 for each poisoned enemy unit on the battlefield: on a 4+, that enemy unit suffers D3 mortal wounds.",
+    "summary": "In your Shooting phase and the Fight phase, after this model has finished making its attacks, select one enemy unit hit by one or more of those attacks. Until the end of the battle, that enemy unit is poisoned. At the start of each player’s Command phase, roll one D6 for each poisoned enemy unit on the battlefield: on a 4+,that enemy unit suffers D3 mortal wounds.",
+    "full": "In your Shooting phase and the Fight phase, after this model has finished making its attacks, select one enemy unit hit by one or more of those attacks. Until the end of the battle, that enemy unit is poisoned. At the start of each player’s Command phase, roll one D6 for each poisoned enemy unit on the battlefield: on a 4+,that enemy unit suffers D3 mortal wounds.",
     "glossary": "glossary-emperors-children-ability-daemonic-poisons",
     "rule": "unit-fulgrim",
     "units": [
@@ -1632,8 +1709,8 @@ window.DG_TERMS={
   "emperors-children-ability-daemon-primarch-of-slaanesh": {
     "id": "emperors-children-ability-daemon-primarch-of-slaanesh",
     "title": "Daemon Primarch of Slaanesh",
-    "summary": "At the start of your opponent’s Command phase, select one of the abilities in the Daemon Primarch of Slaanesh section (see below). Until the start of your opponent’s next Command phase, this model has that ability.",
-    "full": "At the start of your opponent’s Command phase, select one of the abilities in the Daemon Primarch of Slaanesh section (see below). Until the start of your opponent’s next Command phase, this model has that ability.",
+    "summary": "At the start of your opponent’s Command phase, select one of the abilities in the Daemon Primarch of Slaanesh section. Until the start of your opponent’s next Command phase, this model has that ability.",
+    "full": "At the start of your opponent’s Command phase, select one of the abilities in the Daemon Primarch of Slaanesh section. Until the start of your opponent’s next Command phase, this model has that ability.",
     "glossary": "glossary-emperors-children-ability-daemon-primarch-of-slaanesh",
     "rule": "unit-fulgrim",
     "units": [
@@ -1684,22 +1761,9 @@ window.DG_TERMS={
   "emperors-children-ability-supreme-commander": {
     "id": "emperors-children-ability-supreme-commander",
     "title": "Supreme Commander",
-    "summary": "If this model is in your army, it must be your Warlord.",
-    "full": "If this model is in your army, it must be your Warlord.",
+    "summary": "If this model is in your army, it must be your WARLORD.",
+    "full": "If this model is in your army, it must be your WARLORD.",
     "glossary": "glossary-emperors-children-ability-supreme-commander",
-    "rule": "unit-fulgrim",
-    "units": [
-      "unit-fulgrim"
-    ],
-    "datasheet": "unit-fulgrim",
-    "statline": "fulgrim-profile"
-  },
-  "emperors-children-ability-serpentine": {
-    "id": "emperors-children-ability-serpentine",
-    "title": "Serpentine",
-    "summary": "Each time this model makes a Normal, Advance or Fall Back move, it can move over sections of terrain features that are 4\" or less in height.",
-    "full": "Each time this model makes a Normal, Advance or Fall Back move, it can move over sections of terrain features that are 4\" or less in height.",
-    "glossary": "glossary-emperors-children-ability-serpentine",
     "rule": "unit-fulgrim",
     "units": [
       "unit-fulgrim"
@@ -1762,8 +1826,8 @@ window.DG_TERMS={
   "emperors-children-ability-duellists-hubris": {
     "id": "emperors-children-ability-duellists-hubris",
     "title": "Duellist’s Hubris",
-    "summary": "At the start of the Fight phase, if this model is not leading a unit, until the end of the phase, it has the Fights First ability.",
-    "full": "At the start of the Fight phase, if this model is not leading a unit, until the end of the phase, it has the Fights First ability.",
+    "summary": "At the start of the Fight phase; if this model is not leading a unit, until the end of the phase, it has the Fights First ability.",
+    "full": "At the start of the Fight phase; if this model is not leading a unit, until the end of the phase, it has the Fights First ability.",
     "glossary": "glossary-emperors-children-ability-duellists-hubris",
     "rule": "unit-lucius-the-eternal",
     "units": [
@@ -1775,8 +1839,8 @@ window.DG_TERMS={
   "emperors-children-ability-a-challenge-worthy-of-skill": {
     "id": "emperors-children-ability-a-challenge-worthy-of-skill",
     "title": "A Challenge Worthy of Skill",
-    "summary": "Each time this model makes an attack that targets a Character, Monster or Walker unit, you can re-roll the Hit roll and re-roll the Wound roll.",
-    "full": "Each time this model makes an attack that targets a Character, Monster or Walker unit, you can re-roll the Hit roll and re-roll the Wound roll.",
+    "summary": "Each time this model makes an attack that targets a CHARACTER, MONSTER or WALKER unit, you can re-roll the Hit roll and you can re-roll the Wound roll.",
+    "full": "Each time this model makes an attack that targets a CHARACTER, MONSTER or WALKER unit, you can re-roll the Hit roll and you can re-roll the Wound roll.",
     "glossary": "glossary-emperors-children-ability-a-challenge-worthy-of-skill",
     "rule": "unit-lucius-the-eternal",
     "units": [
@@ -1827,8 +1891,8 @@ window.DG_TERMS={
   "emperors-children-ability-monarch-of-the-hunt": {
     "id": "emperors-children-ability-monarch-of-the-hunt",
     "title": "Monarch of the Hunt",
-    "summary": "At the start of the first battle round, select one enemy unit to be this model's quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model's quarry is destroyed, select one new enemy unit to be this model's quarry.",
-    "full": "At the start of the first battle round, select one enemy unit to be this model's quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model's quarry is destroyed, select one new enemy unit to be this model's quarry.",
+    "summary": "At the start of the first battle round, select one enemy unit to be this model’s quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model’s quarry is destroyed, select one new enemy unit to be this model’s quarry.",
+    "full": "At the start of the first battle round, select one enemy unit to be this model’s quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model’s quarry is destroyed, select one new enemy unit to be this model’s quarry.",
     "glossary": "glossary-emperors-children-ability-monarch-of-the-hunt",
     "rule": "unit-shalaxi-helbane",
     "units": [
@@ -1931,8 +1995,8 @@ window.DG_TERMS={
   "emperors-children-weapon-chainfist": {
     "id": "emperors-children-weapon-chainfist",
     "title": "Chainfist",
-    "summary": "Melee · Melee · A 3 · WS 4+ · S 8 · AP -2 · D 2 · Anti-VEHICLE 3+",
-    "full": "Melee · Melee · A 3 · WS 4+ · S 8 · AP -2 · D 2 · Anti-VEHICLE 3+",
+    "summary": "Melee · Melee · A 3 · WS 4+ · S 8 · AP -2 · D 2 · Anti-Vehicle 3+",
+    "full": "Melee · Melee · A 3 · WS 4+ · S 8 · AP -2 · D 2 · Anti-Vehicle 3+",
     "glossary": "glossary-emperors-children-weapon-chainfist",
     "rule": "unit-chaos-terminators",
     "units": [
@@ -1957,8 +2021,8 @@ window.DG_TERMS={
   "emperors-children-weapon-paired-accursed-weapons": {
     "id": "emperors-children-weapon-paired-accursed-weapons",
     "title": "Paired accursed weapons",
-    "summary": "Melee · Melee · A 5 · WS 3+ · S 5 · AP -2 · D 1 · Twin-linked",
-    "full": "Melee · Melee · A 5 · WS 3+ · S 5 · AP -2 · D 1 · Twin-linked",
+    "summary": "Melee · Melee · A 5 · WS 3+ · S 5 · AP -2 · D 1 · Twin-Linked",
+    "full": "Melee · Melee · A 5 · WS 3+ · S 5 · AP -2 · D 1 · Twin-Linked",
     "glossary": "glossary-emperors-children-weapon-paired-accursed-weapons",
     "rule": "unit-chaos-terminators",
     "units": [
@@ -1996,8 +2060,8 @@ window.DG_TERMS={
   "emperors-children-ability-daemonic-patrons": {
     "id": "emperors-children-ability-daemonic-patrons",
     "title": "Daemonic Patrons",
-    "summary": "Each time this unit is selected to fight, it can call upon daemonic patrons. If it does, until the end of the phase, each time a model in this unit makes an attack. an unmodified Wound roll of 3+ scores a Critical Wound. At the end of the Fight phase, if this unit called upon daemonic patrons this phase and no enemy models were destroyed by attacks made by models in this unit this phase, one model in this unit is destroyed.",
-    "full": "Each time this unit is selected to fight, it can call upon daemonic patrons. If it does, until the end of the phase, each time a model in this unit makes an attack. an unmodified Wound roll of 3+ scores a Critical Wound. At the end of the Fight phase, if this unit called upon daemonic patrons this phase and no enemy models were destroyed by attacks made by models in this unit this phase, one model in this unit is destroyed.",
+    "summary": "Each time this unit is selected to fight, it can call upon daemonic patrons. If it does, until the end of the phase, each time a model in this unit makes an attack, an unmodified Wound roll of 3+ scores a Critical Wound. At the end of the Fight phase, if this unit called upon daemonic patrons this phase and no enemy models were destroyed by attacks made by models in this unit this phase, one model in this unit is destroyed.",
+    "full": "Each time this unit is selected to fight, it can call upon daemonic patrons. If it does, until the end of the phase, each time a model in this unit makes an attack, an unmodified Wound roll of 3+ scores a Critical Wound. At the end of the Fight phase, if this unit called upon daemonic patrons this phase and no enemy models were destroyed by attacks made by models in this unit this phase, one model in this unit is destroyed.",
     "glossary": "glossary-emperors-children-ability-daemonic-patrons",
     "rule": "unit-flawless-blades",
     "units": [
@@ -2087,8 +2151,8 @@ window.DG_TERMS={
   "emperors-children-ability-assault-ramp": {
     "id": "emperors-children-ability-assault-ramp",
     "title": "Assault Ramp",
-    "summary": "Each time a unit disembarks from this model after it has made a Normal move, that unit is still eligible to declare a charge this turn.",
-    "full": "Each time a unit disembarks from this model after it has made a Normal move, that unit is still eligible to declare a charge this turn.",
+    "summary": "Each time a unit disembarks from this model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
+    "full": "Each time a unit disembarks from this model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
     "glossary": "glossary-emperors-children-ability-assault-ramp",
     "rule": "unit-chaos-land-raider",
     "units": [
@@ -2139,8 +2203,8 @@ window.DG_TERMS={
   "emperors-children-weapon-twin-heavy-bolter": {
     "id": "emperors-children-weapon-twin-heavy-bolter",
     "title": "Twin heavy bolter",
-    "summary": "Ranged · 36\" · A 3 · BS 3+ · S 5 · AP -1 · D 2 · Sustained Hits 1, Twin-linked",
-    "full": "Ranged · 36\" · A 3 · BS 3+ · S 5 · AP -1 · D 2 · Sustained Hits 1, Twin-linked",
+    "summary": "Ranged · 36\" · A 3 · BS 3+ · S 5 · AP -1 · D 2 · Sustained Hits 1, Twin-Linked",
+    "full": "Ranged · 36\" · A 3 · BS 3+ · S 5 · AP -1 · D 2 · Sustained Hits 1, Twin-Linked",
     "glossary": "glossary-emperors-children-weapon-twin-heavy-bolter",
     "rule": "unit-chaos-land-raider",
     "units": [
@@ -2152,8 +2216,8 @@ window.DG_TERMS={
   "emperors-children-ability-scuttling-horrors": {
     "id": "emperors-children-ability-scuttling-horrors",
     "title": "Scuttling Horrors",
-    "summary": "In your opponent's Movement phase, if an enemy unit ends a move within 8” of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to 6”.",
-    "full": "In your opponent's Movement phase, if an enemy unit ends a move within 8” of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to 6”.",
+    "summary": "In your opponent's Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to 6\".",
+    "full": "In your opponent's Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to 6\".",
     "glossary": "glossary-emperors-children-ability-scuttling-horrors",
     "rule": "unit-chaos-spawn",
     "units": [
@@ -2178,8 +2242,8 @@ window.DG_TERMS={
   "emperors-children-ability-scuttling-walker": {
     "id": "emperors-children-ability-scuttling-walker",
     "title": "Scuttling Walker",
-    "summary": "Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding Titanic models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
-    "full": "Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding Titanic models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+    "summary": "Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+    "full": "Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
     "glossary": "glossary-emperors-children-ability-scuttling-walker",
     "rule": "unit-defiler",
     "units": [
@@ -2360,8 +2424,8 @@ window.DG_TERMS={
   "emperors-children-ability-soporific-musk": {
     "id": "emperors-children-ability-soporific-musk",
     "title": "Soporific Musk",
-    "summary": "Each time an enemy unit (excluding Monsters and Vehicles ) within Engagement Range of one or more units from your army with this ability Falls Back, models in that unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
-    "full": "Each time an enemy unit (excluding Monsters and Vehicles ) within Engagement Range of one or more units from your army with this ability Falls Back, models in that unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
+    "summary": "Each time an enemy unit (excluding MONSTERS and VEHICLES) within Engagement Range of one or more units from your army with this ability Falls Back, models in that enemy unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
+    "full": "Each time an enemy unit (excluding MONSTERS and VEHICLES) within Engagement Range of one or more units from your army with this ability Falls Back, models in that enemy unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
     "glossary": "glossary-emperors-children-ability-soporific-musk",
     "rule": "unit-fiends",
     "units": [
@@ -2396,11 +2460,25 @@ window.DG_TERMS={
     "datasheet": "unit-heldrake",
     "statline": "heldrake-profile"
   },
+  "emperors-children-ability-damaged-1-4-wounds-remaining": {
+    "id": "emperors-children-ability-damaged-1-4-wounds-remaining",
+    "title": "Damaged: 1-4 Wounds Remaining",
+    "summary": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+    "full": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+    "glossary": "glossary-emperors-children-ability-damaged-1-4-wounds-remaining",
+    "rule": "unit-heldrake",
+    "units": [
+      "unit-heldrake",
+      "unit-maulerfiend"
+    ],
+    "datasheet": "unit-heldrake",
+    "statline": "heldrake-profile"
+  },
   "emperors-children-weapon-heldrake-claws": {
     "id": "emperors-children-weapon-heldrake-claws",
     "title": "Heldrake claws",
-    "summary": "Melee · Melee · A 5 · WS 3+ · S 7 · AP -1 · D 2 · Anti-FLY 2+, Devastating Wounds",
-    "full": "Melee · Melee · A 5 · WS 3+ · S 7 · AP -1 · D 2 · Anti-FLY 2+, Devastating Wounds",
+    "summary": "Melee · Melee · A 5 · WS 3+ · S 7 · AP -1 · D 2 · Anti-Fly 2+, Devastating Wounds",
+    "full": "Melee · Melee · A 5 · WS 3+ · S 7 · AP -1 · D 2 · Anti-Fly 2+, Devastating Wounds",
     "glossary": "glossary-emperors-children-weapon-heldrake-claws",
     "rule": "unit-heldrake",
     "units": [
@@ -2438,8 +2516,8 @@ window.DG_TERMS={
   "emperors-children-ability-glutton-for-punishment": {
     "id": "emperors-children-ability-glutton-for-punishment",
     "title": "Glutton for Punishment",
-    "summary": "Each time this model makes an attack, if it is below its Starting Strength, add 1 to the Hit roll. If this model is also Below Half-Strength, add 1 to the Wound roll as well.",
-    "full": "Each time this model makes an attack, if it is below its Starting Strength, add 1 to the Hit roll. If this model is also Below Half-Strength, add 1 to the Wound roll as well.",
+    "summary": "Each time this model makes an attack, if it is below its Starting Strength, add 1 to the Hit roll. If this model is also Below Half-strength, add 1 to the Wound roll as well.",
+    "full": "Each time this model makes an attack, if it is below its Starting Strength, add 1 to the Hit roll. If this model is also Below Half-strength, add 1 to the Wound roll as well.",
     "glossary": "glossary-emperors-children-ability-glutton-for-punishment",
     "rule": "unit-maulerfiend",
     "units": [
@@ -2461,12 +2539,12 @@ window.DG_TERMS={
     "datasheet": "unit-maulerfiend",
     "statline": "maulerfiend-profile"
   },
-  "emperors-children-weapon-magma-cutter": {
-    "id": "emperors-children-weapon-magma-cutter",
-    "title": "Magma cutter",
+  "emperors-children-weapon-magma-cutters-2": {
+    "id": "emperors-children-weapon-magma-cutters-2",
+    "title": "Magma cutters",
     "summary": "Ranged · 6\" · A 2 · BS 3+ · S 9 · AP -4 · D D6 · Melta 2",
     "full": "Ranged · 6\" · A 2 · BS 3+ · S 9 · AP -4 · D D6 · Melta 2",
-    "glossary": "glossary-emperors-children-weapon-magma-cutter",
+    "glossary": "glossary-emperors-children-weapon-magma-cutters-2",
     "rule": "unit-maulerfiend",
     "units": [
       "unit-maulerfiend"

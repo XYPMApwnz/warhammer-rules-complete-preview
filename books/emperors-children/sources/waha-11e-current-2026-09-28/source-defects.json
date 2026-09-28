@@ -1,0 +1,32 @@
+{
+  "schema": "wh40k-waha-source-defects/v1",
+  "bookId": "emperors-children",
+  "captureDate": "2026-09-28",
+  "currentnessCutoff": "2026-09-28",
+  "records": [
+    {
+      "id": "shared-statline-profile-expansion",
+      "classification": "SOURCE_STRUCTURE_VARIANT",
+      "sourceId": "datasheet-statline-profiles",
+      "resolution": "Canonical model identities may share one displayed source statline; every expanded profile retains the exact accepted characteristics."
+    },
+    {
+      "id": "stronger-official-update-precedence",
+      "classification": "STRONGER_OFFICIAL_TEXT_OVERRIDE",
+      "sourceId": "emperors-children-faction-pack-v1.2",
+      "resolution": "The enrolled official update ledger wins direct conflicts, including Armour of Abhorrence and the complete Faultless Opportunist and Cacophonic Accompaniment wording; the current Waha corpus supplies facts not contradicted by stronger enrolled evidence."
+    },
+    {
+      "id": "mfm-owned-qualifier",
+      "classification": "MFM_OWNED_FACT",
+      "sourceId": "frenzied-host-host-restriction",
+      "resolution": "The current centralized MFM owns the HOST Enhancement restriction and its projection; the Army factual owner does not duplicate it."
+    },
+    {
+      "id": "duplicate-source-presentations",
+      "classification": "DUPLICATE_SOURCE_PRESENTATION",
+      "sourceId": "hub-and-datasheet-occurrences",
+      "resolution": "Repeated rule and keyword presentations are occurrences of one canonical factual identity."
+    }
+  ]
+}

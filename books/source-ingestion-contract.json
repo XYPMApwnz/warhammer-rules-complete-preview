@@ -2376,6 +2376,34 @@
         }
       ],
       "notes": "Frozen secondary 11E T'au Empire corpus captured for complete source-to-canonical certification on 2026-09-28."
+    },
+    {
+      "book": "emperors-children",
+      "sourceId": "emperors-children-waha-11e-current-2026-09-28",
+      "authority": "community-secondary-operational-baseline",
+      "sourceType": "deterministic-web-corpus",
+      "acceptedRevision": "current-capture-2026-09-28",
+      "acceptedHash": "8f65bf69c68cfbaa4740cb10e98cdba35cea79b8d0a469fda0638a3a3c21228d",
+      "lastChecked": "2026-09-28",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "RETAINED_WEB_CORPUS",
+      "reproducible": "repository-artifact",
+      "extractor": "books/emperors-children/tools/import-waha-current-corpus.py",
+      "artifacts": [
+        {
+          "path": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "normalization": "bytes",
+          "sha256": "a5fdb9334b18a3dba29d94ad930f6d611f9079529d602796ce6ea42d25a1a1d3"
+        },
+        {
+          "path": "books/emperors-children/sources/waha-11e-current-2026-09-28/source-defects.json",
+          "normalization": "bytes",
+          "sha256": "eb328946cccdae098ba852c01627d196a77339aabd6169339f47d900cc4eacd0"
+        }
+      ],
+      "notes": "Frozen secondary 11E Emperor's Children corpus captured for complete source-to-canonical certification on 2026-09-28."
     }
   ],
   "dormantLiveTools": [

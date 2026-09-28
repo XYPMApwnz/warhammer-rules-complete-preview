@@ -63,7 +63,7 @@
     {
       "id": "mfm-v1.3",
       "authority": "official",
-      "role": "points-and-roster-contract",
+      "role": "historical-points-capture",
       "title": "Munitorum Field Manual v1.3",
       "url": "https://mfm.warhammer-community.com/en/emperors-children",
       "version": "1.3",
@@ -83,7 +83,7 @@
         "Rule text and unit structure are outside the MFM scope."
       ],
       "sourceId": "emperors-children-mfm-v1.3",
-      "active": true,
+      "active": false,
       "sourceType": "official-json-capture",
       "lifecycle": "ACCEPTED_SOURCE",
       "factsOwned": [
@@ -91,9 +91,7 @@
         "costs"
       ],
       "consumers": [
-        "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "POINTS_PROJECTION"
+        "SOURCE_HISTORY"
       ],
       "paths": [
         "books/emperors-children/sources/official-mfm-v1.3.json",
@@ -254,17 +252,59 @@
         "legends-pricing"
       ],
       "consumers": [
-        "SOURCE_FRESHNESS"
+        "SOURCE_FRESHNESS",
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION"
       ],
       "paths": [
         "books/emperors-children/sources/official-mfm-v1.4.json",
         "books/emperors-children/sources/official-mfm-v1.4.html"
       ]
+    },
+    {
+      "id": "waha-11e-current-2026-09-28",
+      "title": "Current Waha Emperor's Children 11E corpus",
+      "edition": "11th Edition",
+      "version": "current-2026-09-28",
+      "effectiveDate": "2026-09-28",
+      "retrievedAt": "2026-09-28",
+      "frozenAt": "2026-09-28",
+      "authority": "community-secondary-operational-baseline",
+      "role": "complete-operational-content-baseline",
+      "active": true,
+      "sourceType": "deterministic-web-corpus",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "factsOwned": [
+        "current-datasheets",
+        "profiles",
+        "weapons",
+        "abilities",
+        "wargear-options",
+        "keywords",
+        "detachments",
+        "enhancements",
+        "stratagems"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "GLOSSARY_V2"
+      ],
+      "paths": [
+        "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+        "books/emperors-children/sources/waha-11e-current-2026-09-28/source-defects.json"
+      ]
     }
   ],
   "gates": {
-    "publishAsComplete": false,
-    "reason": "Official Faction Pack v1.2 is frozen; official live MFM v1.3 is preserved as a dated repository capture verified 27 August 2026. Codex rule-bearing text remains a fixed secondary parity source, so publication remains gated."
+    "publishAsComplete": true,
+    "reason": "Current Waha 11E content is fully source-to-canonical certified, with stronger official Faction Pack v1.2 evidence and centralized MFM v1.4 taking precedence in direct conflicts."
   },
-  "enrollmentScope": "PUBLIC_BOOK"
+  "enrollmentScope": {
+    "publication": "PUBLIC_BOOK",
+    "currentWahaCorpus": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+    "currentNonLegendsDatasheets": 23,
+    "legendsExcluded": 0
+  }
 }
