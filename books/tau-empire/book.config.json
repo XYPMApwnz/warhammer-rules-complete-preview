@@ -53,7 +53,10 @@
   "rosterCatalog": {
     "inferExactWargearAbilitySelections": true,
     "inferCanonicalDetachmentRuleIds": true,
-    "dedupeLegacyEnhancementsByTitle": true
+    "dedupeLegacyEnhancementsByTitle": true,
+    "enforceCompositionConstraints": true,
+    "projectStatProfiles": true,
+    "preserveMultipartStatProfiles": true
   },
   "compatibleRulesMatrix": true,
   "legacyRelatedRuleAttributes": false,

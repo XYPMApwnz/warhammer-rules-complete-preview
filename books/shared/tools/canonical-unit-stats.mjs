@@ -57,13 +57,14 @@ export function canonicalBaseStatsForUnit(unit,{effectContracts=[]}={}){
 const canonicalStats=value=>JSON.stringify(Object.entries(value||{}).sort(([left],[right])=>left.localeCompare(right)));
 const canonicalFact=value=>Array.isArray(value)?value.map(canonicalFact):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,canonicalFact(value[key])])):value;
 
-export function canonicalStatProfilesForUnit(unit){
+export function canonicalStatProfilesForUnit(unit,{preserveMultipartProfiles=false}={}){
   const sources=values(unit?.profiles).filter(profile=>profile?.name&&statRecord(profile?.stats));
-  if(sources.length<2||new Set(sources.map(profile=>canonicalStats(profile.stats))).size<2)return [];
+  const preserve=preserveMultipartProfiles&&values(unit?.composition).length>1;
+  if(!preserve&&(sources.length<2||new Set(sources.map(profile=>canonicalStats(profile.stats))).size<2))return [];
   return assignCanonicalChildIdentities(unit,sources,{kind:'stat-profile',titleOf:profile=>profile.name,semanticOf:profile=>({sourceName:profile.name,stats:profile.stats}),legacyIdOf:profile=>`${unit.id}-stat-profile-${slug(profile.name)}`}).map(profile=>({id:profile.id,title:profile.name,stats:{...profile.stats},...(profile.legacyIds?.length?{legacyIds:profile.legacyIds}:{})}));
 }
 
-export function projectRosterBaseStats(units,catalogUnits,{label='roster base-stat projection',effectContracts=[],projectStatProfiles=false}={}){
+export function projectRosterBaseStats(units,catalogUnits,{label='roster base-stat projection',effectContracts=[],projectStatProfiles=false,preserveMultipartStatProfiles=false}={}){
   if(!Array.isArray(units)||!Array.isArray(catalogUnits))throw new Error(`${label}: units and catalogUnits must be arrays`);
   const sourceById=new Map();
   for(const unit of units){
@@ -76,7 +77,7 @@ export function projectRosterBaseStats(units,catalogUnits,{label='roster base-st
     if(typeof item?.id!=='string'||!item.id||!sourceById.has(item.id))throw new Error(`${label}: unknown canonical stat-profile scope ${item?.id||'<missing>'}`);
     if(seen.has(item.id))throw new Error(`${label}: duplicate roster stat-profile identity ${item.id}`);
     seen.add(item.id);
-    return {...item,gameSelections:{...(item.gameSelections||{}),stats:canonicalBaseStatsForUnit(sourceById.get(item.id),{effectContracts}),...(projectStatProfiles?{statProfiles:canonicalStatProfilesForUnit(sourceById.get(item.id))}:{})}};
+    return {...item,gameSelections:{...(item.gameSelections||{}),stats:canonicalBaseStatsForUnit(sourceById.get(item.id),{effectContracts}),...(projectStatProfiles?{statProfiles:canonicalStatProfilesForUnit(sourceById.get(item.id),{preserveMultipartProfiles:preserveMultipartStatProfiles})}:{})}};
   });
   if(seen.size!==sourceById.size){
     const missing=[...sourceById.keys()].find(id=>!seen.has(id));
@@ -85,8 +86,8 @@ export function projectRosterBaseStats(units,catalogUnits,{label='roster base-st
   return projected;
 }
 
-export function assertRosterBaseStatProjection(units,catalogUnits,{label='roster base-stat projection',effectContracts=[],projectStatProfiles=false}={}){
-  const projected=projectRosterBaseStats(units,catalogUnits,{label,effectContracts,projectStatProfiles});
+export function assertRosterBaseStatProjection(units,catalogUnits,{label='roster base-stat projection',effectContracts=[],projectStatProfiles=false,preserveMultipartStatProfiles=false}={}){
+  const projected=projectRosterBaseStats(units,catalogUnits,{label,effectContracts,projectStatProfiles,preserveMultipartStatProfiles});
   for(let index=0;index<projected.length;index++){
     const expected=projected[index].gameSelections.stats,actual=catalogUnits[index]?.gameSelections?.stats;
     if(canonicalStats(actual)!==canonicalStats(expected))throw new Error(`${label}: ${projected[index].id} has conflicting canonical base stats`);

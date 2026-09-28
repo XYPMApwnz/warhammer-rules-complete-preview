@@ -7,8 +7,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     "parentBookId": null,
     "dependencies": []
   },
-  "compositionConstraints": false,
-  "statProfiles": false,
+  "compositionConstraints": true,
+  "statProfiles": true,
+  "preserveMultipartStatProfiles": true,
   "units": [
     {
       "id": "unit-breacher-team",
@@ -66,6 +67,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-breacher-team-stat-profile-931f3d2339",
+            "title": "Breacher Fire Warrior",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "4+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-breacher-team-stat-profile-breacher-fire-warrior"
+            ]
+          },
+          {
+            "id": "unit-breacher-team-stat-profile-083d18e754",
+            "title": "Breacher Fire Warrior Shas'ui",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "4+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-breacher-team-stat-profile-breacher-fire-warrior-shasui"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-breach-and-clear",
@@ -96,6 +131,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Breacher Fire Warriors"
             ],
+            "min": 9,
+            "max": 9,
             "legacyIds": [
               "unit-breacher-team-model-breacher-fire-warriors"
             ]
@@ -106,6 +143,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Breacher Fire Warrior Shas'ui"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-breacher-team-model-breacher-fire-warrior-shasui-2"
             ]
@@ -435,6 +474,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-strike-team-stat-profile-e525885a36",
+            "title": "Strike Team",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "4+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-strike-team-stat-profile-strike-team"
+            ]
+          },
+          {
+            "id": "unit-strike-team-stat-profile-f3ae893d84",
+            "title": "Fire Warrior Shas'ui",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "4+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-strike-team-stat-profile-fire-warrior-shasui"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-suppression-volley",
@@ -467,6 +540,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Fire Warrior w/ pulse carbine",
               "Fire Warrior w/ pulse rifle"
             ],
+            "min": 9,
+            "max": 9,
             "legacyIds": [
               "unit-strike-team-model-fire-warriors"
             ]
@@ -477,6 +552,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Fire Warrior Shas'ui"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-strike-team-model-fire-warrior-shasui-2"
             ]
@@ -834,6 +911,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-volley-fire",
@@ -871,6 +949,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Cadre Fireblade"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-cadre-fireblade-model-cadre-fireblade"
             ]
@@ -1148,6 +1228,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-coldstar-commander",
@@ -1192,6 +1273,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Commander in Coldstar Battlesuit"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-commander-in-coldstar-battlesuit-model-commander-in-coldstar-battlesuit"
             ]
@@ -1802,6 +1885,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-enforcer-commander",
@@ -1839,6 +1923,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Commander in Enforcer Battlesuit"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-commander-in-enforcer-battlesuit-model-commander-in-enforcer-battlesuit"
             ]
@@ -2408,6 +2494,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "5+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-coordinated-leadership",
@@ -2452,6 +2539,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Ethereal"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-ethereal-model-ethereal"
             ]
@@ -2696,6 +2785,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-precise-targeting",
@@ -2740,6 +2830,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Firesight Team"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-firesight-team-model-firesight-team"
             ]
@@ -2964,6 +3056,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-rites-of-feasting",
@@ -3029,6 +3122,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Kroot Flesh Shaper"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-kroot-flesh-shaper-model-kroot-flesh-shaper"
             ]
@@ -3142,6 +3237,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-fire-and-fade",
@@ -3186,6 +3282,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Kroot Lone-spear"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-kroot-lone-spear-model-kroot-lone-spear"
             ]
@@ -3470,6 +3568,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-kroot-ambush",
@@ -3521,6 +3620,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Kroot Trail Shaper"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-kroot-trail-shaper-model-kroot-trail-shaper"
             ]
@@ -3715,6 +3816,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-root-of-honour",
@@ -3766,6 +3868,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Kroot War Shaper"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-kroot-war-shaper-model-kroot-war-shaper"
             ]
@@ -3941,6 +4045,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-rapid-deployment",
@@ -3971,6 +4076,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Devilfish"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-devilfish-model-devilfish"
             ]
@@ -4203,6 +4310,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-way-of-the-short-blade",
@@ -4247,6 +4355,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Commander Farsight"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-commander-farsight-model-commander-farsight"
             ]
@@ -4421,6 +4531,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "5+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-agile-combatant",
@@ -4479,6 +4590,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Commander Shadowsun"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-commander-shadowsun-model-commander-shadowsun"
             ]
@@ -4744,6 +4857,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-structural-analyser",
@@ -4795,6 +4909,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Darkstrider"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-darkstrider-model-darkstrider"
             ]
@@ -4911,6 +5027,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": "4+"
         },
+        "statProfiles": [
+          {
+            "id": "unit-the-twin-lance-stat-profile-ff96172cdb",
+            "title": "The Twin Lance",
+            "stats": {
+              "M": "10\"",
+              "T": "6",
+              "Sv": "2+",
+              "W": "8",
+              "Ld": "6+",
+              "OC": "2",
+              "Invulnerable": "4+"
+            },
+            "legacyIds": [
+              "unit-the-twin-lance-stat-profile-the-twin-lance"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-neocapacitor-shields",
@@ -4976,6 +5110,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Ri'Lantar"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-the-twin-lance-model-rilantar"
             ]
@@ -4986,6 +5122,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Ri'Locai"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-the-twin-lance-model-rilocai-2"
             ]
@@ -5554,6 +5692,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-kroot-carnivores-stat-profile-b34ac4e066",
+            "title": "Kroot Carnivores",
+            "stats": {
+              "M": "7\"",
+              "T": "3",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-kroot-carnivores-stat-profile-kroot-carnivores"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-fieldcraft",
@@ -5593,6 +5749,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Kroot Carnivores",
               "Kroot Carnivore w/ tanglebomb launcher"
             ],
+            "min": 9,
+            "max": 19,
             "legacyIds": [
               "unit-kroot-carnivores-model-9-19-kroot-carnivores"
             ]
@@ -5603,6 +5761,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Long-quill"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-kroot-carnivores-model-long-quill-2"
             ]
@@ -5830,6 +5990,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Ld": "7+",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-kroot-farstalkers-stat-profile-a71c6dfd89",
+            "title": "Farstalkers & Kill-broker",
+            "stats": {
+              "M": "7\"",
+              "T": "3",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-kroot-farstalkers-stat-profile-farstalkers-kill-broker"
+            ]
+          },
+          {
+            "id": "unit-kroot-farstalkers-stat-profile-eaf059bd13",
+            "title": "Kroot Hounds",
+            "stats": {
+              "M": "12\"",
+              "T": "3",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "0",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-kroot-farstalkers-stat-profile-kroot-hounds"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "core-infiltrators",
@@ -5860,6 +6054,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Kroot Hounds"
             ],
+            "min": 2,
+            "max": 2,
             "legacyIds": [
               "unit-kroot-farstalkers-model-kroot-hounds"
             ]
@@ -5872,6 +6068,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Kroot Farstalker",
               "Kroot Farstalker w/ Farstalker firearm and Pech'ra"
             ],
+            "min": 9,
+            "max": 9,
             "legacyIds": [
               "unit-kroot-farstalkers-model-kroot-farstalkers-2"
             ]
@@ -5882,6 +6080,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Kroot Kill-broker"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-kroot-farstalkers-model-kroot-kill-broker-3"
             ]
@@ -6211,6 +6411,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-pathfinder-team-stat-profile-3c409aa70e",
+            "title": "Pathfinder Team",
+            "stats": {
+              "M": "7\"",
+              "T": "3",
+              "Sv": "4+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-pathfinder-team-stat-profile-pathfinder-team"
+            ]
+          },
+          {
+            "id": "unit-pathfinder-team-stat-profile-0cb3bf9364",
+            "title": "Pathfinder Shas'ui",
+            "stats": {
+              "M": "7\"",
+              "T": "3",
+              "Sv": "4+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-pathfinder-team-stat-profile-pathfinder-shasui"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-target-uploaded",
@@ -6257,6 +6491,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Pathfinders w/ pulse carbine",
               "Pathfinders w/ pulse carbine and grenade launcher"
             ],
+            "min": 9,
+            "max": 9,
             "legacyIds": [
               "unit-pathfinder-team-model-pathfinders"
             ]
@@ -6267,6 +6503,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Pathfinder Shas'ui"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-pathfinder-team-model-pathfinder-shasui-2"
             ]
@@ -6860,6 +7098,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-stealth-battlesuits-stat-profile-2ef2829fdb",
+            "title": "Stealth Shas'ui",
+            "stats": {
+              "M": "8\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-stealth-battlesuits-stat-profile-stealth-shasui"
+            ]
+          },
+          {
+            "id": "unit-stealth-battlesuits-stat-profile-adcdd75562",
+            "title": "Stealth Shas'vre",
+            "stats": {
+              "M": "8\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-stealth-battlesuits-stat-profile-stealth-shasvre"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-forward-observers",
@@ -6899,6 +7171,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Stealth Shas'ui w/ burst cannon",
               "Stealth Shas'ui w/ fusion blaster"
             ],
+            "min": 4,
+            "max": 4,
             "legacyIds": [
               "unit-stealth-battlesuits-model-4-stealth-shasui"
             ]
@@ -6909,6 +7183,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Stealth Shas'vre"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-stealth-battlesuits-model-stealth-shasvre-2"
             ]
@@ -7176,6 +7452,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-vespid-stingwings-stat-profile-c0dbf637b9",
+            "title": "Vespid Stingwings",
+            "stats": {
+              "M": "12\"",
+              "T": "4",
+              "Sv": "4+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-vespid-stingwings-stat-profile-vespid-stingwings"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-airborne-agility",
@@ -7199,6 +7493,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Vespid Strain Leader"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-vespid-stingwings-model-vespid-strain-leader"
             ]
@@ -7213,6 +7509,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Vespid Stingwings w/ Neutron Grenade Launcher",
               "Vespid Stingwings w/ Neutron Rail Rifle"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-vespid-stingwings-model-4-9-vespid-stingwings-2"
             ]
@@ -7442,6 +7740,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-broadside-battlesuits-stat-profile-4b93854ddd",
+            "title": "Broadside Shas’ui",
+            "stats": {
+              "M": "5\"",
+              "T": "6",
+              "Sv": "2+",
+              "W": "8",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-broadside-battlesuits-stat-profile-broadside-shasui"
+            ]
+          },
+          {
+            "id": "unit-broadside-battlesuits-stat-profile-47a23866d2",
+            "title": "Broadside Shas’vre",
+            "stats": {
+              "M": "5\"",
+              "T": "6",
+              "Sv": "2+",
+              "W": "8",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-broadside-battlesuits-stat-profile-broadside-shasvre"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-advanced-armour",
@@ -7473,6 +7805,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Broadside Shas’ui (0-2)",
               "Broadside Shas’ui"
             ],
+            "min": 0,
+            "max": 2,
             "legacyIds": [
               "unit-broadside-battlesuits-model-broadside-shasui-0-2"
             ]
@@ -7483,6 +7817,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Broadside Shas’vre"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-broadside-battlesuits-model-broadside-shasvre-2"
             ]
@@ -7905,6 +8241,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-crisis-fireknife-battlesuits-stat-profile-e8201e85a7",
+            "title": "Crisis Fireknife Shas’ui",
+            "stats": {
+              "M": "10\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "4",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-crisis-fireknife-battlesuits-stat-profile-crisis-fireknife-shasui"
+            ]
+          },
+          {
+            "id": "unit-crisis-fireknife-battlesuits-stat-profile-cdb4b0025c",
+            "title": "Crisis Fireknife Shas’vre",
+            "stats": {
+              "M": "10\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "4",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-crisis-fireknife-battlesuits-stat-profile-crisis-fireknife-shasvre"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-fireknife",
@@ -7942,6 +8312,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Crisis Fireknife Shas’ui"
             ],
+            "min": 2,
+            "max": 2,
             "legacyIds": [
               "unit-crisis-fireknife-battlesuits-model-crisis-fireknife-shasui"
             ]
@@ -7952,6 +8324,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Crisis Fireknife Shas’vre"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-crisis-fireknife-battlesuits-model-crisis-fireknife-shasvre-2"
             ]
@@ -8248,6 +8622,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-crisis-starscythe-battlesuits-stat-profile-7eba053fbb",
+            "title": "Crisis Starscythe Shas’ui",
+            "stats": {
+              "M": "10\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "4",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-crisis-starscythe-battlesuits-stat-profile-crisis-starscythe-shasui"
+            ]
+          },
+          {
+            "id": "unit-crisis-starscythe-battlesuits-stat-profile-3452ddf1d6",
+            "title": "Crisis Starscythe Shas’vre",
+            "stats": {
+              "M": "10\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "4",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-crisis-starscythe-battlesuits-stat-profile-crisis-starscythe-shasvre"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-starscythe",
@@ -8285,6 +8693,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Crisis Starscythe Shas’ui"
             ],
+            "min": 2,
+            "max": 2,
             "legacyIds": [
               "unit-crisis-starscythe-battlesuits-model-crisis-starscythe-shasui"
             ]
@@ -8295,6 +8705,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Crisis Starscythe Shas’vre"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-crisis-starscythe-battlesuits-model-crisis-starscythe-shasvre-2"
             ]
@@ -8602,6 +9014,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": "4+"
         },
+        "statProfiles": [
+          {
+            "id": "unit-crisis-sunforge-battlesuits-stat-profile-9fc5cf089e",
+            "title": "Crisis Sunforge Shas’ui",
+            "stats": {
+              "M": "10\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "4",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": "4+"
+            },
+            "legacyIds": [
+              "unit-crisis-sunforge-battlesuits-stat-profile-crisis-sunforge-shasui"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "tau-empire-ability-sunforge",
@@ -8632,6 +9062,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Crisis Sunforge Shas’ui"
             ],
+            "min": 2,
+            "max": 2,
             "legacyIds": [
               "unit-crisis-sunforge-battlesuits-model-crisis-sunforge-shasui"
             ]
@@ -8642,6 +9074,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Crisis Sunforge Shas’vre"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-crisis-sunforge-battlesuits-model-crisis-sunforge-shasvre-2"
             ]
@@ -8893,6 +9327,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-stealth-drones",
@@ -8951,6 +9386,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Ghostkeel Battlesuit"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-ghostkeel-battlesuit-model-ghostkeel-battlesuit"
             ]
@@ -9269,6 +9706,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-armour-hunter",
@@ -9313,6 +9751,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Hammerhead Gunship"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-hammerhead-gunship-model-hammerhead-gunship"
             ]
@@ -9634,6 +10074,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "0",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-loping-pounce",
@@ -9672,6 +10113,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "5-10 Kroot Hounds",
               "Kroot Hounds"
             ],
+            "min": 5,
+            "max": 10,
             "legacyIds": [
               "unit-kroot-hounds-model-5-10-kroot-hounds"
             ]
@@ -9755,6 +10198,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-kroot-linebreakers",
@@ -9778,6 +10222,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Krootox Rampagers"
             ],
+            "min": 3,
+            "max": 6,
             "legacyIds": [
               "unit-krootox-rampagers-model-krootox-rampagers"
             ]
@@ -9921,6 +10367,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-kroot-packmates",
@@ -9946,6 +10393,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Krootox Rider w/ repeater cannon",
               "Krootox Rider w/ tanglecannon"
             ],
+            "min": 1,
+            "max": 3,
             "legacyIds": [
               "unit-krootox-riders-model-krootox-riders"
             ]
@@ -10119,6 +10568,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-drone-harassment-tactics",
@@ -10156,6 +10606,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Piranhas"
             ],
+            "min": 1,
+            "max": 3,
             "legacyIds": [
               "unit-piranhas-model-piranhas"
             ]
@@ -10360,6 +10812,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "-",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-ground-strike-fighter",
@@ -10397,6 +10850,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Razorshark Strike Fighter"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-razorshark-strike-fighter-model-razorshark-strike-fighter"
             ]
@@ -10660,6 +11115,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "4",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-nova-charge",
@@ -10718,6 +11174,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Riptide Battlesuit"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-riptide-battlesuit-model-riptide-battlesuit"
             ]
@@ -11041,6 +11499,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-velocity-tracker",
@@ -11085,6 +11544,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Sky Ray Gunship"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-sky-ray-gunship-model-sky-ray-gunship"
             ]
@@ -11289,6 +11750,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "6",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-damaged-1-5-wounds-remaining-2",
@@ -11340,6 +11802,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Stormsurge"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-stormsurge-model-stormsurge"
             ]
@@ -11723,6 +12187,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "-",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-pulse-bombs",
@@ -11760,6 +12225,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Sun Shark Bomber"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-sun-shark-bomber-model-sun-shark-bomber"
             ]
@@ -12024,6 +12491,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "0",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-droneport",
@@ -12068,6 +12536,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tidewall Droneport"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tidewall-droneport-model-tidewall-droneport"
             ]
@@ -12153,6 +12623,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "0",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-fortification",
@@ -12190,6 +12661,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tidewall Gunrig"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tidewall-gunrig-model-tidewall-gunrig"
             ]
@@ -12275,6 +12748,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "0",
           "Invulnerable": "5+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-fortification",
@@ -12312,6 +12786,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tidewall Shieldline"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tidewall-shieldline-model-tidewall-shieldline"
             ]
@@ -12390,6 +12866,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "-",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-titan-hunter",
@@ -12427,6 +12904,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "AX-1-0 Tiger Shark"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-ax-1-0-tiger-shark-model-ax-1-0-tiger-shark"
             ]
@@ -12723,6 +13202,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "-",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-aggressive-deployment",
@@ -12767,6 +13247,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Manta"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-manta-model-manta"
             ]
@@ -13059,6 +13541,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "-",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-strafing-run",
@@ -13096,6 +13579,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Tiger Shark"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tiger-shark-model-tiger-shark"
             ]
@@ -13564,6 +14049,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "10",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "tau-empire-ability-coordinated-strike",
@@ -13601,6 +14087,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Ta’unar Supremacy Armour"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-taunar-supremacy-armour-model-taunar-supremacy-armour"
             ]

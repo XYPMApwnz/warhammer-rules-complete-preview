@@ -122,7 +122,7 @@ const canonicalCompositionRulesFor=(unit,models)=>{
   });
 };
 const gameSelectionsFor=(unit,options={})=>{
-  if(unit.gameSelections&&!options.deriveCanonicalFacts){const models=canonicalRosterModelsFor(unit,options);return {...projectUnitRosterWeaponFacts(unit,unit.gameSelections),stats:canonicalBaseStatsForUnit(unit,{effectContracts:options.effectContracts}),...(options.projectStatProfiles?{statProfiles:canonicalStatProfilesForUnit(unit)}:{}),models,compositionRules:canonicalCompositionRulesFor(unit,models)};}
+  if(unit.gameSelections&&!options.deriveCanonicalFacts){const models=canonicalRosterModelsFor(unit,options);return {...projectUnitRosterWeaponFacts(unit,unit.gameSelections),stats:canonicalBaseStatsForUnit(unit,{effectContracts:options.effectContracts}),...(options.projectStatProfiles?{statProfiles:canonicalStatProfilesForUnit(unit,{preserveMultipartProfiles:options.preserveMultipartStatProfiles===true})}:{}),models,compositionRules:canonicalCompositionRulesFor(unit,models)};}
   const canonicalWeapons=values(unit.weapons).length?values(unit.weapons):values(unit.blocks).filter(block=>block?.type==='weapon');
   const canonicalWargearAbilities=values(unit.wargearAbilities).length?values(unit.wargearAbilities):values(unit.subsections).filter(section=>normalize(section?.title)==='wargear abilities').flatMap(section=>values(section.blocks).filter(block=>block?.type==='ability'));
   const canonicalAbilities=[...values(unit.abilities),...values(unit.blocks).filter(block=>block?.type==='ability'),...values(unit.subsections).flatMap(section=>values(section?.blocks).filter(block=>block?.type==='ability'))];
@@ -177,7 +177,7 @@ const gameSelectionsFor=(unit,options={})=>{
   assertMatchingAbilityRecords(unit,ordinaryAbilityRecords,wargearAbilities);
   const wargearAbilityIds=new Set(wargearAbilities.map(ability=>ability.id)),abilities=ordinaryAbilityRecords.filter(ability=>!wargearAbilityIds.has(ability.id));
   const models=canonicalRosterModelsFor(unit,options),compositionRules=canonicalCompositionRulesFor(unit,models),wargearLegality=structuredWargearLegality(unit,models,selections);
-  return {stats:{...stats},...(options.projectStatProfiles?{statProfiles:canonicalStatProfilesForUnit(unit)}:{}),abilities,models,compositionRules,selections,weaponFamilies,...(weaponClasses.length?{weaponClasses}:{}),weaponProfiles:profileRecords.map(profile=>({...profile,sourceSelectionIds:selections.filter(selection=>selection.profileIds.includes(profile.id)).map(selection=>selection.id)})),wargearAbilities,...wargearLegality};
+  return {stats:{...stats},...(options.projectStatProfiles?{statProfiles:canonicalStatProfilesForUnit(unit,{preserveMultipartProfiles:options.preserveMultipartStatProfiles===true})}:{}),abilities,models,compositionRules,selections,weaponFamilies,...(weaponClasses.length?{weaponClasses}:{}),weaponProfiles:profileRecords.map(profile=>({...profile,sourceSelectionIds:selections.filter(selection=>selection.profileIds.includes(profile.id)).map(selection=>selection.id)})),wargearAbilities,...wargearLegality};
 };
 
 const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;
@@ -216,13 +216,13 @@ const validateSelectionProjection=(unitId,gameSelections)=>{
 };
 const canonicalIntrinsicKeywords=unit=>[...new Set(values(unit.intrinsicKeywords).length?unit.intrinsicKeywords:values(unit.keywords).length?unit.keywords:values((unit.ruleFacts||unit.facts||{}).intrinsicKeywords).length?(unit.ruleFacts||unit.facts).intrinsicKeywords:values((unit.ruleFacts||unit.facts||{}).keywords))];
 
-export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false,projectStatProfiles=false}={}){
+export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false,projectStatProfiles=false,preserveMultipartStatProfiles=false}={}){
   const sourceById=new Map(values(units).map(unit=>[unit.id,unit])),seen=new Set();
   if(sourceById.size!==values(units).length)throw new Error(`${label}: duplicate canonical unit identity`);
   const projected=values(catalogUnits).map(item=>{
     const unit=sourceById.get(item?.id);if(!unit)throw new Error(`${label}: unknown canonical unit ${item?.id||'<missing>'}`);
     if(seen.has(item.id))throw new Error(`${label}: duplicate roster unit identity ${item.id}`);seen.add(item.id);
-    const canonicalGame=gameSelectionsFor(unit,{deriveCanonicalFacts:true,enforceCompositionConstraints,projectStatProfiles}),currentGame=item.gameSelections||{};
+    const canonicalGame=gameSelectionsFor(unit,{deriveCanonicalFacts:true,enforceCompositionConstraints,projectStatProfiles,preserveMultipartStatProfiles}),currentGame=item.gameSelections||{};
     const abilities=exactProjection(currentGame.abilities,canonicalGame.abilities,{unitId:unit.id,kind:'ability'});
     const wargearAbilities=exactProjection(currentGame.wargearAbilities,canonicalGame.wargearAbilities,{unitId:unit.id,kind:'wargear ability',preserve:current=>({requiredSelectionIds:[...values(current.requiredSelectionIds)]})});
     const models=exactProjection(currentGame.models,canonicalGame.models,{unitId:unit.id,kind:'model'});
@@ -234,8 +234,8 @@ export function projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits
   return projected;
 }
 
-export function assertRosterUnitGameplayProjection(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false,projectStatProfiles=false}={}){
-  const projected=projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label,enforceCompositionConstraints,projectStatProfiles});
+export function assertRosterUnitGameplayProjection(units,relationGraphs,catalogUnits,{label='roster unit gameplay projection',enforceCompositionConstraints=false,projectStatProfiles=false,preserveMultipartStatProfiles=false}={}){
+  const projected=projectRosterUnitGameplayFacts(units,relationGraphs,catalogUnits,{label,enforceCompositionConstraints,projectStatProfiles,preserveMultipartStatProfiles});
   for(let index=0;index<projected.length;index++){
     const expected=projected[index],actual=catalogUnits[index],partitions=[
       ['intrinsicKeywords',expected.intrinsicKeywords,actual?.intrinsicKeywords],['relations',expected.relations,actual?.relations],
@@ -332,7 +332,7 @@ export function createRosterCatalog({config,units=[],detachments=[],relationGrap
     for(const [legacyKey,item] of legacyEntries){if(enhancements.some(record=>record.legacyKey===legacyKey)||rosterCatalog.dedupeLegacyEnhancementsByTitle&&enhancements.some(record=>normalize(record.title)===normalize(item.title)))continue;enhancements.push({...item,id:item.ruleId||item.id||legacyKey,legacyKey,sourceBookId:item.sourceBookId||config.id});}
   }
   const projectedEnhancements=Array.isArray(enhancementContracts)?projectRosterEnhancementFacts(enhancementContracts,enhancements,{label:`${config.id} roster Enhancement projection`}):enhancements;
-  return {schema:'wh40k-army-roster-catalog/v1',book:{id:config.id,title:config.title||config.bookTitle||config.id,factionKeyword:config.factionKeyword||null,parentBookId:dependencies[0]?.bookId||dependencies[0]?.id||null,dependencies:dependencies.map(item=>({bookId:item.bookId||item.id,title:item.title||null}))},compositionConstraints:rosterCatalog.enforceCompositionConstraints===true,statProfiles:rosterCatalog.projectStatProfiles===true,units:catalogUnits,detachments:catalogDetachments,detachmentRules,enhancements:projectedEnhancements,effectContracts};
+  return {schema:'wh40k-army-roster-catalog/v1',book:{id:config.id,title:config.title||config.bookTitle||config.id,factionKeyword:config.factionKeyword||null,parentBookId:dependencies[0]?.bookId||dependencies[0]?.id||null,dependencies:dependencies.map(item=>({bookId:item.bookId||item.id,title:item.title||null}))},compositionConstraints:rosterCatalog.enforceCompositionConstraints===true,statProfiles:rosterCatalog.projectStatProfiles===true,preserveMultipartStatProfiles:rosterCatalog.preserveMultipartStatProfiles===true,units:catalogUnits,detachments:catalogDetachments,detachmentRules,enhancements:projectedEnhancements,effectContracts};
 }
 
 export function serializeRosterCatalog(catalog,legacyEnhancements={}){
