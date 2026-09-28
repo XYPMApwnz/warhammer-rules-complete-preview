@@ -21225,6 +21225,64 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "locator": "books/tau-empire/content/tau-empire-codex-datasheets.en.json#unit-kroot-farstalkers#datasheet-kroot-farstalkers:section:1"
       },
       "confidence": "VERIFIED_CURRENT"
+    },
+    {
+      "canonicalRecordId": "unit-tiger-shark-wargear-ability-5971dd9eb6",
+      "sourceKind": "selected-wargear",
+      "sourceBookId": "tau-empire",
+      "effectiveBookIds": [
+        "tau-empire"
+      ],
+      "sourceUnitId": "unit-tiger-shark",
+      "scope": "selected-physical-loadout",
+      "selector": {
+        "kind": "selected-canonical-wargear-ability",
+        "sourceUnitIds": [
+          "unit-tiger-shark"
+        ],
+        "selectedWargearAbilityIds": [
+          "unit-tiger-shark-wargear-ability-5971dd9eb6"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "tiger-shark-transport-bay-keyword",
+              "type": "KEYWORD_GRANT",
+              "canonicalTarget": "TRANSPORT",
+              "parameters": {
+                "keyword": "TRANSPORT"
+              }
+            },
+            {
+              "id": "tiger-shark-transport-bay-capacity",
+              "type": "TRANSPORT_CAPACITY_SET",
+              "canonicalTarget": "transport-capacity",
+              "parameters": {
+                "capacity": 12,
+                "restriction": {
+                  "allKeywords": [
+                    "TACTICAL DRONES"
+                  ],
+                  "subject": "models"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "while-selected"
+      },
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "tau-empire-waha-11e-current-2026-09-28",
+        "locator": "books/tau-empire/content/tau-empire-codex-datasheets.en.json#unit-tiger-shark#datasheet-tiger-shark:section:1"
+      },
+      "confidence": "VERIFIED_CURRENT"
     }
   ]
 });

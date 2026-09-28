@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import {fileURLToPath} from 'node:url';
+
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
+const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
+const plain=value=>JSON.parse(JSON.stringify(value));
+const clone=value=>structuredClone(value);
+const normalize=value=>String(value||'').toUpperCase();
+const scope={console};scope.window=scope;scope.globalThis=scope;vm.createContext(scope);
+for(const file of ['books/tau-empire/scripts/roster-data.js','books/shared/effect-contract-runtime.js','books/shared/roster-context.js'])vm.runInContext(read(file),scope,{filename:file});
+const baseline=scope.WH_BOOK_ROSTER_CATALOG;
+const unitFor=catalog=>catalog.units.find(unit=>unit.id==='unit-tiger-shark');
+const transportContract=catalog=>catalog.effectContracts.find(item=>item.canonicalRecordId==='unit-tiger-shark-wargear-ability-5971dd9eb6');
+const selectionTitle=(unit,id)=>unit.gameSelections.selections.find(item=>item.id===id)?.title;
+const changedMap=(base,choice)=>{const result=new Map(base);for(const item of choice.remove||[]){const next=(result.get(item.selectionId)||0)-item.quantity;if(next>0)result.set(item.selectionId,next);else result.delete(item.selectionId);}for(const item of choice.add||[])result.set(item.selectionId,(result.get(item.selectionId)||0)+item.quantity);return result;};
+const rawFor=(unit,{selected=true,id='tiger-shark'}={})=>{const model=unit.gameSelections.models[0],defaults=new Map(unit.gameSelections.wargearDefaults[0].selections.map(item=>[item.selectionId,item.quantity])),removeBay=unit.gameSelections.wargearOptionContracts.find(item=>item.sourceId==='datasheet-tiger-shark:wargear:4').choices[0],equipment=selected?defaults:changedMap(defaults,removeBay),wargear=[...equipment].filter(([,quantity])=>quantity>0).map(([selectionId,quantity])=>`${quantity===1?'':`${quantity}x `}${selectionTitle(unit,selectionId)}`).join(', ');return{id,canonicalUnitId:unit.id,name:unit.title,quantity:1,points:0,wargear:'',models:[{quantity:1,name:model.title,loadouts:[{quantity:1,wargear}]}],warlord:null};};
+const project=(catalog,units)=>{scope.WH_BOOK_ROSTER_CATALOG=catalog;return scope.WHArmyRosterContext.project({catalog,roster:{faction:"T'au Empire",detachments:[],enhancements:[],units},record:{id:'tau-transport-bay',attachments:{}},provider:{gameEffects:context=>scope.WHEffectContractRuntime.project(context)}}).game;};
+
+const certify=catalog=>{
+  const tigerShark=unitFor(catalog),selectedRaw=rawFor(tigerShark,{selected:true,id:'selected'}),unselectedRaw=rawFor(tigerShark,{selected:false,id:'unselected'}),game=project(catalog,[selectedRaw,unselectedRaw]),selected=game.units[0],unselected=game.units[1];
+  assert.equal(game.status,'ready','Transport Bay roster ready');
+  assert.ok(selected.effective.keywords.map(normalize).includes('TRANSPORT'),'selected Tiger Shark gains TRANSPORT');
+  assert.equal(selected.effective.transportCapacity?.capacity,12,'selected Tiger Shark capacity is 12');
+  assert.deepEqual(plain(selected.effective.transportCapacity?.restriction),{allKeywords:['TACTICAL DRONES'],subject:'models'},'capacity remains restricted to TACTICAL DRONES models');
+  assert.equal(selected.effects.filter(effect=>effect.id?.startsWith('tiger-shark-transport-bay-')).length,2,'both source-backed Transport Bay effects execute');
+  assert.equal(unselected.effective.keywords.map(normalize).includes('TRANSPORT'),false,'unselected Tiger Shark does not gain TRANSPORT');
+  assert.equal(unselected.effective.transportCapacity,undefined,'unselected Tiger Shark has no Transport Bay capacity');
+  assert.equal(unselected.effects.some(effect=>effect.id?.startsWith('tiger-shark-transport-bay-')),false,'unselected Tiger Shark has no Transport Bay effects');
+  assert.equal(tigerShark.intrinsicKeywords.map(normalize).includes('TRANSPORT'),false,'base canonical keywords remain unchanged');
+  const recomputed=project(catalog,[clone(selectedRaw)]).units[0],deselected=project(catalog,[clone(unselectedRaw)]).units[0],reselected=project(catalog,[clone(selectedRaw)]).units[0];
+  assert.deepEqual(plain(recomputed.effective),plain(selected.effective),'selected recompute is deterministic');
+  assert.equal(deselected.effective.transportCapacity,undefined,'deselect removes capacity');
+  assert.equal(deselected.effective.keywords.map(normalize).includes('TRANSPORT'),false,'deselect removes TRANSPORT');
+  assert.deepEqual(plain(reselected.effective),plain(selected.effective),'reselect restores exact state');
+  return{positive:4,negative:5,physical:2,recompute:4};
+};
+
+const controls=certify(baseline);
+assert.deepEqual(controls,{positive:4,negative:5,physical:2,recompute:4},'focused control inventory');
+let mutations=0;
+const killed=(label,mutate)=>{const catalog=clone(baseline);mutate(catalog);assert.throws(()=>certify(catalog),undefined,`${label} mutation survived`);mutations++;};
+killed('MISSING_TRANSPORT_BAY_CONTRACT',catalog=>{catalog.effectContracts=catalog.effectContracts.filter(item=>item.canonicalRecordId!=='unit-tiger-shark-wargear-ability-5971dd9eb6');});
+killed('WRONG_SELECTION_ID',catalog=>{transportContract(catalog).selector.selectedWargearAbilityIds=['unit-tiger-shark-wargear-ability-unknown'];});
+killed('WRONG_KEYWORD',catalog=>{transportContract(catalog).clauses[0].operations[0].parameters.keyword='VEHICLE';transportContract(catalog).clauses[0].operations[0].canonicalTarget='VEHICLE';});
+killed('WRONG_CAPACITY',catalog=>{transportContract(catalog).clauses[0].operations[1].parameters.capacity=13;});
+killed('WRONG_CAPACITY_RESTRICTION',catalog=>{transportContract(catalog).clauses[0].operations[1].parameters.restriction.allKeywords=['INFANTRY'];});
+killed('MISSING_CAPACITY_OPERATION',catalog=>{transportContract(catalog).clauses[0].operations.pop();});
+assert.equal(mutations,6,'source-backed mutation controls');
+console.log(`T'au Transport Bay: fully executable; positive ${controls.positive}/${controls.positive}; negative ${controls.negative}/${controls.negative}; physical-instance ${controls.physical}/${controls.physical}; recompute ${controls.recompute}/${controls.recompute}; mutations ${mutations}/${mutations} KILLED; PASS`);
