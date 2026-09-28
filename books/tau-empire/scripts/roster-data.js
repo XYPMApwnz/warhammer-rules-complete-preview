@@ -413,9 +413,112 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearDefaults": [
+          {
+            "modelId": "unit-breacher-team-model-be956c5206",
+            "selections": [
+              {
+                "selectionId": "unit-breacher-team-selection-pulse-blaster",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-breacher-team-selection-pulse-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-breacher-team-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-breacher-team-model-a7a3087a51",
+            "selections": [
+              {
+                "selectionId": "unit-breacher-team-selection-pulse-blaster",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-breacher-team-selection-pulse-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-breacher-team-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-breacher-team:wargear:1",
+            "eligibleModelIds": [
+              "unit-breacher-team-model-a7a3087a51"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-breacher-team-selection-guardian-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-breacher-team:wargear:1:guardian"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-breacher-team-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-breacher-team-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-breacher-team-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "datasheet-breacher-team:wargear:1:guardian",
+            "max": 1,
+            "scope": "model"
+          }
+        ]
       }
     },
     {
@@ -852,9 +955,140 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearDefaults": [
+          {
+            "modelId": "unit-strike-team-model-f9647357a8",
+            "selections": [
+              {
+                "selectionId": "unit-strike-team-selection-pulse-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-strike-team-selection-pulse-rifle",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-strike-team-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-strike-team-model-eb1dbfb325",
+            "selections": [
+              {
+                "selectionId": "unit-strike-team-selection-pulse-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-strike-team-selection-pulse-rifle",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-strike-team-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-strike-team:wargear:1",
+            "eligibleModelIds": [
+              "unit-strike-team-model-eb1dbfb325"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-strike-team-selection-guardian-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-strike-team:wargear:1:guardian"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-strike-team-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-strike-team-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-strike-team-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-strike-team:wargear:2",
+            "eligibleModelIds": [
+              "unit-strike-team-model-f9647357a8"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-strike-team-selection-pulse-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-strike-team-selection-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "datasheet-strike-team:wargear:1:guardian",
+            "max": 1,
+            "scope": "model"
+          }
+        ]
       }
     },
     {
@@ -1159,8 +1393,70 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-cadre-fireblade-model-0b31b1a8c3",
+            "selections": [
+              {
+                "selectionId": "unit-cadre-fireblade-selection-fireblade-pulse-rifle",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-cadre-fireblade-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-cadre-fireblade:wargear:1",
+            "eligibleModelIds": [
+              "unit-cadre-fireblade-model-0b31b1a8c3"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-cadre-fireblade-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-cadre-fireblade-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-cadre-fireblade-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -1816,9 +2112,444 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearDefaults": [
+          {
+            "modelId": "unit-commander-in-coldstar-battlesuit-model-0644315d8a",
+            "selections": [
+              {
+                "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-commander-in-coldstar-battlesuit-selection-battlesuit-fists",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-commander-in-coldstar-battlesuit:wargear:1",
+            "eligibleModelIds": [
+              "unit-commander-in-coldstar-battlesuit-model-0644315d8a"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-airbursting-fragmentation-projector",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-coldstar-battlesuit:wargear:4:airbursting-fragmentation-projector"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-battlesuit-support-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-coldstar-battlesuit:wargear:4:battlesuit-support-system"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-weapon-family-cyclic-ion-blaster-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-coldstar-battlesuit:wargear:4:cyclic-ion-blaster"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-fusion-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-plasma-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-shield-generator",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-coldstar-battlesuit:wargear:4:shield-generator"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-weapon-support-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-coldstar-battlesuit:wargear:4:weapon-support-system"
+                ]
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-commander-in-coldstar-battlesuit:wargear:2",
+            "eligibleModelIds": [
+              "unit-commander-in-coldstar-battlesuit-model-0644315d8a"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-commander-in-coldstar-battlesuit:wargear:3",
+            "eligibleModelIds": [
+              "unit-commander-in-coldstar-battlesuit-model-0644315d8a"
+            ],
+            "limit": {
+              "perModel": 3
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-airbursting-fragmentation-projector",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-coldstar-battlesuit:wargear:4:airbursting-fragmentation-projector"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-battlesuit-support-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-coldstar-battlesuit:wargear:4:battlesuit-support-system"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-weapon-family-cyclic-ion-blaster-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-coldstar-battlesuit:wargear:4:cyclic-ion-blaster"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-fusion-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-plasma-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-shield-generator",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-coldstar-battlesuit:wargear:4:shield-generator"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-coldstar-battlesuit-selection-weapon-support-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-coldstar-battlesuit:wargear:4:weapon-support-system"
+                ]
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "datasheet-commander-in-coldstar-battlesuit:wargear:4:airbursting-fragmentation-projector",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-commander-in-coldstar-battlesuit:wargear:4"
+            ]
+          },
+          {
+            "id": "datasheet-commander-in-coldstar-battlesuit:wargear:4:battlesuit-support-system",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-commander-in-coldstar-battlesuit:wargear:4"
+            ]
+          },
+          {
+            "id": "datasheet-commander-in-coldstar-battlesuit:wargear:4:cyclic-ion-blaster",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-commander-in-coldstar-battlesuit:wargear:4"
+            ]
+          },
+          {
+            "id": "datasheet-commander-in-coldstar-battlesuit:wargear:4:shield-generator",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-commander-in-coldstar-battlesuit:wargear:4"
+            ]
+          },
+          {
+            "id": "datasheet-commander-in-coldstar-battlesuit:wargear:4:weapon-support-system",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-commander-in-coldstar-battlesuit:wargear:4"
+            ]
+          }
+        ]
       }
     },
     {
@@ -2436,9 +3167,427 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearDefaults": [
+          {
+            "modelId": "unit-commander-in-enforcer-battlesuit-model-a2db67bad0",
+            "selections": [
+              {
+                "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-commander-in-enforcer-battlesuit-selection-battlesuit-fists",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-commander-in-enforcer-battlesuit:wargear:1",
+            "eligibleModelIds": [
+              "unit-commander-in-enforcer-battlesuit-model-a2db67bad0"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-airbursting-fragmentation-projector",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-enforcer-battlesuit:wargear:4:airbursting-fragmentation-projector"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-battlesuit-support-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-enforcer-battlesuit:wargear:4:battlesuit-support-system"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-weapon-family-cyclic-ion-blaster-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-enforcer-battlesuit:wargear:4:cyclic-ion-blaster"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-fusion-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-plasma-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-shield-generator",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-enforcer-battlesuit:wargear:4:shield-generator"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-weapon-support-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-enforcer-battlesuit:wargear:4:weapon-support-system"
+                ]
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-commander-in-enforcer-battlesuit:wargear:2",
+            "eligibleModelIds": [
+              "unit-commander-in-enforcer-battlesuit-model-a2db67bad0"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-commander-in-enforcer-battlesuit:wargear:3",
+            "eligibleModelIds": [
+              "unit-commander-in-enforcer-battlesuit-model-a2db67bad0"
+            ],
+            "limit": {
+              "perModel": 3
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-airbursting-fragmentation-projector",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-enforcer-battlesuit:wargear:4:airbursting-fragmentation-projector"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-battlesuit-support-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-enforcer-battlesuit:wargear:4:battlesuit-support-system"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-weapon-family-cyclic-ion-blaster-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-enforcer-battlesuit:wargear:4:cyclic-ion-blaster"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-fusion-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-plasma-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-shield-generator",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-enforcer-battlesuit:wargear:4:shield-generator"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-commander-in-enforcer-battlesuit-selection-weapon-support-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-commander-in-enforcer-battlesuit:wargear:4:weapon-support-system"
+                ]
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "datasheet-commander-in-enforcer-battlesuit:wargear:4:airbursting-fragmentation-projector",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-commander-in-enforcer-battlesuit:wargear:4"
+            ]
+          },
+          {
+            "id": "datasheet-commander-in-enforcer-battlesuit:wargear:4:battlesuit-support-system",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-commander-in-enforcer-battlesuit:wargear:4"
+            ]
+          },
+          {
+            "id": "datasheet-commander-in-enforcer-battlesuit:wargear:4:cyclic-ion-blaster",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-commander-in-enforcer-battlesuit:wargear:4"
+            ]
+          },
+          {
+            "id": "datasheet-commander-in-enforcer-battlesuit:wargear:4:shield-generator",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-commander-in-enforcer-battlesuit:wargear:4"
+            ]
+          },
+          {
+            "id": "datasheet-commander-in-enforcer-battlesuit:wargear:4:weapon-support-system",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-commander-in-enforcer-battlesuit:wargear:4"
+            ]
+          }
+        ]
       }
     },
     {
@@ -2744,8 +3893,89 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-ethereal-model-97561d5dc9",
+            "selections": [
+              {
+                "selectionId": "unit-ethereal-selection-honour-stave",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-ethereal:wargear:1",
+            "eligibleModelIds": [
+              "unit-ethereal-model-97561d5dc9"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-ethereal-selection-hover-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-ethereal:wargear:2",
+            "eligibleModelIds": [
+              "unit-ethereal-model-97561d5dc9"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-ethereal-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-ethereal-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-ethereal-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -2934,9 +4164,33 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-firesight-team-model-fdb47ef6e5",
+            "selections": [
+              {
+                "selectionId": "unit-firesight-team-selection-longshot-pulse-rifles",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-firesight-team-selection-pulse-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-firesight-team-selection-close-combat-weapons",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
         "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearSharedCaps": [],
+        "wargearDeclarations": [
+          {
+            "sourceRuleId": "datasheet-firesight-team:wargear:1",
+            "kind": "NO_SELECTABLE_OPTION"
+          }
+        ]
       }
     },
     {
@@ -3446,8 +4700,59 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-kroot-lone-spear-model-f4fab8b4b7",
+            "selections": [
+              {
+                "selectionId": "unit-kroot-lone-spear-selection-kroot-long-gun",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-lone-spear-selection-close-combat-weapon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-lone-spear-selection-kalamandras-bite",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-kroot-lone-spear:wargear:1",
+            "eligibleModelIds": [
+              "unit-kroot-lone-spear-model-f4fab8b4b7"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-kroot-lone-spear-selection-kroot-long-gun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-kroot-lone-spear-selection-blast-javelin",
+                    "quantity": 1
+                  },
+                  {
+                    "selectionId": "unit-kroot-lone-spear-selection-hunting-javelin",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -4002,8 +5307,55 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-kroot-war-shaper-model-cbd58f2987",
+            "selections": [
+              {
+                "selectionId": "unit-kroot-war-shaper-selection-dart-bow-and-tri-blade",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-war-shaper-selection-kroot-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-war-shaper-selection-shapers-blade",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-kroot-war-shaper:wargear:1",
+            "eligibleModelIds": [
+              "unit-kroot-war-shaper-model-cbd58f2987"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-kroot-war-shaper-selection-dart-bow-and-tri-blade",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-kroot-war-shaper-selection-bladestave-and-prey-hook",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -4240,8 +5592,78 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-devilfish-model-d1b65eff1a",
+            "selections": [
+              {
+                "selectionId": "unit-devilfish-selection-accelerator-burst-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-devilfish-selection-twin-pulse-carbine",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-devilfish-selection-armoured-hull",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-devilfish:wargear:1",
+            "eligibleModelIds": [
+              "unit-devilfish-model-d1b65eff1a"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-devilfish-selection-twin-pulse-carbine",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-devilfish-selection-smart-missile-system",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-devilfish:wargear:2",
+            "eligibleModelIds": [
+              "unit-devilfish-model-d1b65eff1a"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-devilfish-selection-seeker-missile",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -5439,9 +6861,58 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-the-twin-lance-model-c4bd8a932a",
+            "selections": [
+              {
+                "selectionId": "unit-the-twin-lance-selection-fusion-eliminator",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-the-twin-lance-selection-xv-pulse-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-the-twin-lance-selection-shardstorm-burst-system",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-the-twin-lance-selection-mv15-gun-drone",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-the-twin-lance-model-94f0dc62e7",
+            "selections": [
+              {
+                "selectionId": "unit-the-twin-lance-weapon-family-ion-scattercannon-selection",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-the-twin-lance-selection-xv-pulse-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-the-twin-lance-selection-shardstorm-burst-system",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-the-twin-lance-selection-mv15-gun-drone",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
         "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearSharedCaps": [],
+        "wargearDeclarations": [
+          {
+            "sourceRuleId": "datasheet-the-twin-lance:wargear:1",
+            "kind": "NO_SELECTABLE_OPTION"
+          }
+        ]
       }
     },
     {
@@ -5925,8 +7396,100 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-kroot-carnivores-model-40a87f1ad7",
+            "selections": [
+              {
+                "selectionId": "unit-kroot-carnivores-selection-kroot-rifle",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-carnivores-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-kroot-carnivores-model-a87487f2e0",
+            "selections": [
+              {
+                "selectionId": "unit-kroot-carnivores-selection-kroot-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-carnivores-selection-kroot-rifle",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-carnivores-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-kroot-carnivores:wargear:1",
+            "eligibleModelIds": [
+              "unit-kroot-carnivores-model-a87487f2e0"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-kroot-carnivores-selection-kroot-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-kroot-carnivores-selection-kroot-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-kroot-carnivores:wargear:2",
+            "eligibleModelIds": [
+              "unit-kroot-carnivores-model-40a87f1ad7"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 10,
+                "uses": 1
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-kroot-carnivores-selection-kroot-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-kroot-carnivores-selection-tanglebomb-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -6360,8 +7923,150 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-kroot-farstalkers-model-c4809a50b5",
+            "selections": [
+              {
+                "selectionId": "unit-kroot-farstalkers-selection-ripping-fangs",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-kroot-farstalkers-model-9335775812",
+            "selections": [
+              {
+                "selectionId": "unit-kroot-farstalkers-selection-farstalker-firearm",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-farstalkers-selection-kroot-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-farstalkers-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-kroot-farstalkers-model-9bd01ceb35",
+            "selections": [
+              {
+                "selectionId": "unit-kroot-farstalkers-selection-farstalker-firearm",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-farstalkers-selection-kroot-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-kroot-farstalkers-selection-ritual-blade",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-kroot-farstalkers:wargear:1",
+            "eligibleModelIds": [
+              "unit-kroot-farstalkers-model-9bd01ceb35"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-kroot-farstalkers-selection-farstalker-firearm",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-kroot-farstalkers-selection-tau-tech-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-kroot-farstalkers:wargear:2",
+            "eligibleModelIds": [
+              "unit-kroot-farstalkers-model-9335775812"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-kroot-farstalkers-selection-farstalker-firearm",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-kroot-farstalkers-selection-dvorgite-skinner",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-kroot-farstalkers-selection-farstalker-firearm",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-kroot-farstalkers-selection-londaxi-tribalest",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-kroot-farstalkers:wargear:3",
+            "eligibleModelIds": [
+              "unit-kroot-farstalkers-model-9335775812"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-kroot-farstalkers-selection-pechra",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -7055,8 +8760,211 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-pathfinder-team-model-dc12074b37",
+            "selections": [
+              {
+                "selectionId": "unit-pathfinder-team-selection-pulse-carbine",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-pathfinder-team-selection-pulse-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-pathfinder-team-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-pathfinder-team-model-ec8a3938e5",
+            "selections": [
+              {
+                "selectionId": "unit-pathfinder-team-selection-pulse-carbine",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-pathfinder-team-selection-pulse-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-pathfinder-team-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-pathfinder-team:wargear:1",
+            "eligibleModelIds": [
+              "unit-pathfinder-team-model-ec8a3938e5"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-pathfinder-team-selection-grav-inhibitor-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-pathfinder-team-selection-pulse-accelerator-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-pathfinder-team-selection-recon-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-pathfinder-team:wargear:2",
+            "eligibleModelIds": [
+              "unit-pathfinder-team-model-ec8a3938e5"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-pathfinder-team-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-pathfinder-team-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-pathfinder-team-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-pathfinder-team:wargear:3",
+            "eligibleModelIds": [
+              "unit-pathfinder-team-model-dc12074b37"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 3
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-pathfinder-team-selection-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-pathfinder-team-weapon-family-ion-rifle-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-pathfinder-team-selection-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-pathfinder-team-selection-rail-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-pathfinder-team:wargear:4",
+            "eligibleModelIds": [
+              "unit-pathfinder-team-model-dc12074b37",
+              "unit-pathfinder-team-model-ec8a3938e5"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-pathfinder-team-weapon-family-semi-automatic-grenade-launcher-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [
+                  "unit-pathfinder-team-selection-pulse-carbine"
+                ],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -7412,8 +9320,165 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-stealth-battlesuits-model-09e8cea44f",
+            "aliases": [
+              "Stealth Shas'ui 1",
+              "Stealth Shas'ui 2",
+              "Stealth Shas'ui 3",
+              "Stealth Shas'ui 4"
+            ],
+            "selections": [
+              {
+                "selectionId": "unit-stealth-battlesuits-selection-burst-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-stealth-battlesuits-selection-battlesuit-fists",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-stealth-battlesuits-model-fff9bd801a",
+            "selections": [
+              {
+                "selectionId": "unit-stealth-battlesuits-selection-burst-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-stealth-battlesuits-selection-battlesuit-fists",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-stealth-battlesuits:wargear:1",
+            "eligibleModelIds": [
+              "unit-stealth-battlesuits-model-fff9bd801a"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-stealth-battlesuits-selection-gun-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-stealth-battlesuits:wargear:2",
+            "eligibleModelIds": [
+              "unit-stealth-battlesuits-model-fff9bd801a"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-stealth-battlesuits-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-stealth-battlesuits:wargear:3",
+            "eligibleModelIds": [
+              "unit-stealth-battlesuits-model-fff9bd801a"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-stealth-battlesuits-selection-pulse-pistol",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-stealth-battlesuits:wargear:4",
+            "eligibleModelIds": [
+              "unit-stealth-battlesuits-model-09e8cea44f"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-stealth-battlesuits-selection-homing-beacon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-stealth-battlesuits:wargear:5",
+            "eligibleModelIds": [
+              "unit-stealth-battlesuits-model-09e8cea44f",
+              "unit-stealth-battlesuits-model-fff9bd801a"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 2
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-stealth-battlesuits-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-stealth-battlesuits-selection-fusion-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -7699,9 +9764,152 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearDefaults": [
+          {
+            "modelId": "unit-vespid-stingwings-model-a599725791",
+            "selections": [
+              {
+                "selectionId": "unit-vespid-stingwings-selection-neutron-blaster",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-vespid-stingwings-selection-stingwing-claws",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-vespid-stingwings-model-d198e33d6f",
+            "selections": [
+              {
+                "selectionId": "unit-vespid-stingwings-selection-neutron-blaster",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-vespid-stingwings-selection-stingwing-claws",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-vespid-stingwings:wargear:1",
+            "eligibleModelIds": [
+              "unit-vespid-stingwings-model-a599725791",
+              "unit-vespid-stingwings-model-d198e33d6f"
+            ],
+            "when": {
+              "unitModelCountEquals": 10
+            },
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-vespid-stingwings-selection-oversight-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-vespid-stingwings:wargear:1:choice:1"
+                ],
+                "eligibleModelIds": [
+                  "unit-vespid-stingwings-model-a599725791"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-vespid-stingwings-selection-neutron-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-vespid-stingwings-selection-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-vespid-stingwings:wargear:1:choice:2"
+                ],
+                "eligibleModelIds": [
+                  "unit-vespid-stingwings-model-d198e33d6f"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-vespid-stingwings-selection-neutron-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-vespid-stingwings-selection-neutron-grenade-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-vespid-stingwings:wargear:1:choice:3"
+                ],
+                "eligibleModelIds": [
+                  "unit-vespid-stingwings-model-d198e33d6f"
+                ]
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-vespid-stingwings-selection-neutron-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-vespid-stingwings-selection-neutron-rail-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-vespid-stingwings:wargear:1:choice:4"
+                ],
+                "eligibleModelIds": [
+                  "unit-vespid-stingwings-model-d198e33d6f"
+                ]
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "datasheet-vespid-stingwings:wargear:1:choice:1",
+            "max": 1
+          },
+          {
+            "id": "datasheet-vespid-stingwings:wargear:1:choice:2",
+            "max": 1
+          },
+          {
+            "id": "datasheet-vespid-stingwings:wargear:1:choice:3",
+            "max": 1
+          },
+          {
+            "id": "datasheet-vespid-stingwings:wargear:1:choice:4",
+            "max": 1
+          }
+        ]
       }
     },
     {
@@ -8172,9 +10380,225 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearDefaults": [
+          {
+            "modelId": "unit-broadside-battlesuits-model-0f703d9afd",
+            "selections": [
+              {
+                "selectionId": "unit-broadside-battlesuits-selection-heavy-rail-rifle",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-broadside-battlesuits-selection-crushing-bulk",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-broadside-battlesuits-model-ebe683fa53",
+            "selections": [
+              {
+                "selectionId": "unit-broadside-battlesuits-selection-heavy-rail-rifle",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-broadside-battlesuits-selection-crushing-bulk",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-broadside-battlesuits:wargear:1",
+            "eligibleModelIds": [
+              "unit-broadside-battlesuits-model-0f703d9afd",
+              "unit-broadside-battlesuits-model-ebe683fa53"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-broadside-battlesuits-selection-heavy-rail-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-broadside-battlesuits-selection-high-yield-missile-pods",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-broadside-battlesuits:wargear:2",
+            "eligibleModelIds": [
+              "unit-broadside-battlesuits-model-0f703d9afd",
+              "unit-broadside-battlesuits-model-ebe683fa53"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-broadside-battlesuits-selection-seeker-missile",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-broadside-battlesuits:wargear:2:choice:1"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-broadside-battlesuits-selection-twin-plasma-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-broadside-battlesuits:wargear:2:choice:2",
+                  "datasheet-broadside-battlesuits:wargear:4:mutual-exclusion"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-broadside-battlesuits-selection-twin-smart-missile-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-broadside-battlesuits:wargear:2:choice:3",
+                  "datasheet-broadside-battlesuits:wargear:4:mutual-exclusion"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-broadside-battlesuits-selection-weapon-support-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-broadside-battlesuits:wargear:2:choice:4"
+                ]
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-broadside-battlesuits:wargear:3",
+            "eligibleModelIds": [
+              "unit-broadside-battlesuits-model-0f703d9afd",
+              "unit-broadside-battlesuits-model-ebe683fa53"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-broadside-battlesuits-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-broadside-battlesuits-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-broadside-battlesuits-selection-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-broadside-battlesuits-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "datasheet-broadside-battlesuits:wargear:2:choice:1",
+            "max": 1,
+            "scope": "model"
+          },
+          {
+            "id": "datasheet-broadside-battlesuits:wargear:2:choice:2",
+            "max": 1,
+            "scope": "model"
+          },
+          {
+            "id": "datasheet-broadside-battlesuits:wargear:2:choice:3",
+            "max": 1,
+            "scope": "model"
+          },
+          {
+            "id": "datasheet-broadside-battlesuits:wargear:2:choice:4",
+            "max": 1,
+            "scope": "model"
+          },
+          {
+            "id": "datasheet-broadside-battlesuits:wargear:4:mutual-exclusion",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-broadside-battlesuits:wargear:4"
+            ]
+          }
+        ]
       }
     },
     {
@@ -8553,9 +10977,173 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearDefaults": [
+          {
+            "modelId": "unit-crisis-fireknife-battlesuits-model-b4425cd84a",
+            "selections": [
+              {
+                "selectionId": "unit-crisis-fireknife-battlesuits-selection-plasma-rifle",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-crisis-fireknife-battlesuits-selection-missile-pod",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-crisis-fireknife-battlesuits-selection-battlesuit-fists",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-crisis-fireknife-battlesuits-model-fa4f0b73fd",
+            "selections": [
+              {
+                "selectionId": "unit-crisis-fireknife-battlesuits-selection-plasma-rifle",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-crisis-fireknife-battlesuits-selection-missile-pod",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-crisis-fireknife-battlesuits-selection-battlesuit-fists",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-crisis-fireknife-battlesuits:wargear:1",
+            "eligibleModelIds": [
+              "unit-crisis-fireknife-battlesuits-model-b4425cd84a",
+              "unit-crisis-fireknife-battlesuits-model-fa4f0b73fd"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-crisis-fireknife-battlesuits-selection-plasma-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-fireknife-battlesuits-selection-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-crisis-fireknife-battlesuits:wargear:2",
+            "eligibleModelIds": [
+              "unit-crisis-fireknife-battlesuits-model-b4425cd84a",
+              "unit-crisis-fireknife-battlesuits-model-fa4f0b73fd"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-crisis-fireknife-battlesuits-selection-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-fireknife-battlesuits-selection-plasma-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-crisis-fireknife-battlesuits:wargear:3",
+            "eligibleModelIds": [
+              "unit-crisis-fireknife-battlesuits-model-b4425cd84a",
+              "unit-crisis-fireknife-battlesuits-model-fa4f0b73fd"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-fireknife-battlesuits-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-crisis-fireknife-battlesuits:wargear:3:choice:1"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-fireknife-battlesuits-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-crisis-fireknife-battlesuits:wargear:3:choice:2"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-fireknife-battlesuits-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-crisis-fireknife-battlesuits:wargear:3:choice:3"
+                ]
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "datasheet-crisis-fireknife-battlesuits:wargear:3:choice:1",
+            "max": 1,
+            "scope": "model"
+          },
+          {
+            "id": "datasheet-crisis-fireknife-battlesuits:wargear:3:choice:2",
+            "max": 1,
+            "scope": "model"
+          },
+          {
+            "id": "datasheet-crisis-fireknife-battlesuits:wargear:3:choice:3",
+            "max": 1,
+            "scope": "model"
+          }
+        ]
       }
     },
     {
@@ -8945,9 +11533,173 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearDefaults": [
+          {
+            "modelId": "unit-crisis-starscythe-battlesuits-model-0239836895",
+            "selections": [
+              {
+                "selectionId": "unit-crisis-starscythe-battlesuits-selection-burst-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-crisis-starscythe-battlesuits-selection-tau-flamer",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-crisis-starscythe-battlesuits-selection-battlesuit-fists",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-crisis-starscythe-battlesuits-model-1a13af313d",
+            "selections": [
+              {
+                "selectionId": "unit-crisis-starscythe-battlesuits-selection-burst-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-crisis-starscythe-battlesuits-selection-tau-flamer",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-crisis-starscythe-battlesuits-selection-battlesuit-fists",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-crisis-starscythe-battlesuits:wargear:1",
+            "eligibleModelIds": [
+              "unit-crisis-starscythe-battlesuits-model-0239836895",
+              "unit-crisis-starscythe-battlesuits-model-1a13af313d"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-crisis-starscythe-battlesuits-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-starscythe-battlesuits-selection-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-crisis-starscythe-battlesuits:wargear:2",
+            "eligibleModelIds": [
+              "unit-crisis-starscythe-battlesuits-model-0239836895",
+              "unit-crisis-starscythe-battlesuits-model-1a13af313d"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-crisis-starscythe-battlesuits-selection-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-starscythe-battlesuits-selection-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-crisis-starscythe-battlesuits:wargear:3",
+            "eligibleModelIds": [
+              "unit-crisis-starscythe-battlesuits-model-0239836895",
+              "unit-crisis-starscythe-battlesuits-model-1a13af313d"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-starscythe-battlesuits-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-crisis-starscythe-battlesuits:wargear:3:choice:1"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-starscythe-battlesuits-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-crisis-starscythe-battlesuits:wargear:3:choice:2"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-starscythe-battlesuits-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-crisis-starscythe-battlesuits:wargear:3:choice:3"
+                ]
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "datasheet-crisis-starscythe-battlesuits:wargear:3:choice:1",
+            "max": 1,
+            "scope": "model"
+          },
+          {
+            "id": "datasheet-crisis-starscythe-battlesuits:wargear:3:choice:2",
+            "max": 1,
+            "scope": "model"
+          },
+          {
+            "id": "datasheet-crisis-starscythe-battlesuits:wargear:3:choice:3",
+            "max": 1,
+            "scope": "model"
+          }
+        ]
       }
     },
     {
@@ -9284,9 +12036,107 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearDefaults": [
+          {
+            "modelId": "unit-crisis-sunforge-battlesuits-model-90f7a72c26",
+            "selections": [
+              {
+                "selectionId": "unit-crisis-sunforge-battlesuits-selection-fusion-blaster",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-crisis-sunforge-battlesuits-selection-battlesuit-fists",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-crisis-sunforge-battlesuits-model-23c0c86995",
+            "selections": [
+              {
+                "selectionId": "unit-crisis-sunforge-battlesuits-selection-fusion-blaster",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-crisis-sunforge-battlesuits-selection-battlesuit-fists",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-crisis-sunforge-battlesuits:wargear:1",
+            "eligibleModelIds": [
+              "unit-crisis-sunforge-battlesuits-model-90f7a72c26",
+              "unit-crisis-sunforge-battlesuits-model-23c0c86995"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-sunforge-battlesuits-selection-twin-pulse-carbine",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-crisis-sunforge-battlesuits:wargear:1:choice:1"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-sunforge-battlesuits-selection-marker-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-crisis-sunforge-battlesuits:wargear:1:choice:2"
+                ]
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-crisis-sunforge-battlesuits-selection-shield-drone",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-crisis-sunforge-battlesuits:wargear:1:choice:3"
+                ]
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "datasheet-crisis-sunforge-battlesuits:wargear:1:choice:1",
+            "max": 1,
+            "scope": "model"
+          },
+          {
+            "id": "datasheet-crisis-sunforge-battlesuits:wargear:1:choice:2",
+            "max": 1,
+            "scope": "model"
+          },
+          {
+            "id": "datasheet-crisis-sunforge-battlesuits:wargear:1:choice:3",
+            "max": 1,
+            "scope": "model"
+          }
+        ]
       }
     },
     {
@@ -9665,8 +12515,123 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-ghostkeel-battlesuit-model-4ef7f11eef",
+            "selections": [
+              {
+                "selectionId": "unit-ghostkeel-battlesuit-selection-fusion-collider",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-ghostkeel-battlesuit-selection-twin-tau-flamer",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-ghostkeel-battlesuit-selection-ghostkeel-fists",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-ghostkeel-battlesuit:wargear:1",
+            "eligibleModelIds": [
+              "unit-ghostkeel-battlesuit-model-4ef7f11eef"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-ghostkeel-battlesuit-selection-fusion-collider",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-ghostkeel-battlesuit-weapon-family-cyclic-ion-raker-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-ghostkeel-battlesuit:wargear:2",
+            "eligibleModelIds": [
+              "unit-ghostkeel-battlesuit-model-4ef7f11eef"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-ghostkeel-battlesuit-selection-twin-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-ghostkeel-battlesuit-selection-twin-fusion-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-ghostkeel-battlesuit-selection-twin-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-ghostkeel-battlesuit-selection-twin-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-ghostkeel-battlesuit:wargear:3",
+            "eligibleModelIds": [
+              "unit-ghostkeel-battlesuit-model-4ef7f11eef"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-ghostkeel-battlesuit-selection-battlesuit-support-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -10034,8 +12999,123 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-hammerhead-gunship-model-2ba81052be",
+            "selections": [
+              {
+                "selectionId": "unit-hammerhead-gunship-selection-railgun",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-hammerhead-gunship-selection-twin-pulse-carbine",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-hammerhead-gunship-selection-armoured-hull",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-hammerhead-gunship:wargear:1",
+            "eligibleModelIds": [
+              "unit-hammerhead-gunship-model-2ba81052be"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-hammerhead-gunship-selection-railgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-hammerhead-gunship-weapon-family-ion-cannon-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-hammerhead-gunship:wargear:2",
+            "eligibleModelIds": [
+              "unit-hammerhead-gunship-model-2ba81052be"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-hammerhead-gunship-selection-twin-pulse-carbine",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-hammerhead-gunship-selection-accelerator-burst-cannon",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-hammerhead-gunship-selection-twin-pulse-carbine",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-hammerhead-gunship-selection-smart-missile-system",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-hammerhead-gunship:wargear:3",
+            "eligibleModelIds": [
+              "unit-hammerhead-gunship-model-2ba81052be"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-hammerhead-gunship-selection-seeker-missile",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -10527,8 +13607,55 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-krootox-riders-model-bf51317272",
+            "selections": [
+              {
+                "selectionId": "unit-krootox-riders-selection-repeater-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-krootox-riders-selection-close-combat-weapon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-krootox-riders-selection-krootox-fists",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-krootox-riders:wargear:1",
+            "eligibleModelIds": [
+              "unit-krootox-riders-model-bf51317272"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-krootox-riders-selection-repeater-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-krootox-riders-selection-tanglecannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -10770,8 +13897,78 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-piranhas-model-05f0890c53",
+            "selections": [
+              {
+                "selectionId": "unit-piranhas-selection-piranha-burst-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-piranhas-selection-twin-pulse-carbine",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-piranhas-selection-armoured-hull",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-piranhas:wargear:1",
+            "eligibleModelIds": [
+              "unit-piranhas-model-05f0890c53"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-piranhas-selection-piranha-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-piranhas-selection-piranha-fusion-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-piranhas:wargear:2",
+            "eligibleModelIds": [
+              "unit-piranhas-model-05f0890c53"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-piranhas-selection-seeker-missile",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -11073,8 +14270,59 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-razorshark-strike-fighter-model-280f1bb87e",
+            "selections": [
+              {
+                "selectionId": "unit-razorshark-strike-fighter-selection-accelerator-burst-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-razorshark-strike-fighter-weapon-family-quad-ion-turret-selection",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-razorshark-strike-fighter-selection-seeker-missile",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-razorshark-strike-fighter-selection-armoured-hull",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-razorshark-strike-fighter:wargear:1",
+            "eligibleModelIds": [
+              "unit-razorshark-strike-fighter-model-280f1bb87e"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-razorshark-strike-fighter-selection-accelerator-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-razorshark-strike-fighter-selection-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -11457,8 +14705,123 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-riptide-battlesuit-model-8c6dc96806",
+            "selections": [
+              {
+                "selectionId": "unit-riptide-battlesuit-selection-heavy-burst-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-riptide-battlesuit-selection-twin-plasma-rifle",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-riptide-battlesuit-selection-riptide-fists",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-riptide-battlesuit:wargear:1",
+            "eligibleModelIds": [
+              "unit-riptide-battlesuit-model-8c6dc96806"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-riptide-battlesuit-selection-heavy-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-riptide-battlesuit-weapon-family-ion-accelerator-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-riptide-battlesuit:wargear:2",
+            "eligibleModelIds": [
+              "unit-riptide-battlesuit-model-8c6dc96806"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-riptide-battlesuit-selection-twin-plasma-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-riptide-battlesuit-selection-twin-fusion-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-riptide-battlesuit-selection-twin-plasma-rifle",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-riptide-battlesuit-selection-twin-smart-missile-system",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-riptide-battlesuit:wargear:3",
+            "eligibleModelIds": [
+              "unit-riptide-battlesuit-model-8c6dc96806"
+            ],
+            "limit": {
+              "perModel": 2
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-riptide-battlesuit-selection-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -11708,8 +15071,72 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-sky-ray-gunship-model-f1d0e2106a",
+            "selections": [
+              {
+                "selectionId": "unit-sky-ray-gunship-selection-seeker-missile-rack",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-sky-ray-gunship-selection-twin-pulse-carbine",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-sky-ray-gunship-selection-armoured-hull",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-sky-ray-gunship:wargear:1",
+            "eligibleModelIds": [
+              "unit-sky-ray-gunship-model-f1d0e2106a"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-sky-ray-gunship-selection-twin-pulse-carbine",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-sky-ray-gunship-selection-accelerator-burst-cannon",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-sky-ray-gunship-selection-twin-pulse-carbine",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-sky-ray-gunship-selection-smart-missile-system",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -12145,8 +15572,112 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-stormsurge-model-18acb9068a",
+            "selections": [
+              {
+                "selectionId": "unit-stormsurge-selection-cluster-rocket-system",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-stormsurge-selection-destroyer-missiles",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-stormsurge-selection-pulse-driver-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-stormsurge-selection-twin-smart-missile-system",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-stormsurge-selection-twin-tau-flamer",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-stormsurge-selection-thunderous-footfalls",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-stormsurge:wargear:1",
+            "eligibleModelIds": [
+              "unit-stormsurge-model-18acb9068a"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-stormsurge-selection-pulse-driver-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-stormsurge-weapon-family-pulse-blast-cannon-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-stormsurge:wargear:2",
+            "eligibleModelIds": [
+              "unit-stormsurge-model-18acb9068a"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-stormsurge-selection-twin-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-stormsurge-selection-twin-airbursting-fragmentation-projector",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-stormsurge-selection-twin-tau-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-stormsurge-selection-twin-burst-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -12448,8 +15979,59 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-sun-shark-bomber-model-8fb4d071ff",
+            "selections": [
+              {
+                "selectionId": "unit-sun-shark-bomber-selection-missile-pod",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-sun-shark-bomber-selection-seeker-missile",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-sun-shark-bomber-weapon-family-twin-ion-rifle-selection",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-sun-shark-bomber-selection-armoured-hull",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-sun-shark-bomber:wargear:1",
+            "eligibleModelIds": [
+              "unit-sun-shark-bomber-model-8fb4d071ff"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-sun-shark-bomber-selection-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-sun-shark-bomber-selection-twin-missile-pod",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -12580,9 +16162,25 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-tidewall-droneport-model-0ea2f0d98c",
+            "selections": [
+              {
+                "selectionId": "unit-tidewall-droneport-selection-drone-defenders",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
         "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearSharedCaps": [],
+        "wargearDeclarations": [
+          {
+            "sourceRuleId": "datasheet-tidewall-droneport:wargear:1",
+            "kind": "NO_SELECTABLE_OPTION"
+          }
+        ]
       }
     },
     {
@@ -12705,9 +16303,25 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-tidewall-gunrig-model-59c91f2d46",
+            "selections": [
+              {
+                "selectionId": "unit-tidewall-gunrig-selection-supremacy-railgun",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
         "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearSharedCaps": [],
+        "wargearDeclarations": [
+          {
+            "sourceRuleId": "datasheet-tidewall-gunrig:wargear:1",
+            "kind": "NO_SELECTABLE_OPTION"
+          }
+        ]
       }
     },
     {
@@ -12825,8 +16439,37 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-tidewall-shieldline-model-171f4bf463",
+            "selections": []
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-tidewall-shieldline:wargear:1",
+            "eligibleModelIds": [
+              "unit-tidewall-shieldline-model-171f4bf463"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-tidewall-shieldline-selection-tidewall-defence-platform",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -13157,8 +16800,82 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-ax-1-0-tiger-shark-model-552ec001af",
+            "selections": [
+              {
+                "selectionId": "unit-ax-1-0-tiger-shark-selection-burst-cannon",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-ax-1-0-tiger-shark-selection-missile-pod",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-ax-1-0-tiger-shark-selection-twin-heavy-rail-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-ax-1-0-tiger-shark-selection-armoured-hull",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-ax-1-0-tiger-shark:wargear:1",
+            "eligibleModelIds": [
+              "unit-ax-1-0-tiger-shark-model-552ec001af"
+            ],
+            "limit": {
+              "perModel": 6
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-ax-1-0-tiger-shark-selection-seeker-missile",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-ax-1-0-tiger-shark:wargear:2",
+            "eligibleModelIds": [
+              "unit-ax-1-0-tiger-shark-model-552ec001af"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-ax-1-0-tiger-shark-selection-burst-cannon",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-ax-1-0-tiger-shark-weapon-family-cyclic-ion-blaster-selection",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -14006,8 +17723,159 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-tiger-shark-model-2385549d21",
+            "selections": [
+              {
+                "selectionId": "unit-tiger-shark-selection-burst-cannon",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-tiger-shark-weapon-family-ion-cannon-selection",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-tiger-shark-selection-missile-pod",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-tiger-shark-selection-armoured-hull",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-tiger-shark-selection-transport-bay",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-tiger-shark:wargear:1",
+            "eligibleModelIds": [
+              "unit-tiger-shark-model-2385549d21"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-tiger-shark-selection-burst-cannon",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-tiger-shark-weapon-family-cyclic-ion-blaster-selection",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-tiger-shark:wargear:2",
+            "eligibleModelIds": [
+              "unit-tiger-shark-model-2385549d21"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-tiger-shark-weapon-family-ion-cannon-selection",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-tiger-shark-selection-swiftstrike-burst-cannon",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-tiger-shark-weapon-family-ion-cannon-selection",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-tiger-shark-selection-swiftstrike-railgun",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-tiger-shark:wargear:3",
+            "eligibleModelIds": [
+              "unit-tiger-shark-model-2385549d21"
+            ],
+            "limit": {
+              "perModel": 6
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-tiger-shark-selection-seeker-missile",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-tiger-shark:wargear:4",
+            "eligibleModelIds": [
+              "unit-tiger-shark-model-2385549d21"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-tiger-shark-selection-transport-bay",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-tiger-shark-selection-skyspear-missile-rack",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -14430,8 +18298,144 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-taunar-supremacy-armour-model-7c80d081ad",
+            "selections": [
+              {
+                "selectionId": "unit-taunar-supremacy-armour-selection-burst-cannon",
+                "quantity": 4
+              },
+              {
+                "selectionId": "unit-taunar-supremacy-armour-selection-fusion-eradicator",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-taunar-supremacy-armour-selection-pulse-ordnance-driver",
+                "quantity": 3
+              },
+              {
+                "selectionId": "unit-taunar-supremacy-armour-selection-smart-missile-system",
+                "quantity": 4
+              },
+              {
+                "selectionId": "unit-taunar-supremacy-armour-weapon-family-tri-axis-ion-cannon-selection",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-taunar-supremacy-armour-selection-crushing-feet",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-taunar-supremacy-armour:wargear:1",
+            "eligibleModelIds": [
+              "unit-taunar-supremacy-armour-model-7c80d081ad"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-taunar-supremacy-armour-weapon-family-tri-axis-ion-cannon-selection",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-taunar-supremacy-armour-selection-fusion-eradicator",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-taunar-supremacy-armour:wargear:2",
+            "eligibleModelIds": [
+              "unit-taunar-supremacy-armour-model-7c80d081ad"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-taunar-supremacy-armour-selection-fusion-eradicator",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-taunar-supremacy-armour-weapon-family-tri-axis-ion-cannon-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-taunar-supremacy-armour:wargear:3",
+            "eligibleModelIds": [
+              "unit-taunar-supremacy-armour-model-7c80d081ad"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-taunar-supremacy-armour-selection-pulse-ordnance-driver",
+                    "quantity": 3
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-taunar-supremacy-armour-selection-nexus-missile-launcher",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-taunar-supremacy-armour-selection-pulse-ordnance-driver",
+                    "quantity": 3
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-taunar-supremacy-armour-selection-heavy-rail-cannon-array",
+                    "quantity": 1
+                  },
+                  {
+                    "selectionId": "unit-taunar-supremacy-armour-selection-fragmentation-cluster-shell-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     }
