@@ -7,9 +7,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     "parentBookId": null,
     "dependencies": []
   },
-  "compositionConstraints": false,
-  "statProfiles": false,
-  "preserveMultipartStatProfiles": false,
+  "compositionConstraints": true,
+  "statProfiles": true,
+  "preserveMultipartStatProfiles": true,
   "units": [
     {
       "id": "unit-daemonettes",
@@ -50,6 +50,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "5+"
         },
+        "statProfiles": [
+          {
+            "id": "unit-daemonettes-stat-profile-bc58d76d1d",
+            "title": "Daemonettes",
+            "stats": {
+              "M": "9\"",
+              "T": "3",
+              "Sv": "7+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "5+"
+            },
+            "legacyIds": [
+              "unit-daemonettes-stat-profile-daemonettes"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "emperors-children-ability-horrifying-beauty",
@@ -87,6 +105,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Daemonette"
             ],
+            "min": 9,
+            "max": 9,
             "legacyIds": [
               "unit-daemonettes-model-daemonette"
             ]
@@ -97,6 +117,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Alluress"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-daemonettes-model-alluress-2"
             ]
@@ -251,6 +273,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-infractors-stat-profile-ea18aad704",
+            "title": "Infractors",
+            "stats": {
+              "M": "7\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-infractors-stat-profile-infractors"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "emperors-children-ability-excessive-assault",
@@ -281,6 +321,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Obsessionist"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-infractors-model-obsessionist"
             ]
@@ -292,6 +334,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Infractors",
               "Infractor"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-infractors-model-infractors-2"
             ]
@@ -600,6 +644,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-tormentors-stat-profile-d12ff16047",
+            "title": "Tormentors",
+            "stats": {
+              "M": "7\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "2",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-tormentors-stat-profile-tormentors"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "emperors-children-ability-objective-defiled",
@@ -630,6 +692,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Obsessionist"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-tormentors-model-obsessionist"
             ]
@@ -643,6 +707,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Tormentor w/ plasma gun",
               "Tormentor w/ meltagun"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-tormentors-model-tormentors-2"
             ]
@@ -1081,6 +1147,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-lord-of-excess",
@@ -1125,6 +1192,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Daemon Prince of Slaanesh"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-daemon-prince-of-slaanesh-model-daemon-prince-of-slaanesh"
             ]
@@ -1300,6 +1369,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-daemonic-destruction",
@@ -1344,6 +1414,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Daemon Prince of Slaanesh with Wings"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-daemon-prince-of-slaanesh-with-wings-model-daemon-prince-of-slaanesh-with-wings"
             ]
@@ -1520,6 +1592,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "5",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-daemon-lord-of-slaanesh-aura",
@@ -1571,6 +1644,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Keeper of Secrets"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-keeper-of-secrets-model-keeper-of-secrets"
             ]
@@ -1879,6 +1954,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-perfectionists",
@@ -1923,6 +1999,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Lord Exultant"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-lord-exultant-model-lord-exultant"
             ]
@@ -2295,6 +2373,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "core-leader",
@@ -2332,6 +2411,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Lord Kakophonist"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-lord-kakophonist-model-lord-kakophonist"
             ]
@@ -2504,6 +2585,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "core-leader",
@@ -2541,6 +2623,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Sorcerer"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-sorcerer-model-sorcerer"
             ]
@@ -2747,6 +2831,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-assault-vehicle",
@@ -2784,6 +2869,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Rhino"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-rhino-model-chaos-rhino"
             ]
@@ -2963,6 +3050,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "6",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-daemonic-poisons",
@@ -3042,6 +3130,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Fulgrim"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-fulgrim-model-fulgrim"
             ]
@@ -3256,6 +3346,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "core-leader",
@@ -3307,6 +3398,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Lucius the Eternal"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-lucius-the-eternal-model-lucius-the-eternal"
             ]
@@ -3425,6 +3518,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "5",
           "Invulnerable": "4+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-no-prey-can-evade",
@@ -3476,6 +3570,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Shalaxi Helbane"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-shalaxi-helbane-model-shalaxi-helbane"
             ]
@@ -3719,6 +3815,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "4+"
         },
+        "statProfiles": [
+          {
+            "id": "unit-chaos-terminators-stat-profile-ab6a34f2e4",
+            "title": "Chaos Terminators",
+            "stats": {
+              "M": "6\"",
+              "T": "5",
+              "Sv": "2+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "4+"
+            },
+            "legacyIds": [
+              "unit-chaos-terminators-stat-profile-chaos-terminators"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "emperors-children-ability-lethal-obsession",
@@ -3749,6 +3863,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Terminator Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-terminators-model-terminator-champion"
             ]
@@ -3767,6 +3883,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Chainfist and combi-weapon",
               "Paired accursed weapons"
             ],
+            "min": 4,
+            "max": 4,
             "legacyIds": [
               "unit-chaos-terminators-model-terminators-2"
             ]
@@ -4071,6 +4189,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "5+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-daemonic-patrons",
@@ -4094,6 +4213,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Flawless Blade"
             ],
+            "min": 3,
+            "max": 6,
             "legacyIds": [
               "unit-flawless-blades-model-flawless-blade"
             ]
@@ -4225,6 +4346,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-noise-marines-stat-profile-7e1cad94ec",
+            "title": "Disharmonist",
+            "stats": {
+              "M": "6\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-noise-marines-stat-profile-disharmonist"
+            ]
+          },
+          {
+            "id": "unit-noise-marines-stat-profile-7e4458bb20",
+            "title": "Noise Marines",
+            "stats": {
+              "M": "6\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": ""
+            },
+            "legacyIds": [
+              "unit-noise-marines-stat-profile-noise-marines"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "emperors-children-ability-terrifying-crescendo",
@@ -4248,6 +4403,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Disharmonist"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-noise-marines-model-disharmonist"
             ]
@@ -4260,6 +4417,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Noise Marine w/ sonic blaster",
               "Noise Marine w/ blastmaster"
             ],
+            "min": 5,
+            "max": 5,
             "legacyIds": [
               "unit-noise-marines-model-noise-marines-2"
             ]
@@ -4525,6 +4684,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "5",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-assault-ramp",
@@ -4562,6 +4722,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Land Raider"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-land-raider-model-chaos-land-raider"
             ]
@@ -4795,6 +4957,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-scuttling-horrors",
@@ -4825,6 +4988,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Spawn"
             ],
+            "min": 2,
+            "max": 2,
             "legacyIds": [
               "unit-chaos-spawn-model-chaos-spawn"
             ]
@@ -4910,6 +5075,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "5",
           "Invulnerable": "5+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-scuttling-walker",
@@ -4954,6 +5120,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Defiler"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-defiler-model-defiler"
             ]
@@ -5426,6 +5594,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "2",
           "Invulnerable": "5+"
         },
+        "statProfiles": [
+          {
+            "id": "unit-fiends-stat-profile-ca0b7a8ab7",
+            "title": "Fiends",
+            "stats": {
+              "M": "12\"",
+              "T": "5",
+              "Sv": "7+",
+              "W": "4",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": "5+"
+            },
+            "legacyIds": [
+              "unit-fiends-stat-profile-fiends"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "emperors-children-ability-soporific-musk",
@@ -5456,6 +5642,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Fiends"
             ],
+            "min": 2,
+            "max": 5,
             "legacyIds": [
               "unit-fiends-model-fiends"
             ]
@@ -5466,6 +5654,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Blissbringer"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-fiends-model-blissbringer-2"
             ]
@@ -5551,6 +5741,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "0",
           "Invulnerable": "5+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-airborne-predator",
@@ -5595,6 +5786,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Heldrake"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-heldrake-model-heldrake"
             ]
@@ -5740,6 +5933,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "3",
           "Invulnerable": "5+"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "emperors-children-ability-glutton-for-punishment",
@@ -5777,6 +5971,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Maulerfiend"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-maulerfiend-model-maulerfiend"
             ]
@@ -5922,6 +6118,40 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "5+"
         },
+        "statProfiles": [
+          {
+            "id": "unit-seekers-stat-profile-89a119056c",
+            "title": "Seeker",
+            "stats": {
+              "M": "14\"",
+              "T": "4",
+              "Sv": "7+",
+              "W": "2",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "5+"
+            },
+            "legacyIds": [
+              "unit-seekers-stat-profile-seeker"
+            ]
+          },
+          {
+            "id": "unit-seekers-stat-profile-e8ce92717f",
+            "title": "Heartseeker",
+            "stats": {
+              "M": "14\"",
+              "T": "4",
+              "Sv": "7+",
+              "W": "2",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "5+"
+            },
+            "legacyIds": [
+              "unit-seekers-stat-profile-heartseeker"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "emperors-children-ability-unholy-speed",
@@ -5959,6 +6189,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Seeker"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-seekers-model-seeker"
             ]
@@ -5969,6 +6201,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Heartseeker"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-seekers-model-heartseeker-2"
             ]

@@ -38,7 +38,10 @@
   "rosterCatalog": {
     "inferCanonicalDetachmentRuleIds": true,
     "inferExactWargearAbilitySelections": true,
-    "exactEnhancementIds": true
+    "exactEnhancementIds": true,
+    "enforceCompositionConstraints": true,
+    "projectStatProfiles": true,
+    "preserveMultipartStatProfiles": true
   },
   "compatibleRulesMatrix": true,
   "customApp": true,
