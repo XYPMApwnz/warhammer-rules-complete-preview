@@ -220,6 +220,10 @@ export function validateEffectContractsAgainstCatalog(input,catalog,{effectiveBo
         if(kind==='weapon-class'&&!ids.weaponClasses.has(target))throw new Error(`${contract.canonicalRecordId}: unknown canonical weapon class ${target}`);
         if(kind==='weapon-family'&&!ids.weaponFamilies.has(target))throw new Error(`${contract.canonicalRecordId}: unknown canonical weapon family ${target}`);
         for(const id of operation.parameters.profileIds||[])resolveChild(contract,id,'profile',sourceUnits);
+        for(const binding of operation.parameters.physicalBearer?.modelProfileBindings||[]){
+          const owners=sourceUnits.map(id=>ids.units.get(id)).filter(unit=>unit?.gameSelections?.models?.some(model=>model.id===binding.modelId)&&unit?.gameSelections?.statProfiles?.some(profile=>profile.id===binding.statProfileId));
+          if(owners.length!==1)throw new Error(`${contract.canonicalRecordId}: physical bearer binding ${binding.modelId}/${binding.statProfileId} must resolve to one declared source unit`);
+        }
         if(operation.type==='CANONICAL_REFERENCE'){
           const resolved=kind==='enhancement'?ids.enhancements.has(target):kind==='detachment-rule'?ids.detachmentRules.has(target):kind==='ability'?ids.abilities.has(target):false;
           if(!resolved)throw new Error(`${contract.canonicalRecordId}: unknown canonical target ${kind||'<missing>'}/${target}`);

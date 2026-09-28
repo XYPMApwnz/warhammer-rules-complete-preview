@@ -20951,17 +20951,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "scope": "owner",
       "selector": {
         "selectedWargearAbilityIds": [
-          "unit-breacher-team-wargear-ability-bc6aabc321",
-          "unit-broadside-battlesuits-wargear-ability-bc6aabc321",
           "unit-cadre-fireblade-wargear-ability-bc6aabc321",
           "unit-commander-in-coldstar-battlesuit-wargear-ability-bc6aabc321",
           "unit-commander-in-enforcer-battlesuit-wargear-ability-bc6aabc321",
-          "unit-crisis-fireknife-battlesuits-wargear-ability-bc6aabc321",
-          "unit-crisis-starscythe-battlesuits-wargear-ability-bc6aabc321",
-          "unit-crisis-sunforge-battlesuits-wargear-ability-bc6aabc321",
-          "unit-ethereal-wargear-ability-bc6aabc321",
-          "unit-pathfinder-team-wargear-ability-bc6aabc321",
-          "unit-strike-team-wargear-ability-bc6aabc321"
+          "unit-ethereal-wargear-ability-bc6aabc321"
         ],
         "equipmentFamilyId": "tau-empire-equipment-family-shield-drone"
       },
@@ -20999,6 +20992,110 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "locator": "books/tau-empire/content/tau-empire-codex-parity.en.json#tau-empire-equipment-shield-drone"
       },
       "confidence": "SOURCE_LIMITED"
+    },
+    {
+      "canonicalRecordId": "tau-empire-equipment-shield-drone-physical-bearer",
+      "sourceKind": "selected-wargear",
+      "sourceBookId": "tau-empire",
+      "effectiveBookIds": [
+        "tau-empire"
+      ],
+      "sourceUnitIds": [
+        "unit-breacher-team",
+        "unit-broadside-battlesuits",
+        "unit-crisis-fireknife-battlesuits",
+        "unit-crisis-starscythe-battlesuits",
+        "unit-crisis-sunforge-battlesuits",
+        "unit-pathfinder-team",
+        "unit-strike-team"
+      ],
+      "scope": "selected-physical-loadout",
+      "selector": {
+        "selectedWargearAbilityIds": [
+          "unit-breacher-team-wargear-ability-bc6aabc321",
+          "unit-broadside-battlesuits-wargear-ability-bc6aabc321",
+          "unit-crisis-fireknife-battlesuits-wargear-ability-bc6aabc321",
+          "unit-crisis-starscythe-battlesuits-wargear-ability-bc6aabc321",
+          "unit-crisis-sunforge-battlesuits-wargear-ability-bc6aabc321",
+          "unit-pathfinder-team-wargear-ability-bc6aabc321",
+          "unit-strike-team-wargear-ability-bc6aabc321"
+        ],
+        "equipmentFamilyId": "tau-empire-equipment-family-shield-drone",
+        "equippedBy": "selected-physical-loadout"
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "shield-drone-physical-bearer-wounds",
+              "canonicalTarget": "W",
+              "parameters": {
+                "delta": 1,
+                "physicalBearer": {
+                  "modelProfileBindings": [
+                    {
+                      "modelId": "unit-breacher-team-model-a7a3087a51",
+                      "statProfileId": "unit-breacher-team-stat-profile-083d18e754"
+                    },
+                    {
+                      "modelId": "unit-strike-team-model-eb1dbfb325",
+                      "statProfileId": "unit-strike-team-stat-profile-f3ae893d84"
+                    },
+                    {
+                      "modelId": "unit-pathfinder-team-model-ec8a3938e5",
+                      "statProfileId": "unit-pathfinder-team-stat-profile-0cb3bf9364"
+                    },
+                    {
+                      "modelId": "unit-broadside-battlesuits-model-0f703d9afd",
+                      "statProfileId": "unit-broadside-battlesuits-stat-profile-4b93854ddd"
+                    },
+                    {
+                      "modelId": "unit-broadside-battlesuits-model-ebe683fa53",
+                      "statProfileId": "unit-broadside-battlesuits-stat-profile-47a23866d2"
+                    },
+                    {
+                      "modelId": "unit-crisis-fireknife-battlesuits-model-b4425cd84a",
+                      "statProfileId": "unit-crisis-fireknife-battlesuits-stat-profile-e8201e85a7"
+                    },
+                    {
+                      "modelId": "unit-crisis-fireknife-battlesuits-model-fa4f0b73fd",
+                      "statProfileId": "unit-crisis-fireknife-battlesuits-stat-profile-cdb4b0025c"
+                    },
+                    {
+                      "modelId": "unit-crisis-starscythe-battlesuits-model-0239836895",
+                      "statProfileId": "unit-crisis-starscythe-battlesuits-stat-profile-7eba053fbb"
+                    },
+                    {
+                      "modelId": "unit-crisis-starscythe-battlesuits-model-1a13af313d",
+                      "statProfileId": "unit-crisis-starscythe-battlesuits-stat-profile-3452ddf1d6"
+                    },
+                    {
+                      "modelId": "unit-crisis-sunforge-battlesuits-model-90f7a72c26",
+                      "statProfileId": "unit-crisis-sunforge-battlesuits-stat-profile-9fc5cf089e"
+                    },
+                    {
+                      "modelId": "unit-crisis-sunforge-battlesuits-model-23c0c86995",
+                      "statProfileId": "unit-crisis-sunforge-battlesuits-stat-profile-9fc5cf089e"
+                    }
+                  ]
+                }
+              },
+              "type": "CHARACTERISTIC_ADD"
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      },
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "tau-empire-waha-11e-current-2026-09-28",
+        "locator": "books/tau-empire/content/tau-empire-codex-datasheets.en.json#shield-drone"
+      },
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "tau-empire-equipment-shield-generator",
@@ -21080,6 +21177,54 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "locator": "books/tau-empire/content/tau-empire-codex-parity.en.json#tau-empire-equipment-tidewall-defence-platform"
       },
       "confidence": "SOURCE_LIMITED"
+    },
+    {
+      "canonicalRecordId": "unit-kroot-farstalkers-wargear-ability-bc9d7dbfd0",
+      "sourceKind": "selected-wargear",
+      "sourceBookId": "tau-empire",
+      "effectiveBookIds": [
+        "tau-empire"
+      ],
+      "sourceUnitId": "unit-kroot-farstalkers",
+      "scope": "owner-or-attached-group",
+      "selector": {
+        "kind": "selected-canonical-wargear-ability",
+        "sourceUnitIds": [
+          "unit-kroot-farstalkers"
+        ],
+        "selectedWargearAbilityIds": [
+          "unit-kroot-farstalkers-wargear-ability-bc9d7dbfd0"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {
+            "subject": "unit",
+            "weaponMode": "ranged"
+          },
+          "conditions": [],
+          "operations": [
+            {
+              "id": "kroot-farstalkers-pechra-ignores-cover",
+              "type": "WEAPON_TAG_GRANT",
+              "canonicalTarget": "ranged",
+              "parameters": {
+                "tag": "IGNORES COVER",
+                "termId": "core-ignores-cover"
+              }
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "while-selected"
+      },
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "tau-empire-waha-11e-current-2026-09-28",
+        "locator": "books/tau-empire/content/tau-empire-codex-datasheets.en.json#unit-kroot-farstalkers#datasheet-kroot-farstalkers:section:1"
+      },
+      "confidence": "VERIFIED_CURRENT"
     }
   ]
 });
