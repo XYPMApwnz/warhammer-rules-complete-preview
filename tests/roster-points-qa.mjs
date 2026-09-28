@@ -12,7 +12,7 @@ for(const title of ['death guard chaos lord','death guard chaos lord in terminat
 assert.equal(new Set(Object.values(WH_POINTS_CATALOG['death guard'].enhancements).map(item=>item.id)).size,30);
 assert.equal(Object.keys(WH_POINTS_CATALOG['adeptus mechanicus'].units).length,34);
 assert.equal(new Set(Object.values(WH_POINTS_CATALOG['adeptus mechanicus'].enhancements).map(item=>item.title)).size,34);
-assert.equal(Object.keys(WH_POINTS_CATALOG['t au empire'].units).length,39);
+assert.equal(Object.keys(WH_POINTS_CATALOG['t au empire'].units).length,43);
 assert.equal(new Set(Object.values(WH_POINTS_CATALOG['t au empire'].enhancements).map(item=>item.title)).size,23);
 assert.equal(Object.keys(WH_POINTS_CATALOG['emperor s children'].units).length,23);
 assert.equal(Object.keys(WH_POINTS_CATALOG['emperor s children'].detachments).length,10);

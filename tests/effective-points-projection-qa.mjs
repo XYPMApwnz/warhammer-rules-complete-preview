@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
+import {createEffectiveMfmArmyProjection} from '../books/shared/tools/effective-mfm-army-projection.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const generatedInputPattern=/[\\/](?:scripts[\\/](?:roster-data|target-data)\.js|reader\.html|mobile[\\/](?:generated|scripts)[\\/])/i;
@@ -48,6 +49,21 @@ function assertProjectionCatalogIdentity(projections,catalog){
     assert(published,`${bookId}: points publication missing`);
     assert.deepEqual(sorted(projection.units.map(unit=>unit.id)),sorted(Object.values(published.units).map(unit=>unit.id)),`${bookId}: unit identity set differs`);
     assert.deepEqual(sorted(projection.detachments.map(item=>item.title.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim())),sorted(Object.keys(published.detachments)),`${bookId}: Detachment identity set differs`);
+  }
+}
+
+function assertTauMfmPublicationCoverage(projections,catalog){
+  const source=createEffectiveMfmArmyProjection('tau-empire').pointsForArmyBook('tau-empire').units;
+  const effective=projections.get('tau-empire').units,published=Object.values(catalog['t au empire'].units),byId=items=>new Map(items.map(item=>[item.id,item]));
+  assert.equal(source.length,43,"T'au centralized MFM source unit count");
+  assert.equal(effective.length,43,"T'au effective MFM projection unit count");
+  assert.equal(published.length,43,"T'au Roster points publication unit count");
+  const sourceById=byId(source),effectiveById=byId(effective),publishedById=byId(published);
+  assert.deepEqual(sorted(sourceById.keys()),sorted(effectiveById.keys()),"T'au effective projection omits an eligible MFM unit");
+  assert.deepEqual(sorted(sourceById.keys()),sorted(publishedById.keys()),"T'au points publication omits an eligible MFM unit");
+  for(const [id,record] of sourceById){
+    assert.equal(JSON.stringify(effectiveById.get(id)?.points),JSON.stringify(record.points),`${id}: effective schedule differs from centralized MFM`);
+    assert.equal(JSON.stringify(publishedById.get(id)?.points),JSON.stringify(record.points),`${id}: published schedule differs from centralized MFM`);
   }
 }
 
@@ -144,8 +160,9 @@ assert.equal(JSON.stringify(first.catalog),JSON.stringify(second.catalog),'point
 assert.deepEqual(pointsApi.createPointsCatalogFromProjections(new Map([...projections].reverse())).catalog,catalog,'projection construction order changed points output');
 assert.deepEqual(JSON.parse(JSON.stringify(catalog)),published.catalog,'effective projection changed published points semantics');
 assert.equal(published.source,`window.WH_POINTS_CATALOG=Object.freeze(${JSON.stringify(catalog)});\n`,'points-data.js is not byte-current');
-assert.equal(crypto.createHash('sha256').update(published.source).digest('hex'),'9a994961069ed941b40824eac06978781dc33d16a7604c3e8c224312182765ee');
+assert.equal(crypto.createHash('sha256').update(published.source).digest('hex'),'3f6f482acf986456bb3be284d8702b78de010e0e3bdd24193d1cef93eaf607ac');
 assertProjectionCatalogIdentity(projections,catalog);
+assertTauMfmPublicationCoverage(projections,catalog);
 assertSupplementControls(projections);
 assertEmperorsChildrenUpgradeIdentities(projections,catalog);
 assertCanonicalPointAuthority(projections);
@@ -155,7 +172,7 @@ const pointTiers=[...projections.values()].reduce((sum,item)=>sum+item.units.red
 const enhancementRecords=[...projections.values()].reduce((sum,item)=>sum+item.enhancements.length,0);
 const enhancementLookupKeys=Object.values(catalog).reduce((sum,item)=>sum+Object.keys(item.enhancements).length,0);
 const detachmentRecords=[...projections.values()].reduce((sum,item)=>sum+item.detachments.length,0);
-assert.deepEqual({books:projections.size,unitRecords,pointTiers,enhancementRecords,enhancementLookupKeys,detachmentRecords},{books:9,unitRecords:540,pointTiers:946,enhancementRecords:474,enhancementLookupKeys:534,detachmentRecords:134});
+assert.deepEqual({books:projections.size,unitRecords,pointTiers,enhancementRecords,enhancementLookupKeys,detachmentRecords},{books:9,unitRecords:544,pointTiers:953,enhancementRecords:474,enhancementLookupKeys:534,detachmentRecords:134});
 
 const base=clone(projections.get('space-marines'));
 const recreate=mutate=>{const value=clone(base);mutate(value);return projectionApi.createEffectivePointsProjection(value);};
@@ -172,6 +189,19 @@ assert.throws(()=>assertProjectionCatalogIdentity(unknownIdentity,catalog),/unit
 const countPreserving=projectionMapClone(projections);
 countPreserving.get('tau-empire').units[0].id='unit-count-preserving-substitution';
 assert.throws(()=>assertProjectionCatalogIdentity(countPreserving,catalog),/unit identity set differs/);
+
+const tauOmittedUnit=clone(catalog);
+delete tauOmittedUnit['t au empire'].units['ax 1 0 tiger shark'];
+assert.throws(()=>assertTauMfmPublicationCoverage(projections,tauOmittedUnit),/unit count|omits an eligible MFM unit/);
+const tauOmittedRow=clone(catalog);
+tauOmittedRow['t au empire'].units['tiger shark'].points.pop();
+assert.throws(()=>assertTauMfmPublicationCoverage(projections,tauOmittedRow),/published schedule differs/);
+const tauChangedValue=clone(catalog);
+tauChangedValue['t au empire'].units.manta.points[0].value++;
+assert.throws(()=>assertTauMfmPublicationCoverage(projections,tauChangedValue),/published schedule differs/);
+const tauWrongIdentity=clone(catalog),wrong=tauWrongIdentity['t au empire'].units['ta unar supremacy armour'];
+wrong.id='unit-wrong-taunar-identity';
+assert.throws(()=>assertTauMfmPublicationCoverage(projections,tauWrongIdentity),/omits an eligible MFM unit/);
 
 const exclusionMutation=projectionMapClone(projections);
 exclusionMutation.get('blood-angels').units.push(clone(projections.get('space-marines').units.find(item=>item.id==='unit-roboute-guilliman')));
