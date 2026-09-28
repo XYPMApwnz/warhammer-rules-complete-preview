@@ -22,7 +22,8 @@ assert.equal([...related.matchAll(/<section class="related-detachment(?: [^"]*)?
 assert.doesNotMatch(related,/data-eligibility|data-keyword-grants/);
 assert.match(app,/shared\/compatible-rules-matrix\.mjs\?v=\d+/,'canonical reader runtime must use the shared matrix-backed Compatible Rules source');
 assert.match(app,/WHArmyBook\.install/,'canonical reader runtime must use the shared Army Book contract');
-assert.ok(!files.includes('rvarna-battlesuit.html')&&!files.includes('manta.html'),'Legends and Imperial Armour routes must be absent');
+assert.ok(!files.includes('rvarna-battlesuit.html')&&!files.includes('yvahra-battlesuit.html')&&!files.includes('tetras.html'),'retired Imperial Armour routes must be absent');
+for(const file of ['ax-1-0-tiger-shark.html','manta.html','tiger-shark.html','taunar-supremacy-armour.html'])assert.ok(files.includes(file),`${file}: current Imperial Armour route missing`);
 assert.doesNotMatch(related,/data-term-title="[^"]*"[^>]*data-term-title=/,'Related Rules hydration must be idempotent');
 for(const obsolete of ['mobile.js','mobile.css','phone-popup-controller.js'])await assert.rejects(stat(new URL(obsolete,root)),`${obsolete} must not exist`);
 console.log(`T'au Empire responsive QA passed: ${files.length} content-free compatibility stubs and 8 Related Rules sections.`);

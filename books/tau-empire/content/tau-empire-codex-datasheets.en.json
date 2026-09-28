@@ -6,7 +6,8 @@
     "commit": "fa30730fca11fbfe87be90684d481d50e0efaf66",
     "revision": "2",
     "url": "https://github.com/BSData/wh40k-11e/blob/fa30730fca11fbfe87be90684d481d50e0efaf66/T%27au%20Empire.json",
-    "snapshotSha256": "A864213D5354661E5913BD31051E4094848B0359EDBA2FC200ED2CB2C2589A8F"
+    "snapshotSha256": "A864213D5354661E5913BD31051E4094848B0359EDBA2FC200ED2CB2C2589A8F",
+    "currentWahaCorpus": "sources/waha-11e-current-2026-09-28/corpus.json"
   },
   "datasheets": [
     {
@@ -125,7 +126,7 @@
         },
         {
           "title": "DS8 Support Turret",
-          "text": "In your Movement phase, if this unit Remains Stationary, until the start of your next turn, its Shas’ui model is equipped with the support turret weapon.\n\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
+          "text": "In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
           "sourceAbilityId": "3354-9520-c907-c618"
         },
         {
@@ -159,9 +160,8 @@
         "Grenades",
         "Markerlight",
         "Fire Warrior",
-        "T'au Empire",
         "Breacher Team",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -187,7 +187,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "The Breacher Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+      ]
     },
     {
       "id": "unit-strike-team",
@@ -311,12 +314,12 @@
       "abilities": [
         {
           "title": "Suppression Volley",
-          "text": "In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll.",
+          "text": "In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll.",
           "sourceAbilityId": "62df-a9ee-3931-13d"
         },
         {
           "title": "DS8 Support Turret",
-          "text": "In your Movement phase, if this unit Remains Stationary, until the start of your next turn, its Shas’ui model is equipped with the support turret weapon.\n\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
+          "text": "In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
           "sourceAbilityId": "d2e6-f139-acad-1b30"
         },
         {
@@ -351,8 +354,7 @@
         "Markerlight",
         "Fire Warrior",
         "Strike Team",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -379,7 +381,11 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "The Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone",
+        "Any number of Fire Warrior models can each have their pulse rifle replaced with 1 pulse carbine."
+      ]
     },
     {
       "id": "unit-cadre-fireblade",
@@ -498,12 +504,11 @@
         }
       ],
       "keywords": [
-        "Character",
         "Infantry",
+        "Character",
         "Grenades",
-        "T'au Empire",
         "Cadre Fireblade",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -524,7 +529,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+      ]
     },
     {
       "id": "unit-commander-in-coldstar-battlesuit",
@@ -754,14 +762,13 @@
         }
       ],
       "keywords": [
-        "Character",
         "Vehicle",
         "Walker",
         "Fly",
+        "Character",
         "Battlesuit",
-        "T'au Empire",
-        "Commander in Coldstar Battlesuit",
-        "Non-Kroot"
+        "Commander In Coldstar Battlesuit",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -783,7 +790,13 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s high-output burst cannon can be replaced with one of the following:\n- 1 airbursting fragmentation projector*\n- 1 battlesuit support system*\n- 1 burst cannon\n- 1 cyclic ion blaster*\n- 1 fusion blaster\n- 1 missile pod\n- 1 plasma rifle\n- 1 shield generator*\n- 1 T’au flamer\n- 1 weapon support system*",
+        "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone",
+        "This model can be equipped with up to three of the following, and can take duplicates:\n- 1 airbursting fragmentation projector*\n- 1 battlesuit support system*\n- 1 burst cannon\n- 1 cyclic ion blaster*\n- 1 fusion blaster\n- 1 missile pod\n- 1 plasma rifle\n- 1 shield generator*\n- 1 T’au flamer\n- 1 weapon support system*",
+        "* This model cannot have duplicates of these pieces of wargear."
+      ]
     },
     {
       "id": "unit-commander-in-enforcer-battlesuit",
@@ -996,14 +1009,13 @@
         }
       ],
       "keywords": [
-        "Character",
         "Vehicle",
         "Walker",
         "Fly",
+        "Character",
         "Battlesuit",
-        "T'au Empire",
-        "Commander in Enforcer Battlesuit",
-        "Non-Kroot"
+        "Commander In Enforcer Battlesuit",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -1025,7 +1037,13 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s burst cannon can be replaced with one of the following:\n- 1 airbursting fragmentation projector*\n- 1 battlesuit support system*\n- 1 cyclic ion blaster*\n- 1 fusion blaster\n- 1 missile pod\n- 1 plasma rifle\n- 1 shield generator*\n- 1 T’au flamer\n- 1 weapon support system*",
+        "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone",
+        "This model can be equipped with up to three of the following, and can take duplicates:\n- 1 airbursting fragmentation projector*\n- 1 battlesuit support system*\n- 1 burst cannon\n- 1 cyclic ion blaster*\n- 1 fusion blaster\n- 1 missile pod\n- 1 plasma rifle\n- 1 shield generator*\n- 1 T’au flamer\n- 1 weapon support system*",
+        "* This model cannot have duplicates of these pieces of wargear."
+      ]
     },
     {
       "id": "unit-ethereal",
@@ -1093,7 +1111,7 @@
       "abilities": [
         {
           "title": "Coordinated Leadership",
-          "text": "In your Command phase, roll one D6: on a 4+, you gain 1CP.",
+          "text": "At the end of your Command phase, roll one D6: on a 4+, you gain 1CP.",
           "sourceAbilityId": "3a16-c8c-5d03-c1a1"
         },
         {
@@ -1122,7 +1140,7 @@
       "wargearAbilities": [
         {
           "title": "Hover Drone",
-          "text": "The bearer can Fly and has a Move characteristic of 10\".",
+          "text": "The bearer can FLY and has a Move characteristic of 10\".",
           "sourceAbilityId": "a3bb-77b8-a18f-23e1",
           "sourceChildId": "a3bb-77b8-a18f-23e1"
         },
@@ -1145,11 +1163,10 @@
         }
       ],
       "keywords": [
-        "Character",
         "Infantry",
+        "Character",
         "Ethereal",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -1170,7 +1187,11 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model can be equipped with 1 hover drone.",
+        "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+      ]
     },
     {
       "id": "unit-firesight-team",
@@ -1267,12 +1288,11 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Character",
         "Infantry",
+        "Character",
         "Markerlight",
-        "T'au Empire",
         "Firesight Team",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -1290,7 +1310,8 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": []
     },
     {
       "id": "unit-kroot-flesh-shaper",
@@ -1347,18 +1368,13 @@
       "abilities": [
         {
           "title": "Rites of Feasting",
-          "text": "While this model is leading a unit, models in that unit have the Feel Not Pain 6+ ability. If that unit destroys one or more enemy units in the Fight phase, until the end of the battle, models in that unit have the Feel No Pain 5+ ability instead.",
+          "text": "While this model is leading a unit, models in that unit have the Feel No Pain 6+ ability. If that unit destroys one or more enemy units in the Fight phase, until the end of the battle, models in that unit have the Feel No Pain 5+ ability instead.",
           "sourceAbilityId": "b698-3b5c-4503-4ed"
         },
         {
           "title": "Ritual Butchery",
           "text": "While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
           "sourceAbilityId": "c4f6-2b72-9aef-ce30"
-        },
-        {
-          "title": "Harnessed Alien Instincts",
-          "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-          "sourceAbilityId": "88ee-544b-f15d-7570"
         },
         {
           "title": "Infiltrators",
@@ -1403,8 +1419,8 @@
         "Character",
         "Kroot",
         "Shaper",
-        "T'au Empire",
-        "Flesh Shaper"
+        "Flesh Shaper",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -1425,7 +1441,8 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": []
     },
     {
       "id": "unit-kroot-lone-spear",
@@ -1524,11 +1541,6 @@
           "sourceAbilityId": "711e-6ae9-712a-8365"
         },
         {
-          "title": "Harnessed Alien Instincts",
-          "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-          "sourceAbilityId": "88ee-544b-f15d-7570"
-        },
-        {
           "title": "Stealth",
           "text": "If every model in a unit has this ability, each time a ranged attack targets that unit, that unit has the benefit of cover against that attack (13.08).",
           "sourceAbilityId": "bec5-4288-34a6-ccfa",
@@ -1549,11 +1561,11 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Character",
         "Mounted",
+        "Character",
         "Kroot",
-        "T'au Empire",
-        "Lone-spear"
+        "Lone-Spear",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -1571,7 +1583,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s Kroot long gun can be replaced with 1 blast javelin and 1 hunting javelin."
+      ]
     },
     {
       "id": "unit-kroot-trail-shaper",
@@ -1633,13 +1648,8 @@
         },
         {
           "title": "Trail Finding",
-          "text": "In your opponent’s Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6\".",
+        "text": "In your opponent’s Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6\".",
           "sourceAbilityId": "9b9d-2689-7f39-fb51"
-        },
-        {
-          "title": "Harnessed Alien Instincts",
-          "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-          "sourceAbilityId": "88ee-544b-f15d-7570"
         },
         {
           "title": "Infiltrators",
@@ -1672,8 +1682,8 @@
         "Character",
         "Kroot",
         "Shaper",
-        "T'au Empire",
-        "Trail Shaper"
+        "Trail Shaper",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -1694,7 +1704,8 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": []
     },
     {
       "id": "unit-kroot-war-shaper",
@@ -1782,11 +1793,6 @@
           "sourceAbilityId": "f42-3984-7ed8-157"
         },
         {
-          "title": "Harnessed Alien Instincts",
-          "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-          "sourceAbilityId": "88ee-544b-f15d-7570"
-        },
-        {
           "title": "Infiltrators",
           "text": "During deployment, if every model in a unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from your opponent’s deployment zone and all enemy units.",
           "sourceAbilityId": "c05d-f4c3-f091-4938",
@@ -1817,8 +1823,8 @@
         "Character",
         "Kroot",
         "Shaper",
-        "T'au Empire",
-        "War Shaper"
+        "War Shaper",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -1839,7 +1845,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s dart-bow and tri-bade can be replaced with 1 bladestave and prey-hook."
+      ]
     },
     {
       "id": "unit-devilfish",
@@ -1933,7 +1942,7 @@
       "abilities": [
         {
           "title": "Rapid Deployment",
-          "text": "Units can disembark from this TRANSPORT after it has Advanced. Units that do so count as having made a Normal move that phase, and cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn.",
+          "text": "Units can disembark from this TRANSPORT after it has Advanced. Units that do so make a shock disembark move (Core Rules, 18.07) for that disembarkation.",
           "sourceAbilityId": "6109-8d9d-d74-423f"
         },
         {
@@ -1952,12 +1961,11 @@
       "keywords": [
         "Vehicle",
         "Fly",
+        "Frame",
         "Transport",
         "Dedicated Transport",
         "Devilfish",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -1977,7 +1985,11 @@
         "transport": [
           "This model has a transport capacity of 12 T’AU EMPIRE INFANTRY models. It cannot transport BATTLESUIT, KROOT or VESPID STINGWINGS models."
         ]
-      }
+      },
+      "wargear": [
+        "This model’s 2 twin pulse carbines can be replaced with 2 smart missile systems.",
+        "This model can be equipped with up to 2 seeker missiles."
+      ]
     },
     {
       "id": "unit-commander-farsight",
@@ -2050,7 +2062,7 @@
         },
         {
           "title": "Puretide's Teachings",
-          "text": "Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+          "text": "Once per battle round, you can target this model’s unit with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
           "sourceAbilityId": "49a3-e55-9ec9-32fd"
         },
         {
@@ -2073,15 +2085,14 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Epic Hero",
         "Vehicle",
         "Walker",
         "Fly",
         "Character",
+        "Epic Hero",
         "Battlesuit",
         "Commander Farsight",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -2103,7 +2114,8 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": []
     },
     {
       "id": "unit-commander-shadowsun",
@@ -2198,18 +2210,8 @@
         },
         {
           "title": "Hero of the Empire (Aura)",
-          "text": "While a friendly T’au Empire unit is within 6\" of this model, each time a model in that unit makes a ranged attack, re-roll a Hit roll of 1.",
+          "text": "While a friendly T’AU EMPIRE unit is within 6\" of this model, each time a model in that unit makes a ranged attack, re-roll a Hit roll of 1.",
           "sourceAbilityId": "b13-dc2f-2104-2ba2"
-        },
-        {
-          "title": "Advanced Guardian Drone",
-          "text": "Each time a ranged attack targets the bearer, subtract 1 from the Wound roll.",
-          "sourceAbilityId": "d1d-2e4f-db3d-b3c4"
-        },
-        {
-          "title": "Command-link Drone (Aura)",
-          "text": "While a friendly T’au Empire unit is within 6\" of the bearer, each time you select that unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
-          "sourceAbilityId": "8d40-9af2-d279-b0e2"
         },
         {
           "title": "Supreme Commander",
@@ -2240,16 +2242,26 @@
           "sourceAbilityId": "eeb6-c42-48f7-cc21"
         }
       ],
-      "wargearAbilities": [],
+      "wargearAbilities": [
+        {
+          "title": "Advanced Guardian Drone",
+          "text": "Each time a ranged attack targets the bearer, subtract 1 from the Wound roll.",
+          "sourceAbilityId": "d1d-2e4f-db3d-b3c4"
+        },
+        {
+          "title": "Command-link Drone (Aura)",
+          "text": "While a friendly T’AU EMPIRE unit is within 6\" of the bearer, each time you select that unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+          "sourceAbilityId": "8d40-9af2-d279-b0e2"
+        }
+      ],
       "keywords": [
-        "Epic Hero",
         "Infantry",
         "Fly",
         "Character",
+        "Epic Hero",
         "Battlesuit",
         "Commander Shadowsun",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -2267,7 +2279,8 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": []
     },
     {
       "id": "unit-darkstrider",
@@ -2358,13 +2371,12 @@
       ],
       "wargearAbilities": [],
       "keywords": [
+        "Infantry",
         "Character",
         "Epic Hero",
-        "Darkstrider",
-        "T'au Empire",
         "Markerlight",
-        "Infantry",
-        "Non-Kroot"
+        "Darkstrider",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -2384,7 +2396,8 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": []
     },
     {
       "id": "unit-the-twin-lance",
@@ -2571,15 +2584,14 @@
         }
       ],
       "keywords": [
-        "Epic Hero",
         "Vehicle",
         "Walker",
         "Fly",
         "Character",
+        "Epic Hero",
         "Battlesuit",
-        "T'au Empire",
-        "Non-Kroot",
-        "The Twin Lance"
+        "The Twin Lance",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -2605,7 +2617,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "None."
+      ]
     },
     {
       "id": "unit-kroot-carnivores",
@@ -2701,7 +2716,7 @@
       "abilities": [
         {
           "title": "Fieldcraft",
-          "text": "At the end of the your Command phase, if this unit within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn.",
+          "text": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn.",
           "sourceAbilityId": "2d1d-ea81-7078-938b"
         },
         {
@@ -2709,11 +2724,6 @@
           "text": "If this unit has a Starting Strength of 20, you can attach up to two Leader units to it instead of one, provided those Leaders are not duplicates (e.g. you cannot attach two WAR SHAPERS to this unit). If you do, and this unit is destroyed, the Leader units attached to it become separate units with their original Starting Strengths.",
           "sourceAbilityId": "d0e7-bbff-a4f8-1b2d",
           "coreAbilityId": "core-bodyguard"
-        },
-        {
-          "title": "Harnessed Alien Instincts",
-          "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-          "sourceAbilityId": "88ee-544b-f15d-7570"
         },
         {
           "title": "Scouts 7\"",
@@ -2761,7 +2771,11 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "The Long-quill’s Kroot rifle can be replaced with 1 Kroot carbine.",
+        "For every 10 models in this unit, one Kroot Carnivore’s Kroot rifle can be replaced with 1 Tanglebomb launcher."
+      ]
     },
     {
       "id": "unit-kroot-farstalkers",
@@ -2886,7 +2900,7 @@
           "abilities": ""
         },
         {
-          "name": "T'au tech rifle",
+          "name": "T’au-tech rifle",
           "mode": "ranged",
           "range": "30\"",
           "a": "1",
@@ -2899,11 +2913,6 @@
       ],
       "abilities": [
         {
-          "title": "Harnessed Alien Instincts",
-          "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-          "sourceAbilityId": "88ee-544b-f15d-7570"
-        },
-        {
           "title": "Infiltrators",
           "text": "During deployment, if every model in a unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from your opponent’s deployment zone and all enemy units.",
           "sourceAbilityId": "c05d-f4c3-f091-4938",
@@ -2914,13 +2923,24 @@
           "text": "If every model in a unit has this ability, each time a ranged attack targets that unit, that unit has the benefit of cover against that attack (13.08).",
           "sourceAbilityId": "bec5-4288-34a6-ccfa",
           "coreAbilityId": "core-stealth"
+        },
+        {
+          "title": "Bounty Hunters",
+          "sourceAbilityId": "datasheet-kroot-farstalkers:section:1",
+          "text": "At the start of the battle, select one unit from your opponent’s army. Each time a model in this unit makes an attack that targets that unit, that attack has the [LETHAL HITS] and [PRECISION] abilities."
         }
       ],
-      "wargearAbilities": [],
+      "wargearAbilities": [
+        {
+          "title": "Pech’ra",
+          "sourceAbilityId": "datasheet-kroot-farstalkers:section:1",
+          "text": "Ranged weapons equipped by the bearer’s unit have the [IGNORES COVER] ability."
+        }
+      ],
       "keywords": [
         "Infantry",
-        "Grenades",
         "Kroot",
+        "Grenades",
         "Farstalkers",
         "T'au Empire"
       ],
@@ -2957,7 +2977,12 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "The Kroot Kill-broker’s Farstalker firearm can be replaced with 1 T’au-tech rifle.",
+        "1 Kroot Farstalker’s Farstalker firearm can be replaced with one of the following:\n- 1 Dvorgite skinner\n- 1 Londaxi tribalest",
+        "1 Kroot Farstalker equipped with a Farstalker firearm can be equipped with 1 Pech’ra."
+      ]
     },
     {
       "id": "unit-pathfinder-team",
@@ -3160,7 +3185,7 @@
       "wargearAbilities": [
         {
           "title": "Grav-inhibitor Drone",
-          "text": "Each time an enemy unit selects the bearer's unit as the target of a charge, subtract 2 from the Charge roll (this is not cumulative with any other negative modifiers to that Charge roll).",
+          "text": "Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll).",
           "sourceAbilityId": "f75f-eefc-aff0-75cd"
         },
         {
@@ -3198,8 +3223,7 @@
         "Grenades",
         "Markerlight",
         "Pathfinder Team",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -3226,7 +3250,13 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "The Pathfinder Shas’ui can be equipped with one of the following:\n- 1 grav-inhibitor drone\n- 1 pulse accelerator drone\n- 1 recon drone",
+        "The Pathfinder Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone",
+        "Up to 3 Pathfinders can each have their pulse carbine replaced with one of the following:\n- 1 ion rifle\n- 1 rail rifle",
+        "1 model in this unit equipped with a pulse carbine can be equipped with 1 semi-automatic grenade launcher. That model’s pulse carbine cannot be replaced."
+      ]
     },
     {
       "id": "unit-stealth-battlesuits",
@@ -3356,7 +3386,7 @@
       "wargearAbilities": [
         {
           "title": "Homing Beacon",
-          "text": "Once per battle, you can use the Rapid Ingress Stratagem for 0CP. The target must be set up within 3\" of the bearer’s unit and more than 8\" away from all enemy units.\n Designer’s Note: *Place a Homing Beacon token next to this unit, removing it once this ability is used.*",
+          "text": "Once per battle, you can use the Rapid Ingress Stratagem for 0CP. The target must be set up within 3\" of the bearer’s unit and more than 8\" away from all enemy units.\nDesigner’s Note: Place a Homing Beacon token next to this unit, removing it once this ability is used.",
           "sourceAbilityId": "1333-60c8-37d2-1a4d"
         },
         {
@@ -3370,11 +3400,10 @@
         "Infantry",
         "Fly",
         "Battlesuit",
-        "Stealth",
-        "T'au Empire",
         "Grenades",
         "Markerlight",
-        "Non-Kroot"
+        "Stealth",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -3414,6 +3443,13 @@
           "title": "Fusion blaster",
           "maxTotalQuantity": 2
         }
+      ],
+      "wargear": [
+        "The Stealth Shas’vre can be equipped with 1 gun drone.",
+        "The Stealth Shas’vre can be equipped with 1 marker drone.",
+        "The Stealth Shas’vre can be equipped with 1 pulse pistol.",
+        "1 Stealth Shas’ui can be equipped with 1 homing beacon.",
+        "2 models can each have their burst cannon replaced with 1 fusion blaster."
       ]
     },
     {
@@ -3523,16 +3559,15 @@
       "wargearAbilities": [
         {
           "title": "Oversight Drone",
-          "text": "Once per battle, when the bearer’s unit is selected to shoot, until the end of the phase, ranged weapons equipped by models in this unit have the [IGNORES COVER] ability.\n\nDesigner’s Note: Place an Oversight Drone token next to the bearer, removing it once this ability has been used.",
+          "text": "Once per battle, when the bearer’s unit is selected to shoot, until the end of the phase, ranged weapons equipped by models in this unit have the [IGNORES COVER] ability.\nDesigner’s Note: Place an Oversight Drone token next to the bearer, removing it once this ability has been used.",
           "sourceAbilityId": "f1f8-0162-549a-a464"
         }
       ],
       "keywords": [
         "Infantry",
         "Fly",
-        "T'au Empire",
         "Vespid Stingwings",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -3561,7 +3596,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "If this unit contains 10 models:\n- The Vespid Strain Leader can be equipped with 1 Oversight Drone.\n- 1 Vespid Stingwing can replace its neutron blaster with 1 T’au flamer\n- 1 Vespid Stingwing can replace its neutron blaster with 1 neutron grenade launcher\n- 1 Vespid Stingwing can replace its neutron blaster with 1 neutron rail rifle."
+      ]
     },
     {
       "id": "unit-broadside-battlesuits",
@@ -3753,9 +3791,8 @@
         "Vehicle",
         "Walker",
         "Battlesuit",
-        "T'au Empire",
         "Broadside",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -3781,7 +3818,13 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "Any number of models can each have their heavy rail rifle replaced with 1 high-yield missile pods.",
+        "Any number of models can each be equipped with up to two of the following, but cannot take duplicates:\n- 1 seeker missile\n- 1 twin plasma rifle*\n- 1 twin smart missile system*\n- 1 weapon support system",
+        "Any number of models can each be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 missile drone\n- 1 shield drone",
+        "* No model can be equipped with both a twin plasma rifle and twin smart missile system at the same time."
+      ]
     },
     {
       "id": "unit-crisis-fireknife-battlesuits",
@@ -3932,9 +3975,8 @@
         "Fly",
         "Battlesuit",
         "Crisis",
-        "T'au Empire",
         "Fireknife",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -3960,7 +4002,12 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "Any number of models can each have their plasma rifle replaced with 1 missile pod.",
+        "Any number of models can each have their missile pod replaced with 1 plasma rifle.",
+        "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+      ]
     },
     {
       "id": "unit-crisis-starscythe-battlesuits",
@@ -4071,7 +4118,7 @@
         },
         {
           "title": "Battlesuit Support System",
-          "text": "The unit is eligible to shoot in a turn in which it Fell Back.",
+          "text": "This unit is eligible to shoot in a turn in which it Fell Back.",
           "sourceAbilityId": "daca-db7f-18e9-0322"
         },
         {
@@ -4111,9 +4158,8 @@
         "Fly",
         "Battlesuit",
         "Crisis",
-        "T'au Empire",
         "Starscythe",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -4139,7 +4185,12 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "Any number of models can each have their burst cannon replaced with 1 T’au flamer.",
+        "Any number of models can each have their T’au flamer replaced with 1 burst cannon.",
+        "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+      ]
     },
     {
       "id": "unit-crisis-sunforge-battlesuits",
@@ -4262,9 +4313,8 @@
         "Fly",
         "Battlesuit",
         "Crisis",
-        "T'au Empire",
         "Sunforge",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -4290,7 +4340,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "Any number of models can be equipped with up to two of the following, but cannot take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+      ]
     },
     {
       "id": "unit-ghostkeel-battlesuit",
@@ -4406,18 +4459,13 @@
       "abilities": [
         {
           "title": "Stealth Drones",
-          "text": "Twice per battle, after an attack has been allocated to this model, you can change the Damage characteristic of that attack to 0.\n\nDesigner’s Note: Place two Stealth Drone tokens next to the unit, removing one each time this ability has been used.",
+          "text": "Twice per battle, after an attack has been allocated to this model, you can change the Damage characteristic of that attack to 0.\nDesigner’s Note: Place two Stealth Drone tokens next to the unit, removing one each time this ability has been used.",
           "sourceAbilityId": "ff15-6f06-1824-ea0b"
         },
         {
-          "title": "Damaged: 1-4 Wounds Remaining",
+          "title": "Damaged: 1-4 WOUNDS REMAINING",
           "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
           "sourceAbilityId": "2220-2459-9f07-490e"
-        },
-        {
-          "title": "Localised Stealth Projectors (Aura)",
-          "text": "When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden.",
-          "sourceAbilityId": "b2d8-1aa1-f125-d1ff"
         },
         {
           "title": "Deadly Demise D3",
@@ -4452,7 +4500,7 @@
       "wargearAbilities": [
         {
           "title": "Battlesuit Support System",
-          "text": "The bearer is eligible to shoot in a turn in which it Fell Back but it loses the Smoke keyword.",
+          "text": "The bearer is eligible to shoot in a turn in which it Fell Back but it loses the SMOKE keyword.",
           "sourceAbilityId": "5496-1077-da50-c494"
         }
       ],
@@ -4463,8 +4511,7 @@
         "Smoke",
         "Battlesuit",
         "Ghostkeel",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -4488,7 +4535,12 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s fusion collider can be replaced with 1 cyclic ion raker.",
+        "This model’s twin T’au flamer can be replaced with one of the following:\n- 1 twin fusion blaster\n- 1 twin burst cannon",
+        "This model can be equipped with one battlesuit support system."
+      ]
     },
     {
       "id": "unit-hammerhead-gunship",
@@ -4619,7 +4671,7 @@
           "sourceAbilityId": "9e7-373-d0d6-af25"
         },
         {
-          "title": "Damaged: 1-5 Wounds Remaining",
+          "title": "Damaged: 1-5 WOUNDS REMAINING",
           "text": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
           "sourceAbilityId": "4f24-6581-c017-3daa"
         },
@@ -4644,10 +4696,9 @@
       "keywords": [
         "Vehicle",
         "Fly",
+        "Frame",
         "Hammerhead Gunship",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -4665,7 +4716,12 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s railgun can be replaced with 1 ion cannon.",
+        "This model’s 2 twin pulse carbines can be replaced with one of the following:\n- 2 accelerator burst cannons\n- 2 smart missile systems",
+        "This model can be equipped with up to 2 seeker missiles."
+      ]
     },
     {
       "id": "unit-kroot-hounds",
@@ -4726,11 +4782,6 @@
           "sourceAbilityId": "3cfd-4cf6-9b8c-874b"
         },
         {
-          "title": "Harnessed Alien Instincts",
-          "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-          "sourceAbilityId": "88ee-544b-f15d-7570"
-        },
-        {
           "title": "Scouts 7\"",
           "text": "This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: \n- If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. \n- If that unit is wholly within your deployment zone, it can make a scout move. \n- If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move.",
           "sourceAbilityId": "ada6-bac1-ffe0-d6f7",
@@ -4745,10 +4796,10 @@
       ],
       "wargearAbilities": [],
       "keywords": [
-        "Beast",
+        "Beasts",
         "Kroot",
-        "T'au Empire",
-        "Hounds"
+        "Hounds",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -4766,7 +4817,8 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": []
     },
     {
       "id": "unit-krootox-rampagers",
@@ -4812,7 +4864,7 @@
       ],
       "weapons": [
         {
-          "name": "Hunting blades",
+          "name": "Close combat weapon",
           "mode": "melee",
           "range": "Melee",
           "a": "3",
@@ -4834,7 +4886,7 @@
           "abilities": "Assault, Pistol"
         },
         {
-          "name": "Rampager fists",
+          "name": "Krootox fists",
           "mode": "melee",
           "range": "Melee",
           "a": "4",
@@ -4852,11 +4904,6 @@
           "sourceAbilityId": "83ff-716c-973a-60c8"
         },
         {
-          "title": "Harnessed Alien Instincts",
-          "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-          "sourceAbilityId": "88ee-544b-f15d-7570"
-        },
-        {
           "title": "Scouts 7\"",
           "text": "This ability always takes the form Scouts X\". In the Resolve Pre-battle Abilities step, if every model in a unit has this ability, you can do one of the following: \n- If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. \n- If that unit is wholly within your deployment zone, it can make a scout move. \n- If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move.",
           "sourceAbilityId": "ada6-bac1-ffe0-d6f7",
@@ -4868,8 +4915,8 @@
         "Mounted",
         "Grenades",
         "Kroot",
-        "T'au Empire",
-        "Krootox Rampagers"
+        "Krootox Rampagers",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -4887,7 +4934,8 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": []
     },
     {
       "id": "unit-krootox-riders",
@@ -4972,13 +5020,8 @@
       "abilities": [
         {
           "title": "Kroot Packmates",
-          "text": "Once per turn, in your opponent's Shooting phase, when a friendly KROOT INFANTRY unit within 6\" of this unit is selected as the target of an attack, one unit from your army with this ability can use it. If it does, after that enemy unit has finished making its attacks, that unit with this ability can shoot as if it were your Shooting phase, but when resolving those attacks it can only target that enemy unit (and only if it is an eligible target).",
+          "text": "Once per turn, in your opponent’s Shooting phase, when a friendly KROOT INFANTRY unit within 6\" of this unit is selected as the target of an attack, one unit from your army with this ability can use it. If it does, after that enemy unit has finished making its attacks, that unit with this ability can shoot as if it were your Shooting phase, but when resolving those attacks it can only target that enemy unit (and only if it is an eligible target).",
           "sourceAbilityId": "a0b-cde0-58da-af93"
-        },
-        {
-          "title": "Harnessed Alien Instincts",
-          "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-          "sourceAbilityId": "88ee-544b-f15d-7570"
         },
         {
           "title": "Scouts 7\"",
@@ -4990,10 +5033,10 @@
       "wargearAbilities": [],
       "keywords": [
         "Mounted",
+        "Grenades",
         "Kroot",
         "Krootox Riders",
-        "T'au Empire",
-        "Grenades"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -5012,7 +5055,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "Any number of models can each have their repeater cannon replaced with 1 tanglecannon."
+      ]
     },
     {
       "id": "unit-piranhas",
@@ -5141,10 +5187,9 @@
       "keywords": [
         "Vehicle",
         "Fly",
-        "T'au Empire",
-        "Piranha",
-        "Non-Kroot",
-        "Frame"
+        "Frame",
+        "Piranhas",
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -5162,7 +5207,11 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "Any number of models can each have their Piranha burst cannon can be replaced with 1 Piranha fusion blaster.",
+        "Any number of models can each be equipped with up to 2 seeker missiles."
+      ]
     },
     {
       "id": "unit-razorshark-strike-fighter",
@@ -5267,7 +5316,7 @@
           "sourceAbilityId": "1ee8-8fac-5c19-3b78"
         },
         {
-          "title": "Damaged: 1-4 Wounds Remaining",
+          "title": "Damaged: 1-4 WOUNDS REMAINING",
           "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
           "sourceAbilityId": "2220-2459-9f07-490e"
         },
@@ -5288,10 +5337,9 @@
         "Vehicle",
         "Aircraft",
         "Fly",
+        "Frame",
         "Razorshark Strike Fighter",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -5309,7 +5357,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s accelerator burst cannon can be replaced with 1 missile pod."
+      ]
     },
     {
       "id": "unit-riptide-battlesuit",
@@ -5440,13 +5491,13 @@
           "sourceAbilityId": "8fb6-aff7-75ac-f206"
         },
         {
-          "title": "Damaged: 1-4 Wounds Remaining",
+          "title": "Damaged: 1-4 WOUNDS REMAINING",
           "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
           "sourceAbilityId": "2220-2459-9f07-490e"
         },
         {
           "title": "Battlesuit Support System",
-          "text": "The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+          "text": "The bearer is eligible to shoot in a turn in which it Fell Back.",
           "sourceAbilityId": "b5b2-f430-5dc1-106b"
         },
         {
@@ -5478,9 +5529,8 @@
         "Walker",
         "Fly",
         "Battlesuit",
-        "T'au Empire",
         "Riptide",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -5504,7 +5554,12 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s heavy burst cannon can be replaced with 1 ion accelerator.",
+        "This model’s twin plasma rifles can be replaced with one of the following:\n- 1 twin fusion blaster\n- 1 twin smart missile system",
+        "This model can be equipped with up to 2 missile drones."
+      ]
     },
     {
       "id": "unit-sky-ray-gunship",
@@ -5594,17 +5649,17 @@
       "abilities": [
         {
           "title": "Velocity Tracker",
-          "text": "Each time this model makes an attack with a ranged weapon that targets a unit that can FLY, you can re-roll the Hit roll.",
+          "text": "Each time this model makes a ranged attack that targets a unit that can FLY, you can re-roll the Hit roll.",
           "sourceAbilityId": "89bb-91cf-2e76-ae69"
         },
         {
-          "title": "Damaged: 1-5 Wounds Remaining",
+          "title": "Damaged: 1-5 WOUNDS REMAINING",
           "text": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
           "sourceAbilityId": "4f24-6581-c017-3daa"
         },
         {
           "title": "Targeting Array",
-          "text": "Each time this model is selected to shoot, you can re-roll one Hit roll or you can re-roll one Wound roll when resolving those attacks.",
+          "text": "Each time this unit is selected to shoot, you can re-roll one Hit roll or you can re-roll one Wound roll when resolving those attacks.",
           "sourceAbilityId": "6c1e-179e-a2dc-85d6"
         },
         {
@@ -5623,11 +5678,10 @@
       "keywords": [
         "Vehicle",
         "Fly",
+        "Frame",
         "Markerlight",
         "Sky Ray Gunship",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -5645,7 +5699,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s 2 twin pulse carbines can be replaced with one of the following:\n- 2 accelerator burst cannons\n- 2 smart missile systems"
+      ]
     },
     {
       "id": "unit-stormsurge",
@@ -5793,8 +5850,8 @@
       ],
       "abilities": [
         {
-          "title": "Damaged: 1-5 Wounds Remaining",
-          "text": "While this model has 1-5 wounds remaining, subtract 3 from this models Objective Control characteristic, and each time this model makes an attack, subtract 1 from the Hit roll.",
+          "title": "Damaged: 1-5 WOUNDS REMAINING",
+          "text": "While this model has 1-5 wounds remaining, subtract 3 from this model’s Objective Control characteristic, and each time this model makes an attack, subtract 1 from the Hit roll.",
           "sourceAbilityId": "9b21-f9e4-2fe9-7895"
         },
         {
@@ -5831,8 +5888,7 @@
         "Titanic",
         "Towering",
         "Stormsurge",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -5850,7 +5906,11 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s pulse driver cannon can be replaced with 1 pulse blast cannon.",
+        "This model’s twin T’au flamer can be replaced with one of the following:\n- 1 twin airbursting fragmentation projector\n- 1 twin burst cannon"
+      ]
     },
     {
       "id": "unit-sun-shark-bomber",
@@ -5893,7 +5953,7 @@
           "abilities": "Twin-linked"
         },
         {
-          "name": "➤ Twin ion rifle - overcharged",
+          "name": "➤ Twin ion rifle - overcharge",
           "mode": "ranged",
           "range": "30\"",
           "a": "3",
@@ -5955,7 +6015,7 @@
           "sourceAbilityId": "1a89-4e93-ec68-d5b6"
         },
         {
-          "title": "Damaged: 1-4 Wounds Remaining",
+          "title": "Damaged: 1-4 WOUNDS REMAINING",
           "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
           "sourceAbilityId": "2220-2459-9f07-490e"
         },
@@ -5976,10 +6036,9 @@
         "Vehicle",
         "Aircraft",
         "Fly",
+        "Frame",
         "Sun Shark Bomber",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -5997,7 +6056,10 @@
         "support": [],
         "attachedUnit": [],
         "transport": []
-      }
+      },
+      "wargear": [
+        "This model’s missile pod can be replaced with 1 twin missile pod."
+      ]
     },
     {
       "id": "unit-tidewall-droneport",
@@ -6043,17 +6105,17 @@
       "abilities": [
         {
           "title": "Droneport",
-          "text": "Each time this FORTIFICATION is selected to shoot, its drone defenders weapon will target and resolve attacks against every enemy unit that is an eligible target to this FORTIFICATION.",
+          "text": "Each time this FORTIFICATION is selected to shoot, its drone defender’s weapon will target and resolve attacks against every enemy unit that is an eligible target to this FORTIFICATION.",
           "sourceAbilityId": "81a0-c679-23bd-77e3"
         },
         {
           "title": "Fortification",
-          "text": "While an enemy unit is only within Engagement Range of one or more Fortifications from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
+          "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
           "sourceAbilityId": "fa4e-5ac8-11a6-78d2"
         },
         {
           "title": "Tidewall Cover",
-          "text": "Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this FORTIFICATION, that model has the Benefit of Cover against that attack.",
+          "text": "Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this Fortification, that model has the Benefit of Cover against that attack.",
           "sourceAbilityId": "2050-72df-fd02-7085"
         },
         {
@@ -6075,10 +6137,9 @@
         "Vehicle",
         "Transport",
         "Fly",
-        "T'au Empire",
+        "Frame",
         "Tidewall Droneport",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -6098,7 +6159,8 @@
         "transport": [
           "This model has a transport capacity of 11 T’AU EMPIRE INFANTRY models. It cannot transport BATTLESUIT, KROOT or VESPID STINGWINGS models."
         ]
-      }
+      },
+      "wargear": []
     },
     {
       "id": "unit-tidewall-gunrig",
@@ -6144,7 +6206,7 @@
       "abilities": [
         {
           "title": "Fortification",
-          "text": "While an enemy unit is only within Engagement Range of one or more Fortifications from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
+          "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
           "sourceAbilityId": "fa4e-5ac8-11a6-78d2"
         },
         {
@@ -6171,10 +6233,9 @@
         "Vehicle",
         "Transport",
         "Fly",
+        "Frame",
         "Tidewall Gunrig",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -6194,7 +6255,8 @@
         "transport": [
           "This model has a transport capacity of 11 T’AU EMPIRE INFANTRY models. It cannot transport BATTLESUIT, KROOT or VESPID STINGWINGS models."
         ]
-      }
+      },
+      "wargear": []
     },
     {
       "id": "unit-tidewall-shieldline",
@@ -6228,7 +6290,7 @@
       "abilities": [
         {
           "title": "Fortification",
-          "text": "While an enemy unit is only within Engagement Range of one or more Fortifications from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
+          "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
           "sourceAbilityId": "fa4e-5ac8-11a6-78d2"
         },
         {
@@ -6261,11 +6323,10 @@
         "Fortification",
         "Vehicle",
         "Transport",
+        "Frame",
         "Fly",
         "Tidewall Shieldline",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "composition": [
         {
@@ -6291,10 +6352,760 @@
         "transport": [
           "This model has a transport capacity of 11 T’AU EMPIRE INFANTRY models. It cannot transport BATTLESUIT, KROOT or VESPID STINGWINGS models. If this model is equipped with a Tidewall defence platform, it has a transport capacity of 22 T’AU INFANTRY models instead."
         ]
+      },
+      "wargear": [
+        "This model can be equipped with 1 Tidewall defence platform."
+      ]
+    }
+  ],
+  "imperialArmour": [
+    {
+      "id": "unit-ax-1-0-tiger-shark",
+      "title": "AX-1-0 Tiger Shark",
+      "status": "Current",
+      "sourceLayer": "imperial-armour",
+      "category": "Vehicle",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 315,
+          "minModels": 1,
+          "maxModels": 1
+        },
+        {
+          "label": "2+ unit: 1 model",
+          "value": 375
+        }
+      ],
+      "profiles": [
+        {
+          "name": "AX-1-0 Tiger Shark",
+          "stats": {
+            "M": "-",
+            "T": "11",
+            "Sv": "3+",
+            "W": "18",
+            "Ld": "7+",
+            "OC": "-",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Burst cannon",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "4",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Cyclic ion blaster – standard",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Cyclic ion blaster – overcharge",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Hazardous"
+        },
+        {
+          "name": "Missile pod",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-1",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Seeker missile",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "14",
+          "ap": "-3",
+          "d": "D6+1",
+          "abilities": "One Shot"
+        },
+        {
+          "name": "Twin heavy rail cannon",
+          "mode": "ranged",
+          "range": "120\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "26",
+          "ap": "-5",
+          "d": "12",
+          "abilities": "Devastating Wounds, Twin-Linked"
+        },
+        {
+          "name": "Armoured hull",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "5+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Titan Hunter",
+          "text": "This model’s twin heavy rail cannon and seeker missiles have the [ANTI-TITANIC 3+] ability while targeting a unit within half range.",
+          "sourceAbilityId": "datasheet-ax-1-0-tiger-shark:section:1"
+        },
+        {
+          "title": "Damaged: 1-6 WOUNDS REMAINING",
+          "text": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+          "sourceAbilityId": "datasheet-ax-1-0-tiger-shark:section:3"
+        },
+        {
+          "title": "Deadly Demise D6+2",
+          "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+          "sourceAbilityId": "b68a-5ded-65ac-98c",
+          "coreAbilityId": "core-deadly-demise"
+        },
+        {
+          "title": "For The Greater Good",
+          "text": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units.\n\nDuring your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase.\n\nUnits from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units.\n\nUntil the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.",
+          "sourceAbilityId": "eeb6-c42-48f7-cc21"
+        }
+      ],
+      "wargearAbilities": [],
+      "keywords": [
+        "Vehicle",
+        "Aircraft",
+        "Fly",
+        "Ax-1-0 Tiger Shark",
+        "T'au Empire"
+      ],
+      "composition": [
+        {
+          "name": "AX-1-0 Tiger Shark",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "AX-1-0 Tiger Shark"
+          ]
+        }
+      ],
+      "wargear": [
+        "This model can be equipped with up to 6 seeker missiles.",
+        "This model’s 2 burst cannons can be replaced with 2 cyclic ion blasters."
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-manta",
+      "title": "Manta",
+      "status": "Current",
+      "sourceLayer": "imperial-armour",
+      "category": "Vehicle",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 2100,
+          "minModels": 1,
+          "maxModels": 1
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Manta",
+          "stats": {
+            "M": "40\"",
+            "T": "14",
+            "Sv": "2+",
+            "W": "60",
+            "Ld": "7+",
+            "OC": "-",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Heavy rail cannon",
+          "mode": "ranged",
+          "range": "120\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "26",
+          "ap": "-5",
+          "d": "12",
+          "abilities": "Devastating Wounds"
+        },
+        {
+          "name": "Ion cannon – standard",
+          "mode": "ranged",
+          "range": "60\"",
+          "a": "D6+3",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Blast"
+        },
+        {
+          "name": "Ion cannon – overcharge",
+          "mode": "ranged",
+          "range": "60\"",
+          "a": "D6+3",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "3",
+          "abilities": "Blast, Hazardous"
+        },
+        {
+          "name": "Long-barrelled burst cannon array",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "32",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Missile pod",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-1",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Seeker missile",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "14",
+          "ap": "-3",
+          "d": "D6+1",
+          "abilities": "One Shot"
+        },
+        {
+          "name": "Armoured hull",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "8",
+          "skill": "5+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Aggressive Deployment",
+          "text": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly model that disembarked from this TRANSPORT this turn makes an attack that targets that enemy unit, you can re-roll the Wound roll.",
+          "sourceAbilityId": "datasheet-manta:section:1"
+        },
+        {
+          "title": "Air Caste Colossus",
+          "text": "Each time you target this model with a Stratagem, you must spend three times that Stratagem’s stated CP cost to do so.",
+          "sourceAbilityId": "datasheet-manta:section:1"
+        },
+        {
+          "title": "Damaged: 1-20 WOUNDS REMAINING",
+          "text": "While this model has 1-20 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+          "sourceAbilityId": "datasheet-manta:section:4"
+        },
+        {
+          "title": "Deadly Demise 3D6",
+          "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+          "sourceAbilityId": "b68a-5ded-65ac-98c",
+          "coreAbilityId": "core-deadly-demise"
+        },
+        {
+          "title": "For The Greater Good",
+          "text": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units.\n\nDuring your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase.\n\nUnits from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units.\n\nUntil the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.",
+          "sourceAbilityId": "eeb6-c42-48f7-cc21"
+        }
+      ],
+      "wargearAbilities": [],
+      "keywords": [
+        "Vehicle",
+        "Aircraft",
+        "Fly",
+        "Frame",
+        "Titanic",
+        "Transport",
+        "Markerlight",
+        "Manta",
+        "T'au Empire"
+      ],
+      "composition": [
+        {
+          "name": "Manta",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Manta"
+          ]
+        }
+      ],
+      "wargear": [],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-tiger-shark",
+      "title": "Tiger Shark",
+      "status": "Current",
+      "sourceLayer": "imperial-armour",
+      "category": "Vehicle",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 395,
+          "minModels": 1,
+          "maxModels": 1
+        },
+        {
+          "label": "2+ unit: 1 model",
+          "value": 445
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Tiger Shark",
+          "stats": {
+            "M": "-",
+            "T": "11",
+            "Sv": "3+",
+            "W": "18",
+            "Ld": "7+",
+            "OC": "-",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Burst cannon",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "4",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Cyclic ion blaster – standard",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Cyclic ion blaster – overcharge",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Hazardous"
+        },
+        {
+          "name": "Ion cannon – standard",
+          "mode": "ranged",
+          "range": "60\"",
+          "a": "D6+3",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-1",
+          "d": "2",
+          "abilities": "Blast"
+        },
+        {
+          "name": "Ion cannon – overcharge",
+          "mode": "ranged",
+          "range": "60\"",
+          "a": "D6+3",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "3",
+          "abilities": "Blast, Hazardous"
+        },
+        {
+          "name": "Missile pod",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "7",
+          "ap": "-1",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Seeker missile",
+          "mode": "ranged",
+          "range": "48\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "14",
+          "ap": "-3",
+          "d": "D6+1",
+          "abilities": "One Shot"
+        },
+        {
+          "name": "Skyspear missile rack",
+          "mode": "ranged",
+          "range": "72\"",
+          "a": "D6+1",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Anti-Fly 3+, Blast"
+        },
+        {
+          "name": "Swiftstrike burst cannon",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "16",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Swiftstrike railgun",
+          "mode": "ranged",
+          "range": "72\"",
+          "a": "1",
+          "skill": "4+",
+          "s": "20",
+          "ap": "-5",
+          "d": "D6+6",
+          "abilities": "Devastating Wounds"
+        },
+        {
+          "name": "Armoured hull",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "3",
+          "skill": "5+",
+          "s": "6",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Strafing Run",
+          "text": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks that cannot FLY. That enemy unit must take a Battle-shock test.",
+          "sourceAbilityId": "datasheet-tiger-shark:section:1"
+        },
+        {
+          "title": "Damaged: 1-6 WOUNDS REMAINING",
+          "text": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+          "sourceAbilityId": "datasheet-tiger-shark:section:3"
+        },
+        {
+          "title": "Deadly Demise D6+2",
+          "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+          "sourceAbilityId": "b68a-5ded-65ac-98c",
+          "coreAbilityId": "core-deadly-demise"
+        },
+        {
+          "title": "For The Greater Good",
+          "text": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units.\n\nDuring your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase.\n\nUnits from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units.\n\nUntil the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.",
+          "sourceAbilityId": "eeb6-c42-48f7-cc21"
+        }
+      ],
+      "wargearAbilities": [
+        {
+          "title": "Transport Bay",
+          "text": "The bearer has the TRANSPORT keyword and has a transport capacity of 12 TACTICAL DRONES models.",
+          "sourceAbilityId": "datasheet-tiger-shark:section:1"
+        }
+      ],
+      "keywords": [
+        "Vehicle",
+        "Aircraft",
+        "Fly",
+        "Tiger Shark",
+        "T'au Empire"
+      ],
+      "composition": [
+        {
+          "name": "Tiger Shark",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Tiger Shark"
+          ]
+        }
+      ],
+      "wargear": [
+        "This model’s 2 burst cannons can be replaced with 2 cyclic ion blasters.",
+        "This model’s 2 ion cannons can be replaced with one of the following:\n- 2 swiftstrike burst cannons\n- 2 swiftstrike railguns",
+        "This model can be equipped with up to 6 seeker missiles.",
+        "This model’s transport bay can be replaced with 2 skyspear missile racks."
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
+      }
+    },
+    {
+      "id": "unit-taunar-supremacy-armour",
+      "title": "Ta’unar Supremacy Armour",
+      "status": "Current",
+      "sourceLayer": "imperial-armour",
+      "category": "Vehicle",
+      "points": [
+        {
+          "label": "1 model",
+          "value": 790,
+          "minModels": 1,
+          "maxModels": 1
+        },
+        {
+          "label": "2+ unit: 1 model",
+          "value": 890
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Ta’unar Supremacy Armour",
+          "stats": {
+            "M": "8\"",
+            "T": "13",
+            "Sv": "2+",
+            "W": "30",
+            "Ld": "7+",
+            "OC": "10",
+            "Invulnerable": ""
+          }
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Burst cannon",
+          "mode": "ranged",
+          "range": "18\"",
+          "a": "4",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": ""
+        },
+        {
+          "name": "Fragmentation cluster shell launcher",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "2D6+6",
+          "skill": "4+",
+          "s": "6",
+          "ap": "-1",
+          "d": "1",
+          "abilities": "Blast"
+        },
+        {
+          "name": "Fusion eradicator",
+          "mode": "ranged",
+          "range": "24\"",
+          "a": "5",
+          "skill": "4+",
+          "s": "10",
+          "ap": "-4",
+          "d": "D6",
+          "abilities": "Melta 3"
+        },
+        {
+          "name": "Heavy rail cannon array",
+          "mode": "ranged",
+          "range": "120\"",
+          "a": "2",
+          "skill": "4+",
+          "s": "26",
+          "ap": "-5",
+          "d": "16",
+          "abilities": "Devastating Wounds, Heavy"
+        },
+        {
+          "name": "Nexus missile launcher",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "8",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-3",
+          "d": "2",
+          "abilities": ""
+        },
+        {
+          "name": "Pulse ordnance driver",
+          "mode": "ranged",
+          "range": "60\"",
+          "a": "8",
+          "skill": "4+",
+          "s": "5",
+          "ap": "-1",
+          "d": "3",
+          "abilities": "Anti-Infantry 2+"
+        },
+        {
+          "name": "Smart missile system",
+          "mode": "ranged",
+          "range": "30\"",
+          "a": "3",
+          "skill": "4+",
+          "s": "5",
+          "ap": "0",
+          "d": "1",
+          "abilities": "Indirect Fire"
+        },
+        {
+          "name": "Tri-axis ion cannon – standard",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D6+3",
+          "skill": "4+",
+          "s": "8",
+          "ap": "-2",
+          "d": "2",
+          "abilities": "Blast"
+        },
+        {
+          "name": "Tri-axis ion cannon – supercharge",
+          "mode": "ranged",
+          "range": "36\"",
+          "a": "D6+3",
+          "skill": "4+",
+          "s": "9",
+          "ap": "-3",
+          "d": "3",
+          "abilities": "Blast, Hazardous"
+        },
+        {
+          "name": "Crushing feet",
+          "mode": "melee",
+          "range": "Melee",
+          "a": "6",
+          "skill": "5+",
+          "s": "8",
+          "ap": "-1",
+          "d": "2",
+          "abilities": ""
+        }
+      ],
+      "abilities": [
+        {
+          "title": "Coordinated Strike",
+          "text": "While this model is a Guided unit, each time it makes an attack that targets its Spotted unit, re-roll a Hit roll of 1.",
+          "sourceAbilityId": "datasheet-taunar-supremacy-armour:section:1"
+        },
+        {
+          "title": "Damaged: 1-10 WOUNDS REMAINING",
+          "text": "While this model has 1-10 wounds remaining, subtract 5 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll.",
+          "sourceAbilityId": "datasheet-taunar-supremacy-armour:section:3"
+        },
+        {
+          "title": "Deadly Demise D6+3",
+          "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+          "sourceAbilityId": "b68a-5ded-65ac-98c",
+          "coreAbilityId": "core-deadly-demise"
+        },
+        {
+          "title": "For The Greater Good",
+          "text": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units.\n\nDuring your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase.\n\nUnits from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units.\n\nUntil the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.",
+          "sourceAbilityId": "eeb6-c42-48f7-cc21"
+        }
+      ],
+      "wargearAbilities": [],
+      "keywords": [
+        "Vehicle",
+        "Walker",
+        "Titanic",
+        "Towering",
+        "Frame",
+        "Ta’unar Supremacy Armour",
+        "T'au Empire"
+      ],
+      "composition": [
+        {
+          "name": "Ta’unar Supremacy Armour",
+          "min": 1,
+          "max": 1,
+          "models": [
+            "Ta’unar Supremacy Armour"
+          ]
+        }
+      ],
+      "wargear": [
+        "This model’s tri-axis ion cannon can be replaced with 1 fusion eradicator.",
+        "This model’s fusion eradicator can be replaced with 1 tri-axis ion cannon.",
+        "This model’s 3 pulse ordnance drivers can be replaced with one of the following:\n- 2 nexus missile launchers\n- 1 heavy rail cannon array and 1 fragmentation cluster shell launcher"
+      ],
+      "paidWargear": [],
+      "relations": {
+        "leader": [],
+        "support": [],
+        "attachedUnit": [],
+        "transport": []
       }
     }
   ],
-  "imperialArmour": [],
   "legends": [],
   "audit": {
     "rootEntries": 69,
@@ -6303,6 +7114,9 @@
     "imperialArmour": 0,
     "imperialArmourLegends": 0,
     "currentImperialArmour": 0,
-    "legends": 0
+    "legends": 0,
+    "currentWahaCapture": "2026-09-28",
+    "currentDatasheets": 43,
+    "sourceGameplayUnits": 2537
   }
 }

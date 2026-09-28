@@ -13,7 +13,7 @@ const codex=json('content/tau-empire-codex-datasheets.en.json');
 const parity=json('content/tau-empire-codex-parity.en.json');
 const wargear=json('content/tau-empire-codex-wargear.en.json');
 const points=json('content/tau-empire-points.en.json');
-const mfm=json('sources/official-mfm-v1.3.json');
+const mfm=json('sources/official-mfm-v1.4.json');
 const relatedRules=json('content/tau-empire-related-rules.en.json');
 const manifest=json('sources/source-manifest.json');
 const config=json('book.config.json');
@@ -50,7 +50,7 @@ const rowInventory=rows=>rows.map(row=>JSON.stringify(row.map(item=>typeof item=
 const responsiveWeaponRows=extractWeaponRows(reader),responsiveWeaponTokens=responsiveWeaponRows.flat(),canonicalWeaponLabels=canonicalWeaponRows.flat();
 const unknownWeaponLabels=[...new Set(canonicalWeaponLabels.filter(label=>!expectedWeaponTerm(label)))].sort();
 
-assert.deepEqual([allUnits.length,canonicalWeaponRows.length,canonicalWeaponLabels.length],[39,124,187]);
+assert.deepEqual([allUnits.length,canonicalWeaponRows.length,canonicalWeaponLabels.length],[43,144,213]);
 assert.deepEqual(rowInventory(responsiveWeaponRows),rowInventory(canonicalWeaponRows),'responsive reader weapon token inventory/order differs');
 for(const token of responsiveWeaponTokens){const expected=expectedWeaponTerm(token.label);assert.equal(token.element,expected?'button':'span',`${token.label}: wrong token kind`);assert.equal(token.term,expected,`${token.label}: wrong glossary target`);}
 assert.deepEqual(unknownWeaponLabels,[]);
@@ -60,7 +60,7 @@ assertOwnedMobileRouteInventory({root:repo,bookId:'tau-empire'});
 for(const output of mobileRoutes){assert.match(output,/data-canonical-reader="\.\.\/reader\.html"/);assert.match(output,/mobile-route-redirect\.js\?v=2/);assert.doesNotMatch(output,/<(?:article|section)\b|class="[^"]*\bunit-card\b|data-rule-id=/);}
 assert.match(reader,/shared\/styles\/content\.css\?v=\d+/);assert.match(reader,/shared\/styles\/popups\.css\?v=\d+/);assert.match(reader,/shared\/datasheet-system\.css\?v=\d+/);
 const sourceWargearAbilities=allUnits.flatMap(unit=>(unit.wargearAbilities||[]).map(ability=>({unit,ability})));
-assert.deepEqual([sourceWargearAbilities.length,new Set(sourceWargearAbilities.map(item=>item.ability.title)).size,new Set(sourceWargearAbilities.map(item=>item.unit.id)).size],[50,14,16]);
+assert.deepEqual([sourceWargearAbilities.length,new Set(sourceWargearAbilities.map(item=>item.ability.title)).size,new Set(sourceWargearAbilities.map(item=>item.unit.id)).size],[54,18,19]);
 const stealthBattlesuits=allUnits.find(unit=>unit.id==='unit-stealth-battlesuits');
 assert.deepEqual(stealthBattlesuits.weapons.map(weapon=>weapon.name),['Battlesuit fists','Burst cannon','Fusion blaster','Twin pulse carbine','Pulse pistol']);
 assert.deepEqual(stealthBattlesuits.wargearAbilities.map(ability=>ability.title),['Homing Beacon','Marker Drone']);
@@ -106,9 +106,9 @@ assert.deepEqual([pack.meta.version,pack.meta.pageCount,pack.meta.sha256],['1.1'
 assert.equal(pack.meta.legalFrom,'2026-07-22');
 assert.equal(manifest.layers.find(layer=>layer.id==='faction-pack-v1.1')?.legalFrom,pack.meta.legalFrom);
 assert.deepEqual([pack.detachments.length,pack.detachments.flatMap(item=>item.stratagems).length,pack.updates.length,pack.faqs.length],[3,7,25,2]);
-assert.deepEqual([codex.datasheets.length,codex.imperialArmour.length,codex.legends.length],[39,0,0]);
+assert.deepEqual([codex.datasheets.length,codex.imperialArmour.length,codex.legends.length],[39,4,0]);
 assert.deepEqual([parity.detachments.length,parity.detachments.flatMap(item=>item.stratagems).length],[4,24]);
-assert.deepEqual([mfm.version,mfm.verifiedUnits.length,mfm.detachments.length,mfm.enhancements.length],['v1.3',39,7,23]);
+assert.deepEqual([mfm.version,mfm.counts.currentUnits,mfm.counts.detachments,mfm.counts.enhancements],['v1.4',43,7,23]);
 assert.equal(wargear.units.length,39);
 assert.equal(points.units.length,39);
 assert.deepEqual([
@@ -198,9 +198,9 @@ for(const title of ['Commander Farsight','Commander in Coldstar Battlesuit','Com
 for(const [local,entry] of Object.entries(context).filter(([id])=>id.includes('ability-leader'))){
   assert.equal(entry.termId,'core-leader',`${local}: Leader must resolve to the canonical Core term`);
 }
-const frameTitles=['Devilfish','Hammerhead Gunship','Piranhas','Sky Ray Gunship','Tidewall Droneport','Tidewall Gunrig','Tidewall Shieldline','Razorshark Strike Fighter','Sun Shark Bomber'];
-assert.deepEqual(currentUnits.filter(unit=>unit.keywords.includes('Frame')).map(unit=>unit.title).sort(),frameTitles.sort());
-for(const title of ['Tiger Shark','AX-1-0 Tiger Shark','Manta',"Ta'unar Supremacy Armour"])assert.equal(byTitle(title),undefined,`${title}: non-Codex datasheet leaked into the published book`);
+const frameTitles=['Devilfish','Hammerhead Gunship','Manta','Piranhas','Sky Ray Gunship','Ta’unar Supremacy Armour','Tidewall Droneport','Tidewall Gunrig','Tidewall Shieldline','Razorshark Strike Fighter','Sun Shark Bomber'];
+assert.deepEqual(currentUnits.filter(unit=>unit.keywords.some(keyword=>key(keyword)==='frame')).map(unit=>unit.title).sort(),frameTitles.sort());
+for(const title of ['Tiger Shark','AX-1-0 Tiger Shark','Manta','Ta’unar Supremacy Armour'])assert.ok(byTitle(title),`${title}: current Forge World datasheet missing from the published book`);
 assert.doesNotMatch(JSON.stringify({codex,parity}),/bearer is select(?:[,.]|\s+and)|have the select ability|Monsteror|Vehicleunit|warrior s\b|fight ing\b/i);
 assert.match(parity.detachments.find(item=>item.id==='montka')?.enhancements.find(item=>item.id==='enhancement-strike-swiftly')?.text||'',/Scouts 6" ability/);
 assert.deepEqual(points.units.find(unit=>unit.title==='Pathfinder Team').paidWargear.map(item=>[item.name,item.value]),[['Ion rifle',5]]);
@@ -242,4 +242,4 @@ assert.equal(stratagemTypes.size,31,'T’au Stratagem map must cover all rendere
 assert.equal([...stratagemTypes.values()].filter(type=>type==='unknown').length,7,'T’au must preserve seven source-untyped Stratagems as unknown');
 assert.equal([...stratagemTypes.values()].filter(type=>type!=='unknown').length,24,'T’au must preserve 24 source-typed Stratagems');
 assert.match(fs.readFileSync(new URL('../scripts/app.js',import.meta.url),'utf8'),/presentation\.decorate\(document\)/);
-console.log("T'au Empire QA passed: official v1.1 pack and v1.3 MFM, 39 Codex datasheets, 7 detachments, exact Wargear, Glossary and Related Rules contracts.");
+console.log("T'au Empire QA passed: official v1.1 pack and v1.4 MFM, 43 current datasheets, 7 detachments, exact Wargear, Glossary and Related Rules contracts.");

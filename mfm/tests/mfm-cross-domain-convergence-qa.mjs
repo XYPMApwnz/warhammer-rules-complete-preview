@@ -17,8 +17,8 @@ validateMfmCrossDomainBindings(registry);
 
 const canonical = createCanonicalMfmFacts({repoRoot: ROOT, crossDomainBindings: registry});
 const effective = createEffectiveMfmCatalog({canonicalFacts: canonical}).catalog;
-assert.equal(canonical.declaredCounts.armyUnitBindings, 625);
-assert.equal(canonical.declaredCounts.armyUnitReferenceOnly, 118);
+assert.equal(canonical.declaredCounts.armyUnitBindings, 629);
+assert.equal(canonical.declaredCounts.armyUnitReferenceOnly, 114);
 assert.equal(canonical.declaredCounts.armyDetachmentBindings, 134);
 assert.equal(canonical.declaredCounts.armyEnhancementBindings, 474);
 assert.equal(canonical.declaredCounts.armyQualifierOwnerBindings, 16);
@@ -143,8 +143,8 @@ const reorderedEffective = createEffectiveMfmCatalog({canonicalFacts: createCano
 assert.equal(JSON.stringify(reorderedEffective), JSON.stringify(effective), 'MFM cross-domain output must be deterministic');
 
 console.log('MFM_CROSS_DOMAIN_CONVERGENCE_QA=PASS');
-console.log('UNIT_BINDINGS=625');
-console.log('UNIT_REFERENCE_ONLY=118');
+console.log('UNIT_BINDINGS=629');
+console.log('UNIT_REFERENCE_ONLY=114');
 console.log('DETACHMENT_BINDINGS=134');
 console.log('ENHANCEMENT_BINDINGS=474');
 console.log('QUALIFIER_OWNER_BINDINGS=16');

@@ -67,8 +67,7 @@ for(const [bookId,expected] of [['death-guard',expectedDgOverlays],['adeptus-mec
 }
 
 const tauReferenceOnly=createEffectiveMfmArmyProjection('tau-empire').referenceOnlyUnitRecords;
-assert.deepEqual(tauReferenceOnly.map(item=>item.label).sort(),['AX-1-0 TIGER SHARK','MANTA','TA’UNAR SUPREMACY ARMOUR','TIGER SHARK'].sort(),'T’au reference-only MFM inventory changed');
-assert(tauReferenceOnly.every(item=>item.reason==='CURRENT_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT'),'T’au reference-only reason changed');
+assert.deepEqual(tauReferenceOnly,[],'all current T’au Imperial Armour MFM records must bind to canonical units');
 
 const tyranids=byId(createEffectiveMfmArmyProjection('tyranids').pointsForArmyBook('tyranids').units);
 for(const [id,min,max] of [['unit-hormagaunts',11,20],['unit-termagants',11,20],['unit-von-ryans-leapers',4,6]]){
@@ -133,4 +132,4 @@ const producerSources=['books/shared/tools/build-army-book.mjs','books/death-gua
 assert(producerSources.every(source=>source.includes('effective-mfm-army-projection.mjs')),'all Army producers must use the shared centralized MFM projection');
 assert(!producerSources.some(source=>/official-mfm-v1\.3|readJson\(config\.sources\.points/.test(source)),'a migrated Army producer still reads a v1.3/per-book MFM fact source');
 
-console.log('MFM production migration QA passed: 9 books, DG 7 overlays, AM 3 overlays, 4 T’au reference-only records.');
+console.log('MFM production migration QA passed: 9 books, DG 7 overlays, AM 3 overlays, 0 T’au reference-only records.');

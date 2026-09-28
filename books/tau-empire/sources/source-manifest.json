@@ -1,6 +1,6 @@
 {
   "schema": "warhammer-source-manifest/v2",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-09-28",
   "layers": [
     {
       "id": "faction-pack-v1.1",
@@ -163,7 +163,7 @@
     {
       "id": "mfm-v1.3",
       "authority": "official",
-      "role": "points-and-roster-contract",
+      "role": "historical-mfm-snapshot",
       "title": "Munitorum Field Manual v1.3",
       "url": "https://mfm.warhammer-community.com/en/tau-empire",
       "version": "1.3",
@@ -196,7 +196,7 @@
       "sha256": "4530DBC81B604766C4182EA4AAF7BF01F5DCE6CD37F208373E73F01724A05589",
       "localPath": "books/tau-empire/sources/official-mfm-v1.3.json",
       "sourceId": "tau-mfm-v1.3",
-      "active": true,
+      "active": false,
       "sourceType": "official-json-capture",
       "lifecycle": "ACCEPTED_SOURCE",
       "factsOwned": [
@@ -321,9 +321,16 @@
       "active": true,
       "sourceType": "structured-contract",
       "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": ["attachment-group-constraints"],
-      "consumers": ["EFFECTIVE_MODEL", "RUNTIME_PUBLICATION"],
-      "paths": ["books/tau-empire/sources/tau-empire-attachment-group-constraints.v1.json"]
+      "factsOwned": [
+        "attachment-group-constraints"
+      ],
+      "consumers": [
+        "EFFECTIVE_MODEL",
+        "RUNTIME_PUBLICATION"
+      ],
+      "paths": [
+        "books/tau-empire/sources/tau-empire-attachment-group-constraints.v1.json"
+      ]
     },
     {
       "id": "tau-empire-mfm-v1.4",
@@ -338,7 +345,7 @@
       "capturedAt": "2026-09-22",
       "currentnessCutoff": "2026-09-22",
       "url": "https://mfm.warhammer-community.com/en/tau-empire",
-      "role": "current-mfm-source-capture",
+      "role": "current-points-and-eligibility-owner",
       "factsOwned": [
         "unit-points",
         "model-count-schedules",
@@ -359,6 +366,40 @@
         "books/tau-empire/sources/official-mfm-v1.4.html",
         "books/tau-empire/sources/official-mfm-v1.4-legends.html"
       ]
+    },
+    {
+      "id": "waha-11e-current-2026-09-28",
+      "title": "Current Waha T'au Empire 11E corpus",
+      "edition": "11th Edition",
+      "version": "current-2026-09-28",
+      "effectiveDate": "2026-09-28",
+      "retrievedAt": "2026-09-28",
+      "frozenAt": "2026-09-28",
+      "authority": "community-secondary-operational-baseline",
+      "role": "complete-operational-content-baseline",
+      "active": true,
+      "sourceType": "deterministic-web-corpus",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "factsOwned": [
+        "current-datasheets",
+        "profiles",
+        "weapons",
+        "abilities",
+        "wargear-options",
+        "keywords",
+        "detachments",
+        "enhancements",
+        "stratagems"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "GLOSSARY_V2"
+      ],
+      "paths": [
+        "books/tau-empire/sources/waha-11e-current-2026-09-28/corpus.json",
+        "books/tau-empire/sources/waha-11e-current-2026-09-28/source-defects.json"
+      ]
     }
   ],
   "gates": {
@@ -368,17 +409,28 @@
   "bookId": "tau-empire",
   "edition": "11th Edition",
   "language": "en",
-  "publishAsComplete": false,
+  "publishAsComplete": true,
   "precedence": [
     "official-faction-pack-v1.1",
     "official-mfm-v1.3",
     "community-codex-transcription",
     "wahapedia-secondary-parity"
   ],
-  "knownGaps": [
-    "A complete authoritative official Codex source is not frozen in the repository.",
-    "All-content Wahapedia parity is not complete; the frozen snapshot covers Compatible Rules associations.",
-    "SHA-bound manual/public publication acceptance is not yet recorded."
-  ],
-  "enrollmentScope": "PUBLIC_BOOK"
+  "knownGaps": [],
+  "enrollmentScope": {
+    "0": "P",
+    "1": "U",
+    "2": "B",
+    "3": "L",
+    "4": "I",
+    "5": "C",
+    "6": "_",
+    "7": "B",
+    "8": "O",
+    "9": "O",
+    "10": "K",
+    "currentWahaCorpus": "books/tau-empire/sources/waha-11e-current-2026-09-28/corpus.json",
+    "currentNonLegendsDatasheets": 43,
+    "legendsExcluded": 20
+  }
 }

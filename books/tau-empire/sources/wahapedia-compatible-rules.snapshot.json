@@ -1,5 +1,13 @@
 {
   "coreUnits": {
+    "unit-ax-1-0-tiger-shark": [
+      "core-stratagem-command-re-roll",
+      "core-stratagem-counteroffensive",
+      "core-stratagem-crushing-impact",
+      "core-stratagem-fire-overwatch",
+      "core-stratagem-insane-bravery",
+      "core-stratagem-rapid-ingress"
+    ],
     "unit-breacher-team": [
       "core-stratagem-command-re-roll",
       "core-stratagem-counteroffensive",
@@ -227,6 +235,13 @@
       "core-stratagem-insane-bravery",
       "core-stratagem-rapid-ingress"
     ],
+    "unit-manta": [
+      "core-stratagem-command-re-roll",
+      "core-stratagem-counteroffensive",
+      "core-stratagem-crushing-impact",
+      "core-stratagem-insane-bravery",
+      "core-stratagem-rapid-ingress"
+    ],
     "unit-pathfinder-team": [
       "core-stratagem-command-re-roll",
       "core-stratagem-counteroffensive",
@@ -249,7 +264,8 @@
       "core-stratagem-counteroffensive",
       "core-stratagem-crushing-impact",
       "core-stratagem-fire-overwatch",
-      "core-stratagem-insane-bravery"
+      "core-stratagem-insane-bravery",
+      "core-stratagem-rapid-ingress"
     ],
     "unit-riptide-battlesuit": [
       "core-stratagem-command-re-roll",
@@ -299,7 +315,16 @@
       "core-stratagem-counteroffensive",
       "core-stratagem-crushing-impact",
       "core-stratagem-fire-overwatch",
-      "core-stratagem-insane-bravery"
+      "core-stratagem-insane-bravery",
+      "core-stratagem-rapid-ingress"
+    ],
+    "unit-taunar-supremacy-armour": [
+      "core-stratagem-command-re-roll",
+      "core-stratagem-counteroffensive",
+      "core-stratagem-crushing-impact",
+      "core-stratagem-heroic-intervention",
+      "core-stratagem-insane-bravery",
+      "core-stratagem-rapid-ingress"
     ],
     "unit-the-twin-lance": [
       "core-stratagem-command-re-roll",
@@ -335,6 +360,14 @@
       "core-stratagem-insane-bravery",
       "core-stratagem-rapid-ingress"
     ],
+    "unit-tiger-shark": [
+      "core-stratagem-command-re-roll",
+      "core-stratagem-counteroffensive",
+      "core-stratagem-crushing-impact",
+      "core-stratagem-fire-overwatch",
+      "core-stratagem-insane-bravery",
+      "core-stratagem-rapid-ingress"
+    ],
     "unit-vespid-stingwings": [
       "core-stratagem-command-re-roll",
       "core-stratagem-counteroffensive",
@@ -344,7 +377,7 @@
       "core-stratagem-rapid-ingress"
     ]
   },
-  "retrievedAt": "2026-08-02",
+  "retrievedAt": "2026-09-28",
   "schema": "wahapedia-compatible-rules-snapshot/v1",
   "source": {
     "edition": "11",
@@ -353,8 +386,19 @@
     "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/"
   },
   "units": {
+    "unit-ax-1-0-tiger-shark": [
+      "guided-fire",
+      "stratagem-a-tempting-trap",
+      "stratagem-aggressive-mobility",
+      "stratagem-coordinate-to-engage",
+      "stratagem-counterfire-defence-systems",
+      "stratagem-focused-fire",
+      "stratagem-pinpoint-counter-offensive",
+      "stratagem-point-blank-ambush",
+      "stratagem-pulse-onslaught"
+    ],
     "unit-breacher-team": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-combat-debarkation",
@@ -368,7 +412,7 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-broadside-battlesuits": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -384,7 +428,7 @@
       "stratagem-the-shortened-blade"
     ],
     "unit-cadre-fireblade": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-combat-debarkation",
@@ -399,7 +443,7 @@
     ],
     "unit-commander-farsight": [
       "experimental-ammunition",
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -417,7 +461,7 @@
     ],
     "unit-commander-in-coldstar-battlesuit": [
       "experimental-ammunition",
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -435,7 +479,7 @@
     ],
     "unit-commander-in-enforcer-battlesuit": [
       "experimental-ammunition",
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -453,7 +497,7 @@
     ],
     "unit-commander-shadowsun": [
       "experimental-ammunition",
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-combat-embarkation",
@@ -472,7 +516,7 @@
       "stratagem-wall-of-mirrors"
     ],
     "unit-crisis-fireknife-battlesuits": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -489,7 +533,7 @@
       "stratagem-the-torchstar-gambit"
     ],
     "unit-crisis-starscythe-battlesuits": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -506,7 +550,7 @@
       "stratagem-the-torchstar-gambit"
     ],
     "unit-crisis-sunforge-battlesuits": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -523,7 +567,7 @@
       "stratagem-the-torchstar-gambit"
     ],
     "unit-darkstrider": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-combat-debarkation",
@@ -536,7 +580,7 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-devilfish": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -547,7 +591,7 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-ethereal": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-combat-debarkation",
@@ -560,7 +604,7 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-firesight-team": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-combat-debarkation",
@@ -573,7 +617,7 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-ghostkeel-battlesuit": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -591,7 +635,7 @@
       "stratagem-wall-of-mirrors"
     ],
     "unit-hammerhead-gunship": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -746,9 +790,20 @@
       "stratagem-point-blank-ambush",
       "stratagem-the-grisly-feast"
     ],
+    "unit-manta": [
+      "guided-fire",
+      "stratagem-a-tempting-trap",
+      "stratagem-aggressive-mobility",
+      "stratagem-coordinate-to-engage",
+      "stratagem-counterfire-defence-systems",
+      "stratagem-focused-fire",
+      "stratagem-pinpoint-counter-offensive",
+      "stratagem-point-blank-ambush",
+      "stratagem-pulse-onslaught"
+    ],
     "unit-pathfinder-team": [
       "autoreactive-camouflage",
-      "guided-by-unity",
+      "guided-fire",
       "marker-beacon",
       "microdrone-support",
       "stratagem-a-tempting-trap",
@@ -764,7 +819,7 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-piranhas": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -775,7 +830,7 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-razorshark-strike-fighter": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -786,7 +841,7 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-riptide-battlesuit": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -803,7 +858,7 @@
       "stratagem-the-torchstar-gambit"
     ],
     "unit-sky-ray-gunship": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -815,7 +870,7 @@
     ],
     "unit-stealth-battlesuits": [
       "autoreactive-camouflage",
-      "guided-by-unity",
+      "guided-fire",
       "marker-beacon",
       "microdrone-support",
       "stratagem-a-tempting-trap",
@@ -837,7 +892,7 @@
       "stratagem-wall-of-mirrors"
     ],
     "unit-stormsurge": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -848,7 +903,7 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-strike-team": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-combat-debarkation",
@@ -862,7 +917,18 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-sun-shark-bomber": [
-      "guided-by-unity",
+      "guided-fire",
+      "stratagem-a-tempting-trap",
+      "stratagem-aggressive-mobility",
+      "stratagem-coordinate-to-engage",
+      "stratagem-counterfire-defence-systems",
+      "stratagem-focused-fire",
+      "stratagem-pinpoint-counter-offensive",
+      "stratagem-point-blank-ambush",
+      "stratagem-pulse-onslaught"
+    ],
+    "unit-taunar-supremacy-armour": [
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -874,7 +940,7 @@
     ],
     "unit-the-twin-lance": [
       "experimental-ammunition",
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -891,7 +957,7 @@
       "stratagem-the-torchstar-gambit"
     ],
     "unit-tidewall-droneport": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -902,7 +968,7 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-tidewall-gunrig": [
-      "guided-by-unity",
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",
@@ -913,7 +979,18 @@
       "stratagem-pulse-onslaught"
     ],
     "unit-tidewall-shieldline": [
-      "guided-by-unity",
+      "guided-fire",
+      "stratagem-a-tempting-trap",
+      "stratagem-aggressive-mobility",
+      "stratagem-coordinate-to-engage",
+      "stratagem-counterfire-defence-systems",
+      "stratagem-focused-fire",
+      "stratagem-pinpoint-counter-offensive",
+      "stratagem-point-blank-ambush",
+      "stratagem-pulse-onslaught"
+    ],
+    "unit-tiger-shark": [
+      "guided-fire",
       "stratagem-a-tempting-trap",
       "stratagem-aggressive-mobility",
       "stratagem-coordinate-to-engage",

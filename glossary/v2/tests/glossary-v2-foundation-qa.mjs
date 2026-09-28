@@ -161,7 +161,7 @@ assert.equal(index.coverage.mfm.augmentation.paidUpgrades,inputs.mfmCatalog.paid
 assert.equal(index.coverage.mfm.augmentation.detachments,inputs.mfmCatalog.detachments.length);
 assert.equal(index.coverage.mfm.augmentation.enhancementCosts,inputs.mfmCatalog.enhancementCosts.length);
 assert.equal(index.coverage.mfm.augmentation.qualifiers,inputs.mfmCatalog.qualifierRecords.length);
-assert.equal(index.coverage.mfm.augmentation.referenceOnlyPointRecords.length,4,'four T’au IA point records remain explicit reference-only coverage');
+assert.equal(index.coverage.mfm.augmentation.referenceOnlyPointRecords.length,0,'all current T’au Imperial Armour point records bind to canonical units');
 assert(index.entries.some(entry=>entry.recordType==='UNIT'&&entry.mfm?.pointRecords?.length),'bound MFM points must augment Army units');
 assert(index.entries.some(entry=>entry.recordType==='DETACHMENT'&&entry.mfm?.detachment),'bound MFM DP/Force Disposition facts must augment Army Detachments');
 assert(index.entries.some(entry=>entry.recordType==='ENHANCEMENT'&&entry.mfm?.enhancementCost),'bound MFM cost must augment Army Enhancements');
@@ -307,8 +307,8 @@ for(const id of dgComponents){
     assert.deepEqual(entry.facts,sourceRule.subsections.find(record=>record.id===id),`${id}: child semantics must come from the accepted Army rule`);
   }
 }
-assert.equal(index.counts.standalone,1808,'false Support occurrences must not enter standalone browse; accepted AM Attached Unit rule remains substantive');
-assert.equal(index.counts.scopedChildren,2898,'only the five Death Guard components may extend scoped children');
+assert.equal(index.counts.standalone,1819,'false Support occurrences must not enter standalone browse; current T’au identities remain substantive');
+assert.equal(index.counts.scopedChildren,2937,'scoped children must reflect current source-backed parent identities');
 
 const missingAmFactInputs={...inputs,armyModels:structuredClone(inputs.armyModels)};
 const missingAmModel=missingAmFactInputs.armyModels.find(model=>model.book.id==='adeptus-mechanicus');

@@ -538,8 +538,9 @@
       "armyBookId": "adeptus-mechanicus"
     },
     "mfm-unit-ref-1eb569c4b3549d96": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "CURRENT_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
+      "bindingStatus": "BOUND",
+      "armyUnitId": "unit-taunar-supremacy-armour",
+      "armyBookId": "tau-empire"
     },
     "mfm-unit-ref-1ebd291c5da45667": {
       "bindingStatus": "BOUND",
@@ -562,8 +563,9 @@
       "armyBookId": "space-marines"
     },
     "mfm-unit-ref-1ffc6acce3c443a8": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "CURRENT_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
+      "bindingStatus": "BOUND",
+      "armyUnitId": "unit-manta",
+      "armyBookId": "tau-empire"
     },
     "mfm-unit-ref-1ffd9dc5ff79d150": {
       "bindingStatus": "BOUND",
@@ -1657,8 +1659,9 @@
       "armyBookId": "space-marines"
     },
     "mfm-unit-ref-73745773b68d85fb": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "CURRENT_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
+      "bindingStatus": "BOUND",
+      "armyUnitId": "unit-tiger-shark",
+      "armyBookId": "tau-empire"
     },
     "mfm-unit-ref-740e7aa27181a1aa": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -2123,8 +2126,9 @@
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
     "mfm-unit-ref-97743c30761a4406": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "CURRENT_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
+      "bindingStatus": "BOUND",
+      "armyUnitId": "unit-ax-1-0-tiger-shark",
+      "armyBookId": "tau-empire"
     },
     "mfm-unit-ref-97b318ec0d741e6e": {
       "bindingStatus": "BOUND",
@@ -6948,9 +6952,21 @@
       "id": "tyranids-model-schedule-differences",
       "classification": "LEGITIMATE_DIFFERENT_DOMAIN_SEMANTICS",
       "records": [
-        {"mfmUnitReferenceId": "mfm-unit-ref-d43a1951f1112416", "mfmRange": "20-20", "rosterRange": "11-20"},
-        {"mfmUnitReferenceId": "mfm-unit-ref-4321978d97fe8f93", "mfmRange": "20-20", "rosterRange": "11-20"},
-        {"mfmUnitReferenceId": "mfm-unit-ref-5f6c8bf6ae4de7fe", "mfmRange": "6-6", "rosterRange": "4-6"}
+        {
+          "mfmUnitReferenceId": "mfm-unit-ref-d43a1951f1112416",
+          "mfmRange": "20-20",
+          "rosterRange": "11-20"
+        },
+        {
+          "mfmUnitReferenceId": "mfm-unit-ref-4321978d97fe8f93",
+          "mfmRange": "20-20",
+          "rosterRange": "11-20"
+        },
+        {
+          "mfmUnitReferenceId": "mfm-unit-ref-5f6c8bf6ae4de7fe",
+          "mfmRange": "6-6",
+          "rosterRange": "4-6"
+        }
       ],
       "consumerMigrationApplied": false
     },
@@ -7274,8 +7290,8 @@
   },
   "declaredCounts": {
     "armyBooks": 9,
-    "unitBindings": 625,
-    "unitReferenceOnly": 118,
+    "unitBindings": 629,
+    "unitReferenceOnly": 114,
     "unitReferences": 743,
     "detachmentBindings": 134,
     "enhancementBindings": 474,

@@ -15,7 +15,7 @@ export const stable=value=>`${JSON.stringify(ordered(value),null,2)}\n`;
 const coreByName=new Map(Object.entries({
   'COMMAND RE-ROLL':'core-stratagem-command-re-roll','EPIC CHALLENGE':'core-stratagem-epic-challenge','INSANE BRAVERY':'core-stratagem-insane-bravery','EXPLOSIVES':'core-stratagem-explosives','CRUSHING IMPACT':'core-stratagem-crushing-impact','RAPID INGRESS':'core-stratagem-rapid-ingress','FIRE OVERWATCH':'core-stratagem-fire-overwatch','SMOKESCREEN':'core-stratagem-smokescreen','HEROIC INTERVENTION':'core-stratagem-heroic-intervention','COUNTEROFFENSIVE':'core-stratagem-counteroffensive','COUNTER-OFFENSIVE':'core-stratagem-counteroffensive'
 }).map(([name,id])=>[key(name),id]));
-const factionAliases=new Map([[key('GUIDED FIRE'),key('GUIDED BY UNITY')]]);
+const factionAliases=new Map();
 
 function endOfDiv(html,start){const tags=/<\/?div\b[^>]*>/gi;tags.lastIndex=start;let depth=0;for(let match;(match=tags.exec(html));){depth+=match[0][1]==='/'?-1:1;if(depth===0)return tags.lastIndex;}return -1;}
 export function parseRules(html){
@@ -30,7 +30,7 @@ export function parseRules(html){
 }
 export function inventory(){
   const codex=read('content/tau-empire-codex-datasheets.en.json'),pack=read('content/tau-empire-faction-pack.en.json'),parity=read('content/tau-empire-codex-parity.en.json');
-  const units=(codex.datasheets||[]).map(unit=>({unitId:unit.id,name:unit.title}));
+  const units=[...(codex.datasheets||[]),...(codex.imperialArmour||[])].map(unit=>({unitId:unit.id,name:unit.title}));
   const detachments=[...pack.detachments,...parity.detachments],rules=detachments.flatMap(detachment=>detachment.stratagems.map(rule=>({ruleId:rule.id,name:rule.title})));
   const index=items=>items.reduce((map,item)=>{const name=key(item.name);map.set(name,[...(map.get(name)||[]),item]);return map;},new Map());
   return {units:units.sort((a,b)=>a.unitId.localeCompare(b.unitId)),rules:rules.sort((a,b)=>a.ruleId.localeCompare(b.ruleId)),unitByName:index(units),ruleByName:index(rules)};
@@ -48,7 +48,7 @@ export function buildImport({pages,retrievedAt}){
   }
   const sourceMeta={edition:'11',faction:"T'au Empire",kind:'Wahapedia',url:sourceUrl};
   const summary={datasheets:{canonical:source.units.length,imported:Object.keys(units).length},factionStratagems:{canonical:source.rules.length,observed:seenRules.size},coreStratagems:{canonical:10,observed:seenCore.size},associations:{faction:Object.values(units).flat().length,core:Object.values(coreUnits).flat().length},boardingActionNamesIgnored:boarding.size,unresolved:Object.values(unresolved).flat().length};
-  return {snapshot:{schema:'wahapedia-compatible-rules-snapshot/v1',retrievedAt,source:sourceMeta,units,coreUnits},report:{schema:'compatible-rules-import-report/v1',retrievedAt,source:sourceMeta,summary,aliasesApplied:[{from:'GUIDED FIRE',to:'GUIDED BY UNITY'}],boardingActionsIgnored:unique(boarding),unresolved}};
+  return {snapshot:{schema:'wahapedia-compatible-rules-snapshot/v1',retrievedAt,source:sourceMeta,units,coreUnits},report:{schema:'compatible-rules-import-report/v1',retrievedAt,source:sourceMeta,summary,aliasesApplied:[],boardingActionsIgnored:unique(boarding),unresolved}};
 }
 async function main(){
   const {mode,session}=beginLegacyCaptureTool({argv:process.argv.slice(2),toolName:'import-wahapedia-compatible-rules.mjs',sourceId:'tau-compatible-rules-live',authority:'secondary',sourceType:'wahapedia-html',extractorPath:'books/tau-empire/tools/import-wahapedia-compatible-rules.mjs',localInputs:[
@@ -59,8 +59,8 @@ async function main(){
   if(mode.kind==='verify'){
     const snapshot=read('sources/wahapedia-compatible-rules.snapshot.json'),report=read('reports/compatible-rules-import-report.json'),summary=report.summary;
     if(stable(snapshot)!==fs.readFileSync(output('sources/wahapedia-compatible-rules.snapshot.json'),'utf8').replace(/\r\n?/g,'\n')||stable(report)!==fs.readFileSync(output('reports/compatible-rules-import-report.json'),'utf8').replace(/\r\n?/g,'\n'))throw new Error("T'au compatible-rules import artifacts are not deterministic.");
-    if(Object.keys(snapshot.units||{}).length!==39||Object.keys(snapshot.coreUnits||{}).length!==39||summary.datasheets.imported!==39||summary.associations.faction!==505||summary.associations.core!==265||summary.unresolved!==0)throw new Error("T'au compatible-rules import inventory mismatch.");
-    console.log("T'au Wahapedia snapshot is current: 39 Codex datasheets, 505 faction + 265 Core associations.");return;
+    if(Object.keys(snapshot.units||{}).length!==43||Object.keys(snapshot.coreUnits||{}).length!==43||summary.datasheets.imported!==43||summary.associations.faction!==541||summary.associations.core!==290||summary.unresolved!==0)throw new Error("T'au compatible-rules import inventory mismatch.");
+    console.log("T'au Wahapedia snapshot is current: 43 current datasheets, 541 faction + 290 Core associations.");return;
   }
   const at=process.argv.indexOf('--retrieved-at'),retrievedAt=process.argv[at+1];if(!/^\d{4}-\d{2}-\d{2}$/.test(retrievedAt||''))throw new Error('Pass --retrieved-at YYYY-MM-DD.');
   const headers={'user-agent':'warhammer-rules-compatible-rules-importer/1.0'};

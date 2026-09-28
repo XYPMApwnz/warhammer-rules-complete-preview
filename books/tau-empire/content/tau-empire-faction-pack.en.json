@@ -290,7 +290,7 @@
       "enhancements": [
         {
           "id": "negation-emitters-upgrade",
-          "title": "Negation Emitters Upgrade",
+          "title": "Negation Emitters",
           "text": "STEALTH BATTLESUITS unit only. This unit has -3\" detection range.",
           "sourcePages": [
             2
@@ -307,7 +307,7 @@
         },
         {
           "id": "unmasking-suite-upgrade",
-          "title": "Unmasking Suite Upgrade",
+          "title": "Unmasking Suite",
           "text": "GHOSTKEEL BATTLESUIT/PATHFINDER TEAM/STEALTH BATTLESUITS unit only. When this unit is selected to shoot, you can select one enemy unit within 24\" of this unit. That enemy unit has +9\" detection range until this unit has shot.",
           "sourcePages": [
             2
@@ -473,8 +473,8 @@
           }
         },
         {
-          "id": "guided-by-unity",
-          "title": "Guided by Unity",
+          "id": "guided-fire",
+          "title": "Guided Fire",
           "cp": 1,
           "when": "Your Shooting phase, when a friendly T’AU EMPIRE unit (excluding KROOT/VESPID STINGWINGS units) is selected to shoot.",
           "target": "That T’AU EMPIRE unit.",
@@ -495,7 +495,7 @@
       "id": "experimental-prototype-cadre",
       "title": "Experimental Prototype Cadre",
       "tags": [
-        "Unique: Retaliation"
+        "Unique: Battlesuit"
       ],
       "sourcePages": [
         4
@@ -508,7 +508,7 @@
       },
       "rule": {
         "title": "Superior Craftsmanship",
-        "text": "Friendly BATTLESUIT CHARACTER units’ ranged attacks have +6\" R. This detachment has the RETALIATION tag and cannot be taken with another RETALIATION detachment.",
+        "text": "Friendly BATTLESUIT CHARACTER units’ ranged attacks have +6\" R. This detachment has the BATTLESUIT tag and cannot be taken with another BATTLESUIT detachment.",
         "sourcePages": [
           4
         ],
@@ -1080,7 +1080,7 @@
       "id": "montka-strike-swiftly",
       "section": "Mont’ka Detachment",
       "subject": "Strike Swiftly Enhancement",
-      "change": "In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.",
+      "change": "T’AU EMPIRE model only. In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.",
       "sourcePages": [
         19
       ],

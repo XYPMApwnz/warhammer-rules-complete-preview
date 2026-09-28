@@ -2,49 +2,645 @@
   "schema": 1,
   "bookId": "tau-empire",
   "updates": [
-    {"id":"army-for-the-greater-good","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"army-rule","title":"For the Greater Good","field":"text","expectedBefore":null,"effectiveAfter":"If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units. During your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase. Units from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units. Until the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.","glossaryTermId":"tau-empire-army-rule-for-the-greater-good","unavailableReason":null}]},
-    {"id":"kauyon-through-unity-devastation","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"enhancement","detachmentId":"kauyon","enhancementId":"enhancement-through-unity-devastation","field":"text","expectedBefore":null,"effectiveAfter":"T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit.","glossaryTermId":"tau-empire-enhancement-through-unity-devastation","unavailableReason":null}]},
-    {"id":"kauyon-photon-grenades","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"stratagem-field","owner":"kauyon","stratagemId":"stratagem-photon-grenades","field":"when","expectedBefore":null,"effectiveAfter":"Your opponent’s charge phase, just after an enemy unit has selected its charge target.","glossaryTermId":"tau-empire-stratagem-photon-grenades","unavailableReason":null}]},
-    {"id":"kauyon-patient-hunter","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"detachment-rule","owner":"kauyon","field":"text","expectedBefore":null,"effectiveAfter":"During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability. During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll.","glossaryTermId":"tau-empire-detachment-rule-patient-hunter","unavailableReason":null}]},
-    {"id":"montka-coordinated-exploitation","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"enhancement","detachmentId":"montka","enhancementId":"enhancement-coordinated-exploitation","field":"text","expectedBefore":null,"effectiveAfter":"T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit.","glossaryTermId":"tau-empire-enhancement-coordinated-exploitation","unavailableReason":null}]},
-    {"id":"montka-strike-swiftly","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"enhancement","detachmentId":"montka","enhancementId":"enhancement-strike-swiftly","field":"text","expectedBefore":null,"effectiveAfter":"In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.","glossaryTermId":"tau-empire-enhancement-strike-swiftly","unavailableReason":null}]},
-    {"id":"montka-killing-blow","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"detachment-rule","owner":"montka","field":"text","expectedBefore":null,"effectiveAfter":"During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability. During the first, second and third battle rounds, while a unit is a Guided unit (see For the Greater Good), its ranged weapons have the [LETHAL HITS] ability.","glossaryTermId":"tau-empire-detachment-rule-killing-blow","unavailableReason":null}]},
-    {"id":"retaliation-puretide-engram-neurochip","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"enhancement","detachmentId":"retaliation-cadre","enhancementId":"enhancement-puretide-engram-neurochip","field":"text","expectedBefore":null,"effectiveAfter":"T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP.","glossaryTermId":"tau-empire-enhancement-puretide-engram-neurochip","unavailableReason":null}]},
-    {"id":"retaliation-shortened-blade","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"stratagem-field","owner":"retaliation-cadre","stratagemId":"stratagem-the-shortened-blade","field":"effect","expectedBefore":null,"effectiveAfter":"Your unit can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy models.","glossaryTermId":"tau-empire-stratagem-the-shortened-blade","unavailableReason":null}]},
-    {"id":"retaliation-bonded-heroes","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"detachment-rule","owner":"retaliation-cadre","field":"text","expectedBefore":null,"effectiveAfter":"Each time a T’AU EMPIRE BATTLESUIT model from your army makes a ranged attack that targets a unit within 12\", improve the Strength characteristic of that attack by 1. If that attack targets a unit within 8\", improve the Armour Penetration characteristic of that attack by 1 as well.","glossaryTermId":"tau-empire-detachment-rule-bonded-heroes","unavailableReason":null}]},
-    {"id":"datasheets-add-frame","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[
-      {"kind":"keyword","unitId":"unit-devilfish","field":"keywords","value":"Frame","expectedBefore":null,"effectiveAfter":true,"glossary":{"status":"not-applicable","reason":"Datasheet keywords have no standalone field mapping."},"unavailableReason":null},
-      {"kind":"keyword","unitId":"unit-hammerhead-gunship","field":"keywords","value":"Frame","expectedBefore":null,"effectiveAfter":true,"glossary":{"status":"not-applicable","reason":"Datasheet keywords have no standalone field mapping."},"unavailableReason":null},
-      {"kind":"keyword","unitId":"unit-piranhas","field":"keywords","value":"Frame","expectedBefore":null,"effectiveAfter":true,"glossary":{"status":"not-applicable","reason":"Datasheet keywords have no standalone field mapping."},"unavailableReason":null},
-      {"kind":"keyword","unitId":"unit-sky-ray-gunship","field":"keywords","value":"Frame","expectedBefore":null,"effectiveAfter":true,"glossary":{"status":"not-applicable","reason":"Datasheet keywords have no standalone field mapping."},"unavailableReason":null},
-      {"kind":"keyword","unitId":"unit-tidewall-droneport","field":"keywords","value":"Frame","expectedBefore":null,"effectiveAfter":true,"glossary":{"status":"not-applicable","reason":"Datasheet keywords have no standalone field mapping."},"unavailableReason":null},
-      {"kind":"keyword","unitId":"unit-tidewall-gunrig","field":"keywords","value":"Frame","expectedBefore":null,"effectiveAfter":true,"glossary":{"status":"not-applicable","reason":"Datasheet keywords have no standalone field mapping."},"unavailableReason":null},
-      {"kind":"keyword","unitId":"unit-tidewall-shieldline","field":"keywords","value":"Frame","expectedBefore":null,"effectiveAfter":true,"glossary":{"status":"not-applicable","reason":"Datasheet keywords have no standalone field mapping."},"unavailableReason":null}
-    ]},
-    {"id":"crisis-sunforge-sunforge","source":{"documentId":"tau-empire-faction-pack-v1.1","page":19},"targets":[{"kind":"ability","unitId":"unit-crisis-sunforge-battlesuits","title":"Sunforge","field":"text","expectedBefore":null,"effectiveAfter":"Each time a model in this unit makes a ranged attack that targets a MONSTER or VEHICLE unit, you can re-roll the Wound roll and you can re-roll the Damage roll.","glossaryTermId":"tau-empire-ability-sunforge","unavailableReason":null}]},
-    {"id":"ethereal-faction-ability","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[{"kind":"core-ability","unitId":"unit-ethereal","title":"For The Greater Good","field":"abilities","expectedBefore":null,"effectiveAfter":true,"glossaryTermId":"tau-empire-army-rule-for-the-greater-good","unavailableReason":null}]},
-    {"id":"firesight-precise-targeting","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[{"kind":"ability","unitId":"unit-firesight-team","title":"Precise Targeting","field":"text","expectedBefore":null,"effectiveAfter":"Each time a model in this unit makes an attack that targets a Spotted unit, you can re-roll the Hit roll.","glossaryTermId":"tau-empire-ability-precise-targeting","unavailableReason":null}]},
-    {"id":"kroot-trail-shaper-ambush","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[{"kind":"ability","unitId":"unit-kroot-trail-shaper","title":"Kroot Ambush","field":"text","expectedBefore":null,"effectiveAfter":"After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves.","glossaryTermId":"tau-empire-ability-kroot-ambush","unavailableReason":null}]},
-    {"id":"kroot-trail-shaper-trail-finding","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[{"kind":"ability","unitId":"unit-kroot-trail-shaper","title":"Trail Finding","field":"text","expectedBefore":null,"effectiveAfter":"In your opponent’s Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6\".","glossaryTermId":"tau-empire-ability-trail-finding","unavailableReason":null}]},
-    {"id":"pathfinder-target-uploaded","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[{"kind":"ability","unitId":"unit-pathfinder-team","title":"Target Uploaded","field":"text","expectedBefore":null,"effectiveAfter":"Each time a model in this unit makes an attack that targets their Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and that attack has the [IGNORES COVER] ability.","glossaryTermId":"tau-empire-ability-target-uploaded","unavailableReason":null}]},
-    {"id":"riptide-nova-charge","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[{"kind":"ability","unitId":"unit-riptide-battlesuit","title":"Nova Charge","field":"text","expectedBefore":null,"effectiveAfter":"Once per battle, when this unit is selected to shoot in your Shooting phase, select one ranged weapon equipped by this model. Until the end of the phase, that weapon has the [DEVASTATING WOUNDS] ability.","glossaryTermId":"tau-empire-ability-nova-charge","unavailableReason":null}]},
-    {"id":"riptide-ion-accelerator","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[
-      {"kind":"weapon-profile","unitId":"unit-riptide-battlesuit","profileKey":"ion-accelerator-standard","field":"weapon","expectedBefore":null,"effectiveAfter":{"name":"➤ Ion accelerator - standard","mode":"ranged","range":"72\"","a":"6","skill":"4+","s":"9","ap":"-2","d":"3","abilities":""},"glossaryTermId":"tau-empire-weapon-ion-accelerator-standard","unavailableReason":null},
-      {"kind":"weapon-profile","unitId":"unit-riptide-battlesuit","profileKey":"ion-accelerator-supercharge","field":"weapon","expectedBefore":null,"effectiveAfter":{"name":"➤ Ion accelerator - supercharge","mode":"ranged","range":"72\"","a":"6","skill":"4+","s":"10","ap":"-3","d":"4","abilities":"Hazardous"},"glossaryTermId":"tau-empire-weapon-ion-accelerator-supercharge","unavailableReason":null}
-    ]},
-    {"id":"stealth-forward-observers","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[{"kind":"ability","unitId":"unit-stealth-battlesuits","title":"Forward Observers","field":"text","expectedBefore":null,"effectiveAfter":"Each time this unit is an Observer unit, until the end of the phase, each time a ranged attack is made by a model in a Guided unit that targets their Spotted unit, re-roll a Hit roll of 1 and re-roll a Wound roll of 1.","glossaryTermId":"tau-empire-ability-forward-observers","unavailableReason":null}]},
-    {"id":"stealth-homing-beacon","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[{"kind":"wargear-ability","unitId":"unit-stealth-battlesuits","title":"Homing Beacon","field":"text","expectedBefore":null,"effectiveAfter":"Once per battle, you can use the Rapid Ingress Stratagem for 0CP. The target must be set up within 3\" of the bearer’s unit and more than 8\" away from all enemy units.\n Designer’s Note: *Place a Homing Beacon token next to this unit, removing it once this ability is used.*","glossaryTermId":"tau-empire-ability-homing-beacon","unavailableReason":null}]},
-    {"id":"aircraft-add-frame","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[
-      {"kind":"keyword","unitId":"unit-razorshark-strike-fighter","field":"keywords","value":"Frame","expectedBefore":null,"effectiveAfter":true,"glossary":{"status":"not-applicable","reason":"Datasheet keywords have no standalone field mapping."},"unavailableReason":null},
-      {"kind":"keyword","unitId":"unit-sun-shark-bomber","field":"keywords","value":"Frame","expectedBefore":null,"effectiveAfter":true,"glossary":{"status":"not-applicable","reason":"Datasheet keywords have no standalone field mapping."},"unavailableReason":null}
-    ]},
-    {"id":"aircraft-profile","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[
-      {"kind":"stat","unitId":"unit-razorshark-strike-fighter","profile":"Razorshark Strike Fighter","field":"M","expectedBefore":null,"effectiveAfter":"-","glossary":{"status":"not-applicable","reason":"Characteristics have no standalone glossary record."},"unavailableReason":null},
-      {"kind":"stat","unitId":"unit-razorshark-strike-fighter","profile":"Razorshark Strike Fighter","field":"OC","expectedBefore":null,"effectiveAfter":"-","glossary":{"status":"not-applicable","reason":"Characteristics have no standalone glossary record."},"unavailableReason":null},
-      {"kind":"stat","unitId":"unit-sun-shark-bomber","profile":"Sun Shark Bomber","field":"M","expectedBefore":null,"effectiveAfter":"-","glossary":{"status":"not-applicable","reason":"Characteristics have no standalone glossary record."},"unavailableReason":null},
-      {"kind":"stat","unitId":"unit-sun-shark-bomber","profile":"Sun Shark Bomber","field":"OC","expectedBefore":null,"effectiveAfter":"-","glossary":{"status":"not-applicable","reason":"Characteristics have no standalone glossary record."},"unavailableReason":null}
-    ]},
-    {"id":"sun-shark-pulse-bombs","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[{"kind":"ability","unitId":"unit-sun-shark-bomber","title":"Pulse Bombs","field":"text","expectedBefore":null,"effectiveAfter":"At the end of your opponent’s Fight phase, select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit, and roll six D6 for that unit: For each 4+, that unit suffers 1 mortal wound.","glossaryTermId":"tau-empire-ability-pulse-bombs","unavailableReason":null}]},
-    {"id":"twin-lance-neocapacitor-shields","source":{"documentId":"tau-empire-faction-pack-v1.1","page":20},"targets":[{"kind":"ability","unitId":"unit-the-twin-lance","title":"Neocapacitor Shields","field":"text","expectedBefore":null,"effectiveAfter":"At the start of your opponent’s Charge phase, you can select one visible enemy unit (excluding MONSTER and VEHICLE units) within 12\" of this unit. That unit must take a Battle-shock test and, until the end of the turn, subtract 1 from Charge rolls made for that unit.","glossaryTermId":"tau-empire-ability-neocapacitor-shields","unavailableReason":null}]}
+    {
+      "id": "army-for-the-greater-good",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "army-rule",
+          "title": "For the Greater Good",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units. During your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase. Units from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units. Until the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.",
+          "glossaryTermId": "tau-empire-army-rule-for-the-greater-good",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "kauyon-through-unity-devastation",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "enhancement",
+          "detachmentId": "kauyon",
+          "enhancementId": "enhancement-through-unity-devastation",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit.",
+          "glossaryTermId": "tau-empire-enhancement-through-unity-devastation",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "kauyon-photon-grenades",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "stratagem-field",
+          "owner": "kauyon",
+          "stratagemId": "stratagem-photon-grenades",
+          "field": "when",
+          "expectedBefore": null,
+          "effectiveAfter": "Your opponent’s charge phase, just after an enemy unit has selected its charge target.",
+          "glossaryTermId": "tau-empire-stratagem-photon-grenades",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "kauyon-patient-hunter",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "detachment-rule",
+          "owner": "kauyon",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability. During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll.",
+          "glossaryTermId": "tau-empire-detachment-rule-patient-hunter",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "montka-coordinated-exploitation",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "enhancement",
+          "detachmentId": "montka",
+          "enhancementId": "enhancement-coordinated-exploitation",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit.",
+          "glossaryTermId": "tau-empire-enhancement-coordinated-exploitation",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "montka-strike-swiftly",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "enhancement",
+          "detachmentId": "montka",
+          "enhancementId": "enhancement-strike-swiftly",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "T’AU EMPIRE model only. In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.",
+          "glossaryTermId": "tau-empire-enhancement-strike-swiftly",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "montka-killing-blow",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "detachment-rule",
+          "owner": "montka",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability. During the first, second and third battle rounds, while a unit is a Guided unit (see For the Greater Good), its ranged weapons have the [LETHAL HITS] ability.",
+          "glossaryTermId": "tau-empire-detachment-rule-killing-blow",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "retaliation-puretide-engram-neurochip",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "enhancement",
+          "detachmentId": "retaliation-cadre",
+          "enhancementId": "enhancement-puretide-engram-neurochip",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP.",
+          "glossaryTermId": "tau-empire-enhancement-puretide-engram-neurochip",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "retaliation-shortened-blade",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "stratagem-field",
+          "owner": "retaliation-cadre",
+          "stratagemId": "stratagem-the-shortened-blade",
+          "field": "effect",
+          "expectedBefore": null,
+          "effectiveAfter": "Your unit can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy models.",
+          "glossaryTermId": "tau-empire-stratagem-the-shortened-blade",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "retaliation-bonded-heroes",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "detachment-rule",
+          "owner": "retaliation-cadre",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "Each time a T’AU EMPIRE BATTLESUIT model from your army makes a ranged attack that targets a unit within 12\", improve the Strength characteristic of that attack by 1. If that attack targets a unit within 8\", improve the Armour Penetration characteristic of that attack by 1 as well.",
+          "glossaryTermId": "tau-empire-detachment-rule-bonded-heroes",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "datasheets-add-frame",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "keyword",
+          "unitId": "unit-devilfish",
+          "field": "keywords",
+          "value": "Frame",
+          "expectedBefore": null,
+          "effectiveAfter": true,
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Datasheet keywords have no standalone field mapping."
+          },
+          "unavailableReason": null
+        },
+        {
+          "kind": "keyword",
+          "unitId": "unit-hammerhead-gunship",
+          "field": "keywords",
+          "value": "Frame",
+          "expectedBefore": null,
+          "effectiveAfter": true,
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Datasheet keywords have no standalone field mapping."
+          },
+          "unavailableReason": null
+        },
+        {
+          "kind": "keyword",
+          "unitId": "unit-piranhas",
+          "field": "keywords",
+          "value": "Frame",
+          "expectedBefore": null,
+          "effectiveAfter": true,
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Datasheet keywords have no standalone field mapping."
+          },
+          "unavailableReason": null
+        },
+        {
+          "kind": "keyword",
+          "unitId": "unit-sky-ray-gunship",
+          "field": "keywords",
+          "value": "Frame",
+          "expectedBefore": null,
+          "effectiveAfter": true,
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Datasheet keywords have no standalone field mapping."
+          },
+          "unavailableReason": null
+        },
+        {
+          "kind": "keyword",
+          "unitId": "unit-tidewall-droneport",
+          "field": "keywords",
+          "value": "Frame",
+          "expectedBefore": null,
+          "effectiveAfter": true,
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Datasheet keywords have no standalone field mapping."
+          },
+          "unavailableReason": null
+        },
+        {
+          "kind": "keyword",
+          "unitId": "unit-tidewall-gunrig",
+          "field": "keywords",
+          "value": "Frame",
+          "expectedBefore": null,
+          "effectiveAfter": true,
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Datasheet keywords have no standalone field mapping."
+          },
+          "unavailableReason": null
+        },
+        {
+          "kind": "keyword",
+          "unitId": "unit-tidewall-shieldline",
+          "field": "keywords",
+          "value": "Frame",
+          "expectedBefore": null,
+          "effectiveAfter": true,
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Datasheet keywords have no standalone field mapping."
+          },
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "crisis-sunforge-sunforge",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 19
+      },
+      "targets": [
+        {
+          "kind": "ability",
+          "unitId": "unit-crisis-sunforge-battlesuits",
+          "title": "Sunforge",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "Each time a model in this unit makes a ranged attack that targets a MONSTER or VEHICLE unit, you can re-roll the Wound roll and you can re-roll the Damage roll.",
+          "glossaryTermId": "tau-empire-ability-sunforge",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "ethereal-faction-ability",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "core-ability",
+          "unitId": "unit-ethereal",
+          "title": "For The Greater Good",
+          "field": "abilities",
+          "expectedBefore": null,
+          "effectiveAfter": true,
+          "glossaryTermId": "tau-empire-army-rule-for-the-greater-good",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "firesight-precise-targeting",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "ability",
+          "unitId": "unit-firesight-team",
+          "title": "Precise Targeting",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "Each time a model in this unit makes an attack that targets a Spotted unit, you can re-roll the Hit roll.",
+          "glossaryTermId": "tau-empire-ability-precise-targeting",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "kroot-trail-shaper-ambush",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "ability",
+          "unitId": "unit-kroot-trail-shaper",
+          "title": "Kroot Ambush",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+          "glossaryTermId": "tau-empire-ability-kroot-ambush",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "kroot-trail-shaper-trail-finding",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "ability",
+          "unitId": "unit-kroot-trail-shaper",
+          "title": "Trail Finding",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "In your opponent’s Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6\".",
+          "glossaryTermId": "tau-empire-ability-trail-finding",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "pathfinder-target-uploaded",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "ability",
+          "unitId": "unit-pathfinder-team",
+          "title": "Target Uploaded",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "Each time a model in this unit makes an attack that targets their Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and that attack has the [IGNORES COVER] ability.",
+          "glossaryTermId": "tau-empire-ability-target-uploaded",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "riptide-nova-charge",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "ability",
+          "unitId": "unit-riptide-battlesuit",
+          "title": "Nova Charge",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "Once per battle, when this unit is selected to shoot in your Shooting phase, select one ranged weapon equipped by this model. Until the end of the phase, that weapon has the [DEVASTATING WOUNDS] ability.",
+          "glossaryTermId": "tau-empire-ability-nova-charge",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "riptide-ion-accelerator",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "weapon-profile",
+          "unitId": "unit-riptide-battlesuit",
+          "profileKey": "ion-accelerator-standard",
+          "field": "weapon",
+          "expectedBefore": null,
+          "effectiveAfter": {
+            "name": "➤ Ion accelerator - standard",
+            "mode": "ranged",
+            "range": "72\"",
+            "a": "6",
+            "skill": "4+",
+            "s": "9",
+            "ap": "-2",
+            "d": "3",
+            "abilities": ""
+          },
+          "glossaryTermId": "tau-empire-weapon-ion-accelerator-standard",
+          "unavailableReason": null
+        },
+        {
+          "kind": "weapon-profile",
+          "unitId": "unit-riptide-battlesuit",
+          "profileKey": "ion-accelerator-supercharge",
+          "field": "weapon",
+          "expectedBefore": null,
+          "effectiveAfter": {
+            "name": "➤ Ion accelerator - supercharge",
+            "mode": "ranged",
+            "range": "72\"",
+            "a": "6",
+            "skill": "4+",
+            "s": "10",
+            "ap": "-3",
+            "d": "4",
+            "abilities": "Hazardous"
+          },
+          "glossaryTermId": "tau-empire-weapon-ion-accelerator-supercharge",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "stealth-forward-observers",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "ability",
+          "unitId": "unit-stealth-battlesuits",
+          "title": "Forward Observers",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "Each time this unit is an Observer unit, until the end of the phase, each time a ranged attack is made by a model in a Guided unit that targets their Spotted unit, re-roll a Hit roll of 1 and re-roll a Wound roll of 1.",
+          "glossaryTermId": "tau-empire-ability-forward-observers",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "stealth-homing-beacon",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "wargear-ability",
+          "unitId": "unit-stealth-battlesuits",
+          "title": "Homing Beacon",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "Once per battle, you can use the Rapid Ingress Stratagem for 0CP. The target must be set up within 3\" of the bearer’s unit and more than 8\" away from all enemy units.\n Designer’s Note: *Place a Homing Beacon token next to this unit, removing it once this ability is used.*",
+          "glossaryTermId": "tau-empire-ability-homing-beacon",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "aircraft-add-frame",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "keyword",
+          "unitId": "unit-razorshark-strike-fighter",
+          "field": "keywords",
+          "value": "Frame",
+          "expectedBefore": null,
+          "effectiveAfter": true,
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Datasheet keywords have no standalone field mapping."
+          },
+          "unavailableReason": null
+        },
+        {
+          "kind": "keyword",
+          "unitId": "unit-sun-shark-bomber",
+          "field": "keywords",
+          "value": "Frame",
+          "expectedBefore": null,
+          "effectiveAfter": true,
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Datasheet keywords have no standalone field mapping."
+          },
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "aircraft-profile",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "stat",
+          "unitId": "unit-razorshark-strike-fighter",
+          "profile": "Razorshark Strike Fighter",
+          "field": "M",
+          "expectedBefore": null,
+          "effectiveAfter": "-",
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Characteristics have no standalone glossary record."
+          },
+          "unavailableReason": null
+        },
+        {
+          "kind": "stat",
+          "unitId": "unit-razorshark-strike-fighter",
+          "profile": "Razorshark Strike Fighter",
+          "field": "OC",
+          "expectedBefore": null,
+          "effectiveAfter": "-",
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Characteristics have no standalone glossary record."
+          },
+          "unavailableReason": null
+        },
+        {
+          "kind": "stat",
+          "unitId": "unit-sun-shark-bomber",
+          "profile": "Sun Shark Bomber",
+          "field": "M",
+          "expectedBefore": null,
+          "effectiveAfter": "-",
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Characteristics have no standalone glossary record."
+          },
+          "unavailableReason": null
+        },
+        {
+          "kind": "stat",
+          "unitId": "unit-sun-shark-bomber",
+          "profile": "Sun Shark Bomber",
+          "field": "OC",
+          "expectedBefore": null,
+          "effectiveAfter": "-",
+          "glossary": {
+            "status": "not-applicable",
+            "reason": "Characteristics have no standalone glossary record."
+          },
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "sun-shark-pulse-bombs",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "ability",
+          "unitId": "unit-sun-shark-bomber",
+          "title": "Pulse Bombs",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "At the end of your opponent’s Fight phase, select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit, and roll six D6 for that unit: For each 4+, that unit suffers 1 mortal wound.",
+          "glossaryTermId": "tau-empire-ability-pulse-bombs",
+          "unavailableReason": null
+        }
+      ]
+    },
+    {
+      "id": "twin-lance-neocapacitor-shields",
+      "source": {
+        "documentId": "tau-empire-faction-pack-v1.1",
+        "page": 20
+      },
+      "targets": [
+        {
+          "kind": "ability",
+          "unitId": "unit-the-twin-lance",
+          "title": "Neocapacitor Shields",
+          "field": "text",
+          "expectedBefore": null,
+          "effectiveAfter": "At the start of your opponent’s Charge phase, you can select one visible enemy unit (excluding MONSTER and VEHICLE units) within 12\" of this unit. That unit must take a Battle-shock test and, until the end of the turn, subtract 1 from Charge rolls made for that unit.",
+          "glossaryTermId": "tau-empire-ability-neocapacitor-shields",
+          "unavailableReason": null
+        }
+      ]
+    }
   ]
 }

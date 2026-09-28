@@ -22,7 +22,7 @@ function ownerMatches(owner,unit){
 
 export function inputs(){
   const pack=read('content/tau-empire-faction-pack.en.json'),parity=read('content/tau-empire-codex-parity.en.json'),codex=read('content/tau-empire-codex-datasheets.en.json');
-  return {pack,parity,datasheets:codex.datasheets,contracts:read('content/tau-empire-related-rules.en.json'),snapshot:read('sources/wahapedia-compatible-rules.snapshot.json'),ledger:read('sources/compatible-rules-correction-ledger.json')};
+  return {pack,parity,datasheets:[...(codex.datasheets||[]),...(codex.imperialArmour||[])],contracts:read('content/tau-empire-related-rules.en.json'),snapshot:read('sources/wahapedia-compatible-rules.snapshot.json'),ledger:read('sources/compatible-rules-correction-ledger.json')};
 }
 
 export function buildCompatibleRules({pack,parity,datasheets,contracts,snapshot,ledger}){

@@ -7,6 +7,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     "parentBookId": null,
     "dependencies": []
   },
+  "compositionConstraints": false,
+  "statProfiles": false,
   "units": [
     {
       "id": "unit-breacher-team",
@@ -19,9 +21,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Grenades",
         "Markerlight",
         "Fire Warrior",
-        "T'au Empire",
         "Breacher Team",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -77,7 +78,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-ds8-support-turret",
             "sectionId": "tau-empire-ability-ds8-support-turret",
             "title": "DS8 Support Turret",
-            "text": "In your Movement phase, if this unit Remains Stationary, until the start of your next turn, its Shas’ui model is equipped with the support turret weapon.\n\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
+            "text": "In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
             "sourceUnitId": "unit-breacher-team"
           },
           {
@@ -110,6 +111,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-breacher-team-selection-pulse-pistol",
@@ -371,7 +373,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-breacher-team-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -386,8 +391,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Markerlight",
         "Fire Warrior",
         "Strike Team",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -436,14 +440,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-suppression-volley",
             "sectionId": "tau-empire-ability-suppression-volley",
             "title": "Suppression Volley",
-            "text": "In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll.",
+            "text": "In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll.",
             "sourceUnitId": "unit-strike-team"
           },
           {
             "id": "tau-empire-ability-ds8-support-turret",
             "sectionId": "tau-empire-ability-ds8-support-turret",
             "title": "DS8 Support Turret",
-            "text": "In your Movement phase, if this unit Remains Stationary, until the start of your next turn, its Shas’ui model is equipped with the support turret weapon.\n\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
+            "text": "In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
             "sourceUnitId": "unit-strike-team"
           },
           {
@@ -459,7 +463,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-strike-team-model-f9647357a8",
             "title": "Fire Warriors",
             "aliases": [
-              "Fire Warriors"
+              "Fire Warriors",
+              "Fire Warrior w/ pulse carbine",
+              "Fire Warrior w/ pulse rifle"
             ],
             "legacyIds": [
               "unit-strike-team-model-fire-warriors"
@@ -476,6 +482,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-strike-team-selection-pulse-carbine",
@@ -767,7 +774,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-strike-team-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -776,12 +786,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Character",
         "Infantry",
+        "Character",
         "Grenades",
-        "T'au Empire",
         "Cadre Fireblade",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [
@@ -867,6 +876,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-cadre-fireblade-selection-fireblade-pulse-rifle",
@@ -1068,7 +1078,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-cadre-fireblade-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1077,14 +1090,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Character",
         "Vehicle",
         "Walker",
         "Fly",
+        "Character",
         "Battlesuit",
-        "T'au Empire",
-        "Commander in Coldstar Battlesuit",
-        "Non-Kroot"
+        "Commander In Coldstar Battlesuit",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [
@@ -1185,6 +1197,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-commander-in-coldstar-battlesuit-selection-high-output-burst-cannon",
@@ -1719,7 +1732,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-commander-in-coldstar-battlesuit-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1728,14 +1744,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Character",
         "Vehicle",
         "Walker",
         "Fly",
+        "Character",
         "Battlesuit",
-        "T'au Empire",
-        "Commander in Enforcer Battlesuit",
-        "Non-Kroot"
+        "Commander In Enforcer Battlesuit",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [
@@ -1829,6 +1844,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-commander-in-enforcer-battlesuit-selection-missile-pod",
@@ -2333,7 +2349,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-commander-in-enforcer-battlesuit-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2342,11 +2361,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Character",
         "Infantry",
+        "Character",
         "Ethereal",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [
@@ -2395,7 +2413,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-coordinated-leadership",
             "sectionId": "tau-empire-ability-coordinated-leadership",
             "title": "Coordinated Leadership",
-            "text": "In your Command phase, roll one D6: on a 4+, you gain 1CP.",
+            "text": "At the end of your Command phase, roll one D6: on a 4+, you gain 1CP.",
             "sourceUnitId": "unit-ethereal"
           },
           {
@@ -2439,6 +2457,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-ethereal-selection-honour-stave",
@@ -2587,7 +2606,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-ethereal-wargear-ability-66ef7c251c",
             "sectionId": "unit-ethereal-wargear-ability-66ef7c251c",
             "title": "Hover Drone",
-            "text": "The bearer can Fly and has a Move characteristic of 10\".",
+            "text": "The bearer can FLY and has a Move characteristic of 10\".",
             "sourceUnitId": "unit-ethereal",
             "legacyIds": [
               "unit-ethereal-wargear-ability-hover-drone"
@@ -2635,7 +2654,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-ethereal-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2644,12 +2666,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Character",
         "Infantry",
+        "Character",
         "Markerlight",
-        "T'au Empire",
         "Firesight Team",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -2724,6 +2745,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-firesight-team-selection-close-combat-weapons",
@@ -2819,7 +2841,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2832,8 +2857,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Character",
         "Kroot",
         "Shaper",
-        "T'au Empire",
-        "Flesh Shaper"
+        "Flesh Shaper",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [
@@ -2944,7 +2969,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-rites-of-feasting",
             "sectionId": "tau-empire-ability-rites-of-feasting",
             "title": "Rites of Feasting",
-            "text": "While this model is leading a unit, models in that unit have the Feel Not Pain 6+ ability. If that unit destroys one or more enemy units in the Fight phase, until the end of the battle, models in that unit have the Feel No Pain 5+ ability instead.",
+            "text": "While this model is leading a unit, models in that unit have the Feel No Pain 6+ ability. If that unit destroys one or more enemy units in the Fight phase, until the end of the battle, models in that unit have the Feel No Pain 5+ ability instead.",
             "sourceUnitId": "unit-kroot-flesh-shaper"
           },
           {
@@ -2952,13 +2977,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sectionId": "tau-empire-ability-ritual-butchery",
             "title": "Ritual Butchery",
             "text": "While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
-            "sourceUnitId": "unit-kroot-flesh-shaper"
-          },
-          {
-            "id": "tau-empire-ability-harnessed-alien-instincts",
-            "sectionId": "tau-empire-ability-harnessed-alien-instincts",
-            "title": "Harnessed Alien Instincts",
-            "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
             "sourceUnitId": "unit-kroot-flesh-shaper"
           },
           {
@@ -3016,6 +3034,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-kroot-flesh-shaper-selection-twin-ritualistic-blades",
@@ -3081,7 +3100,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3090,11 +3112,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Character",
         "Mounted",
+        "Character",
         "Kroot",
-        "T'au Empire",
-        "Lone-spear"
+        "Lone-Spear",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -3136,13 +3158,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-kroot-lone-spear"
           },
           {
-            "id": "tau-empire-ability-harnessed-alien-instincts",
-            "sectionId": "tau-empire-ability-harnessed-alien-instincts",
-            "title": "Harnessed Alien Instincts",
-            "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-            "sourceUnitId": "unit-kroot-lone-spear"
-          },
-          {
             "id": "core-stealth",
             "sectionId": "core-stealth",
             "title": "Stealth",
@@ -3176,6 +3191,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-kroot-lone-spear-selection-close-combat-weapon",
@@ -3331,7 +3347,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3344,8 +3363,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Character",
         "Kroot",
         "Shaper",
-        "T'au Empire",
-        "Trail Shaper"
+        "Trail Shaper",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [
@@ -3467,13 +3486,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-kroot-trail-shaper"
           },
           {
-            "id": "tau-empire-ability-harnessed-alien-instincts",
-            "sectionId": "tau-empire-ability-harnessed-alien-instincts",
-            "title": "Harnessed Alien Instincts",
-            "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-            "sourceUnitId": "unit-kroot-trail-shaper"
-          },
-          {
             "id": "core-infiltrators",
             "sectionId": "core-infiltrators",
             "title": "Infiltrators",
@@ -3514,6 +3526,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-kroot-trail-shaper-selection-kroot-rifle",
@@ -3579,7 +3592,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3592,8 +3608,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Character",
         "Kroot",
         "Shaper",
-        "T'au Empire",
-        "War Shaper"
+        "War Shaper",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [
@@ -3715,13 +3731,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-kroot-war-shaper"
           },
           {
-            "id": "tau-empire-ability-harnessed-alien-instincts",
-            "sectionId": "tau-empire-ability-harnessed-alien-instincts",
-            "title": "Harnessed Alien Instincts",
-            "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-            "sourceUnitId": "unit-kroot-war-shaper"
-          },
-          {
             "id": "core-infiltrators",
             "sectionId": "core-infiltrators",
             "title": "Infiltrators",
@@ -3762,6 +3771,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-kroot-war-shaper-selection-bladestave-and-prey-hook",
@@ -3887,7 +3897,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3898,12 +3911,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "intrinsicKeywords": [
         "Vehicle",
         "Fly",
+        "Frame",
         "Transport",
         "Dedicated Transport",
         "Devilfish",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -3934,7 +3946,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-rapid-deployment",
             "sectionId": "tau-empire-ability-rapid-deployment",
             "title": "Rapid Deployment",
-            "text": "Units can disembark from this TRANSPORT after it has Advanced. Units that do so count as having made a Normal move that phase, and cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn.",
+            "text": "Units can disembark from this TRANSPORT after it has Advanced. Units that do so make a shock disembark move (Core Rules, 18.07) for that disembarkation.",
             "sourceUnitId": "unit-devilfish"
           },
           {
@@ -3964,6 +3976,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-devilfish-selection-twin-pulse-carbine",
@@ -4119,7 +4132,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4128,15 +4144,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Epic Hero",
         "Vehicle",
         "Walker",
         "Fly",
         "Character",
+        "Epic Hero",
         "Battlesuit",
         "Commander Farsight",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [
@@ -4200,7 +4215,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-puretides-teachings",
             "sectionId": "tau-empire-ability-puretides-teachings",
             "title": "Puretide's Teachings",
-            "text": "Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+            "text": "Once per battle round, you can target this model’s unit with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
             "sourceUnitId": "unit-commander-farsight"
           },
           {
@@ -4237,6 +4252,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-commander-farsight-selection-high-intensity-plasma-rifle",
@@ -4361,7 +4377,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4370,14 +4389,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Epic Hero",
         "Infantry",
         "Fly",
         "Character",
+        "Epic Hero",
         "Battlesuit",
         "Commander Shadowsun",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -4415,21 +4433,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-hero-of-the-empire-aura",
             "sectionId": "tau-empire-ability-hero-of-the-empire-aura",
             "title": "Hero of the Empire (Aura)",
-            "text": "While a friendly T’au Empire unit is within 6\" of this model, each time a model in that unit makes a ranged attack, re-roll a Hit roll of 1.",
-            "sourceUnitId": "unit-commander-shadowsun"
-          },
-          {
-            "id": "tau-empire-ability-advanced-guardian-drone",
-            "sectionId": "tau-empire-ability-advanced-guardian-drone",
-            "title": "Advanced Guardian Drone",
-            "text": "Each time a ranged attack targets the bearer, subtract 1 from the Wound roll.",
-            "sourceUnitId": "unit-commander-shadowsun"
-          },
-          {
-            "id": "tau-empire-ability-command-link-drone-aura",
-            "sectionId": "tau-empire-ability-command-link-drone-aura",
-            "title": "Command-link Drone (Aura)",
-            "text": "While a friendly T’au Empire unit is within 6\" of the bearer, each time you select that unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+            "text": "While a friendly T’AU EMPIRE unit is within 6\" of this model, each time a model in that unit makes a ranged attack, re-roll a Hit roll of 1.",
             "sourceUnitId": "unit-commander-shadowsun"
           },
           {
@@ -4480,6 +4484,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-commander-shadowsun-selection-light-missile-pod",
@@ -4540,6 +4545,30 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-commander-shadowsun-profile-3722574bac"
             ],
             "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-commander-shadowsun-selection-advanced-guardian-drone",
+            "title": "Advanced Guardian Drone",
+            "aliases": [
+              "Advanced Guardian Drone"
+            ],
+            "kind": "wargear",
+            "profileIds": [],
+            "wargearAbilityIds": [
+              "unit-commander-shadowsun-wargear-ability-56048e29f0"
+            ]
+          },
+          {
+            "id": "unit-commander-shadowsun-selection-command-link-drone-aura",
+            "title": "Command-link Drone (Aura)",
+            "aliases": [
+              "Command-link Drone (Aura)"
+            ],
+            "kind": "wargear",
+            "profileIds": [],
+            "wargearAbilityIds": [
+              "unit-commander-shadowsun-wargear-ability-ceea2651db"
+            ]
           }
         ],
         "weaponFamilies": [],
@@ -4635,7 +4664,37 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [
+          {
+            "id": "unit-commander-shadowsun-wargear-ability-56048e29f0",
+            "sectionId": "unit-commander-shadowsun-wargear-ability-56048e29f0",
+            "title": "Advanced Guardian Drone",
+            "text": "Each time a ranged attack targets the bearer, subtract 1 from the Wound roll.",
+            "sourceUnitId": "unit-commander-shadowsun",
+            "legacyIds": [
+              "unit-commander-shadowsun-wargear-ability-advanced-guardian-drone"
+            ],
+            "requiredSelectionIds": [
+              "unit-commander-shadowsun-selection-advanced-guardian-drone"
+            ]
+          },
+          {
+            "id": "unit-commander-shadowsun-wargear-ability-ceea2651db",
+            "sectionId": "unit-commander-shadowsun-wargear-ability-ceea2651db",
+            "title": "Command-link Drone (Aura)",
+            "text": "While a friendly T’AU EMPIRE unit is within 6\" of the bearer, each time you select that unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+            "sourceUnitId": "unit-commander-shadowsun",
+            "legacyIds": [
+              "unit-commander-shadowsun-wargear-ability-command-link-drone-aura-2"
+            ],
+            "requiredSelectionIds": [
+              "unit-commander-shadowsun-selection-command-link-drone-aura"
+            ]
+          }
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4644,13 +4703,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
+        "Infantry",
         "Character",
         "Epic Hero",
-        "Darkstrider",
-        "T'au Empire",
         "Markerlight",
-        "Infantry",
-        "Non-Kroot"
+        "Darkstrider",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [
@@ -4742,6 +4800,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-darkstrider-selection-shade",
@@ -4807,7 +4866,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4816,15 +4878,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "faction-pack",
       "intrinsicKeywords": [
-        "Epic Hero",
         "Vehicle",
         "Walker",
         "Fly",
         "Character",
+        "Epic Hero",
         "Battlesuit",
-        "T'au Empire",
-        "Non-Kroot",
-        "The Twin Lance"
+        "The Twin Lance",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -4930,6 +4991,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-the-twin-lance-selection-fusion-eliminator",
@@ -5238,7 +5300,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-the-twin-lance-selection-mv15-gun-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5494,7 +5559,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-fieldcraft",
             "sectionId": "tau-empire-ability-fieldcraft",
             "title": "Fieldcraft",
-            "text": "At the end of the your Command phase, if this unit within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn.",
+            "text": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn.",
             "sourceUnitId": "unit-kroot-carnivores"
           },
           {
@@ -5502,13 +5567,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sectionId": "core-bodyguard",
             "title": "Bodyguard",
             "text": "If this unit has a Starting Strength of 20, you can attach up to two Leader units to it instead of one, provided those Leaders are not duplicates (e.g. you cannot attach two WAR SHAPERS to this unit). If you do, and this unit is destroyed, the Leader units attached to it become separate units with their original Starting Strengths.",
-            "sourceUnitId": "unit-kroot-carnivores"
-          },
-          {
-            "id": "tau-empire-ability-harnessed-alien-instincts",
-            "sectionId": "tau-empire-ability-harnessed-alien-instincts",
-            "title": "Harnessed Alien Instincts",
-            "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
             "sourceUnitId": "unit-kroot-carnivores"
           },
           {
@@ -5531,7 +5589,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-kroot-carnivores-model-40a87f1ad7",
             "title": "9-19 Kroot Carnivores",
             "aliases": [
-              "9-19 Kroot Carnivores"
+              "9-19 Kroot Carnivores",
+              "Kroot Carnivores",
+              "Kroot Carnivore w/ tanglebomb launcher"
             ],
             "legacyIds": [
               "unit-kroot-carnivores-model-9-19-kroot-carnivores"
@@ -5548,6 +5608,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-kroot-carnivores-selection-close-combat-weapon",
@@ -5703,7 +5764,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5713,8 +5777,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceLayer": "codex",
       "intrinsicKeywords": [
         "Infantry",
-        "Grenades",
         "Kroot",
+        "Grenades",
         "Farstalkers",
         "T'au Empire"
       ],
@@ -5768,13 +5832,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         },
         "abilities": [
           {
-            "id": "tau-empire-ability-harnessed-alien-instincts",
-            "sectionId": "tau-empire-ability-harnessed-alien-instincts",
-            "title": "Harnessed Alien Instincts",
-            "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-            "sourceUnitId": "unit-kroot-farstalkers"
-          },
-          {
             "id": "core-infiltrators",
             "sectionId": "core-infiltrators",
             "title": "Infiltrators",
@@ -5786,6 +5843,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sectionId": "core-stealth",
             "title": "Stealth",
             "text": "If every model in a unit has this ability, each time a ranged attack targets that unit, that unit has the benefit of cover against that attack (13.08).",
+            "sourceUnitId": "unit-kroot-farstalkers"
+          },
+          {
+            "id": "tau-empire-ability-bounty-hunters",
+            "sectionId": "tau-empire-ability-bounty-hunters",
+            "title": "Bounty Hunters",
+            "text": "At the start of the battle, select one unit from your opponent’s army. Each time a model in this unit makes an attack that targets that unit, that attack has the [LETHAL HITS] and [PRECISION] abilities.",
             "sourceUnitId": "unit-kroot-farstalkers"
           }
         ],
@@ -5804,7 +5868,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-kroot-farstalkers-model-9335775812",
             "title": "Kroot Farstalkers",
             "aliases": [
-              "Kroot Farstalkers"
+              "Kroot Farstalkers",
+              "Kroot Farstalker",
+              "Kroot Farstalker w/ Farstalker firearm and Pech'ra"
             ],
             "legacyIds": [
               "unit-kroot-farstalkers-model-kroot-farstalkers-2"
@@ -5821,6 +5887,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-kroot-farstalkers-selection-ripping-fangs",
@@ -5908,15 +5975,27 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           },
           {
             "id": "unit-kroot-farstalkers-selection-tau-tech-rifle",
-            "title": "T'au tech rifle",
+            "title": "T’au-tech rifle",
             "aliases": [
-              "T'au tech rifle"
+              "T’au-tech rifle"
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-kroot-farstalkers-profile-9c2d2f3a06"
+              "unit-kroot-farstalkers-profile-72172572e7"
             ],
             "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-kroot-farstalkers-selection-pechra",
+            "title": "Pech’ra",
+            "aliases": [
+              "Pech’ra"
+            ],
+            "kind": "wargear",
+            "profileIds": [],
+            "wargearAbilityIds": [
+              "unit-kroot-farstalkers-wargear-ability-bc9d7dbfd0"
+            ]
           }
         ],
         "weaponFamilies": [],
@@ -6048,11 +6127,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-kroot-farstalkers-profile-9c2d2f3a06",
+            "id": "unit-kroot-farstalkers-profile-72172572e7",
             "legacyIds": [
               "unit-kroot-farstalkers-profile-tau-tech-rifle-ranged-8"
             ],
-            "title": "T'au tech rifle",
+            "title": "T’au-tech rifle",
             "mode": "ranged",
             "range": "30\"",
             "a": "1",
@@ -6066,7 +6145,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [
+          {
+            "id": "unit-kroot-farstalkers-wargear-ability-bc9d7dbfd0",
+            "sectionId": "unit-kroot-farstalkers-wargear-ability-bc9d7dbfd0",
+            "title": "Pech’ra",
+            "text": "Ranged weapons equipped by the bearer’s unit have the [IGNORES COVER] ability.",
+            "sourceUnitId": "unit-kroot-farstalkers",
+            "legacyIds": [
+              "unit-kroot-farstalkers-wargear-ability-pechra"
+            ],
+            "requiredSelectionIds": [
+              "unit-kroot-farstalkers-selection-pechra"
+            ]
+          }
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6079,8 +6175,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Grenades",
         "Markerlight",
         "Pathfinder Team",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -6158,7 +6253,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-pathfinder-team-model-dc12074b37",
             "title": "Pathfinders",
             "aliases": [
-              "Pathfinders"
+              "Pathfinders",
+              "Pathfinders w/ pulse carbine",
+              "Pathfinders w/ pulse carbine and grenade launcher"
             ],
             "legacyIds": [
               "unit-pathfinder-team-model-pathfinders"
@@ -6175,6 +6272,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-pathfinder-team-selection-pulse-carbine",
@@ -6345,7 +6443,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "kind": "wargear",
             "profileIds": [],
             "wargearAbilityIds": [
-              "unit-pathfinder-team-wargear-ability-c43e038405"
+              "unit-pathfinder-team-wargear-ability-661c0b0cc2"
             ]
           },
           {
@@ -6641,10 +6739,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         ],
         "wargearAbilities": [
           {
-            "id": "unit-pathfinder-team-wargear-ability-c43e038405",
-            "sectionId": "unit-pathfinder-team-wargear-ability-c43e038405",
+            "id": "unit-pathfinder-team-wargear-ability-661c0b0cc2",
+            "sectionId": "unit-pathfinder-team-wargear-ability-661c0b0cc2",
             "title": "Grav-inhibitor Drone",
-            "text": "Each time an enemy unit selects the bearer's unit as the target of a charge, subtract 2 from the Charge roll (this is not cumulative with any other negative modifiers to that Charge roll).",
+            "text": "Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll).",
             "sourceUnitId": "unit-pathfinder-team",
             "legacyIds": [
               "unit-pathfinder-team-wargear-ability-grav-inhibitor-drone"
@@ -6718,7 +6816,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-pathfinder-team-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6730,11 +6831,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Infantry",
         "Fly",
         "Battlesuit",
-        "Stealth",
-        "T'au Empire",
         "Grenades",
         "Markerlight",
-        "Non-Kroot"
+        "Stealth",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -6795,7 +6895,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-stealth-battlesuits-model-09e8cea44f",
             "title": "4 Stealth Shas'ui",
             "aliases": [
-              "4 Stealth Shas'ui"
+              "4 Stealth Shas'ui",
+              "Stealth Shas'ui w/ burst cannon",
+              "Stealth Shas'ui w/ fusion blaster"
             ],
             "legacyIds": [
               "unit-stealth-battlesuits-model-4-stealth-shasui"
@@ -6812,6 +6914,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-stealth-battlesuits-selection-battlesuit-fists",
@@ -6883,7 +6986,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "kind": "wargear",
             "profileIds": [],
             "wargearAbilityIds": [
-              "unit-stealth-battlesuits-wargear-ability-24b3a1db35"
+              "unit-stealth-battlesuits-wargear-ability-8d6e7fb215"
             ]
           },
           {
@@ -7007,10 +7110,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         ],
         "wargearAbilities": [
           {
-            "id": "unit-stealth-battlesuits-wargear-ability-24b3a1db35",
-            "sectionId": "unit-stealth-battlesuits-wargear-ability-24b3a1db35",
+            "id": "unit-stealth-battlesuits-wargear-ability-8d6e7fb215",
+            "sectionId": "unit-stealth-battlesuits-wargear-ability-8d6e7fb215",
             "title": "Homing Beacon",
-            "text": "Once per battle, you can use the Rapid Ingress Stratagem for 0CP. The target must be set up within 3\" of the bearer’s unit and more than 8\" away from all enemy units.\n Designer’s Note: *Place a Homing Beacon token next to this unit, removing it once this ability is used.*",
+            "text": "Once per battle, you can use the Rapid Ingress Stratagem for 0CP. The target must be set up within 3\" of the bearer’s unit and more than 8\" away from all enemy units.\nDesigner’s Note: Place a Homing Beacon token next to this unit, removing it once this ability is used.",
             "sourceUnitId": "unit-stealth-battlesuits",
             "legacyIds": [
               "unit-stealth-battlesuits-wargear-ability-homing-beacon"
@@ -7032,7 +7135,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-stealth-battlesuits-selection-marker-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7043,9 +7149,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "intrinsicKeywords": [
         "Infantry",
         "Fly",
-        "T'au Empire",
         "Vespid Stingwings",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -7102,13 +7207,18 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-vespid-stingwings-model-d198e33d6f",
             "title": "4-9 Vespid Stingwings",
             "aliases": [
-              "4-9 Vespid Stingwings"
+              "4-9 Vespid Stingwings",
+              "Vespid Stingwings w/ Neutron Blaster",
+              "Vespid Stingwings w/ T'au Flamer",
+              "Vespid Stingwings w/ Neutron Grenade Launcher",
+              "Vespid Stingwings w/ Neutron Rail Rifle"
             ],
             "legacyIds": [
               "unit-vespid-stingwings-model-4-9-vespid-stingwings-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-vespid-stingwings-selection-stingwing-claws",
@@ -7179,7 +7289,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "kind": "wargear",
             "profileIds": [],
             "wargearAbilityIds": [
-              "unit-vespid-stingwings-wargear-ability-b558f52818"
+              "unit-vespid-stingwings-wargear-ability-08190dc56a"
             ]
           }
         ],
@@ -7278,10 +7388,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         ],
         "wargearAbilities": [
           {
-            "id": "unit-vespid-stingwings-wargear-ability-b558f52818",
-            "sectionId": "unit-vespid-stingwings-wargear-ability-b558f52818",
+            "id": "unit-vespid-stingwings-wargear-ability-08190dc56a",
+            "sectionId": "unit-vespid-stingwings-wargear-ability-08190dc56a",
             "title": "Oversight Drone",
-            "text": "Once per battle, when the bearer’s unit is selected to shoot, until the end of the phase, ranged weapons equipped by models in this unit have the [IGNORES COVER] ability.\n\nDesigner’s Note: Place an Oversight Drone token next to the bearer, removing it once this ability has been used.",
+            "text": "Once per battle, when the bearer’s unit is selected to shoot, until the end of the phase, ranged weapons equipped by models in this unit have the [IGNORES COVER] ability.\nDesigner’s Note: Place an Oversight Drone token next to the bearer, removing it once this ability has been used.",
             "sourceUnitId": "unit-vespid-stingwings",
             "legacyIds": [
               "unit-vespid-stingwings-wargear-ability-oversight-drone"
@@ -7290,7 +7400,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-vespid-stingwings-selection-oversight-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7302,9 +7415,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Vehicle",
         "Walker",
         "Battlesuit",
-        "T'au Empire",
         "Broadside",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -7358,7 +7470,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-broadside-battlesuits-model-0f703d9afd",
             "title": "Broadside Shas’ui (0-2)",
             "aliases": [
-              "Broadside Shas’ui (0-2)"
+              "Broadside Shas’ui (0-2)",
+              "Broadside Shas’ui"
             ],
             "legacyIds": [
               "unit-broadside-battlesuits-model-broadside-shasui-0-2"
@@ -7375,6 +7488,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-broadside-battlesuits-selection-heavy-rail-rifle",
@@ -7721,7 +7835,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-broadside-battlesuits-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7735,9 +7852,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Fly",
         "Battlesuit",
         "Crisis",
-        "T'au Empire",
         "Fireknife",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -7841,6 +7957,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-crisis-fireknife-battlesuits-selection-plasma-rifle",
@@ -8061,7 +8178,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-crisis-fireknife-battlesuits-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8075,9 +8195,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Fly",
         "Battlesuit",
         "Crisis",
-        "T'au Empire",
         "Starscythe",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -8141,7 +8260,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-battlesuit-support-system-2",
             "sectionId": "tau-empire-ability-battlesuit-support-system-2",
             "title": "Battlesuit Support System",
-            "text": "The unit is eligible to shoot in a turn in which it Fell Back.",
+            "text": "This unit is eligible to shoot in a turn in which it Fell Back.",
             "sourceUnitId": "unit-crisis-starscythe-battlesuits"
           },
           {
@@ -8181,6 +8300,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-crisis-starscythe-battlesuits-selection-burst-cannon",
@@ -8412,7 +8532,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-crisis-starscythe-battlesuits-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8426,9 +8549,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Fly",
         "Battlesuit",
         "Crisis",
-        "T'au Empire",
         "Sunforge",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -8525,6 +8647,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-crisis-sunforge-battlesuits-selection-twin-pulse-carbine",
@@ -8726,7 +8849,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-crisis-sunforge-battlesuits-selection-guardian-drone"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8741,8 +8867,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Smoke",
         "Battlesuit",
         "Ghostkeel",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -8773,21 +8898,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-stealth-drones",
             "sectionId": "tau-empire-ability-stealth-drones",
             "title": "Stealth Drones",
-            "text": "Twice per battle, after an attack has been allocated to this model, you can change the Damage characteristic of that attack to 0.\n\nDesigner’s Note: Place two Stealth Drone tokens next to the unit, removing one each time this ability has been used.",
+            "text": "Twice per battle, after an attack has been allocated to this model, you can change the Damage characteristic of that attack to 0.\nDesigner’s Note: Place two Stealth Drone tokens next to the unit, removing one each time this ability has been used.",
             "sourceUnitId": "unit-ghostkeel-battlesuit"
           },
           {
             "id": "tau-empire-ability-damaged-1-4-wounds-remaining",
             "sectionId": "tau-empire-ability-damaged-1-4-wounds-remaining",
-            "title": "Damaged: 1-4 Wounds Remaining",
+            "title": "Damaged: 1-4 WOUNDS REMAINING",
             "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
-            "sourceUnitId": "unit-ghostkeel-battlesuit"
-          },
-          {
-            "id": "tau-empire-ability-localised-stealth-projectors-aura",
-            "sectionId": "tau-empire-ability-localised-stealth-projectors-aura",
-            "title": "Localised Stealth Projectors (Aura)",
-            "text": "When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden.",
             "sourceUnitId": "unit-ghostkeel-battlesuit"
           },
           {
@@ -8838,6 +8956,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-ghostkeel-battlesuit-selection-ghostkeel-fists",
@@ -8946,7 +9065,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "kind": "wargear",
             "profileIds": [],
             "wargearAbilityIds": [
-              "unit-ghostkeel-battlesuit-wargear-ability-b8ae1d922d"
+              "unit-ghostkeel-battlesuit-wargear-ability-956b6fd913"
             ]
           }
         ],
@@ -9096,10 +9215,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         ],
         "wargearAbilities": [
           {
-            "id": "unit-ghostkeel-battlesuit-wargear-ability-b8ae1d922d",
-            "sectionId": "unit-ghostkeel-battlesuit-wargear-ability-b8ae1d922d",
+            "id": "unit-ghostkeel-battlesuit-wargear-ability-956b6fd913",
+            "sectionId": "unit-ghostkeel-battlesuit-wargear-ability-956b6fd913",
             "title": "Battlesuit Support System",
-            "text": "The bearer is eligible to shoot in a turn in which it Fell Back but it loses the Smoke keyword.",
+            "text": "The bearer is eligible to shoot in a turn in which it Fell Back but it loses the SMOKE keyword.",
             "sourceUnitId": "unit-ghostkeel-battlesuit",
             "legacyIds": [
               "unit-ghostkeel-battlesuit-wargear-ability-battlesuit-support-system"
@@ -9108,7 +9227,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-ghostkeel-battlesuit-selection-battlesuit-support-system"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9119,10 +9241,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "intrinsicKeywords": [
         "Vehicle",
         "Fly",
+        "Frame",
         "Hammerhead Gunship",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -9159,7 +9280,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           {
             "id": "tau-empire-ability-damaged-1-5-wounds-remaining",
             "sectionId": "tau-empire-ability-damaged-1-5-wounds-remaining",
-            "title": "Damaged: 1-5 Wounds Remaining",
+            "title": "Damaged: 1-5 WOUNDS REMAINING",
             "text": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
             "sourceUnitId": "unit-hammerhead-gunship"
           },
@@ -9197,6 +9318,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-hammerhead-gunship-selection-railgun",
@@ -9471,7 +9593,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9480,10 +9605,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceBookId": "tau-empire",
       "sourceLayer": "codex",
       "intrinsicKeywords": [
-        "Beast",
+        "Beasts",
         "Kroot",
-        "T'au Empire",
-        "Hounds"
+        "Hounds",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -9525,13 +9650,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-kroot-hounds"
           },
           {
-            "id": "tau-empire-ability-harnessed-alien-instincts",
-            "sectionId": "tau-empire-ability-harnessed-alien-instincts",
-            "title": "Harnessed Alien Instincts",
-            "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-            "sourceUnitId": "unit-kroot-hounds"
-          },
-          {
             "id": "core-scouts",
             "sectionId": "core-scouts",
             "title": "Scouts 7\"",
@@ -9551,13 +9669,15 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-kroot-hounds-model-796ce1192c",
             "title": "5-10 Kroot Hounds",
             "aliases": [
-              "5-10 Kroot Hounds"
+              "5-10 Kroot Hounds",
+              "Kroot Hounds"
             ],
             "legacyIds": [
               "unit-kroot-hounds-model-5-10-kroot-hounds"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-kroot-hounds-selection-ripping-fangs",
@@ -9593,7 +9713,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9605,8 +9728,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Mounted",
         "Grenades",
         "Kroot",
-        "T'au Empire",
-        "Krootox Rampagers"
+        "Krootox Rampagers",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -9641,13 +9764,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "sourceUnitId": "unit-krootox-rampagers"
           },
           {
-            "id": "tau-empire-ability-harnessed-alien-instincts",
-            "sectionId": "tau-empire-ability-harnessed-alien-instincts",
-            "title": "Harnessed Alien Instincts",
-            "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
-            "sourceUnitId": "unit-krootox-rampagers"
-          },
-          {
             "id": "core-scouts",
             "sectionId": "core-scouts",
             "title": "Scouts 7\"",
@@ -9667,16 +9783,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
-            "id": "unit-krootox-rampagers-selection-hunting-blades",
-            "title": "Hunting blades",
+            "id": "unit-krootox-rampagers-selection-close-combat-weapon",
+            "title": "Close combat weapon",
             "aliases": [
-              "Hunting blades"
+              "Close combat weapon"
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-krootox-rampagers-profile-bd55368be2"
+              "unit-krootox-rampagers-profile-8f3dc48155"
             ],
             "wargearAbilityIds": []
           },
@@ -9693,14 +9810,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "wargearAbilityIds": []
           },
           {
-            "id": "unit-krootox-rampagers-selection-rampager-fists",
-            "title": "Rampager fists",
+            "id": "unit-krootox-rampagers-selection-krootox-fists",
+            "title": "Krootox fists",
             "aliases": [
-              "Rampager fists"
+              "Krootox fists"
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-krootox-rampagers-profile-9f4b21987c"
+              "unit-krootox-rampagers-profile-3d37622c9d"
             ],
             "wargearAbilityIds": []
           }
@@ -9708,11 +9825,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "weaponFamilies": [],
         "weaponProfiles": [
           {
-            "id": "unit-krootox-rampagers-profile-bd55368be2",
+            "id": "unit-krootox-rampagers-profile-8f3dc48155",
             "legacyIds": [
-              "unit-krootox-rampagers-profile-hunting-blades-melee"
+              "unit-krootox-rampagers-profile-close-combat-weapon-melee"
             ],
-            "title": "Hunting blades",
+            "title": "Close combat weapon",
             "mode": "melee",
             "range": "Melee",
             "a": "3",
@@ -9722,7 +9839,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "d": "1",
             "abilities": "Lance",
             "sourceSelectionIds": [
-              "unit-krootox-rampagers-selection-hunting-blades"
+              "unit-krootox-rampagers-selection-close-combat-weapon"
             ]
           },
           {
@@ -9744,11 +9861,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-krootox-rampagers-profile-9f4b21987c",
+            "id": "unit-krootox-rampagers-profile-3d37622c9d",
             "legacyIds": [
-              "unit-krootox-rampagers-profile-rampager-fists-melee-3"
+              "unit-krootox-rampagers-profile-krootox-fists-melee-3"
             ],
-            "title": "Rampager fists",
+            "title": "Krootox fists",
             "mode": "melee",
             "range": "Melee",
             "a": "4",
@@ -9758,11 +9875,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "d": "2",
             "abilities": "Extra Attacks, Sustained Hits 1",
             "sourceSelectionIds": [
-              "unit-krootox-rampagers-selection-rampager-fists"
+              "unit-krootox-rampagers-selection-krootox-fists"
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9772,10 +9892,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "sourceLayer": "codex",
       "intrinsicKeywords": [
         "Mounted",
+        "Grenades",
         "Kroot",
         "Krootox Riders",
-        "T'au Empire",
-        "Grenades"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -9806,14 +9926,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-kroot-packmates",
             "sectionId": "tau-empire-ability-kroot-packmates",
             "title": "Kroot Packmates",
-            "text": "Once per turn, in your opponent's Shooting phase, when a friendly KROOT INFANTRY unit within 6\" of this unit is selected as the target of an attack, one unit from your army with this ability can use it. If it does, after that enemy unit has finished making its attacks, that unit with this ability can shoot as if it were your Shooting phase, but when resolving those attacks it can only target that enemy unit (and only if it is an eligible target).",
-            "sourceUnitId": "unit-krootox-riders"
-          },
-          {
-            "id": "tau-empire-ability-harnessed-alien-instincts",
-            "sectionId": "tau-empire-ability-harnessed-alien-instincts",
-            "title": "Harnessed Alien Instincts",
-            "text": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked:\n- While a unit is prey-marked, that unit has +3\" detection range.",
+            "text": "Once per turn, in your opponent’s Shooting phase, when a friendly KROOT INFANTRY unit within 6\" of this unit is selected as the target of an attack, one unit from your army with this ability can use it. If it does, after that enemy unit has finished making its attacks, that unit with this ability can shoot as if it were your Shooting phase, but when resolving those attacks it can only target that enemy unit (and only if it is an eligible target).",
             "sourceUnitId": "unit-krootox-riders"
           },
           {
@@ -9829,13 +9942,16 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-krootox-riders-model-bf51317272",
             "title": "Krootox Riders",
             "aliases": [
-              "Krootox Riders"
+              "Krootox Riders",
+              "Krootox Rider w/ repeater cannon",
+              "Krootox Rider w/ tanglecannon"
             ],
             "legacyIds": [
               "unit-krootox-riders-model-krootox-riders"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-krootox-riders-selection-krootox-fists",
@@ -9961,7 +10077,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9972,10 +10091,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "intrinsicKeywords": [
         "Vehicle",
         "Fly",
-        "T'au Empire",
-        "Piranha",
-        "Non-Kroot",
-        "Frame"
+        "Frame",
+        "Piranhas",
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -10043,6 +10161,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-piranhas-selection-piranha-burst-cannon",
@@ -10198,7 +10317,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -10210,10 +10332,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Vehicle",
         "Aircraft",
         "Fly",
+        "Frame",
         "Razorshark Strike Fighter",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -10250,7 +10371,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           {
             "id": "tau-empire-ability-damaged-1-4-wounds-remaining",
             "sectionId": "tau-empire-ability-damaged-1-4-wounds-remaining",
-            "title": "Damaged: 1-4 Wounds Remaining",
+            "title": "Damaged: 1-4 WOUNDS REMAINING",
             "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
             "sourceUnitId": "unit-razorshark-strike-fighter"
           },
@@ -10281,6 +10402,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-razorshark-strike-fighter-selection-quad-ion-turret-standard",
@@ -10495,7 +10617,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -10508,9 +10633,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Walker",
         "Fly",
         "Battlesuit",
-        "T'au Empire",
         "Riptide",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -10547,15 +10671,15 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           {
             "id": "tau-empire-ability-damaged-1-4-wounds-remaining",
             "sectionId": "tau-empire-ability-damaged-1-4-wounds-remaining",
-            "title": "Damaged: 1-4 Wounds Remaining",
+            "title": "Damaged: 1-4 WOUNDS REMAINING",
             "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
             "sourceUnitId": "unit-riptide-battlesuit"
           },
           {
-            "id": "tau-empire-ability-battlesuit-support-system",
-            "sectionId": "tau-empire-ability-battlesuit-support-system",
+            "id": "tau-empire-ability-battlesuit-support-system-4",
+            "sectionId": "tau-empire-ability-battlesuit-support-system-4",
             "title": "Battlesuit Support System",
-            "text": "The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+            "text": "The bearer is eligible to shoot in a turn in which it Fell Back.",
             "sourceUnitId": "unit-riptide-battlesuit"
           },
           {
@@ -10599,6 +10723,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-riptide-battlesuit-selection-riptide-fists",
@@ -10873,7 +10998,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -10884,11 +11012,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "intrinsicKeywords": [
         "Vehicle",
         "Fly",
+        "Frame",
         "Markerlight",
         "Sky Ray Gunship",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -10919,21 +11046,21 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-velocity-tracker",
             "sectionId": "tau-empire-ability-velocity-tracker",
             "title": "Velocity Tracker",
-            "text": "Each time this model makes an attack with a ranged weapon that targets a unit that can FLY, you can re-roll the Hit roll.",
+            "text": "Each time this model makes a ranged attack that targets a unit that can FLY, you can re-roll the Hit roll.",
             "sourceUnitId": "unit-sky-ray-gunship"
           },
           {
             "id": "tau-empire-ability-damaged-1-5-wounds-remaining",
             "sectionId": "tau-empire-ability-damaged-1-5-wounds-remaining",
-            "title": "Damaged: 1-5 Wounds Remaining",
+            "title": "Damaged: 1-5 WOUNDS REMAINING",
             "text": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
             "sourceUnitId": "unit-sky-ray-gunship"
           },
           {
-            "id": "tau-empire-ability-targeting-array",
-            "sectionId": "tau-empire-ability-targeting-array",
+            "id": "tau-empire-ability-targeting-array-2",
+            "sectionId": "tau-empire-ability-targeting-array-2",
             "title": "Targeting Array",
-            "text": "Each time this model is selected to shoot, you can re-roll one Hit roll or you can re-roll one Wound roll when resolving those attacks.",
+            "text": "Each time this unit is selected to shoot, you can re-roll one Hit roll or you can re-roll one Wound roll when resolving those attacks.",
             "sourceUnitId": "unit-sky-ray-gunship"
           },
           {
@@ -10963,6 +11090,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-sky-ray-gunship-selection-seeker-missile-rack",
@@ -11118,7 +11246,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -11132,8 +11263,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Titanic",
         "Towering",
         "Stormsurge",
-        "T'au Empire",
-        "Non-Kroot"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -11163,8 +11293,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           {
             "id": "tau-empire-ability-damaged-1-5-wounds-remaining-2",
             "sectionId": "tau-empire-ability-damaged-1-5-wounds-remaining-2",
-            "title": "Damaged: 1-5 Wounds Remaining",
-            "text": "While this model has 1-5 wounds remaining, subtract 3 from this models Objective Control characteristic, and each time this model makes an attack, subtract 1 from the Hit roll.",
+            "title": "Damaged: 1-5 WOUNDS REMAINING",
+            "text": "While this model has 1-5 wounds remaining, subtract 3 from this model’s Objective Control characteristic, and each time this model makes an attack, subtract 1 from the Hit roll.",
             "sourceUnitId": "unit-stormsurge"
           },
           {
@@ -11215,6 +11345,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-stormsurge-selection-cluster-rocket-system",
@@ -11549,7 +11680,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -11561,10 +11695,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Vehicle",
         "Aircraft",
         "Fly",
+        "Frame",
         "Sun Shark Bomber",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -11601,7 +11734,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           {
             "id": "tau-empire-ability-damaged-1-4-wounds-remaining",
             "sectionId": "tau-empire-ability-damaged-1-4-wounds-remaining",
-            "title": "Damaged: 1-4 Wounds Remaining",
+            "title": "Damaged: 1-4 WOUNDS REMAINING",
             "text": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
             "sourceUnitId": "unit-sun-shark-bomber"
           },
@@ -11632,6 +11765,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-sun-shark-bomber-selection-twin-ion-rifle-standard",
@@ -11646,14 +11780,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "wargearAbilityIds": []
           },
           {
-            "id": "unit-sun-shark-bomber-selection-twin-ion-rifle-overcharged",
-            "title": "➤ Twin ion rifle - overcharged",
+            "id": "unit-sun-shark-bomber-selection-twin-ion-rifle-overcharge",
+            "title": "➤ Twin ion rifle - overcharge",
             "aliases": [
-              "➤ Twin ion rifle - overcharged"
+              "➤ Twin ion rifle - overcharge"
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-sun-shark-bomber-profile-62939f6340"
+              "unit-sun-shark-bomber-profile-87aee6027c"
             ],
             "wargearAbilityIds": []
           },
@@ -11715,7 +11849,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "familyId": "unit-sun-shark-bomber-weapon-family-twin-ion-rifle",
             "profileIds": [
               "unit-sun-shark-bomber-profile-a2fefbb1af",
-              "unit-sun-shark-bomber-profile-62939f6340"
+              "unit-sun-shark-bomber-profile-87aee6027c"
             ],
             "wargearAbilityIds": []
           }
@@ -11729,7 +11863,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "profileIds": [
               "unit-sun-shark-bomber-profile-a2fefbb1af",
-              "unit-sun-shark-bomber-profile-62939f6340"
+              "unit-sun-shark-bomber-profile-87aee6027c"
             ],
             "ambiguousAlias": false
           }
@@ -11755,11 +11889,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-sun-shark-bomber-profile-62939f6340",
+            "id": "unit-sun-shark-bomber-profile-87aee6027c",
             "legacyIds": [
-              "unit-sun-shark-bomber-profile-twin-ion-rifle-overcharged-ranged-2"
+              "unit-sun-shark-bomber-profile-twin-ion-rifle-overcharge-ranged-2"
             ],
-            "title": "➤ Twin ion rifle - overcharged",
+            "title": "➤ Twin ion rifle - overcharge",
             "mode": "ranged",
             "range": "30\"",
             "a": "3",
@@ -11769,7 +11903,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "d": "2",
             "abilities": "Hazardous, Twin-linked",
             "sourceSelectionIds": [
-              "unit-sun-shark-bomber-selection-twin-ion-rifle-overcharged",
+              "unit-sun-shark-bomber-selection-twin-ion-rifle-overcharge",
               "unit-sun-shark-bomber-weapon-family-twin-ion-rifle-selection"
             ]
           },
@@ -11846,7 +11980,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -11859,10 +11996,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Vehicle",
         "Transport",
         "Fly",
-        "T'au Empire",
+        "Frame",
         "Tidewall Droneport",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -11893,21 +12029,21 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-droneport",
             "sectionId": "tau-empire-ability-droneport",
             "title": "Droneport",
-            "text": "Each time this FORTIFICATION is selected to shoot, its drone defenders weapon will target and resolve attacks against every enemy unit that is an eligible target to this FORTIFICATION.",
+            "text": "Each time this FORTIFICATION is selected to shoot, its drone defender’s weapon will target and resolve attacks against every enemy unit that is an eligible target to this FORTIFICATION.",
             "sourceUnitId": "unit-tidewall-droneport"
           },
           {
             "id": "tau-empire-ability-fortification",
             "sectionId": "tau-empire-ability-fortification",
             "title": "Fortification",
-            "text": "While an enemy unit is only within Engagement Range of one or more Fortifications from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
+            "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
             "sourceUnitId": "unit-tidewall-droneport"
           },
           {
             "id": "tau-empire-ability-tidewall-cover",
             "sectionId": "tau-empire-ability-tidewall-cover",
             "title": "Tidewall Cover",
-            "text": "Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this FORTIFICATION, that model has the Benefit of Cover against that attack.",
+            "text": "Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this Fortification, that model has the Benefit of Cover against that attack.",
             "sourceUnitId": "unit-tidewall-droneport"
           },
           {
@@ -11937,6 +12073,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tidewall-droneport-selection-drone-defenders",
@@ -11972,7 +12109,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -11985,10 +12125,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Vehicle",
         "Transport",
         "Fly",
+        "Frame",
         "Tidewall Gunrig",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -12019,12 +12158,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-fortification",
             "sectionId": "tau-empire-ability-fortification",
             "title": "Fortification",
-            "text": "While an enemy unit is only within Engagement Range of one or more Fortifications from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
+            "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
             "sourceUnitId": "unit-tidewall-gunrig"
           },
           {
-            "id": "tau-empire-ability-tidewall-cover",
-            "sectionId": "tau-empire-ability-tidewall-cover",
+            "id": "tau-empire-ability-tidewall-cover-2",
+            "sectionId": "tau-empire-ability-tidewall-cover-2",
             "title": "Tidewall Cover",
             "text": "Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this FORTIFICATION, that model has the Benefit of Cover against that attack.",
             "sourceUnitId": "unit-tidewall-gunrig"
@@ -12056,6 +12195,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tidewall-gunrig-selection-supremacy-railgun",
@@ -12091,7 +12231,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -12103,11 +12246,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Fortification",
         "Vehicle",
         "Transport",
+        "Frame",
         "Fly",
         "Tidewall Shieldline",
-        "T'au Empire",
-        "Non-Kroot",
-        "Frame"
+        "T'au Empire"
       ],
       "relations": {
         "canLead": [],
@@ -12138,12 +12280,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "tau-empire-ability-fortification",
             "sectionId": "tau-empire-ability-fortification",
             "title": "Fortification",
-            "text": "While an enemy unit is only within Engagement Range of one or more Fortifications from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
+            "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
             "sourceUnitId": "unit-tidewall-shieldline"
           },
           {
-            "id": "tau-empire-ability-tidewall-cover",
-            "sectionId": "tau-empire-ability-tidewall-cover",
+            "id": "tau-empire-ability-tidewall-cover-2",
+            "sectionId": "tau-empire-ability-tidewall-cover-2",
             "title": "Tidewall Cover",
             "text": "Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this FORTIFICATION, that model has the Benefit of Cover against that attack.",
             "sourceUnitId": "unit-tidewall-shieldline"
@@ -12175,6 +12317,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tidewall-shieldline-selection-tidewall-defence-platform",
@@ -12205,7 +12348,1603 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-tidewall-shieldline-selection-tidewall-defence-platform"
             ]
           }
-        ]
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
+      }
+    },
+    {
+      "id": "unit-ax-1-0-tiger-shark",
+      "title": "AX-1-0 Tiger Shark",
+      "sourceBookId": "tau-empire",
+      "sourceLayer": "imperial-armour",
+      "intrinsicKeywords": [
+        "Vehicle",
+        "Aircraft",
+        "Fly",
+        "Ax-1-0 Tiger Shark",
+        "T'au Empire"
+      ],
+      "relations": {
+        "canLead": [],
+        "canSupport": [],
+        "canBeLedBy": [],
+        "canBeSupportedBy": []
+      },
+      "ruleFacts": {
+        "relations": {
+          "canLead": [],
+          "canSupport": [],
+          "canBeLedBy": [],
+          "canBeSupportedBy": []
+        }
+      },
+      "gameSelections": {
+        "stats": {
+          "M": "-",
+          "T": "11",
+          "Sv": "3+",
+          "W": "18",
+          "Ld": "7+",
+          "OC": "-",
+          "Invulnerable": ""
+        },
+        "abilities": [
+          {
+            "id": "tau-empire-ability-titan-hunter",
+            "sectionId": "tau-empire-ability-titan-hunter",
+            "title": "Titan Hunter",
+            "text": "This model’s twin heavy rail cannon and seeker missiles have the [ANTI-TITANIC 3+] ability while targeting a unit within half range.",
+            "sourceUnitId": "unit-ax-1-0-tiger-shark"
+          },
+          {
+            "id": "tau-empire-ability-damaged-1-6-wounds-remaining",
+            "sectionId": "tau-empire-ability-damaged-1-6-wounds-remaining",
+            "title": "Damaged: 1-6 WOUNDS REMAINING",
+            "text": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+            "sourceUnitId": "unit-ax-1-0-tiger-shark"
+          },
+          {
+            "id": "core-deadly-demise",
+            "sectionId": "core-deadly-demise",
+            "title": "Deadly Demise D6+2",
+            "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+            "sourceUnitId": "unit-ax-1-0-tiger-shark"
+          },
+          {
+            "id": "tau-empire-ability-for-the-greater-good",
+            "sectionId": "tau-empire-ability-for-the-greater-good",
+            "title": "For The Greater Good",
+            "text": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units.\n\nDuring your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase.\n\nUnits from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units.\n\nUntil the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.",
+            "sourceUnitId": "unit-ax-1-0-tiger-shark"
+          }
+        ],
+        "models": [
+          {
+            "id": "unit-ax-1-0-tiger-shark-model-552ec001af",
+            "title": "AX-1-0 Tiger Shark",
+            "aliases": [
+              "AX-1-0 Tiger Shark"
+            ],
+            "legacyIds": [
+              "unit-ax-1-0-tiger-shark-model-ax-1-0-tiger-shark"
+            ]
+          }
+        ],
+        "compositionRules": [],
+        "selections": [
+          {
+            "id": "unit-ax-1-0-tiger-shark-selection-burst-cannon",
+            "title": "Burst cannon",
+            "aliases": [
+              "Burst cannon"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-ax-1-0-tiger-shark-profile-d19f6a34f8"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-selection-cyclic-ion-blaster-standard",
+            "title": "Cyclic ion blaster – standard",
+            "aliases": [
+              "Cyclic ion blaster – standard"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-ax-1-0-tiger-shark-profile-624c989b1b"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-selection-cyclic-ion-blaster-overcharge",
+            "title": "Cyclic ion blaster – overcharge",
+            "aliases": [
+              "Cyclic ion blaster – overcharge"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-ax-1-0-tiger-shark-profile-e64cd12032"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-selection-missile-pod",
+            "title": "Missile pod",
+            "aliases": [
+              "Missile pod"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-ax-1-0-tiger-shark-profile-fdcca74aab"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-selection-seeker-missile",
+            "title": "Seeker missile",
+            "aliases": [
+              "Seeker missile"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-ax-1-0-tiger-shark-profile-351bd7e3c7"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-selection-twin-heavy-rail-cannon",
+            "title": "Twin heavy rail cannon",
+            "aliases": [
+              "Twin heavy rail cannon"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-ax-1-0-tiger-shark-profile-f0813020e7"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-selection-armoured-hull",
+            "title": "Armoured hull",
+            "aliases": [
+              "Armoured hull"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-ax-1-0-tiger-shark-profile-3f6402479f"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-weapon-family-cyclic-ion-blaster-selection",
+            "title": "Cyclic ion blaster",
+            "aliases": [
+              "Cyclic ion blaster"
+            ],
+            "kind": "weapon",
+            "familyId": "unit-ax-1-0-tiger-shark-weapon-family-cyclic-ion-blaster",
+            "profileIds": [
+              "unit-ax-1-0-tiger-shark-profile-624c989b1b",
+              "unit-ax-1-0-tiger-shark-profile-e64cd12032"
+            ],
+            "wargearAbilityIds": []
+          }
+        ],
+        "weaponFamilies": [
+          {
+            "id": "unit-ax-1-0-tiger-shark-weapon-family-cyclic-ion-blaster",
+            "title": "Cyclic ion blaster",
+            "aliases": [
+              "Cyclic ion blaster"
+            ],
+            "profileIds": [
+              "unit-ax-1-0-tiger-shark-profile-624c989b1b",
+              "unit-ax-1-0-tiger-shark-profile-e64cd12032"
+            ],
+            "ambiguousAlias": false
+          }
+        ],
+        "weaponProfiles": [
+          {
+            "id": "unit-ax-1-0-tiger-shark-profile-d19f6a34f8",
+            "legacyIds": [
+              "unit-ax-1-0-tiger-shark-profile-burst-cannon-ranged"
+            ],
+            "title": "Burst cannon",
+            "mode": "ranged",
+            "range": "18\"",
+            "a": "4",
+            "skill": "4+",
+            "s": "5",
+            "ap": "0",
+            "d": "1",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-ax-1-0-tiger-shark-selection-burst-cannon"
+            ]
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-profile-624c989b1b",
+            "legacyIds": [
+              "unit-ax-1-0-tiger-shark-profile-cyclic-ion-blaster-standard-ranged-2"
+            ],
+            "title": "Cyclic ion blaster – standard",
+            "mode": "ranged",
+            "range": "18\"",
+            "a": "3",
+            "skill": "4+",
+            "s": "7",
+            "ap": "-1",
+            "d": "1",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-ax-1-0-tiger-shark-selection-cyclic-ion-blaster-standard",
+              "unit-ax-1-0-tiger-shark-weapon-family-cyclic-ion-blaster-selection"
+            ]
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-profile-e64cd12032",
+            "legacyIds": [
+              "unit-ax-1-0-tiger-shark-profile-cyclic-ion-blaster-overcharge-ranged-3"
+            ],
+            "title": "Cyclic ion blaster – overcharge",
+            "mode": "ranged",
+            "range": "18\"",
+            "a": "3",
+            "skill": "4+",
+            "s": "8",
+            "ap": "-2",
+            "d": "2",
+            "abilities": "Hazardous",
+            "sourceSelectionIds": [
+              "unit-ax-1-0-tiger-shark-selection-cyclic-ion-blaster-overcharge",
+              "unit-ax-1-0-tiger-shark-weapon-family-cyclic-ion-blaster-selection"
+            ]
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-profile-fdcca74aab",
+            "legacyIds": [
+              "unit-ax-1-0-tiger-shark-profile-missile-pod-ranged-4"
+            ],
+            "title": "Missile pod",
+            "mode": "ranged",
+            "range": "30\"",
+            "a": "2",
+            "skill": "4+",
+            "s": "7",
+            "ap": "-1",
+            "d": "2",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-ax-1-0-tiger-shark-selection-missile-pod"
+            ]
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-profile-351bd7e3c7",
+            "legacyIds": [
+              "unit-ax-1-0-tiger-shark-profile-seeker-missile-ranged-5"
+            ],
+            "title": "Seeker missile",
+            "mode": "ranged",
+            "range": "48\"",
+            "a": "1",
+            "skill": "4+",
+            "s": "14",
+            "ap": "-3",
+            "d": "D6+1",
+            "abilities": "One Shot",
+            "sourceSelectionIds": [
+              "unit-ax-1-0-tiger-shark-selection-seeker-missile"
+            ]
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-profile-f0813020e7",
+            "legacyIds": [
+              "unit-ax-1-0-tiger-shark-profile-twin-heavy-rail-cannon-ranged-6"
+            ],
+            "title": "Twin heavy rail cannon",
+            "mode": "ranged",
+            "range": "120\"",
+            "a": "1",
+            "skill": "4+",
+            "s": "26",
+            "ap": "-5",
+            "d": "12",
+            "abilities": "Devastating Wounds, Twin-Linked",
+            "sourceSelectionIds": [
+              "unit-ax-1-0-tiger-shark-selection-twin-heavy-rail-cannon"
+            ]
+          },
+          {
+            "id": "unit-ax-1-0-tiger-shark-profile-3f6402479f",
+            "legacyIds": [
+              "unit-ax-1-0-tiger-shark-profile-armoured-hull-melee-7"
+            ],
+            "title": "Armoured hull",
+            "mode": "melee",
+            "range": "Melee",
+            "a": "3",
+            "skill": "5+",
+            "s": "6",
+            "ap": "0",
+            "d": "1",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-ax-1-0-tiger-shark-selection-armoured-hull"
+            ]
+          }
+        ],
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
+      }
+    },
+    {
+      "id": "unit-manta",
+      "title": "Manta",
+      "sourceBookId": "tau-empire",
+      "sourceLayer": "imperial-armour",
+      "intrinsicKeywords": [
+        "Vehicle",
+        "Aircraft",
+        "Fly",
+        "Frame",
+        "Titanic",
+        "Transport",
+        "Markerlight",
+        "Manta",
+        "T'au Empire"
+      ],
+      "relations": {
+        "canLead": [],
+        "canSupport": [],
+        "canBeLedBy": [],
+        "canBeSupportedBy": []
+      },
+      "ruleFacts": {
+        "relations": {
+          "canLead": [],
+          "canSupport": [],
+          "canBeLedBy": [],
+          "canBeSupportedBy": []
+        }
+      },
+      "gameSelections": {
+        "stats": {
+          "M": "40\"",
+          "T": "14",
+          "Sv": "2+",
+          "W": "60",
+          "Ld": "7+",
+          "OC": "-",
+          "Invulnerable": ""
+        },
+        "abilities": [
+          {
+            "id": "tau-empire-ability-aggressive-deployment",
+            "sectionId": "tau-empire-ability-aggressive-deployment",
+            "title": "Aggressive Deployment",
+            "text": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly model that disembarked from this TRANSPORT this turn makes an attack that targets that enemy unit, you can re-roll the Wound roll.",
+            "sourceUnitId": "unit-manta"
+          },
+          {
+            "id": "tau-empire-ability-air-caste-colossus",
+            "sectionId": "tau-empire-ability-air-caste-colossus",
+            "title": "Air Caste Colossus",
+            "text": "Each time you target this model with a Stratagem, you must spend three times that Stratagem’s stated CP cost to do so.",
+            "sourceUnitId": "unit-manta"
+          },
+          {
+            "id": "tau-empire-ability-damaged-1-20-wounds-remaining",
+            "sectionId": "tau-empire-ability-damaged-1-20-wounds-remaining",
+            "title": "Damaged: 1-20 WOUNDS REMAINING",
+            "text": "While this model has 1-20 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+            "sourceUnitId": "unit-manta"
+          },
+          {
+            "id": "core-deadly-demise",
+            "sectionId": "core-deadly-demise",
+            "title": "Deadly Demise 3D6",
+            "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+            "sourceUnitId": "unit-manta"
+          },
+          {
+            "id": "tau-empire-ability-for-the-greater-good",
+            "sectionId": "tau-empire-ability-for-the-greater-good",
+            "title": "For The Greater Good",
+            "text": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units.\n\nDuring your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase.\n\nUnits from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units.\n\nUntil the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.",
+            "sourceUnitId": "unit-manta"
+          }
+        ],
+        "models": [
+          {
+            "id": "unit-manta-model-7a4496b738",
+            "title": "Manta",
+            "aliases": [
+              "Manta"
+            ],
+            "legacyIds": [
+              "unit-manta-model-manta"
+            ]
+          }
+        ],
+        "compositionRules": [],
+        "selections": [
+          {
+            "id": "unit-manta-selection-heavy-rail-cannon",
+            "title": "Heavy rail cannon",
+            "aliases": [
+              "Heavy rail cannon"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-manta-profile-4a413657dc"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-manta-selection-ion-cannon-standard",
+            "title": "Ion cannon – standard",
+            "aliases": [
+              "Ion cannon – standard"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-manta-profile-8417a11e43"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-manta-selection-ion-cannon-overcharge",
+            "title": "Ion cannon – overcharge",
+            "aliases": [
+              "Ion cannon – overcharge"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-manta-profile-05ced86e06"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-manta-selection-long-barrelled-burst-cannon-array",
+            "title": "Long-barrelled burst cannon array",
+            "aliases": [
+              "Long-barrelled burst cannon array"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-manta-profile-1ede0ea920"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-manta-selection-missile-pod",
+            "title": "Missile pod",
+            "aliases": [
+              "Missile pod"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-manta-profile-fdcca74aab"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-manta-selection-seeker-missile",
+            "title": "Seeker missile",
+            "aliases": [
+              "Seeker missile"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-manta-profile-351bd7e3c7"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-manta-selection-armoured-hull",
+            "title": "Armoured hull",
+            "aliases": [
+              "Armoured hull"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-manta-profile-5caf5bbf40"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-manta-weapon-family-ion-cannon-selection",
+            "title": "Ion cannon",
+            "aliases": [
+              "Ion cannon"
+            ],
+            "kind": "weapon",
+            "familyId": "unit-manta-weapon-family-ion-cannon",
+            "profileIds": [
+              "unit-manta-profile-8417a11e43",
+              "unit-manta-profile-05ced86e06"
+            ],
+            "wargearAbilityIds": []
+          }
+        ],
+        "weaponFamilies": [
+          {
+            "id": "unit-manta-weapon-family-ion-cannon",
+            "title": "Ion cannon",
+            "aliases": [
+              "Ion cannon"
+            ],
+            "profileIds": [
+              "unit-manta-profile-8417a11e43",
+              "unit-manta-profile-05ced86e06"
+            ],
+            "ambiguousAlias": false
+          }
+        ],
+        "weaponProfiles": [
+          {
+            "id": "unit-manta-profile-4a413657dc",
+            "legacyIds": [
+              "unit-manta-profile-heavy-rail-cannon-ranged"
+            ],
+            "title": "Heavy rail cannon",
+            "mode": "ranged",
+            "range": "120\"",
+            "a": "1",
+            "skill": "4+",
+            "s": "26",
+            "ap": "-5",
+            "d": "12",
+            "abilities": "Devastating Wounds",
+            "sourceSelectionIds": [
+              "unit-manta-selection-heavy-rail-cannon"
+            ]
+          },
+          {
+            "id": "unit-manta-profile-8417a11e43",
+            "legacyIds": [
+              "unit-manta-profile-ion-cannon-standard-ranged-2"
+            ],
+            "title": "Ion cannon – standard",
+            "mode": "ranged",
+            "range": "60\"",
+            "a": "D6+3",
+            "skill": "4+",
+            "s": "7",
+            "ap": "-1",
+            "d": "2",
+            "abilities": "Blast",
+            "sourceSelectionIds": [
+              "unit-manta-selection-ion-cannon-standard",
+              "unit-manta-weapon-family-ion-cannon-selection"
+            ]
+          },
+          {
+            "id": "unit-manta-profile-05ced86e06",
+            "legacyIds": [
+              "unit-manta-profile-ion-cannon-overcharge-ranged-3"
+            ],
+            "title": "Ion cannon – overcharge",
+            "mode": "ranged",
+            "range": "60\"",
+            "a": "D6+3",
+            "skill": "4+",
+            "s": "8",
+            "ap": "-2",
+            "d": "3",
+            "abilities": "Blast, Hazardous",
+            "sourceSelectionIds": [
+              "unit-manta-selection-ion-cannon-overcharge",
+              "unit-manta-weapon-family-ion-cannon-selection"
+            ]
+          },
+          {
+            "id": "unit-manta-profile-1ede0ea920",
+            "legacyIds": [
+              "unit-manta-profile-long-barrelled-burst-cannon-array-ranged-4"
+            ],
+            "title": "Long-barrelled burst cannon array",
+            "mode": "ranged",
+            "range": "24\"",
+            "a": "32",
+            "skill": "4+",
+            "s": "6",
+            "ap": "-1",
+            "d": "1",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-manta-selection-long-barrelled-burst-cannon-array"
+            ]
+          },
+          {
+            "id": "unit-manta-profile-fdcca74aab",
+            "legacyIds": [
+              "unit-manta-profile-missile-pod-ranged-5"
+            ],
+            "title": "Missile pod",
+            "mode": "ranged",
+            "range": "30\"",
+            "a": "2",
+            "skill": "4+",
+            "s": "7",
+            "ap": "-1",
+            "d": "2",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-manta-selection-missile-pod"
+            ]
+          },
+          {
+            "id": "unit-manta-profile-351bd7e3c7",
+            "legacyIds": [
+              "unit-manta-profile-seeker-missile-ranged-6"
+            ],
+            "title": "Seeker missile",
+            "mode": "ranged",
+            "range": "48\"",
+            "a": "1",
+            "skill": "4+",
+            "s": "14",
+            "ap": "-3",
+            "d": "D6+1",
+            "abilities": "One Shot",
+            "sourceSelectionIds": [
+              "unit-manta-selection-seeker-missile"
+            ]
+          },
+          {
+            "id": "unit-manta-profile-5caf5bbf40",
+            "legacyIds": [
+              "unit-manta-profile-armoured-hull-melee-7"
+            ],
+            "title": "Armoured hull",
+            "mode": "melee",
+            "range": "Melee",
+            "a": "8",
+            "skill": "5+",
+            "s": "6",
+            "ap": "0",
+            "d": "1",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-manta-selection-armoured-hull"
+            ]
+          }
+        ],
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
+      }
+    },
+    {
+      "id": "unit-tiger-shark",
+      "title": "Tiger Shark",
+      "sourceBookId": "tau-empire",
+      "sourceLayer": "imperial-armour",
+      "intrinsicKeywords": [
+        "Vehicle",
+        "Aircraft",
+        "Fly",
+        "Tiger Shark",
+        "T'au Empire"
+      ],
+      "relations": {
+        "canLead": [],
+        "canSupport": [],
+        "canBeLedBy": [],
+        "canBeSupportedBy": []
+      },
+      "ruleFacts": {
+        "relations": {
+          "canLead": [],
+          "canSupport": [],
+          "canBeLedBy": [],
+          "canBeSupportedBy": []
+        }
+      },
+      "gameSelections": {
+        "stats": {
+          "M": "-",
+          "T": "11",
+          "Sv": "3+",
+          "W": "18",
+          "Ld": "7+",
+          "OC": "-",
+          "Invulnerable": ""
+        },
+        "abilities": [
+          {
+            "id": "tau-empire-ability-strafing-run",
+            "sectionId": "tau-empire-ability-strafing-run",
+            "title": "Strafing Run",
+            "text": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks that cannot FLY. That enemy unit must take a Battle-shock test.",
+            "sourceUnitId": "unit-tiger-shark"
+          },
+          {
+            "id": "tau-empire-ability-damaged-1-6-wounds-remaining",
+            "sectionId": "tau-empire-ability-damaged-1-6-wounds-remaining",
+            "title": "Damaged: 1-6 WOUNDS REMAINING",
+            "text": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+            "sourceUnitId": "unit-tiger-shark"
+          },
+          {
+            "id": "core-deadly-demise",
+            "sectionId": "core-deadly-demise",
+            "title": "Deadly Demise D6+2",
+            "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+            "sourceUnitId": "unit-tiger-shark"
+          },
+          {
+            "id": "tau-empire-ability-for-the-greater-good",
+            "sectionId": "tau-empire-ability-for-the-greater-good",
+            "title": "For The Greater Good",
+            "text": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units.\n\nDuring your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase.\n\nUnits from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units.\n\nUntil the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.",
+            "sourceUnitId": "unit-tiger-shark"
+          }
+        ],
+        "models": [
+          {
+            "id": "unit-tiger-shark-model-2385549d21",
+            "title": "Tiger Shark",
+            "aliases": [
+              "Tiger Shark"
+            ],
+            "legacyIds": [
+              "unit-tiger-shark-model-tiger-shark"
+            ]
+          }
+        ],
+        "compositionRules": [],
+        "selections": [
+          {
+            "id": "unit-tiger-shark-selection-burst-cannon",
+            "title": "Burst cannon",
+            "aliases": [
+              "Burst cannon"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-d19f6a34f8"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-cyclic-ion-blaster-standard",
+            "title": "Cyclic ion blaster – standard",
+            "aliases": [
+              "Cyclic ion blaster – standard"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-624c989b1b"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-cyclic-ion-blaster-overcharge",
+            "title": "Cyclic ion blaster – overcharge",
+            "aliases": [
+              "Cyclic ion blaster – overcharge"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-e64cd12032"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-ion-cannon-standard",
+            "title": "Ion cannon – standard",
+            "aliases": [
+              "Ion cannon – standard"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-8417a11e43"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-ion-cannon-overcharge",
+            "title": "Ion cannon – overcharge",
+            "aliases": [
+              "Ion cannon – overcharge"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-05ced86e06"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-missile-pod",
+            "title": "Missile pod",
+            "aliases": [
+              "Missile pod"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-fdcca74aab"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-seeker-missile",
+            "title": "Seeker missile",
+            "aliases": [
+              "Seeker missile"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-351bd7e3c7"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-skyspear-missile-rack",
+            "title": "Skyspear missile rack",
+            "aliases": [
+              "Skyspear missile rack"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-2226d50bb4"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-swiftstrike-burst-cannon",
+            "title": "Swiftstrike burst cannon",
+            "aliases": [
+              "Swiftstrike burst cannon"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-b0fcb96d8e"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-swiftstrike-railgun",
+            "title": "Swiftstrike railgun",
+            "aliases": [
+              "Swiftstrike railgun"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-e323a55d0a"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-armoured-hull",
+            "title": "Armoured hull",
+            "aliases": [
+              "Armoured hull"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-tiger-shark-profile-3f6402479f"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-weapon-family-cyclic-ion-blaster-selection",
+            "title": "Cyclic ion blaster",
+            "aliases": [
+              "Cyclic ion blaster"
+            ],
+            "kind": "weapon",
+            "familyId": "unit-tiger-shark-weapon-family-cyclic-ion-blaster",
+            "profileIds": [
+              "unit-tiger-shark-profile-624c989b1b",
+              "unit-tiger-shark-profile-e64cd12032"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-weapon-family-ion-cannon-selection",
+            "title": "Ion cannon",
+            "aliases": [
+              "Ion cannon"
+            ],
+            "kind": "weapon",
+            "familyId": "unit-tiger-shark-weapon-family-ion-cannon",
+            "profileIds": [
+              "unit-tiger-shark-profile-8417a11e43",
+              "unit-tiger-shark-profile-05ced86e06"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-tiger-shark-selection-transport-bay",
+            "title": "Transport Bay",
+            "aliases": [
+              "Transport Bay"
+            ],
+            "kind": "wargear",
+            "profileIds": [],
+            "wargearAbilityIds": [
+              "unit-tiger-shark-wargear-ability-5971dd9eb6"
+            ]
+          }
+        ],
+        "weaponFamilies": [
+          {
+            "id": "unit-tiger-shark-weapon-family-cyclic-ion-blaster",
+            "title": "Cyclic ion blaster",
+            "aliases": [
+              "Cyclic ion blaster"
+            ],
+            "profileIds": [
+              "unit-tiger-shark-profile-624c989b1b",
+              "unit-tiger-shark-profile-e64cd12032"
+            ],
+            "ambiguousAlias": false
+          },
+          {
+            "id": "unit-tiger-shark-weapon-family-ion-cannon",
+            "title": "Ion cannon",
+            "aliases": [
+              "Ion cannon"
+            ],
+            "profileIds": [
+              "unit-tiger-shark-profile-8417a11e43",
+              "unit-tiger-shark-profile-05ced86e06"
+            ],
+            "ambiguousAlias": false
+          }
+        ],
+        "weaponProfiles": [
+          {
+            "id": "unit-tiger-shark-profile-d19f6a34f8",
+            "legacyIds": [
+              "unit-tiger-shark-profile-burst-cannon-ranged"
+            ],
+            "title": "Burst cannon",
+            "mode": "ranged",
+            "range": "18\"",
+            "a": "4",
+            "skill": "4+",
+            "s": "5",
+            "ap": "0",
+            "d": "1",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-burst-cannon"
+            ]
+          },
+          {
+            "id": "unit-tiger-shark-profile-624c989b1b",
+            "legacyIds": [
+              "unit-tiger-shark-profile-cyclic-ion-blaster-standard-ranged-2"
+            ],
+            "title": "Cyclic ion blaster – standard",
+            "mode": "ranged",
+            "range": "18\"",
+            "a": "3",
+            "skill": "4+",
+            "s": "7",
+            "ap": "-1",
+            "d": "1",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-cyclic-ion-blaster-standard",
+              "unit-tiger-shark-weapon-family-cyclic-ion-blaster-selection"
+            ]
+          },
+          {
+            "id": "unit-tiger-shark-profile-e64cd12032",
+            "legacyIds": [
+              "unit-tiger-shark-profile-cyclic-ion-blaster-overcharge-ranged-3"
+            ],
+            "title": "Cyclic ion blaster – overcharge",
+            "mode": "ranged",
+            "range": "18\"",
+            "a": "3",
+            "skill": "4+",
+            "s": "8",
+            "ap": "-2",
+            "d": "2",
+            "abilities": "Hazardous",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-cyclic-ion-blaster-overcharge",
+              "unit-tiger-shark-weapon-family-cyclic-ion-blaster-selection"
+            ]
+          },
+          {
+            "id": "unit-tiger-shark-profile-8417a11e43",
+            "legacyIds": [
+              "unit-tiger-shark-profile-ion-cannon-standard-ranged-4"
+            ],
+            "title": "Ion cannon – standard",
+            "mode": "ranged",
+            "range": "60\"",
+            "a": "D6+3",
+            "skill": "4+",
+            "s": "7",
+            "ap": "-1",
+            "d": "2",
+            "abilities": "Blast",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-ion-cannon-standard",
+              "unit-tiger-shark-weapon-family-ion-cannon-selection"
+            ]
+          },
+          {
+            "id": "unit-tiger-shark-profile-05ced86e06",
+            "legacyIds": [
+              "unit-tiger-shark-profile-ion-cannon-overcharge-ranged-5"
+            ],
+            "title": "Ion cannon – overcharge",
+            "mode": "ranged",
+            "range": "60\"",
+            "a": "D6+3",
+            "skill": "4+",
+            "s": "8",
+            "ap": "-2",
+            "d": "3",
+            "abilities": "Blast, Hazardous",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-ion-cannon-overcharge",
+              "unit-tiger-shark-weapon-family-ion-cannon-selection"
+            ]
+          },
+          {
+            "id": "unit-tiger-shark-profile-fdcca74aab",
+            "legacyIds": [
+              "unit-tiger-shark-profile-missile-pod-ranged-6"
+            ],
+            "title": "Missile pod",
+            "mode": "ranged",
+            "range": "30\"",
+            "a": "2",
+            "skill": "4+",
+            "s": "7",
+            "ap": "-1",
+            "d": "2",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-missile-pod"
+            ]
+          },
+          {
+            "id": "unit-tiger-shark-profile-351bd7e3c7",
+            "legacyIds": [
+              "unit-tiger-shark-profile-seeker-missile-ranged-7"
+            ],
+            "title": "Seeker missile",
+            "mode": "ranged",
+            "range": "48\"",
+            "a": "1",
+            "skill": "4+",
+            "s": "14",
+            "ap": "-3",
+            "d": "D6+1",
+            "abilities": "One Shot",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-seeker-missile"
+            ]
+          },
+          {
+            "id": "unit-tiger-shark-profile-2226d50bb4",
+            "legacyIds": [
+              "unit-tiger-shark-profile-skyspear-missile-rack-ranged-8"
+            ],
+            "title": "Skyspear missile rack",
+            "mode": "ranged",
+            "range": "72\"",
+            "a": "D6+1",
+            "skill": "4+",
+            "s": "6",
+            "ap": "-1",
+            "d": "1",
+            "abilities": "Anti-Fly 3+, Blast",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-skyspear-missile-rack"
+            ]
+          },
+          {
+            "id": "unit-tiger-shark-profile-b0fcb96d8e",
+            "legacyIds": [
+              "unit-tiger-shark-profile-swiftstrike-burst-cannon-ranged-9"
+            ],
+            "title": "Swiftstrike burst cannon",
+            "mode": "ranged",
+            "range": "36\"",
+            "a": "16",
+            "skill": "4+",
+            "s": "6",
+            "ap": "-1",
+            "d": "1",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-swiftstrike-burst-cannon"
+            ]
+          },
+          {
+            "id": "unit-tiger-shark-profile-e323a55d0a",
+            "legacyIds": [
+              "unit-tiger-shark-profile-swiftstrike-railgun-ranged-10"
+            ],
+            "title": "Swiftstrike railgun",
+            "mode": "ranged",
+            "range": "72\"",
+            "a": "1",
+            "skill": "4+",
+            "s": "20",
+            "ap": "-5",
+            "d": "D6+6",
+            "abilities": "Devastating Wounds",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-swiftstrike-railgun"
+            ]
+          },
+          {
+            "id": "unit-tiger-shark-profile-3f6402479f",
+            "legacyIds": [
+              "unit-tiger-shark-profile-armoured-hull-melee-11"
+            ],
+            "title": "Armoured hull",
+            "mode": "melee",
+            "range": "Melee",
+            "a": "3",
+            "skill": "5+",
+            "s": "6",
+            "ap": "0",
+            "d": "1",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-tiger-shark-selection-armoured-hull"
+            ]
+          }
+        ],
+        "wargearAbilities": [
+          {
+            "id": "unit-tiger-shark-wargear-ability-5971dd9eb6",
+            "sectionId": "unit-tiger-shark-wargear-ability-5971dd9eb6",
+            "title": "Transport Bay",
+            "text": "The bearer has the TRANSPORT keyword and has a transport capacity of 12 TACTICAL DRONES models.",
+            "sourceUnitId": "unit-tiger-shark",
+            "legacyIds": [
+              "unit-tiger-shark-wargear-ability-transport-bay"
+            ],
+            "requiredSelectionIds": [
+              "unit-tiger-shark-selection-transport-bay"
+            ]
+          }
+        ],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
+      }
+    },
+    {
+      "id": "unit-taunar-supremacy-armour",
+      "title": "Ta’unar Supremacy Armour",
+      "sourceBookId": "tau-empire",
+      "sourceLayer": "imperial-armour",
+      "intrinsicKeywords": [
+        "Vehicle",
+        "Walker",
+        "Titanic",
+        "Towering",
+        "Frame",
+        "Ta’unar Supremacy Armour",
+        "T'au Empire"
+      ],
+      "relations": {
+        "canLead": [],
+        "canSupport": [],
+        "canBeLedBy": [],
+        "canBeSupportedBy": []
+      },
+      "ruleFacts": {
+        "relations": {
+          "canLead": [],
+          "canSupport": [],
+          "canBeLedBy": [],
+          "canBeSupportedBy": []
+        }
+      },
+      "gameSelections": {
+        "stats": {
+          "M": "8\"",
+          "T": "13",
+          "Sv": "2+",
+          "W": "30",
+          "Ld": "7+",
+          "OC": "10",
+          "Invulnerable": ""
+        },
+        "abilities": [
+          {
+            "id": "tau-empire-ability-coordinated-strike",
+            "sectionId": "tau-empire-ability-coordinated-strike",
+            "title": "Coordinated Strike",
+            "text": "While this model is a Guided unit, each time it makes an attack that targets its Spotted unit, re-roll a Hit roll of 1.",
+            "sourceUnitId": "unit-taunar-supremacy-armour"
+          },
+          {
+            "id": "tau-empire-ability-damaged-1-10-wounds-remaining",
+            "sectionId": "tau-empire-ability-damaged-1-10-wounds-remaining",
+            "title": "Damaged: 1-10 WOUNDS REMAINING",
+            "text": "While this model has 1-10 wounds remaining, subtract 5 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll.",
+            "sourceUnitId": "unit-taunar-supremacy-armour"
+          },
+          {
+            "id": "core-deadly-demise",
+            "sectionId": "core-deadly-demise",
+            "title": "Deadly Demise D6+3",
+            "text": "This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). \n *Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield.*",
+            "sourceUnitId": "unit-taunar-supremacy-armour"
+          },
+          {
+            "id": "tau-empire-ability-for-the-greater-good",
+            "sectionId": "tau-empire-ability-for-the-greater-good",
+            "title": "For The Greater Good",
+            "text": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units.\n\nDuring your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase.\n\nUnits from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units.\n\nUntil the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.",
+            "sourceUnitId": "unit-taunar-supremacy-armour"
+          }
+        ],
+        "models": [
+          {
+            "id": "unit-taunar-supremacy-armour-model-7c80d081ad",
+            "title": "Ta’unar Supremacy Armour",
+            "aliases": [
+              "Ta’unar Supremacy Armour"
+            ],
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-model-taunar-supremacy-armour"
+            ]
+          }
+        ],
+        "compositionRules": [],
+        "selections": [
+          {
+            "id": "unit-taunar-supremacy-armour-selection-burst-cannon",
+            "title": "Burst cannon",
+            "aliases": [
+              "Burst cannon"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-d19f6a34f8"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-selection-fragmentation-cluster-shell-launcher",
+            "title": "Fragmentation cluster shell launcher",
+            "aliases": [
+              "Fragmentation cluster shell launcher"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-35f63dcff7"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-selection-fusion-eradicator",
+            "title": "Fusion eradicator",
+            "aliases": [
+              "Fusion eradicator"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-291494c427"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-selection-heavy-rail-cannon-array",
+            "title": "Heavy rail cannon array",
+            "aliases": [
+              "Heavy rail cannon array"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-0081027c72"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-selection-nexus-missile-launcher",
+            "title": "Nexus missile launcher",
+            "aliases": [
+              "Nexus missile launcher"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-cf6bb5ce13"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-selection-pulse-ordnance-driver",
+            "title": "Pulse ordnance driver",
+            "aliases": [
+              "Pulse ordnance driver"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-a70e880658"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-selection-smart-missile-system",
+            "title": "Smart missile system",
+            "aliases": [
+              "Smart missile system"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-506187484b"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-selection-tri-axis-ion-cannon-standard",
+            "title": "Tri-axis ion cannon – standard",
+            "aliases": [
+              "Tri-axis ion cannon – standard"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-9a186996c3"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-selection-tri-axis-ion-cannon-supercharge",
+            "title": "Tri-axis ion cannon – supercharge",
+            "aliases": [
+              "Tri-axis ion cannon – supercharge"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-53773f8856"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-selection-crushing-feet",
+            "title": "Crushing feet",
+            "aliases": [
+              "Crushing feet"
+            ],
+            "kind": "weapon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-a2381d865b"
+            ],
+            "wargearAbilityIds": []
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-weapon-family-tri-axis-ion-cannon-selection",
+            "title": "Tri-axis ion cannon",
+            "aliases": [
+              "Tri-axis ion cannon"
+            ],
+            "kind": "weapon",
+            "familyId": "unit-taunar-supremacy-armour-weapon-family-tri-axis-ion-cannon",
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-9a186996c3",
+              "unit-taunar-supremacy-armour-profile-53773f8856"
+            ],
+            "wargearAbilityIds": []
+          }
+        ],
+        "weaponFamilies": [
+          {
+            "id": "unit-taunar-supremacy-armour-weapon-family-tri-axis-ion-cannon",
+            "title": "Tri-axis ion cannon",
+            "aliases": [
+              "Tri-axis ion cannon"
+            ],
+            "profileIds": [
+              "unit-taunar-supremacy-armour-profile-9a186996c3",
+              "unit-taunar-supremacy-armour-profile-53773f8856"
+            ],
+            "ambiguousAlias": false
+          }
+        ],
+        "weaponProfiles": [
+          {
+            "id": "unit-taunar-supremacy-armour-profile-d19f6a34f8",
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-profile-burst-cannon-ranged"
+            ],
+            "title": "Burst cannon",
+            "mode": "ranged",
+            "range": "18\"",
+            "a": "4",
+            "skill": "4+",
+            "s": "5",
+            "ap": "0",
+            "d": "1",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-taunar-supremacy-armour-selection-burst-cannon"
+            ]
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-profile-35f63dcff7",
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-profile-fragmentation-cluster-shell-launcher-ranged-2"
+            ],
+            "title": "Fragmentation cluster shell launcher",
+            "mode": "ranged",
+            "range": "24\"",
+            "a": "2D6+6",
+            "skill": "4+",
+            "s": "6",
+            "ap": "-1",
+            "d": "1",
+            "abilities": "Blast",
+            "sourceSelectionIds": [
+              "unit-taunar-supremacy-armour-selection-fragmentation-cluster-shell-launcher"
+            ]
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-profile-291494c427",
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-profile-fusion-eradicator-ranged-3"
+            ],
+            "title": "Fusion eradicator",
+            "mode": "ranged",
+            "range": "24\"",
+            "a": "5",
+            "skill": "4+",
+            "s": "10",
+            "ap": "-4",
+            "d": "D6",
+            "abilities": "Melta 3",
+            "sourceSelectionIds": [
+              "unit-taunar-supremacy-armour-selection-fusion-eradicator"
+            ]
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-profile-0081027c72",
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-profile-heavy-rail-cannon-array-ranged-4"
+            ],
+            "title": "Heavy rail cannon array",
+            "mode": "ranged",
+            "range": "120\"",
+            "a": "2",
+            "skill": "4+",
+            "s": "26",
+            "ap": "-5",
+            "d": "16",
+            "abilities": "Devastating Wounds, Heavy",
+            "sourceSelectionIds": [
+              "unit-taunar-supremacy-armour-selection-heavy-rail-cannon-array"
+            ]
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-profile-cf6bb5ce13",
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-profile-nexus-missile-launcher-ranged-5"
+            ],
+            "title": "Nexus missile launcher",
+            "mode": "ranged",
+            "range": "36\"",
+            "a": "8",
+            "skill": "4+",
+            "s": "8",
+            "ap": "-3",
+            "d": "2",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-taunar-supremacy-armour-selection-nexus-missile-launcher"
+            ]
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-profile-a70e880658",
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-profile-pulse-ordnance-driver-ranged-6"
+            ],
+            "title": "Pulse ordnance driver",
+            "mode": "ranged",
+            "range": "60\"",
+            "a": "8",
+            "skill": "4+",
+            "s": "5",
+            "ap": "-1",
+            "d": "3",
+            "abilities": "Anti-Infantry 2+",
+            "sourceSelectionIds": [
+              "unit-taunar-supremacy-armour-selection-pulse-ordnance-driver"
+            ]
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-profile-506187484b",
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-profile-smart-missile-system-ranged-7"
+            ],
+            "title": "Smart missile system",
+            "mode": "ranged",
+            "range": "30\"",
+            "a": "3",
+            "skill": "4+",
+            "s": "5",
+            "ap": "0",
+            "d": "1",
+            "abilities": "Indirect Fire",
+            "sourceSelectionIds": [
+              "unit-taunar-supremacy-armour-selection-smart-missile-system"
+            ]
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-profile-9a186996c3",
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-profile-tri-axis-ion-cannon-standard-ranged-8"
+            ],
+            "title": "Tri-axis ion cannon – standard",
+            "mode": "ranged",
+            "range": "36\"",
+            "a": "D6+3",
+            "skill": "4+",
+            "s": "8",
+            "ap": "-2",
+            "d": "2",
+            "abilities": "Blast",
+            "sourceSelectionIds": [
+              "unit-taunar-supremacy-armour-selection-tri-axis-ion-cannon-standard",
+              "unit-taunar-supremacy-armour-weapon-family-tri-axis-ion-cannon-selection"
+            ]
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-profile-53773f8856",
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-profile-tri-axis-ion-cannon-supercharge-ranged-9"
+            ],
+            "title": "Tri-axis ion cannon – supercharge",
+            "mode": "ranged",
+            "range": "36\"",
+            "a": "D6+3",
+            "skill": "4+",
+            "s": "9",
+            "ap": "-3",
+            "d": "3",
+            "abilities": "Blast, Hazardous",
+            "sourceSelectionIds": [
+              "unit-taunar-supremacy-armour-selection-tri-axis-ion-cannon-supercharge",
+              "unit-taunar-supremacy-armour-weapon-family-tri-axis-ion-cannon-selection"
+            ]
+          },
+          {
+            "id": "unit-taunar-supremacy-armour-profile-a2381d865b",
+            "legacyIds": [
+              "unit-taunar-supremacy-armour-profile-crushing-feet-melee-10"
+            ],
+            "title": "Crushing feet",
+            "mode": "melee",
+            "range": "Melee",
+            "a": "6",
+            "skill": "5+",
+            "s": "8",
+            "ap": "-1",
+            "d": "2",
+            "abilities": "",
+            "sourceSelectionIds": [
+              "unit-taunar-supremacy-armour-selection-crushing-feet"
+            ]
+          }
+        ],
+        "wargearAbilities": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     }
   ],
@@ -12294,7 +14033,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "tau-empire-detachment-rule-superior-craftsmanship",
       "title": "Superior Craftsmanship",
-      "text": "Friendly BATTLESUIT CHARACTER units’ ranged attacks have +6\" R. This detachment has the RETALIATION tag and cannot be taken with another RETALIATION detachment.",
+      "text": "Friendly BATTLESUIT CHARACTER units’ ranged attacks have +6\" R. This detachment has the BATTLESUIT tag and cannot be taken with another BATTLESUIT detachment.",
       "sectionId": "experimental-prototype-cadre-rule",
       "detachmentId": "experimental-prototype-cadre",
       "detachmentTitle": "EXPERIMENTAL PROTOTYPE CADRE",
@@ -12352,6 +14091,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Exemplar of the Kauyon",
       "value": 20,
       "text": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Patient Hunter Detachment rule applies to that unit from the second battle round onwards instead of from the third.",
+      "termId": "tau-empire-enhancement-exemplar-of-the-kauyon",
       "detachmentId": "kauyon",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-exemplar-of-the-kauyon",
@@ -12386,6 +14126,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Precision of the Patient Hunter",
       "value": 15,
       "text": "T’AU EMPIRE model only. Each time the bearer makes a ranged attack, add 1 to the Hit roll. From the third battle round onwards, add 1 to the Wound roll as well.",
+      "termId": "tau-empire-enhancement-precision-of-the-patient-hunter",
       "detachmentId": "kauyon",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-precision-of-the-patient-hunter",
@@ -12423,6 +14164,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Solid-image Projection Unit",
       "value": 20,
       "text": "T’AU EMPIRE model only. After both players have deployed their armies, select up to three T’AU EMPIRE units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves if you wish, regardless of how many units are already in Strategic Reserves.",
+      "termId": "tau-empire-enhancement-solid-image-projection-unit",
       "detachmentId": "kauyon",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-solid-image-projection-unit",
@@ -12460,6 +14202,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Through Unity, Devastation",
       "value": 30,
       "text": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit.",
+      "termId": "tau-empire-enhancement-through-unity-devastation",
       "detachmentId": "kauyon",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-through-unity-devastation",
@@ -12504,6 +14247,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 15,
+      "termId": "tau-empire-enhancement-thermoneutronic-projector",
       "detachmentId": "experimental-prototype-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "thermoneutronic-projector",
@@ -12543,6 +14287,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 20,
+      "termId": "tau-empire-enhancement-plasma-accelerator-rifle",
       "detachmentId": "experimental-prototype-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "plasma-accelerator-rifle",
@@ -12582,6 +14327,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 15,
+      "termId": "tau-empire-enhancement-supernova-launcher",
       "detachmentId": "experimental-prototype-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "supernova-launcher",
@@ -12608,7 +14354,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "id": "negation-emitters-upgrade",
-      "title": "Negation Emitters Upgrade",
+      "title": "Negation Emitters",
       "text": "STEALTH BATTLESUITS unit only. This unit has -3\" detection range.",
       "sourcePages": [
         2
@@ -12623,6 +14369,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "UPGRADE"
       ],
       "value": 15,
+      "termId": "tau-empire-enhancement-negation-emitters",
       "detachmentId": "advanced-acquisition-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "negation-emitters-upgrade",
@@ -12647,7 +14394,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "id": "unmasking-suite-upgrade",
-      "title": "Unmasking Suite Upgrade",
+      "title": "Unmasking Suite",
       "text": "GHOSTKEEL BATTLESUIT/PATHFINDER TEAM/STEALTH BATTLESUITS unit only. When this unit is selected to shoot, you can select one enemy unit within 24\" of this unit. That enemy unit has +9\" detection range until this unit has shot.",
       "sourcePages": [
         2
@@ -12662,6 +14409,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "UPGRADE"
       ],
       "value": 15,
+      "termId": "tau-empire-enhancement-unmasking-suite",
       "detachmentId": "advanced-acquisition-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "unmasking-suite-upgrade",
@@ -12691,6 +14439,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Internal Grenade Racks",
       "value": 20,
       "text": "T’AU EMPIRE BATTLESUIT model only. The bearer has the GRENADES keyword, and each time the bearer ends a Normal move, you can select one enemy unit that it moved over during that move. If you do, roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.",
+      "termId": "tau-empire-enhancement-internal-grenade-racks",
       "detachmentId": "retaliation-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-internal-grenade-racks",
@@ -12721,6 +14470,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Prototype Weapon System",
       "value": 15,
       "text": "T’AU EMPIRE BATTLESUIT model only. Each time the bearer is selected to shoot, select either the [LETHAL HITS] or [SUSTAINED HITS 1] ability. Until those attacks are resolved, ranged weapons equipped by the bearer have the selected ability.",
+      "termId": "tau-empire-enhancement-prototype-weapon-system",
       "detachmentId": "retaliation-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-prototype-weapon-system",
@@ -12751,6 +14501,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Puretide Engram Neurochip",
       "value": 15,
       "text": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP.",
+      "termId": "tau-empire-enhancement-puretide-engram-neurochip",
       "detachmentId": "retaliation-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-puretide-engram-neurochip",
@@ -12781,6 +14532,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Starflare Ignition System",
       "value": 20,
       "text": "T’AU EMPIRE BATTLESUIT model only. At the end of your opponent’s turn, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove that unit from the battlefield and place it into Strategic Reserves.",
+      "termId": "tau-empire-enhancement-starflare-ignition-system",
       "detachmentId": "retaliation-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-starflare-ignition-system",
@@ -12811,6 +14563,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Coordinated Exploitation",
       "value": 30,
       "text": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit.",
+      "termId": "tau-empire-enhancement-coordinated-exploitation",
       "detachmentId": "montka",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-coordinated-exploitation",
@@ -12845,6 +14598,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Exemplar of the Mont’ka",
       "value": 10,
       "text": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Killing Blow Detachment rule applies to that unit during the fourth battle round as well.",
+      "termId": "tau-empire-enhancement-exemplar-of-the-montka",
       "detachmentId": "montka",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-exemplar-of-the-montka",
@@ -12879,6 +14633,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Strategic Conqueror",
       "value": 15,
       "text": "T’AU EMPIRE model only. At the start of the first battle round, before the first turn begins, select one objective marker on the battlefield. While a friendly T’AU EMPIRE model is within range of that objective marker and the bearer is on the battlefield, add 1 to that friendly model’s Objective Control characteristic.",
+      "termId": "tau-empire-enhancement-strategic-conqueror",
       "detachmentId": "montka",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-strategic-conqueror",
@@ -12915,7 +14670,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "id": "enhancement-strike-swiftly",
       "title": "Strike Swiftly",
       "value": 45,
-      "text": "In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.",
+      "text": "T’AU EMPIRE model only. In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.",
+      "termId": "tau-empire-enhancement-strike-swiftly",
       "detachmentId": "montka",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-strike-swiftly",
@@ -12953,6 +14709,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Borthrod Gland",
       "value": 15,
       "text": "Kroot Flesh Shaper only. While the bearer is leading a unit, each time a model in that unit makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
+      "termId": "tau-empire-enhancement-borthrod-gland",
       "detachmentId": "kroot-hunting-pack",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-borthrod-gland",
@@ -12981,6 +14738,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Kroothawk Flock",
       "value": 10,
       "text": "KROOT model only. Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability, and enemy units that are set up on the battlefield as Reinforcements cannot be set up within 12\" horizontally of the bearer.",
+      "termId": "tau-empire-enhancement-kroothawk-flock",
       "detachmentId": "kroot-hunting-pack",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-kroothawk-flock",
@@ -13012,6 +14770,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Nomadic Hunter",
       "value": 20,
       "text": "KROOT TRAIL SHAPER model only. While the bearer is leading a unit, add 3\" to the Move characteristic of models in that unit and ranged weapons equipped by models in that unit have the [ASSAULT] ability.",
+      "termId": "tau-empire-enhancement-nomadic-hunter",
       "detachmentId": "kroot-hunting-pack",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-nomadic-hunter",
@@ -13040,6 +14799,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "Root-carved Weapons",
       "value": 10,
       "text": "Kroot War Shaper model only. All weapons equipped by the bearer have the [PRECISION] and [DEVASTATING WOUNDS] abilities.",
+      "termId": "tau-empire-enhancement-root-carved-weapons",
       "detachmentId": "kroot-hunting-pack",
       "sourceBookId": "tau-empire",
       "legacyKey": "enhancement-root-carved-weapons",
@@ -13078,6 +14838,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 20,
+      "termId": "tau-empire-enhancement-student-of-kauyon",
       "detachmentId": "auxiliary-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "student-of-kauyon",
@@ -13117,6 +14878,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "tags": [],
       "value": 20,
+      "termId": "tau-empire-enhancement-admired-leader",
       "detachmentId": "auxiliary-cadre",
       "sourceBookId": "tau-empire",
       "legacyKey": "admired-leader",
@@ -15027,8 +16789,8 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
       "payPointsPerOwner": true
     }
   },
-  "negation emitters upgrade": {
-    "title": "Negation Emitters Upgrade",
+  "negation emitters": {
+    "title": "Negation Emitters",
     "text": "STEALTH BATTLESUITS unit only. This unit has -3\" detection range.",
     "value": 15,
     "detachment": "ADVANCED ACQUISITION CADRE",
@@ -15052,8 +16814,8 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
       "payPointsPerOwner": true
     }
   },
-  "unmasking suite upgrade": {
-    "title": "Unmasking Suite Upgrade",
+  "unmasking suite": {
+    "title": "Unmasking Suite",
     "text": "GHOSTKEEL BATTLESUIT/PATHFINDER TEAM/STEALTH BATTLESUITS unit only. When this unit is selected to shoot, you can select one enemy unit within 24\" of this unit. That enemy unit has +9\" detection range until this unit has shot.",
     "value": 15,
     "detachment": "ADVANCED ACQUISITION CADRE",
@@ -15271,7 +17033,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "strike swiftly": {
     "title": "Strike Swiftly",
-    "text": "In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.",
+    "text": "T’AU EMPIRE model only. In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.",
     "value": 45,
     "detachment": "MONT’KA",
     "tags": [],

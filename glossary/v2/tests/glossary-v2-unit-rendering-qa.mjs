@@ -17,9 +17,9 @@ const affected=nonDg.filter(entry=>Array.isArray(entry.facts.composition));
 const existingMeaningful=nonDg.filter(entry=>typeof entry.facts.composition==='string');
 const dg=articles.filter(entry=>entry.sourceOwner.bookId==='death-guard');
 
-assert.equal(articles.length,372,'standalone Unit identity count');
-assert.equal(nonDg.length,336,'non-DG Unit identity count');
-assert.equal(affected.length,303,'structured-composition Unit population');
+assert.equal(articles.length,376,'standalone Unit identity count');
+assert.equal(nonDg.length,340,'non-DG Unit identity count');
+assert.equal(affected.length,307,'structured-composition Unit population');
 assert.equal(existingMeaningful.length,33,'existing meaningful string-composition Unit population');
 assert.equal(dg.length,36,'DG Unit identity count remains outside this repair');
 assert.deepEqual([...articles.map(entry=>entry.id)].sort(),[...sourceUnits.map(entry=>entry.id)].sort(),'Unit identities are unchanged');
@@ -84,4 +84,4 @@ assert(sameName.every(entry=>entry.parent.canonicalId==='unit-abaddon-the-despoi
 const abaddon=api.get('army::chaos-space-marines::unit::unit-abaddon-the-despoiler');
 assert.equal((abaddon.definition.en.match(/• Talon of Horus:/g)||[]).length,2,'Unit article preserves both same-name profile occurrences');
 
-console.log('Glossary V2 Unit rendering QA PASS (372 meaningful; 36 DG structured projections; stable parent-scoped weapon identities).');
+console.log('Glossary V2 Unit rendering QA PASS (376 meaningful; 36 DG structured projections; stable parent-scoped weapon identities).');

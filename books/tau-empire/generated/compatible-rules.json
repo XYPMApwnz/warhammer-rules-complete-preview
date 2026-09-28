@@ -1,6 +1,83 @@
 {
   "schema": "tau-empire-compatible-rules/v1",
   "units": {
+    "unit-ax-1-0-tiger-shark": [
+      {
+        "ruleId": "core-stratagem-command-re-roll",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-counteroffensive",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-crushing-impact",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-fire-overwatch",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-insane-bravery",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-rapid-ingress",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "guided-fire",
+        "detachmentId": "auxiliary-cadre",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-a-tempting-trap",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-aggressive-mobility",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-coordinate-to-engage",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-counterfire-defence-systems",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-focused-fire",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-pinpoint-counter-offensive",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-point-blank-ambush",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-pulse-onslaught",
+        "detachmentId": "montka",
+        "state": "match"
+      }
+    ],
     "unit-breacher-team": [
       {
         "ruleId": "core-stratagem-command-re-roll",
@@ -47,7 +124,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -144,7 +221,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -305,7 +382,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -412,7 +489,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -607,7 +684,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -820,7 +897,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -950,7 +1027,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -1095,7 +1172,7 @@
         ]
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -1220,7 +1297,7 @@
         ]
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -1345,7 +1422,7 @@
         ]
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -1470,7 +1547,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -1584,7 +1661,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -1733,7 +1810,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -1888,7 +1965,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -1985,7 +2062,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -2098,7 +2175,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -3405,6 +3482,78 @@
         "state": "match"
       }
     ],
+    "unit-manta": [
+      {
+        "ruleId": "core-stratagem-command-re-roll",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-counteroffensive",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-crushing-impact",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-insane-bravery",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-rapid-ingress",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "guided-fire",
+        "detachmentId": "auxiliary-cadre",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-a-tempting-trap",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-aggressive-mobility",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-coordinate-to-engage",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-counterfire-defence-systems",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-focused-fire",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-pinpoint-counter-offensive",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-point-blank-ambush",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-pulse-onslaught",
+        "detachmentId": "montka",
+        "state": "match"
+      }
+    ],
     "unit-pathfinder-team": [
       {
         "ruleId": "autoreactive-camouflage",
@@ -3456,7 +3605,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -3564,7 +3713,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -3631,7 +3780,12 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "core-stratagem-rapid-ingress",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -3708,7 +3862,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -3810,7 +3964,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -3892,7 +4046,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -4041,7 +4195,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -4127,7 +4281,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -4214,7 +4368,12 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "core-stratagem-rapid-ingress",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -4251,6 +4410,83 @@
       {
         "ruleId": "stratagem-point-blank-ambush",
         "detachmentId": "kauyon",
+        "state": "match"
+      }
+    ],
+    "unit-taunar-supremacy-armour": [
+      {
+        "ruleId": "core-stratagem-command-re-roll",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-counteroffensive",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-crushing-impact",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-heroic-intervention",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-insane-bravery",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-rapid-ingress",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "guided-fire",
+        "detachmentId": "auxiliary-cadre",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-a-tempting-trap",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-aggressive-mobility",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-coordinate-to-engage",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-counterfire-defence-systems",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-focused-fire",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-pinpoint-counter-offensive",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-point-blank-ambush",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-pulse-onslaught",
+        "detachmentId": "montka",
         "state": "match"
       }
     ],
@@ -4301,7 +4537,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -4403,7 +4639,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -4479,7 +4715,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -4555,7 +4791,7 @@
         "state": "match"
       },
       {
-        "ruleId": "guided-by-unity",
+        "ruleId": "guided-fire",
         "detachmentId": "auxiliary-cadre",
         "state": "match"
       },
@@ -4596,6 +4832,83 @@
       {
         "ruleId": "stratagem-point-blank-ambush",
         "detachmentId": "kauyon",
+        "state": "match"
+      }
+    ],
+    "unit-tiger-shark": [
+      {
+        "ruleId": "core-stratagem-command-re-roll",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-counteroffensive",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-crushing-impact",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-fire-overwatch",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-insane-bravery",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "core-stratagem-rapid-ingress",
+        "scope": "core",
+        "state": "match"
+      },
+      {
+        "ruleId": "guided-fire",
+        "detachmentId": "auxiliary-cadre",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-a-tempting-trap",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-aggressive-mobility",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-coordinate-to-engage",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-counterfire-defence-systems",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-focused-fire",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-pinpoint-counter-offensive",
+        "detachmentId": "montka",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-point-blank-ambush",
+        "detachmentId": "kauyon",
+        "state": "match"
+      },
+      {
+        "ruleId": "stratagem-pulse-onslaught",
+        "detachmentId": "montka",
         "state": "match"
       }
     ],

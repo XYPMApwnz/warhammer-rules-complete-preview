@@ -4,7 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const defaultRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const ACCEPTED_CONTRACT_SHA256='f713db1edebacd433e377f0e61f19b8808c467cb77f4c35e1b7f410f65f52999';
+const ACCEPTED_CONTRACT_SHA256='ecd160dea2281e0d0e44686a5c9604d85ba3af8040fa56616dfb42bd076eafa1';
 const sha256=value=>crypto.createHash('sha256').update(value).digest('hex');
 const readText=file=>fs.readFileSync(file,'utf8');
 const assert=(condition,message)=>{if(!condition)throw new Error(`T’au Related Rules contract: ${message}`);};

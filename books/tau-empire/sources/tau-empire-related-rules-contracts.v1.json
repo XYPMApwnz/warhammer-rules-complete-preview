@@ -29,19 +29,19 @@
       "authority": "secondary",
       "role": "codex-wording-evidence",
       "path": "content/tau-empire-codex-parity.en.json",
-      "sha256": "83089a0e35cfb341e6748e0dd4ec34bc8dbb333057eb9ef218e557d945963571"
+      "sha256": "7a8bad581aa8e211cab82aafb26560ccd73406edc83915d9ee9d3c7be2258c5b"
     },
     "faction-pack-canonical": {
       "authority": "derived-from-authenticated-official",
       "role": "canonical-record-input",
       "path": "content/tau-empire-faction-pack.en.json",
-      "sha256": "e05b79562789e30da66bf1cd4751a98311edef9a2e14dca1af7cfe54f0aa5663"
+      "sha256": "b2a3613b6439d8a1392155288c2ee76f99e2fd72cf7cba7730a2063720db2d95"
     },
     "codex-datasheets": {
       "authority": "derived-from-pinned-bsdata",
       "role": "canonical-owner-input",
       "path": "content/tau-empire-codex-datasheets.en.json",
-      "sha256": "e4ae1563ebdba4c9583cd0e8196195e0b439c5ead0621b808b9d9ce44b92f80a"
+      "sha256": "8607a34dd4c88236d9dfdfacdf251980a966ed184e07ad05c9fa09c4291a0988"
     }
   },
   "stratagems": [
@@ -258,7 +258,7 @@
       "confidence": "accepted-primary"
     },
     {
-      "id": "guided-by-unity",
+      "id": "guided-fire",
       "detachmentId": "auxiliary-cadre",
       "contract": {
         "v": 1,
@@ -296,7 +296,7 @@
           "locator": {
             "page": 3,
             "detachmentId": "auxiliary-cadre",
-            "recordId": "guided-by-unity"
+            "recordId": "guided-fire"
           }
         }
       ],
