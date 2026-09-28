@@ -212,8 +212,80 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-daemonettes-model-381178c0cf",
+            "selections": [
+              {
+                "selectionId": "unit-daemonettes-selection-slashing-claws",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-daemonettes-model-6f896f5f0d",
+            "selections": [
+              {
+                "selectionId": "unit-daemonettes-selection-slashing-claws",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-daemonettes:wargear:1",
+            "eligibleModelIds": [
+              "unit-daemonettes-model-381178c0cf"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-daemonettes-selection-instrument-of-chaos",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [
+                  "unit-daemonettes-selection-daemonic-icon"
+                ],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-daemonettes:wargear:2",
+            "eligibleModelIds": [
+              "unit-daemonettes-model-381178c0cf"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-daemonettes-selection-daemonic-icon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [
+                  "unit-daemonettes-selection-instrument-of-chaos"
+                ],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -583,8 +655,118 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-infractors-model-897249bc89",
+            "selections": [
+              {
+                "selectionId": "unit-infractors-selection-bolt-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-infractors-selection-power-sword",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-infractors-model-273cdc19c8",
+            "selections": [
+              {
+                "selectionId": "unit-infractors-selection-bolt-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-infractors-selection-duelling-sabre",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-infractors:wargear:1",
+            "eligibleModelIds": [
+              "unit-infractors-model-897249bc89"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-infractors-selection-bolt-pistol",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-infractors-weapon-family-plasma-pistol-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-infractors:wargear:2",
+            "eligibleModelIds": [
+              "unit-infractors-model-897249bc89"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-infractors-selection-power-sword",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-infractors-selection-rapture-lash",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-infractors:wargear:3",
+            "eligibleModelIds": [
+              "unit-infractors-model-273cdc19c8"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-infractors-selection-icon-of-excess",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -1104,8 +1286,182 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-tormentors-model-897249bc89",
+            "selections": [
+              {
+                "selectionId": "unit-tormentors-selection-bolt-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-tormentors-selection-power-sword",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-tormentors-model-205e960003",
+            "selections": [
+              {
+                "selectionId": "unit-tormentors-selection-boltgun",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-tormentors-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-tormentors:wargear:1",
+            "eligibleModelIds": [
+              "unit-tormentors-model-897249bc89"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-tormentors-selection-bolt-pistol",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-tormentors-weapon-family-plasma-pistol-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-tormentors:wargear:2",
+            "eligibleModelIds": [
+              "unit-tormentors-model-897249bc89"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-tormentors-selection-power-sword",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-tormentors-selection-rapture-lash",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-tormentors:wargear:3",
+            "eligibleModelIds": [
+              "unit-tormentors-model-205e960003"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 1
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-tormentors-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-tormentors-selection-meltagun",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-tormentors:wargear:4",
+            "eligibleModelIds": [
+              "unit-tormentors-model-205e960003"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perModels": {
+                "models": 5,
+                "uses": 1
+              }
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-tormentors-selection-boltgun",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-tormentors-weapon-family-plasma-gun-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-tormentors:wargear:5",
+            "eligibleModelIds": [
+              "unit-tormentors-model-205e960003"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-tormentors-selection-icon-of-excess",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -1893,8 +2249,75 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-keeper-of-secrets-model-0463e49756",
+            "selections": [
+              {
+                "selectionId": "unit-keeper-of-secrets-weapon-family-phantasmagoria-selection",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-keeper-of-secrets-selection-snapping-claws",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-keeper-of-secrets-selection-witstealer-sword",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-keeper-of-secrets:wargear:1",
+            "eligibleModelIds": [
+              "unit-keeper-of-secrets-model-0463e49756"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-keeper-of-secrets-selection-living-whip",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-keeper-of-secrets-selection-ritual-knife",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-keeper-of-secrets-selection-shining-aegis",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -2312,8 +2735,123 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-lord-exultant-model-fad99158fd",
+            "selections": [
+              {
+                "selectionId": "unit-lord-exultant-selection-bolt-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-lord-exultant-weapon-family-plasma-pistol-selection",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-lord-exultant-selection-phoenix-power-spear",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-lord-exultant-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-lord-exultant:wargear:1",
+            "eligibleModelIds": [
+              "unit-lord-exultant-model-fad99158fd"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-lord-exultant-weapon-family-plasma-pistol-selection",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-lord-exultant-selection-power-fist",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-lord-exultant-weapon-family-plasma-pistol-selection",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-lord-exultant-selection-rapture-lash",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-lord-exultant:wargear:2",
+            "eligibleModelIds": [
+              "unit-lord-exultant-model-fad99158fd"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-lord-exultant-selection-phoenix-power-spear",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-lord-exultant-selection-master-crafted-power-sword",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-lord-exultant-selection-phoenix-power-spear",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-lord-exultant-selection-screamer-pistol",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -2515,8 +3053,56 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-lord-kakophonist-model-74bbb1ff16",
+            "selections": [
+              {
+                "selectionId": "unit-lord-kakophonist-selection-screamer-pistol",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-lord-kakophonist-selection-power-sword",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-lord-kakophonist:wargear:1",
+            "eligibleModelIds": [
+              "unit-lord-kakophonist-model-74bbb1ff16"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-lord-kakophonist-selection-power-sword",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-lord-kakophonist-selection-screamer-pistol",
+                    "quantity": 1
+                  },
+                  {
+                    "selectionId": "unit-lord-kakophonist-selection-close-combat-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -3003,8 +3589,100 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-chaos-rhino-model-74ad18f164",
+            "selections": [
+              {
+                "selectionId": "unit-chaos-rhino-selection-combi-bolter",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-chaos-rhino-selection-armoured-tracks",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-chaos-rhino:wargear:1",
+            "eligibleModelIds": [
+              "unit-chaos-rhino-model-74ad18f164"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-rhino-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-rhino-selection-combi-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-rhino:wargear:2",
+            "eligibleModelIds": [
+              "unit-chaos-rhino-model-74ad18f164"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-rhino-selection-havoc-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-chaos-rhino-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-rhino-selection-havoc-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -4137,8 +4815,205 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-chaos-terminators-model-094033026c",
+            "selections": [
+              {
+                "selectionId": "unit-chaos-terminators-selection-combi-bolter",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-chaos-terminators-selection-accursed-weapon",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-chaos-terminators-model-1538ad2e04",
+            "selections": [
+              {
+                "selectionId": "unit-chaos-terminators-selection-combi-bolter",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-chaos-terminators-selection-accursed-weapon",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-chaos-terminators:wargear:1",
+            "eligibleModelIds": [
+              "unit-chaos-terminators-model-1538ad2e04"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-heavy-flamer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-reaper-autocannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-terminators:wargear:2",
+            "eligibleModelIds": [
+              "unit-chaos-terminators-model-094033026c",
+              "unit-chaos-terminators-model-1538ad2e04"
+            ],
+            "limit": {
+              "perModel": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-combi-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-terminators:wargear:3",
+            "eligibleModelIds": [
+              "unit-chaos-terminators-model-094033026c",
+              "unit-chaos-terminators-model-1538ad2e04"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-combi-bolter",
+                    "quantity": 1
+                  },
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-accursed-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-paired-accursed-weapons",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-terminators:wargear:4",
+            "eligibleModelIds": [
+              "unit-chaos-terminators-model-094033026c",
+              "unit-chaos-terminators-model-1538ad2e04"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 3
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-accursed-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-power-fist",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-terminators:wargear:5",
+            "eligibleModelIds": [
+              "unit-chaos-terminators-model-094033026c",
+              "unit-chaos-terminators-model-1538ad2e04"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-accursed-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-terminators-selection-chainfist",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -4640,8 +5515,98 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-noise-marines-model-053c3f7ac2",
+            "selections": [
+              {
+                "selectionId": "unit-noise-marines-selection-sonic-blaster",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-noise-marines-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-noise-marines-model-6a223b9b75",
+            "selections": [
+              {
+                "selectionId": "unit-noise-marines-selection-sonic-blaster",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-noise-marines-selection-close-combat-weapon",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-noise-marines:wargear:1",
+            "eligibleModelIds": [
+              "unit-noise-marines-model-053c3f7ac2"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-noise-marines-selection-sonic-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-noise-marines-selection-screamer-pistol",
+                    "quantity": 1
+                  },
+                  {
+                    "selectionId": "unit-noise-marines-selection-power-sword",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-noise-marines:wargear:2",
+            "eligibleModelIds": [
+              "unit-noise-marines-model-6a223b9b75"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 2
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-noise-marines-selection-sonic-blaster",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-noise-marines-weapon-family-blastmaster-selection",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -4916,8 +5881,87 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-chaos-land-raider-model-8a15b8b0db",
+            "selections": [
+              {
+                "selectionId": "unit-chaos-land-raider-selection-soulshatter-lascannon",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-chaos-land-raider-selection-twin-heavy-bolter",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-chaos-land-raider-selection-armoured-tracks",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-chaos-land-raider:wargear:1",
+            "eligibleModelIds": [
+              "unit-chaos-land-raider-model-8a15b8b0db"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-land-raider-selection-combi-bolter",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-land-raider-selection-combi-weapon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-chaos-land-raider:wargear:2",
+            "eligibleModelIds": [
+              "unit-chaos-land-raider-model-8a15b8b0db"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-chaos-land-raider-selection-havoc-launcher",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -5551,9 +6595,234 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
-        "wargearSharedCaps": []
+        "wargearDefaults": [
+          {
+            "modelId": "unit-defiler-model-5f9d1a0197",
+            "selections": [
+              {
+                "selectionId": "unit-defiler-selection-hades-battle-cannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-defiler-selection-excruciator-cannon",
+                "quantity": 2
+              },
+              {
+                "selectionId": "unit-defiler-weapon-family-heavy-missile-launcher-selection",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-defiler-selection-heavy-baleflamer",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-defiler-weapon-family-shearing-claws-selection",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-defiler:wargear:1",
+            "eligibleModelIds": [
+              "unit-defiler-model-5f9d1a0197"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-selection-hades-battle-cannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-ectoplasma-destructor",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-defiler:wargear:2",
+            "eligibleModelIds": [
+              "unit-defiler-model-5f9d1a0197"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-selection-excruciator-cannon",
+                    "quantity": 2
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-magma-cutters",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-defiler:wargear:3",
+            "eligibleModelIds": [
+              "unit-defiler-model-5f9d1a0197"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-selection-heavy-baleflamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-hades-lascannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-selection-heavy-baleflamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-heavy-reaper-autocannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-selection-heavy-baleflamer",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-electroscourge",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-defiler:wargear:electroscourge-cap"
+                ]
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-defiler:wargear:4",
+            "eligibleModelIds": [
+              "unit-defiler-model-5f9d1a0197"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-weapon-family-heavy-missile-launcher-selection",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-hades-lascannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-weapon-family-heavy-missile-launcher-selection",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-heavy-reaper-autocannon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              },
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-defiler-weapon-family-heavy-missile-launcher-selection",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-defiler-selection-electroscourge",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": [
+                  "datasheet-defiler:wargear:electroscourge-cap"
+                ]
+              }
+            ]
+          }
+        ],
+        "wargearSharedCaps": [
+          {
+            "id": "datasheet-defiler:wargear:electroscourge-cap",
+            "max": 1,
+            "scope": "model",
+            "sourceIds": [
+              "datasheet-defiler:wargear:3",
+              "datasheet-defiler:wargear:4"
+            ]
+          }
+        ]
       }
     },
     {
@@ -5890,8 +7159,52 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-heldrake-model-56f5db078f",
+            "selections": [
+              {
+                "selectionId": "unit-heldrake-selection-hades-autocannon",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-heldrake-selection-heldrake-claws",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-heldrake:wargear:1",
+            "eligibleModelIds": [
+              "unit-heldrake-model-56f5db078f"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-heldrake-selection-hades-autocannon",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-heldrake-selection-baleflamer",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -6075,8 +7388,52 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-maulerfiend-model-df15c61bbe",
+            "selections": [
+              {
+                "selectionId": "unit-maulerfiend-selection-lasher-tendrils",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-maulerfiend-selection-maulerfiend-fists",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-maulerfiend:wargear:1",
+            "eligibleModelIds": [
+              "unit-maulerfiend-model-df15c61bbe"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [
+                  {
+                    "selectionId": "unit-maulerfiend-selection-lasher-tendrils",
+                    "quantity": 1
+                  }
+                ],
+                "add": [
+                  {
+                    "selectionId": "unit-maulerfiend-selection-magma-cutters",
+                    "quantity": 2
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     },
@@ -6326,8 +7683,88 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearDefaults": [],
-        "wargearOptionContracts": [],
+        "wargearDefaults": [
+          {
+            "modelId": "unit-seekers-model-61c845eb3e",
+            "selections": [
+              {
+                "selectionId": "unit-seekers-selection-lashing-tongue",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-seekers-selection-slashing-claws",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "modelId": "unit-seekers-model-edaf52afdb",
+            "selections": [
+              {
+                "selectionId": "unit-seekers-selection-lashing-tongue",
+                "quantity": 1
+              },
+              {
+                "selectionId": "unit-seekers-selection-slashing-claws",
+                "quantity": 1
+              }
+            ]
+          }
+        ],
+        "wargearOptionContracts": [
+          {
+            "sourceId": "datasheet-seekers:wargear:1",
+            "eligibleModelIds": [
+              "unit-seekers-model-61c845eb3e"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-seekers-selection-instrument-of-chaos",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [
+                  "unit-seekers-selection-daemonic-icon"
+                ],
+                "sharedUses": []
+              }
+            ]
+          },
+          {
+            "sourceId": "datasheet-seekers:wargear:2",
+            "eligibleModelIds": [
+              "unit-seekers-model-61c845eb3e"
+            ],
+            "limit": {
+              "perModel": 1,
+              "perUnit": 1
+            },
+            "choices": [
+              {
+                "remove": [],
+                "add": [
+                  {
+                    "selectionId": "unit-seekers-selection-daemonic-icon",
+                    "quantity": 1
+                  }
+                ],
+                "requiresFinal": [],
+                "forbidsFinal": [
+                  "unit-seekers-selection-instrument-of-chaos"
+                ],
+                "sharedUses": []
+              }
+            ]
+          }
+        ],
         "wargearSharedCaps": []
       }
     }
