@@ -9567,10 +9567,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "emperors-children-codex-transcription",
-        "locator": "books/emperors-children/content/emperors-children-codex-parity.en.json#emperors-children-detachment-rule-eager-to-kill"
+        "sourceId": "emperors-children-faction-pack-v1.2",
+        "locator": "books/emperors-children/content/emperors-children-faction-pack.en.json#emperors-children-detachment-rule-eager-to-kill"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_FROZEN"
     },
     {
       "canonicalRecordId": "emperors-children-detachment-rule-entitled-to-victory",
@@ -9607,10 +9607,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "emperors-children-codex-transcription",
-        "locator": "books/emperors-children/content/emperors-children-codex-parity.en.json#emperors-children-detachment-rule-entitled-to-victory"
+        "sourceId": "emperors-children-faction-pack-v1.2",
+        "locator": "books/emperors-children/content/emperors-children-faction-pack.en.json#emperors-children-detachment-rule-entitled-to-victory"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_FROZEN"
     },
     {
       "canonicalRecordId": "emperors-children-detachment-rule-exquisite-swordsmanship",
@@ -9687,10 +9687,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "emperors-children-codex-transcription",
-        "locator": "books/emperors-children/content/emperors-children-codex-parity.en.json#emperors-children-detachment-rule-frantic-focus"
+        "sourceId": "emperors-children-faction-pack-v1.2",
+        "locator": "books/emperors-children/content/emperors-children-faction-pack.en.json#emperors-children-detachment-rule-frantic-focus"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_FROZEN"
     },
     {
       "canonicalRecordId": "emperors-children-detachment-rule-internal-rivalries",
@@ -9946,10 +9946,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "emperors-children-codex-transcription",
-        "locator": "books/emperors-children/content/emperors-children-codex-parity.en.json#emperors-children-detachment-rule-sensational-performance"
+        "sourceId": "emperors-children-faction-pack-v1.2",
+        "locator": "books/emperors-children/content/emperors-children-faction-pack.en.json#emperors-children-detachment-rule-sensational-performance"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_FROZEN"
     },
     {
       "canonicalRecordId": "enhancement-blinding-speed",
