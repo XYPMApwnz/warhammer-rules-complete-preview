@@ -27952,6 +27952,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
                 "title": "Stealth"
               },
               "type": "ABILITY_GRANT"
+            },
+            {
+              "id": "greyveil-hex-ranged-targeting-restriction",
+              "canonicalTarget": "enhancement-greyveil-hex-targeting-restriction",
+              "parameters": {
+                "attacker": "enemy",
+                "attackMode": "ranged",
+                "restriction": "cannot-target",
+                "maximumRange": 18,
+                "distanceUnit": "inches",
+                "appliesWhen": {
+                  "subject": "target-unit",
+                  "relation": "within-range",
+                  "object": "objective-marker",
+                  "controller": "owner"
+                }
+              },
+              "type": "TARGETING_RESTRICTION_GRANT"
             }
           ]
         }
