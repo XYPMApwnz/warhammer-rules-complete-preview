@@ -22182,7 +22182,78 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "PACTBOUND ZEALOTS",
       "sourceBookId": "chaos-space-marines",
       "chapterRestriction": null,
-      "keywordGrants": [],
+      "keywordGrants": [
+        {
+          "sourceRuleId": "chaos-space-marines-detachment-rule-marks-of-chaos",
+          "selectionRequired": true,
+          "requiredPerEligibleUnit": true,
+          "countPerUnit": 1,
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES"
+            ],
+            "noneKeywords": [
+              "EPIC HERO",
+              "KHORNE",
+              "TZEENTCH",
+              "NURGLE",
+              "SLAANESH",
+              "CHAOS UNDIVIDED"
+            ]
+          },
+          "options": [
+            {
+              "id": "khorne",
+              "keyword": "KHORNE",
+              "selector": {
+                "noneKeywords": [
+                  "PSYKER"
+                ]
+              }
+            },
+            {
+              "id": "tzeentch",
+              "keyword": "TZEENTCH"
+            },
+            {
+              "id": "nurgle",
+              "keyword": "NURGLE"
+            },
+            {
+              "id": "slaanesh",
+              "keyword": "SLAANESH"
+            },
+            {
+              "id": "chaos-undivided",
+              "keyword": "CHAOS UNDIVIDED"
+            }
+          ],
+          "compatibility": [
+            {
+              "kind": "shared-keyword",
+              "relation": "attachment",
+              "keywords": [
+                "KHORNE",
+                "TZEENTCH",
+                "NURGLE",
+                "SLAANESH",
+                "CHAOS UNDIVIDED"
+              ]
+            },
+            {
+              "kind": "shared-keyword",
+              "relation": "embarkation",
+              "keywords": [
+                "KHORNE",
+                "TZEENTCH",
+                "NURGLE",
+                "SLAANESH",
+                "CHAOS UNDIVIDED"
+              ]
+            }
+          ]
+        }
+      ],
       "detachmentRuleIds": [
         "chaos-space-marines-detachment-rule-marks-of-chaos"
       ]

@@ -26,7 +26,7 @@ function matches(selector,unit,grants=[]){
   const allowed=new Set(['unitIds','allKeywords','anyKeywords','noneKeywords','alternatives']);
   if(Object.keys(selector||{}).some(key=>!allowed.has(key)))throw new Error(`Unsupported selector for ${unit.id}`);
   const keywords=new Set((unit.keywords||[]).map(keyword));
-  for(const grant of grants)if(matches(grant.selector,unit))keywords.add(keyword(grant.keyword));
+  for(const grant of grants)if(grant.keyword&&matches(grant.selector,unit))keywords.add(keyword(grant.keyword));
   const test=value=>{
     if((value.unitIds||[]).length&&!value.unitIds.includes(unit.id))return false;
     if((value.allKeywords||[]).some(item=>!keywords.has(keyword(item))))return false;
