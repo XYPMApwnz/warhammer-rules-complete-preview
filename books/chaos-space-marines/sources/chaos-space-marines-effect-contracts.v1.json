@@ -5042,5 +5042,42 @@
       },
       "confidence": "VERIFIED_CURRENT"
     }
-  ]
+  ],
+  "rosterLegality": {
+    "schema": "wh40k-roster-legality-contracts/v1",
+    "bookId": "chaos-space-marines",
+    "enhancementQualifiers": [
+      {
+        "id": "pact-of-cursed-pinions-leading-warp-talons",
+        "sourceRuleId": "enhancement-pact-of-cursed-pinions",
+        "enhancementId": "enhancement-pact-of-cursed-pinions",
+        "qualifier": {
+          "kind": "LEADER",
+          "values": [
+            "WARP TALONS"
+          ]
+        },
+        "targetUnitIds": [
+          "unit-warp-talons"
+        ]
+      },
+      {
+        "id": "sorrowscent-vulture-leading-warp-talons",
+        "sourceRuleId": "enhancement-sorrowscent-vulture",
+        "enhancementId": "enhancement-sorrowscent-vulture",
+        "qualifier": {
+          "kind": "LEADER",
+          "values": [
+            "WARP TALONS"
+          ]
+        },
+        "targetUnitIds": [
+          "unit-warp-talons"
+        ]
+      }
+    ],
+    "mandatoryWarlords": [],
+    "pointCaps": [],
+    "warlordProhibitions": []
+  }
 }

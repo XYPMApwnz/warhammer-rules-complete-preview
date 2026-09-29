@@ -23407,6 +23407,20 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "value": 35,
       "detachment": "NIGHTMARE HUNT",
       "tags": [],
+      "owner": {
+        "subject": "unit",
+        "selector": {
+          "unitIds": [
+            "unit-chaos-lord-with-jump-pack"
+          ],
+          "noneKeywords": [
+            "EPIC HERO"
+          ],
+          "leadingUnitIds": [
+            "unit-warp-talons"
+          ]
+        }
+      },
       "id": "enhancement-sorrowscent-vulture",
       "points": 35,
       "sourcePages": [
@@ -23423,19 +23437,46 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "detachmentId": "nightmare-hunt",
       "sourceBookId": "chaos-space-marines",
       "legacyKey": "enhancement-sorrowscent-vulture",
-      "canonicalEnhancementId": "enhancement-sorrowscent-vulture",
-      "canonicalDetachmentId": "nightmare-hunt",
-      "owner": {
-        "subject": "unit",
-        "selector": {
-          "unitIds": [
-            "unit-chaos-lord-with-jump-pack"
+      "mfmQualifiers": [
+        {
+          "id": "mfm-qualifier-546435e88e489433",
+          "label": "LEADER: WARP TALONS",
+          "recordType": "MFM_QUALIFIER",
+          "aliases": [],
+          "references": [
+            "mfm-enhancement-4b5a85dab433a83a"
           ],
-          "noneKeywords": [
-            "EPIC HERO"
+          "provenance": {
+            "sourceId": "chaos-space-marines-mfm-v1.4",
+            "sourceVersion": "v1.4",
+            "currentness": "CURRENT",
+            "currentnessCutoff": "2026-09-22",
+            "sourceCaptureSha256": "1043E68E899082968A66343CC7CEDA9ACAAC75F8D9711647F1A51ADEF7F21D52",
+            "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+            "sourceLocator": {
+              "partition": "detachments.enhancements.qualifiers",
+              "factionId": "chaos-space-marines",
+              "detachmentSourceTitle": "NIGHTMARE HUNT",
+              "sourceTitle": "Sorrowscent Vulture",
+              "kind": "LEADER",
+              "values": [
+                "WARP TALONS"
+              ]
+            }
+          },
+          "factionId": "chaos-space-marines",
+          "ownerKind": "ENHANCEMENT",
+          "ownerId": "mfm-enhancement-4b5a85dab433a83a",
+          "armyBookId": "chaos-space-marines",
+          "armyOwnerId": "enhancement-sorrowscent-vulture",
+          "kind": "LEADER",
+          "values": [
+            "WARP TALONS"
           ]
         }
-      }
+      ],
+      "canonicalEnhancementId": "enhancement-sorrowscent-vulture",
+      "canonicalDetachmentId": "nightmare-hunt"
     },
     {
       "title": "Eye of Tzeentch",
@@ -24806,6 +24847,20 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "value": 20,
       "detachment": "MURDERTALON RAIDERS",
       "tags": [],
+      "owner": {
+        "subject": "unit",
+        "selector": {
+          "unitIds": [
+            "unit-chaos-lord-with-jump-pack"
+          ],
+          "noneKeywords": [
+            "EPIC HERO"
+          ],
+          "leadingUnitIds": [
+            "unit-warp-talons"
+          ]
+        }
+      },
       "id": "enhancement-pact-of-cursed-pinions",
       "points": 20,
       "sourcePages": [
@@ -24822,19 +24877,46 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "detachmentId": "murdertalon-raiders",
       "sourceBookId": "chaos-space-marines",
       "legacyKey": "enhancement-pact-of-cursed-pinions",
-      "canonicalEnhancementId": "enhancement-pact-of-cursed-pinions",
-      "canonicalDetachmentId": "murdertalon-raiders",
-      "owner": {
-        "subject": "unit",
-        "selector": {
-          "unitIds": [
-            "unit-chaos-lord-with-jump-pack"
+      "mfmQualifiers": [
+        {
+          "id": "mfm-qualifier-2995905c1acf12c4",
+          "label": "LEADER: WARP TALONS",
+          "recordType": "MFM_QUALIFIER",
+          "aliases": [],
+          "references": [
+            "mfm-enhancement-e0b0092cbbb9dbfd"
           ],
-          "noneKeywords": [
-            "EPIC HERO"
+          "provenance": {
+            "sourceId": "chaos-space-marines-mfm-v1.4",
+            "sourceVersion": "v1.4",
+            "currentness": "CURRENT",
+            "currentnessCutoff": "2026-09-22",
+            "sourceCaptureSha256": "1043E68E899082968A66343CC7CEDA9ACAAC75F8D9711647F1A51ADEF7F21D52",
+            "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+            "sourceLocator": {
+              "partition": "detachments.enhancements.qualifiers",
+              "factionId": "chaos-space-marines",
+              "detachmentSourceTitle": "MURDERTALON RAIDERS",
+              "sourceTitle": "Pact of Cursed Pinions",
+              "kind": "LEADER",
+              "values": [
+                "WARP TALONS"
+              ]
+            }
+          },
+          "factionId": "chaos-space-marines",
+          "ownerKind": "ENHANCEMENT",
+          "ownerId": "mfm-enhancement-e0b0092cbbb9dbfd",
+          "armyBookId": "chaos-space-marines",
+          "armyOwnerId": "enhancement-pact-of-cursed-pinions",
+          "kind": "LEADER",
+          "values": [
+            "WARP TALONS"
           ]
         }
-      }
+      ],
+      "canonicalEnhancementId": "enhancement-pact-of-cursed-pinions",
+      "canonicalDetachmentId": "murdertalon-raiders"
     },
     {
       "title": "Bastion Plate",
@@ -30022,7 +30104,44 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "confidence": "VERIFIED_FROZEN"
     }
-  ]
+  ],
+  "rosterLegality": {
+    "schema": "wh40k-roster-legality-contracts/v1",
+    "bookId": "chaos-space-marines",
+    "enhancementQualifiers": [
+      {
+        "id": "pact-of-cursed-pinions-leading-warp-talons",
+        "sourceRuleId": "enhancement-pact-of-cursed-pinions",
+        "enhancementId": "enhancement-pact-of-cursed-pinions",
+        "qualifier": {
+          "kind": "LEADER",
+          "values": [
+            "WARP TALONS"
+          ]
+        },
+        "targetUnitIds": [
+          "unit-warp-talons"
+        ]
+      },
+      {
+        "id": "sorrowscent-vulture-leading-warp-talons",
+        "sourceRuleId": "enhancement-sorrowscent-vulture",
+        "enhancementId": "enhancement-sorrowscent-vulture",
+        "qualifier": {
+          "kind": "LEADER",
+          "values": [
+            "WARP TALONS"
+          ]
+        },
+        "targetUnitIds": [
+          "unit-warp-talons"
+        ]
+      }
+    ],
+    "mandatoryWarlords": [],
+    "pointCaps": [],
+    "warlordProhibitions": []
+  }
 });
 window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   "enhancement-amulet-of-tainted-vigour": {
