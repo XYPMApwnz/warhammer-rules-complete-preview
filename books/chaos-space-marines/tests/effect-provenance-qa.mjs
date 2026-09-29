@@ -34,7 +34,7 @@ const exactOwner=contract=>{
   return{sourceId:wahaOwner,locator:`${corpusPath}#${recordId}`,confidence:'VERIFIED_CURRENT'};
 };
 const certify=(contracts=contractsSource.contracts,catalog=generated)=>{
-  assert.equal(contracts.length,94,'active effect-contract denominator');assert.equal(semanticHash(contracts),'e35834ff3efa08b33e8744cd6d602872d31cdac2cb6e914d7b9c1d1b85f490eb','gameplay semantics excluding provenance');
+  assert.equal(contracts.length,94,'active effect-contract denominator');assert.equal(semanticHash(contracts),'b96299be3de4acb02dbc6c381a9788f3d698a37952861b6da38a345a62996b5c','gameplay semantics excluding provenance');
   let current=0,retired=0,waha=0,official=0;
   for(const contract of contracts){const expected=exactOwner(contract),published=contractById(catalog.effectContracts,contract.canonicalRecordId);assert.deepEqual(contract.source,{sourceId:expected.sourceId,locator:expected.locator},`${contract.canonicalRecordId}: exact accepted owner binding`);assert.equal(contract.confidence,expected.confidence,`${contract.canonicalRecordId}: current source confidence`);assert.ok(published,`${contract.canonicalRecordId}: generated active contract`);assert.deepEqual(JSON.parse(JSON.stringify(published)),JSON.parse(JSON.stringify(contract)),`${contract.canonicalRecordId}: generated provenance parity`);const sourceText=`${contract.source.sourceId} ${contract.source.locator}`;if(/secondary-consensus|codex-secondary/i.test(sourceText))retired++;else current++;if(contract.source.sourceId===wahaOwner)waha++;if(contract.source.sourceId===packOwner)official++;}
   assert.deepEqual({current,retired,waha,official},{current:94,retired:0,waha:61,official:33});return{current,retired,waha,official};

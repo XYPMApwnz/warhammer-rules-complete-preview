@@ -27,11 +27,11 @@ const CONDITION_KINDS=new Set([
   'not-in-engagement-range','objective-controlled-by-owner','once-per-battle','once-per-battle-per-army','once-per-battle-round','phase',
   'phase-start','reserve-state','ROSTER_UNIT_PRESENT','setup-from-reserves','target-status','target-within-friendly-contagion-range',
   'acquisition-objective-state','attachment-group-contains','attachment-group-excludes','battle-imperative','battle-protocol','battle-selection',
-  'battle-shock','source-unit-present','unit-keyword','unit-keyword-absent'
+  'battle-shock','source-unit-present','unit-keyword','unit-keyword-absent','roster-choice'
 ]);
 const CANONICAL_TARGET_KINDS=new Set(['ability','detachment-rule','enhancement','weapon-class','weapon-family']);
 const CHILD_KINDS=new Set(['profile','wargear-ability']);
-const ROSTER_CHOICE_KINDS=new Set(['weapon-profile']);
+const ROSTER_CHOICE_KINDS=new Set(['weapon-profile','option']);
 
 const record=value=>value&&typeof value==='object'&&!Array.isArray(value);
 const scalar=(value,label)=>{if(typeof value!=='string'||!value.trim())throw new Error(`${label} must be a non-empty string`);return value;};
@@ -113,7 +113,12 @@ export function validateEffectContractSet(input,{expectedBookId=null}={}){
     if(!effective.length||new Set(effective).size!==effective.length||effective.some(id=>!BOOKS.has(id)))throw new Error(`${canonicalRecordId}: invalid effectiveBookIds`);
     if(!effective.includes(bookId))throw new Error(`${canonicalRecordId}: factual owner must be an effective book`);
     const scope=normalize(scalar(contract.scope,`${canonicalRecordId}.scope`));if(!SCOPES.has(scope))throw new Error(`${canonicalRecordId}: unsupported scope ${contract.scope}`);
-    if(contract.rosterChoice!=null){if(!record(contract.rosterChoice)||!ROSTER_CHOICE_KINDS.has(contract.rosterChoice.kind)||contract.rosterChoice.count!==1||!['melee','ranged'].includes(contract.rosterChoice.weaponMode))throw new Error(`${canonicalRecordId}: invalid rosterChoice contract`);dataOnly(contract.rosterChoice,`${canonicalRecordId}.rosterChoice`);}
+    if(contract.rosterChoice!=null){
+      const choice=contract.rosterChoice;if(!record(choice)||!ROSTER_CHOICE_KINDS.has(choice.kind)||choice.count!==1)throw new Error(`${canonicalRecordId}: invalid rosterChoice contract`);
+      if(choice.kind==='weapon-profile'&&!['melee','ranged'].includes(choice.weaponMode))throw new Error(`${canonicalRecordId}: invalid weapon-profile rosterChoice contract`);
+      if(choice.kind==='option'&&(!Array.isArray(choice.options)||!choice.options.length||choice.options.some(item=>!record(item)||typeof item.id!=='string'||!item.id.trim()||typeof item.title!=='string'||!item.title.trim())||new Set(choice.options.map(item=>item.id)).size!==choice.options.length))throw new Error(`${canonicalRecordId}: invalid option rosterChoice contract`);
+      dataOnly(choice,`${canonicalRecordId}.rosterChoice`);
+    }
     validateSelector(contract.selector,`${canonicalRecordId}.selector`);
     const clauses=array(contract.clauses,`${canonicalRecordId}.clauses`);
     for(const [clauseIndex,clause] of clauses.entries()){

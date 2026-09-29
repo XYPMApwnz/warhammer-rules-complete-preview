@@ -18,6 +18,12 @@
     const profileId=rows[0]?.profileId,selected=selectedIds(env.owner,'selectedProfileIds'),profile=list(catalogUnit(env.owner)?.gameSelections?.weaponProfiles).find(item=>item.id===profileId);
     return profile&&selected.has(profileId)&&profile.mode===choice.weaponMode?profileId:null;
   };
+  const selectedEffectOption=(contract,context)=>{
+    const choice=contract.rosterChoice;if(choice?.kind!=='option'||choice.count!==1)return null;
+    const rows=list(context.record?.effectChoices?.[contract.canonicalRecordId]),ids=rows.map(item=>typeof item==='string'?item:item?.choiceId).filter(Boolean);
+    if(ids.length!==1||!list(choice.options).some(item=>item.id===ids[0]))return null;
+    return ids[0];
+  };
   const attachmentGroup=(draft,byInstance)=>{
     let bodyguard=draft;
     const leading=list(draft?.attachments?.leading).find(current);
@@ -160,7 +166,7 @@
     if(targetUnitIds.length){const sourceSelector={...(contract.selector||{})};delete sourceSelector.unitIds;if(!matches(sourceSelector,env,rootUnit)||!matches({unitIds:targetUnitIds},env,env.draft))return null;return env;}
     return matches(contract.selector,env,rootUnit)?env:null;
   }
-  const conditionState=(conditions,env)=>{
+  const conditionState=(conditions,env,contract)=>{
     let unknown=false;
     for(const condition of list(conditions)){
       if(condition.selector){if(!matches(condition.selector,env))return {applies:false,unknown:false};continue;}
@@ -171,6 +177,7 @@
       if(condition.kind==='source-unit-present'){if(!list(env.group).some(unit=>canonicalId(unit)===condition.unitId))return {applies:false,unknown:false};continue;}
       if(condition.kind==='unit-keyword'){if(!list(env.group||[env.draft]).some(unit=>keywords(unit,env).has(normalize(condition.keyword))))return {applies:false,unknown:false};continue;}
       if(condition.kind==='unit-keyword-absent'){if(list(env.group||[env.draft]).some(unit=>keywords(unit,env).has(normalize(condition.keyword))))return {applies:false,unknown:false};continue;}
+      if(condition.kind==='roster-choice'){if(selectedEffectOption(contract,env.context)!==condition.choiceId)return {applies:false,unknown:false};continue;}
       if(condition.state==='unknown'||condition.certainty==='unknown'){unknown=true;continue;}
       unknown=true;
     }
@@ -243,7 +250,7 @@
         for(const clause of list(contract.clauses)){
           if(clause.selector?.scope&&!scopeMatches(clause.selector.scope,env))continue;
           if(!matches(clause.selector||{},env))continue;
-          const state=conditionState(clause.conditions,env),timingUnknown=contract.timingState?.state==='unknown';if(!state.applies)continue;
+          const state=conditionState(clause.conditions,env,contract),timingUnknown=contract.timingState?.state==='unknown';if(!state.applies)continue;
           for(const operation of list(clause.operations)){
             if(!operationAllowed(operation,contract,env))continue;
             const effect=operationRecord(operation,contract,env,state.unknown||timingUnknown,clause.selector);if(!effect)continue;

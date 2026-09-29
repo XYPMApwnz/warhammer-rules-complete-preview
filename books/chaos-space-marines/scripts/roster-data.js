@@ -26014,6 +26014,124 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "type": "CANONICAL_REFERENCE"
             }
           ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "cholinergic-accelerants"
+            }
+          ],
+          "operations": [
+            {
+              "id": "experimental-augmentations:cholinergic-accelerants",
+              "canonicalTarget": "melee",
+              "parameters": {
+                "stat": "A",
+                "delta": 1
+              },
+              "type": "WEAPON_CHARACTERISTIC_ADD"
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "hyperadrenal-infusion"
+            }
+          ],
+          "operations": [
+            {
+              "id": "experimental-augmentations:hyperadrenal-infusion",
+              "canonicalTarget": "M",
+              "parameters": {
+                "delta": 2
+              },
+              "type": "CHARACTERISTIC_ADD"
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "paraneural-reactions"
+            }
+          ],
+          "operations": [
+            {
+              "id": "experimental-augmentations:paraneural-reactions",
+              "canonicalTarget": "melee",
+              "parameters": {
+                "stat": "WS",
+                "delta": -1
+              },
+              "type": "WEAPON_CHARACTERISTIC_ADD"
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "supracutaneous-chitination"
+            }
+          ],
+          "operations": [
+            {
+              "id": "experimental-augmentations:supracutaneous-chitination",
+              "canonicalTarget": "T",
+              "parameters": {
+                "delta": 1
+              },
+              "type": "CHARACTERISTIC_ADD"
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "macrotensile-sinews"
+            }
+          ],
+          "operations": [
+            {
+              "id": "experimental-augmentations:macrotensile-sinews",
+              "canonicalTarget": "melee",
+              "parameters": {
+                "stat": "S",
+                "delta": 1
+              },
+              "type": "WEAPON_CHARACTERISTIC_ADD"
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "ophthalmic-enhancement"
+            }
+          ],
+          "operations": [
+            {
+              "id": "experimental-augmentations:ophthalmic-enhancement",
+              "canonicalTarget": "ranged",
+              "parameters": {
+                "stat": "BS",
+                "delta": -1
+              },
+              "type": "WEAPON_CHARACTERISTIC_ADD"
+            }
+          ]
         }
       ],
       "timingState": {
@@ -26024,7 +26142,38 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
         "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-creations-of-bile:rule"
       },
-      "confidence": "VERIFIED_CURRENT"
+      "confidence": "VERIFIED_CURRENT",
+      "rosterChoice": {
+        "kind": "option",
+        "count": 1,
+        "required": true,
+        "options": [
+          {
+            "id": "cholinergic-accelerants",
+            "title": "Cholinergic Accelerants"
+          },
+          {
+            "id": "hyperadrenal-infusion",
+            "title": "Hyperadrenal Infusion"
+          },
+          {
+            "id": "paraneural-reactions",
+            "title": "Paraneural Reactions"
+          },
+          {
+            "id": "supracutaneous-chitination",
+            "title": "Supracutaneous Chitination"
+          },
+          {
+            "id": "macrotensile-sinews",
+            "title": "Macrotensile Sinews"
+          },
+          {
+            "id": "ophthalmic-enhancement",
+            "title": "Ophthalmic Enhancement"
+          }
+        ]
+      }
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-focus-of-hatred",
