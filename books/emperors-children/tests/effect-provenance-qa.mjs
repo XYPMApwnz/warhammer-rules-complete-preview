@@ -16,7 +16,7 @@ const expected={
   'emperors-children-detachment-rule-sensational-performance':{detachmentId:'court-of-the-phoenician',title:'Sensational Performance',semanticHash:'db6929a5e2c197eee3827fa688940870cd27b98d03c250e2fdb878166a7884f9'},
   'emperors-children-detachment-rule-eager-to-kill':{detachmentId:'elegant-brutes',title:'Eager to Kill',semanticHash:'b06cf37a015d28d638133944f09e1591496d990972646fa148d5250c1fb4d0df'},
   'emperors-children-detachment-rule-frantic-focus':{detachmentId:'frenzied-host',title:'Frantic Focus',semanticHash:'5ab8db29108da716ceb92fd45deb40c92d8a00befc73cdbbe0a6c972e280c119'},
-  'emperors-children-detachment-rule-entitled-to-victory':{detachmentId:'spectacle-of-slaughter',title:'Entitled to Victory',semanticHash:'a0cc34118dd182c7350b2aa66c927347614448e75ebcee3437383c64d7f6c98e'}
+  'emperors-children-detachment-rule-entitled-to-victory':{detachmentId:'spectacle-of-slaughter',title:'Entitled to Victory',semanticHash:'8c4dfceefdb4ab55a8f7f031ee30f23b49321fd7d2cf5208a946ea5c2d7576aa'}
 };
 const semanticHash=contract=>{const value=clone(contract);delete value.source;delete value.confidence;return crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');};
 const contractById=(contracts,id)=>contracts.find(contract=>contract.canonicalRecordId===id);

@@ -669,6 +669,14 @@
                 "referenceKind": "detachment-rule"
               },
               "type": "CANONICAL_REFERENCE"
+            },
+            {
+              "id": "entitled-to-victory-fights-first",
+              "canonicalTarget": "core-fights-first",
+              "parameters": {
+                "title": "Fights First"
+              },
+              "type": "ABILITY_GRANT"
             }
           ]
         }
@@ -1670,6 +1678,50 @@
         "locator": "books/emperors-children/content/emperors-children-codex-parity.en.json#emperors-children-equipment-daemonic-icon"
       },
       "confidence": "SOURCE_LIMITED"
+    },
+    {
+      "canonicalRecordId": "emperors-children-equipment-instrument-of-chaos",
+      "sourceKind": "selected-wargear",
+      "sourceBookId": "emperors-children",
+      "effectiveBookIds": [
+        "emperors-children"
+      ],
+      "scope": "owner-or-attached-group",
+      "selector": {
+        "selectedWargearAbilityIds": [
+          "unit-daemonettes-wargear-ability-6721ceb7d6",
+          "unit-seekers-wargear-ability-6721ceb7d6"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "instrument-of-chaos-charge",
+              "canonicalTarget": "Charge",
+              "parameters": {
+                "delta": 1,
+                "modifierOnly": true
+              },
+              "type": "CHARACTERISTIC_ADD"
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      },
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "emperors-children-waha-11e-current-2026-09-28",
+        "locator": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json#datasheet-daemonettes:section:1",
+        "supportingLocators": [
+          "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json#datasheet-seekers:section:1"
+        ]
+      },
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "emperors-children-equipment-shining-aegis",
