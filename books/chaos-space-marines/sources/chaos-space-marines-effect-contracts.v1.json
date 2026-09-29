@@ -5229,6 +5229,121 @@
         "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-cult-of-the-arkifane:rule"
       },
       "confidence": "VERIFIED_CURRENT"
+    },
+    {
+      "canonicalRecordId": "datasheet-chaos-rhino:section:2",
+      "sourceKind": "transport",
+      "sourceBookId": "chaos-space-marines",
+      "effectiveBookIds": [
+        "chaos-space-marines"
+      ],
+      "sourceUnitId": "unit-chaos-rhino",
+      "scope": "source",
+      "selector": {
+        "unitIds": [
+          "unit-chaos-rhino"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "chaos-rhino-transport-capacity",
+              "type": "TRANSPORT_CAPACITY_SET",
+              "canonicalTarget": "transport-capacity",
+              "parameters": {
+                "capacity": 12,
+                "restriction": {
+                  "subject": "models",
+                  "allKeywords": [
+                    "HERETIC ASTARTES",
+                    "INFANTRY"
+                  ],
+                  "noneKeywords": [
+                    "TERMINATOR",
+                    "JUMP PACK",
+                    "MUTILATORS",
+                    "OBLITERATORS",
+                    "POSSESSED"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "stackingPolicy": "set-exact",
+      "source": {
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-chaos-rhino:section:2"
+      },
+      "confidence": "VERIFIED_CURRENT",
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      }
+    },
+    {
+      "canonicalRecordId": "datasheet-chaos-land-raider:section:2",
+      "sourceKind": "transport",
+      "sourceBookId": "chaos-space-marines",
+      "effectiveBookIds": [
+        "chaos-space-marines"
+      ],
+      "sourceUnitId": "unit-chaos-land-raider",
+      "scope": "source",
+      "selector": {
+        "unitIds": [
+          "unit-chaos-land-raider"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "chaos-land-raider-transport-capacity",
+              "type": "TRANSPORT_CAPACITY_SET",
+              "canonicalTarget": "transport-capacity",
+              "parameters": {
+                "capacity": 12,
+                "restriction": {
+                  "subject": "models",
+                  "allKeywords": [
+                    "HERETIC ASTARTES",
+                    "INFANTRY"
+                  ],
+                  "noneKeywords": [
+                    "OBLITERATORS",
+                    "JUMP PACK"
+                  ],
+                  "spaceMultipliers": [
+                    {
+                      "anyKeywords": [
+                        "POSSESSED",
+                        "MUTILATORS",
+                        "TERMINATOR"
+                      ],
+                      "spacesPerModel": 2
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "stackingPolicy": "set-exact",
+      "source": {
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-chaos-land-raider:section:2"
+      },
+      "confidence": "VERIFIED_CURRENT",
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      }
     }
   ],
   "rosterLegality": {
