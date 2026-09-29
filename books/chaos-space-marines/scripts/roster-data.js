@@ -217,7 +217,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -373,7 +377,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-legionaries-model-13598f842d",
             "title": "4 - 9 Legionaries",
             "aliases": [
-              "4 - 9 Legionaries"
+              "4 - 9 Legionaries",
+              "Legionary w/ boltgun",
+              "Legionary w/ chainsword",
+              "Legionary w/ heavy melee weapon",
+              "Legionary w/ balefire tome",
+              "Legionary w/ other weapon"
             ],
             "legacyIds": [
               "unit-legionaries-model-4-9-legionaries-2"
@@ -1066,7 +1075,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-legionaries-selection-chaos-icon"
             ]
           }
-        ]
+        ],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1390,7 +1403,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1669,7 +1686,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -1978,7 +1999,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2050,7 +2075,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-cursed-flames",
             "sectionId": "chaos-space-marines-ability-cursed-flames",
             "title": "Cursed Flames",
-            "text": "In your Shooting phase, after this model has shot, select one enemy INFANTRY unit hit by one or more of those attacks. That unit must make a Battle-shock test.",
+            "text": "In your Shooting phase, after this model has shot, select one enemy INFANTRY unit hit by one or more of those attacks. That unit must take a Battle-shock test.",
             "sourceUnitId": "unit-cultist-firebrand"
           },
           {
@@ -2094,7 +2119,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-cultist-firebrand-profile-46be3959bc"
+              "unit-cultist-firebrand-profile-22682b6620"
             ],
             "wargearAbilityIds": []
           }
@@ -2120,7 +2145,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-cultist-firebrand-profile-46be3959bc",
+            "id": "unit-cultist-firebrand-profile-22682b6620",
             "legacyIds": [
               "unit-cultist-firebrand-profile-close-combat-weapon-melee-2"
             ],
@@ -2130,7 +2155,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "a": "4",
             "skill": "4+",
             "s": "4",
-            "ap": "0",
+            "ap": "-1",
             "d": "1",
             "abilities": "",
             "sourceSelectionIds": [
@@ -2138,7 +2163,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2375,7 +2404,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2460,7 +2493,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-dark-commune-model-20bc18cd54",
             "title": "Dark Commune",
             "aliases": [
-              "Dark Commune"
+              "Dark Commune",
+              "Blessed Blades",
+              "Iconarch",
+              "Mindwitch"
             ],
             "legacyIds": [
               "unit-dark-commune-model-dark-commune"
@@ -2474,6 +2510,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "legacyIds": [
               "unit-dark-commune-model-cult-demagogue-2"
+            ],
+            "intrinsicKeywords": [
+              "CHARACTER",
+              "CULT DEMAGOGUE"
             ]
           }
         ],
@@ -2717,7 +2757,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-dark-commune-selection-chaos-icon"
             ]
           }
-        ]
+        ],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2760,6 +2804,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         },
         "abilities": [
           {
+            "id": "chaos-space-marines-ability-daemonic-allegiance",
+            "sectionId": "chaos-space-marines-ability-daemonic-allegiance",
+            "title": "Daemonic Allegiance",
+            "text": "When you select this model to include in your army, you must select one of the keywords below. Until the end of the battle, this model has that keyword and the characteristic modifier stated for that keyword below.\nKhorne: Add 2 to the Strength characteristic of this model's hellforged weapons.\nTzeentch: Add 3 to the Attacks characteristic of its infernal cannon.\nNurgle: Add 1 to its Toughness characteristic.\nSlaanesh: Add 2\" to its Move characteristic.",
+            "sourceUnitId": "unit-heretic-astartes-daemon-prince"
+          },
+          {
             "id": "chaos-space-marines-ability-dark-blessing-aura",
             "sectionId": "chaos-space-marines-ability-dark-blessing-aura",
             "title": "Dark Blessing (Aura)",
@@ -2777,7 +2828,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-lord-of-chaos-2",
             "sectionId": "chaos-space-marines-ability-lord-of-chaos-2",
             "title": "Lord of Chaos",
-            "text": "While this model is within 3\" of a friendly Heretic Astartes Infantry unit, this model has Lone Operative.",
+            "text": "While this model is within 3\" of one or more friendly HERETIC ASTARTES INFANTRY units, this model has the Lone Operative ability.",
             "sourceUnitId": "unit-heretic-astartes-daemon-prince"
           },
           {
@@ -2931,7 +2982,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -2975,6 +3030,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Base": "60mm"
         },
         "abilities": [
+          {
+            "id": "chaos-space-marines-ability-daemonic-allegiance",
+            "sectionId": "chaos-space-marines-ability-daemonic-allegiance",
+            "title": "Daemonic Allegiance",
+            "text": "When you select this model to include in your army, you must select one of the keywords below. Until the end of the battle, this model has that keyword and the characteristic modifier stated for that keyword below.\nKhorne: Add 2 to the Strength characteristic of this model's hellforged weapons.\nTzeentch: Add 3 to the Attacks characteristic of its infernal cannon.\nNurgle: Add 1 to its Toughness characteristic.\nSlaanesh: Add 2\" to its Move characteristic.",
+            "sourceUnitId": "unit-heretic-astartes-daemon-prince-with-wings"
+          },
           {
             "id": "chaos-space-marines-ability-flying-horror",
             "sectionId": "chaos-space-marines-ability-flying-horror",
@@ -3147,7 +3209,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3438,7 +3504,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3613,7 +3683,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3885,7 +3959,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -3964,14 +4042,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-brutal-raider",
             "sectionId": "chaos-space-marines-ability-brutal-raider",
             "title": "Brutal Raider",
-            "text": "Each time this model's unit ends a Charge move, until the end of the turn, add 1 to the Strength characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
+            "text": "Each time this model’s unit ends a Charge move, until the end of the turn, add 1 to the Strength characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristics of those weapons by 1.",
             "sourceUnitId": "unit-red-corsairs-reave-captain"
           },
           {
             "id": "chaos-space-marines-ability-raiders-due",
             "sectionId": "chaos-space-marines-ability-raiders-due",
             "title": "Raider's Due",
-            "text": "Each time this unit declares a Charge that targets one or more units that are within range of one or more objective markers, you can re-roll the Charge roll.",
+            "text": "When this unit declares a charge, if an enemy unit within range of an objective is within 12\" of this unit, you can use this ability. If you do:\n- This unit can re-roll that charge roll.\n- This unit must end that charge move engaged with one or more of those enemy units.",
             "sourceUnitId": "unit-red-corsairs-reave-captain"
           },
           {
@@ -4185,7 +4263,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4450,7 +4532,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4754,7 +4840,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-sorcerer-in-terminator-armour-selection-chaos-familiar"
             ]
           }
-        ]
+        ],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4801,7 +4891,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-brutal-example",
             "sectionId": "chaos-space-marines-ability-brutal-example",
             "title": "Brutal Example",
-            "text": "Once per turn, while this unit is leading a unit and contains a TRAITOR ENFORCER model, you can target that unit with the Fire Overwatch Stratagem for 0CP, and can do so even if you have already targeted a different unit from your army with that Stratagem this phase. Each time you use this ability, one Bodyguard model in that unit is destroyed.",
+            "text": "Once per turn, while this unit is leading a unit and contains a TRAITOR ENFORCER model, you can target that unit with the Fire Overwatch Stratagem for 0CP, and can do so even if you have already targeted a different unit from your army with that Stratagem this turn. Each time you use this ability, one Bodyguard model in that unit is destroyed.",
             "sourceUnitId": "unit-traitor-enforcer"
           },
           {
@@ -4950,7 +5040,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -4963,6 +5057,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Infantry",
         "Character",
         "Chaos",
+        "Grenades",
         "Warpsmith"
       ],
       "relations": {
@@ -5107,7 +5202,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-warpsmith-profile-f999124853"
+              "unit-warpsmith-profile-08e5c7f69f"
             ],
             "wargearAbilityIds": []
           },
@@ -5202,7 +5297,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-warpsmith-profile-f999124853",
+            "id": "unit-warpsmith-profile-08e5c7f69f",
             "legacyIds": [
               "unit-warpsmith-profile-melta-tendril-ranged-3"
             ],
@@ -5214,7 +5309,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "s": "8",
             "ap": "-4",
             "d": "D3",
-            "abilities": "Melta 1, Pistol",
+            "abilities": "Pistol, Melta 2",
             "sourceSelectionIds": [
               "unit-warpsmith-selection-melta-tendril"
             ]
@@ -5258,7 +5353,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5468,7 +5567,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5541,7 +5644,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-the-warmaster",
             "sectionId": "chaos-space-marines-ability-the-warmaster",
             "title": "The Warmaster",
-            "text": "In your Command phase, select one Warmaster ability. Until the start of your next Command phase, this model has that ability.",
+            "text": "In your Command phase, select one Warmaster ability (see left). Until the start of your next Command phase, this model has that ability.\nParagon of Hatred (Aura): While a friendly HERETIC ASTARTES unit is within 6\" (excluding DAMNED units) of this model, each time a model in that unit makes an attack, you can re-roll the Hit roll.\nMark of Chaos Ascendant (Aura): While a friendly HERETIC ASTARTES INFANTRY or HERETIC ASTARTES MOUNTED unit (excluding DAMNED units) is within 6\" of this model, models in that unit have a 4+ invulnerable save.\nLord of the Traitor Legions (Aura): While a friendly HERETIC ASTARTES unit (excluding DAMNED units) is within 6\" of this model, you can re-roll Leadership and Battle-shock tests taken for that unit.",
             "sourceUnitId": "unit-abaddon-the-despoiler"
           },
           {
@@ -5662,7 +5765,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5716,7 +5823,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-guns-blazing",
             "sectionId": "chaos-space-marines-ability-guns-blazing",
             "title": "Guns Blazing",
-            "text": "Once per turn, in your opponent's Shooting phase, when an enemy unit makes a ranged attacks that targets a friendly HERETIC ASTARTES unit within 3\" of this model, after that enemy unit has shot, this model can shoot as if it were your Shooting phase, but it must target only that enemy unit when doing so and can only do so if that enemy unit is an eligible target.",
+            "text": "Once per turn, in your opponent's Shooting phase, when an enemy unit makes a ranged attack that targets a friendly HERETIC ASTARTES unit within 3\" of this model, after that enemy unit has shot, this model can shoot as if it were your Shooting phase, but it must target only that enemy unit when doing so, and can only do so if that enemy unit is an eligible target.",
             "sourceUnitId": "unit-cypher"
           },
           {
@@ -5849,7 +5956,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -5971,12 +6082,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-fabius-bile-model-fabius-bile"
             ],
             "intrinsicKeywords": [
-              "Infantry",
-              "Character",
-              "Epic Hero",
               "Chaos",
               "Chaos Undivided",
-              "Fabius Bile"
+              "Character",
+              "Epic Hero",
+              "Fabius Bile",
+              "Heretic Astartes",
+              "Infantry"
             ]
           },
           {
@@ -5989,9 +6101,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-fabius-bile-model-surgeon-acolyte-2"
             ],
             "intrinsicKeywords": [
-              "Infantry",
               "Chaos",
-              "Chaos Undivided"
+              "Chaos Undivided",
+              "Heretic Astartes",
+              "Infantry"
             ]
           }
         ],
@@ -6120,7 +6233,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6300,7 +6417,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6490,7 +6611,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -6726,7 +6851,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7187,7 +7316,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7417,7 +7550,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7490,6 +7627,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": ""
         },
         "abilities": [
+          {
+            "id": "chaos-space-marines-ability-accursed-horde",
+            "sectionId": "chaos-space-marines-ability-accursed-horde",
+            "title": "Accursed Horde",
+            "text": "In your opponent's Shooting phase, when an enemy unit has shot, if a model from this unit was destroyed as a result of those attacks, this unit can make a surge move of up to D6\".",
+            "sourceUnitId": "unit-accursed-cultists"
+          },
           {
             "id": "chaos-space-marines-ability-howling-horde",
             "sectionId": "chaos-space-marines-ability-howling-horde",
@@ -7606,7 +7750,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -7716,7 +7864,15 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-chaos-terminator-squad-model-1957527950",
             "title": "4-9 Chaos Terminators",
             "aliases": [
-              "4-9 Chaos Terminators"
+              "4-9 Chaos Terminators",
+              "Accursed weapon and combi-bolter",
+              "Accursed weapon and combi-weapon",
+              "Power fist and combi-weapon",
+              "Chainfist and combi-bolter",
+              "Heavy weapon",
+              "Power fist and combi-bolter",
+              "Chainfist and combi-weapon",
+              "Paired accursed weapons"
             ],
             "legacyIds": [
               "unit-chaos-terminator-squad-model-4-9-chaos-terminators"
@@ -7978,7 +8134,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8131,7 +8291,15 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-chosen-model-62735f3f0d",
             "title": "4-9 Chosen",
             "aliases": [
-              "4-9 Chosen"
+              "4-9 Chosen",
+              "Chosen w/ boltgun",
+              "Chosen w/ boltgun and plasma pistol",
+              "Chosen w/ combi-weapon and bolt pistol",
+              "Chosen w/ paired accursed weapons and plasma pistol",
+              "Chosen w/ power fist and bolt pistol",
+              "Chosen w/ combi-weapon and plasma pistol",
+              "Chosen w/ paired accursed weapons and bolt pistol",
+              "Chosen w/ power fist and plasma pistol"
             ],
             "legacyIds": [
               "unit-chosen-model-4-9-chosen"
@@ -8448,7 +8616,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-chosen-selection-chaos-icon"
             ]
           }
-        ]
+        ],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8494,7 +8666,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-bestial-raiders",
             "sectionId": "chaos-space-marines-ability-bestial-raiders",
             "title": "Bestial Raiders",
-            "text": "If this unit begins the game in Strategic Reserves, it can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. If this unit is in Strategic Reserves, for the purposes of setting it up on the battlefield, treat the current battle round number as being one higher than it actually is.",
+            "text": "If this unit starts the game in Strategic Reserves, it can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. If this unit is in Strategic Reserves, for the purposes of setting up this unit on the battlefield, treat the current battle round number as being one higher than it actually is.",
             "sourceUnitId": "unit-fellgor-beastmen"
           },
           {
@@ -8520,7 +8692,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-fellgor-beastmen-model-3a9709309b",
             "title": "9 Beastmen",
             "aliases": [
-              "9 Beastmen"
+              "9 Beastmen",
+              "Beastman",
+              "Beastman w/ great weapon",
+              "Beastman w/ corrupted stave"
             ],
             "legacyIds": [
               "unit-fellgor-beastmen-model-9-beastmen-2"
@@ -8791,7 +8966,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -8871,7 +9050,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-havocs-model-7cc0b6409c",
             "title": "4 Havocs",
             "aliases": [
-              "4 Havocs"
+              "4 Havocs",
+              "Havoc w/ autocannon",
+              "Havoc w/ lascannon",
+              "Havoc w/ missile launcher",
+              "Havoc w/ reaper chaincannon",
+              "Havoc w/ heavy bolter"
             ],
             "legacyIds": [
               "unit-havocs-model-4-havocs-2"
@@ -8911,7 +9095,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ],
             "kind": "weapon",
             "profileIds": [
-              "unit-havocs-profile-62d9d58361"
+              "unit-havocs-profile-a1e52fa2c4"
             ],
             "wargearAbilityIds": []
           },
@@ -9202,14 +9386,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           },
           {
-            "id": "unit-havocs-profile-62d9d58361",
+            "id": "unit-havocs-profile-a1e52fa2c4",
             "legacyIds": [
               "unit-havocs-profile-astartes-chainsword-melee-3"
             ],
             "title": "Astartes chainsword",
             "mode": "melee",
             "range": "Melee",
-            "a": "4",
+            "a": "5",
             "skill": "3+",
             "s": "4",
             "ap": "-1",
@@ -9478,7 +9662,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9690,7 +9878,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -9829,7 +10021,15 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-nemesis-claw-model-b57df58d9b",
             "title": "4 - 9 Legionaries",
             "aliases": [
-              "4 - 9 Legionaries"
+              "4 - 9 Legionaries",
+              "Legionary w/ boltgun",
+              "Legionary w/ chainsword",
+              "Legionary w/ heavy weapon",
+              "Legionary w/ special weapon",
+              "Legionary w/ accursed weapon",
+              "Legionary w/ Nostraman chainglaive",
+              "Legionary w/ paired accursed weapons",
+              "Legionary w/ voice eater"
             ],
             "legacyIds": [
               "unit-nemesis-claw-model-4-9-legionaries-2"
@@ -10492,7 +10692,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-nemesis-claw-selection-voice-eater"
             ]
           }
-        ]
+        ],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -10734,7 +10938,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -10805,7 +11013,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-possessed-model-3c9598e6dd",
             "title": "5 - 10 Possessed",
             "aliases": [
-              "5 - 10 Possessed"
+              "5 - 10 Possessed",
+              "Possessed"
             ],
             "legacyIds": [
               "unit-possessed-model-5-10-possessed"
@@ -10873,7 +11082,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-possessed-selection-chaos-icon"
             ]
           }
-        ]
+        ],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -10978,7 +11191,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-raptors-model-68333bcc13",
             "title": "4-9 Raptors",
             "aliases": [
-              "4-9 Raptors"
+              "4-9 Raptors",
+              "Raptor",
+              "Raptor w/ plasma pistol",
+              "Raptor w/ heavy melee weapon",
+              "Raptor w/ mutations"
             ],
             "legacyIds": [
               "unit-raptors-model-4-9-raptors-2"
@@ -11407,7 +11624,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -11569,7 +11790,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-red-corsairs-raiders-model-4c82898ea4",
             "title": "4 - 9 Raiders",
             "aliases": [
-              "4 - 9 Raiders"
+              "4 - 9 Raiders",
+              "Red Corsairs Raider"
             ],
             "legacyIds": [
               "unit-red-corsairs-raiders-model-4-9-raiders-2"
@@ -11761,7 +11983,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -11843,7 +12069,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-traitor-guardsmen-squad-model-64c81577d9",
             "title": "9 Traitor Guardsmen",
             "aliases": [
-              "9 Traitor Guardsmen"
+              "9 Traitor Guardsmen",
+              "Guardsman w/ lasgun"
             ],
             "legacyIds": [
               "unit-traitor-guardsmen-squad-model-9-traitor-guardsmen-2"
@@ -12302,7 +12529,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -12373,7 +12604,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-warp-talons-model-792e5d015d",
             "title": "5-10 Warp Talons",
             "aliases": [
-              "5-10 Warp Talons"
+              "5-10 Warp Talons",
+              "Warp Talon Champion",
+              "Warp Talon"
             ],
             "legacyIds": [
               "unit-warp-talons-model-5-10-warp-talons"
@@ -12415,7 +12648,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -12457,6 +12694,13 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         },
         "abilities": [
           {
+            "id": "chaos-space-marines-ability-outmanoeuvre",
+            "sectionId": "chaos-space-marines-ability-outmanoeuvre",
+            "title": "Outmanoeuvre",
+            "text": "Each time a model in this unit makes a melee attack, if this unit made a Charge move this turn, improve the Strength characteristic of that attack by 1.",
+            "sourceUnitId": "unit-chaos-bikers"
+          },
+          {
             "id": "chaos-space-marines-ability-rapid-assault",
             "sectionId": "chaos-space-marines-ability-rapid-assault",
             "title": "Rapid Assault",
@@ -12489,7 +12733,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "unit-chaos-bikers-model-e945d3ea32",
             "title": "2-5 Bikers",
             "aliases": [
-              "2-5 Bikers"
+              "2-5 Bikers",
+              "Biker w/ combi-bolter and bolt pistol",
+              "Biker w/ combi-bolter and chainsword"
             ],
             "legacyIds": [
               "unit-chaos-bikers-model-2-5-bikers-2"
@@ -12974,7 +13220,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "unit-chaos-bikers-selection-chaos-icon"
             ]
           }
-        ]
+        ],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -13021,7 +13271,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-assault-ramp",
             "sectionId": "chaos-space-marines-ability-assault-ramp",
             "title": "Assault Ramp",
-            "text": "Each time a unit disembarks from this model after it has made a Normal move, that unit is still eligible to declare a charge this turn.",
+            "text": "Each time a unit disembarks from this model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
             "sourceUnitId": "unit-chaos-land-raider"
           },
           {
@@ -13243,7 +13493,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -13541,7 +13795,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -13839,7 +14097,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -13883,7 +14145,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-mind-breaking-mutations-aura",
             "sectionId": "chaos-space-marines-ability-mind-breaking-mutations-aura",
             "title": "Mind-breaking Mutations (Aura)",
-            "text": "While an enemy unit (excluding VEHICLES) is within 3\" of this unit, subtract 1 from the Objective Control characteristic of models in that enemy unit.",
+            "text": "While an enemy unit (excluding VEHICLE units) is within 3\" of this unit, subtract 1 from the Objective Control characteristic of models in that enemy unit.",
             "sourceUnitId": "unit-chaos-spawn"
           },
           {
@@ -13948,7 +14210,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -14186,7 +14452,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -14698,7 +14968,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -14906,7 +15180,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -14951,14 +15229,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-dark-ascension-aura",
             "sectionId": "chaos-space-marines-ability-dark-ascension-aura",
             "title": "Dark Ascension (Aura)",
-            "text": "While a friendly HERETIC ASTARTES unit is within 6\" of this model, each time that unit makes a Dark Pact, until the end of the phase, its weapons gain both abilities conferred by that pact (instead of only one).",
+            "text": "While a friendly HERETIC ASTARTES unit is within 6\" of this model, each time that unit makes a Dark Pact, until the end of the phase, weapons equipped by models in that unit gain both abilities conferred by that pact (instead of only one).",
             "sourceUnitId": "unit-helbrute"
           },
           {
             "id": "chaos-space-marines-ability-devoted-to-destruction",
             "sectionId": "chaos-space-marines-ability-devoted-to-destruction",
             "title": "Devoted to Destruction",
-            "text": "If this model is equipped with 2 melee weapons in addition to its close combat weapon, add 2 to the Attacks characteristics of those 2 weapons.",
+            "text": "If this model is equipped with two melee weapons in addition to its close combat weapon, add 2 to the Attacks characteristic of those two weapons.",
             "sourceUnitId": "unit-helbrute"
           },
           {
@@ -15412,7 +15690,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -15597,7 +15879,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -15927,7 +16213,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -16105,7 +16395,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -16150,7 +16444,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-malevolent-locus-aura",
             "sectionId": "chaos-space-marines-ability-malevolent-locus-aura",
             "title": "Malevolent Locus (Aura)",
-            "text": "While a friendly HERETIC ASTARTES unit is within 9\" of this Fortification, improve that unit's Leadership characteristic by 1.",
+            "text": "While a friendly HERETIC ASTARTES model is wholly within 9\" of this FORTIFICATION, improve that unit’s Leadership characteristic by 1.",
             "sourceUnitId": "unit-noctilith-crown"
           },
           {
@@ -16164,7 +16458,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-fortification",
             "sectionId": "chaos-space-marines-ability-fortification",
             "title": "Fortification",
-            "text": "While an enemy unit is only within Engagement Range of one or more Fortifications from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
+            "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol weapon, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
             "sourceUnitId": "unit-noctilith-crown"
           },
           {
@@ -16229,7 +16523,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     },
     {
@@ -16275,7 +16573,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "id": "chaos-space-marines-ability-soul-eater",
             "sectionId": "chaos-space-marines-ability-soul-eater",
             "title": "Soul Eater",
-            "text": "At the end of the Fight phase, if one or more attacks made by this model that phase destroyed one or more enemy units, until the end of the battle, add 1 to the Attacks characteristic of this model’s weapons.",
+            "text": "At the end of the Fight phase, if one or more attacks made by this model this phase destroyed one or more enemy units, until the end of the battle, add 1 to the Attacks characteristic of this model’s weapons.",
             "sourceUnitId": "unit-venomcrawler"
           },
           {
@@ -16370,7 +16668,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "wargearAbilities": []
+        "wargearAbilities": [],
+        "compositionRules": [],
+        "wargearDefaults": [],
+        "wargearOptionContracts": [],
+        "wargearSharedCaps": []
       }
     }
   ],
@@ -16500,7 +16802,36 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "title": "CULT OF THE ARKIFANE",
       "sourceBookId": "chaos-space-marines",
       "chapterRestriction": null,
-      "keywordGrants": [],
+      "keywordGrants": [
+        {
+          "keyword": "DAEMON",
+          "selector": {
+            "allKeywords": [
+              "HERETIC ASTARTES",
+              "VEHICLE"
+            ]
+          }
+        },
+        {
+          "keyword": "SOUL FORGE",
+          "selector": {
+            "alternatives": [
+              {
+                "allKeywords": [
+                  "HERETIC ASTARTES",
+                  "VEHICLE"
+                ]
+              },
+              {
+                "unitIds": [
+                  "unit-lord-discordant-on-helstalker",
+                  "unit-vashtorr-the-arkifane"
+                ]
+              }
+            ]
+          }
+        }
+      ],
       "detachmentRuleIds": [
         "chaos-space-marines-detachment-rule-soul-forge-boons"
       ]
@@ -16550,16 +16881,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "detachment-rule-chaos-cult-desperate-devotion",
       "title": "Desperate Devotion",
-      "text": "Each time a DAMNED unit from your army makes a Dark Pact, if that unit was selected to make a Normal move, Advance or declare a charge, it can make a Desperate Pact. If it does, until the end of the phase, add 2\" to the Move characteristic of models in that unit and add 2 to Charge rolls made for that unit.\n\nDesperate Pacts\n\nEach time a unit makes a Desperate Pact, it must first take a Leadership test; if that test is failed, that unit suffers D3 mortal wounds before any effects of that Desperate Pact are resolved.\n\nKEYWORDS\n\nTRAITOR GUARDSMEN SQUAD units from your army gain the BATTLELINE keyword.",
+      "text": "Each time a DAMNED unit from your army with the Dark Pacts ability is selected to make a Normal or Advance move or declare a charge (excluding units that arrived from Reserves this turn), it can make a Desperate Pact (see below). If it does, until the end of the phase, add 2 to the Move characteristic of models in that unit and add 2 to Charge rolls made for that unit.\nDesperate Pacts\nEach time a unit makes a Desperate Pact, it must first take a Leadership test; if that test is failed, that unit suffers D3 mortal wounds before any effects of that Desperate Pact are resolved.\nKEYWORDS\nTRAITOR GUARDSMEN SQUAD units from your army gain the BATTLELINE keyword.",
       "sectionId": "detachment-rule-chaos-cult-desperate-devotion",
       "detachmentId": "chaos-cult",
       "detachmentTitle": "CHAOS CULT",
-      "sourceBookId": "chaos-space-marines"
+      "sourceBookId": "chaos-space-marines",
+      "presentationTermId": "chaos-space-marines-detachment-rule-desperate-devotion"
     },
     {
       "id": "chaos-space-marines-detachment-rule-experimental-augmentations",
       "title": "Experimental Augmentations",
-      "text": "Bile’s creations, the Terata, possess a variety of mutations, all of which increase their transhuman lethality – for now. At the start of the battle, select which augmentations are active for Heretic Astartes Infantry models (excluding Damned models) from your army until the end of the battle. To do so, either select one from the list below, or randomly determine two by rolling two D6. If Fabius Bile is your Warlord, when randomly determining your augmentations, you can re‑roll one or both of the dice. Duplicated augmentations have no additional effect. Cholinergic Accelerants: Add 1 to the Attacks characteristic of melee weapons equipped by this model. Hyperadrenal Infusion: Add 2\" to the Move characteristic of this model. Paraneural Reactions: Improve the Weapon Skill characteristic of melee weapons equipped by this model by 1. Supracutaneous Chitination: Improve the Toughness characteristic of this model by 1. Macrotensile Sinews: Add 1 to the Strength characteristic of melee weapons equipped by this model. Ophthalmic Enhancement: Improve the Ballistic Skill characteristic of ranged weapons equipped by this model by 1.",
+      "text": "At the start of the battle, select which augmentations are active for HERETIC ASTARTES INFANTRY models (excluding DAMNED models) from your army until the end of the battle. To do so, either select one from the list below, or randomly determine two by rolling two D6. If FABIUS BILE is your WARLORD, when randomly determining your augmentations, you can re-roll one or both of the dice. Duplicated augmentations have no additional effect.\nCholinergic Accelerants: Add 1 to the Attacks characteristic of melee weapons equipped by this model.Hyperadrenal Infusion: Add 2\" to the Move characteristic of this model.Paraneural Reactions: Improve the Weapon Skill characteristic of melee weapons equipped by this model by 1.Supracutaneous Chitination: Improve the Toughness characteristic of this model by 1.Macrotensile Sinews: Add 1 to the Strength characteristic of melee weapons equipped by this model.Ophthalmic Enhancement: Improve the Ballistic Skill characteristic of ranged weapons equipped by this model by 1.",
       "sectionId": "creations-of-bile-rule",
       "detachmentId": "creations-of-bile",
       "detachmentTitle": "CREATIONS OF BILE",
@@ -16568,7 +16900,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-slaves-to-none",
       "title": "Slaves to None",
-      "text": "Many Renegades eschew the gifts of Dark Gods, relying only upon their own prowess. Heretic Astartes models from your army lose the Dark Pacts ability. Ranged weapons equipped by Heretic Astartes models from your army have the [ASSAULT] ability. When mustering your army, you cannot use the Cults of the Dark Gods rule. VENDETTA Bitter minds hold on to lasting grudges. At the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a Heretic Astartes model from your army (excluding Damned models) makes an attack that targets your Vendetta target, you can re‑roll the Hit roll. TWISTED DOCTRINE These Renegades ally their knowledge of the Codex Astartes with their own unrestrained savagery to horrific effect. In your Movement phase, each time you set up or select a Heretic Astartes unit (excluding Battle‑shocked units) from your army to move, it can choose to Default to Doctrine. If it does, it must first take a Battle‑shock test. Then, select one of the following: ■ Until the end of the turn, this unit is eligible to shoot and declare a charge in a turn in which it Fell Back. ■ Until the end of the turn, this unit is eligible to declare a charge in a turn in which it Advanced.",
+      "text": "HERETIC ASTARTES models from your army lose the Dark Pacts ability.\nRanged weapons equipped by HERETIC ASTARTES models from your army have the [ASSAULT] ability.\nWhen mustering your army, you cannot use the Cults of the Dark Gods rule.\nVendetta\nAt the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your Vendetta target, you can re-roll the Hit roll.\nTwisted Doctrine\nIn your Movement phase, each time you set up or select a HERETIC ASTARTES unit (excluding Battle-shocked units) from your army to move, it can choose to Default to Doctrine. If it does, it must first take a Battle-shock test. Then, select one of the following:\n- Until the end of the turn, this unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n- Until the end of the turn, this unit is eligible to declare a charge in a turn in which it Advanced.",
       "sectionId": "renegade-warband-rule",
       "detachmentId": "renegade-warband",
       "detachmentTitle": "RENEGADE WARBAND",
@@ -16577,7 +16909,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-warp-portals",
       "title": "Warp Portals",
-      "text": "Conjured warp portals flicker across the battlefield, tearing through the fabric of reality according to arcane designs. They are a means, however perilous and unnatural, for the warband’s most elite warriors to traverse the battlefield in a matter of strides and strike again at new locations. At the end of your opponent’s turn, you can select a number of Heretic Astartes Terminator, Obliterators and Mutilators units from your army (excluding units that are within Engagement Range of one or more enemy units). The maximum number of units you can select depends on the battle size, as follows: BATTLE SIZE NUMBER OF UNITS Incursion Up to 1 unit Strike Force Up to 2 units Onslaught Up to 3 units Once you have made your selections, remove those units from the battlefield and place them into Strategic Reserves.",
+      "text": "At the end of your opponent’s turn, you can select a number of HERETIC ASTARTES TERMINATOR, OBLITERATORS and MUTILATORS units from your army (excluding units that are within Engagement Range of one or more enemy units). The maximum number of units you can select depends on the battle size, as follows:\nBATTLE SIZENUMBER OF UNITSIncursionUp to 1 unitStrike ForceUp to 2 unitsOnslaughtUp to 3 units\nOnce you have made your selections, remove those units from the battlefield and place them into Strategic Reserves.",
       "sectionId": "warpstrike-champions-rule",
       "detachmentId": "warpstrike-champions",
       "detachmentTitle": "WARPSTRIKE CHAMPIONS",
@@ -16586,7 +16918,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-rain-of-ruin",
       "title": "Rain of Ruin",
-      "text": "It is not enough for these heretical reavers merely to defeat their foes. Instead, they must pound all before them to smouldering oblivion with overwhelming salvoes of fire. Friendly HAVOCS/OBLITERATORS units’ ranged attacks have [HEAVY].",
+      "text": "Friendly HAVOCS/OBLITERATORS units’ ranged attacks have [HEAVY].",
       "sectionId": "devotees-of-destruction-rule",
       "detachmentId": "devotees-of-destruction",
       "detachmentTitle": "DEVOTEES OF DESTRUCTION",
@@ -16595,7 +16927,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-terror-made-manifest",
       "title": "Terror Made Manifest",
-      "text": "With vox‑augmented screams or bedecked in grisly trophies, these nightmarish raiders possess a terrifying presence. Even the most stoic of opponents can be shaken by their sadistic cruelty. Once fear has its hooks into them, they become easier prey. In the Battle‑shock step of your opponent’s Command phase, if an enemy unit that is below its Starting Strength is within 12\" of one or more Heretic Astartes units from your army, that enemy unit must take a Battle‑shock test, subtracting 1 from the result. Enemy units affected by this Detachment rule do not need to take any other Battle‑shock tests in the same phase. Each time a Heretic astartes model from your army makes an attack that targets a unit that is Below Half‑strength, add 1 to the Hit roll. Each time an attack targets a Heretic astartes unit from your army, if the attacking model is Battle‐shocked, subtract 1 from the Hit roll. Each time a Heretic astartes model from your army makes an attack that targets a Battle‐shocked unit, add 1 to the Wound roll.",
+      "text": "In the Battle-shock step of your opponent’s Command phase, if an enemy unit that is below its Starting Strength is within 12\" of one or more HERETIC ASTARTES units from your army, that enemy unit must take a Battle-shock test, subtracting 1 from the result. Enemy units affected by this Detachment rule do not need to take any other Battle-shock tests in the same phase.\nEach time a HERETIC ASTARTES model from your army makes an attack that targets a unit that is Below Half-strength, add 1 to the Hit roll.\nEach time an attack targets a HERETIC ASTARTES unit from your army, if the attacking model is Battle‐shocked, subtract 1 from the Hit roll.\nEach time a HERETIC ASTARTES model from your army makes an attack that targets a Battle‐shocked unit, add 1 to the Wound roll.",
       "sectionId": "nightmare-hunt-rule",
       "detachmentId": "nightmare-hunt",
       "detachmentTitle": "NIGHTMARE HUNT",
@@ -16604,7 +16936,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-marks-of-chaos",
       "title": "Marks of Chaos",
-      "text": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE, TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below. UNITS THAT GAINED [LETHAL HITS]: KHORNE: Each time a model in this unit makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit. TZEENTCH: Each time a model in this unit makes a ranged attack, an unmodified Hit roll of 5+ scores a Critical Hit. CHAOS UNDIVIDED: Each time a model in this unit makes an attack, re-roll a Hit roll of 1. UNITS THAT GAINED [SUSTAINED HITS 1]: NURGLE: Each time a model in this unit makes a ranged attack, an unmodified Hit roll of 5+ scores a Critical Hit. SLAANESH: Each time a model in this unit makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit. CHAOS UNDIVIDED: Each time a model in this unit makes an attack, re-roll a Hit roll of 1. You cannot select the KHORNE keyword for a PSYKER unit. A CHARACTER unit can only be attached to a unit if both units share the same keyword from the list above. A unit can only embark within (or start the battle embarked within) a TRANSPORT if both of those units share the same keyword from the list above.",
+      "text": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below.\nUNITS THAT GAINED [LETHAL HITS]\n- KHORNE: Each time a model in this unit makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit.\n- TZEENTCH: Each time a model in this unit makes a ranged attack, an unmodified Hit roll of 5+ scores a Critical Hit.\n- CHAOS UNDIVIDED: Each time a model in this unit makes an attack, re-roll a Hit roll of 1.\nUNITS THAT GAINED [SUSTAINED HITS 1]\n- NURGLE: Each time a model in this unit makes a ranged attack, an unmodified Hit roll of 5+ scores a Critical Hit.\n- SLAANESH: Each time a model in this unit makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit.\n- CHAOS UNDIVIDED: Each time a model in this unit makes an attack, re-roll a Hit roll of 1.\nRESTRICTIONS\n- You cannot select the KHORNE keyword for a PSYKER unit.\n- A CHARACTER unit can only be attached to a unit if both units share the same keyword from the list above.\n- A unit can only embark within (or start the battle embarked within) a TRANSPORT if both of those units share the same keyword from the list above.",
       "sectionId": "pactbound-zealots-rule",
       "detachmentId": "pactbound-zealots",
       "detachmentTitle": "PACTBOUND ZEALOTS",
@@ -16613,7 +16945,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-terror-descends-aura",
       "title": "Terror Descends (Aura)",
-      "text": "In the Battle-shock step of your opponent's Command phase, if an enemy unit that is below its Starting Strength is within 12\" of one or more HERETIC ASTARTES units from your army, that enemy unit must take a Battle-shock test. Each time an enemy unit within 12\" of one or more HERETIC ASTARTES units from your army takes a Battle-shock test, subtract 1 from the result. Enemy units affected by this Detachment rule do not need to take any other Battle-shock tests in the same phase.",
+      "text": "In the Battle-shock step of your opponent’s Command phase, if an enemy unit that is below its Starting Strength is within 12\" of one or more HERETIC ASTARTES units from your army, that enemy unit must take a Battle-shock test.\nEach time an enemy unit within 12\" of one or more HERETIC ASTARTES units from your army takes a Battle-shock test, subtract 1 from the result.\nEnemy units affected by this Detachment rule do not need to take any other Battle-shock tests in the same phase.",
       "sectionId": "dread-talons-rule",
       "detachmentId": "dread-talons",
       "detachmentTitle": "DREAD TALONS",
@@ -16631,7 +16963,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-focus-of-hatred",
       "title": "Focus of Hatred",
-      "text": "At the start of your Command phase, select one unit from your opponent's army to be your focus of hatred. Until the start of your next Command phase, each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your focus of hatred, you can re-roll the Hit roll.",
+      "text": "At the start of your Command phase, select one unit from your opponents army to be your focus of hatred. Until the start of your next Command phase, each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your focus of hatred, you can re-roll the Hit roll.",
       "sectionId": "veterans-of-the-long-war-rule",
       "detachmentId": "veterans-of-the-long-war",
       "detachmentTitle": "VETERANS OF THE LONG WAR",
@@ -16640,7 +16972,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-masters-of-misdirection",
       "title": "Masters of Misdirection",
-      "text": "",
+      "text": "In the Declare Battle Formations step, you can select a number of LEGIONARIES and CULTIST MOB units from your army:\nuntil the end of the battle, those units, and any CHARACTER units attached to them (excluding EPIC HEROES), have the Infiltrators ability. The maximum number of units you can select in this way depends on the battle size, as shown below.\nBATTLE SIZENUMBER OF UNITSLEGIONARIESCULTIST MOBSIncursion Up to 2 units Up to 2 units Strike ForceUp to 3 units Up to 3 units OnslaughtUp to 4 units Up to 4 units",
       "sectionId": "deceptors-rule",
       "detachmentId": "deceptors",
       "detachmentTitle": "DECEPTORS",
@@ -16649,7 +16981,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-tyrannical-motivation",
       "title": "Tyrannical Motivation",
-      "text": "Murderers and renegades all, the Red Corsairs strive to meet their master’s standards, fighting hardest of all when his gaze is upon them. In your Command phase, select one of the following abilities. Until the start of your next Command phase, each Heretic Astartes Infantry unit from your army has that ability. At the start of each phase, if such a unit is visible to a friendly Huron Blackheart model, until the end of the phase, it has both of the following abilities. Huron’s Elite Hand‑picked by Huron Blackheart himself, these warriors strive to retain his favour with feats of arms. Each time a model in this unit makes an attack, add 1 to the Hit roll. Mobile Marauders The Red Corsairs utilise a highly mobile form of warfare and, under Huron’s watch, are relentless in their aggression. This unit is eligible to shoot and declare a charge in a turn in which it Fell Back. Designer’s Note: If a unit is gaining eligibility to shoot and declare a charge in a turn in which it Fell Back as a result of being visible to Huron Blackheart, but after making a Fall Back move it is no longer visible to Huron Blackheart, that unit will not be eligible to shoot in your Shooting phase or to declare a charge in your Charge phase unless it is visible again at the start of the respective phase.",
+      "text": "In your Command phase, select one of the following abilities. Until the start of your next Command phase, each Heretic Astartes Infantry unit from your army has that ability. At the start of each phase, if such a unit is visible to a friendly Huron Blackheart model, until the end of the phase, it has both of the following abilities.Huron’s EliteEach time a model in this unit makes an attack, add 1 to the Hit roll.Mobile MaraudersThis unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\nDesigner’s Note: If a unit is gaining eligibility to shoot and declare a charge in a turn in which it Fell Back as a result of being visible to Huron Blackheart, but after making a Fall Back move it is no longer visible to Huron Blackheart, that unit will not be eligible to shoot in your Shooting phase or to declare a charge in your Charge phase unless it is visible again at the start of the respective phase.",
       "sectionId": "huron-s-marauders-rule",
       "detachmentId": "huron-s-marauders",
       "detachmentTitle": "HURON’S MARAUDERS",
@@ -16658,7 +16990,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-soul-forge-boons",
       "title": "Soul Forge Boons",
-      "text": "The cybersorcerous power of Vashtorr’s boons is much in evidence amongst his worshippers. Nowhere is this more true than in the war engines that his cults take into battle, and which exhibit a nightmarish variety of biomechanoid mutations and daemon‑spawned powers. Whether wreathed in balefire, shimmeringly insubstantial or constantly regrowing battle‑damaged hull plating, these accursed war machines are incredibly hard to destroy. Heretic Astartes Vehicle units from your army gain the Daemon keyword. Heretic Astartes Vehicle, Lord Discordant and Vashtorr the Arkifane units from your army gain the Soul Forge keyword. Soul Forge units from your army have a 5+ invulnerable save.",
+      "text": "HERETIC ASTARTES VEHICLE units from your army gain the DAEMON keyword.\nHERETIC ASTARTES VEHICLE, LORD DISCORDANT and VASHTORR THE ARKIFANE units from your army gain the SOUL FORGE keyword.\nSOUL FORGE units from your army have a 5+ invulnerable save.",
       "sectionId": "cult-of-the-arkifane-rule",
       "detachmentId": "cult-of-the-arkifane",
       "detachmentTitle": "CULT OF THE ARKIFANE",
@@ -16667,7 +16999,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "chaos-space-marines-detachment-rule-empyric-wellspring",
       "title": "Empyric Wellspring",
-      "text": "The sorcerous powers wielded by a cabal inevitably draw the attention of the Dark Gods, flooding the battlefield with immaterial energies that empower their dark magicks and their daemonically gifted comrades alike. ▪ In your Shooting phase, when a friendly HERETIC ASTARTES PSYKER unit (excluding DAEMON units) is selected to shoot, if that unit makes a Dark Pact, that unit’s ranged attacks have +1 S. ▪ In the Fight phase, when a friendly HERETIC ASTARTES DAEMON PRINCE/DAEMON PRINCE WITH WINGS unit (excluding KHORNE units) is selected to fight, if that unit makes a Dark Pact, that unit’s melee attacks have: ▫ +2 S. ▫ +1 AP.",
+      "text": "- In your Shooting phase, when a friendly HERETIC ASTARTES PSYKER unit (excluding DAEMON units) is selected to shoot, if that unit makes a Dark Pact, that unit’s ranged attacks have +1 S.\n- In the Fight phase, when a friendly HERETIC ASTARTES DAEMON PRINCE/DAEMON PRINCE WITH WINGS unit (excluding KHORNE units) is selected to fight, if that unit makes a Dark Pact, that unit’s melee attacks have:\n- +2 S.\n- +1 AP.",
       "sectionId": "cabal-of-chaos-rule",
       "detachmentId": "cabal-of-chaos",
       "detachmentTitle": "CABAL OF CHAOS",
@@ -16676,16 +17008,17 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     {
       "id": "detachment-rule-soulforged-warpack-debt-to-the-soul-forge",
       "title": "Debt to the Soul Forge",
-      "text": "Each time a HERETIC ASTARTES DAEMON VEHICLE unit from your army makes a Dark Pact, it can invoke its contract. If it does, subtract 1 from the resulting Leadership test when making that Dark Pact, and until the end of the phase:\n\nEach time a model in that unit makes a ranged attack, add 1 to the Wound roll.\nAdd 2 to the Attacks characteristic of melee weapons equipped by models in that unit.",
+      "text": "Each time a HERETIC ASTARTES DAEMON VEHICLE unit from your army makes a Dark Pact, it can invoke its contract. If it does, subtract 1 from the resulting Leadership test when making that Dark Pact, and until the end of the phase:\n- Each time a model in that unit makes a ranged attack, add 1 to the Wound roll.\n- Add 2 to the Attacks characteristic of melee weapons equipped by models in that unit.",
       "sectionId": "detachment-rule-soulforged-warpack-debt-to-the-soul-forge",
       "detachmentId": "soulforged-warpack",
       "detachmentTitle": "SOULFORGED WARPACK",
-      "sourceBookId": "chaos-space-marines"
+      "sourceBookId": "chaos-space-marines",
+      "presentationTermId": "chaos-space-marines-detachment-rule-debt-to-the-soul-forge"
     },
     {
       "id": "chaos-space-marines-detachment-rule-prey-on-the-weak",
       "title": "Prey on the Weak",
-      "text": "The more bloodied, scattered and thinned are the ranks of the enemy, the more frenzied and brutal the attacks of these sadistic Chaos Space Marines become. ▪ Friendly HERETIC ASTARTES INFANTRY FLY units’ attacks that target a battle-shocked unit or a unit at or below half-strength can re‑roll hit rolls of 1. ▪ When an enemy unit’s attacks target a friendly HERETIC ASTARTES INFANTRY FLY unit, if that enemy unit is battle-shocked or at or below half-strength, those attacks have ‑1 to hit rolls. This detachment has the NIGHTMARE tag and cannot be taken with another NIGHTMARE detachment.",
+      "text": "- Friendly HERETIC ASTARTES INFANTRY FLY units’ attacks that target a battle-shocked unit or a unit at or below half-strength can re-roll hit rolls of 1.\n- When an enemy unit’s attacks target a friendly HERETIC ASTARTES INFANTRY FLY unit, if that enemy unit is battle-shocked or at or below half-strength, those attacks have -1 to hit rolls.\nThis detachment has the NIGHTMARE tag and cannot be taken with another NIGHTMARE detachment.",
       "sectionId": "murdertalon-raiders-rule",
       "detachmentId": "murdertalon-raiders",
       "detachmentTitle": "MURDERTALON RAIDERS",
@@ -16704,7 +17037,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
   "enhancements": [
     {
       "title": "Amulet of Tainted Vigour",
-      "text": "DARK APOSTLE model only. In your Command phase, you can return up to D3 destroyed DAMNED models (excluding CHARACTER models) to the bearer's unit.",
+      "text": "DARK APOSTLE model only. In your Command phase, you can return up to D3 destroyed DAMNED models (excluding CHARACTER models) to the bearer’s unit.",
       "value": 20,
       "detachment": "CHAOS CULT",
       "tags": [],
@@ -16713,27 +17046,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "DARK APOSTLE model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "2c8-9d0d-72d7-7375",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[24]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Chaos Cult > Enhancement > Amulet of Tainted Vigour",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-chaos-cult:enhancement:1"
       },
       "sourceId": "enhancement-chaos-cult-amulet-of-tainted-vigour",
+      "termId": "chaos-space-marines-enhancement-amulet-of-tainted-vigour",
       "ruleId": "enhancement-amulet-of-tainted-vigour",
       "detachmentId": "chaos-cult",
       "sourceBookId": "chaos-space-marines",
@@ -16751,7 +17069,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Cultist's Brand",
-      "text": "DARK APOSTLE or DAMNED model only. If every other model in the bearer's unit (excluding Dark Disciples) is DAMNED, you can re-roll Advance and Charge rolls made for the bearer's unit.",
+      "text": "DARK APOSTLE or DAMNED model only. If every other model in the bearer’s unit (excluding Dark Disciples) is DAMNED, you can re-roll Advance and Charge rolls made for the bearer’s unit.",
       "value": 30,
       "detachment": "CHAOS CULT",
       "tags": [],
@@ -16760,27 +17078,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "DARK APOSTLE or DAMNED model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "42ab-1d5e-7a31-2de7",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[26]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Chaos Cult > Enhancement > Cultist's Brand",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-chaos-cult:enhancement:2"
       },
       "sourceId": "enhancement-chaos-cult-cultists-brand",
+      "termId": "chaos-space-marines-enhancement-cultists-brand",
       "ruleId": "enhancement-cultists-brand",
       "detachmentId": "chaos-cult",
       "sourceBookId": "chaos-space-marines",
@@ -16811,7 +17114,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Incendiary Goad",
-      "text": "DARK APOSTLE or DAMNED model only. While the bearer's unit is below its Starting Strength, add 1 to the Strength characteristic of melee weapons equipped by DAMNED models in that unit, and while that unit is Below Half-strength, add 1 to the Attacks characteristic of those weapons as well.",
+      "text": "DARK APOSTLE or DAMNED model only. While the bearer’s unit is below its Starting Strength, add 1 to the Strength characteristic of melee weapons equipped by DAMNED models in that unit, and while that unit is Below Half-strength, add 1 to the Attacks characteristic of those weapons as well.",
       "value": 25,
       "detachment": "CHAOS CULT",
       "tags": [],
@@ -16820,27 +17123,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "DARK APOSTLE or DAMNED model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "c791-aaac-2c1f-1d9a",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[25]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Chaos Cult > Enhancement > Incendiary Goad",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-chaos-cult:enhancement:3"
       },
       "sourceId": "enhancement-chaos-cult-incendiary-goad",
+      "termId": "chaos-space-marines-enhancement-incendiary-goad",
       "ruleId": "enhancement-incendiary-goad",
       "detachmentId": "chaos-cult",
       "sourceBookId": "chaos-space-marines",
@@ -16871,7 +17159,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Warped Foresight",
-      "text": "DARK APOSTLE or DAMNED model only. While the bearer is leading a unit with the Scouts 6\" ability, every model in the bearer's unit has the Scouts 6\" ability.",
+      "text": "DARK APOSTLE or DAMNED model only. While the bearer is leading a unit with the Scouts 6\" ability, every model in the bearer’s unit has the Scouts 6\" ability.",
       "value": 10,
       "detachment": "CHAOS CULT",
       "tags": [],
@@ -16880,27 +17168,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "DARK APOSTLE or DAMNED model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "a660-3c2c-2f05-a6a1",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[27]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Chaos Cult > Enhancement > Warped Foresight",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-chaos-cult:enhancement:4"
       },
       "sourceId": "enhancement-chaos-cult-warped-foresight",
+      "termId": "chaos-space-marines-enhancement-warped-foresight",
       "ruleId": "enhancement-warped-foresight",
       "detachmentId": "chaos-cult",
       "sourceBookId": "chaos-space-marines",
@@ -16931,7 +17204,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Surgical Precision",
-      "text": "A student of Fabius Bile’s dread craft, this champion of Chaos wields their weapons with the same precision a master chirurgeon would wield a scalpel. Heretic Astartes model (excluding Damned models) only. The bearer’s melee weapons have the [PRECISION] ability.",
+      "text": "HERETIC ASTARTES model (excluding DAMNED models) only. The bearer’s melee weapons have the [PRECISION] ability.",
       "value": 10,
       "detachment": "CREATIONS OF BILE",
       "tags": [],
@@ -16941,12 +17214,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         9
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          9
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-creations-of-bile:enhancement:1"
       },
       "sourceId": "surgical-precision",
+      "termId": "chaos-space-marines-enhancement-surgical-precision",
       "ruleId": "enhancement-surgical-precision",
       "detachmentId": "creations-of-bile",
       "sourceBookId": "chaos-space-marines",
@@ -16979,7 +17252,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Living Carapace",
-      "text": "With a thought, the wearer can compel this bioarmour to thicken, further increasing their formidable resistance. Chaos Lord model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability.",
+      "text": "CHAOS LORD model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability.",
       "value": 15,
       "detachment": "CREATIONS OF BILE",
       "tags": [],
@@ -16989,12 +17262,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         9
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          9
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-creations-of-bile:enhancement:2"
       },
       "sourceId": "living-carapace",
+      "termId": "chaos-space-marines-enhancement-living-carapace",
       "ruleId": "enhancement-living-carapace",
       "detachmentId": "creations-of-bile",
       "sourceBookId": "chaos-space-marines",
@@ -17017,7 +17290,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Helm of All-seeing",
-      "text": "This baroque helm sports numerous additional sensors, requiring various disfiguring organ augmentations to process the information. Heretic Astartes Infantry model (excluding Damned models) only. Enemy units that are set up on the battlefield from Reserves cannot be set up within 12\" of the bearer.",
+      "text": "HERETIC ASTARTES INFANTRY model (excluding DAMNED models) only. Enemy units that are set up on the battlefield from Reserves cannot be set up within 12\" of the bearer.",
       "value": 25,
       "detachment": "CREATIONS OF BILE",
       "tags": [],
@@ -17027,12 +17300,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         9
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          9
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-creations-of-bile:enhancement:3"
       },
       "sourceId": "helm-of-all-seeing",
+      "termId": "chaos-space-marines-enhancement-helm-of-all-seeing",
       "ruleId": "enhancement-helm-of-all-seeing",
       "detachmentId": "creations-of-bile",
       "sourceBookId": "chaos-space-marines",
@@ -17073,7 +17346,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Prime Test Subject",
-      "text": "Only the strongest will survive the rampant cell transformations associated with Bile’s mysterious bioalchemy. Heretic Astartes Infantry model (excluding Damned models) only. Add 1 to the Damage characteristic of melee weapons equipped by the bearer. Each time the bearer makes a melee attack, you can re‑roll the Hit roll.",
+      "text": "HERETIC ASTARTES INFANTRY model (excluding DAMNED models) only. Add 1 to the Damage characteristic of melee weapons equipped by the bearer. Each time the bearer makes a melee attack, you can re-roll the Hit roll.",
       "value": 35,
       "detachment": "CREATIONS OF BILE",
       "tags": [],
@@ -17083,12 +17356,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         9
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          9
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-creations-of-bile:enhancement:4"
       },
       "sourceId": "prime-test-subject",
+      "termId": "chaos-space-marines-enhancement-prime-test-subject",
       "ruleId": "enhancement-prime-test-subject",
       "detachmentId": "creations-of-bile",
       "sourceBookId": "chaos-space-marines",
@@ -17129,7 +17402,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Weaponised Hatred",
-      "text": "This champion’s bitterness has been tempered like a blade, and is wielded with the brutal efficacy to match. Heretic Astartes model only. Once per battle round, after your Vendetta target is destroyed, if the bearer is on the battlefield, you can select one enemy unit visible to the bearer. That enemy unit becomes your Vendetta target until you select a new one.",
+      "text": "HERETIC ASTARTES model only. Once per battle round, after your Vendetta target is destroyed, if the bearer is on the battlefield, you can select one enemy unit visible to the bearer. That enemy unit becomes your Vendetta target until you select a new one.",
       "value": 35,
       "detachment": "RENEGADE WARBAND",
       "tags": [],
@@ -17139,12 +17412,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         15
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          15
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-renegade-warband:enhancement:1"
       },
       "sourceId": "weaponised-hatred",
+      "termId": "chaos-space-marines-enhancement-weaponised-hatred",
       "ruleId": "enhancement-weaponised-hatred",
       "detachmentId": "renegade-warband",
       "sourceBookId": "chaos-space-marines",
@@ -17179,7 +17452,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Eyes of the Hunter",
-      "text": "Immersion within the mutagenic energies of the Warp has wrought changes upon this warrior’s eyes. Slit pupils and warp sight enable them to pick out their targets with unerring accuracy. Heretic Astartes model only. Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability.",
+      "text": "HERETIC ASTARTES model only. Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability.",
       "value": 15,
       "detachment": "RENEGADE WARBAND",
       "tags": [],
@@ -17189,12 +17462,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         15
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          15
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-renegade-warband:enhancement:2"
       },
       "sourceId": "eyes-of-the-hunter",
+      "termId": "chaos-space-marines-enhancement-eyes-of-the-hunter",
       "ruleId": "enhancement-eyes-of-the-hunter",
       "detachmentId": "renegade-warband",
       "sourceBookId": "chaos-space-marines",
@@ -17229,7 +17502,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Fratricidal Trophies",
-      "text": "The trophy racks of this warrior’s Terminator armour bear the skulls of former battle‑brothers slain by his own hand. The warriors that fight at his side strive their hardest to avoid sharing the fate of their former comrades. Heretic Astartes Terminator model only. In a turn in which the bearer’s unit chose to Default to Doctrine, until the end of the turn, each time a model in this unit makes an attack, you can re‑roll the Hit roll.",
+      "text": "HERETIC ASTARTES TERMINATOR model only. In a turn in which the bearer’s unit chose to Default to Doctrine, until the end of the turn, each time a model in this unit makes an attack, you can re-roll the Hit roll.",
       "value": 5,
       "detachment": "RENEGADE WARBAND",
       "tags": [],
@@ -17239,12 +17512,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         15
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          15
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-renegade-warband:enhancement:3"
       },
       "sourceId": "fratricidal-trophies",
+      "termId": "chaos-space-marines-enhancement-fratricidal-trophies",
       "ruleId": "enhancement-fratricidal-trophies",
       "detachmentId": "renegade-warband",
       "sourceBookId": "chaos-space-marines",
@@ -17267,7 +17540,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Empyric Symbiote",
-      "text": "This champion of ruin has been bonded with a warp‑spawned symbiote. This malefic companion’s predatory senses sense the quickest route to the enemy. Heretic Astartes model only. Add 1 to Advance and Charge rolls made for the bearer’s unit.",
+      "text": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit.",
       "value": 15,
       "detachment": "RENEGADE WARBAND",
       "tags": [],
@@ -17277,12 +17550,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         15
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          15
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-renegade-warband:enhancement:4"
       },
       "sourceId": "empyric-symbiote",
+      "termId": "chaos-space-marines-enhancement-empyric-symbiote",
       "ruleId": "enhancement-empyric-symbiote",
       "detachmentId": "renegade-warband",
       "sourceBookId": "chaos-space-marines",
@@ -17317,7 +17590,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Infernal Fulgurite",
-      "text": "This strange artefact was recovered from the storm‑lashed daemon world of Utrexismia. A shard of warp lightning frozen forever in reality, it serves as a potent focus for teleportation. Heretic Astartes model only (excluding Damned models). Once per battle, you can target the bearer’s unit with the Rapid Ingress Stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this phase.",
+      "text": "HERETIC ASTARTES model only (excluding DAMNED models). Once per battle, you can target the bearer’s unit with the Rapid Ingress Stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this phase.",
       "value": 20,
       "detachment": "WARPSTRIKE CHAMPIONS",
       "tags": [],
@@ -17327,12 +17600,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         5
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          5
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-warpstrike-champions:enhancement:1"
       },
       "sourceId": "infernal-fulgurite",
+      "termId": "chaos-space-marines-enhancement-infernal-fulgurite",
       "ruleId": "enhancement-infernal-fulgurite",
       "detachmentId": "warpstrike-champions",
       "sourceBookId": "chaos-space-marines",
@@ -17365,7 +17638,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Eye of the Warp",
-      "text": "This burning gem allows its bearer to see through the veil between realspace and the Warp, and so to react instantly upon piercing that veil. Heretic Astartes model with the Deep Strike ability only. Each time the bearer’s unit is set up on the battlefield, until the end of the turn, you can re‑roll Charge rolls made for that unit.",
+      "text": "HERETIC ASTARTES model with the Deep Strike ability only. Each time the bearer’s unit is set up on the battlefield, until the end of the turn, you can re-roll Charge rolls made for that unit.",
       "value": 15,
       "detachment": "WARPSTRIKE CHAMPIONS",
       "tags": [],
@@ -17375,12 +17648,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         5
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          5
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-warpstrike-champions:enhancement:2"
       },
       "sourceId": "eye-of-the-warp",
+      "termId": "chaos-space-marines-enhancement-eye-of-the-warp",
       "ruleId": "enhancement-eye-of-the-warp",
       "detachmentId": "warpstrike-champions",
       "sourceBookId": "chaos-space-marines",
@@ -17404,7 +17677,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Akshur’s Binding Runes",
-      "text": "Living runes that crawl from an ancient tome onto living skin, these sigils anchor their host to realspace even when they are immersed in the Empyrean. Heretic Astartes model with the Deep Strike ability only. The bearer’s unit can be set up using the Deep Strike ability in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules.",
+      "text": "HERETIC ASTARTES model with the Deep Strike ability only. The bearer’s unit can be set up using the Deep Strike ability in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules.",
       "value": 20,
       "detachment": "WARPSTRIKE CHAMPIONS",
       "tags": [],
@@ -17414,12 +17687,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         5
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          5
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-warpstrike-champions:enhancement:3"
       },
       "sourceId": "akshur-s-binding-runes",
+      "termId": "chaos-space-marines-enhancement-akshurs-binding-runes",
       "ruleId": "enhancement-akshurs-binding-runes",
       "detachmentId": "warpstrike-champions",
       "sourceBookId": "chaos-space-marines",
@@ -17443,7 +17716,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Tzagulla",
-      "text": "This shape‑shifting daemon weapon feeds upon the presence of warp energy to empower both itself and its wielder. Heretic Astartes model with the Deep Strike ability only. Improve the Attacks, Strength and Armour Penetration characteristics of the bearer’s weapons by 1. In addition, each time the bearer’s unit is set up on the battlefield from Reserves, until the end of the turn, improve the Damage characteristic of the bearer’s weapons by 1.",
+      "text": "HERETIC ASTARTES model with the Deep Strike ability only. Improve the Attacks, Strength and Armour Penetration characteristics of the bearer’s weapons by 1. In addition, each time the bearer’s unit is set up on the battlefield from Reserves, until the end of the turn, improve the Damage characteristic of the bearer’s weapons by 1.",
       "value": 25,
       "detachment": "WARPSTRIKE CHAMPIONS",
       "tags": [],
@@ -17453,12 +17726,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         5
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          5
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-warpstrike-champions:enhancement:4"
       },
       "sourceId": "tzagulla",
+      "termId": "chaos-space-marines-enhancement-tzagulla",
       "ruleId": "enhancement-tzagulla",
       "detachmentId": "warpstrike-champions",
       "sourceBookId": "chaos-space-marines",
@@ -17482,7 +17755,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Pact of Destruction",
-      "text": "There are those daemonic entities within the Warp that are willing to offer their boons to any who will wreak wholesale devastation in their name, at least for as long as the carnage holds their capricious attention. WARPSMITH model only. ▪ When this unit uses its Dark Pacts ability, this unit can re‑roll Leadership rolls. ▪ In your Shooting phase, when this unit has shot, if this unit used its Dark Pacts ability and if those attacks destroyed an enemy model, this unit heals 3 wounds.",
+      "text": "WARPSMITH model only.\n- When this unit uses its Dark Pacts ability, this unit can re-roll Leadership rolls.\n- In your Shooting phase, when this unit has shot, if this unit used its Dark Pacts ability and if those attacks destroyed an enemy model, this unit heals 3 wounds",
       "value": 15,
       "detachment": "DEVOTEES OF DESTRUCTION",
       "tags": [],
@@ -17492,12 +17765,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         3
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          3
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-devotees-of-destruction:enhancement:1"
       },
       "sourceId": "pact-of-destruction",
+      "termId": "chaos-space-marines-enhancement-pact-of-destruction",
       "ruleId": "enhancement-pact-of-destruction",
       "detachmentId": "devotees-of-destruction",
       "sourceBookId": "chaos-space-marines",
@@ -17518,7 +17791,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Eye of Oblivion",
-      "text": "This vile technodaemonic parasite nests within the emptied eye socket of its host, driving filament tendrils deep into their brain and feeding on their animus in exchange for revealing the secrets of its supernatural vision. WARPSMITH model only. When this unit is selected to shoot, select one enemy unit within 24\" of this unit. That enemy unit has +6\" detection range until this unit has shot.",
+      "text": "WARPSMITH model only. When this unit is selected to shoot, select one enemy unit within 24\" of this unit. That enemy unit has +6\" detection range until this unit has shot.",
       "value": 20,
       "detachment": "DEVOTEES OF DESTRUCTION",
       "tags": [],
@@ -17528,12 +17801,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         3
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          3
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-devotees-of-destruction:enhancement:2"
       },
       "sourceId": "eye-of-oblivion",
+      "termId": "chaos-space-marines-enhancement-eye-of-oblivion",
       "ruleId": "enhancement-eye-of-oblivion",
       "detachmentId": "devotees-of-destruction",
       "sourceBookId": "chaos-space-marines",
@@ -17554,7 +17827,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Greyveil Hex",
-      "text": "Incised into this warrior’s battleplate is a runic curse which dims his form in the minds of his prey, until all they perceive is a mass of talons and shadow. Chaos Lord model only. Models in the bearer’s unit have the Stealth ability. While the bearer’s unit is within range of one or more objective markers you control, that unit can only be selected as the target of a ranged attack if the attacking model is within 18\".",
+      "text": "CHAOS LORD model only. Models in the bearer’s unit have the Stealth ability.\nWhile the bearer’s unit is within range of one or more objective markers you control, that unit can only be selected as the target of a ranged attack if the attacking model is within 18\".",
       "value": 25,
       "detachment": "NIGHTMARE HUNT",
       "tags": [],
@@ -17564,12 +17837,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         11
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          11
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-nightmare-hunt:enhancement:1"
       },
       "sourceId": "greyveil-hex",
+      "termId": "chaos-space-marines-enhancement-greyveil-hex",
       "ruleId": "enhancement-greyveil-hex",
       "detachmentId": "nightmare-hunt",
       "sourceBookId": "chaos-space-marines",
@@ -17604,7 +17877,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Warp-fuelled Thrusters",
-      "text": "Bathed in warp energies, this Lord’s jump pack tears rifts in reality, allowing them to withdraw at a moment’s notice. Chaos Lord Jump Pack model only. At the end of your opponent’s Fight phase, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove the bearer’s unit from the battlefield and place it into Strategic Reserves.",
+      "text": "CHAOS LORD JUMP PACK model only. At the end of your opponent’s Fight phase, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove the bearer’s unit from the battlefield and place it into Strategic Reserves.",
       "value": 20,
       "detachment": "NIGHTMARE HUNT",
       "tags": [],
@@ -17614,12 +17887,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         11
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          11
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-nightmare-hunt:enhancement:2"
       },
       "sourceId": "warp-fuelled-thrusters",
+      "termId": "chaos-space-marines-enhancement-warp-fuelled-thrusters",
       "ruleId": "enhancement-nightmare-hunt-warp-fuelled-thrusters",
       "detachmentId": "nightmare-hunt",
       "sourceBookId": "chaos-space-marines",
@@ -17640,7 +17913,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Terrorglut Parasite",
-      "text": "A daemonic pact sealed in fear and dread allowed this entity to squirm into reality. Coiled tightly and invisibly about a warrior’s soul, the being wears away at the sanity of those he faces and feasts on their terror. Heretic Astartes model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer must take a Battle‑shock test, subtracting 1 from the result.",
+      "text": "HERETIC ASTARTES model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer must take a Battle-shock test, subtracting 1 from the result.",
       "value": 20,
       "detachment": "NIGHTMARE HUNT",
       "tags": [],
@@ -17650,12 +17923,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         11
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          11
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-nightmare-hunt:enhancement:3"
       },
       "sourceId": "terrorglut-parasite",
+      "termId": "chaos-space-marines-enhancement-terrorglut-parasite",
       "ruleId": "enhancement-terrorglut-parasite",
       "detachmentId": "nightmare-hunt",
       "sourceBookId": "chaos-space-marines",
@@ -17690,7 +17963,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Sorrowscent Vulture",
-      "text": "This champion demands to be in the vanguard of the hunt, their eagerness to inflict suffering manifesting in a daring lunge towards enemy lines. Chaos Lord Jump Pack model only. Models in the bearer’s unit have the Scouts 6\" ability.",
+      "text": "LEADER: WARP TALONS\nCHAOS LORD JUMP PACK model only. Models in the bearer’s unit have the Scouts 6\" ability. In the Declare Battle Formations step, the bearer can be attached to a WARP TALONS unit.",
       "value": 35,
       "detachment": "NIGHTMARE HUNT",
       "tags": [],
@@ -17700,12 +17973,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         11
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          11
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-nightmare-hunt:enhancement:4"
       },
       "sourceId": "sorrowscent-vulture",
+      "termId": "chaos-space-marines-enhancement-sorrowscent-vulture",
       "ruleId": "enhancement-sorrowscent-vulture",
       "detachmentId": "nightmare-hunt",
       "sourceBookId": "chaos-space-marines",
@@ -17726,7 +17999,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Eye of Tzeentch",
-      "text": "HERETIC ASTARTES TZEENTCH model only. Each time the bearer's unit makes a Dark Pact and does not fail the resulting Leadership test, if the result of that test was 8 or more, you gain 1CP.",
+      "text": "HERETIC ASTARTES TZEENTCH model only. Each time the bearer’s unit makes a Dark Pact and does not fail the resulting Leadership test, if the result of that test was 8 or more, you gain 1CP.",
       "value": 15,
       "detachment": "PACTBOUND ZEALOTS",
       "tags": [],
@@ -17735,27 +18008,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES TZEENTCH model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "6ba0-8b1e-9e0d-20fd",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[1]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Pactbound Zealots > Enhancement > Eye of Tzeentch",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-pactbound-zealots:enhancement:1"
       },
       "sourceId": "enhancement-pactbound-zealots-eye-of-tzeentch",
+      "termId": "chaos-space-marines-enhancement-eye-of-tzeentch",
       "ruleId": "enhancement-eye-of-tzeentch",
       "detachmentId": "pactbound-zealots",
       "sourceBookId": "chaos-space-marines",
@@ -17776,7 +18034,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Intoxicating Elixir",
-      "text": "HERETIC ASTARTES SLAANESH model only. The bearer has the Feel No Pain 5+ ability. Each time the bearer shoots or fights, if the bearer's unit made a Dark Pact this phase and did not fail the resulting Leadership test, after the bearer has resolved those attacks, select one enemy unit that was hit by one or more of those attacks; that enemy unit must take a Battle-shock test.",
+      "text": "HERETIC ASTARTES SLAANESH model only. The bearer has the Feel No Pain 5+ ability. Each time the bearer shoots or fights, if the bearer’s unit made a Dark Pact this phase and did not fail the resulting Leadership test, after the bearer has resolved those attacks, select one enemy unit that was hit by one or more of those attacks; that enemy unit must take a Battle-shock test.",
       "value": 15,
       "detachment": "PACTBOUND ZEALOTS",
       "tags": [],
@@ -17785,27 +18043,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES SLAANESH model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "8d30-bc8b-6d57-ef08",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[3]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Pactbound Zealots > Enhancement > Intoxicating Elixir",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-pactbound-zealots:enhancement:2"
       },
       "sourceId": "enhancement-pactbound-zealots-intoxicating-elixir",
+      "termId": "chaos-space-marines-enhancement-intoxicating-elixir",
       "ruleId": "enhancement-intoxicating-elixir",
       "detachmentId": "pactbound-zealots",
       "sourceBookId": "chaos-space-marines",
@@ -17826,7 +18069,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Orbs of Unlife",
-      "text": "HERETIC ASTARTES NURGLE model only. At the end of the Fight phase, roll one D6 for every enemy unit within 3\" of the bearer, adding 1 to the result if the bearer's unit made a Dark Pact that phase and did not fail the resulting Leadership test: on a 4+, that enemy unit suffers D3 mortal wounds.",
+      "text": "HERETIC ASTARTES NURGLE model only. At the end of the Fight phase, roll one D6 for every enemy unit within 3\" of the bearer, adding 1 to the result if the bearer’s unit made a Dark Pact that phase and did not fail the resulting Leadership test: on a 4+, that enemy unit suffers D3 mortal wounds.",
       "value": 15,
       "detachment": "PACTBOUND ZEALOTS",
       "tags": [],
@@ -17835,27 +18078,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES NURGLE model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "f2ce-c4b6-6976-e1d5",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[2]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Pactbound Zealots > Enhancement > Orbs of Unlife",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-pactbound-zealots:enhancement:3"
       },
       "sourceId": "enhancement-pactbound-zealots-orbs-of-unlife",
+      "termId": "chaos-space-marines-enhancement-orbs-of-unlife",
       "ruleId": "enhancement-orbs-of-unlife",
       "detachmentId": "pactbound-zealots",
       "sourceBookId": "chaos-space-marines",
@@ -17876,7 +18104,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Talisman of Burning Blood",
-      "text": "HERETIC ASTARTES KHORNE model only. Add 1 to the Attacks and Strength characteristics of the bearer's melee weapons. Each time the bearer's unit makes a Dark Pact and does not fail the resulting Leadership test, roll one D3: until the end of the phase, add the result to the Attacks and Strength characteristics of the bearer's melee weapons instead.",
+      "text": "HERETIC ASTARTES KHORNE model only. Add 1 to the Attacks and Strength characteristics of the bearer’s melee weapons. Each time the bearer’s unit makes a Dark Pact and does not fail the resulting Leadership test, roll one D3: until the end of the phase, add the result to the Attacks and Strength characteristics of the bearers melee weapons instead.",
       "value": 15,
       "detachment": "PACTBOUND ZEALOTS",
       "tags": [],
@@ -17885,27 +18113,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES KHORNE model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "e357-6558-923e-61e2",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[0]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Pactbound Zealots > Enhancement > Talisman of Burning Blood",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-pactbound-zealots:enhancement:4"
       },
       "sourceId": "enhancement-pactbound-zealots-talisman-of-burning-blood",
+      "termId": "chaos-space-marines-enhancement-talisman-of-burning-blood",
       "ruleId": "enhancement-talisman-of-burning-blood",
       "detachmentId": "pactbound-zealots",
       "sourceBookId": "chaos-space-marines",
@@ -17936,27 +18149,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "f208-950f-f62d-943a",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[19]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Dread Talons > Enhancement > Eater of Dread",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-dread-talons:enhancement:1"
       },
       "sourceId": "enhancement-dread-talons-eater-of-dread",
+      "termId": "chaos-space-marines-enhancement-eater-of-dread",
       "ruleId": "enhancement-eater-of-dread",
       "detachmentId": "dread-talons",
       "sourceBookId": "chaos-space-marines",
@@ -17977,7 +18175,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Night's Shroud",
-      "text": "CHAOS LORD model only. TERMINATOR models are excluded. Models in the bearer's unit have the Stealth ability.",
+      "text": "CHAOS LORD model only (excluding TERMINATOR models). Models in the bearer’s unit have the Stealth ability.",
       "value": 10,
       "detachment": "DREAD TALONS",
       "tags": [],
@@ -17987,27 +18185,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "TERMINATOR models are excluded."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "8a4b-3777-e4ec-fb5e",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[17]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Dread Talons > Enhancement > Night's Shroud",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-dread-talons:enhancement:2"
       },
       "sourceId": "enhancement-dread-talons-nights-shroud",
+      "termId": "chaos-space-marines-enhancement-nights-shroud",
       "ruleId": "enhancement-nights-shroud",
       "detachmentId": "dread-talons",
       "sourceBookId": "chaos-space-marines",
@@ -18030,7 +18213,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Warp-fuelled Thrusters",
-      "text": "JUMP PACK CHAOS LORD model only. At the end of your opponent's turn, if the bearer's unit is not within Engagement Range of one or more enemy units, you can remove the bearer's unit from the battlefield and place it into Strategic Reserves.",
+      "text": "JUMP PACK CHAOS LORD model only. At the end of your opponent’s turn, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove the bearer’s unit from the battlefield and place it into Strategic Reserves.",
       "value": 20,
       "detachment": "DREAD TALONS",
       "tags": [],
@@ -18039,27 +18222,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "JUMP PACK CHAOS LORD model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "1b4d-d584-df1c-c158",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[28]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Dread Talons > Enhancement > Warp-fuelled Thrusters",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-dread-talons:enhancement:3"
       },
       "sourceId": "enhancement-dread-talons-warp-fuelled-thrusters",
+      "termId": "chaos-space-marines-enhancement-warp-fuelled-thrusters-2",
       "ruleId": "enhancement-dread-talons-warp-fuelled-thrusters",
       "detachmentId": "dread-talons",
       "sourceBookId": "chaos-space-marines",
@@ -18091,27 +18259,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "d3d-1a0c-87b8-3401",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[16]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Dread Talons > Enhancement > Willbreaker",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-dread-talons:enhancement:4"
       },
       "sourceId": "enhancement-dread-talons-willbreaker",
+      "termId": "chaos-space-marines-enhancement-willbreaker",
       "ruleId": "enhancement-willbreaker",
       "detachmentId": "dread-talons",
       "sourceBookId": "chaos-space-marines",
@@ -18132,7 +18285,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Despot's Claim",
-      "text": "HERETIC ASTARTES model only. At the start of your Command phase, if the bearer is on the battlefield, roll one D6, adding 1 to the result if the bearer is wholly within 12\" of your opponent's deployment zone: on a 5+, you gain 1CP.",
+      "text": "HERETIC ASTARTES model only. At the start of your Command phase, if the bearer is on the battlefield, roll one D6, adding 1 to the result if the bearer is wholly within 12\" of your opponent’s deployment zone: on a 5+, you gain 1 CP.",
       "value": 15,
       "detachment": "RENEGADE RAIDERS",
       "tags": [],
@@ -18141,27 +18294,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "18c9-6770-6371-582b",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[12]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Renegade Raiders > Enhancement > Despot's Claim",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-renegade-raiders:enhancement:1"
       },
       "sourceId": "enhancement-renegade-raiders-despots-claim",
+      "termId": "chaos-space-marines-enhancement-despots-claim",
       "ruleId": "enhancement-despots-claim",
       "detachmentId": "renegade-raiders",
       "sourceBookId": "chaos-space-marines",
@@ -18182,7 +18320,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Dread Reaver",
-      "text": "HERETIC ASTARTES model only. Each time the bearer makes a melee attack, if the bearer is wholly within 12\" of your opponent's deployment zone, you can re-roll the Hit roll and you can re-roll the Wound roll.",
+      "text": "HERETIC ASTARTES model only. Each time the bearer makes a melee attack, if the bearer is wholly within 12\" of your opponent’s deployment zone, you can re-roll the Hit roll and you can re-roll the Wound roll.",
       "value": 15,
       "detachment": "RENEGADE RAIDERS",
       "tags": [],
@@ -18191,27 +18329,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "a3f6-e18b-d9e6-b841",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[13]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Renegade Raiders > Enhancement > Dread Reaver",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-renegade-raiders:enhancement:2"
       },
       "sourceId": "enhancement-renegade-raiders-dread-reaver",
+      "termId": "chaos-space-marines-enhancement-dread-reaver",
       "ruleId": "enhancement-dread-reaver",
       "detachmentId": "renegade-raiders",
       "sourceBookId": "chaos-space-marines",
@@ -18232,7 +18355,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Mark of the Hound",
-      "text": "HERETIC ASTARTES model only. Models in the bearer's unit have the Scouts 6\" ability.",
+      "text": "HERETIC ASTARTES model only. Models in the bearers unit have the Scouts 6\" ability.",
       "value": 25,
       "detachment": "RENEGADE RAIDERS",
       "tags": [],
@@ -18241,27 +18364,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "b5e6-8586-a9a9-b6b",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[14]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Renegade Raiders > Enhancement > Mark of the Hound",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-renegade-raiders:enhancement:3"
       },
       "sourceId": "enhancement-renegade-raiders-mark-of-the-hound",
+      "termId": "chaos-space-marines-enhancement-mark-of-the-hound",
       "ruleId": "enhancement-mark-of-the-hound",
       "detachmentId": "renegade-raiders",
       "sourceBookId": "chaos-space-marines",
@@ -18282,7 +18390,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Tyrant's Lash",
-      "text": "HERETIC ASTARTES model only. You can re-roll Advance rolls made for the bearer's unit, and the bearer's unit is eligible to shoot in a turn in which it Fell Back.",
+      "text": "HERETIC ASTARTES model only. You can re-roll Advance rolls made for the bearer’s unit, and the bearer’s unit is eligible to shoot in a turn in which it Fell Back.",
       "value": 20,
       "detachment": "RENEGADE RAIDERS",
       "tags": [],
@@ -18291,27 +18399,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "8ee0-de8d-3895-b1ac",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[15]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Renegade Raiders > Enhancement > Tyrant's Lash",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-renegade-raiders:enhancement:4"
       },
       "sourceId": "enhancement-renegade-raiders-tyrants-lash",
+      "termId": "chaos-space-marines-enhancement-tyrants-lash",
       "ruleId": "enhancement-tyrants-lash",
       "detachmentId": "renegade-raiders",
       "sourceBookId": "chaos-space-marines",
@@ -18332,7 +18425,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Eager for Vengeance",
-      "text": "HERETIC ASTARTES model only. Excludes DAMNED models. The bearer's unit is eligible to shoot and declare a charge in a turn in which it Fell Back. Each time a model in the bearer's unit makes an attack that targets your focus of hatred, if the bearer's unit Fell Back this turn, add 1 to the Hit roll, and each time you select your focus of hatred as a target of that unit's charge, add 1 to the Charge roll.",
+      "text": "HERETIC ASTARTES model only (excluding DAMNED models). The bearer’s unit is eligible to shoot and declare a charge in a turn in which it Fell Back. Each time a model in the bearer’s unit makes an attack that targets your focus of hatred, if the bearer’s unit Fell Back this turn, add 1 to the Hit roll, and each time you select your focus of hatred as a target of that unit’s charge, add 1 to the Charge roll.",
       "value": 20,
       "detachment": "VETERANS OF THE LONG WAR",
       "tags": [],
@@ -18342,27 +18435,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Excludes DAMNED models."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "bb91-cc38-e79d-7ce0",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[5]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Veterans of the Long War > Enhancement > Eager for Vengeance",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-veterans-of-the-long-war:enhancement:1"
       },
       "sourceId": "enhancement-veterans-of-the-long-war-eager-for-vengeance",
+      "termId": "chaos-space-marines-enhancement-eager-for-vengeance",
       "ruleId": "enhancement-eager-for-vengeance",
       "detachmentId": "veterans-of-the-long-war",
       "sourceBookId": "chaos-space-marines",
@@ -18384,7 +18462,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Eye of Abaddon",
-      "text": "HERETIC ASTARTES model only. Excludes DAMNED models. While the bearer is on the battlefield, each time your focus of hatred is destroyed, roll one D6: on a 4+, you gain 1CP.",
+      "text": "HERETIC ASTARTES model only (excluding DAMNED models). While the bearer is on the battlefield, each time your focus of hatred is destroyed, roll one D6: on a 4+, you gain 1CP.",
       "value": 15,
       "detachment": "VETERANS OF THE LONG WAR",
       "tags": [],
@@ -18394,27 +18472,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Excludes DAMNED models."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "b06a-cbc9-6820-6a93",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[6]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Veterans of the Long War > Enhancement > Eye of Abaddon",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-veterans-of-the-long-war:enhancement:2"
       },
       "sourceId": "enhancement-veterans-of-the-long-war-eye-of-abaddon",
+      "termId": "chaos-space-marines-enhancement-eye-of-abaddon",
       "ruleId": "enhancement-eye-of-abaddon",
       "detachmentId": "veterans-of-the-long-war",
       "sourceBookId": "chaos-space-marines",
@@ -18436,7 +18499,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Mark of Legend",
-      "text": "HERETIC ASTARTES model only. Excludes DAMNED models. Once per turn, you can re-roll one Hit roll, one Wound roll or one saving throw made for the bearer.",
+      "text": "HERETIC ASTARTES model only (excluding DAMNED models). Once per turn, you can re-roll one Hit roll, one Wound roll or one saving throw made for the bearer.",
       "value": 10,
       "detachment": "VETERANS OF THE LONG WAR",
       "tags": [],
@@ -18446,27 +18509,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "Excludes DAMNED models."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "aaa6-f20e-362a-f55d",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[7]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Veterans of the Long War > Enhancement > Mark of Legend",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-veterans-of-the-long-war:enhancement:3"
       },
       "sourceId": "enhancement-veterans-of-the-long-war-mark-of-legend",
+      "termId": "chaos-space-marines-enhancement-mark-of-legend",
       "ruleId": "enhancement-mark-of-legend",
       "detachmentId": "veterans-of-the-long-war",
       "sourceBookId": "chaos-space-marines",
@@ -18497,27 +18545,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "CHAOS LORD model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "9a33-6b21-25e3-b5ac",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[4]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Veterans of the Long War > Enhancement > Warmaster's Gift",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-veterans-of-the-long-war:enhancement:4"
       },
       "sourceId": "enhancement-veterans-of-the-long-war-warmasters-gift",
+      "termId": "chaos-space-marines-enhancement-warmasters-gift",
       "ruleId": "enhancement-warmasters-gift",
       "detachmentId": "veterans-of-the-long-war",
       "sourceBookId": "chaos-space-marines",
@@ -18539,7 +18572,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Cursed Fang",
-      "text": "HERETIC ASTARTES INFANTRY model only. Improve the Armour Penetration characteristic of the bearer's melee weapons by 1, and the bearer's melee weapons have the [PRECISION] ability.",
+      "text": "HERETIC ASTARTES INFANTRY model only. Improve the Armour Penetration characteristic of the bearer’s melee weapons by 1, and the bearer’s melee weapons have the [PRECISION] ability.",
       "value": 10,
       "detachment": "DECEPTORS",
       "tags": [],
@@ -18548,27 +18581,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES INFANTRY model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "6ee9-ec28-2608-c8c6",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[9]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Deceptors > Enhancement > Cursed Fang",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-deceptors:enhancement:1"
       },
       "sourceId": "enhancement-deceptors-cursed-fang",
+      "termId": "chaos-space-marines-enhancement-cursed-fang",
       "ruleId": "enhancement-cursed-fang",
       "detachmentId": "deceptors",
       "sourceBookId": "chaos-space-marines",
@@ -18599,27 +18617,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "CHAOS LORD model only (excluding TERMINATOR and JUMP PACK models)."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "361e-2839-f32e-1873",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[8]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Deceptors > Enhancement > Falsehood",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-deceptors:enhancement:2"
       },
       "sourceId": "enhancement-deceptors-falsehood",
+      "termId": "chaos-space-marines-enhancement-falsehood",
       "ruleId": "enhancement-falsehood",
       "detachmentId": "deceptors",
       "sourceBookId": "chaos-space-marines",
@@ -18652,27 +18655,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES INFANTRY model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "a469-ca0-3e09-ae0a",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[10]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Deceptors > Enhancement > Shroud of Obfuscation",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-deceptors:enhancement:3"
       },
       "sourceId": "enhancement-deceptors-shroud-of-obfuscation",
+      "termId": "chaos-space-marines-enhancement-shroud-of-obfuscation",
       "ruleId": "enhancement-shroud-of-obfuscation",
       "detachmentId": "deceptors",
       "sourceBookId": "chaos-space-marines",
@@ -18694,7 +18682,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Soul Link",
-      "text": "HERETIC ASTARTES INFANTRY model only. At the start of your Command phase, you can select one other HERETIC ASTARTES INFANTRY CHARACTER model from your army (excluding EPIC HEROES). Until the start of your next Command phase, the bearer gains the PSYKER keyword, and replace the bearer's datasheet abilities with the datasheet abilities of the CHARACTER you selected.",
+      "text": "HERETIC ASTARTES INFANTRY model only. At the start of your Command phase, you can select one other HERETIC ASTARTES INFANTRY CHARACTER model from your army (excluding EPIC HEROES). Until the start of your next Command phase, the bearer gains the PSYKER keyword, and replace the bearer’s datasheet abilities with the datasheet abilities of the CHARACTER you selected.",
       "value": 5,
       "detachment": "DECEPTORS",
       "tags": [],
@@ -18703,27 +18691,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES INFANTRY model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "56cd-b0f6-199-92c7",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[11]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Deceptors > Enhancement > Soul Link",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-deceptors:enhancement:4"
       },
       "sourceId": "enhancement-deceptors-soul-link",
+      "termId": "chaos-space-marines-enhancement-soul-link",
       "ruleId": "enhancement-soul-link",
       "detachmentId": "deceptors",
       "sourceBookId": "chaos-space-marines",
@@ -18745,7 +18718,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Voice of the Tyrant",
-      "text": "This champion is a valued commander, and speaks with the authority of Huron himself. Heretic Astartes model only (excluding Damned models). The bearer’s unit has both abilities from the Tyrannical Motivation Detachment rule.",
+      "text": "HERETIC ASTARTES model only (excluding DAMNED models). The bearer’s unit has both abilities from the Tyrannical Motivation Detachment rule.",
       "value": 25,
       "detachment": "HURON’S MARAUDERS",
       "tags": [],
@@ -18755,12 +18728,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         13
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          13
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-huron-s-marauders:enhancement:1"
       },
       "sourceId": "voice-of-the-tyrant",
+      "termId": "chaos-space-marines-enhancement-voice-of-the-tyrant",
       "ruleId": "enhancement-voice-of-the-tyrant",
       "detachmentId": "huron-s-marauders",
       "sourceBookId": "chaos-space-marines",
@@ -18793,7 +18766,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Raid Leader",
-      "text": "Rapid mechanised assaults are a preferred tactic of the Red Corsairs, and this champion excels at them. Heretic Astartes model only (excluding Damned models). Each time the bearer’s unit is set up after disembarking from a Transport that has made a Normal move this turn, the bearer’s unit is still eligible to declare a charge.",
+      "text": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer’s unit is set up after disembarking from a TRANSPORT that has made a Normal move this turn, the bearer’s unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
       "value": 20,
       "detachment": "HURON’S MARAUDERS",
       "tags": [],
@@ -18803,12 +18776,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         13
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          13
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-huron-s-marauders:enhancement:2"
       },
       "sourceId": "raid-leader",
+      "termId": "chaos-space-marines-enhancement-raid-leader",
       "ruleId": "enhancement-raid-leader",
       "detachmentId": "huron-s-marauders",
       "sourceBookId": "chaos-space-marines",
@@ -18841,7 +18814,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Dread Reputation",
-      "text": "Such is this warrior’s infamy that their mere presence on the field of battle can overwhelm the foe with tyrannical intimidation. Heretic Astartes model only (excluding Damned models). Each time the bearer’s unit is set up on the battlefield, each enemy unit within 6” of the bearer’s unit (or within 12” if the bearer’s unit was set up using the Deep Strike ability) takes a Battle‑shock test.",
+      "text": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer’s unit is set up on the battlefield, each enemy unit within 6\" of the bearer’s unit (or within 12\" if the bearer’s unit was set up using the Deep Strike ability) takes a Battle-shock test.",
       "value": 25,
       "detachment": "HURON’S MARAUDERS",
       "tags": [],
@@ -18851,12 +18824,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         13
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          13
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-huron-s-marauders:enhancement:3"
       },
       "sourceId": "dread-reputation",
+      "termId": "chaos-space-marines-enhancement-dread-reputation",
       "ruleId": "enhancement-dread-reputation",
       "detachmentId": "huron-s-marauders",
       "sourceBookId": "chaos-space-marines",
@@ -18889,7 +18862,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Eager for Bloodshed",
-      "text": "Desperate to lock weapons with the foe, this warrior is always at the fore, fighting in the vanguard of Huron Blackheart’s forces. Heretic Astartes model only. The bearer has the Infiltrators ability.",
+      "text": "HERETIC ASTARTES model only. The bearer has the Infiltrators ability.",
       "value": 30,
       "detachment": "HURON’S MARAUDERS",
       "tags": [],
@@ -18899,12 +18872,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         13
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          13
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-huron-s-marauders:enhancement:4"
       },
       "sourceId": "eager-for-bloodshed",
+      "termId": "chaos-space-marines-enhancement-eager-for-bloodshed",
       "ruleId": "enhancement-eager-for-bloodshed",
       "detachmentId": "huron-s-marauders",
       "sourceBookId": "chaos-space-marines",
@@ -18939,7 +18912,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Wyredjinn",
-      "text": "A repulsive daemon imp of Vashtorr, this incorporeal data‑familiar flits through vox‑channels and sensor suites, stealing data for its master. Heretic Astartes model only (excluding Damned models). At the start of your Command phase, if the bearer is on the battlefield, roll one D6, adding 1 to the result if the bearer is within range of an objective marker you control: on a 4+, you gain 1CP.",
+      "text": "HERETIC ASTARTES model only (excluding DAMNED models). At the start of your Command phase, if the bearer is on the battlefield, roll one D6, adding 1 to the result if the bearer is within range of an objective marker you control: on a 4+, you gain 1CP.",
       "value": 25,
       "detachment": "CULT OF THE ARKIFANE",
       "tags": [],
@@ -18949,12 +18922,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         7
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          7
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-cult-of-the-arkifane:enhancement:1"
       },
       "sourceId": "wyredjinn",
+      "termId": "chaos-space-marines-enhancement-wyredjinn",
       "ruleId": "enhancement-wyredjinn",
       "detachmentId": "cult-of-the-arkifane",
       "sourceBookId": "chaos-space-marines",
@@ -18987,7 +18960,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Cybinfernal Font",
-      "text": "This warp‑forged augmetic channels daemonic energies through its bearer and into those they lead, spawning biomechanoid mutation and supernatural resilience. Heretic Astartes model only (excluding Damned models). Models in the bearer’s unit have the Soul Forge keyword.",
+      "text": "HERETIC ASTARTES model only (excluding DAMNED models). Models in the bearer’s unit have the SOUL FORGE keyword.",
       "value": 20,
       "detachment": "CULT OF THE ARKIFANE",
       "tags": [],
@@ -18997,12 +18970,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         7
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          7
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-cult-of-the-arkifane:enhancement:2"
       },
       "sourceId": "cybinfernal-font",
+      "termId": "chaos-space-marines-enhancement-cybinfernal-font",
       "ruleId": "enhancement-cybinfernal-font",
       "detachmentId": "cult-of-the-arkifane",
       "sourceBookId": "chaos-space-marines",
@@ -19035,7 +19008,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Mark of the Soul Forges",
-      "text": "This burning rune attests to the – perhaps unwise – pact its bearer has struck with the Arkifane in return for enhanced martial might and lethality. Heretic Astartes model only (excluding Damned models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
+      "text": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
       "value": 20,
       "detachment": "CULT OF THE ARKIFANE",
       "tags": [],
@@ -19045,12 +19018,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         7
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          7
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-cult-of-the-arkifane:enhancement:3"
       },
       "sourceId": "mark-of-the-soul-forges",
+      "termId": "chaos-space-marines-enhancement-mark-of-the-soul-forges",
       "ruleId": "enhancement-mark-of-the-soul-forges",
       "detachmentId": "cult-of-the-arkifane",
       "sourceBookId": "chaos-space-marines",
@@ -19083,7 +19056,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Crown of Worms",
-      "text": "This parasitic helm bestows the ability to conjure daemonic nematodes akin to those manifested by the Arkifane himself. These burrowing entities can reknit faltering war machines or gnaw upon such vehicles’ sanity at the wearer’s command. Warpsmith model only. Add 3” to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
+      "text": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
       "value": 15,
       "detachment": "CULT OF THE ARKIFANE",
       "tags": [],
@@ -19093,12 +19066,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         7
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          7
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-cult-of-the-arkifane:enhancement:4"
       },
       "sourceId": "crown-of-worms",
+      "termId": "chaos-space-marines-enhancement-crown-of-worms",
       "ruleId": "enhancement-crown-of-worms",
       "detachmentId": "cult-of-the-arkifane",
       "sourceBookId": "chaos-space-marines",
@@ -19119,7 +19092,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Touched by the Warp",
-      "text": "Saturated with empyric energies, this dark champion has spontaneously manifested the mutant powers of a true psyker. HERETIC ASTARTES model only (excluding KHORNE models). ▪ This model has PSYKER. ▪ This model’s weapons have [PSYCHIC].",
+      "text": "HERETIC ASTARTES model only (excluding KHORNE models).\n- This model has PSYKER.\n- This model’s weapons have [PSYCHIC].",
       "value": 10,
       "detachment": "CABAL OF CHAOS",
       "tags": [],
@@ -19129,12 +19102,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         2
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          2
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-cabal-of-chaos:enhancement:1"
       },
       "sourceId": "touched-by-the-warp",
+      "termId": "chaos-space-marines-enhancement-touched-by-the-warp",
       "ruleId": "enhancement-touched-by-the-warp",
       "detachmentId": "cabal-of-chaos",
       "sourceBookId": "chaos-space-marines",
@@ -19169,7 +19142,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Conduit of Chaos",
-      "text": "Like a lightning rod, this blessed fiend attracts the arcane energies of the Warp, unleashing them in a crackling storm of mutating horror as it plunges into the foe. HERETIC ASTARTES DAEMON model only (excluding KHORNE models). This model’s melee attacks have [LANCE].",
+      "text": "HERETIC ASTARTES DAEMON model only (excluding KHORNE models). This model’s melee attacks have [LANCE].",
       "value": 20,
       "detachment": "CABAL OF CHAOS",
       "tags": [],
@@ -19179,12 +19152,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         2
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          2
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-cabal-of-chaos:enhancement:2"
       },
       "sourceId": "conduit-of-chaos",
+      "termId": "chaos-space-marines-enhancement-conduit-of-chaos",
       "ruleId": "enhancement-conduit-of-chaos",
       "detachmentId": "cabal-of-chaos",
       "sourceBookId": "chaos-space-marines",
@@ -19225,27 +19198,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "5bd4-e482-a053-1184",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[18]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Soulforged Warpack > Enhancement > Forge's Blessing",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-soulforged-warpack:enhancement:1"
       },
       "sourceId": "enhancement-soulforged-warpack-forges-blessing",
+      "termId": "chaos-space-marines-enhancement-forges-blessing",
       "ruleId": "enhancement-forges-blessing",
       "detachmentId": "soulforged-warpack",
       "sourceBookId": "chaos-space-marines",
@@ -19266,7 +19224,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Invigorated Mechatendrils",
-      "text": "WARPSMITH model only. Add 4\" to the bearer's Move characteristic.",
+      "text": "WARPSMITH model only. Add 4\" to the bearer’s Move characteristic.",
       "value": 15,
       "detachment": "SOULFORGED WARPACK",
       "tags": [],
@@ -19275,27 +19233,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "WARPSMITH model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "3bc1-957b-473-faa0",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[29]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Soulforged Warpack > Enhancement > Invigorated Mechatendrils",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-soulforged-warpack:enhancement:2"
       },
       "sourceId": "enhancement-soulforged-warpack-invigorated-mechatendrils",
+      "termId": "chaos-space-marines-enhancement-invigorated-mechatendrils",
       "ruleId": "enhancement-invigorated-mechatendrils",
       "detachmentId": "soulforged-warpack",
       "sourceBookId": "chaos-space-marines",
@@ -19313,7 +19256,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Tempting Addendum",
-      "text": "HERETIC ASTARTES model only. Each time a HERETIC ASTARTES DAEMON VEHICLE unit from your army invokes its contract while within 3\" of the bearer: if it suffers one or more mortal wounds as a result of that Dark Pact, add 1 to the number of mortal wounds it suffers; until the end of the phase, each time a model in that unit makes an attack, you can re-roll the Hit roll.",
+      "text": "HERETIC ASTARTES model only. Each time a HERETIC ASTARTES DAEMON VEHICLE unit from your army invokes its contract while within 3\" of the bearer:\n- If it suffers one or more mortal wounds as a result of that Dark Pact, add 1 to the number of mortal wounds it suffers.\n- Until the end of the phase, each time a model in that unit makes an attack, you can re-roll the Hit roll.",
       "value": 40,
       "detachment": "SOULFORGED WARPACK",
       "tags": [],
@@ -19322,27 +19265,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "a82c-bf6-f3dd-81ac",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[31]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Soulforged Warpack > Enhancement > Tempting Addendum",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-soulforged-warpack:enhancement:3"
       },
       "sourceId": "enhancement-soulforged-warpack-tempting-addendum",
+      "termId": "chaos-space-marines-enhancement-tempting-addendum",
       "ruleId": "enhancement-tempting-addendum",
       "detachmentId": "soulforged-warpack",
       "sourceBookId": "chaos-space-marines",
@@ -19372,27 +19300,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "da72-b2d6-58a6-b821",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[30]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Soulforged Warpack > Enhancement > Soul Harvester",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-soulforged-warpack:enhancement:4"
       },
       "sourceId": "enhancement-soulforged-warpack-soul-harvester",
+      "termId": "chaos-space-marines-enhancement-soul-harvester",
       "ruleId": "enhancement-soul-harvester",
       "detachmentId": "soulforged-warpack",
       "sourceBookId": "chaos-space-marines",
@@ -19413,7 +19326,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Shadowcowl Talisman",
-      "text": "Worked with diabolical incantations of occlusion, wound about with subtle enchantments, this onyx disc draws a penumbral aura about the bearer that hides him from the eyes of his prey. CHAOS LORD WITH JUMP PACK model only. This unit has 5+ InSv.",
+      "text": "CHAOS LORD WITH JUMP PACK model only. This unit has 5+ InSv.",
       "value": 20,
       "detachment": "MURDERTALON RAIDERS",
       "tags": [],
@@ -19423,12 +19336,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         4
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          4
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-murdertalon-raiders:enhancement:1"
       },
       "sourceId": "shadowcowl-talisman",
+      "termId": "chaos-space-marines-enhancement-shadowcowl-talisman",
       "ruleId": "enhancement-shadowcowl-talisman",
       "detachmentId": "murdertalon-raiders",
       "sourceBookId": "chaos-space-marines",
@@ -19449,7 +19362,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Pact of Cursed Pinions",
-      "text": "Sharing their mortal frame with a predatory possessor daemon lends this dark champion additional might and swiftness, though it may yet damn them for eternity. CHAOS LORD WITH JUMP PACK model only. ▪ This model has DAEMON. ▪ This model’s melee attacks have +1 A.",
+      "text": "LEADER: WARP TALONS\nCHAOS LORD WITH JUMP PACK model only.\n- This model has DAEMON.\n- This model’s melee attacks have +1 A.",
       "value": 20,
       "detachment": "MURDERTALON RAIDERS",
       "tags": [],
@@ -19459,12 +19372,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         4
       ],
       "provenance": {
-        "sourceId": "chaos-space-marines-faction-pack-v1.2",
-        "sourcePages": [
-          4
-        ]
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-murdertalon-raiders:enhancement:2"
       },
       "sourceId": "pact-of-cursed-pinions",
+      "termId": "chaos-space-marines-enhancement-pact-of-cursed-pinions",
       "ruleId": "enhancement-pact-of-cursed-pinions",
       "detachmentId": "murdertalon-raiders",
       "sourceBookId": "chaos-space-marines",
@@ -19485,7 +19398,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Bastion Plate",
-      "text": "CHAOS LORD model only. JUMP PACK models are excluded. Once per battle round, when a saving throw is failed for the bearer's unit, you can change the Damage characteristic of that attack to 0.",
+      "text": "CHAOS LORD model only (excluding JUMP PACK models). Once per battle round, when a saving throw is failed for the bearer’s unit, you can change the Damage characteristic of that attack to 0.",
       "value": 10,
       "detachment": "FELLHAMMER SIEGE-HOST",
       "tags": [],
@@ -19495,27 +19408,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "JUMP PACK models are excluded."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "5a26-9010-9370-8043",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[20]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Fellhammer Siege-host > Enhancement > Bastion Plate",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-fellhammer-siege-host:enhancement:1"
       },
       "sourceId": "enhancement-fellhammer-siege-host-bastion-plate",
+      "termId": "chaos-space-marines-enhancement-bastion-plate",
       "ruleId": "enhancement-bastion-plate",
       "detachmentId": "fellhammer-siege-host",
       "sourceBookId": "chaos-space-marines",
@@ -19538,7 +19436,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     },
     {
       "title": "Iron Artifice",
-      "text": "HERETIC ASTARTES INFANTRY model only. The bearer's weapons have the [ANTI-VEHICLE 4+] and [ANTI-FORTIFICATION 4+] abilities.",
+      "text": "HERETIC ASTARTES INFANTRY model only. The bearers weapons have the [ANTI-VEHICLE 4+] and [ANTI-FORTIFICATION 4+] abilities.",
       "value": 10,
       "detachment": "FELLHAMMER SIEGE-HOST",
       "tags": [],
@@ -19547,27 +19445,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES INFANTRY model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "5723-e257-6177-ac5",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[23]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Fellhammer Siege-host > Enhancement > Iron Artifice",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-fellhammer-siege-host:enhancement:2"
       },
       "sourceId": "enhancement-fellhammer-siege-host-iron-artifice",
+      "termId": "chaos-space-marines-enhancement-iron-artifice",
       "ruleId": "enhancement-iron-artifice",
       "detachmentId": "fellhammer-siege-host",
       "sourceBookId": "chaos-space-marines",
@@ -19598,27 +19481,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "281c-52a2-198-1047",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[21]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Fellhammer Siege-host > Enhancement > Ironbound Enmity",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-fellhammer-siege-host:enhancement:3"
       },
       "sourceId": "enhancement-fellhammer-siege-host-ironbound-enmity",
+      "termId": "chaos-space-marines-enhancement-ironbound-enmity",
       "ruleId": "enhancement-ironbound-enmity",
       "detachmentId": "fellhammer-siege-host",
       "sourceBookId": "chaos-space-marines",
@@ -19648,27 +19516,12 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "HERETIC ASTARTES model only."
       ],
       "provenance": {
-        "authority": "secondary",
-        "status": "SECONDARY CONSENSUS",
-        "sources": [
-          {
-            "name": "New Recruit / BSData",
-            "identity": {
-              "id": "786c-288a-5ed6-676e",
-              "jsonPath": "$.catalogue.sharedSelectionEntryGroups[0].selectionEntries[22]"
-            },
-            "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
-            "catalogueRevision": 6
-          },
-          {
-            "name": "Wahapedia",
-            "identity": "Chaos Space Marines > Fellhammer Siege-host > Enhancement > Warp Tracer",
-            "checkedAt": "2026-08-12"
-          }
-        ],
-        "checkedAt": "2026-08-12"
+        "authority": "current-operational-baseline",
+        "status": "ACCEPTED_CURRENT_WAHA",
+        "sourceId": "detachment-fellhammer-siege-host:enhancement:4"
       },
       "sourceId": "enhancement-fellhammer-siege-host-warp-tracer",
+      "termId": "chaos-space-marines-enhancement-warp-tracer",
       "ruleId": "enhancement-warp-tracer",
       "detachmentId": "fellhammer-siege-host",
       "sourceBookId": "chaos-space-marines",
@@ -24662,7 +24515,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
 window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   "enhancement-amulet-of-tainted-vigour": {
     "title": "Amulet of Tainted Vigour",
-    "text": "DARK APOSTLE model only. In your Command phase, you can return up to D3 destroyed DAMNED models (excluding CHARACTER models) to the bearer's unit.",
+    "text": "DARK APOSTLE model only. In your Command phase, you can return up to D3 destroyed DAMNED models (excluding CHARACTER models) to the bearer’s unit.",
     "value": 20,
     "detachment": "CHAOS CULT",
     "tags": [],
@@ -24673,7 +24526,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-cultists-brand": {
     "title": "Cultist's Brand",
-    "text": "DARK APOSTLE or DAMNED model only. If every other model in the bearer's unit (excluding Dark Disciples) is DAMNED, you can re-roll Advance and Charge rolls made for the bearer's unit.",
+    "text": "DARK APOSTLE or DAMNED model only. If every other model in the bearer’s unit (excluding Dark Disciples) is DAMNED, you can re-roll Advance and Charge rolls made for the bearer’s unit.",
     "value": 30,
     "detachment": "CHAOS CULT",
     "tags": [],
@@ -24684,7 +24537,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-incendiary-goad": {
     "title": "Incendiary Goad",
-    "text": "DARK APOSTLE or DAMNED model only. While the bearer's unit is below its Starting Strength, add 1 to the Strength characteristic of melee weapons equipped by DAMNED models in that unit, and while that unit is Below Half-strength, add 1 to the Attacks characteristic of those weapons as well.",
+    "text": "DARK APOSTLE or DAMNED model only. While the bearer’s unit is below its Starting Strength, add 1 to the Strength characteristic of melee weapons equipped by DAMNED models in that unit, and while that unit is Below Half-strength, add 1 to the Attacks characteristic of those weapons as well.",
     "value": 25,
     "detachment": "CHAOS CULT",
     "tags": [],
@@ -24695,7 +24548,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-warped-foresight": {
     "title": "Warped Foresight",
-    "text": "DARK APOSTLE or DAMNED model only. While the bearer is leading a unit with the Scouts 6\" ability, every model in the bearer's unit has the Scouts 6\" ability.",
+    "text": "DARK APOSTLE or DAMNED model only. While the bearer is leading a unit with the Scouts 6\" ability, every model in the bearer’s unit has the Scouts 6\" ability.",
     "value": 10,
     "detachment": "CHAOS CULT",
     "tags": [],
@@ -24706,7 +24559,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-surgical-precision": {
     "title": "Surgical Precision",
-    "text": "A student of Fabius Bile’s dread craft, this champion of Chaos wields their weapons with the same precision a master chirurgeon would wield a scalpel. Heretic Astartes model (excluding Damned models) only. The bearer’s melee weapons have the [PRECISION] ability.",
+    "text": "HERETIC ASTARTES model (excluding DAMNED models) only. The bearer’s melee weapons have the [PRECISION] ability.",
     "value": 10,
     "detachment": "CREATIONS OF BILE",
     "tags": [],
@@ -24717,7 +24570,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-living-carapace": {
     "title": "Living Carapace",
-    "text": "With a thought, the wearer can compel this bioarmour to thicken, further increasing their formidable resistance. Chaos Lord model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability.",
+    "text": "CHAOS LORD model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability.",
     "value": 15,
     "detachment": "CREATIONS OF BILE",
     "tags": [],
@@ -24728,7 +24581,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-helm-of-all-seeing": {
     "title": "Helm of All-seeing",
-    "text": "This baroque helm sports numerous additional sensors, requiring various disfiguring organ augmentations to process the information. Heretic Astartes Infantry model (excluding Damned models) only. Enemy units that are set up on the battlefield from Reserves cannot be set up within 12\" of the bearer.",
+    "text": "HERETIC ASTARTES INFANTRY model (excluding DAMNED models) only. Enemy units that are set up on the battlefield from Reserves cannot be set up within 12\" of the bearer.",
     "value": 25,
     "detachment": "CREATIONS OF BILE",
     "tags": [],
@@ -24739,7 +24592,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-prime-test-subject": {
     "title": "Prime Test Subject",
-    "text": "Only the strongest will survive the rampant cell transformations associated with Bile’s mysterious bioalchemy. Heretic Astartes Infantry model (excluding Damned models) only. Add 1 to the Damage characteristic of melee weapons equipped by the bearer. Each time the bearer makes a melee attack, you can re‑roll the Hit roll.",
+    "text": "HERETIC ASTARTES INFANTRY model (excluding DAMNED models) only. Add 1 to the Damage characteristic of melee weapons equipped by the bearer. Each time the bearer makes a melee attack, you can re-roll the Hit roll.",
     "value": 35,
     "detachment": "CREATIONS OF BILE",
     "tags": [],
@@ -24750,7 +24603,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-weaponised-hatred": {
     "title": "Weaponised Hatred",
-    "text": "This champion’s bitterness has been tempered like a blade, and is wielded with the brutal efficacy to match. Heretic Astartes model only. Once per battle round, after your Vendetta target is destroyed, if the bearer is on the battlefield, you can select one enemy unit visible to the bearer. That enemy unit becomes your Vendetta target until you select a new one.",
+    "text": "HERETIC ASTARTES model only. Once per battle round, after your Vendetta target is destroyed, if the bearer is on the battlefield, you can select one enemy unit visible to the bearer. That enemy unit becomes your Vendetta target until you select a new one.",
     "value": 35,
     "detachment": "RENEGADE WARBAND",
     "tags": [],
@@ -24761,7 +24614,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-eyes-of-the-hunter": {
     "title": "Eyes of the Hunter",
-    "text": "Immersion within the mutagenic energies of the Warp has wrought changes upon this warrior’s eyes. Slit pupils and warp sight enable them to pick out their targets with unerring accuracy. Heretic Astartes model only. Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability.",
+    "text": "HERETIC ASTARTES model only. Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability.",
     "value": 15,
     "detachment": "RENEGADE WARBAND",
     "tags": [],
@@ -24772,7 +24625,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-fratricidal-trophies": {
     "title": "Fratricidal Trophies",
-    "text": "The trophy racks of this warrior’s Terminator armour bear the skulls of former battle‑brothers slain by his own hand. The warriors that fight at his side strive their hardest to avoid sharing the fate of their former comrades. Heretic Astartes Terminator model only. In a turn in which the bearer’s unit chose to Default to Doctrine, until the end of the turn, each time a model in this unit makes an attack, you can re‑roll the Hit roll.",
+    "text": "HERETIC ASTARTES TERMINATOR model only. In a turn in which the bearer’s unit chose to Default to Doctrine, until the end of the turn, each time a model in this unit makes an attack, you can re-roll the Hit roll.",
     "value": 5,
     "detachment": "RENEGADE WARBAND",
     "tags": [],
@@ -24783,7 +24636,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-empyric-symbiote": {
     "title": "Empyric Symbiote",
-    "text": "This champion of ruin has been bonded with a warp‑spawned symbiote. This malefic companion’s predatory senses sense the quickest route to the enemy. Heretic Astartes model only. Add 1 to Advance and Charge rolls made for the bearer’s unit.",
+    "text": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit.",
     "value": 15,
     "detachment": "RENEGADE WARBAND",
     "tags": [],
@@ -24794,7 +24647,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-infernal-fulgurite": {
     "title": "Infernal Fulgurite",
-    "text": "This strange artefact was recovered from the storm‑lashed daemon world of Utrexismia. A shard of warp lightning frozen forever in reality, it serves as a potent focus for teleportation. Heretic Astartes model only (excluding Damned models). Once per battle, you can target the bearer’s unit with the Rapid Ingress Stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this phase.",
+    "text": "HERETIC ASTARTES model only (excluding DAMNED models). Once per battle, you can target the bearer’s unit with the Rapid Ingress Stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this phase.",
     "value": 20,
     "detachment": "WARPSTRIKE CHAMPIONS",
     "tags": [],
@@ -24805,7 +24658,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-eye-of-the-warp": {
     "title": "Eye of the Warp",
-    "text": "This burning gem allows its bearer to see through the veil between realspace and the Warp, and so to react instantly upon piercing that veil. Heretic Astartes model with the Deep Strike ability only. Each time the bearer’s unit is set up on the battlefield, until the end of the turn, you can re‑roll Charge rolls made for that unit.",
+    "text": "HERETIC ASTARTES model with the Deep Strike ability only. Each time the bearer’s unit is set up on the battlefield, until the end of the turn, you can re-roll Charge rolls made for that unit.",
     "value": 15,
     "detachment": "WARPSTRIKE CHAMPIONS",
     "tags": [],
@@ -24816,7 +24669,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-akshurs-binding-runes": {
     "title": "Akshur’s Binding Runes",
-    "text": "Living runes that crawl from an ancient tome onto living skin, these sigils anchor their host to realspace even when they are immersed in the Empyrean. Heretic Astartes model with the Deep Strike ability only. The bearer’s unit can be set up using the Deep Strike ability in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules.",
+    "text": "HERETIC ASTARTES model with the Deep Strike ability only. The bearer’s unit can be set up using the Deep Strike ability in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules.",
     "value": 20,
     "detachment": "WARPSTRIKE CHAMPIONS",
     "tags": [],
@@ -24827,7 +24680,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-tzagulla": {
     "title": "Tzagulla",
-    "text": "This shape‑shifting daemon weapon feeds upon the presence of warp energy to empower both itself and its wielder. Heretic Astartes model with the Deep Strike ability only. Improve the Attacks, Strength and Armour Penetration characteristics of the bearer’s weapons by 1. In addition, each time the bearer’s unit is set up on the battlefield from Reserves, until the end of the turn, improve the Damage characteristic of the bearer’s weapons by 1.",
+    "text": "HERETIC ASTARTES model with the Deep Strike ability only. Improve the Attacks, Strength and Armour Penetration characteristics of the bearer’s weapons by 1. In addition, each time the bearer’s unit is set up on the battlefield from Reserves, until the end of the turn, improve the Damage characteristic of the bearer’s weapons by 1.",
     "value": 25,
     "detachment": "WARPSTRIKE CHAMPIONS",
     "tags": [],
@@ -24838,7 +24691,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-pact-of-destruction": {
     "title": "Pact of Destruction",
-    "text": "There are those daemonic entities within the Warp that are willing to offer their boons to any who will wreak wholesale devastation in their name, at least for as long as the carnage holds their capricious attention. WARPSMITH model only. ▪ When this unit uses its Dark Pacts ability, this unit can re‑roll Leadership rolls. ▪ In your Shooting phase, when this unit has shot, if this unit used its Dark Pacts ability and if those attacks destroyed an enemy model, this unit heals 3 wounds.",
+    "text": "WARPSMITH model only.\n- When this unit uses its Dark Pacts ability, this unit can re-roll Leadership rolls.\n- In your Shooting phase, when this unit has shot, if this unit used its Dark Pacts ability and if those attacks destroyed an enemy model, this unit heals 3 wounds",
     "value": 15,
     "detachment": "DEVOTEES OF DESTRUCTION",
     "tags": [],
@@ -24849,7 +24702,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-eye-of-oblivion": {
     "title": "Eye of Oblivion",
-    "text": "This vile technodaemonic parasite nests within the emptied eye socket of its host, driving filament tendrils deep into their brain and feeding on their animus in exchange for revealing the secrets of its supernatural vision. WARPSMITH model only. When this unit is selected to shoot, select one enemy unit within 24\" of this unit. That enemy unit has +6\" detection range until this unit has shot.",
+    "text": "WARPSMITH model only. When this unit is selected to shoot, select one enemy unit within 24\" of this unit. That enemy unit has +6\" detection range until this unit has shot.",
     "value": 20,
     "detachment": "DEVOTEES OF DESTRUCTION",
     "tags": [],
@@ -24860,7 +24713,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-greyveil-hex": {
     "title": "Greyveil Hex",
-    "text": "Incised into this warrior’s battleplate is a runic curse which dims his form in the minds of his prey, until all they perceive is a mass of talons and shadow. Chaos Lord model only. Models in the bearer’s unit have the Stealth ability. While the bearer’s unit is within range of one or more objective markers you control, that unit can only be selected as the target of a ranged attack if the attacking model is within 18\".",
+    "text": "CHAOS LORD model only. Models in the bearer’s unit have the Stealth ability.\nWhile the bearer’s unit is within range of one or more objective markers you control, that unit can only be selected as the target of a ranged attack if the attacking model is within 18\".",
     "value": 25,
     "detachment": "NIGHTMARE HUNT",
     "tags": [],
@@ -24871,7 +24724,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-nightmare-hunt-warp-fuelled-thrusters": {
     "title": "Warp-fuelled Thrusters",
-    "text": "Bathed in warp energies, this Lord’s jump pack tears rifts in reality, allowing them to withdraw at a moment’s notice. Chaos Lord Jump Pack model only. At the end of your opponent’s Fight phase, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove the bearer’s unit from the battlefield and place it into Strategic Reserves.",
+    "text": "CHAOS LORD JUMP PACK model only. At the end of your opponent’s Fight phase, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove the bearer’s unit from the battlefield and place it into Strategic Reserves.",
     "value": 20,
     "detachment": "NIGHTMARE HUNT",
     "tags": [],
@@ -24882,7 +24735,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-terrorglut-parasite": {
     "title": "Terrorglut Parasite",
-    "text": "A daemonic pact sealed in fear and dread allowed this entity to squirm into reality. Coiled tightly and invisibly about a warrior’s soul, the being wears away at the sanity of those he faces and feasts on their terror. Heretic Astartes model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer must take a Battle‑shock test, subtracting 1 from the result.",
+    "text": "HERETIC ASTARTES model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer must take a Battle-shock test, subtracting 1 from the result.",
     "value": 20,
     "detachment": "NIGHTMARE HUNT",
     "tags": [],
@@ -24893,7 +24746,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-sorrowscent-vulture": {
     "title": "Sorrowscent Vulture",
-    "text": "This champion demands to be in the vanguard of the hunt, their eagerness to inflict suffering manifesting in a daring lunge towards enemy lines. Chaos Lord Jump Pack model only. Models in the bearer’s unit have the Scouts 6\" ability.",
+    "text": "LEADER: WARP TALONS\nCHAOS LORD JUMP PACK model only. Models in the bearer’s unit have the Scouts 6\" ability. In the Declare Battle Formations step, the bearer can be attached to a WARP TALONS unit.",
     "value": 35,
     "detachment": "NIGHTMARE HUNT",
     "tags": [],
@@ -24904,7 +24757,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-eye-of-tzeentch": {
     "title": "Eye of Tzeentch",
-    "text": "HERETIC ASTARTES TZEENTCH model only. Each time the bearer's unit makes a Dark Pact and does not fail the resulting Leadership test, if the result of that test was 8 or more, you gain 1CP.",
+    "text": "HERETIC ASTARTES TZEENTCH model only. Each time the bearer’s unit makes a Dark Pact and does not fail the resulting Leadership test, if the result of that test was 8 or more, you gain 1CP.",
     "value": 15,
     "detachment": "PACTBOUND ZEALOTS",
     "tags": [],
@@ -24915,7 +24768,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-intoxicating-elixir": {
     "title": "Intoxicating Elixir",
-    "text": "HERETIC ASTARTES SLAANESH model only. The bearer has the Feel No Pain 5+ ability. Each time the bearer shoots or fights, if the bearer's unit made a Dark Pact this phase and did not fail the resulting Leadership test, after the bearer has resolved those attacks, select one enemy unit that was hit by one or more of those attacks; that enemy unit must take a Battle-shock test.",
+    "text": "HERETIC ASTARTES SLAANESH model only. The bearer has the Feel No Pain 5+ ability. Each time the bearer shoots or fights, if the bearer’s unit made a Dark Pact this phase and did not fail the resulting Leadership test, after the bearer has resolved those attacks, select one enemy unit that was hit by one or more of those attacks; that enemy unit must take a Battle-shock test.",
     "value": 15,
     "detachment": "PACTBOUND ZEALOTS",
     "tags": [],
@@ -24926,7 +24779,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-orbs-of-unlife": {
     "title": "Orbs of Unlife",
-    "text": "HERETIC ASTARTES NURGLE model only. At the end of the Fight phase, roll one D6 for every enemy unit within 3\" of the bearer, adding 1 to the result if the bearer's unit made a Dark Pact that phase and did not fail the resulting Leadership test: on a 4+, that enemy unit suffers D3 mortal wounds.",
+    "text": "HERETIC ASTARTES NURGLE model only. At the end of the Fight phase, roll one D6 for every enemy unit within 3\" of the bearer, adding 1 to the result if the bearer’s unit made a Dark Pact that phase and did not fail the resulting Leadership test: on a 4+, that enemy unit suffers D3 mortal wounds.",
     "value": 15,
     "detachment": "PACTBOUND ZEALOTS",
     "tags": [],
@@ -24937,7 +24790,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-talisman-of-burning-blood": {
     "title": "Talisman of Burning Blood",
-    "text": "HERETIC ASTARTES KHORNE model only. Add 1 to the Attacks and Strength characteristics of the bearer's melee weapons. Each time the bearer's unit makes a Dark Pact and does not fail the resulting Leadership test, roll one D3: until the end of the phase, add the result to the Attacks and Strength characteristics of the bearer's melee weapons instead.",
+    "text": "HERETIC ASTARTES KHORNE model only. Add 1 to the Attacks and Strength characteristics of the bearer’s melee weapons. Each time the bearer’s unit makes a Dark Pact and does not fail the resulting Leadership test, roll one D3: until the end of the phase, add the result to the Attacks and Strength characteristics of the bearers melee weapons instead.",
     "value": 15,
     "detachment": "PACTBOUND ZEALOTS",
     "tags": [],
@@ -24959,7 +24812,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-nights-shroud": {
     "title": "Night's Shroud",
-    "text": "CHAOS LORD model only. TERMINATOR models are excluded. Models in the bearer's unit have the Stealth ability.",
+    "text": "CHAOS LORD model only (excluding TERMINATOR models). Models in the bearer’s unit have the Stealth ability.",
     "value": 10,
     "detachment": "DREAD TALONS",
     "tags": [],
@@ -24970,7 +24823,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-dread-talons-warp-fuelled-thrusters": {
     "title": "Warp-fuelled Thrusters",
-    "text": "JUMP PACK CHAOS LORD model only. At the end of your opponent's turn, if the bearer's unit is not within Engagement Range of one or more enemy units, you can remove the bearer's unit from the battlefield and place it into Strategic Reserves.",
+    "text": "JUMP PACK CHAOS LORD model only. At the end of your opponent’s turn, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove the bearer’s unit from the battlefield and place it into Strategic Reserves.",
     "value": 20,
     "detachment": "DREAD TALONS",
     "tags": [],
@@ -24992,7 +24845,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-despots-claim": {
     "title": "Despot's Claim",
-    "text": "HERETIC ASTARTES model only. At the start of your Command phase, if the bearer is on the battlefield, roll one D6, adding 1 to the result if the bearer is wholly within 12\" of your opponent's deployment zone: on a 5+, you gain 1CP.",
+    "text": "HERETIC ASTARTES model only. At the start of your Command phase, if the bearer is on the battlefield, roll one D6, adding 1 to the result if the bearer is wholly within 12\" of your opponent’s deployment zone: on a 5+, you gain 1 CP.",
     "value": 15,
     "detachment": "RENEGADE RAIDERS",
     "tags": [],
@@ -25003,7 +24856,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-dread-reaver": {
     "title": "Dread Reaver",
-    "text": "HERETIC ASTARTES model only. Each time the bearer makes a melee attack, if the bearer is wholly within 12\" of your opponent's deployment zone, you can re-roll the Hit roll and you can re-roll the Wound roll.",
+    "text": "HERETIC ASTARTES model only. Each time the bearer makes a melee attack, if the bearer is wholly within 12\" of your opponent’s deployment zone, you can re-roll the Hit roll and you can re-roll the Wound roll.",
     "value": 15,
     "detachment": "RENEGADE RAIDERS",
     "tags": [],
@@ -25014,7 +24867,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-mark-of-the-hound": {
     "title": "Mark of the Hound",
-    "text": "HERETIC ASTARTES model only. Models in the bearer's unit have the Scouts 6\" ability.",
+    "text": "HERETIC ASTARTES model only. Models in the bearers unit have the Scouts 6\" ability.",
     "value": 25,
     "detachment": "RENEGADE RAIDERS",
     "tags": [],
@@ -25025,7 +24878,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-tyrants-lash": {
     "title": "Tyrant's Lash",
-    "text": "HERETIC ASTARTES model only. You can re-roll Advance rolls made for the bearer's unit, and the bearer's unit is eligible to shoot in a turn in which it Fell Back.",
+    "text": "HERETIC ASTARTES model only. You can re-roll Advance rolls made for the bearer’s unit, and the bearer’s unit is eligible to shoot in a turn in which it Fell Back.",
     "value": 20,
     "detachment": "RENEGADE RAIDERS",
     "tags": [],
@@ -25036,7 +24889,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-eager-for-vengeance": {
     "title": "Eager for Vengeance",
-    "text": "HERETIC ASTARTES model only. Excludes DAMNED models. The bearer's unit is eligible to shoot and declare a charge in a turn in which it Fell Back. Each time a model in the bearer's unit makes an attack that targets your focus of hatred, if the bearer's unit Fell Back this turn, add 1 to the Hit roll, and each time you select your focus of hatred as a target of that unit's charge, add 1 to the Charge roll.",
+    "text": "HERETIC ASTARTES model only (excluding DAMNED models). The bearer’s unit is eligible to shoot and declare a charge in a turn in which it Fell Back. Each time a model in the bearer’s unit makes an attack that targets your focus of hatred, if the bearer’s unit Fell Back this turn, add 1 to the Hit roll, and each time you select your focus of hatred as a target of that unit’s charge, add 1 to the Charge roll.",
     "value": 20,
     "detachment": "VETERANS OF THE LONG WAR",
     "tags": [],
@@ -25047,7 +24900,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-eye-of-abaddon": {
     "title": "Eye of Abaddon",
-    "text": "HERETIC ASTARTES model only. Excludes DAMNED models. While the bearer is on the battlefield, each time your focus of hatred is destroyed, roll one D6: on a 4+, you gain 1CP.",
+    "text": "HERETIC ASTARTES model only (excluding DAMNED models). While the bearer is on the battlefield, each time your focus of hatred is destroyed, roll one D6: on a 4+, you gain 1CP.",
     "value": 15,
     "detachment": "VETERANS OF THE LONG WAR",
     "tags": [],
@@ -25058,7 +24911,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-mark-of-legend": {
     "title": "Mark of Legend",
-    "text": "HERETIC ASTARTES model only. Excludes DAMNED models. Once per turn, you can re-roll one Hit roll, one Wound roll or one saving throw made for the bearer.",
+    "text": "HERETIC ASTARTES model only (excluding DAMNED models). Once per turn, you can re-roll one Hit roll, one Wound roll or one saving throw made for the bearer.",
     "value": 10,
     "detachment": "VETERANS OF THE LONG WAR",
     "tags": [],
@@ -25080,7 +24933,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-cursed-fang": {
     "title": "Cursed Fang",
-    "text": "HERETIC ASTARTES INFANTRY model only. Improve the Armour Penetration characteristic of the bearer's melee weapons by 1, and the bearer's melee weapons have the [PRECISION] ability.",
+    "text": "HERETIC ASTARTES INFANTRY model only. Improve the Armour Penetration characteristic of the bearer’s melee weapons by 1, and the bearer’s melee weapons have the [PRECISION] ability.",
     "value": 10,
     "detachment": "DECEPTORS",
     "tags": [],
@@ -25113,7 +24966,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-soul-link": {
     "title": "Soul Link",
-    "text": "HERETIC ASTARTES INFANTRY model only. At the start of your Command phase, you can select one other HERETIC ASTARTES INFANTRY CHARACTER model from your army (excluding EPIC HEROES). Until the start of your next Command phase, the bearer gains the PSYKER keyword, and replace the bearer's datasheet abilities with the datasheet abilities of the CHARACTER you selected.",
+    "text": "HERETIC ASTARTES INFANTRY model only. At the start of your Command phase, you can select one other HERETIC ASTARTES INFANTRY CHARACTER model from your army (excluding EPIC HEROES). Until the start of your next Command phase, the bearer gains the PSYKER keyword, and replace the bearer’s datasheet abilities with the datasheet abilities of the CHARACTER you selected.",
     "value": 5,
     "detachment": "DECEPTORS",
     "tags": [],
@@ -25124,7 +24977,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-voice-of-the-tyrant": {
     "title": "Voice of the Tyrant",
-    "text": "This champion is a valued commander, and speaks with the authority of Huron himself. Heretic Astartes model only (excluding Damned models). The bearer’s unit has both abilities from the Tyrannical Motivation Detachment rule.",
+    "text": "HERETIC ASTARTES model only (excluding DAMNED models). The bearer’s unit has both abilities from the Tyrannical Motivation Detachment rule.",
     "value": 25,
     "detachment": "HURON’S MARAUDERS",
     "tags": [],
@@ -25135,7 +24988,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-raid-leader": {
     "title": "Raid Leader",
-    "text": "Rapid mechanised assaults are a preferred tactic of the Red Corsairs, and this champion excels at them. Heretic Astartes model only (excluding Damned models). Each time the bearer’s unit is set up after disembarking from a Transport that has made a Normal move this turn, the bearer’s unit is still eligible to declare a charge.",
+    "text": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer’s unit is set up after disembarking from a TRANSPORT that has made a Normal move this turn, the bearer’s unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
     "value": 20,
     "detachment": "HURON’S MARAUDERS",
     "tags": [],
@@ -25146,7 +24999,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-dread-reputation": {
     "title": "Dread Reputation",
-    "text": "Such is this warrior’s infamy that their mere presence on the field of battle can overwhelm the foe with tyrannical intimidation. Heretic Astartes model only (excluding Damned models). Each time the bearer’s unit is set up on the battlefield, each enemy unit within 6” of the bearer’s unit (or within 12” if the bearer’s unit was set up using the Deep Strike ability) takes a Battle‑shock test.",
+    "text": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer’s unit is set up on the battlefield, each enemy unit within 6\" of the bearer’s unit (or within 12\" if the bearer’s unit was set up using the Deep Strike ability) takes a Battle-shock test.",
     "value": 25,
     "detachment": "HURON’S MARAUDERS",
     "tags": [],
@@ -25157,7 +25010,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-eager-for-bloodshed": {
     "title": "Eager for Bloodshed",
-    "text": "Desperate to lock weapons with the foe, this warrior is always at the fore, fighting in the vanguard of Huron Blackheart’s forces. Heretic Astartes model only. The bearer has the Infiltrators ability.",
+    "text": "HERETIC ASTARTES model only. The bearer has the Infiltrators ability.",
     "value": 30,
     "detachment": "HURON’S MARAUDERS",
     "tags": [],
@@ -25168,7 +25021,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-wyredjinn": {
     "title": "Wyredjinn",
-    "text": "A repulsive daemon imp of Vashtorr, this incorporeal data‑familiar flits through vox‑channels and sensor suites, stealing data for its master. Heretic Astartes model only (excluding Damned models). At the start of your Command phase, if the bearer is on the battlefield, roll one D6, adding 1 to the result if the bearer is within range of an objective marker you control: on a 4+, you gain 1CP.",
+    "text": "HERETIC ASTARTES model only (excluding DAMNED models). At the start of your Command phase, if the bearer is on the battlefield, roll one D6, adding 1 to the result if the bearer is within range of an objective marker you control: on a 4+, you gain 1CP.",
     "value": 25,
     "detachment": "CULT OF THE ARKIFANE",
     "tags": [],
@@ -25179,7 +25032,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-cybinfernal-font": {
     "title": "Cybinfernal Font",
-    "text": "This warp‑forged augmetic channels daemonic energies through its bearer and into those they lead, spawning biomechanoid mutation and supernatural resilience. Heretic Astartes model only (excluding Damned models). Models in the bearer’s unit have the Soul Forge keyword.",
+    "text": "HERETIC ASTARTES model only (excluding DAMNED models). Models in the bearer’s unit have the SOUL FORGE keyword.",
     "value": 20,
     "detachment": "CULT OF THE ARKIFANE",
     "tags": [],
@@ -25190,7 +25043,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-mark-of-the-soul-forges": {
     "title": "Mark of the Soul Forges",
-    "text": "This burning rune attests to the – perhaps unwise – pact its bearer has struck with the Arkifane in return for enhanced martial might and lethality. Heretic Astartes model only (excluding Damned models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
+    "text": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
     "value": 20,
     "detachment": "CULT OF THE ARKIFANE",
     "tags": [],
@@ -25201,7 +25054,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-crown-of-worms": {
     "title": "Crown of Worms",
-    "text": "This parasitic helm bestows the ability to conjure daemonic nematodes akin to those manifested by the Arkifane himself. These burrowing entities can reknit faltering war machines or gnaw upon such vehicles’ sanity at the wearer’s command. Warpsmith model only. Add 3” to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
+    "text": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
     "value": 15,
     "detachment": "CULT OF THE ARKIFANE",
     "tags": [],
@@ -25212,7 +25065,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-touched-by-the-warp": {
     "title": "Touched by the Warp",
-    "text": "Saturated with empyric energies, this dark champion has spontaneously manifested the mutant powers of a true psyker. HERETIC ASTARTES model only (excluding KHORNE models). ▪ This model has PSYKER. ▪ This model’s weapons have [PSYCHIC].",
+    "text": "HERETIC ASTARTES model only (excluding KHORNE models).\n- This model has PSYKER.\n- This model’s weapons have [PSYCHIC].",
     "value": 10,
     "detachment": "CABAL OF CHAOS",
     "tags": [],
@@ -25223,7 +25076,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-conduit-of-chaos": {
     "title": "Conduit of Chaos",
-    "text": "Like a lightning rod, this blessed fiend attracts the arcane energies of the Warp, unleashing them in a crackling storm of mutating horror as it plunges into the foe. HERETIC ASTARTES DAEMON model only (excluding KHORNE models). This model’s melee attacks have [LANCE].",
+    "text": "HERETIC ASTARTES DAEMON model only (excluding KHORNE models). This model’s melee attacks have [LANCE].",
     "value": 20,
     "detachment": "CABAL OF CHAOS",
     "tags": [],
@@ -25245,7 +25098,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-invigorated-mechatendrils": {
     "title": "Invigorated Mechatendrils",
-    "text": "WARPSMITH model only. Add 4\" to the bearer's Move characteristic.",
+    "text": "WARPSMITH model only. Add 4\" to the bearer’s Move characteristic.",
     "value": 15,
     "detachment": "SOULFORGED WARPACK",
     "tags": [],
@@ -25256,7 +25109,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-tempting-addendum": {
     "title": "Tempting Addendum",
-    "text": "HERETIC ASTARTES model only. Each time a HERETIC ASTARTES DAEMON VEHICLE unit from your army invokes its contract while within 3\" of the bearer: if it suffers one or more mortal wounds as a result of that Dark Pact, add 1 to the number of mortal wounds it suffers; until the end of the phase, each time a model in that unit makes an attack, you can re-roll the Hit roll.",
+    "text": "HERETIC ASTARTES model only. Each time a HERETIC ASTARTES DAEMON VEHICLE unit from your army invokes its contract while within 3\" of the bearer:\n- If it suffers one or more mortal wounds as a result of that Dark Pact, add 1 to the number of mortal wounds it suffers.\n- Until the end of the phase, each time a model in that unit makes an attack, you can re-roll the Hit roll.",
     "value": 40,
     "detachment": "SOULFORGED WARPACK",
     "tags": [],
@@ -25278,7 +25131,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-shadowcowl-talisman": {
     "title": "Shadowcowl Talisman",
-    "text": "Worked with diabolical incantations of occlusion, wound about with subtle enchantments, this onyx disc draws a penumbral aura about the bearer that hides him from the eyes of his prey. CHAOS LORD WITH JUMP PACK model only. This unit has 5+ InSv.",
+    "text": "CHAOS LORD WITH JUMP PACK model only. This unit has 5+ InSv.",
     "value": 20,
     "detachment": "MURDERTALON RAIDERS",
     "tags": [],
@@ -25289,7 +25142,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-pact-of-cursed-pinions": {
     "title": "Pact of Cursed Pinions",
-    "text": "Sharing their mortal frame with a predatory possessor daemon lends this dark champion additional might and swiftness, though it may yet damn them for eternity. CHAOS LORD WITH JUMP PACK model only. ▪ This model has DAEMON. ▪ This model’s melee attacks have +1 A.",
+    "text": "LEADER: WARP TALONS\nCHAOS LORD WITH JUMP PACK model only.\n- This model has DAEMON.\n- This model’s melee attacks have +1 A.",
     "value": 20,
     "detachment": "MURDERTALON RAIDERS",
     "tags": [],
@@ -25300,7 +25153,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-bastion-plate": {
     "title": "Bastion Plate",
-    "text": "CHAOS LORD model only. JUMP PACK models are excluded. Once per battle round, when a saving throw is failed for the bearer's unit, you can change the Damage characteristic of that attack to 0.",
+    "text": "CHAOS LORD model only (excluding JUMP PACK models). Once per battle round, when a saving throw is failed for the bearer’s unit, you can change the Damage characteristic of that attack to 0.",
     "value": 10,
     "detachment": "FELLHAMMER SIEGE-HOST",
     "tags": [],
@@ -25311,7 +25164,7 @@ window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({
   },
   "enhancement-iron-artifice": {
     "title": "Iron Artifice",
-    "text": "HERETIC ASTARTES INFANTRY model only. The bearer's weapons have the [ANTI-VEHICLE 4+] and [ANTI-FORTIFICATION 4+] abilities.",
+    "text": "HERETIC ASTARTES INFANTRY model only. The bearers weapons have the [ANTI-VEHICLE 4+] and [ANTI-FORTIFICATION 4+] abilities.",
     "value": 10,
     "detachment": "FELLHAMMER SIEGE-HOST",
     "tags": [],

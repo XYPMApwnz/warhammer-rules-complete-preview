@@ -429,8 +429,8 @@
       "authority": "official-pdf",
       "sourceType": "official-pdf",
       "acceptedRevision": "v1.2",
-      "acceptedHash": "ac1187f556f61a516fe51418796346d6722ddb93e5ec1695e9e9dba9c5e7467f",
-      "lastChecked": "2026-08-27",
+      "acceptedHash": "adb3eb42e75bf03e9a4cc96ca921655f53d5f565deddc76a88d81e405d2f4f91",
+      "lastChecked": "2026-09-29",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "UNKNOWN",
       "status": "VERIFIED_FROZEN",
@@ -445,7 +445,7 @@
         {
           "path": "books/chaos-space-marines/content/chaos-space-marines-faction-pack.en.json",
           "normalization": "lf",
-          "sha256": "625d3d1b352cd9f3718820cca6dfb78ac2f57fb3ce98df9bb38b5be461f7eb49"
+          "sha256": "6dac66017173f73d60abedaafc12c59616691dad581574e993cea100ca4d19ab"
         }
       ],
       "notes": "Enrolled factual owner for faction-pack-rules."
@@ -488,8 +488,8 @@
       "authority": "bsdata-snapshot",
       "sourceType": "bsdata-snapshot",
       "acceptedRevision": "b6d17952f74814528b4c70ef5016c86b922d5257",
-      "acceptedHash": "6a48c725c25445761afaa0e846cfe217525e901f8f001a4a0173b8489b325e0d",
-      "lastChecked": "2026-08-12",
+      "acceptedHash": "02c672d871414fda7cbf5a0aea8683fd30d5407c4b1fec0567b1e77a4a6920c9",
+      "lastChecked": "2026-09-29",
       "upstreamUpdateKnown": false,
       "upstreamCurrentness": "UNKNOWN",
       "status": "SOURCE_LIMITED",
@@ -504,7 +504,7 @@
         {
           "path": "books/chaos-space-marines/content/chaos-space-marines-codex-datasheets.en.json",
           "normalization": "lf",
-          "sha256": "780b7f9bcb34c804df70acb405eaa5d9dc74840ea81a95bb5741fc9326b4e56f"
+          "sha256": "4911d32a1ff5162da3778a0362f27ab7b403c924526f0a5ade0cecf4a2a5f530"
         }
       ],
       "notes": "Enrolled factual owner for datasheets, profiles, points-structure."
@@ -2404,6 +2404,34 @@
         }
       ],
       "notes": "Frozen secondary 11E Emperor's Children corpus captured for complete source-to-canonical certification on 2026-09-28."
+    },
+    {
+      "book": "chaos-space-marines",
+      "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+      "authority": "community-secondary-operational-baseline",
+      "sourceType": "deterministic-web-corpus",
+      "acceptedRevision": "current-capture-2026-09-29",
+      "acceptedHash": "1a846fb5c82046fd5d9536fc48f61aa395d0bad0341d7a0dac05c90eb294c828",
+      "lastChecked": "2026-09-29",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "RETAINED_WEB_CORPUS",
+      "reproducible": "repository-artifact",
+      "extractor": "books/chaos-space-marines/tools/import-waha-current-corpus.py",
+      "artifacts": [
+        {
+          "path": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json",
+          "normalization": "bytes",
+          "sha256": "50e9b08ad9adbac23283ea17294f16040b59ed9c25a9f87e756199f6eb8c2480"
+        },
+        {
+          "path": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/source-defects.json",
+          "normalization": "bytes",
+          "sha256": "e029c8e02a16a7a2c94f9e02e85dfed79605c68ed255d3eaca108cb2fa6edfc4"
+        }
+      ],
+      "notes": "Frozen secondary 11E Chaos Space Marines corpus captured for complete source-to-canonical certification on 2026-09-29."
     }
   ],
   "dormantLiveTools": [

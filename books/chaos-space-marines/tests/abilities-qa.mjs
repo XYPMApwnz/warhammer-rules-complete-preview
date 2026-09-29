@@ -2,19 +2,24 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
+import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const source=JSON.parse(fs.readFileSync(path.join(root,'content/chaos-space-marines-codex-datasheets.en.json'),'utf8'));
 const points=JSON.parse(fs.readFileSync(path.join(root,'content/chaos-space-marines-points.en.json'),'utf8'));
-const reader=fs.readFileSync(path.join(root,'reader.html'),'utf8');
+const targetContext={window:{}};
+vm.runInNewContext(fs.readFileSync(path.join(root,'scripts/target-data.js'),'utf8'),targetContext);
+const publication=targetContext.window.WH_ARMY_BOOK_TARGETS.html;
 const glossary=JSON.parse(fs.readFileSync(path.resolve(root,'../../glossary/registry.en.json'),'utf8')).terms;
 const localContext=JSON.parse(fs.readFileSync(path.resolve(root,'../../glossary/contexts/chaos-space-marines.json'),'utf8')).terms;
+const v2Entries=JSON.parse(fs.readFileSync(path.resolve(root,'../../glossary/v2/generated/index.en.json'),'utf8')).entries;
+const v2TermIds=new Set(v2Entries.filter(item=>item.contexts?.some(context=>context.effectiveBookId==='chaos-space-marines')).flatMap(item=>[item.facts?.termId,item.facts?.id,item.sourceOwner?.canonicalId,...(item.aliases||[])]).filter(Boolean));
 const coreBaseKey=value=>String(value).toLowerCase().replace(/[^a-z0-9]+/g,' ').replace(/\s+(?:d\d+|\d+)$/,'').trim();
 const coreTitles=new Set(Object.entries(glossary).filter(([id])=>id.startsWith('core-')).map(([,term])=>coreBaseKey(String(term.title?.en||'').replace(/^\[|\]$/g,''))));
-const resolves=id=>Boolean(glossary[id]||localContext[id]);
+const resolves=id=>Boolean(v2TermIds.has(id)||glossary[id]||localContext[id]);
 
-function extract(tag,id,html=reader){
+function extract(tag,id,html=publication){
   const opener=new RegExp(`<${tag}\\b[^>]*\\bid="${id}"[^>]*>`,'i').exec(html);
   assert.ok(opener,`Missing ${tag}#${id}`);
   const tags=new RegExp(`<\\/?${tag}\\b[^>]*>`,'gi');tags.lastIndex=opener.index;
@@ -24,7 +29,7 @@ function extract(tag,id,html=reader){
 }
 
 const slug=value=>String(value).toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const pollution=new Set(['Khorne','Nurgle','Slaanesh','Tzeentch','Warp Stalker','Mutant Form','Massive Fangs','Eightfold Eyes','Daemonic Flesh','Scorpion Tail','Iron-hard Talons','Dark Blessing','Chaos icon','Choice Samples']);
+const pollution=new Set(['Khorne','Nurgle','Slaanesh','Tzeentch','Warp Stalker','Mutant Form','Massive Fangs','Eightfold Eyes','Daemonic Flesh','Scorpion Tail','Iron-hard Talons','Dark Blessing','Chaos icon']);
 const representatives=new Map([
   ['Accursed Cultists','Howling Horde'],['Cultist Mob','For the Dark Gods'],['Legionaries','Veterans of the Long War'],
   ['Chosen','Chosen Marauders'],['Chaos Terminator Squad','Despoilers'],['Abaddon the Despoiler','The Warmaster'],
@@ -39,10 +44,10 @@ for(const unit of source.datasheets){
   const stub=fs.readFileSync(path.join(root,'mobile',`${unit.id.replace(/^unit-/,'')}.html`),'utf8');
   assert.match(stub,new RegExp(`data-canonical-target="${unit.id}"`),`${unit.title}: legacy route target differs`);
   assert.doesNotMatch(stub,/<(?:article|section)\b|class="[^"]*\bunit-card\b|data-rule-id=/,`${unit.title}: legacy route contains copied content`);
-  assert.equal((reader.match(new RegExp(`id="${abilitiesId}"`,'g'))||[]).length,1,`${unit.title}: responsive reader must expose one canonical Abilities section`);
+  assert.equal((publication.match(new RegExp(`id="${abilitiesId}"`,'g'))||[]).length,1,`${unit.title}: target publication must expose one canonical Abilities section`);
   assert.equal(unit.abilities.filter(item=>item.abilityClass==='faction'&&item.title==='Dark Pacts').length,1,`${unit.title}: Dark Pacts classification`);
   for(const item of unit.abilities){
-    assert.ok(['core','faction','datasheet'].includes(item.abilityClass),`${unit.title}: invalid class for ${item.title}`);
+    assert.ok(['core','faction','datasheet','support'].includes(item.abilityClass)||coreTitles.has(coreBaseKey(item.title)),`${unit.title}: invalid class for ${item.title}`);
     const field=`data-source-field="abilities.${slug(item.title)}"`;
     const presentationClass=coreTitles.has(coreBaseKey(item.title))?'core':item.abilityClass;
     if(presentationClass==='core'||presentationClass==='faction'){
@@ -81,7 +86,7 @@ assert.equal(createHash('sha256').update(JSON.stringify(baseRows)).digest('hex')
 for(const current of source.datasheets){
   const article=extract('article',current.id);
   assert.match(article,/data-source-field="stats\.Base"/,`${current.title}: Desktop Base missing`);
-  assert.equal((reader.match(new RegExp(`\\sid="${current.id}"`,'g'))||[]).length,1,`${current.title}: canonical Datasheet is duplicated`);
+  assert.equal((publication.match(new RegExp(`\\sid="${current.id}"`,'g'))||[]).length,1,`${current.title}: canonical Datasheet is duplicated`);
 }
 
 const unit=title=>source.datasheets.find(item=>item.title===title);
@@ -116,6 +121,6 @@ assert.deepEqual(maelstrom.relations.support,['CHOSEN','LEGIONARIES','RED CORSAI
 for(const subject of [master,maelstrom]){
   const desktop=extract('section',`${subject.id.replace(/^unit-/,'')}-support`,extract('article',subject.id));
   assert.match(desktop,/<h4>Support<\/h4>/);
-  assert.equal((reader.match(new RegExp(`id="${subject.id.replace(/^unit-/,'')}-support"`,'g'))||[]).length,1,`${subject.title}: responsive reader must expose one canonical Support section`);
+  assert.equal((publication.match(new RegExp(`id="${subject.id.replace(/^unit-/,'')}-support"`,'g'))||[]).length,1,`${subject.title}: target publication must expose one canonical Support section`);
 }
 console.log(`CSM ability QA: 54 current Datasheets; Core/Faction compact; unique text, Wargear handling and glossary targets verified.`);

@@ -1,0 +1,44 @@
+{
+  "schema": "wh40k-waha-source-defects/v1",
+  "bookId": "chaos-space-marines",
+  "captureDate": "2026-09-29",
+  "currentnessCutoff": "2026-09-29",
+  "records": [
+    {
+      "id": "stronger-official-faction-pack-precedence",
+      "classification": "STRONGER_OFFICIAL_TEXT_OVERRIDE",
+      "sourceId": "chaos-space-marines-faction-pack-v1.2",
+      "resolution": "The enrolled official Faction Pack v1.2 update ledger wins direct conflicts, including the current Obliterators Warp Rift Firepower wording. The Waha corpus supplies facts not contradicted by stronger enrolled evidence."
+    },
+    {
+      "id": "source-typography-corrections",
+      "classification": "SECONDARY_SOURCE_TEXT_DEFECT",
+      "sourceId": "datasheet-text-typography",
+      "resolution": "Correct obvious non-semantic source transcription defects such as Cypher's 'tht', Haarken's missing possessive apostrophe and harmless title punctuation while preserving the exact gameplay meaning."
+    },
+    {
+      "id": "shared-statline-profile-expansion",
+      "classification": "SOURCE_STRUCTURE_VARIANT",
+      "sourceId": "datasheet-statline-profiles",
+      "resolution": "Eleven multipart Datasheets display shared source statlines. Canonical physical model identities expand those shared lines to 74 profiles without changing any characteristic."
+    },
+    {
+      "id": "choice-rule-structure",
+      "classification": "SOURCE_STRUCTURE_VARIANT",
+      "sourceId": "warmaster-and-daemonic-allegiance",
+      "resolution": "Warmaster and Daemonic Allegiance option bodies remain structured choices of their canonical parent rules instead of becoming unrelated standalone Datasheet abilities."
+    },
+    {
+      "id": "scoped-model-keyword-presentations",
+      "classification": "SOURCE_STRUCTURE_VARIANT",
+      "sourceId": "multipart-model-keyword-blocks",
+      "resolution": "Model-scoped keyword labels on heterogeneous Datasheets are bound to canonical physical model profiles; repeated faction and unit keyword presentations are occurrences of one canonical fact."
+    },
+    {
+      "id": "duplicate-source-presentations",
+      "classification": "DUPLICATE_SOURCE_PRESENTATION",
+      "sourceId": "hub-and-datasheet-occurrences",
+      "resolution": "Repeated rules, references and keyword presentations across the hub and Datasheet pages are occurrences of one canonical factual identity."
+    }
+  ]
+}

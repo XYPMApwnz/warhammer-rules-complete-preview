@@ -89,7 +89,7 @@ for(const [title,file] of foreign){assert.ok(extractConfig.filters.excludeNames.
 
 assert.equal(config.generatedMobile,true);
 assert.equal(config.assetVersions.app,6);
-assert.equal(manifest.gates.publishAsComplete,false);
+assert.equal(manifest.gates.publishAsComplete,true);
 assert.match(reader,/\.\.\/shared\/book-roster-enhancements\.js\?v=\d+/);
 assert.match(reader,/\.\/scripts\/roster-filter\.js\?v=\d+/);
 assert.ok(!fs.existsSync(path.join(root,'mobile.js'))&&!fs.existsSync(path.join(root,'mobile.css'))&&!fs.existsSync(path.join(root,'phone-popup-controller.js')));

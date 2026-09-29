@@ -307,7 +307,7 @@ for(const id of dgComponents){
     assert.deepEqual(entry.facts,sourceRule.subsections.find(record=>record.id===id),`${id}: child semantics must come from the accepted Army rule`);
   }
 }
-assert.equal(index.counts.standalone,1819,'false Support occurrences must not enter standalone browse; current T’au identities remain substantive');
+assert.equal(index.counts.standalone,1823,'false Support occurrences must not enter standalone browse; current certified Army identities remain substantive');
 assert.equal(index.counts.scopedChildren,2937,'scoped children must reflect current source-backed parent identities');
 
 const missingAmFactInputs={...inputs,armyModels:structuredClone(inputs.armyModels)};

@@ -1,6 +1,6 @@
 {
   "schema": "warhammer-source-manifest/v2",
-  "verifiedAt": "2026-09-22",
+  "verifiedAt": "2026-09-29",
   "layers": [
     {
       "id": "faction-pack-v1.2",
@@ -64,7 +64,7 @@
     {
       "id": "mfm",
       "authority": "official",
-      "role": "points-and-roster-contract",
+      "role": "historical-mfm-snapshot",
       "title": "Munitorum Field Manual v1.3 dated capture",
       "version": "v1.3",
       "updated": "2026-08-26",
@@ -76,7 +76,7 @@
       "status": "dated-live-capture",
       "captureHashScope": "normalizedPayload",
       "sourceId": "csm-mfm-v1.3",
-      "active": true,
+      "active": false,
       "sourceType": "official-json-capture",
       "lifecycle": "ACCEPTED_SOURCE",
       "factsOwned": [
@@ -160,7 +160,7 @@
       "capturedAt": "2026-09-22",
       "currentnessCutoff": "2026-09-22",
       "url": "https://mfm.warhammer-community.com/en/chaos-space-marines",
-      "role": "current-mfm-source-capture",
+      "role": "current-points-and-eligibility-owner",
       "factsOwned": [
         "unit-points",
         "model-count-schedules",
@@ -174,6 +174,9 @@
         "legends-pricing"
       ],
       "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION",
         "SOURCE_FRESHNESS"
       ],
       "paths": [
@@ -181,17 +184,51 @@
         "books/chaos-space-marines/sources/official-mfm-v1.4.html",
         "books/chaos-space-marines/sources/official-mfm-v1.4-legends.html"
       ]
+    },
+    {
+      "id": "waha-11e-current-2026-09-29",
+      "title": "Current Waha Chaos Space Marines 11E corpus",
+      "edition": "11th Edition",
+      "version": "current-2026-09-29",
+      "effectiveDate": "2026-09-29",
+      "retrievedAt": "2026-09-29",
+      "frozenAt": "2026-09-29",
+      "authority": "community-secondary-operational-baseline",
+      "role": "complete-operational-content-baseline",
+      "active": true,
+      "sourceType": "deterministic-web-corpus",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "factsOwned": [
+        "current-datasheets",
+        "profiles",
+        "weapons",
+        "abilities",
+        "wargear-options",
+        "keywords",
+        "detachments",
+        "enhancements",
+        "stratagems"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "GLOSSARY_V2"
+      ],
+      "paths": [
+        "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json",
+        "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/source-defects.json"
+      ]
     }
   ],
   "gates": {
-    "publishAsComplete": false,
-    "reviewLabel": "Verification build",
-    "reason": "Official Faction Pack v1.2 is frozen; official live MFM v1.3 is preserved as a dated repository capture verified 27 August 2026; base sizes are verified against the official GW Event Companion Base Size Guide updated June 2026. Two Codex-only bodies remain unavailable in the accepted evidence corpus, so publication remains explicitly source-limited."
+    "publishAsComplete": true,
+    "reviewLabel": "Source-certified",
+    "reason": "Current Waha 11E operational content baseline is fully captured and reconciled; stronger enrolled official Faction Pack v1.2 and MFM v1.4 evidence retain precedence."
   },
   "secondaryConsensus": {
     "authority": "secondary",
-    "status": "source-limited-secondary-consensus",
-    "checkedAt": "2026-08-12",
+    "status": "historical-adjudicated-secondary-consensus",
+    "checkedAt": "2026-09-29",
     "bsdata": {
       "commit": "b6d17952f74814528b4c70ef5016c86b922d5257",
       "catalogueRevision": 6
@@ -201,12 +238,19 @@
       "checkedAt": "2026-08-12"
     },
     "evaluated": 91,
-    "imported": 89,
-    "sourceMissing": 2,
+    "imported": 91,
+    "sourceMissing": 0,
     "conflicts": 0,
     "guessed": 0,
     "sourceFile": "codex-secondary-consensus.en.json",
     "sourceId": "csm-codex-secondary-consensus"
   },
-  "enrollmentScope": "PUBLIC_BOOK"
+  "enrollmentScope": {
+    "scope": "PUBLIC_BOOK",
+    "currentWahaCorpus": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json",
+    "currentNonLegendsDatasheets": 54,
+    "legendsExcluded": 53
+  },
+  "publishAsComplete": true,
+  "knownGaps": []
 }

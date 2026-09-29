@@ -973,7 +973,7 @@
           "a": "4",
           "skill": "4+",
           "s": "4",
-          "ap": "0",
+          "ap": "-1",
           "d": "1",
           "abilities": ""
         }
@@ -987,7 +987,7 @@
         },
         {
           "title": "Cursed Flames",
-          "text": "In your Shooting phase, after this model has shot, select one enemy INFANTRY unit hit by one or more of those attacks. That unit must make a Battle-shock test.",
+          "text": "In your Shooting phase, after this model has shot, select one enemy INFANTRY unit hit by one or more of those attacks. That unit must take a Battle-shock test.",
           "sourceAbilityId": "61f0-2fd7-148c-9f4f",
           "abilityClass": "datasheet"
         },
@@ -1233,7 +1233,10 @@
             "OC": "1",
             "Invulnerable": "",
             "Base": "32mm"
-          }
+          },
+          "intrinsicKeywords": [
+            "PSYKER"
+          ]
         },
         {
           "name": "Cult Demagogue",
@@ -1246,7 +1249,11 @@
             "OC": "1",
             "Invulnerable": "",
             "Base": "32mm"
-          }
+          },
+          "intrinsicKeywords": [
+            "CHARACTER",
+            "CULT DEMAGOGUE"
+          ]
         }
       ],
       "weapons": [
@@ -1370,6 +1377,10 @@
           "max": 1,
           "models": [
             "Cult Demagogue"
+          ],
+          "intrinsicKeywords": [
+            "CHARACTER",
+            "CULT DEMAGOGUE"
           ]
         }
       ],
@@ -1450,6 +1461,36 @@
       ],
       "abilities": [
         {
+          "title": "Daemonic Allegiance",
+          "text": "When you select this model to include in your army, you must select one of the keywords below. Until the end of the battle, this model has that keyword and the characteristic modifier stated for that keyword below.\nKhorne: Add 2 to the Strength characteristic of this model's hellforged weapons.\nTzeentch: Add 3 to the Attacks characteristic of its infernal cannon.\nNurgle: Add 1 to its Toughness characteristic.\nSlaanesh: Add 2\" to its Move characteristic.",
+          "choices": [
+            {
+              "id": "khorne",
+              "title": "Khorne",
+              "text": "Add 2 to the Strength characteristic of this model's hellforged weapons."
+            },
+            {
+              "id": "tzeentch",
+              "title": "Tzeentch",
+              "text": "Add 3 to the Attacks characteristic of its infernal cannon."
+            },
+            {
+              "id": "nurgle",
+              "title": "Nurgle",
+              "text": "Add 1 to its Toughness characteristic."
+            },
+            {
+              "id": "slaanesh",
+              "title": "Slaanesh",
+              "text": "Add 2\" to its Move characteristic."
+            }
+          ],
+          "abilityClass": "datasheet",
+          "provenance": {
+            "sourceId": "waha-11e-current-2026-09-29:unit-heretic-astartes-daemon-prince:daemonic-allegiance"
+          }
+        },
+        {
           "title": "Dark Blessing (Aura)",
           "text": "While a friendly HERETIC ASTARTES INFANTRY unit is within 6\" of this model, each time a ranged attack is allocated to a model in that unit, that model has the Benefit of Cover against that attack.",
           "sourceAbilityId": "f50a-4106-c634-4dfb",
@@ -1463,7 +1504,7 @@
         },
         {
           "title": "Lord of Chaos",
-          "text": "While this model is within 3\" of a friendly Heretic Astartes Infantry unit, this model has Lone Operative.",
+          "text": "While this model is within 3\" of one or more friendly HERETIC ASTARTES INFANTRY units, this model has the Lone Operative ability.",
           "sourceAbilityId": "4f55-12ef-83d4-4914",
           "abilityClass": "datasheet"
         },
@@ -1573,6 +1614,36 @@
         }
       ],
       "abilities": [
+        {
+          "title": "Daemonic Allegiance",
+          "text": "When you select this model to include in your army, you must select one of the keywords below. Until the end of the battle, this model has that keyword and the characteristic modifier stated for that keyword below.\nKhorne: Add 2 to the Strength characteristic of this model's hellforged weapons.\nTzeentch: Add 3 to the Attacks characteristic of its infernal cannon.\nNurgle: Add 1 to its Toughness characteristic.\nSlaanesh: Add 2\" to its Move characteristic.",
+          "choices": [
+            {
+              "id": "khorne",
+              "title": "Khorne",
+              "text": "Add 2 to the Strength characteristic of this model's hellforged weapons."
+            },
+            {
+              "id": "tzeentch",
+              "title": "Tzeentch",
+              "text": "Add 3 to the Attacks characteristic of its infernal cannon."
+            },
+            {
+              "id": "nurgle",
+              "title": "Nurgle",
+              "text": "Add 1 to its Toughness characteristic."
+            },
+            {
+              "id": "slaanesh",
+              "title": "Slaanesh",
+              "text": "Add 2\" to its Move characteristic."
+            }
+          ],
+          "abilityClass": "datasheet",
+          "provenance": {
+            "sourceId": "waha-11e-current-2026-09-29:unit-heretic-astartes-daemon-prince-with-wings:daemonic-allegiance"
+          }
+        },
         {
           "title": "Flying Horror",
           "text": "Each time this model ends a Normal or Advance move, select one enemy unit it moved over during that move. That unit must take a Battle-shock test.",
@@ -2112,13 +2183,13 @@
       "abilities": [
         {
           "title": "Brutal Raider",
-          "text": "Each time this model's unit ends a Charge move, until the end of the turn, add 1 to the Strength characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
+          "text": "Each time this model’s unit ends a Charge move, until the end of the turn, add 1 to the Strength characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristics of those weapons by 1.",
           "sourceAbilityId": "5676-8bc3-fdc1-cd3c",
           "abilityClass": "datasheet"
         },
         {
           "title": "Raider's Due",
-          "text": "Each time this unit declares a Charge that targets one or more units that are within range of one or more objective markers, you can re-roll the Charge roll.",
+          "text": "When this unit declares a charge, if an enemy unit within range of an objective is within 12\" of this unit, you can use this ability. If you do:\n- This unit can re-roll that charge roll.\n- This unit must end that charge move engaged with one or more of those enemy units.",
           "sourceAbilityId": "40da-ec25-a606-f6d6",
           "abilityClass": "datasheet"
         },
@@ -2524,7 +2595,7 @@
       "abilities": [
         {
           "title": "Brutal Example",
-          "text": "Once per turn, while this unit is leading a unit and contains a TRAITOR ENFORCER model, you can target that unit with the Fire Overwatch Stratagem for 0CP, and can do so even if you have already targeted a different unit from your army with that Stratagem this phase. Each time you use this ability, one Bodyguard model in that unit is destroyed.",
+          "text": "Once per turn, while this unit is leading a unit and contains a TRAITOR ENFORCER model, you can target that unit with the Fire Overwatch Stratagem for 0CP, and can do so even if you have already targeted a different unit from your army with that Stratagem this turn. Each time you use this ability, one Bodyguard model in that unit is destroyed.",
           "sourceAbilityId": "9790-a17e-ac54-32a5",
           "abilityClass": "datasheet"
         },
@@ -2649,7 +2720,7 @@
           "s": "8",
           "ap": "-4",
           "d": "D3",
-          "abilities": "Melta 1, Pistol"
+          "abilities": "Pistol, Melta 2"
         },
         {
           "name": "➤ Plasma pistol - standard",
@@ -2706,6 +2777,7 @@
         "Infantry",
         "Character",
         "Chaos",
+        "Grenades",
         "Warpsmith"
       ],
       "composition": [
@@ -2942,12 +3014,28 @@
         },
         {
           "title": "The Warmaster",
-          "text": "In your Command phase, select one Warmaster ability. Until the start of your next Command phase, this model has that ability.",
+          "text": "In your Command phase, select one Warmaster ability (see left). Until the start of your next Command phase, this model has that ability.\nParagon of Hatred (Aura): While a friendly HERETIC ASTARTES unit is within 6\" (excluding DAMNED units) of this model, each time a model in that unit makes an attack, you can re-roll the Hit roll.\nMark of Chaos Ascendant (Aura): While a friendly HERETIC ASTARTES INFANTRY or HERETIC ASTARTES MOUNTED unit (excluding DAMNED units) is within 6\" of this model, models in that unit have a 4+ invulnerable save.\nLord of the Traitor Legions (Aura): While a friendly HERETIC ASTARTES unit (excluding DAMNED units) is within 6\" of this model, you can re-roll Leadership and Battle-shock tests taken for that unit.",
           "sourceAbilityId": "fa7d-7d46-9985-4d7a",
           "abilityClass": "datasheet",
-          "sourceAvailability": {
-            "status": "unavailable",
-            "missing": "verified-option-definitions"
+          "choices": [
+            {
+              "id": "paragon-of-hatred",
+              "title": "Paragon of Hatred (Aura)",
+              "text": "While a friendly HERETIC ASTARTES unit is within 6\" (excluding DAMNED units) of this model, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+            },
+            {
+              "id": "mark-of-chaos-ascendant",
+              "title": "Mark of Chaos Ascendant (Aura)",
+              "text": "While a friendly HERETIC ASTARTES INFANTRY or HERETIC ASTARTES MOUNTED unit (excluding DAMNED units) is within 6\" of this model, models in that unit have a 4+ invulnerable save."
+            },
+            {
+              "id": "lord-of-the-traitor-legions",
+              "title": "Lord of the Traitor Legions (Aura)",
+              "text": "While a friendly HERETIC ASTARTES unit (excluding DAMNED units) is within 6\" of this model, you can re-roll Leadership and Battle-shock tests taken for that unit."
+            }
+          ],
+          "provenance": {
+            "sourceId": "waha-11e-current-2026-09-29:unit-abaddon-the-despoiler:warmaster"
           }
         },
         {
@@ -3086,7 +3174,7 @@
         },
         {
           "title": "Guns Blazing",
-          "text": "Once per turn, in your opponent's Shooting phase, when an enemy unit makes a ranged attacks that targets a friendly HERETIC ASTARTES unit within 3\" of this model, after that enemy unit has shot, this model can shoot as if it were your Shooting phase, but it must target only that enemy unit when doing so and can only do so if that enemy unit is an eligible target.",
+          "text": "Once per turn, in your opponent's Shooting phase, when an enemy unit makes a ranged attack that targets a friendly HERETIC ASTARTES unit within 3\" of this model, after that enemy unit has shot, this model can shoot as if it were your Shooting phase, but it must target only that enemy unit when doing so, and can only do so if that enemy unit is an eligible target.",
           "sourceAbilityId": "bcfc-a73a-79f9-3908",
           "abilityClass": "datasheet"
         },
@@ -3266,12 +3354,13 @@
             "Fabius Bile"
           ],
           "intrinsicKeywords": [
-            "Infantry",
-            "Character",
-            "Epic Hero",
             "Chaos",
             "Chaos Undivided",
-            "Fabius Bile"
+            "Character",
+            "Epic Hero",
+            "Fabius Bile",
+            "Heretic Astartes",
+            "Infantry"
           ]
         },
         {
@@ -3282,9 +3371,10 @@
             "Surgeon Acolyte"
           ],
           "intrinsicKeywords": [
-            "Infantry",
             "Chaos",
-            "Chaos Undivided"
+            "Chaos Undivided",
+            "Heretic Astartes",
+            "Infantry"
           ]
         }
       ],
@@ -3900,7 +3990,8 @@
         },
         {
           "title": "Support",
-          "text": ""
+          "text": "",
+          "abilityClass": "core"
         }
       ],
       "wargearAbilities": [],
@@ -4200,6 +4291,14 @@
         }
       ],
       "abilities": [
+        {
+          "title": "Accursed Horde",
+          "text": "In your opponent's Shooting phase, when an enemy unit has shot, if a model from this unit was destroyed as a result of those attacks, this unit can make a surge move of up to D6\".",
+          "abilityClass": "datasheet",
+          "provenance": {
+            "sourceId": "waha-11e-current-2026-09-29:unit-accursed-cultists:accursed-horde"
+          }
+        },
         {
           "title": "Howling Horde",
           "text": "In your opponent's Shooting phase, when an enemy unit has shot, if a model from this unit was destroyed as a result of those attacks, this unit can make a surge move of up to D6\".",
@@ -4811,7 +4910,7 @@
       "abilities": [
         {
           "title": "Bestial Raiders",
-          "text": "If this unit begins the game in Strategic Reserves, it can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. If this unit is in Strategic Reserves, for the purposes of setting it up on the battlefield, treat the current battle round number as being one higher than it actually is.",
+          "text": "If this unit starts the game in Strategic Reserves, it can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. If this unit is in Strategic Reserves, for the purposes of setting up this unit on the battlefield, treat the current battle round number as being one higher than it actually is.",
           "sourceAbilityId": "ef6b-2cae-1cbb-d852",
           "abilityClass": "datasheet"
         },
@@ -4932,7 +5031,7 @@
           "name": "Astartes chainsword",
           "mode": "melee",
           "range": "Melee",
-          "a": "4",
+          "a": "5",
           "skill": "3+",
           "s": "4",
           "ap": "-1",
@@ -6813,6 +6912,14 @@
       ],
       "abilities": [
         {
+          "title": "Outmanoeuvre",
+          "text": "Each time a model in this unit makes a melee attack, if this unit made a Charge move this turn, improve the Strength characteristic of that attack by 1.",
+          "abilityClass": "datasheet",
+          "provenance": {
+            "sourceId": "waha-11e-current-2026-09-29:unit-chaos-bikers:outmanoeuvre"
+          }
+        },
+        {
           "title": "Rapid Assault",
           "text": "Each time a model in this unit makes a melee attack, if this unit made a Charge move this turn, improve the Strength characteristic of that attack by 1.",
           "sourceAbilityId": "adc9-df4f-74e6-1e15",
@@ -6973,7 +7080,7 @@
       "abilities": [
         {
           "title": "Assault Ramp",
-          "text": "Each time a unit disembarks from this model after it has made a Normal move, that unit is still eligible to declare a charge this turn.",
+          "text": "Each time a unit disembarks from this model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
           "sourceAbilityId": "4fb4-b526-6d97-590f",
           "abilityClass": "datasheet"
         },
@@ -7404,7 +7511,7 @@
       "abilities": [
         {
           "title": "Mind-breaking Mutations (Aura)",
-          "text": "While an enemy unit (excluding VEHICLES) is within 3\" of this unit, subtract 1 from the Objective Control characteristic of models in that enemy unit.",
+          "text": "While an enemy unit (excluding VEHICLE units) is within 3\" of this unit, subtract 1 from the Objective Control characteristic of models in that enemy unit.",
           "sourceAbilityId": "4dbc-fdb1-8acf-8009",
           "abilityClass": "datasheet"
         },
@@ -8145,13 +8252,13 @@
       "abilities": [
         {
           "title": "Dark Ascension (Aura)",
-          "text": "While a friendly HERETIC ASTARTES unit is within 6\" of this model, each time that unit makes a Dark Pact, until the end of the phase, its weapons gain both abilities conferred by that pact (instead of only one).",
+          "text": "While a friendly HERETIC ASTARTES unit is within 6\" of this model, each time that unit makes a Dark Pact, until the end of the phase, weapons equipped by models in that unit gain both abilities conferred by that pact (instead of only one).",
           "sourceAbilityId": "babb-69e4-f411-e65a",
           "abilityClass": "datasheet"
         },
         {
           "title": "Devoted to Destruction",
-          "text": "If this model is equipped with 2 melee weapons in addition to its close combat weapon, add 2 to the Attacks characteristics of those 2 weapons.",
+          "text": "If this model is equipped with two melee weapons in addition to its close combat weapon, add 2 to the Attacks characteristic of those two weapons.",
           "sourceAbilityId": "2a50-924a-8b28-3d6c",
           "abilityClass": "datasheet"
         },
@@ -8652,7 +8759,7 @@
       "abilities": [
         {
           "title": "Malevolent Locus (Aura)",
-          "text": "While a friendly HERETIC ASTARTES unit is within 9\" of this Fortification, improve that unit's Leadership characteristic by 1.",
+          "text": "While a friendly HERETIC ASTARTES model is wholly within 9\" of this FORTIFICATION, improve that unit’s Leadership characteristic by 1.",
           "sourceAbilityId": "5705-83ba-9004-6b3c",
           "abilityClass": "datasheet"
         },
@@ -8664,7 +8771,7 @@
         },
         {
           "title": "Fortification",
-          "text": "While an enemy unit is only within Engagement Range of one or more Fortifications from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
+          "text": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol weapon, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so.",
           "sourceAbilityId": "fa4e-5ac8-11a6-78d2",
           "abilityClass": "core"
         },
@@ -8768,7 +8875,7 @@
       "abilities": [
         {
           "title": "Soul Eater",
-          "text": "At the end of the Fight phase, if one or more attacks made by this model that phase destroyed one or more enemy units, until the end of the battle, add 1 to the Attacks characteristic of this model’s weapons.",
+          "text": "At the end of the Fight phase, if one or more attacks made by this model this phase destroyed one or more enemy units, until the end of the battle, add 1 to the Attacks characteristic of this model’s weapons.",
           "sourceAbilityId": "15bc-376d-3c82-73b2",
           "abilityClass": "datasheet"
         },

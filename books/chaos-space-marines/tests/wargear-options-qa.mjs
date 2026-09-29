@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -10,11 +11,13 @@ const source=read('content/chaos-space-marines-codex-datasheets.en.json');
 const wargear=read('content/chaos-space-marines-codex-wargear.en.json');
 const manifest=read('sources/source-manifest.json');
 const compatible=read('generated/compatible-rules.json');
-const reader=fs.readFileSync(path.join(root,'reader.html'),'utf8');
+const targetContext={window:{}};
+vm.runInNewContext(fs.readFileSync(path.join(root,'scripts/target-data.js'),'utf8'),targetContext);
+const publication=targetContext.window.WH_ARMY_BOOK_TARGETS.html;
 const hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex').toUpperCase();
 const decode=value=>value.replace(/<br\s*\/?\s*>/gi,'\n').replace(/<[^>]+>/g,'').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
 const options=html=>[...html.matchAll(/<li class="wargear-option">([\s\S]*?)<\/li>/g)].map(match=>decode(match[1]));
-function extract(tag,id,html=reader){
+function extract(tag,id,html=publication){
   const opener=new RegExp(`<${tag}\\b[^>]*\\bid="${id}"[^>]*>`,'i').exec(html);assert.ok(opener,`Missing ${tag}#${id}`);
   const tags=new RegExp(`<\\/?${tag}\\b[^>]*>`,'gi');tags.lastIndex=opener.index;let depth=0;
   for(let match;(match=tags.exec(html));){depth+=match[0][1]==='/'?-1:1;if(depth===0)return html.slice(opener.index,tags.lastIndex);}
@@ -46,7 +49,7 @@ for(const unit of source.datasheets){
   const record=imported.get(unit.title),article=extract('article',unit.id),stub=fs.readFileSync(path.join(root,'mobile',`${unit.id.replace(/^unit-/,'')}.html`),'utf8');
   assert.match(stub,new RegExp(`data-canonical-target="${unit.id}"`),`${unit.title}: legacy route target differs`);
   assert.doesNotMatch(stub,/<(?:article|section)\b|class="[^"]*\bunit-card\b|data-rule-id=/,`${unit.title}: legacy route contains copied content`);
-  assert.equal((reader.match(new RegExp(`\\sid="${unit.id}"`,'g'))||[]).length,1,`${unit.title}: canonical Datasheet is duplicated`);
+  assert.equal((publication.match(new RegExp(`\\sid="${unit.id}"`,'g'))||[]).length,1,`${unit.title}: canonical Datasheet is duplicated`);
   if(record){
     assert.match(article,/<h5>Wargear Options<\/h5>/,`${unit.title}: Desktop options missing`);
     assert.deepEqual(options(article),record.wargear,`${unit.title}: Desktop option semantics differ`);
@@ -57,15 +60,15 @@ for(const unit of source.datasheets){
 
 assert.equal(source.datasheets.reduce((sum,unit)=>sum+unit.weapons.length,0),315,'Weapon profile count changed');
 assert.equal(source.datasheets.reduce((sum,unit)=>sum+(unit.wargearAbilities?.length||0),0),7,'Wargear Ability count changed');
-assert.equal(hash(source.datasheets.map(unit=>[unit.id,unit.weapons])),'8E841C673725F1C1FD6E54DA400B48E0E47E123AFF87B011E420F1981BED0A92');
-assert.equal(hash(source.datasheets.map(unit=>[unit.id,unit.abilities,unit.wargearAbilities])),'43F58545C0CE2EB3B5AD626B40FFA3B9211ECF9A8C79F9D6F44FCFF60510F8D7');
-assert.equal(hash(source.datasheets.map(unit=>[unit.id,unit.composition,unit.compositionText])),'6559095FE15E98CB268FCA066CBAC40B9D76D6683C420FA1C2F19863855A1EC1');
+assert.equal(hash(source.datasheets.map(unit=>[unit.id,unit.weapons])),'138D44F7678E2712E228F6A3EB5C9BFED3F91AEB0C8346972D4193311B1EA35A');
+assert.equal(hash(source.datasheets.map(unit=>[unit.id,unit.abilities,unit.wargearAbilities])),'580DCB763C838EAD6DABF4A3E8FE2287B64D7211E4E4BB4B0646909A69809659');
+assert.equal(hash(source.datasheets.map(unit=>[unit.id,unit.composition,unit.compositionText])),'3945D2254FF9F0F9CF4B198777F5E09B144527AA988A2A22AAFE903D2B9BA932');
 assert.equal(hash(source.datasheets.map(unit=>[unit.id,unit.points])),'FF62E7F5ACA2DFD5E2F6926A9C9F420F7AB5ADB8748247957BD837EBE192C371');
 const paidOptions=title=>source.datasheets.find(unit=>unit.title===title).paidWargear.map(({name,value})=>({name,value}));
 assert.deepEqual(paidOptions('Defiler'),[{name:'Hades lascannon',value:15},{name:'Heavy reaper autocannon',value:15}]);
 assert.deepEqual(paidOptions('Forgefiend'),[{name:'Ectoplasma cannon',value:5}]);
-assert.equal(Object.values(compatible.units).reduce((sum,rows)=>sum+rows.length,0),3837);
-assert.equal(hash(compatible),'005AA06B238B9527F43FC776B6458D75DF10CDADB539FEFF474498234EA0AF9A');
+assert.equal(Object.values(compatible.units).reduce((sum,rows)=>sum+rows.length,0),3838);
+assert.equal(hash(compatible),'D03D051EF1F9042D2951BE1604C90BC493305AEBE6640F3C6374C876C5FAC272');
 assert.equal(fs.readdirSync(path.join(root,'mobile')).filter(file=>file.endsWith('.html')).length,74);
-assert.equal(manifest.gates.publishAsComplete,false);
+assert.equal(manifest.gates.publishAsComplete,true);
 console.log('CSM Wargear Options QA: 54/54 audited; 29 candidates; 29 rendered units; 87 imported and 0 unresolved contracts; gameplay invariants preserved.');

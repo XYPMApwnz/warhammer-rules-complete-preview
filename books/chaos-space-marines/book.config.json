@@ -22,6 +22,7 @@
   "sharedArmyBookApp": true,
   "compatibleRulesMatrix": true,
   "classifiedAbilityPresentation": true,
+  "glossaryV2CompatibilityTerms": true,
   "rosterCatalog": {
     "inferCanonicalDetachmentRuleIds": true,
     "inferExactWargearAbilitySelections": true
@@ -64,7 +65,8 @@
     "manifest": "sources/source-manifest.json",
     "codexParity": "content/chaos-space-marines-codex-parity.en.json",
     "effectContracts": "sources/chaos-space-marines-effect-contracts.v1.json",
-    "mfmCurrentCapture": "sources/official-mfm-v1.4.json"
+    "mfmCurrentCapture": "sources/official-mfm-v1.4.json",
+    "wahaCurrentCorpus": "sources/waha-11e-current-2026-09-29/corpus.json"
   },
   "generatedOutputs": [
     {

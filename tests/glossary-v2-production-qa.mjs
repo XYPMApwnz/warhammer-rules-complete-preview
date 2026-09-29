@@ -270,11 +270,11 @@ const duplicateVisualScope={window:{WH40K_GLOSSARY_V2_INDEX:duplicateVisualIndex
 vm.runInNewContext(read('glossary/v2/runtime/glossary-v2-runtime.js'),duplicateVisualScope);
 assert.equal(duplicateVisualScope.window.WH40K_GLOSSARY.get(duplicateVisualA.id).definition.en,'','cross-wired Terrain Layout visuals must fail closed');
 
-assert.equal(index.counts.total,4757);
-assert.equal(index.counts.standalone,1820);
+assert.equal(index.counts.total,4760);
+assert.equal(index.counts.standalone,1823);
 assert.equal(index.counts.scopedChildren,2937);
-assert.equal(api.entries().length,4757);
-assert.equal(api.standaloneEntries().length,1820);
+assert.equal(api.entries().length,4760);
+assert.equal(api.standaloneEntries().length,1823);
 assert.equal(api.counts.scopedChildren,2937);
 
 const detachments=api.standaloneEntries().filter(entry=>entry.recordType==='DETACHMENT');
@@ -408,6 +408,6 @@ assert.doesNotMatch(read('books/core-rules/reader/app.js'),/dataset\.term(?:Defi
 
 const popupRuleTypes=new Set(['ABILITY','ARMY_RULE','DETACHMENT_RULE','FACTION_TERM','ARMY_RULE_COMPONENT','WARGEAR_ABILITY']);
 const noDefinition=api.entries().filter(entry=>popupRuleTypes.has(entry.recordType)&&!entry.definition.en.trim());
-assert.equal([...noDefinition].map(entry=>entry.id).join(','),'army::chaos-space-marines::detachment_rule::deceptors::chaos-space-marines-detachment-rule-masters-of-misdirection','only the accepted Masters of Misdirection evidence gap may remain without a definition');
+assert.equal(noDefinition.length,0,'every current popup rule article must have a source-backed definition');
 
-console.log('Glossary V2 production contract QA passed: 1818 meaningful standalone browse entries, 2937 scoped searchable children, explicit/context-safe identity resolution; no-definition entries 1.');
+console.log('Glossary V2 production contract QA passed: 1823 meaningful standalone browse entries, 2937 scoped searchable children, explicit/context-safe identity resolution; no-definition entries 0.');

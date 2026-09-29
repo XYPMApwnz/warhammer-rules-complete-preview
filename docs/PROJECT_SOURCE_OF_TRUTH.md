@@ -178,8 +178,8 @@ For Core completeness and operational wording, the versioned Waha 11E Core + Rul
 Current evidence limitations:
 
 - Core `18.06` Assault Disembark Move and `18.07` Shock Disembark Move have full deterministic accepted Waha definitions. The unusual `18.07` After Moving clause is retained verbatim and classified as `KNOWN_SOURCE_SEMANTIC_ANOMALY`; it is not silently corrected.
-- Masters of Misdirection has identity/context but no accepted substantive body.
-- Abaddon's `The Warmaster` instruction is accepted, but its verified option definitions are not present in the enrolled CSM evidence; choices remain absent rather than reconstructed.
+- Masters of Misdirection has a complete accepted current Waha body and battle-size table in the certified Chaos Space Marines corpus.
+- Abaddon's `The Warmaster` has all three accepted current Waha options, preserved as scoped structured choices under the canonical ability.
 - Mirrored World has accepted rule, options, D6 metadata and reroll-6 fact, but no proven roll-to-option mapping; option order must not be turned into die results.
 - Six Deployment and 45 Event-layout machine geometry layers await verified digitization.
 
@@ -213,8 +213,6 @@ Certification is scoped to what these controls prove; it is not permission to ig
 
 **EVIDENCE GAP**
 
-- Masters of Misdirection substantive text.
-- Abaddon/The Warmaster verified option definitions.
 - Mirrored World exact D6-to-option mapping.
 - Verified vector digitization for 6 Deployment and 45 Event-layout geometries.
 

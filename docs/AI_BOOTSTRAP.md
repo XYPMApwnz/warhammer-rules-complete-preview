@@ -14,7 +14,7 @@ Read these files in order:
    - `books/core-rules/EFFECTIVE_CORE_CONTRACT.md`
    - `missions/MISSION_DOMAIN_CONTRACT.md`
    - `glossary/v2/GLOSSARY_V2_CONTRACT.md`
-   - `docs/certification/DEATH_GUARD_WAHA_CONTENT_CERTIFICATION.md` and `docs/certification/ADEPTUS_MECHANICUS_WAHA_CONTENT_CERTIFICATION.md` when those certified Army Books are in scope
+   - the matching file under `docs/certification/` when a certified Army Book is in scope; current content certifications cover Death Guard, Adeptus Mechanicus, Tyranids, T'au Empire, Emperor's Children and Chaos Space Marines
 6. `docs/codex/REPO_MAP.md`, `QA_MATRIX.md` and `WORKFLOW.md` for paths and commands.
 
 Older prompts, handoffs and chat summaries are not current truth.

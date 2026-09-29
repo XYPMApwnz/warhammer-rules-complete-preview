@@ -34109,6 +34109,16 @@
         ]
       },
       {
+        "ruleId": "core-stratagem-explosives",
+        "kind": "stratagem",
+        "scope": "core",
+        "state": "conditional",
+        "condition": "battle-state-unknown",
+        "conditions": [
+          "battle-state-unknown"
+        ]
+      },
+      {
         "ruleId": "core-stratagem-fire-overwatch",
         "kind": "stratagem",
         "scope": "core",
