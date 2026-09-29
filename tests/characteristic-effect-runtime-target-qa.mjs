@@ -29,13 +29,17 @@ for(const [book,catalog] of catalogs){
     }
   }
 }
-assert.equal(operations.length,84,'effective characteristic operation inventory');
-assert.equal(new Set(operations.map(item=>item.operationId)).size,58,'unique characteristic operation inventory');
+assert.equal(operations.length,88,'effective characteristic operation inventory');
+assert.equal(new Set(operations.map(item=>item.operationId)).size,62,'unique characteristic operation inventory');
 assert.deepEqual(operations.filter(item=>item.modifierOnly).map(({book,contractId,operationId})=>({book,contractId,operationId})),[
   {book:'death-guard',contractId:'lord-of-poxes-ability-gift-of-poxes',operationId:'gift-of-poxes-contagion-range'},
   {book:'death-guard',contractId:'detachment-rule-hypervirulent-strains',operationId:'hypervirulent-strains-contagion-range'},
   {book:'death-guard',contractId:'enhancement-plagueveil',operationId:'plagueveil-detection-range'},
-  {book:'emperors-children',contractId:'emperors-children-equipment-instrument-of-chaos',operationId:'instrument-of-chaos-charge'}
+  {book:'emperors-children',contractId:'emperors-children-equipment-instrument-of-chaos',operationId:'instrument-of-chaos-charge'},
+  {book:'chaos-space-marines',contractId:'chaos-space-marines-ability-daemonkin-psychic',operationId:'daemonkin-advance'},
+  {book:'chaos-space-marines',contractId:'chaos-space-marines-ability-daemonkin-psychic',operationId:'daemonkin-charge'},
+  {book:'chaos-space-marines',contractId:'enhancement-empyric-symbiote',operationId:'empyric-symbiote-advance'},
+  {book:'chaos-space-marines',contractId:'enhancement-empyric-symbiote',operationId:'empyric-symbiote-charge'}
 ],'modifier-only characteristics remain explicit source-backed effect operations');
 assert.deepEqual(unsupported.map(item=>[item.book,item.unitId,item.target]),[
   ['dark-angels','unit-wardens-of-ultramar','OC'],['dark-angels','unit-wardens-of-ultramar','Ld'],
@@ -96,4 +100,4 @@ for(const book of ['space-marines','dark-angels','blood-angels']){
   assert.equal(wrongEffects.some(effect=>effect.source?.id===shieldId),false,`${book}: wrong unit must not receive Storm Shield`);
 }
 
-console.log('Characteristic effect runtime target QA: PASS (84 effective / 58 unique stat operations; 4 explicit modifier-only operations; 0 unresolved missing base fields; 4 excluded dependency target shapes classified; AM Invulnerable 5+ -> 4+; Storm Shield 3 -> 4 in SM/DA/BA).');
+console.log('Characteristic effect runtime target QA: PASS (88 effective / 62 unique stat operations; 8 explicit modifier-only operations; 0 unresolved missing base fields; 4 excluded dependency target shapes classified; AM Invulnerable 5+ -> 4+; Storm Shield 3 -> 4 in SM/DA/BA).');

@@ -25090,7 +25090,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         "chaos-space-marines"
       ],
       "sourceUnitId": "unit-master-of-possession",
-      "scope": "attached-group-excluding-source",
+      "scope": "attached-group",
       "selector": {
         "unitIds": [
           "unit-master-of-possession"
@@ -25098,7 +25098,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "clauses": [
         {
-          "selector": {},
+          "selector": {
+            "excludeSourceUnit": true
+          },
           "conditions": [
             {
               "selector": {
@@ -25120,12 +25122,46 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "type": "CANONICAL_REFERENCE"
             }
           ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "selector": {
+                "on": "source",
+                "sourceUnitIds": [
+                  "unit-master-of-possession"
+                ],
+                "requiresLeading": true
+              }
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonkin-advance",
+              "canonicalTarget": "Advance",
+              "parameters": {
+                "delta": 1,
+                "modifierOnly": true
+              },
+              "type": "CHARACTERISTIC_ADD"
+            },
+            {
+              "id": "daemonkin-charge",
+              "canonicalTarget": "Charge",
+              "parameters": {
+                "delta": 1,
+                "modifierOnly": true
+              },
+              "type": "CHARACTERISTIC_ADD"
+            }
+          ]
         }
       ],
       "timingState": {
         "kind": "CURRENT_ROSTER_STATE"
       },
-      "stackingPolicy": "dedupe-effect-id",
+      "stackingPolicy": "apply-once-per-source",
       "source": {
         "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
         "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-master-of-possession:section:1"
@@ -27437,6 +27473,24 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
                 "referenceKind": "enhancement"
               },
               "type": "CANONICAL_REFERENCE"
+            },
+            {
+              "id": "empyric-symbiote-advance",
+              "canonicalTarget": "Advance",
+              "parameters": {
+                "delta": 1,
+                "modifierOnly": true
+              },
+              "type": "CHARACTERISTIC_ADD"
+            },
+            {
+              "id": "empyric-symbiote-charge",
+              "canonicalTarget": "Charge",
+              "parameters": {
+                "delta": 1,
+                "modifierOnly": true
+              },
+              "type": "CHARACTERISTIC_ADD"
             }
           ]
         }
@@ -27444,7 +27498,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "timingState": {
         "kind": "CURRENT_ROSTER_STATE"
       },
-      "stackingPolicy": "dedupe-effect-id",
+      "stackingPolicy": "apply-once-per-source",
       "source": {
         "sourceId": "chaos-space-marines-faction-pack-v1.2",
         "locator": "books/chaos-space-marines/content/chaos-space-marines-faction-pack.en.json#enhancement-empyric-symbiote"
