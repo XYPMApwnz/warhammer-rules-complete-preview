@@ -25027,10 +25027,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-brutal-example"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-traitor-enforcer:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-cruel-hunter",
@@ -25077,10 +25077,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-cruel-hunter"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-chaos-lord-with-jump-pack:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-daemonkin-psychic",
@@ -25127,10 +25127,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-daemonkin-psychic"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-master-of-possession:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-dark-ritual",
@@ -25177,10 +25177,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-dark-ritual"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-dark-commune:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-dark-zealotry",
@@ -25227,10 +25227,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-dark-zealotry"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-dark-apostle:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-enhanced-warriors",
@@ -25286,10 +25286,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-enhanced-warriors"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-fabius-bile:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-faithful-flock",
@@ -25345,10 +25345,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "best-value",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-faithful-flock"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-dark-commune:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-fiery-faith",
@@ -25395,10 +25395,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-fiery-faith"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-cultist-firebrand:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-fleet-command",
@@ -25445,10 +25445,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-fleet-command"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-masters-of-the-maelstrom:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-head-taker",
@@ -25495,10 +25495,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-head-taker"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-haarken-worldclaimer:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-headlong-destruction",
@@ -25545,10 +25545,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-headlong-destruction"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-kravek-morne:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-plunder",
@@ -25595,10 +25595,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-plunder"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-masters-of-the-maelstrom:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-prescience-psychic",
@@ -25645,10 +25645,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-prescience-psychic"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-sorcerer:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-raiders-due",
@@ -25695,10 +25695,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-raiders-due"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-red-corsairs-reave-captain:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-warp-sighted-butcher",
@@ -25745,10 +25745,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-warp-sighted-butcher"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-master-of-executions:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-ability-warptime-psychic",
@@ -25795,10 +25795,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-ability-warptime-psychic"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-sorcerer-in-terminator-armour:section:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-empyric-wellspring",
@@ -25859,10 +25859,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-empyric-wellspring"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-cabal-of-chaos:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-experimental-augmentations",
@@ -25903,10 +25903,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-experimental-augmentations"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-creations-of-bile:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-focus-of-hatred",
@@ -25946,10 +25946,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-focus-of-hatred"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-veterans-of-the-long-war:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-iron-fortitude",
@@ -25989,10 +25989,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-iron-fortitude"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-fellhammer-siege-host:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-marks-of-chaos",
@@ -26042,10 +26042,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-marks-of-chaos"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-pactbound-zealots:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-prey-on-the-weak",
@@ -26084,10 +26084,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-prey-on-the-weak"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-murdertalon-raiders:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-raiders-and-reavers",
@@ -26132,10 +26132,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-raiders-and-reavers"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-renegade-raiders:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-rain-of-ruin",
@@ -26173,10 +26173,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-rain-of-ruin"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-devotees-of-destruction:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-slaves-to-none",
@@ -26229,10 +26229,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-slaves-to-none"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-renegade-warband:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-soul-forge-boons",
@@ -26344,10 +26344,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "best-value",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-soul-forge-boons"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-cult-of-the-arkifane:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-terror-descends-aura",
@@ -26384,10 +26384,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-terror-descends-aura"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-dread-talons:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-terror-made-manifest",
@@ -26424,10 +26424,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-terror-made-manifest"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-nightmare-hunt:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-tyrannical-motivation",
@@ -26465,10 +26465,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-tyrannical-motivation"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-huron-s-marauders:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "chaos-space-marines-detachment-rule-warp-portals",
@@ -26516,10 +26516,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#chaos-space-marines-detachment-rule-warp-portals"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-warpstrike-champions:rule"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "detachment-rule-chaos-cult-desperate-devotion",
@@ -26733,10 +26733,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-amulet-of-tainted-vigour"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-chaos-cult:enhancement:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-bastion-plate",
@@ -26788,10 +26788,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-bastion-plate"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-fellhammer-siege-host:enhancement:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-conduit-of-chaos",
@@ -26956,10 +26956,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-cultists-brand"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-chaos-cult:enhancement:2"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-cursed-fang",
@@ -27025,10 +27025,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-cursed-fang"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-deceptors:enhancement:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-cybinfernal-font",
@@ -27128,10 +27128,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-despots-claim"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-renegade-raiders:enhancement:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-dread-reaver",
@@ -27171,10 +27171,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-dread-reaver"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-renegade-raiders:enhancement:2"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-dread-reputation",
@@ -27360,10 +27360,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-eager-for-vengeance"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-veterans-of-the-long-war:enhancement:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-eater-of-dread",
@@ -27403,10 +27403,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-eater-of-dread"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-dread-talons:enhancement:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-empyric-symbiote",
@@ -27489,10 +27489,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-eye-of-abaddon"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-veterans-of-the-long-war:enhancement:2"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-eye-of-oblivion",
@@ -27645,10 +27645,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-eye-of-tzeentch"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-pactbound-zealots:enhancement:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-eyes-of-the-hunter",
@@ -27752,10 +27752,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-falsehood"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-deceptors:enhancement:2"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-forges-blessing",
@@ -27795,10 +27795,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-forges-blessing"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-soulforged-warpack:enhancement:1"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-fratricidal-trophies",
@@ -28015,10 +28015,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-incendiary-goad"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-chaos-cult:enhancement:3"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-infernal-fulgurite",
@@ -28127,10 +28127,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-intoxicating-elixir"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-pactbound-zealots:enhancement:2"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-invigorated-mechatendrils",
@@ -28187,10 +28187,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-invigorated-mechatendrils"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-soulforged-warpack:enhancement:2"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-iron-artifice",
@@ -28255,10 +28255,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-iron-artifice"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-fellhammer-siege-host:enhancement:2"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-ironbound-enmity",
@@ -28298,10 +28298,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-ironbound-enmity"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-fellhammer-siege-host:enhancement:3"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-living-carapace",
@@ -28409,10 +28409,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-mark-of-legend"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-veterans-of-the-long-war:enhancement:3"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-mark-of-the-hound",
@@ -28460,10 +28460,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-mark-of-the-hound"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-renegade-raiders:enhancement:3"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-mark-of-the-soul-forges",
@@ -28627,10 +28627,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-nights-shroud"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-dread-talons:enhancement:2"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-orbs-of-unlife",
@@ -28679,10 +28679,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-orbs-of-unlife"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-pactbound-zealots:enhancement:3"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-pact-of-cursed-pinions",
@@ -29036,10 +29036,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-shroud-of-obfuscation"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-deceptors:enhancement:3"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-sorrowscent-vulture",
@@ -29139,10 +29139,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-soul-harvester"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-soulforged-warpack:enhancement:4"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-soul-link",
@@ -29191,10 +29191,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-soul-link"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-deceptors:enhancement:4"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-surgical-precision",
@@ -29321,10 +29321,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-talisman-of-burning-blood"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-pactbound-zealots:enhancement:4"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-tempting-addendum",
@@ -29364,10 +29364,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-tempting-addendum"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-soulforged-warpack:enhancement:3"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-terrorglut-parasite",
@@ -29518,10 +29518,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-tyrants-lash"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-renegade-raiders:enhancement:4"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-tzagulla",
@@ -29692,10 +29692,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-warmasters-gift"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-veterans-of-the-long-war:enhancement:4"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-warp-tracer",
@@ -29735,10 +29735,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-warp-tracer"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-fellhammer-siege-host:enhancement:4"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-warped-foresight",
@@ -29807,10 +29807,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-warped-foresight"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-chaos-cult:enhancement:4"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-weaponised-hatred",
@@ -29893,10 +29893,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       },
       "stackingPolicy": "dedupe-effect-id",
       "source": {
-        "sourceId": "csm-codex-secondary-consensus",
-        "locator": "books/chaos-space-marines/sources/codex-secondary-consensus.en.json#enhancement-willbreaker"
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#detachment-dread-talons:enhancement:4"
       },
-      "confidence": "SOURCE_LIMITED"
+      "confidence": "VERIFIED_CURRENT"
     },
     {
       "canonicalRecordId": "enhancement-wyredjinn",
