@@ -19,7 +19,7 @@
     "tyranids:enhancements:qa": "node books/tyranids/tests/enhancement-runtime-qa.mjs",
     "tyranids:conformance:qa": "node tests/browser/tyranids-final-conformance.mjs",
     "csm:enhancements:qa": "node books/chaos-space-marines/tests/roster-conformance-qa.mjs",
-    "csm:conformance:qa": "node books/chaos-space-marines/tests/roster-conformance-qa.mjs && node tests/browser/csm-final-conformance.mjs",
+    "csm:conformance:qa": "node books/chaos-space-marines/tests/roster-composition-profile-stats-qa.mjs && node books/chaos-space-marines/tests/roster-conformance-qa.mjs && node tests/browser/csm-final-conformance.mjs",
     "csm:build": "node books/shared/tools/build-army-book.mjs books/chaos-space-marines/book.config.json && node books/chaos-space-marines/tools/build-compatible-rules.mjs && node roster-guides/build-points.mjs && node glossary/tools/build-glossary.mjs && node books/chaos-space-marines/mobile/build.mjs && node glossary/tools/build-glossary.mjs",
     "orks:build": "node books/shared/tools/build-army-book.mjs books/orks/book.config.json && node glossary/tools/build-glossary.mjs",
     "ec:build": "node books/shared/tools/build-army-book.mjs books/emperors-children/book.config.json && node books/emperors-children/mobile/build.mjs && node glossary/tools/build-glossary.mjs",

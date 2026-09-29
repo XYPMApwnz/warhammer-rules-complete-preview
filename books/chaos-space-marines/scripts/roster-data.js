@@ -7,6 +7,9 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
     "parentBookId": null,
     "dependencies": []
   },
+  "compositionConstraints": true,
+  "statProfiles": true,
+  "preserveMultipartStatProfiles": true,
   "units": [
     {
       "id": "unit-cultist-mob",
@@ -81,6 +84,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "25mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-cultist-mob-stat-profile-9dcde0b88b",
+            "title": "Cultist Mob",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "25mm"
+            },
+            "legacyIds": [
+              "unit-cultist-mob-stat-profile-cultist-mob"
+            ]
+          },
+          {
+            "id": "unit-cultist-mob-stat-profile-1337628785",
+            "title": "Cultist Champion",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "25mm"
+            },
+            "legacyIds": [
+              "unit-cultist-mob-stat-profile-cultist-champion"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-for-the-dark-gods",
@@ -104,6 +143,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Cultist Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-cultist-mob-model-cultist-champion"
             ],
@@ -117,11 +158,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Cultist w/ autopistol and brutal assault weapon"
             ],
+            "min": 9,
+            "max": 19,
             "legacyIds": [
               "unit-cultist-mob-model-cultist-w-autopistol-and-brutal-assault-weapon-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-cultist-mob-selection-brutal-assault-weapon",
@@ -218,7 +262,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -346,6 +389,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "32mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-legionaries-stat-profile-ea4aed46a8",
+            "title": "Aspiring Champion",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "2",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-legionaries-stat-profile-aspiring-champion"
+            ]
+          },
+          {
+            "id": "unit-legionaries-stat-profile-a35fa8acce",
+            "title": "Legionaries",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "2",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-legionaries-stat-profile-legionaries"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-veterans-of-the-long-war",
@@ -369,6 +448,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Aspiring Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-legionaries-model-aspiring-champion"
             ]
@@ -384,11 +465,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Legionary w/ balefire tome",
               "Legionary w/ other weapon"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-legionaries-model-4-9-legionaries-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-legionaries-selection-accursed-weapon",
@@ -1076,7 +1160,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -1154,6 +1237,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "40mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-chance-for-glory",
@@ -1184,11 +1268,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Lord"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-lord-model-chaos-lord"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-lord-selection-daemon-hammer",
@@ -1404,7 +1491,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -1459,6 +1545,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "40mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-formidably-resilient",
@@ -1496,11 +1583,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Lord in Terminator Armour"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-lord-in-terminator-armour-model-chaos-lord-in-terminator-armour"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-lord-in-terminator-armour-selection-combi-bolter",
@@ -1687,7 +1777,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -1743,6 +1832,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "40mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-cruel-hunter",
@@ -1780,11 +1870,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Lord with Jump Pack"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-lord-with-jump-pack-model-chaos-lord-with-jump-pack"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-lord-with-jump-pack-selection-accursed-weapon",
@@ -2000,7 +2093,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -2063,6 +2155,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "32mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-fiery-faith",
@@ -2093,11 +2186,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Cultist Firebrand"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-cultist-firebrand-model-cultist-firebrand"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-cultist-firebrand-selection-balefire-pike",
@@ -2164,7 +2260,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -2253,6 +2348,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": "4+"
         },
+        "statProfiles": [
+          {
+            "id": "unit-dark-apostle-stat-profile-2844f5f06f",
+            "title": "Dark Apostle",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "4",
+              "Ld": "5+",
+              "OC": "1",
+              "Invulnerable": "4+",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-dark-apostle-stat-profile-dark-apostle"
+            ]
+          },
+          {
+            "id": "unit-dark-apostle-stat-profile-19c7b46005",
+            "title": "Dark Disciple",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "4+",
+              "Base": "25mm"
+            },
+            "legacyIds": [
+              "unit-dark-apostle-stat-profile-dark-disciple"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-dark-zealotry",
@@ -2290,6 +2421,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Dark Apostle"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-dark-apostle-model-dark-apostle"
             ],
@@ -2304,11 +2437,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Dark Disciple"
             ],
+            "min": 2,
+            "max": 2,
             "legacyIds": [
               "unit-dark-apostle-model-dark-disciple-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-dark-apostle-selection-accursed-crozius",
@@ -2405,7 +2541,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -2465,6 +2600,76 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-dark-commune-stat-profile-bce6304cfc",
+            "title": "Blessed Blade",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "28.5mm"
+            },
+            "legacyIds": [
+              "unit-dark-commune-stat-profile-blessed-blade"
+            ]
+          },
+          {
+            "id": "unit-dark-commune-stat-profile-3c34c7c4bb",
+            "title": "Iconarch",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-dark-commune-stat-profile-iconarch"
+            ]
+          },
+          {
+            "id": "unit-dark-commune-stat-profile-f7c0b9244d",
+            "title": "Mindwitch",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-dark-commune-stat-profile-mindwitch"
+            ]
+          },
+          {
+            "id": "unit-dark-commune-stat-profile-d9495110cd",
+            "title": "Cult Demagogue",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "6+",
+              "W": "4",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-dark-commune-stat-profile-cult-demagogue"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-faithful-flock",
@@ -2498,6 +2703,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Iconarch",
               "Mindwitch"
             ],
+            "min": 4,
+            "max": 4,
             "legacyIds": [
               "unit-dark-commune-model-dark-commune"
             ]
@@ -2508,6 +2715,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Cult Demagogue"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-dark-commune-model-cult-demagogue-2"
             ],
@@ -2517,6 +2726,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-dark-commune-selection-commune-blade",
@@ -2758,7 +2968,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -2802,6 +3011,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "60mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-daemonic-allegiance",
@@ -2853,11 +3063,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Heretic Astartes Daemon Prince"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-heretic-astartes-daemon-prince-model-heretic-astartes-daemon-prince"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-heretic-astartes-daemon-prince-selection-hellforged-weapons-strike",
@@ -2983,7 +3196,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -3029,6 +3241,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "60mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-daemonic-allegiance",
@@ -3080,11 +3293,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Heretic Astartes Daemon Prince with wings"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-heretic-astartes-daemon-prince-with-wings-model-heretic-astartes-daemon-prince-with-wings"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-heretic-astartes-daemon-prince-with-wings-selection-hellforged-weapons-strike",
@@ -3210,7 +3426,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -3254,6 +3469,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "120x92mm Oval Base"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-corrupt-machine-spirits",
@@ -3284,11 +3500,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Lord Discordant on Helstalker"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-lord-discordant-on-helstalker-model-lord-discordant-on-helstalker"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-lord-discordant-on-helstalker-selection-bladed-limbs",
@@ -3505,7 +3724,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -3583,6 +3801,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "40mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-warp-sighted-butcher",
@@ -3613,11 +3832,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Master of Executions"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-master-of-executions-model-master-of-executions"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-master-of-executions-selection-axe-of-dismemberment",
@@ -3684,7 +3906,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -3770,6 +3991,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "40mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-daemonkin-psychic",
@@ -3800,11 +4022,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Master of Possession"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-master-of-possession-model-master-of-possession"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-master-of-possession-selection-rite-of-possession-witchfire",
@@ -3960,7 +4185,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -4037,6 +4261,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "32mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-brutal-raider",
@@ -4074,11 +4299,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Red Corsairs Reave-captain"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-red-corsairs-reave-captain-model-red-corsairs-reave-captain"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-red-corsairs-reave-captain-selection-power-sword",
@@ -4264,7 +4492,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -4343,6 +4570,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "40mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-prescience-psychic",
@@ -4373,11 +4601,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Sorcerer"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-sorcerer-model-sorcerer"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-sorcerer-selection-bolt-pistol",
@@ -4533,7 +4764,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -4588,6 +4818,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "40mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-warptime-psychic",
@@ -4625,11 +4856,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Sorcerer in Terminator Armour"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-sorcerer-in-terminator-armour-model-sorcerer-in-terminator-armour"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-sorcerer-in-terminator-armour-selection-combi-bolter",
@@ -4841,7 +5075,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -4886,6 +5119,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Sv": "5+",
           "OC": "1"
         },
+        "statProfiles": [
+          {
+            "id": "unit-traitor-enforcer-stat-profile-22d79e3fdb",
+            "title": "Traitor Enforcer",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "5+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "5+",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-traitor-enforcer-stat-profile-traitor-enforcer"
+            ]
+          },
+          {
+            "id": "unit-traitor-enforcer-stat-profile-d6b97be958",
+            "title": "Traitor Ogryn",
+            "stats": {
+              "M": "6\"",
+              "T": "6",
+              "Sv": "5+",
+              "W": "4",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-traitor-enforcer-stat-profile-traitor-ogryn"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-brutal-example",
@@ -4916,6 +5185,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Traitor Enforcer"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-traitor-enforcer-model-traitor-enforcer"
             ],
@@ -4934,6 +5205,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Traitor Ogryn"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-traitor-enforcer-model-traitor-ogryn-2"
             ],
@@ -4945,6 +5218,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-traitor-enforcer-selection-power-fist",
@@ -5041,7 +5315,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -5127,6 +5400,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "60x35.5mm Oval Base"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-warpsmith",
@@ -5164,11 +5438,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Warpsmith"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-warpsmith-model-warpsmith"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-warpsmith-selection-flamer-tendril",
@@ -5354,7 +5631,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -5400,6 +5676,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "Use model"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-self-repair",
@@ -5437,11 +5714,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Rhino"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-rhino-model-chaos-rhino"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-rhino-selection-combi-bolter",
@@ -5568,7 +5848,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -5632,6 +5911,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "60mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-supreme-commander",
@@ -5676,11 +5956,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Abaddon the Despoiler"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-abaddon-the-despoiler-model-abaddon-the-despoiler"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-abaddon-the-despoiler-selection-talon-of-horus",
@@ -5766,7 +6049,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -5811,6 +6093,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "32mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-agent-of-discord-aura",
@@ -5848,11 +6131,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Cypher"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-cypher-model-cypher"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-cypher-selection-cyphers-bolt-pistol",
@@ -5957,7 +6243,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -6034,6 +6319,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-fabius-bile-stat-profile-1ac10ca302",
+            "title": "Fabius Bile",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "5",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-fabius-bile-stat-profile-fabius-bile"
+            ]
+          },
+          {
+            "id": "unit-fabius-bile-stat-profile-bf070a588f",
+            "title": "Surgeon Acolyte",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-fabius-bile-stat-profile-surgeon-acolyte"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-enhanced-warriors",
@@ -6078,6 +6399,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Fabius Bile"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-fabius-bile-model-fabius-bile"
             ],
@@ -6097,6 +6420,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Surgeon Acolyte"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-fabius-bile-model-surgeon-acolyte-2"
             ],
@@ -6108,6 +6433,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-fabius-bile-selection-xyclos-needler",
@@ -6234,7 +6560,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -6291,6 +6616,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "40mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-head-taker",
@@ -6328,11 +6654,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Haarken Worldclaimer"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-haarken-worldclaimer-model-haarken-worldclaimer"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-haarken-worldclaimer-selection-hellspear",
@@ -6418,7 +6747,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -6497,6 +6825,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "50mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-lord-of-badab-aura",
@@ -6541,11 +6870,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Huron Blackheart"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-huron-blackheart-model-huron-blackheart"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-huron-blackheart-selection-tyrants-claw-heavy-flamer",
@@ -6612,7 +6944,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -6684,6 +7015,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "50mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-headlong-destruction",
@@ -6721,11 +7053,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Kravek Morne"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-kravek-morne-model-kravek-morne"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-kravek-morne-selection-baleflamer",
@@ -6852,7 +7187,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -6919,6 +7253,93 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-masters-of-the-maelstrom-stat-profile-bdebff199e",
+            "title": "Garreon the Corpsemaster",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "4",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-masters-of-the-maelstrom-stat-profile-garreon-the-corpsemaster"
+            ]
+          },
+          {
+            "id": "unit-masters-of-the-maelstrom-stat-profile-52ae54f7f8",
+            "title": "Garlon Souleater",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "4",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-masters-of-the-maelstrom-stat-profile-garlon-souleater"
+            ]
+          },
+          {
+            "id": "unit-masters-of-the-maelstrom-stat-profile-7f9f0ec387",
+            "title": "Katar Garrix",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "4",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-masters-of-the-maelstrom-stat-profile-katar-garrix"
+            ]
+          },
+          {
+            "id": "unit-masters-of-the-maelstrom-stat-profile-54980a6971",
+            "title": "Captain Sargotta",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "4+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-masters-of-the-maelstrom-stat-profile-captain-sargotta"
+            ]
+          },
+          {
+            "id": "unit-masters-of-the-maelstrom-stat-profile-db67c67875",
+            "title": "The Enforcer",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "4+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-masters-of-the-maelstrom-stat-profile-the-enforcer"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-choice-samples",
@@ -6963,6 +7384,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Garreon the Corpsemaster"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-masters-of-the-maelstrom-model-garreon-the-corpsemaster"
             ]
@@ -6973,6 +7396,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Garlon Souleater"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-masters-of-the-maelstrom-model-garlon-souleater-2"
             ],
@@ -6986,6 +7411,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Katar Garrix"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-masters-of-the-maelstrom-model-katar-garrix-3"
             ]
@@ -6996,6 +7423,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Captain Sargotta"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-masters-of-the-maelstrom-model-captain-sargotta-4"
             ]
@@ -7006,11 +7435,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "The Enforcer"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-masters-of-the-maelstrom-model-the-enforcer-5"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-masters-of-the-maelstrom-selection-absolver-bolt-pistol",
@@ -7317,7 +7749,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -7363,6 +7794,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "80mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-unholy-mechanisms-aura",
@@ -7421,11 +7853,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Vashtorr the Arkifane"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-vashtorr-the-arkifane-model-vashtorr-the-arkifane"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-vashtorr-the-arkifane-selection-vashtorrs-claw",
@@ -7551,7 +7986,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -7626,6 +8060,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "OC": "1",
           "Invulnerable": ""
         },
+        "statProfiles": [
+          {
+            "id": "unit-accursed-cultists-stat-profile-b2e9d7a7af",
+            "title": "Torment",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "6+",
+              "W": "3",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-accursed-cultists-stat-profile-torment"
+            ]
+          },
+          {
+            "id": "unit-accursed-cultists-stat-profile-493450d475",
+            "title": "Mutant",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "6+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "25mm"
+            },
+            "legacyIds": [
+              "unit-accursed-cultists-stat-profile-mutant"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-accursed-horde",
@@ -7670,6 +8140,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Torment"
             ],
+            "min": 3,
+            "max": 6,
             "legacyIds": [
               "unit-accursed-cultists-model-torment"
             ]
@@ -7680,11 +8152,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Mutant"
             ],
+            "min": 5,
+            "max": 10,
             "legacyIds": [
               "unit-accursed-cultists-model-mutant-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-accursed-cultists-selection-hideous-mutations",
@@ -7751,7 +8226,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -7836,6 +8310,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "4+",
           "Base": "40mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-chaos-terminator-squad-stat-profile-3448c15fbb",
+            "title": "Chaos Terminator",
+            "stats": {
+              "M": "5\"",
+              "T": "5",
+              "Sv": "2+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "4+",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-chaos-terminator-squad-stat-profile-chaos-terminator"
+            ]
+          },
+          {
+            "id": "unit-chaos-terminator-squad-stat-profile-400480eddb",
+            "title": "Terminator Champion",
+            "stats": {
+              "M": "5\"",
+              "T": "5",
+              "Sv": "2+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "4+",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-chaos-terminator-squad-stat-profile-terminator-champion"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-despoilers",
@@ -7874,6 +8384,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Chainfist and combi-weapon",
               "Paired accursed weapons"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-chaos-terminator-squad-model-4-9-chaos-terminators"
             ]
@@ -7884,11 +8396,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Terminator Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-terminator-squad-model-terminator-champion-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-terminator-squad-selection-combi-bolter",
@@ -8135,7 +8650,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -8270,6 +8784,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "32mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-chosen-stat-profile-86becf9035",
+            "title": "Chosen",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-chosen-stat-profile-chosen"
+            ]
+          },
+          {
+            "id": "unit-chosen-stat-profile-1fd08c7b85",
+            "title": "Chosen Champion",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-chosen-stat-profile-chosen-champion"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-chosen-marauders",
@@ -8301,6 +8851,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Chosen w/ paired accursed weapons and bolt pistol",
               "Chosen w/ power fist and plasma pistol"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-chosen-model-4-9-chosen"
             ]
@@ -8311,11 +8863,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chosen Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chosen-model-chosen-champion-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chosen-selection-bolt-pistol",
@@ -8617,7 +9172,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -8661,6 +9215,25 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "32mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-fellgor-beastmen-stat-profile-f63db85ad3",
+            "title": "Fellgor Beastmen",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "5+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-fellgor-beastmen-stat-profile-fellgor-beastmen"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-bestial-raiders",
@@ -8684,6 +9257,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Fellgor Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-fellgor-beastmen-model-fellgor-champion"
             ]
@@ -8697,11 +9272,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Beastman w/ great weapon",
               "Beastman w/ corrupted stave"
             ],
+            "min": 9,
+            "max": 9,
             "legacyIds": [
               "unit-fellgor-beastmen-model-9-beastmen-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-fellgor-beastmen-selection-chainsword",
@@ -8967,7 +9545,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -9019,6 +9596,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "40mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-havocs-stat-profile-60270ce106",
+            "title": "Havoc Champion",
+            "stats": {
+              "M": "5\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-havocs-stat-profile-havoc-champion"
+            ]
+          },
+          {
+            "id": "unit-havocs-stat-profile-75ded59c4c",
+            "title": "Havocs",
+            "stats": {
+              "M": "5\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-havocs-stat-profile-havocs"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-stabilisation-talons",
@@ -9042,6 +9655,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Havoc Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-havocs-model-havoc-champion"
             ]
@@ -9057,11 +9672,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Havoc w/ reaper chaincannon",
               "Havoc w/ heavy bolter"
             ],
+            "min": 4,
+            "max": 4,
             "legacyIds": [
               "unit-havocs-model-4-havocs-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-havocs-selection-accursed-weapon",
@@ -9663,7 +10281,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -9716,6 +10333,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "50mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-crushing-charge",
@@ -9746,11 +10364,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Mutilator"
             ],
+            "min": 3,
+            "max": 3,
             "legacyIds": [
               "unit-mutilators-model-mutilator"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-mutilators-selection-fleshmetal-weapons-rending-strikes",
@@ -9879,7 +10500,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -9983,6 +10603,25 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "32mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-nemesis-claw-stat-profile-7b6acff9c3",
+            "title": "Nemesis Claw",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-nemesis-claw-stat-profile-nemesis-claw"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-visions-of-suffering-psychic",
@@ -10013,6 +10652,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Visionary"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-nemesis-claw-model-visionary"
             ]
@@ -10031,11 +10672,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Legionary w/ paired accursed weapons",
               "Legionary w/ voice eater"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-nemesis-claw-model-4-9-legionaries-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-nemesis-claw-selection-nostraman-chainblade",
@@ -10693,7 +11337,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -10746,6 +11389,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "50mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-warp-rift-firepower",
@@ -10776,11 +11420,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Obliterator"
             ],
+            "min": 2,
+            "max": 2,
             "legacyIds": [
               "unit-obliterators-model-obliterator"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-obliterators-selection-crushing-fists",
@@ -10939,7 +11586,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -10992,6 +11638,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "40mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-unholy-bloodshed",
@@ -11016,11 +11663,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "5 - 10 Possessed",
               "Possessed"
             ],
+            "min": 5,
+            "max": 10,
             "legacyIds": [
               "unit-possessed-model-5-10-possessed"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-possessed-selection-hideous-mutations",
@@ -11083,7 +11733,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -11146,6 +11795,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "32mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-raptors-stat-profile-a04ac3eb1b",
+            "title": "Raptors",
+            "stats": {
+              "M": "12\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-raptors-stat-profile-raptors"
+            ]
+          },
+          {
+            "id": "unit-raptors-stat-profile-440d17ec84",
+            "title": "Raptor Champion",
+            "stats": {
+              "M": "12\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-raptors-stat-profile-raptor-champion"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-fearsome-aura",
@@ -11183,6 +11868,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Raptor Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-raptors-model-raptor-champion"
             ]
@@ -11197,11 +11884,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Raptor w/ heavy melee weapon",
               "Raptor w/ mutations"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-raptors-model-4-9-raptors-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-raptors-selection-astartes-chainsword",
@@ -11625,7 +12315,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -11752,6 +12441,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "40mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-red-corsairs-raiders-stat-profile-6d4f06c6aa",
+            "title": "Red Corsairs Raider Champion",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "2",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-red-corsairs-raiders-stat-profile-red-corsairs-raider-champion"
+            ]
+          },
+          {
+            "id": "unit-red-corsairs-raiders-stat-profile-8452ee75bc",
+            "title": "Red Corsairs Raider",
+            "stats": {
+              "M": "6\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "2",
+              "Invulnerable": "",
+              "Base": "40mm"
+            },
+            "legacyIds": [
+              "unit-red-corsairs-raiders-stat-profile-red-corsairs-raider"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-trophy-takers",
@@ -11782,6 +12507,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Red Corsairs Raider Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-red-corsairs-raiders-model-red-corsairs-raider-champion"
             ]
@@ -11793,11 +12520,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "4 - 9 Raiders",
               "Red Corsairs Raider"
             ],
+            "min": 4,
+            "max": 9,
             "legacyIds": [
               "unit-red-corsairs-raiders-model-4-9-raiders-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-red-corsairs-raiders-selection-hand-flamer",
@@ -11984,7 +12714,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -12038,6 +12767,25 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "25mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-traitor-guardsmen-squad-stat-profile-a7f326e70b",
+            "title": "Traitor Guardsmen Squad",
+            "stats": {
+              "M": "6\"",
+              "T": "3",
+              "Sv": "5+",
+              "W": "1",
+              "Ld": "7+",
+              "OC": "2",
+              "Invulnerable": "",
+              "Base": "25mm"
+            },
+            "legacyIds": [
+              "unit-traitor-guardsmen-squad-stat-profile-traitor-guardsmen-squad"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-twisted-defence-force",
@@ -12061,6 +12809,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Traitor Sergeant"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-traitor-guardsmen-squad-model-traitor-sergeant"
             ]
@@ -12072,11 +12822,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "9 Traitor Guardsmen",
               "Guardsman w/ lasgun"
             ],
+            "min": 9,
+            "max": 9,
             "legacyIds": [
               "unit-traitor-guardsmen-squad-model-9-traitor-guardsmen-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-traitor-guardsmen-squad-selection-chainsword",
@@ -12530,7 +13283,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -12576,6 +13328,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "32mm"
         },
+        "statProfiles": [
+          {
+            "id": "unit-warp-talons-stat-profile-44b512d385",
+            "title": "Warp Talon Champion",
+            "stats": {
+              "M": "12\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "5+",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-warp-talons-stat-profile-warp-talon-champion"
+            ]
+          },
+          {
+            "id": "unit-warp-talons-stat-profile-3eb00a9974",
+            "title": "Warp Talons",
+            "stats": {
+              "M": "12\"",
+              "T": "4",
+              "Sv": "3+",
+              "W": "2",
+              "Ld": "6+",
+              "OC": "1",
+              "Invulnerable": "5+",
+              "Base": "32mm"
+            },
+            "legacyIds": [
+              "unit-warp-talons-stat-profile-warp-talons"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-warp-strike",
@@ -12608,11 +13396,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Warp Talon Champion",
               "Warp Talon"
             ],
+            "min": 5,
+            "max": 10,
             "legacyIds": [
               "unit-warp-talons-model-5-10-warp-talons"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-warp-talons-selection-warp-claws",
@@ -12649,7 +13440,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -12692,6 +13482,42 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "75x42mm Oval Base"
         },
+        "statProfiles": [
+          {
+            "id": "unit-chaos-bikers-stat-profile-ea134f3270",
+            "title": "Chaos Bikers",
+            "stats": {
+              "M": "12\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "2",
+              "Invulnerable": "",
+              "Base": "75x42mm Oval Base"
+            },
+            "legacyIds": [
+              "unit-chaos-bikers-stat-profile-chaos-bikers"
+            ]
+          },
+          {
+            "id": "unit-chaos-bikers-stat-profile-c20a7d4556",
+            "title": "Biker Champion",
+            "stats": {
+              "M": "12\"",
+              "T": "5",
+              "Sv": "3+",
+              "W": "3",
+              "Ld": "6+",
+              "OC": "2",
+              "Invulnerable": "",
+              "Base": "75x42mm Oval Base"
+            },
+            "legacyIds": [
+              "unit-chaos-bikers-stat-profile-biker-champion"
+            ]
+          }
+        ],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-outmanoeuvre",
@@ -12722,6 +13548,8 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Biker Champion"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-bikers-model-biker-champion"
             ],
@@ -12737,11 +13565,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
               "Biker w/ combi-bolter and bolt pistol",
               "Biker w/ combi-bolter and chainsword"
             ],
+            "min": 2,
+            "max": 5,
             "legacyIds": [
               "unit-chaos-bikers-model-2-5-bikers-2"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-bikers-selection-accursed-weapon",
@@ -13221,7 +14052,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -13266,6 +14096,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "Use model"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-assault-ramp",
@@ -13303,11 +14134,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Land Raider"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-land-raider-model-chaos-land-raider"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-land-raider-selection-armoured-tracks",
@@ -13494,7 +14328,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -13538,6 +14371,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "Use model"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-annihilator",
@@ -13575,11 +14409,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Predator Annihilator"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-predator-annihilator-model-chaos-predator-annihilator"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-predator-annihilator-selection-predator-twin-lascannon",
@@ -13796,7 +14633,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -13840,6 +14676,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "Use model"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-destructor",
@@ -13877,11 +14714,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Predator Destructor"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-predator-destructor-model-chaos-predator-destructor"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-predator-destructor-selection-predator-autocannon",
@@ -14098,7 +14938,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -14140,6 +14979,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "50mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-mind-breaking-mutations-aura",
@@ -14170,11 +15010,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Spawn"
             ],
+            "min": 2,
+            "max": 2,
             "legacyIds": [
               "unit-chaos-spawn-model-chaos-spawn"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-spawn-selection-hideous-mutations",
@@ -14211,7 +15054,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -14255,6 +15097,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "Use model"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-siege-shield",
@@ -14292,11 +15135,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Chaos Vindicator"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-chaos-vindicator-model-chaos-vindicator"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-vindicator-selection-demolisher-cannon",
@@ -14453,7 +15299,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -14497,6 +15342,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "160mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-scuttling-walker",
@@ -14541,11 +15387,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Defiler"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-defiler-model-defiler"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-defiler-selection-shearing-claws-strike",
@@ -14969,7 +15818,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -15013,6 +15861,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "120x92mm Oval Base"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-daemonic-ordnance",
@@ -15050,11 +15899,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Forgefiend"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-forgefiend-model-forgefiend"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-forgefiend-selection-ectoplasma-cannon",
@@ -15181,7 +16033,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -15224,6 +16075,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "60mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-dark-ascension-aura",
@@ -15261,11 +16113,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Helbrute"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-helbrute-model-helbrute"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-helbrute-selection-close-combat-weapon",
@@ -15691,7 +16546,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -15735,6 +16589,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "120x92mm Oval Base"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-airborne-predator",
@@ -15779,11 +16634,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Heldrake"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-heldrake-model-heldrake"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-heldrake-selection-heldrake-claws",
@@ -15880,7 +16738,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -15927,6 +16784,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "Use model"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-plough-through-the-enemy",
@@ -15964,11 +16822,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Khorne Lord of Skulls"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-khorne-lord-of-skulls-model-khorne-lord-of-skulls"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-khorne-lord-of-skulls-selection-great-cleaver-of-khorne-strike",
@@ -16214,7 +17075,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -16258,6 +17118,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "120x92mm Oval Base"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-siege-crawler",
@@ -16295,11 +17156,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Maulerfiend"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-maulerfiend-model-maulerfiend"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-maulerfiend-selection-maulerfiend-fists",
@@ -16396,7 +17260,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -16439,6 +17302,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "",
           "Base": "Use model"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-malevolent-locus-aura",
@@ -16483,11 +17347,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Noctilith Crown"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-noctilith-crown-model-noctilith-crown"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-noctilith-crown-selection-lashing-warp-energies",
@@ -16524,7 +17391,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []
@@ -16568,6 +17434,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "Invulnerable": "5+",
           "Base": "100mm"
         },
+        "statProfiles": [],
         "abilities": [
           {
             "id": "chaos-space-marines-ability-soul-eater",
@@ -16598,11 +17465,14 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "aliases": [
               "Venomcrawler"
             ],
+            "min": 1,
+            "max": 1,
             "legacyIds": [
               "unit-venomcrawler-model-venomcrawler"
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-venomcrawler-selection-excruciator-cannon",
@@ -16669,7 +17539,6 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ],
         "wargearAbilities": [],
-        "compositionRules": [],
         "wargearDefaults": [],
         "wargearOptionContracts": [],
         "wargearSharedCaps": []

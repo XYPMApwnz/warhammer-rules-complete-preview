@@ -25,7 +25,10 @@
   "glossaryV2CompatibilityTerms": true,
   "rosterCatalog": {
     "inferCanonicalDetachmentRuleIds": true,
-    "inferExactWargearAbilitySelections": true
+    "inferExactWargearAbilitySelections": true,
+    "enforceCompositionConstraints": true,
+    "projectStatProfiles": true,
+    "preserveMultipartStatProfiles": true
   },
   "customApp": true,
   "legacyRelatedRuleAttributes": false,

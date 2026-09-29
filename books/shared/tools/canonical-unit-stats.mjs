@@ -59,7 +59,7 @@ const canonicalFact=value=>Array.isArray(value)?value.map(canonicalFact):value&&
 
 export function canonicalStatProfilesForUnit(unit,{preserveMultipartProfiles=false}={}){
   const sources=values(unit?.profiles).filter(profile=>profile?.name&&statRecord(profile?.stats));
-  const preserve=preserveMultipartProfiles&&values(unit?.composition).length>1;
+  const preserve=preserveMultipartProfiles&&(values(unit?.composition).length>1||sources.length>1);
   if(!preserve&&(sources.length<2||new Set(sources.map(profile=>canonicalStats(profile.stats))).size<2))return [];
   return assignCanonicalChildIdentities(unit,sources,{kind:'stat-profile',titleOf:profile=>profile.name,semanticOf:profile=>({sourceName:profile.name,stats:profile.stats}),legacyIdOf:profile=>`${unit.id}-stat-profile-${slug(profile.name)}`}).map(profile=>({id:profile.id,title:profile.name,stats:{...profile.stats},...(profile.legacyIds?.length?{legacyIds:profile.legacyIds}:{})}));
 }
