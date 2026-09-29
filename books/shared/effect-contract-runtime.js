@@ -140,13 +140,13 @@
       const required=contract.detachmentId||contract.selector?.detachmentId;if(required&&!env.detachmentIds.has(required))return null;
     }else if(['selected-wargear','wargear-ability'].includes(contract.sourceKind)){
       const candidates=list(env.group).length?env.group:[env.draft],matched=candidates.find(unit=>matches(contract.selector,{...env,owner:unit,sourceUnit:unit},unit));if(!matched)return null;env.owner=matched;env.sourceUnit=matched;
-    }else if(['ability','datasheet-ability'].includes(contract.sourceKind)){
+    }else if(['ability','datasheet-ability','transport'].includes(contract.sourceKind)){
       env.sourceUnit=locateSourceUnit(contract,env);if(!env.sourceUnit)return null;env.owner=env.sourceUnit;
     }
     env.ownerIsLeader=Boolean(env.owner&&env.leaders.includes(env.owner));
     env.sourceIsLeader=Boolean(env.sourceUnit&&env.leaders.includes(env.sourceUnit));
     env.attachmentState=env.ownerIsLeader?'leading':env.owner===env.bodyguard&&env.group?'being-led':env.group?'attached':'unattached';
-    const rootUnit=['ability','datasheet-ability'].includes(contract.sourceKind)
+    const rootUnit=['ability','datasheet-ability','transport'].includes(contract.sourceKind)
       ?env.sourceUnit
       :contract.sourceKind==='enhancement'||['selected-wargear','wargear-ability'].includes(contract.sourceKind)?env.owner:env.draft;
     const declared=declaredSourceUnitIds(contract),targetUnitIds=declared.length?list(contract.selector?.unitIds).filter(id=>!declared.includes(id)):[];
@@ -202,7 +202,7 @@
       parameters.profileIds=list(catalogUnit(env.draft)?.gameSelections?.weaponProfiles).filter(profile=>profile.mode==='melee'&&selected.has(profile.id)&&!excluded.has(profile.id)).map(profile=>profile.id);
       targetId='selected-melee';
     }
-    const sourceKind=['ability','datasheet-ability'].includes(contract.sourceKind)?(env.sourceUnit&&list(env.group).includes(env.sourceUnit)?'explicit-attachment':contract.sourceKind==='datasheet-ability'?'datasheet':'ability'):contract.sourceKind==='detachment-rule'?'detachment':contract.sourceKind.includes('wargear')?'selected-wargear':contract.sourceKind==='enhancement'&&env.owner&&env.owner!==env.draft&&list(env.group).includes(env.draft)?'explicit-attachment':'enhancement';
+    const sourceKind=['ability','datasheet-ability','transport'].includes(contract.sourceKind)?(contract.sourceKind==='transport'?'transport':env.sourceUnit&&list(env.group).includes(env.sourceUnit)?'explicit-attachment':contract.sourceKind==='datasheet-ability'?'datasheet':'ability'):contract.sourceKind==='detachment-rule'?'detachment':contract.sourceKind.includes('wargear')?'selected-wargear':contract.sourceKind==='enhancement'&&env.owner&&env.owner!==env.draft&&list(env.group).includes(env.draft)?'explicit-attachment':'enhancement';
     const sourceId=sourceKind==='detachment'?(contract.detachmentId||contract.canonicalRecordId):contract.canonicalRecordId;
     const physicalBearer=parameters.physicalBearer;delete parameters.physicalBearer;let physicalTargets=[];
     if(physicalBearer){const bindings=new Map(list(physicalBearer.modelProfileBindings).map(item=>[item.modelId,item.statProfileId])),grouped=new Map();for(const item of selectedWargearOccurrences(env.owner||env.sourceUnit,contract.selector?.selectedWargearAbilityIds)){const statProfileId=bindings.get(item.canonicalModelId);if(!statProfileId)continue;const key=`${item.cohortId}\0${item.canonicalModelId}\0${statProfileId}`,current=grouped.get(key)||{cohortId:item.cohortId,canonicalModelId:item.canonicalModelId,statProfileId,model:item.model||'',modelQuantity:item.modelQuantity,selectedQuantity:0};current.selectedQuantity+=Number(item.quantity)||1;grouped.set(key,current);}physicalTargets=[...grouped.values()];if(!physicalTargets.length)return null;}

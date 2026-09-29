@@ -5,7 +5,7 @@ export const EFFECT_TYPES=new Set([
   'ABILITY_GRANT','ABILITY_REMOVE','KEYWORD_GRANT','KEYWORD_REMOVE','TRANSPORT_CAPACITY_SET','CANONICAL_REFERENCE'
 ]);
 export const EFFECT_CONFIDENCE=new Set(['VERIFIED_FROZEN','VERIFIED_CURRENT','SOURCE_LIMITED','LEGACY_UNVERIFIABLE']);
-const SOURCE_KINDS=new Set(['enhancement','ability','datasheet-ability','detachment-rule','selected-wargear','wargear-ability']);
+const SOURCE_KINDS=new Set(['enhancement','ability','datasheet-ability','detachment-rule','selected-wargear','wargear-ability','transport']);
 const SCOPES=new Set([
   'assigned-enhancement','attached-bodyguard','attached-group','attached-group-excluding-source','attached-leaders','attached-selected-wargear',
   'attached-unit','bearer','bearer-aura','bearer-while-attached','bodyguard','effective-unit','leading','owner','roster-reference',
@@ -66,7 +66,13 @@ const validateOperation=(operation,label,operationIds)=>{
   if(operation.type==='WEAPON_CHARACTERISTIC_ADD'&&!((typeof operation.parameters.stat==='string'&&typeof operation.parameters.delta==='number')||(typeof operation.parameters.characteristic==='string'&&typeof operation.parameters.value==='number')))throw new Error(`${id}: WEAPON_CHARACTERISTIC_ADD requires a characteristic and numeric modifier`);
   if(operation.type==='WEAPON_TAG_GRANT'&&typeof operation.parameters.tag!=='string')throw new Error(`${id}: WEAPON_TAG_GRANT requires tag`);
   if(operation.type==='WEAPON_PROFILE_GRANT'&&!record(operation.parameters.profile)&&!Array.isArray(operation.parameters.profileIds)&&operation.parameters.profileSource!=='canonical-record')throw new Error(`${id}: WEAPON_PROFILE_GRANT requires a structured profile or canonical profile binding`);
-  if(operation.type==='TRANSPORT_CAPACITY_SET'&&(!Number.isInteger(operation.parameters.capacity)||operation.parameters.capacity<1||!record(operation.parameters.restriction)))throw new Error(`${id}: TRANSPORT_CAPACITY_SET requires a positive capacity and structured restriction`);
+  if(operation.type==='TRANSPORT_CAPACITY_SET'){
+    const restriction=operation.parameters.restriction;
+    if(!Number.isInteger(operation.parameters.capacity)||operation.parameters.capacity<1||!record(restriction))throw new Error(`${id}: TRANSPORT_CAPACITY_SET requires a positive capacity and structured restriction`);
+    if(restriction.subject!=='models')throw new Error(`${id}: transport restriction subject must be models`);
+    for(const key of ['allKeywords','anyKeywords','noneKeywords','unitIds','excludeUnitIds'])if(restriction[key]!==undefined&&(!Array.isArray(restriction[key])||restriction[key].some(value=>typeof value!=='string'||!value.trim())))throw new Error(`${id}: transport restriction ${key} must contain canonical identities`);
+    if(restriction.spaceMultipliers!==undefined&&(!Array.isArray(restriction.spaceMultipliers)||restriction.spaceMultipliers.some(item=>!record(item)||!Number.isInteger(item.spacesPerModel)||item.spacesPerModel<2||(!Array.isArray(item.anyKeywords)||!item.anyKeywords.length)&&(!Array.isArray(item.unitIds)||!item.unitIds.length)||[...item.anyKeywords||[],...item.unitIds||[]].some(value=>typeof value!=='string'||!value.trim()))))throw new Error(`${id}: transport space multipliers must use canonical identities and positive model-space values`);
+  }
 };
 
 export function validateEffectContractSet(input,{expectedBookId=null}={}){

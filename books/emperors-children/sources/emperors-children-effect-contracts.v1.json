@@ -1710,6 +1710,113 @@
         "locator": "books/emperors-children/content/emperors-children-codex-parity.en.json#emperors-children-equipment-shining-aegis"
       },
       "confidence": "SOURCE_LIMITED"
+    },
+    {
+      "canonicalRecordId": "datasheet-chaos-rhino:section:2",
+      "sourceKind": "transport",
+      "sourceBookId": "emperors-children",
+      "effectiveBookIds": [
+        "emperors-children"
+      ],
+      "sourceUnitId": "unit-chaos-rhino",
+      "scope": "source",
+      "selector": {
+        "unitIds": [
+          "unit-chaos-rhino"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "chaos-rhino-transport-capacity",
+              "type": "TRANSPORT_CAPACITY_SET",
+              "canonicalTarget": "transport-capacity",
+              "parameters": {
+                "capacity": 12,
+                "restriction": {
+                  "subject": "models",
+                  "allKeywords": [
+                    "EMPEROR’S CHILDREN",
+                    "INFANTRY"
+                  ],
+                  "noneKeywords": [
+                    "TERMINATOR",
+                    "FLAWLESS BLADES"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "stackingPolicy": "set-exact",
+      "source": {
+        "sourceId": "emperors-children-waha-11e-current-2026-09-28",
+        "locator": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json#datasheet-chaos-rhino:section:2"
+      },
+      "confidence": "VERIFIED_CURRENT",
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      }
+    },
+    {
+      "canonicalRecordId": "datasheet-chaos-land-raider:section:2",
+      "sourceKind": "transport",
+      "sourceBookId": "emperors-children",
+      "effectiveBookIds": [
+        "emperors-children"
+      ],
+      "sourceUnitId": "unit-chaos-land-raider",
+      "scope": "source",
+      "selector": {
+        "unitIds": [
+          "unit-chaos-land-raider"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "chaos-land-raider-transport-capacity",
+              "type": "TRANSPORT_CAPACITY_SET",
+              "canonicalTarget": "transport-capacity",
+              "parameters": {
+                "capacity": 14,
+                "restriction": {
+                  "subject": "models",
+                  "allKeywords": [
+                    "EMPEROR’S CHILDREN",
+                    "INFANTRY"
+                  ],
+                  "spaceMultipliers": [
+                    {
+                      "anyKeywords": [
+                        "TERMINATOR",
+                        "FLAWLESS BLADES"
+                      ],
+                      "spacesPerModel": 2
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "stackingPolicy": "set-exact",
+      "source": {
+        "sourceId": "emperors-children-waha-11e-current-2026-09-28",
+        "locator": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json#datasheet-chaos-land-raider:section:2"
+      },
+      "confidence": "VERIFIED_CURRENT",
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      }
     }
   ],
   "rosterLegality": {
