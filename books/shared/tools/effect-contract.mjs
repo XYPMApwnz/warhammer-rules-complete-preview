@@ -2,7 +2,7 @@ const BOOKS=new Set(['death-guard','adeptus-mechanicus','tyranids','tau-empire',
 export const EFFECT_SCHEMA='wh40k-effect-contracts/v1';
 export const EFFECT_TYPES=new Set([
   'CHARACTERISTIC_ADD','CHARACTERISTIC_SET','WEAPON_CHARACTERISTIC_ADD','WEAPON_TAG_GRANT','WEAPON_PROFILE_GRANT',
-  'ABILITY_GRANT','ABILITY_REMOVE','KEYWORD_GRANT','KEYWORD_REMOVE','TRANSPORT_CAPACITY_SET','TARGETING_RESTRICTION_GRANT','CANONICAL_REFERENCE'
+  'ABILITY_GRANT','ABILITY_REMOVE','ABILITY_RANGE_ADD','KEYWORD_GRANT','KEYWORD_REMOVE','TRANSPORT_CAPACITY_SET','TARGETING_RESTRICTION_GRANT','CANONICAL_REFERENCE'
 ]);
 export const EFFECT_CONFIDENCE=new Set(['VERIFIED_FROZEN','VERIFIED_CURRENT','SOURCE_LIMITED','LEGACY_UNVERIFIABLE']);
 const SOURCE_KINDS=new Set(['enhancement','ability','datasheet-ability','detachment-rule','selected-wargear','wargear-ability','transport']);
@@ -67,6 +67,7 @@ const validateOperation=(operation,label,operationIds)=>{
   if(operation.type==='WEAPON_CHARACTERISTIC_ADD'&&!((typeof operation.parameters.stat==='string'&&typeof operation.parameters.delta==='number')||(typeof operation.parameters.characteristic==='string'&&typeof operation.parameters.value==='number')))throw new Error(`${id}: WEAPON_CHARACTERISTIC_ADD requires a characteristic and numeric modifier`);
   if(operation.type==='WEAPON_TAG_GRANT'&&typeof operation.parameters.tag!=='string')throw new Error(`${id}: WEAPON_TAG_GRANT requires tag`);
   if(operation.type==='WEAPON_PROFILE_GRANT'&&!record(operation.parameters.profile)&&!Array.isArray(operation.parameters.profileIds)&&operation.parameters.profileSource!=='canonical-record')throw new Error(`${id}: WEAPON_PROFILE_GRANT requires a structured profile or canonical profile binding`);
+  if(operation.type==='ABILITY_RANGE_ADD'&&(!Number.isFinite(operation.parameters.baseRange)||operation.parameters.baseRange<0||!Number.isFinite(operation.parameters.delta)||operation.parameters.distanceUnit!=='inches'))throw new Error(`${id}: ABILITY_RANGE_ADD requires a non-negative baseRange, numeric delta and inches distance unit`);
   if(operation.type==='TRANSPORT_CAPACITY_SET'){
     const restriction=operation.parameters.restriction;
     if(!Number.isInteger(operation.parameters.capacity)||operation.parameters.capacity<1||!record(restriction))throw new Error(`${id}: TRANSPORT_CAPACITY_SET requires a positive capacity and structured restriction`);
@@ -229,7 +230,7 @@ export function validateEffectContractsAgainstCatalog(input,catalog,{effectiveBo
       }
       for(const operation of clause.operations){
         const target=typeof operation.canonicalTarget==='string'?operation.canonicalTarget:operation.canonicalTarget.id,kind=operation.parameters.referenceKind||operation.canonicalTarget?.kind;
-        if(operation.type==='ABILITY_REMOVE'&&!ids.abilities.has(target))throw new Error(`${contract.canonicalRecordId}: unknown canonical ability target ${target}`);
+        if(['ABILITY_REMOVE','ABILITY_RANGE_ADD'].includes(operation.type)&&!ids.abilities.has(target))throw new Error(`${contract.canonicalRecordId}: unknown canonical ability target ${target}`);
         if(kind==='weapon-class'&&!ids.weaponClasses.has(target))throw new Error(`${contract.canonicalRecordId}: unknown canonical weapon class ${target}`);
         if(kind==='weapon-family'&&!ids.weaponFamilies.has(target))throw new Error(`${contract.canonicalRecordId}: unknown canonical weapon family ${target}`);
         for(const id of operation.parameters.profileIds||[])resolveChild(contract,id,'profile',sourceUnits);

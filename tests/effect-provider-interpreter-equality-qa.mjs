@@ -108,7 +108,7 @@ for(const bookId of books){
 }
 assert.equal(sourceContracts,549,'unique source effect contracts');
 assert.equal(effectiveBindings,775,'effective effect bindings');
-assert.equal(effectTypes.size,10,'canonical effect operation vocabulary');
+assert.equal(effectTypes.size,11,'canonical effect operation vocabulary');
 assert.equal(nonEmptyBooks,9,'all supported books must exercise a non-empty actual interpreter result');
 
 const transformed=(provider,transform)=>({gameEffects(context){return transform(provider.gameEffects(context));}});

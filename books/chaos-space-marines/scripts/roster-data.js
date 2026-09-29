@@ -27012,6 +27012,45 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
                 "referenceKind": "enhancement"
               },
               "type": "CANONICAL_REFERENCE"
+            },
+            {
+              "id": "crown-of-worms:warpsmith-range",
+              "canonicalTarget": {
+                "kind": "ability",
+                "id": "chaos-space-marines-ability-warpsmith"
+              },
+              "parameters": {
+                "baseRange": 3,
+                "delta": 3,
+                "distanceUnit": "inches"
+              },
+              "type": "ABILITY_RANGE_ADD"
+            },
+            {
+              "id": "crown-of-worms:master-of-mechanisms-range",
+              "canonicalTarget": {
+                "kind": "ability",
+                "id": "chaos-space-marines-ability-master-of-mechanisms"
+              },
+              "parameters": {
+                "baseRange": 3,
+                "delta": 3,
+                "distanceUnit": "inches"
+              },
+              "type": "ABILITY_RANGE_ADD"
+            },
+            {
+              "id": "crown-of-worms:enrage-machine-spirits-range",
+              "canonicalTarget": {
+                "kind": "ability",
+                "id": "chaos-space-marines-ability-enrage-machine-spirits"
+              },
+              "parameters": {
+                "baseRange": 12,
+                "delta": 3,
+                "distanceUnit": "inches"
+              },
+              "type": "ABILITY_RANGE_ADD"
             }
           ]
         }

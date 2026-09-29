@@ -192,10 +192,11 @@
   };
   const operationRecord=(operation,contract,env,unknown,selector={})=>{
     const target=canonicalTarget(operation),parameters={...(operation.parameters||{})},map={
-      CHARACTERISTIC_ADD:['stat','add'],CHARACTERISTIC_SET:['stat','set'],WEAPON_CHARACTERISTIC_ADD:['weapon','add-stat'],WEAPON_TAG_GRANT:['weapon','grant-tag'],WEAPON_PROFILE_GRANT:['weapon','grant-profile'],ABILITY_GRANT:['ability','grant'],ABILITY_REMOVE:['ability','remove'],KEYWORD_GRANT:['keyword','grant'],KEYWORD_REMOVE:['keyword','remove'],TRANSPORT_CAPACITY_SET:['transport','set-capacity'],TARGETING_RESTRICTION_GRANT:['targeting','grant-restriction'],CANONICAL_REFERENCE:['ability','reference']
+      CHARACTERISTIC_ADD:['stat','add'],CHARACTERISTIC_SET:['stat','set'],WEAPON_CHARACTERISTIC_ADD:['weapon','add-stat'],WEAPON_TAG_GRANT:['weapon','grant-tag'],WEAPON_PROFILE_GRANT:['weapon','grant-profile'],ABILITY_GRANT:['ability','grant'],ABILITY_REMOVE:['ability','remove'],ABILITY_RANGE_ADD:['ability','add-range'],KEYWORD_GRANT:['keyword','grant'],KEYWORD_REMOVE:['keyword','remove'],TRANSPORT_CAPACITY_SET:['transport','set-capacity'],TARGETING_RESTRICTION_GRANT:['targeting','grant-restriction'],CANONICAL_REFERENCE:['ability','reference']
     },[component,kind]=map[operation.type]||[];
     if(parameters.characteristic&&!parameters.stat)parameters.stat=parameters.characteristic;if(parameters.value!=null&&parameters.delta==null&&operation.type.endsWith('_ADD'))parameters.delta=parameters.value;if(parameters.value!=null&&parameters.to==null&&operation.type==='CHARACTERISTIC_SET')parameters.to=parameters.value;
     if(operation.type==='ABILITY_GRANT'&&target.id==='core-feel-no-pain'&&parameters.value&&!parameters.title)parameters.title=`Feel No Pain ${parameters.value}`;
+    if(operation.type==='ABILITY_RANGE_ADD'&&!parameters.title)parameters.title=canonicalReferenceRecord('ability',target.id)?.title||target.id;
     delete parameters.characteristic;delete parameters.value;
     if(operation.type==='WEAPON_PROFILE_GRANT'&&!parameters.profile){parameters.profile=profileFor(parameters.profileIds,env,contract);if(!parameters.profile)return null;}
     let targetId=target.id;

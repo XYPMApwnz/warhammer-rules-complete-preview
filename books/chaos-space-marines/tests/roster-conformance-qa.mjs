@@ -129,8 +129,9 @@ const crown = gameUnit('warpsmith-crown', 'unit-warpsmith', ['enhancement-crown-
 result = effects([crown], { detachmentId: 'cult-of-the-arkifane' });
 assert.equal(matching(result, 'reference', 'warpsmith-crown', 'enhancement-crown-of-worms').length, 1,
   'Crown of Worms must use its full canonical Enhancement reference');
-assert.equal(result.filter((effect) => effect.source?.id === 'enhancement-crown-of-worms' && effect.operation !== 'reference').length, 0,
-  'Crown of Worms must not claim an unsupported structured prose mutation');
+assert.equal(result.filter((effect) => effect.source?.id === 'enhancement-crown-of-worms'
+  && effect.component === 'ability' && effect.operation === 'add-range').length, 3,
+  'Crown of Worms must execute three stable-identity ability-range modifiers');
 
 const tzagulla = gameUnit('lord-tzagulla', 'unit-chaos-lord-in-terminator-armour', ['enhancement-tzagulla']);
 result = effects([tzagulla], { detachmentId: 'warpstrike-champions' });

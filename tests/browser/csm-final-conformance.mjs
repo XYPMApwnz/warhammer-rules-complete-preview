@@ -85,8 +85,9 @@ try {
   const crownView=await open(crownRecord,'parsed-unit-1','unit-warpsmith'),crown=await state(crownView.page,'parsed-unit-1');
   const crownCanonical=await crownView.page.evaluate(()=>window.WH_BOOK_ROSTER_CATALOG.enhancements.find(item=>item.id==='enhancement-crown-of-worms').text.replace(/\s+/g,' ').trim());
   assert.ok(crown.text.replace(/\s+/g,' ').includes(crownCanonical));
-  assert.equal(crown.unit.effects.filter(effect=>effect.source?.id==='enhancement-crown-of-worms').length,1);
-  assert.doesNotMatch(crown.text,/Ability ranges \+3/);assert.equal(crown.synthetic,0);assert.doesNotMatch(crown.active,/Crown of Worms/);
+  assert.equal(crown.unit.effects.filter(effect=>effect.source?.id==='enhancement-crown-of-worms'&&effect.operation==='reference').length,1);
+  assert.equal(crown.unit.effects.filter(effect=>effect.source?.id==='enhancement-crown-of-worms'&&effect.operation==='add-range').length,3);
+  assert.deepEqual(Object.fromEntries(crown.unit.effective.abilities.filter(ability=>ability.range).map(ability=>[ability.id,ability.range.effective])),{'chaos-space-marines-ability-warpsmith':6,'chaos-space-marines-ability-master-of-mechanisms':6,'chaos-space-marines-ability-enrage-machine-spirits':15});assert.equal(crown.synthetic,0);
   await shot(crownView.page,'04-crown-of-worms');await crownView.context.close();
 
   const tzagullaView=await open(tzagullaRecord,'parsed-unit-1','unit-chaos-lord-in-terminator-armour'),tzagulla=await state(tzagullaView.page,'parsed-unit-1');
