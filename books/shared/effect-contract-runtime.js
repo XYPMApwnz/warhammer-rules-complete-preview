@@ -11,6 +11,13 @@
   const selectedIds=(unit,key)=>new Set(list(unit?.selection?.loadout?.[key]).map(item=>typeof item==='string'?item:item?.id).filter(Boolean));
   const selectedWargearOccurrences=(unit,ids)=>{const wanted=new Set(list(ids));return list(unit?.selection?.loadout?.wargear).filter(item=>item?.state==='resolved'&&list(item.wargearAbilityIds).some(id=>wanted.has(id)));};
   const selectedDetachmentIds=context=>{const unitValues=list(context.gameUnit?.rosterState?.detachments),values=unitValues.length?unitValues:list(context.detachments);return new Set(values.map(item=>item?.id||item).filter(Boolean));};
+  const selectedEffectWeapon=(contract,context,env)=>{
+    const choice=contract.rosterChoice;if(choice?.kind!=='weapon-profile'||choice.count!==1)return null;
+    const ownerId=instanceId(env.owner),rows=list(context.record?.effectChoices?.[contract.canonicalRecordId]).filter(item=>item?.ownerInstanceId===ownerId);
+    if(rows.length!==1)return null;
+    const profileId=rows[0]?.profileId,selected=selectedIds(env.owner,'selectedProfileIds'),profile=list(catalogUnit(env.owner)?.gameSelections?.weaponProfiles).find(item=>item.id===profileId);
+    return profile&&selected.has(profileId)&&profile.mode===choice.weaponMode?profileId:null;
+  };
   const attachmentGroup=(draft,byInstance)=>{
     let bodyguard=draft;
     const leading=list(draft?.attachments?.leading).find(current);
@@ -132,7 +139,7 @@
     })||null;
   };
   function activation(contract,context,base){
-    const env={...base,owner:null,sourceUnit:null,ownerIsLeader:false,sourceIsLeader:false,attachmentState:base.group?'attached':'unattached'};
+    const env={...base,context,owner:null,sourceUnit:null,ownerIsLeader:false,sourceIsLeader:false,attachmentState:base.group?'attached':'unattached'};
     if(contract.detachmentId&&!env.detachmentIds.has(contract.detachmentId))return null;
     if(contract.sourceKind==='enhancement'){
       const resolution=enhancementResolution(context,contract.canonicalRecordId,env),owner=resolution&&env.byInstance.get(resolution.input.ownerUnitId);if(!owner)return null;env.owner=owner;env.sourceUnit=owner;
@@ -185,7 +192,7 @@
   };
   const operationRecord=(operation,contract,env,unknown,selector={})=>{
     const target=canonicalTarget(operation),parameters={...(operation.parameters||{})},map={
-      CHARACTERISTIC_ADD:['stat','add'],CHARACTERISTIC_SET:['stat','set'],WEAPON_CHARACTERISTIC_ADD:['weapon','add-stat'],WEAPON_TAG_GRANT:['weapon','grant-tag'],WEAPON_PROFILE_GRANT:['weapon','grant-profile'],ABILITY_GRANT:['ability','grant'],ABILITY_REMOVE:['ability','remove'],KEYWORD_GRANT:['keyword','grant'],KEYWORD_REMOVE:['keyword','remove'],TRANSPORT_CAPACITY_SET:['transport','set-capacity'],CANONICAL_REFERENCE:['ability','reference']
+      CHARACTERISTIC_ADD:['stat','add'],CHARACTERISTIC_SET:['stat','set'],WEAPON_CHARACTERISTIC_ADD:['weapon','add-stat'],WEAPON_TAG_GRANT:['weapon','grant-tag'],WEAPON_PROFILE_GRANT:['weapon','grant-profile'],ABILITY_GRANT:['ability','grant'],ABILITY_REMOVE:['ability','remove'],KEYWORD_GRANT:['keyword','grant'],KEYWORD_REMOVE:['keyword','remove'],TRANSPORT_CAPACITY_SET:['transport','set-capacity'],TARGETING_RESTRICTION_GRANT:['targeting','grant-restriction'],CANONICAL_REFERENCE:['ability','reference']
     },[component,kind]=map[operation.type]||[];
     if(parameters.characteristic&&!parameters.stat)parameters.stat=parameters.characteristic;if(parameters.value!=null&&parameters.delta==null&&operation.type.endsWith('_ADD'))parameters.delta=parameters.value;if(parameters.value!=null&&parameters.to==null&&operation.type==='CHARACTERISTIC_SET')parameters.to=parameters.value;
     if(operation.type==='ABILITY_GRANT'&&target.id==='core-feel-no-pain'&&parameters.value&&!parameters.title)parameters.title=`Feel No Pain ${parameters.value}`;
@@ -201,6 +208,10 @@
       const excluded=new Set(list(selector.physicalEquipment?.excludeProfileIds)),selected=selectedIds(env.draft,'selectedProfileIds');
       parameters.profileIds=list(catalogUnit(env.draft)?.gameSelections?.weaponProfiles).filter(profile=>profile.mode==='melee'&&selected.has(profile.id)&&!excluded.has(profile.id)).map(profile=>profile.id);
       targetId='selected-melee';
+    }
+    if(targetId==='selected-effect-weapon-profile'){
+      const profileId=selectedEffectWeapon(contract,env.context,env);if(!profileId)return null;
+      parameters.profileIds=[profileId];targetId=profileId;
     }
     const sourceKind=['ability','datasheet-ability','transport'].includes(contract.sourceKind)?(contract.sourceKind==='transport'?'transport':env.sourceUnit&&list(env.group).includes(env.sourceUnit)?'explicit-attachment':contract.sourceKind==='datasheet-ability'?'datasheet':'ability'):contract.sourceKind==='detachment-rule'?'detachment':contract.sourceKind.includes('wargear')?'selected-wargear':contract.sourceKind==='enhancement'&&env.owner&&env.owner!==env.draft&&list(env.group).includes(env.draft)?'explicit-attachment':'enhancement';
     const sourceId=sourceKind==='detachment'?(contract.detachmentId||contract.canonicalRecordId):contract.canonicalRecordId;

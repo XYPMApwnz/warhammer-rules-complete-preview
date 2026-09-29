@@ -111,7 +111,7 @@ for(const [bookId,requiredEnhancementId] of books){
   assert.ok(fixtures.has(bookId),`${bookId}: browser fixture for required stable Enhancement`);
   console.log(`PASS  ${bookId}: ${structuredIds.size} canonical Enhancements emit structured effects; stable anchor ${requiredEnhancementId}`);
 }
-assert.deepEqual([...components].sort(),['ability','keyword','stat','weapon'],'structured component families');
+assert.deepEqual([...components].sort(),['ability','keyword','stat','targeting','weapon'],'structured component families');
 assert.ok(structuredConditionCount>0,'structured effect conditions are absent');
 
 const detachmentFixture=(bookId,unitId,instanceId,detachments,gameUnits=null)=>{

@@ -2,7 +2,7 @@ const BOOKS=new Set(['death-guard','adeptus-mechanicus','tyranids','tau-empire',
 export const EFFECT_SCHEMA='wh40k-effect-contracts/v1';
 export const EFFECT_TYPES=new Set([
   'CHARACTERISTIC_ADD','CHARACTERISTIC_SET','WEAPON_CHARACTERISTIC_ADD','WEAPON_TAG_GRANT','WEAPON_PROFILE_GRANT',
-  'ABILITY_GRANT','ABILITY_REMOVE','KEYWORD_GRANT','KEYWORD_REMOVE','TRANSPORT_CAPACITY_SET','CANONICAL_REFERENCE'
+  'ABILITY_GRANT','ABILITY_REMOVE','KEYWORD_GRANT','KEYWORD_REMOVE','TRANSPORT_CAPACITY_SET','TARGETING_RESTRICTION_GRANT','CANONICAL_REFERENCE'
 ]);
 export const EFFECT_CONFIDENCE=new Set(['VERIFIED_FROZEN','VERIFIED_CURRENT','SOURCE_LIMITED','LEGACY_UNVERIFIABLE']);
 const SOURCE_KINDS=new Set(['enhancement','ability','datasheet-ability','detachment-rule','selected-wargear','wargear-ability','transport']);
@@ -31,6 +31,7 @@ const CONDITION_KINDS=new Set([
 ]);
 const CANONICAL_TARGET_KINDS=new Set(['ability','detachment-rule','enhancement','weapon-class','weapon-family']);
 const CHILD_KINDS=new Set(['profile','wargear-ability']);
+const ROSTER_CHOICE_KINDS=new Set(['weapon-profile']);
 
 const record=value=>value&&typeof value==='object'&&!Array.isArray(value);
 const scalar=(value,label)=>{if(typeof value!=='string'||!value.trim())throw new Error(`${label} must be a non-empty string`);return value;};
@@ -73,6 +74,10 @@ const validateOperation=(operation,label,operationIds)=>{
     for(const key of ['allKeywords','anyKeywords','noneKeywords','unitIds','excludeUnitIds'])if(restriction[key]!==undefined&&(!Array.isArray(restriction[key])||restriction[key].some(value=>typeof value!=='string'||!value.trim())))throw new Error(`${id}: transport restriction ${key} must contain canonical identities`);
     if(restriction.spaceMultipliers!==undefined&&(!Array.isArray(restriction.spaceMultipliers)||restriction.spaceMultipliers.some(item=>!record(item)||!Number.isInteger(item.spacesPerModel)||item.spacesPerModel<2||(!Array.isArray(item.anyKeywords)||!item.anyKeywords.length)&&(!Array.isArray(item.unitIds)||!item.unitIds.length)||[...item.anyKeywords||[],...item.unitIds||[]].some(value=>typeof value!=='string'||!value.trim()))))throw new Error(`${id}: transport space multipliers must use canonical identities and positive model-space values`);
   }
+  if(operation.type==='TARGETING_RESTRICTION_GRANT'){
+    const parameters=operation.parameters;
+    if(parameters.restriction!=='cannot-target'||parameters.attacker!=='enemy'||typeof parameters.attackMode!=='string'||!parameters.attackMode.trim())throw new Error(`${id}: TARGETING_RESTRICTION_GRANT requires an exact enemy cannot-target attack mode`);
+  }
 };
 
 export function validateEffectContractSet(input,{expectedBookId=null}={}){
@@ -107,6 +112,7 @@ export function validateEffectContractSet(input,{expectedBookId=null}={}){
     if(!effective.length||new Set(effective).size!==effective.length||effective.some(id=>!BOOKS.has(id)))throw new Error(`${canonicalRecordId}: invalid effectiveBookIds`);
     if(!effective.includes(bookId))throw new Error(`${canonicalRecordId}: factual owner must be an effective book`);
     const scope=normalize(scalar(contract.scope,`${canonicalRecordId}.scope`));if(!SCOPES.has(scope))throw new Error(`${canonicalRecordId}: unsupported scope ${contract.scope}`);
+    if(contract.rosterChoice!=null){if(!record(contract.rosterChoice)||!ROSTER_CHOICE_KINDS.has(contract.rosterChoice.kind)||contract.rosterChoice.count!==1||!['melee','ranged'].includes(contract.rosterChoice.weaponMode))throw new Error(`${canonicalRecordId}: invalid rosterChoice contract`);dataOnly(contract.rosterChoice,`${canonicalRecordId}.rosterChoice`);}
     validateSelector(contract.selector,`${canonicalRecordId}.selector`);
     const clauses=array(contract.clauses,`${canonicalRecordId}.clauses`);
     for(const [clauseIndex,clause] of clauses.entries()){

@@ -1869,6 +1869,103 @@
       "timingState": {
         "kind": "CURRENT_ROSTER_STATE"
       }
+    },
+    {
+      "canonicalRecordId": "enhancement-possessed-blade",
+      "sourceKind": "enhancement",
+      "sourceBookId": "emperors-children",
+      "effectiveBookIds": [
+        "emperors-children"
+      ],
+      "detachmentId": "carnival-of-excess",
+      "scope": "owner",
+      "selector": {
+        "subject": "bearer",
+        "unitIds": [
+          "unit-daemon-prince-of-slaanesh",
+          "unit-daemon-prince-of-slaanesh-with-wings",
+          "unit-lord-exultant",
+          "unit-lord-kakophonist",
+          "unit-sorcerer"
+        ],
+        "noneKeywords": [
+          "EPIC HERO"
+        ]
+      },
+      "rosterChoice": {
+        "kind": "weapon-profile",
+        "count": 1,
+        "weaponMode": "melee"
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "possessed-blade-selected-weapon-attacks",
+              "type": "WEAPON_CHARACTERISTIC_ADD",
+              "canonicalTarget": "selected-effect-weapon-profile",
+              "parameters": {
+                "stat": "A",
+                "delta": 1
+              }
+            }
+          ]
+        }
+      ],
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "emperors-children-waha-11e-current-2026-09-28",
+        "locator": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json#detachment-carnival-of-excess:enhancement:3"
+      },
+      "confidence": "VERIFIED_CURRENT",
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      }
+    },
+    {
+      "canonicalRecordId": "enhancement-beguiling-grotesquerie",
+      "sourceKind": "enhancement",
+      "sourceBookId": "emperors-children",
+      "effectiveBookIds": [
+        "emperors-children"
+      ],
+      "detachmentId": "spectacle-of-slaughter",
+      "scope": "owner-or-attached-group",
+      "selector": {
+        "subject": "upgraded-unit",
+        "unitIds": [
+          "unit-flawless-blades"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "beguiling-grotesquerie-snap-shooting-targeting-restriction",
+              "type": "TARGETING_RESTRICTION_GRANT",
+              "canonicalTarget": "core-rule-15-09-snap-shooting",
+              "parameters": {
+                "attacker": "enemy",
+                "attackMode": "snap-shooting",
+                "restriction": "cannot-target"
+              }
+            }
+          ]
+        }
+      ],
+      "stackingPolicy": "dedupe-effect-id",
+      "source": {
+        "sourceId": "emperors-children-faction-pack-v1.2",
+        "locator": "books/emperors-children/content/emperors-children-faction-pack.en.json#spectacle-of-slaughter/beguiling-grotesquerie"
+      },
+      "confidence": "VERIFIED_FROZEN",
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      }
     }
   ],
   "rosterLegality": {
