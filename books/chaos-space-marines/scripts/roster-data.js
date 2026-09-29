@@ -30512,7 +30512,15 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
         ]
       }
     ],
-    "mandatoryWarlords": [],
+    "mandatoryWarlords": [
+      {
+        "id": "abaddon-supreme-commander",
+        "sourceRuleId": "chaos-space-marines-ability-supreme-commander",
+        "unitIds": [
+          "unit-abaddon-the-despoiler"
+        ]
+      }
+    ],
     "pointCaps": [],
     "warlordProhibitions": []
   }
