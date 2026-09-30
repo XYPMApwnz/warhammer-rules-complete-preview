@@ -26,7 +26,13 @@
     if(matches.length>1)throw new Error(`Roster Enhancement ${detachmentId||'<unscoped>'}/${targetId} must resolve exactly once`);
     return matches[0]||null;
   };
-  const profile=card=>root.WHRuleFacts.profileFromDataset(card.dataset,{id:card.id});
+  const resolveRosterWarlord=(guide,card)=>{
+    const instanceId=card.dataset.rosterInstance,canonicalId=card.dataset.canonicalUnitId||String(card.id||'').replace(/--.*$/,''),candidates=(guide?.units||[]).filter(unit=>instanceId?unit.instanceId===instanceId:(unit.datasheetId||unit.canonicalDatasheetId||unit.canonicalUnitId)===canonicalId);
+    if(candidates.length!==1)return null;
+    const value=candidates[0].warlord;
+    return typeof value==='boolean'?value:value?.state!=='unknown'&&typeof value?.selected==='boolean'?value.selected:null;
+  };
+  const profile=(card,guide)=>root.WHRuleFacts.profileFromDataset(card.dataset,{id:card.id},guide?{warlord:resolveRosterWarlord(guide,card)}:{});
   const withKeywordGrants=(rule,unit)=>{
     let grants=[];
     try{grants=JSON.parse(rule.closest('[data-keyword-grants]')?.dataset.keywordGrants||'[]');}catch{}
@@ -72,7 +78,7 @@
     let modal;
     const filter=()=>{
       if(!content||!unit)return;
-      const unitProfile=profile(unit),assignedRecords=resolveRosterEnhancements(options.rosterGuide,unit),assigned=new Set((assignedRecords||[]).map(enhancementRuleId).filter(Boolean)),sourceRows=source?.rowsForUnit(unitProfile.id,{detachmentId:detachment})||null,presented=sourceRows&&(rosterMode?sourceRows:root.WHRuleFacts.filterStaticCompatible(sourceRows)),visibleRows=presented&&(rosterMode&&options.rosterEnhancements==='assigned-only'?presented.filter(row=>row.kind!=='enhancement'||assigned.has(row.ruleId)):presented),sourceById=visibleRows&&new Map(visibleRows.map(row=>[row.ruleId,row]));
+      const unitProfile=profile(unit,options.rosterGuide),assignedRecords=resolveRosterEnhancements(options.rosterGuide,unit),assigned=new Set((assignedRecords||[]).map(enhancementRuleId).filter(Boolean)),sourceRows=source?.rowsForUnit(unitProfile.id,{detachmentId:detachment,warlord:unitProfile.warlord})||null,presented=sourceRows&&(rosterMode?sourceRows:root.WHRuleFacts.filterStaticCompatible(sourceRows)),visibleRows=presented&&(rosterMode&&options.rosterEnhancements==='assigned-only'?presented.filter(row=>row.kind!=='enhancement'||assigned.has(row.ruleId)):presented),sourceById=visibleRows&&new Map(visibleRows.map(row=>[row.ruleId,row]));
       content.querySelectorAll('.stratagem,.enhancement').forEach(card=>{
         const assignedEnhancements=!source&&assignedRecords!==null?assigned:null;
         const isAssigned=assignedEnhancements?.has(card.dataset.ruleId),sourceResult=sourceById?.get(card.dataset.ruleId),exactRosterAssignment=source&&card.classList.contains('enhancement')&&assigned.has(card.dataset.ruleId),assignmentResult=exactRosterAssignment?{state:'match',matchedRoleIds:[],reasons:[],provenance:'exact-roster-assignment'}:null,result=source?sourceResult||assignmentResult:assignedEnhancements&&card.classList.contains('enhancement')?!isAssigned?{state:'no-match',matchedRoleIds:[],reasons:[]}:card.dataset.rosterAssignedOnly==='true'?{state:'match',matchedRoleIds:[],reasons:[]}:match(card,unitProfile):match(card,unitProfile);

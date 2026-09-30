@@ -29,13 +29,18 @@ export function validateCompatibleRulesMatrix(matrix,options={}){
   return matrix;
 }
 
-export function getCompatibleRules(matrix,unitId,{detachmentId,resolveDetachmentSelection=false}={}){
+const ruleKey=row=>`${row.scope||row.detachmentId||''}|${row.ruleId}`;
+// Warlord selection is physical-instance context, never a static datasheet fact.
+// Include accepted matches of the same rule as its explicitly conditional rows.
+const warlordRuleKeys=matrix=>new Set(Object.values(matrix.units||{}).flat().filter(row=>conditionsFor(row).includes('warlord-unknown')).map(ruleKey));
+
+export function getCompatibleRules(matrix,unitId,{detachmentId,resolveDetachmentSelection=false,warlord}={},warlordRules=warlordRuleKeys(matrix)){
   const selected=detachmentId&&detachmentId!=='all'?String(detachmentId).replace(/^detachment-/,''):'';
   return (matrix.units?.[unitId]||[])
-    .filter(row=>row.scope==='core'||!selected||row.detachmentId===selected)
+    .filter(row=>(row.scope==='core'||!selected||row.detachmentId===selected)&&(warlord!==false||!warlordRules.has(ruleKey(row))))
     .map(row=>{
-      if(!resolveDetachmentSelection||!selected||row.state!=='conditional')return row;
-      const conditions=conditionsFor(row).filter(condition=>condition!=='detachment-not-selected');
+      if(row.state!=='conditional')return row;
+      const conditions=conditionsFor(row).filter(condition=>!(resolveDetachmentSelection&&selected&&condition==='detachment-not-selected')&&!(warlord===true&&condition==='warlord-unknown'));
       if(conditions.length===conditionsFor(row).length)return row;
       return conditions.length?{...row,condition:conditions[0],conditions}:{...row,state:'match',condition:null,conditions:[]};
     });
@@ -43,11 +48,12 @@ export function getCompatibleRules(matrix,unitId,{detachmentId,resolveDetachment
 
 export function createCompatibleRulesSource(matrix,options={}){
   validateCompatibleRulesMatrix(matrix,options);
+  const warlordRules=warlordRuleKeys(matrix);
   return Object.freeze({
     schema:matrix.schema,
     conditionLabels:Object.freeze({...options.conditionLabels}),
     hasUnit:unitId=>Boolean(matrix.units[unitId]?.length),
-    rowsForUnit:(unitId,context)=>getCompatibleRules(matrix,unitId,{...context,resolveDetachmentSelection:options.resolveDetachmentSelection}),
+    rowsForUnit:(unitId,context)=>getCompatibleRules(matrix,unitId,{...context,resolveDetachmentSelection:options.resolveDetachmentSelection},warlordRules),
     conditionsFor
   });
 }
