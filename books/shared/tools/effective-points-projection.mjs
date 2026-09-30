@@ -27,9 +27,12 @@ export function createEffectivePointsProjection(input={}){
   const book={id:clean(input.book?.id),title:clean(input.book?.title),parentBookId:input.book?.parentBookId??null};
   if(!book.id||!book.title)throw new Error('effective points projection requires book id and title');
   const units=list(input.units).map(unit=>({...unit,id:clean(unit.id),title:clean(unit.title),sourceBookId:clean(unit.sourceBookId)||book.id}));
+  const alliedUnits=list(input.alliedUnits).map(unit=>({...unit,id:clean(unit.id),title:clean(unit.title),sourceBookId:clean(unit.sourceBookId)}));
   const detachments=list(input.detachments).map(item=>({...item,id:clean(item.id),title:clean(item.title),sourceBookId:clean(item.sourceBookId)||book.id}));
   const enhancements=list(input.enhancements).map(item=>({...item,id:clean(item.id),detachmentId:clean(item.detachmentId),title:clean(item.title),sourceBookId:clean(item.sourceBookId)||book.id}));
   unique(units,item=>item.id,`${book.id} unit`);
+  unique(alliedUnits,item=>item.id,`${book.id} allied unit`);
+  const unitIds=new Set(units.map(item=>item.id));for(const item of alliedUnits)if(unitIds.has(item.id))throw new Error(`${book.id}: allied unit collides with published unit ${item.id}`);
   unique(detachments,item=>item.id,`${book.id} Detachment`);
   unique(enhancements,item=>`${item.detachmentId}\0${item.id}`,`${book.id} scoped Enhancement`);
   const detachmentIds=new Set(detachments.map(item=>item.id));
@@ -38,6 +41,7 @@ export function createEffectivePointsProjection(input={}){
     validatePoints(book.id,unit);
     if(!unit.ruleProfile||unit.ruleProfile.id!==unit.id||unit.ruleProfile.unitId!==unit.id)throw new Error(`${book.id}: ${unit.id} requires its canonical rule profile`);
   }
+  for(const unit of alliedUnits){if(!unit.title||!unit.sourceBookId)throw new Error(`${book.id}: ${unit.id} requires allied identity and source owner`);validatePoints(book.id,unit);}
   for(const item of detachments){
     if(!item.title)throw new Error(`${book.id}: ${item.id} requires a title`);
     if(typeof item.detachmentPoints!=='number'||!Number.isFinite(item.detachmentPoints))throw new Error(`${book.id}: ${item.id} requires a finite Detachment point value`);
@@ -52,7 +56,7 @@ export function createEffectivePointsProjection(input={}){
     if(!item.detachmentId||!detachmentIds.has(item.detachmentId))throw new Error(`${book.id}: ${item.id} references unknown Detachment ${item.detachmentId||'(missing)'}`);
     if(typeof item.value!=='number'||!Number.isFinite(item.value))throw new Error(`${book.id}: ${item.id} requires a finite point value`);
   }
-  return {schema:SCHEMA,book,dependencies:list(input.dependencies),units,detachments,enhancements};
+  return {schema:SCHEMA,book,dependencies:list(input.dependencies),units,alliedUnits,detachments,enhancements};
 }
 
 export function assertEffectivePointsProjection(value,bookId=''){

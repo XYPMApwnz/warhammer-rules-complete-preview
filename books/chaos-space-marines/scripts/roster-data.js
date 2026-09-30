@@ -22116,6 +22116,230 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       }
     }
   ],
+  "alliedUnits": [
+    {
+      "id": "unit-plague-marines",
+      "title": "PLAGUE MARINES",
+      "sourceBookId": "death-guard",
+      "sourceLayer": "centralized-mfm-allied-dependency",
+      "intrinsicKeywords": [],
+      "relations": {
+        "canLead": [],
+        "canSupport": [],
+        "canBeLedBy": [],
+        "canBeSupportedBy": []
+      },
+      "ruleFacts": {
+        "relations": {
+          "canLead": [],
+          "canSupport": [],
+          "canBeLedBy": [],
+          "canBeSupportedBy": []
+        }
+      },
+      "gameSelections": {
+        "musterOnly": true,
+        "models": [],
+        "compositionRules": [],
+        "selections": [],
+        "weaponProfiles": [],
+        "abilities": [],
+        "wargearAbilities": []
+      },
+      "points": [
+        {
+          "label": "5 models",
+          "value": 90,
+          "minModels": 5,
+          "maxModels": 5,
+          "sourceLabel": "5 models"
+        },
+        {
+          "label": "7 models",
+          "value": 125,
+          "minModels": 7,
+          "maxModels": 7,
+          "sourceLabel": "7 models"
+        },
+        {
+          "label": "10 models",
+          "value": 175,
+          "minModels": 10,
+          "maxModels": 10,
+          "sourceLabel": "10 models"
+        }
+      ],
+      "mfmRecordId": "mfm-unit-points-814ebc5cce424b41",
+      "unitReferenceId": "mfm-unit-ref-8dbe95f676e55697"
+    },
+    {
+      "id": "unit-noise-marines",
+      "title": "NOISE MARINES",
+      "sourceBookId": "emperors-children",
+      "sourceLayer": "centralized-mfm-allied-dependency",
+      "intrinsicKeywords": [],
+      "relations": {
+        "canLead": [],
+        "canSupport": [],
+        "canBeLedBy": [],
+        "canBeSupportedBy": []
+      },
+      "ruleFacts": {
+        "relations": {
+          "canLead": [],
+          "canSupport": [],
+          "canBeLedBy": [],
+          "canBeSupportedBy": []
+        }
+      },
+      "gameSelections": {
+        "musterOnly": true,
+        "models": [],
+        "compositionRules": [],
+        "selections": [],
+        "weaponProfiles": [],
+        "abilities": [],
+        "wargearAbilities": []
+      },
+      "points": [
+        {
+          "label": "1st–2nd unit · 6 models",
+          "value": 160,
+          "minModels": 6,
+          "maxModels": 6,
+          "minCopies": 1,
+          "maxCopies": 2,
+          "sourceLabel": "6 models"
+        },
+        {
+          "label": "3rd+ unit · 6 models",
+          "value": 175,
+          "minModels": 6,
+          "maxModels": 6,
+          "minCopies": 3,
+          "sourceLabel": "6 models"
+        }
+      ],
+      "mfmRecordId": "mfm-unit-points-dfb0c25d8d6bbf7c",
+      "unitReferenceId": "mfm-unit-ref-ad08ff6682eb0ac5"
+    },
+    {
+      "id": "unit-khorne-berzerkers",
+      "title": "KHORNE BERZERKERS",
+      "sourceBookId": "world-eaters",
+      "sourceLayer": "centralized-mfm-allied-dependency",
+      "intrinsicKeywords": [],
+      "relations": {
+        "canLead": [],
+        "canSupport": [],
+        "canBeLedBy": [],
+        "canBeSupportedBy": []
+      },
+      "ruleFacts": {
+        "relations": {
+          "canLead": [],
+          "canSupport": [],
+          "canBeLedBy": [],
+          "canBeSupportedBy": []
+        }
+      },
+      "gameSelections": {
+        "musterOnly": true,
+        "models": [],
+        "compositionRules": [],
+        "selections": [],
+        "weaponProfiles": [],
+        "abilities": [],
+        "wargearAbilities": []
+      },
+      "points": [
+        {
+          "label": "10 models",
+          "value": 170,
+          "minModels": 10,
+          "maxModels": 10,
+          "sourceLabel": "10 models"
+        },
+        {
+          "label": "20 models",
+          "value": 330,
+          "minModels": 20,
+          "maxModels": 20,
+          "sourceLabel": "20 models"
+        }
+      ],
+      "mfmRecordId": "mfm-unit-points-ae6cc14baed6e18a",
+      "unitReferenceId": "mfm-unit-ref-881ffacf717f708e"
+    },
+    {
+      "id": "unit-rubric-marines",
+      "title": "RUBRIC MARINES",
+      "sourceBookId": "thousand-sons",
+      "sourceLayer": "centralized-mfm-allied-dependency",
+      "intrinsicKeywords": [],
+      "relations": {
+        "canLead": [],
+        "canSupport": [],
+        "canBeLedBy": [],
+        "canBeSupportedBy": []
+      },
+      "ruleFacts": {
+        "relations": {
+          "canLead": [],
+          "canSupport": [],
+          "canBeLedBy": [],
+          "canBeSupportedBy": []
+        }
+      },
+      "gameSelections": {
+        "musterOnly": true,
+        "models": [],
+        "compositionRules": [],
+        "selections": [],
+        "weaponProfiles": [],
+        "abilities": [],
+        "wargearAbilities": []
+      },
+      "points": [
+        {
+          "label": "1st–3rd unit · 5 models",
+          "value": 115,
+          "minModels": 5,
+          "maxModels": 5,
+          "minCopies": 1,
+          "maxCopies": 3,
+          "sourceLabel": "5 models"
+        },
+        {
+          "label": "1st–3rd unit · 10 models",
+          "value": 210,
+          "minModels": 10,
+          "maxModels": 10,
+          "minCopies": 1,
+          "maxCopies": 3,
+          "sourceLabel": "10 models"
+        },
+        {
+          "label": "4th+ unit · 5 models",
+          "value": 125,
+          "minModels": 5,
+          "maxModels": 5,
+          "minCopies": 4,
+          "sourceLabel": "5 models"
+        },
+        {
+          "label": "4th+ unit · 10 models",
+          "value": 220,
+          "minModels": 10,
+          "maxModels": 10,
+          "minCopies": 4,
+          "sourceLabel": "10 models"
+        }
+      ],
+      "mfmRecordId": "mfm-unit-points-a273c224855f8ac1",
+      "unitReferenceId": "mfm-unit-ref-feb1ce3aaa4f851c"
+    }
+  ],
   "detachments": [
     {
       "id": "chaos-cult",
@@ -31091,7 +31315,36 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       }
     ],
     "pointCaps": [],
-    "warlordProhibitions": []
+    "warlordProhibitions": [],
+    "alliedMusters": [
+      {
+        "id": "cult-of-the-dark-gods-allied-muster",
+        "sourceRuleId": "army-rule-cult-of-the-dark-gods",
+        "unitIds": [
+          "unit-plague-marines",
+          "unit-noise-marines",
+          "unit-khorne-berzerkers",
+          "unit-rubric-marines"
+        ],
+        "keywordGrants": [
+          "HERETIC ASTARTES"
+        ],
+        "limits": [
+          {
+            "pointsLimit": 1000,
+            "maxPoints": 250
+          },
+          {
+            "pointsLimit": 2000,
+            "maxPoints": 500
+          },
+          {
+            "pointsLimit": 3000,
+            "maxPoints": 750
+          }
+        ]
+      }
+    ]
   }
 });
 window.WH_BOOK_ROSTER_ENHANCEMENTS=Object.freeze({

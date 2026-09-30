@@ -107,5 +107,13 @@ export function createEffectiveMfmArmyProjection(bookId){
     return [...result.values()].sort((a,b)=>edgeKey(a).localeCompare(edgeKey(b)));
   };
   const qualifierRecordsFor=(ownerKind,armyBookId,ownerId)=>clone(qualifierByOwner.get(`${ownerKind}\0${armyBookId}\0${ownerId}`)||[]);
-  return Object.freeze({bookId,sourceMetadata,pointsForArmyBook,deathGuardPoints,relationEdges,qualifierRecordsFor,referenceOnlyUnitRecords:clone(referenceOnlyUnitRecords.map(({point,reference})=>({mfmRecordId:point.id,label:point.label,unitReferenceId:reference.id,reason:reference.armyBinding.reason}))),boundUnitCount:boundUnitRecords.length,factionPointCount:factionPointIds.size});
+  const alliedUnitsForArmyBook=(consumerArmyBookId,unitIds)=>unitIds.map(unitId=>{
+    const candidates=catalog.unitReferences.filter(reference=>reference.armyBinding?.armyUnitId===unitId||reference.crossFactionDependency?.consumerArmyUnitId===unitId&&reference.crossFactionDependency.consumerArmyBookId===consumerArmyBookId);
+    if(candidates.length!==1)throw new Error(`${consumerArmyBookId}: allied MFM identity ${unitId} resolved ${candidates.length} times`);
+    const reference=candidates[0],point=catalog.unitPointRecords.find(item=>item.unitReferenceId===reference.id&&item.status==='CURRENT');
+    if(!point)throw new Error(`${consumerArmyBookId}: allied MFM identity ${unitId} has no current point schedule`);
+    const pointsSource=sourceMetadataFor(consumerArmyBookId);
+    return{id:unitId,unitId,title:point.label,sourceBookId:reference.factionId,sourceLayer:'centralized-mfm-allied-dependency',publicationState:'Current',points:flattenSchedule(reference.factionId,unitId,point.pointSchedules),paidWargear:(paidByPoint.get(point.id)||[]).map(item=>({name:armyPaidUpgradeLabel(item.label),value:item.value,modifiers:[]})),pointsSource,mfmRecordId:point.id,unitReferenceId:reference.id,publicationRecord:{id:unitId,title:point.label,status:'Current',sourceLayer:point.sourceGroup,points:flattenSchedule(reference.factionId,unitId,point.pointSchedules),paidWargear:[],pointsSource,mfmRecordId:point.id}};
+  });
+  return Object.freeze({bookId,sourceMetadata,pointsForArmyBook,alliedUnitsForArmyBook,deathGuardPoints,relationEdges,qualifierRecordsFor,referenceOnlyUnitRecords:clone(referenceOnlyUnitRecords.map(({point,reference})=>({mfmRecordId:point.id,label:point.label,unitReferenceId:reference.id,reason:reference.armyBinding.reason}))),boundUnitCount:boundUnitRecords.length,factionPointCount:factionPointIds.size});
 }

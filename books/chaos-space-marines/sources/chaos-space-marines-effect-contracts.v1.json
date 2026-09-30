@@ -5958,6 +5958,35 @@
       }
     ],
     "pointCaps": [],
+    "alliedMusters": [
+      {
+        "id": "cult-of-the-dark-gods-allied-muster",
+        "sourceRuleId": "army-rule-cult-of-the-dark-gods",
+        "unitIds": [
+          "unit-plague-marines",
+          "unit-noise-marines",
+          "unit-khorne-berzerkers",
+          "unit-rubric-marines"
+        ],
+        "keywordGrants": [
+          "HERETIC ASTARTES"
+        ],
+        "limits": [
+          {
+            "pointsLimit": 1000,
+            "maxPoints": 250
+          },
+          {
+            "pointsLimit": 2000,
+            "maxPoints": 500
+          },
+          {
+            "pointsLimit": 3000,
+            "maxPoints": 750
+          }
+        ]
+      }
+    ],
     "warlordProhibitions": []
   }
 }
