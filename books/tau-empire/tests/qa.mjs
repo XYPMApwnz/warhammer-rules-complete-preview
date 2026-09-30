@@ -13,7 +13,7 @@ const codex=json('content/tau-empire-codex-datasheets.en.json');
 const parity=json('content/tau-empire-codex-parity.en.json');
 const wargear=json('content/tau-empire-codex-wargear.en.json');
 const points=json('content/tau-empire-points.en.json');
-const mfm=json('sources/official-mfm-v1.4.json');
+const mfm=json('sources/official-mfm-v1.5.json');
 const relatedRules=json('content/tau-empire-related-rules.en.json');
 const manifest=json('sources/source-manifest.json');
 const config=json('book.config.json');
@@ -108,7 +108,7 @@ assert.equal(manifest.layers.find(layer=>layer.id==='faction-pack-v1.1')?.legalF
 assert.deepEqual([pack.detachments.length,pack.detachments.flatMap(item=>item.stratagems).length,pack.updates.length,pack.faqs.length],[3,7,25,2]);
 assert.deepEqual([codex.datasheets.length,codex.imperialArmour.length,codex.legends.length],[39,4,0]);
 assert.deepEqual([parity.detachments.length,parity.detachments.flatMap(item=>item.stratagems).length],[4,24]);
-assert.deepEqual([mfm.version,mfm.counts.currentUnits,mfm.counts.detachments,mfm.counts.enhancements],['v1.4',43,7,23]);
+assert.deepEqual([mfm.version,mfm.counts.currentUnits,mfm.counts.detachments,mfm.counts.enhancements],['v1.5',43,7,23]);
 assert.equal(wargear.units.length,39);
 assert.equal(points.units.length,39);
 assert.deepEqual([
@@ -242,4 +242,4 @@ assert.equal(stratagemTypes.size,31,'T’au Stratagem map must cover all rendere
 assert.equal([...stratagemTypes.values()].filter(type=>type==='unknown').length,7,'T’au must preserve seven source-untyped Stratagems as unknown');
 assert.equal([...stratagemTypes.values()].filter(type=>type!=='unknown').length,24,'T’au must preserve 24 source-typed Stratagems');
 assert.match(fs.readFileSync(new URL('../scripts/app.js',import.meta.url),'utf8'),/presentation\.decorate\(document\)/);
-console.log("T'au Empire QA passed: official v1.1 pack and v1.4 MFM, 43 current datasheets, 7 detachments, exact Wargear, Glossary and Related Rules contracts.");
+console.log("T'au Empire QA passed: official v1.1 pack and v1.5 MFM, 43 current datasheets, 7 detachments, exact Wargear, Glossary and Related Rules contracts.");

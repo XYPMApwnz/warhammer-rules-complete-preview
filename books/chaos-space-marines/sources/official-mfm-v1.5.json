@@ -1,0 +1,2735 @@
+{
+  "schema": "warhammer-mfm-live-capture/v1",
+  "title": "Munitorum Field Manual",
+  "edition": "Warhammer 40,000 11th Edition",
+  "factionId": "chaos-space-marines",
+  "factionLabel": "Chaos Space Marines",
+  "version": "v1.5",
+  "sourceUpdatedAt": "2026-09-30",
+  "capturedAt": "2026-09-30",
+  "currentnessCutoff": "2026-09-30",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+  "url": "https://mfm.warhammer-community.com/en/chaos-space-marines",
+  "currentnessEvidence": {
+    "downloadsUrl": "https://www.warhammer-community.com/en-gb/downloads/warhammer-40000/",
+    "downloadsUpdatedAt": "2026-09-30",
+    "liveVersion": "v1.5"
+  },
+  "rawArtifacts": [
+    {
+      "path": "official-mfm-v1.5.html",
+      "sha256": "6357DB9E76EB5B20B3CA9A3C0B767264DA56AD408CDB8F5BDBDEB57B2FDE9815",
+      "bytes": 434944,
+      "state": "CURRENT"
+    },
+    {
+      "path": "official-mfm-v1.5-legends.html",
+      "sha256": "8748740B64894D16B07092089378B38BE51CE74A56550593BED9796FDAD9FA6A",
+      "bytes": 451348,
+      "state": "LEGENDS_VISIBLE"
+    }
+  ],
+  "sourceGroups": [
+    "UNITS",
+    "LEGENDS"
+  ],
+  "counts": {
+    "currentUnits": 54,
+    "legendsUnits": 31,
+    "totalPricedUnits": 85,
+    "pointSchedules": 106,
+    "pointRows": 126,
+    "paidOptions": 3,
+    "leaderRecords": 28,
+    "leaderEdges": 70,
+    "supportRecords": 3,
+    "supportEdges": 9,
+    "detachments": 17,
+    "enhancements": 62,
+    "detachmentQualifierRecords": 2,
+    "enhancementQualifierRecords": 2
+  },
+  "units": [
+    {
+      "title": "ABADDON THE DESPOILER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 300
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS TERMINATOR SQUAD",
+          "CHOSEN"
+        ]
+      }
+    },
+    {
+      "title": "ACCURSED CULTISTS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "8 models",
+              "minModels": 8,
+              "maxModels": 8,
+              "value": 90
+            },
+            {
+              "sourceLabel": "16 models",
+              "minModels": 16,
+              "maxModels": 16,
+              "value": 185
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "8 models",
+              "minModels": 8,
+              "maxModels": 8,
+              "value": 110
+            },
+            {
+              "sourceLabel": "16 models",
+              "minModels": 16,
+              "maxModels": 16,
+              "value": 205
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS BIKERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 80
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 150
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS LAND RAIDER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 220
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 240
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS LORD",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 95
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHOSEN",
+          "LEGIONARIES",
+          "NEMESIS CLAW",
+          "RED CORSAIRS RAIDERS"
+        ]
+      }
+    },
+    {
+      "title": "CHAOS LORD IN TERMINATOR ARMOUR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 90
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS TERMINATOR SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "CHAOS LORD WITH JUMP PACK",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 85
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "RAPTORS"
+        ]
+      }
+    },
+    {
+      "title": "CHAOS PREDATOR ANNIHILATOR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 140
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 150
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS PREDATOR DESTRUCTOR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 145
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 155
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS RHINO",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 3RD UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 65
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 4TH + UNIT COSTS",
+          "minCopies": 4,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 75
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS SPAWN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS TERMINATOR SQUAD",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 185
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 370
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 215
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS VINDICATOR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 180
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 190
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHOSEN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 140
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 280
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 150
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 290
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CULTIST FIREBRAND",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 45
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 50
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ACCURSED CULTISTS",
+          "CULTIST MOB"
+        ]
+      }
+    },
+    {
+      "title": "CULTIST MOB",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 50
+            },
+            {
+              "sourceLabel": "20 models",
+              "minModels": 20,
+              "maxModels": 20,
+              "value": 90
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CYPHER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 95
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DARK APOSTLE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 70
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ACCURSED CULTISTS",
+          "CHOSEN",
+          "CULTIST MOB",
+          "LEGIONARIES",
+          "NEMESIS CLAW",
+          "RED CORSAIRS RAIDERS"
+        ]
+      }
+    },
+    {
+      "title": "DARK COMMUNE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 90
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 100
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ACCURSED CULTISTS",
+          "CULTIST MOB"
+        ]
+      }
+    },
+    {
+      "title": "DEFILER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST UNIT COSTS",
+          "minCopies": 1,
+          "maxCopies": 1,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 300
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 2ND + UNIT COSTS",
+          "minCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 350
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Heavy Reaper Autocannon",
+          "title": "Heavy Reaper Autocannon",
+          "value": 15,
+          "sourceGroup": "WARGEAR OPTIONS"
+        },
+        {
+          "sourceLabel": "per Hades Lascannon",
+          "title": "Hades Lascannon",
+          "value": 15,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "FABIUS BILE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 110
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ACCURSED CULTISTS",
+          "CHOSEN",
+          "CULTIST MOB",
+          "LEGIONARIES",
+          "RED CORSAIRS RAIDERS"
+        ]
+      }
+    },
+    {
+      "title": "FELLGOR BEASTMEN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "FORGEFIEND",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 155
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 165
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Ectoplasma cannon",
+          "title": "Ectoplasma cannon",
+          "value": 5,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "HAARKEN WORLDCLAIMER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 95
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "RAPTORS"
+        ]
+      }
+    },
+    {
+      "title": "HAVOCS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 135
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 145
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HELBRUTE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HELDRAKE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 175
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HERETIC ASTARTES DAEMON PRINCE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 155
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HERETIC ASTARTES DAEMON PRINCE WITH WINGS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 170
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HURON BLACKHEART",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 135
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS TERMINATOR SQUAD",
+          "CHOSEN",
+          "LEGIONARIES",
+          "RED CORSAIRS RAIDERS"
+        ]
+      }
+    },
+    {
+      "title": "KHORNE LORD OF SKULLS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST UNIT COSTS",
+          "minCopies": 1,
+          "maxCopies": 1,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 450
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 2ND + UNIT COSTS",
+          "minCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 475
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KRAVEK MORNE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 130
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS TERMINATOR SQUAD",
+          "MUTILATORS",
+          "OBLITERATORS"
+        ]
+      }
+    },
+    {
+      "title": "LEGIONARIES",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 95
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 180
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "LORD DISCORDANT ON HELSTALKER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 155
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "MASTER OF EXECUTIONS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 75
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "support": [
+          "CHOSEN",
+          "LEGIONARIES",
+          "NEMESIS CLAW",
+          "RED CORSAIRS RAIDERS"
+        ]
+      }
+    },
+    {
+      "title": "MASTER OF POSSESSION",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 65
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHOSEN",
+          "LEGIONARIES",
+          "NEMESIS CLAW",
+          "POSSESSED",
+          "RED CORSAIRS RAIDERS"
+        ]
+      }
+    },
+    {
+      "title": "MASTERS OF THE MAELSTROM",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 150
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "support": [
+          "CHOSEN",
+          "LEGIONARIES",
+          "RED CORSAIRS RAIDERS"
+        ]
+      }
+    },
+    {
+      "title": "MAULERFIEND",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "MUTILATORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 165
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 185
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "NEMESIS CLAW",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 105
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 190
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "NOCTILITH CROWN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "OBLITERATORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 160
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 170
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "POSSESSED",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 130
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 260
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 150
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 280
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RAPTORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 115
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 225
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 125
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 235
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RED CORSAIRS RAIDERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 120
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 220
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 130
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 230
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RED CORSAIRS REAVE-CAPTAIN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 65
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHOSEN",
+          "LEGIONARIES",
+          "NEMESIS CLAW",
+          "RED CORSAIRS RAIDERS"
+        ]
+      }
+    },
+    {
+      "title": "SORCERER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 65
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHOSEN",
+          "LEGIONARIES",
+          "NEMESIS CLAW",
+          "RED CORSAIRS RAIDERS"
+        ]
+      }
+    },
+    {
+      "title": "SORCERER IN TERMINATOR ARMOUR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 85
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS TERMINATOR SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "TRAITOR ENFORCER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 70
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "TRAITOR GUARDSMEN SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "TRAITOR GUARDSMEN SQUAD",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 65
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "VASHTORR THE ARKIFANE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 220
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "VENOMCRAWLER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 120
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 130
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "WARPSMITH",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 65
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHOSEN",
+          "HAVOCS",
+          "LEGIONARIES",
+          "NEMESIS CLAW",
+          "RED CORSAIRS RAIDERS"
+        ]
+      }
+    },
+    {
+      "title": "WARP TALONS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 130
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 290
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 140
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "BLOOD SLAUGHTERER",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 160
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS DEIMOS PREDATOR",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 115
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS LORD ON BIKE",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 95
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS BIKERS"
+        ]
+      }
+    },
+    {
+      "title": "CHAOS LORD ON DISC OF TZEENTCH",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 100
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHOSEN",
+          "LEGIONARIES"
+        ]
+      }
+    },
+    {
+      "title": "CHAOS LORD ON JUGGERNAUT",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 115
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS BIKERS"
+        ]
+      }
+    },
+    {
+      "title": "CHAOS LORD ON PALANQUIN OF NURGLE",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 90
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHOSEN",
+          "LEGIONARIES"
+        ]
+      }
+    },
+    {
+      "title": "CHAOS LORD ON STEED OF SLAANESH",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 100
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS BIKERS"
+        ]
+      }
+    },
+    {
+      "title": "CHAOS THUNDERHAWK",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 840
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CULTIST MOB WITH FIREARMS",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 50
+            },
+            {
+              "sourceLabel": "20 models",
+              "minModels": 20,
+              "maxModels": 20,
+              "value": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DECIMATOR",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 165
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DREADCLAW DROP POD",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 115
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "EXALTED CHAMPION",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 70
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "support": [
+          "CHOSEN",
+          "LEGIONARIES"
+        ]
+      }
+    },
+    {
+      "title": "GELLERPOX INFECTED",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "7 models",
+              "minModels": 7,
+              "maxModels": 7,
+              "value": 125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "GREATER BLIGHT DRONE",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 150
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "GREATER BRASS SCORPION",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HELL BLADE",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 115
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HELL TALON",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 140
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KHARYBDIS ASSAULT CLAW",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KYTAN RAVAGER",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "MUTOID VERMIN",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "16 models",
+              "minModels": 16,
+              "maxModels": 16,
+              "value": 85
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "NEGAVOLT CULTISTS",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "4 models",
+              "minModels": 4,
+              "maxModels": 4,
+              "value": 55
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RENEGADE ENFORCER",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 65
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "RENEGADE HEAVY WEAPONS SQUAD",
+          "TRAITOR GUARDSMEN SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "RENEGADE HEAVY WEAPONS SQUAD",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 75
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RENEGADE OGRYN BEAST HANDLER",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "4 models",
+              "minModels": 4,
+              "maxModels": 4,
+              "value": 40
+            },
+            {
+              "sourceLabel": "7 models",
+              "minModels": 7,
+              "maxModels": 7,
+              "value": 70
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RENEGADE OGRYN BRUTES",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 95
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RENEGADE PLAGUE OGRYNS",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 95
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ROGUE PSYKER",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ACCURSED CULTISTS",
+          "CULTIST MOB",
+          "CULTIST MOB WITH FIREARMS",
+          "NEGAVOLT CULTISTS"
+        ]
+      }
+    },
+    {
+      "title": "SORCERER ON BIKE",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 75
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS BIKERS"
+        ]
+      }
+    },
+    {
+      "title": "SORCERER ON DISC OF TZEENTCH",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHOSEN",
+          "LEGIONARIES"
+        ]
+      }
+    },
+    {
+      "title": "SORCERER ON PALANQUIN OF NURGLE",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHOSEN",
+          "LEGIONARIES"
+        ]
+      }
+    },
+    {
+      "title": "SORCERER ON STEED OF SLAANESH",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 85
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS BIKERS"
+        ]
+      }
+    }
+  ],
+  "detachments": [
+    {
+      "title": "CABAL OF CHAOS",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Conduit of Chaos",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Touched by the Warp",
+          "value": 10,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "CHAOS CULT",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Amulet of Tainted Vigour",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Cultist’s Brand",
+          "value": 30,
+          "qualifiers": []
+        },
+        {
+          "title": "Incendiary Goad",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Warped Foresight",
+          "value": 10,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "CREATIONS OF BILE",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "TAKE AND HOLD",
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Helm of All-Seeing",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Living Carapace",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Prime Test Subject",
+          "value": 35,
+          "qualifiers": []
+        },
+        {
+          "title": "Surgical Precision",
+          "value": 10,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "CULT OF THE ARKIFANE",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Crown of Worms",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Cybinfernal Font",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Mark of the Soul Forges",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Wyredjinn",
+          "value": 25,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "DECEPTORS",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Cursed Fang",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Falsehood",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Shroud of Obfuscation",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Soul Link",
+          "value": 5,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "DEVOTEES OF DESTRUCTION",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Eye of Oblivion",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Pact of Destruction",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "DREAD TALONS",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Eater of Dread",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Night’s Shroud",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Warp-Fuelled Thrusters",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Willbreaker",
+          "value": 10,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "FELLHAMMER SIEGE-HOST",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "TAKE AND HOLD"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Bastion Plate",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Iron Artifice",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Ironbound Enmity",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Warp Tracer",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "HURON’S MARAUDERS",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "DISRUPTION",
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Dread Reputation",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Eager for Bloodshed",
+          "value": 30,
+          "qualifiers": []
+        },
+        {
+          "title": "Raid Leader",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Voice of the Tyrant",
+          "value": 25,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "MURDERTALON RAIDERS",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [
+        {
+          "kind": "UNIQUE",
+          "value": "NIGHTMARE"
+        }
+      ],
+      "enhancements": [
+        {
+          "title": "Pact of Cursed Pinions",
+          "value": 20,
+          "qualifiers": [
+            {
+              "kind": "LEADER",
+              "values": [
+                "WARP TALONS"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Shadowcowl Talisman",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "NIGHTMARE HUNT",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [
+        {
+          "kind": "UNIQUE",
+          "value": "NIGHTMARE"
+        }
+      ],
+      "enhancements": [
+        {
+          "title": "Greyveil Hex",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Sorrowscent Vulture",
+          "value": 35,
+          "qualifiers": [
+            {
+              "kind": "LEADER",
+              "values": [
+                "WARP TALONS"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Terrorglut Parasite",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Warp-Fuelled Thrusters",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "PACTBOUND ZEALOTS",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "DISRUPTION",
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Eye of Tzeentch",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Intoxicating Elixir",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Orbs of Unlife",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Talisman of Burning Blood",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "RENEGADE RAIDERS",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "PRIORITY ASSETS",
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Despot’s Claim",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Dread Reaver",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Mark of the Hound",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Tyrant’s Lash",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "RENEGADE WARBAND",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Empyric Symbiote",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Eyes of the Hunter",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Fratricidal Trophies",
+          "value": 5,
+          "qualifiers": []
+        },
+        {
+          "title": "Weaponised Hatred",
+          "value": 35,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "SOULFORGED WARPACK",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "TAKE AND HOLD"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Forge’s Blessing",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Invigorated Mechatendrils",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Soul Harvester",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Tempting Addendum",
+          "value": 40,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "VETERANS OF THE LONG WAR",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "TAKE AND HOLD"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Eager for Vengeance",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Eye of Abaddon",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Mark of Legend",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Warmaster’s Gift",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "WARPSTRIKE CHAMPIONS",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Akshur’s Binding Runes",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Eye of the Warp",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Infernal Fulgurite",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Tzagulla",
+          "value": 25,
+          "qualifiers": []
+        }
+      ]
+    }
+  ],
+  "captureSha256": "3DAF4DC7E0053AB48E43E19C49B9E2399A03FF5E292C0576379936FDD9A93248"
+}

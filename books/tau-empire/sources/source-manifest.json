@@ -335,9 +335,9 @@
     {
       "id": "tau-empire-mfm-v1.4",
       "sourceId": "tau-empire-mfm-v1.4",
-      "active": true,
+      "active": false,
       "sourceType": "official-web-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "title": "Munitorum Field Manual v1.4 current official capture",
       "authority": "official-live-mfm",
       "version": "v1.4",
@@ -399,6 +399,41 @@
       "paths": [
         "books/tau-empire/sources/waha-11e-current-2026-09-28/corpus.json",
         "books/tau-empire/sources/waha-11e-current-2026-09-28/source-defects.json"
+      ]
+    },
+    {
+      "id": "tau-empire-mfm-v1.5",
+      "sourceId": "tau-empire-mfm-v1.5",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.5 current official capture",
+      "authority": "official-live-mfm",
+      "version": "v1.5",
+      "updated": "2026-09-30",
+      "capturedAt": "2026-09-30",
+      "currentnessCutoff": "2026-09-30",
+      "url": "https://mfm.warhammer-community.com/en/tau-empire",
+      "role": "current-points-and-eligibility-owner",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules",
+        "paid-wargear",
+        "enhancement-prices",
+        "leader-eligibility",
+        "support-eligibility",
+        "detachment-points",
+        "force-dispositions",
+        "qualifier-tags",
+        "legends-pricing"
+      ],
+      "consumers": [
+        "SOURCE_FRESHNESS"
+      ],
+      "paths": [
+        "books/tau-empire/sources/official-mfm-v1.5.json",
+        "books/tau-empire/sources/official-mfm-v1.5.html",
+        "books/tau-empire/sources/official-mfm-v1.5-legends.html"
       ]
     }
   ],

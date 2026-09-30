@@ -14,7 +14,7 @@ export async function loadEffectivePointsProjection(root,bookId){
 }
 
 const unitRecord=unit=>({...unit.publicationRecord,wargear:unit.paidWargear||[],...(unit.compatibleChapterKeywords?.length?{compatibleChapterKeywords:[...unit.compatibleChapterKeywords]}:{}),...unit.ruleProfile,points:unit.points});
-const detachmentRecord=item=>{const source=item.publicationRecord||{};return{id:item.id,title:source.title||item.title,detachmentPoints:item.detachmentPoints,forceDisposition:source.forceDisposition||source.disposition||item.forceDisposition||''};};
+const detachmentRecord=item=>{const source=item.publicationRecord||{};return{id:item.id,title:source.title||item.title,detachmentPoints:item.detachmentPoints,forceDispositions:source.forceDispositions||item.forceDispositions||[source.forceDisposition||source.disposition||item.forceDisposition].filter(Boolean),forceDispositionIds:source.forceDispositionIds||item.forceDispositionIds||[],mfmForceDispositionIds:source.mfmForceDispositionIds||item.mfmForceDispositionIds||[],missionForceDispositionIds:source.missionForceDispositionIds||item.missionForceDispositionIds||[],forceDisposition:source.forceDisposition||source.disposition||item.forceDisposition||''};};
 const identityRecord=item=>({...item.publicationRecord,...item.compatibilityIdentity});
 const groupedEnhancements=(items,recordOf,aliasesOf=()=>[])=>{
   const groups=new Map();

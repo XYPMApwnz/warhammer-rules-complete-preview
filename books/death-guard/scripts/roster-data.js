@@ -171,6 +171,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-mortarion-selection-lantern",
@@ -481,6 +482,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-typhus-selection-lakrimae-strike",
@@ -722,6 +724,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-biologus-putrifier-selection-hyper-blight-grenades",
@@ -950,6 +953,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-daemon-prince-of-nurgle-selection-infernal-cannon",
@@ -1203,6 +1207,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-daemon-prince-of-nurgle-with-wings-selection-infernal-cannon",
@@ -1469,6 +1474,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-foul-blightspawn-selection-plague-sprayer",
@@ -1679,6 +1685,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-icon-bearer-selection-boltgun",
@@ -1893,6 +1900,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-lord-of-contagion-selection-manreaper-strike",
@@ -2124,6 +2132,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-lord-of-poxes-selection-plasma-pistol-standard",
@@ -2390,6 +2399,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-lord-of-virulence-selection-twin-plague-spewer",
@@ -2600,6 +2610,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-malignant-plaguecaster-selection-bolt-pistol",
@@ -2906,6 +2917,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-noxious-blightbringer-selection-plasma-pistol-standard",
@@ -3168,6 +3180,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-plague-surgeon-selection-bolt-pistol",
@@ -3375,6 +3388,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-tallyman-selection-plasma-pistol-standard",
@@ -3745,6 +3759,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-plague-marines-selection-blight-launcher",
@@ -4733,6 +4748,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-blightlord-terminators-selection-blight-launcher",
@@ -5358,6 +5374,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-deathshroud-terminators-selection-plaguespurt-gauntlet",
@@ -5729,6 +5746,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-poxwalkers-selection-improvised-weapon",
@@ -5876,6 +5894,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-spawn-selection-hideous-mutations",
@@ -6038,6 +6057,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-land-raider-selection-combi-bolter",
@@ -6414,6 +6434,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-predator-annihilator-selection-combi-bolter",
@@ -6849,6 +6870,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-predator-destructor-selection-combi-bolter",
@@ -7299,6 +7321,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-defiler-selection-ectoplasma-destructor",
@@ -8032,6 +8055,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-foetid-bloat-drone-selection-plaguespitter",
@@ -8288,6 +8312,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-foetid-bloat-drone-with-heavy-blight-launcher-selection-heavy-blight-launcher",
@@ -8485,6 +8510,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-helbrute-selection-combi-bolter",
@@ -9230,6 +9256,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-myphitic-blight-hauler-selection-bile-spurt",
@@ -9526,6 +9553,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-plagueburst-crawler-selection-entropy-cannon",
@@ -9910,6 +9938,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-chaos-rhino-selection-combi-bolter",
@@ -10261,6 +10290,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-miasmic-malignifier-selection-miasmic-gouts",
@@ -10417,6 +10447,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-beasts-of-nurgle-selection-putrid-appendages",
@@ -10603,6 +10634,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-great-unclean-one-selection-plague-flail",
@@ -11003,6 +11035,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-nurglings-selection-diseased-claws-and-teeth",
@@ -11176,6 +11209,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-plague-drones-selection-deaths-heads",
@@ -11539,6 +11573,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-plaguebearers-selection-plaguesword",
@@ -11841,6 +11876,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             ]
           }
         ],
+        "compositionRules": [],
         "selections": [
           {
             "id": "unit-rotigus-selection-streams-of-brackish-filth",

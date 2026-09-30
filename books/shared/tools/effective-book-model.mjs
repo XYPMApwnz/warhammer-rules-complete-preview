@@ -202,7 +202,7 @@ function validateProjection(model,dependencyIds,unitIds,detachmentIds,enhancemen
   for(const item of projection.detachments){
     const modelItem=detachmentById.get(item.id);
     if(item.title!==modelItem.title||item.sourceBookId!==modelItem.sourceBookId)throw new Error(`${item.id}: conflicting Detachment identity partitions`);
-    if(item.detachmentPoints!==modelItem.detachmentPoints||item.forceDisposition!==modelItem.forceDisposition)throw new Error(`${item.id}: conflicting Detachment facts partitions`);
+    if(item.detachmentPoints!==modelItem.detachmentPoints||!sameFact(item.forceDispositions??(item.forceDisposition?[item.forceDisposition]:[]),modelItem.forceDispositions??(modelItem.forceDisposition?[modelItem.forceDisposition]:[])))throw new Error(`${item.id}: conflicting Detachment facts partitions`);
   }
   const enhancementById=new Map(model.enhancements.map(item=>[`${item.detachmentId}\0${item.id}`,item]));
   for(const item of projection.enhancements){
@@ -284,7 +284,8 @@ export function validateEffectiveBookModel(model){
     text(detachment.title,`${detachment.id}.title`);canonicalId(detachment.sourceBookId,`${detachment.id}.sourceBookId`);
     if(!allowedOwners.has(detachment.sourceBookId))throw new Error(`${detachment.id}: unknown source owner ${detachment.sourceBookId}`);
     finite(detachment.detachmentPoints,`${detachment.id}.detachmentPoints`);
-    if(detachment.forceDisposition!=null&&typeof detachment.forceDisposition!=='string')throw new Error(`${detachment.id}.forceDisposition must be a string`);
+    const forceDispositions=detachment.forceDispositions??(detachment.forceDisposition?[detachment.forceDisposition]:[]);
+    if(!Array.isArray(forceDispositions)||forceDispositions.length===0||forceDispositions.some(value=>typeof value!=='string'||!value)||new Set(forceDispositions).size!==forceDispositions.length)throw new Error(`${detachment.id}.forceDispositions must be non-empty and duplicate-free`);
   }
   for(const enhancement of enhancements){
     text(enhancement.title,`${enhancement.id}.title`);canonicalId(enhancement.sourceBookId,`${enhancement.id}.sourceBookId`);

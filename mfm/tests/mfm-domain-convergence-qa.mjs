@@ -24,7 +24,7 @@ const readJson = relative => JSON.parse(fs.readFileSync(path.join(ROOT, relative
 const clone = value => structuredClone(value);
 const sourceKey = (...parts) => parts.join('\0');
 
-const registry = readJson('mfm/content/mfm-v1.4.identity-registry.json');
+const registry = readJson('mfm/content/mfm-v1.5-scoped.identity-registry.json');
 validateMfmIdentityRegistry(registry);
 const canonical = createCanonicalMfmFacts({repoRoot: ROOT, identityRegistry: registry});
 validateCanonicalMfmFacts(canonical);
@@ -54,7 +54,7 @@ for (const record of records) {
 }
 
 const byFaction = new Map(FACTIONS.map(faction => [faction, {
-  capture: readJson(`books/${faction}/sources/official-mfm-v1.4.json`),
+  capture: readJson(registry.factionBindings.find(binding => binding.factionId === faction).sourceCapturePath),
   binding: registry.factionBindings.find(binding => binding.factionId === faction)
 }]));
 assert.equal(registry.factionBindings.length, 9);
@@ -80,14 +80,15 @@ let sourceGroupCount = 0;
 for (const [factionId, {capture, binding}] of byFaction) {
   assert.ok(binding, `${factionId}: missing identity binding`);
   assert.equal(capture.factionId, factionId);
-  assert.equal(capture.version, 'v1.4');
+  const migrated=!['space-marines','dark-angels','blood-angels'].includes(factionId);
+  assert.equal(capture.version, migrated?'v1.5':'v1.4');
   assert.equal(capture.currentness, 'CURRENT');
-  assert.equal(capture.currentnessCutoff, '2026-09-22');
+  assert.equal(capture.currentnessCutoff, migrated?'2026-09-30':'2026-09-22');
   assert.equal(capture.captureSha256, binding.sourceCaptureSha256);
   const snapshot = canonical.sourceSnapshots.find(item => item.factionId === factionId);
   assert.ok(snapshot);
   assert.equal(snapshot.captureSha256, capture.captureSha256);
-  assert.equal(snapshot.sourceId, `${factionId}-mfm-v1.4`);
+  assert.equal(snapshot.sourceId, `${factionId}-mfm-${migrated?'v1.5':'v1.4'}`);
 
   const groups = new Set(capture.sourceGroups);
   assert.equal(groups.size, capture.sourceGroups.length, `${factionId}: duplicate declared pricing group`);
@@ -179,7 +180,7 @@ for (const [factionId, {capture, binding}] of byFaction) {
     assert.ok(detachment);
     assert.equal(detachment.factionId, factionId);
     assert.equal(detachment.detachmentPoints, sourceDetachment.detachmentPoints);
-    assert.equal(detachment.forceDispositionId, FORCE_DISPOSITION_ID.get(sourceDetachment.forceDisposition));
+    assert.deepEqual(detachment.forceDispositionIds,[...(sourceDetachment.forceDispositions??[sourceDetachment.forceDisposition])].map(value=>FORCE_DISPOSITION_ID.get(value)));
     assert.deepEqual(
       canonical.qualifierRecords.filter(item => item.ownerId === detachment.id).map(item => [item.kind, item.values]).sort(),
       sourceDetachment.qualifiers.map(item => [item.kind, [item.value]]).sort(),
@@ -209,8 +210,8 @@ assert.deepEqual(canonical.declaredCounts, {
   pricingGroups: 29,
   unitReferences: 745,
   unitPointRecords: 699,
-  pointSchedules: 900,
-  pointRows: 1137,
+  pointSchedules: 902,
+  pointRows: 1142,
   paidUpgradeRecords: 35,
   leaderEligibilityRecords: 148,
   leaderEdges: 653,
@@ -229,8 +230,8 @@ assert.deepEqual(canonical.declaredCounts, {
 });
 assert.equal(sourceGroupCount, 27);
 assert.equal(sourceUnitCount, 697);
-assert.equal(sourceSchedules, 897);
-assert.equal(sourceRows, 1131);
+assert.equal(sourceSchedules, 899);
+assert.equal(sourceRows, 1136);
 assert.equal(sourcePaid, 35);
 assert.equal(sourceLeaderRecords, 148);
 assert.equal(sourceLeaderEdges, 652);
@@ -247,8 +248,8 @@ const current = createEffectiveMfmCatalog({canonicalFacts: canonical});
 assert.equal(JSON.stringify(canonical), canonicalBefore, 'effective assembly must not mutate canonical facts');
 assert.equal(current.catalog.scope, MFM_SCOPES.CURRENT);
 assert.equal(current.catalog.unitPointRecords.length, 546);
-assert.equal(current.catalog.unitPointRecords.reduce((sum, item) => sum + item.pointSchedules.length, 0), 747);
-assert.equal(current.catalog.unitPointRecords.reduce((sum, item) => sum + item.pointSchedules.reduce((inner, schedule) => inner + schedule.entries.length, 0), 0), 959);
+assert.equal(current.catalog.unitPointRecords.reduce((sum, item) => sum + item.pointSchedules.length, 0), 749);
+assert.equal(current.catalog.unitPointRecords.reduce((sum, item) => sum + item.pointSchedules.reduce((inner, schedule) => inner + schedule.entries.length, 0), 0), 964);
 assert.equal(current.catalog.paidUpgradeRecords.length, 35);
 assert.equal(current.catalog.leaderEligibilityRecords.length, 120);
 assert.equal(current.catalog.leaderEligibilityRecords.reduce((sum, item) => sum + item.targetUnitReferenceIds.length, 0), 565);
@@ -281,8 +282,8 @@ assert.deepEqual(
   'display labels cannot authorize Leader joins'
 );
 assert.deepEqual(
-  renamedCurrent.catalog.detachments.map(item => [item.id, item.detachmentPoints, item.forceDispositionId]),
-  current.catalog.detachments.map(item => [item.id, item.detachmentPoints, item.forceDispositionId]),
+  renamedCurrent.catalog.detachments.map(item => [item.id, item.detachmentPoints, item.forceDispositionIds]),
+  current.catalog.detachments.map(item => [item.id, item.detachmentPoints, item.forceDispositionIds]),
   'display labels cannot authorize Detachment facts'
 );
 

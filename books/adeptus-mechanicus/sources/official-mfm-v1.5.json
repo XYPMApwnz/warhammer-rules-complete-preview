@@ -1,0 +1,1397 @@
+{
+  "schema": "warhammer-mfm-live-capture/v1",
+  "title": "Munitorum Field Manual",
+  "edition": "Warhammer 40,000 11th Edition",
+  "factionId": "adeptus-mechanicus",
+  "factionLabel": "Adeptus Mechanicus",
+  "version": "v1.5",
+  "sourceUpdatedAt": "2026-09-30",
+  "capturedAt": "2026-09-30",
+  "currentnessCutoff": "2026-09-30",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+  "url": "https://mfm.warhammer-community.com/en/adeptus-mechanicus",
+  "currentnessEvidence": {
+    "downloadsUrl": "https://www.warhammer-community.com/en-gb/downloads/warhammer-40000/",
+    "downloadsUpdatedAt": "2026-09-30",
+    "liveVersion": "v1.5"
+  },
+  "rawArtifacts": [
+    {
+      "path": "official-mfm-v1.5.html",
+      "sha256": "8EB794DC211C92B878A16EF804B435C0C5B3221CC0693EEF97484D86CF762CAE",
+      "bytes": 350106,
+      "state": "CURRENT"
+    },
+    {
+      "path": "official-mfm-v1.5-legends.html",
+      "sha256": "E5C16A8096840F8872F3A89D24F5B0FC9E9A60D1EF0AF9B739921FCD92581275",
+      "bytes": 352072,
+      "state": "LEGENDS_VISIBLE"
+    }
+  ],
+  "sourceGroups": [
+    "UNITS",
+    "LEGENDS"
+  ],
+  "counts": {
+    "currentUnits": 34,
+    "legendsUnits": 4,
+    "totalPricedUnits": 38,
+    "pointSchedules": 48,
+    "pointRows": 74,
+    "paidOptions": 2,
+    "leaderRecords": 3,
+    "leaderEdges": 24,
+    "supportRecords": 3,
+    "supportEdges": 14,
+    "detachments": 10,
+    "enhancements": 34,
+    "detachmentQualifierRecords": 2,
+    "enhancementQualifierRecords": 0
+  },
+  "units": [
+    {
+      "title": "ARCHAEOPTER FUSILAVE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 160
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ARCHAEOPTER STRATORAPTOR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 185
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ARCHAEOPTER TRANSVECTOR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 145
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "BELISARIUS CAWL",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 220
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CORPUSCARII ELECTRO-PRIESTS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 60
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 120
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CYBERNETICA DATASMITH",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 20
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "support": [
+          "KASTELAN ROBOTS"
+        ]
+      }
+    },
+    {
+      "title": "FULGURITE ELECTRO-PRIESTS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 65
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 130
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HASTARII EXTERMINATORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 100
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 115
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HASTARII FUSILIERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 105
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 120
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "IRONSTRIDER BALLISTARII",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 160
+            },
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 250
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 95
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 175
+            },
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 265
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Twin Cognis Lascannon",
+          "title": "Twin Cognis Lascannon",
+          "value": 10,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "KASTELAN ROBOTS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 150
+            },
+            {
+              "sourceLabel": "4 models",
+              "minModels": 4,
+              "maxModels": 4,
+              "value": 300
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 180
+            },
+            {
+              "sourceLabel": "4 models",
+              "minModels": 4,
+              "maxModels": 4,
+              "value": 330
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KATAPHRON BREACHERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 140
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 290
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KATAPHRON DESTROYERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 100
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ONAGER DUNECRAWLER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 150
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "PTERAXII SKYSTALKERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 75
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 150
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 85
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 160
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "PTERAXII STERYLIZORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 75
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 150
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 85
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 160
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SERBERYS RAIDERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 60
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 105
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SERBERYS SULPHURHOUNDS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 55
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 95
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SERVITOR BATTLECLADE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "9 models",
+              "minModels": 9,
+              "maxModels": 9,
+              "value": 75
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "9 models",
+              "minModels": 9,
+              "maxModels": 9,
+              "value": 85
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SICARIAN INFILTRATORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 75
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 155
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 85
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 165
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SICARIAN RUSTSTALKERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 75
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 160
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 85
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 170
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SKITARII MARSHAL",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 35
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "support": [
+          "HASTARII EXTERMINATORS",
+          "HASTARII FUSILIERS",
+          "SKITARII RANGERS",
+          "SKITARII VANGUARD"
+        ]
+      }
+    },
+    {
+      "title": "SKITARII RANGERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 85
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SKITARII VANGUARD",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 85
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SKORPIUS DISINTEGRATOR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 160
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Ferrumite cannon",
+          "title": "Ferrumite cannon",
+          "value": 10,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "SKORPIUS DUNERIDER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 3RD UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 75
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 4TH + UNIT COSTS",
+          "minCopies": 4,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 85
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SYDONIAN DRAGOONS WITH RADIUM JEZZAILS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 55
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 95
+            },
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 140
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SYDONIAN DRAGOONS WITH TASER LANCES",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 120
+            },
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 170
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SYDONIAN SKATROS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 45
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "TECHNOARCHEOLOGIST",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 45
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "support": [
+          "CORPUSCARII ELECTRO-PRIESTS",
+          "FULGURITE ELECTRO-PRIESTS",
+          "HASTARII EXTERMINATORS",
+          "HASTARII FUSILIERS",
+          "KATAPHRON BREACHERS",
+          "KATAPHRON DESTROYERS",
+          "SERVITOR BATTLECLADE",
+          "SKITARII RANGERS",
+          "SKITARII VANGUARD"
+        ]
+      }
+    },
+    {
+      "title": "TECH-PRIEST DOMINUS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CORPUSCARII ELECTRO-PRIESTS",
+          "FULGURITE ELECTRO-PRIESTS",
+          "HASTARII EXTERMINATORS",
+          "HASTARII FUSILIERS",
+          "KATAPHRON BREACHERS",
+          "KATAPHRON DESTROYERS",
+          "SERVITOR BATTLECLADE",
+          "SKITARII RANGERS",
+          "SKITARII VANGUARD"
+        ]
+      }
+    },
+    {
+      "title": "TECH-PRIEST ENGINSEER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 55
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CORPUSCARII ELECTRO-PRIESTS",
+          "FULGURITE ELECTRO-PRIESTS",
+          "KATAPHRON BREACHERS",
+          "KATAPHRON DESTROYERS",
+          "SKITARII RANGERS",
+          "SKITARII VANGUARD"
+        ]
+      }
+    },
+    {
+      "title": "TECH-PRIEST MANIPULUS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CORPUSCARII ELECTRO-PRIESTS",
+          "FULGURITE ELECTRO-PRIESTS",
+          "HASTARII EXTERMINATORS",
+          "HASTARII FUSILIERS",
+          "KATAPHRON BREACHERS",
+          "KATAPHRON DESTROYERS",
+          "SERVITOR BATTLECLADE",
+          "SKITARII RANGERS",
+          "SKITARII VANGUARD"
+        ]
+      }
+    },
+    {
+      "title": "THULIA GHULD",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 180
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SECUTARII HOPLITES",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 65
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 130
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SECUTARII PELTASTS",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 50
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "TERRAX-PATTERN TERMITE",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "X-101",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 40
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "detachments": [
+    {
+      "title": "COHORT ACQUISITUS",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Explorator Dispensation",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Stealth-screened Cybercanids (Upgrade)",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "COHORT CYBERNETICA",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "TAKE AND HOLD"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Arch-negator",
+          "value": 5,
+          "qualifiers": []
+        },
+        {
+          "title": "Emotionless Clarity",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Lord of Machines",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Necromechanic",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "DATA-PSALM CONCLAVE",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [
+        {
+          "kind": "UNIQUE",
+          "value": "DATA-PSALM"
+        }
+      ],
+      "enhancements": [
+        {
+          "title": "Data-blessed Autosermon",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Mantle of the Gnosticarch",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Mechanicus Locum",
+          "value": 5,
+          "qualifiers": []
+        },
+        {
+          "title": "Temporcopia",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "ERADICATION COHORT",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Belicosa-class Capacitor Vanes",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Martial Signatum Amplificator",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Omnicogitator",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Omnissiah’s Fury",
+          "value": 10,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "EXPLORATOR MANIPLE",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Artisan",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Genetor",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Logis",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Magos",
+          "value": 10,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "HALOSCREED BATTLE CLADE",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "PRIORITY ASSETS",
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Cognitive Reinforcement",
+          "value": 30,
+          "qualifiers": []
+        },
+        {
+          "title": "Inloaded Lethality",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Sanctified Ordnance",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Transoracular Dyad Wafers",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "LORDS OF THE FORGE",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "TL-4ø9",
+          "value": 30,
+          "qualifiers": []
+        },
+        {
+          "title": "Vingh’s Wafers of Dynamism",
+          "value": 25,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "LUMINEN AUTO-CHOIR",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [
+        {
+          "kind": "UNIQUE",
+          "value": "DATA-PSALM"
+        }
+      ],
+      "enhancements": [
+        {
+          "title": "Electromiasmic Brazier",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Voltagheist Reliquary",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "RAD-ZONE CORPS",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "TAKE AND HOLD"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Autoclavic Denunciation",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Malphonic Susurrus",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Peerless Eradicator",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Radial Suffusion",
+          "value": 25,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "SKITARII HUNTER COHORT",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Battle-sphere Uplink",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Cantic Thrallnet",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Clandestine Infiltrator",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Veiled Hunter",
+          "value": 10,
+          "qualifiers": []
+        }
+      ]
+    }
+  ],
+  "captureSha256": "DD527EBC90E8DC372CEA1C25D9D45F93E540216766915094C5D935F2643D9CB7"
+}

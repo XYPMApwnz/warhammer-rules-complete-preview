@@ -77,7 +77,7 @@ assert.ok(published.includes('Virulent Vectorium - Worldblight:')&&published.inc
 assert.ok(published.includes('If it does, after the attacking unit has finished making its attacks'));
 assert.equal(ledger.updates.length,10);
 assert.ok(ledger.updates.every(update=>update.source.documentId==='death-guard-faction-pack-v1.2'));
-assert.equal(content.audit.currentMFM,'v1.4');
+assert.equal(content.audit.currentMFM,'v1.5');
 const currentMfm=readJson('death-guard/sources/official-mfm-v1.4.json');
 assert.equal(currentMfm.version,'v1.4');
 assert.equal(currentMfm.currentness,'CURRENT');

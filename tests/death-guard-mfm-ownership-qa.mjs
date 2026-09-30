@@ -23,9 +23,9 @@ const ownedSnapshot=book=>({
   enhancements:[...enhancementBlocks(book)].map(([id,item])=>({id,title:item.title}))
 });
 
-assert.equal(points.source.version,'v1.4','current centralized MFM source');
+assert.equal(points.source.version,'v1.5','current centralized MFM source');
 assert.deepEqual(points.counts,{units:36,detachments:9,enhancements:30,pricedOptions:2},'centralized DG inventory');
-assert.equal(points.units.reduce((total,item)=>total+item.points.length,0),57,'structured point schedules');
+assert.equal(points.units.reduce((total,item)=>total+item.points.length,0),60,'structured point schedules');
 assert.equal(points.units.reduce((total,item)=>total+item.paidWargear.length,0),2,'paid-upgrade inventory');
 for(const item of [...points.units,...points.detachments,...points.enhancements])assert.ok(item.mfmRecordId,`missing stable MFM record ID for ${item.id||item.unitId}`);
 for(const item of points.units.flatMap(unit=>unit.paidWargear))assert.ok(item.mfmRecordId,'paid upgrade must have a stable MFM record ID');

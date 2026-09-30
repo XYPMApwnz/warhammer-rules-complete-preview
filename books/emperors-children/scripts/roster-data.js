@@ -8988,11 +8988,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "mfm-enhancement-c96e91c539b4419f"
           ],
           "provenance": {
-            "sourceId": "emperors-children-mfm-v1.4",
-            "sourceVersion": "v1.4",
+            "sourceId": "emperors-children-mfm-v1.5",
+            "sourceVersion": "v1.5",
             "currentness": "CURRENT",
-            "currentnessCutoff": "2026-09-22",
-            "sourceCaptureSha256": "C25ED3C996914E2AB9FCDC5A35A01BF89149A8AA4E1F39A2E42CA48AA2103D8B",
+            "currentnessCutoff": "2026-09-30",
+            "sourceCaptureSha256": "86CABD0577314F555E0C4ADF27B3AF1F580F9EC1BD4896228AB12D3C4D845BC4",
             "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
             "sourceLocator": {
               "partition": "detachments.enhancements.qualifiers",

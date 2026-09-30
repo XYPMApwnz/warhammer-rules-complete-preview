@@ -8,7 +8,7 @@ const scope={window:{}};vm.createContext(scope);
 for(const file of ['books/shared/rule-facts.js','roster-guides/points-data.js','roster-guides/points-validator.js'])vm.runInContext(fs.readFileSync(file,'utf8'),scope,{filename:file});
 const {WH_POINTS_CATALOG,WHRosterPoints}=scope.window,faction='tyranids',catalog=WH_POINTS_CATALOG[faction],effective=createEffectiveMfmArmyProjection(faction).pointsForArmyBook(faction);
 const sha=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
-assert.equal(sha(effective),'0b1739aba15d104d4cb394daf1416b14dd0c4892fd0df062c4900ee40b6739c8','central Tyranids MFM facts changed');
+assert.equal(sha(effective),'4e55de4e60549f2ef56870ccb9c1f65607cdf2d6700a816ca9a3eb7ba9b073d8','central Tyranids MFM facts changed');
 assert.equal(effective.enhancements.length,34,'current Tyranids MFM Enhancement denominator');
 const enhancements=new Map(Object.values(catalog.enhancements).map(item=>[item.id,item]));
 assert.equal(enhancements.size,34,'points consumer must expose 34 canonical Enhancements');

@@ -345,9 +345,9 @@
     {
       "id": "tyranids-mfm-v1.4",
       "sourceId": "tyranids-mfm-v1.4",
-      "active": true,
+      "active": false,
       "sourceType": "official-web-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "title": "Munitorum Field Manual v1.4 current official capture",
       "authority": "official-live-mfm",
       "version": "v1.4",
@@ -422,6 +422,44 @@
         "references": 1507
       },
       "knownGaps": []
+    },
+    {
+      "id": "tyranids-mfm-v1.5",
+      "sourceId": "tyranids-mfm-v1.5",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.5 current official capture",
+      "authority": "official-live-mfm",
+      "version": "v1.5",
+      "updated": "2026-09-30",
+      "capturedAt": "2026-09-30",
+      "currentnessCutoff": "2026-09-30",
+      "url": "https://mfm.warhammer-community.com/en/tyranids",
+      "role": "current-mfm-owner",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules",
+        "paid-wargear",
+        "enhancement-prices",
+        "leader-eligibility",
+        "support-eligibility",
+        "detachment-points",
+        "force-dispositions",
+        "qualifier-tags",
+        "legends-pricing"
+      ],
+      "consumers": [
+        "SOURCE_FRESHNESS",
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION"
+      ],
+      "paths": [
+        "books/tyranids/sources/official-mfm-v1.5.json",
+        "books/tyranids/sources/official-mfm-v1.5.html",
+        "books/tyranids/sources/official-mfm-v1.5-legends.html"
+      ]
     }
   ],
   "knownGaps": [

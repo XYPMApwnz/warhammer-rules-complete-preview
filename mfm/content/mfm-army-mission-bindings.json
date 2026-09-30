@@ -1,8 +1,8 @@
 {
   "schema": "wh40k-mfm-cross-domain-bindings/v1",
   "edition": "Warhammer 40,000 11th Edition",
-  "currentnessCutoff": "2026-09-22",
-  "sourceVersion": "v1.4",
+  "currentnessCutoff": "2026-09-30",
+  "sourceVersion": "v1.5-scoped-six",
   "identityPolicy": "EXPLICIT_CANONICAL_IDS_ONLY_NO_TITLE_OR_SLUG_JOINS",
   "armyBookBindings": {
     "death-guard": {
@@ -3646,15 +3646,25 @@
   "detachmentBindings": {
     "mfm-detachment-009fa9372dd775a8": {
       "armyDetachmentId": "creations-of-bile",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9",
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold",
+        "force-disposition-purge-the-foe"
+      ]
     },
     "mfm-detachment-080d66df4d052d51": {
       "armyDetachmentId": "kauyon",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "tau-empire"
+      "armyBookId": "tau-empire",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-0833854802bebc93": {
       "armyDetachmentId": "subversion-assets",
@@ -3670,15 +3680,23 @@
     },
     "mfm-detachment-0a531332ffbbbba0": {
       "armyDetachmentId": "slaaneshs-chosen",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "emperors-children"
+      "armyBookId": "emperors-children",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-purge-the-foe"
+      ]
     },
     "mfm-detachment-0cd771e9201be3a9": {
       "armyDetachmentId": "rapid-evisceration",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "emperors-children"
+      "armyBookId": "emperors-children",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-0e076ab4de714b55": {
       "armyDetachmentId": "orbital-assault-force",
@@ -3688,9 +3706,13 @@
     },
     "mfm-detachment-0e15555f00b6be1a": {
       "armyDetachmentId": "auxiliary-cadre",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "tau-empire"
+      "armyBookId": "tau-empire",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-100c555c085c96d4": {
       "armyDetachmentId": "legacy-of-grace",
@@ -3736,27 +3758,45 @@
     },
     "mfm-detachment-24cf4ec242a27696": {
       "armyDetachmentId": "murdertalon-raiders",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-27302dbaee6b7d6a": {
       "armyDetachmentId": "deceptors",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-2a04a06334022eb4": {
       "armyDetachmentId": "detachment-haloscreed-battle-clade",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "adeptus-mechanicus"
+      "armyBookId": "adeptus-mechanicus",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03",
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets",
+        "force-disposition-purge-the-foe"
+      ]
     },
     "mfm-detachment-2b5146ff41fd8b94": {
       "armyDetachmentId": "detachment-skitarii-hunter-cohort",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "adeptus-mechanicus"
+      "armyBookId": "adeptus-mechanicus",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-2bbdabab1807a190": {
       "armyDetachmentId": "vanguard-spearhead",
@@ -3778,9 +3818,15 @@
     },
     "mfm-detachment-345e29874bd7b141": {
       "armyDetachmentId": "retaliation-cadre",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "tau-empire"
+      "armyBookId": "tau-empire",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-312f0b592e98e73f",
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-purge-the-foe",
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-3461e1854facad55": {
       "armyDetachmentId": "ceramite-sentinels",
@@ -3790,9 +3836,13 @@
     },
     "mfm-detachment-37fa2ca54f6194c9": {
       "armyDetachmentId": "detachment-lords-of-the-forge",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "adeptus-mechanicus"
+      "armyBookId": "adeptus-mechanicus",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-380aa3ee7a7184ff": {
       "armyDetachmentId": "ironstorm-spearhead",
@@ -3826,9 +3876,13 @@
     },
     "mfm-detachment-3fc01675a2e1861a": {
       "armyDetachmentId": "assimilation-swarm",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "tyranids"
+      "armyBookId": "tyranids",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-43eab6485faf1ea6": {
       "armyDetachmentId": "gladius-task-force",
@@ -3862,9 +3916,13 @@
     },
     "mfm-detachment-56996422dd40a230": {
       "armyDetachmentId": "spectacle-of-slaughter",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "emperors-children"
+      "armyBookId": "emperors-children",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-5a777fa3bec5334f": {
       "armyDetachmentId": "headhunter-task-force",
@@ -3874,9 +3932,13 @@
     },
     "mfm-detachment-5b619a99165f35cb": {
       "armyDetachmentId": "elegant-brutes",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "emperors-children"
+      "armyBookId": "emperors-children",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-5b9d3fa7660bd504": {
       "armyDetachmentId": "rage-cursed-onslaught",
@@ -3886,21 +3948,33 @@
     },
     "mfm-detachment-5e0ac78fb606c41f": {
       "armyDetachmentId": "detachment-paragons-of-putrescence",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "death-guard"
+      "armyBookId": "death-guard",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-5e6f7dc9881e1132": {
       "armyDetachmentId": "kroot-hunting-pack",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "tau-empire"
+      "armyBookId": "tau-empire",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-5ff09836f701c628": {
       "armyDetachmentId": "detachment-champions-of-contagion",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "death-guard"
+      "armyBookId": "death-guard",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-607874343b8b5bac": {
       "armyDetachmentId": "hammer-of-avernii",
@@ -3916,39 +3990,63 @@
     },
     "mfm-detachment-6273cb0c47d756d9": {
       "armyDetachmentId": "fellhammer-siege-host",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-631799715e9b611c": {
       "armyDetachmentId": "crusher-stampede",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "tyranids"
+      "armyBookId": "tyranids",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-purge-the-foe"
+      ]
     },
     "mfm-detachment-65dfe79aecb230e1": {
       "armyDetachmentId": "cult-of-the-arkifane",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-673bb8939f585f43": {
       "armyDetachmentId": "warpstrike-champions",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-6748f74689493c0f": {
       "armyDetachmentId": "detachment-death-lords-chosen",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "death-guard"
+      "armyBookId": "death-guard",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-6c0f18cb66040985": {
       "armyDetachmentId": "soulforged-warpack",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-6df024b4ef89bca1": {
       "armyDetachmentId": "orbital-assault-force",
@@ -3958,9 +4056,13 @@
     },
     "mfm-detachment-6e7dc3b9ba6a73a9": {
       "armyDetachmentId": "dread-talons",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-706394590deafedf": {
       "armyDetachmentId": "bastion-task-force",
@@ -3970,15 +4072,25 @@
     },
     "mfm-detachment-751153783cfe2135": {
       "armyDetachmentId": "peerless-bladesmen",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "emperors-children"
+      "armyBookId": "emperors-children",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-752dc9fa99e67b8f": {
       "armyDetachmentId": "pactbound-zealots",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a",
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption",
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-759545126c8bfcdc": {
       "armyDetachmentId": "interrogation-conclave",
@@ -3988,9 +4100,13 @@
     },
     "mfm-detachment-78a7708d39b9fae6": {
       "armyDetachmentId": "detachment-shamblerot-vectorium",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "death-guard"
+      "armyBookId": "death-guard",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-78ada1397dd52eca": {
       "armyDetachmentId": "vengeful-hosts",
@@ -4000,15 +4116,23 @@
     },
     "mfm-detachment-79321a215e9764da": {
       "armyDetachmentId": "detachment-data-psalm-conclave",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "adeptus-mechanicus"
+      "armyBookId": "adeptus-mechanicus",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-7a3e42d67ed28570": {
       "armyDetachmentId": "synaptic-nexus",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "tyranids"
+      "armyBookId": "tyranids",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-7b2072a458d127c9": {
       "armyDetachmentId": "gladius-task-force",
@@ -4024,15 +4148,23 @@
     },
     "mfm-detachment-7e125e0af0be8a27": {
       "armyDetachmentId": "detachment-flyblown-host",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "death-guard"
+      "armyBookId": "death-guard",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-7e76f5e0c401ec50": {
       "armyDetachmentId": "court-of-the-phoenician",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "emperors-children"
+      "armyBookId": "emperors-children",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-purge-the-foe"
+      ]
     },
     "mfm-detachment-7e9b93eba9fa1846": {
       "armyDetachmentId": "wrath-of-the-rock",
@@ -4042,15 +4174,25 @@
     },
     "mfm-detachment-87653759ab20c935": {
       "armyDetachmentId": "renegade-raiders",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03",
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets",
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-898356258b621c60": {
       "armyDetachmentId": "renegade-warband",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-8a9c6b2a308da26b": {
       "armyDetachmentId": "librarius-conclave",
@@ -4078,27 +4220,45 @@
     },
     "mfm-detachment-8e7262a2f771a041": {
       "armyDetachmentId": "detachment-tallyband-summoners",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "death-guard"
+      "armyBookId": "death-guard",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-912f1bb32cf37b48": {
       "armyDetachmentId": "detachment-cohort-cybernetica",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "adeptus-mechanicus"
+      "armyBookId": "adeptus-mechanicus",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-93445f9c8df320a5": {
       "armyDetachmentId": "carnival-of-excess",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "emperors-children"
+      "armyBookId": "emperors-children",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a",
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption",
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-94c6b7b79022b937": {
       "armyDetachmentId": "detachment-explorator-maniple",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "adeptus-mechanicus"
+      "armyBookId": "adeptus-mechanicus",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-95eea0b29c9305fa": {
       "armyDetachmentId": "shadowmark-talon",
@@ -4108,15 +4268,25 @@
     },
     "mfm-detachment-961301a2d6c7cc4f": {
       "armyDetachmentId": "coterie-of-the-conceited",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "emperors-children"
+      "armyBookId": "emperors-children",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03",
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets",
+        "force-disposition-purge-the-foe"
+      ]
     },
     "mfm-detachment-969e92c8cd39d371": {
       "armyDetachmentId": "devotees-of-destruction",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-9a5fb04ca93489d9": {
       "armyDetachmentId": "firestorm-assault-force",
@@ -4126,15 +4296,25 @@
     },
     "mfm-detachment-9b892ff13e0dc5ad": {
       "armyDetachmentId": "frenzied-host",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "emperors-children"
+      "armyBookId": "emperors-children",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-9c631e715294b06e": {
       "armyDetachmentId": "subterranean-assault",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "tyranids"
+      "armyBookId": "tyranids",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a",
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption",
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-9d4f9b985b6f0d56": {
       "armyDetachmentId": "fulguris-task-force",
@@ -4150,33 +4330,59 @@
     },
     "mfm-detachment-9e48327b304dba7e": {
       "armyDetachmentId": "invasion-fleet",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "tyranids"
+      "armyBookId": "tyranids",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9",
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold",
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-9e709f5aba956fca": {
       "armyDetachmentId": "cabal-of-chaos",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-9e9a12a09d6af51e": {
       "armyDetachmentId": "detachment-eradication-cohort",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "adeptus-mechanicus"
+      "armyBookId": "adeptus-mechanicus",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-purge-the-foe"
+      ]
     },
     "mfm-detachment-9fda2af58a2aa854": {
       "armyDetachmentId": "huron-s-marauders",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a",
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption",
+        "force-disposition-purge-the-foe"
+      ]
     },
     "mfm-detachment-a30d5837240c7a46": {
       "armyDetachmentId": "montka",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "tau-empire"
+      "armyBookId": "tau-empire",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9",
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold",
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-a41e0148beb0e6b2": {
       "armyDetachmentId": "inner-circle-task-force",
@@ -4204,9 +4410,13 @@
     },
     "mfm-detachment-ae194da29bc7d8f2": {
       "armyDetachmentId": "detachment-contagion-engines",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "death-guard"
+      "armyBookId": "death-guard",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-b22c4082fd07e177": {
       "armyDetachmentId": "forgefather-s-seekers",
@@ -4216,15 +4426,25 @@
     },
     "mfm-detachment-b322e6cc8361575b": {
       "armyDetachmentId": "detachment-virulent-vectorium",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "death-guard"
+      "armyBookId": "death-guard",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9",
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold",
+        "force-disposition-purge-the-foe"
+      ]
     },
     "mfm-detachment-b3975b6c6d229449": {
       "armyDetachmentId": "ambush-predators",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "tyranids"
+      "armyBookId": "tyranids",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-b3d4a5bc55d3c48f": {
       "armyDetachmentId": "lion-s-blade-task-force",
@@ -4252,9 +4472,13 @@
     },
     "mfm-detachment-bdcf64a5e3b14364": {
       "armyDetachmentId": "detachment-luminen-auto-choir",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "adeptus-mechanicus"
+      "armyBookId": "adeptus-mechanicus",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-be061c66509e0eda": {
       "armyDetachmentId": "stormlance-task-force",
@@ -4270,15 +4494,23 @@
     },
     "mfm-detachment-cec574725ab015d8": {
       "armyDetachmentId": "detachment-rad-zone-corps",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "adeptus-mechanicus"
+      "armyBookId": "adeptus-mechanicus",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-d1022febc5af5555": {
       "armyDetachmentId": "detachment-mortarions-hammer",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "death-guard"
+      "armyBookId": "death-guard",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-purge-the-foe"
+      ]
     },
     "mfm-detachment-d62e4d7abddc41a4": {
       "armyDetachmentId": "gladius-task-force",
@@ -4294,15 +4526,23 @@
     },
     "mfm-detachment-d88527bfa05bf302": {
       "armyDetachmentId": "talons-of-the-norn-queen",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "tyranids"
+      "armyBookId": "tyranids",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-d9014f71daf2418e": {
       "armyDetachmentId": "chaos-cult",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-da66f5149598bda5": {
       "armyDetachmentId": "anvil-siege-force",
@@ -4318,21 +4558,33 @@
     },
     "mfm-detachment-daacacbed0ef00b6": {
       "armyDetachmentId": "veterans-of-the-long-war",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-dc0cda0ba378b21c": {
       "armyDetachmentId": "nightmare-hunt",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "chaos-space-marines"
+      "armyBookId": "chaos-space-marines",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ]
     },
     "mfm-detachment-e000e1d0862116ab": {
       "armyDetachmentId": "detachment-cohort-acquisitus",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "adeptus-mechanicus"
+      "armyBookId": "adeptus-mechanicus",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-e1dcce999d6712a3": {
       "armyDetachmentId": "dark-age-arsenal",
@@ -4342,15 +4594,23 @@
     },
     "mfm-detachment-e2fcbdcbba193d50": {
       "armyDetachmentId": "experimental-prototype-cadre",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "tau-empire"
+      "armyBookId": "tau-empire",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets"
+      ]
     },
     "mfm-detachment-e5a448802d1107e5": {
       "armyDetachmentId": "warrior-bioform-onslaught",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "tyranids"
+      "armyBookId": "tyranids",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-e65f5bbfc2ced8d2": {
       "armyDetachmentId": "ironstorm-spearhead",
@@ -4402,9 +4662,13 @@
     },
     "mfm-detachment-f5d91b98cb39b545": {
       "armyDetachmentId": "mercurial-host",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "emperors-children"
+      "armyBookId": "emperors-children",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-f70fd9423fa330dc": {
       "armyDetachmentId": "liberator-assault-group",
@@ -4414,9 +4678,13 @@
     },
     "mfm-detachment-f8188b1403ca9370": {
       "armyDetachmentId": "unending-swarm",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "tyranids"
+      "armyBookId": "tyranids",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-fbe107a60517f6d9"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-take-and-hold"
+      ]
     },
     "mfm-detachment-f9b9adbc807095f5": {
       "armyDetachmentId": "firestorm-assault-force",
@@ -4426,9 +4694,13 @@
     },
     "mfm-detachment-fc0063b26987572c": {
       "armyDetachmentId": "vanguard-onslaught",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "tyranids"
+      "armyBookId": "tyranids",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-reconnaissance"
+      ]
     },
     "mfm-detachment-fea9d1df3a973fb1": {
       "armyDetachmentId": "blade-of-ultramar",
@@ -4444,9 +4716,13 @@
     },
     "mfm-detachment-ffe40487f76ad520": {
       "armyDetachmentId": "advanced-acquisition-cadre",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "tau-empire"
+      "armyBookId": "tau-empire",
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-992779bc35bb90e1"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-reconnaissance"
+      ]
     }
   },
   "enhancementBindings": {
@@ -7068,10 +7344,10 @@
       ],
       "provenance": {
         "mfm": {
-          "sourceId": "chaos-space-marines-mfm-v1.4",
-          "sourcePath": "books/chaos-space-marines/sources/official-mfm-v1.4.json",
-          "sourceCaptureSha256": "1043E68E899082968A66343CC7CEDA9ACAAC75F8D9711647F1A51ADEF7F21D52",
-          "rawArtifactSha256": "AC06480A25C9A25EB7711CC0F8DB20C0D561247150927050A538F462F10EDEBE",
+          "sourceId": "chaos-space-marines-mfm-v1.5",
+          "sourcePath": "books/chaos-space-marines/sources/official-mfm-v1.5.json",
+          "sourceCaptureSha256": "3DAF4DC7E0053AB48E43E19C49B9E2399A03FF5E292C0576379936FDD9A93248",
+          "rawArtifactSha256": "6357DB9E76EB5B20B3CA9A3C0B767264DA56AD408CDB8F5BDBDEB57B2FDE9815",
           "sourcePages": [],
           "sourceLocator": {
             "partition": "units.relations.leader",

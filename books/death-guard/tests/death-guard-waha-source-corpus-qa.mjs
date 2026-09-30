@@ -9,7 +9,7 @@ const read=relative=>JSON.parse(fs.readFileSync(path.join(root,relative),'utf8')
 const corpus=read('sources/waha-11e-current-2026-09-25/corpus.json');
 const defects=read('sources/waha-11e-current-2026-09-25/source-defects.json');
 const book=read('content/death-guard-rules.en.json');
-const mfm=read('sources/official-mfm-v1.4.json');
+const mfm=read('sources/official-mfm-v1.5.json');
 const stable=value=>value&&typeof value==='object'?(Array.isArray(value)?value.map(stable):Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])]))):value;
 const sha=value=>crypto.createHash('sha256').update(JSON.stringify(stable(value))).digest('hex').toUpperCase();
 const norm=value=>String(value??'').normalize('NFKD').replace(/\u00a0/g,' ').replace(/[’‘]/g,"'").replace(/[“”]/g,'"').replace(/[‐‑‒–—−]/g,'-').replace(/\s+/g,' ').trim().toLowerCase();
@@ -59,13 +59,13 @@ for(const source of corpus.detachments){
   source.stratagems.forEach((record,index)=>{const actual=canonicalStratagems[index];assert.equal(norm(actual.title.replace(/\s+-\s+\d+CP$/i,'')),norm(record.title));assert.equal(norm(actual.title.match(/(\d+CP)$/i)?.[1]),norm(record.cp));assert.equal(actual.lines.length,record.lines.length);stratagemLines+=record.lines.length;});
 }
 assert.equal(enhancements,30);assert.equal(stratagems,45);assert.equal(stratagemLines,136);
-assert.equal(mfm.version,'v1.4');assert.equal(mfm.currentness,'CURRENT');assert.equal(mfm.counts.currentUnits,36);assert.equal(mfm.counts.detachments,9);assert.equal(mfm.counts.enhancements,30);assert.equal(mfm.counts.paidOptions,2);
-assert.equal(book.audit.currentMFM,'v1.4');
+assert.equal(mfm.version,'v1.5');assert.equal(mfm.currentness,'CURRENT');assert.equal(mfm.counts.currentUnits,36);assert.equal(mfm.counts.detachments,9);assert.equal(mfm.counts.enhancements,30);assert.equal(mfm.counts.paidOptions,2);
+assert.equal(book.audit.currentMFM,'v1.5');
 
 const textUnits=corpus.armyRules.reduce((total,record)=>total+(record.components?.length||1),0)+corpus.errata.length+corpus.detachments.length+corpus.detachments.reduce((total,record)=>total+record.enhancements.length+record.stratagems.reduce((sum,item)=>sum+item.lines.length,0),0)+corpus.datasheets.reduce((total,record)=>total+record.wargearOptions.length+record.sections.reduce((sum,section)=>sum+section.blocks.length,0),0);
 assert.equal(textUnits,364);
 const structuredFacts=statFacts+weaponFacts+wargearFacts+keywordFacts+enhancements+stratagems+stratagemLines+mfm.counts.pointRows+mfm.counts.paidOptions+mfm.counts.leaderEdges+mfm.counts.supportEdges+mfm.counts.detachments+mfm.counts.enhancements;
-assert.equal(structuredFacts,2045);
+assert.equal(structuredFacts,2048);
 console.log(`Death Guard Waha source corpus QA passed: ${corpus.gameplayUnits} source units, ${textUnits} text units, ${structuredFacts} structured facts, ${corpus.corpusFingerprint}.`);
 
 

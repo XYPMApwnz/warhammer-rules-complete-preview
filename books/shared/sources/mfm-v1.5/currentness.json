@@ -1,0 +1,265 @@
+{
+  "schema": "warhammer-mfm-currentness-capture/v1",
+  "title": "Munitorum Field Manual currentness observation",
+  "edition": "Warhammer 40,000 11th Edition",
+  "version": "v1.5",
+  "sourceUpdatedAt": "2026-09-30",
+  "capturedAt": "2026-09-30",
+  "currentnessCutoff": "2026-09-30",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP",
+  "downloads": {
+    "url": "https://www.warhammer-community.com/en-gb/downloads/warhammer-40000/",
+    "updatedAt": "2026-09-30",
+    "rawArtifact": {
+      "path": "warhammer-40000-downloads.html",
+      "sha256": "D18A15FA60665888177D451A2F60A94F142BE16624CB07CF817FB479D73B8037",
+      "bytes": 601174
+    }
+  },
+  "factions": [
+    {
+      "factionId": "death-guard",
+      "url": "https://mfm.warhammer-community.com/en/death-guard",
+      "version": "v1.5",
+      "counts": {
+        "currentUnits": 36,
+        "legendsUnits": 5,
+        "totalPricedUnits": 41,
+        "pointSchedules": 52,
+        "pointRows": 67,
+        "paidOptions": 2,
+        "leaderRecords": 14,
+        "leaderEdges": 22,
+        "supportRecords": 0,
+        "supportEdges": 0,
+        "detachments": 9,
+        "enhancements": 30,
+        "detachmentQualifierRecords": 0,
+        "enhancementQualifierRecords": 0
+      },
+      "captureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+      "normalizedArtifact": "books/death-guard/sources/official-mfm-v1.5.json",
+      "rawArtifacts": [
+        "books/death-guard/sources/official-mfm-v1.5.html",
+        "books/death-guard/sources/official-mfm-v1.5-legends.html"
+      ]
+    },
+    {
+      "factionId": "adeptus-mechanicus",
+      "url": "https://mfm.warhammer-community.com/en/adeptus-mechanicus",
+      "version": "v1.5",
+      "counts": {
+        "currentUnits": 34,
+        "legendsUnits": 4,
+        "totalPricedUnits": 38,
+        "pointSchedules": 48,
+        "pointRows": 74,
+        "paidOptions": 2,
+        "leaderRecords": 3,
+        "leaderEdges": 24,
+        "supportRecords": 3,
+        "supportEdges": 14,
+        "detachments": 10,
+        "enhancements": 34,
+        "detachmentQualifierRecords": 2,
+        "enhancementQualifierRecords": 0
+      },
+      "captureSha256": "DD527EBC90E8DC372CEA1C25D9D45F93E540216766915094C5D935F2643D9CB7",
+      "normalizedArtifact": "books/adeptus-mechanicus/sources/official-mfm-v1.5.json",
+      "rawArtifacts": [
+        "books/adeptus-mechanicus/sources/official-mfm-v1.5.html",
+        "books/adeptus-mechanicus/sources/official-mfm-v1.5-legends.html"
+      ]
+    },
+    {
+      "factionId": "tyranids",
+      "url": "https://mfm.warhammer-community.com/en/tyranids",
+      "version": "v1.5",
+      "counts": {
+        "currentUnits": 52,
+        "legendsUnits": 5,
+        "totalPricedUnits": 57,
+        "pointSchedules": 73,
+        "pointRows": 99,
+        "paidOptions": 2,
+        "leaderRecords": 9,
+        "leaderEdges": 16,
+        "supportRecords": 0,
+        "supportEdges": 0,
+        "detachments": 10,
+        "enhancements": 34,
+        "detachmentQualifierRecords": 0,
+        "enhancementQualifierRecords": 0
+      },
+      "captureSha256": "1561607316C0AB95B65ABE0BF0613DE64BBF3828858B1D36970BF6B73C897ABE",
+      "normalizedArtifact": "books/tyranids/sources/official-mfm-v1.5.json",
+      "rawArtifacts": [
+        "books/tyranids/sources/official-mfm-v1.5.html",
+        "books/tyranids/sources/official-mfm-v1.5-legends.html"
+      ]
+    },
+    {
+      "factionId": "tau-empire",
+      "url": "https://mfm.warhammer-community.com/en/tau-empire",
+      "version": "v1.5",
+      "counts": {
+        "currentUnits": 43,
+        "legendsUnits": 19,
+        "totalPricedUnits": 62,
+        "pointSchedules": 79,
+        "pointRows": 97,
+        "paidOptions": 7,
+        "leaderRecords": 12,
+        "leaderEdges": 29,
+        "supportRecords": 0,
+        "supportEdges": 0,
+        "detachments": 7,
+        "enhancements": 23,
+        "detachmentQualifierRecords": 4,
+        "enhancementQualifierRecords": 0
+      },
+      "captureSha256": "FDB5CAFBD78D0FC41658857FB491561AE8369217EE9A6A1CE78A280CC514CE2B",
+      "normalizedArtifact": "books/tau-empire/sources/official-mfm-v1.5.json",
+      "rawArtifacts": [
+        "books/tau-empire/sources/official-mfm-v1.5.html",
+        "books/tau-empire/sources/official-mfm-v1.5-legends.html"
+      ]
+    },
+    {
+      "factionId": "emperors-children",
+      "url": "https://mfm.warhammer-community.com/en/emperors-children",
+      "version": "v1.5",
+      "counts": {
+        "currentUnits": 23,
+        "legendsUnits": 0,
+        "totalPricedUnits": 23,
+        "pointSchedules": 32,
+        "pointRows": 37,
+        "paidOptions": 2,
+        "leaderRecords": 4,
+        "leaderEdges": 8,
+        "supportRecords": 0,
+        "supportEdges": 0,
+        "detachments": 10,
+        "enhancements": 34,
+        "detachmentQualifierRecords": 0,
+        "enhancementQualifierRecords": 1
+      },
+      "captureSha256": "86CABD0577314F555E0C4ADF27B3AF1F580F9EC1BD4896228AB12D3C4D845BC4",
+      "normalizedArtifact": "books/emperors-children/sources/official-mfm-v1.5.json",
+      "rawArtifacts": [
+        "books/emperors-children/sources/official-mfm-v1.5.html"
+      ]
+    },
+    {
+      "factionId": "chaos-space-marines",
+      "url": "https://mfm.warhammer-community.com/en/chaos-space-marines",
+      "version": "v1.5",
+      "counts": {
+        "currentUnits": 54,
+        "legendsUnits": 31,
+        "totalPricedUnits": 85,
+        "pointSchedules": 106,
+        "pointRows": 126,
+        "paidOptions": 3,
+        "leaderRecords": 28,
+        "leaderEdges": 70,
+        "supportRecords": 3,
+        "supportEdges": 9,
+        "detachments": 17,
+        "enhancements": 62,
+        "detachmentQualifierRecords": 2,
+        "enhancementQualifierRecords": 2
+      },
+      "captureSha256": "3DAF4DC7E0053AB48E43E19C49B9E2399A03FF5E292C0576379936FDD9A93248",
+      "normalizedArtifact": "books/chaos-space-marines/sources/official-mfm-v1.5.json",
+      "rawArtifacts": [
+        "books/chaos-space-marines/sources/official-mfm-v1.5.html",
+        "books/chaos-space-marines/sources/official-mfm-v1.5-legends.html"
+      ]
+    },
+    {
+      "factionId": "space-marines",
+      "url": "https://mfm.warhammer-community.com/en/space-marines",
+      "version": "v1.5",
+      "counts": {
+        "currentUnits": 87,
+        "legendsUnits": 28,
+        "totalPricedUnits": 115,
+        "pointSchedules": 155,
+        "pointRows": 198,
+        "paidOptions": 8,
+        "leaderRecords": 27,
+        "leaderEdges": 161,
+        "supportRecords": 11,
+        "supportEdges": 82,
+        "detachments": 22,
+        "enhancements": 57,
+        "detachmentQualifierRecords": 13,
+        "enhancementQualifierRecords": 0
+      },
+      "captureSha256": "5C3386B265F4F6299AECBBCE46B416259872EA13284BB1A568DB9EF7D451F481",
+      "normalizedArtifact": "books/space-marines/sources/official-mfm-v1.5.json",
+      "rawArtifacts": [
+        "books/space-marines/sources/official-mfm-v1.5.html",
+        "books/space-marines/sources/official-mfm-v1.5-legends.html"
+      ]
+    },
+    {
+      "factionId": "dark-angels",
+      "url": "https://mfm.warhammer-community.com/en/dark-angels",
+      "version": "v1.5",
+      "counts": {
+        "currentUnits": 85,
+        "legendsUnits": 31,
+        "totalPricedUnits": 116,
+        "pointSchedules": 161,
+        "pointRows": 209,
+        "paidOptions": 8,
+        "leaderRecords": 20,
+        "leaderEdges": 131,
+        "supportRecords": 10,
+        "supportEdges": 75,
+        "detachments": 19,
+        "enhancements": 41,
+        "detachmentQualifierRecords": 12,
+        "enhancementQualifierRecords": 0
+      },
+      "captureSha256": "64DC8BCF3195FAE41F16D356BFCA333AEE2A788E024ADFAB5ED8D41DB61598A6",
+      "normalizedArtifact": "books/dark-angels/sources/official-mfm-v1.5.json",
+      "rawArtifacts": [
+        "books/dark-angels/sources/official-mfm-v1.5.html",
+        "books/dark-angels/sources/official-mfm-v1.5-legends.html"
+      ]
+    },
+    {
+      "factionId": "blood-angels",
+      "url": "https://mfm.warhammer-community.com/en/blood-angels",
+      "version": "v1.5",
+      "counts": {
+        "currentUnits": 83,
+        "legendsUnits": 38,
+        "totalPricedUnits": 121,
+        "pointSchedules": 165,
+        "pointRows": 214,
+        "paidOptions": 7,
+        "leaderRecords": 21,
+        "leaderEdges": 110,
+        "supportRecords": 9,
+        "supportEdges": 80,
+        "detachments": 19,
+        "enhancements": 41,
+        "detachmentQualifierRecords": 11,
+        "enhancementQualifierRecords": 0
+      },
+      "captureSha256": "A2FA2D4B99D37970DC0D61670D1708FDFC7ECAA1798ED83CE69F01FE32BD3A29",
+      "normalizedArtifact": "books/blood-angels/sources/official-mfm-v1.5.json",
+      "rawArtifacts": [
+        "books/blood-angels/sources/official-mfm-v1.5.html",
+        "books/blood-angels/sources/official-mfm-v1.5-legends.html"
+      ]
+    }
+  ],
+  "captureSha256": "6E9712FF515B943900F94E10C5469C8474B138187248AC0E42998C994A9EA591"
+}

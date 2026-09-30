@@ -150,9 +150,9 @@
     {
       "id": "chaos-space-marines-mfm-v1.4",
       "sourceId": "chaos-space-marines-mfm-v1.4",
-      "active": true,
+      "active": false,
       "sourceType": "official-web-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "title": "Munitorum Field Manual v1.4 current official capture",
       "authority": "official-live-mfm",
       "version": "v1.4",
@@ -275,6 +275,44 @@
       "paths": [
         "books/chaos-space-marines/sources/official-mfm-v1.5-rubric-marines.json",
         "books/chaos-space-marines/sources/official-mfm-v1.5-thousand-sons-csm-dependency.html"
+      ]
+    },
+    {
+      "id": "chaos-space-marines-mfm-v1.5",
+      "sourceId": "chaos-space-marines-mfm-v1.5",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.5 current official capture",
+      "authority": "official-live-mfm",
+      "version": "v1.5",
+      "updated": "2026-09-30",
+      "capturedAt": "2026-09-30",
+      "currentnessCutoff": "2026-09-30",
+      "url": "https://mfm.warhammer-community.com/en/chaos-space-marines",
+      "role": "current-points-and-eligibility-owner",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules",
+        "paid-wargear",
+        "enhancement-prices",
+        "leader-eligibility",
+        "support-eligibility",
+        "detachment-points",
+        "force-dispositions",
+        "qualifier-tags",
+        "legends-pricing"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION",
+        "SOURCE_FRESHNESS"
+      ],
+      "paths": [
+        "books/chaos-space-marines/sources/official-mfm-v1.5.json",
+        "books/chaos-space-marines/sources/official-mfm-v1.5.html",
+        "books/chaos-space-marines/sources/official-mfm-v1.5-legends.html"
       ]
     }
   ],

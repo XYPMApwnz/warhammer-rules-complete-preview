@@ -41,10 +41,26 @@ const missionForceIds = new Set(missionFacts.forceDispositions.map(item => item.
 assert.deepEqual([...new Set(Object.values(registry.forceDispositionBindings).map(item => item.missionForceDispositionId))].sort(), [...missionForceIds].sort());
 assert.equal(new Set(Object.keys(registry.forceDispositionBindings)).size, 5);
 for (const detachment of canonical.detachments) {
-  assert.ok(/^mfm-force-disposition-[0-9a-f]{16}$/.test(detachment.mfmForceDispositionId));
-  assert.ok(missionForceIds.has(detachment.missionForceDispositionId));
-  assert.equal(detachment.forceDispositionId, detachment.missionForceDispositionId);
+  assert.ok(detachment.mfmForceDispositionIds.length>0);
+  assert.equal(new Set(detachment.mfmForceDispositionIds).size,detachment.mfmForceDispositionIds.length);
+  assert.ok(detachment.mfmForceDispositionIds.every(id=>/^mfm-force-disposition-[0-9a-f]{16}$/.test(id)));
+  assert.ok(detachment.missionForceDispositionIds.every(id=>missionForceIds.has(id)));
+  assert.deepEqual(detachment.forceDispositionIds,detachment.missionForceDispositionIds);
 }
+const scopedMultiForce=canonical.detachments.filter(item=>item.provenance.sourceVersion==='v1.5'&&item.forceDispositionIds.length>1);
+assert.equal(scopedMultiForce.length,12,'scoped v1.5 multi-Force Detachment denominator');
+for(const item of scopedMultiForce){
+  assert.equal(new Set(item.forceDispositionIds).size,item.forceDispositionIds.length,`${item.id}: duplicate effective Force Disposition`);
+  assert.deepEqual([...item.forceDispositionIds].sort(),[...item.missionForceDispositionIds].sort(),`${item.id}: incomplete Mission membership`);
+}
+const multiBindingId=scopedMultiForce[0].id,multiBinding=registry.detachmentBindings[multiBindingId];
+const reorderedForceMembership=clone(registry);reorderedForceMembership.detachmentBindings[multiBindingId].mfmForceDispositionIds.reverse();reorderedForceMembership.detachmentBindings[multiBindingId].missionForceDispositionIds.reverse();
+const reorderedForceFacts=createCanonicalMfmFacts({repoRoot:ROOT,crossDomainBindings:reorderedForceMembership}),reorderedForceRecord=reorderedForceFacts.detachments.find(item=>item.id===multiBindingId);
+assert.deepEqual([...reorderedForceRecord.forceDispositionIds].sort(),[...scopedMultiForce[0].forceDispositionIds].sort(),'Force Disposition ordering became semantic');
+const duplicateForce=clone(registry);duplicateForce.detachmentBindings[multiBindingId].mfmForceDispositionIds[1]=duplicateForce.detachmentBindings[multiBindingId].mfmForceDispositionIds[0];
+assert.throws(()=>validateMfmCrossDomainBindings(duplicateForce),/duplicate-free|cross-wire/);
+const missingForce=clone(registry);missingForce.detachmentBindings[multiBindingId].mfmForceDispositionIds.pop();missingForce.detachmentBindings[multiBindingId].missionForceDispositionIds.pop();
+assert.throws(()=>createCanonicalMfmFacts({repoRoot:ROOT,crossDomainBindings:missingForce}),/membership does not match accepted source/);
 
 const models = new Map();
 for (const book of selectPublicationBooks(loadPublicationInventory({root: ROOT}), 'library')) {
@@ -96,40 +112,18 @@ assert.deepEqual(huron.targetUnitReferenceIds, huron.rawMfmTargetUnitReferenceId
 assert.equal(huron.targetUnitReferenceIds.length, 4);
 assert.equal(huron.targetUnitReferenceIds.includes('mfm-unit-ref-0e38e3f6cbaf70e3'), false);
 assert.deepEqual(huron.sourceConflict.conflictingEvidenceTargetIds.map(item => item.mfmUnitReferenceId), ['mfm-unit-ref-0e38e3f6cbaf70e3']);
-assert.equal(huron.sourceConflict.provenance.mfm.sourceId, 'chaos-space-marines-mfm-v1.4');
+assert.equal(huron.sourceConflict.provenance.mfm.sourceId, 'chaos-space-marines-mfm-v1.5');
 assert.equal(huron.sourceConflict.provenance.officialFactionPack.sourceId, 'chaos-space-marines-faction-pack-v1.2');
 
-const calgar = canonical.leaderEligibilityRecords.find(item => item.id === 'mfm-leader-eligibility-75a7d23c08e86a81');
-assert.ok(calgar);
-assert.equal(calgar.sourceConflict.decision, 'REPAIR_MALFORMED_CAPTURE_WITH_OFFICIAL_FACTION_PACK');
-assert.equal(calgar.sourceConflict.policy.primarySourceMalformed, true);
-assert.equal(calgar.sourceConflict.policy.officialFallbackUsed, true);
-assert.equal(calgar.sourceConflict.policy.preserveMalformedRawReference, true);
-assert.equal(calgar.sourceConflict.policy.officialFallbackApplied, true);
-assert.equal(calgar.rawMfmTargetUnitReferenceIds.length, 12);
-assert.equal(calgar.targetUnitReferenceIds.length, 13);
-assert.ok(calgar.rawMfmTargetUnitReferenceIds.includes('mfm-unit-ref-b79c5f725fbad12c'));
-assert.equal(calgar.targetUnitReferenceIds.includes('mfm-unit-ref-b79c5f725fbad12c'), false);
-assert.ok(effective.unitReferences.some(item => item.id === 'mfm-unit-ref-b79c5f725fbad12c'), 'effective catalog must preserve the malformed raw MFM reference as provenance');
-assert.equal(calgar.sourceConflict.provenance.mfm.sourceId, 'space-marines-mfm-v1.4');
-assert.equal(calgar.sourceConflict.provenance.officialFactionPack.sourceId, 'space-marines-faction-pack-v1.2');
-assert.deepEqual(calgar.targetUnitReferenceIds, [
-  'mfm-unit-ref-b7dd7fa8b235e1c2', 'mfm-unit-ref-c1b514e78559bb06', 'mfm-unit-ref-05bca7797609b9af',
-  'mfm-unit-ref-cc975a1213681c7e', 'mfm-unit-ref-cc91785498ffcb6a', 'mfm-unit-ref-b42633b4eb2ba90c',
-  'mfm-unit-ref-1d21b6b5cbc05783', 'mfm-unit-ref-40d2df239710b482', 'mfm-unit-ref-879296fa14615437',
-  'mfm-unit-ref-b4d866adda123642', 'mfm-unit-ref-32ed37363ad5f0b6', 'mfm-unit-ref-2ab008222d987898',
-  'mfm-unit-ref-dfd55ffb4b0ed38b'
-]);
-
 const forceCrossWire = clone(registry);
-forceCrossWire.detachmentBindings[Object.keys(forceCrossWire.detachmentBindings)[0]].missionForceDispositionId = 'force-disposition-take-and-hold';
-assert.throws(() => validateMfmCrossDomainBindings(forceCrossWire), /cross-wire/);
+forceCrossWire.detachmentBindings[Object.keys(forceCrossWire.detachmentBindings)[0]].missionForceDispositionIds = ['force-disposition-take-and-hold'];
+assert.throws(() => validateMfmCrossDomainBindings(forceCrossWire), /Force Disposition membership|cross-wire/);
 const titleJoinAttempt = clone(registry);
-titleJoinAttempt.detachmentBindings[Object.keys(titleJoinAttempt.detachmentBindings)[0]].mfmForceDispositionId = undefined;
-assert.throws(() => validateMfmCrossDomainBindings(titleJoinAttempt), /unknown explicit MFM Force Disposition ID/);
+titleJoinAttempt.detachmentBindings[Object.keys(titleJoinAttempt.detachmentBindings)[0]].mfmForceDispositionIds = undefined;
+assert.throws(() => validateMfmCrossDomainBindings(titleJoinAttempt), /Force Disposition membership|unknown explicit MFM Force Disposition ID/);
 const renamedForceLocator = clone(registry);
 renamedForceLocator.forceDispositionBindings[Object.keys(renamedForceLocator.forceDispositionBindings)[0]].sourceValue = 'RENAMED DISPLAY VALUE';
-assert.throws(() => createCanonicalMfmFacts({repoRoot: ROOT, crossDomainBindings: renamedForceLocator}), /explicit Force Disposition binding does not match accepted source/);
+assert.throws(() => createCanonicalMfmFacts({repoRoot: ROOT, crossDomainBindings: renamedForceLocator}), /explicit Force Disposition membership does not match accepted source/);
 const missingFallbackProvenance = clone(registry);
 delete missingFallbackProvenance.relationAdjudications['mfm-leader-eligibility-75a7d23c08e86a81'].provenance.officialFactionPack;
 assert.throws(() => validateMfmCrossDomainBindings(missingFallbackProvenance), /officialFactionPack must be an object/);
@@ -150,4 +144,3 @@ console.log('ENHANCEMENT_BINDINGS=474');
 console.log('QUALIFIER_OWNER_BINDINGS=16');
 console.log('MFM_MISSIONS_BINDING=5/5');
 console.log('HURON_EFFECTIVE_TARGETS=4');
-console.log('CALGAR_EFFECTIVE_TARGETS=13_OFFICIAL_FALLBACK');

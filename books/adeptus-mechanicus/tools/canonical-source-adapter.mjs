@@ -100,7 +100,7 @@ const mfmDetachments=new Map(pointsCatalog.detachments.map(item=>[item.id,item])
 const allDetachments=[...rules.detachments,...codex.detachments].map(detachment=>{
   const mfm=mfmDetachments.get(detachment.id);
   if(!mfm)throw new Error(`${detachment.title}: official MFM Detachment Points are missing`);
-  return {...detachment,dp:mfm.dp,disposition:mfm.disposition,mfmRecordId:mfm.mfmRecordId,mfmForceDispositionId:mfm.mfmForceDispositionId,missionForceDispositionId:mfm.missionForceDispositionId,forceDispositionId:mfm.forceDispositionId,mfmQualifiers:mfm.mfmQualifiers||[]};
+  return {...detachment,dp:mfm.dp,disposition:mfm.disposition,forceDispositions:mfm.forceDispositions,forceDispositionIds:mfm.forceDispositionIds,mfmRecordId:mfm.mfmRecordId,mfmForceDispositionIds:mfm.mfmForceDispositionIds,missionForceDispositionIds:mfm.missionForceDispositionIds,mfmQualifiers:mfm.mfmQualifiers||[]};
 }).sort((a,b)=>officialOrder.indexOf(a.id)-officialOrder.indexOf(b.id));
 const slugify=value=>String(value).toLowerCase().replaceAll('’','').replaceAll("'",'').replaceAll(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const canonicalCoreTerms=coreFactProjection.coreAbilities.map(term=>({
@@ -318,15 +318,16 @@ export function buildAdeptusMechanicusEffectiveModelInput(context,canonicalModel
     enhancements:(canonical.enhancements||[]).map(({text,...enhancement})=>enhancement),
     sourceBookId:config.id,
     detachmentPoints:Number(String(dp||0).match(/\d+/)?.[0]||0),
+    forceDispositions:item.forceDispositions||[disposition].filter(Boolean),
     forceDisposition:disposition||'',
     glossarySourceRevision:factionDetachmentIds.has(item.id)?factionRules.version||'Faction Pack v1.0':'Codex carry-forward + Faction Pack v1.1',
     glossarySourceOrder:glossarySourceOrder.get(item.id),
     mfmRecordId:item.mfmRecordId,
-    mfmForceDispositionId:item.mfmForceDispositionId,
-    missionForceDispositionId:item.missionForceDispositionId,
-    forceDispositionId:item.forceDispositionId,
+    mfmForceDispositionIds:item.mfmForceDispositionIds||[],
+    missionForceDispositionIds:item.missionForceDispositionIds||[],
+    forceDispositionIds:item.forceDispositionIds||[],
     mfmQualifiers:item.mfmQualifiers||[],
-    publicationRecord:{title:item.title,detachmentPoints:dp,forceDisposition:disposition}
+    publicationRecord:{title:item.title,detachmentPoints:dp,forceDispositions:item.forceDispositions||[disposition].filter(Boolean),forceDispositionIds:item.forceDispositionIds||[],mfmForceDispositionIds:item.mfmForceDispositionIds||[],missionForceDispositionIds:item.missionForceDispositionIds||[],forceDisposition:disposition}
   };};
   const detachments=allDetachments.map(detachmentRecord);
   const effectContractSet=config.sources.effectContracts?validateEffectContractSet(context.readJson(config.sources.effectContracts),{expectedBookId:config.id}):{schema:'wh40k-effect-contracts/v1',bookId:config.id,contracts:[]};

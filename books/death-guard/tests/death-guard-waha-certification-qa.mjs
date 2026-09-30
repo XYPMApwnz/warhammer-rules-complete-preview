@@ -30,8 +30,8 @@ function certify({corpusValue=corpus,canonicalValue=canonical,modelValue=model,e
   const land=modelValue.units.find(unit=>unit.id==='unit-chaos-land-raider');assert.match(JSON.stringify(land),/assault disembark move/);
   const engines=modelValue.detachments.find(det=>det.id==='detachment-contagion-engines');assert.match(JSON.stringify(engines),/cannot be taken with another ENGINES detachment/);
   const conflict=modelValue.rules.acceptedSourceConflicts.find(record=>record.id==='stratagem-leechspore-eruption');assert.equal(conflict.status,'resolved');assert.equal(conflict.authority,'official-primary');
-  assert.equal(modelValue.sourceMetadata.officialPoints.source.version,'v1.4');
-  assert.equal(mfm.catalog.sourceVersion,'v1.4');
+  assert.equal(modelValue.sourceMetadata.officialPoints.source.version,'v1.5');
+  assert.equal(mfm.catalog.sourceVersion,'v1.5-scoped-six');
   return true;
 }
 certify();

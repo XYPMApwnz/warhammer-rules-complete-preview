@@ -1,6 +1,7 @@
 const SCHEMA='wh40k-effective-points-projection/v1';
 const clean=value=>String(value??'').trim();
 const list=value=>Array.isArray(value)?value:[];
+const multiForceBooks=new Set(['death-guard','adeptus-mechanicus','tyranids','tau-empire','emperors-children','chaos-space-marines']);
 const unique=(items,keyOf,label)=>{
   const seen=new Set();
   for(const item of items){
@@ -40,6 +41,10 @@ export function createEffectivePointsProjection(input={}){
   for(const item of detachments){
     if(!item.title)throw new Error(`${book.id}: ${item.id} requires a title`);
     if(typeof item.detachmentPoints!=='number'||!Number.isFinite(item.detachmentPoints))throw new Error(`${book.id}: ${item.id} requires a finite Detachment point value`);
+    if(multiForceBooks.has(book.id)){
+      if(!Array.isArray(item.forceDispositions)||!item.forceDispositions.length||new Set(item.forceDispositions).size!==item.forceDispositions.length||item.forceDispositions.some(value=>typeof value!=='string'||!value))throw new Error(`${book.id}: ${item.id} requires non-empty duplicate-free Force Disposition membership`);
+      for(const field of ['forceDispositionIds','mfmForceDispositionIds','missionForceDispositionIds'])if(!Array.isArray(item[field])||item[field].length!==item.forceDispositions.length||new Set(item[field]).size!==item[field].length)throw new Error(`${book.id}: ${item.id} has invalid ${field}`);
+    }else if(item.forceDisposition!=null&&typeof item.forceDisposition!=='string')throw new Error(`${book.id}: ${item.id} requires a scalar Force Disposition`);
   }
   for(const item of enhancements){
     if(!item.id)throw new Error(`${book.id}: Enhancement requires a canonical identity`);

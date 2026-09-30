@@ -24,7 +24,7 @@ const roster=(units,testCase,owner='lord')=>({faction:'Chaos Space Marines',poin
 const project=(source,{attachments={},catalog=baseCatalog}={})=>scope.WHArmyRosterContext.project({catalog,roster:source,record:{id:'csm-warp-talons-qualifiers',attachments,roster:source}});
 const eligibility=result=>result.enhancementAssessment.assignments[0]?.assessment?.ownerEligibility;
 
-const mfm=JSON.parse(read('books/chaos-space-marines/sources/official-mfm-v1.4.json'));
+const mfm=JSON.parse(read('books/chaos-space-marines/sources/official-mfm-v1.5.json'));
 const pack=JSON.parse(read('books/chaos-space-marines/content/chaos-space-marines-faction-pack.en.json'));
 let positive=0,negative=0,detach=0,physical=0,killed=0;
 for(const testCase of cases){

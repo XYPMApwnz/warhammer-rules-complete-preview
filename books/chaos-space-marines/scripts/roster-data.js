@@ -23518,11 +23518,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "mfm-enhancement-4b5a85dab433a83a"
           ],
           "provenance": {
-            "sourceId": "chaos-space-marines-mfm-v1.4",
-            "sourceVersion": "v1.4",
+            "sourceId": "chaos-space-marines-mfm-v1.5",
+            "sourceVersion": "v1.5",
             "currentness": "CURRENT",
-            "currentnessCutoff": "2026-09-22",
-            "sourceCaptureSha256": "1043E68E899082968A66343CC7CEDA9ACAAC75F8D9711647F1A51ADEF7F21D52",
+            "currentnessCutoff": "2026-09-30",
+            "sourceCaptureSha256": "3DAF4DC7E0053AB48E43E19C49B9E2399A03FF5E292C0576379936FDD9A93248",
             "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
             "sourceLocator": {
               "partition": "detachments.enhancements.qualifiers",
@@ -24958,11 +24958,11 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
             "mfm-enhancement-e0b0092cbbb9dbfd"
           ],
           "provenance": {
-            "sourceId": "chaos-space-marines-mfm-v1.4",
-            "sourceVersion": "v1.4",
+            "sourceId": "chaos-space-marines-mfm-v1.5",
+            "sourceVersion": "v1.5",
             "currentness": "CURRENT",
-            "currentnessCutoff": "2026-09-22",
-            "sourceCaptureSha256": "1043E68E899082968A66343CC7CEDA9ACAAC75F8D9711647F1A51ADEF7F21D52",
+            "currentnessCutoff": "2026-09-30",
+            "sourceCaptureSha256": "3DAF4DC7E0053AB48E43E19C49B9E2399A03FF5E292C0576379936FDD9A93248",
             "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
             "sourceLocator": {
               "partition": "detachments.enhancements.qualifiers",
