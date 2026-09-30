@@ -7299,7 +7299,8 @@
     "missionForceDispositionIds": 5,
     "relationAdjudications": 2,
     "forceDispositionBindings": 5,
-    "parityClassifications": 6
+    "parityClassifications": 6,
+    "crossFactionUnitDependencyBindings": 2
   },
   "forceDispositionBindings": {
     "mfm-force-disposition-100e822e9e9eea9a": {
@@ -7321,6 +7322,20 @@
     "mfm-force-disposition-fbe107a60517f6d9": {
       "sourceValue": "TAKE AND HOLD",
       "missionForceDispositionId": "force-disposition-take-and-hold"
+    }
+  },
+  "crossFactionUnitDependencyBindings": {
+    "mfm-unit-ref-881ffacf717f708e": {
+      "bindingStatus": "BOUND_CURRENT",
+      "consumerArmyBookId": "chaos-space-marines",
+      "consumerArmyUnitId": "unit-khorne-berzerkers",
+      "sourceFactionId": "world-eaters"
+    },
+    "mfm-unit-ref-feb1ce3aaa4f851c": {
+      "bindingStatus": "BOUND_CURRENT",
+      "consumerArmyBookId": "chaos-space-marines",
+      "consumerArmyUnitId": "unit-rubric-marines",
+      "sourceFactionId": "thousand-sons"
     }
   }
 }

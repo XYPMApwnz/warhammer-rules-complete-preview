@@ -10491,5 +10491,35 @@
         }
       ]
     }
+  ],
+  "crossFactionUnitDependencies": [
+    {
+      "id": "csm-cult-khorne-berzerkers",
+      "sourceId": "csm-allied-khorne-berzerkers-mfm-v1.5",
+      "sourceCapturePath": "books/chaos-space-marines/sources/official-mfm-v1.5-khorne-berzerkers.json",
+      "sourceCaptureSha256": "A6DF27FE90B6701CEFEF5DB78F8217C1397C2C9F3930F7DCF2537BE277C25392",
+      "consumerArmyBookId": "chaos-space-marines",
+      "sourceFactionId": "world-eaters",
+      "sourceTitle": "KHORNE BERZERKERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pricingGroupId": "mfm-pricing-group-90384a34eccc9474",
+      "unitReferenceId": "mfm-unit-ref-881ffacf717f708e",
+      "unitPointRecordId": "mfm-unit-points-ae6cc14baed6e18a"
+    },
+    {
+      "id": "csm-cult-rubric-marines",
+      "sourceId": "csm-allied-rubric-marines-mfm-v1.5",
+      "sourceCapturePath": "books/chaos-space-marines/sources/official-mfm-v1.5-rubric-marines.json",
+      "sourceCaptureSha256": "5EA49E393E83070CBA2D3331A8AEAF2E55E1EE2DCC97B48871DE528A46D7ACE5",
+      "consumerArmyBookId": "chaos-space-marines",
+      "sourceFactionId": "thousand-sons",
+      "sourceTitle": "RUBRIC MARINES",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pricingGroupId": "mfm-pricing-group-0039d1e631c0597a",
+      "unitReferenceId": "mfm-unit-ref-feb1ce3aaa4f851c",
+      "unitPointRecordId": "mfm-unit-points-a273c224855f8ac1"
+    }
   ]
 }

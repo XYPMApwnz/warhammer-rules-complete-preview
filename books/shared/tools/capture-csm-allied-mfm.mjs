@@ -1,0 +1,28 @@
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createCaptureSession,requireSourceToolMode,verifyFrozenSource} from './source-ingestion-contract.mjs';
+
+const repoRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
+const specs=[
+  {slug:'world-eaters',label:'World Eaters',title:'KHORNE BERZERKERS',key:'khorne-berzerkers',sourceId:'csm-allied-khorne-berzerkers-mfm-v1.5'},
+  {slug:'thousand-sons',label:'Thousand Sons',title:'RUBRIC MARINES',key:'rubric-marines',sourceId:'csm-allied-rubric-marines-mfm-v1.5'}
+];
+const clean=value=>String(value||'').replace(/\u00a0/g,' ').replace(/\s+/g,' ').trim();
+const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex').toUpperCase();
+const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;
+const stableHash=value=>sha(Buffer.from(JSON.stringify(stable(value)),'utf8'));
+
+async function extract(page,title){return page.evaluate(({title})=>{
+  const clean=value=>String(value||'').replace(/\u00a0/g,' ').replace(/\s+/g,' ').trim(),integer=value=>{const matches=[...clean(value).matchAll(/\d[\d,]*/g)];return Number.parseInt(matches.at(-1)?.[0].replaceAll(',','')||'',10);};
+  const copyRange=label=>{const value=clean(label).toUpperCase();if(value==='YOUR UNIT COSTS')return{};let match=value.match(/^YOUR (\d+)(?:ST|ND|RD|TH) TO (\d+)(?:ST|ND|RD|TH) UNITS? COSTS?$/);if(match)return{minCopies:Number(match[1]),maxCopies:Number(match[2])};match=value.match(/^YOUR (\d+)(?:ST|ND|RD|TH) \+ UNIT COSTS$/);if(match)return{minCopies:Number(match[1])};throw new Error(`Unsupported copy range: ${label}`);};
+  const modelRange=label=>{const match=clean(label).match(/^(\d+) models?$/i);if(!match)throw new Error(`Unsupported model range: ${label}`);return{minModels:Number(match[1]),maxModels:Number(match[1])};};
+  const version=clean([...document.querySelectorAll('main *')].find(node=>/^v\d+\.\d+$/.test(clean(node.textContent))&&node.children.length===0)?.textContent),heading=[...document.querySelectorAll('main span.text-xl')].find(node=>clean(node.textContent).toUpperCase()===title),card=heading?.closest('div.flex.flex-col.space-y-1.m-1');if(!card)throw new Error(`${title}: exact unit card missing`);const groups=[...card.children].slice(1),pointSchedules=[];
+  for(const group of groups){const sourceLabel=clean(group.firstElementChild?.textContent);if(!/^YOUR .*UNIT.* COSTS?$/.test(sourceLabel))continue;const entries=[...group.querySelectorAll('ul > *')].map(container=>{const row=[...container.querySelectorAll('span')].map(node=>clean(node.textContent)).filter(Boolean),label=row[0],cost=row.find(value=>/pts$/i.test(value));return label&&cost?{sourceLabel:label,...modelRange(label),value:integer(cost)}:null;}).filter(Boolean);if(entries.length)pointSchedules.push({sourceLabel,...copyRange(sourceLabel),entries});}
+  if(!pointSchedules.length)throw new Error(`${title}: no point schedules`);return{version,unit:{title,sourceGroup:'UNITS',status:'CURRENT',pointSchedules}};
+},{title});}
+
+async function capture(candidateDir){const {chromium}=await import('playwright'),browser=await chromium.launch({channel:'chrome',headless:true});try{for(const spec of specs){const session=createCaptureSession({repoRoot,sourceId:spec.sourceId,authority:'official-games-workshop',sourceType:'official-web-capture',candidateDir:path.join(candidateDir,spec.key),extractorPath:'books/shared/tools/capture-csm-allied-mfm.mjs',notes:`Exact current MFM dependency for ${spec.title}; no unsupported Army Book enrollment.`}),context=await browser.newContext({viewport:{width:1440,height:900}}),page=await context.newPage(),url=`https://mfm.warhammer-community.com/en/${spec.slug}`;await page.goto(url,{waitUntil:'networkidle',timeout:120_000});const extracted=await extract(page,spec.title);if(extracted.version!=='v1.5')throw new Error(`${spec.title}: expected v1.5, got ${extracted.version}`);const html=await page.content(),rawName=`official-mfm-v1.5-${spec.slug}-csm-dependency.html`,rawPath=`books/chaos-space-marines/sources/${rawName}`;session.captureText({requestedUrl:url,finalUrl:page.url(),content:html,name:spec.slug});const bytes=Buffer.from(html,'utf8'),payload={schema:'warhammer-mfm-cross-faction-unit-capture/v1',title:'Munitorum Field Manual',edition:'Warhammer 40,000 11th Edition',consumerArmyBookId:'chaos-space-marines',sourceFactionId:spec.slug,sourceFactionLabel:spec.label,version:'v1.5',sourceUpdatedAt:'2026-09-30',capturedAt:'2026-09-30',currentnessCutoff:'2026-09-30',currentness:'CURRENT',authority:'OFFICIAL_GAMES_WORKSHOP_LIVE_MFM',url,currentnessEvidence:{downloadsUrl:'https://www.warhammer-community.com/en-gb/downloads/warhammer-40000/',downloadsUpdatedAt:'2026-09-30',liveVersion:'v1.5'},rawArtifacts:[{path:rawName,sha256:sha(bytes),bytes:bytes.length,state:'CURRENT'}],sourceLocator:{partition:'UNITS',sourceTitle:spec.title},unit:extracted.unit};payload.captureSha256=stableHash(payload);session.writeCandidate(rawPath,html);session.writeCandidate(`books/chaos-space-marines/sources/official-mfm-v1.5-${spec.key}.json`,`${JSON.stringify(payload,null,2)}\n`);session.finalize({upstreamVersion:'v1.5'});await context.close();}}finally{await browser.close();}}
+
+const mode=requireSourceToolMode(process.argv.slice(2),{toolName:'capture-csm-allied-mfm.mjs'});if(mode.kind==='verify'){for(const spec of specs)verifyFrozenSource(spec.sourceId);console.log('CSM allied MFM dependencies verified: 2/2 exact live v1.5 unit captures.');}else await capture(mode.candidateDir);

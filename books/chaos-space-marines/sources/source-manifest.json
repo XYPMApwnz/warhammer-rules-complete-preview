@@ -218,6 +218,64 @@
         "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json",
         "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/source-defects.json"
       ]
+    },
+    {
+      "id": "csm-allied-khorne-berzerkers-mfm-v1.5",
+      "sourceId": "csm-allied-khorne-berzerkers-mfm-v1.5",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.5 Khorne Berzerkers dependency",
+      "authority": "official-live-mfm",
+      "version": "v1.5",
+      "updated": "2026-09-30",
+      "capturedAt": "2026-09-30",
+      "currentnessCutoff": "2026-09-30",
+      "url": "https://mfm.warhammer-community.com/en/world-eaters",
+      "role": "current-cross-faction-unit-points-owner",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION",
+        "SOURCE_FRESHNESS"
+      ],
+      "paths": [
+        "books/chaos-space-marines/sources/official-mfm-v1.5-khorne-berzerkers.json",
+        "books/chaos-space-marines/sources/official-mfm-v1.5-world-eaters-csm-dependency.html"
+      ]
+    },
+    {
+      "id": "csm-allied-rubric-marines-mfm-v1.5",
+      "sourceId": "csm-allied-rubric-marines-mfm-v1.5",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.5 Rubric Marines dependency",
+      "authority": "official-live-mfm",
+      "version": "v1.5",
+      "updated": "2026-09-30",
+      "capturedAt": "2026-09-30",
+      "currentnessCutoff": "2026-09-30",
+      "url": "https://mfm.warhammer-community.com/en/thousand-sons",
+      "role": "current-cross-faction-unit-points-owner",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION",
+        "SOURCE_FRESHNESS"
+      ],
+      "paths": [
+        "books/chaos-space-marines/sources/official-mfm-v1.5-rubric-marines.json",
+        "books/chaos-space-marines/sources/official-mfm-v1.5-thousand-sons-csm-dependency.html"
+      ]
     }
   ],
   "gates": {

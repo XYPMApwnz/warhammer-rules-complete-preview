@@ -2432,6 +2432,64 @@
         }
       ],
       "notes": "Frozen secondary 11E Chaos Space Marines corpus captured for complete source-to-canonical certification on 2026-09-29."
+    },
+    {
+      "book": "chaos-space-marines",
+      "sourceId": "csm-allied-khorne-berzerkers-mfm-v1.5",
+      "authority": "official-games-workshop",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.5-current-at-2026-09-30",
+      "acceptedHash": "b0c4d68a7259b8056294d9f3c0df4181a3237b75701c182b11781796336e3cb4",
+      "lastChecked": "2026-09-30",
+      "upstreamObservedAt": "2026-09-30",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-csm-allied-mfm.mjs",
+      "artifacts": [
+        {
+          "path": "books/chaos-space-marines/sources/official-mfm-v1.5-khorne-berzerkers.json",
+          "normalization": "bytes",
+          "sha256": "6de6a34805c7e4cd4ece0eadf2eb4db1e26034713dca9b98f619bd67e04eb740"
+        },
+        {
+          "path": "books/chaos-space-marines/sources/official-mfm-v1.5-world-eaters-csm-dependency.html",
+          "normalization": "bytes",
+          "sha256": "bb15ff920206f149966f7537cbb742cda6a60155ec497c915515a7bebd6d4a62"
+        }
+      ],
+      "notes": "Official MFM v1.5 exact-unit dependency for Khorne Berzerkers; scoped to Chaos Space Marines Cult of the Dark Gods."
+    },
+    {
+      "book": "chaos-space-marines",
+      "sourceId": "csm-allied-rubric-marines-mfm-v1.5",
+      "authority": "official-games-workshop",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.5-current-at-2026-09-30",
+      "acceptedHash": "b99c6e1c922f860cc3d6f8c1b506089e92249a9d862b94465bc9781e2ccc0426",
+      "lastChecked": "2026-09-30",
+      "upstreamObservedAt": "2026-09-30",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-csm-allied-mfm.mjs",
+      "artifacts": [
+        {
+          "path": "books/chaos-space-marines/sources/official-mfm-v1.5-rubric-marines.json",
+          "normalization": "bytes",
+          "sha256": "8e2ecd8083927892e5eb6226cb55a88348567ca9e05a14eca94987fd3609191b"
+        },
+        {
+          "path": "books/chaos-space-marines/sources/official-mfm-v1.5-thousand-sons-csm-dependency.html",
+          "normalization": "bytes",
+          "sha256": "145e659cebaf672a6a3ddcba11e09f806e6e8d95a9458b35838debdb03bd59dc"
+        }
+      ],
+      "notes": "Official MFM v1.5 exact-unit dependency for Rubric Marines; scoped to Chaos Space Marines Cult of the Dark Gods."
     }
   ],
   "dormantLiveTools": [

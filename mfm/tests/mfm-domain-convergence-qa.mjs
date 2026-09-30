@@ -44,9 +44,10 @@ for (const record of records) {
   assert.ok(record.recordType);
   assert.ok(Array.isArray(record.aliases));
   assert.ok(Array.isArray(record.references));
-  assert.equal(record.provenance.sourceVersion, 'v1.4');
+  const dependency=record.provenance.sourceVersion==='v1.5';
+  assert.equal(record.provenance.sourceVersion, dependency?'v1.5':'v1.4');
   assert.equal(record.provenance.currentness, 'CURRENT');
-  assert.equal(record.provenance.currentnessCutoff, '2026-09-22');
+  assert.equal(record.provenance.currentnessCutoff, dependency?'2026-09-30':'2026-09-22');
   assert.equal(record.provenance.authority, 'OFFICIAL_GAMES_WORKSHOP_LIVE_MFM');
   assert.ok(record.provenance.sourceCaptureSha256);
   assert.ok(record.provenance.sourceLocator);
@@ -57,7 +58,7 @@ const byFaction = new Map(FACTIONS.map(faction => [faction, {
   binding: registry.factionBindings.find(binding => binding.factionId === faction)
 }]));
 assert.equal(registry.factionBindings.length, 9);
-assert.equal(canonical.sourceSnapshots.length, 9);
+assert.equal(canonical.sourceSnapshots.length, 11);
 
 let sourceUnitCount = 0;
 let sourceSchedules = 0;
@@ -204,12 +205,12 @@ for (const [factionId, {capture, binding}] of byFaction) {
 
 assert.deepEqual(canonical.declaredCounts, {
   targetOnlyUnitReferences: 46,
-  sourceSnapshots: 9,
-  pricingGroups: 27,
-  unitReferences: 743,
-  unitPointRecords: 697,
-  pointSchedules: 897,
-  pointRows: 1131,
+  sourceSnapshots: 11,
+  pricingGroups: 29,
+  unitReferences: 745,
+  unitPointRecords: 699,
+  pointSchedules: 900,
+  pointRows: 1137,
   paidUpgradeRecords: 35,
   leaderEligibilityRecords: 148,
   leaderEdges: 653,
@@ -245,9 +246,9 @@ const canonicalBefore = JSON.stringify(canonical);
 const current = createEffectiveMfmCatalog({canonicalFacts: canonical});
 assert.equal(JSON.stringify(canonical), canonicalBefore, 'effective assembly must not mutate canonical facts');
 assert.equal(current.catalog.scope, MFM_SCOPES.CURRENT);
-assert.equal(current.catalog.unitPointRecords.length, 544);
-assert.equal(current.catalog.unitPointRecords.reduce((sum, item) => sum + item.pointSchedules.length, 0), 744);
-assert.equal(current.catalog.unitPointRecords.reduce((sum, item) => sum + item.pointSchedules.reduce((inner, schedule) => inner + schedule.entries.length, 0), 0), 953);
+assert.equal(current.catalog.unitPointRecords.length, 546);
+assert.equal(current.catalog.unitPointRecords.reduce((sum, item) => sum + item.pointSchedules.length, 0), 747);
+assert.equal(current.catalog.unitPointRecords.reduce((sum, item) => sum + item.pointSchedules.reduce((inner, schedule) => inner + schedule.entries.length, 0), 0), 959);
 assert.equal(current.catalog.paidUpgradeRecords.length, 35);
 assert.equal(current.catalog.leaderEligibilityRecords.length, 120);
 assert.equal(current.catalog.leaderEligibilityRecords.reduce((sum, item) => sum + item.targetUnitReferenceIds.length, 0), 565);
@@ -257,11 +258,11 @@ assert.equal(current.catalog.unitPointRecords.some(item => item.status === 'LEGE
 assert.equal(current.catalog.pricingGroups.some(item => item.status === 'LEGENDS'), false);
 
 const withLegends = createEffectiveMfmCatalog({canonicalFacts: canonical, scope: MFM_SCOPES.CURRENT_AND_LEGENDS});
-assert.equal(withLegends.catalog.unitPointRecords.length, 697);
+assert.equal(withLegends.catalog.unitPointRecords.length, 699);
 assert.equal(withLegends.catalog.leaderEligibilityRecords.length, 148);
 assert.equal(withLegends.catalog.leaderEligibilityRecords.reduce((sum, item) => sum + item.targetUnitReferenceIds.length, 0), 653);
 assert.equal(withLegends.catalog.supportEligibilityRecords.length, 45);
-assert.equal(withLegends.catalog.pricingGroups.length, 27);
+assert.equal(withLegends.catalog.pricingGroups.length, 29);
 assert.ok(withLegends.catalog.unitPointRecords.some(item => item.status === 'LEGENDS'));
 assert.ok(Object.isFrozen(current.catalog));
 assert.ok(Object.isFrozen(current.catalog.unitPointRecords[0].pointSchedules));

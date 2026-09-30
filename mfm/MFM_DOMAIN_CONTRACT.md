@@ -4,7 +4,7 @@ The current Warhammer 40,000 11th Edition Munitorum Field Manual flows through o
 
 `accepted official MFM v1.4 captures → explicit canonical MFM identities and facts → createEffectiveMfmCatalog() → future consumers`
 
-The nine enrolled `official-mfm-v1.4.json` captures own the current MFM facts. The identity registry owns only persistent opaque canonical IDs and exact bindings to accepted source locators. Display labels and prose never generate identities. Missing, duplicate, renamed, or otherwise unmatched source locators fail closed and require explicit identity adjudication.
+The nine enrolled `official-mfm-v1.4.json` captures own current MFM facts for the supported Army Books. Two separately enrolled, exact-unit v1.5 captures own the scoped cross-faction Khorne Berzerkers and Rubric Marines dependencies required by Chaos Space Marines; they do not enroll World Eaters or Thousand Sons as supported Army Books. The identity registry owns only persistent opaque canonical IDs and exact bindings to accepted source locators. Display labels and prose never generate identities. Missing, duplicate, renamed, or otherwise unmatched source locators fail closed and require explicit identity adjudication.
 
 Canonical record classes are explicit faction pricing groups, unit references, unit point records with model-count schedules, paid upgrades, Leader eligibility, Support eligibility, Detachments with Detachment Points and Force Disposition references, Enhancement costs, and qualifier records. Every record retains the official source ID, v1.4 fingerprint, authority, cutoff, currentness, and exact source locator.
 

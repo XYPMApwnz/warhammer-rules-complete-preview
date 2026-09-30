@@ -1,0 +1,77 @@
+{
+  "schema": "warhammer-mfm-cross-faction-unit-capture/v1",
+  "title": "Munitorum Field Manual",
+  "edition": "Warhammer 40,000 11th Edition",
+  "consumerArmyBookId": "chaos-space-marines",
+  "sourceFactionId": "thousand-sons",
+  "sourceFactionLabel": "Thousand Sons",
+  "version": "v1.5",
+  "sourceUpdatedAt": "2026-09-30",
+  "capturedAt": "2026-09-30",
+  "currentnessCutoff": "2026-09-30",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+  "url": "https://mfm.warhammer-community.com/en/thousand-sons",
+  "currentnessEvidence": {
+    "downloadsUrl": "https://www.warhammer-community.com/en-gb/downloads/warhammer-40000/",
+    "downloadsUpdatedAt": "2026-09-30",
+    "liveVersion": "v1.5"
+  },
+  "rawArtifacts": [
+    {
+      "path": "official-mfm-v1.5-thousand-sons-csm-dependency.html",
+      "sha256": "145E659CEBAF672A6A3DDCBA11E09F806E6E8D95A9458B35838DEBDB03BD59DC",
+      "bytes": 345295,
+      "state": "CURRENT"
+    }
+  ],
+  "sourceLocator": {
+    "partition": "UNITS",
+    "sourceTitle": "RUBRIC MARINES"
+  },
+  "unit": {
+    "title": "RUBRIC MARINES",
+    "sourceGroup": "UNITS",
+    "status": "CURRENT",
+    "pointSchedules": [
+      {
+        "sourceLabel": "YOUR 1ST TO 3RD UNITS COST",
+        "minCopies": 1,
+        "maxCopies": 3,
+        "entries": [
+          {
+            "sourceLabel": "5 models",
+            "minModels": 5,
+            "maxModels": 5,
+            "value": 115
+          },
+          {
+            "sourceLabel": "10 models",
+            "minModels": 10,
+            "maxModels": 10,
+            "value": 210
+          }
+        ]
+      },
+      {
+        "sourceLabel": "YOUR 4TH + UNIT COSTS",
+        "minCopies": 4,
+        "entries": [
+          {
+            "sourceLabel": "5 models",
+            "minModels": 5,
+            "maxModels": 5,
+            "value": 125
+          },
+          {
+            "sourceLabel": "10 models",
+            "minModels": 10,
+            "maxModels": 10,
+            "value": 220
+          }
+        ]
+      }
+    ]
+  },
+  "captureSha256": "5EA49E393E83070CBA2D3331A8AEAF2E55E1EE2DCC97B48871DE528A46D7ACE5"
+}
