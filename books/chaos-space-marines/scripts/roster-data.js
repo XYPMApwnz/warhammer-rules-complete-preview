@@ -31344,6 +31344,77 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           }
         ]
       }
+    ],
+    "musterChoices": [
+      {
+        "id": "masters-of-misdirection-muster-choice",
+        "sourceRuleId": "chaos-space-marines-detachment-rule-masters-of-misdirection",
+        "detachmentIds": [
+          "deceptors"
+        ],
+        "unitIds": [
+          "unit-legionaries",
+          "unit-cultist-mob"
+        ],
+        "abilityGrants": [
+          {
+            "id": "core-infiltrators",
+            "title": "Infiltrators"
+          }
+        ],
+        "selectionGroups": [
+          {
+            "id": "legionaries",
+            "unitIds": [
+              "unit-legionaries"
+            ],
+            "limits": [
+              {
+                "pointsLimit": 1000,
+                "maxSelected": 2
+              },
+              {
+                "pointsLimit": 2000,
+                "maxSelected": 3
+              },
+              {
+                "pointsLimit": 3000,
+                "maxSelected": 4
+              }
+            ]
+          },
+          {
+            "id": "cultist-mobs",
+            "unitIds": [
+              "unit-cultist-mob"
+            ],
+            "limits": [
+              {
+                "pointsLimit": 1000,
+                "maxSelected": 2
+              },
+              {
+                "pointsLimit": 2000,
+                "maxSelected": 3
+              },
+              {
+                "pointsLimit": 3000,
+                "maxSelected": 4
+              }
+            ]
+          }
+        ],
+        "attachedPropagation": {
+          "selector": {
+            "allKeywords": [
+              "CHARACTER"
+            ],
+            "noneKeywords": [
+              "EPIC HERO"
+            ]
+          }
+        }
+      }
     ]
   }
 });
