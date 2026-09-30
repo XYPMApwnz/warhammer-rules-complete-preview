@@ -25236,6 +25236,456 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "confidence": "VERIFIED_CURRENT"
     },
     {
+      "canonicalRecordId": "chaos-space-marines-ability-daemonic-allegiance",
+      "sourceKind": "ability",
+      "sourceBookId": "chaos-space-marines",
+      "effectiveBookIds": [
+        "chaos-space-marines"
+      ],
+      "sourceUnitId": "unit-heretic-astartes-daemon-prince",
+      "scope": "owner",
+      "selector": {
+        "kind": "canonical-unit",
+        "unitIds": [
+          "unit-heretic-astartes-daemon-prince"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince:reference",
+              "type": "CANONICAL_REFERENCE",
+              "canonicalTarget": "chaos-space-marines-ability-daemonic-allegiance",
+              "parameters": {
+                "referenceKind": "ability"
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "khorne"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince:khorne:keyword",
+              "type": "KEYWORD_GRANT",
+              "canonicalTarget": "KHORNE",
+              "parameters": {
+                "keyword": "KHORNE"
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "tzeentch"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince:tzeentch:keyword",
+              "type": "KEYWORD_GRANT",
+              "canonicalTarget": "TZEENTCH",
+              "parameters": {
+                "keyword": "TZEENTCH"
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "nurgle"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince:nurgle:keyword",
+              "type": "KEYWORD_GRANT",
+              "canonicalTarget": "NURGLE",
+              "parameters": {
+                "keyword": "NURGLE"
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "slaanesh"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince:slaanesh:keyword",
+              "type": "KEYWORD_GRANT",
+              "canonicalTarget": "SLAANESH",
+              "parameters": {
+                "keyword": "SLAANESH"
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "khorne"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince:khorne:strength",
+              "type": "WEAPON_CHARACTERISTIC_ADD",
+              "canonicalTarget": {
+                "kind": "weapon-family",
+                "id": "unit-heretic-astartes-daemon-prince-weapon-family-hellforged-weapons"
+              },
+              "parameters": {
+                "stat": "S",
+                "delta": 2
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "tzeentch"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince:tzeentch:attacks",
+              "type": "WEAPON_CHARACTERISTIC_ADD",
+              "canonicalTarget": "all",
+              "parameters": {
+                "stat": "A",
+                "delta": 3,
+                "profileIds": [
+                  "unit-heretic-astartes-daemon-prince-profile-4c4589e7bd"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "nurgle"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince:nurgle:toughness",
+              "type": "CHARACTERISTIC_ADD",
+              "canonicalTarget": "T",
+              "parameters": {
+                "delta": 1
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "slaanesh"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince:slaanesh:move",
+              "type": "CHARACTERISTIC_ADD",
+              "canonicalTarget": "M",
+              "parameters": {
+                "delta": 2
+              }
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      },
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-heretic-astartes-daemon-prince:section:3"
+      },
+      "confidence": "VERIFIED_CURRENT",
+      "rosterChoice": {
+        "kind": "option",
+        "count": 1,
+        "required": true,
+        "ownerScoped": true,
+        "options": [
+          {
+            "id": "khorne",
+            "title": "Khorne"
+          },
+          {
+            "id": "tzeentch",
+            "title": "Tzeentch"
+          },
+          {
+            "id": "nurgle",
+            "title": "Nurgle"
+          },
+          {
+            "id": "slaanesh",
+            "title": "Slaanesh"
+          }
+        ]
+      }
+    },
+    {
+      "canonicalRecordId": "chaos-space-marines-ability-daemonic-allegiance",
+      "sourceKind": "ability",
+      "sourceBookId": "chaos-space-marines",
+      "effectiveBookIds": [
+        "chaos-space-marines"
+      ],
+      "sourceUnitId": "unit-heretic-astartes-daemon-prince-with-wings",
+      "scope": "owner",
+      "selector": {
+        "kind": "canonical-unit",
+        "unitIds": [
+          "unit-heretic-astartes-daemon-prince-with-wings"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince-with-wings:reference",
+              "type": "CANONICAL_REFERENCE",
+              "canonicalTarget": "chaos-space-marines-ability-daemonic-allegiance",
+              "parameters": {
+                "referenceKind": "ability"
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "khorne"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince-with-wings:khorne:keyword",
+              "type": "KEYWORD_GRANT",
+              "canonicalTarget": "KHORNE",
+              "parameters": {
+                "keyword": "KHORNE"
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "tzeentch"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince-with-wings:tzeentch:keyword",
+              "type": "KEYWORD_GRANT",
+              "canonicalTarget": "TZEENTCH",
+              "parameters": {
+                "keyword": "TZEENTCH"
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "nurgle"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince-with-wings:nurgle:keyword",
+              "type": "KEYWORD_GRANT",
+              "canonicalTarget": "NURGLE",
+              "parameters": {
+                "keyword": "NURGLE"
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "slaanesh"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince-with-wings:slaanesh:keyword",
+              "type": "KEYWORD_GRANT",
+              "canonicalTarget": "SLAANESH",
+              "parameters": {
+                "keyword": "SLAANESH"
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "khorne"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince-with-wings:khorne:strength",
+              "type": "WEAPON_CHARACTERISTIC_ADD",
+              "canonicalTarget": {
+                "kind": "weapon-family",
+                "id": "unit-heretic-astartes-daemon-prince-with-wings-weapon-family-hellforged-weapons"
+              },
+              "parameters": {
+                "stat": "S",
+                "delta": 2
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "tzeentch"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince-with-wings:tzeentch:attacks",
+              "type": "WEAPON_CHARACTERISTIC_ADD",
+              "canonicalTarget": "all",
+              "parameters": {
+                "stat": "A",
+                "delta": 3,
+                "profileIds": [
+                  "unit-heretic-astartes-daemon-prince-with-wings-profile-4c4589e7bd"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "nurgle"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince-with-wings:nurgle:toughness",
+              "type": "CHARACTERISTIC_ADD",
+              "canonicalTarget": "T",
+              "parameters": {
+                "delta": 1
+              }
+            }
+          ]
+        },
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "kind": "roster-choice",
+              "choiceId": "slaanesh"
+            }
+          ],
+          "operations": [
+            {
+              "id": "daemonic-allegiance:heretic-astartes-daemon-prince-with-wings:slaanesh:move",
+              "type": "CHARACTERISTIC_ADD",
+              "canonicalTarget": "M",
+              "parameters": {
+                "delta": 2
+              }
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      },
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-heretic-astartes-daemon-prince-with-wings:section:3"
+      },
+      "confidence": "VERIFIED_CURRENT",
+      "rosterChoice": {
+        "kind": "option",
+        "count": 1,
+        "required": true,
+        "ownerScoped": true,
+        "options": [
+          {
+            "id": "khorne",
+            "title": "Khorne"
+          },
+          {
+            "id": "tzeentch",
+            "title": "Tzeentch"
+          },
+          {
+            "id": "nurgle",
+            "title": "Nurgle"
+          },
+          {
+            "id": "slaanesh",
+            "title": "Slaanesh"
+          }
+        ]
+      }
+    },
+    {
       "canonicalRecordId": "chaos-space-marines-ability-daemonkin-psychic",
       "sourceKind": "ability",
       "sourceBookId": "chaos-space-marines",

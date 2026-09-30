@@ -119,6 +119,8 @@ export function validateEffectContractSet(input,{expectedBookId=null}={}){
       const choice=contract.rosterChoice;if(!record(choice)||!ROSTER_CHOICE_KINDS.has(choice.kind)||choice.count!==1)throw new Error(`${canonicalRecordId}: invalid rosterChoice contract`);
       if(choice.kind==='weapon-profile'&&!['melee','ranged'].includes(choice.weaponMode))throw new Error(`${canonicalRecordId}: invalid weapon-profile rosterChoice contract`);
       if(choice.kind==='option'&&(!Array.isArray(choice.options)||!choice.options.length||choice.options.some(item=>!record(item)||typeof item.id!=='string'||!item.id.trim()||typeof item.title!=='string'||!item.title.trim())||new Set(choice.options.map(item=>item.id)).size!==choice.options.length))throw new Error(`${canonicalRecordId}: invalid option rosterChoice contract`);
+      if(choice.ownerScoped!==undefined&&choice.ownerScoped!==true)throw new Error(`${canonicalRecordId}: rosterChoice ownerScoped must be true when declared`);
+      if(choice.ownerScoped===true&&choice.kind!=='option')throw new Error(`${canonicalRecordId}: ownerScoped rosterChoice requires option kind`);
       dataOnly(choice,`${canonicalRecordId}.rosterChoice`);
     }
     validateSelector(contract.selector,`${canonicalRecordId}.selector`);

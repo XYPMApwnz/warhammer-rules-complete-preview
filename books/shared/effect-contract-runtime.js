@@ -18,9 +18,9 @@
     const profileId=rows[0]?.profileId,selected=selectedIds(env.owner,'selectedProfileIds'),profile=list(catalogUnit(env.owner)?.gameSelections?.weaponProfiles).find(item=>item.id===profileId);
     return profile&&selected.has(profileId)&&profile.mode===choice.weaponMode?profileId:null;
   };
-  const selectedEffectOption=(contract,context)=>{
+  const selectedEffectOption=(contract,context,env)=>{
     const choice=contract.rosterChoice;if(choice?.kind!=='option'||choice.count!==1)return null;
-    const rows=list(context.record?.effectChoices?.[contract.canonicalRecordId]),ids=rows.map(item=>typeof item==='string'?item:item?.choiceId).filter(Boolean);
+    const ownerId=instanceId(env?.owner||env?.sourceUnit||env?.draft),rows=list(context.record?.effectChoices?.[contract.canonicalRecordId]).filter(item=>choice.ownerScoped!==true||item?.ownerInstanceId===ownerId),ids=rows.map(item=>typeof item==='string'?item:item?.choiceId).filter(Boolean);
     if(ids.length!==1||!list(choice.options).some(item=>item.id===ids[0]))return null;
     return ids[0];
   };
@@ -184,7 +184,7 @@
       if(condition.kind==='source-unit-present'){if(!list(env.group).some(unit=>canonicalId(unit)===condition.unitId))return {applies:false,unknown:false};continue;}
       if(condition.kind==='unit-keyword'){if(!list(env.group||[env.draft]).some(unit=>keywords(unit,env).has(normalize(condition.keyword))))return {applies:false,unknown:false};continue;}
       if(condition.kind==='unit-keyword-absent'){if(list(env.group||[env.draft]).some(unit=>keywords(unit,env).has(normalize(condition.keyword))))return {applies:false,unknown:false};continue;}
-      if(condition.kind==='roster-choice'){if(selectedEffectOption(contract,env.context)!==condition.choiceId)return {applies:false,unknown:false};continue;}
+      if(condition.kind==='roster-choice'){if(selectedEffectOption(contract,env.context,env)!==condition.choiceId)return {applies:false,unknown:false};continue;}
       if(condition.state==='unknown'||condition.certainty==='unknown'){unknown=true;continue;}
       unknown=true;
     }
