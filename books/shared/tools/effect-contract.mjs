@@ -19,7 +19,7 @@ const SELECTOR_KEYS=new Set([
   'excludeSourceOwner','excludeSourceUnit','excludeUnitIds','groupAbilityIds','kind','minCharacteristics','modelCount','noneKeywords','noneUnitIds','not',
   'on','ownerUnitIds','physicalEquipment','relationship','requiresLeading','scope','selectedProfileIds','selectedWargearAbilityIds',
   'selectors','sourceUnitId','sourceUnitIds','stat','subject','type','unitIds','weaponFamilyId','weaponMode','groupContainsUnitIds',
-  'groupExcludesUnitIds','groupHasEnhancementIds','attachmentState','abilityParameters','targetRelation'
+  'groupExcludesUnitIds','groupHasEnhancementIds','attachmentState','abilityParameters','targetRelation','physicalComposition'
 ]);
 const CONDITION_KINDS=new Set([
   'ability-use','after-fight','ATTACHMENT_MEMBER_PRESENT','attachment-state','battle-formation-selection','battle-shock-step','battle-shock-test',
@@ -50,6 +50,7 @@ const validateSelector=(selector,label)=>{
   for(const key of Object.keys(selector))if(!SELECTOR_KEYS.has(key))throw new Error(`${label}: unknown selector field ${key}`);
   for(const key of ['all','any','anyOf','selectors'])if(selector[key]!=null)array(selector[key],`${label}.${key}`).forEach((item,index)=>validateSelector(item,`${label}.${key}[${index}]`));
   if(selector.not!=null)validateSelector(selector.not,`${label}.not`);
+  if(selector.physicalComposition!=null){const composition=selector.physicalComposition;if(!record(composition)||!Array.isArray(composition.contains)||!composition.contains.length)throw new Error(`${label}.physicalComposition requires model-presence predicates`);for(const item of composition.contains){if(!record(item)||typeof item.modelId!=='string'||!item.modelId.trim()||!Number.isInteger(item.minQuantity??1)||(item.minQuantity??1)<1||item.maxQuantity!=null&&(!Number.isInteger(item.maxQuantity)||item.maxQuantity<(item.minQuantity??1)))throw new Error(`${label}.physicalComposition contains an invalid canonical model predicate`);}}
   dataOnly(selector,label);
 };
 const validateOperation=(operation,label,operationIds)=>{
@@ -79,6 +80,7 @@ const validateOperation=(operation,label,operationIds)=>{
     const parameters=operation.parameters;
     if(parameters.restriction!=='cannot-target'||parameters.attacker!=='enemy'||typeof parameters.attackMode!=='string'||!parameters.attackMode.trim())throw new Error(`${id}: TARGETING_RESTRICTION_GRANT requires an exact enemy cannot-target attack mode`);
   }
+  if(operation.parameters.physicalModelSelector!=null){const selector=operation.parameters.physicalModelSelector;if(!record(selector)||!['modelIds','allKeywords','anyKeywords','noneKeywords'].some(key=>Array.isArray(selector[key])&&selector[key].length))throw new Error(`${id}: physicalModelSelector requires canonical model identities or keywords`);for(const key of ['modelIds','allKeywords','anyKeywords','noneKeywords'])if(selector[key]!=null&&(!Array.isArray(selector[key])||selector[key].some(value=>typeof value!=='string'||!value.trim())))throw new Error(`${id}: physicalModelSelector.${key} must contain non-empty identities`);}
 };
 
 export function validateEffectContractSet(input,{expectedBookId=null}={}){
@@ -232,6 +234,10 @@ export function validateEffectContractsAgainstCatalog(input,catalog,{effectiveBo
         for(const id of selector?.selectedWargearAbilityIds||[]){const resolved=resolveChild(contract,id,'wargear-ability',sourceUnits);if(selector.equipmentFamilyId&&resolved.binding&&!resolved.binding.semanticFamilyIds?.includes(selector.equipmentFamilyId))throw new Error(`${contract.canonicalRecordId}: child ${id} is outside equipment family ${selector.equipmentFamilyId}`);}
         for(const id of selector?.canonicalTargetIds||[])resolveChild(contract,id,'wargear-ability',sourceUnits);
         for(const id of selector?.selectedProfileIds||[])resolveChild(contract,id,'profile',sourceUnits);
+        for(const requirement of selector?.physicalComposition?.contains||[]){
+          const owners=sourceUnits.map(id=>ids.units.get(id)).filter(unit=>unit?.gameSelections?.models?.some(model=>model.id===requirement.modelId));
+          if(owners.length!==1)throw new Error(`${contract.canonicalRecordId}: physical composition model ${requirement.modelId} must resolve to one declared source unit`);
+        }
       }
       for(const operation of clause.operations){
         const target=typeof operation.canonicalTarget==='string'?operation.canonicalTarget:operation.canonicalTarget.id,kind=operation.parameters.referenceKind||operation.canonicalTarget?.kind;

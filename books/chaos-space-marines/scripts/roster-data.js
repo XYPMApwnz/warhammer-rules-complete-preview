@@ -25740,6 +25740,66 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "confidence": "VERIFIED_CURRENT"
     },
     {
+      "canonicalRecordId": "chaos-space-marines-ability-mutated-bodyguard",
+      "sourceKind": "ability",
+      "sourceBookId": "chaos-space-marines",
+      "effectiveBookIds": [
+        "chaos-space-marines"
+      ],
+      "sourceUnitId": "unit-traitor-enforcer",
+      "scope": "owner-or-attached-group",
+      "selector": {
+        "unitIds": [
+          "unit-traitor-enforcer"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {},
+          "conditions": [
+            {
+              "selector": {
+                "on": "source",
+                "physicalComposition": {
+                  "requireResolved": true,
+                  "contains": [
+                    {
+                      "modelId": "unit-traitor-enforcer-model-e85cc6b611",
+                      "minQuantity": 1
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "operations": [
+            {
+              "id": "mutated-bodyguard-character-feel-no-pain",
+              "canonicalTarget": "core-feel-no-pain",
+              "parameters": {
+                "value": "4+",
+                "physicalModelSelector": {
+                  "allKeywords": [
+                    "CHARACTER"
+                  ]
+                }
+              },
+              "type": "ABILITY_GRANT"
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      },
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-traitor-enforcer:section:1"
+      },
+      "confidence": "VERIFIED_CURRENT"
+    },
+    {
       "canonicalRecordId": "chaos-space-marines-ability-plunder",
       "sourceKind": "ability",
       "sourceBookId": "chaos-space-marines",

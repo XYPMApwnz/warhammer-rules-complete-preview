@@ -48,6 +48,12 @@
     const count=physical.length?[...groups.values()].reduce((sum,items)=>{const selectionIds=new Set(items.map(item=>item.selectionId)),quantities=items.map(item=>Number(item.totalQuantity??item.quantity??1));return sum+(selectionIds.size>1?Math.max(...quantities):quantities.reduce((total,value)=>total+value,0));},0):new Set(list(loadout?.selectedProfileIds).filter(id=>!excluded.has(id)&&(!requirement.weaponMode||profiles.get(id)?.mode===requirement.weaponMode))).size;
     const expected=Number(requirement.equals);return !Number.isFinite(expected)||count===expected;
   };
+  const physicalCompositionMatches=(selector,unit)=>{
+    const requirement=selector.physicalComposition;if(!requirement)return true;
+    const composition=unit?.selection?.composition;if(requirement.requireResolved&&composition?.state!=='resolved')return false;
+    const counts=new Map(list(composition?.models).map(item=>[item.canonicalModelId,Number(item.quantity)||0]));
+    return list(requirement.contains).every(item=>{const count=counts.get(item.modelId)||0;return count>=Number(item.minQuantity??1)&&(item.maxQuantity==null||count<=Number(item.maxQuantity));});
+  };
   function matches(selector,env,defaultUnit=env.draft){
     if(!selector||!Object.keys(selector).length)return true;
     if(selector.all&&!list(selector.all).every(item=>matches(item,env,defaultUnit)))return false;
@@ -106,6 +112,7 @@
     if(selector.canonicalTargetIds&&!list(selector.canonicalTargetIds).some(value=>selectedIds(unit,'selectedWargearAbilityIds').has(value)))return false;
     if(selector.canonicalEquipmentIds&&!list(selector.canonicalEquipmentIds).some(value=>selectedIds(unit,'selectedWargearAbilityIds').has(value)||selectedIds(unit,'selectedProfileIds').has(value)))return false;
     if(!physicalEquipmentMatches(selector,unit))return false;
+    if(!physicalCompositionMatches(selector,unit))return false;
     return true;
   }
   const scopeMatches=(scope,env)=>{
@@ -223,8 +230,9 @@
     }
     const sourceKind=['ability','datasheet-ability','transport'].includes(contract.sourceKind)?(contract.sourceKind==='transport'?'transport':env.sourceUnit&&list(env.group).includes(env.sourceUnit)?'explicit-attachment':contract.sourceKind==='datasheet-ability'?'datasheet':'ability'):contract.sourceKind==='detachment-rule'?'detachment':contract.sourceKind.includes('wargear')?'selected-wargear':contract.sourceKind==='enhancement'&&env.owner&&env.owner!==env.draft&&list(env.group).includes(env.draft)?'explicit-attachment':'enhancement';
     const sourceId=sourceKind==='detachment'?(contract.detachmentId||contract.canonicalRecordId):contract.canonicalRecordId;
-    const physicalBearer=parameters.physicalBearer;delete parameters.physicalBearer;let physicalTargets=[];
+    const physicalBearer=parameters.physicalBearer;delete parameters.physicalBearer;const physicalModelSelector=parameters.physicalModelSelector;delete parameters.physicalModelSelector;let physicalTargets=[];
     if(physicalBearer){const bindings=new Map(list(physicalBearer.modelProfileBindings).map(item=>[item.modelId,item.statProfileId])),grouped=new Map();for(const item of selectedWargearOccurrences(env.owner||env.sourceUnit,contract.selector?.selectedWargearAbilityIds)){const statProfileId=bindings.get(item.canonicalModelId);if(!statProfileId)continue;const key=`${item.cohortId}\0${item.canonicalModelId}\0${statProfileId}`,current=grouped.get(key)||{cohortId:item.cohortId,canonicalModelId:item.canonicalModelId,statProfileId,model:item.model||'',modelQuantity:item.modelQuantity,selectedQuantity:0};current.selectedQuantity+=Number(item.quantity)||1;grouped.set(key,current);}physicalTargets=[...grouped.values()];if(!physicalTargets.length)return null;}
+    if(physicalModelSelector){const models=new Map(list(catalogUnit(env.draft)?.gameSelections?.models).map(item=>[item.id,item]));physicalTargets=list(env.draft?.selection?.composition?.models).flatMap(item=>{const model=models.get(item.canonicalModelId),keys=new Set(list(model?.intrinsicKeywords).map(normalize));if(!model||list(physicalModelSelector.modelIds).length&&!physicalModelSelector.modelIds.includes(model.id)||list(physicalModelSelector.allKeywords).some(key=>!keys.has(normalize(key)))||list(physicalModelSelector.anyKeywords).length&&!list(physicalModelSelector.anyKeywords).some(key=>keys.has(normalize(key)))||list(physicalModelSelector.noneKeywords).some(key=>keys.has(normalize(key))))return[];return[{canonicalModelId:model.id,model:model.title||'',modelQuantity:Number(item.quantity)||0}];});if(!physicalTargets.length)return null;}
     const effect={id:operation.id,component,targetId,operation:kind,...parameters,...(physicalTargets.length?{physicalTargets}:{}),targetInstanceId:instanceId(env.draft),source:{kind:sourceKind,id:sourceId,ownerInstanceId:instanceId(env.owner||env.sourceUnit)||null},provenance:{rosterFact:'canonical-effect-contract',sourceId:contract.source.sourceId,locator:contract.source.locator,confidence:contract.confidence}};
     delete effect.referenceKind;
     if(operation.type==='CANONICAL_REFERENCE'){const referenceKind=target.kind||operation.parameters?.referenceKind||contract.sourceKind,record=canonicalReferenceRecord(referenceKind,target.id);effect.canonicalReference={kind:referenceKind,id:target.id,...(record?{title:record.title,text:record.text,sectionId:record.sectionId||record.id}:{})};if(referenceKind==='ability')effect.canonicalAbilityId=target.id;effect.state='reference';effect.targetState=record?'resolved':'unresolved';effect.targets=[];}
