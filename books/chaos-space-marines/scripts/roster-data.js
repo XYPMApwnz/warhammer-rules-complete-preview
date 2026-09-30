@@ -25422,6 +25422,65 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       "confidence": "VERIFIED_CURRENT"
     },
     {
+      "canonicalRecordId": "chaos-space-marines-ability-devoted-to-destruction",
+      "sourceKind": "ability",
+      "sourceBookId": "chaos-space-marines",
+      "effectiveBookIds": [
+        "chaos-space-marines"
+      ],
+      "sourceUnitId": "unit-helbrute",
+      "scope": "selected-physical-loadout",
+      "selector": {
+        "kind": "canonical-unit",
+        "unitIds": [
+          "unit-helbrute"
+        ]
+      },
+      "clauses": [
+        {
+          "selector": {
+            "subject": "unit",
+            "modelCount": {
+              "equals": 1,
+              "requiredState": "resolved"
+            },
+            "physicalEquipment": {
+              "kind": "weapon-family-cardinality",
+              "weaponMode": "melee",
+              "excludeProfileIds": [
+                "unit-helbrute-profile-12d6de9008"
+              ],
+              "equals": 2,
+              "requireResolvedLoadout": true,
+              "requireDistinctPhysicalItems": true,
+              "target": "selected-profile-ids"
+            }
+          },
+          "conditions": [],
+          "operations": [
+            {
+              "id": "devoted-to-destruction-attacks",
+              "type": "WEAPON_CHARACTERISTIC_ADD",
+              "canonicalTarget": "selected-physical-melee-profiles",
+              "parameters": {
+                "characteristic": "A",
+                "value": 2
+              }
+            }
+          ]
+        }
+      ],
+      "timingState": {
+        "kind": "CURRENT_ROSTER_STATE"
+      },
+      "stackingPolicy": "apply-once-per-source",
+      "source": {
+        "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29",
+        "locator": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json#datasheet-helbrute:section:1"
+      },
+      "confidence": "VERIFIED_CURRENT"
+    },
+    {
       "canonicalRecordId": "chaos-space-marines-ability-enhanced-warriors",
       "sourceKind": "ability",
       "sourceBookId": "chaos-space-marines",

@@ -1,0 +1,47 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import {fileURLToPath} from 'node:url';
+
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..'),read=relative=>fs.readFileSync(path.join(root,relative),'utf8'),plain=value=>JSON.parse(JSON.stringify(value)),clone=value=>structuredClone(value);
+const scope={console};scope.window=scope;scope.globalThis=scope;vm.createContext(scope);
+for(const file of ['books/chaos-space-marines/scripts/roster-data.js','books/shared/effect-contract-runtime.js','books/shared/roster-context.js'])vm.runInContext(read(file),scope,{filename:file});
+const baseline=plain(scope.WH_BOOK_ROSTER_CATALOG),unitId='unit-helbrute',ruleId='chaos-space-marines-ability-devoted-to-destruction',effectId='devoted-to-destruction-attacks',ccw='unit-helbrute-profile-12d6de9008',fist='unit-helbrute-profile-ea5553320f',hammer='unit-helbrute-profile-9803f6caf0',scourge='unit-helbrute-profile-cd7d9ee094',melta='unit-helbrute-profile-ee981eaff0';
+const byId=(catalog,id)=>catalog.units.find(unit=>unit.id===id),raw=(id,wargear)=>({id,canonicalUnitId:unitId,name:'Helbrute',quantity:1,points:0,wargear,models:[],warlord:null});
+const project=(catalog,units)=>{scope.WH_BOOK_ROSTER_CATALOG=catalog;const roster={faction:'Chaos Space Marines',pointsLimit:2000,detachments:[],enhancements:[],units,warnings:[]};return scope.WHArmyRosterContext.project({catalog,roster,record:{id:'csm-devoted-destruction',attachments:{},roster},provider:{gameEffects:context=>scope.WHEffectContractRuntime.project(context)}}).game;};
+const attacks=(unit,id)=>unit.effective.weaponProfiles.find(profile=>profile.id===id)?.values.A,effect=unit=>unit.effects.find(item=>item.id===effectId);
+const source=JSON.parse(read('books/chaos-space-marines/content/chaos-space-marines-codex-datasheets.en.json')).datasheets.find(unit=>unit.id===unitId).abilities.find(item=>item.sourceAbilityId==='2a50-924a-8b28-3d6c');
+assert.equal(source.text,'If this model is equipped with two melee weapons in addition to its close combat weapon, add 2 to the Attacks characteristic of those two weapons.','exact certified Devoted to Destruction source');
+
+const certify=catalog=>{
+  const canonical=byId(catalog,unitId),contract=catalog.effectContracts.find(item=>item.canonicalRecordId===ruleId),baseProfiles=plain(canonical.gameSelections.weaponProfiles);
+  assert.ok(contract,'Devoted to Destruction structured contract');
+  assert.deepEqual(contract.clauses[0].selector.physicalEquipment,{kind:'weapon-family-cardinality',weaponMode:'melee',excludeProfileIds:[ccw],equals:2,requireResolvedLoadout:true,requireDistinctPhysicalItems:true,target:'selected-profile-ids'},'exact selected-loadout predicate');
+  assert.equal(contract.clauses[0].operations[0].parameters.value,2,'exact +2 Attacks modifier');
+  let positive=0,negative=0,recompute=0,physical=0;
+  const mixed=raw('mixed','Close combat weapon, Helbrute fist, Helbrute hammer'),twoFists=raw('two-fists','Close combat weapon, 2x Helbrute fist'),one=raw('one','Close combat weapon, Multi-melta, Helbrute fist'),ranged=raw('ranged','Close combat weapon, Multi-melta, ➤ Missile launcher');
+  let game=project(catalog,[mixed]),unit=game.units[0],applied=effect(unit);
+  assert.equal(game.status,'ready','qualifying mixed loadout resolves');assert.ok(applied,'qualifying mixed loadout executes');
+  assert.equal(attacks(unit,fist),'7','selected fist gains +2 A');assert.equal(attacks(unit,hammer),'7','selected hammer gains +2 A');positive+=3;
+  assert.equal(attacks(unit,ccw),'5','excluded close combat weapon unchanged');assert.equal(attacks(unit,melta),'2','unselected ranged weapon base unchanged');
+  assert.deepEqual(plain(applied.profileIds).sort(),[fist,hammer].sort(),'only exact selected qualifying profiles targeted');negative+=3;
+  unit=project(catalog,[twoFists]).units[0];assert.ok(effect(unit),'two physical fists satisfy the cardinality');assert.equal(attacks(unit,fist),'7','both identical physical fists receive +2 A through their selected profile');positive+=2;
+  unit=project(catalog,[one]).units[0];assert.equal(effect(unit),undefined,'one qualifying melee weapon does not trigger');assert.equal(attacks(unit,fist),'5','one melee weapon retains base A');negative+=2;
+  unit=project(catalog,[ranged]).units[0];assert.equal(effect(unit),undefined,'ranged loadout does not trigger');assert.equal(attacks(unit,ccw),'5','inherent close combat weapon alone does not qualify');negative+=2;
+  const copy=raw('copy','Close combat weapon, Multi-melta, Helbrute fist');game=project(catalog,[mixed,copy]);assert.ok(effect(game.units[0]),'qualifying physical Helbrute gets effect');assert.equal(effect(game.units[1]),undefined,'duplicate non-qualifying Helbrute remains isolated');physical+=2;
+  assert.equal(attacks(project(catalog,[clone(one)]).units[0],fist),'5','changing to one melee weapon recomputes base A');
+  assert.equal(attacks(project(catalog,[clone(mixed)]).units[0],fist),'7','restoring qualifying loadout recomputes +2 A');
+  assert.deepEqual(plain(project(catalog,[clone(mixed)]).units[0].effective),plain(project(catalog,[clone(mixed)]).units[0].effective),'reload/recompute deterministic');recompute+=3;
+  assert.deepEqual(plain(canonical.gameSelections.weaponProfiles),baseProfiles,'canonical base weapon profiles remain unchanged');negative++;
+  return{positive,negative,recompute,physical};
+};
+const controls=certify(baseline);assert.deepEqual(controls,{positive:5,negative:8,recompute:3,physical:2},'focused controls');
+let mutations=0;const killed=(label,mutate)=>{const catalog=clone(baseline),contract=catalog.effectContracts.find(item=>item.canonicalRecordId===ruleId);mutate(contract);assert.throws(()=>certify(catalog),undefined,`${label} mutation survived`);mutations++;};
+killed('REMOVED_CARDINALITY',contract=>{delete contract.clauses[0].selector.physicalEquipment;});
+killed('WRONG_CARDINALITY',contract=>{contract.clauses[0].selector.physicalEquipment.equals=1;});
+killed('INCLUDED_CLOSE_COMBAT_WEAPON',contract=>{contract.clauses[0].selector.physicalEquipment.excludeProfileIds=[];});
+killed('WRONG_WEAPON_MODE',contract=>{contract.clauses[0].selector.physicalEquipment.weaponMode='ranged';});
+killed('WRONG_ATTACK_MODIFIER',contract=>{contract.clauses[0].operations[0].parameters.value=1;});
+assert.equal(mutations,5,'Devoted to Destruction mutation controls');
+console.log(`CSM Devoted to Destruction QA: fully executable; positive ${controls.positive}/${controls.positive}; negative ${controls.negative}/${controls.negative}; recompute ${controls.recompute}/${controls.recompute}; physical-instance ${controls.physical}/${controls.physical}; mutations ${mutations}/${mutations} KILLED; PASS`);
