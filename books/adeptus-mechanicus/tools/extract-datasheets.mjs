@@ -9,6 +9,7 @@ const repo=path.resolve(root,'../..');
 const coreAbilityBindings=createArmyCoreAbilityBindings({repoRoot:repo});
 const sourcePath=path.join(root,'sources','bsdata-adeptus-mechanicus-11e.json');
 const outputPath=path.join(root,'content','adeptus-mechanicus-codex-datasheets.en.json');
+const transportProfileIds=new Set(JSON.parse(fs.readFileSync(path.join(root,'book.config.json'),'utf8')).datasheetTransportProfileIds||[]);
 const points=JSON.parse(fs.readFileSync(path.join(root,'content','adeptus-mechanicus-points.en.json'),'utf8'));
 const source=JSON.parse(fs.readFileSync(sourcePath,'utf8')).catalogue;
 const SOURCE_URL='https://github.com/BSData/wh40k-11e/blob/main/Imperium%20-%20Adeptus%20Mechanicus.json';
@@ -225,6 +226,12 @@ const datasheets=points.units.map(pointUnit=>{
   const abilityRecords=profileRecords.filter(item=>item.profile.typeName==='Abilities').map(item=>coreAbilityBindings.bindAbility({title:clean(item.profile.name),text:abilityText(pointUnit.title,item.profile.name,characteristics(item.profile,categoryIds).Description||''),origin:item.ownerType==='upgrade'?'wargear':'datasheet',ownerName:item.ownerName,sourceAbilityId:item.profile.id}));
   const conditionalTitles=new Set(abilityRecords.filter(item=>item.origin==='wargear'&&key(item.ownerName)!==key(pointUnit.title)&&!alwaysDatasheetAbilities.has(key(item.title))).map(item=>key(item.title)));
   const abilities=abilityRecords.filter(item=>(item.origin!=='wargear'||alwaysDatasheetAbilities.has(key(item.title)))&&!conditionalTitles.has(key(item.title))).concat(rulesFor(entry));
+  // Enrolled Transport profiles retain their accepted Capacity prose without runtime semantics.
+  const transport=profiles.filter(item=>item.typeName==='Transport'&&transportProfileIds.has(item.id)).map(profile=>{
+    const text=characteristics(profile,categoryIds).Capacity;
+    if(!text)throw new Error(`Transport profile ${profile.id} has no Capacity text`);
+    return text;
+  });
   const wargearAbilities=abilityRecords.filter(item=>item.origin==='wargear'&&conditionalTitles.has(key(item.title))&&!abilities.some(ability=>key(ability.title)===key(item.title)));
   const categories=unique(categoryLinks.map(item=>clean(item.name).replace(/^Faction:\s*/i,'')).filter(item=>!nonDatasheetCategories.has(key(item))),item=>item.toLowerCase());
   if(pointUnit.title==='Cybernetica Datasmith'){
@@ -245,6 +252,7 @@ const datasheets=points.units.map(pointUnit=>{
     weapons:unique(weapons,item=>JSON.stringify(item)),
     abilities:unique(abilities.filter(item=>item.title),item=>item.title.toLowerCase()).map(publicAbility),
     wargearAbilities:unique(wargearAbilities.filter(item=>item.title),item=>item.title.toLowerCase()).map(publicAbility),
+    ...(transport.length?{relations:{transport}}:{}),
     composition:datasheetText(pointUnit.title,compositionFor(entry,'',pointUnit.title)),
     wargear:wargearFor(entry,pointUnit.title),
     availableProfiles:[...new Set(weapons.map(item=>item.name))],

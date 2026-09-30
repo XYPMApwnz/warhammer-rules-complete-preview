@@ -24,7 +24,7 @@ const run=()=>spawnSync(process.execPath,[path.join(fixtureRoot,'tools','extract
 const output=path.join(fixtureRoot,'content','adeptus-mechanicus-codex-datasheets.en.json');
 
 try{
-  for(const file of ['tools/extract-datasheets.mjs','tools/source-hash.mjs','sources/bsdata-adeptus-mechanicus-11e.json','content/adeptus-mechanicus-points.en.json'])copy(file);
+  for(const file of ['book.config.json','tools/extract-datasheets.mjs','tools/source-hash.mjs','sources/bsdata-adeptus-mechanicus-11e.json','content/adeptus-mechanicus-points.en.json'])copy(file);
   copyRepoPath('books/shared/tools/army-core-ability-binding.mjs');
   copyRepoPath('books/shared/content/army-ability-source-bindings.v1.json');
   copyRepoPath('books/core-rules/content');

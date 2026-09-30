@@ -217,6 +217,7 @@ const unitCard=unit=>{
     ['Unit Composition',`${slug}-composition`,composition(unit)],
     ...grouped.relation.map(item=>[item.title,`${slug}-${slugify(item.title)}`,`<div class="ability-list">${abilityCard(item,unit)}</div>`]),
     ...grouped.transport.map(item=>['Transport',`${slug}-transport`,`<div class="ability-list">${abilityCard(item,unit)}</div>`]),
+    ...(unit.relations?.transport?.length?[['Transport',`${slug}-transport`,unit.relations.transport.map(text=>`<p data-source-field="relations.transport">${esc(text)}</p>`).join('')]]:[]),
     ...grouped.damaged.map(item=>['Damaged',`${slug}-damaged`,`<div class="ability-list">${abilityCard(item,unit)}</div>`]),
     ...(wargear.length?[['Wargear Options',`${slug}-wargear-options`,`<ul>${wargear.map(x=>`<li>${decorate(x,unit.id)}</li>`).join('')}</ul>`]]:[]),
     ...(wargearAbilities.length?[['Wargear Abilities',`${slug}-wargear-abilities`,`<p class="unit-note">These abilities apply only while the corresponding wargear is equipped.</p><div class="ability-list">${wargearAbilities.map((item,index)=>abilityCard(item,unit,canonicalWargearAbilityId(unit,item,index))).join('')}</div>`]]:[]),
