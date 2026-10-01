@@ -14,7 +14,7 @@ const payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const inputs=readAppInputs(),payload=buildApp(inputs);
 validatePresentation(payload,inputs.model,inputs.records);
 const expected=enumerateExpectedFacts(inputs.model,inputs.records).map(f=>({...f,display:expectedDisplay(f,inputs.model,inputs.records)}));
-const allowed=new Map([[appPath,'text/html'],[payloadPath,'application/json'],['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/styles.css','text/css']]);
+const allowed=new Map([[appPath,'text/html'],[payloadPath,'application/json'],['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],['/books/shared/army-book-app-v2/styles.css','text/css']]);
 const requests=[],legacyRequests=[];
 let servedPayload=payload;
 const server=http.createServer((req,res)=>{
@@ -48,7 +48,7 @@ try {
       for (const f of observed.facts) {assert.ok(!factsSeen.has(f.id),`${device} duplicate visible owner ${f.id}`);factsSeen.set(f.id,f);}
       observed.cards.forEach(id=>cardsSeen.add(id));
     }
-    assert.equal(factsSeen.size,expected.length,`${device} MISSING_FROM_UI`);assert.equal(cardsSeen.size,payload.cards.length);
+    assert.equal(factsSeen.size,expected.length,`${device} MISSING_FROM_UI`);assert.equal(cardsSeen.size,payload.cards.filter(card=>card.domain!=='CORE').length);
     for (const fact of expected) {
       const observed=factsSeen.get(fact.id);assert.ok(observed,`${device} missing ${fact.id}`);
       assert.deepEqual(observed.value,fact.value,`${device} WRONG_VALUE ${fact.id}`);

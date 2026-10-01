@@ -1,9 +1,13 @@
 /** Presentation-only reader. Canonical IDs and supplied fields are its only content authority. */
+import {searchGlossary, validateGlossary} from './glossary.mjs';
+const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
 export function mount(document, payload) {
   if (payload?.schema !== 'army-book-app-v2/presentation') throw new TypeError('Unsupported Army Book presentation.');
   const window = document.defaultView;
   const cards = new Map(payload.cards.map(card => [card.id, card]));
   if (cards.size !== payload.cards.length) throw new Error('Duplicate canonical card ID.');
+  if (cards.has(glossaryRoute)) throw new Error('Canonical identity collides with the Glossary presentation route.');
+  if (payload.glossary) validateGlossary(payload.glossary, payload.cards);
   for (const card of cards.values()) {
     for (const id of [...(card.children || []), ...(card.links || []).map(link => link.targetId), ...(card.fields || []).flatMap(field => field.targetIds || [])]) {
       if (!cards.has(id)) throw new Error(`Missing canonical target: ${id}`);
@@ -122,6 +126,8 @@ export function mount(document, payload) {
   document.body.replaceChildren(shell);
   document.title = `${payload.book.title} · Army Book V2`;
   let selectedId = null;
+  let selectedView = 'READER';
+  let glossaryQuery = '';
   let drawerOpen = false;
   let lastFocus = null;
   let routeKey = null;
@@ -372,8 +378,13 @@ export function mount(document, payload) {
     }
     searchStatus.textContent = '';
     const home = button('Library overview', 'v2-library-link', library);
-    if (!selectedId) home.setAttribute('aria-current', 'page');
+    if (!selectedId && selectedView === 'READER') home.setAttribute('aria-current', 'page');
     navigation.append(home);
+    if (payload.glossary) {
+      const glossary = button('Glossary', 'v2-library-link', openGlossary);
+      if (selectedView === 'GLOSSARY') glossary.setAttribute('aria-current', 'page');
+      navigation.append(glossary);
+    }
     for (const group of payload.groups) {
       const section = el('details', 'v2-nav-group');
       section.open = true;
@@ -430,6 +441,8 @@ export function mount(document, payload) {
   }
 
   function renderSelected(id, focus = false) {
+    selectedView = 'READER';
+    glossaryQuery = '';
     selectedId = cards.has(id) ? id : null;
     if (!selectedId) {
       renderLibrary();
@@ -456,6 +469,55 @@ export function mount(document, payload) {
     }
   }
 
+  function renderGlossary(query = '', focus = false) {
+    selectedView = 'GLOSSARY';
+    selectedId = null;
+    glossaryQuery = query;
+    const section = el('section', 'v2-card v2-glossary');
+    const heading = el('header', 'v2-card-header');
+    heading.append(el('h1', 'v2-card-title', 'Glossary'), button('Close glossary', 'v2-library-link', closeGlossary));
+    const body = el('div', 'v2-compatible');
+    const label = el('label', 'v2-search');
+    label.append(el('span', 'v2-sr-only', 'Search glossary'));
+    const input = el('input');
+    input.type = 'search';
+    input.placeholder = 'Search glossary';
+    input.setAttribute('aria-label', 'Search glossary');
+    input.setAttribute('autocomplete', 'off');
+    input.value = query;
+    label.append(input);
+    const status = el('p', 'v2-search-status');
+    status.setAttribute('role', 'status');
+    const results = el('ul', 'v2-compatible-list v2-glossary-results');
+    const renderResults = () => {
+      const matches = searchGlossary(payload.glossary, glossaryQuery);
+      status.textContent = `${matches.length} ${matches.length === 1 ? 'entry' : 'entries'} found`;
+      results.replaceChildren();
+      for (const entry of matches) {
+        const item = el('li', 'v2-compatible-item');
+        const link = anchor(entry.matchedLabel || entry.label, entry.targetId, true);
+        link.classList.add('v2-glossary-result');
+        item.append(link, el('p', 'v2-search-kind', `${entry.category}${entry.contextLabel ? ' · ' + entry.contextLabel : ''}`));
+        results.append(item);
+      }
+      if (!matches.length) results.append(el('li', 'v2-empty', 'No matching entries. Try another term.'));
+    };
+    input.addEventListener('input', () => {
+      glossaryQuery = input.value;
+      window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, glossaryQuery}}, '', window.location.href);
+      renderResults();
+    });
+    body.append(label, status, results);
+    section.append(heading, body);
+    main.replaceChildren(section);
+    renderResults();
+    renderNavigation();
+    if (focus) {
+      input.focus({preventScroll: true});
+      window.scrollTo({top: 0, behavior: 'instant'});
+    }
+  }
+
   function hashId() {
     try { return decodeURIComponent(window.location.hash.slice(1)); } catch { return ''; }
   }
@@ -463,12 +525,14 @@ export function mount(document, payload) {
     const id = hashId();
     const state = window.history.state;
     const detail = state?.armyBookV2?.detailId === id && cards.has(id);
-    const key = JSON.stringify([id, detail, state?.armyBookV2?.backgroundId]);
+    const key = JSON.stringify([id, detail, state?.armyBookV2?.backgroundId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
     if (routeKey === key) return;
     routeKey = key;
     toggleDrawer(false);
     if (detail) {
-      if (selectedId !== (state.armyBookV2.backgroundId || null)) renderSelected(state.armyBookV2.backgroundId, false);
+      if (state.armyBookV2.backgroundView === 'GLOSSARY' && payload.glossary) {
+        if (selectedView !== 'GLOSSARY' || glossaryQuery !== (state.armyBookV2.glossaryQuery || '')) renderGlossary(state.armyBookV2.glossaryQuery || '');
+      } else if (selectedView !== 'READER' || selectedId !== (state.armyBookV2.backgroundId || null)) renderSelected(state.armyBookV2.backgroundId, false);
       dialogContent.replaceChildren(renderCard(cards.get(id), {inDialog: true}));
       if (!dialog.open) {
         lastFocus = document.activeElement;
@@ -480,7 +544,8 @@ export function mount(document, payload) {
     } else {
       if (dialog.open) dialog.close();
       document.body.classList.remove('v2-detail-open');
-      renderSelected(id || null, focus);
+      if (id === glossaryRoute && payload.glossary) renderGlossary(state?.armyBookV2?.glossaryQuery || '', focus);
+      else renderSelected(id || null, focus);
       if (!focus) window.requestAnimationFrame(() => window.scrollTo({top: state?.armyBookV2?.scrollY || 0, behavior: 'instant'}));
       if (!focus && lastFocus) {
         const restoreTarget = lastFocus.isConnected ? lastFocus : [...main.querySelectorAll('[data-target-id]')].find(node => node.dataset.targetId === lastFocus.dataset.targetId);
@@ -489,11 +554,12 @@ export function mount(document, payload) {
       lastFocus = null;
     }
   }
-  function navigate(id, detail) {
-    if (id && !cards.has(id)) return false;
+  function navigate(id, detail, options = {}) {
+    const glossary = id === glossaryRoute && Boolean(payload.glossary) && !detail;
+    if (id && !cards.has(id) && !glossary) return false;
     const nextHash = id ? `#${encodeURIComponent(id)}` : '';
-    window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, scrollY: window.scrollY, detailScrollTop: dialogContent.scrollTop}}, '', window.location.href);
-    const state = {armyBookV2: detail ? {detailId: id, backgroundId: selectedId, scrollY: window.scrollY} : {selectedId: id, scrollY: 0}};
+    window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, scrollY: window.scrollY, detailScrollTop: dialogContent.scrollTop, ...(selectedView === 'GLOSSARY' ? {glossaryQuery} : {})}}, '', window.location.href);
+    const state = {armyBookV2: detail ? {detailId: id, backgroundId: selectedId, backgroundView: selectedView, glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: options.query || '', glossaryReturnId: selectedView === 'READER' ? selectedId : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : {selectedId: id, scrollY: 0}};
     if (window.location.hash !== nextHash || Boolean(window.history.state?.armyBookV2?.detailId) !== detail) {
       window.history.pushState(state, '', `${window.location.pathname}${window.location.search}${nextHash}`);
     } else window.history.replaceState(state, '', window.location.href);
@@ -504,6 +570,8 @@ export function mount(document, payload) {
   function open(id) { return navigate(id, false); }
   function showDetail(id) { return navigate(id, true); }
   function library() { return navigate(null, false); }
+  function openGlossary() { return payload.glossary ? navigate(glossaryRoute, false, {query: ''}) : false; }
+  function closeGlossary() { return navigate(window.history.state?.armyBookV2?.glossaryReturnId || null, false); }
   function closeDetail() {
     if (window.history.state?.armyBookV2?.detailId) {
       window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state.armyBookV2, detailScrollTop: dialogContent.scrollTop}}, '', window.location.href);
@@ -537,6 +605,11 @@ export function mount(document, payload) {
   dialog.addEventListener('cancel', event => { event.preventDefault(); closeDetail(); });
   dialog.addEventListener('click', event => { if (event.target === dialog) closeDetail(); });
   shell.addEventListener('keydown', event => {
+    if (!drawerOpen && !dialog.open && selectedView === 'GLOSSARY' && event.key === 'Escape') {
+      event.preventDefault();
+      closeGlossary();
+      return;
+    }
     if (!drawerOpen) return;
     if (event.key === 'Escape') { toggleDrawer(false); drawerToggle.focus(); }
     if (event.key === 'Tab') {
@@ -554,7 +627,7 @@ export function mount(document, payload) {
     main.replaceChildren(...[...cards.values()].map(card => renderCard({...card, children: []})));
     return main;
   }
-  const api = Object.freeze({payload, open, showDetail, library, renderAllForQA, setRelatedDetachment});
+  const api = Object.freeze({payload, open, showDetail, library, renderAllForQA, setRelatedDetachment, openGlossary, closeGlossary});
   window.ArmyBookAppV2 = api;
   route();
   return api;

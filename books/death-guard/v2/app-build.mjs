@@ -3,6 +3,8 @@ import {fileURLToPath} from 'node:url';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {buildRelatedRules} from './related-rules-build.mjs';
+import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
+import {buildGlossaryProjection} from './glossary-build.mjs';
 
 export function readAppInputs() {
   // The effective Rule Contract snapshot already contains the complete Effective Book.
@@ -15,12 +17,15 @@ export function readAppInputs() {
     const record=resolveOwnedFact(id);records.set(id,record);
     for (const child of [...(record.qualifierIds||[]),...(record.enhancementCostIds||[])]) ids.add(child);
   }
-  return {model,records};
+  return {model,records,coreCatalog:createEffectiveCoreCatalog()};
 }
 export function buildApp(inputs=readAppInputs()) {
   const payload=projectArmyBook(inputs.model,inputs.records,{title:'Death Guard',edition:'11th Edition'});
   // Recompile from the same factual snapshot. A generated index never owns facts.
   payload.relatedRules=buildRelatedRules(inputs.model);
+  const glossary=buildGlossaryProjection(inputs.model,inputs.coreCatalog || createEffectiveCoreCatalog());
+  payload.cards.push(...glossary.coreCards);
+  payload.glossary=glossary.index;
   return payload;
 }
 export function writeApp({check=false}={}) {

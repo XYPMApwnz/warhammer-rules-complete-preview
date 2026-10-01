@@ -9,7 +9,8 @@ The adapter reads exactly one effective factual snapshot,
 and typed contracts on the same canonical rule identities. Central MFM records
 are obtained through the existing `mfm-boundary.mjs` owner. The adapter does
 not rebuild facts from V1 HTML, reader bundles, old compatibility matrices,
-effect contracts or Glossary. Central MFM's existing source verification
+effect contracts or legacy Glossary. Glossary V2 also consumes the existing
+clean effective Core catalog without copying its facts into DG. Central MFM's existing source verification
 remains intact; reading its accepted captures is not a V1 Army Book read.
 
 `app-build.mjs` generates only `app.html` and
@@ -56,8 +57,8 @@ scroll-following TOC, V1's specialized combined weapon/points tables, main
 Library exit, unit artwork, offline/PWA integration or external Core
 Stratagems (the latter have no DG V2 factual input). Nested dialog history is
 supported; V1's complete nested triggering-element journey restoration is not
-claimed. Related / Compatible Rules are now implemented below. Glossary and
-Roster remain intentionally deferred.
+claimed. Related / Compatible Rules and Glossary V2 are implemented below.
+Roster remains intentionally deferred.
 
 ## Existing integration limitation
 
@@ -131,3 +132,55 @@ are included. Fourteen projection/oracle mutation controls pass; five legacy
 poison classes yield zero factual reads; a V2 strength poison reaches UI as 77.
 Rule Contract source QA, its deterministic snapshot check, MFM boundary QA,
 app output check and exhaustive desktop/phone DOM QA pass.
+
+## Glossary V2
+
+Continuation base: `c6d2d626573747d0edd92f3c80789dd1c4cb3589`.
+Branch: `working/army-book-glossary-v2`.
+`glossary-build.mjs` reads the same effective DG snapshot plus the existing
+clean Core catalog. Its disposable `generated/glossary-v2.json` contains
+618 canonical targets: 248 DG rule/Detachment records and 370 Core records.
+There are 86 presentation aliases, including 68 exact canonical field
+addresses for named local abilities. The index contains no gameplay definitions.
+
+The application recomputes this projection instead of reading the saved index.
+Existing DG cards, navigation groups, all 3,654 DG facts and Related Rules are
+unchanged. The same payload adds Core cards using their existing canonical IDs;
+these are reachable through Glossary and canonical deep links, without adding
+Core to normal DG navigation. Their 1,052 fields are checked separately against
+the existing Core record owners. Reader, Related Rules and Glossary resolve a
+rule through the same card map, current fields and popup renderer.
+
+```
+node books/death-guard/v2/glossary-build.mjs
+node books/death-guard/v2/glossary-build.mjs --check
+node books/death-guard/v2/app-build.mjs
+node books/death-guard/v2/glossary-qa.mjs
+node books/death-guard/v2/glossary-browser-qa.mjs
+```
+
+QA independently enumerates existing rule owners and source-bound named
+abilities. It rejects unknown/duplicate/missing targets, copied definitions,
+factual aliases and wrong field addresses; title collisions do not alter
+canonical identity. Fresh-process legacy Glossary poisoning produces identical
+output with zero legacy reads. Deleting and poisoning an external disposable
+index fixture both reproduce the same rebuilt bytes. Browser checks exercise
+actual search, aliases, canonical dialogs, deep links, reload and history on
+desktop and 390×844 phone. Existing Reader/Related Rules browser checks remain
+required regressions.
+
+The legacy `qa:glossary` also fails its pre-existing Splitting Units projection
+parity assertion on the exact continuation base. The repository-wide
+`qa:architecture` has pre-existing stale V1 roster output checks for EC, SM,
+DA and BA; the integration failure described above remains unchanged. These
+legacy checks are not reported as passing and are outside this V2 task.
+
+Verified Glossary result: 706 Node search cases and 11 negative controls pass.
+Each desktop/phone run opens all 618 canonical targets and all 86 aliases,
+compares 618 full Reader definitions and 75 Related Rules definitions, checks
+717 searches and all 1,052 Core fields, and passes five history/query cases
+and 16 reload/deep-link checks. All 618 definitions match across viewports.
+Duplicate results, stale results, unresolved targets, horizontal overflow and
+runtime errors are zero. Controlled DG ability, Core definition and Stratagem
+source changes are visible through the same canonical resolver on both devices.
+No new factual owner or factual/Rule Contract change is introduced.

@@ -12,7 +12,7 @@ export const legacyClasses=Object.freeze([
   ['DG reader data and HTML',/books\/death-guard\/(?:(?:scripts|mobile)\/|(?:reader|index)\.html)/],
   ['DG generated/compatibility',/books\/death-guard\/(?:generated\/|.*(?:compatible-rules|compatibility|owner-matrix|correction-ledger))/],
   ['DG V1 effects',/books\/death-guard\/.*(?:effect-contract|wargear-contract|roster-data|target-data)/],
-  ['legacy Glossary',/(?:^|\/)(?:glossary|glossary-data)(?:\/|\.)/]
+  ['legacy Glossary',/(?:^|\/)(?:glossary\/|glossary-data(?:\/|\.)|glossary\.js$)/]
 ]);
 const legacyClass=file=>legacyClasses.find(([,expression])=>expression.test(file));
 const filename=value=>String(value instanceof URL?fileURLToPath(value):value).replace(/\\/g,'/');
@@ -44,6 +44,11 @@ export function expectedDisplay(fact,model,records) {
 }
 
 export function validatePresentation(payload,model,records) {
+  // Core records are a separate canonical domain consumed by Glossary. This
+  // unchanged oracle proves the original Army Book fields and graph in full;
+  // glossary-qa independently verifies every added Core record/field.
+  assert.equal(new Set(payload.cards.map(card=>card.id)).size,payload.cards.length,'WRONG_IDENTITY duplicate cross-domain card');
+  payload={...payload,cards:payload.cards.filter(card=>card.domain!=='CORE')};
   const expected=enumerateExpectedFacts(model,records),cards=new Map(payload.cards.map(c=>[c.id,c]));
   assert.equal(cards.size,payload.cards.length,'WRONG_IDENTITY duplicate card');
   assert.deepEqual(new Set(cards.keys()),new Set([...model.entities.map(e=>e.id),...records.keys()]),'WRONG_IDENTITY card universe');
@@ -120,7 +125,7 @@ if (process.argv[1]===fileURLToPath(import.meta.url)) {
   const changed=buildApp({model:modelPoison,records:inputs.records});validatePresentation(changed,modelPoison,inputs.records);assert.notEqual(hash(changed),hash(payload),'V2 fact poison not reflected');mutations.push('V2 weapon strength reflected');
   for (const kind of ['DATASHEET','DETACHMENT','ENHANCEMENT','STRATAGEM']) assert.equal(payload.cards.filter(c=>c.kind===kind).length,{DATASHEET:36,DETACHMENT:9,ENHANCEMENT:30,STRATAGEM:45}[kind]);
   const shared=new URL('../../shared/army-book-app-v2/',import.meta.url);
-  for (const file of ['project.mjs','runtime.mjs']) assert.doesNotMatch(fs.readFileSync(new URL(file,shared),'utf8'),/death-guard|plague-marines|defiler|mortarion|compatible-rules\.json|glossary|scripts\/data/i,'Book-specific/V1 factual dependency');
+  for (const file of ['project.mjs','runtime.mjs']) assert.doesNotMatch(fs.readFileSync(new URL(file,shared),'utf8'),/death-guard|plague-marines|defiler|mortarion|compatible-rules\.json|legacy-glossary|(?:\.\.\/)+glossary\/|scripts\/data/i,'Book-specific/V1 factual dependency');
   const isolation=runProjectionQA();
   const generated=JSON.parse(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url),'utf8'));assert.equal(hash(generated),hash(payload),'Generated output stale');
   console.log(JSON.stringify({status:'PASS',...result,mutations,legacyPoisonClasses:isolation.legacyPoisonClasses,v1FactualReads:0,legacyGlossaryFactualReads:0,titleOrProseFactualJoins:0,deathGuardGameplayBranches:0,tracedBuildReads:isolation.buildReads.length},null,2));

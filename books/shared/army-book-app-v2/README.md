@@ -3,8 +3,8 @@
 One presentation runtime renders one supplied payload on desktop and phone.
 `project.mjs` projects an effective entity graph with Rule Contract V2 semantics
 and already-owned central MFM records. `runtime.mjs` only formats, searches and
-navigates that projection. There are no book-specific gameplay branches, prose
-parsers, glossary imports, roster state or legacy Army Book factual inputs.
+navigates that projection. There are no book-specific gameplay branches,
+runtime gameplay prose parsers, roster state or legacy Army Book/Glossary factual inputs.
 
 Existing canonical entity IDs identify cards, children, references and routes.
 Field IDs are source-field addresses within their existing owner, not new
@@ -47,7 +47,8 @@ Death Guard is the first adapter at `books/death-guard/v2/app.html`. This route
 is a local V2 development entry, separate from V1 publication and offline
 inventory. No new public Library or service-worker integration is implied.
 Related / Compatible Rules now consume an optional disposable compatibility
-projection on that same payload. Glossary and Roster migrations are deferred. Current V1
+projection on that same payload. Glossary V2 uses the same canonical card map;
+Roster migration is deferred. Current V1
 features without equivalents are recorded in the DG application QA report.
 
 ## Related rules presentation
@@ -67,3 +68,28 @@ filter persists through in-page navigation and popup Back/Forward/close, and
 datasheet dialogs share the same related-rules state. Desktop and phone use
 the same renderer. Invalid, duplicate or unresolved projection identities
 fail mounting; they never become Conditional.
+
+## Glossary presentation
+
+`glossary.mjs` builds a disposable `army-book-glossary/v2` index from effective
+canonical rule identities and existing clean Core records. Each entry carries
+only its canonical target ID, display labels and presentation aliases. There
+are no gameplay definitions in this index. Named abilities embedded within a
+canonical section become aliases bound to that section's exact source field
+address; they do not create new rule owners. Core aliases use the existing Core
+identity registry. Core definition cards project existing records into the same
+card map and detail renderer. Derived concepts link their existing definition
+owner rather than duplicating its definition.
+
+Search matches titles/aliases as presentation text, then opens the existing
+canonical target through the Reader's popup/history resolver. Results contain
+each canonical target once, including when several aliases match. The Glossary
+view has a reserved presentation route `#view-glossary`, distinct from factual
+IDs. Its query survives popup close, reload and Back/Forward through history
+state; a new Glossary visit starts with an empty query. Close returns to the
+previous Reader card. Desktop and phone share this state and renderer, with
+the existing stylesheet.
+
+The application adapter recomputes the index; a saved index cannot override
+canonical facts. Validation rejects missing targets, duplicate identities,
+copied factual definitions and aliases with unresolved field addresses.
