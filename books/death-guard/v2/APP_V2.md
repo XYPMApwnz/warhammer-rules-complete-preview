@@ -56,7 +56,8 @@ scroll-following TOC, V1's specialized combined weapon/points tables, main
 Library exit, unit artwork, offline/PWA integration or external Core
 Stratagems (the latter have no DG V2 factual input). Nested dialog history is
 supported; V1's complete nested triggering-element journey restoration is not
-claimed. Compatible Rules, Glossary and Roster remain intentionally deferred.
+claimed. Related / Compatible Rules are now implemented below. Glossary and
+Roster remain intentionally deferred.
 
 ## Existing integration limitation
 
@@ -65,6 +66,56 @@ and artwork assertion at line 100 both here and on the exact base worktree.
 This is pre-existing V1 integration debt, outside this DG V2 Reader task.
 Focused Rule Contract, MFM boundary, projection and desktop/phone browser
 checks are reported separately; a full legacy integration PASS is not claimed.
+
+## Compatible / Related Rules V2
+
+Continuation base: `b7c91271a3daa0b90fe6cd3cb78b823b73be4e34`.
+`related-rules-build.mjs` compiles the same effective Rule Contract snapshot
+used by the Reader. It computes all 36 × (45 Stratagems + 30 Enhancements)
+relations rather than owning a pair matrix. `generated/related-rules-v2.json`
+is a disposable standalone output; the application build recomputes the
+projection and embeds it in its existing payload. Neither generated copy
+can override canonical unit facts or contracts.
+
+No Detachment selected means unavailable Detachment context. Selecting one
+supplies only that canonical ID. Intrinsic keywords, faction, canonical
+identity and accepted static abilities are known; source-backed potential
+formation/Detachment keywords remain unknown when their context is missing.
+Leading, attachment, Warlord and battle state are never inferred. No rule
+effects execute. The current Core corpus has no clean typed applicability
+contract, so Core Stratagems are `DEFERRED_NEEDS_CONTRACTS`.
+
+Each datasheet shows separate Stratagem/Enhancement lists, an All Detachments
+or single Detachment filter, labelled Match/Conditional badges, and existing
+canonical rule detail links. No Match results are hidden. Fixed ALL IS ROT,
+MIRESLICK and SOULROT FLUX remain Conditional with unavailable battle context;
+their forbidden and allowed engagement controls still pass contract QA.
+
+The independently re-enumerated historical source-card domain accounts for
+591 Stratagem and 164 Enhancement relations. With each rule's Detachment
+explicitly selected, those 755 results are 79 Match, 654 Conditional and
+22 No Match. All Detachments yields 0 Match, 733 Conditional and 22 No Match.
+Both contexts have zero Invalid/unresolved results. The full 2,700-row index
+also has zero Invalid/unresolved results. QA additionally checks 755 wrong
+Detachment evaluations, six invalid/poison mutations, zero forbidden legacy
+reads under six poison classes, and identical bytes after deleting/rebuilding
+a disposable index fixture.
+
+```
+node books/death-guard/v2/related-rules-build.mjs
+node books/death-guard/v2/related-rules-build.mjs --check
+node books/death-guard/v2/related-rules-qa.mjs
+node books/death-guard/v2/app-build.mjs
+node books/death-guard/v2/app-build.mjs --check
+node books/death-guard/v2/related-rules-browser-qa.mjs
+```
+
+Browser QA checks all 36 datasheets under All and each of nine Detachments
+on desktop and 390×844 phone: 360 exact result-set/filter queries per viewport.
+It covers hidden No Match results, both visible badges, zero cross-Detachment
+leakage, canonical Stratagem/Enhancement dialogs, history, filter persistence,
+datasheet detail and poisoned legacy network paths. Existing exhaustive
+Reader QA still verifies the same 3,654 factual fields on both viewports.
 
 ## Verified application result
 

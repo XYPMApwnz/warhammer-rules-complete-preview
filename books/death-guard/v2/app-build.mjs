@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
+import {buildRelatedRules} from './related-rules-build.mjs';
 
 export function readAppInputs() {
   // The effective Rule Contract snapshot already contains the complete Effective Book.
@@ -16,7 +17,12 @@ export function readAppInputs() {
   }
   return {model,records};
 }
-export function buildApp(inputs=readAppInputs()) {return projectArmyBook(inputs.model,inputs.records,{title:'Death Guard',edition:'11th Edition'});}
+export function buildApp(inputs=readAppInputs()) {
+  const payload=projectArmyBook(inputs.model,inputs.records,{title:'Death Guard',edition:'11th Edition'});
+  // Recompile from the same factual snapshot. A generated index never owns facts.
+  payload.relatedRules=buildRelatedRules(inputs.model);
+  return payload;
+}
 export function writeApp({check=false}={}) {
   const payload=buildApp();
   const output=new Map([['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],['./app.html',`<!doctype html>

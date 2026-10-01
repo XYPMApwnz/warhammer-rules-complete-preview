@@ -1,5 +1,17 @@
 # Technical specification: Death Guard Rules term popups
 
+## ArmyBookApp V2 related-rule scope
+
+The existing term/TERMS requirements below describe V1 routes. The separate
+`v2/app.html` Related Rules view uses existing canonical V2 rule cards, never
+TERMS or legacy Glossary facts. Clicking either a Stratagem or Enhancement
+result opens that same canonical rule ID in the V2 detail dialog, retaining
+the datasheet background and Detachment filter. Back, Forward and Escape use
+the existing canonical V2 history contract. Datasheet dialogs render the same
+related-rules component and filter state. Desktop and 390×844 acceptance:
+open each rule kind, verify exact card/hash identity, Back/Forward, Escape,
+and retained filter; `v2/related-rules-browser-qa.mjs` automates these scenarios.
+
 ## Specification update rule
 
 - Any change to popup levels, cycles, positioning, scrolling, animation, Journey/Back, focus, accessibility, or a related test must be reflected in this document at the same time.

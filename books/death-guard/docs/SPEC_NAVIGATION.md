@@ -1,5 +1,17 @@
 # Technical specification: Death Guard Rules navigation
 
+## ArmyBookApp V2 related-rule scope
+
+The V1 navigation requirements below remain scoped to existing V1 routes.
+The separate `v2/app.html` datasheet view supplies All Detachments or one
+canonical Detachment filter for its Related Rules lists. The filter persists
+through in-page entry changes and canonical rule detail history; reloading
+starts with All Detachments. No title-derived route or new Glossary journey
+is introduced. Desktop and 390×844 phone share this state and runtime.
+Acceptance: choose a Detachment, open a result, use Back/Forward/Escape and
+verify background/filter preservation and zero rules from other Detachments.
+`v2/related-rules-browser-qa.mjs` automates all datasheet/filter combinations.
+
 ## Specification update rule
 
 - Any change to navigation, Journey/Back, scroll tracking, responsive behavior, focus, accessibility, or a related test must be reflected in this document at the same time.

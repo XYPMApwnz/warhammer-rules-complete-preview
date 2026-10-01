@@ -9,6 +9,23 @@ export function mount(document, payload) {
       if (!cards.has(id)) throw new Error(`Missing canonical target: ${id}`);
     }
   }
+  const relatedByUnit=new Map();
+  const detachmentCards=[...cards.values()].filter(card=>card.kind==='DETACHMENT');
+  if (payload.relatedRules) {
+    const index=payload.relatedRules;
+    if (index.schema!=='army-book-related-rules/v2'||index.authority!=='DISPOSABLE_PROJECTION'||!Array.isArray(index.rows)) throw new TypeError('Invalid related rules projection.');
+    const mapping={TRUE:'MATCH',FALSE:'NO_MATCH',UNKNOWN:'CONDITIONAL',INVALID:'INVALID'};
+    const seen=new Set();
+    for (const row of index.rows) {
+      const unit=cards.get(row.unitId),rule=cards.get(row.ruleId),detachment=cards.get(row.detachmentId);
+      const key=JSON.stringify([row.unitId,row.ruleId]);
+      if (seen.has(key)||unit?.kind!=='DATASHEET'||!['STRATAGEM','ENHANCEMENT'].includes(row.kind)||rule?.kind!==row.kind||rule.parentId!==row.detachmentId||detachment?.kind!=='DETACHMENT') throw new TypeError('Invalid canonical related rules identity.');
+      for (const result of [row,row.selectedDetachment]) if (!result||!Object.hasOwn(mapping,result.state)||mapping[result.state]!==result.applicability||result.state==='INVALID') throw new TypeError('Invalid related rules evaluation.');
+      seen.add(key);
+      if (!relatedByUnit.has(row.unitId)) relatedByUnit.set(row.unitId,[]);
+      relatedByUnit.get(row.unitId).push(row);
+    }
+  }
   const el = (tag, className, text) => {
     const node = document.createElement(tag);
     if (className) node.className = className;
@@ -108,6 +125,7 @@ export function mount(document, payload) {
   let drawerOpen = false;
   let lastFocus = null;
   let routeKey = null;
+  let relatedDetachmentId='';
   const narrow = window.matchMedia('(max-width: 860px)');
   const indexed = [...cards.values()].map(card => ({card, text: [card.title, card.kind, ...(card.fields || []).map(field => `${field.label} ${field.displayValue || ''} ${exactValue(field.value)}`)].join(' ').toLocaleLowerCase()}));
 
@@ -278,7 +296,61 @@ export function mount(document, payload) {
       });
       article.append(children);
     }
+    if (card.kind==='DATASHEET'&&payload.relatedRules) article.append(renderRelatedRules(card.id));
     return article;
+  }
+
+  function fillRelatedResults(unitId,container) {
+    container.replaceChildren();
+    const rows=(relatedByUnit.get(unitId)||[]).filter(row=>!relatedDetachmentId||row.detachmentId===relatedDetachmentId);
+    for (const kind of ['STRATAGEM','ENHANCEMENT']) {
+      const group=el('section','v2-compatible-group');
+      group.dataset.ruleKind=kind;
+      group.append(el('h3','',kind==='STRATAGEM'?'Stratagems':'Enhancements'));
+      const list=el('ul','v2-compatible-list');
+      for (const row of rows.filter(row=>row.kind===kind)) {
+        const result=relatedDetachmentId?row.selectedDetachment:row;
+        if (!['MATCH','CONDITIONAL'].includes(result.applicability)) continue;
+        const item=el('li','v2-compatible-item');
+        item.dataset.ruleId=row.ruleId;
+        item.dataset.applicability=result.applicability;
+        item.dataset.detachmentId=row.detachmentId;
+        const line=el('div','v2-compatible-rule');
+        line.append(anchor(cards.get(row.ruleId).title,row.ruleId,true),el('span',`v2-applicability v2-applicability-${result.applicability.toLowerCase()}`,result.applicability==='MATCH'?'Match':'Conditional'));
+        item.append(line,el('span','v2-compatible-detachment',cards.get(row.detachmentId).title));
+        list.append(item);
+      }
+      group.append(list.children.length?list:el('p','v2-empty','No compatible rules for this datasheet in this selection.'));
+      container.append(group);
+    }
+  }
+
+  function setRelatedDetachment(id) {
+    if (id&&!detachmentCards.some(card=>card.id===id)) throw new TypeError('Unknown canonical Detachment filter.');
+    relatedDetachmentId=id;
+    for (const section of shell.querySelectorAll('.v2-compatible')) {
+      section.querySelector('.v2-detachment-filter').value=id;
+      fillRelatedResults(section.dataset.unitId,section.querySelector('.v2-compatible-results'));
+    }
+  }
+
+  function renderRelatedRules(unitId) {
+    const section=el('section','v2-compatible');
+    section.dataset.unitId=unitId;
+    section.append(el('h2','','Related / Compatible Rules'),el('p','v2-compatible-help','Match: this datasheet meets the known eligibility conditions. Conditional: eligibility also depends on detachment, roster or battle conditions.'));
+    const label=el('label','v2-detachment-label','Detachment');
+    const select=el('select','v2-detachment-filter');
+    select.setAttribute('aria-label','Related rules detachment');
+    const all=el('option','','All Detachments');all.value='';select.append(all);
+    for (const card of detachmentCards) {const option=el('option','',card.title);option.value=card.id;select.append(option);}
+    select.value=relatedDetachmentId;
+    select.addEventListener('change',()=>setRelatedDetachment(select.value));
+    label.append(select);
+    const results=el('div','v2-compatible-results');
+    results.setAttribute('aria-live','polite');
+    section.append(label,results);
+    fillRelatedResults(unitId,results);
+    return section;
   }
 
   function renderNavigation() {
@@ -482,7 +554,7 @@ export function mount(document, payload) {
     main.replaceChildren(...[...cards.values()].map(card => renderCard({...card, children: []})));
     return main;
   }
-  const api = Object.freeze({payload, open, showDetail, library, renderAllForQA});
+  const api = Object.freeze({payload, open, showDetail, library, renderAllForQA, setRelatedDetachment});
   window.ArmyBookAppV2 = api;
   route();
   return api;

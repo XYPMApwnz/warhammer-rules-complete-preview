@@ -46,5 +46,24 @@ same mount function, state and stylesheet serve both viewport sizes.
 Death Guard is the first adapter at `books/death-guard/v2/app.html`. This route
 is a local V2 development entry, separate from V1 publication and offline
 inventory. No new public Library or service-worker integration is implied.
-Compatible Rules UI, Glossary and Roster migrations are deferred. Current V1
+Related / Compatible Rules now consume an optional disposable compatibility
+projection on that same payload. Glossary and Roster migrations are deferred. Current V1
 features without equivalents are recorded in the DG application QA report.
+
+## Related rules presentation
+
+`payload.relatedRules` uses `army-book-related-rules/v2`. Each canonical
+datasheet/rule row has a result with no selected Detachment and another with
+the rule's explicitly selected canonical Detachment. The shared reader only
+selects and displays those compiled results; it evaluates no gameplay prose,
+creates no attachments and executes no effects. A selected filter excludes
+other Detachments before using its scoped result. All Detachments preserves
+unavailable Detachment context. Match and Conditional have labelled badges;
+No Match results are hidden. Stratagems and Enhancements have separate lists.
+
+Titles are display labels obtained from the same canonical cards. Rule links
+use their existing canonical IDs and existing modal/history navigation. The
+filter persists through in-page navigation and popup Back/Forward/close, and
+datasheet dialogs share the same related-rules state. Desktop and phone use
+the same renderer. Invalid, duplicate or unresolved projection identities
+fail mounting; they never become Conditional.
