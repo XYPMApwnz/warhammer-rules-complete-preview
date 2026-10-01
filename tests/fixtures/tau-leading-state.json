@@ -1,0 +1,380 @@
+{
+  "schema": "tau-source-leading-state/v1",
+  "sourcePath": "books/tau-empire/sources/waha-11e-current-2026-09-28/corpus.json",
+  "method": "Independent accepted gameplay census, verified against retained HTML. Roster-dependent numeric effects and conditional rule-reference propagation are covered; battle-state execution is excluded.",
+  "records": [
+    {
+      "sourceId": "detachment-montka:enhancement:1",
+      "blockOrdinal": null,
+      "owner": "Mont'ka/Coordinated Exploitation",
+      "title": "Coordinated Exploitation",
+      "type": "enhancement",
+      "sourceText": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit",
+      "mechanical": false,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "enhancement-coordinated-exploitation",
+        "acceptedSourceId": "detachment-montka:enhancement:1",
+        "ownerUnitId": "unit-cadre-fireblade",
+        "bodyguardUnitId": "unit-breacher-team",
+        "operationIds": [
+          "canonical-enhancement-coordinated-exploitation"
+        ],
+        "expectedTargets": [
+          "parsed-unit-2"
+        ],
+        "enhancementId": "enhancement-coordinated-exploitation",
+        "detachmentId": "montka"
+      }
+    },
+    {
+      "sourceId": "detachment-montka:enhancement:2",
+      "blockOrdinal": null,
+      "owner": "Mont'ka/Exemplar of the Mont’ka",
+      "title": "Exemplar of the Mont’ka",
+      "type": "enhancement",
+      "sourceText": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Killing Blow Detachment rule applies to that unit during the fourth battle round as well.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "that unit during the fourth battle round as well",
+      "mechanical": false,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "enhancement-exemplar-of-the-montka",
+        "acceptedSourceId": "detachment-montka:enhancement:2",
+        "ownerUnitId": "unit-cadre-fireblade",
+        "bodyguardUnitId": "unit-breacher-team",
+        "operationIds": [
+          "canonical-enhancement-exemplar-of-the-montka"
+        ],
+        "expectedTargets": [
+          "parsed-unit-2"
+        ],
+        "enhancementId": "enhancement-exemplar-of-the-montka",
+        "detachmentId": "montka"
+      }
+    },
+    {
+      "sourceId": "detachment-kauyon:enhancement:1",
+      "blockOrdinal": null,
+      "owner": "Kauyon/Exemplar of the Kauyon",
+      "title": "Exemplar of the Kauyon",
+      "type": "enhancement",
+      "sourceText": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Patient Hunter Detachment rule applies to that unit from the second battle round onwards instead of from the third.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "that unit from the second battle round onwards instead of from the third",
+      "mechanical": false,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "enhancement-exemplar-of-the-kauyon",
+        "acceptedSourceId": "detachment-kauyon:enhancement:1",
+        "ownerUnitId": "unit-cadre-fireblade",
+        "bodyguardUnitId": "unit-breacher-team",
+        "operationIds": [
+          "canonical-enhancement-exemplar-of-the-kauyon"
+        ],
+        "expectedTargets": [
+          "parsed-unit-2"
+        ],
+        "enhancementId": "enhancement-exemplar-of-the-kauyon",
+        "detachmentId": "kauyon"
+      }
+    },
+    {
+      "sourceId": "detachment-kauyon:enhancement:4",
+      "blockOrdinal": null,
+      "owner": "Kauyon/Through Unity, Devastation",
+      "title": "Through Unity, Devastation",
+      "type": "enhancement",
+      "sourceText": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit",
+      "mechanical": false,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "enhancement-through-unity-devastation",
+        "acceptedSourceId": "detachment-kauyon:enhancement:4",
+        "ownerUnitId": "unit-cadre-fireblade",
+        "bodyguardUnitId": "unit-breacher-team",
+        "operationIds": [
+          "canonical-enhancement-through-unity-devastation"
+        ],
+        "expectedTargets": [
+          "parsed-unit-2"
+        ],
+        "enhancementId": "enhancement-through-unity-devastation",
+        "detachmentId": "kauyon"
+      }
+    },
+    {
+      "sourceId": "detachment-kroot-hunting-pack:enhancement:1",
+      "blockOrdinal": null,
+      "owner": "Kroot Hunting Pack/Borthrod Gland",
+      "title": "Borthrod Gland",
+      "type": "enhancement",
+      "sourceText": "Kroot Flesh Shaper only. While the bearer is leading a unit, each time a model in that unit makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "that unit makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit",
+      "mechanical": true,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "enhancement-borthrod-gland",
+        "acceptedSourceId": "detachment-kroot-hunting-pack:enhancement:1",
+        "ownerUnitId": "unit-kroot-flesh-shaper",
+        "bodyguardUnitId": "unit-kroot-carnivores",
+        "operationIds": [
+          "borthrod-critical"
+        ],
+        "expectedTargets": [
+          "parsed-unit-1",
+          "parsed-unit-2"
+        ],
+        "enhancementId": "enhancement-borthrod-gland",
+        "detachmentId": "kroot-hunting-pack"
+      }
+    },
+    {
+      "sourceId": "detachment-kroot-hunting-pack:enhancement:3",
+      "blockOrdinal": null,
+      "owner": "Kroot Hunting Pack/Nomadic Hunter",
+      "title": "Nomadic Hunter",
+      "type": "enhancement",
+      "sourceText": "KROOT TRAIL SHAPER model only. While the bearer is leading a unit, add 3\" to the Move characteristic of models in that unit and ranged weapons equipped by models in that unit have the [ASSAULT] ability.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "models in that unit and ranged weapons equipped by models in that unit have the [ASSAULT] ability",
+      "mechanical": true,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "enhancement-nomadic-hunter",
+        "acceptedSourceId": "detachment-kroot-hunting-pack:enhancement:3",
+        "ownerUnitId": "unit-kroot-trail-shaper",
+        "bodyguardUnitId": "unit-kroot-carnivores",
+        "operationIds": [
+          "nomadic-move",
+          "nomadic-assault"
+        ],
+        "expectedTargets": [
+          "parsed-unit-1",
+          "parsed-unit-2"
+        ],
+        "enhancementId": "enhancement-nomadic-hunter",
+        "detachmentId": "kroot-hunting-pack"
+      }
+    },
+    {
+      "sourceId": "datasheet-cadre-fireblade:section:1",
+      "blockOrdinal": 1,
+      "owner": "Cadre Fireblade",
+      "title": "Volley Fire",
+      "type": "datasheet-ability",
+      "sourceText": "Volley Fire: While this model is leading a unit, add 1 to the Attacks characteristic of ranged weapons equipped by models in that unit.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "weapons equipped by models in that unit",
+      "mechanical": true,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "tau-empire-ability-volley-fire",
+        "acceptedSourceId": "datasheet-cadre-fireblade:section:1",
+        "ownerUnitId": "unit-cadre-fireblade",
+        "bodyguardUnitId": "unit-breacher-team",
+        "operationIds": [
+          "volley-fire"
+        ],
+        "expectedTargets": [
+          "parsed-unit-1",
+          "parsed-unit-2"
+        ]
+      }
+    },
+    {
+      "sourceId": "datasheet-commander-in-coldstar-battlesuit:section:1",
+      "blockOrdinal": 1,
+      "owner": "Commander In Coldstar Battlesuit",
+      "title": "Coldstar Commander",
+      "type": "datasheet-ability",
+      "sourceText": "Coldstar Commander: While this model is leading a unit, models in that unit have a Move characteristic of 12\" and ranged weapons equipped by models in that unit have the [ASSAULT] ability.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "models in that unit have a Move characteristic of 12\" and ranged weapons equipped by models in that unit have the [ASSAULT] ability",
+      "mechanical": true,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "tau-empire-ability-coldstar-commander",
+        "acceptedSourceId": "datasheet-commander-in-coldstar-battlesuit:section:1",
+        "ownerUnitId": "unit-commander-in-coldstar-battlesuit",
+        "bodyguardUnitId": "unit-crisis-fireknife-battlesuits",
+        "operationIds": [
+          "coldstar-move",
+          "coldstar-assault"
+        ],
+        "expectedTargets": [
+          "parsed-unit-1",
+          "parsed-unit-2"
+        ]
+      }
+    },
+    {
+      "sourceId": "datasheet-commander-in-enforcer-battlesuit:section:1",
+      "blockOrdinal": 1,
+      "owner": "Commander In Enforcer Battlesuit",
+      "title": "Enforcer Commander",
+      "type": "datasheet-ability",
+      "sourceText": "Enforcer Commander: While this model is leading a unit, each time a ranged attack targets that unit, worsen the Armour Penetration characteristic of that attack by 1.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "that unit, worsen the Armour Penetration characteristic of that attack by 1",
+      "mechanical": false,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "tau-empire-ability-enforcer-commander",
+        "acceptedSourceId": "datasheet-commander-in-enforcer-battlesuit:section:1",
+        "ownerUnitId": "unit-commander-in-enforcer-battlesuit",
+        "bodyguardUnitId": "unit-crisis-fireknife-battlesuits",
+        "operationIds": [
+          "canonical-tau-empire-ability-enforcer-commander"
+        ],
+        "expectedTargets": [
+          "parsed-unit-2"
+        ]
+      }
+    },
+    {
+      "sourceId": "datasheet-ethereal:section:1",
+      "blockOrdinal": 1,
+      "owner": "Ethereal",
+      "title": "Failure Is Not an Option",
+      "type": "datasheet-ability",
+      "sourceText": "Failure Is Not an Option: While this model is leading a unit, models in that unit have the Feel No Pain 5+ ability.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "models in that unit have the Feel No Pain 5+ ability",
+      "mechanical": true,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "tau-empire-ability-failure-is-not-an-option",
+        "acceptedSourceId": "datasheet-ethereal:section:1",
+        "ownerUnitId": "unit-ethereal",
+        "bodyguardUnitId": "unit-breacher-team",
+        "operationIds": [
+          "ethereal-fnp"
+        ],
+        "expectedTargets": [
+          "parsed-unit-1",
+          "parsed-unit-2"
+        ]
+      }
+    },
+    {
+      "sourceId": "datasheet-kroot-flesh-shaper:section:1",
+      "blockOrdinal": 1,
+      "owner": "Kroot Flesh Shaper",
+      "title": "Ritual Butchery",
+      "type": "datasheet-ability",
+      "sourceText": "Ritual Butchery: While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability",
+      "mechanical": true,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "tau-empire-ability-ritual-butchery",
+        "acceptedSourceId": "datasheet-kroot-flesh-shaper:section:1",
+        "ownerUnitId": "unit-kroot-flesh-shaper",
+        "bodyguardUnitId": "unit-kroot-carnivores",
+        "operationIds": [
+          "ritual-butchery"
+        ],
+        "expectedTargets": [
+          "parsed-unit-1",
+          "parsed-unit-2"
+        ]
+      }
+    },
+    {
+      "sourceId": "datasheet-kroot-flesh-shaper:section:1",
+      "blockOrdinal": 2,
+      "owner": "Kroot Flesh Shaper",
+      "title": "Rites of Feasting",
+      "type": "datasheet-ability",
+      "sourceText": "Rites of Feasting: While this model is leading a unit, models in that unit have the Feel No Pain 6+ ability. If that unit destroys one or more enemy units in the Fight phase, until the end of the battle, models in that unit have the Feel No Pain 5+ ability instead.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "models in that unit have the Feel No Pain 6+ ability",
+      "mechanical": true,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "tau-empire-ability-rites-of-feasting",
+        "acceptedSourceId": "datasheet-kroot-flesh-shaper:section:1",
+        "ownerUnitId": "unit-kroot-flesh-shaper",
+        "bodyguardUnitId": "unit-kroot-carnivores",
+        "operationIds": [
+          "rites-fnp",
+          "canonical-tau-empire-ability-rites-of-feasting"
+        ],
+        "expectedTargets": [
+          "parsed-unit-1",
+          "parsed-unit-2"
+        ]
+      }
+    },
+    {
+      "sourceId": "datasheet-commander-farsight:section:1",
+      "blockOrdinal": 1,
+      "owner": "Commander Farsight",
+      "title": "Way of the Short Blade",
+      "type": "datasheet-ability",
+      "sourceText": "Way of the Short Blade: While this model is leading a unit, each time a model in that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll",
+      "mechanical": false,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "tau-empire-ability-way-of-the-short-blade",
+        "acceptedSourceId": "datasheet-commander-farsight:section:1",
+        "ownerUnitId": "unit-commander-farsight",
+        "bodyguardUnitId": "unit-crisis-fireknife-battlesuits",
+        "operationIds": [
+          "canonical-tau-empire-ability-way-of-the-short-blade"
+        ],
+        "expectedTargets": [
+          "parsed-unit-2"
+        ]
+      }
+    },
+    {
+      "sourceId": "datasheet-darkstrider:section:1",
+      "blockOrdinal": 1,
+      "owner": "Darkstrider",
+      "title": "Structural Analyser",
+      "type": "datasheet-ability",
+      "sourceText": "Structural Analyser: While this model is leading a unit, each time a model in that unit makes a ranged attack, add 1 to the Wound roll.",
+      "requiredState": "source or bearer leading attached unit",
+      "targetScope": "that unit makes a ranged attack, add 1 to the Wound roll",
+      "mechanical": false,
+      "spec": {
+        "bookId": "tau-empire",
+        "sourceId": "tau-empire-ability-structural-analyser",
+        "acceptedSourceId": "datasheet-darkstrider:section:1",
+        "ownerUnitId": "unit-darkstrider",
+        "bodyguardUnitId": "unit-pathfinder-team",
+        "operationIds": [
+          "canonical-tau-empire-ability-structural-analyser"
+        ],
+        "expectedTargets": [
+          "parsed-unit-2"
+        ]
+      }
+    }
+  ],
+  "negativePrerequisiteControls": [
+    {
+      "sourceId": "detachment-kroot-hunting-pack:enhancement:2",
+      "sourceText": "KROOT model only. Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability, and enemy units that are set up on the battlefield as Reinforcements cannot be set up within 12\" horizontally of the bearer.",
+      "requiredState": "none; unit/bearer scope expands with legal attachment, but no leading-only activation gate"
+    }
+  ],
+  "excludedBattleStateRecords": [
+    {
+      "sourceId": "detachment-kroot-hunting-pack:stratagem:1",
+      "blockOrdinal": "RESTRICTIONS",
+      "sourceText": "This Stratagem cannot be used to return destroyed CHARACTER units to Attached units. You can only use this Stratagem once per battle.",
+      "reason": "Restriction on returning destroyed Character units during battle; this product does not execute resurrection or battle state."
+    }
+  ]
+}

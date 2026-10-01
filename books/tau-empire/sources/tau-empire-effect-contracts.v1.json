@@ -1484,7 +1484,10 @@
       ],
       "detachmentId": "kroot-hunting-pack",
       "scope": "attached-group",
-      "selector": {},
+      "selector": {
+        "on": "owner",
+        "requiresLeading": true
+      },
       "clauses": [
         {
           "selector": {},
@@ -1565,7 +1568,10 @@
       ],
       "detachmentId": "kroot-hunting-pack",
       "scope": "attached-group",
-      "selector": {},
+      "selector": {
+        "on": "owner",
+        "requiresLeading": true
+      },
       "clauses": [
         {
           "selector": {},

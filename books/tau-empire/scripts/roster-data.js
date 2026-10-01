@@ -20322,7 +20322,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       ],
       "detachmentId": "kroot-hunting-pack",
       "scope": "attached-group",
-      "selector": {},
+      "selector": {
+        "on": "owner",
+        "requiresLeading": true
+      },
       "clauses": [
         {
           "selector": {},
@@ -20555,7 +20558,10 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
       ],
       "detachmentId": "kroot-hunting-pack",
       "scope": "attached-group",
-      "selector": {},
+      "selector": {
+        "on": "owner",
+        "requiresLeading": true
+      },
       "clauses": [
         {
           "selector": {},
