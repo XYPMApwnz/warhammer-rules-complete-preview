@@ -15,6 +15,14 @@ owner for each profile, weapon, section, rule and option. Datasheets reference
 those records. Display titles do not resolve factual joins. Source capture gaps
 remain explicit until evidence closes them.
 
+`MODEL_BASE` records preserve the exact decoded physical Base notation from
+integrity-checked accepted datasheet header spans. Each record's `parentId`
+identifies the model `PROFILE`, and `data.scope` is `MODEL`. `data.text` retains
+source notation, including diameter marks and "Use model"; it is not a numeric
+combat characteristic. Raw-page hash, locator and source identity remain in
+provenance. Multiple ambiguous Base spans fail closed rather than flattening
+profile ownership. A source with no Base span produces no Base record.
+
 `overlay-engine.mjs` applies declared ADD, REPLACE, REMOVE and QUALIFY operations
 to a copy of the base. Targets and field paths are explicit. Source precedence,
 conflicting writes, duplicate ownership and unresolved identities fail closed.
@@ -43,6 +51,7 @@ node books/death-guard/v2/overlay-qa.mjs
 node books/death-guard/v2/mfm-boundary-qa.mjs
 node books/death-guard/v2/qa.mjs
 node books/death-guard/v2/comparison-qa.mjs
+node books/death-guard/v2/model-base-qa.mjs
 ```
 
 Generated snapshots live only under `v2/generated/`. The source registry can

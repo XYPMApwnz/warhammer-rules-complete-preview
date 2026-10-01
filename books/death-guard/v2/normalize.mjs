@@ -54,6 +54,23 @@ export function normalizeDeathGuardCorpus(corpus, {sourceId = 'dg-waha-2026-09-2
       const html = raw.toString('utf8'), start = html.search(/<div\b[^>]*class=["'][^"']*\bdsOuterFrame\b[^"']*["']/i), end = html.indexOf('ds2colKWFlat', start);
       if (start < 0 || end < 0) throw new Error(`Missing accepted raw datasheet boundary: ${page.file}`);
       const frame = html.slice(start, end), knownText = comparableText(unit.sections.flatMap(section => section.blocks.map(block => block.text)).join('\n'));
+      // Physical model bases are source header facts, not combat statline fields.
+      // The structured capture omits these spans; recover them from the same
+      // integrity-checked accepted page, without interpreting their notation.
+      const modelBases = [...frame.matchAll(/<span\b[^>]*>([\s\S]*?)<\/span>/gi)].filter(node => {
+        const classes = node[0].match(/\bclass=["']([^"']*)["']/i)?.[1]?.split(/\s+/) || [];
+        return classes.some(token => /^dsModelBase\d*$/.test(token));
+      });
+      if (modelBases.length > 1) throw new Error(`Ambiguous accepted model-base profile ownership: ${page.file}`);
+      if (modelBases.length) {
+        const node = modelBases[0], text = plainHtml(node[1]);
+        if (!text) throw new Error(`Empty accepted model-base fact: ${page.file}`);
+        const modelBaseId = `${unit.sourceId}:model-base:default`;
+        const modelBase = add(modelBaseId, 'MODEL_BASE', profileId, {text, scope: 'MODEL'}, modelBaseId, `raw:${page.file}:character-offset:${start + node.index}`);
+        modelBase.provenance.sourcePath = `books/death-guard/v2/sources/accepted-waha-pages/${page.file}`;
+        modelBase.provenance.sha256 = page.sha256;
+        modelBase.provenance.rawLocator = {classToken: node[0].match(/\bdsModelBase\d*\b/)[0], occurrence: 1};
+      }
       for (const token of ['dsAbility', 'dsOptionsComment']) for (const [j, node] of rawDivs(frame, token).entries()) {
         if (token === 'dsAbility' && /^YOUR\b.*COST/i.test(node.text)) {
           if (!knownText.includes(comparableText(node.text))) excludedFacts.push({sourceId, sourceRecordId: unit.sourceId, pointer: `raw:${page.file}:character-offset:${start + node.offset}`, value: {text: node.text}, reason: 'MFM_OWNED_PRICING_PANEL'});
