@@ -15,7 +15,7 @@ assert.deepEqual([manifest.secondaryConsensus.evaluated,manifest.secondaryConsen
 assert.equal(manifest.gates.publishAsComplete,true);
 assert.deepEqual(manifest.knownGaps,[]);
 assert.equal(manifest.enrollmentScope.currentNonLegendsDatasheets,54);
-assert.equal(corpus.gameplayUnits,3998);
+assert.equal(corpus.gameplayUnits,4027);
 assert.equal(corpus.datasheets.length,54);
 assert.equal(pack.detachments.length,17);
 assert.equal(pack.detachments.reduce((count,detachment)=>count+detachment.stratagems.length,0),93);

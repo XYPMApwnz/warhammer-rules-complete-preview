@@ -16507,7 +16507,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "W": "18",
           "Ld": "7+",
           "OC": "-",
-          "Invulnerable": ""
+          "Invulnerable": "5+"
         },
         "statProfiles": [],
         "abilities": [
@@ -16917,7 +16917,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "W": "60",
           "Ld": "7+",
           "OC": "-",
-          "Invulnerable": ""
+          "Invulnerable": "5+"
         },
         "statProfiles": [],
         "abilities": [
@@ -17256,7 +17256,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "W": "18",
           "Ld": "7+",
           "OC": "-",
-          "Invulnerable": ""
+          "Invulnerable": "5+"
         },
         "statProfiles": [],
         "abilities": [
@@ -17915,7 +17915,7 @@ window.WH_BOOK_ROSTER_CATALOG=Object.freeze({
           "W": "30",
           "Ld": "7+",
           "OC": "10",
-          "Invulnerable": ""
+          "Invulnerable": "5+"
         },
         "statProfiles": [],
         "abilities": [

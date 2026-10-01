@@ -49,6 +49,42 @@ def page_source_record(path: Path, url: str) -> dict:
     return {'url': url, 'file': path.name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest().upper()}
 
 
+def profile_invulnerable(frame, base, profile_name):
+    """Read the source save in its profile container, including sibling INSV panels."""
+    classes = lambda token: f'contains(concat(" ",normalize-space(@class)," ")," {token} ")'
+    panels = base.xpath(f'.//*[{classes("dsInvulWrap")}]')
+    scope = base
+    if not panels:
+        scope = base.getparent()
+        panels = scope.xpath(f'./*[{classes("dsInvulWrap")}]')
+    if not panels:
+        return None
+    values = [norm(node.text_content()) for panel in panels
+              for node in panel.xpath(f'.//*[{classes("dsCharInvulValue")}]')]
+    if not values or len(set(values)) != 1 or not re.fullmatch(r'\d\+', values[0]):
+        raise ValueError('ambiguous or malformed profile Invulnerable Save')
+    comments = [norm(node.text_content()) for node in scope.xpath(f'./*[{classes("dsInvulComment")}]')]
+    marked = any('*' in norm(node.text_content()) for panel in panels
+                 for node in panel.xpath(f'.//*[{classes("dsCharInvulText")}]'))
+    if comments:
+        if len(comments) != 1:
+            raise ValueError('ambiguous Invulnerable Save profile scope')
+        match = re.fullmatch(r'\*?\s*(.+?)\s+model only\.?', comments[0], flags=re.I)
+        if not match:
+            raise ValueError('unsupported Invulnerable Save profile scope')
+        key = lambda value: re.sub(r'[^a-z0-9]+', '', value.lower())
+        target = key(match[1])
+        names = [re.sub(r'\s*\([^)]*\)\s*$', '', norm(node.text_content()))
+                 for node in scope.xpath(f'./*[{classes("dsProfileBaseWrap")}]/*[{classes("dsProfileWrapRight")}]')]
+        if sum(key(name) == target for name in names) != 1:
+            raise ValueError('unresolved Invulnerable Save profile scope')
+        if key(profile_name) != target:
+            return None
+    elif marked:
+        raise ValueError('Invulnerable Save scope marker has no source comment')
+    return values[0]
+
+
 def parse_datasheet(path: Path, url: str) -> dict:
     document = html.fromstring(path.read_bytes())
     frames = document.xpath('//div[contains(concat(" ",normalize-space(@class)," ")," dsOuterFrame ") and contains(concat(" ",normalize-space(@class)," ")," datasheet ")]')

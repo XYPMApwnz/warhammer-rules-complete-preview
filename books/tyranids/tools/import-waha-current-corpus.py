@@ -63,8 +63,8 @@ def parse_datasheet(path,url):
   values=[norm(x.text_content()) for x in wrap[0].xpath('./div[contains(concat(" ",normalize-space(@class)," ")," dsCharWrap ")]//*[contains(concat(" ",normalize-space(@class)," ")," dsCharValue ")]')]
   right=base.xpath('./div[contains(concat(" ",normalize-space(@class)," ")," dsProfileWrapRight ")]')
   name=re.sub(r'\s*\([^)]*\)\s*$','',norm(right[0].text_content()) if right else record['title']) or record['title']
-  stats=dict(zip(keys,values[:6])); inv=base.xpath('.//*[contains(concat(" ",normalize-space(@class)," ")," dsCharInvulValue ")]')
-  if inv:stats['INSV']=norm(inv[0].text_content())
+  stats=dict(zip(keys,values[:6])); inv=dg.profile_invulnerable(frame,base,name)
+  if inv:stats['INSV']=inv
   profiles.append({'sourceId':f"{record['sourceId']}:profile:{order}",'order':order,'name':name,'stats':stats})
  record['profiles']=profiles
  if profiles: record['statline']=profiles[0]['stats']
@@ -121,7 +121,7 @@ def main(src,out):
  for order,info in enumerate(manifest,1):
   p=src/info['file']; r=parse_datasheet(p,info['url']);r['sourceOrder']=order;datasheets.append(r);pages.append(dg.page_source_record(p,info['url']))
  inv={'armyRule':len(hub['armyRules']),'errata':len(hub['errata']),'detachment':len(hub['detachments']),'detachmentRule':sum(bool(x['rule']['text']) for x in hub['detachments']),'enhancement':sum(len(x['enhancements']) for x in hub['detachments']),'stratagem':sum(len(x['stratagems']) for x in hub['detachments']),'datasheet':len(datasheets),'statline':sum(len(x['profiles']) for x in datasheets),'statCharacteristic':sum(sum(len(p['stats']) for p in x['profiles']) for x in datasheets),'weaponProfile':sum(len(x['weapons']) for x in datasheets),'wargearOption':sum(len(x['wargearOptions']) for x in datasheets),'datasheetSection':sum(len(x['sections']) for x in datasheets),'datasheetSectionBlock':sum(sum(len(s['blocks']) for s in x['sections']) for x in datasheets),'ruleReference':sum(len(x['ruleReferences']) for x in datasheets)+len(hub['references']),'keywordOccurrence':sum(len(x['keywords'])+len(x['factionKeywords']) for x in datasheets)}
- corpus={'schema':'wh40k-waha-tyranids-corpus/v1','edition':'11E','captureDate':'2026-09-27','currentnessCutoff':'2026-09-27','scope':{'included':['current Faction Pack 11E v1.2','52 non-Legends current datasheets'],'excluded':['5 Legends datasheets','10E Boarding Actions','10E Crusade']},'pages':pages,'inventory':inv,'gameplayUnits':sum(inv.values()),**hub,'datasheets':datasheets};corpus['corpusFingerprint']=sha({k:v for k,v in corpus.items() if k not in {'pages','corpusFingerprint'}});Path(out).write_text(json.dumps(corpus,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps({'pages':len(pages),'inventory':inv,'gameplayUnits':sum(inv.values()),'fingerprint':corpus['corpusFingerprint']},indent=2))
+ corpus={'schema':'wh40k-waha-tyranids-corpus/v1','edition':'11E','captureDate':'2026-09-27','currentnessCutoff':'2026-09-27','scope':{'included':['current Faction Pack 11E v1.2','52 non-Legends current datasheets'],'excluded':['5 Legends datasheets','10E Boarding Actions','10E Crusade']},'pages':pages,'inventory':inv,'gameplayUnits':sum(inv.values()),**hub,'datasheets':datasheets};corpus['corpusFingerprint']=sha({k:v for k,v in corpus.items() if k not in {'pages','corpusFingerprint'}});Path(out).write_text(json.dumps(corpus,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n');print(json.dumps({'pages':len(pages),'inventory':inv,'gameplayUnits':sum(inv.values()),'fingerprint':corpus['corpusFingerprint']},indent=2))
 if __name__=='__main__':main(sys.argv[1],sys.argv[2])
 
 

@@ -15,6 +15,7 @@ import {createCoreFactProjection} from '../../core-rules/content/core-fact-proje
 import {createArmyCoreAbilityBindings} from './army-core-ability-binding.mjs';
 import {createEffectiveMfmArmyProjection} from './effective-mfm-army-projection.mjs';
 import {validateAttachmentGroupConstraintSet} from './attachment-group-constraint.mjs';
+import {projectAcceptedInvulnerableSaves} from './accepted-invulnerable-projection.mjs';
 
 export async function buildCanonicalBook(context,{projectionOnly=false}={}){
 const {args,check,configPath,root,repo,readJson,config,runtimeVersions}=context;
@@ -113,7 +114,8 @@ const dependencyUnits=dependencyCodices.flatMap(dependency=>(dependencyScope.cur
   }));
 const dependencyUnitIds=new Set(dependencyUnits.map(unit=>unit.id));
 for(const unitId of dependencyCanonicalPublicationTitleIds)if(!dependencyUnitIds.has(unitId))throw new Error(`${config.id}: canonical publication title references unknown dependency unit ${unitId}`);
-const ownUnits=config.currentDatasheetLayers?config.currentDatasheetLayers.flatMap(layer=>codex[layer]||[]):config.currentDatasheetsOnly?codex.datasheets||[]:unitInventory(codex);
+const sourceUnits=config.currentDatasheetLayers?config.currentDatasheetLayers.flatMap(layer=>codex[layer]||[]):config.currentDatasheetsOnly?codex.datasheets||[]:unitInventory(codex);
+const ownUnits=config.sources.wahaCurrentCorpus?projectAcceptedInvulnerableSaves(sourceUnits,readJson(config.sources.wahaCurrentCorpus)):sourceUnits;
 const pointsById=indexCanonicalById(points.units,{label:`${config.id} points unit`});
 const boundWargear=bindRowsToCanonicalIds(codexWargear?.units||[],ownUnits,{label:`${config.id} wargear unit`,rowId:sourceUnitId});
 const wargearByUnitId=new Map(boundWargear.map(item=>[item.canonicalId,item]));
