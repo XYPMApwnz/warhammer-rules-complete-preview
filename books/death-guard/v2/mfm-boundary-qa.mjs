@@ -6,7 +6,7 @@ import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-cata
 
 const corpus=JSON.parse(fs.readFileSync(new URL('../sources/waha-11e-current-2026-09-25/corpus.json',import.meta.url),'utf8'));
 const bindings=JSON.parse(fs.readFileSync(new URL('./mfm-bindings.json',import.meta.url),'utf8'));
-const base=normalizeDeathGuardCorpus(corpus),entities=base.entities;
+const base=normalizeDeathGuardCorpus(corpus,{rawHubHtml:fs.readFileSync(new URL('./sources/accepted-waha-pages/death-guard.html',import.meta.url))}),entities=base.entities;
 const snapshot=JSON.stringify(base),actual=consumeMfm(entities),{catalog}=createEffectiveMfmCatalog();
 const dg=partition=>catalog[partition].filter(item=>item.factionId==='death-guard');
 const ids=records=>new Set(records.map(item=>item.mfmRecordId||item.id));

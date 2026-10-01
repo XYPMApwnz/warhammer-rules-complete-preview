@@ -2,3 +2,6 @@
 sources/accepted-waha-pages/*.html -text -diff
 sources/*.html -text -diff
 sources/*.txt -text -diff
+# This manifest is itself an enrolled exact-byte source. Hash the accepted Git
+# blob as-is; checkout/commit must never translate its line endings.
+sources/contagion-range-image-capture-manifest.json -text

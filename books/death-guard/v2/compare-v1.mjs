@@ -123,6 +123,17 @@ export function compareV1Facts(model, v1Content, {bindings = PINNED_V1_BINDINGS,
       if (data.text !== undefined) record(entity, kind, ['text'], data.text, sections.get('army-rule-nurgles-gift')?.subsections?.find(part => part.id === bindings.armyComponents[entity.id])?.blocks?.map(item => item.text || '').join('\n'));
     } else if (kind === 'SOURCE_ERRATUM') {
       const binding = ERRATA_COMPARISON_BINDINGS[entity.id], update = v1EffectiveModel?.sourceMetadata?.officialUpdates?.updates?.find(update => update.id === binding?.updateId), target = update?.targets?.find(target => target.owner === binding.owner);
+      if (!binding && data.operation === 'REPLACE' && data.targetBindings?.length) {
+        // A newly recovered source directive has no V1 erratum-ledger owner.
+        // Its exact replacement targets are already compared independently;
+        // preserve this source occurrence without inventing a V1 binding.
+        const targetFacts=data.targetBindings.map(reference=>facts.find(fact=>fact.entityId===reference.targetId && JSON.stringify(fact.field)===JSON.stringify(reference.field)));
+        const closed=targetFacts.every(fact=>fact && ['UNCHANGED','REPRESENTATION_ONLY','EXPECTED_CURRENT_GW_UPDATE','V1_DEFECT'].includes(fact.classification));
+        facts.push({entityId:entity.id,sourceRecordId:sid,sourceId:entity.provenance.sourceId,domain:kind,field:['text'],sourcePointer:entity.provenance.pointer,v2:data.text,status:'SOURCE_EVIDENCE_ONLY',
+          classification:closed?'SOURCE_EVIDENCE_ONLY':'UNRESOLVED_SOURCE_CONFLICT',
+          proof:{sourceId:entity.provenance.sourceId,pointer:entity.provenance.pointer,targetBindings:structuredClone(data.targetBindings),reason:'V1 has no independent directive record; every explicitly bound replacement field was compared separately.'}});
+        continue;
+      }
       const effectiveText = data.text.replace(/^(?:Change to:|Add)\s*/i, '').replace(/^['‘"]|['’"]$/g, '');
       record(entity, kind, ['effectiveText'], effectiveText, target?.effectiveAfter, 'Explicit comparison-only Waha instruction to persistent V1 official ledger target binding');
       const fact = facts.at(-1);

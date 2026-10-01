@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto';
+import {createSourceTableNormalizer} from './table-facts.mjs';
 
 /** Pinned source facts only. No V1 adapter, publication, effects or title joins. */
 export function normalizeDeathGuardCorpus(corpus, {sourceId = 'dg-waha-2026-09-25', sourcePath = 'books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json', rawHubHtml, rawHubPath = 'books/death-guard/v2/sources/accepted-waha-pages/death-guard.html', rawPages = {}, normalizationSupplements = []} = {}) {
@@ -112,11 +113,13 @@ export function normalizeDeathGuardCorpus(corpus, {sourceId = 'dg-waha-2026-09-2
     }
     add(rule.sourceId, 'ARMY_RULE', null, {...omit(rule, ['sourceId', 'components', 'normalizedContentFingerprint']), ...(rule.components ? {componentIds: rule.components.map(x => x.sourceId)} : {})}, rule.sourceId, pointer);
   }
+  const normalizeTables = rawHubHtml === undefined ? null : createSourceTableNormalizer(rawHubHtml,{sourcePath:rawHubPath,sha256:corpus.pages.find(page=>page.file==='death-guard.html').sha256});
   for (const [i, detachment] of corpus.detachments.entries()) {
+    if (detachment.rule.tables.length && !normalizeTables) throw new Error('Raw source table proof required; nested table ownership cannot be inferred from capture values');
     const pointer = `/detachments/${i}`;
     for (const field of ['detachmentPoints', 'forceDisposition']) exclusion(detachment, field, pointer);
     add(detachment.sourceId, 'DETACHMENT', null, {...omit(detachment, ['sourceId', 'rule', 'enhancements', 'stratagems', 'detachmentPoints', 'forceDisposition', 'normalizedContentFingerprint']), ruleId: detachment.rule.sourceId, enhancementIds: detachment.enhancements.map(x => x.sourceId), stratagemIds: detachment.stratagems.map(x => x.sourceId)}, detachment.sourceId, pointer);
-    add(detachment.rule.sourceId, 'DETACHMENT_RULE', detachment.sourceId, omit(detachment.rule, ['sourceId']), detachment.rule.sourceId, `${pointer}/rule`);
+    add(detachment.rule.sourceId, 'DETACHMENT_RULE', detachment.sourceId, {...omit(detachment.rule, ['sourceId']),...(normalizeTables ? normalizeTables(detachment) : {})}, detachment.rule.sourceId, `${pointer}/rule`);
     for (const [j, enhancement] of detachment.enhancements.entries()) {
       exclusion(enhancement, 'wahaPoints', `${pointer}/enhancements/${j}`);
       add(enhancement.sourceId, 'ENHANCEMENT', detachment.sourceId, omit(enhancement, ['sourceId', 'wahaPoints']), enhancement.sourceId, `${pointer}/enhancements/${j}`);

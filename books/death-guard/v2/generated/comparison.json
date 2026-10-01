@@ -28933,30 +28933,6 @@
       "sourcePointer": "/detachments/1/rule",
       "v2": [
         {
-          "sourceId": "detachment-shamblerot-vectorium:rule:table:1",
-          "rows": [
-            [
-              "BATTLE SIZEBATTLE ROUNDSIncursion2,3Strike Force2, 3, 4Onslaught2, 3, 4, 5"
-            ],
-            [
-              "BATTLE SIZE",
-              "BATTLE ROUNDS"
-            ],
-            [
-              "Incursion",
-              "2,3"
-            ],
-            [
-              "Strike Force",
-              "2, 3, 4"
-            ],
-            [
-              "Onslaught",
-              "2, 3, 4, 5"
-            ]
-          ]
-        },
-        {
           "sourceId": "detachment-shamblerot-vectorium:rule:table:2",
           "rows": [
             [
@@ -29001,13 +28977,8 @@
           ]
         }
       ],
-      "status": "DIFFERENT",
-      "classification": "REPRESENTATION_ONLY",
-      "proof": {
-        "sourceId": "dg-waha-2026-09-25",
-        "sourcePointer": "/detachments/1/rule",
-        "reason": "The V1 parent rule also contains the Poxwalkers BATTLELINE paragraph and every battle-size round mapping. The source embeds flattened table markup in its text."
-      }
+      "status": "NORMALIZED_EQUAL",
+      "classification": "REPRESENTATION_ONLY"
     },
     {
       "entityId": "detachment-shamblerot-vectorium:enhancement:1",
@@ -31128,30 +31099,6 @@
       "sourcePointer": "/detachments/4/rule",
       "v2": [
         {
-          "sourceId": "detachment-mortarions-hammer:rule:table:1",
-          "rows": [
-            [
-              "BATTLE SIZEUNITSIncursion1Strike Force2Onslaught3"
-            ],
-            [
-              "BATTLE SIZE",
-              "UNITS"
-            ],
-            [
-              "Incursion",
-              "1"
-            ],
-            [
-              "Strike Force",
-              "2"
-            ],
-            [
-              "Onslaught",
-              "3"
-            ]
-          ]
-        },
-        {
           "sourceId": "detachment-mortarions-hammer:rule:table:2",
           "rows": [
             [
@@ -31196,13 +31143,8 @@
           ]
         }
       ],
-      "status": "DIFFERENT",
-      "classification": "REPRESENTATION_ONLY",
-      "proof": {
-        "sourceId": "dg-waha-2026-09-25",
-        "sourcePointer": "/detachments/4/rule",
-        "reason": "The V1 separate table retains Incursion 1, Strike Force 2 and Onslaught 3. Source text also includes the flattened table markup."
-      }
+      "status": "NORMALIZED_EQUAL",
+      "classification": "REPRESENTATION_ONLY"
     },
     {
       "entityId": "detachment-mortarions-hammer:enhancement:1",
@@ -33746,6 +33688,42 @@
       "explanation": "Explicit comparison-only Waha instruction to persistent V1 official ledger target binding"
     },
     {
+      "entityId": "source-erratum:dg-waha:0005",
+      "sourceRecordId": "source-erratum:dg-waha:0005",
+      "sourceId": "dg-waha-2026-09-25",
+      "domain": "SOURCE_ERRATUM",
+      "field": [
+        "text"
+      ],
+      "sourcePointer": "/html/body/div/div[1]/div[3]/div[3]/div[2]/div[2]/clause[1]",
+      "v2": "Change to:\n\n‘TARGET: One friendly unengaged DEATH GUARD VEHICLE unit.\n\nEFFECT: Select one visible enemy unit within 12\" of your unit. When that enemy unit declares a charge, that enemy unit has -1 to charge rolls.’",
+      "status": "SOURCE_EVIDENCE_ONLY",
+      "classification": "SOURCE_EVIDENCE_ONLY",
+      "proof": {
+        "sourceId": "dg-waha-2026-09-25",
+        "pointer": "/html/body/div/div[1]/div[3]/div[3]/div[2]/div[2]/clause[1]",
+        "targetBindings": [
+          {
+            "targetId": "detachment-mortarions-hammer:stratagem:6",
+            "field": [
+              "lines",
+              1,
+              "text"
+            ]
+          },
+          {
+            "targetId": "detachment-mortarions-hammer:stratagem:6",
+            "field": [
+              "lines",
+              2,
+              "text"
+            ]
+          }
+        ],
+        "reason": "V1 has no independent directive record; every explicitly bound replacement field was compared separately."
+      }
+    },
+    {
       "entityId": "datasheet-chaos-land-raider:section:1",
       "sourceRecordId": "datasheet-chaos-land-raider:section:1",
       "sourceId": "dg-waha-2026-09-25",
@@ -36123,10 +36101,10 @@
   ],
   "counters": {
     "EXACT": 2183,
-    "NORMALIZED_EQUAL": 17,
-    "DIFFERENT": 124,
+    "NORMALIZED_EQUAL": 19,
+    "DIFFERENT": 122,
     "MISSING_V1": 0,
-    "SOURCE_EVIDENCE_ONLY": 0
+    "SOURCE_EVIDENCE_ONLY": 1
   },
   "summary": {
     "UNCHANGED": 2183,
@@ -39855,7 +39833,8 @@
         "errata-1",
         "errata-2",
         "errata-3",
-        "errata-4"
+        "errata-4",
+        "source-erratum:dg-waha:0005"
       ],
       "explicitV1Bindings": {
         "errata-1": {

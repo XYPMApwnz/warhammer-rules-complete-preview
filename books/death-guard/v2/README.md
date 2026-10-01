@@ -66,3 +66,29 @@ AP -1. The effective record retains the overlay operation and PDF provenance;
 the base record remains unchanged. The Poxwalkers profile
 (`datasheet-poxwalkers:profile:default`) passes through unchanged, without a
 characteristic overlay.
+
+## Factual foundation closure
+
+`foundation-closure.json` classifies the complete 158 previously missing source
+leaves from the source-first audit at `9d0f5afe0f26afad21b56224d3e11ca3bbf9358a`.
+Thirteen leaves are gameplay facts; 142 are reference metadata, one is source
+navigation, one is presentation metadata and one is non-gameplay text. The latter
+classes remain explicit `sourceAccounting` evidence; they are not gameplay
+entities or executable rules. The 966 applicability ambiguities remain deferred.
+
+`foundation-facts.mjs` preserves accepted Introduction instructions, the scoped
+Stinking Mire replacement directive, and the official profile-selection note.
+Defiler selection has two stable profile groups with four explicit profile IDs;
+there is no title/prose join. Source errata reference exact target field paths.
+`table-facts.mjs` resolves nested raw source structure into one innermost semantic
+table owner; layout occurrences retain references without independent values.
+
+The image capture manifest is enrolled using unchanged accepted Git bytes and
+raw SHA256. Scoped `-text` forbids checkout conversion. No line-ending
+normalization is allowed in the integrity contract.
+
+Run `npm run qa:dg:v2:foundation` for the permanent source-backed guards and
+in-memory mutations. The independent raw-source checks use Python with lxml and
+pdfplumber (the bundled Codex runtime is discovered automatically; `PYTHON` may
+select another installed runtime). This guard is separate from Reader/Phone,
+Rule Contract V2 and production publication.

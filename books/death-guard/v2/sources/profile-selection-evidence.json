@@ -1,0 +1,45 @@
+{
+  "schema": "dg-v2-source-profile-selection/v1",
+  "records": [
+    {
+      "id": "datasheet-defiler:profile-selection:1",
+      "parentId": "unit-defiler",
+      "type": "weapon-profile-selection",
+      "data": {
+        "text": "Before selecting targets for this weapon, select one of its profiles to make attacks with.",
+        "profileGroups": [
+          {
+            "profileGroupId": "datasheet-defiler:profile-group:1",
+            "profileIds": [
+              "datasheet-defiler:weapon:6",
+              "datasheet-defiler:weapon:7"
+            ]
+          },
+          {
+            "profileGroupId": "datasheet-defiler:profile-group:2",
+            "profileIds": [
+              "datasheet-defiler:weapon:11",
+              "datasheet-defiler:weapon:12"
+            ]
+          }
+        ]
+      },
+      "provenance": {
+        "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "sourceRecordId": "datasheet-defiler:profile-selection:1",
+        "pointer": "pdf/page/5/profile-selection-note",
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "page": 5,
+        "sourceLocator": "Defiler / arrow-marked profile-selection note below Melee Weapons",
+        "profileBindings": [
+          {"profileId": "datasheet-defiler:weapon:6", "profileGroupId": "datasheet-defiler:profile-group:1", "sourceLocator": "page:5/Ranged Weapons/Heavy missile launcher - krak/arrow", "arrowTop": 170.7807},
+          {"profileId": "datasheet-defiler:weapon:7", "profileGroupId": "datasheet-defiler:profile-group:1", "sourceLocator": "page:5/Ranged Weapons/Heavy missile launcher - frag/arrow", "arrowTop": 179.2909},
+          {"profileId": "datasheet-defiler:weapon:11", "profileGroupId": "datasheet-defiler:profile-group:2", "sourceLocator": "page:5/Melee Weapons/Shearing claws - strike/arrow", "arrowTop": 245.0529},
+          {"profileId": "datasheet-defiler:weapon:12", "profileGroupId": "datasheet-defiler:profile-group:2", "sourceLocator": "page:5/Melee Weapons/Shearing claws - sweep/arrow", "arrowTop": 253.5569}
+        ],
+        "bindingMethod": "Visually verified PDF arrow symbols, independently checked against PDF vector positions and exact source weapon row identities; canonical consumers use only explicit IDs."
+      }
+    }
+  ]
+}

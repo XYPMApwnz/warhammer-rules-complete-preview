@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {normalizeDeathGuardCorpus} from './normalize.mjs';
+import {preserveFoundationFacts} from './foundation-facts.mjs';
 import {applyOverlays,sourceCurrentness} from './overlay-engine.mjs';
 import {consumeMfm,assertNoMfmValues} from './mfm-boundary.mjs';
 import {compareV1Facts,loadV1ComparisonModel} from './compare-v1.mjs';
@@ -31,7 +32,12 @@ export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/
     for (const [index,file] of proof.sourcePaths.entries()) assert.equal(sha(fs.readFileSync(path.join(root,file))),proof.sha256s[index].toUpperCase(),'Supplemental normalization source integrity');
   }
   const rawPages = Object.fromEntries(corpus.pages.map(page => [page.file,fs.readFileSync(path.join(root,'books/death-guard/v2/sources/accepted-waha-pages',page.file))]));
-  const base = normalizeDeathGuardCorpus(corpus,{rawHubHtml,rawHubPath:hubPath,rawPages,normalizationSupplements:enrollment.normalizationSupplements || []});
+  const normalized = normalizeDeathGuardCorpus(corpus,{rawHubHtml,rawHubPath:hubPath,rawPages,normalizationSupplements:enrollment.normalizationSupplements || []});
+  const ledger=read('books/death-guard/v2/foundation-closure.json');
+  const profileSelectionEvidence=read('books/death-guard/v2/sources/profile-selection-evidence.json');
+  const foundationPaths=new Set([...ledger.leaves.map(leaf=>leaf.sourceArtifact),...profileSelectionEvidence.records.map(record=>record.provenance.documentPath)]);
+  const foundationRawSources=Object.fromEntries([...foundationPaths].map(file=>[file,fs.readFileSync(path.join(root,file))]));
+  const base=preserveFoundationFacts(normalized,{ledger,rawSources:foundationRawSources,profileSelectionEvidence});
   assertNoMfmValues(base.entities);
   const projected = applyOverlays(base,sources,enrollment.overlayOperations);
   assertNoMfmValues(projected.entities);
