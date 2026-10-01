@@ -1,0 +1,51 @@
+{
+  "schema": "army-book-app-v2/ux-reference/v1",
+  "bookId": "death-guard",
+  "authority": "V1 presentation and controller code inspected only as UX reference; no V1 gameplay data used",
+  "reviewBasis": "Code census; runtime/browser verification belongs to the application QA report",
+  "referenceFiles": [
+    "books/death-guard/tools/presentation-hook.mjs",
+    "books/shared/army-book-app.js",
+    "books/shared/controllers/navigation-controller.js",
+    "books/shared/controllers/journey-controller.js",
+    "books/shared/controllers/popup-controller.js",
+    "books/shared/controllers/full-entry-controller.js",
+    "books/shared/controllers/ui-controllers.js"
+  ],
+  "requiredReaderFeatures": [
+    {"id": "grouped-navigation", "label": "Grouped, expandable navigation", "v1": "Nested TOC branches", "v2Reference": "Canonical card groups and expandable sections"},
+    {"id": "phone-navigation-drawer", "label": "Phone navigation drawer and backdrop", "v1": "Menu, scrim, focus management", "v2Reference": "Responsive drawer with keyboard handling"},
+    {"id": "canonical-permalinks", "label": "Direct entry links and browser history", "v1": "Canonical target hashes and history", "v2Reference": "Canonical card hashes and history"},
+    {"id": "local-entry-navigation", "label": "Datasheet and Detachment section navigation", "v1": "Local tabs and subsection journeys", "v2Reference": "Canonical child-entry navigation"},
+    {"id": "rules-reference-dialog", "label": "In-context rules references", "v1": "Rule popup with focus restoration", "v2Reference": "Canonical reference dialog, dismissal, focus restoration"},
+    {"id": "legible-data-and-rules", "label": "Readable stats, weapons, points, text and tables", "v1": "Statline, weapon tables, points panels and rule cards", "v2Reference": "All V2 canonical and owned MFM fact leaves visibly rendered"},
+    {"id": "keyboard-and-touch", "label": "Keyboard and phone touch interactions", "v1": "Escape, focus restoration, phone handling", "v2Reference": "Native links/buttons, focusable drawer and dialog"},
+    {"id": "currentness-disclosure", "label": "Rules and points currentness disclosure", "v1": "Introductory source status", "v2Reference": "Current V2 model and centralized MFM source metadata"}
+  ],
+  "intentionallyDeferred": [
+    {"id": "compatible-rules", "label": "Compatible Rules", "v1": "Unit-specific related rules, filters and applicability results", "reason": "Separate V2 compatibility stage; requires Rule Contract V2 consumption"},
+    {"id": "glossary", "label": "Glossary", "v1": "Term autolinks, stacked glossary popups, full entry, Mega Glossary and return", "reason": "Separate V2 Glossary integration stage"},
+    {"id": "roster", "label": "Roster", "v1": "Roster physical unit navigation, selections, attachment context and overlays", "reason": "Separate V2 Roster integration stage"}
+  ],
+  "legacyFeaturesToReportIfAbsent": [
+    {"id": "desktop-sidebar-collapse", "label": "Desktop sidebar collapse control", "scope": "presentation"},
+    {"id": "explicit-phone-full-switch", "label": "Explicit phone versus desktop/iPad view switch", "scope": "presentation"},
+    {"id": "scroll-navigation-highlight", "label": "Scroll-tracked active navigation and destination highlight", "scope": "presentation"},
+    {"id": "specialized-statline-weapon-points-layout", "label": "Specialized statline, weapon-table and points-panel layout", "scope": "presentation"},
+    {"id": "nested-journey-restoration", "label": "Nested popup journeys with scroll and originating-trigger restoration", "scope": "presentation", "note": "Basic canonical reference dialog history is a separate supported reader requirement"},
+    {"id": "library-exit-link", "label": "Exit to the main rulebook Library", "scope": "publication integration"},
+    {"id": "unit-artwork", "label": "Unit illustrations and background artwork", "scope": "optional presentation assets", "note": "Image paths are excluded from the gameplay fact oracle; copied V1 artwork is not required for factual parity"},
+    {"id": "offline-pwa-status", "label": "PWA manifest, offline status and service-worker integration", "scope": "publication integration"},
+    {"id": "external-core-stratagem-section", "label": "Shared Core Stratagem section", "scope": "external shared Core Rules contract", "note": "Not present in the Death Guard V2 canonical graph; must not import V1 factual bundles to fill it"}
+  ],
+  "newV2Features": [
+    {"id": "book-search", "label": "Search all canonical entry titles and displayed fields"},
+    {"id": "central-mfm-source-cards", "label": "Directly inspect current centralized MFM records and bindings"}
+  ],
+  "constraints": [
+    "Do not use V1 reader HTML, scripts/data.js, glossary, roster or compatibility bundles as V2 factual inputs.",
+    "Report unsupported legacy UX honestly instead of claiming complete V1 feature parity.",
+    "Compatible Rules, Glossary and Roster are intentionally deferred and must not appear as enabled features.",
+    "Every visible gameplay value and canonical join must match the V2 model or centralized MFM owner."
+  ]
+}

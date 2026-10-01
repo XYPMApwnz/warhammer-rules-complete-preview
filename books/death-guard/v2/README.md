@@ -145,7 +145,9 @@ leading-state removal, physical Warlord isolation and model/unit keyword scope.
 
 `rule-contract-v1-inventory.json` records each old artifact's V2 status and its
 remaining V1 production dependency. No V1 artifacts are deleted or rewritten.
-Reader, Phone, Glossary and Roster V2 migrations have not started.
+At Rule Contract foundation closure, Reader, Phone, Glossary and Roster V2
+migrations had not started. The subsequent shared Army Book App V2 stage is
+described in `APP_V2.md`; Glossary and Roster remain deferred.
 
 ```
 node books/death-guard/v2/rule-contract-build.mjs
