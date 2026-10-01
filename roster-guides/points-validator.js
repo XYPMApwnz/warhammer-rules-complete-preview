@@ -89,7 +89,31 @@
     }
     return rows;
   };
-  const gearCount=(rows,name)=>rows.reduce((total,row)=>normalize(row.text).includes(normalize(name))?safeAdd(total,row.quantity):total,0);
+  const gearSelections=text=>{
+    const selections=[];
+    let depth=0,start=0;
+    for(let index=0;index<text.length;index++){
+      if(text[index]==='(')depth++;
+      else if(text[index]===')')depth=Math.max(0,depth-1);
+      else if(text[index]===','&&depth===0){selections.push(text.slice(start,index).trim());start=index+1;}
+    }
+    selections.push(text.slice(start).trim());
+    return selections.filter(Boolean);
+  };
+  const gearCount=(rows,name)=>{
+    let total=0;
+    for(const row of rows)for(const selection of gearSelections(row.text)){
+      const prefix=selection.match(/^\s*(\d+)\s*[x\u00d7]\s*/i);
+      const text=prefix?selection.slice(prefix[0].length):selection;
+      if(!normalize(text).includes(normalize(name)))continue;
+      const quantity=prefix?Number(prefix[1]):1;
+      if(!safeInteger(quantity))return null;
+      const count=row.quantity*quantity;
+      total=safeAdd(total,count);
+      if(total===null)return null;
+    }
+    return total;
+  };
   const enhancementName=value=>{
     const name=record(value)?own(value,'name'):value;
     return typeof name==='string'?name.replace(/\s+[-–—]\s+\d+\s*pts?\s*$/i,'').trim():'';
