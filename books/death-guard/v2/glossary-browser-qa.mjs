@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {allowRosterDependencies} from './roster-browser-dependencies.mjs';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
@@ -24,6 +25,7 @@ const descendants=id=>{const found=new Set(),visit=id=>{assert.ok(!found.has(id)
 const expectedIds=id=>new Set([...descendants(id)].flatMap(id=>cards.get(id).fields.map(field=>field.id)));
 const appPath='/books/death-guard/v2/app.html',payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const allowed=new Map([[appPath,'text/html'],[payloadPath,'application/json'],['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],['/books/shared/army-book-app-v2/styles.css','text/css']]);
+allowRosterDependencies(allowed);
 const requests=[],legacyRequests=[];
 let servedPayload=payload;
 const server=http.createServer((request,response)=>{

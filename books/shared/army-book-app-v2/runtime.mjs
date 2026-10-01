@@ -1,12 +1,15 @@
 /** Presentation-only reader. Canonical IDs and supplied fields are its only content authority. */
 import {searchGlossary, validateGlossary} from './glossary.mjs';
+import {createRosterPanel} from './roster.mjs';
 const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
-export function mount(document, payload) {
+const rosterRoute = 'view-roster';
+export function mount(document, payload, options = {}) {
   if (payload?.schema !== 'army-book-app-v2/presentation') throw new TypeError('Unsupported Army Book presentation.');
   const window = document.defaultView;
   const cards = new Map(payload.cards.map(card => [card.id, card]));
   if (cards.size !== payload.cards.length) throw new Error('Duplicate canonical card ID.');
   if (cards.has(glossaryRoute)) throw new Error('Canonical identity collides with the Glossary presentation route.');
+  if (options.roster && cards.has(rosterRoute)) throw new Error('Canonical identity collides with the Roster presentation route.');
   if (payload.glossary) validateGlossary(payload.glossary, payload.cards);
   for (const card of cards.values()) {
     for (const id of [...(card.children || []), ...(card.links || []).map(link => link.targetId), ...(card.fields || []).flatMap(field => field.targetIds || [])]) {
@@ -134,6 +137,10 @@ export function mount(document, payload) {
   let relatedDetachmentId='';
   const narrow = window.matchMedia('(max-width: 860px)');
   const indexed = [...cards.values()].map(card => ({card, text: [card.title, card.kind, ...(card.fields || []).map(field => `${field.label} ${field.displayValue || ''} ${exactValue(field.value)}`)].join(' ').toLocaleLowerCase()}));
+  const rosterPanel = options.roster ? createRosterPanel(document, {
+    service: options.roster, bookId: payload.book.id, open, showDetail,
+    titleForId: id => cards.get(id)?.title
+  }) : null;
 
   function factValue(tag, field) {
     const value = el(tag, 'v2-field-value', field.displayValue === undefined ? exactValue(field.value) : String(field.displayValue));
@@ -380,6 +387,11 @@ export function mount(document, payload) {
     const home = button('Library overview', 'v2-library-link', library);
     if (!selectedId && selectedView === 'READER') home.setAttribute('aria-current', 'page');
     navigation.append(home);
+    if (rosterPanel) {
+      const roster = button('Roster', 'v2-library-link', openRoster);
+      if (selectedView === 'ROSTER') roster.setAttribute('aria-current', 'page');
+      navigation.append(roster);
+    }
     if (payload.glossary) {
       const glossary = button('Glossary', 'v2-library-link', openGlossary);
       if (selectedView === 'GLOSSARY') glossary.setAttribute('aria-current', 'page');
@@ -521,6 +533,16 @@ export function mount(document, payload) {
   function hashId() {
     try { return decodeURIComponent(window.location.hash.slice(1)); } catch { return ''; }
   }
+  function renderRoster(focus = false) {
+    selectedView = 'ROSTER';
+    selectedId = null;
+    rosterPanel.render(main);
+    renderNavigation();
+    if (focus) {
+      main.focus({preventScroll: true});
+      window.scrollTo({top: 0, behavior: 'instant'});
+    }
+  }
   function route({focus = false} = {}) {
     const id = hashId();
     const state = window.history.state;
@@ -532,6 +554,8 @@ export function mount(document, payload) {
     if (detail) {
       if (state.armyBookV2.backgroundView === 'GLOSSARY' && payload.glossary) {
         if (selectedView !== 'GLOSSARY' || glossaryQuery !== (state.armyBookV2.glossaryQuery || '')) renderGlossary(state.armyBookV2.glossaryQuery || '');
+      } else if (state.armyBookV2.backgroundView === 'ROSTER' && rosterPanel) {
+        if (selectedView !== 'ROSTER') renderRoster();
       } else if (selectedView !== 'READER' || selectedId !== (state.armyBookV2.backgroundId || null)) renderSelected(state.armyBookV2.backgroundId, false);
       dialogContent.replaceChildren(renderCard(cards.get(id), {inDialog: true}));
       if (!dialog.open) {
@@ -545,6 +569,7 @@ export function mount(document, payload) {
       if (dialog.open) dialog.close();
       document.body.classList.remove('v2-detail-open');
       if (id === glossaryRoute && payload.glossary) renderGlossary(state?.armyBookV2?.glossaryQuery || '', focus);
+      else if (id === rosterRoute && rosterPanel) renderRoster(focus);
       else renderSelected(id || null, focus);
       if (!focus) window.requestAnimationFrame(() => window.scrollTo({top: state?.armyBookV2?.scrollY || 0, behavior: 'instant'}));
       if (!focus && lastFocus) {
@@ -556,10 +581,11 @@ export function mount(document, payload) {
   }
   function navigate(id, detail, options = {}) {
     const glossary = id === glossaryRoute && Boolean(payload.glossary) && !detail;
-    if (id && !cards.has(id) && !glossary) return false;
+    const roster = id === rosterRoute && Boolean(rosterPanel) && !detail;
+    if (id && !cards.has(id) && !glossary && !roster) return false;
     const nextHash = id ? `#${encodeURIComponent(id)}` : '';
     window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, scrollY: window.scrollY, detailScrollTop: dialogContent.scrollTop, ...(selectedView === 'GLOSSARY' ? {glossaryQuery} : {})}}, '', window.location.href);
-    const state = {armyBookV2: detail ? {detailId: id, backgroundId: selectedId, backgroundView: selectedView, glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: options.query || '', glossaryReturnId: selectedView === 'READER' ? selectedId : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : {selectedId: id, scrollY: 0}};
+    const state = {armyBookV2: detail ? {detailId: id, backgroundId: selectedId, backgroundView: selectedView, glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: options.query || '', glossaryReturnId: selectedView === 'READER' ? selectedId : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, scrollY: 0}};
     if (window.location.hash !== nextHash || Boolean(window.history.state?.armyBookV2?.detailId) !== detail) {
       window.history.pushState(state, '', `${window.location.pathname}${window.location.search}${nextHash}`);
     } else window.history.replaceState(state, '', window.location.href);
@@ -570,6 +596,7 @@ export function mount(document, payload) {
   function open(id) { return navigate(id, false); }
   function showDetail(id) { return navigate(id, true); }
   function library() { return navigate(null, false); }
+  function openRoster() { return rosterPanel ? navigate(rosterRoute, false) : false; }
   function openGlossary() { return payload.glossary ? navigate(glossaryRoute, false, {query: ''}) : false; }
   function closeGlossary() { return navigate(window.history.state?.armyBookV2?.glossaryReturnId || null, false); }
   function closeDetail() {
@@ -627,7 +654,7 @@ export function mount(document, payload) {
     main.replaceChildren(...[...cards.values()].map(card => renderCard({...card, children: []})));
     return main;
   }
-  const api = Object.freeze({payload, open, showDetail, library, renderAllForQA, setRelatedDetachment, openGlossary, closeGlossary});
+  const api = Object.freeze({payload, open, showDetail, library, renderAllForQA, setRelatedDetachment, openGlossary, closeGlossary, openRoster, roster: options.roster, rosterPanel});
   window.ArmyBookAppV2 = api;
   route();
   return api;

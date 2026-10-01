@@ -1,0 +1,72 @@
+import {lexicalDraft,importNewRecruit} from './import.mjs';
+import {validateRoster,changeAttachment,attachmentCheck,predicateContext} from './context.mjs';
+import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+const clone = value=>structuredClone(value);
+const any = values=>values.includes('INVALID')?'INVALID':values.includes('TRUE')?'TRUE':values.includes('UNKNOWN')?'UNKNOWN':'FALSE';
+const fields = value => Object.entries(value).map(([label,value])=>({label,value}));
+const atoms = (value,path=[]) => value && typeof value==='object' ? Object.entries(value).flatMap(([key,child])=>atoms(child,[...path,key])) : [{path:'/'+path.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'),label:path.join(' / '),value}];
+/** Browser/Node runtime consumes the same canonical snapshot and existing evaluator. */
+export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,validatePredicate,publicResult}) {
+  book=structuredClone(book);
+  validateRosterEffects(book,validatePredicate,evaluatePredicate);
+  const records = new Map(book.entities.map(e=>[e.id,e])), policies = book.rosterAttachmentPolicies;
+  if (records.size !== book.entities.length) throw new TypeError('Ambiguous canonical identity');
+  if (!Array.isArray(policies)) throw new TypeError('Missing typed attachment policy');
+  for (const policy of policies) if (records.get(policy.sourceId)?.kind!=='DATASHEET' || records.get(policy.targetId)?.kind!=='DATASHEET' || !['LEADER','SUPPORT_EXCEPTION'].includes(policy.role) || ![0,1].includes(policy.additionalLeaders) || !policy.sourceIds?.length) throw new TypeError('Invalid canonical attachment policy');
+  let state = null, projection = null;
+  const service = {
+    catalog:book.entities.map(e=>({id:e.id,kind:e.kind,parentId:e.parentId,title:e.data.title || e.data.name || e.id,
+      ...(e.kind==='PROFILE'?{fields:atoms(e.data)}:{}),...(['WARGEAR_OPTION','WARGEAR_FOOTNOTE','DATASHEET_SECTION','SUPPLEMENTAL_DATASHEET_RULE'].includes(e.kind)?{fields:atoms(e.data)}:{})})),
+    get state(){ return state ? clone(state) : null; },
+    get projection(){ return projection ? clone(projection) : null; },
+    draft:text=>lexicalDraft(text,parse),
+    import(text,bindings) {
+      const result=importNewRecruit(text,{parse,bindings,book});
+      if (result.status==='READY') service.load(result.roster);
+      return result;
+    },
+    load(snapshot) {
+      const verified=validateRoster(book,snapshot,policies), derived=executeRosterEffects(book,verified,{evaluatePredicate});
+      state=verified;projection=derived;return service.state;
+    },
+    snapshot(){ if (!state) throw new TypeError('No roster');return clone(state); },
+    attach(leaderId,bodyguardId){ return service.load(changeAttachment(book,state,policies,'ATTACH',leaderId,bodyguardId)); },
+    detach(leaderId){ return service.load(changeAttachment(book,state,policies,'DETACH',leaderId)); },
+    reattach(leaderId,bodyguardId){ return service.load(changeAttachment(book,state,policies,'REATTACH',leaderId,bodyguardId)); },
+    candidates(leaderId){ return state.units.filter(u=>attachmentCheck(book,state,policies,leaderId,u.instanceId).valid).map(u=>({instanceId:u.instanceId,canonicalUnitId:u.canonicalUnitId,title:records.get(u.canonicalUnitId).data.title})); },
+    context(instanceId,subject='UNIT',modelId,extra){ return predicateContext(state,projection,instanceId,subject,modelId,extra); },
+    effective(instanceId) {
+      const unit = projection?.units.find(u=>u.instanceId === instanceId);
+      if (!unit) throw new TypeError('Unresolved physical instance');
+      const canonical=records.get(unit.canonicalUnitId),group=projection.formedUnits.find(g=>g.formedUnitId===unit.formedUnitId);
+      const name = id=>records.get(id)?.data.title || records.get(id)?.data.name || id;
+      return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
+        formedUnit:group?clone(group):null,keywords:group?[...group.keywords]:[...unit.keywords],intrinsicKeywords:[...unit.intrinsicKeywords],
+        profiles:unit.models.map((m,i)=>({id:m.canonicalProfileId,modelInstanceId:m.modelInstanceId,title:`${canonical.data.title} · model ${i+1}`,
+          fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],metrics:clone(m.metrics),abilities:clone(m.abilities)})),
+        weapons:[...unit.weapons,...unit.models.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))].map(w=>({id:w.canonicalProfileId,title:w.data.name,physicalQuantity:w.physicalQuantity,modelInstanceId:w.modelInstanceId,fields:fields(w.data)})),
+        abilities:[...new Set([...canonical.data.sectionIds,...canonical.data.ruleReferenceIds,...canonical.data.wargearOptionIds,...(canonical.data.rawFactIds||[]),
+          ...book.entities.filter(e=>e.parentId===canonical.id&&['SUPPLEMENTAL_DATASHEET_RULE','WEAPON_PROFILE_SELECTION','WARGEAR_FOOTNOTE'].includes(e.kind)).map(e=>e.id)])].map(id=>({id,title:name(id),text:clone(records.get(id).data)})),
+        applied:unit.applied.map(row=>({...clone(row),label:name(row.ruleId)})),conditional:unit.conditional.map(row=>({...clone(row),label:name(row.ruleId)}))};
+    },
+    related(instanceId,detachmentId=state?.detachmentId) {
+      if (detachmentId && records.get(detachmentId)?.kind!=='DETACHMENT') throw new TypeError('Unresolved filter Detachment');
+      const unit = projection.units.find(u=>u.instanceId===instanceId);if (!unit) throw new TypeError('Unresolved physical related context');
+      const rows = [];
+      for (const rule of book.entities.filter(e=>['STRATAGEM','ENHANCEMENT'].includes(e.ruleContract?.kind))) {
+        const contract=rule.ruleContract;
+        if (detachmentId && contract.detachmentId!==detachmentId) continue;
+        const roleIds=contract.compatibilityRoleIds || [contract.roles[0]?.id];
+        const states=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>{
+          const contexts=role.subject==='MODEL'?unit.models.map(m=>service.context(instanceId,'MODEL',m.modelInstanceId)):[service.context(instanceId,role.subject)];
+          return any(contexts.map(context=>context?evaluateRole(role,contract.conditions||[],context):'FALSE'));
+        });
+        const result=any(states);
+        if (result==='INVALID') throw new TypeError('Invalid roster-aware rule: '+rule.id);
+        rows.push({unitId:unit.canonicalUnitId,instanceId,ruleId:rule.id,detachmentId:contract.detachmentId,kind:contract.kind,state:result,applicability:publicResult[result]});
+      }
+      return rows;
+    }
+  };
+  return service;
+}

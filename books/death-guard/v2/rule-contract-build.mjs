@@ -7,6 +7,9 @@ import {buildEnhancementContracts,buildDetachmentContracts} from './rule-contrac
 import {buildStratagemContracts} from './rule-contract-stratagems.mjs';
 import {validateContracts,evaluatePredicate,evaluateRole,publicResult} from './rule-contract-schema.mjs';
 import {parseSourceHtml,sourceNode,sourceNodeText,normalizeSourceText} from './raw-source.mjs';
+import {extendRosterContracts} from './roster-contract-build.mjs';
+import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {validatePredicate} from './rule-contract-schema.mjs';
 const directory=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(directory,'../../..');
 const addresses=JSON.parse(fs.readFileSync(path.join(directory,'rule-source-addresses.json'),'utf8'));
@@ -56,7 +59,23 @@ export function buildRuleContractV2() {
   assert.equal(declared.size,effective.entities.filter(e=>['STRATAGEM','ENHANCEMENT','DETACHMENT_RULE'].includes(e.kind)).length,'Structured source rule coverage');
   validateContracts(model);
   model.schema='death-guard-rule-contract-effective/v2';
-  return model;
+  const extended=extendRosterContracts(model);
+  extended.rosterReferenceSemantics={};
+  // Reusable structured reference semantics are extracted during BUILD only.
+  for (const reference of extended.entities.filter(e=>e.kind==='RULE_REFERENCE')) {
+    const label=reference.data.label, abilities=[];
+    if (/\bDeadly Demise\b/.test(label)) abilities.push({name:'Deadly Demise'});
+    const fnp=label.match(/\bFeel No Pain ([2-6])\+/);
+    if (fnp) abilities.push({name:'Feel No Pain',value:Number(fnp[1])});
+    extended.rosterReferenceSemantics[reference.id]={abilities,sourceFields:[['label']],sourceId:reference.provenance.sourceId};
+  }
+  extended.rosterAttachmentPolicies=model.mfm.relations.filter(r=>r.role==='leader').map(relation=>{
+    const exception=model.mfm.relations.find(r=>r.role==='support'&&r.sourceId===relation.sourceId&&r.targetId===relation.targetId);
+    return {sourceId:relation.sourceId,targetId:relation.targetId,role:exception?'SUPPORT_EXCEPTION':'LEADER',additionalLeaders:exception?1:0,
+      distinctCanonicalLeaders:true,sourceIds:[relation.mfmRecordId,...(exception?[exception.sourceEntityId]:[])]};
+  });
+  validateRosterEffects(extended,validatePredicate,evaluatePredicate);
+  return extended;
 }
 /** Explicit projection of a canonical profile, not an interchangeable UNIT/MODEL API. */
 export function entityContext(model,unit,subject,detachmentId) {

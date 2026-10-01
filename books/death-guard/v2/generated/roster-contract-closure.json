@@ -1,0 +1,5377 @@
+{
+  "schema": "death-guard-roster-contract-closure/v2",
+  "authority": "DISPOSABLE_RULE_CONTRACT_PROJECTION",
+  "ruleOwners": 239,
+  "clauses": 306,
+  "classifications": {
+    "BATTLE_ONLY": 161,
+    "NOT_AN_EFFECT": 112,
+    "ROSTER_EXECUTABLE": 22,
+    "DISPLAY_ONLY": 11
+  },
+  "rosterEffects": 25,
+  "battleExecution": false,
+  "rows": [
+    {
+      "ruleId": "datasheet-beasts-of-nurgle:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-beasts-of-nurgle:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-biologus-putrifier:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "deferredBattleEffects": [
+        "A Critical Hit is scored on an unmodified Hit roll of 5+; no Hit roll is resolved by the roster runtime."
+      ],
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": [
+        {
+          "id": "source-clause-1:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "leading a unit"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_LEADING",
+          "operation": "GRANT_WEAPON_ABILITY",
+          "targetBinding": "SOURCE_FORMED_MODELS",
+          "targetSubject": "MODEL",
+          "ability": "LETHAL HITS",
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "datasheet-biologus-putrifier:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-biologus-putrifier:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-biologus-putrifier:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-blightlord-terminators:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-blightlord-terminators:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-blightlord-terminators:wargear:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-blightlord-terminators:wargear:4",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-blightlord-terminators:wargear:5",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-blightlord-terminators:wargear:6",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-blightlord-terminators:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-blightlord-terminators:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-land-raider:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-land-raider:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-land-raider:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-land-raider:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-land-raider:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-land-raider:section:4",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-annihilator:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-annihilator:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-annihilator:wargear:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-annihilator:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-annihilator:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-annihilator:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-destructor:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-destructor:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-destructor:wargear:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-destructor:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-destructor:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-predator-destructor:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-rhino:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-rhino:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-rhino:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-rhino:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-rhino:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-spawn:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-chaos-spawn:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-nurgle:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-nurgle:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-nurgle:section:1",
+      "clauseId": "source-clause-3",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          2
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-nurgle:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-nurgle-with-wings:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-nurgle-with-wings:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-nurgle-with-wings:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-deathshroud-terminators:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-deathshroud-terminators:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-deathshroud-terminators:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": [
+        {
+          "id": "source-clause-1:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "TARGET",
+              "predicate": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "CHARACTER model"
+                }
+              }
+            },
+            {
+              "binding": "TARGET",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "leading this unit"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_LEADING_SOURCE_UNIT",
+          "operation": "GRANT_MODEL_ABILITY",
+          "targetBinding": "LEADERS_OF_SOURCE",
+          "targetSubject": "MODEL",
+          "ability": {
+            "name": "Feel No Pain",
+            "value": 4
+          },
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "While a CHARACTER model is leading this unit, that CHARACTER model has the Feel No Pain 4+ ability."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "datasheet-deathshroud-terminators:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-deathshroud-terminators:section:1",
+      "clauseId": "source-clause-3",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          2
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-deathshroud-terminators:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-defiler:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-defiler:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-defiler:wargear:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-defiler:wargear:4",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-defiler:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-defiler:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-defiler:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-defiler:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-foetid-bloat-drone:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-foetid-bloat-drone:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-foetid-bloat-drone:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-foul-blightspawn:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-foul-blightspawn:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-foul-blightspawn:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-foul-blightspawn:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-great-unclean-one:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-great-unclean-one:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-great-unclean-one:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-great-unclean-one:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-great-unclean-one:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-great-unclean-one:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-great-unclean-one:raw-dsAbility:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-helbrute:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-helbrute:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-helbrute:wargear:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-helbrute:wargear:4",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-helbrute:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-helbrute:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": [
+        {
+          "id": "source-clause-2:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "key": "equipmentRequirementSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "equipped with two melee weapons in addition to its close combat weapon"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_EQUIPMENT_REQUIREMENT_SATISFIED",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_MODEL",
+          "targetSubject": "MODEL",
+          "weaponMode": "melee",
+          "field": "attacks",
+          "mode": "ADD",
+          "value": 2,
+          "excludeWeaponIds": [
+            "datasheet-helbrute:weapon:10"
+          ],
+          "equipmentRequirement": {
+            "binding": "SOURCE",
+            "kind": "WEAPON_COUNT",
+            "weaponMode": "melee",
+            "excludeWeaponIds": [
+              "datasheet-helbrute:weapon:10"
+            ],
+            "equals": 2
+          },
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "If this model is equipped with two melee weapons in addition to its close combat weapon, add 2 to the Attacks characteristic of those two weapons."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "datasheet-helbrute:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-helbrute:raw-dsOptionsComment:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-icon-bearer:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": [
+        {
+          "id": "source-clause-1:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "leading a unit"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_LEADING",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_FORMED_MODELS",
+          "targetSubject": "MODEL",
+          "field": "OC",
+          "mode": "ADD",
+          "value": 1,
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "While this model is leading a unit, add 1 to the Objective Control characteristic of models in that unit."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "datasheet-icon-bearer:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-icon-bearer:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-icon-bearer:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-lord-of-contagion:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": [
+        {
+          "id": "source-clause-1:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "leading a unit"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_LEADING",
+          "operation": "GRANT_WEAPON_ABILITY",
+          "targetBinding": "SOURCE_FORMED_MODELS",
+          "targetSubject": "MODEL",
+          "weaponMode": "melee",
+          "ability": "SUSTAINED HITS 1",
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] and [LANCE] abilities."
+          }
+        },
+        {
+          "id": "source-clause-1:roster-effect:2",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "leading a unit"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_LEADING",
+          "operation": "GRANT_WEAPON_ABILITY",
+          "targetBinding": "SOURCE_FORMED_MODELS",
+          "targetSubject": "MODEL",
+          "weaponMode": "melee",
+          "ability": "LANCE",
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] and [LANCE] abilities."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "datasheet-lord-of-contagion:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-lord-of-contagion:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-lord-of-contagion:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-lord-of-poxes:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": [
+        {
+          "id": "source-clause-1:roster-effect:1",
+          "conditions": [],
+          "lifetime": "WHILE_SOURCE_MODEL_HAS_RULE",
+          "operation": "MODIFY_RULE_METRIC",
+          "targetBinding": "SOURCE_MODEL",
+          "targetSubject": "MODEL",
+          "field": "contagionRange",
+          "mode": "ADD",
+          "value": 3,
+          "max": 12,
+          "maxEvidence": {
+            "otherEntityId": "army-rule-nurgles-gift:contagion-range",
+            "field": [
+              "text"
+            ],
+            "quote": "Contagion Range cannot be greater than 12\" after modifiers."
+          },
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Add 3\" to the range of this model’s Contagion Range."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "datasheet-lord-of-poxes:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-lord-of-poxes:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-lord-of-poxes:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-lord-of-virulence:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-lord-of-virulence:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-lord-of-virulence:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-lord-of-virulence:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-malignant-plaguecaster:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-malignant-plaguecaster:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-malignant-plaguecaster:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-malignant-plaguecaster:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-miasmic-malignifier:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-miasmic-malignifier:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-miasmic-malignifier:section:2",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-miasmic-malignifier:section:2",
+      "clauseId": "source-clause-3",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          2
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-miasmic-malignifier:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-mortarion:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-mortarion:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-mortarion:section:1",
+      "clauseId": "source-clause-3",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          2
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-mortarion:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-mortarion:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-mortarion:section:3",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-mortarion:section:4",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-mortarion:section:5",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-myphitic-blight-hauler:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-myphitic-blight-hauler:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-noxious-blightbringer:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "deferredBattleEffects": [
+        "You can re-roll Advance and Charge rolls made for the led unit; roster display may retain the capability without resolving those rolls."
+      ],
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": [
+        {
+          "id": "source-clause-1:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "leading a unit"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_LEADING",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_FORMED_MODELS",
+          "targetSubject": "MODEL",
+          "field": "M",
+          "mode": "ADD",
+          "value": 1,
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "While this model is leading a unit, add 1\" to the Move characteristic of models in that unit"
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "datasheet-noxious-blightbringer:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-noxious-blightbringer:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-noxious-blightbringer:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-nurglings:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-nurglings:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-drones:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-drones:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-drones:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-drones:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": [
+        {
+          "id": "source-clause-2:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "key": "equipmentRequirementSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "1 daemonic icon.",
+                  "otherEntityId": "datasheet-plague-drones:wargear:2"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_DAEMONIC_ICON_BEARER_IS_IN_UNIT",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_UNIT_MODELS",
+          "targetSubject": "MODEL",
+          "field": "LD",
+          "mode": "SET",
+          "value": 6,
+          "equipmentRequirement": {
+            "binding": "SOURCE",
+            "kind": "EQUIPMENT_PRESENT",
+            "equipmentId": "datasheet-plague-drones:wargear:2",
+            "sourceFieldPath": [
+              "text"
+            ]
+          },
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Models in the bearer’s unit have a Leadership characteristic of 6+."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "datasheet-plague-drones:section:1",
+      "clauseId": "source-clause-3",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          2
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-drones:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:wargear:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:wargear:4",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:wargear:5",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:wargear:6",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:wargear:7",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:wargear:8",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-marines:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-surgeon:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-surgeon:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-surgeon:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plague-surgeon:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plaguebearers:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plaguebearers:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plaguebearers:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plaguebearers:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": [
+        {
+          "id": "source-clause-2:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "key": "equipmentRequirementSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "1 daemonic icon.",
+                  "otherEntityId": "datasheet-plaguebearers:wargear:2"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_DAEMONIC_ICON_BEARER_IS_IN_UNIT",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_UNIT_MODELS",
+          "targetSubject": "MODEL",
+          "field": "LD",
+          "mode": "SET",
+          "value": 6,
+          "equipmentRequirement": {
+            "binding": "SOURCE",
+            "kind": "EQUIPMENT_PRESENT",
+            "equipmentId": "datasheet-plaguebearers:wargear:2",
+            "sourceFieldPath": [
+              "text"
+            ]
+          },
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Models in the bearer’s unit have a Leadership characteristic of 6+."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "datasheet-plaguebearers:section:1",
+      "clauseId": "source-clause-3",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          2
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plaguebearers:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plagueburst-crawler:wargear:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plagueburst-crawler:wargear:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plagueburst-crawler:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plagueburst-crawler:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-plagueburst-crawler:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-poxwalkers:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-poxwalkers:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-rotigus:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-rotigus:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-rotigus:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-rotigus:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-tallyman:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-tallyman:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-tallyman:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-tallyman:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-typhus:section:1",
+      "clauseId": "source-clause-1",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-typhus:section:1",
+      "clauseId": "source-clause-2",
+      "kind": "DATASHEET_ABILITY",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate.",
+      "sourceFields": [
+        [
+          "blocks",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-typhus:section:2",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-typhus:section:3",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "blocks",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "army-rule-nurgles-gift:contagion-range",
+      "clauseId": "source-clause-1",
+      "kind": "ARMY_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy Afflicted state, selected Plague and/or current battle-round Contagion Range are required.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "army-rule-nurgles-gift:afflicted",
+      "clauseId": "source-clause-1",
+      "kind": "ARMY_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy Afflicted state, selected Plague and/or current battle-round Contagion Range are required.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "army-rule-nurgles-gift:skullsquirm-blight",
+      "clauseId": "source-clause-1",
+      "kind": "ARMY_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy Afflicted state, selected Plague and/or current battle-round Contagion Range are required.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "army-rule-nurgles-gift:rattlejoint-ague",
+      "clauseId": "source-clause-1",
+      "kind": "ARMY_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy Afflicted state, selected Plague and/or current battle-round Contagion Range are required.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "army-rule-nurgles-gift:scabrous-soulrot",
+      "clauseId": "source-clause-1",
+      "kind": "ARMY_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy Afflicted state, selected Plague and/or current battle-round Contagion Range are required.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "army-rule-pact-of-decay",
+      "clauseId": "source-clause-1",
+      "kind": "ARMY_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Army Faction selection restriction.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:rule",
+      "clauseId": "secure-objective",
+      "kind": "DETACHMENT_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:rule",
+      "clauseId": "objective-affliction",
+      "kind": "DETACHMENT_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:enhancement:1",
+      "clauseId": "critical-hit",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:enhancement:2",
+      "clauseId": "weapon-modifiers",
+      "kind": "ENHANCEMENT",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "weapon-modifiers:roster-effect:1",
+          "conditions": [],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_MODEL",
+          "targetSubject": "MODEL",
+          "weaponMode": "melee",
+          "field": "strength",
+          "mode": "ADD",
+          "value": 1,
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability."
+          }
+        },
+        {
+          "id": "weapon-modifiers:roster-effect:2",
+          "conditions": [],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_MODEL",
+          "targetSubject": "MODEL",
+          "weaponMode": "melee",
+          "field": "attacks",
+          "mode": "ADD",
+          "value": 1,
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability."
+          }
+        },
+        {
+          "id": "weapon-modifiers:roster-effect:3",
+          "conditions": [],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "GRANT_WEAPON_ABILITY",
+          "targetBinding": "SOURCE_MODEL",
+          "targetSubject": "MODEL",
+          "weaponMode": "melee",
+          "ability": "DEVASTATING WOUNDS",
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:enhancement:3",
+      "clauseId": "attack-reroll",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:enhancement:4",
+      "clauseId": "feel-no-pain",
+      "kind": "ENHANCEMENT",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "feel-no-pain:roster-effect:1",
+          "conditions": [],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "GRANT_MODEL_ABILITY",
+          "targetBinding": "SOURCE_MODEL",
+          "targetSubject": "MODEL",
+          "ability": {
+            "name": "Feel No Pain",
+            "value": 5
+          },
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The bearer has the Feel No Pain 5+ ability."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:1",
+      "clauseId": "detachment-virulent-vectorium:stratagem:1:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:1",
+      "clauseId": "detachment-virulent-vectorium:stratagem:1:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:2",
+      "clauseId": "detachment-virulent-vectorium:stratagem:2:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:3",
+      "clauseId": "detachment-virulent-vectorium:stratagem:3:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:4",
+      "clauseId": "detachment-virulent-vectorium:stratagem:4:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:4",
+      "clauseId": "detachment-virulent-vectorium:stratagem:4:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:5",
+      "clauseId": "detachment-virulent-vectorium:stratagem:5:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:5",
+      "clauseId": "detachment-virulent-vectorium:stratagem:5:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:6",
+      "clauseId": "detachment-virulent-vectorium:stratagem:6:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:6",
+      "clauseId": "detachment-virulent-vectorium:stratagem:6:recipient-selector",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:rule",
+      "clauseId": "create-poxwalkers",
+      "kind": "DETACHMENT_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context.",
+      "sourceFields": [
+        [
+          "text"
+        ],
+        [
+          "tables"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:rule",
+      "clauseId": "battleline",
+      "kind": "DETACHMENT_RULE",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "battleline:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "TARGET",
+              "predicate": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "POXWALKERS"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "POXWALKERS"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_DETACHMENT_SELECTED",
+          "operation": "GRANT_UNIT_KEYWORD",
+          "targetBinding": "ROSTER_UNITS",
+          "targetSubject": "UNIT",
+          "keyword": "BATTLELINE",
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "POXWALKERS units from your army gain the BATTLELINE keyword."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:enhancement:1",
+      "clauseId": "objective-control",
+      "kind": "ENHANCEMENT",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "objective-control:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While the bearer is leading a POXWALKERS unit"
+                }
+              }
+            },
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "BODYGUARD_ID",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "id": "unit-poxwalkers"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "POXWALKERS unit"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_FORMED_MODELS",
+          "targetSubject": "MODEL",
+          "field": "OC",
+          "mode": "ADD",
+          "value": 1,
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "While the bearer is leading a POXWALKERS unit, add 1 to the Objective Control characteristic of models in that unit"
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:enhancement:1",
+      "clauseId": "test-modifier",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
+      "clauseId": "setup-round",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:enhancement:3",
+      "clauseId": "plague-wind-damage",
+      "kind": "ENHANCEMENT",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "plague-wind-damage:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While the bearer is leading a POXWALKERS unit"
+                }
+              }
+            },
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "BODYGUARD_ID",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "id": "unit-poxwalkers"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "POXWALKERS unit"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_MODEL",
+          "targetSubject": "MODEL",
+          "field": "damage",
+          "mode": "ADD",
+          "value": 1,
+          "weaponIds": [
+            "datasheet-malignant-plaguecaster:weapon:2",
+            "datasheet-malignant-plaguecaster:weapon:3"
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "While the bearer is leading a POXWALKERS unit, add 1 to the Damage characteristic of the bearer’s Plague Wind weapon."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:enhancement:3",
+      "clauseId": "bodyguard-destruction",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:enhancement:4",
+      "clauseId": "poxwalkers-toughness",
+      "kind": "ENHANCEMENT",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "poxwalkers-toughness:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While the bearer is leading a unit"
+                }
+              }
+            },
+            {
+              "binding": "TARGET",
+              "predicate": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "POXWALKERS"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "POXWALKERS models"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_FORMED_MODELS",
+          "targetSubject": "MODEL",
+          "field": "T",
+          "mode": "ADD",
+          "value": 1,
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "While the bearer is leading a unit, add 1 to the Toughness characteristic of POXWALKERS models in that unit."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:1",
+      "clauseId": "detachment-shamblerot-vectorium:stratagem:1:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:1",
+      "clauseId": "detachment-shamblerot-vectorium:stratagem:1:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:2",
+      "clauseId": "detachment-shamblerot-vectorium:stratagem:2:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:3",
+      "clauseId": "detachment-shamblerot-vectorium:stratagem:3:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:3",
+      "clauseId": "detachment-shamblerot-vectorium:stratagem:3:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:4",
+      "clauseId": "detachment-shamblerot-vectorium:stratagem:4:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:5",
+      "clauseId": "detachment-shamblerot-vectorium:stratagem:5:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:6",
+      "clauseId": "detachment-shamblerot-vectorium:stratagem:6:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:6",
+      "clauseId": "detachment-shamblerot-vectorium:stratagem:6:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:6",
+      "clauseId": "detachment-shamblerot-vectorium:stratagem:6:attacker",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:rule",
+      "clauseId": "grant-nurgles-gift",
+      "kind": "DETACHMENT_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:rule",
+      "clauseId": "contagion-range",
+      "kind": "DETACHMENT_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:rule",
+      "clauseId": "include-plague-legions",
+      "kind": "DETACHMENT_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Army inclusion, Warlord or Detachment-tag legality declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:rule",
+      "clauseId": "warlord-restriction",
+      "kind": "DETACHMENT_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Army inclusion, Warlord or Detachment-tag legality declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:enhancement:1",
+      "clauseId": "deep-strike",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:enhancement:2",
+      "clauseId": "melee-attacks",
+      "kind": "ENHANCEMENT",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "melee-attacks:roster-effect:1",
+          "conditions": [],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_MODEL",
+          "targetSubject": "MODEL",
+          "weaponMode": "melee",
+          "field": "attacks",
+          "mode": "ADD",
+          "value": 2,
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 2 to the Attacks characteristic of the bearer’s melee weapons."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:enhancement:3",
+      "clauseId": "battle-shock",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:enhancement:4",
+      "clauseId": "test-modifier",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:enhancement:4",
+      "clauseId": "recover-wounds",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:enhancement:4",
+      "clauseId": "return-models",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:1",
+      "clauseId": "detachment-tallyband-summoners:stratagem:1:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:2",
+      "clauseId": "detachment-tallyband-summoners:stratagem:2:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:2",
+      "clauseId": "detachment-tallyband-summoners:stratagem:2:anchor-selector",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:3",
+      "clauseId": "detachment-tallyband-summoners:stratagem:3:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:3",
+      "clauseId": "detachment-tallyband-summoners:stratagem:3:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:4",
+      "clauseId": "detachment-tallyband-summoners:stratagem:4:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:5",
+      "clauseId": "detachment-tallyband-summoners:stratagem:5:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:6",
+      "clauseId": "detachment-tallyband-summoners:stratagem:6:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:6",
+      "clauseId": "detachment-tallyband-summoners:stratagem:6:initial-trigger",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:rule",
+      "clauseId": "damage",
+      "kind": "DETACHMENT_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:enhancement:1",
+      "clauseId": "battle-shock",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:enhancement:2",
+      "clauseId": "movement",
+      "kind": "ENHANCEMENT",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "movement:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While the bearer is leading a unit"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "MODIFY_STAT",
+          "targetBinding": "SOURCE_FORMED_MODELS",
+          "targetSubject": "MODEL",
+          "field": "M",
+          "mode": "ADD",
+          "value": 1,
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "While the bearer is leading a unit, add 1\" to the Movement characteristic of models in that unit"
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:enhancement:2",
+      "clauseId": "advance-reroll",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:enhancement:3",
+      "clauseId": "place-in-reserves",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:enhancement:4",
+      "clauseId": "targeting-restriction",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:1",
+      "clauseId": "detachment-death-lords-chosen:stratagem:1:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:2",
+      "clauseId": "detachment-death-lords-chosen:stratagem:2:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:2",
+      "clauseId": "detachment-death-lords-chosen:stratagem:2:recipient-selector",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:3",
+      "clauseId": "detachment-death-lords-chosen:stratagem:3:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:4",
+      "clauseId": "detachment-death-lords-chosen:stratagem:4:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:4",
+      "clauseId": "detachment-death-lords-chosen:stratagem:4:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:5",
+      "clauseId": "detachment-death-lords-chosen:stratagem:5:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:6",
+      "clauseId": "detachment-death-lords-chosen:stratagem:6:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:rule",
+      "clauseId": "selected-enemies",
+      "kind": "DETACHMENT_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context.",
+      "sourceFields": [
+        [
+          "text"
+        ],
+        [
+          "tables"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:enhancement:1",
+      "clauseId": "ignores-cover",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:enhancement:2",
+      "clauseId": "plague-wind-range",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:enhancement:3",
+      "clauseId": "fire-overwatch",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:enhancement:4",
+      "clauseId": "lone-operative",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:enhancement:4",
+      "clauseId": "vehicle-wound-reroll",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:1",
+      "clauseId": "detachment-mortarions-hammer:stratagem:1:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:1",
+      "clauseId": "detachment-mortarions-hammer:stratagem:1:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:2",
+      "clauseId": "detachment-mortarions-hammer:stratagem:2:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:3",
+      "clauseId": "detachment-mortarions-hammer:stratagem:3:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:3",
+      "clauseId": "detachment-mortarions-hammer:stratagem:3:recipient-selector",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:4",
+      "clauseId": "detachment-mortarions-hammer:stratagem:4:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:5",
+      "clauseId": "detachment-mortarions-hammer:stratagem:5:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:5",
+      "clauseId": "detachment-mortarions-hammer:stratagem:5:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:6",
+      "clauseId": "detachment-mortarions-hammer:stratagem:6:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:rule",
+      "clauseId": "replace-plague",
+      "kind": "DETACHMENT_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:enhancement:1",
+      "clauseId": "additional-plague",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:enhancement:2",
+      "clauseId": "afflicted",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:enhancement:3",
+      "clauseId": "return-models",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:enhancement:4",
+      "clauseId": "additional-plague",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:1",
+      "clauseId": "detachment-champions-of-contagion:stratagem:1:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:2",
+      "clauseId": "detachment-champions-of-contagion:stratagem:2:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:2",
+      "clauseId": "detachment-champions-of-contagion:stratagem:2:recipient-selector",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:3",
+      "clauseId": "detachment-champions-of-contagion:stratagem:3:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:4",
+      "clauseId": "detachment-champions-of-contagion:stratagem:4:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:5",
+      "clauseId": "detachment-champions-of-contagion:stratagem:5:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:6",
+      "clauseId": "detachment-champions-of-contagion:stratagem:6:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:6",
+      "clauseId": "detachment-champions-of-contagion:stratagem:6:recipient-selector",
+      "kind": "STRATAGEM",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-paragons-of-putrescence:rule",
+      "clauseId": "contagion-range",
+      "kind": "DETACHMENT_RULE",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "contagion-range:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "TARGET",
+              "predicate": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "DEATH GUARD"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD"
+                }
+              }
+            },
+            {
+              "binding": "TARGET",
+              "predicate": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "CHARACTER"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_DETACHMENT_SELECTED",
+          "operation": "MODIFY_RULE_METRIC",
+          "targetBinding": "ROSTER_UNITS",
+          "targetSubject": "UNIT",
+          "field": "contagionRange",
+          "mode": "ADD",
+          "value": 3,
+          "max": 12,
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Friendly DEATH GUARD CHARACTER units have +3\" to their Contagion Range (to a maximum of 12\")."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-paragons-of-putrescence:enhancement:1",
+      "clauseId": "wound-roll-modifier",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-paragons-of-putrescence:enhancement:2",
+      "clauseId": "additional-plague",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-paragons-of-putrescence:stratagem:1",
+      "clauseId": "detachment-paragons-of-putrescence:stratagem:1:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-paragons-of-putrescence:stratagem:2",
+      "clauseId": "detachment-paragons-of-putrescence:stratagem:2:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-paragons-of-putrescence:stratagem:3",
+      "clauseId": "detachment-paragons-of-putrescence:stratagem:3:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-contagion-engines:rule",
+      "clauseId": "grant-contagion-engine",
+      "kind": "DETACHMENT_RULE",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "grant-contagion-engine:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "TARGET",
+              "predicate": {
+                "op": "ANY",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "FOETID BLOAT-DRONE"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "FOETID BLOAT-DRONE"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "HELBRUTE"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "HELBRUTE"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "MYPHITIC BLIGHT-HAULER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "MYPHITIC BLIGHT-HAULER"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "lifetime": "WHILE_DETACHMENT_SELECTED",
+          "operation": "GRANT_UNIT_KEYWORD",
+          "targetBinding": "ROSTER_UNITS",
+          "targetSubject": "UNIT",
+          "keyword": "CONTAGION ENGINE",
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Friendly FOETID BLOAT-DRONE/FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER/HELBRUTE/MYPHITIC BLIGHT-HAULER units have CONTAGION ENGINE."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-contagion-engines:rule",
+      "clauseId": "ranged-assault",
+      "kind": "DETACHMENT_RULE",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "ranged-assault:roster-effect:1",
+          "conditions": [
+            {
+              "binding": "TARGET",
+              "predicate": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CONTAGION ENGINE"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "CONTAGION ENGINE"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_DETACHMENT_SELECTED",
+          "operation": "GRANT_WEAPON_ABILITY",
+          "targetBinding": "ROSTER_UNITS",
+          "targetSubject": "UNIT",
+          "weaponMode": "ranged",
+          "ability": "ASSAULT",
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT]."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-contagion-engines:rule",
+      "clauseId": "exclusive-detachment",
+      "kind": "DETACHMENT_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Army inclusion, Warlord or Detachment-tag legality declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-contagion-engines:enhancement:1",
+      "clauseId": "heal-model",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-contagion-engines:enhancement:2",
+      "clauseId": "mobile",
+      "kind": "ENHANCEMENT",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "mobile:roster-effect:1",
+          "conditions": [],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "GRANT_UNIT_KEYWORD",
+          "targetBinding": "SOURCE_UNIT",
+          "targetSubject": "UNIT",
+          "keyword": "MOBILE",
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "This unit has MOBILE."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-contagion-engines:stratagem:1",
+      "clauseId": "detachment-contagion-engines:stratagem:1:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-contagion-engines:stratagem:2",
+      "clauseId": "detachment-contagion-engines:stratagem:2:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-contagion-engines:stratagem:3",
+      "clauseId": "detachment-contagion-engines:stratagem:3:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-flyblown-host:rule",
+      "clauseId": "selected-infiltrators",
+      "kind": "DETACHMENT_RULE",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-flyblown-host:rule",
+      "clauseId": "exclusive-detachment",
+      "kind": "DETACHMENT_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Army inclusion, Warlord or Detachment-tag legality declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-flyblown-host:enhancement:1",
+      "clauseId": "wound-reroll",
+      "kind": "ENHANCEMENT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-flyblown-host:enhancement:2",
+      "clauseId": "detection-range",
+      "kind": "ENHANCEMENT",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": [
+        {
+          "id": "detection-range:roster-effect:1",
+          "conditions": [],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "MODIFY_RULE_METRIC",
+          "targetBinding": "SOURCE_UNIT",
+          "targetSubject": "UNIT",
+          "field": "detectionRange",
+          "mode": "ADD",
+          "value": -3,
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "This unit has -3\" detection range."
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-flyblown-host:stratagem:1",
+      "clauseId": "detachment-flyblown-host:stratagem:1:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-flyblown-host:stratagem:2",
+      "clauseId": "detachment-flyblown-host:stratagem:2:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-flyblown-host:stratagem:2",
+      "clauseId": "detachment-flyblown-host:stratagem:2:effect-clause:2",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "detachment-flyblown-host:stratagem:3",
+      "clauseId": "detachment-flyblown-host:stratagem:3:effect-clause:1",
+      "kind": "STRATAGEM",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster.",
+      "sourceFields": [
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "errata-1",
+      "clauseId": "source-clause-1",
+      "kind": "FAQ_ERRATA_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Source directive has already been consumed in the effective book; it is not a second runtime effect.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "errata-2",
+      "clauseId": "source-clause-1",
+      "kind": "FAQ_ERRATA_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Source directive has already been consumed in the effective book; it is not a second runtime effect.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "errata-3",
+      "clauseId": "source-clause-1",
+      "kind": "FAQ_ERRATA_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Source directive has already been consumed in the effective book; it is not a second runtime effect.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "errata-4",
+      "clauseId": "source-clause-1",
+      "kind": "FAQ_ERRATA_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Source directive has already been consumed in the effective book; it is not a second runtime effect.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "book-death-guard:introduction",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Book usage instruction; no unit characteristic or ability effect.",
+      "sourceFields": [
+        [
+          "clauses",
+          0
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "book-death-guard:introduction",
+      "clauseId": "source-clause-2",
+      "kind": "OTHER_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Book usage instruction; no unit characteristic or ability effect.",
+      "sourceFields": [
+        [
+          "clauses",
+          1
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "book-death-guard:introduction",
+      "clauseId": "source-clause-3",
+      "kind": "OTHER_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Book usage instruction; no unit characteristic or ability effect.",
+      "sourceFields": [
+        [
+          "clauses",
+          2
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "book-death-guard:introduction",
+      "clauseId": "source-clause-4",
+      "kind": "OTHER_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Book usage instruction; no unit characteristic or ability effect.",
+      "sourceFields": [
+        [
+          "clauses",
+          3
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "book-death-guard:introduction",
+      "clauseId": "source-clause-5",
+      "kind": "OTHER_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Book usage instruction; no unit characteristic or ability effect.",
+      "sourceFields": [
+        [
+          "clauses",
+          4
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "book-death-guard:introduction",
+      "clauseId": "source-clause-6",
+      "kind": "OTHER_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Book usage instruction; no unit characteristic or ability effect.",
+      "sourceFields": [
+        [
+          "clauses",
+          5
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "source-erratum:dg-waha:0005",
+      "clauseId": "source-clause-1",
+      "kind": "FAQ_ERRATA_RULE",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Source directive has already been consumed in the effective book; it is not a second runtime effect.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "ruleId": "datasheet-defiler:profile-selection:1",
+      "clauseId": "source-clause-1",
+      "kind": "OTHER_RULE",
+      "classification": "NOT_AN_EFFECT",
+      "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "effects": []
+    }
+  ]
+}

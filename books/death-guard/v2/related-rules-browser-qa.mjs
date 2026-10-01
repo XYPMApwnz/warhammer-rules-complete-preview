@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {allowRosterDependencies} from './roster-browser-dependencies.mjs';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
@@ -21,6 +22,7 @@ assert.ok(rows.every(row=>units.includes(row.unitId)),'Relation unit missing fro
 assert.equal(rows.filter(row=>row.kind==='STRATAGEM').length,units.length*45);
 assert.equal(rows.filter(row=>row.kind==='ENHANCEMENT').length,units.length*30);
 const allowed=new Map([[appPath,'text/html'],[payloadPath,'application/json'],['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],['/books/shared/army-book-app-v2/styles.css','text/css']]);
+allowRosterDependencies(allowed);
 const requests=[],legacyRequests=[];
 const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;

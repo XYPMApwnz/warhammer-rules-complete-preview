@@ -34,9 +34,10 @@ export function writeApp({check=false}={}) {
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Death Guard · Army Book V2</title><link rel="stylesheet" href="../../shared/army-book-app-v2/styles.css"></head>
 <body><p role="status">Loading Army Book…</p><script type="module">
 import {mount} from '../../shared/army-book-app-v2/runtime.mjs';
+import {createBrowserRoster} from './roster-boot.mjs';
 const response=await fetch('./generated/app-presentation.json');
 if (!response.ok) throw new Error('Army Book payload unavailable');
-mount(document,await response.json());
+mount(document,await response.json(),{roster:await createBrowserRoster()});
 </script></body></html>\n`]]);
   for (const [file,value] of output) {
     const location=new URL(file,import.meta.url);
