@@ -1,0 +1,124 @@
+/** Bounded, typed applicability predicates. This module never reads source prose. */
+import {stateFields} from './rule-contract-state-fields.mjs';
+export const subjects = Object.freeze(['MODEL','UNIT','FORMED_ATTACHED_UNIT','ROSTER']);
+export const levels = Object.freeze(['STATIC','ROSTER','BATTLE']);
+export const publicResult = Object.freeze({TRUE:'MATCH',FALSE:'NO_MATCH',UNKNOWN:'CONDITIONAL',INVALID:'INVALID'});
+export const predicateTypes = Object.freeze({
+  ALWAYS:{subjects,level:'STATIC'}, MODEL_KEYWORD:{subjects:['MODEL'],level:'STATIC'},
+  UNIT_KEYWORD:{subjects:['UNIT','FORMED_ATTACHED_UNIT'],level:'STATIC'},
+  MODEL_ABILITY:{subjects:['MODEL'],level:'STATIC'},
+  MODEL_ID:{subjects:['MODEL'],level:'STATIC'}, UNIT_ID:{subjects:['UNIT','FORMED_ATTACHED_UNIT'],level:'STATIC'},
+  DETACHMENT:{subjects,level:'ROSTER'}, LEADING:{subjects:['MODEL','UNIT'],level:'ROSTER'},
+  BODYGUARD_ID:{subjects:['MODEL','UNIT','FORMED_ATTACHED_UNIT'],level:'ROSTER'},
+  CHARACTER_MODEL_COUNT:{subjects:['UNIT','FORMED_ATTACHED_UNIT'],level:'ROSTER'},
+  FIELD:{subjects,level:'CONTEXTUAL'}
+});
+const fail = message => { throw new Error(`Rule Contract V2: ${message}`); };
+const get = (object, fields) => fields.reduce((value,key)=>value?.[key],object);
+const text = value => typeof value==='string'?value:JSON.stringify(value);
+export function validatePredicate(node, subject, model, entity, fieldTypes = {}) {
+  if (!node || typeof node!=='object') fail('malformed predicate');
+  if (node.op) {
+    if (!['ALL','ANY','NOT'].includes(node.op)||!Array.isArray(node.args)||!node.args.length||(node.op==='NOT'&&node.args.length!==1)) fail('malformed logical operator');
+    for (const child of node.args) validatePredicate(child,subject,model,entity,fieldTypes);
+    return;
+  }
+  const type=predicateTypes[node.predicate];
+  if (!type) fail(`unknown predicate ${node.predicate}`);
+  if (node.subject!==subject||!type.subjects.includes(subject)) fail(`predicate ${node.predicate} cannot use ${subject}`);
+  if (!levels.includes(node.contextLevel)||(type.level!=='CONTEXTUAL'&&node.contextLevel!==type.level)) fail(`incorrect predicate context ${node.predicate}`);
+  const args=node.arguments;
+  if (!args||typeof args!=='object'||Array.isArray(args)) fail('missing predicate arguments');
+  if (node.predicate.endsWith('_KEYWORD')&&(!args.keyword||typeof args.keyword!=='string')) fail('missing keyword');
+  if (node.predicate==='MODEL_ABILITY'&&args.ability!=='Deadly Demise') fail('unknown static ability');
+  if (node.predicate==='FIELD') {
+    if (!args.key||!Object.hasOwn(args,'equals')||node.contextLevel==='STATIC') fail('contextual field misclassified or missing');
+    if(!stateFields[args.key]||stateFields[args.key].contextLevel!==node.contextLevel||stateFields[args.key].valueType!==typeof args.equals) fail('unknown field, wrong type or context');
+    if (fieldTypes[args.key]&&fieldTypes[args.key]!==node.contextLevel) fail(`field context drift ${args.key}`);
+  }
+  if (['MODEL_ID','UNIT_ID','BODYGUARD_ID','DETACHMENT'].includes(node.predicate)) {
+    const target=model.entities.find(record=>record.id===args.id);
+    if (!target) fail(`unresolved canonical ID ${args.id}`);
+    const expected=node.predicate==='MODEL_ID'?'PROFILE':node.predicate==='DETACHMENT'?'DETACHMENT':'DATASHEET';
+    if (target.kind!==expected) fail(`impossible identity subject ${args.id}`);
+  }
+  const proof=node.evidence;
+  const owner=proof?.otherEntityId?model.entities.find(record=>record.id===proof.otherEntityId):entity;
+  if (!owner||!Array.isArray(proof?.field)||!proof.quote||!text(get(owner.data,proof.field))?.includes(proof.quote)) fail(`source atom without exact evidence ${entity.id}/${node.predicate}`);
+}
+export function validateContracts(model) {
+  const seen=new Set();
+  for (const entity of model.entities.filter(record=>record.ruleContract)) {
+    const contract=entity.ruleContract;
+    if (seen.has(contract.ruleId)||contract.ruleId!==entity.id) fail('duplicate independent semantic owner or changed rule ID');
+    seen.add(contract.ruleId);
+    if (!entity.provenance?.sourceId||contract.sourceId!==entity.provenance.sourceId||contract.ownerId!==(entity.parentId||model.bookId)) fail('source provenance/owner severed');
+    if (!levels.includes(contract.contextLevel)||!Array.isArray(contract.roles)) fail('invalid contract shape');
+    if(!['ARMY_RULE','DATASHEET_ABILITY','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','FAQ_ERRATA_RULE','OTHER_RULE'].includes(contract.kind)||!['SOURCE_DIRECTIVE','DATASHEET_DECLARATION','RULE_DECLARATION','DECLARATIVE_APPLICABILITY','BATTLE_ACTION'].includes(contract.executionMode))fail('unknown kind or execution mode');
+    if(contract.detachmentId&&(contract.detachmentId!==entity.parentId||model.entities.find(record=>record.id===contract.detachmentId)?.kind!=='DETACHMENT'))fail('invalid Detachment scope');
+    if(contract.kind==='STRATAGEM'&&(contract.cp!==entity.data.cp||!contract.timing||!Array.isArray(contract.duration)||!Array.isArray(contract.restrictions)))fail('incomplete Stratagem structure');
+    if (!Array.isArray(contract.sourceFields)||!contract.sourceFields.length) fail('missing factual source references');
+    for (const path of contract.sourceFields) if (!Array.isArray(path)||get(entity.data,path)===undefined) fail('unresolved source field');
+    const roles=new Map();
+    const checkRole=role=>{
+      if (!role?.id||!subjects.includes(role.subject)||!['FRIENDLY','ENEMY','ANY'].includes(role.allegiance)||roles.has(role.id)) fail('missing subject or malformed role');
+      roles.set(role.id,role);
+      validatePredicate(role.selector,role.subject,model,entity);
+      for (const condition of role.conditions||[]) validatePredicate(condition,role.subject,model,entity);
+    };
+    for (const role of contract.roles) checkRole(role);
+    for(const id of contract.compatibilityRoleIds||[])if(!roles.has(id))fail('unresolved compatibility role');
+    for (const condition of contract.conditions||[]) {
+      if (!subjects.includes(condition.subject)) fail('missing condition subject');
+      validatePredicate(condition,condition.subject,model,entity);
+    }
+    for (const clause of contract.clauses||[]) {
+      if (!clause.id||!Array.isArray(clause.sourceFields)||!clause.sourceFields.length) fail('malformed clause');
+      const local=new Set();
+      for (const role of clause.roles||[]) {
+        if (local.has(role.id)) fail('duplicate clause role');
+        local.add(role.id);
+        if (!subjects.includes(role.subject)||!['FRIENDLY','ENEMY','ANY'].includes(role.allegiance)) fail('impossible target scope');
+        validatePredicate(role.selector,role.subject,model,entity);
+        for (const condition of role.conditions||[]) validatePredicate(condition,role.subject,model,entity);
+      }
+      for (const condition of clause.conditions||[]) validatePredicate(condition,condition.subject,model,entity);
+      for (const path of clause.sourceFields) if (get(entity.data,path)===undefined) fail('unresolved clause source field');
+    }
+  }
+  return {rules:seen.size,status:'PASS'};
+}
+const combine = (states,op) => states.includes('INVALID')?'INVALID':op==='ALL'?(states.includes('FALSE')?'FALSE':states.includes('UNKNOWN')?'UNKNOWN':'TRUE'):(states.includes('TRUE')?'TRUE':states.includes('UNKNOWN')?'UNKNOWN':'FALSE');
+/** Missing context is UNKNOWN. Bad type/identity/predicate is INVALID. */
+export function evaluatePredicate(node, context) {
+  if (node?.op) {
+    const states=node.args.map(child=>evaluatePredicate(child,context));
+    if (node.op==='NOT') return states[0]==='TRUE'?'FALSE':states[0]==='FALSE'?'TRUE':states[0];
+    return combine(states,node.op);
+  }
+  const type=predicateTypes[node?.predicate];
+  if (!type||!type.subjects.includes(node.subject)||context.subject!==node.subject||!levels.includes(node.contextLevel)) return 'INVALID';
+  const a=node.arguments||{}, truth=value=>value?'TRUE':'FALSE';
+  const available=(bag,key,compare)=>!bag||!Object.hasOwn(bag,key)?'UNKNOWN':compare(bag[key]);
+  switch(node.predicate) {
+    case 'ALWAYS': return 'TRUE';
+    case 'MODEL_KEYWORD': case 'UNIT_KEYWORD': return context.keywords instanceof Set?(context.keywords.has(a.keyword)?'TRUE':node.predicate==='UNIT_KEYWORD'&&context.unknownKeywords?.has(a.keyword)?'UNKNOWN':'FALSE'):'INVALID';
+    case 'MODEL_ABILITY': return context.abilities instanceof Set?truth(context.abilities.has(a.ability)):'INVALID';
+    case 'MODEL_ID': return context.modelId?truth(context.modelId===a.id):'INVALID';
+    case 'UNIT_ID': return context.unitId?truth(context.unitId===a.id):'INVALID';
+    case 'DETACHMENT': return available(context.roster,'detachmentId',value=>truth(value===a.id));
+    case 'LEADING': return available(context.roster,'leading',value=>truth(value===a.value));
+    case 'BODYGUARD_ID': return available(context.roster,'bodyguardId',value=>truth(value===a.id));
+    case 'CHARACTER_MODEL_COUNT': return available(context.roster,'characterModelCount',value=>truth(value>=(a.min??0)&&value<=(a.max??Infinity)));
+    case 'FIELD': {
+      const spec=stateFields[a.key];
+      if(!spec||spec.contextLevel!==node.contextLevel||spec.valueType!==typeof a.equals)return 'INVALID';
+      return available(context[node.contextLevel==='BATTLE'?'battle':'roster'],a.key,value=>typeof value!==spec.valueType?'INVALID':truth(value===a.equals));
+    }
+    default: return 'INVALID';
+  }
+}
+export function evaluateRole(role,conditions,context) {
+  if (context.subject!==role.subject) return 'INVALID';
+  return combine([evaluatePredicate(role.selector,context),...(role.conditions||[]).map(node=>evaluatePredicate(node,context)),...conditions.map(node=>evaluatePredicate(node,node.subject==='ROSTER'?{...context,subject:'ROSTER'}:context))],'ALL');
+}

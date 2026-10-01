@@ -1,0 +1,4306 @@
+{
+  "schema": "dg-rule-contract-independent-source-qa/v1",
+  "authority": "QA_EVIDENCE_ONLY_NOT_PRODUCTION_FACT_OWNER",
+  "sourceFirst": true,
+  "stratagems": [
+    {
+      "sourceId": "detachment-virulent-vectorium:stratagem:1",
+      "detachmentId": "detachment-virulent-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "PUTRID-DETONATION"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Any phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD VEHICLE or DEATH GUARD MONSTER model from your army with the Deadly Demise ability that was just destroyed. You can use this Stratagem on that model even though it was just destroyed."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Do not roll one D6 to determine whether mortal wounds are inflicted by your model’s Deadly Demise ability. Instead, mortal wounds are automatically inflicted. In addition, any enemy units that suffer mortal wounds as a result of this Stratagem are Afflicted until the start of your next turn."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "MODEL",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [
+          [
+            "VEHICLE",
+            "MONSTER"
+          ]
+        ],
+        "sourceClause": "One DEATH GUARD VEHICLE or DEATH GUARD MONSTER model from your army with the Deadly Demise ability that was just destroyed. You can use this Stratagem on that model even though it was just destroyed."
+      },
+      "rosterPredicates": [
+        {
+          "op": "HAS_ABILITY",
+          "value": "Deadly Demise",
+          "context": "ROSTER_KNOWN",
+          "sourceClause": "One DEATH GUARD VEHICLE or DEATH GUARD MONSTER model from your army with the Deadly Demise ability that was just destroyed. You can use this Stratagem on that model even though it was just destroyed."
+        }
+      ],
+      "battlePredicates": [
+        {
+          "op": "JUST_DESTROYED",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD VEHICLE or DEATH GUARD MONSTER model from your army with the Deadly Demise ability that was just destroyed. You can use this Stratagem on that model even though it was just destroyed."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Any phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary",
+          "operation": "DEADLY_DEMISE_AUTO_ACTIVATION",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [],
+          "sourceClause": "Do not roll one D6 to determine whether mortal wounds are inflicted by your model’s Deadly Demise ability. Instead, mortal wounds are automatically inflicted. In addition, any enemy units that suffer mortal wounds as a result of this Stratagem are Afflicted until the start of your next turn."
+        },
+        {
+          "roleId": "enemy-affected",
+          "operation": "AFFLICTED",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "SUFFERED_MORTAL_WOUNDS_FROM_THIS_DEADLY_DEMISE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Do not roll one D6 to determine whether mortal wounds are inflicted by your model’s Deadly Demise ability. Instead, mortal wounds are automatically inflicted. In addition, any enemy units that suffer mortal wounds as a result of this Stratagem are Afflicted until the start of your next turn."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "until the start of your next turn"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-virulent-vectorium:stratagem:2",
+      "detachmentId": "detachment-virulent-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "DISGUSTINGLY-RESILIENT"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time an attack is allocated to a model in your unit, subtract 1 from the Damage characteristic of that attack."
+        }
+      ],
+      "cp": "2CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_AS_ENEMY_ATTACK_TARGET",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-models",
+          "operation": "DAMAGE_REDUCTION_ON_ALLOCATED_ATTACK",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MEMBER_OF_PRIMARY_UNIT",
+              "context": "ROSTER_KNOWN"
+            },
+            {
+              "op": "ATTACK_ALLOCATED_TO_THIS_MODEL",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time an attack is allocated to a model in your unit, subtract 1 from the Damage characteristic of that attack."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-virulent-vectorium:stratagem:3",
+      "detachmentId": "detachment-virulent-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "PLAGUESURGE"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "Your DEATH GUARD WARLORD that is on the battlefield."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the start of your next Command phase, add 3\" to the Contagion Range of models from your army."
+        }
+      ],
+      "cp": "2CP",
+      "primarySubject": {
+        "subject": "MODEL",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "WARLORD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "Your DEATH GUARD WARLORD that is on the battlefield."
+      },
+      "rosterPredicates": [
+        {
+          "op": "IMPORTED_WARLORD_IDENTITY",
+          "value": true,
+          "context": "ROSTER_KNOWN",
+          "sourceClause": "Your DEATH GUARD WARLORD that is on the battlefield."
+        }
+      ],
+      "battlePredicates": [
+        {
+          "op": "ON_BATTLEFIELD",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "Your DEATH GUARD WARLORD that is on the battlefield."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Command phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "friendly-army-models",
+          "operation": "CONTAGION_RANGE_PLUS_3",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MODEL_FROM_YOUR_ARMY",
+              "context": "ROSTER_KNOWN"
+            }
+          ],
+          "sourceClause": "Until the start of your next Command phase, add 3\" to the Contagion Range of models from your army."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the start of your next Command phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-virulent-vectorium:stratagem:4",
+      "detachmentId": "detachment-virulent-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "LEECHSPORE-ERUPTION"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD model your army that has lost one or more wounds."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one enemy unit within 3\" of your model. Roll a number of D6 equal to the number of wounds your model has lost: for each 5+, that enemy unit suffers one mortal wound (to a maximum of 6 mortal wounds) and your model regains 1 lost wound (to a maximum of 6 lost wounds)."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "MODEL",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD model your army that has lost one or more wounds."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "HAS_LOST_WOUNDS",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD model your army that has lost one or more wounds."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Command phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-enemy",
+          "operation": "MORTAL_WOUNDS_BY_LOST_WOUND_DICE",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "WITHIN_3_OF_PRIMARY_MODEL",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one enemy unit within 3\" of your model. Roll a number of D6 equal to the number of wounds your model has lost: for each 5+, that enemy unit suffers one mortal wound (to a maximum of 6 mortal wounds) and your model regains 1 lost wound (to a maximum of 6 lost wounds)."
+        },
+        {
+          "roleId": "primary",
+          "operation": "REGAIN_WOUNDS_FROM_SUCCESSFUL_DICE",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [],
+          "sourceClause": "Select one enemy unit within 3\" of your model. Roll a number of D6 equal to the number of wounds your model has lost: for each 5+, that enemy unit suffers one mortal wound (to a maximum of 6 mortal wounds) and your model regains 1 lost wound (to a maximum of 6 lost wounds)."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Select one enemy unit within 3\" of your model. Roll a number of D6 equal to the number of wounds your model has lost: for each 5+, that enemy unit suffers one mortal wound (to a maximum of 6 mortal wounds) and your model regains 1 lost wound (to a maximum of 6 lost wounds).",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-virulent-vectorium:stratagem:5",
+      "detachmentId": "detachment-virulent-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "OVERWHELMING-GENEROSITY"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD CHARACTER unit from your army."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one enemy unit visible to your unit. Until the end of the phase, each time a DEATH GUARD unit from your army selects that enemy unit as the target of any ranged attacks, you can re-roll the dice to determine how many attacks a weapon equipped by a model in that unit makes."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "CHARACTER"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD CHARACTER unit from your army."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Start of your Shooting phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-enemy",
+          "operation": "RANGED_ATTACK_ANCHOR",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "VISIBLE_TO_PRIMARY_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one enemy unit visible to your unit. Until the end of the phase, each time a DEATH GUARD unit from your army selects that enemy unit as the target of any ranged attacks, you can re-roll the dice to determine how many attacks a weapon equipped by a model in that unit makes."
+        },
+        {
+          "roleId": "friendly-beneficiary",
+          "operation": "REROLL_RANDOM_WEAPON_ATTACK_COUNT",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [
+              "DEATH GUARD"
+            ],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "SELECTS_ANCHORED_ENEMY_AS_RANGED_ATTACK_TARGET",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one enemy unit visible to your unit. Until the end of the phase, each time a DEATH GUARD unit from your army selects that enemy unit as the target of any ranged attacks, you can re-roll the dice to determine how many attacks a weapon equipped by a model in that unit makes."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-virulent-vectorium:stratagem:6",
+      "detachmentId": "detachment-virulent-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "CREEPING-BLIGHT"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD INFANTRY unit from your army that has not been selected to shoot this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time a model in your unit makes a ranged attack that targets an Afflicted unit, you can re-roll the Hit roll and you can re-roll the Wound roll."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "INFANTRY"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD INFANTRY unit from your army that has not been selected to shoot this phase."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_SHOOT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD INFANTRY unit from your army that has not been selected to shoot this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Shooting phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-model-attacks",
+          "operation": "REROLL_HIT_AND_WOUND",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MODEL_MEMBER_OF_PRIMARY_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "RANGED_ATTACK_TARGET_IS_AFFLICTED_ENEMY_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time a model in your unit makes a ranged attack that targets an Afflicted unit, you can re-roll the Hit roll and you can re-roll the Wound roll."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-mortarions-hammer:stratagem:1",
+      "detachmentId": "detachment-mortarions-hammer",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "BLIGHTED-LAND"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "End of your Movement phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD VEHICLE unit from your army."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one terrain feature within 24\" of and visible to your unit. Until the start of your next turn, enemy units are Afflicted while they are within 3\" of that terrain feature."
+        }
+      ],
+      "cp": "2CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "VEHICLE"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD VEHICLE unit from your army."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "End of your Movement phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-terrain",
+          "operation": "AFFLICTED_ANCHOR",
+          "recipient": {
+            "subject": "TERRAIN_FEATURE",
+            "allKeywords": [],
+            "relation": "NEUTRAL_ANCHOR"
+          },
+          "conditions": [
+            {
+              "op": "WITHIN_24_OF_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "VISIBLE_TO_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one terrain feature within 24\" of and visible to your unit. Until the start of your next turn, enemy units are Afflicted while they are within 3\" of that terrain feature."
+        },
+        {
+          "roleId": "enemy-affected",
+          "operation": "AFFLICTED",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "WITHIN_3_OF_SELECTED_TERRAIN",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one terrain feature within 24\" of and visible to your unit. Until the start of your next turn, enemy units are Afflicted while they are within 3\" of that terrain feature."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the start of your next turn"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-mortarions-hammer:stratagem:2",
+      "detachmentId": "detachment-mortarions-hammer",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "RELENTLESS-GRIND"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase or your Charge phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD VEHICLE unit from your army that has not been selected to move or charge this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time your unit makes a Normal, Advance or Charge move, it can move horizontally through terrain features."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "VEHICLE"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD VEHICLE unit from your army that has not been selected to move or charge this phase."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_MOVE_OR_CHARGE_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD VEHICLE unit from your army that has not been selected to move or charge this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Movement phase or your Charge phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary",
+          "operation": "MOVE_HORIZONTALLY_THROUGH_TERRAIN",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "NORMAL_ADVANCE_OR_CHARGE_MOVE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time your unit makes a Normal, Advance or Charge move, it can move horizontally through terrain features."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-mortarions-hammer:stratagem:3",
+      "detachmentId": "detachment-mortarions-hammer",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "DRAWN-TO-DESPAIR"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD unit from your army that has not been selected to shoot this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time a model in your unit makes an attack that targets a visible enemy unit (excluding AIRCRAFT) within your opponent’s deployment zone, you can re-roll the Hit roll."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD unit from your army that has not been selected to shoot this phase."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_SHOOT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD unit from your army that has not been selected to shoot this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Shooting phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-model-attacks",
+          "operation": "REROLL_HIT",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MEMBER_OF_PRIMARY_UNIT",
+              "context": "ROSTER_KNOWN"
+            },
+            {
+              "op": "VISIBLE_ENEMY_ATTACK_TARGET",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "ENEMY_TARGET_EXCLUDES_AIRCRAFT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "ENEMY_TARGET_IN_OPPONENT_DEPLOYMENT_ZONE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time a model in your unit makes an attack that targets a visible enemy unit (excluding AIRCRAFT) within your opponent’s deployment zone, you can re-roll the Hit roll."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-mortarions-hammer:stratagem:4",
+      "detachmentId": "detachment-mortarions-hammer",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "FONT-OF-FILTH"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD VEHICLE unit from your army that has not been selected to shoot this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, ranged weapons equipped by models in your unit have the [ASSAULT] ability."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "VEHICLE"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD VEHICLE unit from your army that has not been selected to shoot this phase."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_SHOOT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD VEHICLE unit from your army that has not been selected to shoot this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Shooting phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-ranged-weapons",
+          "operation": "ASSAULT",
+          "recipient": {
+            "subject": "WEAPON",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "RANGED_WEAPON_EQUIPPED_BY_PRIMARY_UNIT_MODELS",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, ranged weapons equipped by models in your unit have the [ASSAULT] ability."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-mortarions-hammer:stratagem:5",
+      "detachmentId": "detachment-mortarions-hammer",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "EYESTINGER-STORM"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD VEHICLE unit from your army."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one objective marker visible to one or more models in your unit. Each Afflicted enemy unit within range of that objective marker must take a Battle-shock test. Enemy units affected by this Stratagem do not need to take any other Battle-shock tests in the same phase."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "VEHICLE"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD VEHICLE unit from your army."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your opponent’s Command phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-objective",
+          "operation": "BATTLE_SHOCK_ANCHOR",
+          "recipient": {
+            "subject": "OBJECTIVE_MARKER",
+            "allKeywords": [],
+            "relation": "NEUTRAL_ANCHOR"
+          },
+          "conditions": [
+            {
+              "op": "VISIBLE_TO_ONE_OR_MORE_PRIMARY_MODELS",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one objective marker visible to one or more models in your unit. Each Afflicted enemy unit within range of that objective marker must take a Battle-shock test. Enemy units affected by this Stratagem do not need to take any other Battle-shock tests in the same phase."
+        },
+        {
+          "roleId": "enemy-affected",
+          "operation": "BATTLE_SHOCK_AND_NO_FURTHER_PHASE_BATTLE_SHOCK",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "AFFLICTED",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "WITHIN_RANGE_OF_SELECTED_OBJECTIVE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one objective marker visible to one or more models in your unit. Each Afflicted enemy unit within range of that objective marker must take a Battle-shock test. Enemy units affected by this Stratagem do not need to take any other Battle-shock tests in the same phase."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Select one objective marker visible to one or more models in your unit. Each Afflicted enemy unit within range of that objective marker must take a Battle-shock test. Enemy units affected by this Stratagem do not need to take any other Battle-shock tests in the same phase.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-mortarions-hammer:stratagem:6",
+      "detachmentId": "detachment-mortarions-hammer",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "STINKING-MIRE",
+        "strongerSource": {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 7,
+          "directive": "Change to: TARGET and EFFECT sections"
+        }
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of your opponent’s Charge phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly unengaged DEATH GUARD VEHICLE unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one visible enemy unit within 12\" of your unit. When that enemy unit declares a charge, that enemy unit has -1 to charge rolls."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "VEHICLE"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One friendly unengaged DEATH GUARD VEHICLE unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "ENGAGED",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One friendly unengaged DEATH GUARD VEHICLE unit."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Start of your opponent’s Charge phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-enemy",
+          "operation": "CHARGE_ROLL_MINUS_1_ON_CHARGE_DECLARATION",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "VISIBLE_TO_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "WITHIN_12_OF_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "SELECTED_ENEMY_DECLARES_CHARGE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one visible enemy unit within 12\" of your unit. When that enemy unit declares a charge, that enemy unit has -1 to charge rolls."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Select one visible enemy unit within 12\" of your unit. When that enemy unit declares a charge, that enemy unit has -1 to charge rolls.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-champions-of-contagion:stratagem:1",
+      "detachmentId": "detachment-champions-of-contagion",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "BLESSINGS-OF-FILTH"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase or the Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time a model in your unit makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "FORMED_ATTACHED_UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+      },
+      "rosterPredicates": [
+        {
+          "op": "IS_ATTACHED_UNIT",
+          "value": true,
+          "context": "ROSTER_KNOWN",
+          "sourceClause": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+        }
+      ],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_SHOOT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+        },
+        {
+          "op": "SELECTED_TO_SHOOT_OR_FIGHT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Shooting phase or the Fight phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-model-attacks",
+          "operation": "CRITICAL_HIT_ON_UNMODIFIED_5_PLUS",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MEMBER_OF_PRIMARY_ATTACHED_UNIT",
+              "context": "ROSTER_KNOWN"
+            },
+            {
+              "op": "MAKES_ATTACK",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time a model in your unit makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-champions-of-contagion:stratagem:2",
+      "detachmentId": "detachment-champions-of-contagion",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "MALIGNANCE-MAGNIFIED"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase or the Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time a model in your unit makes an attack that targets a unit that is below its Starting Strength, you can re-roll the Hit roll and you can re-roll the Wound roll."
+        }
+      ],
+      "cp": "2CP",
+      "primarySubject": {
+        "subject": "FORMED_ATTACHED_UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+      },
+      "rosterPredicates": [
+        {
+          "op": "IS_ATTACHED_UNIT",
+          "value": true,
+          "context": "ROSTER_KNOWN",
+          "sourceClause": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+        }
+      ],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_SHOOT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+        },
+        {
+          "op": "SELECTED_TO_SHOOT_OR_FIGHT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Shooting phase or the Fight phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-model-attacks",
+          "operation": "REROLL_HIT_AND_WOUND",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MEMBER_OF_PRIMARY_ATTACHED_UNIT",
+              "context": "ROSTER_KNOWN"
+            },
+            {
+              "op": "ENEMY_ATTACK_TARGET_BELOW_STARTING_STRENGTH",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time a model in your unit makes an attack that targets a unit that is below its Starting Strength, you can re-roll the Hit roll and you can re-roll the Wound roll."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-champions-of-contagion:stratagem:3",
+      "detachmentId": "detachment-champions-of-contagion",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "GROTESQUE-FORTITUDE"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD Attached unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, add 2 to the Toughness characteristic of models in your unit."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "FORMED_ATTACHED_UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD Attached unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      },
+      "rosterPredicates": [
+        {
+          "op": "IS_ATTACHED_UNIT",
+          "value": true,
+          "context": "ROSTER_KNOWN",
+          "sourceClause": "One DEATH GUARD Attached unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      ],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_AS_ENEMY_ATTACK_TARGET",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD Attached unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-models",
+          "operation": "TOUGHNESS_PLUS_2",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MEMBER_OF_PRIMARY_ATTACHED_UNIT",
+              "context": "ROSTER_KNOWN"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, add 2 to the Toughness characteristic of models in your unit."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-champions-of-contagion:stratagem:4",
+      "detachmentId": "detachment-champions-of-contagion",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "RABID-INFUSION"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of the Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD unit from your army that includes two CHARACTER models."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, your unit has the Fights First ability."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD unit from your army that includes two CHARACTER models."
+      },
+      "rosterPredicates": [
+        {
+          "op": "CONTAINS_CHARACTER_MODELS_MINIMUM",
+          "value": 2,
+          "context": "ROSTER_KNOWN",
+          "sourceClause": "One DEATH GUARD unit from your army that includes two CHARACTER models."
+        }
+      ],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Start of the Fight phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary",
+          "operation": "FIGHTS_FIRST",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [],
+          "sourceClause": "Until the end of the phase, your unit has the Fights First ability."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "Source counts physical CHARACTER models, not CHARACTER or Leader unit rows; no explicit Attached prerequisite is added."
+      ]
+    },
+    {
+      "sourceId": "detachment-champions-of-contagion:stratagem:5",
+      "detachmentId": "detachment-champions-of-contagion",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "MOBILE-VECTOR"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase, before the Reinforcements step."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD CHARACTER unit from your army that is not leading a unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one other friendly DEATH GUARD unit (excluding Battle-shocked units and Attached units that already have two Leader units or one of your CHARACTER units leading it] within 2\" horizontally and 5\" vertically of your unit that your unit can lead (as described in the Leader section of its datasheet]. Your unit attaches to that unit as a Leader. Change that unit’s Starting Strength accordingly."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "CHARACTER"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD CHARACTER unit from your army that is not leading a unit."
+      },
+      "rosterPredicates": [
+        {
+          "op": "IS_LEADING_UNIT",
+          "value": false,
+          "context": "ROSTER_KNOWN",
+          "sourceClause": "One DEATH GUARD CHARACTER unit from your army that is not leading a unit."
+        }
+      ],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Movement phase, before the Reinforcements step.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "recipient-unit",
+          "operation": "ATTACH_PRIMARY_AS_LEADER_AND_RECOMPUTE_STARTING_STRENGTH",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [
+              "DEATH GUARD"
+            ],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "OTHER_FRIENDLY_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "EXCLUDES_BATTLE_SHOCKED",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "EXCLUDES_ATTACHED_UNITS_WITH_TWO_LEADERS_OR_ONE_OF_YOUR_CHARACTER_UNITS_LEADING",
+              "context": "ROSTER_KNOWN"
+            },
+            {
+              "op": "WITHIN_2_HORIZONTAL_AND_5_VERTICAL",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "PRIMARY_CAN_LEAD_RECIPIENT_USING_ACCEPTED_LEADER_IDENTITY",
+              "context": "ROSTER_KNOWN"
+            }
+          ],
+          "sourceClause": "Select one other friendly DEATH GUARD unit (excluding Battle-shocked units and Attached units that already have two Leader units or one of your CHARACTER units leading it] within 2\" horizontally and 5\" vertically of your unit that your unit can lead (as described in the Leader section of its datasheet]. Your unit attaches to that unit as a Leader. Change that unit’s Starting Strength accordingly."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Select one other friendly DEATH GUARD unit (excluding Battle-shocked units and Attached units that already have two Leader units or one of your CHARACTER units leading it] within 2\" horizontally and 5\" vertically of your unit that your unit can lead (as described in the Leader section of its datasheet]. Your unit attaches to that unit as a Leader. Change that unit’s Starting Strength accordingly.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "Unmatched ] punctuation is present in accepted raw source; do not silently reinterpret leading-unit exclusion or add second-leader exceptions not stated.",
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-champions-of-contagion:stratagem:6",
+      "detachmentId": "detachment-champions-of-contagion",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "DEATH-S-HEADS"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One BIOLOGUS PUTRIFIER unit from your army that is not within Engagement Range of one or more enemy units and has not been selected to shoot this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one enemy unit (excluding VEHICLES) that is within 8\" of and visible to your unit. Until the start of your next turn, that unit has the effect of all Plagues (see Nurgle’s Gift)."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "BIOLOGUS PUTRIFIER"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One BIOLOGUS PUTRIFIER unit from your army that is not within Engagement Range of one or more enemy units and has not been selected to shoot this phase."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_SHOOT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One BIOLOGUS PUTRIFIER unit from your army that is not within Engagement Range of one or more enemy units and has not been selected to shoot this phase."
+        },
+        {
+          "op": "WITHIN_ENEMY_ENGAGEMENT_RANGE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One BIOLOGUS PUTRIFIER unit from your army that is not within Engagement Range of one or more enemy units and has not been selected to shoot this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Shooting phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-enemy",
+          "operation": "ALL_PLAGUE_EFFECTS",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "EXCLUDES_VEHICLES",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "WITHIN_8_OF_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "VISIBLE_TO_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one enemy unit (excluding VEHICLES) that is within 8\" of and visible to your unit. Until the start of your next turn, that unit has the effect of all Plagues (see Nurgle’s Gift)."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the start of your next turn"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-tallyband-summoners:stratagem:1",
+      "detachmentId": "detachment-tallyband-summoners",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "PERSISTENT-PESTS"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Any phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One NURGLINGS unit from your army that was just destroyed. You can target that unit with this Stratagem even though it was just destroyed."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Add a new unit to your army identical to your destroyed unit, in Strategic Reserves, at its Starting Strength and with its full wounds remaining."
+        },
+        {
+          "label": "RESTRICTIONS",
+          "text": "You can only use this Stratagem once per battle."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "NURGLINGS"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One NURGLINGS unit from your army that was just destroyed. You can target that unit with this Stratagem even though it was just destroyed."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "JUST_DESTROYED",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One NURGLINGS unit from your army that was just destroyed. You can target that unit with this Stratagem even though it was just destroyed."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Any phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "new-unit",
+          "operation": "ADD_IDENTICAL_UNIT_FULL_STRENGTH_AND_WOUNDS_IN_STRATEGIC_RESERVES",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [
+              "NURGLINGS"
+            ],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "IDENTICAL_TO_DESTROYED_PRIMARY_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Add a new unit to your army identical to your destroyed unit, in Strategic Reserves, at its Starting Strength and with its full wounds remaining."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Add a new unit to your army identical to your destroyed unit, in Strategic Reserves, at its Starting Strength and with its full wounds remaining.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [
+        "You can only use this Stratagem once per battle."
+      ],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-tallyband-summoners:stratagem:2",
+      "detachmentId": "detachment-tallyband-summoners",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "CLUTCHING-CORRUPTION"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD unit from your army that has not been selected to fight this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit that is within Engagement Range of one or more PLAGUE LEGIONS units from your army, you can re-roll the Hit roll."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD unit from your army that has not been selected to fight this phase."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_FIGHT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD unit from your army that has not been selected to fight this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Fight phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-model-attacks",
+          "operation": "REROLL_HIT",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MODEL_MEMBER_OF_PRIMARY_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "ATTACK_TARGET_ENEMY_WITHIN_ENGAGEMENT_RANGE_OF_FRIENDLY_PLAGUE_LEGIONS_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit that is within Engagement Range of one or more PLAGUE LEGIONS units from your army, you can re-roll the Hit roll."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-tallyband-summoners:stratagem:3",
+      "detachmentId": "detachment-tallyband-summoners",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "ALL-IS-ROT"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One PLAGUE LEGIONS unit from your army that is within Engagement Range of one or more enemy units."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, enemy units are not considered to be within Engagement Range of your unit for the purposes of selecting targets of ranged weapons. Until the end of the phase, each time an enemy model loses a wound, while that model’s unit is within Engagement Range of your unit, roll one D6: on a 5+, your unit suffers 1 mortal wound after the attacking unit has finished making its attacks."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "PLAGUE LEGIONS"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One PLAGUE LEGIONS unit from your army that is within Engagement Range of one or more enemy units."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Shooting phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary",
+          "operation": "IGNORE_ENGAGEMENT_FOR_RANGED_TARGET_SELECTION",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "ENEMIES_WITHIN_ENGAGEMENT_RANGE_OF_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, enemy units are not considered to be within Engagement Range of your unit for the purposes of selecting targets of ranged weapons. Until the end of the phase, each time an enemy model loses a wound, while that model’s unit is within Engagement Range of your unit, roll one D6: on a 5+, your unit suffers 1 mortal wound after the attacking unit has finished making its attacks."
+        },
+        {
+          "roleId": "primary",
+          "operation": "MORTAL_WOUND_BACKLASH_ON_5_PLUS",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "ENEMY_MODEL_LOSES_WOUND_WHILE_ITS_UNIT_ENGAGED_WITH_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "AFTER_ATTACKING_UNIT_FINISHED_ATTACKS",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, enemy units are not considered to be within Engagement Range of your unit for the purposes of selecting targets of ranged weapons. Until the end of the phase, each time an enemy model loses a wound, while that model’s unit is within Engagement Range of your unit, roll one D6: on a 5+, your unit suffers 1 mortal wound after the attacking unit has finished making its attacks."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        },
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-tallyband-summoners:stratagem:4",
+      "detachmentId": "detachment-tallyband-summoners",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "FLESHY-AVALANCHE"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase or your Charge phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One PLAGUE LEGIONS MONSTER unit from your army that has not been selected to move or charge this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time your unit makes a Normal, Advance or Charge move, it can move horizontally through terrain features."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "PLAGUE LEGIONS",
+          "MONSTER"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One PLAGUE LEGIONS MONSTER unit from your army that has not been selected to move or charge this phase."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_MOVE_OR_CHARGE_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One PLAGUE LEGIONS MONSTER unit from your army that has not been selected to move or charge this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Movement phase or your Charge phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary",
+          "operation": "MOVE_HORIZONTALLY_THROUGH_TERRAIN",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "PRIMARY_MAKES_NORMAL_ADVANCE_OR_CHARGE_MOVE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time your unit makes a Normal, Advance or Charge move, it can move horizontally through terrain features."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-tallyband-summoners:stratagem:5",
+      "detachmentId": "detachment-tallyband-summoners",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "AVATARS-OF-DECAY"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One PLAGUE LEGIONS unit from your army."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, while an enemy unit is within 6\" of your unit, that enemy unit is Afflicted."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "PLAGUE LEGIONS"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One PLAGUE LEGIONS unit from your army."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Shooting phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "enemy-affected",
+          "operation": "AFFLICTED",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "WITHIN_6_OF_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, while an enemy unit is within 6\" of your unit, that enemy unit is Afflicted."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-tallyband-summoners:stratagem:6",
+      "detachmentId": "detachment-tallyband-summoners",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "MIRESLICK"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Movement phase, when an enemy unit (excluding MONSTERS and VEHICLES) is selected to Fall Back."
+        },
+        {
+          "label": "TARGET",
+          "text": "One PLAGUE LEGIONS unit from your army that is within Engagement Range of that enemy unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, while an enemy unit is within Engagement Range of your unit, each time that unit is selected to Fall Back, it must take a Leadership test. If that test is failed, that unit must Remain Stationary this phase instead."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "PLAGUE LEGIONS"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One PLAGUE LEGIONS unit from your army that is within Engagement Range of that enemy unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your opponent’s Movement phase, when an enemy unit (excluding MONSTERS and VEHICLES) is selected to Fall Back.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "enemy-affected",
+          "operation": "LEADERSHIP_TEST_ON_FALL_BACK_OR_REMAIN_STATIONARY",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "WITHIN_ENGAGEMENT_RANGE_OF_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "SELECTED_TO_FALL_BACK",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "FAILED_LEADERSHIP_IMPLIES_REMAIN_STATIONARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, while an enemy unit is within Engagement Range of your unit, each time that unit is selected to Fall Back, it must take a Leadership test. If that test is failed, that unit must Remain Stationary this phase instead."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "MONSTER/VEHICLE exclusions belong to initial WHEN enemy trigger; EFFECT has generic each enemy unit recipient wording."
+      ]
+    },
+    {
+      "sourceId": "detachment-shamblerot-vectorium:stratagem:1",
+      "detachmentId": "detachment-shamblerot-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "GRIP-OF-THE-WALKING-POX"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase, just after an enemy unit has selected its targets."
+        },
+        {
+          "label": "TARGET",
+          "text": "One POXWALKERS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        },
+        {
+          "label": "EFFECT",
+          "text": "After the attacking unit has fought, roll one D6 for each model from your unit that was destroyed as a result of those attacks: on a 6, the attacking unit suffers 1 mortal wound. If your unit is not destroyed after the attacking unit has fought, enemy models destroyed as a result of this Stratagem count as enemy models destroyed by an attack made by a model in your unit for the purposes of the Curse of the Walking Pox ability."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "POXWALKERS"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One POXWALKERS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_AS_ENEMY_ATTACK_TARGET",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One POXWALKERS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Fight phase, just after an enemy unit has selected its targets.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "attacking-enemy",
+          "operation": "MORTAL_WOUNDS_AFTER_FIGHT",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "ORIGINAL_ATTACKER",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "DICE_FOR_PRIMARY_MODELS_DESTROYED_BY_THOSE_ATTACKS",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "After the attacking unit has fought, roll one D6 for each model from your unit that was destroyed as a result of those attacks: on a 6, the attacking unit suffers 1 mortal wound. If your unit is not destroyed after the attacking unit has fought, enemy models destroyed as a result of this Stratagem count as enemy models destroyed by an attack made by a model in your unit for the purposes of the Curse of the Walking Pox ability."
+        },
+        {
+          "roleId": "primary",
+          "operation": "CURSE_OF_WALKING_POX_KILL_COUNT",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "PRIMARY_NOT_DESTROYED_AFTER_ATTACKER_FOUGHT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "ENEMY_MODELS_DESTROYED_BY_THIS_STRATAGEM",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "After the attacking unit has fought, roll one D6 for each model from your unit that was destroyed as a result of those attacks: on a 6, the attacking unit suffers 1 mortal wound. If your unit is not destroyed after the attacking unit has fought, enemy models destroyed as a result of this Stratagem count as enemy models destroyed by an attack made by a model in your unit for the purposes of the Curse of the Walking Pox ability."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "After the attacking unit has fought, roll one D6 for each model from your unit that was destroyed as a result of those attacks: on a 6, the attacking unit suffers 1 mortal wound. If your unit is not destroyed after the attacking unit has fought, enemy models destroyed as a result of this Stratagem count as enemy models destroyed by an attack made by a model in your unit for the purposes of the Curse of the Walking Pox ability.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-shamblerot-vectorium:stratagem:2",
+      "detachmentId": "detachment-shamblerot-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "SMEARED-WITH-FILTH"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One POXWALKERS unit from your army that was just destroyed. You can target that unit with this Stratagem even though it was just destroyed."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one enemy unit that made one or more attacks that targeted your unit this phase. Until the end of the battle, that enemy unit is Afflicted."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "POXWALKERS"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One POXWALKERS unit from your army that was just destroyed. You can target that unit with this Stratagem even though it was just destroyed."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "JUST_DESTROYED",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One POXWALKERS unit from your army that was just destroyed. You can target that unit with this Stratagem even though it was just destroyed."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Fight phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-enemy",
+          "operation": "AFFLICTED",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "ATTACKED_PRIMARY_UNIT_THIS_PHASE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one enemy unit that made one or more attacks that targeted your unit this phase. Until the end of the battle, that enemy unit is Afflicted."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the battle"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-shamblerot-vectorium:stratagem:3",
+      "detachmentId": "detachment-shamblerot-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "GNAWING-HUNGER"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One POXWALKERS unit from your army."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the turn, add 1 to the Move characteristic of models in your unit, and add 1 to the Attacks and Strength characteristics of melee weapons equipped by models in your unit."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "POXWALKERS"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One POXWALKERS unit from your army."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Command phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-models",
+          "operation": "MOVE_PLUS_1",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MEMBER_OF_PRIMARY_UNIT",
+              "context": "ROSTER_KNOWN"
+            }
+          ],
+          "sourceClause": "Until the end of the turn, add 1 to the Move characteristic of models in your unit, and add 1 to the Attacks and Strength characteristics of melee weapons equipped by models in your unit."
+        },
+        {
+          "roleId": "primary-melee-weapons",
+          "operation": "ATTACKS_AND_STRENGTH_PLUS_1",
+          "recipient": {
+            "subject": "WEAPON",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MELEE_WEAPON_EQUIPPED_BY_PRIMARY_UNIT_MODEL",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the turn, add 1 to the Move characteristic of models in your unit, and add 1 to the Attacks and Strength characteristics of melee weapons equipped by models in your unit."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the turn"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-shamblerot-vectorium:stratagem:4",
+      "detachmentId": "detachment-shamblerot-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "HIDDEN-AMONGST-THE-DEAD"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "The Reinforcements step of your Movement phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One POXWALKERS unit from your army that is in Strategic Reserves and that is not an Attached unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, models in that unit have the Deep Strike ability."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "POXWALKERS"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One POXWALKERS unit from your army that is in Strategic Reserves and that is not an Attached unit."
+      },
+      "rosterPredicates": [
+        {
+          "op": "IS_ATTACHED_UNIT",
+          "value": false,
+          "context": "ROSTER_KNOWN",
+          "sourceClause": "One POXWALKERS unit from your army that is in Strategic Reserves and that is not an Attached unit."
+        }
+      ],
+      "battlePredicates": [
+        {
+          "op": "IN_STRATEGIC_RESERVES",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One POXWALKERS unit from your army that is in Strategic Reserves and that is not an Attached unit."
+        }
+      ],
+      "timing": {
+        "sourceClause": "The Reinforcements step of your Movement phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-models",
+          "operation": "DEEP_STRIKE",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MEMBER_OF_PRIMARY_UNIT",
+              "context": "ROSTER_KNOWN"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, models in that unit have the Deep Strike ability."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-shamblerot-vectorium:stratagem:5",
+      "detachmentId": "detachment-shamblerot-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "SHOCK-AND-HORROR"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Charge phase, just after a DEATH GUARD unit from your army ends a Charge move."
+        },
+        {
+          "label": "TARGET",
+          "text": "That DEATH GUARD unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Each enemy unit within Engagement Range of your unit must take a Battle-shock test, subtracting 1 from that test."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "That DEATH GUARD unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Charge phase, just after a DEATH GUARD unit from your army ends a Charge move.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "enemy-affected",
+          "operation": "BATTLE_SHOCK_MINUS_1",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "WITHIN_ENGAGEMENT_RANGE_OF_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Each enemy unit within Engagement Range of your unit must take a Battle-shock test, subtracting 1 from that test."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Each enemy unit within Engagement Range of your unit must take a Battle-shock test, subtracting 1 from that test.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-shamblerot-vectorium:stratagem:6",
+      "detachmentId": "detachment-shamblerot-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "SHAMBLING-WALL"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD unit from your army that was selected as the target of one or more of the attacking unit’s attacks, and one friendly POXWALKERS unit within 3\" of your unit and visible to both your unit and the attacking unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time you would allocate an attack to a model in your DEATH GUARD unit, if your POXWALKERS unit is visible to the attacking model and is an eligible target for that attack, no saving throw is made for that attack; instead a number of POXWALKERS from your POXWALKERS unit equal to the Damage characteristic of that attack are destroyed."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One DEATH GUARD unit from your army that was selected as the target of one or more of the attacking unit’s attacks, and one friendly POXWALKERS unit within 3\" of your unit and visible to both your unit and the attacking unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_AS_ENEMY_ATTACK_TARGET",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One DEATH GUARD unit from your army that was selected as the target of one or more of the attacking unit’s attacks, and one friendly POXWALKERS unit within 3\" of your unit and visible to both your unit and the attacking unit."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-model-attack",
+          "operation": "REDIRECT_DAMAGE_TO_POXWALKERS_NO_SAVE",
+          "recipient": {
+            "subject": "ATTACK",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "ALLOCATED_TO_MODEL_IN_PRIMARY_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "SHIELD_VISIBLE_TO_ATTACKING_MODEL",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "SHIELD_ELIGIBLE_TARGET_FOR_THAT_ATTACK",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time you would allocate an attack to a model in your DEATH GUARD unit, if your POXWALKERS unit is visible to the attacking model and is an eligible target for that attack, no saving throw is made for that attack; instead a number of POXWALKERS from your POXWALKERS unit equal to the Damage characteristic of that attack are destroyed."
+        },
+        {
+          "roleId": "shield-unit",
+          "operation": "DESTROY_MODELS_EQUAL_TO_ATTACK_DAMAGE",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [
+              "POXWALKERS"
+            ],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "WITHIN_3_OF_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "VISIBLE_TO_PRIMARY_AND_ATTACKING_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time you would allocate an attack to a model in your DEATH GUARD unit, if your POXWALKERS unit is visible to the attacking model and is an eligible target for that attack, no saving throw is made for that attack; instead a number of POXWALKERS from your POXWALKERS unit equal to the Damage characteristic of that attack are destroyed."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-death-lords-chosen:stratagem:1",
+      "detachmentId": "detachment-death-lords-chosen",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "BLOOMING-PESTILENCE"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of any phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One TERMINATOR unit from your army."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, add 3\" to the Contagion Range of models in your unit."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "TERMINATOR"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One TERMINATOR unit from your army."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Start of any phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-models",
+          "operation": "CONTAGION_RANGE_PLUS_3",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MEMBER_OF_PRIMARY_UNIT",
+              "context": "ROSTER_KNOWN"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, add 3\" to the Contagion Range of models in your unit."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-death-lords-chosen:stratagem:2",
+      "detachmentId": "detachment-death-lords-chosen",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "GRIM-REAPERS"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One TERMINATOR unit from your army that has not been selected to fight this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit (excluding MONSTERS and VEHICLES) you can re-roll the Hit roll."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "TERMINATOR"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One TERMINATOR unit from your army that has not been selected to fight this phase."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_FIGHT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One TERMINATOR unit from your army that has not been selected to fight this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Fight phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-model-attacks",
+          "operation": "REROLL_HIT",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MODEL_MEMBER_OF_PRIMARY_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "ENEMY_ATTACK_TARGET_EXCLUDES_MONSTER_AND_VEHICLE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit (excluding MONSTERS and VEHICLES) you can re-roll the Hit roll."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-death-lords-chosen:stratagem:3",
+      "detachmentId": "detachment-death-lords-chosen",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "UNDYING-SPITE"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase, just after an enemy unit has selected its targets."
+        },
+        {
+          "label": "TARGET",
+          "text": "One TERMINATOR unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, each time a model in your unit is destroyed, if that model has not fought this phase, roll one D6. On a 4+, do not remove the destroyed model from play; it can fight after the attacking unit has finished making its attacks, and is then removed from play."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "TERMINATOR"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One TERMINATOR unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_AS_ENEMY_ATTACK_TARGET",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One TERMINATOR unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Fight phase, just after an enemy unit has selected its targets.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-destroyed-model",
+          "operation": "FIGHT_ON_DEATH_ON_4_PLUS",
+          "recipient": {
+            "subject": "MODEL",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "MEMBER_OF_PRIMARY_UNIT",
+              "context": "ROSTER_KNOWN"
+            },
+            {
+              "op": "DESTROYED_THIS_PHASE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "HAS_NOT_FOUGHT_THIS_PHASE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "FIGHT_AFTER_ATTACKER_FINISHES_THEN_REMOVE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, each time a model in your unit is destroyed, if that model has not fought this phase, roll one D6. On a 4+, do not remove the destroyed model from play; it can fight after the attacking unit has finished making its attacks, and is then removed from play."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-death-lords-chosen:stratagem:4",
+      "detachmentId": "detachment-death-lords-chosen",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "SIGNAL-POX"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One LORD OF VIRULENCE model from your army."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one objective marker within 30\" of and visible to your model. Until the start of your next turn, while an enemy unit is within range of that objective marker, that unit is Afflicted."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "MODEL",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "LORD OF VIRULENCE"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One LORD OF VIRULENCE model from your army."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Command phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-objective",
+          "operation": "AFFLICTED_ANCHOR",
+          "recipient": {
+            "subject": "OBJECTIVE_MARKER",
+            "allKeywords": [],
+            "relation": "NEUTRAL_ANCHOR"
+          },
+          "conditions": [
+            {
+              "op": "WITHIN_30_OF_PRIMARY_MODEL",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "VISIBLE_TO_PRIMARY_MODEL",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one objective marker within 30\" of and visible to your model. Until the start of your next turn, while an enemy unit is within range of that objective marker, that unit is Afflicted."
+        },
+        {
+          "roleId": "enemy-affected",
+          "operation": "AFFLICTED",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "WITHIN_RANGE_OF_SELECTED_OBJECTIVE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one objective marker within 30\" of and visible to your model. Until the start of your next turn, while an enemy unit is within range of that objective marker, that unit is Afflicted."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the start of your next turn"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-death-lords-chosen:stratagem:5",
+      "detachmentId": "detachment-death-lords-chosen",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "MORTARION-S-TEACHINGS"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One TERMINATOR unit from your army that has not been selected to shoot this phase."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Until the end of the phase, ranged weapons equipped by models in your unit have the [ASSAULT] and [HEAVY] abilities."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "TERMINATOR"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One TERMINATOR unit from your army that has not been selected to shoot this phase."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "SELECTED_TO_SHOOT_THIS_PHASE",
+          "value": false,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One TERMINATOR unit from your army that has not been selected to shoot this phase."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Your Shooting phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-ranged-weapons",
+          "operation": "ASSAULT_AND_HEAVY",
+          "recipient": {
+            "subject": "WEAPON",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "RANGED_WEAPON_EQUIPPED_BY_PRIMARY_UNIT_MODELS",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Until the end of the phase, ranged weapons equipped by models in your unit have the [ASSAULT] and [HEAVY] abilities."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "Until the end of the phase"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-death-lords-chosen:stratagem:6",
+      "detachmentId": "detachment-death-lords-chosen",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "SICKENING-IMPACT"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Charge phase, just after a TERMINATOR unit from your army ends a Charge move."
+        },
+        {
+          "label": "TARGET",
+          "text": "That TERMINATOR unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one enemy unit within Engagement Range of your unit, then roll one D6 for each model in your unit that is within Engagement Range of that enemy unit: for each 2+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds)."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "TERMINATOR"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "That TERMINATOR unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Charge phase, just after a TERMINATOR unit from your army ends a Charge move.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-enemy",
+          "operation": "MORTAL_WOUNDS_ON_2_PLUS_MAX_6",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "WITHIN_ENGAGEMENT_RANGE_OF_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "DICE_PER_PRIMARY_MODEL_WITHIN_ENGAGEMENT_RANGE_OF_SELECTED_ENEMY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one enemy unit within Engagement Range of your unit, then roll one D6 for each model in your unit that is within Engagement Range of that enemy unit: for each 2+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds)."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Select one enemy unit within Engagement Range of your unit, then roll one D6 for each model in your unit that is within Engagement Range of that enemy unit: for each 2+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-contagion-engines:stratagem:1",
+      "detachmentId": "detachment-contagion-engines",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[4]/div[1]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "FRESH-VECTORS"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase or the Fight phase, when a friendly CONTAGION ENGINE unit is selected to attack."
+        },
+        {
+          "label": "TARGET",
+          "text": "That CONTAGION ENGINE unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Your unit’s attacks can re-roll wound rolls of 1."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "CONTAGION ENGINE"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "That CONTAGION ENGINE unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Shooting phase or the Fight phase, when a friendly CONTAGION ENGINE unit is selected to attack.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-attacks",
+          "operation": "REROLL_WOUND_1",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "ATTACKS_FROM_SELECTED_ATTACK_EVENT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Your unit’s attacks can re-roll wound rolls of 1."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Your unit’s attacks can re-roll wound rolls of 1.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-contagion-engines:stratagem:2",
+      "detachmentId": "detachment-contagion-engines",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[4]/div[2]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "BLOODRUST-DELUGE"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly CONTAGION ENGINE unit is selected to shoot."
+        },
+        {
+          "label": "TARGET",
+          "text": "That CONTAGION ENGINE unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one visible enemy unit. That enemy unit is Afflicted until your unit has attacked."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "CONTAGION ENGINE"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "That CONTAGION ENGINE unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Shooting phase, when a friendly CONTAGION ENGINE unit is selected to shoot.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-enemy",
+          "operation": "AFFLICTED",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "VISIBLE_ENEMY_UNIT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one visible enemy unit. That enemy unit is Afflicted until your unit has attacked."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "until your unit has attacked"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-contagion-engines:stratagem:3",
+      "detachmentId": "detachment-contagion-engines",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[4]/div[3]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "SOULROT-FLUX"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Movement phase, when an enemy unit is selected to make a fall-back move, if that enemy unit is engaged with a friendly CONTAGION ENGINE unit."
+        },
+        {
+          "label": "TARGET",
+          "text": "That CONTAGION ENGINE unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "When an enemy unit engaged with your unit is selected to make a fall-back move, roll one D6: - On a 1, that enemy unit suffers 1 mortal wound. - On a 2-5, that enemy unit suffers D3 mortal wounds. - On a 6, that enemy unit suffers 3 mortal wounds."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "CONTAGION ENGINE"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "That CONTAGION ENGINE unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your opponent’s Movement phase, when an enemy unit is selected to make a fall-back move, if that enemy unit is engaged with a friendly CONTAGION ENGINE unit.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "triggering-enemy",
+          "operation": "D6_DEPENDENT_MORTAL_WOUNDS",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "ENEMY_ENGAGED_WITH_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "SELECTED_TO_MAKE_FALL_BACK_MOVE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "When an enemy unit engaged with your unit is selected to make a fall-back move, roll one D6: - On a 1, that enemy unit suffers 1 mortal wound. - On a 2-5, that enemy unit suffers D3 mortal wounds. - On a 6, that enemy unit suffers 3 mortal wounds."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "When an enemy unit engaged with your unit is selected to make a fall-back move, roll one D6: - On a 1, that enemy unit suffers 1 mortal wound. - On a 2-5, that enemy unit suffers D3 mortal wounds. - On a 6, that enemy unit suffers 3 mortal wounds.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-flyblown-host:stratagem:1",
+      "detachmentId": "detachment-flyblown-host",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[4]/div[1]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "NAUSEATING-PAROXYSMS"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of the Fight phase"
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly engaged PLAGUE MARINES unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one enemy unit engaged with your unit. That enemy unit makes a battle-shock roll, with -1 to that battle-shock roll."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "PLAGUE MARINES"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One friendly engaged PLAGUE MARINES unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [
+        {
+          "op": "ENGAGED",
+          "value": true,
+          "context": "BATTLE_STATE",
+          "sourceClause": "One friendly engaged PLAGUE MARINES unit."
+        }
+      ],
+      "timing": {
+        "sourceClause": "Start of the Fight phase",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-enemy",
+          "operation": "BATTLE_SHOCK_MINUS_1",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "ENGAGED_WITH_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one enemy unit engaged with your unit. That enemy unit makes a battle-shock roll, with -1 to that battle-shock roll."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Select one enemy unit engaged with your unit. That enemy unit makes a battle-shock roll, with -1 to that battle-shock roll.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-flyblown-host:stratagem:2",
+      "detachmentId": "detachment-flyblown-host",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[4]/div[2]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "DRONING-HORROR"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly PLAGUE MARINES unit is selected to shoot."
+        },
+        {
+          "label": "TARGET",
+          "text": "That PLAGUE MARINES unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Your unit’s ranged attacks: - Can re-roll hit rolls of 1. - That target a unit within half range, can re-roll wound rolls of 1."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "PLAGUE MARINES"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "That PLAGUE MARINES unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Shooting phase, when a friendly PLAGUE MARINES unit is selected to shoot.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-ranged-attacks",
+          "operation": "REROLL_HIT_1",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "SELECTED_SHOOTING_EVENT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Your unit’s ranged attacks: - Can re-roll hit rolls of 1. - That target a unit within half range, can re-roll wound rolls of 1."
+        },
+        {
+          "roleId": "primary-ranged-attacks",
+          "operation": "REROLL_WOUND_1",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "SELECTED_SHOOTING_EVENT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "ENEMY_ATTACK_TARGET_WITHIN_HALF_RANGE",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Your unit’s ranged attacks: - Can re-roll hit rolls of 1. - That target a unit within half range, can re-roll wound rolls of 1."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Your unit’s ranged attacks: - Can re-roll hit rolls of 1. - That target a unit within half range, can re-roll wound rolls of 1.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-flyblown-host:stratagem:3",
+      "detachmentId": "detachment-flyblown-host",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[4]/div[3]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "EYE-OF-THE-SWARM"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly PLAGUE MARINES unit is selected to shoot."
+        },
+        {
+          "label": "TARGET",
+          "text": "That PLAGUE MARINES unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Your unit’s ranged attacks have [CLOSE-QUARTERS]."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "PLAGUE MARINES"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "That PLAGUE MARINES unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Shooting phase, when a friendly PLAGUE MARINES unit is selected to shoot.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary-ranged-attacks",
+          "operation": "CLOSE_QUARTERS",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "SELECTED_SHOOTING_EVENT",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Your unit’s ranged attacks have [CLOSE-QUARTERS]."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Your unit’s ranged attacks have [CLOSE-QUARTERS].",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-paragons-of-putrescence:stratagem:1",
+      "detachmentId": "detachment-paragons-of-putrescence",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[4]/div[1]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "TERRITORIAL-INFECTION"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of the Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly DEATH GUARD CHARACTER unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Your unit has +1 OC until the end of the turn."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "CHARACTER"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One friendly DEATH GUARD CHARACTER unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Start of the Command phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary",
+          "operation": "OBJECTIVE_CONTROL_PLUS_1",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [],
+          "sourceClause": "Your unit has +1 OC until the end of the turn."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "EXPLICIT_SOURCE_BOUNDARY",
+          "sourcePhrase": "until the end of the turn"
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false
+    },
+    {
+      "sourceId": "detachment-paragons-of-putrescence:stratagem:2",
+      "detachmentId": "detachment-paragons-of-putrescence",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[4]/div[2]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "AGGRAVUS-SPASMS"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of your Shooting Phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly DEATH GUARD CHARACTER unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one visible enemy unit within Contagion Range of your unit. That enemy unit has +6\" detection range."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "CHARACTER"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "One friendly DEATH GUARD CHARACTER unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Start of your Shooting Phase.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "selected-enemy",
+          "operation": "DETECTION_RANGE_PLUS_6",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "ENEMY"
+          },
+          "conditions": [
+            {
+              "op": "VISIBLE_TO_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            },
+            {
+              "op": "WITHIN_CONTAGION_RANGE_OF_PRIMARY",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "Select one visible enemy unit within Contagion Range of your unit. That enemy unit has +6\" detection range."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "Select one visible enemy unit within Contagion Range of your unit. That enemy unit has +6\" detection range.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    },
+    {
+      "sourceId": "detachment-paragons-of-putrescence:stratagem:3",
+      "detachmentId": "detachment-paragons-of-putrescence",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[4]/div[3]/div/div[2]/div[1]/div[4]",
+        "explicitPublisherRuleId": "SIMULTANEOUS-CONTAMINATION"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly DEATH GUARD CHARACTER unit starts an action."
+        },
+        {
+          "label": "TARGET",
+          "text": "That DEATH GUARD CHARACTER unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "That action does not prevent your unit from being eligible to shoot."
+        }
+      ],
+      "cp": "1CP",
+      "primarySubject": {
+        "subject": "UNIT",
+        "relation": "FRIENDLY",
+        "allKeywords": [
+          "DEATH GUARD",
+          "CHARACTER"
+        ],
+        "anyKeywordGroups": [],
+        "sourceClause": "That DEATH GUARD CHARACTER unit."
+      },
+      "rosterPredicates": [],
+      "battlePredicates": [],
+      "timing": {
+        "sourceClause": "Your Shooting phase, when a friendly DEATH GUARD CHARACTER unit starts an action.",
+        "requiresBattleContext": true
+      },
+      "effects": [
+        {
+          "roleId": "primary",
+          "operation": "ACTION_DOES_NOT_PREVENT_SHOOTING_ELIGIBILITY",
+          "recipient": {
+            "subject": "UNIT",
+            "allKeywords": [],
+            "relation": "FRIENDLY"
+          },
+          "conditions": [
+            {
+              "op": "SAME_ACTION_STARTED_IN_TRIGGER",
+              "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            }
+          ],
+          "sourceClause": "That action does not prevent your unit from being eligible to shoot."
+        }
+      ],
+      "durations": [
+        {
+          "kind": "NOT_EXPLICIT",
+          "sourceClause": "That action does not prevent your unit from being eligible to shoot.",
+          "defaultInvented": false
+        }
+      ],
+      "restrictions": [],
+      "genuineSourceAmbiguity": false,
+      "sourceNotes": [
+        "No explicit expiry is present. Retain source event scope/unspecified duration rather than inventing end-of-phase expiration."
+      ]
+    }
+  ],
+  "enhancementsAndDetachments": [
+    {
+      "id": "detachment-virulent-vectorium:enhancement:1",
+      "parentId": "detachment-virulent-vectorium",
+      "title": "Daemon Weapon of Nurgle",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD model only. Each time the bearer makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD model only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "bearer makes melee attack; unmodified hit roll 5+"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-virulent-vectorium:enhancement:2",
+      "parentId": "detachment-virulent-vectorium",
+      "title": "Furnace of Plagues",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD model only. Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD model only",
+      "rosterConditions": [],
+      "battleConditions": [],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-virulent-vectorium:enhancement:3",
+      "parentId": "detachment-virulent-vectorium",
+      "title": "Arch Contaminator",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD model only. While the bearer’s unit is within range of an objective marker you control, each time a model in the bearer’s unit makes an attack, you can re-roll the Wound roll.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD model only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "bearer unit within objective controlled by your army; model in bearer unit attacks"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-virulent-vectorium:enhancement:4",
+      "parentId": "detachment-virulent-vectorium",
+      "title": "Revolting Regeneration",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD model only. The bearer has the Feel No Pain 5+ ability.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD model only",
+      "rosterConditions": [],
+      "battleConditions": [],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-virulent-vectorium:rule",
+      "parentId": "detachment-virulent-vectorium",
+      "title": "Worldblight",
+      "rawText": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "sourceDetachmentIdentity": "DG:1001",
+      "assessment": {
+        "classes": [
+          "BATTLE_OBJECTIVE_SECURE",
+          "BATTLE_ENEMY_AFFLICTED"
+        ],
+        "selectors": [
+          "friendly DEATH GUARD unit controlling objective",
+          "enemy unit in secured objective range"
+        ],
+        "conditions": [
+          "your Command phase end",
+          "objective still controlled by your army"
+        ]
+      },
+      "genuineAmbiguity": false,
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[2]/div[2]",
+      "acceptedScopeText": "WorldblightAs the foul tendrils of the Death Guard quest further across the battlefield, they infest even the most secure, holy and heavily warded sites with supernatural disease. To fight amidst such foulness is a virtual death sentence to the foe, win or lose.At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.",
+      "strongerPdfPage": 7
+    },
+    {
+      "id": "detachment-shamblerot-vectorium:enhancement:1",
+      "parentId": "detachment-shamblerot-vectorium",
+      "title": "Witherbone Pipes",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawText": "NOXIOUS BLIGHTBRINGER only. While the bearer is leading a POXWALKERS unit, add 1 to the Objective Control characteristic of models in that unit, and each time that unit takes a Battle-shock or Leadership test, add 1 to that test.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "NOXIOUS BLIGHTBRINGER only",
+      "rosterConditions": [
+        "leading bodyguard unit-poxwalkers"
+      ],
+      "battleConditions": [
+        "Battle-shock or Leadership test for the test modifier clause"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-shamblerot-vectorium:enhancement:2",
+      "parentId": "detachment-shamblerot-vectorium",
+      "title": "Lord of the Walking Pox",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD model only. If the bearer is leading a POXWALKER unit, and is in Strategic Reserves, for the purposes of setting up that unit on the battlefield, treat the current battle round as the third battle round.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD model only",
+      "rosterConditions": [
+        "leading bodyguard unit-poxwalkers"
+      ],
+      "battleConditions": [
+        "bearer in Strategic Reserves; unit being set up"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-shamblerot-vectorium:enhancement:3",
+      "parentId": "detachment-shamblerot-vectorium",
+      "title": "Sorrowsyphon",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+      "rawText": "MALIGNANT PLAGUECASTER only. While the bearer is leading a POXWALKERS unit, add 1 to the Damage characteristic of the bearer’s Plague Wind weapon. Each time the bearer makes one or more attacks with a Plague Wind weapon, after the bearer’s unit has resolved its attacks, D3 Bodyguard models from the bearer’s unit are destroyed.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "MALIGNANT PLAGUECASTER only",
+      "rosterConditions": [
+        "leading bodyguard unit-poxwalkers for Damage clause only"
+      ],
+      "battleConditions": [
+        "Plague Wind attacks made and bearer unit finished attacks for separate Bodyguard-destruction clause"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-shamblerot-vectorium:enhancement:4",
+      "parentId": "detachment-shamblerot-vectorium",
+      "title": "Talisman of Burgeoning",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD model only. While the bearer is leading a unit, add 1 to the Toughness characteristic of POXWALKERS models in that unit.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD model only",
+      "rosterConditions": [
+        "leading a unit; target models have POXWALKERS"
+      ],
+      "battleConditions": [],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-shamblerot-vectorium:rule",
+      "parentId": "detachment-shamblerot-vectorium",
+      "title": "Numberless Horde",
+      "rawText": "In your Command phase in each of the following battle rounds, depending on your chosen battle size, add a new POXWALKERS unit with a Starting Strength of 10 to your army, in Strategic Reserves.\nBATTLE SIZEBATTLE ROUNDSIncursion2,3Strike Force2, 3, 4Onslaught2, 3, 4, 5\nKEYWORDS\nPOXWALKERS units from your army gain the BATTLELINE keyword.",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "sourceDetachmentIdentity": "DG:101",
+      "assessment": {
+        "classes": [
+          "BATTLE_ADD_UNIT",
+          "ROSTER_KEYWORD_GAIN"
+        ],
+        "selectors": [
+          "new unit-poxwalkers",
+          "own POXWALKERS units"
+        ],
+        "conditions": [
+          "Command phase",
+          "battle size/round source table; Starting Strength10; Strategic Reserves placement"
+        ]
+      },
+      "genuineAmbiguity": false,
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[2]",
+      "acceptedScopeText": "Numberless HordeNo matter how many Poxwalkers the enemy gun down or tear limb-from-limb at close quarters, more groaning mutants keep coming from every side.In your Command phase in each of the following battle rounds, depending on your chosen battle size, add a new POXWALKERS unit with a Starting Strength of 10 to your army, in Strategic Reserves.BATTLE SIZEBATTLE ROUNDSIncursion2,3Strike Force2, 3, 4Onslaught2, 3, 4, 5KEYWORDSPOXWALKERS units from your army gain the BATTLELINE keyword."
+    },
+    {
+      "id": "detachment-tallyband-summoners:enhancement:1",
+      "parentId": "detachment-tallyband-summoners",
+      "title": "Beckoning Blight",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD model only. Each time a PLAGUE LEGIONS unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within 12\" of the bearer, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 8\".",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD model only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "friendly PLAGUE LEGIONS unit being set up using Deep Strike; wholly within 12 inches of bearer"
+      ],
+      "genuineAmbiguity": false,
+      "strongerPdfPage": 7
+    },
+    {
+      "id": "detachment-tallyband-summoners:enhancement:2",
+      "parentId": "detachment-tallyband-summoners",
+      "title": "Fell Harvester",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD model only. Add 2 to the Attacks characteristic of the bearer’s melee weapons.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD model only",
+      "rosterConditions": [],
+      "battleConditions": [],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-tallyband-summoners:enhancement:3",
+      "parentId": "detachment-tallyband-summoners",
+      "title": "Entropic Knell",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+      "rawText": "GREAT UNCLEAN ONE only. In the Battle-shock step of your opponent’s Command phase, each enemy unit within 6\" of the bearer that is below its Starting Strength must take a Battle-shock test, subtracting 1 from that test.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "GREAT UNCLEAN ONE only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "opponent Command phase Battle-shock step; enemy within 6 inches; below Starting Strength"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-tallyband-summoners:enhancement:4",
+      "parentId": "detachment-tallyband-summoners",
+      "title": "Tome of Bounteous Blessings",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+      "rawText": "MALIGNANT PLAGUECASTER only. Each time a PLAGUE LEGIONS unit within 12\" of the bearer takes a Battle-shock test, add 1 to that test and, if that test is passed, one model in that unit regains up to D3 lost wounds (if that unit is a BATTLELINE unit and that test is passed, up to D3 destroyed models can be returned to that unit instead).",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "MALIGNANT PLAGUECASTER only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "PLAGUE LEGIONS unit within 12 inches takes Battle-shock test; passed for healing; BATTLELINE for optional destroyed-model replacement"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-tallyband-summoners:rule",
+      "parentId": "detachment-tallyband-summoners",
+      "title": "Reverberant Rancidity",
+      "rawText": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability.\nWhile a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD units Contagion Range.\nPLAGUE LEGIONS\nYou can include PLAGUE LEGIONS units in your army, even though they do not have the DEATH GUARD Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo PLAGUE LEGIONS models from your army can be your WARLORD.",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "sourceDetachmentIdentity": "DG:201",
+      "assessment": {
+        "classes": [
+          "BATTLE_PROXIMITY_ABILITY",
+          "BATTLE_PROXIMITY_RANGE_MODIFIER",
+          "ARMY_INCLUSION_PERMISSION",
+          "ARMY_INCLUSION_POINTS_CAP",
+          "WARLORD_RESTRICTION"
+        ],
+        "selectors": [
+          "own PLAGUE LEGIONS units within7 inches of own DEATH GUARD units",
+          "own DEATH GUARD units within7 inches of own PLAGUE LEGIONS units",
+          "PLAGUE LEGIONS models for Warlord restriction"
+        ],
+        "conditions": [
+          "proximity",
+          "battle size for MFM-owned cap; do not duplicate central values"
+        ]
+      },
+      "genuineAmbiguity": false,
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[2]/div[2]",
+      "acceptedScopeText": "Reverberant RancidityReality rings like a struck bell as it rebels against the sheer wrongness of Nurgle’s daemons. Borne upon these jarring waves of metaphysical disease, magnified and redoubled with every dolorous peal, the Plague God’s myriad infections spread and multiply all the faster.While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability.While a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD units Contagion Range.PLAGUE LEGIONSYou can include PLAGUE LEGIONS units in your army, even though they do not have the DEATH GUARD Faction keyword. The combined points cost of such units you can include in your army is:Incursion: Up to 500 ptsStrike Force: Up to 1000 ptsOnslaught: Up to 1500 ptsNo PLAGUE LEGIONS models from your army can be your WARLORD."
+    },
+    {
+      "id": "detachment-death-lords-chosen:enhancement:1",
+      "parentId": "detachment-death-lords-chosen",
+      "title": "Face of Death",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawText": "TERMINATOR model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer’s unit must take a Battle-shock test.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "TERMINATOR model only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "Fight phase start; enemy within Engagement Range of bearer unit"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-death-lords-chosen:enhancement:2",
+      "parentId": "detachment-death-lords-chosen",
+      "title": "Vile Vigour",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawText": "TERMINATOR model only. While the bearer is leading a unit, add 1\" to the Movement characteristic of models in that unit and you can re-roll Advance rolls made for that unit.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "TERMINATOR model only",
+      "rosterConditions": [
+        "leading a unit"
+      ],
+      "battleConditions": [
+        "Advance roll for reroll clause"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-death-lords-chosen:enhancement:3",
+      "parentId": "detachment-death-lords-chosen",
+      "title": "Warprot Talisman",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+      "rawText": "TERMINATOR model only. Once per battle, at the end of your opponent’s turn, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "TERMINATOR model only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "once per battle; opponent turn end; bearer unit not in Engagement Range of enemies; optional activation"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-death-lords-chosen:enhancement:4",
+      "parentId": "detachment-death-lords-chosen",
+      "title": "Helm of the Fly King",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+      "rawText": "TERMINATOR model only. While the bearer is leading a unit, models in that unit cannot be targeted by ranged attacks unless the attacking model is within 18\".",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "TERMINATOR model only",
+      "rosterConditions": [
+        "leading a unit"
+      ],
+      "battleConditions": [
+        "ranged targeting; attacker must be within 18 inches"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-death-lords-chosen:rule",
+      "parentId": "detachment-death-lords-chosen",
+      "title": "Deadly Vectors",
+      "rawText": "In your opponent’s Command phase, roll 2D6 for each Afflicted enemy unit, subtracting 1 from the result if that unit is Below Half-strength. If the result is 6 or less, that enemy unit suffers D3 mortal wounds.",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "sourceDetachmentIdentity": "DG:11",
+      "assessment": {
+        "classes": [
+          "BATTLE_DAMAGE"
+        ],
+        "selectors": [
+          "Afflicted enemy units"
+        ],
+        "conditions": [
+          "opponent Command phase; roll2D6; Below Half-strength modifier; result<=6"
+        ]
+      },
+      "genuineAmbiguity": false,
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[2]/div[2]",
+      "acceptedScopeText": "Deadly VectorsThe plagues and parasites to which these elite warriors play host are amongst the most lethal in the galaxy. Moment by moment, even the most resilient foes sicken and wither in their presence until all that remains is rotted matter deliquescing sloppily from mouldering bones.In your opponent’s Command phase, roll 2D6 for each Afflicted enemy unit, subtracting 1 from the result if that unit is Below Half-strength. If the result is 6 or less, that enemy unit suffers D3 mortal wounds."
+    },
+    {
+      "id": "detachment-mortarions-hammer:enhancement:1",
+      "parentId": "detachment-mortarions-hammer",
+      "title": "Eye of Affliction",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD model only. Ranged weapons equipped by models in the bearer’s unit have the [ignores cover] ability while targeting an Afflicted enemy unit.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD model only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "ranged attack targeting Afflicted enemy"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-mortarions-hammer:enhancement:2",
+      "parentId": "detachment-mortarions-hammer",
+      "title": "Bilemaw Blight",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawText": "MALIGNANT PLAGUECASTER only. At the start of your Shooting phase, until the end of the phase, add 12\" to the Range characteristics of the bearer’s Plague Wind weapon.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "MALIGNANT PLAGUECASTER only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "your Shooting phase start; expires phase end"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-mortarions-hammer:enhancement:3",
+      "parentId": "detachment-mortarions-hammer",
+      "title": "Shriekworm Familiar",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD model only. Once per battle round, you can target the bearer’s unit with the Fire Overwatch Stratagem for 0CP.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD model only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "once per battle round; optional Fire Overwatch targeting bearer unit"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-mortarions-hammer:enhancement:4",
+      "parentId": "detachment-mortarions-hammer",
+      "title": "Tendrilous Emissions",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+      "rawText": "LORD OF VIRULENCE only. While the bearer is within 3\" of one or more friendly DEATH GUARD VEHICLE units, the bearer has the Lone Operative ability, and each time one of those VEHICLE units makes a ranged attack that targets an enemy unit visible to the bearer, re-roll a Wound roll of 1.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "LORD OF VIRULENCE only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "bearer within 3 inches of friendly DEATH GUARD VEHICLE units; those units attack visible enemy for reroll clause"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-mortarions-hammer:rule",
+      "parentId": "detachment-mortarions-hammer",
+      "title": "Miasmic Bombardment",
+      "rawText": "At the start of the battle round, select a number of enemy units more than 12\" away from every model from your army that is on the battlefield. Until the end of the battle round, those enemy units are Afflicted. The maximum number of units you can select in this way depends on the battle size, as shown below.\nBATTLE SIZEUNITSIncursion1Strike Force2Onslaught3",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "sourceDetachmentIdentity": "DG:41",
+      "assessment": {
+        "classes": [
+          "BATTLE_SELECT_ENEMY",
+          "BATTLE_AFFLICTED_DURATION"
+        ],
+        "selectors": [
+          "selected enemy units more than12 inches from every friendly model on battlefield"
+        ],
+        "conditions": [
+          "battle round start; optional selected enemy IDs; cap by source battle-size table; battle-round-end expiry"
+        ]
+      },
+      "genuineAmbiguity": false,
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[2]/div[2]",
+      "acceptedScopeText": "Miasmic BombardmentIn the wake of preparatory bombardment by artillery weapons both forbidden and foul, the surviving foe are left reeling amidst clouds of plague smog. With their flesh running like tallow and their weapons rusting in their hands, they will be hard-pressed to fight back.At the start of the battle round, select a number of enemy units more than 12\" away from every model from your army that is on the battlefield. Until the end of the battle round, those enemy units are Afflicted. The maximum number of units you can select in this way depends on the battle size, as shown below.BATTLE SIZEUNITSIncursion1Strike Force2Onslaught3"
+    },
+    {
+      "id": "detachment-champions-of-contagion:enhancement:1",
+      "parentId": "detachment-champions-of-contagion",
+      "title": "Final Ingredient",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawText": "BIOLOGUS PUTRIFIER only. Once per battle, after the bearers unit has fought, if one or more CHARACTER models were destroyed as a result of those attacks, select one Plague. Until the end of the battle, while an enemy unit is Afflicted, that unit has the effect of the selected Plague in addition to any other.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "BIOLOGUS PUTRIFIER only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "once per battle; bearer unit finished fighting; CHARACTER models destroyed by those attacks; selected plague; enemy Afflicted; battle-end expiry"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-champions-of-contagion:enhancement:2",
+      "parentId": "detachment-champions-of-contagion",
+      "title": "Visions of Virulence",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawText": "MALIGNANT PLAGUECASTER only. While an enemy unit is enfeebled by the bearer’s Pestilent Fallout ability, that unit is also Afflicted.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "MALIGNANT PLAGUECASTER only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "enemy enfeebled by bearer Pestilent Fallout ability"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-champions-of-contagion:enhancement:3",
+      "parentId": "detachment-champions-of-contagion",
+      "title": "Needle of Nurgle",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+      "rawText": "PLAGUE SURGEON only. Each time the bearer uses its Tainted Narthecium ability, you can return up to D3 destroyed models to the bearer’s unit (instead of 1).",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "PLAGUE SURGEON only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "bearer uses Tainted Narthecium; destroyed models available"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-champions-of-contagion:enhancement:4",
+      "parentId": "detachment-champions-of-contagion",
+      "title": "Cornucophagus",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+      "rawText": "LORD OF POXES only. In the Declare Battle Formations step select one Plague. Until the end of the battle, while an enemy unit is within Contagion Range of the bearer, that enemy unit has the effect of that Plague in addition to any other.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "LORD OF POXES only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "plague selected in Declare Battle Formations; enemy in bearer Contagion Range; battle-end expiry"
+      ],
+      "genuineAmbiguity": false
+    },
+    {
+      "id": "detachment-champions-of-contagion:rule",
+      "parentId": "detachment-champions-of-contagion",
+      "title": "Manifold Maladies",
+      "rawText": "At the start of the battle round, you can select one of the Plagues listed in Nurgle’s Gift. Until the end of the battle, that is your chosen Plague instead of any previously chosen Plague.",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "sourceDetachmentIdentity": "DG:5",
+      "assessment": {
+        "classes": [
+          "BATTLE_SELECTED_PLAGUE_REPLACEMENT"
+        ],
+        "selectors": [
+          "army selected plague"
+        ],
+        "conditions": [
+          "battle round start; optional plague choice; battle-end expiry"
+        ]
+      },
+      "genuineAmbiguity": false,
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[2]",
+      "acceptedScopeText": "Manifold MaladiesA spirit of competition infects Nurgle’s champions when they fight alongside one another. With each vying to outdo the others in virulence, the foes are subjected to a riotous string of nightmarish outbreaks amongst their ranks.At the start of the battle round, you can select one of the Plagues listed in Nurgle’s Gift. Until the end of the battle, that is your chosen Plague instead of any previously chosen Plague."
+    },
+    {
+      "id": "detachment-paragons-of-putrescence:enhancement:1",
+      "parentId": "detachment-paragons-of-putrescence",
+      "title": "Rejuvenating Swarm",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD INFANTRY model only (excluding TERMINATOR models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD INFANTRY model only (excluding TERMINATOR models)",
+      "rosterConditions": [],
+      "battleConditions": [
+        "attack against bearer unit; attack Strength greater than unit Toughness"
+      ],
+      "genuineAmbiguity": false,
+      "strongerPdfPage": 4
+    },
+    {
+      "id": "detachment-paragons-of-putrescence:enhancement:2",
+      "parentId": "detachment-paragons-of-putrescence",
+      "title": "Host of the Hybridised Pox",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawText": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plague listed in Nurgle’s Gift. Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.",
+      "ownerSubject": "MODEL",
+      "ownerSelector": "DEATH GUARD INFANTRY model only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "once per battle per army; your Command phase; optional activation; selected plague; enemy in bearer unit Contagion Range; battle-end expiry"
+      ],
+      "genuineAmbiguity": false,
+      "strongerPdfPage": 4
+    },
+    {
+      "id": "detachment-paragons-of-putrescence:rule",
+      "parentId": "detachment-paragons-of-putrescence",
+      "title": "Hypervirulent Strains",
+      "rawText": "Friendly DEATH GUARD CHARACTER units have +3\" to their Contagion Range (to a maximum of 12\").",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "sourceDetachmentIdentity": "DG:81",
+      "assessment": {
+        "classes": [
+          "ROSTER_RANGE_MODIFIER"
+        ],
+        "selectors": [
+          "friendly DEATH GUARD CHARACTER units"
+        ],
+        "conditions": [
+          "Contagion Range cap12"
+        ]
+      },
+      "genuineAmbiguity": false,
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[2]",
+      "acceptedScopeText": "Hypervirulent StrainsThe rancid champions of the Death Guard are blessed with the most virulent contagions of Nurgle, supernatural strains that radiate towards unwilling hosts in floods of foulnessFriendly DEATH GUARD CHARACTER units have +3\" to their Contagion Range (to a maximum of 12\").",
+      "strongerPdfPage": 4
+    },
+    {
+      "id": "detachment-contagion-engines:enhancement:1",
+      "parentId": "detachment-contagion-engines",
+      "title": "Parasitic Woe‑Reaper",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawText": "CONTAGION ENGINE unit only. When this unit has fought, one model in this unit heals D3 wounds.",
+      "ownerSubject": "UNIT",
+      "ownerSelector": "CONTAGION ENGINE unit only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "owning unit finished fighting; model has lost wounds"
+      ],
+      "genuineAmbiguity": false,
+      "strongerPdfPage": 2
+    },
+    {
+      "id": "detachment-contagion-engines:enhancement:2",
+      "parentId": "detachment-contagion-engines",
+      "title": "Lancet of the Worldsore",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawText": "Friendly HELBRUTE/MYPHITIC BLIGHT-HAULER unit only. This unit has MOBILE.",
+      "ownerSubject": "UNIT",
+      "ownerSelector": "Friendly HELBRUTE/MYPHITIC BLIGHT-HAULER unit only",
+      "rosterConditions": [],
+      "battleConditions": [],
+      "genuineAmbiguity": false,
+      "strongerPdfPage": 2
+    },
+    {
+      "id": "detachment-contagion-engines:rule",
+      "parentId": "detachment-contagion-engines",
+      "title": "Warped and Rusted Animus",
+      "rawText": "- Friendly FOETID BLOAT-DRONE/FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER/HELBRUTE/MYPHITIC BLIGHT-HAULER units have CONTAGION ENGINE.\n- Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT].\nThis detachment has the ENGINES tag and cannot be taken with another ENGINES detachment.",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "sourceDetachmentIdentity": "DG:9",
+      "assessment": {
+        "classes": [
+          "ROSTER_KEYWORD_GAIN",
+          "ROSTER_WEAPON_ABILITY",
+          "DETACHMENT_EXCLUSIVITY"
+        ],
+        "selectors": [
+          "unit-foetid-bloat-drone",
+          "unit-foetid-bloat-drone-with-heavy-blight-launcher",
+          "unit-helbrute",
+          "unit-myphitic-blight-hauler",
+          "friendly CONTAGION ENGINE units for ranged Assault"
+        ],
+        "conditions": [
+          "ENGINES detachment exclusivity"
+        ]
+      },
+      "genuineAmbiguity": false,
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[2]",
+      "acceptedScopeText": "Warped and Rusted AnimusFor all their slow degeneration, many of the Death Guard’s war machines are augmented with a fevered and inexorable urgency that brings their corrupted weapons to bear upon the foe all too quicklyFriendly FOETID BLOAT-DRONE/FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER/HELBRUTE/MYPHITIC BLIGHT-HAULER units have CONTAGION ENGINE.Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT].This detachment has the ENGINES tag and cannot be taken with another ENGINES detachment.",
+      "strongerPdfPage": 2
+    },
+    {
+      "id": "detachment-flyblown-host:enhancement:1",
+      "parentId": "detachment-flyblown-host",
+      "title": "Insectile Murmuration",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawText": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1.",
+      "ownerSubject": "UNIT",
+      "ownerSelector": "PLAGUE MARINES unit only",
+      "rosterConditions": [],
+      "battleConditions": [
+        "owning unit attacks target within Contagion Range of a friendly unit"
+      ],
+      "genuineAmbiguity": false,
+      "strongerPdfPage": 3
+    },
+    {
+      "id": "detachment-flyblown-host:enhancement:2",
+      "parentId": "detachment-flyblown-host",
+      "title": "Plagueveil",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawText": "PLAGUE MARINES unit only. This unit has -3\" detection range.",
+      "ownerSubject": "UNIT",
+      "ownerSelector": "PLAGUE MARINES unit only",
+      "rosterConditions": [],
+      "battleConditions": [],
+      "genuineAmbiguity": false,
+      "strongerPdfPage": 3
+    },
+    {
+      "id": "detachment-flyblown-host:rule",
+      "parentId": "detachment-flyblown-host",
+      "title": "Verminous Haze",
+      "rawText": "In the Declare Battle Formations step, you can select up to two friendly PLAGUE MARINES units. Those units have Infiltrators.\nThis detachment has the FLYBLOWN tag and cannot be taken with another FLYBLOWN detachment.",
+      "sourceArtifact": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+      "sourceDetachmentIdentity": "DG:21",
+      "assessment": {
+        "classes": [
+          "BATTLE_SELECTED_UNIT_ABILITY",
+          "DETACHMENT_EXCLUSIVITY"
+        ],
+        "selectors": [
+          "up to2 selected friendly PLAGUE MARINES physical units"
+        ],
+        "conditions": [
+          "Declare Battle Formations optional selection; not every Plague Marines unit",
+          "FLYBLOWN detachment exclusivity"
+        ]
+      },
+      "genuineAmbiguity": false,
+      "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[2]",
+      "acceptedScopeText": "Verminous HazeA cloud of winged insects descends over Mortarion’s pathogenic sons, obscuring their malodorous ranks and shielding them from the eyes and augurs of the enemy. Beneath thrumming storms of fat-bodied flies, Plague Marines stride towards their wavering foes until they are close enough to unleash punishing volleys of killing fire.In the Declare Battle Formations step, you can select up to two friendly PLAGUE MARINES units. Those units have Infiltrators.This detachment has the FLYBLOWN tag and cannot be taken with another FLYBLOWN detachment.",
+      "strongerPdfPage": 3
+    }
+  ]
+}

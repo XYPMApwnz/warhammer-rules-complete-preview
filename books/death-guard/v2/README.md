@@ -74,7 +74,8 @@ leaves from the source-first audit at `9d0f5afe0f26afad21b56224d3e11ca3bbf9358a`
 Thirteen leaves are gameplay facts; 142 are reference metadata, one is source
 navigation, one is presentation metadata and one is non-gameplay text. The latter
 classes remain explicit `sourceAccounting` evidence; they are not gameplay
-entities or executable rules. The 966 applicability ambiguities remain deferred.
+entities or executable rules. The original audit deferred 966 applicability
+relationships; the Rule Contract foundation below now classifies that domain.
 
 `foundation-facts.mjs` preserves accepted Introduction instructions, the scoped
 Stinking Mire replacement directive, and the official profile-selection note.
@@ -86,6 +87,76 @@ table owner; layout occurrences retain references without independent values.
 The image capture manifest is enrolled using unchanged accepted Git bytes and
 raw SHA256. Scoped `-text` forbids checkout conversion. No line-ending
 normalization is allowed in the integrity contract.
+
+## Rule Contract V2 foundation
+
+`rule-contract-build.mjs` adds typed semantics to the existing effective
+canonical records, under `entity.ruleContract`. It does not introduce another
+rule owner. All factual `data`, IDs and provenance remain unchanged. Source
+fields point to the original text, tables and clauses; `currentness.sourceIds`
+also retains overlay sources. Enhancement point ownership references central
+MFM records, without copying their prices.
+
+The source-owned inventory has 239 records: seven Army Rule records (including
+five existing components), 37 Datasheet Ability owners, nine Detachment Rules,
+30 Enhancements, 45 Stratagems, five source errata and 106 other rules. The 36
+existing ABILITIES sections contain 64 separately classified clauses; one
+supplemental ability brings the clause total to 65. These nested clauses keep
+their existing section owner. Their local source-field addresses do not create
+position-derived independent rule identities. Other rules include composition,
+wargear, transport, Leader/Support and book-usage instructions.
+
+Predicate subjects MODEL, UNIT, FORMED_ATTACHED_UNIT and ROSTER are explicit.
+Each predicate has STATIC, ROSTER or BATTLE context. The finite contextual-field
+vocabulary is declared in `rule-contract-state-fields.mjs`; an unknown field,
+predicate, canonical identity or type is INVALID. Only unavailable valid context
+returns UNKNOWN. The public mapping is TRUE→MATCH, FALSE→NO_MATCH,
+UNKNOWN→CONDITIONAL, INVALID→INVALID.
+
+Stratagem contracts preserve CP, timing alternatives, primary targets, secondary
+actors, static selectors, roster and battle conditions, effects, restrictions
+and duration. A missing source expiry stays NOT_EXPLICIT. Model keywords do
+not inherit another model's keywords. Unit keyword queries can remain UNKNOWN
+when a possible source-legal attachment has not been supplied. This policy
+consumes accepted Core codes 02.05.01/19.03 and central MFM attachment relations;
+it does not form an Attached Unit or mutate effective facts.
+
+The compatibility projection asks TARGET_ELIGIBILITY, rather than whether an
+entity can receive an army-wide effect. In particular, Plaguesurge's physical
+Warlord target remains distinct from its beneficiaries. Effect actors retain
+their separate bindings for future consumers. Enhancement ownership selectors
+are also preserved separately from conditional effect applicability.
+
+`rule-source-addresses.json` binds 84 publisher reference addresses to existing
+canonical rule IDs. Those explicit bindings are validated against accepted raw
+source. They re-enumerate the previous source-card domain (591 Stratagem, 211
+Detachment Rule and 164 Enhancement occurrences). Cards and old matrices never
+provide compatibility answers. All answers follow from contracts and canonical
+unit facts; the full 3024-row projection is disposable.
+
+`rule-contract-source-evidence.json` is source-first QA evidence only. Python
+lxml independently verifies its 84 raw clauses; Node checks selectors and
+typed conditions against that census. QA includes ten schema rejection controls,
+ten production-contract/projection mutations and a synthetic exclusion control.
+An EPIC HERO exclusion is absent from the accepted current DG sources, so it
+is not invented in production. The synthetic NOT control covers that schema
+shape. The guard also checks phase/turn alternatives, static Deadly Demise,
+leading-state removal, physical Warlord isolation and model/unit keyword scope.
+
+`rule-contract-v1-inventory.json` records each old artifact's V2 status and its
+remaining V1 production dependency. No V1 artifacts are deleted or rewritten.
+Reader, Phone, Glossary and Roster V2 migrations have not started.
+
+```
+node books/death-guard/v2/rule-contract-build.mjs
+node books/death-guard/v2/rule-contract-build.mjs --check
+node books/death-guard/v2/rule-contract-qa.mjs
+```
+
+These commands write/check only `v2/generated/rule-contract-effective.json`,
+`compatibility-v2.json` and `rule-contract-closure.json`. They do not publish UI,
+execute Stratagem effects or simulate battle state. Army/Datasheet execution is
+classified only; the full future effect language remains deferred.
 
 Run `npm run qa:dg:v2:foundation` for the permanent source-backed guards and
 in-memory mutations. The independent raw-source checks use Python with lxml and

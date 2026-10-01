@@ -1,0 +1,15 @@
+{
+  "schema": "dg-rule-contract-v1-inventory/v1",
+  "scope": "V2 authority classification; all listed artifacts remain required by unchanged V1 production",
+  "artifacts": [
+    {"path":"books/death-guard/sources/wahapedia-compatible-rules.snapshot.json","status":"DIAGNOSTIC_ONLY","productionStatus":"STILL_REQUIRED","consumer":"books/death-guard/tools/build-compatible-rules.mjs"},
+    {"path":"books/death-guard/scripts/related-rules-correction-ledger.json","status":"REPLACED_BY_V2_CONTRACT","productionStatus":"STILL_REQUIRED","consumer":"books/death-guard/tools/build-compatible-rules.mjs"},
+    {"path":"books/death-guard/sources/enhancement-owner-matrix.json","status":"REPLACED_BY_V2_CONTRACT","productionStatus":"STILL_REQUIRED","consumer":"books/death-guard/tools/build-compatible-rules.mjs"},
+    {"path":"books/death-guard/generated/compatible-rules.json","status":"DIAGNOSTIC_ONLY","productionStatus":"STILL_REQUIRED","consumer":"V1 Army Book publication"},
+    {"path":"books/death-guard/tools/build-compatible-rules.mjs","status":"TEMPORARY_COMPATIBILITY","productionStatus":"STILL_REQUIRED","consumer":"V1 build and QA entrypoints"},
+    {"path":"books/death-guard/scripts/target-data.js","status":"STILL_REQUIRED","productionStatus":"STILL_REQUIRED","consumer":"V1 reader runtime"},
+    {"path":"books/death-guard/mobile/related-rules.inc","status":"STILL_REQUIRED","productionStatus":"STILL_REQUIRED","consumer":"V1 phone publication"},
+    {"path":"books/death-guard/sources/death-guard-effect-contracts.v1.json","status":"STILL_REQUIRED","productionStatus":"STILL_REQUIRED","consumer":"V1 effective roster runtime; V2 effect migration deferred"}
+  ],
+  "deleted": []
+}
