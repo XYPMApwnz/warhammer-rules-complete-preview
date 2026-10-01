@@ -133,10 +133,6 @@ export const stateFields = Object.freeze({
     "contextLevel": "BATTLE",
     "valueType": "boolean"
   },
-  "enemyAttackTargetExcludesMonsterAndVehicle": {
-    "contextLevel": "BATTLE",
-    "valueType": "boolean"
-  },
   "enemyAttackTargetWithinHalfRange": {
     "contextLevel": "BATTLE",
     "valueType": "boolean"
@@ -161,10 +157,6 @@ export const stateFields = Object.freeze({
     "contextLevel": "BATTLE",
     "valueType": "boolean"
   },
-  "enemyTargetExcludesAircraft": {
-    "contextLevel": "BATTLE",
-    "valueType": "boolean"
-  },
   "enemyTargetInOpponentDeploymentZone": {
     "contextLevel": "BATTLE",
     "valueType": "boolean"
@@ -182,10 +174,6 @@ export const stateFields = Object.freeze({
     "valueType": "boolean"
   },
   "engagedWithPrimary": {
-    "contextLevel": "BATTLE",
-    "valueType": "boolean"
-  },
-  "excludesVehicles": {
     "contextLevel": "BATTLE",
     "valueType": "boolean"
   },

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {normalizeTargetConditions} from './stratagem-target-conditions.mjs';
+import {staticExclusionForOperation} from './stratagem-static-selectors.mjs';
 
 // Source-ID declarations independently adjudicated from all 45 accepted raw
 // Stratagem records. No datasheet-by-rule pair matrix or V1 correction ledger.
@@ -363,7 +364,7 @@ const declarations = [
           },
           {
             "op": "ENEMY_TARGET_EXCLUDES_AIRCRAFT",
-            "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            "context": "STATIC_IDENTITY"
           },
           {
             "op": "ENEMY_TARGET_IN_OPPONENT_DEPLOYMENT_ZONE",
@@ -698,7 +699,7 @@ const declarations = [
         "conditions": [
           {
             "op": "EXCLUDES_VEHICLES",
-            "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            "context": "STATIC_IDENTITY"
           },
           {
             "op": "WITHIN_8_OF_PRIMARY",
@@ -1245,7 +1246,7 @@ const declarations = [
           },
           {
             "op": "ENEMY_ATTACK_TARGET_EXCLUDES_MONSTER_AND_VEHICLE",
-            "context": "BATTLE_STATE_OR_TRIGGER_EVENT"
+            "context": "STATIC_IDENTITY"
           }
         ]
       }
@@ -1779,6 +1780,7 @@ function compile(entity, spec) {
   const detachmentProof = {field:['category'], quote:entity.data.category};
   const globalConditions = [atom('ROSTER', 'DETACHMENT', 'ROSTER', {id:entity.parentId}, detachmentProof), ...timingAtoms];
   const roles = [primary], clauses = [];
+  const attackTargetExclusions=[];
   const roleCopies = new Map();
   for (const [index, declaration] of spec.effects.entries()) {
     const original = declaration.recipient.subject;
@@ -1798,6 +1800,16 @@ function compile(entity, spec) {
     for (const condition of declaration.conditions) {
       const op = condition.op;
       const proof = secondaryTarget && ['WITHIN_3_OF_PRIMARY','VISIBLE_TO_PRIMARY_AND_ATTACKING_UNIT'].includes(op) ? target : effect;
+      const intrinsic=staticExclusionForOperation(op);
+      if (intrinsic) {
+        assert.equal(condition.context,'STATIC_IDENTITY',`${entity.id}: intrinsic exclusion cannot be a context flag`);
+        if (intrinsic.participant==='RECIPIENT') {
+          const exclusion=all(intrinsic.keywords.map(value=>not(keyword(subject,value,proof))));
+          role.selector=role.selector.predicate==='ALWAYS'?exclusion:all([role.selector,exclusion]);
+        } else attackTargetExclusions.push({actorRole:role,clauseIndex:index,keywords:intrinsic.keywords,proof});
+        continue;
+      }
+      assert.notEqual(condition.context,'STATIC_IDENTITY',`${entity.id}: unnormalized intrinsic condition ${op}`);
       const roster = ['MEMBER_OF_PRIMARY_UNIT','MODEL_MEMBER_OF_PRIMARY_UNIT','MODEL_FROM_YOUR_ARMY','MEMBER_OF_PRIMARY_ATTACHED_UNIT','MELEE_WEAPON_EQUIPPED_BY_PRIMARY_UNIT_MODEL','RANGED_WEAPON_EQUIPPED_BY_PRIMARY_UNIT_MODELS','OTHER_FRIENDLY_UNIT','IDENTICAL_TO_DESTROYED_PRIMARY_UNIT'].includes(op);
       // Complex logical scope is atomized below, rather than one opaque flag.
       if (op === 'EXCLUDES_ATTACHED_UNITS_WITH_TWO_LEADERS_OR_ONE_OF_YOUR_CHARACTER_UNITS_LEADING') {
@@ -1841,6 +1853,18 @@ function compile(entity, spec) {
   if (entity.id === 'detachment-shamblerot-vectorium:stratagem:6') {
     const role = {id:'attacking-enemy', subject:'UNIT', allegiance:'ENEMY', binding:'INDEPENDENT_ENTITY', purpose:'TRIGGER_ACTOR', selector:always('UNIT', when), conditions:[contextual('UNIT', 'targetsSelectedJustNow', 'BATTLE', true, when)]};
     roles.push(role); clauses.push({id:entity.id + ':attacker', roles:[role], conditions:[], sourceFields:[when.field]});
+  }
+  for (const exclusion of attackTargetExclusions) {
+    const recipient=roles.find(role=>role.id==='enemy-effect-recipient');
+    assert.ok(recipient&&recipient.subject==='UNIT'&&recipient.allegiance==='ENEMY',`${entity.id}: unresolved enemy attack-target participant`);
+    assert.equal(exclusion.actorRole.subject,'MODEL','Attack-target exclusion requires a MODEL actor');
+    assert.ok(!recipient.actorRoleId||recipient.actorRoleId===exclusion.actorRole.id,'Conflicting attack-target actor');
+    recipient.binding='ATTACK_TARGET';
+    recipient.actorRoleId=exclusion.actorRole.id;
+    recipient.selector=all(exclusion.keywords.map(value=>not(keyword('UNIT',value,exclusion.proof))));
+    // The same participant record governs this attack's recipient. It cannot
+    // be replaced by an unrelated otherwise-eligible enemy elsewhere.
+    clauses[exclusion.clauseIndex].roles.push(recipient);
   }
   const restrictions = lines.flatMap((line, index) => line.label.startsWith('RESTRICTION') ? [{id:entity.id + ':restriction:' + index, conditions:[contextual('ROSTER', 'usedThisStratagemThisBattle', 'BATTLE', false, {field:['lines',index,'text'], quote:line.text})], sourceFields:[['lines',index,'text']]}] : []);
   const duration = [...effect.quote.matchAll(/\buntil (?:the )?[^.,:;]+/gi)].map((match, index) => {

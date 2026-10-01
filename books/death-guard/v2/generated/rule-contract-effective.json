@@ -34316,23 +34316,6 @@
                   ],
                   "quote": "Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit (excluding MONSTERS and VEHICLES) you can re-roll the Hit roll."
                 }
-              },
-              {
-                "predicate": "FIELD",
-                "subject": "MODEL",
-                "contextLevel": "BATTLE",
-                "arguments": {
-                  "key": "enemyAttackTargetExcludesMonsterAndVehicle",
-                  "equals": true
-                },
-                "evidence": {
-                  "field": [
-                    "lines",
-                    2,
-                    "text"
-                  ],
-                  "quote": "Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit (excluding MONSTERS and VEHICLES) you can re-roll the Hit roll."
-                }
               }
             ]
           },
@@ -34340,7 +34323,7 @@
             "id": "enemy-effect-recipient",
             "subject": "UNIT",
             "allegiance": "ENEMY",
-            "binding": "INDEPENDENT_ENTITY",
+            "binding": "ATTACK_TARGET",
             "purpose": "EFFECT_RECIPIENT",
             "selector": {
               "op": "ALL",
@@ -34392,7 +34375,8 @@
                 }
               ]
             },
-            "conditions": []
+            "conditions": [],
+            "actorRoleId": "primary-model-attacks"
           }
         ],
         "conditions": [
@@ -34470,46 +34454,14 @@
                       ],
                       "quote": "Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit (excluding MONSTERS and VEHICLES) you can re-roll the Hit roll."
                     }
-                  },
-                  {
-                    "predicate": "FIELD",
-                    "subject": "MODEL",
-                    "contextLevel": "BATTLE",
-                    "arguments": {
-                      "key": "enemyAttackTargetExcludesMonsterAndVehicle",
-                      "equals": true
-                    },
-                    "evidence": {
-                      "field": [
-                        "lines",
-                        2,
-                        "text"
-                      ],
-                      "quote": "Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit (excluding MONSTERS and VEHICLES) you can re-roll the Hit roll."
-                    }
                   }
                 ]
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "lines",
-                2,
-                "text"
-              ]
-            ],
-            "effectScope": "MODEL",
-            "operation": "REROLL_HIT"
-          },
-          {
-            "id": "detachment-death-lords-chosen:stratagem:2:recipient-selector",
-            "roles": [
+              },
               {
                 "id": "enemy-effect-recipient",
                 "subject": "UNIT",
                 "allegiance": "ENEMY",
-                "binding": "INDEPENDENT_ENTITY",
+                "binding": "ATTACK_TARGET",
                 "purpose": "EFFECT_RECIPIENT",
                 "selector": {
                   "op": "ALL",
@@ -34561,7 +34513,82 @@
                     }
                   ]
                 },
-                "conditions": []
+                "conditions": [],
+                "actorRoleId": "primary-model-attacks"
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "lines",
+                2,
+                "text"
+              ]
+            ],
+            "effectScope": "MODEL",
+            "operation": "REROLL_HIT"
+          },
+          {
+            "id": "detachment-death-lords-chosen:stratagem:2:recipient-selector",
+            "roles": [
+              {
+                "id": "enemy-effect-recipient",
+                "subject": "UNIT",
+                "allegiance": "ENEMY",
+                "binding": "ATTACK_TARGET",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ALL",
+                  "subject": "UNIT",
+                  "args": [
+                    {
+                      "op": "NOT",
+                      "subject": "UNIT",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "MONSTER"
+                          },
+                          "evidence": {
+                            "field": [
+                              "lines",
+                              2,
+                              "text"
+                            ],
+                            "quote": "MONSTER"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "op": "NOT",
+                      "subject": "UNIT",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "VEHICLE"
+                          },
+                          "evidence": {
+                            "field": [
+                              "lines",
+                              2,
+                              "text"
+                            ],
+                            "quote": "VEHICLE"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "conditions": [],
+                "actorRoleId": "primary-model-attacks"
               }
             ],
             "conditions": [],
@@ -38600,23 +38627,6 @@
                 "subject": "MODEL",
                 "contextLevel": "BATTLE",
                 "arguments": {
-                  "key": "enemyTargetExcludesAircraft",
-                  "equals": true
-                },
-                "evidence": {
-                  "field": [
-                    "lines",
-                    2,
-                    "text"
-                  ],
-                  "quote": "Until the end of the phase, each time a model in your unit makes an attack that targets a visible enemy unit (excluding AIRCRAFT) within your opponent’s deployment zone, you can re-roll the Hit roll."
-                }
-              },
-              {
-                "predicate": "FIELD",
-                "subject": "MODEL",
-                "contextLevel": "BATTLE",
-                "arguments": {
                   "key": "enemyTargetInOpponentDeploymentZone",
                   "equals": true
                 },
@@ -38635,7 +38645,7 @@
             "id": "enemy-effect-recipient",
             "subject": "UNIT",
             "allegiance": "ENEMY",
-            "binding": "INDEPENDENT_ENTITY",
+            "binding": "ATTACK_TARGET",
             "purpose": "EFFECT_RECIPIENT",
             "selector": {
               "op": "NOT",
@@ -38694,7 +38704,8 @@
                   "quote": "Until the end of the phase, each time a model in your unit makes an attack that targets a visible enemy unit (excluding AIRCRAFT) within your opponent’s deployment zone, you can re-roll the Hit roll."
                 }
               }
-            ]
+            ],
+            "actorRoleId": "primary-model-attacks"
           }
         ],
         "conditions": [
@@ -38818,23 +38829,6 @@
                     "subject": "MODEL",
                     "contextLevel": "BATTLE",
                     "arguments": {
-                      "key": "enemyTargetExcludesAircraft",
-                      "equals": true
-                    },
-                    "evidence": {
-                      "field": [
-                        "lines",
-                        2,
-                        "text"
-                      ],
-                      "quote": "Until the end of the phase, each time a model in your unit makes an attack that targets a visible enemy unit (excluding AIRCRAFT) within your opponent’s deployment zone, you can re-roll the Hit roll."
-                    }
-                  },
-                  {
-                    "predicate": "FIELD",
-                    "subject": "MODEL",
-                    "contextLevel": "BATTLE",
-                    "arguments": {
                       "key": "enemyTargetInOpponentDeploymentZone",
                       "equals": true
                     },
@@ -38848,27 +38842,12 @@
                     }
                   }
                 ]
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "lines",
-                2,
-                "text"
-              ]
-            ],
-            "effectScope": "MODEL",
-            "operation": "REROLL_HIT"
-          },
-          {
-            "id": "detachment-mortarions-hammer:stratagem:3:recipient-selector",
-            "roles": [
+              },
               {
                 "id": "enemy-effect-recipient",
                 "subject": "UNIT",
                 "allegiance": "ENEMY",
-                "binding": "INDEPENDENT_ENTITY",
+                "binding": "ATTACK_TARGET",
                 "purpose": "EFFECT_RECIPIENT",
                 "selector": {
                   "op": "NOT",
@@ -38927,7 +38906,89 @@
                       "quote": "Until the end of the phase, each time a model in your unit makes an attack that targets a visible enemy unit (excluding AIRCRAFT) within your opponent’s deployment zone, you can re-roll the Hit roll."
                     }
                   }
-                ]
+                ],
+                "actorRoleId": "primary-model-attacks"
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "lines",
+                2,
+                "text"
+              ]
+            ],
+            "effectScope": "MODEL",
+            "operation": "REROLL_HIT"
+          },
+          {
+            "id": "detachment-mortarions-hammer:stratagem:3:recipient-selector",
+            "roles": [
+              {
+                "id": "enemy-effect-recipient",
+                "subject": "UNIT",
+                "allegiance": "ENEMY",
+                "binding": "ATTACK_TARGET",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "NOT",
+                  "subject": "UNIT",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "AIRCRAFT"
+                      },
+                      "evidence": {
+                        "field": [
+                          "lines",
+                          2,
+                          "text"
+                        ],
+                        "quote": "AIRCRAFT"
+                      }
+                    }
+                  ]
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "visibleToPrimary",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "lines",
+                        2,
+                        "text"
+                      ],
+                      "quote": "Until the end of the phase, each time a model in your unit makes an attack that targets a visible enemy unit (excluding AIRCRAFT) within your opponent’s deployment zone, you can re-roll the Hit roll."
+                    }
+                  },
+                  {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "inOpponentDeploymentZone",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "lines",
+                        2,
+                        "text"
+                      ],
+                      "quote": "Until the end of the phase, each time a model in your unit makes an attack that targets a visible enemy unit (excluding AIRCRAFT) within your opponent’s deployment zone, you can re-roll the Hit roll."
+                    }
+                  }
+                ],
+                "actorRoleId": "primary-model-attacks"
               }
             ],
             "conditions": [],
@@ -43928,37 +43989,28 @@
             "binding": "INDEPENDENT_ENTITY",
             "purpose": "EFFECT_RECIPIENT",
             "selector": {
-              "predicate": "ALWAYS",
+              "op": "NOT",
               "subject": "UNIT",
-              "contextLevel": "STATIC",
-              "arguments": {},
-              "evidence": {
-                "field": [
-                  "lines",
-                  2,
-                  "text"
-                ],
-                "quote": "Select one enemy unit (excluding VEHICLES) that is within 8\" of and visible to your unit. Until the start of your next turn, that unit has the effect of all Plagues (see Nurgle’s Gift)."
-              }
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "VEHICLE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "lines",
+                      2,
+                      "text"
+                    ],
+                    "quote": "VEHICLE"
+                  }
+                }
+              ]
             },
             "conditions": [
-              {
-                "predicate": "FIELD",
-                "subject": "UNIT",
-                "contextLevel": "BATTLE",
-                "arguments": {
-                  "key": "excludesVehicles",
-                  "equals": true
-                },
-                "evidence": {
-                  "field": [
-                    "lines",
-                    2,
-                    "text"
-                  ],
-                  "quote": "Select one enemy unit (excluding VEHICLES) that is within 8\" of and visible to your unit. Until the start of your next turn, that unit has the effect of all Plagues (see Nurgle’s Gift)."
-                }
-              },
               {
                 "predicate": "FIELD",
                 "subject": "UNIT",
@@ -44129,37 +44181,28 @@
                 "binding": "INDEPENDENT_ENTITY",
                 "purpose": "EFFECT_RECIPIENT",
                 "selector": {
-                  "predicate": "ALWAYS",
+                  "op": "NOT",
                   "subject": "UNIT",
-                  "contextLevel": "STATIC",
-                  "arguments": {},
-                  "evidence": {
-                    "field": [
-                      "lines",
-                      2,
-                      "text"
-                    ],
-                    "quote": "Select one enemy unit (excluding VEHICLES) that is within 8\" of and visible to your unit. Until the start of your next turn, that unit has the effect of all Plagues (see Nurgle’s Gift)."
-                  }
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "VEHICLE"
+                      },
+                      "evidence": {
+                        "field": [
+                          "lines",
+                          2,
+                          "text"
+                        ],
+                        "quote": "VEHICLE"
+                      }
+                    }
+                  ]
                 },
                 "conditions": [
-                  {
-                    "predicate": "FIELD",
-                    "subject": "UNIT",
-                    "contextLevel": "BATTLE",
-                    "arguments": {
-                      "key": "excludesVehicles",
-                      "equals": true
-                    },
-                    "evidence": {
-                      "field": [
-                        "lines",
-                        2,
-                        "text"
-                      ],
-                      "quote": "Select one enemy unit (excluding VEHICLES) that is within 8\" of and visible to your unit. Until the start of your next turn, that unit has the effect of all Plagues (see Nurgle’s Gift)."
-                    }
-                  },
                   {
                     "predicate": "FIELD",
                     "subject": "UNIT",

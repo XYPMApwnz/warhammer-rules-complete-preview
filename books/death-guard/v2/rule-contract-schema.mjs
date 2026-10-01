@@ -78,6 +78,12 @@ export function validateContracts(model) {
     };
     for (const role of contract.roles) checkRole(role);
     for(const id of contract.compatibilityRoleIds||[])if(!roles.has(id))fail('unresolved compatibility role');
+    const checkAttackTargetBinding=(role,participants)=>{
+      if (role.binding!=='ATTACK_TARGET') return;
+      const actor=participants.get(role.actorRoleId);
+      if (role.subject!=='UNIT'||role.allegiance!=='ENEMY'||!actor||actor.id===role.id||actor.subject!=='MODEL') fail('invalid attack-target participant binding');
+    };
+    for (const role of roles.values()) checkAttackTargetBinding(role,roles);
     for (const condition of contract.conditions||[]) {
       if (!subjects.includes(condition.subject)) fail('missing condition subject');
       validatePredicate(condition,condition.subject,model,entity);
@@ -101,7 +107,12 @@ export function validateContracts(model) {
         if (!participant) fail('unresolved clause condition role');
         validateRolePredicate(condition,participant,model,entity);
       }
+      for (const role of local.values()) checkAttackTargetBinding(role,new Map([...roles,...local]));
       for (const path of clause.sourceFields) if (get(entity.data,path)===undefined) fail('unresolved clause source field');
+    }
+    for (const role of roles.values()) if(role.binding==='ATTACK_TARGET') {
+      const effects=(contract.clauses||[]).filter(clause=>clause.operation&&clause.roles.some(actor=>actor.id===role.actorRoleId));
+      if(!effects.length||effects.some(clause=>!clause.roles.some(target=>target.id===role.id))) fail('attack-target binding severed from its effect clause');
     }
   }
   return {rules:seen.size,status:'PASS'};
@@ -115,7 +126,7 @@ export function evaluatePredicate(node, context) {
     return combine(states,node.op);
   }
   const type=predicateTypes[node?.predicate];
-  if (!type||!type.subjects.includes(node.subject)||context.subject!==node.subject||!levels.includes(node.contextLevel)) return 'INVALID';
+  if (!type||!type.subjects.includes(node.subject)||context.subject!==node.subject||!levels.includes(node.contextLevel)||(type.level!=='CONTEXTUAL'&&node.contextLevel!==type.level)) return 'INVALID';
   const a=node.arguments||{}, truth=value=>value?'TRUE':'FALSE';
   const available=(bag,key,compare)=>!bag||!Object.hasOwn(bag,key)?'UNKNOWN':compare(bag[key]);
   switch(node.predicate) {

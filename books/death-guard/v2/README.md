@@ -246,3 +246,44 @@ node books/death-guard/v2/enhancement-predicate-qa.mjs
 node books/death-guard/v2/rule-contract-qa.mjs
 node books/death-guard/v2/rule-contract-build.mjs --check
 ```
+
+Stratagem static exclusion closure
+---------------------------------
+
+The effect-condition fallback previously converted three intrinsic exclusions
+into BATTLE flags. `stratagem-static-selectors.mjs` classifies those semantic
+operations during build: recipient exclusions become STATIC keyword selectors;
+attack-target exclusions belong to an enemy UNIT participant explicitly bound
+to the attacking MODEL. The same target participates in the applicable effect
+clause. No rule title or unit-by-rule lookup selects this normalization.
+
+DEATH'S HEADS now rejects a known VEHICLE without battle context and ignores
+the obsolete `excludesVehicles` input. Distance and visibility stay BATTLE.
+Drawn to Despair and Grim Reaper preserve their enemy attack-target exclusions;
+they do not exclude the attacking MODEL's keywords. The three obsolete FIELD
+names are invalid contract vocabulary. Predicate evaluation now enforces the
+same intrinsic/contextual separation as schema validation.
+
+The independent source guard re-enumerates all 45 accepted cards and current
+official supplement/update clauses. It derives 64 source occurrence records
+with 82 intrinsic atoms, projecting to 55 local role bindings and 72 distinct
+role atoms. Repeated WHEN/TARGET/EFFECT references do not create new factual
+owners. CHARACTER model counts and existing Leader relationships remain ROSTER.
+The expectation JSON is source adjudication for QA only, never production input.
+
+`stratagem-static-qa.mjs` checks every selector, source context, attack-target
+binding and relevant clause alias. Independent truth tables prove that known
+static incompatibility defeats unavailable battle/roster state. Mutations move
+intrinsic atoms into both contextual levels, flatten them into structurally valid
+FIELD flags, remove selectors, move contextual fields to STATIC, or sever attack
+participant bindings. The main Rule Contract QA invokes source parity too.
+
+```
+python books/death-guard/v2/stratagem-static-source-qa.py --summary
+node books/death-guard/v2/stratagem-static-qa.mjs
+node books/death-guard/v2/rule-contract-qa.mjs
+node books/death-guard/v2/rule-contract-build.mjs --check
+```
+
+Only structured Rule Contract semantics change. Source text, effective factual
+data, MFM, Reader and Related Rules projections remain unchanged.
