@@ -51,6 +51,60 @@ assert.equal(api.attachments.attach({units:krootUnits(20),attachments:{carnivore
 assert.deepEqual(local(api.attachments.sanitize({units:krootUnits(10),attachments:{carnivores:['war-1','trail']}}).attachments),{carnivores:['war-1']},'small Kroot retains ordinary capacity');
 const farstalkerUnits=[physical(tau,'unit-kroot-farstalkers','farstalkers',12),physical(tau,'unit-kroot-war-shaper','war-1'),physical(tau,'unit-kroot-trail-shaper','trail')];assert.deepEqual(local(api.attachments.sanitize({units:farstalkerUnits,attachments:{farstalkers:['war-1','trail']}}).attachments),{farstalkers:['war-1']},'target specificity');
 
+// Imported composition must activate the same accepted attachment predicate in
+// the editor and effective projection, including after persistence and reparse.
+const importedScope={window:{},URL,URLSearchParams};
+vm.createContext(importedScope);
+for(const file of ['books/shared/roster-parser.js','books/shared/roster-context.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),importedScope);
+const parser=importedScope.window.WHRosterParser,importedApi=importedScope.window.WHArmyRosterContext;
+const certified=['death-guard','adeptus-mechanicus','tyranids','tau-empire','emperors-children','chaos-space-marines'];
+const dependent=new Map();
+for(const book of certified)for(const unit of catalogs[book].units)for(const edge of Object.values(unit.relations).flat()){
+  const constraint=edge.attachmentGroupConstraint;
+  if(constraint?.bodyguardPredicate)dependent.set(`${book}/${constraint.id}`,{book,constraint});
+}
+const sourceDependent=JSON.parse(fs.readFileSync(path.join(root,'books/tau-empire/sources/tau-empire-attachment-group-constraints.v1.json'),'utf8')).constraints.filter(item=>item.bodyguardPredicate);
+assert.deepEqual([...dependent.keys()],[...sourceDependent.map(item=>`tau-empire/${item.id}`)],'Source-backed Starting Strength denominator');
+let startingStrengthCases=0;
+for(const {book,constraint}of dependent.values()){
+  const catalog=catalogs[book],target=canonical(catalog,constraint.targetUnitId),leaderIds=constraint.sourceUnitIds;
+  assert.deepEqual(local(constraint),sourceDependent.find(item=>item.id===constraint.id));
+  const modelRanges=target.gameSelections.models,minSize=modelRanges.reduce((sum,model)=>sum+model.min,0),maxSize=modelRanges.reduce((sum,model)=>sum+model.max,0);
+  const orders=leaderIds.flatMap(first=>leaderIds.map(second=>[first,second]));
+  for(const first of leaderIds)for(const second of leaderIds.filter(id=>id!==first))orders.push([first,second,leaderIds.find(id=>id!==first&&id!==second)]);
+  for(const size of Array.from({length:maxSize-minSize+1},(_,index)=>minSize+index))for(const detailed of [false,true])for(const order of orders){
+    const sourceText=`+ FACTION KEYWORD: ${catalog.book.title}\n${size}x ${target.title} (100 pts)${detailed?`\n• 1x Long-quill\n• ${size-1}x Kroot Carnivore`:''}\n`+order.map(id=>`1x ${canonical(catalog,id).title} (50 pts)`).join('\n');
+    let roster=parser.parse(sourceText),record={id:'starting-strength',sourceText,roster,attachments:{'parsed-unit-1':order.map((_,index)=>`parsed-unit-${index+2}`)}};
+    const expected=[],seen=new Set(),capacity=size===constraint.bodyguardPredicate.value?constraint.totalCapacity:1;
+    order.forEach((id,index)=>{if(!seen.has(id)&&expected.length<capacity){seen.add(id);expected.push(`parsed-unit-${index+2}`);}});
+    for(const stage of ['import','reload','backup']){
+      if(stage!=='import'){record=local(record);record.roster=parser.parse(record.sourceText,{identityHints:record.roster});roster=record.roster;}
+      const units=roster.units.map((raw,index)=>({instanceId:raw.id,canonicalUnit:canonical(catalog,index===0?target.id:order[index-1]),rosterUnit:raw}));
+      const state=importedApi.attachments.sanitize({units,attachments:record.attachments});
+      assert.deepEqual(local(state.attachments),{'parsed-unit-1':expected},`${size}/${detailed}/${stage}/${order}`);
+      const projection=importedApi.project({catalog,roster,record});
+      assert.equal(projection.game.units[0].selection.modelCount.value,size);
+      assert.deepEqual(local(projection.attachmentState.attachments),local(state.attachments),'Editor/effective attachment parity');
+      const detached=importedApi.attachments.detach({units,attachments:state.attachments,bodyguardInstanceId:'parsed-unit-1',leaderInstanceId:expected.at(-1)});
+      const reattached=importedApi.attachments.attach({units,attachments:detached.attachments,bodyguardInstanceId:'parsed-unit-1',leaderInstanceId:expected.at(-1)});
+      assert.deepEqual(local(reattached.attachments),local(state.attachments),'Detach/re-attach recomputation');
+      startingStrengthCases++;
+    }
+  }
+}
+const aggregateKroot=krootUnits(20).map(item=>({...item,rosterUnit:{...item.rosterUnit,quantity:item.rosterUnit.models[0].quantity,models:[]}}));
+assert.deepEqual(local(attachAll(api.attachments,aggregateKroot,'carnivores',['war-1','trail']).attachments),{carnivores:['war-1','trail']});
+const isolated=[...aggregateKroot,physical(tau,'unit-kroot-carnivores','small-carnivores',10)];
+assert.equal(api.attachments.candidates({units:isolated,attachments:{carnivores:['war-1']},bodyguardInstanceId:'small-carnivores'}).some(item=>item.instanceId==='war-1'),false,'Physical leader remains exclusive to its own group');
+assert.deepEqual(local(api.attachments.sanitize({units:isolated,attachments:{'small-carnivores':['trail','flesh']}}).attachments),{'small-carnivores':['trail']},'Duplicate Bodyguard does not inherit conditional capacity');
+for(const models of [[{quantity:0}],{quantity:20},[{quantity:1},{quantity:0}],[{quantity:Number.MAX_SAFE_INTEGER},{quantity:1}]]){
+  const units=local(aggregateKroot);units[0].rosterUnit.models=models;
+  assert.deepEqual(local(api.attachments.sanitize({units,attachments:{carnivores:['war-1','trail']}}).attachments),{carnivores:['war-1']},'Invalid detailed composition must not fall back to aggregate quantity');
+}
+const aggregateUnits=units=>units.map(item=>({...item,rosterUnit:{...item.rosterUnit,quantity:item.rosterUnit.models.reduce((sum,model)=>sum+model.quantity,0),models:[]}}));
+assert.deepEqual(local(attachAll(api.attachments,aggregateUnits(amUnits),'kastelan-1',['datasmith-1','datasmith-2','datasmith-3']).attachments),{'kastelan-1':['datasmith-1','datasmith-2','datasmith-3']},'Aggregate Datasmith multiplicity remains unlimited');
+console.log(`Imported Starting Strength class guard PASS: ${dependent.size} source records, ${startingStrengthCases} attachment/projection/persistence cases`);
+
 const projectionRecord=(catalog,units,attachments,id)=>({id,name:id,sourceText:'',attachments,roster:{faction:catalog.book.title,declared:1,calculated:1,unitLineTotal:1,detachments:[],enhancements:[],warnings:[],units:units.map(item=>item.rosterUnit)}});
 const amProjectionRecord=projectionRecord(am,amUnits,{'kastelan-1':['datasmith-1','datasmith-2','datasmith-3']},'am-constraint');
 const projected=api.project({catalog:am,roster:amProjectionRecord.roster,record:amProjectionRecord});assert.deepEqual(local(projected.record.attachments),amProjectionRecord.attachments);assert.deepEqual(local(projected.game.units.find(unit=>unit.identity.instanceId==='kastelan-1').attachments.leaders.map(item=>item.instanceId)),['datasmith-1','datasmith-2','datasmith-3']);
@@ -59,6 +113,7 @@ const ordinary=[physical(sm,'unit-intercessor-squad','body'),physical(sm,'unit-c
 const judiciar=physical(sm,'unit-judiciar','judiciar'),judiciarTarget=judiciar.canonicalUnit.relations.canSupport[0].unitId,judiciarUnits=[physical(sm,judiciarTarget,'judiciar-body'),physical(sm,'unit-captain','judiciar-leader'),judiciar];assert.deepEqual(local(attachAll(api.attachments,judiciarUnits,'judiciar-body',['judiciar-leader','judiciar']).attachments),{'judiciar-body':['judiciar-leader','judiciar']});
 const cato=physical(sm,'unit-cato-sicarius','cato'),catoTarget=cato.canonicalUnit.relations.canSupport[0].unitId,catoUnits=[physical(sm,catoTarget,'cato-body'),physical(sm,'unit-captain','cato-leader'),cato];assert.deepEqual(local(attachAll(api.attachments,catoUnits,'cato-body',['cato-leader','cato']).attachments),{'cato-body':['cato-leader','cato']});
 const dgUnits=[physical(dg,'unit-plague-marines','dg-body'),physical(dg,'unit-biologus-putrifier','biologus'),physical(dg,'unit-tallyman','tallyman')];assert.deepEqual(local(attachAll(api.attachments,dgUnits,'dg-body',['biologus','tallyman']).attachments),{'dg-body':['biologus','tallyman']});
+assert.deepEqual(local(attachAll(api.attachments,aggregateUnits(dgUnits),'dg-body',['biologus','tallyman']).attachments),{'dg-body':['biologus','tallyman']},'Aggregate DG exception remains legal');
 
 const {catalog:mfm}=await createEffectiveMfmCatalog(),refs=new Map(mfm.unitReferences.map(item=>[item.id,item])),supportRecords=mfm.supportEligibilityRecords.filter(item=>item.status==='CURRENT');assert.equal(supportRecords.length,36);assert.equal(supportRecords.reduce((sum,item)=>sum+item.targetUnitReferenceIds.length,0),226);
 for(const record of supportRecords){
@@ -78,6 +133,7 @@ for(const record of supportRecords){
 const dgOverlayEdges=dg.units.flatMap(unit=>unit.relations.canSupport.map(edge=>[unit.id,edge.unitId]));assert.equal(dgOverlayEdges.length,7);for(const [sourceId,targetId] of dgOverlayEdges)assert.equal(canonical(dg,targetId).relations.canBeSupportedBy.some(item=>item.unitId===sourceId),true,`DG overlay ${sourceId}/${targetId}`);assert.equal(supportRecords.length+dgOverlayEdges.length,43,'accepted faction-scoped exception records');
 
 const killed=(label,run)=>{let survived=true;try{run();}catch{survived=false;}assert.equal(survived,false,`${label} mutation survived`);};
+killed('aggregate Starting Strength regression',()=>{const broken=apiFor(runtimeSource.replace('return positiveInteger(quantity)?quantity:null;','return null;'));assert.deepEqual(local(attachAll(broken.attachments,aggregateKroot,'carnivores',['war-1','trail']).attachments),{carnivores:['war-1','trail']});});
 killed('Datasmith same-canonical permission',()=>{const units=local(amUnits);for(const unit of units)for(const edge of Object.values(unit.canonicalUnit.relations).flat())if(edge.attachmentGroupConstraint?.id===datasmithConstraint.id)edge.attachmentGroupConstraint.sameCanonicalLimit=1;assert.deepEqual(local(attachAll(api.attachments,units,'kastelan-1',['datasmith-1','datasmith-2','datasmith-3']).attachments),{'kastelan-1':['datasmith-1','datasmith-2','datasmith-3']});});
 killed('Kroot condition',()=>{const units=krootUnits(10);for(const unit of units)for(const edge of Object.values(unit.canonicalUnit.relations).flat())if(edge.attachmentGroupConstraint?.id===krootConstraint.id)delete edge.attachmentGroupConstraint.bodyguardPredicate;assert.deepEqual(local(api.attachments.sanitize({units,attachments:{carnivores:['war-1','trail']}}).attachments),{carnivores:['war-1']});});
 killed('duplicate restriction',()=>{const units=krootUnits(20);for(const unit of units)for(const edge of Object.values(unit.canonicalUnit.relations).flat())if(edge.attachmentGroupConstraint?.id===krootConstraint.id)edge.attachmentGroupConstraint.sameCanonicalLimit='UNBOUNDED';assert.equal(api.attachments.attach({units,attachments:{carnivores:['war-1']},bodyguardInstanceId:'carnivores',leaderInstanceId:'war-2'}).changed,false);});

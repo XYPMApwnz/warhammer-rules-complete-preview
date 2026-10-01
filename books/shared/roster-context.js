@@ -16,7 +16,21 @@
   const sharedKeywordCompatible=(left,right,contract,input={})=>{const allowed=new Set(list(contract?.keywords).map(normalize)),leftKeywords=new Set(effectiveChoiceKeywords(left,input).map(normalize));return effectiveChoiceKeywords(right,input).some(keyword=>allowed.has(normalize(keyword))&&leftKeywords.has(normalize(keyword)));};
   const attachmentRelation=(bodyguardValue,leaderValue)=>{const bodyguard=attachmentCanonical(bodyguardValue),leader=attachmentCanonical(leaderValue),bodyguardId=attachmentUnitId(bodyguard),leaderId=attachmentUnitId(leader);if(!bodyguardId||!leaderId)return null;const find=(owner,key,targetId,kind)=>{const record=list(owner?.relations?.[key]).find(item=>scalar(item?.unitId??item?.id??item)===targetId);return record?frozen({...record,kind}):null;};return find(leader,'canLead',bodyguardId,'leader')||find(leader,'canSupport',bodyguardId,'support')||find(bodyguard,'canBeLedBy',leaderId,'leader')||find(bodyguard,'canBeSupportedBy',leaderId,'support')||null;};
   const attachmentSupport=(bodyguardValue,leaderValue)=>{const bodyguard=attachmentCanonical(bodyguardValue),leader=attachmentCanonical(leaderValue),bodyguardId=attachmentUnitId(bodyguard),leaderId=attachmentUnitId(leader);return Boolean(list(leader?.relations?.canSupport).some(item=>scalar(item?.unitId??item?.id??item)===bodyguardId)||list(bodyguard?.relations?.canBeSupportedBy).some(item=>scalar(item?.unitId??item?.id??item)===leaderId));};
-  const attachmentStartingStrength=value=>{const explicit=Number(value?.bodyguardState?.startingStrength);if(Number.isInteger(explicit)&&explicit>0)return explicit;const raw=value?.rosterUnit??value?.rawUnit??value,models=list(raw?.models),counts=models.map(model=>Number(model?.quantity));return models.length&&counts.every(count=>Number.isInteger(count)&&count>0)?counts.reduce((sum,count)=>sum+count,0):null;};
+  const attachmentStartingStrength=value=>{
+    const positiveInteger=count=>Number.isSafeInteger(count)&&count>0;
+    const explicit=Number(value?.bodyguardState?.startingStrength);
+    if(positiveInteger(explicit))return explicit;
+    const raw=value?.rosterUnit??value?.rawUnit??value,models=raw?.models;
+    if(models!=null&&!Array.isArray(models))return null;
+    if(!models?.length){
+      const quantity=Number(raw?.quantity);
+      return positiveInteger(quantity)?quantity:null;
+    }
+    const counts=models.map(model=>Number(model?.quantity));
+    if(!counts.every(positiveInteger))return null;
+    const total=counts.reduce((sum,count)=>sum+count,0);
+    return positiveInteger(total)?total:null;
+  };
   const attachmentUnits=value=>list(value).map(item=>{const startingStrength=attachmentStartingStrength(item);return{instanceId:attachmentInstanceId(item),canonicalUnit:attachmentCanonical(item),bodyguardState:frozen({startingStrength,state:startingStrength==null?UNKNOWN:'resolved'})};}).filter(item=>item.instanceId&&attachmentUnitId(item.canonicalUnit));
   const qualifiedAttachmentUnits=(units,input={})=>{
     const records=Array.isArray(input.enhancementCatalog?.enhancements)?input.enhancementCatalog.enhancements:Object.values(input.enhancementCatalog?.enhancements||{}).flatMap(item=>Array.isArray(item)?item:[item]).filter(Boolean),byInstance=new Map(units.map(item=>[item.instanceId,item]));
