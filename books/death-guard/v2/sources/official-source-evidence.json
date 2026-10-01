@@ -1,0 +1,574 @@
+{
+  "schema": "dg-v2-official-source-evidence/v1",
+  "capturedAt": "2026-10-01",
+  "officialRegistryCount": 37,
+  "latestDeathGuardSource": {
+    "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+    "type": "OFFICIAL_PDF",
+    "versionOrDate": "v1.3",
+    "authority": "OFFICIAL_GW",
+    "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+    "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+    "effectiveFrom": "2026-09-30",
+    "status": "CURRENT",
+    "reconciled": true,
+    "url": "https://assets.warhammer-community.com/eng_30-09_wh40k_faction_pack_death_guard-bp5c8lcjq6-i4ew7urwyk.pdf",
+    "downloadRegistryIdentity": "entry::de690183-9bf2-4456-9d53-3ebfef1c719d::english",
+    "downloadRegistryUpdated": "30/09/2026",
+    "capturedAt": "2026-10-01",
+    "pages": 18,
+    "supersedes": [
+      "death-guard-faction-pack-v1.2"
+    ],
+    "authorityScope": [
+      "Death Guard active supplement gameplay pages2-8",
+      "Death Guard source FAQ pages7-8"
+    ],
+    "scopeExclusions": [
+      "Legends pages9-18"
+    ],
+    "effectiveDateProof": "Cover page1: Legal for matched play from30thSeptember2026"
+  },
+  "completeCurrentOfficialActiveScope": {
+    "factionPack": "v1.3 pages2-8",
+    "universalRules": "v1.1 page1 DG applicable clauses",
+    "FAQ": "currentFactionPack pages7-8",
+    "balance": "No separate current Balance Dataslate listed in current English Warhammer40000 official registry; current faction pack Rules Updates and Universal Rules Updates own current clauses"
+  },
+  "newSeptemberWeaponTable": {
+    "weaponProfileRecords": 22,
+    "fieldChanges": 41,
+    "sourcePage": 7,
+    "targetInventory": [
+      {
+        "targetId": "datasheet-plague-marines:weapon:3",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-plague-surgeon:weapon:1",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-malignant-plaguecaster:weapon:1",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-icon-bearer:weapon:1",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-plague-marines:weapon:2",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-blightlord-terminators:weapon:2",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-chaos-land-raider:weapon:1",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-chaos-predator-annihilator:weapon:1",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-chaos-predator-destructor:weapon:1",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-chaos-rhino:weapon:1",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-helbrute:weapon:1",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-blightlord-terminators:weapon:3",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-chaos-land-raider:weapon:2",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-chaos-predator-annihilator:weapon:2",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-chaos-predator-destructor:weapon:2",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-chaos-rhino:weapon:2",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-blightlord-terminators:weapon:7",
+        "page": 7,
+        "fields": {
+          "strength": "5"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4"
+          },
+          "official": {
+            "strength": "5"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-foul-blightspawn:weapon:2",
+        "page": 7,
+        "fields": {
+          "strength": "5"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4"
+          },
+          "official": {
+            "strength": "5"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-tallyman:weapon:3",
+        "page": 7,
+        "fields": {
+          "strength": "5"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4"
+          },
+          "official": {
+            "strength": "5"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-icon-bearer:weapon:2",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-biologus-putrifier:weapon:3",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      },
+      {
+        "targetId": "datasheet-plague-marines:weapon:13",
+        "page": 7,
+        "fields": {
+          "strength": "5",
+          "ap": "-1"
+        },
+        "status": "EXPECTED_CURRENT_GW_UPDATE",
+        "notes": {
+          "base": {
+            "strength": "4",
+            "ap": "0"
+          },
+          "official": {
+            "strength": "5",
+            "ap": "-1"
+          }
+        }
+      }
+    ]
+  },
+  "ongoingOfficialUpdates": "All current page7-8 update clauses independentlytranscribed intoexplicitstabletargetoperations; retainpreviousacceptedbase unchanged",
+  "officialSupplementCheck": {
+    "Defiler": "Complete12weaponprofiles,7defensivecharacteristics including5+invulnerable,core/factionabilityrefs,2abilities,damageclause,composition,4options including2cutterquantity andelectroscourgecap checked",
+    "detachments": "ContagionEngines/FlyblownHost/ParagonsOfPutrescence all3rules/6enhancements/9stratagems independentlychecked againstactualcurrentPDF",
+    "publicScopeExclusions": [
+      {
+        "pages": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "scope": "LEGENDS",
+        "reason": "Current accepted DG public scope excludes five Legends datasheets. Retain document and record exclusion; do not silently enroll new production units."
+      }
+    ]
+  },
+  "provenanceRecovery": {
+    "recoveredPinnedPages": 37,
+    "verification": "Each original raw byte SHA256 equals accepted corpus.pages SHA256; copies never refresh upstream",
+    "sourceIdentity": "death-guard-waha-11e-current-2026-09-25",
+    "contagionRangeImages": "Separate current supplemental captures of exact URLs referenced by hash-verified accepted hub; 3/6/9 inches visually inspected; historical image bytes not asserted. This is source normalization evidence, not GW update."
+  },
+  "sourceNormalizationSupplements": [
+    {
+      "sourceId": "dg-v2-contagion-range-images-2026-10-01",
+      "targetId": "army-rule-nurgles-gift:contagion-range",
+      "field": [
+        "table"
+      ],
+      "value": [
+        [
+          "1",
+          "3\""
+        ],
+        [
+          "2",
+          "6\""
+        ],
+        [
+          "3+",
+          "9\""
+        ]
+      ],
+      "provenance": {
+        "sourcePaths": [
+          "books/death-guard/v2/sources/contagion-range-1-captured-2026-10-01.png",
+          "books/death-guard/v2/sources/contagion-range-2-captured-2026-10-01.png",
+          "books/death-guard/v2/sources/contagion-range-3-captured-2026-10-01.png"
+        ],
+        "sha256s": [
+          "DAF0AB2275429927C7246B109D190D7BE7E542F526738FE9DBC0B2F84E930F35",
+          "BC53B846C69B57D629CBC6501191BCBEEADAFBDE2FD3C1D7F8EFB4A97C1D0EF4",
+          "55D87007CB31015E110179BF4A30EABF0333EC402279262F04FB902F52A2756E"
+        ],
+        "capturedAt": "2026-10-01",
+        "method": "referenced-images-visual-read",
+        "historicalByteIdentity": "NOT_ASSERTED",
+        "sha256": [
+          "DAF0AB2275429927C7246B109D190D7BE7E542F526738FE9DBC0B2F84E930F35",
+          "BC53B846C69B57D629CBC6501191BCBEEADAFBDE2FD3C1D7F8EFB4A97C1D0EF4",
+          "55D87007CB31015E110179BF4A30EABF0333EC402279262F04FB902F52A2756E"
+        ]
+      }
+    }
+  ],
+  "blockingItems": [],
+  "notAsserted": [
+    "Waha pinned9/25 imagebytes historicalidentity",
+    "Official Codex binary ownership unavailable; accepted pinnedWaha operationalbase stillsecondary",
+    "FullCore universal implementation beyondDG factualqualification scope"
+  ],
+  "sourceCaptureIntegrity": [
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+      "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+      "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD"
+    },
+    {
+      "id": "gw-universal-rules-updates-v1.1-2026-08-26",
+      "path": "books/death-guard/v2/sources/gw-universal-rules-updates-2026-08-26.pdf",
+      "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72"
+    },
+    {
+      "id": "death-guard-faction-pack-v1.2",
+      "path": "books/death-guard/sources/death-guard-faction-pack-v1.2.pdf",
+      "sha256": "3B446DB7D7DC48FC19EE61B263EC672A88C129B61CA8CD0DFA644414A1FEF7C6"
+    },
+    {
+      "id": "gw-september-2026-update-article",
+      "path": "books/death-guard/v2/sources/official-update-article-2026-09-30.html",
+      "sha256": "76DCB65C533DC6E054EC10FB470F97AA8CDCFE5BC5A4C85D6A296AC5B24CD0DE"
+    },
+    {
+      "id": "dg-v2-contagion-range-image-1-2026-10-01",
+      "path": "books/death-guard/v2/sources/contagion-range-1-captured-2026-10-01.png",
+      "sha256": "DAF0AB2275429927C7246B109D190D7BE7E542F526738FE9DBC0B2F84E930F35"
+    },
+    {
+      "id": "dg-v2-contagion-range-image-2-2026-10-01",
+      "path": "books/death-guard/v2/sources/contagion-range-2-captured-2026-10-01.png",
+      "sha256": "BC53B846C69B57D629CBC6501191BCBEEADAFBDE2FD3C1D7F8EFB4A97C1D0EF4"
+    },
+    {
+      "id": "dg-v2-contagion-range-image-3-2026-10-01",
+      "path": "books/death-guard/v2/sources/contagion-range-3-captured-2026-10-01.png",
+      "sha256": "55D87007CB31015E110179BF4A30EABF0333EC402279262F04FB902F52A2756E"
+    },
+    {
+      "id": "dg-v2-contagion-range-images-2026-10-01",
+      "path": "books/death-guard/v2/sources/contagion-range-image-capture-manifest.json",
+      "sha256": "022A6373ABBEDE8288140B9A087DD3B7375C523548E9EDDA4F186B1F0A2281F2"
+    }
+  ]
+}

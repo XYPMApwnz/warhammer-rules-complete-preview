@@ -1,0 +1,557 @@
+{
+  "schema": "death-guard-v2-mfm-bindings/v1",
+  "identityPolicy": "EXPLICIT_PERSISTENT_SOURCE_AND_ARMY_IDS_NO_RUNTIME_TITLE_JOINS",
+  "eligibilityEvidence": [
+    {"sourceEntityId":"datasheet-biologus-putrifier:section:3","sourceId":"unit-biologus-putrifier"},
+    {"sourceEntityId":"datasheet-foul-blightspawn:section:3","sourceId":"unit-foul-blightspawn"},
+    {"sourceEntityId":"datasheet-icon-bearer:section:3","sourceId":"unit-icon-bearer"},
+    {"sourceEntityId":"datasheet-lord-of-contagion:section:3","sourceId":"unit-lord-of-contagion"},
+    {"sourceEntityId":"datasheet-lord-of-poxes:section:3","sourceId":"unit-lord-of-poxes"},
+    {"sourceEntityId":"datasheet-lord-of-virulence:section:3","sourceId":"unit-lord-of-virulence"},
+    {"sourceEntityId":"datasheet-malignant-plaguecaster:section:3","sourceId":"unit-malignant-plaguecaster"},
+    {"sourceEntityId":"datasheet-noxious-blightbringer:section:3","sourceId":"unit-noxious-blightbringer"},
+    {"sourceEntityId":"datasheet-plague-surgeon:section:3","sourceId":"unit-plague-surgeon"},
+    {"sourceEntityId":"datasheet-tallyman:section:3","sourceId":"unit-tallyman"},
+    {"sourceEntityId":"datasheet-typhus:section:3","sourceId":"unit-typhus"}
+  ],
+  "sourceEvidence": {
+    "path": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+    "corpusFingerprint": "8ACEC4982442530F6FFB5D8FCF8C238E5B26BD649E4C407D5E48AC64C4702FAC"
+  },
+  "enhancements": [
+    {
+      "sourceEntityId": "detachment-virulent-vectorium:enhancement:1",
+      "armyEnhancementId": "enhancement-daemon-weapon-of-nurgle",
+      "armyDetachmentId": "detachment-virulent-vectorium",
+      "mfmRecordId": "mfm-enhancement-8bb2a1551d2f2a03",
+      "evidence": {
+        "sourceTitle": "Daemon Weapon of Nurgle",
+        "mfmSourceTitle": "Daemon Weapon of Nurgle",
+        "sourceOrder": 1,
+        "detachmentSourceId": "detachment-virulent-vectorium",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-virulent-vectorium:enhancement:2",
+      "armyEnhancementId": "enhancement-furnace-of-plagues",
+      "armyDetachmentId": "detachment-virulent-vectorium",
+      "mfmRecordId": "mfm-enhancement-84cdc2fa3764f096",
+      "evidence": {
+        "sourceTitle": "Furnace of Plagues",
+        "mfmSourceTitle": "Furnace of Plagues",
+        "sourceOrder": 2,
+        "detachmentSourceId": "detachment-virulent-vectorium",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-virulent-vectorium:enhancement:3",
+      "armyEnhancementId": "enhancement-arch-contaminator",
+      "armyDetachmentId": "detachment-virulent-vectorium",
+      "mfmRecordId": "mfm-enhancement-0291b479baf19ed5",
+      "evidence": {
+        "sourceTitle": "Arch Contaminator",
+        "mfmSourceTitle": "Arch Contaminator",
+        "sourceOrder": 3,
+        "detachmentSourceId": "detachment-virulent-vectorium",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-virulent-vectorium:enhancement:4",
+      "armyEnhancementId": "enhancement-revolting-regeneration",
+      "armyDetachmentId": "detachment-virulent-vectorium",
+      "mfmRecordId": "mfm-enhancement-90923bc89821bdf7",
+      "evidence": {
+        "sourceTitle": "Revolting Regeneration",
+        "mfmSourceTitle": "Revolting Regeneration",
+        "sourceOrder": 4,
+        "detachmentSourceId": "detachment-virulent-vectorium",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-shamblerot-vectorium:enhancement:1",
+      "armyEnhancementId": "enhancement-witherbone-pipes",
+      "armyDetachmentId": "detachment-shamblerot-vectorium",
+      "mfmRecordId": "mfm-enhancement-3477e39b8b9040e1",
+      "evidence": {
+        "sourceTitle": "Witherbone Pipes",
+        "mfmSourceTitle": "Witherbone Pipes",
+        "sourceOrder": 1,
+        "detachmentSourceId": "detachment-shamblerot-vectorium",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-shamblerot-vectorium:enhancement:2",
+      "armyEnhancementId": "enhancement-lord-of-the-walking-pox",
+      "armyDetachmentId": "detachment-shamblerot-vectorium",
+      "mfmRecordId": "mfm-enhancement-f8be0cb2b9258b38",
+      "evidence": {
+        "sourceTitle": "Lord of the Walking Pox",
+        "mfmSourceTitle": "Lord of the Walking Pox",
+        "sourceOrder": 2,
+        "detachmentSourceId": "detachment-shamblerot-vectorium",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-shamblerot-vectorium:enhancement:3",
+      "armyEnhancementId": "enhancement-sorrowsyphon",
+      "armyDetachmentId": "detachment-shamblerot-vectorium",
+      "mfmRecordId": "mfm-enhancement-5e86fd49bf8322c8",
+      "evidence": {
+        "sourceTitle": "Sorrowsyphon",
+        "mfmSourceTitle": "Sorrowsyphon",
+        "sourceOrder": 3,
+        "detachmentSourceId": "detachment-shamblerot-vectorium",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-shamblerot-vectorium:enhancement:4",
+      "armyEnhancementId": "enhancement-talisman-of-burgeoning",
+      "armyDetachmentId": "detachment-shamblerot-vectorium",
+      "mfmRecordId": "mfm-enhancement-7bbd848f52537535",
+      "evidence": {
+        "sourceTitle": "Talisman of Burgeoning",
+        "mfmSourceTitle": "Talisman of Burgeoning",
+        "sourceOrder": 4,
+        "detachmentSourceId": "detachment-shamblerot-vectorium",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-tallyband-summoners:enhancement:1",
+      "armyEnhancementId": "enhancement-beckoning-blight",
+      "armyDetachmentId": "detachment-tallyband-summoners",
+      "mfmRecordId": "mfm-enhancement-d6570a0750011685",
+      "evidence": {
+        "sourceTitle": "Beckoning Blight",
+        "mfmSourceTitle": "Beckoning Blight",
+        "sourceOrder": 1,
+        "detachmentSourceId": "detachment-tallyband-summoners",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-tallyband-summoners:enhancement:2",
+      "armyEnhancementId": "enhancement-fell-harvester",
+      "armyDetachmentId": "detachment-tallyband-summoners",
+      "mfmRecordId": "mfm-enhancement-327e01ad7ad2572b",
+      "evidence": {
+        "sourceTitle": "Fell Harvester",
+        "mfmSourceTitle": "Fell Harvester",
+        "sourceOrder": 2,
+        "detachmentSourceId": "detachment-tallyband-summoners",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-tallyband-summoners:enhancement:3",
+      "armyEnhancementId": "enhancement-entropic-knell",
+      "armyDetachmentId": "detachment-tallyband-summoners",
+      "mfmRecordId": "mfm-enhancement-05b9cb315d84f370",
+      "evidence": {
+        "sourceTitle": "Entropic Knell",
+        "mfmSourceTitle": "Entropic Knell",
+        "sourceOrder": 3,
+        "detachmentSourceId": "detachment-tallyband-summoners",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-tallyband-summoners:enhancement:4",
+      "armyEnhancementId": "enhancement-tome-of-bounteous-blessings",
+      "armyDetachmentId": "detachment-tallyband-summoners",
+      "mfmRecordId": "mfm-enhancement-0ced9b991e097ce6",
+      "evidence": {
+        "sourceTitle": "Tome of Bounteous Blessings",
+        "mfmSourceTitle": "Tome of Bounteous Blessings",
+        "sourceOrder": 4,
+        "detachmentSourceId": "detachment-tallyband-summoners",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-death-lords-chosen:enhancement:1",
+      "armyEnhancementId": "enhancement-face-of-death",
+      "armyDetachmentId": "detachment-death-lords-chosen",
+      "mfmRecordId": "mfm-enhancement-78d417fd4ce93868",
+      "evidence": {
+        "sourceTitle": "Face of Death",
+        "mfmSourceTitle": "Face of Death",
+        "sourceOrder": 1,
+        "detachmentSourceId": "detachment-death-lords-chosen",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-death-lords-chosen:enhancement:2",
+      "armyEnhancementId": "enhancement-vile-vigour",
+      "armyDetachmentId": "detachment-death-lords-chosen",
+      "mfmRecordId": "mfm-enhancement-17ce99236e3b3b35",
+      "evidence": {
+        "sourceTitle": "Vile Vigour",
+        "mfmSourceTitle": "Vile Vigour",
+        "sourceOrder": 2,
+        "detachmentSourceId": "detachment-death-lords-chosen",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-death-lords-chosen:enhancement:3",
+      "armyEnhancementId": "enhancement-warprot-talisman",
+      "armyDetachmentId": "detachment-death-lords-chosen",
+      "mfmRecordId": "mfm-enhancement-86b9e3c5a18732fa",
+      "evidence": {
+        "sourceTitle": "Warprot Talisman",
+        "mfmSourceTitle": "Warprot Talisman",
+        "sourceOrder": 3,
+        "detachmentSourceId": "detachment-death-lords-chosen",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-death-lords-chosen:enhancement:4",
+      "armyEnhancementId": "enhancement-helm-of-the-fly-king",
+      "armyDetachmentId": "detachment-death-lords-chosen",
+      "mfmRecordId": "mfm-enhancement-4f4f810645765622",
+      "evidence": {
+        "sourceTitle": "Helm of the Fly King",
+        "mfmSourceTitle": "Helm of The Fly King",
+        "sourceOrder": 4,
+        "detachmentSourceId": "detachment-death-lords-chosen",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-mortarions-hammer:enhancement:1",
+      "armyEnhancementId": "enhancement-eye-of-affliction",
+      "armyDetachmentId": "detachment-mortarions-hammer",
+      "mfmRecordId": "mfm-enhancement-2112d0413c4a08e7",
+      "evidence": {
+        "sourceTitle": "Eye of Affliction",
+        "mfmSourceTitle": "Eye of Affliction",
+        "sourceOrder": 1,
+        "detachmentSourceId": "detachment-mortarions-hammer",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-mortarions-hammer:enhancement:2",
+      "armyEnhancementId": "enhancement-bilemaw-blight",
+      "armyDetachmentId": "detachment-mortarions-hammer",
+      "mfmRecordId": "mfm-enhancement-bb920bbb6ac8c06d",
+      "evidence": {
+        "sourceTitle": "Bilemaw Blight",
+        "mfmSourceTitle": "Bilemaw Blight",
+        "sourceOrder": 2,
+        "detachmentSourceId": "detachment-mortarions-hammer",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-mortarions-hammer:enhancement:3",
+      "armyEnhancementId": "enhancement-shriekworm-familiar",
+      "armyDetachmentId": "detachment-mortarions-hammer",
+      "mfmRecordId": "mfm-enhancement-fef76c4def11168d",
+      "evidence": {
+        "sourceTitle": "Shriekworm Familiar",
+        "mfmSourceTitle": "Shriekworm Familiar",
+        "sourceOrder": 3,
+        "detachmentSourceId": "detachment-mortarions-hammer",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-mortarions-hammer:enhancement:4",
+      "armyEnhancementId": "enhancement-tendrilous-emissions",
+      "armyDetachmentId": "detachment-mortarions-hammer",
+      "mfmRecordId": "mfm-enhancement-c9fd2b31c501cc87",
+      "evidence": {
+        "sourceTitle": "Tendrilous Emissions",
+        "mfmSourceTitle": "Tendrilous Emissions",
+        "sourceOrder": 4,
+        "detachmentSourceId": "detachment-mortarions-hammer",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-champions-of-contagion:enhancement:1",
+      "armyEnhancementId": "enhancement-final-ingredient",
+      "armyDetachmentId": "detachment-champions-of-contagion",
+      "mfmRecordId": "mfm-enhancement-802b8458963ec3e1",
+      "evidence": {
+        "sourceTitle": "Final Ingredient",
+        "mfmSourceTitle": "Final Ingredient",
+        "sourceOrder": 1,
+        "detachmentSourceId": "detachment-champions-of-contagion",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-champions-of-contagion:enhancement:2",
+      "armyEnhancementId": "enhancement-visions-of-virulence",
+      "armyDetachmentId": "detachment-champions-of-contagion",
+      "mfmRecordId": "mfm-enhancement-1f16b67b360fce82",
+      "evidence": {
+        "sourceTitle": "Visions of Virulence",
+        "mfmSourceTitle": "Visions of Virulence",
+        "sourceOrder": 2,
+        "detachmentSourceId": "detachment-champions-of-contagion",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-champions-of-contagion:enhancement:3",
+      "armyEnhancementId": "enhancement-needle-of-nurgle",
+      "armyDetachmentId": "detachment-champions-of-contagion",
+      "mfmRecordId": "mfm-enhancement-32821a6cf43dfcd6",
+      "evidence": {
+        "sourceTitle": "Needle of Nurgle",
+        "mfmSourceTitle": "Needle of Nurgle",
+        "sourceOrder": 3,
+        "detachmentSourceId": "detachment-champions-of-contagion",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-champions-of-contagion:enhancement:4",
+      "armyEnhancementId": "enhancement-cornucophagus",
+      "armyDetachmentId": "detachment-champions-of-contagion",
+      "mfmRecordId": "mfm-enhancement-416a2d8bc5b08a05",
+      "evidence": {
+        "sourceTitle": "Cornucophagus",
+        "mfmSourceTitle": "Cornucophagus",
+        "sourceOrder": 4,
+        "detachmentSourceId": "detachment-champions-of-contagion",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-paragons-of-putrescence:enhancement:1",
+      "armyEnhancementId": "enhancement-rejuvenating-swarm",
+      "armyDetachmentId": "detachment-paragons-of-putrescence",
+      "mfmRecordId": "mfm-enhancement-ed169bd0533b5e8c",
+      "evidence": {
+        "sourceTitle": "Rejuvenating Swarm",
+        "mfmSourceTitle": "Rejuvenating Swarm",
+        "sourceOrder": 1,
+        "detachmentSourceId": "detachment-paragons-of-putrescence",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-paragons-of-putrescence:enhancement:2",
+      "armyEnhancementId": "enhancement-host-of-the-hybridised-pox",
+      "armyDetachmentId": "detachment-paragons-of-putrescence",
+      "mfmRecordId": "mfm-enhancement-727b585f9b211de4",
+      "evidence": {
+        "sourceTitle": "Host of the Hybridised Pox",
+        "mfmSourceTitle": "Host of the Hybridised Pox",
+        "sourceOrder": 2,
+        "detachmentSourceId": "detachment-paragons-of-putrescence",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-contagion-engines:enhancement:1",
+      "armyEnhancementId": "enhancement-parasitic-woe-reaper",
+      "armyDetachmentId": "detachment-contagion-engines",
+      "mfmRecordId": "mfm-enhancement-a268455347507941",
+      "evidence": {
+        "sourceTitle": "Parasitic Woe‑Reaper",
+        "mfmSourceTitle": "Parasitic Woe‑reaper (Upgrade)",
+        "sourceOrder": 1,
+        "detachmentSourceId": "detachment-contagion-engines",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-contagion-engines:enhancement:2",
+      "armyEnhancementId": "enhancement-lancet-of-the-worldsore",
+      "armyDetachmentId": "detachment-contagion-engines",
+      "mfmRecordId": "mfm-enhancement-a52715b43ac487a3",
+      "evidence": {
+        "sourceTitle": "Lancet of the Worldsore",
+        "mfmSourceTitle": "Lancet of the Worldsore (Upgrade)",
+        "sourceOrder": 2,
+        "detachmentSourceId": "detachment-contagion-engines",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-flyblown-host:enhancement:1",
+      "armyEnhancementId": "enhancement-insectile-murmuration",
+      "armyDetachmentId": "detachment-flyblown-host",
+      "mfmRecordId": "mfm-enhancement-3e111dc8394681da",
+      "evidence": {
+        "sourceTitle": "Insectile Murmuration",
+        "mfmSourceTitle": "Insectile Murmuration (Upgrade)",
+        "sourceOrder": 1,
+        "detachmentSourceId": "detachment-flyblown-host",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    },
+    {
+      "sourceEntityId": "detachment-flyblown-host:enhancement:2",
+      "armyEnhancementId": "enhancement-plagueveil",
+      "armyDetachmentId": "detachment-flyblown-host",
+      "mfmRecordId": "mfm-enhancement-5c01e8117727acbd",
+      "evidence": {
+        "sourceTitle": "Plagueveil",
+        "mfmSourceTitle": "Plagueveil (Upgrade)",
+        "sourceOrder": 2,
+        "detachmentSourceId": "detachment-flyblown-host",
+        "identityRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
+        "crossDomainRegistry": "mfm/content/mfm-army-mission-bindings.json"
+      }
+    }
+  ],
+  "supportExceptions": [
+    {
+      "role": "support",
+      "sourceId": "unit-biologus-putrifier",
+      "targetId": "unit-plague-marines",
+      "sourceEntityId": "datasheet-biologus-putrifier:section:3",
+      "sourceUnitSourceId": "datasheet-biologus-putrifier",
+      "acceptedText": "This model can be attached to the following unit:\n- PLAGUE MARINES\nYou can attach this model to a PLAGUE MARINES unit, even if one other Leader unit has already been attached to it (you cannot attach more than one of the same leader to the same unit). If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths.",
+      "acceptedTextSha256": "1849cbc9b1d8731e52a5458999ba71a49d99d1809fecb4aa9213595a35e27a75",
+      "qualification": "May attach alongside one other distinct Leader; maximum one instance of the same Leader in that Attached Unit.",
+      "provenance": {
+        "sourceId": "death-guard-waha-11e-current-2026-09-25",
+        "sourceRecordId": "datasheet-biologus-putrifier:section:3",
+        "corpusFingerprint": "8ACEC4982442530F6FFB5D8FCF8C238E5B26BD649E4C407D5E48AC64C4702FAC",
+        "authority": "ACCEPTED_WAHA_BASE_ARMY_RELATION_EXCEPTION"
+      }
+    },
+    {
+      "role": "support",
+      "sourceId": "unit-foul-blightspawn",
+      "targetId": "unit-plague-marines",
+      "sourceEntityId": "datasheet-foul-blightspawn:section:3",
+      "sourceUnitSourceId": "datasheet-foul-blightspawn",
+      "acceptedText": "This model can be attached to the following unit:\n- PLAGUE MARINES\nYou can attach this model to a PLAGUE MARINES unit, even if one other Leader unit has already been attached to it (you cannot attach more than one of the same leader to the same unit). If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths.",
+      "acceptedTextSha256": "1849cbc9b1d8731e52a5458999ba71a49d99d1809fecb4aa9213595a35e27a75",
+      "qualification": "May attach alongside one other distinct Leader; maximum one instance of the same Leader in that Attached Unit.",
+      "provenance": {
+        "sourceId": "death-guard-waha-11e-current-2026-09-25",
+        "sourceRecordId": "datasheet-foul-blightspawn:section:3",
+        "corpusFingerprint": "8ACEC4982442530F6FFB5D8FCF8C238E5B26BD649E4C407D5E48AC64C4702FAC",
+        "authority": "ACCEPTED_WAHA_BASE_ARMY_RELATION_EXCEPTION"
+      }
+    },
+    {
+      "role": "support",
+      "sourceId": "unit-icon-bearer",
+      "targetId": "unit-plague-marines",
+      "sourceEntityId": "datasheet-icon-bearer:section:3",
+      "sourceUnitSourceId": "datasheet-icon-bearer",
+      "acceptedText": "This model can be attached to the following unit:\n- PLAGUE MARINES\nYou can attach this model to a PLAGUE MARINES unit, even if one other Leader unit has already been attached to it (you cannot attach more than one of the same Leader to the same unit). If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths.",
+      "acceptedTextSha256": "48e3f7427ccefc05005a19b6f405d5de1113b919ebbf5b14e2a533d7a6ef441e",
+      "qualification": "May attach alongside one other distinct Leader; maximum one instance of the same Leader in that Attached Unit.",
+      "provenance": {
+        "sourceId": "death-guard-waha-11e-current-2026-09-25",
+        "sourceRecordId": "datasheet-icon-bearer:section:3",
+        "corpusFingerprint": "8ACEC4982442530F6FFB5D8FCF8C238E5B26BD649E4C407D5E48AC64C4702FAC",
+        "authority": "ACCEPTED_WAHA_BASE_ARMY_RELATION_EXCEPTION"
+      }
+    },
+    {
+      "role": "support",
+      "sourceId": "unit-noxious-blightbringer",
+      "targetId": "unit-plague-marines",
+      "sourceEntityId": "datasheet-noxious-blightbringer:section:3",
+      "sourceUnitSourceId": "datasheet-noxious-blightbringer",
+      "acceptedText": "This model can be attached to the following units:\n- PLAGUE MARINES\n- POXWALKERS\nYou can attach this model to a PLAGUE MARINES or POXWALKERS unit, even if one other Leader unit has already been attached to it (you cannot attach more than one of the same Leader to the same unit). If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths.",
+      "acceptedTextSha256": "44d3c3428663806b4ec63f5c1b3fae7dc3a1714f99454a0138372008bed41809",
+      "qualification": "May attach alongside one other distinct Leader; maximum one instance of the same Leader in that Attached Unit.",
+      "provenance": {
+        "sourceId": "death-guard-waha-11e-current-2026-09-25",
+        "sourceRecordId": "datasheet-noxious-blightbringer:section:3",
+        "corpusFingerprint": "8ACEC4982442530F6FFB5D8FCF8C238E5B26BD649E4C407D5E48AC64C4702FAC",
+        "authority": "ACCEPTED_WAHA_BASE_ARMY_RELATION_EXCEPTION"
+      }
+    },
+    {
+      "role": "support",
+      "sourceId": "unit-noxious-blightbringer",
+      "targetId": "unit-poxwalkers",
+      "sourceEntityId": "datasheet-noxious-blightbringer:section:3",
+      "sourceUnitSourceId": "datasheet-noxious-blightbringer",
+      "acceptedText": "This model can be attached to the following units:\n- PLAGUE MARINES\n- POXWALKERS\nYou can attach this model to a PLAGUE MARINES or POXWALKERS unit, even if one other Leader unit has already been attached to it (you cannot attach more than one of the same Leader to the same unit). If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths.",
+      "acceptedTextSha256": "44d3c3428663806b4ec63f5c1b3fae7dc3a1714f99454a0138372008bed41809",
+      "qualification": "May attach alongside one other distinct Leader; maximum one instance of the same Leader in that Attached Unit.",
+      "provenance": {
+        "sourceId": "death-guard-waha-11e-current-2026-09-25",
+        "sourceRecordId": "datasheet-noxious-blightbringer:section:3",
+        "corpusFingerprint": "8ACEC4982442530F6FFB5D8FCF8C238E5B26BD649E4C407D5E48AC64C4702FAC",
+        "authority": "ACCEPTED_WAHA_BASE_ARMY_RELATION_EXCEPTION"
+      }
+    },
+    {
+      "role": "support",
+      "sourceId": "unit-plague-surgeon",
+      "targetId": "unit-plague-marines",
+      "sourceEntityId": "datasheet-plague-surgeon:section:3",
+      "sourceUnitSourceId": "datasheet-plague-surgeon",
+      "acceptedText": "This model can be attached to the following unit:\n- PLAGUE MARINES\nYou can attach this model to a PLAGUE MARINES unit, even if one other Leader unit has already been attached to it (you cannot attach more than one of the same Leader to the same unit). If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths.",
+      "acceptedTextSha256": "48e3f7427ccefc05005a19b6f405d5de1113b919ebbf5b14e2a533d7a6ef441e",
+      "qualification": "May attach alongside one other distinct Leader; maximum one instance of the same Leader in that Attached Unit.",
+      "provenance": {
+        "sourceId": "death-guard-waha-11e-current-2026-09-25",
+        "sourceRecordId": "datasheet-plague-surgeon:section:3",
+        "corpusFingerprint": "8ACEC4982442530F6FFB5D8FCF8C238E5B26BD649E4C407D5E48AC64C4702FAC",
+        "authority": "ACCEPTED_WAHA_BASE_ARMY_RELATION_EXCEPTION"
+      }
+    },
+    {
+      "role": "support",
+      "sourceId": "unit-tallyman",
+      "targetId": "unit-plague-marines",
+      "sourceEntityId": "datasheet-tallyman:section:3",
+      "sourceUnitSourceId": "datasheet-tallyman",
+      "acceptedText": "This model can be attached to the following unit:\n- PLAGUE MARINES\nYou can attach this model to a PLAGUE MARINES unit, even if one other Leader unit has already been attached to it (you cannot attach more than one of the same leader to the same unit). If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths.",
+      "acceptedTextSha256": "1849cbc9b1d8731e52a5458999ba71a49d99d1809fecb4aa9213595a35e27a75",
+      "qualification": "May attach alongside one other distinct Leader; maximum one instance of the same Leader in that Attached Unit.",
+      "provenance": {
+        "sourceId": "death-guard-waha-11e-current-2026-09-25",
+        "sourceRecordId": "datasheet-tallyman:section:3",
+        "corpusFingerprint": "8ACEC4982442530F6FFB5D8FCF8C238E5B26BD649E4C407D5E48AC64C4702FAC",
+        "authority": "ACCEPTED_WAHA_BASE_ARMY_RELATION_EXCEPTION"
+      }
+    }
+  ]
+}

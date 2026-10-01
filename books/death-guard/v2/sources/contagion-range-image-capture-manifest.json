@@ -1,0 +1,65 @@
+{
+  "schema": "dg-v2-referenced-image-capture/v1",
+  "capturedAt": "2026-10-01",
+  "sourceType": "WAHA_REFERENCED_IMAGE_CAPTURE",
+  "historicalByteIdentity": "NOT_ASSERTED",
+  "acceptedHubSha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+  "images": [
+    {
+      "path": "books/death-guard/v2/sources/contagion-range-1-captured-2026-10-01.png",
+      "url": "https://wahapedia.ru/wh40k10ed/img/ContagionRange1.png",
+      "sha256": "DAF0AB2275429927C7246B109D190D7BE7E542F526738FE9DBC0B2F84E930F35"
+    },
+    {
+      "path": "books/death-guard/v2/sources/contagion-range-2-captured-2026-10-01.png",
+      "url": "https://wahapedia.ru/wh40k10ed/img/ContagionRange2.png",
+      "sha256": "BC53B846C69B57D629CBC6501191BCBEEADAFBDE2FD3C1D7F8EFB4A97C1D0EF4"
+    },
+    {
+      "path": "books/death-guard/v2/sources/contagion-range-3-captured-2026-10-01.png",
+      "url": "https://wahapedia.ru/wh40k10ed/img/ContagionRange3.png",
+      "sha256": "55D87007CB31015E110179BF4A30EABF0333EC402279262F04FB902F52A2756E"
+    }
+  ],
+  "interpretation": [
+    {
+      "sourceId": "dg-v2-contagion-range-image-1-2026-10-01",
+      "targetId": "army-rule-nurgles-gift:contagion-range",
+      "battleRound": 1,
+      "battleRoundMeaning": "1st Battle Round",
+      "rangeInches": 3,
+      "provenance": {
+        "path": "books/death-guard/v2/sources/contagion-range-1-captured-2026-10-01.png",
+        "sha256": "DAF0AB2275429927C7246B109D190D7BE7E542F526738FE9DBC0B2F84E930F35",
+        "pixelText": "1st Battle Round: Contagion Range = 3\"",
+        "viewed": true
+      }
+    },
+    {
+      "sourceId": "dg-v2-contagion-range-image-2-2026-10-01",
+      "targetId": "army-rule-nurgles-gift:contagion-range",
+      "battleRound": 2,
+      "battleRoundMeaning": "2nd Battle Round",
+      "rangeInches": 6,
+      "provenance": {
+        "path": "books/death-guard/v2/sources/contagion-range-2-captured-2026-10-01.png",
+        "sha256": "BC53B846C69B57D629CBC6501191BCBEEADAFBDE2FD3C1D7F8EFB4A97C1D0EF4",
+        "pixelText": "2nd Battle Round: Contagion Range = 6\"",
+        "viewed": true
+      }
+    },
+    {
+      "sourceId": "dg-v2-contagion-range-image-3-2026-10-01",
+      "targetId": "army-rule-nurgles-gift:contagion-range",
+      "battleRound": 3,
+      "battleRoundMeaning": "3rd Battle Round Onwards",
+      "rangeInches": 9,
+      "provenance": {
+        "path": "books/death-guard/v2/sources/contagion-range-3-captured-2026-10-01.png",
+        "sha256": "55D87007CB31015E110179BF4A30EABF0333EC402279262F04FB902F52A2756E",
+        "pixelText": "3rd Battle Round Onwards: Contagion Range = 9\"",
+        "viewed": true
+      }
+    }
+  ]
+}

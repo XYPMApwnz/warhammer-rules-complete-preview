@@ -1,0 +1,48 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {normalizeDeathGuardCorpus} from './normalize.mjs';
+import {consumeMfm,resolveOwnedFact} from './mfm-boundary.mjs';
+import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
+
+const corpus=JSON.parse(fs.readFileSync(new URL('../sources/waha-11e-current-2026-09-25/corpus.json',import.meta.url),'utf8'));
+const bindings=JSON.parse(fs.readFileSync(new URL('./mfm-bindings.json',import.meta.url),'utf8'));
+const base=normalizeDeathGuardCorpus(corpus),entities=base.entities;
+const snapshot=JSON.stringify(base),actual=consumeMfm(entities),{catalog}=createEffectiveMfmCatalog();
+const dg=partition=>catalog[partition].filter(item=>item.factionId==='death-guard');
+const ids=records=>new Set(records.map(item=>item.mfmRecordId||item.id));
+assert.deepEqual(ids(actual.unitBindings),ids(dg('unitPointRecords')));
+assert.deepEqual(ids(actual.detachmentBindings),ids(dg('detachments')));
+assert.deepEqual(ids(actual.enhancementBindings),ids(dg('enhancementCosts')));
+assert.deepEqual(ids(actual.paidUpgradeBindings),ids(dg('paidUpgradeRecords')));
+assert.deepEqual(ids(actual.relations.filter(item=>item.owner==='CENTRALIZED_MFM')),ids([...dg('leaderEligibilityRecords'),...dg('supportEligibilityRecords')]));
+assert.equal(actual.relations.filter(item=>item.owner==='ACCEPTED_ARMY_SUPPORT_EXCEPTION').length,bindings.supportExceptions.length);
+for(const item of [...actual.unitBindings,...actual.detachmentBindings,...actual.enhancementBindings,...actual.paidUpgradeBindings,...actual.relations.filter(item=>item.mfmRecordId)]){
+  const owner=resolveOwnedFact(item.mfmRecordId);
+  assert.equal(owner.id,item.mfmRecordId);
+  assert.deepEqual(owner.provenance,item.provenance);
+  assert.ok(!Object.hasOwn(item,'value')&&!Object.hasOwn(item,'points')&&!Object.hasOwn(item,'pointSchedules'),'binding must not persist independent MFM values');
+}
+assert.equal(JSON.stringify(base),snapshot,'MFM consumption must not mutate canonical source facts');
+assert.deepEqual(actual,consumeMfm(entities),'deterministic central projection');
+const renamed=structuredClone(entities);for(const item of renamed)if(item.data.title)item.data.title='RENAMED DISPLAY LABEL';
+assert.deepEqual(actual,consumeMfm(renamed),'titles must have no effect on factual binding');
+assert.equal(actual.eligibilityEvidenceBindings.length,11);
+const evidenceChanged=structuredClone(entities);
+evidenceChanged.find(item=>item.id==='datasheet-lord-of-contagion:section:3').data.blocks[0].text='Deliberately changed historical eligibility prose';
+assert.deepEqual(actual.relations,consumeMfm(evidenceChanged).relations,'Historical eligibility prose must never own current target relations');
+const negative=(label,mutate,expected)=>{const changed=structuredClone(entities);mutate(changed);assert.throws(()=>consumeMfm(changed),expected,label);};
+negative('duplicate canonical identity',items=>items.push(structuredClone(items[0])),/duplicate canonical entity/);
+negative('missing canonical unit',items=>items.splice(items.findIndex(item=>item.kind==='DATASHEET'),1),/unit binding coverage/);
+negative('unknown canonical unit',items=>items.find(item=>item.kind==='DATASHEET').id='unit-unknown',/unit binding coverage/);
+negative('missing canonical Detachment',items=>items.splice(items.findIndex(item=>item.kind==='DETACHMENT'),1),/Detachment binding coverage/);
+negative('missing source Enhancement',items=>items.splice(items.findIndex(item=>item.kind==='ENHANCEMENT'),1),/source Enhancement binding coverage/);
+negative('wrong Enhancement parent',items=>items.find(item=>item.kind==='ENHANCEMENT').parentId='detachment-flyblown-host',/wrong canonical Enhancement parent/);
+negative('missing Support source',items=>items.splice(items.findIndex(item=>item.id===bindings.supportExceptions[0].sourceEntityId),1),/unresolved Army Support identity/);
+negative('changed Support source',items=>items.find(item=>item.id===bindings.supportExceptions[0].sourceEntityId).data.blocks[0].text+=' changed',/changed\/unreconciled Army Support source/);
+negative('missing eligibility evidence identity',items=>items.splice(items.findIndex(item=>item.id==='datasheet-lord-of-contagion:section:3'),1),/unresolved eligibility evidence/);
+for(const field of ['points','pointSchedules','paidWargear','detachmentPoints','forceDisposition','wahaPoints'])negative(`duplicate MFM owner ${field}`,items=>{items[0].data[field]=999;},/duplicate MFM value ownership/);
+assert.throws(()=>resolveOwnedFact('unknown'),/unknown\/non-DG owned fact/);
+assert.throws(()=>resolveOwnedFact(catalog.enhancementCosts.find(item=>item.factionId!=='death-guard').id),/unknown\/non-DG owned fact/);
+const code=fs.readFileSync(new URL('./mfm-boundary.mjs',import.meta.url),'utf8');
+for(const forbidden of ['canonical-source-adapter','build-army-book','roster-data.js','target-data.js','reader.html','scripts/data.js'])assert.ok(!code.includes(forbidden),`forbidden V1/generated factual dependency ${forbidden}`);
+console.log(`DG V2 MFM boundary PASS: ${actual.unitBindings.length} unit / ${actual.detachmentBindings.length} Detachment / ${actual.enhancementBindings.length} Enhancement / ${actual.paidUpgradeBindings.length} paid references; ${actual.relations.length} relations; 17 negative mutations rejected; prose ownership mutation isolated`);

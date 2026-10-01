@@ -1,0 +1,4 @@
+# Preserve pinned external captures byte for byte, including source whitespace.
+sources/accepted-waha-pages/*.html -text -diff
+sources/*.html -text -diff
+sources/*.txt -text -diff
