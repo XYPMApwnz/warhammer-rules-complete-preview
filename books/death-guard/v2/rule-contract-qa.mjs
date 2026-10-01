@@ -10,6 +10,7 @@ import {buildRuleContractV2,compileCompatibility,previousAmbiguityDomain,summari
 import {validateContracts,evaluatePredicate,evaluateRole} from './rule-contract-schema.mjs';
 import {parseSourceHtml,sourceNode,sourceNodeText,normalizeSourceText} from './raw-source.mjs';
 import {assertSourceTargetConditions} from './stratagem-target-qa.mjs';
+import {assertEnhancementPredicateContexts} from './enhancement-predicate-qa.mjs';
 const directory=path.dirname(fileURLToPath(import.meta.url)),root=path.resolve(directory,'../../..');
 const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
 const evidence=read('books/death-guard/v2/rule-contract-source-evidence.json');
@@ -25,6 +26,7 @@ let sourceChecks=0;
 export function sourceGuard(model) {
   validateContracts(model);
   assertSourceTargetConditions(model);
+  assertEnhancementPredicateContexts(model);
   const index=byId(model);
   const expectedRuleIds=[...corpus.armyRules.flatMap(rule=>[rule.sourceId,...(rule.components||[]).map(c=>c.sourceId)]),...corpus.datasheets.flatMap(unit=>[...unit.sections.map(section=>section.sourceId),...unit.wargearOptions.map(option=>option.sourceId)]),...corpus.detachments.flatMap(det=>[det.rule.sourceId,...det.enhancements.map(e=>e.sourceId),...det.stratagems.map(s=>s.sourceId)]),...corpus.errata.map(e=>e.sourceId),
     'book-death-guard:introduction','source-erratum:dg-waha:0005','datasheet-defiler:profile-selection:1',

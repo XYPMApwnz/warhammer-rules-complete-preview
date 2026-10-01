@@ -44717,7 +44717,7 @@
             "conditions": [
               {
                 "predicate": "FIELD",
-                "subject": "FORMED_ATTACHED_UNIT",
+                "subject": "UNIT",
                 "contextLevel": "BATTLE",
                 "arguments": {
                   "key": "attackStrengthExceedsUnitToughness",
@@ -44729,7 +44729,7 @@
                   ],
                   "quote": "with a S greater than this unit’s T"
                 },
-                "roleId": "eligible-owner"
+                "roleId": "affected-unit"
               }
             ],
             "sourceFields": [

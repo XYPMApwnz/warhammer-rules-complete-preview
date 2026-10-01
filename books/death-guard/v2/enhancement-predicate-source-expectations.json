@@ -1,0 +1,3183 @@
+{
+  "schema": "dg-v2-enhancement-predicate-source-expectations/v1",
+  "authority": "QA_SOURCE_ADJUDICATION_NOT_PRODUCTION_FACT_OWNER",
+  "purpose": "Independent raw-source census of every current Enhancement predicate and participant scope. Never generated from rule contracts.",
+  "subjectPolicy": {
+    "MODEL": "Individual enhancement bearer or explicitly selected bodyguard/attacking model. Relative bearerUnit state fields are evaluated on the bearer MODEL context without requiring an attachment.",
+    "UNIT": "A generic own, friendly or enemy unit; includes a lone bearer unit and does not require attachment.",
+    "FORMED_ATTACHED_UNIT": "The led unit only when the source explicitly requires the bearer to be leading.",
+    "ROSTER": "Chosen Detachment selector."
+  },
+  "contextPolicy": {
+    "STATIC": "Identity, intrinsic keyword and unrestricted participant predicates.",
+    "ROSTER": "Chosen Detachment and leading/bodyguard/member relationships.",
+    "BATTLE": "Attack events, battle triggers, current battlefield/reserves state and optional ability activation."
+  },
+  "introductionProof": {
+    "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+    "rawAnchor": "Introduction",
+    "quotes": [
+      "your chosen Detachment enables you to upgrade CHARACTERS",
+      "Your chosen Detachment gives you access"
+    ]
+  },
+  "records": [
+    {
+      "id": "detachment-virulent-vectorium:enhancement:1",
+      "parentId": "detachment-virulent-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "title": "Daemon Weapon of Nurgle",
+        "text": "DEATH GUARD model only. Each time the bearer makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-virulent-vectorium"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "bearerMeleeAttack",
+              "equals": true
+            },
+            "sourceQuote": "Each time the bearer makes a melee attack"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "critical-hit",
+            "roles": [
+              {
+                "id": "affected-model",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "the bearer"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "unmodifiedHitRollFiveOrMore",
+                  "equals": true
+                },
+                "sourceQuote": "an unmodified Hit roll of 5+"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-virulent-vectorium:enhancement:2",
+      "parentId": "detachment-virulent-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "title": "Furnace of Plagues",
+        "text": "DEATH GUARD model only. Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-virulent-vectorium"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "weapon-modifiers",
+            "roles": [
+              {
+                "id": "affected-model",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "the bearers melee weapons"
+                }
+              }
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-virulent-vectorium:enhancement:3",
+      "parentId": "detachment-virulent-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+        "title": "Arch Contaminator",
+        "text": "DEATH GUARD model only. While the bearer’s unit is within range of an objective marker you control, each time a model in the bearer’s unit makes an attack, you can re-roll the Wound roll."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-virulent-vectorium"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "bearerUnitWithinControlledObjective",
+              "equals": true
+            },
+            "sourceQuote": "While the bearer’s unit is within range of an objective marker you control"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "attack-reroll",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "a model in the bearer’s unit"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "bearerUnitModelAttacks",
+                  "equals": true
+                },
+                "sourceQuote": "each time a model in the bearer’s unit makes an attack"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-virulent-vectorium:enhancement:4",
+      "parentId": "detachment-virulent-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+        "title": "Revolting Regeneration",
+        "text": "DEATH GUARD model only. The bearer has the Feel No Pain 5+ ability."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-virulent-vectorium"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "feel-no-pain",
+            "roles": [
+              {
+                "id": "affected-model",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "The bearer"
+                }
+              }
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-shamblerot-vectorium:enhancement:1",
+      "parentId": "detachment-shamblerot-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "title": "Witherbone Pipes",
+        "text": "NOXIOUS BLIGHTBRINGER only. While the bearer is leading a POXWALKERS unit, add 1 to the Objective Control characteristic of models in that unit, and each time that unit takes a Battle-shock or Leadership test, add 1 to that test."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "NOXIOUS BLIGHTBRINGER"
+                  },
+                  "sourceQuote": "NOXIOUS BLIGHTBRINGER"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-shamblerot-vectorium"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "LEADING",
+            "subject": "MODEL",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "value": true
+            },
+            "sourceQuote": "While the bearer is leading a POXWALKERS unit"
+          },
+          {
+            "predicate": "BODYGUARD_ID",
+            "subject": "MODEL",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "unit-poxwalkers"
+            },
+            "sourceQuote": "POXWALKERS unit"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "objective-control",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "FORMED_ATTACHED_UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "FORMED_ATTACHED_UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "models in that unit"
+                }
+              }
+            ],
+            "conditions": []
+          },
+          {
+            "id": "test-modifier",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "FORMED_ATTACHED_UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "FORMED_ATTACHED_UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "that unit"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "FORMED_ATTACHED_UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "unitBattleShockOrLeadershipTest",
+                  "equals": true
+                },
+                "sourceQuote": "each time that unit takes a Battle-shock or Leadership test",
+                "roleId": "affected-unit"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-shamblerot-vectorium:enhancement:2",
+      "parentId": "detachment-shamblerot-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "title": "Lord of the Walking Pox",
+        "text": "DEATH GUARD model only. If the bearer is leading a POXWALKER unit, and is in Strategic Reserves, for the purposes of setting up that unit on the battlefield, treat the current battle round as the third battle round."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-shamblerot-vectorium"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "LEADING",
+            "subject": "MODEL",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "value": true
+            },
+            "sourceQuote": "If the bearer is leading a POXWALKER unit"
+          },
+          {
+            "predicate": "BODYGUARD_ID",
+            "subject": "MODEL",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "unit-poxwalkers"
+            },
+            "sourceQuote": "POXWALKER unit"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "inStrategicReserves",
+              "equals": true
+            },
+            "sourceQuote": "is in Strategic Reserves"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "setup-round",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "FORMED_ATTACHED_UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "FORMED_ATTACHED_UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "setting up that unit on the battlefield"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "FORMED_ATTACHED_UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "unitBeingSetUp",
+                  "equals": true
+                },
+                "sourceQuote": "for the purposes of setting up that unit on the battlefield",
+                "roleId": "affected-unit"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-shamblerot-vectorium:enhancement:3",
+      "parentId": "detachment-shamblerot-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+        "title": "Sorrowsyphon",
+        "text": "MALIGNANT PLAGUECASTER only. While the bearer is leading a POXWALKERS unit, add 1 to the Damage characteristic of the bearer’s Plague Wind weapon. Each time the bearer makes one or more attacks with a Plague Wind weapon, after the bearer’s unit has resolved its attacks, D3 Bodyguard models from the bearer’s unit are destroyed."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "MALIGNANT PLAGUECASTER"
+                  },
+                  "sourceQuote": "MALIGNANT PLAGUECASTER"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-shamblerot-vectorium"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "plague-wind-damage",
+            "roles": [
+              {
+                "id": "affected-model",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "the bearer’s Plague Wind weapon"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "sourceQuote": "While the bearer is leading a POXWALKERS unit"
+              },
+              {
+                "predicate": "BODYGUARD_ID",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "id": "unit-poxwalkers"
+                },
+                "sourceQuote": "POXWALKERS unit"
+              }
+            ]
+          },
+          {
+            "id": "bodyguard-destruction",
+            "roles": [
+              {
+                "id": "affected-bodyguard-model",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "FIELD",
+                      "subject": "MODEL",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "isBodyguardModel",
+                        "equals": true
+                      },
+                      "sourceQuote": "Bodyguard models"
+                    },
+                    {
+                      "predicate": "FIELD",
+                      "subject": "MODEL",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "memberOfBearerUnit",
+                        "equals": true
+                      },
+                      "sourceQuote": "from the bearer’s unit"
+                    }
+                  ]
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "bearerMadePlagueWindAttacks",
+                  "equals": true
+                },
+                "sourceQuote": "Each time the bearer makes one or more attacks with a Plague Wind weapon"
+              },
+              {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "bearerUnitFinishedAttacks",
+                  "equals": true
+                },
+                "sourceQuote": "after the bearer’s unit has resolved its attacks"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-shamblerot-vectorium:enhancement:4",
+      "parentId": "detachment-shamblerot-vectorium",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+        "title": "Talisman of Burgeoning",
+        "text": "DEATH GUARD model only. While the bearer is leading a unit, add 1 to the Toughness characteristic of POXWALKERS models in that unit."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-shamblerot-vectorium"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "LEADING",
+            "subject": "MODEL",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "value": true
+            },
+            "sourceQuote": "While the bearer is leading a unit"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "poxwalkers-toughness",
+            "roles": [
+              {
+                "id": "affected-model",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "POXWALKERS"
+                      },
+                      "sourceQuote": "POXWALKERS models in that unit"
+                    },
+                    {
+                      "predicate": "FIELD",
+                      "subject": "MODEL",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "memberOfBearerUnit",
+                        "equals": true
+                      },
+                      "sourceQuote": "models in that unit"
+                    }
+                  ]
+                }
+              }
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-tallyband-summoners:enhancement:1",
+      "parentId": "detachment-tallyband-summoners",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "title": "Beckoning Blight",
+        "text": "DEATH GUARD model only. Each time a PLAGUE LEGIONS unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within 12\" of the bearer, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 8\"."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-tallyband-summoners"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "deep-strike",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE LEGIONS"
+                  },
+                  "sourceQuote": "PLAGUE LEGIONS"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "usingDeepStrikeSetup",
+                  "equals": true
+                },
+                "sourceQuote": "is set up on the battlefield using the Deep Strike ability",
+                "roleId": "affected-unit"
+              },
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "whollyWithinTwelveOfBearer",
+                  "equals": true
+                },
+                "sourceQuote": "if it is set up wholly within 12\" of the bearer",
+                "roleId": "affected-unit"
+              }
+            ]
+          }
+        ]
+      },
+      "officialProof": {
+        "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "page": 7,
+        "fragments": [
+          "Beckoning Blight",
+          "DEATH GUARD model only. Each time a PLAGUE LEGIONS unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within 12\" of the bearer, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 8\"."
+        ]
+      }
+    },
+    {
+      "id": "detachment-tallyband-summoners:enhancement:2",
+      "parentId": "detachment-tallyband-summoners",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "title": "Fell Harvester",
+        "text": "DEATH GUARD model only. Add 2 to the Attacks characteristic of the bearer’s melee weapons."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-tallyband-summoners"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "melee-attacks",
+            "roles": [
+              {
+                "id": "affected-model",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "the bearer’s melee weapons"
+                }
+              }
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-tallyband-summoners:enhancement:3",
+      "parentId": "detachment-tallyband-summoners",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+        "title": "Entropic Knell",
+        "text": "GREAT UNCLEAN ONE only. In the Battle-shock step of your opponent’s Command phase, each enemy unit within 6\" of the bearer that is below its Starting Strength must take a Battle-shock test, subtracting 1 from that test."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "GREAT UNCLEAN ONE"
+                  },
+                  "sourceQuote": "GREAT UNCLEAN ONE"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-tallyband-summoners"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "opponentCommandBattleShockStep",
+              "equals": true
+            },
+            "sourceQuote": "In the Battle-shock step of your opponent’s Command phase"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "battle-shock",
+            "roles": [
+              {
+                "id": "affected-enemy",
+                "subject": "UNIT",
+                "allegiance": "ENEMY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "each enemy unit"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "withinSixOfBearer",
+                  "equals": true
+                },
+                "sourceQuote": "within 6\" of the bearer",
+                "roleId": "affected-enemy"
+              },
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "belowStartingStrength",
+                  "equals": true
+                },
+                "sourceQuote": "below its Starting Strength",
+                "roleId": "affected-enemy"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-tallyband-summoners:enhancement:4",
+      "parentId": "detachment-tallyband-summoners",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+        "title": "Tome of Bounteous Blessings",
+        "text": "MALIGNANT PLAGUECASTER only. Each time a PLAGUE LEGIONS unit within 12\" of the bearer takes a Battle-shock test, add 1 to that test and, if that test is passed, one model in that unit regains up to D3 lost wounds (if that unit is a BATTLELINE unit and that test is passed, up to D3 destroyed models can be returned to that unit instead)."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "MALIGNANT PLAGUECASTER"
+                  },
+                  "sourceQuote": "MALIGNANT PLAGUECASTER"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-tallyband-summoners"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "test-modifier",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "ANY",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE LEGIONS"
+                  },
+                  "sourceQuote": "PLAGUE LEGIONS"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "withinTwelveOfBearer",
+                  "equals": true
+                },
+                "sourceQuote": "within 12\" of the bearer",
+                "roleId": "affected-unit"
+              },
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleShockTest",
+                  "equals": true
+                },
+                "sourceQuote": "takes a Battle-shock test",
+                "roleId": "affected-unit"
+              }
+            ]
+          },
+          {
+            "id": "recover-wounds",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "ANY",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE LEGIONS"
+                  },
+                  "sourceQuote": "PLAGUE LEGIONS"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "withinTwelveOfBearer",
+                  "equals": true
+                },
+                "sourceQuote": "within 12\" of the bearer",
+                "roleId": "affected-unit"
+              },
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleShockTestPassed",
+                  "equals": true
+                },
+                "sourceQuote": "if that test is passed",
+                "roleId": "affected-unit"
+              }
+            ]
+          },
+          {
+            "id": "return-models",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "ANY",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "PLAGUE LEGIONS"
+                      },
+                      "sourceQuote": "PLAGUE LEGIONS"
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "BATTLELINE"
+                      },
+                      "sourceQuote": "BATTLELINE"
+                    }
+                  ]
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "withinTwelveOfBearer",
+                  "equals": true
+                },
+                "sourceQuote": "within 12\" of the bearer",
+                "roleId": "affected-unit"
+              },
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleShockTestPassed",
+                  "equals": true
+                },
+                "sourceQuote": "that test is passed",
+                "roleId": "affected-unit"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-death-lords-chosen:enhancement:1",
+      "parentId": "detachment-death-lords-chosen",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "title": "Face of Death",
+        "text": "TERMINATOR model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer’s unit must take a Battle-shock test."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TERMINATOR"
+                  },
+                  "sourceQuote": "TERMINATOR"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-death-lords-chosen"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "fightPhaseStart",
+              "equals": true
+            },
+            "sourceQuote": "At the start of the Fight phase"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "battle-shock",
+            "roles": [
+              {
+                "id": "affected-enemy",
+                "subject": "UNIT",
+                "allegiance": "ENEMY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "each enemy unit"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "inBearerUnitEngagementRange",
+                  "equals": true
+                },
+                "sourceQuote": "within Engagement Range of the bearer’s unit",
+                "roleId": "affected-enemy"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-death-lords-chosen:enhancement:2",
+      "parentId": "detachment-death-lords-chosen",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "title": "Vile Vigour",
+        "text": "TERMINATOR model only. While the bearer is leading a unit, add 1\" to the Movement characteristic of models in that unit and you can re-roll Advance rolls made for that unit."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TERMINATOR"
+                  },
+                  "sourceQuote": "TERMINATOR"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-death-lords-chosen"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "LEADING",
+            "subject": "MODEL",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "value": true
+            },
+            "sourceQuote": "While the bearer is leading a unit"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "movement",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "FORMED_ATTACHED_UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "FORMED_ATTACHED_UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "models in that unit"
+                }
+              }
+            ],
+            "conditions": []
+          },
+          {
+            "id": "advance-reroll",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "FORMED_ATTACHED_UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "FORMED_ATTACHED_UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "that unit"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "FORMED_ATTACHED_UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "unitAdvanceRoll",
+                  "equals": true
+                },
+                "sourceQuote": "Advance rolls made for that unit",
+                "roleId": "affected-unit"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-death-lords-chosen:enhancement:3",
+      "parentId": "detachment-death-lords-chosen",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+        "title": "Warprot Talisman",
+        "text": "TERMINATOR model only. Once per battle, at the end of your opponent’s turn, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TERMINATOR"
+                  },
+                  "sourceQuote": "TERMINATOR"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-death-lords-chosen"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "oncePerBattleAvailable",
+              "equals": true
+            },
+            "sourceQuote": "Once per battle"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "opponentTurnEnd",
+              "equals": true
+            },
+            "sourceQuote": "at the end of your opponent’s turn"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "bearerUnitNotEngaged",
+              "equals": true
+            },
+            "sourceQuote": "if the bearer’s unit is not within Engagement Range of one or more enemy units"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "optionalAbilityActivated",
+              "equals": true
+            },
+            "sourceQuote": "you can remove it from the battlefield"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "place-in-reserves",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "the bearer’s unit"
+                }
+              }
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-death-lords-chosen:enhancement:4",
+      "parentId": "detachment-death-lords-chosen",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+        "title": "Helm of the Fly King",
+        "text": "TERMINATOR model only. While the bearer is leading a unit, models in that unit cannot be targeted by ranged attacks unless the attacking model is within 18\"."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TERMINATOR"
+                  },
+                  "sourceQuote": "TERMINATOR"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-death-lords-chosen"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "LEADING",
+            "subject": "MODEL",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "value": true
+            },
+            "sourceQuote": "While the bearer is leading a unit"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "targeting-restriction",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "FORMED_ATTACHED_UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "FORMED_ATTACHED_UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "models in that unit"
+                }
+              },
+              {
+                "id": "attacking-model",
+                "subject": "MODEL",
+                "allegiance": "ENEMY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "attacking model"
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "attackerWithinEighteen",
+                      "equals": false
+                    },
+                    "sourceQuote": "unless the attacking model is within 18\"",
+                    "roleId": "attacking-model"
+                  }
+                ]
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "FORMED_ATTACHED_UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "rangedTargeting",
+                  "equals": true
+                },
+                "sourceQuote": "targeted by ranged attacks",
+                "roleId": "affected-unit"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-mortarions-hammer:enhancement:1",
+      "parentId": "detachment-mortarions-hammer",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "title": "Eye of Affliction",
+        "text": "DEATH GUARD model only. Ranged weapons equipped by models in the bearer’s unit have the [ignores cover] ability while targeting an Afflicted enemy unit."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-mortarions-hammer"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "ignores-cover",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "Ranged weapons equipped by models in the bearer’s unit"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "targetingAfflictedEnemy",
+                  "equals": true
+                },
+                "sourceQuote": "while targeting an Afflicted enemy unit",
+                "roleId": "affected-unit"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-mortarions-hammer:enhancement:2",
+      "parentId": "detachment-mortarions-hammer",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "title": "Bilemaw Blight",
+        "text": "MALIGNANT PLAGUECASTER only. At the start of your Shooting phase, until the end of the phase, add 12\" to the Range characteristics of the bearer’s Plague Wind weapon."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "MALIGNANT PLAGUECASTER"
+                  },
+                  "sourceQuote": "MALIGNANT PLAGUECASTER"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-mortarions-hammer"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "ownShootingPhaseStarted",
+              "equals": true
+            },
+            "sourceQuote": "At the start of your Shooting phase"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "plague-wind-range",
+            "roles": [
+              {
+                "id": "affected-model",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "the bearer’s Plague Wind weapon"
+                }
+              }
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-mortarions-hammer:enhancement:3",
+      "parentId": "detachment-mortarions-hammer",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+        "title": "Shriekworm Familiar",
+        "text": "DEATH GUARD model only. Once per battle round, you can target the bearer’s unit with the Fire Overwatch Stratagem for 0CP."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-mortarions-hammer"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "oncePerBattleRoundAvailable",
+              "equals": true
+            },
+            "sourceQuote": "Once per battle round"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "fireOverwatchSelected",
+              "equals": true
+            },
+            "sourceQuote": "you can target the bearer’s unit with the Fire Overwatch Stratagem"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "fire-overwatch",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "the bearer’s unit"
+                }
+              }
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-mortarions-hammer:enhancement:4",
+      "parentId": "detachment-mortarions-hammer",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+        "title": "Tendrilous Emissions",
+        "text": "LORD OF VIRULENCE only. While the bearer is within 3\" of one or more friendly DEATH GUARD VEHICLE units, the bearer has the Lone Operative ability, and each time one of those VEHICLE units makes a ranged attack that targets an enemy unit visible to the bearer, re-roll a Wound roll of 1."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "LORD OF VIRULENCE"
+                  },
+                  "sourceQuote": "LORD OF VIRULENCE"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-mortarions-hammer"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "nearFriendlyDeathGuardVehicle",
+              "equals": true
+            },
+            "sourceQuote": "While the bearer is within 3\" of one or more friendly DEATH GUARD VEHICLE units"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "lone-operative",
+            "roles": [
+              {
+                "id": "affected-model",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "the bearer has the Lone Operative ability"
+                }
+              }
+            ],
+            "conditions": []
+          },
+          {
+            "id": "vehicle-wound-reroll",
+            "roles": [
+              {
+                "id": "affected-vehicle",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "DEATH GUARD"
+                      },
+                      "sourceQuote": "DEATH GUARD"
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "VEHICLE"
+                      },
+                      "sourceQuote": "VEHICLE"
+                    }
+                  ]
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "withinThreeOfBearer",
+                  "equals": true
+                },
+                "sourceQuote": "one of those VEHICLE units",
+                "roleId": "affected-vehicle"
+              },
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "rangedAttackTargetsBearerVisibleEnemy",
+                  "equals": true
+                },
+                "sourceQuote": "makes a ranged attack that targets an enemy unit visible to the bearer",
+                "roleId": "affected-vehicle"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-champions-of-contagion:enhancement:1",
+      "parentId": "detachment-champions-of-contagion",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "title": "Final Ingredient",
+        "text": "BIOLOGUS PUTRIFIER only. Once per battle, after the bearers unit has fought, if one or more CHARACTER models were destroyed as a result of those attacks, select one Plague. Until the end of the battle, while an enemy unit is Afflicted, that unit has the effect of the selected Plague in addition to any other."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "BIOLOGUS PUTRIFIER"
+                  },
+                  "sourceQuote": "BIOLOGUS PUTRIFIER"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-champions-of-contagion"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "oncePerBattleAvailable",
+              "equals": true
+            },
+            "sourceQuote": "Once per battle"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "bearerUnitFinishedFighting",
+              "equals": true
+            },
+            "sourceQuote": "after the bearers unit has fought"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "characterDestroyedByThoseAttacks",
+              "equals": true
+            },
+            "sourceQuote": "if one or more CHARACTER models were destroyed as a result of those attacks"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "additionalPlagueSelected",
+              "equals": true
+            },
+            "sourceQuote": "select one Plague"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "additional-plague",
+            "roles": [
+              {
+                "id": "affected-enemy",
+                "subject": "UNIT",
+                "allegiance": "ENEMY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "while an enemy unit is Afflicted"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "isAfflicted",
+                  "equals": true
+                },
+                "sourceQuote": "while an enemy unit is Afflicted",
+                "roleId": "affected-enemy"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-champions-of-contagion:enhancement:2",
+      "parentId": "detachment-champions-of-contagion",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "title": "Visions of Virulence",
+        "text": "MALIGNANT PLAGUECASTER only. While an enemy unit is enfeebled by the bearer’s Pestilent Fallout ability, that unit is also Afflicted."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "MALIGNANT PLAGUECASTER"
+                  },
+                  "sourceQuote": "MALIGNANT PLAGUECASTER"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-champions-of-contagion"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "afflicted",
+            "roles": [
+              {
+                "id": "affected-enemy",
+                "subject": "UNIT",
+                "allegiance": "ENEMY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "an enemy unit"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "enfeebledByBearerPestilentFallout",
+                  "equals": true
+                },
+                "sourceQuote": "While an enemy unit is enfeebled by the bearer’s Pestilent Fallout ability",
+                "roleId": "affected-enemy"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-champions-of-contagion:enhancement:3",
+      "parentId": "detachment-champions-of-contagion",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+        "title": "Needle of Nurgle",
+        "text": "PLAGUE SURGEON only. Each time the bearer uses its Tainted Narthecium ability, you can return up to D3 destroyed models to the bearer’s unit (instead of 1)."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE SURGEON"
+                  },
+                  "sourceQuote": "PLAGUE SURGEON"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-champions-of-contagion"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "usingTaintedNarthecium",
+              "equals": true
+            },
+            "sourceQuote": "Each time the bearer uses its Tainted Narthecium ability"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "return-models",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "the bearer’s unit"
+                }
+              }
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-champions-of-contagion:enhancement:4",
+      "parentId": "detachment-champions-of-contagion",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+        "title": "Cornucophagus",
+        "text": "LORD OF POXES only. In the Declare Battle Formations step select one Plague. Until the end of the battle, while an enemy unit is within Contagion Range of the bearer, that enemy unit has the effect of that Plague in addition to any other."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "LORD OF POXES"
+                  },
+                  "sourceQuote": "LORD OF POXES"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-champions-of-contagion"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "plagueSelectedInBattleFormations",
+              "equals": true
+            },
+            "sourceQuote": "In the Declare Battle Formations step select one Plague"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "additional-plague",
+            "roles": [
+              {
+                "id": "affected-enemy",
+                "subject": "UNIT",
+                "allegiance": "ENEMY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "an enemy unit"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "withinBearerContagionRange",
+                  "equals": true
+                },
+                "sourceQuote": "while an enemy unit is within Contagion Range of the bearer",
+                "roleId": "affected-enemy"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "detachment-paragons-of-putrescence:enhancement:1",
+      "parentId": "detachment-paragons-of-putrescence",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "title": "Rejuvenating Swarm",
+        "text": "DEATH GUARD INFANTRY model only (excluding TERMINATOR models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "INFANTRY"
+                  },
+                  "sourceQuote": "INFANTRY"
+                },
+                {
+                  "op": "NOT",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "TERMINATOR"
+                      },
+                      "sourceQuote": "excluding TERMINATOR models"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-paragons-of-putrescence"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "wound-roll-modifier",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "Attacks that target this unit"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "attackStrengthExceedsUnitToughness",
+                  "equals": true
+                },
+                "sourceQuote": "with a S greater than this unit’s T",
+                "roleId": "affected-unit"
+              }
+            ]
+          }
+        ]
+      },
+      "officialProof": {
+        "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "page": 4,
+        "fragments": [
+          "Rejuvenating Swarm",
+          "DEATH GUARD INFANTRY model only (excluding TERMINATOR models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls."
+        ]
+      }
+    },
+    {
+      "id": "detachment-paragons-of-putrescence:enhancement:2",
+      "parentId": "detachment-paragons-of-putrescence",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "title": "Host of the Hybridised Pox",
+        "text": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plague listed in Nurgle’s Gift. Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "sourceQuote": "CHARACTERS"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "sourceQuote": "DEATH GUARD"
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "INFANTRY"
+                  },
+                  "sourceQuote": "INFANTRY"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-paragons-of-putrescence"
+            },
+            "sourceQuote": "your chosen Detachment"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "oncePerBattlePerArmyAvailable",
+              "equals": true
+            },
+            "sourceQuote": "Once per battle, per army"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "ownCommandPhase",
+              "equals": true
+            },
+            "sourceQuote": "In your Command phase"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "optionalAbilityActivated",
+              "equals": true
+            },
+            "sourceQuote": "you can use this ability"
+          },
+          {
+            "predicate": "FIELD",
+            "subject": "MODEL",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "additionalPlagueSelected",
+              "equals": true
+            },
+            "sourceQuote": "select one of the Plague listed in Nurgle’s Gift"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "additional-plague",
+            "roles": [
+              {
+                "id": "affected-enemy",
+                "subject": "UNIT",
+                "allegiance": "ENEMY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "sourceQuote": "Enemy units"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "withinBearerUnitContagionRange",
+                  "equals": true
+                },
+                "sourceQuote": "within Contagion Range of this unit",
+                "roleId": "affected-enemy"
+              }
+            ]
+          }
+        ]
+      },
+      "officialProof": {
+        "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "page": 4,
+        "fragments": [
+          "Host of the Hybridised Pox",
+          "DEATH GUARD INFANTRY model only. (Once per battle, per army)",
+          "In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift (see Codex: Death Guard).",
+          "Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle."
+        ]
+      }
+    },
+    {
+      "id": "detachment-contagion-engines:enhancement:1",
+      "parentId": "detachment-contagion-engines",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "title": "Parasitic Woe‑Reaper",
+        "text": "CONTAGION ENGINE unit only. When this unit has fought, one model in this unit heals D3 wounds."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "UNIT",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CONTAGION ENGINE"
+              },
+              "sourceQuote": "CONTAGION ENGINE"
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-contagion-engines"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "heal-model",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CONTAGION ENGINE"
+                  },
+                  "sourceQuote": "CONTAGION ENGINE"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "unitFinishedFighting",
+                  "equals": true
+                },
+                "sourceQuote": "When this unit has fought"
+              }
+            ]
+          }
+        ]
+      },
+      "officialProof": {
+        "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "page": 2,
+        "fragments": [
+          "Parasitic Woe‑Reaper",
+          "CONTAGION ENGINE unit only. When this unit has fought, one model in this unit heals D3 wounds."
+        ]
+      }
+    },
+    {
+      "id": "detachment-contagion-engines:enhancement:2",
+      "parentId": "detachment-contagion-engines",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "title": "Lancet of the Worldsore",
+        "text": "Friendly HELBRUTE/MYPHITIC BLIGHT-HAULER unit only. This unit has MOBILE."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "UNIT",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ANY",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "HELBRUTE"
+                  },
+                  "sourceQuote": "HELBRUTE"
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "MYPHITIC BLIGHT-HAULER"
+                  },
+                  "sourceQuote": "MYPHITIC BLIGHT-HAULER"
+                }
+              ]
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-contagion-engines"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "mobile",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "HELBRUTE"
+                      },
+                      "sourceQuote": "HELBRUTE"
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "MYPHITIC BLIGHT-HAULER"
+                      },
+                      "sourceQuote": "MYPHITIC BLIGHT-HAULER"
+                    }
+                  ]
+                }
+              }
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      "officialProof": {
+        "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "page": 2,
+        "fragments": [
+          "Lancet of the Worldsore",
+          "Friendly HELBRUTE/MYPHITIC BLIGHT-HAULER unit only. This unit has MOBILE."
+        ]
+      }
+    },
+    {
+      "id": "detachment-flyblown-host:enhancement:1",
+      "parentId": "detachment-flyblown-host",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "title": "Insectile Murmuration",
+        "text": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "UNIT",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "PLAGUE MARINES"
+              },
+              "sourceQuote": "PLAGUE MARINES"
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-flyblown-host"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "wound-reroll",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE MARINES"
+                  },
+                  "sourceQuote": "PLAGUE MARINES"
+                }
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "attackTargetsUnitInFriendlyContagionRange",
+                  "equals": true
+                },
+                "sourceQuote": "When this unit’s attacks target a unit within Contagion Range of a friendly unit"
+              }
+            ]
+          }
+        ]
+      },
+      "officialProof": {
+        "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "page": 3,
+        "fragments": [
+          "Insectile Murmuration",
+          "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1."
+        ]
+      }
+    },
+    {
+      "id": "detachment-flyblown-host:enhancement:2",
+      "parentId": "detachment-flyblown-host",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "title": "Plagueveil",
+        "text": "PLAGUE MARINES unit only. This unit has -3\" detection range."
+      },
+      "expected": {
+        "roles": [
+          {
+            "id": "eligible-owner",
+            "subject": "UNIT",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "PLAGUE MARINES"
+              },
+              "sourceQuote": "PLAGUE MARINES"
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-flyblown-host"
+            },
+            "sourceQuote": "your chosen Detachment"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "detection-range",
+            "roles": [
+              {
+                "id": "affected-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE MARINES"
+                  },
+                  "sourceQuote": "PLAGUE MARINES"
+                }
+              }
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      "officialProof": {
+        "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "page": 3,
+        "fragments": [
+          "Plagueveil",
+          "PLAGUE MARINES unit only. This unit has -3\" detection range."
+        ]
+      }
+    }
+  ]
+}

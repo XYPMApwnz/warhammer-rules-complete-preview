@@ -46,6 +46,14 @@ export function validatePredicate(node, subject, model, entity, fieldTypes = {})
   const owner=proof?.otherEntityId?model.entities.find(record=>record.id===proof.otherEntityId):entity;
   if (!owner||!Array.isArray(proof?.field)||!proof.quote||!text(get(owner.data,proof.field))?.includes(proof.quote)) fail(`source atom without exact evidence ${entity.id}/${node.predicate}`);
 }
+function validateRolePredicate(node,role,model,entity) {
+  const checkBinding=value=>{
+    if (value?.roleId&&value.roleId!==role.id) fail('predicate bound to a different role');
+    if (value?.op) for (const child of value.args||[]) checkBinding(child);
+  };
+  checkBinding(node);
+  validatePredicate(node,role.subject,model,entity);
+}
 export function validateContracts(model) {
   const seen=new Set();
   for (const entity of model.entities.filter(record=>record.ruleContract)) {
@@ -63,8 +71,10 @@ export function validateContracts(model) {
     const checkRole=role=>{
       if (!role?.id||!subjects.includes(role.subject)||!['FRIENDLY','ENEMY','ANY'].includes(role.allegiance)||roles.has(role.id)) fail('missing subject or malformed role');
       roles.set(role.id,role);
-      validatePredicate(role.selector,role.subject,model,entity);
-      for (const condition of role.conditions||[]) validatePredicate(condition,role.subject,model,entity);
+      validateRolePredicate(role.selector,role,model,entity);
+      for (const condition of role.conditions||[]) {
+        validateRolePredicate(condition,role,model,entity);
+      }
     };
     for (const role of contract.roles) checkRole(role);
     for(const id of contract.compatibilityRoleIds||[])if(!roles.has(id))fail('unresolved compatibility role');
@@ -74,15 +84,23 @@ export function validateContracts(model) {
     }
     for (const clause of contract.clauses||[]) {
       if (!clause.id||!Array.isArray(clause.sourceFields)||!clause.sourceFields.length) fail('malformed clause');
-      const local=new Set();
+      const local=new Map();
       for (const role of clause.roles||[]) {
-        if (local.has(role.id)) fail('duplicate clause role');
-        local.add(role.id);
+        if (!role.id||local.has(role.id)) fail('missing or duplicate clause role');
+        local.set(role.id,role);
         if (!subjects.includes(role.subject)||!['FRIENDLY','ENEMY','ANY'].includes(role.allegiance)) fail('impossible target scope');
-        validatePredicate(role.selector,role.subject,model,entity);
-        for (const condition of role.conditions||[]) validatePredicate(condition,role.subject,model,entity);
+        if (roles.has(role.id)&&roles.get(role.id).subject!==role.subject) fail('clause role shadows a different subject');
+        validateRolePredicate(role.selector,role,model,entity);
+        for (const condition of role.conditions||[]) {
+          validateRolePredicate(condition,role,model,entity);
+        }
       }
-      for (const condition of clause.conditions||[]) validatePredicate(condition,condition.subject,model,entity);
+      for (const condition of clause.conditions||[]) {
+        const id=condition.roleId||contract.roles[0]?.id;
+        const participant=condition.roleId?(local.get(id)||roles.get(id)):roles.get(id);
+        if (!participant) fail('unresolved clause condition role');
+        validateRolePredicate(condition,participant,model,entity);
+      }
       for (const path of clause.sourceFields) if (get(entity.data,path)===undefined) fail('unresolved clause source field');
     }
   }

@@ -208,3 +208,41 @@ node books/death-guard/v2/rule-contract-build.mjs --check
 
 The independent JSON census is disposable QA evidence, checked against raw
 sources on every guard run. It is never a production semantics input.
+
+Enhancement predicate subject closure
+------------------------------------
+
+Clause FIELD declarations bind an explicit participant role; the producer
+derives their subject from that role. Implicit bearer conditions retain their
+owner identity. A second MODEL participant is not interchangeable with the
+bearer. Unknown roles, conflicting subjects and unbound non-owner conditions
+fail construction. Schema validation checks the actual bound role, including
+role bindings nested inside ALL, ANY and NOT.
+
+Rejuvenating Swarm's source says "this unit" without requiring a leading state.
+Its attack-strength condition is UNIT/BATTLE, bound to affected-unit. It accepts
+ordinary eligible unit context with no attachment information; unavailable
+battle context is UNKNOWN, and invalid subject/type is INVALID. Source-supported
+leading conditions and FORMED_ATTACHED_UNIT recipients remain unchanged.
+
+`enhancement-predicate-source-qa.py` independently re-enumerates all 30 accepted
+raw Enhancement cards, verifies source identities and current PDF overlays,
+and validates reviewed source expectations. The JSON expectations are QA
+adjudication, never generated contracts or production inputs. Every run covers
+67 roles, 194 predicates and the 60 assignment selector predicates. The Node
+guard compares every role, subject, context, selector, condition and binding;
+the main Rule Contract QA invokes it too.
+
+The focused QA rejects 584 mutations, including coordinated UNIT/formed scope
+changes that still pass schema, owner MODEL/UNIT confusion, attachment predicate
+loss, assignment drift and same-subject bearer/Bodyguard identity mistakes.
+Eight schema rejection controls and three producer rejection controls cover
+the original defect and role-binding failures. No factual text, effect runtime,
+Reader or Related Rules output changes.
+
+```
+python books/death-guard/v2/enhancement-predicate-source-qa.py --summary
+node books/death-guard/v2/enhancement-predicate-qa.mjs
+node books/death-guard/v2/rule-contract-qa.mjs
+node books/death-guard/v2/rule-contract-build.mjs --check
+```
