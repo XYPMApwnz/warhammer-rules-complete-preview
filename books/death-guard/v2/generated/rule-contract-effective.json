@@ -30980,7 +30980,25 @@
                 "quote": "PLAGUE LEGIONS"
               }
             },
-            "conditions": []
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "engaged",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One PLAGUE LEGIONS unit from your army that is within Engagement Range of one or more enemy units."
+                }
+              }
+            ]
           },
           {
             "id": "primary-effect-1",
@@ -32275,7 +32293,25 @@
                 "quote": "PLAGUE LEGIONS"
               }
             },
-            "conditions": []
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "withinEngagementRangeOfTriggeringEnemy",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One PLAGUE LEGIONS unit from your army that is within Engagement Range of that enemy unit."
+                }
+              }
+            ]
           },
           {
             "id": "enemy-affected",
@@ -48112,6 +48148,23 @@
                     "text"
                   ],
                   "quote": "That CONTAGION ENGINE unit."
+                }
+              },
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "withinEngagementRangeOfTriggeringEnemy",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Your opponent’s Movement phase, when an enemy unit is selected to make a fall-back move, if that enemy unit is engaged with a friendly CONTAGION ENGINE unit."
                 }
               }
             ]

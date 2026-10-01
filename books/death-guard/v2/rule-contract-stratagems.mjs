@@ -1,11 +1,14 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import {normalizeTargetConditions} from './stratagem-target-conditions.mjs';
 
 // Source-ID declarations independently adjudicated from all 45 accepted raw
 // Stratagem records. No datasheet-by-rule pair matrix or V1 correction ledger.
 // A changed accepted clause requires explicit re-adjudication, rather than a
 // silent reinterpretation of its selector/scope. The canonical prose stays in
 // entity.data; contracts retain exact evidence quotes and field references.
+// TARGET prerequisites are normalized from accepted clauses at build time;
+// declarations own static selectors/effect adjudication, not a second state list.
 const declarations = [
   {
     "id": "detachment-virulent-vectorium:stratagem:1",
@@ -23,20 +26,6 @@ const declarations = [
         ]
       ]
     },
-    "roster": [
-      {
-        "op": "HAS_ABILITY",
-        "value": "Deadly Demise",
-        "context": "ROSTER_KNOWN"
-      }
-    ],
-    "battle": [
-      {
-        "op": "JUST_DESTROYED",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary",
@@ -78,14 +67,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_AS_ENEMY_ATTACK_TARGET",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-models",
@@ -122,20 +103,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [
-      {
-        "op": "IMPORTED_WARLORD_IDENTITY",
-        "value": true,
-        "context": "ROSTER_KNOWN"
-      }
-    ],
-    "battle": [
-      {
-        "op": "ON_BATTLEFIELD",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "friendly-army-models",
@@ -167,14 +134,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "HAS_LOST_WOUNDS",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "selected-enemy",
@@ -217,8 +176,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "selected-enemy",
@@ -268,14 +225,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_TO_SHOOT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-model-attacks",
@@ -312,8 +261,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "selected-terrain",
@@ -365,14 +312,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_TO_MOVE_OR_CHARGE_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary",
@@ -404,14 +343,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_TO_SHOOT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-model-attacks",
@@ -456,14 +387,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_TO_SHOOT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-ranged-weapons",
@@ -496,8 +419,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "selected-objective",
@@ -549,14 +470,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "ENGAGED",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "selected-enemy",
@@ -596,25 +509,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [
-      {
-        "op": "IS_ATTACHED_UNIT",
-        "value": true,
-        "context": "ROSTER_KNOWN"
-      }
-    ],
-    "battle": [
-      {
-        "op": "SELECTED_TO_SHOOT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      },
-      {
-        "op": "SELECTED_TO_SHOOT_OR_FIGHT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-model-attacks",
@@ -650,25 +544,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [
-      {
-        "op": "IS_ATTACHED_UNIT",
-        "value": true,
-        "context": "ROSTER_KNOWN"
-      }
-    ],
-    "battle": [
-      {
-        "op": "SELECTED_TO_SHOOT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      },
-      {
-        "op": "SELECTED_TO_SHOOT_OR_FIGHT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-model-attacks",
@@ -704,20 +579,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [
-      {
-        "op": "IS_ATTACHED_UNIT",
-        "value": true,
-        "context": "ROSTER_KNOWN"
-      }
-    ],
-    "battle": [
-      {
-        "op": "SELECTED_AS_ENEMY_ATTACK_TARGET",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-models",
@@ -749,14 +610,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [
-      {
-        "op": "CONTAINS_CHARACTER_MODELS_MINIMUM",
-        "value": 2,
-        "context": "ROSTER_KNOWN"
-      }
-    ],
-    "battle": [],
     "effects": [
       {
         "roleId": "primary",
@@ -784,14 +637,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [
-      {
-        "op": "IS_LEADING_UNIT",
-        "value": false,
-        "context": "ROSTER_KNOWN"
-      }
-    ],
-    "battle": [],
     "effects": [
       {
         "roleId": "recipient-unit",
@@ -841,19 +686,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_TO_SHOOT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      },
-      {
-        "op": "WITHIN_ENEMY_ENGAGEMENT_RANGE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "selected-enemy",
@@ -893,14 +725,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "JUST_DESTROYED",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "new-unit",
@@ -934,14 +758,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_TO_FIGHT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-model-attacks",
@@ -977,8 +793,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "primary",
@@ -1030,14 +844,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_TO_MOVE_OR_CHARGE_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary",
@@ -1069,8 +875,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "enemy-affected",
@@ -1102,8 +906,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "enemy-affected",
@@ -1143,14 +945,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_AS_ENEMY_ATTACK_TARGET",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "attacking-enemy",
@@ -1205,14 +999,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "JUST_DESTROYED",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "selected-enemy",
@@ -1244,8 +1030,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "primary-models",
@@ -1292,20 +1076,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [
-      {
-        "op": "IS_ATTACHED_UNIT",
-        "value": false,
-        "context": "ROSTER_KNOWN"
-      }
-    ],
-    "battle": [
-      {
-        "op": "IN_STRATEGIC_RESERVES",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-models",
@@ -1337,8 +1107,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "enemy-affected",
@@ -1370,14 +1138,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_AS_ENEMY_ATTACK_TARGET",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-model-attack",
@@ -1438,8 +1198,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "primary-models",
@@ -1471,14 +1229,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_TO_FIGHT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-model-attacks",
@@ -1514,14 +1264,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_AS_ENEMY_ATTACK_TARGET",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-destroyed-model",
@@ -1565,8 +1307,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "selected-objective",
@@ -1617,14 +1357,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "SELECTED_TO_SHOOT_THIS_PHASE",
-        "value": false,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "primary-ranged-weapons",
@@ -1656,8 +1388,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "selected-enemy",
@@ -1693,8 +1423,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "primary-attacks",
@@ -1726,8 +1454,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "selected-enemy",
@@ -1759,8 +1485,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "triggering-enemy",
@@ -1796,14 +1520,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [
-      {
-        "op": "ENGAGED",
-        "value": true,
-        "context": "BATTLE_STATE"
-      }
-    ],
     "effects": [
       {
         "roleId": "selected-enemy",
@@ -1835,8 +1551,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "primary-ranged-attacks",
@@ -1887,8 +1601,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "primary-ranged-attacks",
@@ -1921,8 +1633,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "primary",
@@ -1950,8 +1660,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "selected-enemy",
@@ -1988,8 +1696,6 @@ const declarations = [
       ],
       "anyKeywordGroups": []
     },
-    "roster": [],
-    "battle": [],
     "effects": [
       {
         "roleId": "primary",
@@ -2047,20 +1753,7 @@ function compile(entity, spec) {
   };
   const primary = {id:'primary', subject:spec.primary.subject, allegiance:'FRIENDLY', binding:'PRIMARY_ACTOR', purpose:'PRIMARY_TARGET', selector:selector(spec.primary.subject, spec.primary.allKeywords, spec.primary.anyKeywordGroups, target), conditions:[]};
   const sourceFields = [['cp'], ['category'], ...lines.map((_, index) => ['lines', index, 'text'])];
-  for (const condition of spec.roster) {
-    if (condition.op === 'HAS_ABILITY') primary.conditions.push(atom(primary.subject, 'MODEL_ABILITY', 'STATIC', {ability:condition.value}, target));
-    else if (condition.op === 'IMPORTED_WARLORD_IDENTITY') primary.conditions.push(contextual(primary.subject, 'isWarlord', 'ROSTER', true, target));
-    else if (condition.op === 'IS_LEADING_UNIT') primary.conditions.push(atom(primary.subject, 'LEADING', 'ROSTER', {value:condition.value}, target));
-    else if (condition.op === 'CONTAINS_CHARACTER_MODELS_MINIMUM') primary.conditions.push(atom(primary.subject, 'CHARACTER_MODEL_COUNT', 'ROSTER', {min:condition.value}, target));
-    else primary.conditions.push(contextual(primary.subject, condition.op === 'IS_ATTACHED_UNIT' ? 'attached' : fieldKey(condition.op), 'ROSTER', condition.value, target));
-  }
-  for (const condition of spec.battle) {
-    // 'not selected to shoot or fight' is one phase-relative condition; don't
-    // additionally demand 'not shot' during the Fight phase, or vice versa.
-    if (condition.op === 'SELECTED_TO_SHOOT_THIS_PHASE' && spec.battle.some(row => row.op === 'SELECTED_TO_SHOOT_OR_FIGHT_THIS_PHASE')) continue;
-    primary.conditions.push(contextual(primary.subject, fieldKey(condition.op), 'BATTLE', condition.value, target));
-  }
-  if (/^That\b/.test(target.quote)) primary.conditions.push(contextual(primary.subject, 'isTriggerUnit', 'BATTLE', true, target));
+  primary.conditions=normalizeTargetConditions({target,when,subject:primary.subject});
   const timingAtoms = [], text = when.quote;
   // Ownership is attached to each phase alternative. 'Your opponent's Shooting
   // phase or the Fight phase' permits Fight in either player's turn; a global
@@ -2117,7 +1810,7 @@ function compile(entity, spec) {
       } else if (op === 'EXCLUDES_BATTLE_SHOCKED') conditions.push(contextual(subject, 'battleShocked', 'BATTLE', false, effect));
       else conditions.push(contextual(subject, fieldKey(op), roster ? 'ROSTER' : 'BATTLE', true, proof));
     }
-    role.conditions = conditions;
+    role.conditions = secondaryTarget ? normalizeTargetConditions({target,when,subject,purpose:'SECONDARY_TARGET'}) : conditions;
     roles.push(role);
     clauses.push({id:entity.id + ':effect-clause:' + (index + 1), roles:[role], conditions:[], sourceFields:secondaryTarget ? [target.field, effect.field] : [effect.field], effectScope:original, operation:declaration.operation});
   }

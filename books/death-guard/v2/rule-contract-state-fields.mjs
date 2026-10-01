@@ -1,6 +1,10 @@
 // Finite context vocabulary for the source-adjudicated DG foundation.
 // Adding a field requires source review; unknown fields are INVALID, never UNKNOWN.
 export const stateFields = Object.freeze({
+  "withinEngagementRangeOfTriggeringEnemy": {
+    "contextLevel": "BATTLE",
+    "valueType": "boolean"
+  },
   "additionalPlagueSelected": {
     "contextLevel": "BATTLE",
     "valueType": "boolean"

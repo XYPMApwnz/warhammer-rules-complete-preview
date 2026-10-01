@@ -1,0 +1,1771 @@
+{
+  "schema": "dg-stratagem-target-source-census/v1",
+  "authority": "INDEPENDENT_QA_EVIDENCE_ONLY",
+  "totals": {
+    "stratagemsScanned": 45,
+    "targetConditionsTotal": 47,
+    "primaryTargetConditions": 44,
+    "secondaryTargetConditions": 3,
+    "antecedentBindings": 8,
+    "battleShockTargetConditions": 0,
+    "unresolved": 0
+  },
+  "stratagems": [
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:1",
+      "primarySubject": "MODEL",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Any phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD VEHICLE or DEATH GUARD MONSTER model from your army with the Deadly Demise ability that was just destroyed. You can use this Stratagem on that model even though it was just destroyed."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "MODEL",
+          "predicate": "MODEL_ABILITY",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "ability": "Deadly Demise"
+          },
+          "sourceLabel": "TARGET",
+          "quote": "with the Deadly Demise ability"
+        },
+        {
+          "roleId": "primary",
+          "subject": "MODEL",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "justDestroyed",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that was just destroyed"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:2",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedAsEnemyAttackTarget",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that was selected as the target of one or more of the attacking unit’s attacks"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:3",
+      "primarySubject": "MODEL",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "Your DEATH GUARD WARLORD that is on the battlefield."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "MODEL",
+          "predicate": "FIELD",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "key": "isWarlord",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "WARLORD"
+        },
+        {
+          "roleId": "primary",
+          "subject": "MODEL",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "onBattlefield",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that is on the battlefield"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:4",
+      "primarySubject": "MODEL",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD model your army that has lost one or more wounds."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "MODEL",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "hasLostWounds",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has lost one or more wounds"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:5",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD CHARACTER unit from your army."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-virulent-vectorium:stratagem:6",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD INFANTRY unit from your army that has not been selected to shoot this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToShootThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has not been selected to shoot this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:1",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "End of your Movement phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD VEHICLE unit from your army."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:2",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase or your Charge phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD VEHICLE unit from your army that has not been selected to move or charge this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToMoveOrChargeThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has not been selected to move or charge this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:3",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD unit from your army that has not been selected to shoot this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToShootThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has not been selected to shoot this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:4",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD VEHICLE unit from your army that has not been selected to shoot this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToShootThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has not been selected to shoot this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:5",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD VEHICLE unit from your army."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-mortarions-hammer:stratagem:6",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of your opponent’s Charge phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly unengaged DEATH GUARD VEHICLE unit."
+        }
+      ],
+      "officialProofs": [
+        {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 7,
+          "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+          "verifiedLabels": [
+            "TARGET"
+          ]
+        }
+      ],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "engaged",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "unengaged"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:1",
+      "primarySubject": "FORMED_ATTACHED_UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase or the Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "FORMED_ATTACHED_UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "key": "attached",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "Attached unit"
+        },
+        {
+          "roleId": "primary",
+          "subject": "FORMED_ATTACHED_UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToShootOrFightThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has not been selected to shoot or fight this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:2",
+      "primarySubject": "FORMED_ATTACHED_UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase or the Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD Attached unit from your army that has not been selected to shoot or fight this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "FORMED_ATTACHED_UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "key": "attached",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "Attached unit"
+        },
+        {
+          "roleId": "primary",
+          "subject": "FORMED_ATTACHED_UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToShootOrFightThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has not been selected to shoot or fight this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:3",
+      "primarySubject": "FORMED_ATTACHED_UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD Attached unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "FORMED_ATTACHED_UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "key": "attached",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "Attached unit"
+        },
+        {
+          "roleId": "primary",
+          "subject": "FORMED_ATTACHED_UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedAsEnemyAttackTarget",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that was selected as the target of one or more of the attacking unit’s attacks"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:4",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of the Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD unit from your army that includes two CHARACTER models."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "CHARACTER_MODEL_COUNT",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "min": 2
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that includes two CHARACTER models"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:5",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase, before the Reinforcements step."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD CHARACTER unit from your army that is not leading a unit."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "LEADING",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "value": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that is not leading a unit"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-champions-of-contagion:stratagem:6",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One BIOLOGUS PUTRIFIER unit from your army that is not within Engagement Range of one or more enemy units and has not been selected to shoot this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "withinEnemyEngagementRange",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that is not within Engagement Range of one or more enemy units"
+        },
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToShootThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "has not been selected to shoot this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:1",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Any phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One NURGLINGS unit from your army that was just destroyed. You can target that unit with this Stratagem even though it was just destroyed."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "justDestroyed",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that was just destroyed"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:2",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD unit from your army that has not been selected to fight this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToFightThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has not been selected to fight this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:3",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One PLAGUE LEGIONS unit from your army that is within Engagement Range of one or more enemy units."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "engaged",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that is within Engagement Range of one or more enemy units"
+        }
+      ],
+      "antecedentBindings": [],
+      "sourceOccurrences": [
+        {
+          "path": "books/death-guard/v2/sources/accepted-waha-pages/Beasts-of-Nurgle.html",
+          "publisherReferenceId": "tooltip_content00224",
+          "sha256": "912AE5CFF4D24744CEC0FA5D1132EB81DAAAA50B3DF58CFC4EDF3C4993F53FF5"
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:4",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase or your Charge phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One PLAGUE LEGIONS MONSTER unit from your army that has not been selected to move or charge this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToMoveOrChargeThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has not been selected to move or charge this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:5",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One PLAGUE LEGIONS unit from your army."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-tallyband-summoners:stratagem:6",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Movement phase, when an enemy unit (excluding MONSTERS and VEHICLES) is selected to Fall Back."
+        },
+        {
+          "label": "TARGET",
+          "text": "One PLAGUE LEGIONS unit from your army that is within Engagement Range of that enemy unit."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "withinEngagementRangeOfTriggeringEnemy",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that is within Engagement Range of that enemy unit"
+        }
+      ],
+      "antecedentBindings": [],
+      "sourceOccurrences": [
+        {
+          "path": "books/death-guard/v2/sources/accepted-waha-pages/Beasts-of-Nurgle.html",
+          "publisherReferenceId": "tooltip_content00223",
+          "sha256": "912AE5CFF4D24744CEC0FA5D1132EB81DAAAA50B3DF58CFC4EDF3C4993F53FF5"
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:1",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase, just after an enemy unit has selected its targets."
+        },
+        {
+          "label": "TARGET",
+          "text": "One POXWALKERS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedAsEnemyAttackTarget",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that was selected as the target of one or more of the attacking unit’s attacks"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:2",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One POXWALKERS unit from your army that was just destroyed. You can target that unit with this Stratagem even though it was just destroyed."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "justDestroyed",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that was just destroyed"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:3",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One POXWALKERS unit from your army."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:4",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "The Reinforcements step of your Movement phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One POXWALKERS unit from your army that is in Strategic Reserves and that is not an Attached unit."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "inStrategicReserves",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that is in Strategic Reserves"
+        },
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "key": "attached",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that is not an Attached unit"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:5",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Charge phase, just after a DEATH GUARD unit from your army ends a Charge move."
+        },
+        {
+          "label": "TARGET",
+          "text": "That DEATH GUARD unit."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "isTriggerUnit",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "That DEATH GUARD unit."
+        }
+      ],
+      "antecedentBindings": [
+        {
+          "sourceLabel": "WHEN",
+          "quote": "Your Charge phase, just after a DEATH GUARD unit from your army ends a Charge move.",
+          "binding": "EXACT_EVENT_ACTOR",
+          "roleId": "primary"
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:6",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets."
+        },
+        {
+          "label": "TARGET",
+          "text": "One DEATH GUARD unit from your army that was selected as the target of one or more of the attacking unit’s attacks, and one friendly POXWALKERS unit within 3\" of your unit and visible to both your unit and the attacking unit."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedAsEnemyAttackTarget",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that was selected as the target of one or more of the attacking unit’s attacks"
+        },
+        {
+          "roleId": "shield-unit",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "within3OfPrimary",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "within 3\" of your unit"
+        },
+        {
+          "roleId": "shield-unit",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "visibleToPrimary",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "visible to both your unit and the attacking unit"
+        },
+        {
+          "roleId": "shield-unit",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "visibleToAttackingUnit",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "visible to both your unit and the attacking unit"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:1",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[1]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of any phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One TERMINATOR unit from your army."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:2",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[2]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One TERMINATOR unit from your army that has not been selected to fight this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToFightThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has not been selected to fight this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:3",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[3]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase, just after an enemy unit has selected its targets."
+        },
+        {
+          "label": "TARGET",
+          "text": "One TERMINATOR unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedAsEnemyAttackTarget",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that was selected as the target of one or more of the attacking unit’s attacks"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:4",
+      "primarySubject": "MODEL",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[4]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One LORD OF VIRULENCE model from your army."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:5",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[5]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One TERMINATOR unit from your army that has not been selected to shoot this phase."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "selectedToShootThisPhase",
+            "equals": false
+          },
+          "sourceLabel": "TARGET",
+          "quote": "that has not been selected to shoot this phase"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-death-lords-chosen:stratagem:6",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div/div[6]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Charge phase, just after a TERMINATOR unit from your army ends a Charge move."
+        },
+        {
+          "label": "TARGET",
+          "text": "That TERMINATOR unit."
+        }
+      ],
+      "officialProofs": [],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "isTriggerUnit",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "That TERMINATOR unit."
+        }
+      ],
+      "antecedentBindings": [
+        {
+          "sourceLabel": "WHEN",
+          "quote": "Your Charge phase, just after a TERMINATOR unit from your army ends a Charge move.",
+          "binding": "EXACT_EVENT_ACTOR",
+          "roleId": "primary"
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-contagion-engines:stratagem:1",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[4]/div[1]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase or the Fight phase, when a friendly CONTAGION ENGINE unit is selected to attack."
+        },
+        {
+          "label": "TARGET",
+          "text": "That CONTAGION ENGINE unit."
+        }
+      ],
+      "officialProofs": [
+        {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 2,
+          "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+          "verifiedLabels": [
+            "TARGET",
+            "WHEN"
+          ]
+        }
+      ],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "isTriggerUnit",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "That CONTAGION ENGINE unit."
+        }
+      ],
+      "antecedentBindings": [
+        {
+          "sourceLabel": "WHEN",
+          "quote": "Your Shooting phase or the Fight phase, when a friendly CONTAGION ENGINE unit is selected to attack.",
+          "binding": "EXACT_EVENT_ACTOR",
+          "roleId": "primary"
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-contagion-engines:stratagem:2",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[4]/div[2]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly CONTAGION ENGINE unit is selected to shoot."
+        },
+        {
+          "label": "TARGET",
+          "text": "That CONTAGION ENGINE unit."
+        }
+      ],
+      "officialProofs": [
+        {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 2,
+          "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+          "verifiedLabels": [
+            "TARGET",
+            "WHEN"
+          ]
+        }
+      ],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "isTriggerUnit",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "That CONTAGION ENGINE unit."
+        }
+      ],
+      "antecedentBindings": [
+        {
+          "sourceLabel": "WHEN",
+          "quote": "Your Shooting phase, when a friendly CONTAGION ENGINE unit is selected to shoot.",
+          "binding": "EXACT_EVENT_ACTOR",
+          "roleId": "primary"
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-contagion-engines:stratagem:3",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[4]/div[3]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Movement phase, when an enemy unit is selected to make a fall-back move, if that enemy unit is engaged with a friendly CONTAGION ENGINE unit."
+        },
+        {
+          "label": "TARGET",
+          "text": "That CONTAGION ENGINE unit."
+        }
+      ],
+      "officialProofs": [
+        {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 2,
+          "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+          "verifiedLabels": [
+            "TARGET",
+            "WHEN"
+          ]
+        }
+      ],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "isTriggerUnit",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "That CONTAGION ENGINE unit."
+        },
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "withinEngagementRangeOfTriggeringEnemy",
+            "equals": true
+          },
+          "sourceLabel": "WHEN",
+          "quote": "if that enemy unit is engaged with a friendly CONTAGION ENGINE unit"
+        }
+      ],
+      "antecedentBindings": [
+        {
+          "sourceLabel": "WHEN",
+          "quote": "Your opponent’s Movement phase, when an enemy unit is selected to make a fall-back move, if that enemy unit is engaged with a friendly CONTAGION ENGINE unit.",
+          "binding": "EXACT_EVENT_ACTOR",
+          "roleId": "primary"
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-flyblown-host:stratagem:1",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[4]/div[1]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of the Fight phase"
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly engaged PLAGUE MARINES unit."
+        }
+      ],
+      "officialProofs": [
+        {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 3,
+          "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+          "verifiedLabels": [
+            "TARGET",
+            "WHEN"
+          ]
+        }
+      ],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "engaged",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "engaged"
+        }
+      ],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-flyblown-host:stratagem:2",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[4]/div[2]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly PLAGUE MARINES unit is selected to shoot."
+        },
+        {
+          "label": "TARGET",
+          "text": "That PLAGUE MARINES unit."
+        }
+      ],
+      "officialProofs": [
+        {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 3,
+          "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+          "verifiedLabels": [
+            "TARGET",
+            "WHEN"
+          ]
+        }
+      ],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "isTriggerUnit",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "That PLAGUE MARINES unit."
+        }
+      ],
+      "antecedentBindings": [
+        {
+          "sourceLabel": "WHEN",
+          "quote": "Your Shooting phase, when a friendly PLAGUE MARINES unit is selected to shoot.",
+          "binding": "EXACT_EVENT_ACTOR",
+          "roleId": "primary"
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-flyblown-host:stratagem:3",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[4]/div[3]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly PLAGUE MARINES unit is selected to shoot."
+        },
+        {
+          "label": "TARGET",
+          "text": "That PLAGUE MARINES unit."
+        }
+      ],
+      "officialProofs": [
+        {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 3,
+          "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+          "verifiedLabels": [
+            "TARGET",
+            "WHEN"
+          ]
+        }
+      ],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "isTriggerUnit",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "That PLAGUE MARINES unit."
+        }
+      ],
+      "antecedentBindings": [
+        {
+          "sourceLabel": "WHEN",
+          "quote": "Your Shooting phase, when a friendly PLAGUE MARINES unit is selected to shoot.",
+          "binding": "EXACT_EVENT_ACTOR",
+          "roleId": "primary"
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-paragons-of-putrescence:stratagem:1",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[4]/div[1]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of the Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly DEATH GUARD CHARACTER unit."
+        }
+      ],
+      "officialProofs": [
+        {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 4,
+          "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+          "verifiedLabels": [
+            "TARGET",
+            "WHEN"
+          ]
+        }
+      ],
+      "expectedConditions": [],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-paragons-of-putrescence:stratagem:2",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[4]/div[2]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Start of your Shooting Phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly DEATH GUARD CHARACTER unit."
+        }
+      ],
+      "officialProofs": [
+        {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 4,
+          "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+          "verifiedLabels": [
+            "TARGET",
+            "WHEN"
+          ]
+        }
+      ],
+      "expectedConditions": [],
+      "antecedentBindings": []
+    },
+    {
+      "ruleId": "detachment-paragons-of-putrescence:stratagem:3",
+      "primarySubject": "UNIT",
+      "sourceProof": {
+        "path": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+        "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+        "rawLocator": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[4]/div[3]/div/div[2]/div[1]/div[4]"
+      },
+      "sourceClauses": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly DEATH GUARD CHARACTER unit starts an action."
+        },
+        {
+          "label": "TARGET",
+          "text": "That DEATH GUARD CHARACTER unit."
+        }
+      ],
+      "officialProofs": [
+        {
+          "path": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "page": 4,
+          "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+          "verifiedLabels": [
+            "TARGET",
+            "WHEN"
+          ]
+        }
+      ],
+      "expectedConditions": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "predicate": "FIELD",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "isTriggerUnit",
+            "equals": true
+          },
+          "sourceLabel": "TARGET",
+          "quote": "That DEATH GUARD CHARACTER unit."
+        }
+      ],
+      "antecedentBindings": [
+        {
+          "sourceLabel": "WHEN",
+          "quote": "Your Shooting phase, when a friendly DEATH GUARD CHARACTER unit starts an action.",
+          "binding": "EXACT_EVENT_ACTOR",
+          "roleId": "primary"
+        }
+      ]
+    }
+  ]
+}

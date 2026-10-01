@@ -165,3 +165,46 @@ in-memory mutations. The independent raw-source checks use Python with lxml and
 pdfplumber (the bundled Codex runtime is discovered automatically; `PYTHON` may
 select another installed runtime). This guard is separate from Reader/Phone,
 Rule Contract V2 and production publication.
+
+Stratagem TARGET prerequisite closure
+------------------------------------
+
+The original producer copied hand-maintained `roster`/`battle` lists instead
+of normalizing TARGET qualifiers; its old evidence checks shared that omission.
+`stratagem-target-conditions.mjs` now normalizes accepted TARGET grammar during
+build, for primary and secondary targets. Unsupported qualifier wording fails
+construction. Static selectors and effect adjudication retain their existing
+owners. No source text or player-facing factual record changes.
+
+The independent `stratagem-target-source-qa.py` re-enumerates 45 matched-play
+cards from pinned HTML and verifies the current supplement/update PDFs and
+reported Beasts of Nurgle tooltip occurrences. Its 47 state/eligibility atoms
+include 44 primary and three secondary-target conditions; static keyword
+selectors remain covered by the existing Rule Contract source guard. Eight
+demonstrative TARGETs retain their event-actor binding. No accepted TARGET
+clause in this corpus adds a Battle-shocked prerequisite.
+
+Three omissions are closed: Tallyband Summoners Stratagems 3 and 6, and
+Contagion Engines Stratagem 3. `withinEngagementRangeOfTriggeringEnemy` is a
+BATTLE boolean for the primary target's relation to the specific enemy
+referenced by the trigger. General engagement with a different enemy does not
+satisfy it. Unavailable valid context remains UNKNOWN; malformed context is
+INVALID. This schema addition does not simulate engagement or execute effects.
+
+`stratagem-target-qa.mjs` compares exact subject, role, polarity, context and
+source-clause proof for every independently derived atom. The main Rule Contract
+QA invokes this guard too. Its 62 mutations include dropping every atom,
+moving engagement prerequisites to effect roles, using the wrong context or
+subject, flattening compound action/engagement meaning, and severing TARGET
+proof. Allowed and forbidden full-role evaluations are checked for all three
+repaired contracts, alongside all 47 predicate controls.
+
+```
+python books/death-guard/v2/stratagem-target-source-qa.py --summary
+node books/death-guard/v2/stratagem-target-qa.mjs
+node books/death-guard/v2/rule-contract-qa.mjs
+node books/death-guard/v2/rule-contract-build.mjs --check
+```
+
+The independent JSON census is disposable QA evidence, checked against raw
+sources on every guard run. It is never a production semantics input.
