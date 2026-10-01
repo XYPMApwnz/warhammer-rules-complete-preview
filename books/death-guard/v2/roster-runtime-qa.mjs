@@ -118,9 +118,9 @@ function state(units, detachmentId = 'detachment-virulent-vectorium') {
 }
 function scenario(run) { run(); scenarios++; }
 const projected = (service, id) => service.projection.units.find(unit => unit.instanceId === id);
-const weapon = (service, instance, id) => projected(service, instance).models.flatMap(model => model.weapons).find(weapon => weapon.canonicalProfileId === id);
+const weapon = (service, instance, id) => projected(service, instance).profiles.flatMap(model => model.weapons).find(weapon => weapon.canonicalProfileId === id);
 const hasAbility = (weapon, name) => weapon.data.abilities.some(ability => normalized(ability) === normalized(name));
-const assertAll = (service, instance, field, value) => assert(projected(service, instance).models.every(model => model.profile[field] === value));
+const assertAll = (service, instance, field, value) => assert(projected(service, instance).profiles.every(model => model.profile[field] === value));
 
 scenario(() => {
   const service = make();
@@ -140,7 +140,7 @@ scenario(() => {
   service.attach('bio', 'pm');
   assert(hasAbility(weapon(service, 'pm', 'datasheet-plague-marines:weapon:4'), 'LETHAL HITS'));
   assert(!hasAbility(weapon(service, 'pm2', 'datasheet-plague-marines:weapon:4'), 'LETHAL HITS'));
-  for (const candidate of projected(service, 'pm').models.flatMap(model => model.weapons)) assert.equal(new Set(candidate.data.abilities.map(normalized)).size, candidate.data.abilities.length);
+  for (const candidate of projected(service, 'pm').profiles.flatMap(model => model.weapons)) assert.equal(new Set(candidate.data.abilities.map(normalized)).size, candidate.data.abilities.length);
   assert.throws(() => service.attach('bio2', 'pm'), /Duplicate canonical Leader/);
   capture(service);
   service.detach('bio'); assert(!hasAbility(weapon(service, 'pm', 'datasheet-plague-marines:weapon:4'), 'LETHAL HITS'));
@@ -151,11 +151,11 @@ scenario(() => {
 
 scenario(() => {
   const service = make(); service.load(state([unit('loc', 'unit-lord-of-contagion', 1, {weapons: ['datasheet-lord-of-contagion:weapon:1'], enhancements: ['detachment-virulent-vectorium:enhancement:4']}), unit('loc2', 'unit-lord-of-contagion'), unit('ds', 'unit-deathshroud-terminators', 3, {weapons: ['datasheet-deathshroud-terminators:weapon:2']}), unit('ds2', 'unit-deathshroud-terminators', 3)]));
-  assert.deepEqual(projected(service, 'loc').models[0].abilities.filter(ability => ability.name === 'Feel No Pain'), [{name: 'Feel No Pain', value: 5}]);
+  assert.deepEqual(projected(service, 'loc').profiles[0].abilities.filter(ability => ability.name === 'Feel No Pain'), [{name: 'Feel No Pain', value: 5}]);
   service.attach('loc', 'ds');
-  assert.deepEqual(projected(service, 'loc').models[0].abilities.filter(ability => ability.name === 'Feel No Pain'), [{name: 'Feel No Pain', value: 4}]);
-  assert(!projected(service, 'ds').models.some(model => model.abilities.some(ability => ability.name === 'Feel No Pain')));
-  assert(!projected(service, 'loc2').models[0].abilities.some(ability => ability.name === 'Feel No Pain'));
+  assert.deepEqual(projected(service, 'loc').profiles[0].abilities.filter(ability => ability.name === 'Feel No Pain'), [{name: 'Feel No Pain', value: 4}]);
+  assert(!projected(service, 'ds').profiles.some(model => model.abilities.some(ability => ability.name === 'Feel No Pain')));
+  assert(!projected(service, 'loc2').profiles[0].abilities.some(ability => ability.name === 'Feel No Pain'));
   assert(hasAbility(weapon(service, 'ds', 'datasheet-deathshroud-terminators:weapon:2'), 'LANCE'));
   assert(hasAbility(weapon(service, 'ds', 'datasheet-deathshroud-terminators:weapon:2'), 'SUSTAINED HITS 1'));
   assert(service.context('ds', 'UNIT').keywords.has('CHARACTER'));
@@ -167,7 +167,7 @@ scenario(() => {
   assert.equal(evaluator.evaluatePredicate({predicate: 'MODEL_ID', subject: 'MODEL', contextLevel: 'STATIC', arguments: {id: 'datasheet-lord-of-contagion:profile:default'}}, service.context('ds', 'UNIT')), 'INVALID');
   assert.throws(() => service.attach('loc2', 'ds'), /capacity/);
   capture(service); service.detach('loc');
-  assert.deepEqual(projected(service, 'loc').models[0].abilities.filter(ability => ability.name === 'Feel No Pain'), [{name: 'Feel No Pain', value: 5}]);
+  assert.deepEqual(projected(service, 'loc').profiles[0].abilities.filter(ability => ability.name === 'Feel No Pain'), [{name: 'Feel No Pain', value: 5}]);
   assert(!hasAbility(weapon(service, 'ds', 'datasheet-deathshroud-terminators:weapon:2'), 'LANCE'));
 });
 
@@ -183,16 +183,16 @@ scenario(() => {
 
 scenario(() => {
   const service = make(); service.load(state([unit('poxlord', 'unit-lord-of-poxes'), unit('other', 'unit-biologus-putrifier'), unit('pm', 'unit-plague-marines', 5), unit('pm2', 'unit-plague-marines', 5)], 'detachment-paragons-of-putrescence'));
-  assert.equal(projected(service, 'poxlord').models[0].metrics.contagionRange.modifier, 6);
-  assert.equal(projected(service, 'other').models[0].metrics.contagionRange.modifier, 3);
-  assert.equal(projected(service, 'pm').models[0].metrics.contagionRange, undefined);
+  assert.equal(projected(service, 'poxlord').profiles[0].metrics.contagionRange.modifier, 6);
+  assert.equal(projected(service, 'other').profiles[0].metrics.contagionRange.modifier, 3);
+  assert.equal(projected(service, 'pm').profiles[0].metrics.contagionRange, undefined);
   service.attach('poxlord', 'pm');
-  assert.equal(projected(service, 'pm').models[0].metrics.contagionRange.modifier, 3);
-  assert.equal(projected(service, 'poxlord').models[0].metrics.contagionRange.modifier, 6);
-  assert.equal(projected(service, 'poxlord').models[0].metrics.contagionRange.max, 12);
+  assert.equal(projected(service, 'pm').profiles[0].metrics.contagionRange.modifier, 3);
+  assert.equal(projected(service, 'poxlord').profiles[0].metrics.contagionRange.modifier, 6);
+  assert.equal(projected(service, 'poxlord').profiles[0].metrics.contagionRange.max, 12);
   assert.equal(service.projection.formedUnits[0].metrics.contagionRange.modifier, 3, 'Global UNIT modifier applies once to the formed group');
-  assert.equal(projected(service, 'pm2').models[0].metrics.contagionRange, undefined);
-  capture(service); service.detach('poxlord'); assert.equal(projected(service, 'pm').models[0].metrics.contagionRange, undefined);
+  assert.equal(projected(service, 'pm2').profiles[0].metrics.contagionRange, undefined);
+  capture(service); service.detach('poxlord'); assert.equal(projected(service, 'pm').profiles[0].metrics.contagionRange, undefined);
 });
 
 scenario(() => {
@@ -225,7 +225,7 @@ scenario(() => {
   const enhanced = weapon(service, 'enhanced', 'datasheet-lord-of-contagion:weapon:1');
   assert.equal(enhanced.data.strength, '10'); assert.equal(enhanced.data.attacks, '6'); assert(hasAbility(enhanced, 'DEVASTATING WOUNDS'));
   assert.equal(weapon(service, 'ordinary', 'datasheet-lord-of-contagion:weapon:1').data.strength, '9');
-  assert.deepEqual(projected(service, 'enhanced').models[0].abilities.filter(ability => ability.name === 'Feel No Pain'), [{name: 'Feel No Pain', value: 5}]); capture(service);
+  assert.deepEqual(projected(service, 'enhanced').profiles[0].abilities.filter(ability => ability.name === 'Feel No Pain'), [{name: 'Feel No Pain', value: 5}]); capture(service);
 });
 
 scenario(() => {
@@ -257,7 +257,7 @@ scenario(() => {
   assert(projected(service, 'h').keywords.includes('MOBILE')); assert(!projected(service, 'h2').keywords.includes('MOBILE'));
   for (const instance of ['h', 'h2', 'haulers']) {
     assert(projected(service, instance).keywords.includes('CONTAGION ENGINE'));
-    for (const model of projected(service, instance).models) for (const weapon of model.weapons) assert(hasAbility(weapon, 'ASSAULT'));
+    for (const model of projected(service, instance).profiles) for (const weapon of model.weapons) assert(hasAbility(weapon, 'ASSAULT'));
   }
   assert(!projected(service, 'pm').keywords.includes('CONTAGION ENGINE')); assert(!hasAbility(weapon(service, 'pm', 'datasheet-plague-marines:weapon:2'), 'ASSAULT'));
   capture(service);
@@ -265,15 +265,15 @@ scenario(() => {
 
 scenario(() => {
   const service = make(); service.load(state([unit('veiled', 'unit-plague-marines', 5, {enhancements: ['detachment-flyblown-host:enhancement:2']}), unit('bio', 'unit-biologus-putrifier'), unit('ordinary', 'unit-plague-marines', 5)], 'detachment-flyblown-host'));
-  assert.equal(projected(service, 'veiled').models[0].metrics.detectionRange.modifier, -3);
-  assert.equal(projected(service, 'ordinary').models[0].metrics.detectionRange, undefined);
-  assert.equal(projected(service, 'bio').models[0].metrics.detectionRange, undefined);
+  assert.equal(projected(service, 'veiled').profiles[0].metrics.detectionRange.modifier, -3);
+  assert.equal(projected(service, 'ordinary').profiles[0].metrics.detectionRange, undefined);
+  assert.equal(projected(service, 'bio').profiles[0].metrics.detectionRange, undefined);
   service.attach('bio', 'veiled');
-  assert.equal(projected(service, 'bio').models[0].metrics.detectionRange.modifier, -3);
-  assert.equal(projected(service, 'veiled').models[0].metrics.detectionRange.modifier, -3);
+  assert.equal(projected(service, 'bio').profiles[0].metrics.detectionRange.modifier, -3);
+  assert.equal(projected(service, 'veiled').profiles[0].metrics.detectionRange.modifier, -3);
   capture(service); service.detach('bio');
-  assert.equal(projected(service, 'bio').models[0].metrics.detectionRange, undefined);
-  assert.equal(projected(service, 'veiled').models[0].metrics.detectionRange.modifier, -3);
+  assert.equal(projected(service, 'bio').profiles[0].metrics.detectionRange, undefined);
+  assert.equal(projected(service, 'veiled').profiles[0].metrics.detectionRange.modifier, -3);
 });
 
 scenario(() => {

@@ -166,7 +166,7 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
       const profileId = explicitProfile ?? (declaredProfiles.length === 1 ? declaredProfiles[0] : undefined);
       const profile = exact(profileId, 'PROFILE', row.key, row.name, unit.id);
       if (profile && (profile.parentId !== unit.id || !declaredProfiles.includes(profile.id))) issue('FOREIGN_PROFILE_OWNER', row.key, 'Model profile belongs to another unit');
-      modelRows.push({rowId: row.key, canonicalProfileId: profile?.id || null, quantity: row.quantity,
+      modelRows.push({rowId: row.key, compositionScope: raw.modelRows.length ? 'MODEL_ROW' : 'UNIT', canonicalProfileId: profile?.id || null, quantity: row.quantity,
         selections: row.selections.map(selection => bindSelection(selection, unit, startingStrength)).filter(Boolean),
         loadouts: row.loadouts.map(loadout => ({loadoutId: loadout.key, quantity: loadout.quantity,
           selections: loadout.selections.map(selection => bindSelection(selection, unit, startingStrength)).filter(Boolean)}))});

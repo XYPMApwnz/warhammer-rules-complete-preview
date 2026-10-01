@@ -392,12 +392,13 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const section = el('section');
     section.dataset.effectiveInstanceId = instanceId;
     section.append(el('h3', '', 'Effective rules'));
-    for (const [label, records] of [['Model profiles', result.profiles], ['Selected weapons', result.weapons]]) {
+    for (const [label, records] of [['Profiles for this roster unit', result.profiles], ['Selected weapons', result.weapons]]) {
       if (!records?.length) continue;
       section.append(el('p', 'v2-eyebrow', label));
       for (const record of records) {
         const card = el('div', 'v2-roster-profile');
         card.dataset.effectiveId = record.id;
+        if (record.scopeId) card.dataset.compositionId = record.scopeId;
         if (record.modelInstanceId) card.dataset.modelInstanceId = record.modelInstanceId;
         if (record.ownerInstanceId) card.dataset.ownerInstanceId = record.ownerInstanceId;
         card.append(el('h3', '', record.title || named(record.id)));
@@ -410,6 +411,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
           cell.append(el('dt', '', field.label), value); stats.append(cell);
         }
         card.append(stats);
+        if (record.quantity !== undefined) card.append(el('p', 'v2-roster-hint', `${record.quantity} models represented by this profile`));
         if (record.physicalQuantity !== undefined) card.append(el('p', 'v2-roster-hint', `${record.physicalQuantity} selected in this physical scope`));
         if (record.metrics && Object.keys(record.metrics).length) {
           const metrics = el('section'); metrics.dataset.effectiveMetrics = '';
@@ -422,7 +424,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         section.append(card);
       }
     }
-    for (const [label, values, kind] of [['Intrinsic keywords of this physical unit', result.intrinsicKeywords, 'MODEL'], ['Formed unit keywords', result.keywords, 'UNIT']]) {
+    for (const [label, values, kind] of [['Intrinsic keywords of this physical unit', result.intrinsicKeywords, 'INTRINSIC_UNIT'], ['Formed unit keywords', result.keywords, 'UNIT']]) {
       if (!values?.length) continue;
       section.append(el('p', 'v2-eyebrow', label));
       const keywords = el('p'); keywords.dataset.keywordSubject = kind;
@@ -459,7 +461,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
           const change = el('div'); change.dataset.appliedField = record.field;
           change.append(el('p', 'v2-roster-hint', record.field), structuredValue(record.before), el('span', '', ' → '), structuredValue(record.after)); item.append(change);
         }
-        const provenance = record.source || record.provenance || Object.fromEntries(['clauseId', 'effectId', 'sourceInstanceId', 'targetInstanceId', 'targetModelInstanceId', 'targetWeaponProfileId', 'operation', 'sourceFields', 'lifetime'].filter(key => record[key] !== undefined).map(key => [key, record[key]]));
+        const provenance = record.source || record.provenance || Object.fromEntries(['clauseId', 'effectId', 'sourceInstanceId', 'targetInstanceId', 'targetModelInstanceId', 'targetProfileId', 'targetCompositionId', 'targetWeaponProfileId', 'operation', 'sourceFields', 'lifetime'].filter(key => record[key] !== undefined).map(key => [key, record[key]]));
         if (Object.keys(provenance).length) {
           const details = el('details', 'v2-roster-provenance');
           details.append(el('summary', '', 'Effect provenance'));

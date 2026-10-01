@@ -88,7 +88,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     const group = result.formedUnits.find(g=>g.formedUnitId === source.formedUnitId);
     const selected = effect.targetBinding === 'SOURCE_FORMED_MODELS' ? group ? result.units.filter(u=>group.memberInstanceIds.includes(u.instanceId)) : [] : effect.targetBinding === 'LEADERS_OF_SOURCE' ? group && group.bodyguardInstanceId === source.instanceId ? result.units.filter(u=>group.leaderInstanceIds.includes(u.instanceId)) : [] : [source];
     if (!['SOURCE_MODEL','SOURCE_UNIT_MODELS','SOURCE_FORMED_MODELS','LEADERS_OF_SOURCE'].includes(effect.targetBinding)) throw new TypeError('Unknown target binding');
-    return selected.flatMap(unit=>unit.models.map(model=>({unit,model})));
+    return selected.flatMap(unit=>unit.profiles.map(model=>({unit,model})));
   };
   const processed = new Set();
   const apply = ({rule,clause,effect,source}, target) => {
@@ -97,20 +97,20 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     for (const condition of effect.conditions) {
       const subject = leaves(condition.predicate)[0].subject;
       const participant = condition.binding === 'SOURCE' ? source : target.unit;
-      const ctx = predicateContext(state,result,participant?.instanceId,subject,condition.binding === 'TARGET' ? target.model?.modelInstanceId : undefined,condition.binding === 'SOURCE' ? extra : {});
+      const ctx = predicateContext(state,result,participant?.instanceId,subject,condition.binding === 'TARGET' ? target.model?.scopeId : undefined,condition.binding === 'SOURCE' ? extra : {});
       if (!ctx) return;
       const status = evaluatePredicate(condition.predicate,ctx);
       if (status === 'INVALID') throw new TypeError('Invalid roster predicate: '+rule.id+'/'+effect.id);
       if (status !== 'TRUE') { if (status === 'UNKNOWN') target.unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:status,reason:'Roster context unavailable'}); return; }
     }
-    const mutate = (object,key,after,targetModelId,targetWeaponId) => {
+    const mutate = (object,key,after,targetModelId,targetWeaponId,weaponScope) => {
       const before = clone(object[key] ?? null);
       if (JSON.stringify(before) === JSON.stringify(after)) return;
       object[key] = clone(after);
       target.unit.applied.push({ruleId:rule.id,clauseId:clause.id,effectId:effect.id,sourceInstanceId:source?.instanceId || null,targetInstanceId:target.unit.instanceId,
-        targetModelInstanceId:targetModelId || null,targetWeaponProfileId:targetWeaponId || null,operation:effect.operation,field:key,before,after:clone(after),sourceFields:clone(effect.sourceFields),lifetime:effect.lifetime});
+        targetModelInstanceId:targetModelId || null,targetProfileId:targetWeaponId ? weaponScope?.canonicalProfileId || null : target.model?.canonicalProfileId || null,targetCompositionId:targetWeaponId ? weaponScope?.scopeId || null : target.model?.scopeId || null,targetWeaponProfileId:targetWeaponId || null,operation:effect.operation,field:key,before,after:clone(after),sourceFields:clone(effect.sourceFields),lifetime:effect.lifetime});
     };
-    const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.modelInstanceId || target.unit.formedUnitId || target.unit.instanceId}`;
+    const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || target.unit.formedUnitId || target.unit.instanceId}`;
     if (processed.has(marker)) return;
     processed.add(marker);
     const group=effect.targetSubject==='UNIT'?result.formedUnits.find(g=>g.formedUnitId===target.unit.formedUnitId):null;
@@ -136,13 +136,13 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       const weaponRecipients=target.model?[target.unit]:unitRecipients;
       for (const unit of weaponRecipients) {
       const original=target.unit;target.unit=unit;
-      const weapons = target.model ? [...target.model.weapons,...unit.weapons] : [...unit.weapons,...unit.models.flatMap(m=>m.weapons)];
+      const weapons = target.model ? [...target.model.weapons,...unit.weapons] : [...unit.weapons,...unit.profiles.flatMap(m=>m.weapons)];
       for (const weapon of weapons) {
         if (effect.weaponMode && weapon.data.mode !== effect.weaponMode || effect.weaponIds && !effect.weaponIds.includes(weapon.canonicalProfileId) || effect.excludeWeaponIds?.includes(weapon.canonicalProfileId)) continue;
-        const weaponMarker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.unit.instanceId}/${target.unit.weapons.includes(weapon) ? 'unit' : weapon.modelInstanceId}/${weapon.selectionKey}/${weapon.canonicalProfileId}`;
+        const weaponMarker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.unit.instanceId}/${target.unit.weapons.includes(weapon) ? 'unit' : weapon.scopeId}/${weapon.selectionKey}/${weapon.canonicalProfileId}`;
         if (processed.has(weaponMarker)) continue; processed.add(weaponMarker);
-        if (effect.operation === 'GRANT_WEAPON_ABILITY') mutate(weapon.data,'abilities',weapon.data.abilities.some(ability=>ability.toUpperCase()===effect.ability.toUpperCase())?[...weapon.data.abilities]:[...weapon.data.abilities,effect.ability],weapon.modelInstanceId || target.model?.modelInstanceId,weapon.canonicalProfileId);
-        else mutate(weapon.data,effect.field,changeStat(weapon.data[effect.field],effect),target.model?.modelInstanceId,weapon.canonicalProfileId);
+        if (effect.operation === 'GRANT_WEAPON_ABILITY') mutate(weapon.data,'abilities',weapon.data.abilities.some(ability=>ability.toUpperCase()===effect.ability.toUpperCase())?[...weapon.data.abilities]:[...weapon.data.abilities,effect.ability],weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
+        else mutate(weapon.data,effect.field,changeStat(weapon.data[effect.field],effect),weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
       }
       target.unit=original;
       }
@@ -160,7 +160,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
   for (const item of pending.filter(p=>p.effect.operation !== 'GRANT_UNIT_KEYWORD')) for (const target of targets(item.source,item.effect)) apply(item,target);
   for (const unit of result.units) {
     unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason)===i);
-    for (const model of unit.models) {
+    for (const model of unit.profiles) {
       for (const [field,metric] of Object.entries(unit.metrics)) {
         const own = model.metrics[field] || {modifier:0};
         model.metrics[field] = {modifier:own.modifier+metric.modifier,...((own.max||metric.max)?{max:Math.min(own.max??Infinity,metric.max??Infinity)}:{})};

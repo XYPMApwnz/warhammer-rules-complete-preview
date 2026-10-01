@@ -174,7 +174,7 @@ try {
       for(const id of Object.values(ids)) {
         const ui=physical(page,id).locator(`[data-effective-instance-id="${id}"]`);
         for(const record of [...current.effective[id].profiles,...current.effective[id].weapons]) {
-          const profile=ui.locator(`[data-effective-id="${record.id}"]${record.modelInstanceId?`[data-model-instance-id="${record.modelInstanceId}"]`:':not([data-model-instance-id])'}`);
+          const profile=ui.locator(`[data-effective-id="${record.id}"]${record.scopeId?`[data-composition-id="${record.scopeId}"]`:record.modelInstanceId?`[data-model-instance-id="${record.modelInstanceId}"]`:':not([data-model-instance-id])'}`);
           assert.equal(await profile.count(),1,activeStep+' duplicate/missing physical effective profile');
           for(const item of record.fields) {
             const cell=profile.locator(`[data-effective-field="${item.label}"]`);
@@ -184,7 +184,7 @@ try {
           if(record.abilities?.length)for(const ability of record.abilities){const text=await profile.locator('[data-effective-model-abilities]').textContent();assert.ok(text.includes(ability.name)&&text.includes(String(ability.value)),'Missing effective model ability');}
           else assert.equal(await profile.locator('[data-effective-model-abilities]').count(),0,'Stale model ability in UI');
         }
-        for(const [subject,keywords] of [['MODEL',current.effective[id].intrinsicKeywords],['UNIT',current.effective[id].keywords]])assert.deepEqual(await ui.locator(`[data-keyword-subject="${subject}"] span`).allTextContents(),keywords);
+        for(const [subject,keywords] of [['INTRINSIC_UNIT',current.effective[id].intrinsicKeywords],['UNIT',current.effective[id].keywords]])assert.deepEqual(await ui.locator(`[data-keyword-subject="${subject}"] span`).allTextContents(),keywords);
         const own=current.state.units.find(unit=>unit.instanceId===id);
         const identity=await physical(page,id).locator('.v2-roster-identity > div').evaluateAll(nodes=>Object.fromEntries(nodes.map(node=>[node.querySelector('dt').textContent,node.querySelector('dd').textContent])));
         assert.equal(identity['Starting Strength'],String(own.startingStrength));assert.equal(identity.Warlord,own.warlord===null||own.warlord===undefined?'Unknown':own.warlord?'Yes':'No');
@@ -248,7 +248,7 @@ try {
     await applicabilityControls();
     // Both physical-unit keyword scopes are read from the typed service, rather
     // than borrowing the CHARACTER keyword from an attached leader model.
-    const scopes=await page.evaluate(id=>{const r=window.ArmyBookAppV2.roster;const unit=r.projection.units.find(unit=>unit.instanceId===id);const has=values=>values instanceof Set?values.has('CHARACTER'):values.includes('CHARACTER');return {unitCharacter:has(r.context(id,'UNIT').keywords),modelCharacter:has(r.context(id,'MODEL',unit.models[0].modelInstanceId).keywords)};},ids.pmA);
+    const scopes=await page.evaluate(id=>{const r=window.ArmyBookAppV2.roster;const unit=r.projection.units.find(unit=>unit.instanceId===id);const has=values=>values instanceof Set?values.has('CHARACTER'):values.includes('CHARACTER');return {unitCharacter:has(r.context(id,'UNIT').keywords),modelCharacter:has(r.context(id,'MODEL',unit.profiles[0].scopeId).keywords)};},ids.pmA);
     assert.equal(scopes.unitCharacter,true);assert.equal(scopes.modelCharacter,false);
     // Expand actual provenance and verify its physical source/target evidence.
     activeStep=device+'/visible-provenance';

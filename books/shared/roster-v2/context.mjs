@@ -1,4 +1,4 @@
-/** Physical roster state. Canonical records are read-only inputs, never mutable state. */
+/** Roster UNIT instances. Composition/profile scopes are not individual-model simulations. */
 const copy = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 const positive = value => Number.isSafeInteger(value) && value > 0;
@@ -13,14 +13,20 @@ export function validateRoster(book, state, policies) {
     assert(typeof unit.instanceId === 'string' && !ids.has(unit.instanceId), 'Duplicate physical instance'); ids.add(unit.instanceId);
     const canonical = records.get(unit.canonicalUnitId);
     assert(canonical?.kind === 'DATASHEET' && positive(unit.startingStrength), 'Unresolved canonical unit/composition');
-    assert(Array.isArray(unit.modelRows) && unit.modelRows.length, 'Missing MODEL composition');
+    assert(Array.isArray(unit.modelRows) && unit.modelRows.length, 'Missing profile composition');
     assert(unit.modelRows.reduce((n, row) => n + row.quantity, 0) === unit.startingStrength, 'Starting Strength contradicts composition');
     const rows = new Set();
     for (const row of unit.modelRows) {
       assert(typeof row.rowId === 'string' && !rows.has(row.rowId), 'Duplicate MODEL row'); rows.add(row.rowId);
+      assert(row.compositionScope === undefined || ['UNIT','MODEL_ROW'].includes(row.compositionScope), 'Invalid composition scope');
       assert(positive(row.quantity) && canonical.data.profileIds.includes(row.canonicalProfileId), 'Invalid MODEL profile/quantity');
       assert((row.loadouts || []).reduce((n, loadout) => n + loadout.quantity, 0) <= row.quantity, 'Overlapping model loadouts');
-      for (const loadout of row.loadouts || []) assert(Number.isSafeInteger(loadout.quantity) && loadout.quantity >= 0, 'Invalid model loadout quantity');
+      const loadoutIds = new Set();
+      for (const loadout of row.loadouts || []) {
+        assert(typeof loadout.loadoutId==='string' && loadout.loadoutId.length && !loadoutIds.has(loadout.loadoutId), 'Missing or duplicate composition loadout identity');
+        loadoutIds.add(loadout.loadoutId);
+        assert(Number.isSafeInteger(loadout.quantity) && loadout.quantity >= 0, 'Invalid model loadout quantity');
+      }
     }
     for (const selection of selections(unit)) {
       assert(Number.isSafeInteger(selection.physicalQuantity) && selection.physicalQuantity >= 0, 'Invalid physical equipment quantity');
@@ -83,17 +89,33 @@ export function formRoster(book, state) {
   const records = new Map(book.entities.map(e => [e.id,e]));
   const units = state.units.map(raw => {
     const canonical = records.get(raw.canonicalUnitId), keywords = [...canonical.data.keywords,...canonical.data.factionKeywords];
-    const models = raw.modelRows.flatMap(row => Array.from({length:row.quantity},(_,i) => {
-      let offset = 0, loadout;
-      for (const item of row.loadouts || []) { if (i >= offset && i < offset + item.quantity) loadout = item; offset += item.quantity; }
-      const selected = [...row.selections,...(loadout?.selections || [])];
-      return {subject:'MODEL',modelInstanceId:`${state.rosterId}/${raw.instanceId}/${row.rowId}/${i+1}`,unitInstanceId:raw.instanceId,
-        canonicalProfileId:row.canonicalProfileId,canonicalUnitId:raw.canonicalUnitId,keywords:[...keywords],
-        profile:copy(records.get(row.canonicalProfileId).data),abilities:canonical.data.ruleReferenceIds.flatMap(id=>copy(book.rosterReferenceSemantics?.[id]?.abilities || [])),metrics:{},
-        selections:copy(selected),weapons:selected.flatMap(s => s.physicalQuantity ? s.canonicalProfileIds.map(id => ({modelInstanceId:`${state.rosterId}/${raw.instanceId}/${row.rowId}/${i+1}`,canonicalProfileId:id,physicalQuantity:s.perModelQuantity ?? s.physicalQuantity,selectionKey:s.selectionKey,data:copy(records.get(id).data)})) : [])};
-    }));
-    return {...copy(raw),subject:'UNIT',intrinsicKeywords:[...keywords],keywords:[...keywords],models,metrics:{},applied:[],conditional:[],
-      weapons:(raw.selections || []).flatMap(s => s.physicalQuantity ? s.canonicalProfileIds.map(id => ({canonicalProfileId:id,physicalQuantity:s.physicalQuantity,selectionKey:s.selectionKey,data:copy(records.get(id).data)})) : [])};
+    // One semantic MODEL profile per imported composition/loadout group. Quantity
+    // never creates physical infantry IDs. Singleton units already identify their
+    // sole model; explicit one-model rows can additionally identify that row.
+    const profiles = raw.modelRows.flatMap(row => {
+      const allocated = (row.loadouts || []).reduce((n,item)=>n+item.quantity,0);
+      const groups = [...(row.loadouts || []).map(item=>({kind:'LOADOUT',key:item.loadoutId,quantity:item.quantity,selections:item.selections})),
+        {kind:'PROFILE',key:row.rowId,quantity:row.quantity-allocated,selections:[]}].filter(group=>group.quantity>0);
+      return groups.map(group => {
+        const scopeId = `${raw.instanceId}/${row.rowId}/${group.kind}/${group.key}`;
+        const modelInstanceId = raw.startingStrength===1 ? raw.instanceId :
+          row.compositionScope==='MODEL_ROW' && row.quantity===1 ? `${state.rosterId}/${raw.instanceId}/${row.rowId}` : null;
+        const selected = [...row.selections,...group.selections];
+        const weapons = [...row.selections.map(selection=>({selection,count:row.quantity})),
+          ...group.selections.map(selection=>({selection,count:group.quantity}))].flatMap(({selection:s,count})=> {
+          if (!s.physicalQuantity) return [];
+          const physicalQuantity = (s.perModelQuantity ?? s.physicalQuantity/count)*group.quantity;
+          if (s.canonicalProfileIds.length) assert(Number.isSafeInteger(physicalQuantity), 'Ambiguous grouped weapon quantity');
+          return s.canonicalProfileIds.map(id=>({modelInstanceId,scopeId,canonicalProfileId:id,physicalQuantity,selectionKey:s.selectionKey,data:copy(records.get(id).data)}));
+        });
+        return {subject:'MODEL',scopeId,quantity:group.quantity,modelInstanceId,unitInstanceId:raw.instanceId,
+          canonicalProfileId:row.canonicalProfileId,canonicalUnitId:raw.canonicalUnitId,keywords:[...keywords],
+          profile:copy(records.get(row.canonicalProfileId).data),abilities:canonical.data.ruleReferenceIds.flatMap(id=>copy(book.rosterReferenceSemantics?.[id]?.abilities || [])),metrics:{},
+          selections:copy(selected),weapons};
+      });
+    });
+    return {...copy(raw),subject:'UNIT',intrinsicKeywords:[...keywords],keywords:[...keywords],profiles,metrics:{},applied:[],conditional:[],
+      weapons:(raw.selections || []).flatMap(s => s.physicalQuantity ? s.canonicalProfileIds.map(id => ({modelInstanceId:raw.startingStrength===1?raw.instanceId:null,canonicalProfileId:id,physicalQuantity:s.physicalQuantity,selectionKey:s.selectionKey,data:copy(records.get(id).data)})) : [])};
   });
   const formedUnits = [];
   for (const bodyguardId of [...new Set(state.attachments.map(a => a.bodyguardInstanceId))].sort()) {
@@ -117,17 +139,18 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
   assert(unit, 'Unresolved physical context');
   const group = projection.formedUnits.find(g => g.formedUnitId === unit.formedUnitId);
   if (subject === 'FORMED_ATTACHED_UNIT' && !group) return null;
-  const model = modelId ? unit.models.find(m => m.modelInstanceId === modelId) : unit.models[0];
+  const model = modelId ? unit.profiles.find(m => m.scopeId === modelId || m.modelInstanceId === modelId) : unit.profiles.length===1 ? unit.profiles[0] : null;
+  if (subject==='MODEL' && !model) return null;
   const members = group ? projection.units.filter(u=>group.memberInstanceIds.includes(u.instanceId)) : [unit];
   const roster = {detachmentId:state.detachmentId,leading:Boolean(group?.leaderInstanceIds.includes(unitId)),attached:Boolean(group),
     bodyguardId:group ? projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId : null,
-    characterModelCount:members.reduce((n,u)=>n+u.models.filter(m=>m.keywords.includes('CHARACTER')).length,0),
+    characterModelCount:members.reduce((n,u)=>n+u.profiles.filter(m=>m.keywords.includes('CHARACTER')).reduce((count,m)=>count+m.quantity,0),0),
     hasFriendlyCharacterLeader:Boolean(group?.leaderInstanceIds.some(id=>projection.units.find(u=>u.instanceId===id).intrinsicKeywords.includes('CHARACTER'))),
     hasAtLeastTwoLeaderUnits:(group?.leaderInstanceIds.length || 0)>=2,
     modelFromYourArmy:true,isBodyguardModel:Boolean(group&&group.bodyguardInstanceId===unitId),
     isWarlord:subject==='MODEL' ? unit.warlord : members.some(u=>u.warlord===true),...extra};
   if (unit.warlord === null && subject === 'MODEL') delete roster.isWarlord;
-  const abilityNames = (subject==='MODEL'?[model]:members.flatMap(u=>u.models)).flatMap(m=>m.abilities.map(a=>a.name));
+  const abilityNames = (subject==='MODEL'?[model]:members.flatMap(u=>u.profiles)).flatMap(m=>m.abilities.map(a=>a.name));
   return {subject,unitId:subject==='MODEL'?unit.canonicalUnitId:group?projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId:unit.canonicalUnitId,
     modelId:model?.canonicalProfileId,keywords:new Set(subject==='MODEL'?model?.keywords:group?group.keywords:unit.keywords),abilities:new Set(abilityNames),roster,battle:{}};
 }

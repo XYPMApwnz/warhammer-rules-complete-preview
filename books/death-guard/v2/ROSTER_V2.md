@@ -30,11 +30,26 @@ identity survive V2 reload and backup. No army-construction validator is added.
 
 ## Typed state and execution
 
-The shared `roster-v2` modules distinguish MODEL, physical UNIT and actual
-FORMED_ATTACHED_UNIT. Physical IDs are scoped by the roster namespace; canonical
-IDs remain source identities. Models retain intrinsic keywords; formed-unit
-keywords are a derived union, including applicable unit grants. Canonical facts
-are never mutated, and every transition rebuilds derived state.
+The shared `roster-v2` modules own roster UNIT instances and distinguish MODEL
+rule semantics from UNIT and actual FORMED_ATTACHED_UNIT contexts. A unit's
+`profiles` are composition/loadout groups with a canonical profile ID and quantity,
+not a simulation of individual infantry. Aggregate Starting Strength does not
+create numbered model identities or numbered profile cards. The saved `modelRows`
+field retains import composition and canonical profile bindings for compatibility;
+`compositionScope` distinguishes UNIT composition from explicitly imported rows.
+
+Aggregate selected equipment belongs to the roster UNIT instance. No first model
+or profile group is assigned as its owner. A single-model unit can identify its
+sole model through the unit identity; an explicitly imported one-model row can
+provide a meaningful row-level identity. Other groups have null model identity.
+Composition `scopeId` is derived group metadata, never physical model identity.
+Missing or duplicate loadout identities fail closed on load/backup restoration.
+
+Profile groups retain intrinsic MODEL keywords for rule predicates. Formed-unit
+keywords are a derived union, including applicable unit grants. MODEL context
+with multiple profile groups requires an explicit scope; it never selects an
+arbitrary first infantry member. Canonical facts are never mutated, and every
+transition rebuilds derived state.
 
 Canonical Leader relations and accepted additional-Leader exceptions compile to
 typed attachment policies. Attach/detach/re-attach validates physical membership,
@@ -53,10 +68,14 @@ model abilities, grant UNIT keywords, and record rule-range modifiers. Source
 and target predicates use the existing Rule Contract evaluator. Keyword grants
 reach a fixed point before dependent effects. Each clause evaluates independently;
 an unknown battle clause cannot suppress a known roster operation. UNIT effects
-propagate across an actual formed unit, while MODEL effects retain their exact
-physical recipients. Each applied change records rule/clause/effect identity,
+propagate across an actual formed unit, while MODEL effects target the appropriate
+canonical profile/composition group or genuinely identified singleton. Each applied change records rule/clause/effect identity,
 source and target physical instances, operation, before/after, lifetime and source
-fields. Range modifiers and caps are shown without choosing a battle round or
+fields. `sourceInstanceId` and `targetInstanceId` identify roster UNIT instances.
+Weapon changes retain their canonical weapon profile ID. Model identity is null
+when ownership is unknown; grouped profile changes additionally identify their
+canonical profile and composition scope without inventing an individual owner.
+Range modifiers and caps are shown without choosing a battle round or
 inventing battlefield distance. Unavailable equipment context is UNKNOWN.
 
 Roster-aware Related Rules use the existing evaluator, intrinsic MODEL facts and
@@ -87,3 +106,12 @@ baseline failures also reproduce at the clean base in the Glossary worktree:
 These are outside this DG V2 implementation; they were not repaired or used as
 correctness oracles. `qa:dg` passes. No full independent red-team, push or deployment
 is performed in this phase.
+
+## Unit-instance regression guard
+
+Run `node books/death-guard/v2/roster-unit-instance-qa.mjs` alongside the existing
+import, source-contract, runtime and desktop/phone roster QA. It checks aggregate
+Biologus/Plague Marines weapon provenance, two differently equipped Plague Marines
+instances, optional equipment, grouped quantities, attach/detach/re-attach,
+reload/backup, singleton MODEL semantics and Silent Bodyguard. Output mutations
+must detect invented aggregate ownership, lost quantities and instance leakage.

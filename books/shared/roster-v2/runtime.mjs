@@ -42,9 +42,9 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
       const name = id=>records.get(id)?.data.title || records.get(id)?.data.name || id;
       return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
         formedUnit:group?clone(group):null,keywords:group?[...group.keywords]:[...unit.keywords],intrinsicKeywords:[...unit.intrinsicKeywords],
-        profiles:unit.models.map((m,i)=>({id:m.canonicalProfileId,modelInstanceId:m.modelInstanceId,title:`${canonical.data.title} · model ${i+1}`,
+        profiles:unit.profiles.map(m=>({id:m.canonicalProfileId,scopeId:m.scopeId,ownerInstanceId:instanceId,quantity:m.quantity,modelInstanceId:m.modelInstanceId,title:canonical.data.title,
           fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],metrics:clone(m.metrics),abilities:clone(m.abilities)})),
-        weapons:[...unit.weapons,...unit.models.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))].map(w=>({id:w.canonicalProfileId,title:w.data.name,physicalQuantity:w.physicalQuantity,modelInstanceId:w.modelInstanceId,fields:fields(w.data)})),
+        weapons:[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))].map(w=>({id:w.canonicalProfileId,title:w.data.name,ownerInstanceId:instanceId,physicalQuantity:w.physicalQuantity,modelInstanceId:w.modelInstanceId,scopeId:w.scopeId || null,selectionKey:w.selectionKey,fields:fields(w.data)})),
         abilities:[...new Set([...canonical.data.sectionIds,...canonical.data.ruleReferenceIds,...canonical.data.wargearOptionIds,...(canonical.data.rawFactIds||[]),
           ...book.entities.filter(e=>e.parentId===canonical.id&&['SUPPLEMENTAL_DATASHEET_RULE','WEAPON_PROFILE_SELECTION','WARGEAR_FOOTNOTE'].includes(e.kind)).map(e=>e.id)])].map(id=>({id,title:name(id),text:clone(records.get(id).data)})),
         applied:unit.applied.map(row=>({...clone(row),label:name(row.ruleId)})),conditional:unit.conditional.map(row=>({...clone(row),label:name(row.ruleId)}))};
@@ -58,7 +58,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
         if (detachmentId && contract.detachmentId!==detachmentId) continue;
         const roleIds=contract.compatibilityRoleIds || [contract.roles[0]?.id];
         const states=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>{
-          const contexts=role.subject==='MODEL'?unit.models.map(m=>service.context(instanceId,'MODEL',m.modelInstanceId)):[service.context(instanceId,role.subject)];
+          const contexts=role.subject==='MODEL'?unit.profiles.map(m=>service.context(instanceId,'MODEL',m.scopeId)):[service.context(instanceId,role.subject)];
           return any(contexts.map(context=>context?evaluateRole(role,contract.conditions||[],context):'FALSE'));
         });
         const result=any(states);
