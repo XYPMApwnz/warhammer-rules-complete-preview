@@ -114,6 +114,43 @@ export function validateContracts(model) {
       const effects=(contract.clauses||[]).filter(clause=>clause.operation&&clause.roles.some(actor=>actor.id===role.actorRoleId));
       if(!effects.length||effects.some(clause=>!clause.roles.some(target=>target.id===role.id))) fail('attack-target binding severed from its effect clause');
     }
+    if (contract.kind==='STRATAGEM') {
+      const clauses=new Map(contract.clauses.map(clause=>[clause.id,clause]));
+      if(clauses.size!==contract.clauses.length)fail('duplicate effect clause identity');
+      for(const clause of clauses.values()) if(clause.operation) {
+        const ids=clause.effectRecipientRoleIds;
+        if(!Array.isArray(ids)||new Set(ids).size!==ids.length||ids.some(id=>!clause.roles.some(role=>role.id===id)))fail('invalid effect recipient binding');
+        if(ids.some(id=>['ANCHOR','TRIGGER_ACTOR'].includes(roles.get(id)?.purpose)))fail('non-recipient owns an effect lifetime');
+        if(clause.lifetimeEvidence&&(!clause.lifetimeEvidence.quote||!text(get(entity.data,clause.lifetimeEvidence.field))?.includes(clause.lifetimeEvidence.quote)))fail('unresolved lifetime scope evidence');
+      }
+      const durationIds=new Set();
+      for(const duration of contract.duration) {
+        if(!duration.id||durationIds.has(duration.id))fail('duplicate/missing duration identity');
+        durationIds.add(duration.id);
+        if(duration.endpoint==='NOT_EXPLICIT') {
+          if(duration.inferredExpiry!==false||duration.roleIds||duration.bindings)fail('invented expiry without source');
+          continue;
+        }
+        if(!['START_NEXT_FRIENDLY_COMMAND_PHASE','START_NEXT_FRIENDLY_TURN','END_CURRENT_PHASE','END_CURRENT_TURN','END_BATTLE','AFTER_PRIMARY_ATTACKED','EXPLICIT_SOURCE_BOUNDARY'].includes(duration.endpoint))fail('unknown duration endpoint');
+        const proof=duration.evidence,source=text(get(entity.data,proof?.field||[])),occurrence=duration.sourceOccurrence;
+        if(!proof?.quote||!Number.isInteger(occurrence?.start)||!Number.isInteger(occurrence?.end)||occurrence.start<0||source?.slice(occurrence.start,occurrence.end)!==proof.quote)fail('unresolved duration occurrence');
+        if(!Array.isArray(duration.bindings)||!duration.bindings.length)fail('duration without effect bindings');
+        const boundClauses=new Set(),boundRoles=new Set();
+        for(const binding of duration.bindings) {
+          const clause=clauses.get(binding.clauseId);
+          if(!clause?.effectRecipientRoleIds?.length||boundClauses.has(clause.id))fail('duration bound to non-effect/duplicate clause');
+          boundClauses.add(clause.id);
+          if(JSON.stringify(binding.roleIds)!==JSON.stringify(clause.effectRecipientRoleIds))fail('duration lost/added an effect recipient');
+          for(const id of binding.roleIds)boundRoles.add(id);
+          if(JSON.stringify(binding.scopeEvidence)!==JSON.stringify(clause.lifetimeEvidence))fail('duration source scope severed');
+          if(binding.scopeEvidence) {
+            const scope=binding.scopeEvidence,start=source.indexOf(scope.quote);
+            if(JSON.stringify(scope.field)!==JSON.stringify(proof.field)||start<0||source.indexOf(scope.quote,start+1)!==-1||occurrence.start<start||occurrence.end>start+scope.quote.length)fail('duration bound outside its source clause');
+          }
+        }
+        if(!Array.isArray(duration.roleIds)||JSON.stringify(duration.roleIds)!==JSON.stringify([...boundRoles]))fail('duration role projection drift');
+      }
+    }
   }
   return {rules:seen.size,status:'PASS'};
 }

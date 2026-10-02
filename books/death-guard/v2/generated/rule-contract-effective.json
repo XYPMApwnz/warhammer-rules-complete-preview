@@ -24090,6 +24090,17 @@
             ],
             "effectScope": "MODEL",
             "operation": "DEADLY_DEMISE_AUTO_ACTIVATION",
+            "effectRecipientRoleIds": [
+              "primary-effect-1"
+            ],
+            "lifetimeEvidence": {
+              "field": [
+                "lines",
+                2,
+                "text"
+              ],
+              "quote": "Do not roll one D6 to determine whether mortal wounds are inflicted by your model’s Deadly Demise ability. Instead, mortal wounds are automatically inflicted."
+            },
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -24150,6 +24161,17 @@
             ],
             "effectScope": "UNIT",
             "operation": "AFFLICTED",
+            "effectRecipientRoleIds": [
+              "enemy-affected"
+            ],
+            "lifetimeEvidence": {
+              "field": [
+                "lines",
+                2,
+                "text"
+              ],
+              "quote": "In addition, any enemy units that suffer mortal wounds as a result of this Stratagem are Afflicted until the start of your next turn."
+            },
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -24164,6 +24186,22 @@
             "roleIds": [
               "enemy-affected"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-virulent-vectorium:stratagem:1:effect-clause:2",
+                "roleIds": [
+                  "enemy-affected"
+                ],
+                "scopeEvidence": {
+                  "field": [
+                    "lines",
+                    2,
+                    "text"
+                  ],
+                  "quote": "In addition, any enemy units that suffer mortal wounds as a result of this Stratagem are Afflicted until the start of your next turn."
+                }
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -24171,6 +24209,10 @@
                 "text"
               ],
               "quote": "until the start of your next turn"
+            },
+            "sourceOccurrence": {
+              "start": 258,
+              "end": 291
             },
             "sourceFields": [
               [
@@ -24618,6 +24660,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "DAMAGE_REDUCTION_ON_ALLOCATED_ATTACK",
+            "effectRecipientRoleIds": [
+              "primary-models"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -24632,6 +24677,14 @@
             "roleIds": [
               "primary-models"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-virulent-vectorium:stratagem:2:effect-clause:1",
+                "roleIds": [
+                  "primary-models"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -24639,6 +24692,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -24989,6 +25046,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "CONTAGION_RANGE_PLUS_3",
+            "effectRecipientRoleIds": [
+              "friendly-army-models"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -25003,6 +25063,14 @@
             "roleIds": [
               "friendly-army-models"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-virulent-vectorium:stratagem:3:effect-clause:1",
+                "roleIds": [
+                  "friendly-army-models"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -25010,6 +25078,10 @@
                 "text"
               ],
               "quote": "Until the start of your next Command phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 42
             },
             "sourceFields": [
               [
@@ -25365,6 +25437,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "MORTAL_WOUNDS_BY_LOST_WOUND_DICE",
+            "effectRecipientRoleIds": [
+              "selected-enemy"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -25407,6 +25482,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "REGAIN_WOUNDS_FROM_SUCCESSFUL_DICE",
+            "effectRecipientRoleIds": [
+              "primary-effect-2"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -25831,6 +25909,7 @@
             ],
             "effectScope": "UNIT",
             "operation": "RANGED_ATTACK_ANCHOR",
+            "effectRecipientRoleIds": [],
             "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
               "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change."
@@ -25893,6 +25972,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "REROLL_RANDOM_WEAPON_ATTACK_COUNT",
+            "effectRecipientRoleIds": [
+              "friendly-beneficiary"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -25905,8 +25987,15 @@
             "id": "detachment-virulent-vectorium:stratagem:5:duration:1",
             "endpoint": "END_CURRENT_PHASE",
             "roleIds": [
-              "selected-enemy",
               "friendly-beneficiary"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-virulent-vectorium:stratagem:5:effect-clause:2",
+                "roleIds": [
+                  "friendly-beneficiary"
+                ]
+              }
             ],
             "evidence": {
               "field": [
@@ -25915,6 +26004,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 44,
+              "end": 70
             },
             "sourceFields": [
               [
@@ -26344,6 +26437,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "REROLL_HIT_AND_WOUND",
+            "effectRecipientRoleIds": [
+              "primary-model-attacks"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -26414,8 +26510,15 @@
             "id": "detachment-virulent-vectorium:stratagem:6:duration:1",
             "endpoint": "END_CURRENT_PHASE",
             "roleIds": [
-              "primary-model-attacks",
-              "enemy-effect-recipient"
+              "primary-model-attacks"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-virulent-vectorium:stratagem:6:effect-clause:1",
+                "roleIds": [
+                  "primary-model-attacks"
+                ]
+              }
             ],
             "evidence": {
               "field": [
@@ -26424,6 +26527,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -28358,6 +28465,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "MORTAL_WOUNDS_AFTER_FIGHT",
+            "effectRecipientRoleIds": [
+              "attacking-enemy"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -28435,6 +28545,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "CURSE_OF_WALKING_POX_KILL_COUNT",
+            "effectRecipientRoleIds": [
+              "primary-effect-2"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -28733,6 +28846,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "AFFLICTED",
+            "effectRecipientRoleIds": [
+              "selected-enemy"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -28747,6 +28863,14 @@
             "roleIds": [
               "selected-enemy"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-shamblerot-vectorium:stratagem:2:effect-clause:1",
+                "roleIds": [
+                  "selected-enemy"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -28754,6 +28878,10 @@
                 "text"
               ],
               "quote": "Until the end of the battle"
+            },
+            "sourceOccurrence": {
+              "start": 88,
+              "end": 115
             },
             "sourceFields": [
               [
@@ -29109,6 +29237,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "MOVE_PLUS_1",
+            "effectRecipientRoleIds": [
+              "primary-models"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -29169,6 +29300,9 @@
             ],
             "effectScope": "WEAPON",
             "operation": "ATTACKS_AND_STRENGTH_PLUS_1",
+            "effectRecipientRoleIds": [
+              "primary-melee-weapons"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -29184,6 +29318,20 @@
               "primary-models",
               "primary-melee-weapons"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-shamblerot-vectorium:stratagem:3:effect-clause:1",
+                "roleIds": [
+                  "primary-models"
+                ]
+              },
+              {
+                "clauseId": "detachment-shamblerot-vectorium:stratagem:3:effect-clause:2",
+                "roleIds": [
+                  "primary-melee-weapons"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -29191,6 +29339,10 @@
                 "text"
               ],
               "quote": "Until the end of the turn"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 25
             },
             "sourceFields": [
               [
@@ -29575,6 +29727,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "DEEP_STRIKE",
+            "effectRecipientRoleIds": [
+              "primary-models"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -29589,6 +29744,14 @@
             "roleIds": [
               "primary-models"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-shamblerot-vectorium:stratagem:4:effect-clause:1",
+                "roleIds": [
+                  "primary-models"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -29596,6 +29759,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -29963,6 +30130,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "BATTLE_SHOCK_MINUS_1",
+            "effectRecipientRoleIds": [
+              "enemy-affected"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -30526,6 +30696,9 @@
             ],
             "effectScope": "ATTACK",
             "operation": "REDIRECT_DAMAGE_TO_POXWALKERS_NO_SAVE",
+            "effectRecipientRoleIds": [
+              "primary-model-attack"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -30627,6 +30800,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "DESTROY_MODELS_EQUAL_TO_ATTACK_DAMAGE",
+            "effectRecipientRoleIds": [
+              "shield-unit"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -30697,8 +30873,22 @@
             "id": "detachment-shamblerot-vectorium:stratagem:6:duration:1",
             "endpoint": "END_CURRENT_PHASE",
             "roleIds": [
-              "shield-unit",
-              "attacking-enemy"
+              "primary-model-attack",
+              "shield-unit"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-shamblerot-vectorium:stratagem:6:effect-clause:1",
+                "roleIds": [
+                  "primary-model-attack"
+                ]
+              },
+              {
+                "clauseId": "detachment-shamblerot-vectorium:stratagem:6:effect-clause:2",
+                "roleIds": [
+                  "shield-unit"
+                ]
+              }
             ],
             "evidence": {
               "field": [
@@ -30707,6 +30897,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -32320,6 +32514,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "ADD_IDENTICAL_UNIT_FULL_STRENGTH_AND_WOUNDS_IN_STRATEGIC_RESERVES",
+            "effectRecipientRoleIds": [
+              "new-unit"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -32700,6 +32897,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "REROLL_HIT",
+            "effectRecipientRoleIds": [
+              "primary-model-attacks"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -32772,8 +32972,15 @@
             "id": "detachment-tallyband-summoners:stratagem:2:duration:1",
             "endpoint": "END_CURRENT_PHASE",
             "roleIds": [
-              "primary-model-attacks",
-              "friendly-plague-legions-anchor"
+              "primary-model-attacks"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-tallyband-summoners:stratagem:2:effect-clause:1",
+                "roleIds": [
+                  "primary-model-attacks"
+                ]
+              }
             ],
             "evidence": {
               "field": [
@@ -32782,6 +32989,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -33172,6 +33383,17 @@
             ],
             "effectScope": "UNIT",
             "operation": "IGNORE_ENGAGEMENT_FOR_RANGED_TARGET_SELECTION",
+            "effectRecipientRoleIds": [
+              "primary-effect-1"
+            ],
+            "lifetimeEvidence": {
+              "field": [
+                "lines",
+                2,
+                "text"
+              ],
+              "quote": "Until the end of the phase, enemy units are not considered to be within Engagement Range of your unit for the purposes of selecting targets of ranged weapons."
+            },
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -33249,6 +33471,17 @@
             ],
             "effectScope": "UNIT",
             "operation": "MORTAL_WOUND_BACKLASH_ON_5_PLUS",
+            "effectRecipientRoleIds": [
+              "primary-effect-2"
+            ],
+            "lifetimeEvidence": {
+              "field": [
+                "lines",
+                2,
+                "text"
+              ],
+              "quote": "Until the end of the phase, each time an enemy model loses a wound, while that model’s unit is within Engagement Range of your unit, roll one D6: on a 5+, your unit suffers 1 mortal wound after the attacking unit has finished making its attacks."
+            },
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -33261,8 +33494,23 @@
             "id": "detachment-tallyband-summoners:stratagem:3:duration:1",
             "endpoint": "END_CURRENT_PHASE",
             "roleIds": [
-              "primary-effect-1",
-              "primary-effect-2"
+              "primary-effect-1"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-tallyband-summoners:stratagem:3:effect-clause:1",
+                "roleIds": [
+                  "primary-effect-1"
+                ],
+                "scopeEvidence": {
+                  "field": [
+                    "lines",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Until the end of the phase, enemy units are not considered to be within Engagement Range of your unit for the purposes of selecting targets of ranged weapons."
+                }
+              }
             ],
             "evidence": {
               "field": [
@@ -33271,6 +33519,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -33284,8 +33536,23 @@
             "id": "detachment-tallyband-summoners:stratagem:3:duration:2",
             "endpoint": "END_CURRENT_PHASE",
             "roleIds": [
-              "primary-effect-1",
               "primary-effect-2"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-tallyband-summoners:stratagem:3:effect-clause:2",
+                "roleIds": [
+                  "primary-effect-2"
+                ],
+                "scopeEvidence": {
+                  "field": [
+                    "lines",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Until the end of the phase, each time an enemy model loses a wound, while that model’s unit is within Engagement Range of your unit, roll one D6: on a 5+, your unit suffers 1 mortal wound after the attacking unit has finished making its attacks."
+                }
+              }
             ],
             "evidence": {
               "field": [
@@ -33294,6 +33561,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 159,
+              "end": 185
             },
             "sourceFields": [
               [
@@ -33741,6 +34012,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "MOVE_HORIZONTALLY_THROUGH_TERRAIN",
+            "effectRecipientRoleIds": [
+              "primary-effect-1"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -33755,6 +34029,14 @@
             "roleIds": [
               "primary-effect-1"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-tallyband-summoners:stratagem:4:effect-clause:1",
+                "roleIds": [
+                  "primary-effect-1"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -33762,6 +34044,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -34077,6 +34363,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "AFFLICTED",
+            "effectRecipientRoleIds": [
+              "enemy-affected"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -34091,6 +34380,14 @@
             "roleIds": [
               "enemy-affected"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-tallyband-summoners:stratagem:5:effect-clause:1",
+                "roleIds": [
+                  "enemy-affected"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -34098,6 +34395,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -34609,6 +34910,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "LEADERSHIP_TEST_ON_FALL_BACK_OR_REMAIN_STATIONARY",
+            "effectRecipientRoleIds": [
+              "enemy-affected"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -34715,8 +35019,15 @@
             "id": "detachment-tallyband-summoners:stratagem:6:duration:1",
             "endpoint": "END_CURRENT_PHASE",
             "roleIds": [
-              "enemy-affected",
-              "initial-enemy-trigger"
+              "enemy-affected"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-tallyband-summoners:stratagem:6:effect-clause:1",
+                "roleIds": [
+                  "enemy-affected"
+                ]
+              }
             ],
             "evidence": {
               "field": [
@@ -34725,6 +35036,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -36169,6 +36484,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "CONTAGION_RANGE_PLUS_3",
+            "effectRecipientRoleIds": [
+              "primary-models"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -36183,6 +36501,14 @@
             "roleIds": [
               "primary-models"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-death-lords-chosen:stratagem:1:effect-clause:1",
+                "roleIds": [
+                  "primary-models"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -36190,6 +36516,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -36595,6 +36925,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "REROLL_HIT",
+            "effectRecipientRoleIds": [
+              "primary-model-attacks"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -36684,8 +37017,15 @@
             "id": "detachment-death-lords-chosen:stratagem:2:duration:1",
             "endpoint": "END_CURRENT_PHASE",
             "roleIds": [
-              "primary-model-attacks",
-              "enemy-effect-recipient"
+              "primary-model-attacks"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-death-lords-chosen:stratagem:2:effect-clause:1",
+                "roleIds": [
+                  "primary-model-attacks"
+                ]
+              }
             ],
             "evidence": {
               "field": [
@@ -36694,6 +37034,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -37117,6 +37461,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "FIGHT_ON_DEATH_ON_4_PLUS",
+            "effectRecipientRoleIds": [
+              "primary-destroyed-model"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -37131,6 +37478,14 @@
             "roleIds": [
               "primary-destroyed-model"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-death-lords-chosen:stratagem:3:effect-clause:1",
+                "roleIds": [
+                  "primary-destroyed-model"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -37138,6 +37493,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -37527,6 +37886,7 @@
             ],
             "effectScope": "OBJECTIVE_MARKER",
             "operation": "AFFLICTED_ANCHOR",
+            "effectRecipientRoleIds": [],
             "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
               "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change."
@@ -37587,6 +37947,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "AFFLICTED",
+            "effectRecipientRoleIds": [
+              "enemy-affected"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -37601,6 +37964,14 @@
             "roleIds": [
               "enemy-affected"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-death-lords-chosen:stratagem:4:effect-clause:2",
+                "roleIds": [
+                  "enemy-affected"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -37608,6 +37979,10 @@
                 "text"
               ],
               "quote": "Until the start of your next turn"
+            },
+            "sourceOccurrence": {
+              "start": 69,
+              "end": 102
             },
             "sourceFields": [
               [
@@ -37941,6 +38316,9 @@
             ],
             "effectScope": "WEAPON",
             "operation": "ASSAULT_AND_HEAVY",
+            "effectRecipientRoleIds": [
+              "primary-ranged-weapons"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -37955,6 +38333,14 @@
             "roleIds": [
               "primary-ranged-weapons"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-death-lords-chosen:stratagem:5:effect-clause:1",
+                "roleIds": [
+                  "primary-ranged-weapons"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -37962,6 +38348,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -38363,6 +38753,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "MORTAL_WOUNDS_ON_2_PLUS_MAX_6",
+            "effectRecipientRoleIds": [
+              "selected-enemy"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -39986,6 +40379,7 @@
             ],
             "effectScope": "TERRAIN_FEATURE",
             "operation": "AFFLICTED_ANCHOR",
+            "effectRecipientRoleIds": [],
             "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
               "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change."
@@ -40046,6 +40440,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "AFFLICTED",
+            "effectRecipientRoleIds": [
+              "enemy-affected"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -40060,6 +40457,14 @@
             "roleIds": [
               "enemy-affected"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-mortarions-hammer:stratagem:1:effect-clause:2",
+                "roleIds": [
+                  "enemy-affected"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -40067,6 +40472,10 @@
                 "text"
               ],
               "quote": "Until the start of your next turn"
+            },
+            "sourceOccurrence": {
+              "start": 67,
+              "end": 100
             },
             "sourceFields": [
               [
@@ -40514,6 +40923,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "MOVE_HORIZONTALLY_THROUGH_TERRAIN",
+            "effectRecipientRoleIds": [
+              "primary-effect-1"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -40528,6 +40940,14 @@
             "roleIds": [
               "primary-effect-1"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-mortarions-hammer:stratagem:2:effect-clause:1",
+                "roleIds": [
+                  "primary-effect-1"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -40535,6 +40955,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -41068,6 +41492,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "REROLL_HIT",
+            "effectRecipientRoleIds": [
+              "primary-model-attacks"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -41164,8 +41591,15 @@
             "id": "detachment-mortarions-hammer:stratagem:3:duration:1",
             "endpoint": "END_CURRENT_PHASE",
             "roleIds": [
-              "primary-model-attacks",
-              "enemy-effect-recipient"
+              "primary-model-attacks"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-mortarions-hammer:stratagem:3:effect-clause:1",
+                "roleIds": [
+                  "primary-model-attacks"
+                ]
+              }
             ],
             "evidence": {
               "field": [
@@ -41174,6 +41608,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -41529,6 +41967,9 @@
             ],
             "effectScope": "WEAPON",
             "operation": "ASSAULT",
+            "effectRecipientRoleIds": [
+              "primary-ranged-weapons"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -41543,6 +41984,14 @@
             "roleIds": [
               "primary-ranged-weapons"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-mortarions-hammer:stratagem:4:effect-clause:1",
+                "roleIds": [
+                  "primary-ranged-weapons"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -41550,6 +41999,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -41944,6 +42397,7 @@
             ],
             "effectScope": "OBJECTIVE_MARKER",
             "operation": "BATTLE_SHOCK_ANCHOR",
+            "effectRecipientRoleIds": [],
             "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
               "reason": "Recipient, attacker or initial-trigger selector, or selected battlefield anchor; it contributes no independent characteristic or ability change."
@@ -42021,6 +42475,17 @@
             ],
             "effectScope": "UNIT",
             "operation": "BATTLE_SHOCK_AND_NO_FURTHER_PHASE_BATTLE_SHOCK",
+            "effectRecipientRoleIds": [
+              "enemy-affected"
+            ],
+            "lifetimeEvidence": {
+              "field": [
+                "lines",
+                2,
+                "text"
+              ],
+              "quote": "Enemy units affected by this Stratagem do not need to take any other Battle-shock tests in the same phase."
+            },
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -42030,9 +42495,39 @@
         ],
         "duration": [
           {
-            "id": "detachment-mortarions-hammer:stratagem:5:duration:source-unspecified",
-            "endpoint": "NOT_EXPLICIT",
-            "inferredExpiry": false,
+            "id": "detachment-mortarions-hammer:stratagem:5:duration:1",
+            "endpoint": "END_CURRENT_PHASE",
+            "roleIds": [
+              "enemy-affected"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-mortarions-hammer:stratagem:5:effect-clause:2",
+                "roleIds": [
+                  "enemy-affected"
+                ],
+                "scopeEvidence": {
+                  "field": [
+                    "lines",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Enemy units affected by this Stratagem do not need to take any other Battle-shock tests in the same phase."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "lines",
+                2,
+                "text"
+              ],
+              "quote": "in the same phase"
+            },
+            "sourceOccurrence": {
+              "start": 255,
+              "end": 272
+            },
             "sourceFields": [
               [
                 "lines",
@@ -42510,6 +43005,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "CHARGE_ROLL_MINUS_1_ON_CHARGE_DECLARATION",
+            "effectRecipientRoleIds": [
+              "selected-enemy"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -44014,6 +44512,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "CRITICAL_HIT_ON_UNMODIFIED_5_PLUS",
+            "effectRecipientRoleIds": [
+              "primary-model-attacks"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -44028,6 +44529,14 @@
             "roleIds": [
               "primary-model-attacks"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-champions-of-contagion:stratagem:1:effect-clause:1",
+                "roleIds": [
+                  "primary-model-attacks"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -44035,6 +44544,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -44505,6 +45018,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "REROLL_HIT_AND_WOUND",
+            "effectRecipientRoleIds": [
+              "primary-model-attacks"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -44575,8 +45091,15 @@
             "id": "detachment-champions-of-contagion:stratagem:2:duration:1",
             "endpoint": "END_CURRENT_PHASE",
             "roleIds": [
-              "primary-model-attacks",
-              "enemy-effect-recipient"
+              "primary-model-attacks"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-champions-of-contagion:stratagem:2:effect-clause:1",
+                "roleIds": [
+                  "primary-model-attacks"
+                ]
+              }
             ],
             "evidence": {
               "field": [
@@ -44585,6 +45108,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -45015,6 +45542,9 @@
             ],
             "effectScope": "MODEL",
             "operation": "TOUGHNESS_PLUS_2",
+            "effectRecipientRoleIds": [
+              "primary-models"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -45029,6 +45559,14 @@
             "roleIds": [
               "primary-models"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-champions-of-contagion:stratagem:3:effect-clause:1",
+                "roleIds": [
+                  "primary-models"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -45036,6 +45574,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -45320,6 +45862,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "FIGHTS_FIRST",
+            "effectRecipientRoleIds": [
+              "primary-effect-1"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -45334,6 +45879,14 @@
             "roleIds": [
               "primary-effect-1"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-champions-of-contagion:stratagem:4:effect-clause:1",
+                "roleIds": [
+                  "primary-effect-1"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -45341,6 +45894,10 @@
                 "text"
               ],
               "quote": "Until the end of the phase"
+            },
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 26
             },
             "sourceFields": [
               [
@@ -46007,6 +46564,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "ATTACH_PRIMARY_AS_LEADER_AND_RECOMPUTE_STARTING_STRENGTH",
+            "effectRecipientRoleIds": [
+              "recipient-unit"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -46483,6 +47043,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "ALL_PLAGUE_EFFECTS",
+            "effectRecipientRoleIds": [
+              "selected-enemy"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -46578,8 +47141,15 @@
             "id": "detachment-champions-of-contagion:stratagem:6:duration:1",
             "endpoint": "START_NEXT_FRIENDLY_TURN",
             "roleIds": [
-              "selected-enemy",
-              "enemy-effect-recipient"
+              "selected-enemy"
+            ],
+            "bindings": [
+              {
+                "clauseId": "detachment-champions-of-contagion:stratagem:6:effect-clause:1",
+                "roleIds": [
+                  "selected-enemy"
+                ]
+              }
             ],
             "evidence": {
               "field": [
@@ -46588,6 +47158,10 @@
                 "text"
               ],
               "quote": "Until the start of your next turn"
+            },
+            "sourceOccurrence": {
+              "start": 90,
+              "end": 123
             },
             "sourceFields": [
               [
@@ -47794,6 +48368,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "OBJECTIVE_CONTROL_PLUS_1",
+            "effectRecipientRoleIds": [
+              "primary-effect-1"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -47808,6 +48385,14 @@
             "roleIds": [
               "primary-effect-1"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-paragons-of-putrescence:stratagem:1:effect-clause:1",
+                "roleIds": [
+                  "primary-effect-1"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -47815,6 +48400,10 @@
                 "text"
               ],
               "quote": "until the end of the turn"
+            },
+            "sourceOccurrence": {
+              "start": 20,
+              "end": 45
             },
             "sourceFields": [
               [
@@ -48251,6 +48840,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "DETECTION_RANGE_PLUS_6",
+            "effectRecipientRoleIds": [
+              "selected-enemy"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -48682,6 +49274,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "ACTION_DOES_NOT_PREVENT_SHOOTING_ELIGIBILITY",
+            "effectRecipientRoleIds": [
+              "primary-effect-1"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -50051,6 +50646,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "REROLL_WOUND_1",
+            "effectRecipientRoleIds": [
+              "primary-attacks"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -50460,6 +51058,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "AFFLICTED",
+            "effectRecipientRoleIds": [
+              "selected-enemy"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -50474,6 +51075,14 @@
             "roleIds": [
               "selected-enemy"
             ],
+            "bindings": [
+              {
+                "clauseId": "detachment-contagion-engines:stratagem:2:effect-clause:1",
+                "roleIds": [
+                  "selected-enemy"
+                ]
+              }
+            ],
             "evidence": {
               "field": [
                 "lines",
@@ -50481,6 +51090,10 @@
                 "text"
               ],
               "quote": "until your unit has attacked"
+            },
+            "sourceOccurrence": {
+              "start": 60,
+              "end": 88
             },
             "sourceFields": [
               [
@@ -50930,6 +51543,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "D6_DEPENDENT_MORTAL_WOUNDS",
+            "effectRecipientRoleIds": [
+              "triggering-enemy"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -51904,6 +52520,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "BATTLE_SHOCK_MINUS_1",
+            "effectRecipientRoleIds": [
+              "selected-enemy"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -52370,6 +52989,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "REROLL_HIT_1",
+            "effectRecipientRoleIds": [
+              "primary-ranged-attacks"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -52447,6 +53069,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "REROLL_WOUND_1",
+            "effectRecipientRoleIds": [
+              "primary-ranged-attacks-2"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."
@@ -52856,6 +53481,9 @@
             ],
             "effectScope": "UNIT",
             "operation": "CLOSE_QUARTERS",
+            "effectRecipientRoleIds": [
+              "primary-ranged-attacks"
+            ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Stratagem activation, trigger/event state and source lifetime must be supplied; no battle action is executed from a roster."

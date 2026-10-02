@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {normalizeTargetConditions} from './stratagem-target-conditions.mjs';
 import {staticExclusionForOperation} from './stratagem-static-selectors.mjs';
+import {normalizeStratagemDurations} from './stratagem-durations.mjs';
 
 // Source-ID declarations independently adjudicated from all 45 accepted raw
 // Stratagem records. No datasheet-by-rule pair matrix or V1 correction ledger.
@@ -31,6 +32,7 @@ const declarations = [
       {
         "roleId": "primary",
         "operation": "DEADLY_DEMISE_AUTO_ACTIVATION",
+        "lifetimeSourceQuote": "Do not roll one D6 to determine whether mortal wounds are inflicted by your model’s Deadly Demise ability. Instead, mortal wounds are automatically inflicted.",
         "recipient": {
           "subject": "MODEL",
           "allKeywords": [],
@@ -41,6 +43,7 @@ const declarations = [
       {
         "roleId": "enemy-affected",
         "operation": "AFFLICTED",
+        "lifetimeSourceQuote": "In addition, any enemy units that suffer mortal wounds as a result of this Stratagem are Afflicted until the start of your next turn.",
         "recipient": {
           "subject": "UNIT",
           "allKeywords": [],
@@ -439,6 +442,7 @@ const declarations = [
       {
         "roleId": "enemy-affected",
         "operation": "BATTLE_SHOCK_AND_NO_FURTHER_PHASE_BATTLE_SHOCK",
+        "lifetimeSourceQuote": "Enemy units affected by this Stratagem do not need to take any other Battle-shock tests in the same phase.",
         "recipient": {
           "subject": "UNIT",
           "allKeywords": [],
@@ -798,6 +802,7 @@ const declarations = [
       {
         "roleId": "primary",
         "operation": "IGNORE_ENGAGEMENT_FOR_RANGED_TARGET_SELECTION",
+        "lifetimeSourceQuote": "Until the end of the phase, enemy units are not considered to be within Engagement Range of your unit for the purposes of selecting targets of ranged weapons.",
         "recipient": {
           "subject": "UNIT",
           "allKeywords": [],
@@ -813,6 +818,7 @@ const declarations = [
       {
         "roleId": "primary",
         "operation": "MORTAL_WOUND_BACKLASH_ON_5_PLUS",
+        "lifetimeSourceQuote": "Until the end of the phase, each time an enemy model loses a wound, while that model’s unit is within Engagement Range of your unit, roll one D6: on a 5+, your unit suffers 1 mortal wound after the attacking unit has finished making its attacks.",
         "recipient": {
           "subject": "UNIT",
           "allKeywords": [],
@@ -1824,7 +1830,9 @@ function compile(entity, spec) {
     }
     role.conditions = secondaryTarget ? normalizeTargetConditions({target,when,subject,purpose:'SECONDARY_TARGET'}) : conditions;
     roles.push(role);
-    clauses.push({id:entity.id + ':effect-clause:' + (index + 1), roles:[role], conditions:[], sourceFields:secondaryTarget ? [target.field, effect.field] : [effect.field], effectScope:original, operation:declaration.operation});
+    clauses.push({id:entity.id + ':effect-clause:' + (index + 1), roles:[role], conditions:[], sourceFields:secondaryTarget ? [target.field, effect.field] : [effect.field], effectScope:original, operation:declaration.operation,
+      effectRecipientRoleIds:purpose === 'ANCHOR' ? [] : [role.id],
+      ...(declaration.lifetimeSourceQuote ? {lifetimeEvidence:evidence(effect, declaration.lifetimeSourceQuote)} : {})});
   }
   // Recipient exclusions are UNIT predicates on the enemy, never primary
   // actor keyword predicates. Initial Mireslick trigger and general recipients
@@ -1867,12 +1875,7 @@ function compile(entity, spec) {
     clauses[exclusion.clauseIndex].roles.push(recipient);
   }
   const restrictions = lines.flatMap((line, index) => line.label.startsWith('RESTRICTION') ? [{id:entity.id + ':restriction:' + index, conditions:[contextual('ROSTER', 'usedThisStratagemThisBattle', 'BATTLE', false, {field:['lines',index,'text'], quote:line.text})], sourceFields:[['lines',index,'text']]}] : []);
-  const duration = [...effect.quote.matchAll(/\buntil (?:the )?[^.,:;]+/gi)].map((match, index) => {
-    const quote = match[0], endpoint = /start of your next Command phase/i.test(quote) ? 'START_NEXT_FRIENDLY_COMMAND_PHASE' : /start of your next turn/i.test(quote) ? 'START_NEXT_FRIENDLY_TURN' : /end of the phase/i.test(quote) ? 'END_CURRENT_PHASE' : /end of the turn/i.test(quote) ? 'END_CURRENT_TURN' : /end of the battle/i.test(quote) ? 'END_BATTLE' : /your unit has attacked/i.test(quote) ? 'AFTER_PRIMARY_ATTACKED' : 'EXPLICIT_SOURCE_BOUNDARY';
-    const relevant = entity.id === 'detachment-virulent-vectorium:stratagem:1' ? roles.filter(role => role.id === 'enemy-affected') : roles.filter(role => role.id !== 'primary' && !['ROSTER'].includes(role.subject));
-    return {id:entity.id + ':duration:' + (index + 1), endpoint, roleIds:relevant.map(role => role.id), evidence:evidence(effect, quote), sourceFields:[effect.field]};
-  });
-  if (!duration.length) duration.push({id:entity.id + ':duration:source-unspecified', endpoint:'NOT_EXPLICIT', inferredExpiry:false, sourceFields:[effect.field]});
+  const duration = normalizeStratagemDurations(entity.id, effect, clauses);
   const compatibilityRoleIds = roles.filter(role => ['PRIMARY_TARGET','SECONDARY_TARGET'].includes(role.purpose)).map(role => role.id);
   return {kind:'STRATAGEM', contextLevel:'BATTLE', executionMode:'BATTLE_ACTION', detachmentId:entity.parentId, cp:entity.data.cp,
     queryPurpose:'TARGET_ELIGIBILITY', compatibilityRoleIds,
