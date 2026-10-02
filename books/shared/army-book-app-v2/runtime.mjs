@@ -300,11 +300,6 @@ export function mount(document, payload, options = {}) {
       article.append(notes);
     }
     if (card.rosterQuantity !== undefined) article.append(el('p','v2-compatible-help',`${card.rosterQuantity} ${card.kind==='WEAPON_PROFILE'?'selected':'models in this profile'}`));
-    if (card.rosterAbilities?.length) {
-      const abilities=el('p','v2-compatible-help',card.rosterAbilities.map(ability=>`${ability.name}${ability.value===undefined?'':': '+ability.value+'+'}`).join(', '));
-      article.append(abilities);
-    }
-    if (card.rosterMetrics && Object.keys(card.rosterMetrics).length) article.append(el('p','v2-compatible-help',exactValue(card.rosterMetrics)));
     if (card.links?.length) {
       const links = el('div', 'v2-related');
       links.append(el('span', 'v2-eyebrow', 'RELATED ENTRIES'));

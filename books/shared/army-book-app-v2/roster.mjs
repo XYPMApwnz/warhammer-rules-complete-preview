@@ -403,14 +403,14 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     section.append(label, results); fill();
     return section;
   }
-  function rosterNames(state) {
+  function rosterNames(state, showInstanceNumber = false) {
     const counts = new Map();
     const occurrences = new Map();
     state.units.forEach(unit => counts.set(unit.canonicalUnitId, (counts.get(unit.canonicalUnitId) || 0) + 1));
     return new Map(state.units.map(unit => {
       const number = (occurrences.get(unit.canonicalUnitId) || 0) + 1;
       occurrences.set(unit.canonicalUnitId, number);
-      return [unit.instanceId, `${named(unit.canonicalUnitId)}${counts.get(unit.canonicalUnitId) > 1 ? ` #${number}` : ''}`];
+      return [unit.instanceId, `${named(unit.canonicalUnitId)}${showInstanceNumber || counts.get(unit.canonicalUnitId) > 1 ? ` #${number}` : ''}`];
     }));
   }
   function instanceIdentity(unit) {
@@ -444,7 +444,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const state = service.state;
     const unit = state?.units?.find(unit => unit.instanceId === instanceId);
     if (!unit) throw new Error('Unresolved physical roster unit.');
-    const names = rosterNames(state);
+    const names = rosterNames(state, true);
     const context = el('section', 'v2-roster');
     context.dataset.rosterContextInstanceId = instanceId;
     context.append(style.cloneNode(true), instanceIdentity(unit), instanceGear(unit));
@@ -453,7 +453,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if (members.length || assignment) {
       const attachments = el('section'); attachments.append(el('h3', '', 'Attachments'));
       if (assignment) attachments.append(el('p', '', `Attached to ${names.get(assignment.bodyguardInstanceId)}`));
-      members.forEach(member => attachments.append(el('p', '', `${names.get(member.leaderInstanceId)} · ${member.role || 'Character / Support'}`)));
+      members.forEach(member => attachments.append(el('p', '', `${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)} · ${member.role || 'Character / Support'}`)));
       context.append(attachments);
     }
     context.append(renderEffective(instanceId, service.effective(instanceId)), renderRelated(instanceId));

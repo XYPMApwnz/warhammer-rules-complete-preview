@@ -45,6 +45,9 @@ const sourceSnapshots=new Map(['generated/rule-contract-effective.json','generat
  ...new Set(expected.map(row=>'sources/accepted-waha-pages/'+row.file))].map(file=>[file,fs.readFileSync(path.join(directory,file))]));
 const identity=row=>`${row.id}/${row.clause}`;
 const denominator=new Set(expected.map(identity));
+const categories=['WEAPON_ABILITY','PROFILE_DEFENSE','WEAPON_CHARACTERISTIC','OTHER_PLAYER_VISIBLE','WEAPON_ABILITY','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE','WEAPON_CHARACTERISTIC','PROFILE_DEFENSE','OTHER_PLAYER_VISIBLE','WEAPON_CHARACTERISTIC','PROFILE_DEFENSE','WEAPON_CHARACTERISTIC','OTHER_PLAYER_VISIBLE','UNIT_KEYWORD','DETACHMENT_DERIVED_STATE','UNIT_KEYWORD','DETACHMENT_DERIVED_STATE','UNIT_KEYWORD','WEAPON_ABILITY'];
+assert.equal(categories.length,expected.length);
+const classifications=expected.map((row,index)=>({ruleId:row.id,clauseId:row.clause,category:categories[index]}));
 assert.equal(denominator.size,22);
 for(const row of expected)assert(source(row.file).includes(normalize(row.quote))||official.includes(normalize(row.quote)),`Accepted source expectation missing: ${identity(row)}`);
 assert.deepEqual(new Set(book.entities.flatMap(entity=>(entity.ruleContract?.clauses||[]).filter(clause=>clause.rosterClassification==='ROSTER_EXECUTABLE').map(clause=>`${entity.id}/${clause.id}`))),denominator,'Executable source census changed');
@@ -85,11 +88,54 @@ try{
   const surfaces=async(id,options={})=>{const main=await card(id,options);if(options.detail)return [main];await api(id=>window.ArmyBookAppV2.showDetail(id),id);await page.waitForFunction(()=>document.querySelector('.v2-detail-dialog')?.open);const detail=await card(id,{detail:true});await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('.v2-detail-dialog')?.open);return [main,detail];};
   const weaponAbility=async(id,ability,wanted=true,options={})=>{for(const actual of await surfaces(id,options)){assert(actual.length,`${device}: missing visible weapon ${id}`);for(const record of actual)assert.equal(values([record],'/abilities').some(value=>normalize(value)===normalize(ability)),wanted,`${device}: visible weapon ${id} ${ability} in every composition scope`);controls++;}};
   const stat=async(id,path,wanted)=>{for(const cards of await surfaces(id)){const actual=values(cards,'/'+path);assert(actual.length,`${device}: missing visible stat ${id}/${path}`);assert(actual.every(value=>value===wanted),`${device}: wrong visible stat ${id}/${path}: ${JSON.stringify(actual)}`);controls++;}};
-  const modelAbility=async(id,name,value,wanted=true,options={})=>{for(const actual of await surfaces(id,options)){assert(actual.length,`${device}: missing visible MODEL profile ${id}`);const pattern=new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\s*(?::\\s*)?'+value+'\\+','i');assert.equal(actual.some(row=>pattern.test(row.text)),wanted,`${device}: visible ${name} ${value}+ on ${id}`);controls++;}};
+  const modelAbility=async(id,name,value,wanted=true,options={})=>{for(const actual of await surfaces(id,options)){assert(actual.length,`${device}: missing visible MODEL profile ${id}`);const pattern=new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\s*(?::\\s*)?'+value+'\\+','i');for(const record of actual){assert.equal(record.fields.some(field=>field.path.startsWith('/rosterAbilities/')&&field.value.name===name&&field.value.value===value&&field.text===value+'+'),wanted,`${device}: missing natural defensive field ${name} ${value}+ on ${id}`);assert.equal(pattern.test(record.text),wanted,`${device}: visible ${name} ${value}+ on ${id}`);}controls++;}};
   const keyword=async(id,name,wanted=true)=>{const root=await page.locator('main .v2-current-card').evaluate(node=>({id:node.dataset.cardId,fields:[...node.querySelectorAll('[data-fact-id]')].filter(f=>f.closest('[data-card-id]')===node).map(f=>({path:f.dataset.factId.slice(f.dataset.factId.indexOf('::')+2),value:JSON.parse(f.dataset.factValue)}))}));assert.equal(root.id,id);assert.equal(root.fields.some(f=>f.path.startsWith('/keywords/')&&f.value===name),wanted,`${device}: effective UNIT keyword ${name}`);controls++;};
-  const metric=async(id,name,modifier,max)=>{for(const actual of await surfaces(id)){assert(actual.length);for(const record of actual){const objects=record.extras.flatMap(text=>{try{return [JSON.parse(text)];}catch{return [];}});const metrics=objects.filter(object=>Object.hasOwn(object,name));assert.equal(metrics.length,1,`${device}: missing or duplicate visible metric ${name}`);assert.deepEqual(metrics[0][name],{modifier,...(max===undefined?{}:{max})},`${device}: wrong visible metric ${name}`);controls++;}}};
+  const metric=async(id,name,modifier,max)=>{for(const actual of await surfaces(id)){assert(actual.length);for(const record of actual){const metrics=record.fields.filter(field=>field.path==='/rosterMetrics/'+name);assert.equal(metrics.length,1,`${device}: missing or duplicate natural profile metric ${name}`);assert.deepEqual(metrics[0].value,{modifier,...(max===undefined?{}:{max})},`${device}: wrong visible metric ${name}`);assert.equal(metrics[0].text,`${modifier>=0?'+':''}${modifier}"${max===undefined?'':` (maximum ${max}")`}`,`${device}: metric exposed as internal JSON`);controls++;}}};
   const mark=async(...indices)=>{const applied=await api(()=>window.ArmyBookAppV2.roster.projection.units.flatMap(unit=>unit.applied));for(const index of indices){const row=expected[index];assert(applied.some(effect=>effect.ruleId===row.id&&effect.clauseId===row.clause),`${device}: source clause not executed: ${identity(row)}`);covered.add(identity(row));}};
   const baseline=await api(()=>{window.ArmyBookAppV2.open('unit-lord-of-contagion');return [...document.querySelectorAll('main [data-fact-id]')].map(f=>[f.dataset.factId,f.dataset.factValue]);});
+
+  // Complete user mega-case: every assertion reads natural profile/weapon/
+  // keyword fields, excluding the still-present internal effective block.
+  const megaExport=`+ FACTION KEYWORD: Chaos - Death Guard
++ DETACHMENT: Paragons of Putrescence, Virulent Vectorium (Hypervirulent Strains)
++ TOTAL ARMY POINTS: 285pts
++ ENHANCEMENT: Furnace of Plagues (on Char1: Lord of Contagion)
+Char1: 1x Lord of Contagion (135 pts): Manreaper
+Enhancement: Furnace of Plagues (+25 pts)
+3x Deathshroud Terminators (150 pts)
+• 1x Deathshroud Terminator Champion: Manreaper, Plaguespurt gauntlet
+• 2x Deathshroud Terminator: 2 with Manreaper, Plaguespurt gauntlet`;
+  assert.equal(await api(text=>window.ArmyBookAppV2.roster.import(text).status,megaExport),'READY');
+  assert.deepEqual(new Set(await api(()=>window.ArmyBookAppV2.roster.state.detachmentIds)),new Set(['detachment-paragons-of-putrescence','detachment-virulent-vectorium']));
+  const checkMega=async(attached)=>{
+    await open('parsed-unit-1');await modelAbility(profileId(LOC),'Feel No Pain',4,attached);
+    for(const [index,id] of lordWeapons.entries()){
+      await stat(id,'attacks',index===0?'6':'11');await stat(id,'strength',index===0?'10':'7');
+      for(const ability of ['LETHAL HITS','DEVASTATING WOUNDS'])await weaponAbility(id,ability);
+      for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(id,ability,attached);
+    }
+    await metric(profileId(LOC),'contagionRange',3,12);
+    assert.equal((await page.locator('main [data-roster-context-instance-id="parsed-unit-1"]').innerText()).includes('Attached to Deathshroud Terminators #1'),attached);
+    await open('parsed-unit-2');await keyword(DS,'CHARACTER',attached);
+    assert.equal((await page.locator('main [data-roster-context-instance-id="parsed-unit-2"]').innerText()).includes('Led by Lord of Contagion #1'),attached);
+    for(const [index,id]of dsWeapons.entries()){
+      await stat(id,'attacks',index===0?'4':'8');await stat(id,'strength',index===0?'8':'4');
+      await weaponAbility(id,'LETHAL HITS');await weaponAbility(id,'DEVASTATING WOUNDS',false);
+      for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(id,ability,attached);
+    }
+    if(attached)await metric(profileId(DS),'contagionRange',3,12);
+    else for(const actual of await surfaces(profileId(DS)))assert.equal(values(actual,'/rosterMetrics/contagionRange').length,0,'Detached non-CHARACTER retained Hypervirulent modifier');
+    assert(await api(()=>{const r=window.ArmyBookAppV2.roster;return r.projection.units.find(u=>u.instanceId==='parsed-unit-2').profiles.every(p=>!r.context('parsed-unit-2','MODEL',p.scopeId).keywords.has('CHARACTER'));}));
+    assert(await api(()=>{const r=window.ArmyBookAppV2.roster;return r.effective('parsed-unit-2').applied.every(row=>row.ruleId!=='detachment-virulent-vectorium:enhancement:2')&&r.projection.units.every(u=>u.conditional.filter(c=>c.ruleId==='detachment-virulent-vectorium:rule').every(c=>c.state==='UNKNOWN'));}));
+  };
+  await attach('parsed-unit-1','parsed-unit-2');await checkMega(true);
+  await detach('parsed-unit-1');await checkMega(false);
+  await attach('parsed-unit-1','parsed-unit-2');await checkMega(true);
+  // Losing a metric from the natural profile must fail even when debug/applied
+  // state remains intact. The source-backed modifier cannot live only there.
+  await api(()=>{const r=window.ArmyBookAppV2.roster;window.metricOriginal=r.effective;r.effective=function(id){const result=window.metricOriginal.call(this,id);result.profiles.forEach(p=>p.metrics={});return result;};});
+  await open('parsed-unit-1');await assert.rejects(()=>metric(profileId(LOC),'contagionRange',3,12),assert.AssertionError);mutations++;
+  await api(()=>{window.ArmyBookAppV2.roster.effective=window.metricOriginal;delete window.metricOriginal;});
 
   // Verbatim user reproduction, including NBSP labels, export prices and
   // grouped Champion/"2 with" composition. No manual canonical selectors.
@@ -195,5 +241,5 @@ Created with newrecruit.eu v36.31`;
  }
  assert.deepEqual(forbiddenRequests,[],'Undeclared/legacy factual dependency');
  for(const [file,snapshot]of sourceSnapshots)assert.deepEqual(fs.readFileSync(path.join(directory,file)),snapshot,`Source/contract/factual projection changed during QA: ${file}`);
- console.log(JSON.stringify({status:'PASS',rosterExecutable:denominator.size,visibleEffectsCorrect:'22/22',missingVisibleEffects:0,wrongVisibleEffects:0,instanceLeakage:0,results}));
+ console.log(JSON.stringify({status:'PASS',rosterExecutable:denominator.size,visibleEffectsCorrect:'22/22',missingVisibleEffects:0,wrongVisibleEffects:0,instanceLeakage:0,classifications,megaCase:'PASS',detachReattach:'PASS',results}));
 }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}

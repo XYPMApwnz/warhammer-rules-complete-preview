@@ -55,7 +55,19 @@ export function projectInstanceCards(cards, unit, effective) {
         id:`${base.id}::/${key}/${index}`,value:clone(item),displayValue:undefined,
         contextId:base.contextId,source:{entityId:base.id,path:`/${key}/${index}`},runtimeDerived:true}));
     }
-    if (source==='PROFILE') {card.rosterAbilities=clone(record.abilities || []);card.rosterMetrics=clone(record.metrics || {});card.rosterQuantity=record.quantity;}
+    if (source==='PROFILE') {
+      card.rosterAbilities=clone(record.abilities || []);card.rosterMetrics=clone(record.metrics || {});card.rosterQuantity=record.quantity;
+      const derivedField=(path,label,value,displayValue)=>({id:`${base.id}::/${path}`,label,type:'text',value:clone(value),displayValue,
+        contextId:base.contextId,source:{entityId:base.id,path:`/${path}`},runtimeDerived:true});
+      card.rosterAbilities.forEach((ability,index)=>card.fields.push(derivedField(`rosterAbilities/${index}`,`${ability.name}: `,ability,
+        ability.value===undefined?ability.name:`${ability.value}+`)));
+      const metricLabels={contagionRange:'Contagion Range',detectionRange:'Detection Range'};
+      for (const [key,metric] of Object.entries(card.rosterMetrics)) {
+        assert(Object.hasOwn(metricLabels,key),'Unsupported effective metric presentation: '+key);
+        card.fields.push(derivedField(`rosterMetrics/${key}`,metricLabels[key],metric,
+          `${metric.modifier>=0?'+':''}${metric.modifier}"${metric.max===undefined?'':` (maximum ${metric.max}")`}`));
+      }
+    }
     else card.rosterQuantity=record.physicalQuantity;
     return card;
   };
