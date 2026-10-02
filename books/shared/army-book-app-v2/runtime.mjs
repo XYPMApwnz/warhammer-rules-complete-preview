@@ -271,7 +271,7 @@ export function mount(document, payload, options = {}) {
     return container;
   }
 
-  function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null} = {}) {
+  function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null, primaryDetail = true} = {}) {
     const allowed = scopedIds();
     const childrenIds = (card.children || []).filter(id=>!allowed || allowed.has(id));
     const article = el('article', `v2-card v2-kind-${String(card.kind || 'entry').replace(/[^a-z0-9-]/gi, '-')} v2-depth-${Math.min(depth, 2)}`);
@@ -284,7 +284,7 @@ export function mount(document, payload, options = {}) {
     const headingTag = `h${Math.min(depth + (inDialog ? 2 : 1), 6)}`;
     const title = headingField ? factValue(headingTag, headingField) : el(headingTag, '', card.title);
     title.className = 'v2-card-title';
-    if (!depth && inDialog) title.id = 'v2-detail-heading';
+    if (!depth && inDialog && primaryDetail) title.id = 'v2-detail-heading';
     cardHeader.append(el('span', 'v2-kind', humanKind(card.kind)), title);
     const permalink = anchor('↗', card.id);
     permalink.className = 'v2-permalink';
@@ -300,7 +300,10 @@ export function mount(document, payload, options = {}) {
       article.append(notes);
     }
     if (card.rosterQuantity !== undefined) article.append(el('p','v2-compatible-help',`${card.rosterQuantity} ${card.kind==='WEAPON_PROFILE'?'selected':'models in this profile'}`));
-    if (card.rosterAbilities?.length) article.append(el('p','v2-compatible-help',card.rosterAbilities.map(ability=>`${ability.name}${ability.value===undefined?'':': '+ability.value}`).join(', ')));
+    if (card.rosterAbilities?.length) {
+      const abilities=el('p','v2-compatible-help',card.rosterAbilities.map(ability=>`${ability.name}${ability.value===undefined?'':': '+ability.value+'+'}`).join(', '));
+      article.append(abilities);
+    }
     if (card.rosterMetrics && Object.keys(card.rosterMetrics).length) article.append(el('p','v2-compatible-help',exactValue(card.rosterMetrics)));
     if (card.links?.length) {
       const links = el('div', 'v2-related');
@@ -524,13 +527,21 @@ export function mount(document, payload, options = {}) {
     main.append(sections);
   }
 
-  function renderSelected(id, focus = false) {
+  function physicalProfileProjection(id,instanceId) {
+    if (!personalMode || !instanceId || !['PROFILE','WEAPON_PROFILE'].includes(cards.get(id)?.kind)) return null;
+    const unit=options.roster.state.units.find(unit=>unit.instanceId===instanceId);
+    if (!unit || cards.get(id).parentId!==unit.canonicalUnitId) return null;
+    return projectInstanceCards(cards,unit,options.roster.effective(instanceId));
+  }
+
+  function renderSelected(id, focus = false, instanceId = null) {
     if (personalMode && cards.get(id)?.kind==='DATASHEET') {
       const instances=personalBook().instances.filter(entry=>entry.id===id);
-      return instances.length?renderInstance(instances.find(entry=>entry.instanceId===selectedInstanceId)?.instanceId || instances[0].instanceId,focus):renderPersonalHome(focus);
+      return instances.length?renderInstance(instances.find(entry=>entry.instanceId===(instanceId || selectedInstanceId))?.instanceId || instances[0].instanceId,focus):renderPersonalHome(focus);
     }
     selectedView = personalMode?'PERSONAL':'READER';
-    selectedInstanceId = null;
+    const variants=physicalProfileProjection(id,instanceId);
+    selectedInstanceId = variants ? instanceId : null;
     glossaryQuery = '';
     selectedId = cards.has(id) && (!personalMode || scopedIds().has(id)) ? id : null;
     if (!selectedId) {
@@ -547,9 +558,9 @@ export function mount(document, payload, options = {}) {
       toolbar.append(button(personalMode?'Personal guide':'Library', '', library));
       if (card.parentId && cards.has(card.parentId)) toolbar.append(el('span', '', '/'), anchor(cards.get(card.parentId).title, card.parentId));
       toolbar.append(el('span', '', '/'), el('span', 'v2-breadcrumb-current', card.title));
-      const selected = renderCard(card);
-      selected.classList.add('v2-current-card');
-      main.replaceChildren(toolbar, selected);
+      const selected=(variants?.get(id) || [card]).map(card=>renderCard(card,{variants,instanceId:selectedInstanceId}));
+      selected.forEach(card=>card.classList.add('v2-current-card'));
+      main.replaceChildren(toolbar,...selected);
     }
     renderNavigation();
     if (focus) {
@@ -632,7 +643,7 @@ export function mount(document, payload, options = {}) {
     const rosterId=new URLSearchParams(window.location.search).get('roster');
     personalMode=Boolean(rosterPanel && id!==rosterRoute && rosterId && options.roster.state?.rosterId===rosterId);
     const detail = state?.armyBookV2?.detailId === id && cards.has(id);
-    const key = JSON.stringify([id, detail, personalMode, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
+    const key = JSON.stringify([id, detail, personalMode, state?.armyBookV2?.instanceId, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
     if (routeKey === key) return;
     routeKey = key;
     toggleDrawer(false);
@@ -642,11 +653,20 @@ export function mount(document, payload, options = {}) {
       } else if (state.armyBookV2.backgroundView === 'ROSTER' && rosterPanel) {
         if (selectedView !== 'ROSTER') renderRoster();
       } else if (personalMode && state.armyBookV2.backgroundInstanceId) {
-        renderInstance(state.armyBookV2.backgroundInstanceId);
+        renderSelected(state.armyBookV2.backgroundId,false,state.armyBookV2.backgroundInstanceId);
       } else if (personalMode && state.armyBookV2.backgroundView==='PERSONAL' && !state.armyBookV2.backgroundId) {
         renderPersonalHome();
       } else if (selectedView !== 'READER' || selectedId !== (state.armyBookV2.backgroundId || null)) renderSelected(state.armyBookV2.backgroundId, false);
-      dialogContent.replaceChildren(renderCard(cards.get(id), {inDialog: true}));
+      // A profile opened from an effective instance is the same physical
+      // projection as its parent card, not a fresh canonical profile. Rule
+      // definitions and Glossary details keep their canonical source path.
+      const instanceId=personalMode && state.armyBookV2.backgroundView==='PERSONAL'
+        ? state.armyBookV2.backgroundInstanceId : null;
+      const variants=physicalProfileProjection(id,instanceId);
+      const effectiveCards=variants?.get(id);
+      dialogContent.replaceChildren(...(effectiveCards?.length
+        ? effectiveCards.map((card,index)=>renderCard(card,{inDialog:true,variants,instanceId,primaryDetail:index===0}))
+        : [renderCard(cards.get(id),{inDialog:true})]));
       if (!dialog.open) {
         lastFocus = document.activeElement;
         dialog.showModal();
@@ -662,7 +682,7 @@ export function mount(document, payload, options = {}) {
       else if (personalMode && id===personalRoute) renderPersonalHome(focus);
       else if (personalMode && id.startsWith('roster-unit/')) renderInstance(routeInstanceId(id),focus);
       else if (rosterPanel && (id===personalRoute || id.startsWith('roster-unit/') || rosterId && !options.roster.state)) renderRoster(focus);
-      else renderSelected(id || null, focus);
+      else renderSelected(id || null, focus, state?.armyBookV2?.instanceId);
       if (!focus) window.requestAnimationFrame(() => window.scrollTo({top: state?.armyBookV2?.scrollY || 0, behavior: 'instant'}));
       if (!focus && lastFocus) {
         const restoreTarget = lastFocus.isConnected ? lastFocus : [...main.querySelectorAll('[data-target-id]')].find(node => node.dataset.targetId === lastFocus.dataset.targetId);
@@ -671,7 +691,7 @@ export function mount(document, payload, options = {}) {
       lastFocus = null;
     }
   }
-  function navigate(id, detail, options = {}) {
+  function navigate(id, detail, routeOptions = {}) {
     const glossary = id === glossaryRoute && Boolean(payload.glossary) && !detail;
     const roster = id === rosterRoute && Boolean(rosterPanel) && !detail;
     const personal = Boolean(rosterPanel) && (id===personalRoute || id?.startsWith('roster-unit/')) && !detail;
@@ -680,10 +700,15 @@ export function mount(document, payload, options = {}) {
     if (personalMode && cards.has(id) && !scopedIds().has(id) && !(detail && cards.get(id).kind==='CORE_RULE')) return false;
     const nextHash = id ? `#${encodeURIComponent(id)}` : '';
     window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, scrollY: window.scrollY, detailScrollTop: dialogContent.scrollTop, ...(selectedView === 'GLOSSARY' ? {glossaryQuery} : {})}}, '', window.location.href);
-    const state = {armyBookV2: detail ? {detailId: id, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: options.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):selectedView === 'READER'||selectedView==='PERSONAL' ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, scrollY: 0}};
+    // Carry the existing physical owner with its profile projection. The URL
+    // and navigation behavior stay the same; identity is never inferred from
+    // a duplicate datasheet title or from the first matching roster copy.
+    const owner=personalMode && selectedInstanceId && options.roster.state.units.find(unit=>unit.instanceId===selectedInstanceId);
+    const instanceId=owner && (id===owner.canonicalUnitId || physicalProfileProjection(id,owner.instanceId)) ? owner.instanceId : null;
+    const state = {armyBookV2: detail ? {detailId: id, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: routeOptions.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):selectedView === 'READER'||selectedView==='PERSONAL' ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, ...(instanceId?{instanceId}:{}), scrollY: 0}};
     const destination=new URL(window.location.href);destination.hash=nextHash;
-    if (options.fullBook) destination.searchParams.delete('roster');
-    else if (personal) destination.searchParams.set('roster',options.rosterId || optionsRosterId());
+    if (routeOptions.fullBook) destination.searchParams.delete('roster');
+    else if (personal) destination.searchParams.set('roster',routeOptions.rosterId || optionsRosterId());
     if (window.location.hash !== nextHash || destination.search!==window.location.search || Boolean(window.history.state?.armyBookV2?.detailId) !== detail) {
       window.history.pushState(state, '', destination.href);
     } else window.history.replaceState(state, '', window.location.href);

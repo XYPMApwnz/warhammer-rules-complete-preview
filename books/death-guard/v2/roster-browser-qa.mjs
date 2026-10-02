@@ -251,10 +251,15 @@ try {
     const popup=async(instanceId,targetId,relatedOnly=false)=>{
       activeStep=device+'/canonical-popup/'+targetId;
       await page.evaluate(id=>window.ArmyBookAppV2.openInstance(id),instanceId);
+      // Physical profile details must match the effective card the player just
+      // opened. Source rule definitions retain the canonical factual contract.
+      const expected=['PROFILE','WEAPON_PROFILE'].includes(cards.get(targetId).kind)
+        ? (await observeFacts(page,`main article[data-card-id="${targetId}"][data-roster-instance-id="${instanceId}"]`)).facts.map(({visible,...fact})=>fact)
+        : expectedFacts(targetId);
       const source=physical(page,instanceId).locator(relatedOnly?'[data-roster-related-instance-id]':'[data-roster-context-instance-id]');
       const link=source.locator(`[data-target-id="${targetId}"]:visible`).first();await link.click();await page.waitForSelector('dialog[open]');
       const observation=await observeFacts(page,'dialog[open]');assert.equal(observation.targetId,targetId);assert.equal(observation.dialogs,1);
-      assert.deepEqual(observation.facts.map(({visible,...fact})=>fact),expectedFacts(targetId));assert.ok(observation.facts.every(fact=>fact.visible));
+      assert.deepEqual(observation.facts.map(({visible,...fact})=>fact),expected);assert.ok(observation.facts.every(fact=>fact.visible));
       assert.deepEqual(await snapshot(page),durable,'Opening a source popup changed physical effects');await noOverflow(page);popupChecks++;return observation;
     };
     const sourcePopup=await popup(ids.lord,silentBodyguardId);
