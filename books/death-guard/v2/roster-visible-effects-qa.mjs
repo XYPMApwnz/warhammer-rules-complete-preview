@@ -185,7 +185,7 @@ Created with newrecruit.eu v36.31`;
   await page.reload();await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
   await page.waitForFunction(id=>document.querySelector('main [data-card-id="'+id+'"]')?.dataset.rosterInstanceId==='parsed-unit-1',lordWeapons[0]);
   for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(lordWeapons[0],ability);
-  await page.goBack();await page.waitForFunction(()=>document.querySelector('main .v2-current-card')?.dataset.cardId==='unit-lord-of-contagion');assert((await card(profileId(LOC))).some(row=>/Feel No Pain\s*:\s*4\+/.test(row.text)),`${device}: Back lost effective MODEL ability`);
+  await page.goBack();await page.waitForFunction(()=>document.querySelector('main .v2-current-card')?.dataset.cardId==='unit-lord-of-contagion');assert((await card(profileId(LOC))).some(row=>/Feel No Pain\s*:?\s*4\+/i.test(row.text)),`${device}: Back lost effective MODEL ability`);
   await page.goForward();await page.waitForFunction(id=>document.querySelector('main [data-card-id="'+id+'"]')?.dataset.rosterInstanceId==='parsed-unit-1',lordWeapons[0]);await weaponAbility(lordWeapons[0],'LANCE');
   await open('parsed-unit-1');await api(id=>window.ArmyBookAppV2.showDetail(id),lordWeapons[0]);
   await page.waitForFunction(()=>document.querySelector('.v2-detail-dialog')?.open);

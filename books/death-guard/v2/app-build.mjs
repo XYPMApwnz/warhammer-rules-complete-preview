@@ -5,6 +5,7 @@ import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {buildRelatedRules} from './related-rules-build.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {buildGlossaryProjection} from './glossary-build.mjs';
+import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datasheet-v1.mjs';
 
 export function readAppInputs() {
   // The effective Rule Contract snapshot already contains the complete Effective Book.
@@ -17,7 +18,8 @@ export function readAppInputs() {
     const record=resolveOwnedFact(id);records.set(id,record);
     for (const child of [...(record.qualifierIds||[]),...(record.enhancementCostIds||[])]) ids.add(child);
   }
-  return {model,records,coreCatalog:createEffectiveCoreCatalog()};
+  const artwork=JSON.parse(fs.readFileSync(new URL('../presentation/unit-images.json',import.meta.url),'utf8'));
+  return {model,records,coreCatalog:createEffectiveCoreCatalog(),artwork};
 }
 export function buildApp(inputs=readAppInputs()) {
   const payload=projectArmyBook(inputs.model,inputs.records,{title:'Death Guard',edition:'11th Edition'});
@@ -26,12 +28,13 @@ export function buildApp(inputs=readAppInputs()) {
   const glossary=buildGlossaryProjection(inputs.model,inputs.coreCatalog || createEffectiveCoreCatalog());
   payload.cards.push(...glossary.coreCards);
   payload.glossary=glossary.index;
+  payload.datasheetPresentation=buildDatasheetPresentation(inputs.model,inputs.artwork || JSON.parse(fs.readFileSync(new URL('../presentation/unit-images.json',import.meta.url),'utf8')));
   return payload;
 }
 export function writeApp({check=false}={}) {
   const payload=buildApp();
   const output=new Map([['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],['./app.html',`<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Death Guard · Army Book V2</title><link rel="stylesheet" href="../../shared/army-book-app-v2/styles.css"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Death Guard · Army Book V2</title><link rel="stylesheet" href="../../shared/army-book-app-v2/styles.css"><link rel="stylesheet" href="../../shared/army-book-app-v2/datasheet-v1.css"></head>
 <body><p role="status">Loading Army Book…</p><script type="module">
 import {mount} from '../../shared/army-book-app-v2/runtime.mjs';
 import {createBrowserRoster} from './roster-boot.mjs';

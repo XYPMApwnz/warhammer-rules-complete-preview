@@ -93,3 +93,30 @@ the existing stylesheet.
 The application adapter recomputes the index; a saved index cannot override
 canonical facts. Validation rejects missing targets, duplicate identities,
 copied factual definitions and aliases with unresolved field addresses.
+
+## V1 datasheet presentation on V2 records
+
+`datasheet-v1.mjs` is the single presentation adapter. It reads the existing
+canonical/effective cards and their physical instance/scope IDs, preserving
+every field's value, identity and provenance in the DOM. It does not execute
+effects or resolve gameplay identities from titles. Weapon pills use explicit
+Core ability IDs; source-reference pills open their existing canonical owner.
+Numeric breakdowns format the runtime's applied before/after trace beneath
+the supplied final value. Aggregate weapon ownership remains unit scoped.
+
+`datasheet-v1.css` imports the actual shared V1 datasheet and artwork styles.
+Its scoped prerequisites preserve the accepted V2 navigation and other card
+types. `datasheet-v1-layout.mjs` adapts the V1 column balancing and phone profile
+placement, moving the original fact/event nodes rather than reconstructing
+them. Unit artwork is build-time presentation metadata from the existing
+canonical-ID image mapping; no V1 target catalog is read.
+
+The same native V2 detail/history resolver serves Reader, Related Rules and
+Glossary. Effective weapon dialogs additionally retain physical composition
+scope, so two rows of one profile do not open a flattened canonical answer.
+
+Run `books/death-guard/v2/datasheet-v1-qa.mjs` and
+`books/death-guard/v2/datasheet-v1-browser-qa.mjs` for the independent 3,654-field
+census, frozen navigation, actual V1 shell and desktop/phone mega-case controls.
+`roster-visible-effects-qa.mjs` retains the source-backed 22-clause end-to-end
+checks and negative mutations.

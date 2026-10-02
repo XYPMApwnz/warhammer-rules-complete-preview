@@ -46,8 +46,15 @@ let activePage=null,activeStep='startup';
 const ready=page=>page.waitForFunction(()=>!!window.ArmyBookAppV2);
 const observe=(page,scope)=>page.evaluate(scope=>{
   const root=document.querySelector(scope);if(!root)throw new Error('Missing canonical observation '+scope);
-  const article=root.matches('article')?root:root.querySelector('article');
-  return {targetId:article?.dataset.cardId,text:article?.textContent,facts:[...root.querySelectorAll('[data-fact-id]')].map(node=>({id:node.dataset.factId,value:JSON.parse(node.dataset.factValue),entityId:node.dataset.entityId,contextId:node.dataset.contextId,text:node.textContent,cardId:node.closest('[data-card-id]').dataset.cardId,visible:!!node.getClientRects().length})).sort((a,b)=>a.id.localeCompare(b.id)),dialogs:document.querySelectorAll('dialog[open]').length,overflow:document.documentElement.scrollWidth>innerWidth+1};
+  const article=root.dataset.cardId?root:root.querySelector('article');
+  // V1 column balancing may place disjoint fields of one canonical section in
+  // separate ability cards. Observe the complete logical record, not only its
+  // first presentation fragment. Exact IDs/values and duplicate checks remain.
+  const roots=scope==='main .v2-current-card'
+    ? [...document.querySelectorAll('main [data-card-id]')].filter(node=>node.dataset.cardId===article?.dataset.cardId)
+    : [root];
+  const nodes=[...new Set(roots.flatMap(node=>[...node.querySelectorAll('[data-fact-id]')]))];
+  return {targetId:article?.dataset.cardId,text:article?.textContent,facts:nodes.map(node=>({id:node.dataset.factId,value:JSON.parse(node.dataset.factValue),entityId:node.dataset.entityId,contextId:node.dataset.contextId,text:node.textContent,cardId:node.closest('[data-card-id]').dataset.cardId,visible:!!node.getClientRects().length})).sort((a,b)=>a.id.localeCompare(b.id)),dialogs:document.querySelectorAll('dialog[open]').length,overflow:document.documentElement.scrollWidth>innerWidth+1};
 },scope);
 const assertFacts=(observed,id)=>{
   assert.equal(observed.targetId,id,activeStep+' canonical popup resolver');
@@ -64,8 +71,9 @@ const assertFacts=(observed,id)=>{
 const comparable=observed=>({targetId:observed.targetId,text:observed.text,facts:observed.facts});
 const digest=observed=>createHash('sha256').update(JSON.stringify(comparable(observed))).digest('hex');
 const results=[];
+const sourceSensitivityOnly=process.argv.includes('--source-sensitivity-only');
 try {
-  for(const [device,viewport] of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]) {
+  for(const [device,viewport] of (sourceSensitivityOnly?[]:[['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]])) {
     const context=await browser.newContext({viewport,...(device==='phone'?{isMobile:true,hasTouch:true}:{})});
     const page=await context.newPage(),errors=[];activePage=page;
     page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('404'))errors.push(message.text());});
@@ -157,7 +165,7 @@ try {
     console.log(JSON.stringify({device,stage:'completed',entries:census.entries,searchChecks,canonicalPopupChecks:popupChecks,aliasPopupChecks,readerParityChecks,relatedParityChecks,coreVisibleFacts:coreVisibleFacts.size,historyChecks,reloadChecks,status:'PASS'}));
     await context.close();activePage=null;
   }
-  assert.deepEqual(results[0].targetHashes,results[1].targetHashes,'Desktop/phone canonical Glossary definitions differ');
+  if(!sourceSensitivityOnly)assert.deepEqual(results[0].targetHashes,results[1].targetHashes,'Desktop/phone canonical Glossary definitions differ');
   // Positive source controls pass through the factual presentation boundary.
   // Applicability stays on its already validated snapshot; no stale predicate
   // evidence is treated as a fresh gameplay contract during this probe.
@@ -171,6 +179,7 @@ try {
   const poisonedCore={...glossaryInputs.coreCatalog,records:glossaryInputs.coreCatalog.records.map(record=>record.id===coreSource.id?{...record,semanticContent:'CANONICAL_CORE_DEFINITION_POISON_5489'}:record)};
   const poisonedGlossary=buildGlossaryProjection(poisonedModel,poisonedCore);
   servedPayload=projectArmyBook(poisonedModel,inputs.records,payload.book);servedPayload.cards.push(...poisonedGlossary.coreCards);servedPayload.glossary=poisonedGlossary.index;servedPayload.relatedRules=payload.relatedRules;
+  servedPayload.datasheetPresentation=payload.datasheetPresentation;
   const sensitivity=[{targetId:abilityId,query:'Foul Infusion',path:'/blocks/0/text',value:ability.data.blocks[0].text},{targetId:stratagemId,query:stratagem.data.title,path:`/lines/${effectIndex}/text`,value:stratagem.data.lines[effectIndex].text},{targetId:coreSource.id,query:coreSource.title,path:'/semanticContent',value:'CANONICAL_CORE_DEFINITION_POISON_5489'}];
   const sourcePoisonResults=[];
   for(const [device,viewport] of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]) {
@@ -199,8 +208,8 @@ try {
     assert.deepEqual(errors,[],device+' source sensitivity runtime errors');sourcePoisonResults.push({device,canonicalDgAbility:'VISIBLE',canonicalCoreDefinition:'VISIBLE',canonicalStratagemReaderRelatedGlossary:'IDENTICAL',status:'PASS'});await context.close();activePage=null;
   }
   assert.deepEqual(legacyRequests,[],'Legacy Glossary/runtime factual request');assert.equal(requests.filter(isLegacyGlossary).length,0);
-  const report={status:'PASS',census,results:results.map(({targetHashes,...result})=>result),sourcePoisonResults,desktopPhoneDefinitionParity:true,legacyGlossaryReads:0,legacyPoison:'PASS',requestedPaths:[...new Set(requests)]};
-  if(screenshots)fs.writeFileSync(path.join(screenshots,'glossary-browser-report.json'),JSON.stringify({...report,targetHashes:results[0].targetHashes},null,2));
+  const report={status:'PASS',scope:sourceSensitivityOnly?'SOURCE_SENSITIVITY_ONLY':'FULL',census,results:results.map(({targetHashes,...result})=>result),sourcePoisonResults,desktopPhoneDefinitionParity:sourceSensitivityOnly?'NOT_RUN':true,legacyGlossaryReads:0,legacyPoison:'PASS',requestedPaths:[...new Set(requests)]};
+  if(screenshots)fs.writeFileSync(path.join(screenshots,'glossary-browser-report.json'),JSON.stringify({...report,targetHashes:results[0]?.targetHashes},null,2));
   console.log(JSON.stringify(report,null,2));
 }catch(error) {
   if(screenshots){fs.writeFileSync(path.join(screenshots,'glossary-browser-failure.json'),JSON.stringify({step:activeStep,message:error.message,stack:error.stack,actual:error.actual,expected:error.expected,url:activePage?.url()},null,2));if(activePage)await activePage.screenshot({path:path.join(screenshots,'glossary-browser-failure.png'),animations:'disabled'}).catch(()=>{});}

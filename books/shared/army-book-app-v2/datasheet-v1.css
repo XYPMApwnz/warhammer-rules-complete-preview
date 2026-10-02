@@ -1,0 +1,410 @@
+@import url("../datasheet-system.css");
+@import url("../unit-art.css");
+
+/* V1's palette belongs to datasheets and datasheet details. The surrounding
+   V2 application keeps its existing navigation and generic-card palette. */
+:where(.unit-card.surface, .v2-detail-dialog:has(.unit-card), .v2-detail-dialog:has(.popup-weapon-profile)) {
+  color-scheme: dark;
+  --ds-ui: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ds-data: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --header: 70px;
+  --bg: #0d0f0d;
+  --underhive: #121512;
+  --panel: #191f1a;
+  --panel-2: #252c25;
+  --ink: #e2dcc9;
+  --muted: #969589;
+  --green: #bfd58c;
+  --green-deep: #7d9257;
+  --bronze: #8d7448;
+  --bronze-bright: #c7ae75;
+  --pink: #d5488e;
+  --pink-deep: #74143f;
+  --faction-gradient: linear-gradient(90deg, #c8df7f 0 72%, #c8df7f 74%, #c3167c 82%, #c3167c 100%);
+  --line: rgba(216, 209, 191, .14);
+  --soft-line: rgba(216, 209, 191, .08);
+  /* Composite V1's translucent surface over its original dark substrate,
+     independently of the accepted V2 application background. */
+  --glass: color-mix(in srgb, rgb(26, 30, 27) 94%, var(--bg));
+  --shadow: 0 26px 58px rgba(0, 0, 0, .46), 0 0 0 1px rgba(0, 0, 0, .48);
+  --radius: 2px;
+  --body-size: 17px;
+  --data-size: 14px;
+}
+
+.unit-card.surface {
+  color: var(--ink);
+  font: var(--body-size)/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow), inset 0 1px rgba(255,255,255,.04), inset 0 -1px rgba(0,0,0,.48);
+  scroll-margin-top: calc(var(--header) + 20px);
+}
+.unit-card.surface::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  pointer-events: none;
+}
+.unit-card.v2-current-card > .unit-header { border-left: 0; }
+
+/* Scoped copies of the V1 content/layout prerequisites used by
+   datasheet-system.css. Declarations intentionally match their V1 sources. */
+.unit-card :is(button, input) { font: inherit; color: inherit; }
+.unit-card :is(button, a) { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.unit-card :is(button, input, a):focus-visible { outline: 2px solid var(--pink); outline-offset: 4px; }
+.unit-card :is(.eyebrow, .source) {
+  color: var(--green);
+  font: 800 10px/1.5 ui-monospace, monospace;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.unit-card .source { margin-top: 14px; color: var(--bronze-bright); font-size: 9px; }
+.unit-card :is(.term-button, .weapon-button) {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline dotted var(--green-deep) 2px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+.unit-card .points-row { display: flex; justify-content: space-between; gap: 16px; }
+.unit-card .points-row strong { color: var(--bronze-bright); white-space: nowrap; }
+.unit-card .points-option { padding-top: 8px; border-top: 1px solid var(--soft-line); }
+.unit-card .content-block { max-width: 860px; }
+.unit-card .content-block p { white-space: pre-line; }
+.unit-card .v2-field-value { color: inherit; }
+.unit-card :is(.weapon-row, .ds-cost-cell, .profile-base) .v2-field-value { font: inherit; }
+.unit-card .v2-field-label { color: var(--muted); }
+.unit-card .v2-field { border-bottom-color: var(--line); }
+.unit-card .v2-reference {
+  border-color: color-mix(in srgb, var(--green) 30%, var(--line));
+  border-radius: 0;
+  background: color-mix(in srgb, var(--green) 7%, transparent);
+  color: var(--ink);
+}
+.unit-card .v2-reference:hover {
+  border-color: color-mix(in srgb, var(--green) 60%, var(--line));
+  background: color-mix(in srgb, var(--green) 13%, transparent);
+}
+.unit-card .v2-token-list .v2-field-value {
+  border-color: var(--line);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--green) 5%, transparent);
+  color: var(--muted);
+}
+.unit-card .v2-annotations {
+  border-left-color: var(--green);
+  background: color-mix(in srgb, var(--green) 7%, transparent);
+  color: var(--muted);
+}
+.unit-card .v2-card {
+  border-color: var(--line);
+  border-radius: 0;
+  background: var(--panel);
+  color: var(--ink);
+}
+.unit-card .v2-card > .v2-card-header {
+  border-bottom-color: var(--line);
+  background: color-mix(in srgb, var(--green) 5%, var(--panel));
+}
+.unit-card .v2-card-title { color: var(--ink); }
+.unit-card > .local-nav { display: none; }
+.unit-card .local-tab {
+  min-height: 42px;
+  padding: 8px 13px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--panel-2);
+  font-weight: 700;
+  cursor: pointer;
+}
+.unit-card .local-tab:hover { border-color: var(--green-deep); }
+.unit-card .unit-part { scroll-margin-top: calc(var(--header) + 20px); }
+.unit-card .ability-list { display: grid; gap: 8px; }
+.unit-card .ability-choice-list { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 12px; }
+.unit-card .ability-choice { padding: 12px 13px; border: 1px solid var(--soft-line); background: rgba(8,13,10,.26); }
+.unit-card .ability-choice h6 { margin: 0 0 7px; color: var(--green); font: 750 16px Georgia, "Times New Roman", serif; }
+.unit-card .ability-choice p { margin: 0; }
+.unit-card .keyword-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.unit-card .weapon-tags .weapon-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 0;
+  padding: 3px 5px;
+  border: 1px solid color-mix(in srgb, var(--green) 22%, transparent);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--green) 5%, transparent);
+  color: var(--green);
+  font: 700 9px/1.2 var(--ds-data);
+  letter-spacing: .025em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.unit-card .profile-base {
+  margin: 0;
+  padding: 10px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font: 700 11px/1.35 ui-monospace, monospace;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.unit-card .ds-granted-ability,
+.unit-card .ds-profile-quantity {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  padding: 9px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font: 700 10px/1.35 var(--ds-data);
+  letter-spacing: .035em;
+}
+.unit-card .ds-granted-ability b { color: var(--green); text-transform: uppercase; }
+.unit-card .ds-granted-ability span { color: var(--ink); font-size: 13px; }
+.unit-card .ds-rule-reference-label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font: 800 10px/1 var(--ds-data);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.unit-card .ability p > .term-button:first-child {
+  display: block;
+  width: 100%;
+  margin-bottom: 7px;
+  color: var(--ink);
+  font: 750 17px/1.2 var(--ds-ui);
+  text-align: left;
+  text-decoration: none;
+}
+.unit-card .ds-ability-kind {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font: 800 9px/1.2 var(--ds-data);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Effective values retain their factual wrappers while using the V1 numeric
+   hierarchy. Modifier provenance remains visible directly below the value. */
+.unit-card .ds-effective-value { display: block; }
+.unit-card .ds-modifier-breakdown {
+  display: block;
+  margin-top: 4px;
+  color: var(--green);
+  font: 700 9px/1.3 var(--ds-data);
+  letter-spacing: .035em;
+  overflow-wrap: anywhere;
+}
+.unit-card .weapon-row .ds-modifier-breakdown { font-size: 8px; }
+.unit-card .statline .ds-modifier-breakdown { margin-top: 4px; font-size: 8px; }
+
+/* Native V2 detail dialogs use the V1 full-entry surface when their content
+   is a datasheet. Other V2 detail cards keep the generic light treatment. */
+.v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile)) {
+  width: min(1120px, calc(100vw - 48px));
+  max-width: min(1120px, calc(100vw - 48px));
+  max-height: calc(100dvh - 64px);
+  overflow: hidden;
+  border: 0;
+  border-top: 4px solid var(--green-deep);
+  border-radius: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 100% 0, rgba(213,72,142,.12), transparent 320px),
+    radial-gradient(circle at 0 100%, rgba(125,146,87,.12), transparent 360px),
+    var(--panel);
+  box-shadow: 0 40px 120px rgba(0,0,0,.88), 0 0 0 1px rgba(199,174,117,.36);
+}
+.v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile))::backdrop { background: rgba(4,7,4,.84); backdrop-filter: blur(3px); }
+.v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile)) .v2-dialog-bar {
+  border-bottom: 1px solid var(--line);
+  background: rgba(10,14,11,.86);
+  color: var(--ink);
+}
+.v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile)) .v2-dialog-bar .v2-icon-button {
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--panel-2);
+  color: var(--ink);
+}
+.v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile)) .v2-dialog-content {
+  padding: clamp(12px, 2vw, 24px);
+  scrollbar-color: var(--green-deep) var(--bg);
+}
+.v2-detail-dialog:has(.popup-weapon-profile) {
+  width: min(590px, calc(100vw - 28px));
+  max-width: min(590px, calc(100vw - 28px));
+}
+.v2-detail-dialog:has(.popup-weapon-profile) .v2-dialog-content { padding: 0; }
+.popup-weapon-profile.v2-card {
+  padding: 20px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+}
+.popup-weapon-profile .v2-field-value { color: inherit; font: inherit; }
+.popup-weapon-profile h3 {
+  margin: 0 0 8px;
+  padding-right: 46px;
+  color: var(--ink);
+  font: 700 24px Georgia, "Times New Roman", serif;
+  letter-spacing: -.015em;
+}
+.popup-weapon-profile :is(.term-button, .weapon-button) {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline dotted var(--green-deep) 2px;
+  text-underline-offset: 4px;
+}
+.popup-weapon-profile .weapon-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.popup-weapon-profile .weapon-tag {
+  min-height: 0;
+  padding: 3px 5px;
+  border: 1px solid color-mix(in srgb, var(--green) 22%, transparent);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--green) 5%, transparent);
+  color: var(--green);
+  font: 700 9px/1.2 var(--ds-data);
+  letter-spacing: .025em;
+  text-decoration: none;
+}
+.popup-weapon-profile .ds-weapon-mode {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font: 800 9px/1.2 var(--ds-data);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .unit-card.surface { --header: 64px; --body-size: 16.5px; }
+  .unit-card > .local-nav {
+    position: sticky;
+    z-index: 50;
+    top: var(--app-header-bottom, calc(var(--header) + env(safe-area-inset-top)));
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 7px;
+    margin: 14px -8px 4px;
+    padding: 8px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: 8px;
+    touch-action: pan-x pan-y;
+    background: var(--panel-2);
+    border-block: 1px solid color-mix(in srgb,var(--faction-primary-bright,var(--green)) 46%,var(--line));
+    box-shadow: 0 10px 24px rgba(0,0,0,.42);
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .unit-card > .local-nav::-webkit-scrollbar { display: none; }
+  .unit-card > .local-nav .local-tab {
+    flex: 0 0 auto;
+    min-height: 38px;
+    padding: 8px 11px;
+    border: 1px solid color-mix(in srgb,var(--faction-primary-bright,var(--green)) 34%,var(--line));
+    background: color-mix(in srgb,var(--panel) 82%,var(--underhive));
+    color: var(--ink);
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .025em;
+  }
+  .unit-card > .local-nav .datasheet-nav-command {
+    border-color: color-mix(in srgb,var(--bronze-bright) 56%,var(--line));
+    color: var(--bronze-bright);
+  }
+}
+
+@media (max-width: 800px) {
+  .unit-card.surface {
+    text-rendering: auto;
+    box-shadow: inset 0 1px rgba(255,255,255,.04), inset 0 -1px rgba(0,0,0,.48);
+  }
+  .v2-detail-dialog:has(.unit-card) {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    border: 0;
+  }
+  .v2-detail-dialog:has(.unit-card) .v2-dialog-content { padding: 10px; }
+}
+
+@media (max-width: 480px) {
+  .popup-weapon-profile.v2-card { padding: 18px 14px 16px; }
+  .popup-weapon-profile h3 { margin-bottom: 7px; font-size: 23px; }
+}
+
+@media print {
+  .unit-card.surface { box-shadow: none; }
+  .unit-card > .local-nav { display: none !important; }
+}
+
+/* Profile permalinks belong to their weapon row, not the datasheet header. */
+.unit-card .ds-profile-permalink {
+  position: static;
+  display: inline-block;
+  min-width: 0;
+  min-height: 0;
+  margin-left: 6px;
+  padding: 2px 4px;
+  border: 0;
+  color: inherit;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.unit-card .shared-abilities { display: grid; gap: 11px; }
+.unit-card .ability.shared-abilities { padding: 0; border: 0; background: none; }
+.unit-card .shared-abilities > p { display: block; margin: 0; }
+.unit-card .ds-shared-rule-group { display: block; margin-bottom: 11px; }
+.unit-card .ds-shared-rule-group .ds-rule-reference-label {
+  display: block;
+  margin: 0 0 7px;
+  color: var(--ink);
+  font: 750 17px/1.2 var(--ds-ui);
+  letter-spacing: normal;
+}
+.unit-card .ds-shared-rule-group .term-button {
+  display: inline-flex;
+  padding: 6px 9px;
+  border: 1px solid color-mix(in srgb,var(--green) 30%,var(--line));
+  border-radius: 2px;
+  background: color-mix(in srgb,var(--green) 7%,transparent);
+  color: var(--ink);
+  font: 750 11px/1.2 var(--ds-data);
+  text-decoration: none;
+}
+.unit-card .ability > p > .term-button {
+  border: 0;
+  padding: 0;
+  background: none;
+}
+.unit-card .weapon-name .weapon-button {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.unit-card .weapon-name .ds-weapon-mode {
+  display: inline;
+  margin-left: 6px;
+  color: var(--muted);
+  font: 700 9px/1.2 var(--ds-data);
+}

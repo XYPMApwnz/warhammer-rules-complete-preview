@@ -192968,5 +192968,748 @@
         "aliases": []
       }
     ]
+  },
+  "datasheetPresentation": {
+    "schema": "army-book-app-v2/datasheet-layout",
+    "sectionRoles": {
+      "datasheet-beasts-of-nurgle:section:1": "abilities",
+      "datasheet-beasts-of-nurgle:section:2": "composition",
+      "datasheet-biologus-putrifier:section:1": "abilities",
+      "datasheet-biologus-putrifier:section:2": "composition",
+      "datasheet-biologus-putrifier:section:3": "leader",
+      "datasheet-blightlord-terminators:section:1": "abilities",
+      "datasheet-blightlord-terminators:section:2": "composition",
+      "datasheet-chaos-land-raider:section:1": "abilities",
+      "datasheet-chaos-land-raider:section:2": "transport",
+      "datasheet-chaos-land-raider:section:3": "composition",
+      "datasheet-chaos-land-raider:section:4": "damaged",
+      "datasheet-chaos-predator-annihilator:section:1": "abilities",
+      "datasheet-chaos-predator-annihilator:section:2": "composition",
+      "datasheet-chaos-predator-annihilator:section:3": "damaged",
+      "datasheet-chaos-predator-destructor:section:1": "abilities",
+      "datasheet-chaos-predator-destructor:section:2": "composition",
+      "datasheet-chaos-predator-destructor:section:3": "damaged",
+      "datasheet-chaos-rhino:section:1": "abilities",
+      "datasheet-chaos-rhino:section:2": "transport",
+      "datasheet-chaos-rhino:section:3": "composition",
+      "datasheet-chaos-spawn:section:1": "abilities",
+      "datasheet-chaos-spawn:section:2": "composition",
+      "datasheet-daemon-prince-of-nurgle:section:1": "abilities",
+      "datasheet-daemon-prince-of-nurgle:section:2": "composition",
+      "datasheet-daemon-prince-of-nurgle-with-wings:section:1": "abilities",
+      "datasheet-daemon-prince-of-nurgle-with-wings:section:2": "composition",
+      "datasheet-deathshroud-terminators:section:1": "abilities",
+      "datasheet-deathshroud-terminators:section:2": "composition",
+      "datasheet-defiler:section:1": "abilities",
+      "datasheet-defiler:section:2": "composition",
+      "datasheet-defiler:section:3": "damaged",
+      "datasheet-foetid-bloat-drone:section:1": "abilities",
+      "datasheet-foetid-bloat-drone:section:2": "composition",
+      "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:section:1": "abilities",
+      "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:section:2": "composition",
+      "datasheet-foul-blightspawn:section:1": "abilities",
+      "datasheet-foul-blightspawn:section:2": "composition",
+      "datasheet-foul-blightspawn:section:3": "leader",
+      "datasheet-great-unclean-one:section:1": "abilities",
+      "datasheet-great-unclean-one:section:2": "composition",
+      "datasheet-great-unclean-one:section:3": "damaged",
+      "datasheet-helbrute:section:1": "abilities",
+      "datasheet-helbrute:section:2": "composition",
+      "datasheet-icon-bearer:section:1": "abilities",
+      "datasheet-icon-bearer:section:2": "composition",
+      "datasheet-icon-bearer:section:3": "leader",
+      "datasheet-lord-of-contagion:section:1": "abilities",
+      "datasheet-lord-of-contagion:section:2": "composition",
+      "datasheet-lord-of-contagion:section:3": "leader",
+      "datasheet-lord-of-poxes:section:1": "abilities",
+      "datasheet-lord-of-poxes:section:2": "composition",
+      "datasheet-lord-of-poxes:section:3": "leader",
+      "datasheet-lord-of-virulence:section:1": "abilities",
+      "datasheet-lord-of-virulence:section:2": "composition",
+      "datasheet-lord-of-virulence:section:3": "leader",
+      "datasheet-malignant-plaguecaster:section:1": "abilities",
+      "datasheet-malignant-plaguecaster:section:2": "composition",
+      "datasheet-malignant-plaguecaster:section:3": "leader",
+      "datasheet-miasmic-malignifier:section:1": "deployment",
+      "datasheet-miasmic-malignifier:section:2": "abilities",
+      "datasheet-miasmic-malignifier:section:3": "composition",
+      "datasheet-mortarion:section:1": "additional",
+      "datasheet-mortarion:section:2": "additional",
+      "datasheet-mortarion:section:3": "abilities",
+      "datasheet-mortarion:section:4": "composition",
+      "datasheet-mortarion:section:5": "damaged",
+      "datasheet-myphitic-blight-hauler:section:1": "abilities",
+      "datasheet-myphitic-blight-hauler:section:2": "composition",
+      "datasheet-noxious-blightbringer:section:1": "abilities",
+      "datasheet-noxious-blightbringer:section:2": "composition",
+      "datasheet-noxious-blightbringer:section:3": "leader",
+      "datasheet-nurglings:section:1": "abilities",
+      "datasheet-nurglings:section:2": "composition",
+      "datasheet-plague-drones:section:1": "abilities",
+      "datasheet-plague-drones:section:2": "composition",
+      "datasheet-plague-marines:section:1": "abilities",
+      "datasheet-plague-marines:section:2": "composition",
+      "datasheet-plague-surgeon:section:1": "abilities",
+      "datasheet-plague-surgeon:section:2": "composition",
+      "datasheet-plague-surgeon:section:3": "leader",
+      "datasheet-plaguebearers:section:1": "abilities",
+      "datasheet-plaguebearers:section:2": "composition",
+      "datasheet-plagueburst-crawler:section:1": "abilities",
+      "datasheet-plagueburst-crawler:section:2": "composition",
+      "datasheet-plagueburst-crawler:section:3": "damaged",
+      "datasheet-poxwalkers:section:1": "abilities",
+      "datasheet-poxwalkers:section:2": "composition",
+      "datasheet-rotigus:section:1": "abilities",
+      "datasheet-rotigus:section:2": "composition",
+      "datasheet-rotigus:section:3": "damaged",
+      "datasheet-tallyman:section:1": "abilities",
+      "datasheet-tallyman:section:2": "composition",
+      "datasheet-tallyman:section:3": "leader",
+      "datasheet-typhus:section:1": "abilities",
+      "datasheet-typhus:section:2": "composition",
+      "datasheet-typhus:section:3": "leader"
+    },
+    "artwork": {
+      "unit-beasts-of-nurgle": {
+        "asset": "assets/unit-images/beasts-of-nurgle.png",
+        "width": 682,
+        "height": 778,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-chaos-land-raider": {
+        "asset": "assets/unit-images/chaos-land-raider.png",
+        "width": 791,
+        "height": 567,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-chaos-predator-annihilator": {
+        "asset": "assets/unit-images/chaos-predator-annihilator.png",
+        "width": 808,
+        "height": 661,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-chaos-rhino": {
+        "asset": "assets/unit-images/chaos-rhino.png",
+        "width": 887,
+        "height": 541,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-chaos-spawn": {
+        "asset": "assets/unit-images/chaos-spawn.png",
+        "width": 848,
+        "height": 860,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-defiler": {
+        "asset": "assets/unit-images/defiler.png",
+        "width": 797,
+        "height": 725,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-great-unclean-one": {
+        "asset": "assets/unit-images/great-unclean-one.png",
+        "width": 792,
+        "height": 813,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-helbrute": {
+        "asset": "assets/unit-images/helbrute.png",
+        "width": 753,
+        "height": 605,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-nurglings": {
+        "asset": "assets/unit-images/nurglings.png",
+        "width": 741,
+        "height": 512,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-plague-drones": {
+        "asset": "assets/unit-images/plague-drones.png",
+        "width": 850,
+        "height": 843,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-plaguebearers": {
+        "asset": "assets/unit-images/plaguebearers.png",
+        "width": 815,
+        "height": 685,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-rotigus": {
+        "asset": "assets/unit-images/rotigus.png",
+        "width": 772,
+        "height": 849,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-biologus-putrifier": {
+        "asset": "assets/unit-images/biologus-putrifier.png",
+        "width": 657,
+        "height": 862,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-blightlord-terminators": {
+        "asset": "assets/unit-images/blightlord-terminators.png",
+        "width": 850,
+        "height": 862,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-deathshroud-terminators": {
+        "asset": "assets/unit-images/deathshroud-terminators.png",
+        "width": 880,
+        "height": 861,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-foetid-bloat-drone": {
+        "asset": "assets/unit-images/foetid-bloat-drone.png",
+        "width": 610,
+        "height": 856,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-foul-blightspawn": {
+        "asset": "assets/unit-images/foul-blightspawn.png",
+        "width": 649,
+        "height": 786,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-lord-of-virulence": {
+        "asset": "assets/unit-images/lord-of-virulence.png",
+        "width": 682,
+        "height": 837,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-malignant-plaguecaster": {
+        "asset": "assets/unit-images/malignant-plaguecaster.png",
+        "width": 536,
+        "height": 531,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-miasmic-malignifier": {
+        "asset": "assets/unit-images/miasmic-malignifier.png",
+        "width": 869,
+        "height": 856,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-plague-surgeon": {
+        "asset": "assets/unit-images/plague-surgeon.png",
+        "width": 591,
+        "height": 866,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-noxious-blightbringer": {
+        "asset": "assets/unit-images/noxious-blightbringer.png",
+        "width": 557,
+        "height": 712,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-icon-bearer": {
+        "asset": "assets/unit-images/icon-bearer.png",
+        "width": 628,
+        "height": 864,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-lord-of-contagion": {
+        "asset": "assets/unit-images/lord-of-contagion.png",
+        "width": 608,
+        "height": 614,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-lord-of-poxes": {
+        "asset": "assets/unit-images/lord-of-poxes.png",
+        "width": 610,
+        "height": 764,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-mortarion": {
+        "asset": "assets/unit-images/mortarion.png",
+        "width": 706,
+        "height": 858,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-myphitic-blight-hauler": {
+        "asset": "assets/unit-images/myphitic-blight-hauler.png",
+        "width": 783,
+        "height": 710,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-plague-marines": {
+        "asset": "assets/unit-images/plague-marines.png",
+        "width": 850,
+        "height": 889,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-plagueburst-crawler": {
+        "asset": "assets/unit-images/plagueburst-crawler.png",
+        "width": 850,
+        "height": 622,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-poxwalkers": {
+        "asset": "assets/unit-images/poxwalkers.png",
+        "width": 776,
+        "height": 714,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-tallyman": {
+        "asset": "assets/unit-images/tallyman.png",
+        "width": 599,
+        "height": 866,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      },
+      "unit-typhus": {
+        "asset": "assets/unit-images/typhus.png",
+        "width": 599,
+        "height": 840,
+        "presentation": {
+          "mode": "background",
+          "desktop": {
+            "scale": 1.28,
+            "x": "-5%",
+            "y": "1%",
+            "opacity": 0.22
+          },
+          "phone": {
+            "scale": 1.14,
+            "x": "-4%",
+            "y": "1%",
+            "opacity": 0.18
+          }
+        }
+      }
+    }
   }
 }

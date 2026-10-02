@@ -25,7 +25,12 @@ for(const name of ['clear','range','show'])assert.equal(method(highlight,name),m
 const runtime=read('books/shared/army-book-app-v2/runtime.mjs');
 const base=execFileSync('git',['show','5d2b9762268f5aedad393912939fbbfce9062b85:books/shared/army-book-app-v2/runtime.mjs'],{cwd:repo,encoding:'utf8'}).replace(/\r\n/g,'\n');
 const slice=(text,start,end)=>text.slice(text.indexOf(start),text.indexOf(end));
-assert.equal(slice(runtime,'  function factValue(','  function fillRelatedResults('),slice(base,'  function factValue(','  function fillRelatedResults('),'Datasheet/fact renderer changed');
+// The later datasheet port changes presentation only. Keep the original field
+// writer and generic renderer frozen; the new adapter has its own fact census.
+assert.equal(slice(runtime,'  function factValue(','  function renderCard('),slice(base,'  function factValue(','  function renderCard('),'Fact writer changed');
+const genericStart='    const allowed = scopedIds();\n    const childrenIds';
+assert.equal(slice(runtime,genericStart,'  function fillRelatedResults('),slice(base,genericStart,'  function fillRelatedResults('),'Generic card renderer changed');
+assert.ok(runtime.includes('datasheets.renderDatasheet(card,{variants,instanceId,inDialog})'),'Missing presentation-only datasheet adapter');
 assert.equal(slice(runtime,'  function renderInstance(','  function renderLibrary('),slice(base,'  function renderInstance(','  function renderLibrary('),'Physical datasheet DOM changed');
 assert.equal(read('books/shared/army-book-app-v2/styles.css'),execFileSync('git',['show','5d2b9762268f5aedad393912939fbbfce9062b85:books/shared/army-book-app-v2/styles.css'],{cwd:repo,encoding:'utf8'}).replace(/\r\n/g,'\n'),'Accepted card/mobile stylesheet changed');
 const payload=JSON.parse(read('books/death-guard/v2/generated/app-presentation.json'));

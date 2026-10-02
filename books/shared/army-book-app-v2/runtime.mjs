@@ -3,6 +3,8 @@ import {searchGlossary, validateGlossary} from './glossary.mjs';
 import {createRosterPanel} from './roster.mjs';
 import {projectPersonalBook, projectInstanceCards, instanceRoute} from './personal.mjs';
 import {projectContents, mountV1Contents} from './navigation-v1.mjs';
+import {createDatasheetPresenter} from './datasheet-v1.mjs';
+import {installDatasheetLayout, flushDatasheetLayouts} from './datasheet-v1-layout.mjs';
 const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
 const rosterRoute = 'view-roster';
 const personalRoute = 'view-roster-guide';
@@ -141,6 +143,10 @@ export function mount(document, payload, options = {}) {
   }) : null;
   const personalBook = () => projectPersonalBook(payload, options.roster.state);
   const scopedIds = () => personalMode ? personalBook().allowedIds : null;
+  const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,renderFields,renderCard,anchor,showDetail,
+    related:renderRelatedRules,roster:options.roster,
+    navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
+  let popupPresentation=null;
 
   function factValue(tag, field) {
     const value = el(tag, 'v2-field-value', field.displayValue === undefined ? exactValue(field.value) : String(field.displayValue));
@@ -265,6 +271,19 @@ export function mount(document, payload, options = {}) {
   }
 
   function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null, primaryDetail = true} = {}) {
+    if(card.kind==='DATASHEET') {
+      const article=datasheets.renderDatasheet(card,{variants,instanceId,inDialog});
+      if(inDialog&&primaryDetail)article.querySelector('.unit-header h3').id='v2-detail-heading';
+      installDatasheetLayout(article,window);
+      return article;
+    }
+    if(inDialog&&['PROFILE','WEAPON_PROFILE'].includes(card.kind)) {
+      const article=card.kind==='PROFILE'?datasheets.renderProfile(card,{instanceId,inDialog}):datasheets.renderWeapon(card,{instanceId,popup:true});
+      article.classList.add('v2-card','v2-kind-'+card.kind);
+      if(card.kind==='PROFILE')article.classList.add('unit-card','surface');
+      if(primaryDetail){const title=article.querySelector('h3,h5') || article.insertBefore(el('h3','',card.title),article.firstChild);title.id='v2-detail-heading';}
+      return article;
+    }
     const allowed = scopedIds();
     const childrenIds = (card.children || []).filter(id=>!allowed || allowed.has(id));
     const article = el('article', `v2-card v2-kind-${String(card.kind || 'entry').replace(/[^a-z0-9-]/gi, '-')} v2-depth-${Math.min(depth, 2)}`);
@@ -481,7 +500,11 @@ export function mount(document, payload, options = {}) {
       else for(const rootId of model.groups.get(root.id)||[])appendCard(section,rootId);
       pages.append(section);
     }
-    main.append(pages);if(cards.has(id))[...pages.querySelectorAll('[data-card-id]')].find(card=>card.dataset.cardId===id)?.classList.add('v2-current-card');renderNavigation();
+    main.append(pages);
+    // Complete presentation reflow before the unchanged V1 controller measures
+    // destinations; deferred column balancing must not move a captured target.
+    flushDatasheetLayouts(pages);
+    if(cards.has(id))[...pages.querySelectorAll('[data-card-id]')].find(card=>card.dataset.cardId===id)?.classList.add('v2-current-card');renderNavigation();
   }
 
   function physicalProfileProjection(id,instanceId) {
@@ -601,7 +624,7 @@ export function mount(document, payload, options = {}) {
     personalMode=Boolean(rosterPanel && id!==rosterRoute && rosterId && options.roster.state?.rosterId===rosterId);
     const detail = state?.armyBookV2?.detailId === id && cards.has(id);
     navigationBlocked=Boolean(rosterId&&options.roster?.state?.rosterId!==rosterId);
-    const key = JSON.stringify([id, detail, personalMode,state?.armyBookV2?.contents,state?.armyBookV2?.backgroundContents, state?.armyBookV2?.instanceId, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
+    const key = JSON.stringify([id, detail, state?.armyBookV2?.detailScopeId, state?.armyBookV2?.detailFieldPath, personalMode,state?.armyBookV2?.contents,state?.armyBookV2?.backgroundContents, state?.armyBookV2?.instanceId, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
     if (routeKey === key) return;
     routeKey = key;
     if(contents?.controller.state.owner==='controller')contents.controller.cancelTransition();
@@ -626,7 +649,8 @@ export function mount(document, payload, options = {}) {
       const instanceId=personalMode && state.armyBookV2.backgroundView==='PERSONAL'
         ? state.armyBookV2.backgroundInstanceId : null;
       const variants=physicalProfileProjection(id,instanceId);
-      const effectiveCards=variants?.get(id);
+      const projectedCards=variants?.get(id);
+      const effectiveCards=projectedCards?.filter(card=>!state.armyBookV2.detailScopeId || card.scopeId===state.armyBookV2.detailScopeId);
       dialogContent.replaceChildren(...(effectiveCards?.length
         ? effectiveCards.map((card,index)=>renderCard(card,{inDialog:true,variants,instanceId,primaryDetail:index===0}))
         : [renderCard(cards.get(id),{inDialog:true})]));
@@ -635,6 +659,7 @@ export function mount(document, payload, options = {}) {
         dialog.showModal();
       }
       dialogContent.scrollTop = state.armyBookV2.detailScrollTop || 0;
+      if(state.armyBookV2.detailFieldPath){const fact=[...dialogContent.querySelectorAll('[data-fact-id]')].find(node=>node.dataset.factId===`${id}::${state.armyBookV2.detailFieldPath}`);fact?.scrollIntoView({block:'nearest'});}
       document.body.classList.add('v2-detail-open');
       dialogBar.lastChild.focus({preventScroll: true});
     } else {
@@ -662,7 +687,7 @@ export function mount(document, payload, options = {}) {
     const personal = Boolean(rosterPanel) && (id===personalRoute || id?.startsWith('roster-unit/')) && !detail;
     if (id && !cards.has(id) && !glossary && !roster && !personal && !contents?.isTarget(id)) return false;
     if (personal && !rosterPanel) return false;
-    if (personalMode && cards.has(id) && !scopedIds().has(id) && !(detail && cards.get(id).kind==='CORE_RULE')) return false;
+    if (personalMode && cards.has(id) && !scopedIds().has(id) && !(detail && cards.get(id).domain==='CORE')) return false;
     const nextHash = id ? `#${encodeURIComponent(id)}` : '';
     window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, scrollY: window.scrollY, detailScrollTop: dialogContent.scrollTop, ...(selectedView === 'GLOSSARY' ? {glossaryQuery} : {})}}, '', window.location.href);
     // Carry the existing physical owner with its profile projection. The URL
@@ -670,7 +695,7 @@ export function mount(document, payload, options = {}) {
     // a duplicate datasheet title or from the first matching roster copy.
     const owner=personalMode && selectedInstanceId && options.roster.state.units.find(unit=>unit.instanceId===selectedInstanceId);
     const instanceId=owner && (id===owner.canonicalUnitId || physicalProfileProjection(id,owner.instanceId)) ? owner.instanceId : null;
-    const state = {armyBookV2: detail ? {detailId: id, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, backgroundContents:Boolean(window.history.state?.armyBookV2?.contents||main.querySelector('.v1-contents-pages')&&!personalMode), glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: routeOptions.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):selectedView === 'READER'||selectedView==='PERSONAL' ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, ...(routeOptions.contents?{contents:true}:{}), ...(instanceId?{instanceId}:{}), scrollY: 0}};
+    const state = {armyBookV2: detail ? {detailId: id, detailScopeId:popupPresentation?.scopeId || null, detailFieldPath:popupPresentation?.fieldPath || null, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, backgroundContents:Boolean(window.history.state?.armyBookV2?.contents||main.querySelector('.v1-contents-pages')&&!personalMode), glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: routeOptions.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):selectedView === 'READER'||selectedView==='PERSONAL' ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, ...(routeOptions.contents?{contents:true}:{}), ...(instanceId?{instanceId}:{}), scrollY: 0}};
     const destination=new URL(window.location.href);destination.hash=nextHash;
     if (routeOptions.fullBook) destination.searchParams.delete('roster');
     else if (personal||routeOptions.personalBook) destination.searchParams.set('roster',routeOptions.rosterId || optionsRosterId());
@@ -684,7 +709,7 @@ export function mount(document, payload, options = {}) {
     return true;
   }
   function open(id) { return navigate(id, false); }
-  function showDetail(id) { return navigate(id, true); }
+  function showDetail(id, presentation=null) { popupPresentation=presentation;return navigate(id, true); }
   function optionsRosterId(){return options.roster?.state?.rosterId || '';}
   function library() { return personalMode?navigate(personalRoute,false):navigate(null, false); }
   function openLibrary() { return navigate(null,false,{fullBook:true}); }
