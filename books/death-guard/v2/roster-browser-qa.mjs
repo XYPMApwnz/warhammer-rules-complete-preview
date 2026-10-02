@@ -44,6 +44,7 @@ const allowed=new Map([
   ['/books/death-guard/v2/rule-contract-schema.mjs','text/javascript'],
   ['/books/death-guard/v2/rule-contract-state-fields.mjs','text/javascript'],
   ['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],
+  ['/books/shared/army-book-app-v2/personal.mjs','text/javascript'],
   ['/books/shared/army-book-app-v2/roster.mjs','text/javascript'],
   ['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],
   ['/books/shared/army-book-app-v2/styles.css','text/css'],
@@ -86,11 +87,11 @@ const observeFacts=(page,scope)=>page.evaluate(scope=>{
 const ready=async page=>{await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);};
 const settled=async page=>{
   await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy="true"]'));
-  assert.equal(await page.locator('.v2-roster-error').count(),0,activeStep+' caught UI error: '+await page.locator('.v2-roster-status').textContent());
+  assert.equal(await page.locator('.v2-roster-error').count(),0,activeStep+' caught UI error: '+await page.locator('.v2-roster-status').allTextContents());
 };
 const noOverflow=async page=>assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,activeStep+' horizontal overflow');
 const snapshot=page=>page.evaluate(()=>({state:window.ArmyBookAppV2.roster.snapshot(),projection:window.ArmyBookAppV2.roster.projection,effective:Object.fromEntries(window.ArmyBookAppV2.roster.state.units.map(unit=>[unit.instanceId,window.ArmyBookAppV2.roster.effective(unit.instanceId)]))}));
-const physical=(page,id)=>page.locator(`[data-roster-instance-id="${id}"]`);
+const physical=(page,id)=>page.locator(`[data-roster-instance-id="${id}"]`).first();
 const modelFnp=unit=>unit.profiles.flatMap(profile=>profile.abilities.filter(ability=>ability.name==='Feel No Pain'));
 const field=(weapon,key)=>weapon.fields.find(field=>field.label===key)?.value;
 const weapon=(state,id,canonicalId)=>{const weapons=state.effective[id].weapons.filter(weapon=>weapon.id===canonicalId);assert.equal(weapons.length,1,activeStep+' ambiguous physical weapon');return weapons[0];};
@@ -105,6 +106,7 @@ try {
     await page.goto(origin+appPath);await ready(page);
     assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.roster.state),null,'No-roster boot invented a roster');
     const readerCensus=async label=>{
+      await page.evaluate(()=>window.ArmyBookAppV2.openLibrary());
       activeStep=device+'/'+label;const observed=new Map();
       for(const id of payload.groups.flatMap(group=>group.itemIds)) {
         await page.evaluate(id=>window.ArmyBookAppV2.open(id),id);
@@ -145,20 +147,26 @@ try {
     const effectiveParity=async()=>{
       const current=await snapshot(page);
       for(const id of Object.values(ids)) {
-        const ui=physical(page,id).locator(`[data-effective-instance-id="${id}"]`);
+        await page.evaluate(id=>window.ArmyBookAppV2.openInstance(id),id);
         for(const record of [...current.effective[id].profiles,...current.effective[id].weapons]) {
-          const profile=ui.locator(`[data-effective-id="${record.id}"]${record.scopeId?`[data-composition-id="${record.scopeId}"]`:record.modelInstanceId?`[data-model-instance-id="${record.modelInstanceId}"]`:':not([data-model-instance-id])'}`);
+          const profile=physical(page,id).locator(`article[data-card-id="${record.id}"]${record.scopeId?`[data-composition-id="${record.scopeId}"]`:''}`);
           assert.equal(await profile.count(),1,activeStep+' duplicate/missing physical effective profile');
           for(const item of record.fields) {
-            const cell=profile.locator(`[data-effective-field="${item.label}"]`);
-            assert.equal(await cell.count(),1,'Missing effective UI field '+item.label);
-            if(typeof item.value!=='object')assert.equal(await cell.textContent(),String(item.value));
+            if(item.label==='order')continue; // Non-player source ordering metadata.
+            const factId=item.label==='Base'?cards.get(record.id).children.find(child=>cards.get(child).kind==='MODEL_BASE')+'::/text':record.id+'::/'+item.label;
+            if(Array.isArray(item.value)){
+              assert.deepEqual(await profile.locator('[data-fact-id^="'+factId+'/"]').evaluateAll(ns=>ns.map(n=>JSON.parse(n.dataset.factValue))),item.value);
+            }else{
+              const cell=profile.locator('[data-fact-id="'+factId+'"]');assert.equal(await cell.count(),1,'Missing effective UI field '+item.label);
+              assert.deepEqual(JSON.parse(await cell.getAttribute('data-fact-value')),item.value);
+            }
           }
-          if(record.abilities?.length)for(const ability of record.abilities){const text=await profile.locator('[data-effective-model-abilities]').textContent();assert.ok(text.includes(ability.name)&&text.includes(String(ability.value)),'Missing effective model ability');}
-          else assert.equal(await profile.locator('[data-effective-model-abilities]').count(),0,'Stale model ability in UI');
+          if(record.abilities?.length)for(const ability of record.abilities){const text=await profile.textContent();assert.ok(text.includes(ability.name+': '+ability.value),'Missing effective model ability');}
+          else assert.equal((await profile.textContent()).includes('Feel No Pain:'),false,'Stale model ability in UI');
         }
-        for(const [subject,keywords] of [['INTRINSIC_UNIT',current.effective[id].intrinsicKeywords],['UNIT',current.effective[id].keywords]])assert.deepEqual(await ui.locator(`[data-keyword-subject="${subject}"] span`).allTextContents(),keywords);
         const own=current.state.units.find(unit=>unit.instanceId===id);
+        assert.deepEqual(await physical(page,id).locator('[data-fact-id^="'+own.canonicalUnitId+'::/keywords/"]').evaluateAll(ns=>ns.map(n=>JSON.parse(n.dataset.factValue))),current.effective[id].keywords);
+        assert.deepEqual(current.effective[id].intrinsicKeywords,cards.get(own.canonicalUnitId).fields.filter(f=>f.source?.path.startsWith('/keywords/')||f.source?.path.startsWith('/factionKeywords/')).map(f=>f.value));
         const identity=await physical(page,id).locator('.v2-roster-identity > div').evaluateAll(nodes=>Object.fromEntries(nodes.map(node=>[node.querySelector('dt').textContent,node.querySelector('dd').textContent])));
         assert.equal(identity['Starting Strength'],String(own.startingStrength));assert.equal(identity.Warlord,own.warlord===null||own.warlord===undefined?'Unknown':own.warlord?'Yes':'No');
         assert.deepEqual(await physical(page,id).locator('.v2-roster-identity [data-target-id]').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId)),own.enhancementIds);
@@ -168,18 +176,20 @@ try {
           assert.deepEqual(await selected.locator('a[data-target-id]').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId)),[...selection.canonicalProfileIds,...selection.canonicalEquipmentIds]);
         }
       }
-      await noOverflow(page);assert.deepEqual(errors,[],activeStep+' runtime errors');return current;
+      await noOverflow(page);assert.deepEqual(errors,[],activeStep+' runtime errors');await page.evaluate(()=>window.ArmyBookAppV2.openRoster());return current;
     };
     await effectiveParity();
     console.log(JSON.stringify({device,stage:'automatic-import',instances:7,bindings:bindings.length,status:'PASS'}));
     let attachmentActions=0,relatedChecks=0,popupChecks=0,reloadChecks=0;
     const related=async(instanceId,detId)=>{
       activeStep=device+'/related/'+instanceId+'/'+(detId||'ALL');
+      await page.evaluate(id=>window.ArmyBookAppV2.openInstance(id),instanceId);
       const root=physical(page,instanceId).locator(`[data-roster-related-instance-id="${instanceId}"]`);
       await root.getByRole('combobox',{name:'Related rules detachment',exact:true}).selectOption(detId||'');await settled(page);
       const rows=await page.evaluate(({instanceId,detId})=>window.ArmyBookAppV2.roster.related(instanceId,detId),{instanceId,detId:detId||null});
       const actual=await root.locator('li[data-rule-id]').evaluateAll(nodes=>nodes.map(node=>({ruleId:node.dataset.ruleId,applicability:node.dataset.applicability})));
-      assert.deepEqual(actual,rows.filter(row=>['MATCH','CONDITIONAL'].includes(row.applicability)).map(({ruleId,applicability})=>({ruleId,applicability})),activeStep+' stale or incorrect visible Related rows');
+      const owner=(await snapshot(page)).state.units.find(unit=>unit.instanceId===instanceId);
+      assert.deepEqual(actual,rows.filter(row=>['MATCH','CONDITIONAL'].includes(row.applicability)&&(row.kind!=='ENHANCEMENT'||owner.enhancementIds.includes(row.ruleId))).map(({ruleId,applicability})=>({ruleId,applicability})),activeStep+' stale or incorrect visible Related rows');
       assert.equal(new Set(actual.map(row=>row.ruleId)).size,actual.length,activeStep+' duplicate Related rules');
       await noOverflow(page);relatedChecks++;return rows;
     };
@@ -191,10 +201,11 @@ try {
     await applicabilityControls();
     const attach=async(leader,bodyguard)=>{
       activeStep=device+'/attach/'+leader+'/'+bodyguard;
-      const button=physical(page,leader).locator('[data-roster-action="attach"]');
-      await button.locator('..').locator('select').selectOption(bodyguard);await button.click();await settled(page);attachmentActions++;return effectiveParity();
+      await page.evaluate(()=>window.ArmyBookAppV2.openRoster());
+      const button=physical(page,bodyguard).locator('[data-roster-action="attach"]');
+      await button.locator('..').locator('select').selectOption(leader);await button.click();await settled(page);attachmentActions++;return effectiveParity();
     };
-    const detach=async leader=>{activeStep=device+'/detach/'+leader;await physical(page,leader).locator('[data-roster-action="detach"]').click();await settled(page);attachmentActions++;return effectiveParity();};
+    const detach=async leader=>{activeStep=device+'/detach/'+leader;await page.evaluate(()=>window.ArmyBookAppV2.openRoster());await page.locator('[data-roster-action="detach"][data-leader-instance-id="'+leader+'"]').click();await settled(page);attachmentActions++;return effectiveParity();};
     const fnpControl=(current,owner)=>{
       for(const id of Object.values(ids))assert.deepEqual(modelFnp(current.effective[id]),id===ids.lord&&owner?[{name:'Feel No Pain',value:4}]:[],activeStep+' Silent Bodyguard FNP leaked or remained stale');
       const provenance=current.effective[ids.lord].applied.filter(row=>row.ruleId===silentBodyguardId&&row.operation==='GRANT_MODEL_ABILITY');
@@ -218,6 +229,7 @@ try {
     const removed=await detach(ids.bio);assert.equal(hasAbility(weapon(removed,ids.pmA,meltagunId),'LETHAL HITS'),false);assert.ok(removed.effective[ids.pmA].applied.every(row=>row.ruleId!==infusionId));
     attached=await attach(ids.bio,ids.pmA);assert.ok(hasAbility(weapon(attached,ids.pmA,meltagunId),'LETHAL HITS'));fnpControl(attached,ids.dsA);
     for(const id of Object.values(ids)) {
+      await page.evaluate(id=>window.ArmyBookAppV2.openInstance(id),id);
       const filter=physical(page,id).getByRole('combobox',{name:'Related rules detachment',exact:true});
       assert.deepEqual(await filter.locator('option').evaluateAll(nodes=>nodes.map(node=>node.value)),['',detachmentId]);
       assert.deepEqual(await page.evaluate(id=>window.ArmyBookAppV2.roster.related(id,'detachment-paragons-of-putrescence'),id),[]);
@@ -230,6 +242,7 @@ try {
     assert.equal(scopes.unitCharacter,true);assert.equal(scopes.modelCharacter,false);
     // Expand actual provenance and verify its physical source/target evidence.
     activeStep=device+'/visible-provenance';
+    await page.evaluate(id=>window.ArmyBookAppV2.openInstance(id),ids.lord);
     const provenance=physical(page,ids.lord).locator('[data-effective-instance-id] li').filter({has:page.locator(`[data-target-id="${silentBodyguardId}"]`)}).filter({has:page.locator('[data-applied-field="abilities"]')});
     assert.equal(await provenance.count(),1);await provenance.getByText('Effect provenance',{exact:true}).click();
     assert.ok((await provenance.textContent()).includes(ids.dsA));assert.ok((await provenance.textContent()).includes(ids.lord));await noOverflow(page);
@@ -237,15 +250,16 @@ try {
     const durable=await snapshot(page);
     const popup=async(instanceId,targetId,relatedOnly=false)=>{
       activeStep=device+'/canonical-popup/'+targetId;
-      const source=relatedOnly?physical(page,instanceId).locator('[data-roster-related-instance-id]'):physical(page,instanceId);
-      const link=source.locator(`[data-target-id="${targetId}"]`).first();await link.click();await page.waitForSelector('dialog[open]');
+      await page.evaluate(id=>window.ArmyBookAppV2.openInstance(id),instanceId);
+      const source=physical(page,instanceId).locator(relatedOnly?'[data-roster-related-instance-id]':'[data-roster-context-instance-id]');
+      const link=source.locator(`[data-target-id="${targetId}"]:visible`).first();await link.click();await page.waitForSelector('dialog[open]');
       const observation=await observeFacts(page,'dialog[open]');assert.equal(observation.targetId,targetId);assert.equal(observation.dialogs,1);
       assert.deepEqual(observation.facts.map(({visible,...fact})=>fact),expectedFacts(targetId));assert.ok(observation.facts.every(fact=>fact.visible));
       assert.deepEqual(await snapshot(page),durable,'Opening a source popup changed physical effects');await noOverflow(page);popupChecks++;return observation;
     };
     const sourcePopup=await popup(ids.lord,silentBodyguardId);
     if(evidence)await page.screenshot({path:path.join(evidence,device+'-roster-popup.png'),animations:'disabled'});
-    await page.goBack();await page.waitForSelector('dialog[open]',{state:'hidden'});await page.waitForSelector('main [data-roster-view]');
+    await page.goBack();await page.waitForSelector('dialog[open]',{state:'hidden'});await page.waitForSelector('main [data-roster-context-instance-id]');
     await page.goForward();await page.waitForSelector('dialog[open]');assert.deepEqual(await observeFacts(page,'dialog[open]'),sourcePopup);assert.deepEqual(await snapshot(page),durable);
     await page.reload();await ready(page);await page.waitForSelector('dialog[open]');assert.deepEqual(await observeFacts(page,'dialog[open]'),sourcePopup);assert.deepEqual(await snapshot(page),durable);reloadChecks++;
     await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});await effectiveParity();
@@ -254,6 +268,7 @@ try {
     await popup(ids.bio,enhancementId,true);await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});
     await popup(ids.lord,plagueSurgeId,true);await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});
     activeStep=device+'/backup';
+    await page.evaluate(()=>window.ArmyBookAppV2.openRoster());
     await page.getByText('Backup and restore',{exact:true}).click();
     const downloaded=page.waitForEvent('download');await page.locator('[data-roster-action="export-backup"]').click();const download=await downloaded;
     const backup=path.join(evidence,device+'-roster-backup.json');await download.saveAs(backup);assert.deepEqual(JSON.parse(fs.readFileSync(backup,'utf8')),durable.state);

@@ -58,7 +58,7 @@ Library exit, unit artwork, offline/PWA integration or external Core
 Stratagems (the latter have no DG V2 factual input). Nested dialog history is
 supported; V1's complete nested triggering-element journey restoration is not
 claimed. Related / Compatible Rules and Glossary V2 are implemented below.
-Roster remains intentionally deferred.
+Roster Context and Effect Runtime V2 are consumed by the personal guide below.
 
 ## Existing integration limitation
 
@@ -184,3 +184,42 @@ Duplicate results, stale results, unresolved targets, horizontal overflow and
 runtime errors are zero. Controlled DG ability, Core definition and Stratagem
 source changes are visible through the same canonical resolver on both devices.
 No new factual owner or factual/Rule Contract change is introduced.
+
+## Personal roster Army Book
+
+Continuation base: `6a1d8755ee92219b2c39624cd1b4ea750c6b3c80`.
+New Recruit text imports automatically, then opens Attachment Setup. Each
+receiving unit offers only currently eligible, unused Character/Support
+instances. The existing V2 service evaluates the entire attachment group;
+composition, wargear, Enhancements, Warlord and Detachments are read-only.
+Attachments are optional; **Open personal guide** enters the same Reader.
+
+`personal.mjs` derives disposable navigation and card variants from canonical
+cards and the existing per-instance effective projection. It adds no factual
+owner or rule evaluator. Navigation contains Army Rules, selected Detachments
+and their Stratagems, assigned Enhancements, and individual physical roster
+units. Each physical route preserves independent equipment quantities,
+attachments, effective values and provenance. Related Rules uses the existing
+roster evaluator, selected Detachments and exact Enhancement ownership, hiding
+No Match results. Personal Glossary results use the same scope and canonical
+popup resolver; Core reference records remain available.
+
+Optional equipment ability occurrences are resolved to canonical field
+addresses at the import boundary. They do not become additional equipment or
+effect owners. Older backups remain valid; if these references are absent,
+optional ability blocks remain hidden until a fresh import resolves them.
+
+The personal URL includes the saved roster ID and physical unit route. Reload
+restores the validated local snapshot; without that snapshot, Attachment Setup
+is shown. **Full Army Book** returns to the complete faction view.
+
+```
+node books/death-guard/v2/personal-roster-qa.mjs
+node books/death-guard/v2/personal-roster-browser-qa.mjs
+```
+
+The browser control roster has nine physical units, four Detachments, three
+Enhancements and differently equipped Plague Marines copies. Desktop and
+390×844 phone checks cover legal/illegal Character groups, detach/re-attach,
+scoped navigation/search/Glossary, effective cards, Related Rules, canonical
+popups, history/reload and unchanged full-book fact output.

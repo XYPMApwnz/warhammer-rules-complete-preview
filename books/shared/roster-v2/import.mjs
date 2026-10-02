@@ -59,8 +59,15 @@ function selectionCandidates(entities,unit,label) {
   for (const entity of entities.values()) if (entity.parentId===unit.id && equipmentKinds.has(entity.kind)) {
     for (const [index,block] of (entity.data.blocks || []).entries()) if (block.wargearAbility) {
       const name=block.text.split(':')[0].replace(/\s*\(Aura\)\s*$/i,'');
-      if (options.has(gearLabel(name))) continue;
-      add(name,{canonicalProfileIds:[],canonicalEquipmentIds:[entity.id],canonicalFieldPaths:{[entity.id]:[`/blocks/${index}/text`]}});
+      const reference={entityId:entity.id,path:`/blocks/${index}/text`};
+      // Ancillary display occurrences resolve at the same import boundary.
+      // They reference an existing canonical block and do not become another
+      // selected-equipment owner or an independently executable gameplay fact.
+      if (options.has(gearLabel(name))) {
+        for (const binding of options.get(gearLabel(name))) binding.sourceReferences=[...(binding.sourceReferences || []),reference];
+        continue;
+      }
+      add(name,{canonicalProfileIds:[],canonicalEquipmentIds:[entity.id],canonicalFieldPaths:{[entity.id]:[`/blocks/${index}/text`]},sourceReferences:[reference]});
     }
   }
   const unique = list => [...new Map(list.map(binding=>[JSON.stringify(binding),binding])).values()];
@@ -237,7 +244,8 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
     }
     const signature = item => JSON.stringify([[...(item.canonicalProfileIds || [])].sort(),[...(item.canonicalEquipmentIds || [])].sort(),
       Object.entries(item.canonicalFieldPaths || {}).sort(([a],[b])=>a.localeCompare(b)).map(([id,paths])=>[id,[...paths].sort()])]);
-    if (!candidates.some(candidate=>signature(candidate)===signature({...binding,canonicalFieldPaths:fieldPaths}))) {
+    const sourceCandidate=candidates.find(candidate=>signature(candidate)===signature({...binding,canonicalFieldPaths:fieldPaths}));
+    if (!sourceCandidate) {
       issue('CONFLICTING_IMPORTED_SELECTION',raw.key,'Canonical selection does not match this imported equipment');return null;
     }
     for (const id of equipmentIds) {
@@ -258,6 +266,7 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
     resolutions.push({kind:'SELECTION',key:raw.key,state:matches.exact.length===1?'AUTO_RESOLVED':'MANUAL_RESOLVED',canonicalIds:[...profileIds,...equipmentIds]});
     return {selectionKey: raw.key, canonicalProfileIds: [...profileIds], canonicalEquipmentIds: [...equipmentIds],
       canonicalFieldPaths: clone(fieldPaths), physicalQuantity, perModelQuantity: raw.perModelQuantity,
+      ...(sourceCandidate.sourceReferences?.length?{sourceReferences:clone(sourceCandidate.sourceReferences)}:{}),
       quantityEvidence: {...clone(raw.quantityEvidence), ...(raw.physicalQuantity === null && startingStrength > 1 ? {explicitBinding: true} : {})}};
   };
   for (const raw of draft.units) {

@@ -1,5 +1,5 @@
 /** Optional roster view. The injected service owns every identity, fact and effect. */
-export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId}) {
+export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance}) {
   if (!service || !Array.isArray(service.catalog)) throw new TypeError('A canonical roster service is required.');
   for (const method of ['draft', 'import', 'load', 'snapshot', 'effective', 'related', 'candidates', 'attach', 'detach']) {
     if (typeof service[method] !== 'function') throw new TypeError(`Roster service requires ${method}().`);
@@ -88,8 +88,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   `;
   section.append(style);
   const heading = el('div', 'v2-roster-tools');
-  heading.append(el('h1', '', 'Roster'), button('Library', () => open(null), 'library'));
-  const status = el('p', 'v2-roster-status', 'Import a New Recruit text export to view physical units and their effective rules.');
+  heading.append(el('h1', '', 'Attachment Setup'), button('Library', () => open(null), 'library'));
+  const status = el('p', 'v2-roster-status', 'Import a New Recruit text export, optionally attach eligible Characters or Support, then open your personal guide.');
   status.setAttribute('role', 'status');
   const importPane = el('section', 'v2-card v2-roster-pane');
   importPane.append(el('h2', '', 'Import roster'));
@@ -210,7 +210,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       if (!service.state?.units?.length) checkResult(await service.load(importResult.roster));
       bindingArea.replaceChildren();
       renderRoster();
-      saveAndReport('Roster imported. Selected units, Detachments and equipment are preserved.');
+      saveAndReport('Roster imported. Attachments are optional. Open your personal guide when ready.');
       rosterArea.scrollIntoView({block: 'start', behavior: 'instant'});
     } else {
       renderBindings(importResult.needsBindings || []);
@@ -334,62 +334,11 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   function renderEffective(instanceId, result) {
     const section = el('section');
     section.dataset.effectiveInstanceId = instanceId;
-    section.append(el('h3', '', 'Effective rules'));
-    for (const [label, records] of [['Profiles for this roster unit', result.profiles], ['Selected weapons', result.weapons]]) {
-      if (!records?.length) continue;
-      section.append(el('p', 'v2-eyebrow', label));
-      for (const record of records) {
-        const card = el('div', 'v2-roster-profile');
-        card.dataset.effectiveId = record.id;
-        if (record.scopeId) card.dataset.compositionId = record.scopeId;
-        if (record.modelInstanceId) card.dataset.modelInstanceId = record.modelInstanceId;
-        if (record.ownerInstanceId) card.dataset.ownerInstanceId = record.ownerInstanceId;
-        card.append(el('h3', '', record.title || named(record.id)));
-        const stats = el('dl');
-        for (const field of record.fields || []) {
-          const cell = el('div');
-          const value = el('dd'); value.append(structuredValue(field.value));
-          value.dataset.effectiveField = field.label;
-          if (field.source?.entityId) value.dataset.sourceEntityId = field.source.entityId;
-          cell.append(el('dt', '', field.label), value); stats.append(cell);
-        }
-        card.append(stats);
-        if (record.quantity !== undefined) card.append(el('p', 'v2-roster-hint', `${record.quantity} models represented by this profile`));
-        if (record.physicalQuantity !== undefined) card.append(el('p', 'v2-roster-hint', `${record.physicalQuantity} selected in this physical scope`));
-        if (record.metrics && Object.keys(record.metrics).length) {
-          const metrics = el('section'); metrics.dataset.effectiveMetrics = '';
-          metrics.append(el('p', 'v2-eyebrow', 'Effective rule metrics'), structuredValue(record.metrics)); card.append(metrics);
-        }
-        if (record.abilities?.length) {
-          const abilities = el('section'); abilities.dataset.effectiveModelAbilities = '';
-          abilities.append(el('p', 'v2-eyebrow', 'Model abilities'), structuredValue(record.abilities)); card.append(abilities);
-        }
-        section.append(card);
-      }
-    }
-    for (const [label, values, kind] of [['Intrinsic keywords of this physical unit', result.intrinsicKeywords, 'INTRINSIC_UNIT'], ['Formed unit keywords', result.keywords, 'UNIT']]) {
-      if (!values?.length) continue;
-      section.append(el('p', 'v2-eyebrow', label));
-      const keywords = el('p'); keywords.dataset.keywordSubject = kind;
-      values.forEach(keyword => keywords.append(el('span', 'v2-reference', typeof keyword === 'string' ? keyword : text(keyword.value ?? keyword.label))));
-      section.append(keywords);
-    }
+    section.append(el('h3', '', 'Roster-known effects'));
     if (result.formedUnit) {
       const formed = el('details', 'v2-roster-provenance');
       formed.dataset.formedUnit = result.formedUnit.formedUnitId;
       formed.append(el('summary', '', 'Formed unit membership'), structuredValue(result.formedUnit)); section.append(formed);
-    }
-    if (result.abilities?.length) {
-      section.append(el('p', 'v2-eyebrow', 'Effective abilities'));
-      const abilities = el('ul', 'v2-roster-list');
-      result.abilities.forEach(ability => {
-        const item = el('li');
-        if (ability.id) { item.dataset.effectiveAbilityId = ability.id; item.append(reference(ability.id, ability.title || named(ability.id))); }
-        else if (ability.title) item.append(el('strong', '', ability.title));
-        if (ability.text !== undefined) item.append(structuredValue(ability.text));
-        abilities.append(item);
-      });
-      section.append(abilities);
     }
     for (const [label, records] of [['Applied effects', result.applied], ['Conditional rules', result.conditional]]) {
       if (!records?.length) continue;
@@ -435,7 +384,10 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const fill = () => {
       const related = service.related(instanceId, select.value || null);
       const suppliedRows = Array.isArray(related) ? related : related.rows || [];
-      const rows = suppliedRows.filter(row => !['NO_MATCH', 'INVALID'].includes(row.applicability) && !['FALSE', 'INVALID'].includes(row.state));
+      const state=service.state, owner=state.units.find(unit=>unit.instanceId===instanceId);
+      const rows = suppliedRows.filter(row => state.detachmentIds.includes(row.detachmentId) &&
+        (row.kind!=='ENHANCEMENT' || owner.enhancementIds.includes(row.ruleId)) &&
+        ['MATCH','CONDITIONAL'].includes(row.applicability));
       results.replaceChildren();
       rows.forEach(row => {
         const item = el('li');
@@ -451,6 +403,62 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     section.append(label, results); fill();
     return section;
   }
+  function rosterNames(state) {
+    const counts = new Map();
+    const occurrences = new Map();
+    state.units.forEach(unit => counts.set(unit.canonicalUnitId, (counts.get(unit.canonicalUnitId) || 0) + 1));
+    return new Map(state.units.map(unit => {
+      const number = (occurrences.get(unit.canonicalUnitId) || 0) + 1;
+      occurrences.set(unit.canonicalUnitId, number);
+      return [unit.instanceId, `${named(unit.canonicalUnitId)}${counts.get(unit.canonicalUnitId) > 1 ? ` #${number}` : ''}`];
+    }));
+  }
+  function instanceIdentity(unit) {
+    const identity = el('dl', 'v2-roster-identity');
+    identity.append(identityField('Starting Strength', unit.startingStrength), identityField('Warlord', unit.warlord === null || unit.warlord === undefined ? 'Unknown' : unit.warlord ? 'Yes' : 'No'));
+    const enhancements = el('span');
+    (unit.enhancementIds || []).forEach(id => enhancements.append(reference(id)));
+    if (!unit.enhancementIds?.length) enhancements.textContent = 'None imported';
+    identity.append(identityField('Enhancements on this unit', enhancements));
+    return identity;
+  }
+  function instanceGear(unit) {
+    const gear = el('section'); gear.append(el('h3', '', 'Imported composition and selected gear'));
+    renderSelections(unit.selections, gear);
+    for (const row of unit.modelRows || []) {
+      const models = el('div', 'v2-roster-model');
+      models.dataset.modelRowId = row.rowId;
+      models.append(el('p', '', `${text(row.quantity)} models · ${named(row.canonicalProfileId)}`));
+      renderSelections(row.selections, models);
+      for (const loadout of row.loadouts || []) {
+        const loadoutSection = el('div', 'v2-roster-model');
+        loadoutSection.dataset.loadoutId = loadout.loadoutId;
+        loadoutSection.append(el('p', '', `${text(loadout.quantity)} models with this loadout`));
+        renderSelections(loadout.selections, loadoutSection); models.append(loadoutSection);
+      }
+      gear.append(models);
+    }
+    return gear;
+  }
+  function renderInstanceContext(instanceId) {
+    const state = service.state;
+    const unit = state?.units?.find(unit => unit.instanceId === instanceId);
+    if (!unit) throw new Error('Unresolved physical roster unit.');
+    const names = rosterNames(state);
+    const context = el('section', 'v2-roster');
+    context.dataset.rosterContextInstanceId = instanceId;
+    context.append(style.cloneNode(true), instanceIdentity(unit), instanceGear(unit));
+    const members = (state.attachments || []).filter(record => record.bodyguardInstanceId === instanceId);
+    const assignment = (state.attachments || []).find(record => record.leaderInstanceId === instanceId);
+    if (members.length || assignment) {
+      const attachments = el('section'); attachments.append(el('h3', '', 'Attachments'));
+      if (assignment) attachments.append(el('p', '', `Attached to ${names.get(assignment.bodyguardInstanceId)}`));
+      members.forEach(member => attachments.append(el('p', '', `${names.get(member.leaderInstanceId)} · ${member.role || 'Character / Support'}`)));
+      context.append(attachments);
+    }
+    context.append(renderEffective(instanceId, service.effective(instanceId)), renderRelated(instanceId));
+    return context;
+  }
   function renderRoster() {
     const previousScrollY = window.scrollY;
     const activeOwner = document.activeElement?.closest('[data-roster-instance-id]')?.dataset.rosterInstanceId;
@@ -459,7 +467,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const state = service.state;
     if (!state?.units?.length) return;
     const summary = el('section', 'v2-card v2-roster-pane');
-    summary.append(el('h2', '', 'Physical units'), el('p', 'v2-roster-hint', `${state.units.length} imported entries`));
+    summary.append(el('h2', '', 'Attachment Setup'), el('p', 'v2-roster-hint', `${state.units.length} imported unit instances. Attachments are optional; imported army selections remain unchanged.`));
     const detachments = el('ul', 'v2-roster-list');
     detachments.dataset.rosterDetachments = '';
     for (const detachment of state.detachments) {
@@ -469,62 +477,75 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       item.append(reference(detachment.canonicalDetachmentId));
       detachments.append(item);
     }
-    summary.append(el('p', 'v2-eyebrow', 'Imported Detachments'), detachments);
+    summary.append(el('p', 'v2-eyebrow', 'Imported Detachments'), detachments,
+      button('Open personal guide', () => {
+        if (typeof openPersonalGuide !== 'function') throw new Error('Personal guide navigation is unavailable.');
+        return openPersonalGuide();
+      }, 'open-personal-guide'));
     rosterArea.append(summary);
-    const byInstance = new Map(state.units.map(unit => [unit.instanceId, unit]));
-    const instanceName = id => { const unit = byInstance.get(id); return unit ? `${named(unit.canonicalUnitId)} · ${unit.instanceId}` : id; };
+    const names = rosterNames(state);
+    const used = new Set((state.attachments || []).map(record => record.leaderInstanceId));
+    const candidatesByTarget = new Map();
+    for (const leader of state.units) {
+      if (used.has(leader.instanceId)) continue;
+      // The V2 service evaluates canonical relations and the entire formed group.
+      // This view only reverses those eligible edges for Bodyguard-first setup.
+      for (const target of service.candidates(leader.instanceId) || []) {
+        const candidates = candidatesByTarget.get(target.instanceId) || [];
+        candidates.push(leader);
+        candidatesByTarget.set(target.instanceId, candidates);
+      }
+    }
     for (const unit of state.units) {
       const article = el('article', 'v2-card v2-roster-instance');
       article.dataset.rosterInstanceId = unit.instanceId;
       article.dataset.canonicalUnitId = unit.canonicalUnitId;
       const heading = el('header', 'v2-roster-instance-header');
       const title = el('div');
-      title.append(el('span', 'v2-eyebrow', unit.instanceId), el('h2', '', named(unit.canonicalUnitId)));
-      heading.append(title, reference(unit.canonicalUnitId, 'Datasheet', true));
-      const identity = el('dl', 'v2-roster-identity');
-      identity.append(identityField('Starting Strength', unit.startingStrength), identityField('Warlord', unit.warlord === null || unit.warlord === undefined ? 'Unknown' : unit.warlord ? 'Yes' : 'No'));
-      const enhancements = el('span');
-      (unit.enhancementIds || []).forEach(id => enhancements.append(reference(id)));
-      if (!unit.enhancementIds?.length) enhancements.textContent = 'None imported';
-      identity.append(identityField('Enhancements on this unit', enhancements));
+      title.append(el('span', 'v2-eyebrow', unit.instanceId), el('h2', '', names.get(unit.instanceId)));
+      heading.append(title, button('Effective datasheet', () => {
+        if (typeof showInstance !== 'function') throw new Error('Physical datasheet navigation is unavailable.');
+        return showInstance(unit.instanceId);
+      }, 'show-instance'));
       const body = el('div', 'v2-roster-body');
-      const gear = el('section'); gear.append(el('h3', '', 'Imported models and selected gear'));
-      renderSelections(unit.selections, gear);
-      for (const row of unit.modelRows || []) {
-        const models = el('div', 'v2-roster-model');
-        models.dataset.modelRowId = row.rowId;
-        models.append(el('p', '', `${text(row.quantity)} models · ${named(row.canonicalProfileId)}`));
-        renderSelections(row.selections, models);
-        for (const loadout of row.loadouts || []) {
-          const loadoutSection = el('div', 'v2-roster-model');
-          loadoutSection.dataset.loadoutId = loadout.loadoutId;
-          loadoutSection.append(el('p', '', `${text(loadout.quantity)} models with this loadout`));
-          renderSelections(loadout.selections, loadoutSection); models.append(loadoutSection);
+      const assignment = (state.attachments || []).find(record => record.leaderInstanceId === unit.instanceId);
+      if (assignment) body.append(el('p', 'v2-roster-hint', `Attached to ${names.get(assignment.bodyguardInstanceId)}`));
+      const members = (state.attachments || []).filter(record => record.bodyguardInstanceId === unit.instanceId);
+      const candidates = candidatesByTarget.get(unit.instanceId) || [];
+      if (members.length || candidates.length) {
+        const attachments = el('section');
+        attachments.dataset.attachmentTargetInstanceId = unit.instanceId;
+        attachments.append(el('h3', '', 'Characters / Support'));
+        for (const member of members) {
+          const row = el('div', 'v2-roster-tools');
+          row.dataset.attachedLeaderInstanceId = member.leaderInstanceId;
+          const detach = button('Detach', async () => {
+            checkResult(await service.detach(member.leaderInstanceId)); renderRoster(); saveAndReport('Character / Support detached.');
+          }, 'detach');
+          detach.dataset.leaderInstanceId = member.leaderInstanceId;
+          row.append(el('span', '', `${names.get(member.leaderInstanceId)} · ${member.role || 'Character / Support'}`), detach);
+          attachments.append(row);
         }
-        gear.append(models);
-      }
-      body.append(gear);
-      const attachment = (state.attachments || []).find(record => record.leaderInstanceId === unit.instanceId);
-      const candidates = service.candidates(unit.instanceId);
-      if (attachment || candidates?.length) {
-        const attach = el('section'); attach.append(el('h3', '', 'Attachment'));
-        if (attachment) {
-          attach.append(el('p', '', `Attached to ${instanceName(attachment.bodyguardInstanceId)}`), button('Detach', async () => { checkResult(await service.detach(unit.instanceId)); renderRoster(); saveAndReport('Character detached.'); }, 'detach'));
-        } else {
-          const label = el('label', 'v2-roster-field', 'Eligible Bodyguard unit');
-          const select = selectRecords(candidates.map(candidate => ({id: candidate.instanceId, title: candidate.title || instanceName(candidate.instanceId)})), {label: `Attach ${instanceName(unit.instanceId)} to a Bodyguard`});
+        if (candidates.length) {
+          const controls = el('div');
+          const label = el('label', 'v2-roster-field', 'Eligible imported Character / Support');
+          const select = selectRecords(candidates.map(candidate => ({id: candidate.instanceId, title: names.get(candidate.instanceId)})), {label: `Add Character / Support to ${names.get(unit.instanceId)}`});
+          select.dataset.attachmentCandidateFor = unit.instanceId;
           label.append(select);
-          attach.append(label, button('Attach', async () => { if (!select.value) throw new Error('Choose an eligible physical Bodyguard unit.'); checkResult(await service.attach(unit.instanceId, select.value)); renderRoster(); saveAndReport('Character attached.'); }, 'attach'));
+          controls.append(label, button('+ Add Character / Support', async () => {
+            if (!select.value) throw new Error('Choose an eligible imported Character / Support.');
+            checkResult(await service.attach(select.value, unit.instanceId)); renderRoster(); saveAndReport('Character / Support attached.');
+          }, 'attach'));
+          attachments.append(controls);
         }
-        body.append(attach);
+        body.append(attachments);
       }
-      body.append(renderEffective(unit.instanceId, service.effective(unit.instanceId)), renderRelated(unit.instanceId));
-      article.append(heading, identity, body); rosterArea.append(article);
+      article.append(heading, instanceIdentity(unit), body); rosterArea.append(article);
     }
     if (activeOwner) {
       const article = [...rosterArea.querySelectorAll('[data-roster-instance-id]')].find(node => node.dataset.rosterInstanceId === activeOwner);
       const preferredAction = activeAction === 'attach' ? 'detach' : activeAction === 'detach' ? 'attach' : activeAction;
-      (article?.querySelector(`[data-roster-action="${preferredAction}"]`) || article?.querySelector('a'))?.focus({preventScroll: true});
+      (article?.querySelector(`[data-roster-action="${preferredAction}"]`) || article?.querySelector('button'))?.focus({preventScroll: true});
       window.scrollTo({top: previousScrollY, behavior: 'instant'});
     }
   }
@@ -539,5 +560,5 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     bindings = {}; importResult = null; bindingArea.replaceChildren(); draftArea.replaceChildren();
     setStatus('Import this export to resolve its selected entries automatically.');
   });
-  return Object.freeze({render, refresh: renderRoster, ready, storageKey});
+  return Object.freeze({render, refresh: renderRoster, renderInstanceContext, ready, storageKey});
 }

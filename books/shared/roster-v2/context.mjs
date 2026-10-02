@@ -82,6 +82,20 @@ export function validateRoster(book, state, policies) {
         for (const part of pointer.slice(1).split('/').map(p => p.replaceAll('~1','/').replaceAll('~0','~'))) value = value?.[part];
         assert(value !== undefined, 'Unresolved equipment field');
       }
+      // Optional source occurrences are canonical display references only.
+      // Existing snapshots without these references remain valid; a consumer
+      // must not infer their identity from a title or gameplay prose.
+      if (selection.sourceReferences !== undefined) {
+        assert(Array.isArray(selection.sourceReferences), 'Invalid equipment source references');
+        const seenReferences=new Set();
+        for (const reference of selection.sourceReferences) {
+          const record=records.get(reference?.entityId),match=typeof reference?.path==='string' && reference.path.match(/^\/blocks\/(0|[1-9]\d*)\/text$/);
+          assert(record?.parentId===canonical.id && ['WARGEAR_OPTION','WARGEAR_FOOTNOTE','DATASHEET_SECTION','SUPPLEMENTAL_DATASHEET_RULE'].includes(record.kind) && match, 'Foreign equipment source reference');
+          const block=record.data.blocks?.[Number(match[1])],key=reference.entityId+reference.path;
+          assert(block?.wargearAbility===true && typeof block.text==='string' && !seenReferences.has(key), 'Unresolved equipment source reference');
+          seenReferences.add(key);
+        }
+      }
     }
     assert(unit.warlord === null || typeof unit.warlord === 'boolean', 'Invalid imported Warlord state');
     assert(Array.isArray(unit.enhancementIds) && new Set(unit.enhancementIds).size === unit.enhancementIds.length, 'Invalid Enhancement ownership');

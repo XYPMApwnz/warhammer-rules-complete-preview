@@ -34,7 +34,7 @@ const allowed=new Map([
   [app,'text/html'],
   ...['books/death-guard/v2/generated/app-presentation.json','books/death-guard/v2/generated/rule-contract-effective.json'].map(p=>['/'+p,'application/json']),
   ...['books/death-guard/v2/roster-boot.mjs','books/death-guard/v2/rule-contract-schema.mjs','books/death-guard/v2/rule-contract-state-fields.mjs',
-      'books/shared/army-book-app-v2/runtime.mjs','books/shared/army-book-app-v2/roster.mjs','books/shared/army-book-app-v2/glossary.mjs',
+      'books/shared/army-book-app-v2/runtime.mjs','books/shared/army-book-app-v2/roster.mjs','books/shared/army-book-app-v2/personal.mjs','books/shared/army-book-app-v2/glossary.mjs',
       'books/shared/roster-v2/runtime.mjs','books/shared/roster-v2/import.mjs','books/shared/roster-v2/context.mjs','books/shared/roster-v2/effects.mjs','books/shared/roster-parser.js'].map(p=>['/'+p,'text/javascript']),
   ['/books/shared/army-book-app-v2/styles.css','text/css']
 ]);
@@ -97,8 +97,8 @@ try {
     sourceControls(current,false);
     for(const action of ['attach','detach','attach']){
       step=device+'/'+action;
-      const root=physical(page,'parsed-unit-1');if(action==='attach')await root.getByRole('combobox').first().selectOption('parsed-unit-2');
-      await root.locator('[data-roster-action='+action+']').click();await settled(page);current=await snapshot(page);sourceControls(current,action==='attach');
+      const root=physical(page,'parsed-unit-2');if(action==='attach')await root.locator('[data-attachment-candidate-for]').selectOption('parsed-unit-1');
+      await root.locator(action==='attach'?'[data-roster-action=attach]':'[data-roster-action=detach][data-leader-instance-id="parsed-unit-1"]').click();await settled(page);current=await snapshot(page);sourceControls(current,action==='attach');
       if(action==='attach'){
         const effects=current.effective['parsed-unit-2'].applied;
         assert.ok(effects.some(e=>e.ruleId===plagueveil));assert.ok(effects.some(e=>e.ruleId===paragons));
@@ -107,7 +107,8 @@ try {
     }
     let relatedChecks=0;
     for(const unit of current.state.units){
-      const root=physical(page,unit.instanceId).locator('[data-roster-related-instance-id]');
+      await page.evaluate(id=>window.ArmyBookAppV2.openInstance(id),unit.instanceId);
+      const root=page.locator('main [data-roster-related-instance-id="'+unit.instanceId+'"]');
       assert.deepEqual(await root.locator('select').evaluate(s=>[...s.options].map(o=>o.value).sort()),['',...detachments].sort());
       for(const detachmentId of ['',...detachments]){
         await root.locator('select').selectOption(detachmentId);await settled(page);
@@ -115,12 +116,12 @@ try {
         assert.ok(rows.every(r=>detachments.includes(r.detachmentId)&&(!detachmentId||r.detachmentId===detachmentId)),'Related Detachment leakage');
         assert.ok(rows.every(r=>r.state!=='INVALID'));
         const visible=await root.locator('[data-rule-id]').evaluateAll(ns=>ns.map(n=>({ruleId:n.dataset.ruleId,applicability:n.dataset.applicability})));
-        assert.deepEqual(visible,rows.filter(r=>['MATCH','CONDITIONAL'].includes(r.applicability)).map(({ruleId,applicability})=>({ruleId,applicability})));
+        assert.deepEqual(visible,rows.filter(r=>['MATCH','CONDITIONAL'].includes(r.applicability)&&(r.kind!=='ENHANCEMENT'||unit.enhancementIds.includes(r.ruleId))).map(({ruleId,applicability})=>({ruleId,applicability})));
         assert.equal(new Set(visible.map(r=>r.ruleId)).size,visible.length);relatedChecks++;
       }
     }
     const saved=await snapshot(page);
-    await page.locator('[data-roster-action=library]').click();await page.evaluate(()=>window.ArmyBookAppV2.open('unit-plague-marines'));
+    await page.evaluate(()=>window.ArmyBookAppV2.openLibrary());await page.evaluate(()=>window.ArmyBookAppV2.open('unit-plague-marines'));
     await page.locator('main .v2-detachment-filter').selectOption(unselected);assert.equal(await page.locator('main > article').textContent(),noRoster);
     assert.deepEqual(await snapshot(page),saved,'Library filter altered roster Detachments');
     if(phone)await page.getByRole('button',{name:'Open book navigation',exact:true}).click();await page.getByRole('button',{name:'Roster',exact:true}).click();

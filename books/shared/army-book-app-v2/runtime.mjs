@@ -1,8 +1,10 @@
 /** Presentation-only reader. Canonical IDs and supplied fields are its only content authority. */
 import {searchGlossary, validateGlossary} from './glossary.mjs';
 import {createRosterPanel} from './roster.mjs';
+import {projectPersonalBook, projectInstanceCards, instanceRoute} from './personal.mjs';
 const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
 const rosterRoute = 'view-roster';
+const personalRoute = 'view-roster-guide';
 export function mount(document, payload, options = {}) {
   if (payload?.schema !== 'army-book-app-v2/presentation') throw new TypeError('Unsupported Army Book presentation.');
   const window = document.defaultView;
@@ -129,6 +131,8 @@ export function mount(document, payload, options = {}) {
   document.body.replaceChildren(shell);
   document.title = `${payload.book.title} · Army Book V2`;
   let selectedId = null;
+  let selectedInstanceId = null;
+  let personalMode = false;
   let selectedView = 'READER';
   let glossaryQuery = '';
   let drawerOpen = false;
@@ -138,14 +142,18 @@ export function mount(document, payload, options = {}) {
   const narrow = window.matchMedia('(max-width: 860px)');
   const indexed = [...cards.values()].map(card => ({card, text: [card.title, card.kind, ...(card.fields || []).map(field => `${field.label} ${field.displayValue || ''} ${exactValue(field.value)}`)].join(' ').toLocaleLowerCase()}));
   const rosterPanel = options.roster ? createRosterPanel(document, {
-    service: options.roster, bookId: payload.book.id, open, showDetail,
+    service: options.roster, bookId: payload.book.id, open: id=>id?open(id):openLibrary(), showDetail,
+    openPersonalGuide, showInstance: openInstance,
     titleForId: id => cards.get(id)?.title
   }) : null;
+  const personalBook = () => projectPersonalBook(payload, options.roster.state);
+  const scopedIds = () => personalMode ? personalBook().allowedIds : null;
 
   function factValue(tag, field) {
     const value = el(tag, 'v2-field-value', field.displayValue === undefined ? exactValue(field.value) : String(field.displayValue));
     value.dataset.factId = field.id;
     value.dataset.factValue = JSON.stringify(field.value);
+    if (field.runtimeDerived) value.dataset.rosterDerived = 'true';
     if (field.contextId) value.dataset.contextId = field.contextId;
     if (field.source?.entityId) value.dataset.entityId = field.source.entityId;
     return value;
@@ -263,10 +271,14 @@ export function mount(document, payload, options = {}) {
     return container;
   }
 
-  function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false} = {}) {
+  function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null} = {}) {
+    const allowed = scopedIds();
+    const childrenIds = (card.children || []).filter(id=>!allowed || allowed.has(id));
     const article = el('article', `v2-card v2-kind-${String(card.kind || 'entry').replace(/[^a-z0-9-]/gi, '-')} v2-depth-${Math.min(depth, 2)}`);
     article.dataset.cardId = card.id;
     article.dataset.entityId = card.source?.entityId || card.id;
+    if (instanceId) article.dataset.rosterInstanceId = instanceId;
+    if (card.scopeId) article.dataset.compositionId = card.scopeId;
     const cardHeader = el('header', 'v2-card-header');
     const headingField = (card.fields || []).find(field => field.presentation === 'heading');
     const headingTag = `h${Math.min(depth + (inDialog ? 2 : 1), 6)}`;
@@ -287,29 +299,32 @@ export function mount(document, payload, options = {}) {
       card.annotations.forEach(note => notes.append(el('p', '', typeof note === 'string' ? note : note.text || JSON.stringify(note))));
       article.append(notes);
     }
+    if (card.rosterQuantity !== undefined) article.append(el('p','v2-compatible-help',`${card.rosterQuantity} ${card.kind==='WEAPON_PROFILE'?'selected':'models in this profile'}`));
+    if (card.rosterAbilities?.length) article.append(el('p','v2-compatible-help',card.rosterAbilities.map(ability=>`${ability.name}${ability.value===undefined?'':': '+ability.value}`).join(', ')));
+    if (card.rosterMetrics && Object.keys(card.rosterMetrics).length) article.append(el('p','v2-compatible-help',exactValue(card.rosterMetrics)));
     if (card.links?.length) {
       const links = el('div', 'v2-related');
       links.append(el('span', 'v2-eyebrow', 'RELATED ENTRIES'));
-      card.links.forEach(link => links.append(anchor(link.label || cards.get(link.targetId).title, link.targetId, true)));
+      card.links.filter(link=>!allowed || allowed.has(link.targetId)).forEach(link => links.append(anchor(link.label || cards.get(link.targetId).title, link.targetId, true)));
       article.append(links);
     }
-    if (card.children?.length) {
+    if (childrenIds.length) {
       const children = el('div', 'v2-children');
       const childNavigation = el('nav', 'v2-child-navigation');
       childNavigation.setAttribute('aria-label', `${card.title} entries`);
-      card.children.forEach(id => childNavigation.append(anchor(cards.get(id).title, id)));
+      childrenIds.forEach(id => childNavigation.append(anchor(cards.get(id).title, id, Boolean(instanceId))));
       const index = el('details', 'v2-entry-index');
       const indexHeading = el('summary', '', 'In this entry');
-      indexHeading.append(el('span', 'v2-count', String(card.children.length)));
+      indexHeading.append(el('span', 'v2-count', String(childrenIds.length)));
       index.append(indexHeading, childNavigation);
       children.append(index);
       const trail = new Set([...ancestors, card.id]);
-      card.children.forEach(id => {
-        if (!trail.has(id)) children.append(renderCard(cards.get(id), {depth: depth + 1, ancestors: trail, inDialog}));
+      childrenIds.forEach(id => {
+        if (!trail.has(id)) for (const child of variants?.get(id) || [cards.get(id)]) children.append(renderCard(child, {depth: depth + 1, ancestors: trail, inDialog, variants, instanceId}));
       });
       article.append(children);
     }
-    if (card.kind==='DATASHEET'&&payload.relatedRules) article.append(renderRelatedRules(card.id));
+    if (!personalMode && card.kind==='DATASHEET'&&payload.relatedRules) article.append(renderRelatedRules(card.id));
     return article;
   }
 
@@ -368,6 +383,7 @@ export function mount(document, payload, options = {}) {
 
   function renderNavigation() {
     navigation.replaceChildren();
+    if (personalMode) { renderPersonalNavigation(); return; }
     const query = search.value.trim().toLocaleLowerCase();
     const terms = query.split(/\s+/).filter(Boolean);
     if (terms.length) {
@@ -417,6 +433,62 @@ export function mount(document, payload, options = {}) {
     }
   }
 
+  function renderPersonalNavigation() {
+    const view=personalBook(), query=search.value.trim().toLocaleLowerCase();
+    const home=button('Personal guide','v2-library-link',openPersonalGuide);
+    navigation.append(home,button('Attachment Setup','v2-library-link',openRoster),button('Full Army Book','v2-library-link',openLibrary));
+    if (payload.glossary) navigation.append(button('Glossary','v2-library-link',openGlossary));
+    const visible=entry=> {
+      if (!query) return true;
+      if (!entry.instanceId) return entry.title.toLocaleLowerCase().includes(query);
+      const unit=options.roster.state.units.find(unit=>unit.instanceId===entry.instanceId);
+      const variants=projectInstanceCards(cards,unit,options.roster.effective(unit.instanceId));
+      const root=variants.get(unit.canonicalUnitId)[0];
+      const records=[root,...root.children.flatMap(id=>variants.get(id)||[cards.get(id)])];
+      return [entry.title,...records.flatMap(card=>(card.fields||[]).map(field=>exactValue(field.value)))].join(' ').toLocaleLowerCase().includes(query);
+    };
+    const groups=query ? [{id:'search',label:'Search results',entries:[...view.instances,
+      ...indexed.filter(({card,text})=>['ARMY_RULE','DETACHMENT','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM'].includes(card.kind) && view.allowedIds.has(card.id) && text.includes(query)).map(({card})=>({id:card.id,route:card.id,title:card.title}))]}] : view.groups;
+    let count=0;
+    for (const group of groups) {
+      const entries=query && group.id==='search'?group.entries.filter(entry=>!entry.instanceId || visible(entry)):group.entries;
+      if (!entries.length) continue;
+      const section=el('details','v2-nav-group');section.open=true;section.dataset.groupId=group.id;
+      const summary=el('summary','',group.label);summary.append(el('span','v2-count',String(entries.length)));section.append(summary);
+      const items=el('div','v2-nav-items');
+      for (const entry of entries) {const link=anchor(entry.title,entry.route);link.dataset.canonicalId=entry.id;
+        if (entry.instanceId) link.dataset.rosterNavInstanceId=entry.instanceId;
+        if (entry.instanceId?selectedInstanceId===entry.instanceId:selectedId===entry.id && !selectedInstanceId) link.setAttribute('aria-current','page');
+        items.append(link);count++;}
+      section.append(items);navigation.append(section);
+    }
+    searchStatus.textContent=query?`${count} entries found`:'';
+  }
+
+  function renderPersonalHome(focus=false) {
+    selectedView='PERSONAL';selectedId=null;selectedInstanceId=null;glossaryQuery='';
+    const view=personalBook(), hero=el('section','v2-hero');
+    hero.append(el('h1','', 'Personal guide'),el('p','v2-hero-subtitle',`${payload.book.title} · ${view.instances.length} imported units`));
+    const sections=el('div','v2-library-sections');
+    for (const group of view.groups) {const section=el('section','v2-library-section');section.dataset.groupId=group.id;section.append(el('h2','',group.label));
+      const list=el('div','v2-library-grid');for (const entry of group.entries) {const link=anchor(entry.title,entry.route);link.dataset.canonicalId=entry.id;if(entry.instanceId)link.dataset.rosterNavInstanceId=entry.instanceId;list.append(link);}section.append(list);sections.append(section);}
+    main.replaceChildren(hero,sections);renderNavigation();if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
+  }
+
+  function renderInstance(instanceId,focus=false) {
+    const unit=options.roster.state.units.find(unit=>unit.instanceId===instanceId);
+    if (!unit) {renderPersonalHome(focus);main.prepend(el('p','v2-not-found','This physical unit is not in the imported roster.'));return;}
+    selectedView='PERSONAL';selectedInstanceId=instanceId;selectedId=unit.canonicalUnitId;glossaryQuery='';
+    const effective=options.roster.effective(instanceId), variants=projectInstanceCards(cards,unit,effective);
+    const title=personalBook().instances.find(entry=>entry.instanceId===instanceId).title;
+    const toolbar=el('nav','v2-breadcrumbs');toolbar.append(button('Personal guide','',openPersonalGuide),el('span','', '/'),el('span','',title));
+    const selected=renderCard(variants.get(unit.canonicalUnitId)[0],{variants,instanceId});selected.classList.add('v2-current-card');
+    selected.dataset.canonicalUnitId=unit.canonicalUnitId;
+    const badge=el('p','v2-compatible-help',title);selected.querySelector('.v2-card-header').after(badge);
+    selected.append(rosterPanel.renderInstanceContext(instanceId));main.replaceChildren(toolbar,selected);renderNavigation();
+    if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
+  }
+
   function renderLibrary() {
     main.replaceChildren();
     const hero = el('section', 'v2-hero');
@@ -453,11 +525,16 @@ export function mount(document, payload, options = {}) {
   }
 
   function renderSelected(id, focus = false) {
-    selectedView = 'READER';
+    if (personalMode && cards.get(id)?.kind==='DATASHEET') {
+      const instances=personalBook().instances.filter(entry=>entry.id===id);
+      return instances.length?renderInstance(instances.find(entry=>entry.instanceId===selectedInstanceId)?.instanceId || instances[0].instanceId,focus):renderPersonalHome(focus);
+    }
+    selectedView = personalMode?'PERSONAL':'READER';
+    selectedInstanceId = null;
     glossaryQuery = '';
-    selectedId = cards.has(id) ? id : null;
+    selectedId = cards.has(id) && (!personalMode || scopedIds().has(id)) ? id : null;
     if (!selectedId) {
-      renderLibrary();
+      personalMode?renderPersonalHome():renderLibrary();
       if (id) {
         const warning = el('p', 'v2-not-found', 'This entry is not in this army book. Choose an entry from the library.');
         warning.setAttribute('role', 'status');
@@ -467,7 +544,7 @@ export function mount(document, payload, options = {}) {
       const card = cards.get(selectedId);
       const toolbar = el('nav', 'v2-breadcrumbs');
       toolbar.setAttribute('aria-label', 'Breadcrumb');
-      toolbar.append(button('Library', '', library));
+      toolbar.append(button(personalMode?'Personal guide':'Library', '', library));
       if (card.parentId && cards.has(card.parentId)) toolbar.append(el('span', '', '/'), anchor(cards.get(card.parentId).title, card.parentId));
       toolbar.append(el('span', '', '/'), el('span', 'v2-breadcrumb-current', card.title));
       const selected = renderCard(card);
@@ -484,6 +561,7 @@ export function mount(document, payload, options = {}) {
   function renderGlossary(query = '', focus = false) {
     selectedView = 'GLOSSARY';
     selectedId = null;
+    selectedInstanceId = null;
     glossaryQuery = query;
     const section = el('section', 'v2-card v2-glossary');
     const heading = el('header', 'v2-card-header');
@@ -502,7 +580,8 @@ export function mount(document, payload, options = {}) {
     status.setAttribute('role', 'status');
     const results = el('ul', 'v2-compatible-list v2-glossary-results');
     const renderResults = () => {
-      const matches = searchGlossary(payload.glossary, glossaryQuery);
+      const allowed=scopedIds();
+      const matches = searchGlossary(payload.glossary, glossaryQuery).filter(entry=>!allowed || allowed.has(entry.targetId) || cards.get(entry.targetId)?.kind==='CORE_RULE');
       status.textContent = `${matches.length} ${matches.length === 1 ? 'entry' : 'entries'} found`;
       results.replaceChildren();
       for (const entry of matches) {
@@ -533,9 +612,13 @@ export function mount(document, payload, options = {}) {
   function hashId() {
     try { return decodeURIComponent(window.location.hash.slice(1)); } catch { return ''; }
   }
+  function routeInstanceId(id) {
+    try { return decodeURIComponent(id.slice('roster-unit/'.length)); } catch { return null; }
+  }
   function renderRoster(focus = false) {
     selectedView = 'ROSTER';
     selectedId = null;
+    selectedInstanceId = null;
     rosterPanel.render(main);
     renderNavigation();
     if (focus) {
@@ -546,8 +629,10 @@ export function mount(document, payload, options = {}) {
   function route({focus = false} = {}) {
     const id = hashId();
     const state = window.history.state;
+    const rosterId=new URLSearchParams(window.location.search).get('roster');
+    personalMode=Boolean(rosterPanel && id!==rosterRoute && rosterId && options.roster.state?.rosterId===rosterId);
     const detail = state?.armyBookV2?.detailId === id && cards.has(id);
-    const key = JSON.stringify([id, detail, state?.armyBookV2?.backgroundId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
+    const key = JSON.stringify([id, detail, personalMode, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
     if (routeKey === key) return;
     routeKey = key;
     toggleDrawer(false);
@@ -556,6 +641,10 @@ export function mount(document, payload, options = {}) {
         if (selectedView !== 'GLOSSARY' || glossaryQuery !== (state.armyBookV2.glossaryQuery || '')) renderGlossary(state.armyBookV2.glossaryQuery || '');
       } else if (state.armyBookV2.backgroundView === 'ROSTER' && rosterPanel) {
         if (selectedView !== 'ROSTER') renderRoster();
+      } else if (personalMode && state.armyBookV2.backgroundInstanceId) {
+        renderInstance(state.armyBookV2.backgroundInstanceId);
+      } else if (personalMode && state.armyBookV2.backgroundView==='PERSONAL' && !state.armyBookV2.backgroundId) {
+        renderPersonalHome();
       } else if (selectedView !== 'READER' || selectedId !== (state.armyBookV2.backgroundId || null)) renderSelected(state.armyBookV2.backgroundId, false);
       dialogContent.replaceChildren(renderCard(cards.get(id), {inDialog: true}));
       if (!dialog.open) {
@@ -570,6 +659,9 @@ export function mount(document, payload, options = {}) {
       document.body.classList.remove('v2-detail-open');
       if (id === glossaryRoute && payload.glossary) renderGlossary(state?.armyBookV2?.glossaryQuery || '', focus);
       else if (id === rosterRoute && rosterPanel) renderRoster(focus);
+      else if (personalMode && id===personalRoute) renderPersonalHome(focus);
+      else if (personalMode && id.startsWith('roster-unit/')) renderInstance(routeInstanceId(id),focus);
+      else if (rosterPanel && (id===personalRoute || id.startsWith('roster-unit/') || rosterId && !options.roster.state)) renderRoster(focus);
       else renderSelected(id || null, focus);
       if (!focus) window.requestAnimationFrame(() => window.scrollTo({top: state?.armyBookV2?.scrollY || 0, behavior: 'instant'}));
       if (!focus && lastFocus) {
@@ -582,12 +674,18 @@ export function mount(document, payload, options = {}) {
   function navigate(id, detail, options = {}) {
     const glossary = id === glossaryRoute && Boolean(payload.glossary) && !detail;
     const roster = id === rosterRoute && Boolean(rosterPanel) && !detail;
-    if (id && !cards.has(id) && !glossary && !roster) return false;
+    const personal = Boolean(rosterPanel) && (id===personalRoute || id?.startsWith('roster-unit/')) && !detail;
+    if (id && !cards.has(id) && !glossary && !roster && !personal) return false;
+    if (personal && !rosterPanel) return false;
+    if (personalMode && cards.has(id) && !scopedIds().has(id) && !(detail && cards.get(id).kind==='CORE_RULE')) return false;
     const nextHash = id ? `#${encodeURIComponent(id)}` : '';
     window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, scrollY: window.scrollY, detailScrollTop: dialogContent.scrollTop, ...(selectedView === 'GLOSSARY' ? {glossaryQuery} : {})}}, '', window.location.href);
-    const state = {armyBookV2: detail ? {detailId: id, backgroundId: selectedId, backgroundView: selectedView, glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: options.query || '', glossaryReturnId: selectedView === 'READER' ? selectedId : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, scrollY: 0}};
-    if (window.location.hash !== nextHash || Boolean(window.history.state?.armyBookV2?.detailId) !== detail) {
-      window.history.pushState(state, '', `${window.location.pathname}${window.location.search}${nextHash}`);
+    const state = {armyBookV2: detail ? {detailId: id, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: options.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):selectedView === 'READER'||selectedView==='PERSONAL' ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, scrollY: 0}};
+    const destination=new URL(window.location.href);destination.hash=nextHash;
+    if (options.fullBook) destination.searchParams.delete('roster');
+    else if (personal) destination.searchParams.set('roster',options.rosterId || optionsRosterId());
+    if (window.location.hash !== nextHash || destination.search!==window.location.search || Boolean(window.history.state?.armyBookV2?.detailId) !== detail) {
+      window.history.pushState(state, '', destination.href);
     } else window.history.replaceState(state, '', window.location.href);
     routeKey = null;
     route({focus: !detail});
@@ -595,7 +693,11 @@ export function mount(document, payload, options = {}) {
   }
   function open(id) { return navigate(id, false); }
   function showDetail(id) { return navigate(id, true); }
-  function library() { return navigate(null, false); }
+  function optionsRosterId(){return options.roster?.state?.rosterId || '';}
+  function library() { return personalMode?navigate(personalRoute,false):navigate(null, false); }
+  function openLibrary() { return navigate(null,false,{fullBook:true}); }
+  function openPersonalGuide() { return options.roster?.state?.units?.length ? navigate(personalRoute,false,{rosterId:optionsRosterId()}) : false; }
+  function openInstance(id) { return options.roster?.state?.units?.some(unit=>unit.instanceId===id)?navigate(instanceRoute(id),false,{rosterId:optionsRosterId()}):false; }
   function openRoster() { return rosterPanel ? navigate(rosterRoute, false) : false; }
   function openGlossary() { return payload.glossary ? navigate(glossaryRoute, false, {query: ''}) : false; }
   function closeGlossary() { return navigate(window.history.state?.armyBookV2?.glossaryReturnId || null, false); }
@@ -654,8 +756,9 @@ export function mount(document, payload, options = {}) {
     main.replaceChildren(...[...cards.values()].map(card => renderCard({...card, children: []})));
     return main;
   }
-  const api = Object.freeze({payload, open, showDetail, library, renderAllForQA, setRelatedDetachment, openGlossary, closeGlossary, openRoster, roster: options.roster, rosterPanel});
+  const api = Object.freeze({payload, open, showDetail, library, openLibrary, openPersonalGuide, openInstance, renderAllForQA, setRelatedDetachment, openGlossary, closeGlossary, openRoster, roster: options.roster, rosterPanel});
   window.ArmyBookAppV2 = api;
   route();
+  if (rosterPanel) rosterPanel.ready.then(()=>{routeKey=null;route();});
   return api;
 }
