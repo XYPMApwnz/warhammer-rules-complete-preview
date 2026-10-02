@@ -6,7 +6,7 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 
-// Production UI integration: explicit canonical bindings, physical instances,
+// Production UI integration: automatic import resolution, physical instances,
 // and source-backed selectors. The Library filter is deliberately independent.
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
@@ -69,21 +69,8 @@ try {
     if(phone)await page.getByRole('button',{name:'Open book navigation',exact:true}).click();
     await page.getByRole('button',{name:'Roster',exact:true}).click();
     step=device+'/import';await page.locator('[data-roster-input=raw-text]').fill(fixture);await page.locator('[data-roster-action=review-import]').click();await settled(page);
-    assert.equal(await page.locator('fieldset[data-binding-kind=DETACHMENT]').count(),3);
-    assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.roster.state),null,'Unbound title labels became factual identities');
-    for(let round=0;round<4&&await page.locator('fieldset[data-binding-kind]').count();round++){
-      const needs=await page.locator('fieldset[data-binding-kind]').evaluateAll(ns=>ns.map(n=>({kind:n.dataset.bindingKind,key:n.dataset.bindingKey})));
-      for(const need of needs){
-        const root=page.locator('fieldset[data-binding-kind="'+need.kind+'"][data-binding-key="'+need.key+'"]');
-        if(need.kind==='DETACHMENT')await root.locator('select').selectOption(detachments[Number(need.key.split('/')[1])-1]);
-        else if(need.kind==='DATASHEET')await root.locator('select').selectOption(units[Number(need.key.replace('parsed-unit-',''))-1]);
-        else if(need.kind==='ENHANCEMENT')await root.locator('select').selectOption(need.key==='enhancement/1'?plagueveil:lancet);
-        else if(need.kind==='SELECTION'){assert.ok(selections[need.key]);await root.getByRole('listbox',{name:'Canonical weapon profiles',exact:true}).selectOption([selections[need.key]]);}
-        else throw new Error('Unexpected fixture binding '+JSON.stringify(need));
-      }
-      await page.locator('[data-roster-action=resolve-bindings]').click();await settled(page);
-    }
-    assert.equal(await page.locator('fieldset[data-binding-kind]').count(),0);
+    assert.equal(await page.locator('fieldset[data-binding-kind]').count(),0,'Unambiguous import required manual canonical choices');
+    assert.equal(await page.locator('[data-roster-bindings] select').count(),0);
     let current=await snapshot(page);
     assert.deepEqual(current.state.detachmentIds,detachments);assert.equal('detachmentId' in current.state,false);
     assert.deepEqual(current.state.detachments,detachments.map((canonicalDetachmentId,i)=>({instanceId:'detachment/'+(i+1),canonicalDetachmentId})));

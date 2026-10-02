@@ -74,7 +74,7 @@ function importText(text, units, selectionBindings = {}, enhancements = {}) {
 const standardGear = {
   'Blight launcher': {canonicalProfileIds: [LAUNCHER]}, Meltagun: {canonicalProfileIds: [MELTA]}, Boltgun: {canonicalProfileIds: [BOLT]},
   'Plague knives': {canonicalProfileIds: [KNIFE]},
-  'Icon of Despair': {canonicalEquipmentIds: ['datasheet-plague-marines:section:1'], canonicalFieldPaths: {'datasheet-plague-marines:section:1': ['/blocks/1/text']}}
+  'Icon of Despair': {canonicalEquipmentIds: ['datasheet-plague-marines:wargear:8'], canonicalFieldPaths: {'datasheet-plague-marines:wargear:8': ['/text']}}
 };
 const main = () => importText('Char1: 1x Biologus Putrifier (50 pts)\n5x Plague Marines (90 pts): 1x Meltagun, 4x Boltgun, 5x Plague knives', {
   'parsed-unit-1': 'unit-biologus-putrifier', 'parsed-unit-2': PM
@@ -163,8 +163,8 @@ control(() => {
     assert.deepEqual(firstGroup.memberInstanceIds, ['parsed-unit-3','parsed-unit-1']);
     assert.deepEqual(secondGroup.memberInstanceIds, ['parsed-unit-4','parsed-unit-2']);
     assert.notDeepEqual(firstGroup.keywords, secondGroup.keywords, 'Different attached Character keyword contexts remain isolated');
-    assert.equal(first.selections.filter(selection => selection.canonicalEquipmentIds.includes('datasheet-plague-marines:section:1')).length, 1);
-    assert.equal(second.selections.filter(selection => selection.canonicalEquipmentIds.includes('datasheet-plague-marines:section:1')).length, 0);
+    assert.equal(first.selections.filter(selection => selection.canonicalEquipmentIds.includes('datasheet-plague-marines:wargear:8')).length, 1);
+    assert.equal(second.selections.filter(selection => selection.canonicalEquipmentIds.includes('datasheet-plague-marines:wargear:8')).length, 0);
   };
   validateIsolation(service.projection);
   mutateReject(service.projection, projection => {projection.units.find(unit => unit.instanceId === 'parsed-unit-4').weapons.find(weapon => weapon.canonicalProfileId === MELTA).data.abilities.push('LETHAL HITS');}, validateIsolation);
@@ -256,7 +256,7 @@ control(() => {
 control(() => {
   const service = importText('+ WARLORD: Char1: Lord of Contagion\n+ ENHANCEMENT: Furnace of Plagues (on Char1: Lord of Contagion)\n+ ENHANCEMENT: Revolting Regeneration (on Char1: Lord of Contagion)\nChar1: 1x Lord of Contagion (100 pts): 1x Manreaper\nChar2: 1x Lord of Contagion (100 pts): 1x Manreaper\n3x Deathshroud Terminators (150 pts)\n3x Deathshroud Terminators (150 pts)\n5x Plague Marines (90 pts)', {
     'parsed-unit-1': 'unit-lord-of-contagion', 'parsed-unit-2': 'unit-lord-of-contagion', 'parsed-unit-3': 'unit-deathshroud-terminators', 'parsed-unit-4': 'unit-deathshroud-terminators', 'parsed-unit-5': PM
-  }, {Manreaper: {canonicalProfileIds: [MANREAPER]}}, {'enhancement/1': FURNACE, 'enhancement/2': REGEN});
+  }, {Manreaper: {canonicalProfileIds: [MANREAPER,'datasheet-lord-of-contagion:weapon:2']}}, {'enhancement/1': FURNACE, 'enhancement/2': REGEN});
   const fnp = instance => projected(service, instance).profiles.flatMap(profile => profile.abilities).filter(value => value.name === 'Feel No Pain');
   const enhancedWeapon = gear(service, 'parsed-unit-1', MANREAPER)[0], ordinaryWeapon = gear(service, 'parsed-unit-2', MANREAPER)[0];
   assert.equal(enhancedWeapon.data.strength, '10'); assert.equal(enhancedWeapon.data.attacks, '6'); assert(ability(enhancedWeapon, 'DEVASTATING WOUNDS'));

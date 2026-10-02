@@ -1,9 +1,71 @@
-// Raw New Recruit text is parsed by an injected lexical parser. Canonical facts
-// are resolved exclusively through explicit IDs and their existing ownership.
+// Names are resolved only at this import boundary. Runtime facts and joins
+// retain canonical IDs, physical ownership and quantities from the export.
 const own = (record, key) => record && Object.hasOwn(record, key) ? record[key] : undefined;
 const clone = value => structuredClone(value);
 const equipmentKinds = new Set(['WARGEAR_OPTION', 'WARGEAR_FOOTNOTE', 'DATASHEET_SECTION', 'SUPPLEMENTAL_DATASHEET_RULE']);
 const quantity = value => Number.isSafeInteger(value) && value >= 0;
+
+export const normalizeImportLabel = value => String(value ?? '').normalize('NFKD').replace(/\p{M}/gu,'')
+  .replace(/[’‘']/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+const gearNouns = {knives:'knife',weapons:'weapon',cannons:'cannon',gauntlets:'gauntlet',guns:'gun',pistols:'pistol',launchers:'launcher',
+  fists:'fist',scourges:'scourge',spewers:'spewer',spitters:'spitter',blades:'blade',bolters:'bolter',swords:'sword',bells:'bell',
+  flamers:'flamer',autocannons:'autocannon',cutters:'cutter',claws:'claw',tracks:'track',heads:'head',icons:'icon',instruments:'instrument'};
+const gearLabel = value => normalizeImportLabel(value).replace(/^additional /,'').split(' ').map(word=>gearNouns[word] || word).join(' ');
+const entryLabel = (kind,value) => normalizeImportLabel(kind==='DETACHMENT'?String(value ?? '').replace(/\s*\([^)]*\)\s*$/,''):value);
+const named = entity => [entity.data?.title,entity.data?.name,...(entity.aliases || [])].filter(value=>typeof value==='string');
+const plausible = (label,names) => {
+  const tokens=label.split(' ').filter(word=>!['of','the','a','and','with'].includes(word));
+  return tokens.length && names.some(name=> {
+    const words=name.split(' ');const overlap=tokens.filter(token=>words.includes(token)).length;
+    return overlap===tokens.length || overlap===words.filter(word=>!['of','the','a','and','with'].includes(word)).length || overlap>=2 && overlap>=Math.ceil(tokens.length*.6);
+  });
+};
+function identityCandidates(entities,kind,label,ownerId) {
+  const key=entryLabel(kind,label), scoped=[...entities.values()].filter(entity=>entity.kind===kind && (!ownerId || entity.parentId===ownerId));
+  const names=entity=>named(entity).map(value=>entryLabel(kind,value));
+  const exact=scoped.filter(entity=>names(entity).includes(key));
+  return {exact,plausible:key && key!=='—'?scoped.filter(entity=>plausible(key,names(entity))):[]};
+}
+function selectionCandidates(entities,unit,label) {
+  const key=gearLabel(label), groups=new Map();
+  const add = (name,binding) => {
+    const k=gearLabel(name);if (!k) return;
+    const group=groups.get(k) || [];group.push(binding);groups.set(k,group);
+  };
+  // A source-named family has alternate profile facts, not alternate pieces of
+  // physical equipment. Spaced mode separators exclude hyphenated base names.
+  const families=new Map();
+  for (const id of unit.data.weaponIds || []) {
+    const weapon=entities.get(id), name=weapon?.data.name;
+    if (!name) continue;
+    add(name,{canonicalProfileIds:[id],canonicalEquipmentIds:[],canonicalFieldPaths:{}});
+    const family=name.split(/\s+[–—-]\s+/)[0];
+    if (family!==name) {const ids=families.get(family) || [];ids.push(id);families.set(family,ids);}
+  }
+  for (const [name,ids] of families) add(name,{canonicalProfileIds:ids,canonicalEquipmentIds:[],canonicalFieldPaths:{}});
+  const options=new Map();
+  for (const entity of entities.values()) if (entity.parentId===unit.id && entity.kind==='WARGEAR_OPTION') {
+    // Read only the positive selection clause, never a neighbouring exclusion
+    // such as "not equipped with an instrument". These existing canonical
+    // option identities are also the runtime's selected-equipment references.
+    const label=entity.data.text?.match(/\bcan be equipped with\s+(?:\d+\s+)?(.+?)(?:\.|\n|$)/i)?.[1];
+    if (!label || label.includes(':') || /\b(?:one|any|either)\b.*\bfollowing\b|\b(?:or|and)\s+can\b/i.test(label)) continue;
+    const key=gearLabel(label);
+    if ((groups.get(key) || []).some(binding=>binding.canonicalProfileIds.length)) continue;
+    const list=options.get(key) || [];
+    list.push({canonicalProfileIds:[],canonicalEquipmentIds:[entity.id],canonicalFieldPaths:{[entity.id]:['/text']}});options.set(key,list);
+  }
+  for (const [name,bindings] of options) for (const binding of bindings) add(name,binding);
+  for (const entity of entities.values()) if (entity.parentId===unit.id && equipmentKinds.has(entity.kind)) {
+    for (const [index,block] of (entity.data.blocks || []).entries()) if (block.wargearAbility) {
+      const name=block.text.split(':')[0].replace(/\s*\(Aura\)\s*$/i,'');
+      if (options.has(gearLabel(name))) continue;
+      add(name,{canonicalProfileIds:[],canonicalEquipmentIds:[entity.id],canonicalFieldPaths:{[entity.id]:[`/blocks/${index}/text`]}});
+    }
+  }
+  const unique = list => [...new Map(list.map(binding=>[JSON.stringify(binding),binding])).values()];
+  return {exact:unique(groups.get(key) || []),plausible:unique([...groups].filter(([name])=>plausible(key,[name])).flatMap(([,bindings])=>bindings))};
+}
 
 function splitGear(value) {
   const parts = [], text = String(value || '');
@@ -78,13 +140,13 @@ function fieldExists(data, pointer) {
 }
 
 export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId} = {}) {
-  const errors = [], needsBindings = [];
+  const errors = [], needsBindings = [], resolutions = [];
   let draft;
   try { draft = lexicalDraft(rawText, parse); }
   catch (error) { return {schema: 'roster-v2/import-result', status: 'INVALID', draft: null,
     roster: null, needsBindings, errors: [{code: 'INVALID_LEXICAL_INPUT', key: 'input', message: error.message}]}; }
   const issue = (code, key, message) => errors.push({code, key, message});
-  const need = (kind, key, rawLabel, ownerId = null) => needsBindings.push({kind, key, rawLabel, ownerId});
+  const need = (kind, key, rawLabel, ownerId = null, candidates = {}) => needsBindings.push({kind, key, rawLabel, ownerId,...candidates});
   if (!book || !Array.isArray(book.entities) || typeof book.bookId !== 'string' || !book.bookId) issue('INVALID_BOOK', 'book', 'An effective canonical book with a canonical book ID is required');
   if (!bindings || typeof bindings !== 'object' || Array.isArray(bindings)) {
     issue('INVALID_BINDINGS', 'bindings', 'Explicit binding dictionaries are required');
@@ -104,10 +166,28 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
     issue('AMBIGUOUS_WARLORD_IDENTITY', 'warlord', 'Lexical parser could not resolve imported Warlord identity');
   }
   const exact = (id, kind, key, rawLabel, ownerId) => {
-    if (id === undefined || id === null || id === '') { need(kind, key, rawLabel, ownerId); return null; }
+    const scope = kind==='ENHANCEMENT' ? new Map([...entities].filter(([,entity])=>entity.kind!=='ENHANCEMENT' || detachmentIds.includes(entity.parentId))) : entities;
+    const matches = identityCandidates(scope,kind,rawLabel,ownerId);
+    if (kind==='PROFILE' && entities.get(ownerId)?.data.profileIds.length===1) matches.exact=[entities.get(entities.get(ownerId).data.profileIds[0])];
+    const candidateIds=(matches.exact.length?matches.exact:matches.plausible).map(entity=>entity.id);
+    if (id === undefined || id === null || id === '') {
+      if (matches.exact.length===1) {
+        resolutions.push({kind,key,state:'AUTO_RESOLVED',canonicalIds:[matches.exact[0].id]});return matches.exact[0];
+      }
+      const state=matches.exact.length>1?'AMBIGUOUS':'UNRESOLVED';
+      resolutions.push({kind,key,state,canonicalIds:[]});
+      need(kind,key,rawLabel,ownerId,{candidateIds,state});return null;
+    }
     if (typeof id !== 'string') { issue('AMBIGUOUS_BINDING', key, 'Binding must contain one explicit canonical ID'); return null; }
     const entity = entities.get(id);
     if (!entity || entity.kind !== kind) { issue('INVALID_CANONICAL_BINDING', key, `Unknown or wrong-kind canonical ID: ${id}`); return null; }
+    if (kind==='PROFILE' && ownerId && entity.parentId!==ownerId) {issue('FOREIGN_PROFILE_OWNER',key,'Model profile belongs to another unit');return null;}
+    if (kind==='ENHANCEMENT' && !detachmentIds.includes(entity.parentId)) {issue('FOREIGN_ENHANCEMENT_CONTEXT',key,'Enhancement belongs to an unselected Detachment');return null;}
+    // Pre-existing headerless bindings remain a trusted import API input, not
+    // an editing choice offered by the production import-resolution panel.
+    const headerless = kind==='DETACHMENT' && !draft.detachments.length;
+    if (!headerless && !candidateIds.includes(id)) {issue('CONFLICTING_IMPORTED_IDENTITY',key,'Canonical binding does not match this imported entry');return null;}
+    resolutions.push({kind,key,state:matches.exact.length===1?'AUTO_RESOLVED':'MANUAL_RESOLVED',canonicalIds:[id]});
     return entity;
   };
   // Headerless supported exports still need one explicit canonical selection.
@@ -124,8 +204,16 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
   const detachmentIds = [...new Set(detachments.map(item=>item.canonicalDetachmentId).filter(Boolean))];
   const units = [];
   const bindSelection = (raw, unit, startingStrength) => {
-    const binding = own(bindings.selections, raw.key);
-    if (!binding) { need('SELECTION', raw.key, raw.label, unit.id); return null; }
+    let binding = own(bindings.selections, raw.key);
+    const matches=selectionCandidates(entities,unit,raw.label), candidates=matches.exact.length?matches.exact:matches.plausible;
+    if (!binding) {
+      if (matches.exact.length===1) binding=matches.exact[0];
+      else {
+        const state=matches.exact.length>1?'AMBIGUOUS':'UNRESOLVED';
+        resolutions.push({kind:'SELECTION',key:raw.key,state,canonicalIds:[]});
+        need('SELECTION',raw.key,raw.label,unit.id,{candidates,state});return null;
+      }
+    }
     if (typeof binding !== 'object' || Array.isArray(binding)) { issue('AMBIGUOUS_BINDING', raw.key, 'Selection requires an explicit canonical binding'); return null; }
     const profileIds = binding.canonicalProfileIds ?? [], equipmentIds = binding.canonicalEquipmentIds ?? [];
     if (!Array.isArray(profileIds) || !Array.isArray(equipmentIds) || !profileIds.length && !equipmentIds.length ||
@@ -140,10 +228,17 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
       const equipment = entities.get(id);
       if (!equipmentKinds.has(equipment?.kind) || equipment.parentId !== unit.id) issue('FOREIGN_SELECTION_OWNER', raw.key, `Equipment fact is not owned by this unit: ${id}`);
     }
-    const fieldPaths = binding.canonicalFieldPaths ?? {};
-    if (!fieldPaths || typeof fieldPaths !== 'object' || Array.isArray(fieldPaths)) issue('INVALID_SELECTION_FIELD', raw.key, 'Equipment field references must use canonical ID keys');
-    else for (const [id, paths] of Object.entries(fieldPaths)) {
-      if (!equipmentIds.includes(id) || !Array.isArray(paths) || !paths.length || paths.some(path => !fieldExists(entities.get(id)?.data, path))) issue('INVALID_SELECTION_FIELD', raw.key, `Unresolved equipment field: ${id}`);
+    const sameIds = (a,b) => JSON.stringify([...a].sort())===JSON.stringify([...b].sort());
+    const fieldPaths = binding.canonicalFieldPaths ?? (matches.exact.length===1 && sameIds(profileIds,matches.exact[0].canonicalProfileIds) &&
+      sameIds(equipmentIds,matches.exact[0].canonicalEquipmentIds) ? matches.exact[0].canonicalFieldPaths : {});
+    if (!fieldPaths || typeof fieldPaths !== 'object' || Array.isArray(fieldPaths)) {issue('INVALID_SELECTION_FIELD',raw.key,'Equipment field references must use canonical ID keys');return null;}
+    for (const [id,paths] of Object.entries(fieldPaths)) if (!equipmentIds.includes(id) || !Array.isArray(paths) || !paths.length || paths.some(path=>!fieldExists(entities.get(id)?.data,path))) {
+      issue('INVALID_SELECTION_FIELD',raw.key,`Unresolved equipment field: ${id}`);return null;
+    }
+    const signature = item => JSON.stringify([[...(item.canonicalProfileIds || [])].sort(),[...(item.canonicalEquipmentIds || [])].sort(),
+      Object.entries(item.canonicalFieldPaths || {}).sort(([a],[b])=>a.localeCompare(b)).map(([id,paths])=>[id,[...paths].sort()])]);
+    if (!candidates.some(candidate=>signature(candidate)===signature({...binding,canonicalFieldPaths:fieldPaths}))) {
+      issue('CONFLICTING_IMPORTED_SELECTION',raw.key,'Canonical selection does not match this imported equipment');return null;
     }
     for (const id of equipmentIds) {
       const equipment = entities.get(id);
@@ -160,6 +255,7 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
       issue('CONFLICTING_SELECTION_QUANTITY', raw.key, 'Binding contradicts imported physical quantity');
     }
     if (!quantity(physicalQuantity)) issue('INVALID_SELECTION_QUANTITY', raw.key, 'Physical selected quantity must be a nonnegative safe integer');
+    resolutions.push({kind:'SELECTION',key:raw.key,state:matches.exact.length===1?'AUTO_RESOLVED':'MANUAL_RESOLVED',canonicalIds:[...profileIds,...equipmentIds]});
     return {selectionKey: raw.key, canonicalProfileIds: [...profileIds], canonicalEquipmentIds: [...equipmentIds],
       canonicalFieldPaths: clone(fieldPaths), physicalQuantity, perModelQuantity: raw.perModelQuantity,
       quantityEvidence: {...clone(raw.quantityEvidence), ...(raw.physicalQuantity === null && startingStrength > 1 ? {explicitBinding: true} : {})}};
@@ -203,7 +299,7 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
   const id = rosterId ?? defaultRosterId(draft.sourceText);
   if (typeof id !== 'string' || !id.trim()) issue('INVALID_ROSTER_ID', 'rosterId', 'Roster physical namespace is required');
   const status = errors.length ? 'INVALID' : needsBindings.length ? 'NEEDS_BINDINGS' : 'READY';
-  return {schema: 'roster-v2/import-result', status, draft, needsBindings, errors,
+  return {schema: 'roster-v2/import-result', status, draft, needsBindings, errors, resolutions,
     roster: status === 'READY' ? {schema: 'roster-v2/roster', rosterId: id, bookId: book.bookId,
       detachments, detachmentIds, warlordInstanceId: warlords[0]?.instanceId || null, units, attachments: []} : null};
 }

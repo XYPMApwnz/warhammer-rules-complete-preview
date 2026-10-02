@@ -101,7 +101,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   raw.dataset.rosterInput = 'raw-text';
   rawLabel.append(raw);
   const importActions = el('div', 'v2-roster-tools');
-  importActions.append(button('Review import', reviewImport, 'review-import'));
+  importActions.append(button('Import roster', reviewImport, 'review-import'));
   const bindingArea = el('div');
   bindingArea.dataset.rosterBindings = '';
   const draftArea = el('div');
@@ -210,11 +210,12 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       if (!service.state?.units?.length) checkResult(await service.load(importResult.roster));
       bindingArea.replaceChildren();
       renderRoster();
-      saveAndReport('Roster imported. Physical unit ownership and selected quantities are preserved.');
+      saveAndReport('Roster imported. Selected units, Detachments and equipment are preserved.');
+      rosterArea.scrollIntoView({block: 'start', behavior: 'instant'});
     } else {
       renderBindings(importResult.needsBindings || []);
       const errors = (importResult.errors || []).map(error => error.message || error.code).join(' ');
-      setStatus(errors || 'Choose the canonical entries for the imported labels below.', importResult.status === 'INVALID');
+      setStatus(errors || 'Some imported labels need clarification. Resolve the ambiguous entries below or provide a corrected New Recruit export.', importResult.status === 'INVALID');
     }
   }
   function selectRecords(records, {multiple = false, value = '', label} = {}) {
@@ -235,116 +236,59 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if (!needs.length) return;
     const form = el('form', 'v2-roster-bindings');
     const read = [];
+    let blocked = false;
     for (const need of needs) {
       const fieldset = el('fieldset');
       fieldset.dataset.bindingKind = need.kind;
       fieldset.dataset.bindingKey = need.key;
-      fieldset.append(el('legend', '', need.rawLabel || need.key), el('p', 'v2-roster-hint', `Imported entry: ${need.key}`), el('p', 'v2-roster-hint', need.kind === 'SELECTION_QUANTITY' ? 'Enter the total physical quantity selected in this unit.' : `Bind this imported ${need.kind.toLowerCase().replaceAll('_', ' ')} using a canonical entry.`));
-      if (need.kind === 'SELECTION_QUANTITY') {
-        const label = el('label', 'v2-roster-field', 'Physical quantity');
-        const input = el('input');
-        input.type = 'number'; input.min = '0'; input.step = '1'; input.required = true;
-        input.setAttribute('aria-label', 'Physical quantity');
-        const existing = bindings.selections?.[need.key]?.physicalQuantity;
-        if (existing !== undefined) input.value = String(existing);
-        label.append(input); fieldset.append(label);
-        read.push(() => {
-          const value = Number(input.value);
-          if (input.value === '' || !Number.isSafeInteger(value) || value < 0) throw new Error('Enter a nonnegative whole physical quantity.');
-          bindings.selections ||= {};
-          bindings.selections[need.key] = {...bindings.selections[need.key], physicalQuantity: value};
-        });
-      } else if (need.kind === 'SELECTION_FIELD') {
-        const record = catalog.get(need.ownerId);
-        const fields = record?.fields || record?.fieldPaths || [];
-        const selectedPaths = bindings.selections?.[need.key]?.canonicalFieldPaths?.[need.ownerId] || [];
-        const inputs = [];
-        fields.forEach(field => {
-          const path = typeof field === 'string' ? field : field.path;
-          const label = el('label', 'v2-roster-field');
-          const input = el('input'); input.type = 'checkbox'; input.value = path; input.checked = selectedPaths.includes(path);
-          label.append(input, el('span', '', typeof field === 'string' ? field : `${field.label || path}${field.value === undefined ? '' : ': ' + text(field.value)}`));
-          fieldset.append(label); inputs.push(input);
-        });
-        if (!fields.length) fieldset.append(el('p', 'v2-roster-hint', 'The service did not supply canonical field paths for this equipment fact.'));
-        read.push(() => {
-          const paths = inputs.filter(input => input.checked).map(input => input.value);
-          if (!paths.length) throw new Error('Choose the exact canonical source fields for this equipment selection.');
-          bindings.selections ||= {};
-          const existing = bindings.selections[need.key] || {};
-          bindings.selections[need.key] = {...existing, canonicalFieldPaths: {...existing.canonicalFieldPaths, [need.ownerId]: paths}};
-        });
-      } else if (need.kind === 'SELECTION') {
-        const existing = bindings.selections?.[need.key] || {};
-        const records = service.catalog.filter(record => record.parentId === need.ownerId);
-        const weaponLabel = el('label', 'v2-roster-field', 'Weapon profiles (choose every applicable alternate)');
-        const weapons = selectRecords(records.filter(record => record.kind === 'WEAPON_PROFILE'), {multiple: true, value: existing.canonicalProfileIds, label: 'Canonical weapon profiles'});
-        weaponLabel.append(weapons);
-        const equipmentLabel = el('label', 'v2-roster-field', 'Equipment facts');
-        const equipment = selectRecords(records.filter(record => ['WARGEAR_OPTION', 'WARGEAR_FOOTNOTE', 'DATASHEET_SECTION', 'SUPPLEMENTAL_DATASHEET_RULE'].includes(record.kind)), {multiple: true, value: existing.canonicalEquipmentIds, label: 'Canonical equipment facts'});
-        equipmentLabel.append(equipment);
-        const pathsArea = el('div');
-        const pathInputs = new Map();
-        const renderPaths = () => {
-          pathsArea.replaceChildren();
-          pathInputs.clear();
-          [...equipment.selectedOptions].forEach(option => {
-            const record = catalog.get(option.value);
-            const paths = record.fields || record.fieldPaths || [];
-            if (!paths.length) {
-              pathsArea.append(el('p', 'v2-roster-hint', `${record.title}: no selectable source field paths were supplied. The service will validate this equipment binding.`));
-              return;
-            }
-            const list = el('fieldset');
-            list.append(el('legend', '', `${record.title}: source fields`));
-            const inputs = [];
-            paths.forEach(field => {
-              const path = typeof field === 'string' ? field : field.path;
-              const label = el('label', 'v2-roster-field');
-              const input = el('input'); input.type = 'checkbox'; input.value = path;
-              input.checked = (existing.canonicalFieldPaths?.[record.id] || []).includes(path);
-              label.append(input, el('span', '', typeof field === 'string' ? field : `${field.label || field.path}${field.value === undefined ? '' : ': ' + text(field.value)}`));
-              list.append(label); inputs.push(input);
-            });
-            pathInputs.set(record.id, inputs); pathsArea.append(list);
-          });
-        };
-        equipment.addEventListener('change', renderPaths);
-        renderPaths();
-        fieldset.append(weaponLabel, equipmentLabel, pathsArea, el('p', 'v2-roster-hint', 'Select profiles, equipment, or both. On a phone, tap the entries in each list to select them.'));
-        read.push(() => {
-          const canonicalProfileIds = [...weapons.selectedOptions].map(option => option.value);
-          const canonicalEquipmentIds = [...equipment.selectedOptions].map(option => option.value);
-          if (!canonicalProfileIds.length && !canonicalEquipmentIds.length) throw new Error('Bind each selection to at least one canonical profile or equipment fact.');
-          const canonicalFieldPaths = {};
-          for (const [id, inputs] of pathInputs) { const selected = inputs.filter(input => input.checked).map(input => input.value); if (selected.length) canonicalFieldPaths[id] = selected; }
-          bindings.selections ||= {};
-          bindings.selections[need.key] = {...existing, canonicalProfileIds, canonicalEquipmentIds, canonicalFieldPaths};
-        });
+      fieldset.append(el('legend', '', need.rawLabel || need.key));
+      const candidates = need.kind === 'SELECTION'
+        ? (need.candidates || [])
+        : (need.candidateIds || []).map(id => catalog.get(id)).filter(Boolean);
+      if (!candidates.length || ['SELECTION_QUANTITY', 'SELECTION_FIELD'].includes(need.kind)) {
+        blocked = true;
+        fieldset.append(el('p', 'v2-roster-hint', 'This imported entry could not be identified safely. Provide a corrected New Recruit export; roster composition and quantities cannot be changed here.'));
       } else {
-        const records = service.catalog.filter(record => record.kind === need.kind && (!need.ownerId || record.parentId === need.ownerId));
-        const group = {DETACHMENT: 'detachments', DATASHEET: 'units', PROFILE: 'profiles', ENHANCEMENT: 'enhancements'}[need.kind];
-        const value = bindings[group]?.[need.key] || '';
-        const label = el('label', 'v2-roster-field', 'Canonical entry');
-        const select = selectRecords(records, {value, label: `Canonical entry for ${need.rawLabel || need.key}`});
+        fieldset.append(el('p', 'v2-roster-hint', 'This label needs clarification. Confirm which matching source entry it represents. Imported quantities remain unchanged.'));
+        const label = el('label', 'v2-roster-field', 'Matching source entry');
+        const select = el('select');
         select.required = true;
+        select.setAttribute('aria-label', `Matching source entry for ${need.rawLabel || need.key}`);
+        const placeholder = el('option', '', 'Choose a matching entry…'); placeholder.value = ''; select.append(placeholder);
+        candidates.forEach((candidate, index) => {
+          const ids = [...(candidate.canonicalProfileIds || []), ...(candidate.canonicalEquipmentIds || [])];
+          const candidateTitle = candidate.title || candidate.label || (ids.length ? ids.map(named).join(' + ') : named(candidate.id));
+          const option = el('option', '', candidateTitle);
+          option.value = need.kind === 'SELECTION' ? String(index) : candidate.id;
+          select.append(option);
+        });
         label.append(select); fieldset.append(label);
-        if (!records.length) fieldset.append(el('p', 'v2-roster-hint', 'No canonical candidates were supplied for this owner and kind.'));
         read.push(() => {
-          if (!select.value) throw new Error('Choose a canonical entry for every imported label.');
-          if (group) { bindings[group] ||= {}; bindings[group][need.key] = select.value; }
-          else throw new Error(`Unsupported binding kind: ${need.kind}`);
+          if (select.value === '') throw new Error('Confirm each ambiguous imported entry.');
+          const candidate = need.kind === 'SELECTION' ? candidates[Number(select.value)] : candidates.find(record => record.id === select.value);
+          if (!candidate) throw new Error('The chosen import candidate is unavailable.');
+          if (need.kind === 'SELECTION') {
+            bindings.selections ||= {};
+            const {canonicalProfileIds = [], canonicalEquipmentIds = [], canonicalFieldPaths = {}} = candidate;
+            bindings.selections[need.key] = {canonicalProfileIds, canonicalEquipmentIds, canonicalFieldPaths};
+          } else {
+            const group = {DETACHMENT: 'detachments', DATASHEET: 'units', PROFILE: 'profiles', ENHANCEMENT: 'enhancements'}[need.kind];
+            if (!group) throw new Error(`Unsupported import clarification: ${need.kind}`);
+            bindings[group] ||= {};
+            bindings[group][need.key] = candidate.id;
+          }
         });
       }
       form.append(fieldset);
     }
-    const submit = el('button', 'v2-reference', 'Resolve bindings');
-    submit.type = 'submit'; submit.dataset.rosterAction = 'resolve-bindings';
-    form.append(submit);
-    form.addEventListener('submit', event => { event.preventDefault(); run(async () => { read.forEach(readBinding => readBinding()); await resolveImport(); }); });
+    if (read.length && !blocked) {
+      const submit = el('button', 'v2-reference', 'Confirm imported identities');
+      submit.type = 'submit'; submit.dataset.rosterAction = 'resolve-bindings';
+      form.append(submit);
+      form.addEventListener('submit', event => { event.preventDefault(); run(async () => { read.forEach(readBinding => readBinding()); await resolveImport(); }); });
+    }
     bindingArea.append(form);
   }
-
   function identityField(label, value) {
     const field = el('div');
     field.append(el('dt', '', label));
@@ -593,7 +537,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   });
   raw.addEventListener('input', () => {
     bindings = {}; importResult = null; bindingArea.replaceChildren(); draftArea.replaceChildren();
-    setStatus('Review this export to generate explicit canonical bindings.');
+    setStatus('Import this export to resolve its selected entries automatically.');
   });
   return Object.freeze({render, refresh: renderRoster, ready, storageKey});
 }

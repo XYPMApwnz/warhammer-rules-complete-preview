@@ -7,8 +7,8 @@ import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 
-// A bounded UI integration fixture: every imported gameplay reference is chosen
-// using a canonical option value, and every attachment uses a physical ID.
+// A bounded UI integration fixture: every imported gameplay reference is resolved
+// automatically at the boundary, and every attachment uses a physical ID.
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const payload=JSON.parse(fs.readFileSync(path.join(repo,'books/death-guard/v2/generated/app-presentation.json'),'utf8'));
@@ -33,8 +33,8 @@ const fixture=[
   'Char3: 1x Foul Blightspawn (50 pts)',
   '3x Deathshroud Terminators (140 pts)',
   '3x Deathshroud Terminators (140 pts)',
-  '5x Plague Marines (90 pts): Boltgun, 1x Meltagun',
-  '5x Plague Marines (90 pts): Boltgun, 1x Meltagun'
+  '5x Plague Marines (90 pts): 4x Boltgun, 1x Meltagun',
+  '5x Plague Marines (90 pts): 4x Boltgun, 1x Meltagun'
 ].join('\n');
 const allowed=new Map([
   [appPath,'text/html'],
@@ -127,36 +127,9 @@ try {
     if(device==='phone')assert.equal(await page.getByRole('button',{name:'Open book navigation',exact:true}).getAttribute('aria-expanded'),'false');
     await page.locator('[data-roster-input="raw-text"]').fill(fixture);
     await page.locator('[data-roster-action="review-import"]').click();await settled(page);
-    const initial=await page.locator('fieldset[data-binding-kind]').evaluateAll(nodes=>nodes.map(node=>({kind:node.dataset.bindingKind,key:node.dataset.bindingKey,value:node.querySelector('select')?.value})));
-    assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.roster.state),null,'Imported labels were automatically joined to factual identities');
-    assert.equal(initial.filter(need=>need.kind==='DATASHEET').length,7,'Missing physical unit bindings');
-    assert.ok(initial.some(need=>need.kind==='DETACHMENT'));assert.ok(initial.some(need=>need.kind==='ENHANCEMENT'));
-    assert.ok(initial.every(need=>need.value===''),'A title label preselected a gameplay identity');
+    assert.equal(await page.locator('fieldset[data-binding-kind]').count(),0,'Unambiguous import requires canonical choices');
+    assert.equal(await page.locator('[data-roster-bindings] select').count(),0);
     const bindings=[];
-    for(let round=0;round<5&&await page.locator('fieldset[data-binding-kind]').count();round++) {
-      activeStep=device+'/import-binding-round-'+round;
-      const needs=await page.locator('fieldset[data-binding-kind]').evaluateAll(nodes=>nodes.map(node=>({kind:node.dataset.bindingKind,key:node.dataset.bindingKey})));
-      for(const need of needs) {
-        const form=page.locator(`fieldset[data-binding-kind="${need.kind}"][data-binding-key="${need.key}"]`);
-        let value;
-        if(need.kind==='DETACHMENT')value=detachmentId;
-        else if(need.kind==='DATASHEET')value=unitIds[Number(need.key.replace('parsed-unit-',''))-1];
-        else if(need.kind==='ENHANCEMENT')value=enhancementId;
-        else if(need.kind==='SELECTION') {
-          value=need.key.startsWith(ids.bio+'/')?knivesId:need.key.endsWith('/selection/1')?boltgunId:meltagunId;
-          assert.ok([ids.bio+'/unit/selection/1',ids.pmA+'/unit/selection/1',ids.pmA+'/unit/selection/2',ids.pmB+'/unit/selection/1',ids.pmB+'/unit/selection/2'].includes(need.key),'Unexpected fixture selection '+need.key);
-          await form.getByRole('listbox',{name:'Canonical weapon profiles',exact:true}).selectOption([value]);
-          await form.getByRole('listbox',{name:'Canonical equipment facts',exact:true}).selectOption([]);
-        } else if(need.kind==='SELECTION_QUANTITY') {
-          assert.ok([ids.pmA+'/unit/selection/1',ids.pmB+'/unit/selection/1'].includes(need.key),'Unexpected physical quantity owner '+need.key);
-          value=5;await form.getByRole('spinbutton',{name:'Physical quantity',exact:true}).fill(String(value));
-        } else throw new Error('Unexpected fixture binding kind '+need.kind+' '+need.key);
-        if(['DETACHMENT','DATASHEET','ENHANCEMENT'].includes(need.kind)){assert.ok(value,'Missing exact canonical binding');await form.locator('select').selectOption(value);assert.equal(await form.locator('select').inputValue(),value);}
-        bindings.push({...need,value});
-      }
-      await noOverflow(page);await page.locator('[data-roster-action="resolve-bindings"]').click();await settled(page);
-    }
-    assert.equal(await page.locator('fieldset[data-binding-kind]').count(),0,'Unresolved fixture bindings');
     const imported=await snapshot(page);
     assert.equal(imported.state.units.length,7);assert.equal(new Set(imported.state.units.map(unit=>unit.instanceId)).size,7);
     assert.deepEqual(imported.state.units.map(unit=>unit.canonicalUnitId),unitIds);
@@ -164,7 +137,7 @@ try {
     assert.deepEqual(imported.state.detachmentIds,[detachmentId]);assert.equal(imported.state.warlordInstanceId,ids.lord);
     assert.deepEqual(imported.state.units.map(unit=>unit.enhancementIds),[[enhancementId],[],[],[],[],[],[]]);
     assert.deepEqual(await page.locator('[data-roster-instance-id]').evaluateAll(nodes=>nodes.map(node=>({instanceId:node.dataset.rosterInstanceId,canonicalId:node.dataset.canonicalUnitId}))),unitIds.map((canonicalId,i)=>({instanceId:'parsed-unit-'+(i+1),canonicalId})));
-    for(const id of [ids.pmA,ids.pmB]){assert.equal(weapon(imported,id,boltgunId).physicalQuantity,5);assert.equal(weapon(imported,id,meltagunId).physicalQuantity,1);assert.equal(field(weapon(imported,id,boltgunId),'strength'),'5');assert.equal(field(weapon(imported,id,boltgunId),'ap'),'-1');assert.equal(hasAbility(weapon(imported,id,meltagunId),'LETHAL HITS'),false);}
+    for(const id of [ids.pmA,ids.pmB]){assert.equal(weapon(imported,id,boltgunId).physicalQuantity,4);assert.equal(weapon(imported,id,meltagunId).physicalQuantity,1);assert.equal(field(weapon(imported,id,boltgunId),'strength'),'5');assert.equal(field(weapon(imported,id,boltgunId),'ap'),'-1');assert.equal(hasAbility(weapon(imported,id,meltagunId),'LETHAL HITS'),false);}
     const enhanced=weapon(imported,ids.bio,knivesId);
     assert.equal(field(enhanced,'strength'),'6');assert.equal(field(enhanced,'attacks'),'5');assert.ok(hasAbility(enhanced,'DEVASTATING WOUNDS'));
     assert.equal(imported.effective[ids.bio].applied.filter(row=>row.ruleId===enhancementId).length,3);
@@ -198,7 +171,7 @@ try {
       await noOverflow(page);assert.deepEqual(errors,[],activeStep+' runtime errors');return current;
     };
     await effectiveParity();
-    console.log(JSON.stringify({device,stage:'explicit-import',instances:7,bindings:bindings.length,status:'PASS'}));
+    console.log(JSON.stringify({device,stage:'automatic-import',instances:7,bindings:bindings.length,status:'PASS'}));
     let attachmentActions=0,relatedChecks=0,popupChecks=0,reloadChecks=0;
     const related=async(instanceId,detId)=>{
       activeStep=device+'/related/'+instanceId+'/'+(detId||'ALL');
@@ -295,7 +268,7 @@ try {
     await page.goto(origin+appPath+'#view-roster');await ready(page);await effectiveParity();assert.deepEqual(await snapshot(page),durable,'Roster deep link lost persisted state');
     await page.reload();await ready(page);await effectiveParity();assert.deepEqual(await snapshot(page),durable);reloadChecks++;
     assert.deepEqual(errors,[]);assert.deepEqual(legacyRequests,[],'Browser requested a legacy factual/runtime dependency');
-    results.push({device,viewport,status:'PASS',physicalInstances:7,explicitBindings:bindings.length,canonicalUnits:unitIds,readerFactsBefore:before.length,readerFactsAfter:after.length,readerRoots:payload.groups.flatMap(group=>group.itemIds).length,attachmentActions,relatedChecks,canonicalPopupChecks:popupChecks,reloadChecks,backupChecks:3,stateHash:digest(durable.state),effectsHash:digest(durable.projection),readerHash:digest(before),horizontalOverflow:0,runtimeErrors:0,staleEffects:0,duplicateRelatedRows:0});
+    results.push({device,viewport,status:'PASS',physicalInstances:7,manualCanonicalSelections:bindings.length,canonicalUnits:unitIds,readerFactsBefore:before.length,readerFactsAfter:after.length,readerRoots:payload.groups.flatMap(group=>group.itemIds).length,attachmentActions,relatedChecks,canonicalPopupChecks:popupChecks,reloadChecks,backupChecks:3,stateHash:digest(durable.state),effectsHash:digest(durable.projection),readerHash:digest(before),horizontalOverflow:0,runtimeErrors:0,staleEffects:0,duplicateRelatedRows:0});
     console.log(JSON.stringify(results.at(-1)));await context.close();activePage=null;
   }
   assert.equal(results[0].stateHash,results[1].stateHash,'Desktop/phone physical identities differ');assert.equal(results[0].effectsHash,results[1].effectsHash,'Desktop/phone deterministic effects differ');assert.equal(results[0].readerHash,results[1].readerHash,'Desktop/phone canonical Reader fields differ');

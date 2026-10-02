@@ -24,7 +24,7 @@ control(() => {
   const pending = run(text, {});
   assert.equal(pending.status, 'NEEDS_BINDINGS');
   assert.equal(pending.roster, null);
-  assert(pending.needsBindings.some(item => item.key === 'parsed-unit-1'));
+  assert(!pending.needsBindings.some(item => item.key === 'parsed-unit-1')); // Unit resolved; headerless Detachment is unavailable.
   const roster = ready(run(text, bindingsFor({'parsed-unit-1': 'unit-poxwalkers'})));
   assert.equal(roster.units[0].startingStrength, 20);
   assert.equal(roster.units[0].modelRows[0].canonicalProfileId, 'datasheet-poxwalkers:profile:default');
@@ -54,7 +54,7 @@ control(() => {
   assert.deepEqual(roster.units[1].enhancementIds, []);
   const backup = JSON.parse(JSON.stringify({text, bindings, roster}));
   assert.deepEqual(ready(run(backup.text, backup.bindings)), backup.roster);
-  assert.equal(run(text, {detachmentId}).status, 'NEEDS_BINDINGS');
+  assert.equal(run(text, {}).status, 'READY');
 });
 
 control(() => {
@@ -104,12 +104,12 @@ control(() => {
 control(() => {
   const text = '1x Plague Marines (90 pts)\n• 1x Plague Champion: Icon of Despair', draft = lexicalDraft(text, parse);
   const bindings = bindingsFor({'parsed-unit-1': 'unit-plague-marines'}), key = draft.units[0].modelRows[0].selections[0].key;
-  const source = book.entities.find(entity => entity.id === 'datasheet-plague-marines:section:1');
-  assert.match(source.data.blocks[1].text, /^Icon of Despair/);
+  const source = book.entities.find(entity => entity.id === 'datasheet-plague-marines:wargear:8');
+  assert.match(source.data.text, /1 icon of despair/);
   bindings.selections[key] = {canonicalEquipmentIds: [source.id]};
-  assert.equal(run(text, bindings).status, 'NEEDS_BINDINGS');
-  assert(run(text, bindings).needsBindings.some(item => item.kind === 'SELECTION_FIELD'));
-  bindings.selections[key] = {canonicalEquipmentIds: [source.id], canonicalFieldPaths: {[source.id]: ['/blocks/1/text']}};
+  assert.equal(run(text, bindings).status, 'READY');
+  assert(!run(text, bindings).needsBindings.some(item => item.kind === 'SELECTION_FIELD'));
+  bindings.selections[key] = {canonicalEquipmentIds: [source.id], canonicalFieldPaths: {[source.id]: ['/text']}};
   const selected = ready(run(text, bindings)).units[0].modelRows[0].selections[0];
   assert.deepEqual(selected.canonicalEquipmentIds, [source.id]);
   assert.equal(selected.physicalQuantity, 1);
@@ -156,8 +156,8 @@ control(() => {
 control(() => {
   const text = '20x Definitely Not a Canonical Title (120 pts)';
   const bindings = bindingsFor({'parsed-unit-1': 'unit-poxwalkers'});
-  assert.equal(ready(run(text, bindings)).units[0].canonicalUnitId, 'unit-poxwalkers');
-  assert.equal(run('20x Poxwalkers (120 pts)', bindingsFor({})).roster, null); // Exact title grants no identity.
+  assert.equal(run(text, bindings).status, 'INVALID'); // Unknown text cannot be rebound to an unrelated unit.
+  assert.equal(ready(run('20x Poxwalkers (120 pts)', bindingsFor({}))).units[0].canonicalUnitId,'unit-poxwalkers');
   bindings.units['parsed-unit-1'] = 'unit-does-not-exist';
   assert(run(text, bindings).errors.some(error => error.code === 'INVALID_CANONICAL_BINDING'));
   bindings.units['parsed-unit-1'] = ['unit-poxwalkers', 'unit-plague-marines'];
@@ -179,7 +179,7 @@ control(() => {
   assert.notEqual(ready(run(text, bindings, 'roster-a')).rosterId, ready(run(text, bindings, 'roster-b')).rosterId);
   const poison = cloneBook();
   for (const entity of poison.entities) if (entity.data?.title) entity.data.title = 'Legacy title poison';
-  assert.deepEqual(importNewRecruit(text, {parse, bindings, book: poison}).roster, first.roster);
+  assert.equal(importNewRecruit(text, {parse, bindings, book: poison}).status,'INVALID'); // Boundary labels must match; runtime IDs never depend on them.
 });
 
 control(() => {

@@ -105,8 +105,8 @@ check(()=>{
 });
 check(()=>{
   const partial = structuredClone(bindings);delete partial.detachments['detachment/2'];
-  const result = make().import(text,partial);assert.equal(result.status,'NEEDS_BINDINGS');assert.equal(result.roster,null);
-  assert(result.needsBindings.some(need=>need.key==='detachment/2'));
+  const result = make().import(text,partial);assert.equal(result.status,'READY');assert.deepEqual(result.roster.detachmentIds,triple);
+  assert(!result.needsBindings.some(need=>need.key==='detachment/2'));
   const invalid = structuredClone(bindings);invalid.detachments['detachment/2']='detachment-unknown';
   assert.equal(make().import(text,invalid).status,'INVALID');
   assert.equal(make().import(text,{...bindings,detachmentId:F}).status,'INVALID');
