@@ -62,7 +62,7 @@ try {
     }
     // Deep links survive refresh, then normal canonical links and browser history.
     await page.goto(origin+appPath+'#unit-plague-marines');await page.waitForFunction(()=>!!window.ArmyBookAppV2);
-    assert.equal(await page.locator('main > article').getAttribute('data-card-id'),'unit-plague-marines');
+    assert.equal(await page.locator('main .v2-current-card').getAttribute('data-card-id'),'unit-plague-marines');
     const boltgun=page.locator('[data-card-id="datasheet-plague-marines:weapon:2"]');
     assert.equal(await boltgun.locator('[data-fact-id$="::/strength"]').textContent(),'5');assert.equal(await boltgun.locator('[data-fact-id$="::/ap"]').textContent(),'-1');
     await page.evaluate(()=>window.ArmyBookAppV2.open('unit-defiler'));
@@ -78,18 +78,18 @@ try {
     await page.goBack();await page.waitForFunction(()=>document.querySelector('main > article')?.dataset.cardId==='unit-plague-marines');
     await page.goForward();await page.waitForFunction(()=>document.querySelector('main > article')?.dataset.cardId==='unit-defiler');
     if (device==='phone') {
-      await page.getByRole('button',{name:'Open book navigation'}).click();assert.equal(await page.locator('main').evaluate(n=>n.inert),true);
+      await page.getByRole('button',{name:'Open navigation'}).click();assert.equal(await page.locator('main').evaluate(n=>n.inert),true);
       await page.getByRole('searchbox').fill('Nomadic');assert.equal(await page.locator('.v2-search-result').count(),0);
       await page.getByRole('searchbox').fill('Plague Marines');assert.ok(await page.locator('.v2-search-result').count()>0);
       await page.locator('.v2-search-result').first().click();assert.equal(await page.locator('main').evaluate(n=>n.inert),false);
-      await page.getByRole('button',{name:'Open book navigation'}).click();await page.keyboard.press('Escape');assert.equal(await page.locator('main').evaluate(n=>n.inert),false);
+      await page.getByRole('button',{name:'Open navigation'}).click();await page.keyboard.press('Escape');assert.equal(await page.locator('main').evaluate(n=>n.inert),false);
     } else {
-      await page.getByRole('button',{name:'Collapse book navigation'}).click();assert.ok(await page.locator('.v2-shell').evaluate(n=>n.classList.contains('v2-nav-collapsed')));
-      await page.getByRole('button',{name:'Expand book navigation'}).click();
+      await page.getByRole('button',{name:'Collapse navigation'}).click();assert.ok(await page.locator('body').evaluate(n=>n.classList.contains('nav-collapsed')));
+      await page.getByRole('button',{name:'Expand navigation'}).click();
       await page.getByRole('searchbox').fill('Stinking Mire');assert.ok(await page.locator('.v2-search-result').count()>0);await page.getByRole('searchbox').fill('');
     }
     await page.evaluate(()=>window.ArmyBookAppV2.open('unit-plague-marines'));
-    if (device==='phone') await page.waitForFunction(()=>document.querySelector('.v2-sidebar').getBoundingClientRect().right<=1);
+    if (device==='phone') await page.waitForFunction(()=>document.querySelector('#tocPanel').getBoundingClientRect().right<=1);
     if (screenshotDirectory) await page.screenshot({path:path.join(screenshotDirectory,`${device}-plague-marines.png`),animations:'disabled'});
     await page.evaluate(()=>window.ArmyBookAppV2.open('detachment-virulent-vectorium:stratagem:2'));
     const labels=await page.locator('main [data-fact-id$="/label"]').allTextContents();

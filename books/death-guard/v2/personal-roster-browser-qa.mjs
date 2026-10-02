@@ -36,9 +36,9 @@ const allowed=new Map([
   [app,'text/html'],
   ...['books/death-guard/v2/generated/app-presentation.json','books/death-guard/v2/generated/rule-contract-effective.json'].map(p=>['/'+p,'application/json']),
   ...['books/death-guard/v2/roster-boot.mjs','books/death-guard/v2/rule-contract-schema.mjs','books/death-guard/v2/rule-contract-state-fields.mjs',
-      'books/shared/army-book-app-v2/runtime.mjs','books/shared/army-book-app-v2/roster.mjs','books/shared/army-book-app-v2/personal.mjs','books/shared/army-book-app-v2/glossary.mjs',
+      'books/shared/army-book-app-v2/runtime.mjs','books/shared/army-book-app-v2/navigation-v1.mjs','books/shared/army-book-app-v2/navigation-v1-controller.mjs','books/shared/army-book-app-v2/navigation-v1-targets.mjs','books/shared/army-book-app-v2/roster.mjs','books/shared/army-book-app-v2/personal.mjs','books/shared/army-book-app-v2/glossary.mjs',
       'books/shared/roster-v2/runtime.mjs','books/shared/roster-v2/import.mjs','books/shared/roster-v2/context.mjs','books/shared/roster-v2/effects.mjs','books/shared/roster-parser.js'].map(p=>['/'+p,'text/javascript']),
-  ['/books/shared/army-book-app-v2/styles.css','text/css']
+  ['/books/shared/army-book-app-v2/styles.css','text/css'],['/books/shared/army-book-app-v2/navigation-v1.css','text/css']
 ]);
 const legacyRequests=[];
 const server=http.createServer((req,res)=>{
@@ -179,9 +179,10 @@ try{
     await page.locator('[data-roster-action=open-personal-guide]').click();
     await page.waitForFunction(()=>location.hash==='#view-roster-guide');
     await noOverflow(page);
-    const personalNavigation=await page.locator('.v2-navigation a').evaluateAll(nodes=>nodes.map(n=>({href:n.getAttribute('href'),targetId:n.dataset.targetId,label:n.textContent})));
+    const personalNavigation=await page.locator('.v2-navigation [data-nav-target]').evaluateAll(nodes=>nodes.map(n=>({href:'#'+encodeURIComponent(n.dataset.navTarget),targetId:n.dataset.targetId,label:n.textContent})));
     const physicalLinks=personalNavigation.filter(n=>decodeURIComponent(n.href.slice(1)).startsWith('roster-unit/'));
-    assert.deepEqual(physicalLinks.map(n=>decodeURIComponent(n.href.slice(1)).slice('roster-unit/'.length)),current.state.units.map(u=>u.instanceId),'Personal navigation merged/dropped physical instances');
+    assert.equal(physicalLinks.length,current.state.units.length,'Personal navigation duplicated physical instances');
+    assert.deepEqual(new Set(physicalLinks.map(n=>decodeURIComponent(n.href.slice(1)).slice('roster-unit/'.length))),new Set(current.state.units.map(u=>u.instanceId)),'Personal navigation merged/dropped physical instances');
     assert.deepEqual(physicalLinks.filter(n=>n.label.startsWith('Plague Marines')).map(n=>n.label),['Plague Marines #1','Plague Marines #2']);
     const canonicalLinks=personalNavigation.filter(n=>n.targetId&&cards.has(n.targetId));
     assert.deepEqual(new Set(canonicalLinks.filter(n=>cards.get(n.targetId).kind==='DETACHMENT').map(n=>n.targetId)),new Set(detachments));
@@ -300,16 +301,16 @@ try{
     await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForSelector('dialog[open]',{state:'hidden'});
     await page.getByRole('button',{name:'Close glossary',exact:true}).click();await visibleInstance(ids.pmA);
     step=device+'/guide-navigation-search';
-    if(phone)await page.getByRole('button',{name:'Open book navigation',exact:true}).click();
+    if(phone)await page.getByRole('button',{name:'Open navigation',exact:true}).click();
     await page.getByRole('searchbox',{name:'Search the army book',exact:true}).fill('Mortarion');
-    assert.equal(await page.locator('.v2-navigation a').count(),0,'Roster search exposed unimported datasheet');
+    assert.equal(await page.locator('.v2-navigation [data-nav-target]').count(),0,'Roster search exposed unimported datasheet');
     await page.getByRole('searchbox',{name:'Search the army book',exact:true}).fill('Plague Marines');
-    assert.equal(await page.locator('.v2-navigation a[data-roster-nav-instance-id][data-canonical-id="unit-plague-marines"]').count(),2,'Roster search merged duplicate copies');
-    await page.locator('.v2-navigation a[data-roster-nav-instance-id="'+ids.pmA+'"]').click();await visibleInstance(ids.pmA);
-    if(phone)assert.equal(await page.getByRole('button',{name:'Open book navigation',exact:true}).getAttribute('aria-expanded'),'false');
-    if(phone)await page.getByRole('button',{name:'Open book navigation',exact:true}).click();
+    assert.equal(await page.locator('.v2-navigation [data-nav-target][data-roster-nav-instance-id][data-canonical-id="unit-plague-marines"]').count(),2,'Roster search merged duplicate copies');
+    await page.locator('.v2-navigation [data-nav-target][data-roster-nav-instance-id="'+ids.pmA+'"]').click();await visibleInstance(ids.pmA);
+    if(phone)assert.equal(await page.getByRole('button',{name:'Open navigation',exact:true}).getAttribute('aria-expanded'),'false');
+    if(phone)await page.getByRole('button',{name:'Open navigation',exact:true}).click();
     await page.getByRole('searchbox',{name:'Search the army book',exact:true}).fill('');
-    if(phone)await page.getByRole('button',{name:'Close book navigation',exact:true}).click();
+    if(phone)await page.locator('#navMenu').click();
     const after=await fullReaderCensus(page,device+'/reader-after');assert.deepEqual(after,before,'Personal workflow changed the complete Army Book');
     assert.deepEqual(await snapshot(page),saved,'Full-book browsing changed roster state');
     await page.evaluate(()=>window.ArmyBookAppV2.openPersonalGuide());

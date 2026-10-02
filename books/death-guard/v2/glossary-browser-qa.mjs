@@ -71,11 +71,11 @@ try {
     page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('404'))errors.push(message.text());});
     await page.goto(origin+appPath+'#unit-plague-marines');await ready(page);
     activeStep=device+'/actual-open-close';
-    if(device==='phone')await page.getByRole('button',{name:'Open book navigation',exact:true}).click();
-    await page.getByRole('button',{name:'Glossary',exact:true}).click();await page.waitForSelector('main .v2-glossary');
+    if(device==='phone')await page.getByRole('button',{name:'Open navigation',exact:true}).click();
+    await page.getByRole('button',{name:'Mega Glossary',exact:true}).click();await page.waitForSelector('main .v2-glossary');
     assert.equal(await page.evaluate(()=>location.hash),'#view-glossary');assert.equal(await page.locator('main [data-fact-id]').count(),0,'Glossary duplicated canonical definitions');
     assert.equal(await page.locator('.v2-glossary-result').count(),payload.glossary.entries.length);
-    if(device==='phone')assert.equal(await page.getByRole('button',{name:'Open book navigation',exact:true}).getAttribute('aria-expanded'),'false');
+    if(device==='phone')assert.equal(await page.getByRole('button',{name:'Open navigation',exact:true}).getAttribute('aria-expanded'),'false');
     await page.getByRole('button',{name:'Close glossary',exact:true}).click();assert.equal(await page.locator('main > article').getAttribute('data-card-id'),'unit-plague-marines');
     let searchChecks=0,popupChecks=0,aliasPopupChecks=0,readerParityChecks=0,relatedParityChecks=0;
     const snapshots=new Map(),visibleFacts=new Set(),coreVisibleFacts=new Set(),targetHashes=[];
@@ -100,7 +100,7 @@ try {
       snapshots.set(entry.targetId,comparable(popup));
       // Actual popup permalink resolves to the existing canonical Reader entry.
       await page.locator('dialog[open] .v2-permalink').first().click();await page.waitForSelector('dialog[open]',{state:'hidden'});
-      const reader=await observe(page,'main > article');assertFacts(reader,entry.targetId);assert.deepEqual(comparable(reader),comparable(popup),activeStep+' Reader/Glossary same full definition');readerParityChecks++;
+      const reader=await observe(page,'main .v2-current-card');assertFacts(reader,entry.targetId);assert.deepEqual(comparable(reader),comparable(popup),activeStep+' Reader/Glossary same full definition');readerParityChecks++;
       await page.goBack();await page.waitForSelector('dialog[open]');assert.deepEqual(comparable(await observe(page,'dialog[open]')),comparable(popup));
       await page.goBack();await page.waitForSelector('dialog[open]',{state:'hidden'});await page.waitForSelector('main .v2-glossary');
       assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),entry.label,activeStep+' stale/lost query on Back');
@@ -145,7 +145,7 @@ try {
       await page.goForward();await page.waitForSelector('dialog[open]');assertFacts(await observe(page,'dialog[open]'),targetId);await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});historyChecks++;
       await page.reload();await ready(page);await page.waitForSelector('main .v2-glossary');assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),query);reloadChecks++;
       await page.evaluate(()=>window.ArmyBookAppV2.openGlossary());assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),'','Fresh Glossary open must clear prior query');
-      await page.goto(origin+appPath+'#'+encodeURIComponent(targetId));await ready(page);assertFacts(await observe(page,'main > article'),targetId);await page.reload();await ready(page);assertFacts(await observe(page,'main > article'),targetId);reloadChecks++;
+      await page.goto(origin+appPath+'#'+encodeURIComponent(targetId));await ready(page);assertFacts(await observe(page,'main .v2-current-card'),targetId);await page.reload();await ready(page);assertFacts(await observe(page,'main .v2-current-card'),targetId);reloadChecks++;
     }
     activeStep=device+'/glossary-deep-link';await page.goto(origin+appPath+'#view-glossary');await ready(page);assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),'');assert.equal(await page.locator('.v2-glossary-result').count(),census.entries);await page.reload();await ready(page);assert.equal(await page.locator('.v2-glossary-result').count(),census.entries);reloadChecks++;
     await search('Foul Infusion',named.targetId);
@@ -182,7 +182,7 @@ try {
       await page.evaluate(id=>window.ArmyBookAppV2.open(id),control.targetId);
       const selector=`[data-fact-id="${control.targetId}::${control.path}"]`;
       assert.equal(await page.locator('main '+selector).textContent(),control.value,'Canonical source change absent from Reader');
-      const reader=await observe(page,'main > article');
+      const reader=await observe(page,'main .v2-current-card');
       await page.evaluate(()=>window.ArmyBookAppV2.openGlossary());await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill(control.query);
       await page.locator('.v2-glossary-result').evaluateAll((nodes,id)=>nodes.find(node=>node.dataset.targetId===id).setAttribute('data-qa-poison-target','current'),control.targetId);
       await page.locator('[data-qa-poison-target="current"]').click();await page.waitForSelector('dialog[open]');

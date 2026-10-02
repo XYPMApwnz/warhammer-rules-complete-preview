@@ -12,6 +12,54 @@ Acceptance: choose a Detachment, open a result, use Back/Forward/Escape and
 verify background/filter preservation and zero rules from other Detachments.
 `v2/related-rules-browser-qa.mjs` automates all datasheet/filter combinations.
 
+## ArmyBookApp V2 actual V1 navigation port
+
+`v2/app.html` now uses the actual V1 Contents DOM (`tocPanel`, `tocTree`,
+`toc-row`, `toc-label`, `toc-toggle`, `toc-branch`) and the scoped V1
+navigation/layout CSS. `books/shared/army-book-app-v2/navigation-v1-controller.mjs`
+retains the original accordion, drawer/focus/inert, active-path, geometry,
+scroll ownership, cancellation and settlement algorithms. Its adapter reads
+only V2 canonical records and the existing V2 physical roster state. V1
+factual catalogs, target mounts, roster projections and compatibility are not loaded.
+
+The full tree keeps Start / Army Rule / Detachments / Datasheets / Updates.
+Army Rule replaces V1's Core Rules label because this V2 book does not expose
+that complete Core chapter. Each current Detachment retains the three V1
+navigation destinations: Detachment Rule, Enhancement, Stratagems. Datasheet
+categories derive from intrinsic V2 keyword facts. Presentation group IDs
+are prefixed `nav:` and never become factual identities. Group clicks target
+actual visible group headings; canonical child clicks target the exact child.
+The complete reading document composes unchanged V2 cards in outer navigation
+sections. Direct API focused cards and effective physical-instance cards keep
+their accepted renderer, mobile section menu and fact semantics.
+
+The roster tree uses selected Detachments and imported physical instances only.
+Character/Bodyguard groups use V1's presentation ordering and connector DOM,
+adapted solely from V2 attachment edges. Duplicate suffixes and routes retain
+physical identity. Unavailable/mismatched roster context fails visibly closed.
+Import, attachment operations, effective projection, Related Rules and Glossary
+remain owned by the existing V2 services.
+
+The V1 `800px` breakpoint, `18px` tracking gap, `1px` epsilon, independent
+sidebar scroller, strict sibling accordion and six-frame/2200ms settlement
+are preserved. Drawer interactions retain V1's menu-inclusive focus cycle,
+backdrop, body lock, Escape and viewport cleanup. V2's existing popup/history
+resolver is the thin navigation boundary; explicit navigation stores its final
+position without rewriting the URL during ordinary scrolling. Existing V2
+search and canonical deep-link/physical-instance route formats are retained.
+Scroll-follow is enabled for the continuous book document. Focused canonical
+or physical-instance cards retain their explicit selection: scrolling above
+that card must not select a book chapter absent from the current document.
+
+Acceptance: run `v2/navigation-v1-qa.mjs` to detect drift in 34 reused V1
+methods and any change to the accepted datasheet/physical renderer or stylesheet.
+Run `v2/navigation-v1-browser-qa.mjs` with the real V1 reader and V2 side by side
+at 1440×1000 and 390×844: compare computed Contents/current-row styling, nested
+DOM, accordion, controlled scrolling/cancellation, exact targets, history/reload,
+drawer/focus/backdrop/resize and physical roster groups. Preserve the 3654-fact
+V2 browser census and all 22 visible roster-effect controls. No change to
+Related Rules applicability or Glossary record resolution is permitted.
+
 ## Specification update rule
 
 - Any change to navigation, Journey/Back, scroll tracking, responsive behavior, focus, accessibility, or a related test must be reflected in this document at the same time.

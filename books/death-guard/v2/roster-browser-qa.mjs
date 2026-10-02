@@ -44,10 +44,11 @@ const allowed=new Map([
   ['/books/death-guard/v2/rule-contract-schema.mjs','text/javascript'],
   ['/books/death-guard/v2/rule-contract-state-fields.mjs','text/javascript'],
   ['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],
+  ...['navigation-v1.mjs','navigation-v1-controller.mjs','navigation-v1-targets.mjs'].map(file=>['/books/shared/army-book-app-v2/'+file,'text/javascript']),
   ['/books/shared/army-book-app-v2/personal.mjs','text/javascript'],
   ['/books/shared/army-book-app-v2/roster.mjs','text/javascript'],
   ['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],
-  ['/books/shared/army-book-app-v2/styles.css','text/css'],
+  ['/books/shared/army-book-app-v2/styles.css','text/css'],['/books/shared/army-book-app-v2/navigation-v1.css','text/css'],
   ['/books/shared/roster-v2/runtime.mjs','text/javascript'],
   ['/books/shared/roster-v2/import.mjs','text/javascript'],
   ['/books/shared/roster-v2/context.mjs','text/javascript'],
@@ -123,10 +124,10 @@ try {
     await page.locator('main .v2-detachment-filter').selectOption('');
     for(const ruleId of [enhancementId,plagueSurgeId])assert.equal(await page.locator(`main .v2-compatible-item[data-rule-id="${ruleId}"]`).getAttribute('data-applicability'),'CONDITIONAL','No-roster Related silently invented owner or Warlord facts');
     activeStep=device+'/actual-open-roster';
-    if(device==='phone')await page.getByRole('button',{name:'Open book navigation',exact:true}).click();
+    if(device==='phone')await page.getByRole('button',{name:'Open navigation',exact:true}).click();
     await page.getByRole('button',{name:'Roster',exact:true}).click();await page.waitForSelector('main [data-roster-view]');
     assert.equal(await page.evaluate(()=>location.hash),'#view-roster');await noOverflow(page);
-    if(device==='phone')assert.equal(await page.getByRole('button',{name:'Open book navigation',exact:true}).getAttribute('aria-expanded'),'false');
+    if(device==='phone')assert.equal(await page.getByRole('button',{name:'Open navigation',exact:true}).getAttribute('aria-expanded'),'false');
     await page.locator('[data-roster-input="raw-text"]').fill(fixture);
     await page.locator('[data-roster-action="review-import"]').click();await settled(page);
     assert.equal(await page.locator('fieldset[data-binding-kind]').count(),0,'Unambiguous import requires canonical choices');

@@ -34,9 +34,9 @@ const allowed=new Map([
   [app,'text/html'],
   ...['books/death-guard/v2/generated/app-presentation.json','books/death-guard/v2/generated/rule-contract-effective.json'].map(p=>['/'+p,'application/json']),
   ...['books/death-guard/v2/roster-boot.mjs','books/death-guard/v2/rule-contract-schema.mjs','books/death-guard/v2/rule-contract-state-fields.mjs',
-      'books/shared/army-book-app-v2/runtime.mjs','books/shared/army-book-app-v2/roster.mjs','books/shared/army-book-app-v2/personal.mjs','books/shared/army-book-app-v2/glossary.mjs',
+      'books/shared/army-book-app-v2/runtime.mjs','books/shared/army-book-app-v2/navigation-v1.mjs','books/shared/army-book-app-v2/navigation-v1-controller.mjs','books/shared/army-book-app-v2/navigation-v1-targets.mjs','books/shared/army-book-app-v2/roster.mjs','books/shared/army-book-app-v2/personal.mjs','books/shared/army-book-app-v2/glossary.mjs',
       'books/shared/roster-v2/runtime.mjs','books/shared/roster-v2/import.mjs','books/shared/roster-v2/context.mjs','books/shared/roster-v2/effects.mjs','books/shared/roster-parser.js'].map(p=>['/'+p,'text/javascript']),
-  ['/books/shared/army-book-app-v2/styles.css','text/css']
+  ['/books/shared/army-book-app-v2/styles.css','text/css'],['/books/shared/army-book-app-v2/navigation-v1.css','text/css']
 ]);
 const unexpected=[];
 const server=http.createServer((req,res)=>{
@@ -66,7 +66,7 @@ try {
     await page.evaluate(()=>window.ArmyBookAppV2.open('unit-plague-marines'));
     await page.locator('main .v2-detachment-filter').selectOption(unselected);
     const noRoster=await page.locator('main > article').textContent();
-    if(phone)await page.getByRole('button',{name:'Open book navigation',exact:true}).click();
+    if(phone)await page.getByRole('button',{name:'Open navigation',exact:true}).click();
     await page.getByRole('button',{name:'Roster',exact:true}).click();
     step=device+'/import';await page.locator('[data-roster-input=raw-text]').fill(fixture);await page.locator('[data-roster-action=review-import]').click();await settled(page);
     assert.equal(await page.locator('fieldset[data-binding-kind]').count(),0,'Unambiguous import required manual canonical choices');
@@ -124,7 +124,7 @@ try {
     await page.evaluate(()=>window.ArmyBookAppV2.openLibrary());await page.evaluate(()=>window.ArmyBookAppV2.open('unit-plague-marines'));
     await page.locator('main .v2-detachment-filter').selectOption(unselected);assert.equal(await page.locator('main > article').textContent(),noRoster);
     assert.deepEqual(await snapshot(page),saved,'Library filter altered roster Detachments');
-    if(phone)await page.getByRole('button',{name:'Open book navigation',exact:true}).click();await page.getByRole('button',{name:'Roster',exact:true}).click();
+    if(phone)await page.getByRole('button',{name:'Open navigation',exact:true}).click();await page.getByRole('button',{name:'Roster',exact:true}).click();
     await page.reload();await ready(page);assert.deepEqual(await snapshot(page),saved);assert.equal(await page.locator('[data-roster-detachments] li').count(),3);
     await page.getByText('Backup and restore',{exact:true}).click();
     const [download]=await Promise.all([page.waitForEvent('download'),page.locator('[data-roster-action=export-backup]').click()]);

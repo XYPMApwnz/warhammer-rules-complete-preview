@@ -1,0 +1,461 @@
+/*
+ * V1 navigation skin for Army Book App V2.
+ *
+ * The geometry and presentation below are intentionally ported from
+ * books/shared/styles/layout.css and books/shared/styles/navigation.css.
+ * Keep the body opt-in: the V2 card and datasheet presentation is owned by
+ * styles.css and must not inherit this navigation skin.
+ */
+
+body.v2-v1-navigation {
+  --v1-nav-header: 70px;
+  --v1-nav-width: 286px;
+  --v1-nav-gutter: clamp(16px, 2vw, 28px);
+  --v1-nav-content-gap: clamp(20px, 2.4vw, 38px);
+  --v1-nav-panel: #191f1a;
+  --v1-nav-panel-2: #252c25;
+  --v1-nav-ink: #e2dcc9;
+  --v1-nav-muted: #969589;
+  --v1-nav-green: #bfd58c;
+  --v1-nav-green-deep: #7d9257;
+  --v1-nav-bronze: #8d7448;
+  --v1-nav-bronze-bright: #c7ae75;
+  --v1-nav-pink: #d5488e;
+  --v1-nav-line: rgba(216, 209, 191, .14);
+  --v1-nav-faction-gradient: linear-gradient(90deg, #c8df7f 0 72%, #c8df7f 74%, #c3167c 82%, #c3167c 100%);
+  --v1-nav-z-scrim: 55;
+  --v1-nav-z-drawer: 60;
+  --v1-nav-z-header: 90;
+}
+
+/* The V1 panel is fixed, so the V2 layout no longer reserves a grid column. */
+body.v2-v1-navigation .v2-layout {
+  display: block;
+}
+
+body.v2-v1-navigation #appHeader:is(.v2-header, .v2-topbar) {
+  position: fixed;
+  z-index: var(--v1-nav-z-header);
+  inset: 0 0 auto;
+  width: 100%;
+  height: calc(var(--v1-nav-header) + env(safe-area-inset-top));
+}
+
+body.v2-v1-navigation #navMenu,
+body.v2-v1-navigation #navCollapse {
+  min-width: 42px;
+  min-height: 42px;
+  font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  border: 1px solid var(--v1-nav-line);
+  border-radius: 0;
+  background: var(--v1-nav-panel);
+  color: var(--v1-nav-ink);
+}
+
+body.v2-v1-navigation #navMenu:hover,
+body.v2-v1-navigation #navCollapse:hover {
+  border-color: var(--v1-nav-green-deep);
+  background: var(--v1-nav-panel-2);
+}
+
+body.v2-v1-navigation #navMenu:focus-visible,
+body.v2-v1-navigation #navCollapse:focus-visible,
+body.v2-v1-navigation #tocPanel .toc-label:focus-visible,
+body.v2-v1-navigation #tocPanel .toc-toggle:focus-visible {
+  outline: 2px solid var(--v1-nav-pink);
+  outline-offset: 4px;
+}
+
+body.v2-v1-navigation #navMenu {
+  display: none;
+}
+
+body.v2-v1-navigation #main.v2-main {
+  min-height: 100vh;
+  padding-top: calc(var(--v1-nav-header) + env(safe-area-inset-top) + 34px);
+  padding-left: calc(var(--v1-nav-gutter) + var(--v1-nav-width) + var(--v1-nav-content-gap));
+  padding-bottom: 90px;
+  padding-right: clamp(24px, 4vw, 58px);
+}
+
+body.v2-v1-navigation.nav-collapsed #main.v2-main {
+  padding-left: clamp(28px, 5vw, 72px);
+}
+
+body.v2-v1-navigation #main.v2-main .v1-contents-pages {
+  display: grid;
+  gap: 34px;
+  margin-top: 37px;
+}
+
+body.v2-v1-navigation #tocPanel {
+  position: fixed;
+  z-index: var(--v1-nav-z-drawer);
+  inset: calc(var(--v1-nav-header) + env(safe-area-inset-top) + 18px) auto 18px var(--v1-nav-gutter);
+  width: var(--v1-nav-width);
+  padding: 24px 14px 44px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(157, 175, 111, .72) rgba(7, 10, 7, .72);
+  color: var(--v1-nav-ink);
+  font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 30px 42px, rgba(125, 146, 87, .16), transparent 110px),
+    linear-gradient(160deg, transparent 0 42%, rgba(213, 72, 142, .045) 70%, transparent),
+    linear-gradient(rgba(183, 166, 125, .022) 1px, transparent 1px),
+    rgba(13, 15, 13, .96);
+  background-size: auto, auto, 42px 42px, auto;
+  border: 1px solid rgba(199, 174, 117, .22);
+  border-top: 3px solid var(--v1-nav-green-deep);
+  box-shadow: 18px 18px 46px rgba(0, 0, 0, .32), inset 0 0 0 6px rgba(0, 0, 0, .16);
+  transition: transform .2s ease;
+}
+
+body.v2-v1-navigation #tocPanel::-webkit-scrollbar {
+  width: 10px;
+}
+
+body.v2-v1-navigation #tocPanel::-webkit-scrollbar-track {
+  background: rgba(7, 10, 7, .72);
+  border-left: 1px solid rgba(199, 174, 117, .12);
+}
+
+body.v2-v1-navigation #tocPanel::-webkit-scrollbar-thumb {
+  min-height: 54px;
+  border: 2px solid rgba(7, 10, 7, .72);
+  border-radius: 0;
+  background: linear-gradient(180deg, rgba(157, 175, 111, .82), rgba(141, 116, 72, .78));
+}
+
+body.v2-v1-navigation #tocPanel::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--v1-nav-green), var(--v1-nav-bronze-bright));
+}
+
+body.v2-v1-navigation #tocPanel::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 18%;
+  width: 2px;
+  height: 36%;
+  background: linear-gradient(transparent, var(--v1-nav-pink), var(--v1-nav-green), transparent);
+  box-shadow: 0 0 16px rgba(213, 72, 142, .25);
+  pointer-events: none;
+}
+
+body.v2-v1-navigation #tocPanel[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+body.v2-v1-navigation #tocPanel .toc-heading {
+  margin: 0 8px 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--v1-nav-bronze);
+  color: var(--v1-nav-ink);
+  font: 700 26px Georgia, "Times New Roman", serif;
+  letter-spacing: -.025em;
+}
+
+body.v2-v1-navigation #tocPanel .toc-heading::before {
+  content: "CODEX REGISTER // XIV";
+  display: block;
+  margin-bottom: 7px;
+  color: var(--v1-nav-pink);
+  font: 800 8px ui-monospace, monospace;
+  letter-spacing: .16em;
+}
+
+body.v2-v1-navigation #tocPanel .toc-heading::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 3px;
+  margin-top: 14px;
+  background: var(--v1-nav-faction-gradient);
+  box-shadow: 0 0 14px rgba(125, 146, 87, .18);
+}
+
+body.v2-v1-navigation #tocPanel .toc-shortcuts {
+  margin: -8px 0 16px;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--v1-nav-line);
+}
+
+body.v2-v1-navigation #tocPanel .toc-shortcuts .toc-label {
+  display: block;
+  min-height: 38px;
+  text-decoration: none;
+}
+
+/* V2 retains search inside the V1 panel; adapt it to the V1 square dark surface. */
+body.v2-v1-navigation #tocPanel .v2-search {
+  display: block;
+}
+
+body.v2-v1-navigation #tocPanel .v2-search input {
+  width: 100%;
+  min-height: 43px;
+  padding: 11px 12px;
+  border: 1px solid rgba(199, 174, 117, .22);
+  border-radius: 0;
+  background: rgba(7, 10, 7, .52);
+  color: var(--v1-nav-ink);
+  font-size: 12px;
+}
+
+body.v2-v1-navigation #tocPanel .v2-search input::placeholder {
+  color: var(--v1-nav-muted);
+}
+
+body.v2-v1-navigation #tocPanel .v2-search input:focus-visible {
+  outline: 2px solid var(--v1-nav-pink);
+  outline-offset: 4px;
+}
+
+body.v2-v1-navigation #tocPanel .v2-search-status {
+  min-height: 22px;
+  padding: 7px 8px 0;
+  color: var(--v1-nav-muted);
+  font-size: 11px;
+}
+
+body.v2-v1-navigation #tocTree,
+body.v2-v1-navigation #tocPanel .toc-branch {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.v2-v1-navigation #tocTree {
+  --v1-toc-tree-line: rgba(117, 104, 73, .52);
+}
+
+body.v2-v1-navigation #tocPanel .toc-branch {
+  margin-left: 11px;
+  padding-left: 9px;
+  border-left: 1px solid var(--v1-toc-tree-line);
+}
+
+body.v2-v1-navigation #tocPanel .roster-physical-start {
+  margin-top: 11px;
+  padding-top: 9px;
+  border-top: 1px solid rgba(117, 104, 73, .42);
+}
+
+body.v2-v1-navigation #tocPanel .roster-attachment-group,
+body.v2-v1-navigation #tocPanel .roster-attachment-members {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.v2-v1-navigation #tocPanel .roster-attachment-group {
+  position: relative;
+}
+
+body.v2-v1-navigation #tocPanel .roster-attachment-group [data-roster-attachment-role="bodyguard"] {
+  position: relative;
+  padding-top: 8px;
+}
+
+body.v2-v1-navigation #tocPanel .roster-attachment-group [data-roster-attachment-role="bodyguard"] .toc-row::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -4px;
+  bottom: 50%;
+  left: 10px;
+  border-left: 1px solid var(--v1-toc-tree-line);
+  pointer-events: none;
+}
+
+body.v2-v1-navigation #tocPanel .roster-attachment-group [data-roster-attachment-role="bodyguard"] .toc-row::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 10px;
+  width: 10px;
+  border-top: 1px solid var(--v1-toc-tree-line);
+  pointer-events: none;
+}
+
+body.v2-v1-navigation #tocPanel .roster-attachment-group [data-roster-attachment-role="bodyguard"] .toc-label {
+  padding-left: 29px;
+}
+
+body.v2-v1-navigation #tocPanel .toc-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 38px;
+  gap: 2px;
+  min-width: 0;
+  margin: 2px 0;
+  border-radius: 0;
+}
+
+body.v2-v1-navigation #tocPanel .toc-row.no-toggle {
+  grid-template-columns: 1fr;
+}
+
+body.v2-v1-navigation #tocPanel .toc-label,
+body.v2-v1-navigation #tocPanel .toc-toggle {
+  min-height: 42px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--v1-nav-muted);
+  cursor: pointer;
+}
+
+body.v2-v1-navigation #tocPanel .toc-label {
+  min-width: 0;
+  padding: 8px 10px;
+  overflow-wrap: anywhere;
+  text-align: left;
+  font-weight: 720;
+}
+
+body.v2-v1-navigation #tocPanel .toc-toggle {
+  padding: 0;
+}
+
+body.v2-v1-navigation #tocPanel .toc-toggle::after {
+  content: "›";
+  display: block;
+  color: var(--v1-nav-green);
+  font-size: 20px;
+  transition: rotate .15s;
+}
+
+body.v2-v1-navigation #tocPanel .toc-toggle[aria-expanded="true"]::after {
+  rotate: 90deg;
+}
+
+body.v2-v1-navigation #tocPanel .toc-label:hover,
+body.v2-v1-navigation #tocPanel .toc-toggle:hover {
+  background: rgba(113, 129, 83, .09);
+  color: var(--v1-nav-ink);
+}
+
+body.v2-v1-navigation #tocPanel .toc-label.is-ancestor {
+  color: var(--v1-nav-bronze-bright);
+}
+
+body.v2-v1-navigation #tocPanel .toc-label.is-current,
+body.v2-v1-navigation #tocPanel .toc-label[aria-current="location"] {
+  color: var(--v1-nav-green) !important;
+  background: linear-gradient(90deg, rgba(191, 213, 140, .2), rgba(213, 72, 142, .12) 72%, transparent) !important;
+  box-shadow: inset 3px 0 var(--v1-nav-green), inset 6px 0 var(--v1-nav-pink), inset 0 1px rgba(199, 174, 117, .12), inset 0 -1px rgba(199, 174, 117, .08);
+}
+
+body.v2-v1-navigation.nav-collapsed #tocPanel {
+  transform: translateX(-102%);
+}
+
+body.v2-v1-navigation #tocScrim {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  body.v2-v1-navigation {
+    --v1-nav-header: 64px;
+  }
+
+  body.v2-v1-navigation.nav-drawer-open {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  body.v2-v1-navigation #navMenu {
+    display: inline-grid;
+    place-items: center;
+  }
+
+  body.v2-v1-navigation #navMenu,
+  body.v2-v1-navigation #navCollapse {
+    min-width: 40px;
+    font-size: 16.5px;
+  }
+
+  body.v2-v1-navigation #navCollapse {
+    display: none;
+  }
+
+  body.v2-v1-navigation #main.v2-main,
+  body.v2-v1-navigation.nav-collapsed #main.v2-main {
+    padding: calc(var(--v1-nav-header) + env(safe-area-inset-top) + 20px) 14px 82px;
+  }
+
+  body.v2-v1-navigation #main.v2-main .v1-contents-pages {
+    gap: 28px;
+    margin-top: 28px;
+  }
+
+  body.v2-v1-navigation #tocPanel {
+    inset: calc(var(--v1-nav-header) + env(safe-area-inset-top) + 10px) auto 10px 10px;
+    width: min(calc(88vw - 10px), 360px);
+    font-size: 16.5px;
+    transform: translateX(calc(-105% - 10px));
+    box-shadow: 24px 12px 52px rgba(0, 0, 0, .5);
+    transition: none;
+  }
+
+  body.v2-v1-navigation #tocPanel .toc-toggle::after {
+    transition: none;
+  }
+
+  body.v2-v1-navigation.nav-drawer-open #tocPanel {
+    transform: translateX(0);
+  }
+
+  body.v2-v1-navigation #tocScrim {
+    position: fixed;
+    z-index: var(--v1-nav-z-scrim);
+    inset: calc(var(--v1-nav-header) + env(safe-area-inset-top)) 0 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: rgba(0, 0, 0, .62);
+    touch-action: none;
+  }
+
+  body.v2-v1-navigation.nav-drawer-open #tocScrim {
+    display: block;
+  }
+}
+
+@media print {
+  body.v2-v1-navigation #navMenu,
+  body.v2-v1-navigation #navCollapse,
+  body.v2-v1-navigation #tocPanel,
+  body.v2-v1-navigation #tocScrim {
+    display: none !important;
+  }
+
+  body.v2-v1-navigation #main.v2-main {
+    max-width: none;
+    padding: 0;
+  }
+}
+
+/* Actual V1 destination feedback, temporary navigation state only. */
+body.v2-v1-navigation .v1-navigation-destination { animation: v1-navigation-card-highlight 2.3s ease; }
+body.v2-v1-navigation .v1-navigation-destination:is(h1,h2,h3,h4,h5,h6) { animation-name: v1-navigation-heading-highlight; }
+@keyframes v1-navigation-card-highlight {
+  0%, 100% { outline-color: transparent; filter: none; }
+  16%, 72% {
+    outline: 3px solid var(--v1-nav-bronze-bright);
+    outline-offset: 6px;
+    filter: drop-shadow(0 0 14px rgba(199,174,117,.42)) drop-shadow(0 0 24px rgba(191,213,140,.16));
+  }
+}
+@keyframes v1-navigation-heading-highlight {
+  0%, 100% { color: inherit; text-shadow: none; }
+  16%, 72% { color: var(--v1-nav-bronze-bright); text-shadow: 0 0 9px rgba(199,174,117,.5), 0 0 24px rgba(191,213,140,.24); }
+}
+
+body.v2-v1-navigation .v1-contents-section {display:grid;gap:34px;}
+body.v2-v1-navigation .v1-contents-heading {margin:32px 0 0;}
