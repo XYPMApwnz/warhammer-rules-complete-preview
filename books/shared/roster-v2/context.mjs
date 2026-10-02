@@ -2,11 +2,54 @@
 const copy = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 const positive = value => Number.isSafeInteger(value) && value > 0;
+/** Legacy scalar snapshots are migrated only at the input boundary. Instances
+ * preserve imported occurrences; the canonical set controls rule membership. */
+function normalizeDetachments(input) {
+  const state = copy(input);
+  if (!state) return state;
+  if (state.detachments === undefined) {
+    const ids = state.detachmentIds ?? (state.detachmentId === undefined ? [] : [state.detachmentId]);
+    assert(Array.isArray(ids), 'Invalid Detachment collection');
+    state.detachments = ids.map((canonicalDetachmentId, index) => ({instanceId:`detachment/${index+1}`,canonicalDetachmentId}));
+  }
+  assert(Array.isArray(state.detachments) && state.detachments.length, 'Missing imported Detachments');
+  const ids = [...new Set(state.detachments.map(item => item?.canonicalDetachmentId))];
+  if (state.detachmentIds !== undefined) assert(Array.isArray(state.detachmentIds) && JSON.stringify(state.detachmentIds) === JSON.stringify(ids), 'Contradictory Detachment identities');
+  if (state.detachmentId !== undefined) assert(ids.length === 1 && ids[0] === state.detachmentId, 'Contradictory legacy Detachment identity');
+  state.detachmentIds = ids;
+  delete state.detachmentId;
+  return state;
+}
+/** Resolve membership at the roster boundary, then delegate all selector,
+ * boolean, subject and result semantics to the existing Rule Contract engine.
+ * Contracts and their scalar build/browsing context remain unchanged. */
+export function withRosterDetachments(api) {
+  const bind = (node, context) => {
+    if (node?.op) return {...node,args:node.args.map(child => bind(child,context))};
+    if (node?.predicate !== 'DETACHMENT' || !Object.hasOwn(context.roster || {},'detachmentIds')) return node;
+    const ids = context.roster.detachmentIds;
+    assert(Array.isArray(ids) && ids.every(id => typeof id === 'string'), 'Invalid roster Detachment context');
+    const state = api.evaluatePredicate(node,{...context,roster:{...context.roster,detachmentId:ids.includes(node.arguments?.id)?node.arguments.id:null}});
+    if (!['TRUE','FALSE'].includes(state)) return node;
+    const known = {predicate:'ALWAYS',subject:node.subject,contextLevel:'STATIC',arguments:{}};
+    return state === 'TRUE' ? known : {op:'NOT',args:[known]};
+  };
+  return {...api,
+    evaluatePredicate:(node,context) => api.evaluatePredicate(bind(node,context),context),
+    evaluateRole:(role,conditions,context) => api.evaluateRole({...role,selector:bind(role.selector,context),conditions:(role.conditions || []).map(node=>bind(node,context))},
+      conditions.map(node=>bind(node,node.subject==='ROSTER'?{...context,subject:'ROSTER'}:context)),context)};
+}
 export function validateRoster(book, state, policies) {
+  state = normalizeDetachments(state);
   assert(state?.schema === 'roster-v2/roster' && state.bookId === book.bookId, 'Invalid roster domain');
   assert(typeof state.rosterId === 'string' && state.rosterId.length, 'Missing physical namespace');
   const records = new Map(book.entities.map(e => [e.id, e]));
-  assert(records.get(state.detachmentId)?.kind === 'DETACHMENT', 'Unresolved Detachment');
+  const detachmentInstances = new Set();
+  for (const item of state.detachments) {
+    assert(typeof item.instanceId === 'string' && item.instanceId.length && !detachmentInstances.has(item.instanceId), 'Duplicate or missing Detachment instance');
+    detachmentInstances.add(item.instanceId);
+    assert(records.get(item.canonicalDetachmentId)?.kind === 'DETACHMENT', 'Unresolved Detachment');
+  }
   assert(Array.isArray(state.units) && state.units.length && Array.isArray(state.attachments), 'Invalid physical collection');
   const ids = new Set();
   for (const unit of state.units) {
@@ -42,7 +85,7 @@ export function validateRoster(book, state, policies) {
     }
     assert(unit.warlord === null || typeof unit.warlord === 'boolean', 'Invalid imported Warlord state');
     assert(Array.isArray(unit.enhancementIds) && new Set(unit.enhancementIds).size === unit.enhancementIds.length, 'Invalid Enhancement ownership');
-    for (const id of unit.enhancementIds) assert(records.get(id)?.kind === 'ENHANCEMENT' && records.get(id)?.parentId === state.detachmentId, 'Unresolved Enhancement context');
+    for (const id of unit.enhancementIds) assert(records.get(id)?.kind === 'ENHANCEMENT' && state.detachmentIds.includes(records.get(id)?.parentId), 'Unresolved Enhancement context');
   }
   const warlords = state.units.filter(u => u.warlord === true);
   assert(warlords.length <= 1 && (warlords[0]?.instanceId || null) === state.warlordInstanceId, 'Ambiguous imported Warlord identity');
@@ -126,7 +169,7 @@ export function formRoster(book, state) {
     formedUnits.push(group);
     for (const unit of units.filter(u => members.includes(u.instanceId))) unit.formedUnitId = group.formedUnitId;
   }
-  const projection = {schema:'roster-v2/effective',rosterId:state.rosterId,detachmentId:state.detachmentId,units,formedUnits};
+  const projection = {schema:'roster-v2/effective',rosterId:state.rosterId,detachments:copy(state.detachments),detachmentIds:[...state.detachmentIds],units,formedUnits};
   refreshFormedKeywords(projection);
   return projection;
 }
@@ -134,7 +177,7 @@ export function refreshFormedKeywords(projection) {
   for (const group of projection.formedUnits) group.keywords = [...new Set(group.memberInstanceIds.flatMap(id=>projection.units.find(u=>u.instanceId===id).keywords))].sort();
 }
 export function predicateContext(state, projection, unitId, subject, modelId, extra = {}) {
-  if (subject === 'ROSTER') return {subject,roster:{detachmentId:state.detachmentId,...extra},battle:{}};
+  if (subject === 'ROSTER') return {subject,roster:{detachmentIds:[...state.detachmentIds],...extra},battle:{}};
   const unit = projection.units.find(u => u.instanceId === unitId);
   assert(unit, 'Unresolved physical context');
   const group = projection.formedUnits.find(g => g.formedUnitId === unit.formedUnitId);
@@ -142,7 +185,7 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
   const model = modelId ? unit.profiles.find(m => m.scopeId === modelId || m.modelInstanceId === modelId) : unit.profiles.length===1 ? unit.profiles[0] : null;
   if (subject==='MODEL' && !model) return null;
   const members = group ? projection.units.filter(u=>group.memberInstanceIds.includes(u.instanceId)) : [unit];
-  const roster = {detachmentId:state.detachmentId,leading:Boolean(group?.leaderInstanceIds.includes(unitId)),attached:Boolean(group),
+  const roster = {detachmentIds:[...state.detachmentIds],leading:Boolean(group?.leaderInstanceIds.includes(unitId)),attached:Boolean(group),
     bodyguardId:group ? projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId : null,
     characterModelCount:members.reduce((n,u)=>n+u.profiles.filter(m=>m.keywords.includes('CHARACTER')).reduce((count,m)=>count+m.quantity,0),0),
     hasFriendlyCharacterLeader:Boolean(group?.leaderInstanceIds.some(id=>projection.units.find(u=>u.instanceId===id).intrinsicKeywords.includes('CHARACTER'))),

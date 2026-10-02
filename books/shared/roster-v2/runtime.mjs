@@ -1,5 +1,5 @@
 import {lexicalDraft,importNewRecruit} from './import.mjs';
-import {validateRoster,changeAttachment,attachmentCheck,predicateContext} from './context.mjs';
+import {validateRoster,changeAttachment,attachmentCheck,predicateContext,withRosterDetachments} from './context.mjs';
 import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
 const clone = value=>structuredClone(value);
 const any = values=>values.includes('INVALID')?'INVALID':values.includes('TRUE')?'TRUE':values.includes('UNKNOWN')?'UNKNOWN':'FALSE';
@@ -7,6 +7,7 @@ const fields = value => Object.entries(value).map(([label,value])=>({label,value
 const atoms = (value,path=[]) => value && typeof value==='object' ? Object.entries(value).flatMap(([key,child])=>atoms(child,[...path,key])) : [{path:'/'+path.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'),label:path.join(' / '),value}];
 /** Browser/Node runtime consumes the same canonical snapshot and existing evaluator. */
 export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,validatePredicate,publicResult}) {
+  ({evaluatePredicate,evaluateRole}=withRosterDetachments({evaluatePredicate,evaluateRole}));
   book=structuredClone(book);
   validateRosterEffects(book,validatePredicate,evaluatePredicate);
   const records = new Map(book.entities.map(e=>[e.id,e])), policies = book.rosterAttachmentPolicies;
@@ -49,12 +50,13 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
           ...book.entities.filter(e=>e.parentId===canonical.id&&['SUPPLEMENTAL_DATASHEET_RULE','WEAPON_PROFILE_SELECTION','WARGEAR_FOOTNOTE'].includes(e.kind)).map(e=>e.id)])].map(id=>({id,title:name(id),text:clone(records.get(id).data)})),
         applied:unit.applied.map(row=>({...clone(row),label:name(row.ruleId)})),conditional:unit.conditional.map(row=>({...clone(row),label:name(row.ruleId)}))};
     },
-    related(instanceId,detachmentId=state?.detachmentId) {
+    related(instanceId,detachmentId=null) {
       if (detachmentId && records.get(detachmentId)?.kind!=='DETACHMENT') throw new TypeError('Unresolved filter Detachment');
       const unit = projection.units.find(u=>u.instanceId===instanceId);if (!unit) throw new TypeError('Unresolved physical related context');
       const rows = [];
       for (const rule of book.entities.filter(e=>['STRATAGEM','ENHANCEMENT'].includes(e.ruleContract?.kind))) {
         const contract=rule.ruleContract;
+        if (!state.detachmentIds.includes(contract.detachmentId)) continue;
         if (detachmentId && contract.detachmentId!==detachmentId) continue;
         const roleIds=contract.compatibilityRoleIds || [contract.roles[0]?.id];
         const states=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>{

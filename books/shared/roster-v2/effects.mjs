@@ -66,7 +66,8 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
   const result = formRoster(book,state), records = new Map(book.entities.map(e=>[e.id,e]));
   const pending = [];
   for (const rule of book.entities.filter(e=>e.ruleContract)) {
-    const sources = rule.kind === 'ENHANCEMENT' ? result.units.filter(u=>u.enhancementIds.includes(rule.id)) : rule.kind === 'DETACHMENT_RULE' ? rule.ruleContract.detachmentId === state.detachmentId ? [null] : [] : result.units.filter(u=>u.canonicalUnitId === rule.parentId);
+    if (rule.ruleContract.detachmentId && !state.detachmentIds.includes(rule.ruleContract.detachmentId)) continue;
+    const sources = rule.kind === 'ENHANCEMENT' ? result.units.filter(u=>u.enhancementIds.includes(rule.id)) : rule.kind === 'DETACHMENT_RULE' ? [null] : result.units.filter(u=>u.canonicalUnitId === rule.parentId);
     for (const source of sources) for (const clause of rule.ruleContract.clauses) {
       if (source && rule.kind === 'ENHANCEMENT' && rule.ruleContract.assignment) {
         const ownerRole=rule.ruleContract.roles.find(role=>role.id===rule.ruleContract.assignment.ownerRoleId);

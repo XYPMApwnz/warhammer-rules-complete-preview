@@ -161,7 +161,7 @@ try {
     assert.equal(imported.state.units.length,7);assert.equal(new Set(imported.state.units.map(unit=>unit.instanceId)).size,7);
     assert.deepEqual(imported.state.units.map(unit=>unit.canonicalUnitId),unitIds);
     assert.deepEqual(imported.state.units.map(unit=>unit.startingStrength),[1,1,1,3,3,5,5]);
-    assert.equal(imported.state.detachmentId,detachmentId);assert.equal(imported.state.warlordInstanceId,ids.lord);
+    assert.deepEqual(imported.state.detachmentIds,[detachmentId]);assert.equal(imported.state.warlordInstanceId,ids.lord);
     assert.deepEqual(imported.state.units.map(unit=>unit.enhancementIds),[[enhancementId],[],[],[],[],[],[]]);
     assert.deepEqual(await page.locator('[data-roster-instance-id]').evaluateAll(nodes=>nodes.map(node=>({instanceId:node.dataset.rosterInstanceId,canonicalId:node.dataset.canonicalUnitId}))),unitIds.map((canonicalId,i)=>({instanceId:'parsed-unit-'+(i+1),canonicalId})));
     for(const id of [ids.pmA,ids.pmB]){assert.equal(weapon(imported,id,boltgunId).physicalQuantity,5);assert.equal(weapon(imported,id,meltagunId).physicalQuantity,1);assert.equal(field(weapon(imported,id,boltgunId),'strength'),'5');assert.equal(field(weapon(imported,id,boltgunId),'ap'),'-1');assert.equal(hasAbility(weapon(imported,id,meltagunId),'LETHAL HITS'),false);}
@@ -244,7 +244,12 @@ try {
     assert.ok(infusion,'Missing formed-model weapon grant provenance');assert.equal(infusion.sourceInstanceId,ids.bio);assert.equal(infusion.targetInstanceId,ids.pmA);assert.ok(infusion.sourceFields.length);
     const removed=await detach(ids.bio);assert.equal(hasAbility(weapon(removed,ids.pmA,meltagunId),'LETHAL HITS'),false);assert.ok(removed.effective[ids.pmA].applied.every(row=>row.ruleId!==infusionId));
     attached=await attach(ids.bio,ids.pmA);assert.ok(hasAbility(weapon(attached,ids.pmA,meltagunId),'LETHAL HITS'));fnpControl(attached,ids.dsA);
-    for(const id of Object.values(ids))for(const det of [null,detachmentId,'detachment-paragons-of-putrescence',null])await related(id,det);
+    for(const id of Object.values(ids)) {
+      const filter=physical(page,id).getByRole('combobox',{name:'Related rules detachment',exact:true});
+      assert.deepEqual(await filter.locator('option').evaluateAll(nodes=>nodes.map(node=>node.value)),['',detachmentId]);
+      assert.deepEqual(await page.evaluate(id=>window.ArmyBookAppV2.roster.related(id,'detachment-paragons-of-putrescence'),id),[]);
+      for(const det of [null,detachmentId,null])await related(id,det);
+    }
     await applicabilityControls();
     // Both physical-unit keyword scopes are read from the typed service, rather
     // than borrowing the CHARACTER keyword from an attached leader model.

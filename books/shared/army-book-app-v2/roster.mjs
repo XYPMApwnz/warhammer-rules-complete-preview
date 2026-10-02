@@ -323,8 +323,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         });
       } else {
         const records = service.catalog.filter(record => record.kind === need.kind && (!need.ownerId || record.parentId === need.ownerId));
-        const group = {DATASHEET: 'units', PROFILE: 'profiles', ENHANCEMENT: 'enhancements'}[need.kind];
-        const value = need.kind === 'DETACHMENT' ? bindings.detachmentId || '' : bindings[group]?.[need.key] || '';
+        const group = {DETACHMENT: 'detachments', DATASHEET: 'units', PROFILE: 'profiles', ENHANCEMENT: 'enhancements'}[need.kind];
+        const value = bindings[group]?.[need.key] || '';
         const label = el('label', 'v2-roster-field', 'Canonical entry');
         const select = selectRecords(records, {value, label: `Canonical entry for ${need.rawLabel || need.key}`});
         select.required = true;
@@ -332,8 +332,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         if (!records.length) fieldset.append(el('p', 'v2-roster-hint', 'No canonical candidates were supplied for this owner and kind.'));
         read.push(() => {
           if (!select.value) throw new Error('Choose a canonical entry for every imported label.');
-          if (need.kind === 'DETACHMENT') bindings.detachmentId = select.value;
-          else if (group) { bindings[group] ||= {}; bindings[group][need.key] = select.value; }
+          if (group) { bindings[group] ||= {}; bindings[group][need.key] = select.value; }
           else throw new Error(`Unsupported binding kind: ${need.kind}`);
         });
       }
@@ -484,8 +483,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     section.dataset.rosterRelatedInstanceId = instanceId;
     section.append(el('h3', '', 'Related rules'));
     const label = el('label', 'v2-roster-field', 'Filter by Detachment');
-    const select = selectRecords(service.catalog.filter(record => record.kind === 'DETACHMENT'), {label: 'Related rules detachment'});
-    select.options[0].textContent = 'All Detachments';
+    const selectedDetachmentIds = new Set(service.state.detachmentIds);
+    const select = selectRecords(service.catalog.filter(record => record.kind === 'DETACHMENT' && selectedDetachmentIds.has(record.id)), {label: 'Related rules detachment'});
+    select.options[0].textContent = 'All imported Detachments';
     label.append(select);
     const results = el('ul', 'v2-roster-list v2-roster-related-list');
     const fill = () => {
@@ -515,7 +515,17 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const state = service.state;
     if (!state?.units?.length) return;
     const summary = el('section', 'v2-card v2-roster-pane');
-    summary.append(el('h2', '', 'Physical units'), el('p', 'v2-roster-hint', `${state.units.length} imported entries · ${named(state.detachmentId)}`));
+    summary.append(el('h2', '', 'Physical units'), el('p', 'v2-roster-hint', `${state.units.length} imported entries`));
+    const detachments = el('ul', 'v2-roster-list');
+    detachments.dataset.rosterDetachments = '';
+    for (const detachment of state.detachments) {
+      const item = el('li');
+      item.dataset.detachmentInstanceId = detachment.instanceId;
+      item.dataset.canonicalDetachmentId = detachment.canonicalDetachmentId;
+      item.append(reference(detachment.canonicalDetachmentId));
+      detachments.append(item);
+    }
+    summary.append(el('p', 'v2-eyebrow', 'Imported Detachments'), detachments);
     rosterArea.append(summary);
     const byInstance = new Map(state.units.map(unit => [unit.instanceId, unit]));
     const instanceName = id => { const unit = byInstance.get(id); return unit ? `${named(unit.canonicalUnitId)} · ${unit.instanceId}` : id; };

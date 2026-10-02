@@ -54,7 +54,10 @@ export function lexicalDraft(rawText, parse) {
   for (const key of ['faction', 'detachment', 'detachments', 'disposition', 'declared', 'battleSize', 'pointsLimit', 'unitLineTotal']) {
     if (parsed[key] !== undefined) metadata[key] = clone(parsed[key]);
   }
-  return {schema: 'roster-v2/lexical-draft', sourceText, metadata, units, enhancements,
+  const importedDetachments = parsed.detachments ?? (parsed.detachment && parsed.detachment !== '—' ? [{label:parsed.detachment}] : []);
+  if (!Array.isArray(importedDetachments)) throw new TypeError('Malformed imported Detachment collection');
+  const detachments = Array.from(importedDetachments,(item, index) => ({...clone(item),key:`detachment/${index+1}`}));
+  return {schema: 'roster-v2/lexical-draft', sourceText, metadata, detachments, units, enhancements,
     warnings: [...(parsed.warnings || [])]};
 }
 
@@ -87,7 +90,7 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
     issue('INVALID_BINDINGS', 'bindings', 'Explicit binding dictionaries are required');
     bindings = {};
   }
-  for (const key of ['units', 'profiles', 'selections', 'enhancements']) {
+  for (const key of ['detachments', 'units', 'profiles', 'selections', 'enhancements']) {
     if (bindings[key] !== undefined && (!bindings[key] || typeof bindings[key] !== 'object' || Array.isArray(bindings[key]))) {
       issue('INVALID_BINDINGS', key, 'Explicit bindings must use a key-to-ID dictionary');
     }
@@ -107,7 +110,18 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
     if (!entity || entity.kind !== kind) { issue('INVALID_CANONICAL_BINDING', key, `Unknown or wrong-kind canonical ID: ${id}`); return null; }
     return entity;
   };
-  const detachment = exact(bindings.detachmentId, 'DETACHMENT', 'detachmentId', draft.metadata.detachment);
+  // Headerless supported exports still need one explicit canonical selection.
+  // Never collapse multiple imported occurrences into the legacy scalar binding.
+  const importedDetachments = draft.detachments.length ? draft.detachments : [{key:'detachment/1',label:draft.metadata.detachment}];
+  if (bindings.detachmentId !== undefined && importedDetachments.length !== 1) issue('AMBIGUOUS_DETACHMENT_BINDING','detachments','A scalar binding cannot resolve multiple imported Detachments');
+  for (const key of Object.keys(bindings.detachments || {})) if (!importedDetachments.some(item=>item.key===key)) issue('FOREIGN_DETACHMENT_BINDING',key,'Detachment binding does not identify an imported occurrence');
+  const detachments = importedDetachments.map(raw => {
+    const explicit = own(bindings.detachments,raw.key);
+    if (explicit !== undefined && bindings.detachmentId !== undefined && explicit !== bindings.detachmentId) issue('CONFLICTING_DETACHMENT_BINDING',raw.key,'Legacy and instance Detachment bindings disagree');
+    const detachment = exact(explicit ?? (importedDetachments.length===1?bindings.detachmentId:undefined),'DETACHMENT',raw.key,raw.label);
+    return {instanceId:raw.key,canonicalDetachmentId:detachment?.id || null};
+  });
+  const detachmentIds = [...new Set(detachments.map(item=>item.canonicalDetachmentId).filter(Boolean))];
   const units = [];
   const bindSelection = (raw, unit, startingStrength) => {
     const binding = own(bindings.selections, raw.key);
@@ -179,7 +193,7 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
   const byInstance = new Map(units.map(unit => [unit.instanceId, unit]));
   for (const raw of draft.enhancements) {
     const enhancement = exact(own(bindings.enhancements, raw.key), 'ENHANCEMENT', raw.key, raw.name);
-    if (enhancement && detachment && enhancement.parentId !== detachment.id) issue('FOREIGN_ENHANCEMENT_CONTEXT', raw.key, 'Enhancement belongs to another Detachment');
+    if (enhancement && detachmentIds.length && !detachmentIds.includes(enhancement.parentId)) issue('FOREIGN_ENHANCEMENT_CONTEXT', raw.key, 'Enhancement belongs to an unselected Detachment');
     const owner = byInstance.get(raw.ownerUnitId);
     if (raw.ownerStatus !== 'resolved' || !draft.units.some(unit => unit.id === raw.ownerUnitId)) issue('UNRESOLVED_ENHANCEMENT_OWNER', raw.key, 'Imported Enhancement physical owner is unresolved or ambiguous');
     else if (enhancement && owner) owner.enhancementIds.push(enhancement.id);
@@ -191,5 +205,5 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
   const status = errors.length ? 'INVALID' : needsBindings.length ? 'NEEDS_BINDINGS' : 'READY';
   return {schema: 'roster-v2/import-result', status, draft, needsBindings, errors,
     roster: status === 'READY' ? {schema: 'roster-v2/roster', rosterId: id, bookId: book.bookId,
-      detachmentId: detachment.id, warlordInstanceId: warlords[0]?.instanceId || null, units, attachments: []} : null};
+      detachments, detachmentIds, warlordInstanceId: warlords[0]?.instanceId || null, units, attachments: []} : null};
 }
