@@ -135,3 +135,32 @@ A popup shows a brief explanation of a term, related terms, and only existing tr
 - On mobile, the visual offset is recalculated from the last three visible cards: they preserve the `0 / 1 / 2` order, while the depth of the hidden part of the chain does not increase the offset and cannot push the top card outside the viewport.
 - Back restores the complete chain and clearly highlights the exact action button that was pressed.
 - `Assault → popup → Glossary` does not hide the Assault card heading beneath the sticky search panel.
+
+## 11. Army Book V2 presentation boundary
+
+V2 reuses the V1 Related Rules dialog template and term-popup surface through
+`books/shared/army-book-app-v2/related-v1.mjs`, `popup-v1.mjs` and `popup-v1.css`.
+These are presentation-only ports; they do not load the V1 matcher, glossary,
+factual catalogs or roster/effect runtime. Canonical content, compatibility and
+effective physical scope remain owned by V2.
+
+- Related Rules uses the V1 Stratagems / Enhancements tabs, Detachment headings,
+  full cards and two-column desktop / one-column phone layout.
+- Full-book browsing provides All Detachments and individual Detachment filters.
+  Roster mode hides this filter and uses all imported Detachments, displaying
+  only MATCH / CONDITIONAL results and owned Enhancements for that instance.
+- The existing canonical V2 detail/history resolver supplies the exact record.
+  Deep Strike opens its clean Core record; named rules do not open a bucket.
+- Effective weapon details retain the physical instance and profile scope;
+  closing restores the exact originating action, including duplicate units.
+- Native dialogs provide keyboard focus containment. Close, Escape and outside
+  click dismiss the top window; detail dismissal restores its originating link
+  in the still-open Related Rules dialog. Closing Related Rules restores the
+  datasheet action. Phone popups use the V1 near-full-width surface with an
+  internally scrolling body; desktop placement follows the V1 trigger geometry.
+- Navigation geometry, datasheet layout and executable semantics are unchanged.
+
+The V1 multi-level popup-chain rules above continue to describe V1. V2 retains
+its current canonical detail/history resolver; this presentation port does not
+introduce a legacy popup-chain runtime or a second factual detail resolver.
+`books/death-guard/v2/related-popup-v1-browser-qa.mjs` guards this V2 boundary.

@@ -166,15 +166,16 @@ try{
 
     // Related Rules is a compact footer action. Rows exist only while its own
     // native dialog is open and canonical references still use the detail
-    // dialog without leaving a second modal active.
+    // dialog above Related Rules, returning to its exact rule action.
     assert.equal(await shell.locator(':scope > .ds-related-rules .ds-related-rules-button').count(),1);
     await page.evaluate(()=>window.ArmyBookAppV2.openRelatedRules('unit-lord-of-contagion'));
     await page.waitForSelector('dialog.v2-related-dialog[open]');
     const relatedDialog=page.locator('dialog.v2-related-dialog[open]');assert.ok(await relatedDialog.locator('.v2-compatible-item').count()>0);
     assert.equal(await page.locator('main .v2-compatible-item').count(),0);
     const relatedReference=relatedDialog.locator('a.v2-reference').first();assert.ok(await relatedReference.count()>0);await relatedReference.click();
-    await page.waitForSelector('dialog.v2-detail-dialog[open]');assert.equal(await page.locator('dialog.v2-related-dialog[open]').count(),0);
+    await page.waitForSelector('dialog.v2-detail-dialog[open]');assert.equal(await page.locator('dialog.v2-related-dialog[open]').count(),1);
     await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForSelector('dialog.v2-detail-dialog[open]',{state:'hidden'});
+    await relatedDialog.locator('.related-rules-close').click();
 
     // Multi-copy schedules stay grouped: the same model-count captions have
     // different prices in each tier and are meaningless if flattened.

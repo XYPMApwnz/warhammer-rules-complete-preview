@@ -160,7 +160,14 @@ try{
       await page.locator(`.v2-glossary-result[data-target-id="${entity.id}"]`).click();assert.deepEqual(await detail(entity.id),reader,`${device} Glossary detail identity`);await page.keyboard.press('Escape');
       await page.goto(origin+appPath+'#start');await ready(page);
       const relation=payload.relatedRules.rows.find(row=>row.ruleId===entity.id&&['MATCH','CONDITIONAL'].includes(row.applicability));
-      if(relation){await page.evaluate(id=>window.ArmyBookAppV2.openRelatedRules(id),relation.unitId);await page.locator(`dialog[open] a.v2-reference[data-target-id="${entity.id}"]`).click();assert.deepEqual(await detail(entity.id),reader,`${device} Related Rules detail identity`);await page.keyboard.press('Escape');}
+      if(relation){
+        await page.evaluate(id=>window.ArmyBookAppV2.openRelatedRules(id),relation.unitId);
+        await page.locator(`dialog.v2-related-dialog .full-related-tabs [data-kind="${entity.kind==='ENHANCEMENT'?'enhancements':'stratagems'}"]`).click();
+        await page.locator(`dialog[open] a.v2-reference[data-target-id="${entity.id}"]`).click();
+        assert.deepEqual(await detail(entity.id),reader,`${device} Related Rules detail identity`);
+        await page.keyboard.press('Escape');await page.waitForSelector('dialog.v2-detail-dialog[open]',{state:'hidden'});
+        await page.locator('dialog.v2-related-dialog .related-rules-close').click();
+      }
     }
     // Selected book record and popup remain dark even without any datasheet.
     await page.goto(origin+appPath+'#army-rule-nurgles-gift');await page.waitForFunction(()=>!!window.ArmyBookAppV2);

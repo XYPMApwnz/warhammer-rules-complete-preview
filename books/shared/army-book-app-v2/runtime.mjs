@@ -6,6 +6,8 @@ import {projectContents, mountV1Contents} from './navigation-v1.mjs';
 import {createDatasheetPresenter} from './datasheet-v1.mjs';
 import {installDatasheetLayout, flushDatasheetLayouts} from './datasheet-v1-layout.mjs';
 import {createBookPresenter} from './book-v1.mjs';
+import {createV1RelatedPanel} from './related-v1.mjs';
+import {positionV1Popup} from './popup-v1.mjs';
 const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
 const rosterRoute = 'view-roster';
 const personalRoute = 'view-roster-guide';
@@ -114,21 +116,24 @@ export function mount(document, payload, options = {}) {
   overlay.setAttribute('aria-label', 'Close navigation');
   layout.append(sidebar, main);
   shell.append(layout, overlay);
-  const dialog = el('dialog', 'v2-detail-dialog');
+  const dialog = el('dialog', 'v2-detail-dialog term-popup v2-book-detail');
   dialog.setAttribute('aria-labelledby', 'v2-detail-heading');
   const dialogBar = el('div', 'v2-dialog-bar');
-  dialogBar.append(el('span', 'v2-eyebrow', 'RULE REFERENCE'), button('×', 'v2-icon-button', closeDetail));
+  dialogBar.append(el('span', 'v2-eyebrow', 'RULE REFERENCE'), button('×', 'v2-icon-button popup-close', closeDetail));
   dialogBar.lastChild.setAttribute('aria-label', 'Close rule reference');
   const dialogContent = el('div', 'v2-dialog-content');
   dialog.append(dialogBar, dialogContent);
   shell.append(dialog);
-  const relatedDialog=el('dialog','v2-related-dialog');relatedDialog.setAttribute('aria-label','Compatible Stratagems and Enhancements');
-  const relatedBar=el('div','v2-dialog-bar');relatedBar.append(el('h2','','Compatible Stratagems & Enhancements'),button('×','v2-icon-button',()=>relatedDialog.close()));
+  const relatedDialog=el('dialog','v2-related-dialog related-rules-layer');relatedDialog.setAttribute('aria-label','Compatible Stratagems and Enhancements');
+  const relatedFrame=el('section','related-rules-dialog');
+  const relatedBar=el('header');const relatedHeading=el('div');const relatedTitle=el('h2','','Compatible Stratagems & Enhancements');relatedTitle.id='v2-related-heading';relatedDialog.setAttribute('aria-labelledby',relatedTitle.id);
+  relatedHeading.append(el('span','','Datasheet tools'),relatedTitle);relatedBar.append(relatedHeading,button('×','related-rules-close',()=>relatedDialog.close()));
   relatedBar.lastChild.setAttribute('aria-label','Close compatible rules');
-  const relatedContent=el('div','v2-dialog-content');relatedDialog.append(relatedBar,relatedContent);shell.append(relatedDialog);
+  const relatedContent=el('div','related-rules-body v2-dialog-content');relatedFrame.append(relatedBar,relatedContent);relatedDialog.append(relatedFrame);shell.append(relatedDialog);
   relatedDialog.addEventListener('click',event=>{if(event.target===relatedDialog)relatedDialog.close();});
   document.body.replaceChildren(shell);document.body.classList.add('v2-v1-navigation','v2-book-surface');
   const navStyles=el('link');navStyles.rel='stylesheet';navStyles.href=new URL('./navigation-v1.css',import.meta.url).href;document.head.append(navStyles);
+  const popupStyles=el('link');popupStyles.rel='stylesheet';popupStyles.href=new URL('./popup-v1.css',import.meta.url).href;document.head.append(popupStyles);
   document.title = `${payload.book.title} · Army Book V2`;
   let selectedId = null;
   let selectedInstanceId = null;
@@ -139,6 +144,8 @@ export function mount(document, payload, options = {}) {
   let controlledRoute=false;
   let navigationBlocked=false;
   let lastFocus = null;
+  let popupOrigin=null,popupOriginRect=null;
+  let activeRelatedPanel=null;
   let routeKey = null;
   let relatedDetachmentId='';
   const indexed = [...cards.values()].map(card => ({card, text: [card.title, card.kind, ...(card.fields || []).map(field => `${field.label} ${field.displayValue || ''} ${exactValue(field.value)}`)].join(' ').toLocaleLowerCase()}));
@@ -295,6 +302,7 @@ export function mount(document, payload, options = {}) {
     const allowed = scopedIds();
     const childrenIds = (card.children || []).filter(id=>!allowed || allowed.has(id));
     const article = el('article', `v2-card v2-kind-${String(card.kind || 'entry').replace(/[^a-z0-9-]/gi, '-')} v2-depth-${Math.min(depth, 2)}`);
+    if(inDialog&&card.domain==='CORE')article.classList.add('v1-term-detail');
     article.dataset.cardId = card.id;
     article.dataset.entityId = card.source?.entityId || card.id;
     if (instanceId) article.dataset.rosterInstanceId = instanceId;
@@ -379,44 +387,31 @@ export function mount(document, payload, options = {}) {
       section.querySelector('.v2-detachment-filter').value=id;
       fillRelatedResults(section.dataset.unitId,section.querySelector('.v2-compatible-results'));
     }
+    activeRelatedPanel?.setDetachment(id);
   }
 
   function renderRelatedPanel(unitId,instanceId=null) {
-    const section=el('section','v2-compatible');
-    section.dataset.unitId=unitId;
-    section.append(el('p','v2-compatible-help','Match: known eligibility is satisfied. Conditional: additional roster or battle context is needed.'));
-    const label=el('label','v2-detachment-label','Detachment');
-    const select=el('select','v2-detachment-filter');
-    select.setAttribute('aria-label','Related rules detachment');
-    const all=el('option','','All Detachments');all.value='';select.append(all);
-    for (const card of detachmentCards.filter(card=>!instanceId||options.roster.state.detachmentIds.includes(card.id))) {const option=el('option','',card.title);option.value=card.id;select.append(option);}
-    select.value=instanceId?'':relatedDetachmentId;
-    label.append(select);
-    const results=el('div','v2-compatible-results');
-    results.setAttribute('aria-live','polite');
-    section.append(label,results);
-    const fill=()=>{
-      if(!instanceId){fillRelatedResults(unitId,results);return;}
-      const service=options.roster,unit=service.state.units.find(u=>u.instanceId===instanceId),related=service.related(instanceId,select.value||null);
-      const rows=(Array.isArray(related)?related:related.rows||[]).filter(row=>service.state.detachmentIds.includes(row.detachmentId)&&
+    const rosterMode=Boolean(instanceId);
+    const rowsFor=detachmentId=>{
+      if(!rosterMode)return (relatedByUnit.get(unitId)||[]).filter(row=>!detachmentId||row.detachmentId===detachmentId)
+        .map(row=>detachmentId?{...row,...row.selectedDetachment}:row).filter(row=>['MATCH','CONDITIONAL'].includes(row.applicability));
+      const service=options.roster,unit=service.state.units.find(u=>u.instanceId===instanceId),related=service.related(instanceId);
+      return (Array.isArray(related)?related:related.rows||[]).filter(row=>service.state.detachmentIds.includes(row.detachmentId)&&
         (row.kind!=='ENHANCEMENT'||unit.enhancementIds.includes(row.ruleId))&&['MATCH','CONDITIONAL'].includes(row.applicability));
-      results.replaceChildren();section.dataset.rosterRelatedInstanceId=instanceId;
-      for(const kind of ['STRATAGEM','ENHANCEMENT']){
-        const group=el('section','v2-compatible-group');group.dataset.ruleKind=kind;group.append(el('h3','',kind==='STRATAGEM'?'Stratagems':'Enhancements'));
-        const list=el('ul','v2-compatible-list');for(const row of rows.filter(row=>row.kind===kind)){
-          const item=el('li','v2-compatible-item');item.dataset.ruleId=row.ruleId;item.dataset.applicability=row.applicability;item.dataset.detachmentId=row.detachmentId;
-          const line=el('div','v2-compatible-rule');line.append(anchor(cards.get(row.ruleId).title,row.ruleId,true),el('span','v2-applicability v2-applicability-'+row.applicability.toLowerCase(),row.applicability==='MATCH'?'Match':'Conditional'));
-          item.append(line,el('span','v2-compatible-detachment',cards.get(row.detachmentId).title));
-          list.append(item);
-        }group.append(list.children.length?list:el('p','v2-empty','No compatible rules in this selection.'));results.append(group);
-      }
     };
-    select.addEventListener('change',()=>instanceId?fill():setRelatedDetachment(select.value));fill();
-    return section;
+    activeRelatedPanel=createV1RelatedPanel({document,rosterMode,detachmentId:relatedDetachmentId,
+      detachments:detachmentCards.filter(card=>!rosterMode||options.roster.state.detachmentIds.includes(card.id)),rowsFor,
+      renderRule:id=>bookPresenter.render(cards.get(id)),onDetachment:setRelatedDetachment});
+    activeRelatedPanel.node.dataset.unitId=unitId;
+    if(instanceId)activeRelatedPanel.node.dataset.rosterRelatedInstanceId=instanceId;
+    return activeRelatedPanel.node;
   }
 
   function openRelatedRules(unitId,instanceId=null){
-    relatedContent.replaceChildren(renderRelatedPanel(unitId,instanceId));relatedDialog.showModal();
+    if(personalMode&&!instanceId&&selectedInstanceId&&cards.get(unitId)?.id===options.roster.state.units.find(unit=>unit.instanceId===selectedInstanceId)?.canonicalUnitId)instanceId=selectedInstanceId;
+    relatedTitle.textContent=`${cards.get(unitId).title} · Compatible Stratagems & Enhancements`;
+    relatedContent.replaceChildren(renderRelatedPanel(unitId,instanceId));relatedContent.scrollTop=0;
+    if(!relatedDialog.open)relatedDialog.showModal();relatedBar.lastChild.focus({preventScroll:true});
   }
   function renderRelatedRules(unitId,instanceId=null){
     const footer=el('section','ds-related-rules');footer.dataset.relatedUnitId=unitId;
@@ -425,7 +420,7 @@ export function mount(document, payload, options = {}) {
   }
 
   function renderNavigation() {
-    if(relatedDialog.open)relatedDialog.close();
+    if(relatedDialog.open&&!window.history.state?.armyBookV2?.detailId&&!lastFocus)relatedDialog.close();
     document.body.classList.toggle('v2-datasheet-mode',Boolean(main.querySelector('.unit-card')));
     if(!contents)return;
     shortcuts.replaceChildren();
@@ -693,15 +688,16 @@ export function mount(document, payload, options = {}) {
       dialogContent.replaceChildren(...(effectiveCards?.length
         ? effectiveCards.map((card,index)=>renderCard(card,{inDialog:true,variants,instanceId,primaryDetail:index===0}))
         : [renderCard(cards.get(id),{inDialog:true})]));
-      dialog.classList.toggle('v2-book-detail',bookPresenter.accepts(cards.get(id))||cards.get(id).domain==='CORE');
+      dialog.dataset.canonicalId=id;
       if (!dialog.open) {
-        lastFocus = document.activeElement;
+        lastFocus = popupOrigin || document.activeElement;
         dialog.showModal();
       }
       dialogContent.scrollTop = state.armyBookV2.detailScrollTop || 0;
       if(state.armyBookV2.detailFieldPath){const fact=[...dialogContent.querySelectorAll('[data-fact-id]')].find(node=>node.dataset.factId===`${id}::${state.armyBookV2.detailFieldPath}`);fact?.scrollIntoView({block:'nearest'});}
       document.body.classList.add('v2-detail-open');
       dialogBar.lastChild.focus({preventScroll: true});
+      positionV1Popup(dialog,{origin:popupOrigin,rect:popupOriginRect});
     } else {
       if (dialog.open) dialog.close();
       document.body.classList.remove('v2-detail-open');
@@ -715,8 +711,24 @@ export function mount(document, payload, options = {}) {
       if(!controlledRoute&&(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)){window.requestAnimationFrame(()=>contents.restore(id||'start',state?.armyBookV2?.scrollY));}
       else if(!focus&&!controlledRoute)window.requestAnimationFrame(()=>window.scrollTo({top:state?.armyBookV2?.scrollY||0,behavior:'instant'}));
       if (!focus && lastFocus) {
-        const restoreTarget = lastFocus.isConnected ? lastFocus : [...main.querySelectorAll('[data-target-id]')].find(node => node.dataset.targetId === lastFocus.dataset.targetId);
-        restoreTarget?.focus({preventScroll: true});
+        // Finish the existing V1 column moves before returning focus to an
+        // ability trigger; moving its ancestor afterwards would blur it.
+        flushDatasheetLayouts(main);
+        const origin=lastFocus;
+        const owner=origin.closest('[data-card-id]');
+        const ownerInstance=origin.closest('[data-roster-instance-id]')?.dataset.rosterInstanceId;
+        const restoreFocus=()=>{
+          flushDatasheetLayouts(main);
+          const candidates=[...main.querySelectorAll('[data-target-id]')].filter(node=>
+            (!owner||node.closest('[data-card-id]')?.dataset.cardId===owner.dataset.cardId)&&
+            (!ownerInstance||node.closest('[data-roster-instance-id]')?.dataset.rosterInstanceId===ownerInstance));
+          const exact=origin.dataset.popupIdentity&&candidates.find(node=>node.dataset.popupIdentity===origin.dataset.popupIdentity);
+          const unscoped=candidates.find(node=>node.dataset.targetId===origin.dataset.targetId&&!node.dataset.popupIdentity);
+          const restoreTarget=origin.isConnected?origin:exact||unscoped;
+          restoreTarget?.focus({preventScroll:true});
+        };
+        restoreFocus();
+        window.requestAnimationFrame(()=>window.requestAnimationFrame(restoreFocus));
       }
       lastFocus = null;
     }
@@ -749,7 +761,7 @@ export function mount(document, payload, options = {}) {
     return true;
   }
   function open(id) { return navigate(id, false); }
-  function showDetail(id, presentation=null) { if(relatedDialog.open)relatedDialog.close();popupPresentation=presentation;return navigate(id, true); }
+  function showDetail(id, presentation=null) { popupOrigin=document.activeElement;popupOriginRect=popupOrigin?.getBoundingClientRect?.();popupPresentation=presentation;return navigate(id, true); }
   function optionsRosterId(){return options.roster?.state?.rosterId || '';}
   function library() { return personalMode?navigate(personalRoute,false):navigate(null, false); }
   function openLibrary() { return navigate(null,false,{fullBook:true}); }
@@ -772,6 +784,8 @@ export function mount(document, payload, options = {}) {
   search.addEventListener('input', renderNavigation);
   dialog.addEventListener('cancel', event => { event.preventDefault(); closeDetail(); });
   dialog.addEventListener('click', event => { if (event.target === dialog) closeDetail(); });
+  popupStyles.addEventListener('load',()=>positionV1Popup(dialog,{origin:popupOrigin,rect:popupOriginRect}));
+  window.addEventListener('resize',()=>positionV1Popup(dialog,{origin:popupOrigin,rect:popupOriginRect}),{passive:true});
   shell.addEventListener('keydown', event => {
     if (!contents?.controller.state.drawer && !dialog.open && selectedView === 'GLOSSARY' && event.key === 'Escape') {
       event.preventDefault();
