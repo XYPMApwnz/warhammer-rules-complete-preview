@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import vm from 'node:vm';
+import {parse} from '../../shared/roster-v2/parser.mjs';
 import {buildApp,readAppInputs} from './app-build.mjs';
 import * as evaluator from './rule-contract-schema.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
@@ -9,9 +9,7 @@ import {projectPersonalBook,projectInstanceCards,instanceRoute} from '../../shar
 // Presentation expectations derive from imported physical selections and the
 // existing canonical/effective service. This QA does not own gameplay facts.
 const {model}=readAppInputs(),payload=buildApp(),cards=new Map(payload.cards.map(c=>[c.id,c]));
-const parser={window:{}};vm.createContext(parser);
-vm.runInContext(fs.readFileSync(new URL('../../shared/roster-parser.js',import.meta.url),'utf8'),parser);
-const make=()=>createRosterRuntime(model,{...evaluator,parse:parser.window.WHRosterParser.parse});
+const make=()=>createRosterRuntime(model,{...evaluator,parse});
 const text=[
  '+ DETACHMENT: Flyblown Host','+ DETACHMENT: Paragons of Putrescence',
  '+ DETACHMENT: Contagion Engines','+ DETACHMENT: Virulent Vectorium (Worldblight)',

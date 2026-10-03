@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import vm from 'node:vm';
+import {parse} from '../../shared/roster-v2/parser.mjs';
 import assert from 'node:assert/strict';
 import {pathToFileURL,fileURLToPath} from 'node:url';
 // Expected identities are independently enumerated from canonical owner records.
@@ -7,8 +7,6 @@ import {pathToFileURL,fileURLToPath} from 'node:url';
 const repo=fileURLToPath(new URL('../../../',import.meta.url)).replaceAll('\\','/').replace(/\/$/,'');
 const {importNewRecruit}=await import(pathToFileURL(repo+'/books/shared/roster-v2/import.mjs'));
 const book=JSON.parse(fs.readFileSync(repo+'/books/death-guard/v2/generated/rule-contract-effective.json','utf8'));
-const ctx={window:{}};vm.createContext(ctx);vm.runInContext(fs.readFileSync(repo+'/books/shared/roster-parser.js','utf8'),ctx);
-const parse=ctx.window.WHRosterParser.parse;
 const byId=new Map(book.entities.map(e=>[e.id,e]));
 const dets=book.entities.filter(e=>e.kind==='DETACHMENT');
 const units=book.entities.filter(e=>e.kind==='DATASHEET');

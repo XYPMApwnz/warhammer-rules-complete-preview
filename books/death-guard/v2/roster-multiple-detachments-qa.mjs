@@ -1,15 +1,13 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import vm from 'node:vm';
+import {parse} from '../../shared/roster-v2/parser.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 import * as evaluator from './rule-contract-schema.mjs';
 
 const book = JSON.parse(fs.readFileSync(new URL('./generated/rule-contract-effective.json',import.meta.url),'utf8'));
 const canonicalBefore = JSON.stringify(book);
-const parser = {window:{}};vm.createContext(parser);
-vm.runInContext(fs.readFileSync(new URL('../../shared/roster-parser.js',import.meta.url),'utf8'),parser);
-const api = {...evaluator,parse:parser.window.WHRosterParser.parse};
+const api = {...evaluator,parse};
 const make = () => createRosterRuntime(book,api);
 const F = 'detachment-flyblown-host', P = 'detachment-paragons-of-putrescence', C = 'detachment-contagion-engines';
 const triple = [F,P,C];

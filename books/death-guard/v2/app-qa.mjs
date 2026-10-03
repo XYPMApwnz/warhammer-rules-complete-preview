@@ -8,6 +8,7 @@ import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
 
 const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 export const legacyClasses=Object.freeze([
+  ['V1 New Recruit executable parser',/books\/shared\/roster-parser\.js$/],
   ['DG content',/books\/death-guard\/content\//],
   ['DG reader data and HTML',/books\/death-guard\/(?:(?:scripts|mobile)\/|(?:reader|index)\.html)/],
   ['DG generated/compatibility',/books\/death-guard\/(?:generated\/|.*(?:compatible-rules|compatibility|owner-matrix|correction-ledger))/],

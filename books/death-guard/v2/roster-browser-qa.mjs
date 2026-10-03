@@ -53,8 +53,8 @@ const allowed=new Map([
   ['/books/shared/roster-v2/import.mjs','text/javascript'],
   ['/books/shared/roster-v2/context.mjs','text/javascript'],
   ['/books/shared/roster-v2/effects.mjs','text/javascript'],
-  // This existing dependency parses text labels only; it supplies no book facts.
-  ['/books/shared/roster-parser.js','text/javascript']
+  // V2-owned text decoder; all canonical resolution remains at import boundary.
+  ['/books/shared/roster-v2/parser.mjs','text/javascript']
 ]);
 const requests=[],legacyRequests=[];
 const server=http.createServer((request,response)=>{
@@ -293,7 +293,7 @@ try {
     console.log(JSON.stringify(results.at(-1)));await context.close();activePage=null;
   }
   assert.equal(results[0].stateHash,results[1].stateHash,'Desktop/phone physical identities differ');assert.equal(results[0].effectsHash,results[1].effectsHash,'Desktop/phone deterministic effects differ');assert.equal(results[0].readerHash,results[1].readerHash,'Desktop/phone canonical Reader fields differ');
-  const report={status:'PASS',scope:'Bounded DG Roster/Effect V2 browser integration',results,legacyRequests,requests:[...new Set(requests)].sort(),lexicalParserRequests:requests.filter(request=>request==='/books/shared/roster-parser.js').length,evidence};
+  const report={status:'PASS',scope:'Bounded DG Roster/Effect V2 browser integration',results,legacyRequests,requests:[...new Set(requests)].sort(),lexicalParserRequests:requests.filter(request=>request==='/books/shared/roster-v2/parser.mjs').length,evidence};
   fs.writeFileSync(path.join(evidence,'roster-browser-report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:'PASS',devices:results.length,legacyRequests:legacyRequests.length,evidence}));
 } catch(error) {
   if(activePage)await activePage.screenshot({path:path.join(evidence,'roster-browser-failure.png'),animations:'disabled'}).catch(()=>{});

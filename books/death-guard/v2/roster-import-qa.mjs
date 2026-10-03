@@ -1,16 +1,12 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import vm from 'node:vm';
+import {parse} from '../../shared/roster-v2/parser.mjs';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {lexicalDraft, importNewRecruit} from '../../shared/roster-v2/import.mjs';
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(directory, '../../..');
-const parserContext = {window: {}};
-vm.createContext(parserContext);
-vm.runInContext(fs.readFileSync(path.join(root, 'books/shared/roster-parser.js'), 'utf8'), parserContext);
-const parse = parserContext.window.WHRosterParser.parse;
 const book = JSON.parse(fs.readFileSync(path.join(directory, 'generated/rule-contract-effective.json'), 'utf8'));
 const detachmentId = 'detachment-virulent-vectorium';
 const bindingsFor = units => ({detachmentId, units, selections: {}, enhancements: {}});
