@@ -205,9 +205,12 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
     hasFriendlyCharacterLeader:Boolean(group?.leaderInstanceIds.some(id=>projection.units.find(u=>u.instanceId===id).intrinsicKeywords.includes('CHARACTER'))),
     hasAtLeastTwoLeaderUnits:(group?.leaderInstanceIds.length || 0)>=2,
     modelFromYourArmy:true,isBodyguardModel:Boolean(group&&group.bodyguardInstanceId===unitId),
-    isWarlord:subject==='MODEL' ? unit.warlord : members.some(u=>u.warlord===true),...extra};
-  if (unit.warlord === null && subject === 'MODEL') delete roster.isWarlord;
+    ...extra};
+  // Imported identity belongs to this physical roster entry. Neither leading
+  // a Warlord nor sharing its formed-unit keywords confers Warlord ownership.
+  if(typeof unit.warlord==='boolean')roster.isWarlord=unit.warlord;
+  else delete roster.isWarlord;
   const abilityNames = (subject==='MODEL'?[model]:members.flatMap(u=>u.profiles)).flatMap(m=>m.abilities.map(a=>a.name));
   return {subject,unitId:subject==='MODEL'?unit.canonicalUnitId:group?projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId:unit.canonicalUnitId,
-    modelId:model?.canonicalProfileId,keywords:new Set(subject==='MODEL'?model?.keywords:group?group.keywords:unit.keywords),abilities:new Set(abilityNames),roster,battle:{}};
+    modelId:model?.canonicalProfileId,intrinsicKeywords:new Set(unit.intrinsicKeywords),keywords:new Set(subject==='MODEL'?model?.keywords:group?group.keywords:unit.keywords),abilities:new Set(abilityNames),roster,battle:{}};
 }

@@ -179,6 +179,13 @@ export function evaluatePredicate(node, context) {
     case 'FIELD': {
       const spec=stateFields[a.key];
       if(!spec||spec.contextLevel!==node.contextLevel||spec.valueType!==typeof a.equals)return 'INVALID';
+      // Static capability belongs to the canonical entry, never to keywords
+      // inherited from an Attached Unit. Unknown roster state stays unknown
+      // only after this prerequisite has been met.
+      if(spec.intrinsicAllKeywords) {
+        if(!(context.intrinsicKeywords instanceof Set))return 'INVALID';
+        if(!spec.intrinsicAllKeywords.every(keyword=>context.intrinsicKeywords.has(keyword)))return truth(false===a.equals);
+      }
       return available(context[node.contextLevel==='BATTLE'?'battle':'roster'],a.key,value=>typeof value!==spec.valueType?'INVALID':truth(value===a.equals));
     }
     default: return 'INVALID';

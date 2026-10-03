@@ -256,7 +256,8 @@ export const stateFields = Object.freeze({
   },
   "isWarlord": {
     "contextLevel": "ROSTER",
-    "valueType": "boolean"
+    "valueType": "boolean",
+    "intrinsicAllKeywords": ["CHARACTER"]
   },
   "justDestroyed": {
     "contextLevel": "BATTLE",

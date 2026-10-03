@@ -79,7 +79,8 @@ export function buildRuleContractV2() {
 }
 /** Explicit projection of a canonical profile, not an interchangeable UNIT/MODEL API. */
 export function entityContext(model,unit,subject,detachmentId) {
-  const keywords=new Set([...unit.data.keywords,...unit.data.factionKeywords]);
+  const intrinsicKeywords=new Set([...unit.data.keywords,...unit.data.factionKeywords]);
+  const keywords=new Set(intrinsicKeywords);
   for(const rule of model.entities.filter(entity=>entity.ruleContract?.detachmentId===detachmentId)) for(const grant of (rule.ruleContract.clauses||[]).map(clause=>clause.keywordProjection).filter(Boolean)) {
     if(evaluatePredicate(grant.selector,{subject:grant.subject,unitId:unit.id,keywords,roster:{detachmentId}})==='TRUE')keywords.add(grant.keyword);
   }
@@ -99,7 +100,7 @@ export function entityContext(model,unit,subject,detachmentId) {
       for(const keyword of [...other.data.keywords,...other.data.factionKeywords]) if(!keywords.has(keyword))unknownKeywords.add(keyword);
     }
   }
-  return {subject,unitId:unit.id,...(subject==='MODEL'?{modelId}:{}),keywords,unknownKeywords,abilities,roster:{detachmentId}};
+  return {subject,unitId:unit.id,...(subject==='MODEL'?{modelId}:{}),intrinsicKeywords,keywords,unknownKeywords,abilities,roster:{detachmentId}};
 }
 const any=states=>states.includes('INVALID')?'INVALID':states.includes('TRUE')?'TRUE':states.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 export function compileCompatibility(model) {
