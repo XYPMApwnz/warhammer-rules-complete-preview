@@ -123,6 +123,12 @@ try{
     page.on('pageerror',error=>errors.push(error.message));
     await page.goto(origin+appPath+'#start');await ready(page);await page.waitForTimeout(150);
     const observed=await observe(page);assertFacts(observed,expected,device);
+    const cover=page.locator('main .v2-hero[data-book-artwork]');
+    assert.equal(await cover.count(),1,`${device} missing faction cover`);
+    const artwork=await cover.getAttribute('data-book-artwork');
+    assert.equal(new URL(artwork).pathname,'/assets/death-guard-cover.jpg');
+    assert.ok((await cover.evaluate(node=>getComputedStyle(node).backgroundImage)).includes(artwork),`${device} cover not rendered`);
+    const coverResponse=await page.request.get(artwork);assert.equal(coverResponse.status(),200);assert.match(coverResponse.headers()['content-type'],/image\/jpeg/);
     for(const entity of sourceEntities.filter(entity=>entity.kind==='SOURCE_ERRATUM')){
       const ids=await page.locator(`main [data-card-id="${entity.id}"] .source`).evaluate(node=>JSON.parse(node.dataset.sourceIds));assert.ok(ids.includes(entity.provenance.sourceId),`${device} current update provenance missing ${entity.id}`);
     }

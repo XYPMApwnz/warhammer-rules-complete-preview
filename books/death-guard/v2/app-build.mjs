@@ -33,6 +33,7 @@ export function buildApp(inputs=readAppInputs()) {
   payload.datasheetPresentation=buildDatasheetPresentation(inputs.model,inputs.artwork || JSON.parse(fs.readFileSync(new URL('../presentation/unit-images.json',import.meta.url),'utf8')));
   payload.datasheetPresentation.referenceBindings=buildDatasheetReferenceBindings(payload.cards);
   payload.bookPresentation=projectBookPresentation(inputs.model,inputs.records);
+  payload.bookPresentation.coverImage='../../../assets/death-guard-cover.jpg';
   return payload;
 }
 export function writeApp({check=false}={}) {

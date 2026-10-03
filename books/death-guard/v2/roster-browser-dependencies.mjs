@@ -12,6 +12,7 @@ export function allowRosterDependencies(allowed) {
   allowed.set('/books/shared/army-book-app-v2/book-v1.css','text/css');
   allowed.set('/books/shared/datasheet-system.css','text/css');
   allowed.set('/books/shared/unit-art.css','text/css');
+  allowed.set('/assets/death-guard-cover.jpg','image/jpeg');
   const artDirectory=fileURLToPath(new URL('../assets/unit-images/',import.meta.url));
   for(const file of fs.readdirSync(artDirectory))if(/\.(?:png|webp)$/i.test(file))allowed.set('/books/death-guard/assets/unit-images/'+file,file.toLowerCase().endsWith('.png')?'image/png':'image/webp');
   allowed.set('/books/death-guard/v2/generated/rule-contract-effective.json','application/json');
