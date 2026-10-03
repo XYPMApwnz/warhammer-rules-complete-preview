@@ -35,10 +35,15 @@ The test starts and closes its own local HTTP server. No deployment occurs.
 The independent oracle enumerates canonical gameplay fields, effective
 gameplay qualifications, central MFM fields and resolved relation facts. It
 does not import the presentation producer. Explicit metadata exclusions and
-unknown-field rejection prevent silent denominator shrinkage. Browser QA
-opens every normal top-level book entry and checks the complete visible DOM
-against that oracle on desktop 1440×1000 and phone 390×844. QA-only mounting
-is not the reachability proof.
+unknown-field rejection prevent silent denominator shrinkage. The lossless
+source-evidence surface accounts for all 3,654 fields. Normal player
+datasheets use one explicit V1 presentation instead of a generic field dump:
+2,281 datasheet leaves have independently classified player locations, with
+source-layout classifiers, identity bindings and status metadata excluded.
+Together with 645 other book leaves, continuous Contents renders 2,926
+source-backed player fields without duplicate owners.
+Browser QA checks both contracts on desktop 1440×1000 and phone 390×844.
+The evidence surface alone is not the player-reachability proof.
 
 Projection mutations detect missing fields, wrong values/display, wrong owner,
 wrong context, a poisoned manifest, duplicated owners and unreachable cards.
@@ -86,9 +91,11 @@ Leading, attachment, Warlord and battle state are never inferred. No rule
 effects execute. The current Core corpus has no clean typed applicability
 contract, so Core Stratagems are `DEFERRED_NEEDS_CONTRACTS`.
 
-Each datasheet shows separate Stratagem/Enhancement lists, an All Detachments
-or single Detachment filter, labelled Match/Conditional badges, and existing
-canonical rule detail links. No Match results are hidden. Fixed ALL IS ROT,
+Each datasheet ends with a compact Compatible Stratagems & Enhancements
+button. Its dialog contains separate lists, an All Detachments or single
+Detachment filter, labelled Match/Conditional badges and canonical detail
+links. Roster mode uses the same V2 evaluator with imported Detachments and
+exact Enhancement ownership. No Match results are hidden. Fixed ALL IS ROT,
 MIRESLICK and SOULROT FLUX remain Conditional with unavailable battle context;
 their forbidden and allowed engagement controls still pass contract QA.
 
@@ -116,17 +123,25 @@ on desktop and 390×844 phone: 360 exact result-set/filter queries per viewport.
 It covers hidden No Match results, both visible badges, zero cross-Detachment
 leakage, canonical Stratagem/Enhancement dialogs, history, filter persistence,
 datasheet detail and poisoned legacy network paths. Existing exhaustive
-Reader QA still verifies the same 3,654 factual fields on both viewports.
+Reader QA still preserves the same 3,654 source fields on both viewports;
+the dedicated datasheet QA verifies the curated player projection separately.
 
 ## Verified application result
 
 The source/effective census contains 538 canonical entities and 88 central
-MFM records, rendered as 626 cards. It accounts for 3,654 visible atomic facts:
+MFM records, projected as 626 records. It accounts for 3,654 source fields:
 3,005 canonical data fields, five gameplay qualification fields, 588 central
 MFM fields, 51 MFM relation fields and 28 Army Support exception fields.
 Normal navigation exposes all 36 Datasheets, nine Detachments, 30 Enhancements
-and 45 Stratagems. Desktop and phone each have zero missing, wrong-value,
-wrong-identity or wrong-context facts. Base/invulnerable saves, all four Defiler
+and 45 Stratagems. The player datasheet replaces the former generic remainder
+and repeated roster/debug panels. Its one compact context shows attachment,
+Enhancement and Warlord state; effective values and numeric modifier traces
+stay in weapon/stat rows, and effect source links stay in one compact block.
+Every model-count price binds to its own count label, with separate copy tiers.
+Formal rule-reference spans are bound to canonical Core/Army IDs at build time;
+the runtime does not search titles to resolve definitions. Desktop and phone
+have zero missing, wrong-value, wrong-identity or wrong-context player facts.
+Base/invulnerable saves, all four Defiler
 selection bindings, the GW qualifications and Plague Marines Boltgun S5/AP-1
 are included. Fourteen projection/oracle mutation controls pass; five legacy
 poison classes yield zero factual reads; a V2 strength poison reaches UI as 77.

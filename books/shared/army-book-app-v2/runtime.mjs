@@ -121,6 +121,11 @@ export function mount(document, payload, options = {}) {
   const dialogContent = el('div', 'v2-dialog-content');
   dialog.append(dialogBar, dialogContent);
   shell.append(dialog);
+  const relatedDialog=el('dialog','v2-related-dialog');relatedDialog.setAttribute('aria-label','Compatible Stratagems and Enhancements');
+  const relatedBar=el('div','v2-dialog-bar');relatedBar.append(el('h2','','Compatible Stratagems & Enhancements'),button('×','v2-icon-button',()=>relatedDialog.close()));
+  relatedBar.lastChild.setAttribute('aria-label','Close compatible rules');
+  const relatedContent=el('div','v2-dialog-content');relatedDialog.append(relatedBar,relatedContent);shell.append(relatedDialog);
+  relatedDialog.addEventListener('click',event=>{if(event.target===relatedDialog)relatedDialog.close();});
   document.body.replaceChildren(shell);document.body.classList.add('v2-v1-navigation');
   const navStyles=el('link');navStyles.rel='stylesheet';navStyles.href=new URL('./navigation-v1.css',import.meta.url).href;document.head.append(navStyles);
   document.title = `${payload.book.title} · Army Book V2`;
@@ -143,7 +148,7 @@ export function mount(document, payload, options = {}) {
   }) : null;
   const personalBook = () => projectPersonalBook(payload, options.roster.state);
   const scopedIds = () => personalMode ? personalBook().allowedIds : null;
-  const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,renderFields,renderCard,anchor,showDetail,
+  const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,
     related:renderRelatedRules,roster:options.roster,
     navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
   let popupPresentation=null;
@@ -239,7 +244,7 @@ export function mount(document, payload, options = {}) {
     let tokenLabel = null;
     fields.forEach(field => {
       if (field.presentation === 'caption') return;
-      if (field.presentation === 'heading') return;
+      if (field.presentation === 'heading' || field.type === 'heading') return;
       if (field.type !== 'tokens') { tokens = null; tokenLabel = null; }
       if (field.type === 'tokens') {
         list = null;
@@ -270,8 +275,8 @@ export function mount(document, payload, options = {}) {
     return container;
   }
 
-  function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null, primaryDetail = true} = {}) {
-    if(card.kind==='DATASHEET') {
+  function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null, primaryDetail = true, sourceEvidence = false} = {}) {
+    if(card.kind==='DATASHEET'&&!sourceEvidence) {
       const article=datasheets.renderDatasheet(card,{variants,instanceId,inDialog});
       if(inDialog&&primaryDetail)article.querySelector('.unit-header h3').id='v2-detail-heading';
       installDatasheetLayout(article,window);
@@ -292,7 +297,7 @@ export function mount(document, payload, options = {}) {
     if (instanceId) article.dataset.rosterInstanceId = instanceId;
     if (card.scopeId) article.dataset.compositionId = card.scopeId;
     const cardHeader = el('header', 'v2-card-header');
-    const headingField = (card.fields || []).find(field => field.presentation === 'heading');
+    const headingField = (card.fields || []).find(field => field.presentation === 'heading' || field.type === 'heading');
     const headingTag = `h${Math.min(depth + (inDialog ? 2 : 1), 6)}`;
     const title = headingField ? factValue(headingTag, headingField) : el(headingTag, '', card.title);
     title.className = 'v2-card-title';
@@ -330,7 +335,7 @@ export function mount(document, payload, options = {}) {
       children.append(index);
       const trail = new Set([...ancestors, card.id]);
       childrenIds.forEach(id => {
-        if (!trail.has(id)) for (const child of variants?.get(id) || [cards.get(id)]) children.append(renderCard(child, {depth: depth + 1, ancestors: trail, inDialog, variants, instanceId}));
+        if (!trail.has(id)) for (const child of variants?.get(id) || [cards.get(id)]) children.append(renderCard(child, {depth: depth + 1, ancestors: trail, inDialog, variants, instanceId,sourceEvidence}));
       });
       article.append(children);
     }
@@ -367,31 +372,58 @@ export function mount(document, payload, options = {}) {
     if (id&&!detachmentCards.some(card=>card.id===id)) throw new TypeError('Unknown canonical Detachment filter.');
     relatedDetachmentId=id;
     for (const section of shell.querySelectorAll('.v2-compatible')) {
+      if(section.dataset.rosterRelatedInstanceId)continue;
       section.querySelector('.v2-detachment-filter').value=id;
       fillRelatedResults(section.dataset.unitId,section.querySelector('.v2-compatible-results'));
     }
   }
 
-  function renderRelatedRules(unitId) {
+  function renderRelatedPanel(unitId,instanceId=null) {
     const section=el('section','v2-compatible');
     section.dataset.unitId=unitId;
-    section.append(el('h2','','Related / Compatible Rules'),el('p','v2-compatible-help','Match: this datasheet meets the known eligibility conditions. Conditional: eligibility also depends on detachment, roster or battle conditions.'));
+    section.append(el('p','v2-compatible-help','Match: known eligibility is satisfied. Conditional: additional roster or battle context is needed.'));
     const label=el('label','v2-detachment-label','Detachment');
     const select=el('select','v2-detachment-filter');
     select.setAttribute('aria-label','Related rules detachment');
     const all=el('option','','All Detachments');all.value='';select.append(all);
-    for (const card of detachmentCards) {const option=el('option','',card.title);option.value=card.id;select.append(option);}
-    select.value=relatedDetachmentId;
-    select.addEventListener('change',()=>setRelatedDetachment(select.value));
+    for (const card of detachmentCards.filter(card=>!instanceId||options.roster.state.detachmentIds.includes(card.id))) {const option=el('option','',card.title);option.value=card.id;select.append(option);}
+    select.value=instanceId?'':relatedDetachmentId;
     label.append(select);
     const results=el('div','v2-compatible-results');
     results.setAttribute('aria-live','polite');
     section.append(label,results);
-    fillRelatedResults(unitId,results);
+    const fill=()=>{
+      if(!instanceId){fillRelatedResults(unitId,results);return;}
+      const service=options.roster,unit=service.state.units.find(u=>u.instanceId===instanceId),related=service.related(instanceId,select.value||null);
+      const rows=(Array.isArray(related)?related:related.rows||[]).filter(row=>service.state.detachmentIds.includes(row.detachmentId)&&
+        (row.kind!=='ENHANCEMENT'||unit.enhancementIds.includes(row.ruleId))&&['MATCH','CONDITIONAL'].includes(row.applicability));
+      results.replaceChildren();section.dataset.rosterRelatedInstanceId=instanceId;
+      for(const kind of ['STRATAGEM','ENHANCEMENT']){
+        const group=el('section','v2-compatible-group');group.dataset.ruleKind=kind;group.append(el('h3','',kind==='STRATAGEM'?'Stratagems':'Enhancements'));
+        const list=el('ul','v2-compatible-list');for(const row of rows.filter(row=>row.kind===kind)){
+          const item=el('li','v2-compatible-item');item.dataset.ruleId=row.ruleId;item.dataset.applicability=row.applicability;item.dataset.detachmentId=row.detachmentId;
+          const line=el('div','v2-compatible-rule');line.append(anchor(cards.get(row.ruleId).title,row.ruleId,true),el('span','v2-applicability v2-applicability-'+row.applicability.toLowerCase(),row.applicability==='MATCH'?'Match':'Conditional'));
+          item.append(line,el('span','v2-compatible-detachment',cards.get(row.detachmentId).title));
+          list.append(item);
+        }group.append(list.children.length?list:el('p','v2-empty','No compatible rules in this selection.'));results.append(group);
+      }
+    };
+    select.addEventListener('change',()=>instanceId?fill():setRelatedDetachment(select.value));fill();
     return section;
   }
 
+  function openRelatedRules(unitId,instanceId=null){
+    relatedContent.replaceChildren(renderRelatedPanel(unitId,instanceId));relatedDialog.showModal();
+  }
+  function renderRelatedRules(unitId,instanceId=null){
+    const footer=el('section','ds-related-rules');footer.dataset.relatedUnitId=unitId;
+    if(instanceId)footer.dataset.rosterRelatedInstanceId=instanceId;
+    footer.append(button('Compatible Stratagems & Enhancements','ds-related-rules-button',()=>openRelatedRules(unitId,instanceId)));return footer;
+  }
+
   function renderNavigation() {
+    if(relatedDialog.open)relatedDialog.close();
+    document.body.classList.toggle('v2-datasheet-mode',Boolean(main.querySelector('.unit-card')));
     if(!contents)return;
     shortcuts.replaceChildren();
     const shortcut=(label,action,current)=>{const node=button(label,'toc-label',action);if(current)node.setAttribute('aria-current','location');shortcuts.append(node);};
@@ -437,8 +469,7 @@ export function mount(document, payload, options = {}) {
     const toolbar=el('nav','v2-breadcrumbs');toolbar.append(button('Personal guide','',openPersonalGuide),el('span','', '/'),el('span','',title));
     const selected=renderCard(variants.get(unit.canonicalUnitId)[0],{variants,instanceId});selected.classList.add('v2-current-card');
     selected.dataset.canonicalUnitId=unit.canonicalUnitId;
-    const badge=el('p','v2-compatible-help',title);selected.querySelector('.v2-card-header').after(badge);
-    selected.append(rosterPanel.renderInstanceContext(instanceId));main.replaceChildren(toolbar,selected);renderNavigation();
+    main.replaceChildren(toolbar,selected);renderNavigation();
     if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
   }
 
@@ -709,7 +740,7 @@ export function mount(document, payload, options = {}) {
     return true;
   }
   function open(id) { return navigate(id, false); }
-  function showDetail(id, presentation=null) { popupPresentation=presentation;return navigate(id, true); }
+  function showDetail(id, presentation=null) { if(relatedDialog.open)relatedDialog.close();popupPresentation=presentation;return navigate(id, true); }
   function optionsRosterId(){return options.roster?.state?.rosterId || '';}
   function library() { return personalMode?navigate(personalRoute,false):navigate(null, false); }
   function openLibrary() { return navigate(null,false,{fullBook:true}); }
@@ -744,7 +775,8 @@ export function mount(document, payload, options = {}) {
   function renderAllForQA() {
     if (dialog.open) dialog.close();
     document.body.classList.remove('v2-detail-open');
-    main.replaceChildren(...[...cards.values()].map(card => renderCard({...card, children: []})));
+    // Dedicated source-evidence surface, never a normal player datasheet.
+    main.replaceChildren(...[...cards.values()].map(card => renderCard({...card, children: []},{sourceEvidence:true})));
     return main;
   }
   contents=mountV1Contents(document,{header,panel:sidebar,tree:navigation,main,menuButton:drawerToggle,collapseButton:desktopToggle,scrim:overlay},{
@@ -768,7 +800,7 @@ export function mount(document, payload, options = {}) {
     contents.controller.scheduleGeometry();
   }).observe(main,{childList:true,subtree:true});
   let lastRosterNavigation=null;
-  const api = Object.freeze({payload, open, showDetail, library, openLibrary, openPersonalGuide, openInstance, renderAllForQA, setRelatedDetachment, openGlossary, closeGlossary, openRoster, roster: options.roster, rosterPanel, navigation:contents.controller});
+  const api = Object.freeze({payload, open, showDetail, library, openLibrary, openPersonalGuide, openInstance, renderAllForQA, openRelatedRules, setRelatedDetachment, openGlossary, closeGlossary, openRoster, roster: options.roster, rosterPanel, navigation:contents.controller});
   window.ArmyBookAppV2 = api;
   route();
   if (rosterPanel) rosterPanel.ready.then(()=>{routeKey=null;route();});

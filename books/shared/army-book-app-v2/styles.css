@@ -41,6 +41,31 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .v2-sidebar-footer { border-top: 1px solid var(--v2-line); margin: 30px 9px 0; padding-top: 20px; }
 .v2-sidebar-footer p { font-size: 11px; line-height: 1.65; color: var(--v2-muted); margin-bottom: 0; }
 .v2-main { width: 100%; min-width: 0; max-width: 1400px; padding: 37px 48px 80px; }
+/* Datasheet detail pages use the V1 document canvas without changing the
+   accepted V2 header or sidebar geometry. */
+body.v2-datasheet-mode {
+  background: #0d0f0d;
+}
+body.v2-datasheet-mode .v2-layout {
+  min-height: calc(100dvh - 70px);
+  background:
+    radial-gradient(circle at 100% 0, rgba(213,72,142,.055), transparent 430px),
+    radial-gradient(circle at 0 100%, rgba(125,146,87,.075), transparent 520px),
+    #0d0f0d;
+}
+body.v2-datasheet-mode .v2-main {
+  color-scheme: dark;
+  max-width: none;
+  min-height: calc(100dvh - 70px);
+  color: #e2dcc9;
+}
+body.v2-datasheet-mode .v2-main > :is(.v2-breadcrumbs, .unit-card, .v1-contents-pages) {
+  width: min(100%, 1100px);
+  margin-inline: auto;
+}
+body.v2-datasheet-mode .v2-breadcrumbs { color: #969589; }
+body.v2-datasheet-mode .v2-breadcrumbs :is(button, a) { color: #bfd58c; }
+body.v2-datasheet-mode .v2-breadcrumb-current { color: #e2dcc9; }
 .v2-hero { position: relative; background: #294a3c; color: #f7f8ed; border-radius: 15px; padding: 40px; overflow: hidden; }
 .v2-hero::after { content: ''; position: absolute; width: 280px; height: 280px; border: 1px solid #a6b87a35; border-radius: 50%; top: -115px; right: -45px; box-shadow: 0 0 0 40px #a6b87a0c, 0 0 0 80px #a6b87a08; pointer-events: none; }
 .v2-hero .v2-eyebrow { color: #c5d69a; }
@@ -198,4 +223,4 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .v2-dialog-content { padding: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
-@media print { .v2-topbar, .v2-sidebar, .v2-breadcrumbs, .v2-permalink, .v2-skip { display: none !important; } .v2-layout { display: block; } .v2-main { max-width: none; padding: 0; } .v2-card { overflow: visible; break-inside: auto; } .v2-field { break-inside: avoid; } body { background: white; } }
+@media print { .v2-topbar, .v2-sidebar, .v2-breadcrumbs, .v2-permalink, .v2-skip { display: none !important; } .v2-layout { display: block; } .v2-main { max-width: none; padding: 0; } .v2-card { overflow: visible; break-inside: auto; } .v2-field { break-inside: avoid; } body, body.v2-datasheet-mode { background: white; } }

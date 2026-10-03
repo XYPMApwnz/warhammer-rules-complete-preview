@@ -85,9 +85,14 @@ async function contentsFactCensus(page,device){
     return{expected,observed,cards:[...document.querySelectorAll('main .v1-contents-pages [data-card-id]')].map(node=>node.dataset.cardId)};
   });
   assert.equal(census.expected.length,3654,device+' canonical fact denominator changed');
-  assert.equal(census.observed.length,3654,device+' full Contents DOM fact loss or duplication');
-  const actual=new Map(census.observed.map(fact=>[fact.id,fact]));assert.equal(actual.size,3654,device+' full Contents DOM duplicate fact identity');
-  for(const fact of census.expected){const observed=actual.get(fact.id);assert.ok(observed,device+' missing full Contents fact '+fact.id);assert.deepEqual(observed.value,fact.value,device+' wrong fact value '+fact.id);assert.equal(observed.entityId,fact.entityId,device+' wrong fact entity '+fact.id);assert.equal(observed.contextId,fact.contextId,device+' wrong fact context '+fact.id);}
+  // Continuous Contents uses the same curated player projection as individual
+  // entries: 2,281 datasheet leaves + 645 other book leaves. Independent source
+  // classification and exact reachability are guarded by datasheet/app browser
+  // QA; this navigation guard checks their continuous-page ownership/parity.
+  assert.equal(census.observed.length,2926,device+' full Contents player fact loss or duplication');
+  const actual=new Map(census.observed.map(fact=>[fact.id,fact]));assert.equal(actual.size,2926,device+' full Contents DOM duplicate fact identity');
+  const expected=new Map(census.expected.map(fact=>[fact.id,fact]));
+  for(const observed of census.observed){const fact=expected.get(observed.id);assert.ok(fact,device+' unsourced full Contents fact '+observed.id);assert.deepEqual(observed.value,fact.value,device+' wrong fact value '+fact.id);assert.equal(observed.entityId,fact.entityId,device+' wrong fact entity '+fact.id);assert.equal(observed.contextId,fact.contextId,device+' wrong fact context '+fact.id);}
   return{facts:actual.size,cards:new Set(census.cards).size};
 }
 

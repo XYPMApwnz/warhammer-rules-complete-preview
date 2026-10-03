@@ -15,7 +15,32 @@ const app='/books/death-guard/v2/app.html',payloadPath='/books/death-guard/v2/ge
 const inputs=readAppInputs(),payload=buildApp(inputs);
 validatePresentation(payload,inputs.model,inputs.records);
 const expected=enumerateExpectedFacts(inputs.model,inputs.records).map(fact=>({...fact,display:expectedDisplay(fact,inputs.model,inputs.records)}));
-assert.equal(expected.length,3654,'Canonical visible-fact census changed');
+assert.equal(expected.length,3654,'Canonical source-fact census changed');
+const entities=new Map(inputs.model.entities.map(entity=>[entity.id,entity]));
+const recordType=id=>inputs.records.get(id)?.recordType;
+const leaderException=entity=>entity?.kind==='DATASHEET_SECTION'&&entity.data.title==='LEADER'&&entity.data.blocks.some(block=>block.text.split('\n').filter(line=>!/^This model can be attached/.test(line)&&!/^\s*-\s/.test(line)).join('\n').trim());
+const isPlayerDatasheetFact=fact=>{
+  const entity=entities.get(fact.entityId),kind=entity?.kind||recordType(fact.entityId),path=fact.path;
+  if(kind==='DATASHEET'||kind==='PROFILE')return true;
+  if(kind==='WEAPON_PROFILE')return path[0]!=='mode'&&(path[0]!=='abilities'||path.length>1);
+  if(kind==='MODEL_BASE')return path[0]==='text';
+  if(kind==='DATASHEET_SECTION'){
+    if(path[0]==='title')return true;
+    if(path[0]==='blocks'&&path[2]==='text')return entity.data.title!=='LEADER'||leaderException(entity);
+    return path[0]==='qualifications'&&path.at(-1)==='sourceText';
+  }
+  if(['WARGEAR_OPTION','SUPPLEMENTAL_DATASHEET_RULE','WARGEAR_FOOTNOTE'].includes(kind))return path[0]==='text';
+  if(kind==='RULE_REFERENCE')return path[0]==='label';
+  if(kind==='WEAPON_PROFILE_SELECTION')return path[0]==='text'||path.at(-2)==='profileIds';
+  if(kind==='MFM_UNIT_POINTS')return path[0]==='pointSchedules'&&(
+    path[2]==='entries'&&['sourceLabel','value'].includes(path[4])||
+    path[2]==='sourceLabel'&&inputs.records.get(fact.entityId).pointSchedules.length>1);
+  if(kind==='MFM_PAID_UPGRADE')return ['sourceLabel','value'].includes(path[0]);
+  if(kind==='MFM_LEADER_ELIGIBILITY')return path[0]==='targetUnitReferenceIds';
+  return false;
+};
+const playerExpected=expected.filter(isPlayerDatasheetFact);
+assert.equal(playerExpected.length,2281,'Player datasheet fact classification changed');
 
 const allowed=new Map([[app,'text/html'],[payloadPath,'application/json'],
   ['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],
@@ -57,35 +82,55 @@ try{
     page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('404'))errors.push(message.text());});
     await page.goto(origin+app);await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
 
-    // Every canonical fact is still rendered through the ordinary root-entry
-    // journey. This is independent of the renderer's field enumeration.
-    const factsSeen=new Map(),cardsSeen=new Set();let v1Datasheets=0;
-    for(const rootId of payload.groups.flatMap(group=>group.itemIds)){
+    // The ordinary player journey is intentionally curated. It must contain
+    // every player fact and no source-layout, binding, empty-value or MFM
+    // bookkeeping tail.
+    const factsSeen=new Map();let v1Datasheets=0;
+    for(const rootId of inputs.model.entities.filter(entity=>entity.kind==='DATASHEET').map(entity=>entity.id)){
       const observed=await page.evaluate(id=>{
         window.ArmyBookAppV2.open(id);
         const main=document.querySelector('main');
         return {v1:main.querySelector('.v2-current-card')?.classList.contains('unit-card')||false,
           facts:[...main.querySelectorAll('[data-fact-id]')].map(node=>({id:node.dataset.factId,value:JSON.parse(node.dataset.factValue),entityId:node.dataset.entityId,contextId:node.dataset.contextId,text:node.textContent,visible:!!node.getClientRects().length,cardId:node.closest('[data-card-id]')?.dataset.cardId||''})),
-          cards:[...main.querySelectorAll('[data-card-id]')].map(node=>node.dataset.cardId),overflow:document.documentElement.scrollWidth>innerWidth+1};
+          genericTail:main.querySelectorAll('.unit-card .v2-field-sections, .unit-card .v2-fields, .unit-card .v2-field').length,
+          inlineRelated:main.querySelectorAll('.unit-card .v2-compatible').length,
+          relatedFooter:main.querySelectorAll('.unit-card > .ds-related-rules').length,
+          overflow:document.documentElement.scrollWidth>innerWidth+1};
       },rootId);
       assert.equal(observed.overflow,false,`${device} page overflow ${rootId}`);
-      if(inputs.model.entities.find(entity=>entity.id===rootId)?.kind==='DATASHEET'){assert.equal(observed.v1,true,`${device} non-V1 datasheet ${rootId}`);v1Datasheets++;}
+      assert.equal(observed.v1,true,`${device} non-V1 datasheet ${rootId}`);v1Datasheets++;
+      assert.equal(observed.genericTail,0,`${device} generic source tail ${rootId}`);
+      assert.equal(observed.inlineRelated,0,`${device} inline Related Rules rows ${rootId}`);
+      assert.equal(observed.relatedFooter,1,`${device} missing compact Related Rules footer ${rootId}`);
       for(const fact of observed.facts){assert.ok(!factsSeen.has(fact.id),`${device} duplicate visible owner ${fact.id}`);factsSeen.set(fact.id,fact);}
-      observed.cards.forEach(id=>cardsSeen.add(id));
     }
     assert.equal(v1Datasheets,36,`${device} V1 datasheet census`);
-    const missing=expected.filter(fact=>!factsSeen.has(fact.id)).map(fact=>fact.id);
-    assert.equal(factsSeen.size,expected.length,`${device} MISSING_FROM_UI ${JSON.stringify(missing.slice(0,50))}`);
-    assert.equal(cardsSeen.size,payload.cards.filter(card=>card.domain!=='CORE').length,`${device} visible card census`);
-    for(const fact of expected){
+    const missing=playerExpected.filter(fact=>!factsSeen.has(fact.id)).map(fact=>fact.id);
+    const extra=[...factsSeen.keys()].filter(id=>!playerExpected.some(fact=>fact.id===id));
+    assert.equal(factsSeen.size,playerExpected.length,`${device} PLAYER_FACT_MISMATCH missing=${JSON.stringify(missing.slice(0,30))} extra=${JSON.stringify(extra.slice(0,30))}`);
+    for(const fact of playerExpected){
       const observed=factsSeen.get(fact.id);assert.ok(observed,`${device} missing ${fact.id}`);
       assert.deepEqual(observed.value,fact.value,`${device} WRONG_VALUE ${fact.id}`);
-      assert.equal(observed.text,fact.display,`${device} visible WRONG_VALUE ${fact.id}`);
+      if(entities.get(fact.entityId)?.kind!=='RULE_REFERENCE'&&(entities.get(fact.entityId)?.kind!=='WEAPON_PROFILE_SELECTION'||fact.path.at(-2)!=='profileIds'))if(entities.get(fact.entityId)?.kind!=='DATASHEET_SECTION'||fact.path[0]!=='title'){
+        if(entities.get(fact.entityId)?.data?.title!=='LEADER')assert.equal(observed.text,fact.display,`${device} visible WRONG_VALUE ${fact.id}`);
+      }
       assert.equal(observed.entityId,fact.entityId,`${device} WRONG_IDENTITY ${fact.id}`);
       assert.equal(observed.contextId,fact.contextId,`${device} WRONG_CONTEXT ${fact.id}`);
-      assert.equal(observed.cardId,fact.entityId===inputs.model.bookId?fact.contextId:fact.entityId,`${device} WRONG_OWNER ${fact.id}`);
+      const factEntity=entities.get(fact.entityId),mergedSection=factEntity?.kind==='DATASHEET_SECTION'&&(factEntity.data.title==='LEADER'||['title','qualifications'].includes(fact.path[0])&&factEntity.data.title==='ABILITIES'),scheduleHeading=recordType(fact.entityId)==='MFM_UNIT_POINTS'&&fact.path[2]==='sourceLabel',expectedOwner=mergedSection?factEntity.parentId:scheduleHeading?fact.contextId:fact.entityId===inputs.model.bookId?fact.contextId:fact.entityId;
+      assert.equal(observed.cardId,expectedOwner,`${device} WRONG_OWNER ${fact.id}`);
       assert.equal(observed.visible,true,`${device} hidden ${fact.id}`);
     }
+
+    // Source inspection is an explicit QA action. It is lossless and exact,
+    // but is never appended to an ordinary datasheet.
+    const evidenceAll=await page.evaluate(()=>{
+      window.ArmyBookAppV2.renderAllForQA();const main=document.querySelector('main');
+      return [...main.querySelectorAll('[data-fact-id]')].map(node=>({id:node.dataset.factId,value:JSON.parse(node.dataset.factValue),entityId:node.dataset.entityId,contextId:node.dataset.contextId,text:node.textContent,visible:!!node.getClientRects().length,cardId:node.closest('[data-card-id]')?.dataset.cardId||''}));
+    });
+    const sourceIds=new Set(expected.map(fact=>fact.id)),evidence=evidenceAll.filter(fact=>sourceIds.has(fact.id));
+    assert.equal(evidence.length,expected.length,`${device} source-evidence census`);
+    const evidenceById=new Map();for(const fact of evidence){assert.ok(!evidenceById.has(fact.id),`${device} duplicate evidence ${fact.id}`);evidenceById.set(fact.id,fact);}
+    for(const fact of expected){const observed=evidenceById.get(fact.id);assert.ok(observed,`${device} evidence missing ${fact.id}`);assert.deepEqual(observed.value,fact.value,`${device} evidence WRONG_VALUE ${fact.id}`);assert.equal(observed.text,fact.display,`${device} evidence WRONG_DISPLAY ${fact.id}`);assert.equal(observed.entityId,fact.entityId);assert.equal(observed.contextId,fact.contextId);assert.equal(observed.cardId,fact.entityId===inputs.model.bookId?fact.contextId:fact.entityId);assert.equal(observed.visible,true,`${device} hidden evidence ${fact.id}`);}
 
     await page.evaluate(()=>window.ArmyBookAppV2.open('unit-lord-of-contagion'));
     const shell=page.locator('main > article.unit-card');
@@ -109,11 +154,45 @@ try{
       assert.ok(Math.abs(destination.top-destination.line)<3,'V1 phone section menu hidden beneath sticky navigation');
     }
 
+    // Formal Core bindings open the canonical V2 rule, never a copied V1
+    // paragraph or a title/prose lookup.
+    const deepStrike=shell.locator('a[data-target-id="core-deep-strike"]').first();assert.equal(await deepStrike.count(),1);
+    await deepStrike.click();await page.waitForSelector('dialog.v2-detail-dialog[open]');
+    const deepPopup=page.locator('dialog.v2-detail-dialog[open] [data-card-id="core-deep-strike"]');assert.equal(await deepPopup.count(),1);
+    for(const field of payload.cards.find(card=>card.id==='core-deep-strike').fields){
+      const node=deepPopup.locator(`[data-fact-id="${field.id}"]`);assert.equal(await node.count(),1);assert.deepEqual(JSON.parse(await node.getAttribute('data-fact-value')),field.value);
+    }
+    await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForSelector('dialog.v2-detail-dialog[open]',{state:'hidden'});
+
+    // Related Rules is a compact footer action. Rows exist only while its own
+    // native dialog is open and canonical references still use the detail
+    // dialog without leaving a second modal active.
+    assert.equal(await shell.locator(':scope > .ds-related-rules .ds-related-rules-button').count(),1);
+    await page.evaluate(()=>window.ArmyBookAppV2.openRelatedRules('unit-lord-of-contagion'));
+    await page.waitForSelector('dialog.v2-related-dialog[open]');
+    const relatedDialog=page.locator('dialog.v2-related-dialog[open]');assert.ok(await relatedDialog.locator('.v2-compatible-item').count()>0);
+    assert.equal(await page.locator('main .v2-compatible-item').count(),0);
+    const relatedReference=relatedDialog.locator('a.v2-reference').first();assert.ok(await relatedReference.count()>0);await relatedReference.click();
+    await page.waitForSelector('dialog.v2-detail-dialog[open]');assert.equal(await page.locator('dialog.v2-related-dialog[open]').count(),0);
+    await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForSelector('dialog.v2-detail-dialog[open]',{state:'hidden'});
+
+    // Multi-copy schedules stay grouped: the same model-count captions have
+    // different prices in each tier and are meaningless if flattened.
+    await page.evaluate(()=>window.ArmyBookAppV2.open('unit-deathshroud-terminators'));
+    const costs=page.locator('main > .unit-card .ds-cost');
+    for(const [index,label,values] of [[0,'YOUR 1ST TO 2ND UNITS COST',[150,305]],[1,'YOUR 3RD + UNIT COSTS',[160,315]]]){
+      const heading=costs.locator(`[data-fact-id$="/pointSchedules/${index}/sourceLabel"]`);assert.equal(await heading.count(),1);assert.equal(await heading.textContent(),label);
+      const tier=heading.locator('xpath=ancestor::*[contains(concat(" ", normalize-space(@class), " "), " ds-cost-schedule ")][1]');assert.equal(await tier.count(),1);
+      for(const [entry,value] of values.entries())assert.equal(JSON.parse(await tier.locator(`[data-fact-id$="/pointSchedules/${index}/entries/${entry}/value"]`).getAttribute('data-fact-value')),value);
+      assert.equal(await tier.locator(`[data-fact-id*="/pointSchedules/${1-index}/entries/"]`).count(),0);
+    }
+
     assert.equal(await page.evaluate(text=>window.ArmyBookAppV2.roster.import(text).status,mega),'READY');
     await page.evaluate(()=>{const app=window.ArmyBookAppV2,r=app.roster,s=r.snapshot();s.warlordInstanceId='parsed-unit-1';s.units.forEach(unit=>unit.warlord=unit.instanceId==='parsed-unit-1');r.load(s);r.attach('parsed-unit-1','parsed-unit-2');app.rosterPanel.refresh();app.openPersonalGuide();app.openInstance('parsed-unit-1');});
     await page.waitForFunction(()=>document.querySelector('main > .unit-card')?.dataset.rosterInstanceId==='parsed-unit-1');
     const lord=page.locator('main > .unit-card[data-roster-instance-id="parsed-unit-1"]');
-    const lordText=await lord.innerText();assert.match(lordText,/Warlord/i);assert.match(lordText,/Furnace of Plagues/i);assert.match(lordText,/Attached to Deathshroud Terminators #1/i);assert.match(lordText,/Paragons of Putrescence/i);assert.match(lordText,/Virulent Vectorium/i);
+    const lordText=await lord.innerText();assert.match(lordText,/Warlord/i);assert.match(lordText,/Furnace of Plagues/i);assert.match(lordText,/Leading:\s*Deathshroud Terminators/i);assert.doesNotMatch(lordText,/Deathshroud Terminators #/i);
+    assert.deepEqual(new Set(await page.evaluate(()=>window.ArmyBookAppV2.roster.state.detachmentIds)),new Set(['detachment-paragons-of-putrescence','detachment-virulent-vectorium']));
     const expectedChanges=[
       [lordWeapons[0],'attacks','6','5','1'],[lordWeapons[0],'strength','10','9','1'],
       [lordWeapons[1],'attacks','11','10','1'],[lordWeapons[1],'strength','7','6','1']
@@ -168,10 +247,10 @@ try{
     const globals=await page.evaluate(()=>({projection:typeof window.WH_ARMY_ROSTER_PROJECTION,game:typeof window.WH_ARMY_ROSTER_GAME_PROJECTION,context:typeof window.WH_ARMY_ROSTER_CONTEXT,guide:typeof window.DG_ROSTER_GUIDE,legacyRelated:typeof window.WHArmyRelatedRules}));
     assert.deepEqual(globals,{projection:'undefined',game:'undefined',context:'undefined',guide:'undefined',legacyRelated:'undefined'});
     assert.deepEqual(errors,[],`${device} browser errors`);
-    results.push({device,status:'PASS',visibleFacts:factsSeen.size,v1Datasheets,markup:'V1',megaBreakdowns:4,fnp:'PASS',physicalScopes:4,popup:'EFFECTIVE',attachmentControls:2,legacyGlobals:0});
+    results.push({device,status:'PASS',playerFacts:factsSeen.size,sourceEvidenceFacts:evidence.length,v1Datasheets,markup:'V1',megaBreakdowns:4,fnp:'PASS',physicalScopes:4,popup:'EFFECTIVE',attachmentControls:2,legacyGlobals:0});
     await context.close();
   }
   assert.deepEqual(legacyRequests,[],'Legacy factual/runtime/compatibility browser read');
   assert.deepEqual(unexpected,[],'Unexpected browser dependency');
-  console.log(JSON.stringify({status:'PASS',results,visibleFacts:expected.length,legacyReads:0,requestedPaths:[...new Set(requests)]},null,2));
+  console.log(JSON.stringify({status:'PASS',results,sourceFacts:expected.length,playerDatasheetFacts:playerExpected.length,legacyReads:0,requestedPaths:[...new Set(requests)]},null,2));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

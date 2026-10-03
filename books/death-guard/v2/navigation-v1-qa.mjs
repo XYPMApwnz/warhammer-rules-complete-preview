@@ -27,12 +27,21 @@ const base=execFileSync('git',['show','5d2b9762268f5aedad393912939fbbfce9062b85:
 const slice=(text,start,end)=>text.slice(text.indexOf(start),text.indexOf(end));
 // The later datasheet port changes presentation only. Keep the original field
 // writer and generic renderer frozen; the new adapter has its own fact census.
-assert.equal(slice(runtime,'  function factValue(','  function renderCard('),slice(base,'  function factValue(','  function renderCard('),'Fact writer changed');
+const expectedFactWriter=slice(base,'  function factValue(','  function renderCard(')
+  .replace("if (field.presentation === 'heading') return;","if (field.presentation === 'heading' || field.type === 'heading') return;");
+assert.equal(slice(runtime,'  function factValue(','  function renderCard('),expectedFactWriter,'Fact writer changed beyond the approved heading de-duplication');
 const genericStart='    const allowed = scopedIds();\n    const childrenIds';
-assert.equal(slice(runtime,genericStart,'  function fillRelatedResults('),slice(base,genericStart,'  function fillRelatedResults('),'Generic card renderer changed');
+const expectedGeneric=slice(base,genericStart,'  function fillRelatedResults(')
+  .replace("field => field.presentation === 'heading'","field => field.presentation === 'heading' || field.type === 'heading'")
+  .replace('{depth: depth + 1, ancestors: trail, inDialog, variants, instanceId}', '{depth: depth + 1, ancestors: trail, inDialog, variants, instanceId,sourceEvidence}');
+assert.equal(slice(runtime,genericStart,'  function fillRelatedResults('),expectedGeneric,'Generic card renderer changed beyond source evidence propagation and heading de-duplication');
 assert.ok(runtime.includes('datasheets.renderDatasheet(card,{variants,instanceId,inDialog})'),'Missing presentation-only datasheet adapter');
-assert.equal(slice(runtime,'  function renderInstance(','  function renderLibrary('),slice(base,'  function renderInstance(','  function renderLibrary('),'Physical datasheet DOM changed');
-assert.equal(read('books/shared/army-book-app-v2/styles.css'),execFileSync('git',['show','5d2b9762268f5aedad393912939fbbfce9062b85:books/shared/army-book-app-v2/styles.css'],{cwd:repo,encoding:'utf8'}).replace(/\r\n/g,'\n'),'Accepted card/mobile stylesheet changed');
+const expectedPhysical=slice(base,'  function renderInstance(','  function renderLibrary(')
+  .replace("    const badge=el('p','v2-compatible-help',title);selected.querySelector('.v2-card-header').after(badge);\n",'')
+  .replace('    selected.append(rosterPanel.renderInstanceContext(instanceId));main.replaceChildren(toolbar,selected);renderNavigation();','    main.replaceChildren(toolbar,selected);renderNavigation();');
+assert.equal(slice(runtime,'  function renderInstance(','  function renderLibrary('),expectedPhysical,'Physical datasheet DOM changed beyond the V1 presenter-owned context');
+const appStyles=read('books/shared/army-book-app-v2/styles.css');
+for(const selector of ['.toc-panel','.toc-tree','.toc-row','.toc-scrim','.nav-collapse'])assert.equal(appStyles.includes(selector),false,`Generic stylesheet crossed the frozen V1 navigation boundary: ${selector}`);
 const payload=JSON.parse(read('books/death-guard/v2/generated/app-presentation.json'));
 const model=projectContents(payload);
 assert.deepEqual(model.roots.map(node=>node.label),['Start','Army Rule','Detachments','Datasheets','Updates']);

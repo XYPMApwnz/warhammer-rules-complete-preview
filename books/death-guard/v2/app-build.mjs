@@ -5,6 +5,7 @@ import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {buildRelatedRules} from './related-rules-build.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {buildGlossaryProjection} from './glossary-build.mjs';
+import {buildDatasheetReferenceBindings} from './presentation-reference-build.mjs';
 import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datasheet-v1.mjs';
 
 export function readAppInputs() {
@@ -29,6 +30,7 @@ export function buildApp(inputs=readAppInputs()) {
   payload.cards.push(...glossary.coreCards);
   payload.glossary=glossary.index;
   payload.datasheetPresentation=buildDatasheetPresentation(inputs.model,inputs.artwork || JSON.parse(fs.readFileSync(new URL('../presentation/unit-images.json',import.meta.url),'utf8')));
+  payload.datasheetPresentation.referenceBindings=buildDatasheetReferenceBindings(payload.cards);
   return payload;
 }
 export function writeApp({check=false}={}) {

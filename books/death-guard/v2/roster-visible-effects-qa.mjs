@@ -115,9 +115,14 @@ Enhancement: Furnace of Plagues (+25 pts)
       for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(id,ability,attached);
     }
     await metric(profileId(LOC),'contagionRange',3,12);
-    assert.equal((await page.locator('main [data-roster-context-instance-id="parsed-unit-1"]').innerText()).includes('Attached to Deathshroud Terminators #1'),attached);
+    const leaderContext=await page.locator('main [data-roster-context-instance-id="parsed-unit-1"]').innerText();
+    assert.equal(leaderContext.includes('Leading: Deathshroud Terminators'),attached);
+    assert.equal(leaderContext.includes('Deathshroud Terminators #'),false,'Single bodyguard received a duplicate-only suffix');
+    assert.equal(await api(()=>window.ArmyBookAppV2.roster.state.attachments.some(row=>row.leaderInstanceId==='parsed-unit-1'&&row.bodyguardInstanceId==='parsed-unit-2')),attached);
     await open('parsed-unit-2');await keyword(DS,'CHARACTER',attached);
-    assert.equal((await page.locator('main [data-roster-context-instance-id="parsed-unit-2"]').innerText()).includes('Led by Lord of Contagion #1'),attached);
+    const bodyguardContext=await page.locator('main [data-roster-context-instance-id="parsed-unit-2"]').innerText();
+    assert.equal(bodyguardContext.includes('Led by Lord of Contagion'),attached);
+    assert.equal(bodyguardContext.includes('Lord of Contagion #'),false,'Single leader received a duplicate-only suffix');
     for(const [index,id]of dsWeapons.entries()){
       await stat(id,'attacks',index===0?'4':'8');await stat(id,'strength',index===0?'8':'4');
       await weaponAbility(id,'LETHAL HITS');await weaponAbility(id,'DEVASTATING WOUNDS',false);
@@ -172,21 +177,25 @@ Created with newrecruit.eu v36.31`;
   await attach('parsed-unit-1','parsed-unit-3');await open('parsed-unit-1');
   const membership=await api(()=>window.ArmyBookAppV2.roster.effective('parsed-unit-1').formedUnit);assert.deepEqual(new Set(membership.memberInstanceIds),new Set(['parsed-unit-1','parsed-unit-3']));
   const lordContext=page.locator('main [data-roster-context-instance-id="parsed-unit-1"]');
-  assert((await lordContext.innerText()).includes('Attached to Deathshroud Terminators #1'),`${device}: actual attached physical Bodyguard absent from Reader context`);
+  assert((await lordContext.innerText()).includes('Leading: Deathshroud Terminators #1'),`${device}: actual attached physical Bodyguard absent from Reader context`);
   await modelAbility(profileId(LOC),'Feel No Pain',4);
   for(const id of lordWeapons)for(const ability of ['LETHAL HITS','SUSTAINED HITS 1','LANCE'])await weaponAbility(id,ability);
   await mark(1,4);
   await api(()=>localStorage.setItem(window.ArmyBookAppV2.rosterPanel.storageKey,JSON.stringify(window.ArmyBookAppV2.roster.snapshot())));
-  // The rendered child permalink opens a Reader page, not a dialog; preserve
-  // the current physical projection on that real navigation path as well.
-  await page.locator(`main [data-card-id="${lordWeapons[0]}"] .v2-permalink`).click();
-  await page.waitForFunction(id=>document.querySelector('main [data-card-id="'+id+'"]')?.getClientRects().length,lordWeapons[0]);
-  for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(lordWeapons[0],ability);
+  // The V1 weapon name opens the scope-aware native detail route. Preserve its
+  // physical projection and active effects through a real reload.
+  const physicalWeapon=page.locator(`main [data-card-id="${lordWeapons[0]}"] a[data-popup-identity]`).first();
+  const physicalScope=await physicalWeapon.getAttribute('data-composition-id');await physicalWeapon.click();
+  await page.waitForSelector('dialog.v2-detail-dialog[open]');
+  let physicalDetail=page.locator(`dialog.v2-detail-dialog[open] [data-card-id="${lordWeapons[0]}"]`);assert.equal(await physicalDetail.getAttribute('data-roster-instance-id'),'parsed-unit-1');assert.equal(await physicalDetail.getAttribute('data-composition-id'),physicalScope);
+  for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(lordWeapons[0],ability,true,{detail:true});
   await page.reload();await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
-  await page.waitForFunction(id=>document.querySelector('main [data-card-id="'+id+'"]')?.dataset.rosterInstanceId==='parsed-unit-1',lordWeapons[0]);
+  await page.waitForSelector('dialog.v2-detail-dialog[open]');physicalDetail=page.locator(`dialog.v2-detail-dialog[open] [data-card-id="${lordWeapons[0]}"]`);assert.equal(await physicalDetail.getAttribute('data-roster-instance-id'),'parsed-unit-1');assert.equal(await physicalDetail.getAttribute('data-composition-id'),physicalScope);
+  for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(lordWeapons[0],ability,true,{detail:true});
+  await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('.v2-detail-dialog')?.open);
   for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(lordWeapons[0],ability);
-  await page.goBack();await page.waitForFunction(()=>document.querySelector('main .v2-current-card')?.dataset.cardId==='unit-lord-of-contagion');assert((await card(profileId(LOC))).some(row=>/Feel No Pain\s*:?\s*4\+/i.test(row.text)),`${device}: Back lost effective MODEL ability`);
-  await page.goForward();await page.waitForFunction(id=>document.querySelector('main [data-card-id="'+id+'"]')?.dataset.rosterInstanceId==='parsed-unit-1',lordWeapons[0]);await weaponAbility(lordWeapons[0],'LANCE');
+  assert.equal(await page.locator('main .v2-current-card').getAttribute('data-roster-instance-id'),'parsed-unit-1');assert((await card(profileId(LOC))).some(row=>/Feel No Pain\s*:?\s*4\+/i.test(row.text)),`${device}: Back lost effective MODEL ability`);
+  await page.goForward();await page.waitForSelector('dialog.v2-detail-dialog[open]');await weaponAbility(lordWeapons[0],'LANCE',true,{detail:true});await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('.v2-detail-dialog')?.open);
   await open('parsed-unit-1');await api(id=>window.ArmyBookAppV2.showDetail(id),lordWeapons[0]);
   await page.waitForFunction(()=>document.querySelector('.v2-detail-dialog')?.open);
   for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(lordWeapons[0],ability,true,{detail:true});

@@ -3,7 +3,7 @@
 
 /* V1's palette belongs to datasheets and datasheet details. The surrounding
    V2 application keeps its existing navigation and generic-card palette. */
-:where(.unit-card.surface, .v2-detail-dialog:has(.unit-card), .v2-detail-dialog:has(.popup-weapon-profile)) {
+:where(.unit-card.surface, .v2-detail-dialog:has(.unit-card), .v2-detail-dialog:has(.popup-weapon-profile), .v2-related-dialog) {
   color-scheme: dark;
   --ds-ui: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   --ds-data: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -207,6 +207,163 @@
 .unit-card .weapon-row .ds-modifier-breakdown { font-size: 8px; }
 .unit-card .statline .ds-modifier-breakdown { margin-top: 4px; font-size: 8px; }
 
+/* Personal-roster state remains part of the datasheet header rather than
+   becoming a second card below the V1 presentation. */
+.unit-card .ds-roster-context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin: 0;
+  padding: 8px 28px;
+  color: var(--muted);
+  font: 650 13px/1.45 var(--ds-ui);
+  letter-spacing: .025em;
+}
+.unit-card .ds-roster-context > * { margin: 0; }
+.unit-card .ds-roster-context :is(a, .v2-reference) {
+  display: inline;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--green);
+  font: inherit;
+  text-decoration: underline dotted var(--green-deep) 1px;
+  text-underline-offset: 3px;
+}
+.unit-card .ds-roster-badge {
+  padding: 3px 6px;
+  border: 1px solid color-mix(in srgb, var(--bronze-bright) 52%, transparent);
+  color: var(--bronze-bright);
+  font: 800 9px/1 var(--ds-data);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Cost choices stay legible in the header without overpowering the unit
+   identity or forcing a second full-width row. */
+.unit-card.ds-layout .points.ds-cost {
+  width: min(100%, 520px);
+  max-width: 520px;
+  min-width: 0;
+  justify-self: end;
+}
+.unit-card.ds-layout .ds-cost-grid { grid-template-columns: repeat(auto-fit, minmax(min(112px, 100%), 1fr)); }
+.unit-card.ds-layout .ds-cost-cell { padding: 11px 13px; }
+.unit-card.ds-layout .ds-cost-cell strong { margin-top: 5px; font-size: 23px; }
+.unit-card .ds-cost-schedule { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-column: 1 / -1; }
+.unit-card .ds-cost-schedule > small { grid-column: 1 / -1; padding: 6px 12px; font: 700 9px/1.4 var(--ds-data); color: var(--muted); }
+
+/* Effective roster effects are a compact factual footer. */
+.unit-card .ds-effect-summary {
+  margin: 0;
+  padding: 14px 28px 16px;
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--green) 4%, transparent);
+  color: var(--muted);
+  font: 600 13px/1.5 var(--ds-ui);
+}
+.unit-card .unit-part > h4 .v2-field-value { font: inherit; color: inherit; }
+.unit-card .ds-effective-metric { margin: 0; padding: 6px 14px; font: 600 12px/1.4 var(--ds-ui); }
+.unit-card .ds-effective-metric .v2-field-value { font: inherit; }
+.unit-card .ds-effect-summary p { margin: 6px 0; }
+.unit-card .ds-effect-summary > :first-child { margin-top: 0; }
+.unit-card .ds-effect-summary > :last-child { margin-bottom: 0; }
+.unit-card details.ds-effect-summary > summary {
+  color: var(--green);
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.unit-card .ds-related-rules {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 14px 28px 16px;
+  border-top: 1px solid var(--line);
+  background: rgba(0,0,0,.13);
+}
+.unit-card .ds-related-rules > :is(p, span) { margin: 0 auto 0 0; color: var(--muted); font-size: 11px; }
+.unit-card .ds-related-rules button {
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--green) 42%, var(--line));
+  border-radius: 0;
+  background: color-mix(in srgb, var(--green) 8%, var(--panel));
+  color: var(--ink);
+  font: 800 10px/1.2 var(--ds-data);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.unit-card .ds-related-rules button:hover { border-color: var(--pink); background: color-mix(in srgb, var(--pink) 7%, var(--panel)); }
+
+/* Related rules use the same dark native-dialog language as V1 full-entry
+   popups, scoped so generic V2 dialogs retain their existing presentation. */
+.v2-related-dialog {
+  width: min(760px, calc(100vw - 48px));
+  max-width: min(760px, calc(100vw - 48px));
+  max-height: calc(100dvh - 64px);
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-top: 4px solid var(--green-deep);
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 100% 0, rgba(213,72,142,.1), transparent 280px),
+    var(--panel);
+  color: var(--ink);
+  box-shadow: 0 40px 120px rgba(0,0,0,.88), 0 0 0 1px rgba(199,174,117,.36);
+}
+.v2-related-dialog::backdrop { background: rgba(4,7,4,.84); backdrop-filter: blur(3px); }
+.v2-related-dialog[open] { display: flex; flex-direction: column; }
+.v2-related-dialog .v2-dialog-bar {
+  border-bottom: 1px solid var(--line);
+  background: rgba(10,14,11,.86);
+  color: var(--ink);
+}
+.v2-related-dialog .v2-dialog-bar .v2-icon-button {
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--panel-2);
+  color: var(--ink);
+}
+.v2-related-dialog .v2-dialog-content {
+  padding: 22px 24px 26px;
+  overflow: auto;
+  scrollbar-color: var(--green-deep) var(--bg);
+}
+.v2-related-dialog :is(h2, h3) { margin: 0 0 16px; color: var(--ink); font: 700 25px/1.1 Georgia, "Times New Roman", serif; }
+.v2-related-dialog label { display: grid; gap: 7px; color: var(--muted); font: 800 10px/1.3 var(--ds-data); letter-spacing: .07em; text-transform: uppercase; }
+.v2-related-dialog select {
+  min-height: 42px;
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--panel-2);
+  color: var(--ink);
+}
+.v2-related-dialog :is(ul, .v2-roster-list) { display: grid; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.v2-related-dialog :is(li, .v2-roster-list > li) { padding: 11px 12px; border: 1px solid var(--line); background: rgba(0,0,0,.14); }
+.v2-related-dialog .v2-compatible { padding: 0; border: 0; }
+.v2-related-dialog :is(.v2-compatible-help, .v2-compatible-detachment) { color: var(--muted); }
+.v2-related-dialog .v2-compatible-item { border-radius: 0; }
+.v2-related-dialog .v2-reference {
+  color: var(--green);
+  background: var(--panel-2);
+  border-color: var(--line);
+  border-radius: 0;
+  font: 700 11px/1.4 var(--ds-ui);
+}
+.v2-related-dialog .v2-reference:hover { background: color-mix(in srgb, var(--green) 10%, var(--panel)); border-color: var(--green-deep); }
+.v2-related-dialog .v2-applicability { border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.v2-related-dialog .v2-applicability-match { color: var(--green); }
+.v2-related-dialog .v2-applicability-conditional { color: var(--bronze-bright); }
+
 /* Native V2 detail dialogs use the V1 full-entry surface when their content
    is a datasheet. Other V2 detail cards keep the generic light treatment. */
 .v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile)) {
@@ -336,6 +493,11 @@
     text-rendering: auto;
     box-shadow: inset 0 1px rgba(255,255,255,.04), inset 0 -1px rgba(0,0,0,.48);
   }
+  .unit-card .ds-effect-summary,
+  .unit-card .ds-related-rules { padding-inline: 15px; }
+  .unit-card .ds-related-rules { align-items: stretch; flex-direction: column; }
+  .unit-card .ds-related-rules > :is(p, span) { margin-right: 0; }
+  .unit-card .ds-related-rules button { width: 100%; }
   .v2-detail-dialog:has(.unit-card) {
     width: 100%;
     height: 100%;
@@ -345,6 +507,12 @@
     border: 0;
   }
   .v2-detail-dialog:has(.unit-card) .v2-dialog-content { padding: 10px; }
+  .v2-related-dialog {
+    width: calc(100vw - 20px);
+    max-width: calc(100vw - 20px);
+    max-height: calc(100dvh - 24px);
+  }
+  .v2-related-dialog .v2-dialog-content { padding: 18px 16px 22px; }
 }
 
 @media (max-width: 480px) {

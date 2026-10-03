@@ -56,11 +56,15 @@ const observe=(page,scope)=>page.evaluate(scope=>{
   const nodes=[...new Set(roots.flatMap(node=>[...node.querySelectorAll('[data-fact-id]')]))];
   return {targetId:article?.dataset.cardId,text:article?.textContent,facts:nodes.map(node=>({id:node.dataset.factId,value:JSON.parse(node.dataset.factValue),entityId:node.dataset.entityId,contextId:node.dataset.contextId,text:node.textContent,cardId:node.closest('[data-card-id]').dataset.cardId,visible:!!node.getClientRects().length})).sort((a,b)=>a.id.localeCompare(b.id)),dialogs:document.querySelectorAll('dialog[open]').length,overflow:document.documentElement.scrollWidth>innerWidth+1};
 },scope);
-const assertFacts=(observed,id)=>{
+const expectedReaderIds=id=>{
+  const card=cards.get(id);if(card?.kind!=='DATASHEET_SECTION')return expectedIds(id);
+  return new Set(card.fields.filter(field=>/^\/blocks\/\d+\/text$/.test(field.source?.path||'')||/^\/qualifications\/\d+\/value\/sourceText$/.test(field.source?.path||'')).map(field=>field.id));
+};
+const assertFacts=(observed,id,{reader=false}={})=>{
   assert.equal(observed.targetId,id,activeStep+' canonical popup resolver');
   assert.equal(observed.overflow,false,activeStep+' horizontal overflow');
   assert.equal(new Set(observed.facts.map(fact=>fact.id)).size,observed.facts.length,activeStep+' duplicate factual owner');
-  assert.deepEqual(new Set(observed.facts.map(fact=>fact.id)),expectedIds(id),activeStep+' incomplete canonical definition');
+  assert.deepEqual(new Set(observed.facts.map(fact=>fact.id)),reader?expectedReaderIds(id):expectedIds(id),activeStep+' incomplete canonical definition');
   for(const node of observed.facts) {
     const fact=sourceFacts.get(node.id);assert.ok(fact,activeStep+' unsourced visible fact '+node.id);
     assert.deepEqual(node.value,fact.value,activeStep+' wrong canonical value '+node.id);assert.equal(node.text,fact.display,activeStep+' wrong visible text '+node.id);
@@ -132,11 +136,13 @@ try {
     for(const ruleId of relatedIds) {
       activeStep=device+'/related-parity/'+ruleId;
       const row=payload.relatedRules.rows.find(row=>row.ruleId===ruleId&&['MATCH','CONDITIONAL'].includes(row.applicability));
-      await page.evaluate(id=>window.ArmyBookAppV2.open(id),row.unitId);await page.locator('main .v2-detachment-filter').selectOption('');
-      await page.locator('main .v2-compatible-item a').evaluateAll((nodes,id)=>nodes.find(node=>node.dataset.targetId===id).setAttribute('data-qa-related-target','current'),ruleId);
+      await page.evaluate(id=>{window.ArmyBookAppV2.open(id);window.ArmyBookAppV2.openRelatedRules(id);},row.unitId);await page.waitForSelector('dialog.v2-related-dialog[open]');
+      await page.locator('dialog.v2-related-dialog[open] .v2-detachment-filter').selectOption('');
+      await page.locator('dialog.v2-related-dialog[open] .v2-compatible-item a').evaluateAll((nodes,id)=>nodes.find(node=>node.dataset.targetId===id).setAttribute('data-qa-related-target','current'),ruleId);
       await page.locator('[data-qa-related-target="current"]').click();await page.waitForSelector('dialog[open]');
-      const related=await observe(page,'dialog[open]');assertFacts(related,ruleId);assert.deepEqual(comparable(related),snapshots.get(ruleId),activeStep+' Related/Glossary full definition mismatch');
-      await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});relatedParityChecks++;
+      assert.equal(await page.locator('dialog.v2-related-dialog[open]').count(),0,'Related dialog remained open behind canonical detail');
+      const related=await observe(page,'dialog.v2-detail-dialog[open]');assertFacts(related,ruleId);assert.deepEqual(comparable(related),snapshots.get(ruleId),activeStep+' Related/Glossary full definition mismatch');
+      await page.keyboard.press('Escape');await page.waitForSelector('dialog.v2-detail-dialog[open]',{state:'hidden'});relatedParityChecks++;
     }
     // Query and popup history survive refresh and both directions of navigation.
     const named=payload.glossary.entries.find(entry=>entry.aliases.some(alias=>alias.label==='Foul Infusion'));
@@ -153,7 +159,7 @@ try {
       await page.goForward();await page.waitForSelector('dialog[open]');assertFacts(await observe(page,'dialog[open]'),targetId);await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});historyChecks++;
       await page.reload();await ready(page);await page.waitForSelector('main .v2-glossary');assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),query);reloadChecks++;
       await page.evaluate(()=>window.ArmyBookAppV2.openGlossary());assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),'','Fresh Glossary open must clear prior query');
-      await page.goto(origin+appPath+'#'+encodeURIComponent(targetId));await ready(page);assertFacts(await observe(page,'main .v2-current-card'),targetId);await page.reload();await ready(page);assertFacts(await observe(page,'main .v2-current-card'),targetId);reloadChecks++;
+      await page.goto(origin+appPath+'#'+encodeURIComponent(targetId));await ready(page);assertFacts(await observe(page,'main .v2-current-card'),targetId,{reader:true});await page.reload();await ready(page);assertFacts(await observe(page,'main .v2-current-card'),targetId,{reader:true});reloadChecks++;
     }
     activeStep=device+'/glossary-deep-link';await page.goto(origin+appPath+'#view-glossary');await ready(page);assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),'');assert.equal(await page.locator('.v2-glossary-result').count(),census.entries);await page.reload();await ready(page);assert.equal(await page.locator('.v2-glossary-result').count(),census.entries);reloadChecks++;
     await search('Foul Infusion',named.targetId);
@@ -200,8 +206,8 @@ try {
       await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});
       if(control.targetId===stratagemId) {
         const row=payload.relatedRules.rows.find(row=>row.ruleId===stratagemId&&['MATCH','CONDITIONAL'].includes(row.applicability));assert.ok(row,'Missing canonical Related sensitivity control');
-        await page.evaluate(id=>window.ArmyBookAppV2.open(id),row.unitId);await page.locator('main .v2-detachment-filter').selectOption('');
-        await page.locator('main .v2-compatible-item a').evaluateAll((nodes,id)=>nodes.find(node=>node.dataset.targetId===id).setAttribute('data-qa-poison-related','current'),stratagemId);
+        await page.evaluate(id=>{window.ArmyBookAppV2.open(id);window.ArmyBookAppV2.openRelatedRules(id);},row.unitId);await page.locator('dialog.v2-related-dialog[open] .v2-detachment-filter').selectOption('');
+        await page.locator('dialog.v2-related-dialog[open] .v2-compatible-item a').evaluateAll((nodes,id)=>nodes.find(node=>node.dataset.targetId===id).setAttribute('data-qa-poison-related','current'),stratagemId);
         await page.locator('[data-qa-poison-related="current"]').click();await page.waitForSelector('dialog[open]');assert.equal(await page.locator('dialog[open] '+selector).textContent(),control.value);assert.deepEqual(comparable(await observe(page,'dialog[open]')),comparable(reader),'Source sensitivity lost Related/Reader/Glossary shared definition');await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});
       }
     }

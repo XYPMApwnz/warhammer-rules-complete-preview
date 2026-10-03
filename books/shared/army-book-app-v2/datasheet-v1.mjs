@@ -33,7 +33,7 @@ const pointerKey=field=>field.source?.path?.slice(1).split('/')[0];
 const single=(card,key)=>card.fields.find(f=>f.source?.path==='/'+key);
 const domKey=value=>encodeURIComponent(value).replace(/%/g,'_');
 
-export function createDatasheetPresenter({document,payload,cards,el,factValue,renderFields,renderCard,anchor,showDetail,related,roster,navigateSection}) {
+export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,related,roster,navigateSection}) {
   const config=payload.datasheetPresentation;
   if (config?.schema!=='army-book-app-v2/datasheet-layout') throw new TypeError('Missing V2 datasheet layout metadata');
   const identity=(node,card,instanceId)=>{
@@ -51,8 +51,6 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,re
     return link;
   };
   const heading=(card,tag='h4')=>{const field=card.fields.find(f=>f.presentation==='heading');return field?factValue(tag,field):el(tag,'',card.title);};
-  const remainder=(card,used)=>renderFields(card.fields.filter(f=>!used.has(f.id)));
-  const details=(card)=>{if(card.note) {const note=el('aside','v2-annotations',typeof card.note==='string'?card.note:card.note.text);return note;}return null;};
   const modifiers=(card,field,instanceId)=>{
     if(!instanceId)return null;
     const trace=roster.effective(instanceId).applied.filter(change=>change.operation==='MODIFY_STAT'&&change.field===pointerKey(field)&&
@@ -79,15 +77,16 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,re
       const change=modifiers(card,field,instanceId);if(change)stat.append(change);line.append(stat);used.add(field.id);
     }
     box.append(line);
-    for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterAbilities/'))){const pill=el('div','ds-granted-ability');pill.append(el('b','',field.label.replace(/:\s*$/,'')+' '),factValue('span',field));box.append(pill);used.add(field.id);}
-    if(card.rosterQuantity!==undefined)box.append(el('p','ds-profile-quantity',`${card.rosterQuantity} models in this profile`));
-    const other=remainder(card,used);if(other.children.length)box.append(other);
+    for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterAbilities/'))){const pill=el('div','ds-granted-ability');if(field.value?.value!==undefined)pill.append(el('b','',field.label.replace(/:\s*$/,'')+' '));pill.append(factValue('span',field));box.append(pill);used.add(field.id);}
+    for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterMetrics/'))){
+      const metric=el('p','ds-effective-metric');metric.append(el('b','',field.label+': '),factValue('span',field));box.append(metric);
+    }
     for(const id of card.children || []){
       const child=cards.get(id);
       if(child.kind==='MODEL_BASE'){
         const base=identity(el('div','profile-base'),child,instanceId);base.append(el('b','','Base: '));
-        for(const field of child.fields){base.append(factValue('span',field),document.createTextNode(' '));}box.append(base);
-      }else box.append(renderCard(child,{inDialog,instanceId}));
+        base.append(factValue('span',single(child,'text')));box.append(base);
+      }
     }
     return box;
   };
@@ -99,15 +98,13 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,re
     link.classList.add('weapon-button');link.classList.remove('v2-reference');
     if(name){link.append(factValue('span',name));used.add(name.id);}else link.textContent=card.title;
     nameLine.append(link);nameCell.append(nameLine);
-    if(!popup){const permalink=anchor('↗',card.id);permalink.className='v2-permalink ds-profile-permalink';permalink.setAttribute('aria-label',`Open ${card.title} profile`);nameLine.append(permalink);}
     const tags=el('div','weapon-tags');
-    for(const field of card.fields.filter(f=>pointerKey(f)==='abilities')){
+    for(const field of card.fields.filter(f=>pointerKey(f)==='abilities'&&!(Array.isArray(f.value)&&!f.value.length))){
       const target=coreTargets[abilityCode(field.value)];const chip=target&&cards.has(target)?anchor('',target,true):el('span');
       chip.classList.add('tag','weapon-tag');chip.append(factValue('span',field));tags.append(chip);used.add(field.id);
     }
     nameCell.append(tags);
-    if(mode){const caption=factValue('small',mode);caption.classList.add('ds-weapon-mode');nameCell.append(caption);used.add(mode.id);}
-    if(card.rosterQuantity!==undefined)nameCell.append(el('small','ds-weapon-quantity',`${card.rosterQuantity} selected`));
+    if(card.rosterQuantity!==undefined)nameLine.append(el('small','ds-weapon-quantity',` ×${card.rosterQuantity}`));
     if(popup) {const h=el('h3');h.append(nameCell);row.append(h);}else row.append(nameCell);
     const fieldLabels={range:'Range',attacks:'A',skill:mode?.value==='melee'?'WS':'BS',strength:'S',ap:'AP',damage:'D'};
     let table,body;
@@ -121,7 +118,6 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,re
       (popup?body:row).append(cell);used.add(field.id);
     }
     if(popup)row.append(table);
-    const extra=remainder(card,used);if(extra.children.length)row.append(extra);
     return row;
   };
   const renderSection=(card,{instanceId,inDialog=false}={})=>{
@@ -140,13 +136,13 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,re
         if(colon>0){value.replaceChildren();const label=scopedAnchor(text.slice(0,colon+1),card,instanceId,field.source.path);value.append(label,document.createTextNode(text.slice(colon+1)));}
       }
       content.append(value);used.add(field.id);
-      const flag=card.fields.find(f=>f.source?.path===field.source.path.replace(/text$/,'wargearAbility'));
-      if(flag){const badge=factValue('small',flag);badge.classList.add('ds-ability-kind');content.append(badge);used.add(flag.id);}
       list.append(content);
     }
-    section.append(list);const extra=remainder(card,used);if(extra.children.length)section.append(extra);
-    for(const id of card.children || [])section.append(renderCard(cards.get(id),{inDialog,instanceId}));
-    const note=details(card);if(note)section.append(note);return section;
+    section.append(list);
+    for(const field of card.fields.filter(f=>/^\/qualifications\/\d+\/value\/sourceText$/.test(f.source?.path || ''))){
+      const note=el('aside','ds-source-update');note.append(el('b','','Rules update: '),factValue('p',field));section.append(note);
+    }
+    return section;
   };
   const renderRuleReference=(card,instanceId)=>{
     const node=identity(el('div','ability shared-abilities'),card,instanceId);
@@ -160,14 +156,16 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,re
           if(start>offset)value.append(document.createTextNode(text.slice(offset,start)));
           const group=el('span','ability ds-shared-rule-group');
           group.id='ds-'+domKey(card.id)+(marker==='CORE ABILITIES'?'-ability-core':'-ability-faction');
-          group.append(el('strong','ds-rule-reference-label',marker));
+          group.append(el('strong','ds-rule-reference-label',marker==='CORE ABILITIES'?'CORE':'FACTION'));
           const end=starts[index+1]?.start ?? text.length,body=text.slice(start+marker.length,end);
-          // These are source-reference labels, not definitions resolved by title.
-          // Every chip opens the same canonical reference and exact field.
-          body.split(/(,\s*)/).forEach(part=>{
-            if(/^,\s*$/.test(part))group.append(document.createTextNode(part));
-            else if(part)group.append(scopedAnchor(part,card,instanceId,field.source.path));
-          });
+          // Identity is bound during build. Runtime only slices source spans.
+          let cursor=start+marker.length;
+          const bindings=config.referenceBindings?.fields?.[field.id] || [];
+          for(const binding of bindings.filter(b=>b.start>=cursor&&b.end<=end)){
+            group.append(document.createTextNode(text.slice(cursor,binding.start)),anchor(text.slice(binding.start,binding.end),binding.targetId,true));
+            group.lastChild.classList.add('term-button');cursor=binding.end;
+          }
+          group.append(document.createTextNode(text.slice(cursor,end)));
           value.append(group);offset=end;
         });
         if(!starts.length)value.append(document.createTextNode(text));
@@ -187,17 +185,26 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,re
       for(const [device,settings] of Object.entries({desktop:art.presentation.desktop,phone:art.presentation.phone}))for(const [key,value] of Object.entries(settings))figure.style.setProperty(`--unit-art${background?'-background':''}${device==='phone'?'-phone':''}-${key}`,value);
       const img=el('img');img.src=`../${art.asset}`;img.width=art.width;img.height=art.height;img.alt='';img.loading='lazy';img.decoding='async';figure.append(img);head.append(figure);
     }
-    const cost=el('div','points ds-cost'),costGrid=el('div','ds-cost-grid'),costNotes=[];
+    const cost=el('div','points ds-cost'),costGrid=el('div','ds-cost-grid');
     for(const price of children.filter(c=>c.kind==='MFM_UNIT_POINTS')){
-      const cell=identity(el('div','ds-cost-cell'),price,instanceId);
-      const caption=price.fields.filter(f=>f.source?.path.endsWith('/sourceLabel')).at(-1);
-      if(caption)cell.append(factValue('small',caption));
       const valueFields=price.fields.filter(f=>f.source?.path.endsWith('/value')||f.source?.path==='/value');
-      for(const field of valueFields){const value=el('strong');value.append(factValue('span',field),document.createTextNode(' pts'));cell.append(value);}
-      costGrid.append(cell);
-      const notes=identity(el('div','ds-points-source'),price,instanceId);
-      const titleField=price.fields.find(f=>f.presentation==='heading');if(titleField)notes.append(factValue('h5',titleField));
-      notes.append(renderFields(price.fields.filter(f=>f!==titleField&&f!==caption&&!valueFields.includes(f))));costNotes.push(notes);
+      const schedules=new Map(),schedulePaths=new Set(valueFields.map(f=>f.source.path.split('/entries/')[0]));
+      for(const field of valueFields){
+        const prefix=field.source.path.slice(0,-'value'.length),caption=price.fields.find(f=>f.source?.path===prefix+'sourceLabel');
+        if(!caption)throw new TypeError('Unbound points count: '+field.id);
+        const schedulePath=field.source.path.split('/entries/')[0];
+        let container=costGrid;
+        if(schedulePaths.size>1){
+          if(!schedules.has(schedulePath)){
+            const schedule=el('div','ds-cost-schedule'),label=price.fields.find(f=>f.source.path===schedulePath+'/sourceLabel');
+            if(!label)throw new TypeError('Missing points tier: '+schedulePath);
+            schedule.append(factValue('small',label));costGrid.append(schedule);schedules.set(schedulePath,schedule);
+          }container=schedules.get(schedulePath);
+        }
+        const cell=identity(el('div','ds-cost-cell'),price,instanceId);cell.dataset.priceEntry=prefix;
+        const value=el('strong');value.append(factValue('span',field),document.createTextNode(' pts'));
+        cell.append(factValue('small',caption),value);container.append(cell);
+      }
     }
     cost.append(costGrid);head.append(cost);root.append(head);
     const nav=el('div','local-nav');nav.setAttribute('role','navigation');nav.setAttribute('aria-label','Datasheet sections');root.append(nav);
@@ -214,40 +221,86 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,re
       const header=el('div','weapon-row weapon-head');header.setAttribute('role','row');for(const label of ['Weapon','Range','A',mode==='ranged'?'BS':'WS','S','AP','D'])header.append(el('div','',label));grid.append(header);
       weapons.forEach(weapon=>grid.append(renderWeapon(weapon,{instanceId})));group.append(grid);profile.append(group);
     }
-    for(const child of children.filter(c=>c.kind==='WEAPON_PROFILE_SELECTION'||c.kind==='WARGEAR_FOOTNOTE'))profile.append(renderCard(child,{inDialog,instanceId}));
+    for(const child of children.filter(c=>c.kind==='WEAPON_PROFILE_SELECTION')){
+      const instruction=identity(el('aside','ds-profile-selection'),child,instanceId);instruction.append(factValue('p',single(child,'text')));
+      for(const field of child.fields.filter(f=>/\/profileIds\/\d+$/.test(f.source.path))){
+        // The binding is an explicit canonical reference, not a title join.
+        const link=anchor('',field.targetIds[0],true);link.append(factValue('span',field));instruction.append(link,document.createTextNode(' · '));
+      }profile.append(instruction);
+    }
     const abilityList=el('div','ability-list');abilities.append(abilityList);
     for(const child of children.filter(c=>c.kind==='RULE_REFERENCE'))abilityList.append(renderRuleReference(child,instanceId));
-    const rendered=new Set(children.filter(c=>['PROFILE','WEAPON_PROFILE','WEAPON_PROFILE_SELECTION','WARGEAR_FOOTNOTE','RULE_REFERENCE','MFM_UNIT_POINTS'].includes(c.kind)).map(c=>c.id));
+    const rendered=new Set(children.filter(c=>['PROFILE','WEAPON_PROFILE','WEAPON_PROFILE_SELECTION','RULE_REFERENCE','MFM_UNIT_POINTS'].includes(c.kind)).map(c=>c.id));
     for(const child of children.filter(c=>config.sectionRoles[c.id]==='abilities')){
       const section=renderSection(child,{instanceId,inDialog}),items=[...section.querySelector('.ability-list').children];
-      const sourceTitle=section.querySelector(':scope > h4');
-      if(items.length&&sourceTitle)items[0].prepend(sourceTitle);
+      const titleField=child.fields.find(f=>f.presentation==='heading');if(titleField){const caption=factValue('span',titleField);caption.textContent='Abilities';abilities.querySelector('h4').replaceChildren(caption);}
       items.forEach(item=>abilityList.append(item));
-      const extras=[...section.children].filter(node=>node.classList.contains('v2-field-sections')||node.classList.contains('v2-annotations'));
-      if(extras.length){const owner=identity(el('article','ability ds-source-notes'),child,instanceId);owner.append(...extras);abilityList.append(owner);}
+      const updates=[...section.querySelectorAll('.ds-source-update')];abilityList.append(...updates);
       rendered.add(child.id);
     }
     root.append(profile,abilities);
     const options=children.filter(c=>c.kind==='WARGEAR_OPTION');
-    if(options.length){const section=part('wargear','Wargear Options');for(const child of options){section.append(renderCard(child,{inDialog,instanceId}));rendered.add(child.id);}root.append(section);}
-    for(const child of children.filter(c=>!rendered.has(c.id))) {
-      if(child.kind==='DATASHEET_SECTION')root.append(renderSection(child,{instanceId,inDialog}));
-      else {const section=part(child.kind==='WARGEAR_OPTION'?'wargear':'additional',child.kind==='WARGEAR_OPTION'?'Wargear Options':child.title);section.append(renderCard(child,{inDialog,instanceId}));root.append(section);}
+    if(options.length&&!instanceId){const section=part('wargear','Wargear Options');const list=el('ul');for(const child of options){const line=identity(el('li'),child,instanceId);line.append(factValue('span',single(child,'text')));list.append(line);rendered.add(child.id);}section.append(list);root.append(section);}
+    for(const child of children.filter(c=>c.kind==='SUPPLEMENTAL_DATASHEET_RULE')){
+      const item=identity(el('article','ability'),child,instanceId);item.append(factValue('p',single(child,'text')));abilityList.append(item);rendered.add(child.id);
     }
-    const keywords=part('keywords','Keywords');keywords.append(remainder(card,used));root.append(keywords);
-    if(costNotes.length){const points=part('points','Points');points.append(...costNotes);root.append(points);}
+    for(const child of children.filter(c=>c.kind==='WARGEAR_FOOTNOTE')){const note=identity(el('p','ds-wargear-footnote'),child,instanceId);note.append(factValue('span',single(child,'text')));root.append(note);rendered.add(child.id);}
+    const eligible=children.find(c=>c.kind==='MFM_LEADER_ELIGIBILITY');
+    for(const child of children.filter(c=>!rendered.has(c.id))) {
+      if(child.kind!=='DATASHEET_SECTION')continue;
+      const role=config.sectionRoles[child.id];
+      if(role==='leader'&&eligible){
+        if(!instanceId){const leader=part('leader','Leader'),titleField=child.fields.find(f=>f.presentation==='heading');
+          if(titleField){const title=factValue('span',titleField);title.textContent='Leader';leader.querySelector('h4').replaceChildren(title);}
+          leader.append(el('p','','This model can be attached to the following units:'));
+          const list=identity(el('ul'),eligible,instanceId);
+          for(const field of eligible.fields.filter(f=>f.source.path.startsWith('/targetUnitReferenceIds/'))){const line=el('li'),link=anchor('',field.targetIds[0],true);link.append(factValue('span',field));line.append(link);list.append(line);}leader.append(list);
+          // Attachment exceptions remain exact accepted source prose, once.
+          for(const field of child.fields.filter(f=>/^\/blocks\/\d+\/text$/.test(f.source.path))){
+            // Format the source list in its current MFM location; retain the
+            // exact independent attachment exception paragraph, without joins.
+            const exceptionText=String(field.value).split('\n').filter(line=>!line.startsWith('This model can be attached to the following unit')&&!line.startsWith('- ')).join('\n').trim();
+            if(exceptionText){const paragraph=factValue('p',field);paragraph.textContent=exceptionText;leader.append(paragraph);}
+          }root.append(leader);
+        }
+      }else if(role==='composition'&&instanceId){
+        const composition=part('composition','Unit Composition'),unit=roster.state.units.find(u=>u.instanceId===instanceId);
+        composition.append(el('p','',`${unit.startingStrength} ${unit.startingStrength===1?'model':'models'}`));root.append(composition);
+      }else root.append(renderSection(child,{instanceId,inDialog}));
+    }
+    for(const child of children.filter(c=>c.kind==='MFM_PAID_UPGRADE')){
+      const note=identity(el('p','ds-paid-upgrade'),child,instanceId);note.append(el('b','',child.title+': '),factValue('span',single(child,'value')),document.createTextNode(' pts '),factValue('span',single(child,'sourceLabel')));profile.append(note);
+    }
+    const keywords=part('keywords','Keywords');
+    for(const [path,label] of [['keywords',instanceId?'Effective unit keywords':'Keywords'],['factionKeywords','Faction Keywords']]){
+      const line=el('p');line.append(el('b','',label+': '));const fields=card.fields.filter(f=>f.source?.path.startsWith('/'+path+'/'));
+      fields.forEach((field,index)=>{if(index)line.append(document.createTextNode(', '));line.append(factValue('span',field));});keywords.append(line);
+    }root.append(keywords);
     const sections=[...root.children].filter(n=>n.classList.contains('unit-part'));
     for(const section of sections){const tab=el('button','local-tab',section.querySelector('h4')?.textContent || 'Section');tab.type='button';tab.dataset.datasheetTarget=section.id;tab.addEventListener('click',()=>{if(inDialog)section.scrollIntoView({block:'start'});else navigateSection(card.id,section,nav,instanceId);});nav.append(tab);}
     if(instanceId){const u=roster.state.units.find(u=>u.instanceId===instanceId),context=el('div','ds-roster-context');
       const assigned=roster.state.attachments.find(a=>a.leaderInstanceId===instanceId),members=roster.state.attachments.filter(a=>a.bodyguardInstanceId===instanceId);
       const name=id=>{const unit=roster.state.units.find(u=>u.instanceId===id),copies=roster.state.units.filter(u=>u.canonicalUnitId===unit.canonicalUnitId);return cards.get(unit.canonicalUnitId).title+(copies.length>1?` #${copies.findIndex(u=>u.instanceId===id)+1}`:'');};
-      context.append(el('p','',`Starting Strength ${u.startingStrength}`));
+      context.dataset.rosterContextInstanceId=instanceId;
       if(u.warlord)context.append(el('span','ds-roster-badge','Warlord'));
       u.enhancementIds.forEach(id=>context.append(anchor(cards.get(id).title,id,true)));
-      if(assigned)context.append(el('p','',`Attached to ${name(assigned.bodyguardInstanceId)}`));
+      if(assigned)context.append(el('p','',`Leading: ${name(assigned.bodyguardInstanceId)}`));
       for(const member of members)context.append(el('p','',`${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${name(member.leaderInstanceId)}`));
-      context.append(el('p','',roster.state.detachmentIds.map(id=>cards.get(id).title).join(' · ')));brand.append(context);
-    }else if(payload.relatedRules)root.append(related(card.id));
+      // Detachment selection lives in roster navigation, not repeated on each unit.
+      head.after(context);
+      const effects=roster.effective(instanceId),summary=el('article','ability ds-effect-summary');summary.append(el('h5','','Active roster effects'));
+      const sources=new Map();for(const effect of effects.applied){const key=JSON.stringify([effect.ruleId,effect.sourceInstanceId,effect.sourceFields]);if(!sources.has(key))sources.set(key,effect);}
+      for(const effect of sources.values()){
+        const line=el('p');line.dataset.effectSourceRuleId=effect.ruleId;
+        if(effect.sourceInstanceId)line.append(el('span','',name(effect.sourceInstanceId)+' → '));
+        const source=cards.get(effect.ruleId),sourcePath=effect.sourceFields?.[0];
+        const textField=sourcePath&&source.fields.find(f=>f.source.path==='/'+sourcePath.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'));
+        const label=textField?.value.includes(':')?textField.value.slice(0,textField.value.indexOf(':')):
+          source.kind==='DATASHEET_SECTION'?cards.get(source.parentId).title+' ability':source.title;
+        line.append(scopedAnchor(label,source,instanceId,textField?.source.path));summary.append(line);
+      }if(sources.size)abilityList.append(summary);
+    }
+    if(payload.relatedRules)root.append(related(card.id,instanceId));
     return root;
   };
   return {renderDatasheet,renderProfile,renderWeapon,renderSection};
