@@ -8,6 +8,7 @@ import {createRequire} from 'node:module';
 import {buildApp,readAppInputs} from './app-build.mjs';
 import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
 import {expectedDisplay,validatePresentation,legacyClasses} from './app-qa.mjs';
+import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const appPath='/books/death-guard/v2/app.html';
@@ -18,7 +19,30 @@ const expected=enumerateExpectedFacts(inputs.model,inputs.records).map(f=>({...f
 const cards=new Map(payload.cards.map(card=>[card.id,card])),datasheetCardIds=new Set();
 const collectDatasheet=id=>{if(datasheetCardIds.has(id))return;datasheetCardIds.add(id);for(const child of cards.get(id)?.children||[])collectDatasheet(child);};
 for(const card of payload.cards.filter(card=>card.kind==='DATASHEET'))collectDatasheet(card.id);
-const normalNonDatasheetExpected=expected.filter(fact=>!datasheetCardIds.has(fact.entityId)&&!String(fact.contextId).startsWith('unit-'));
+const entities=new Map(inputs.model.entities.map(entity=>[entity.id,entity]));
+// Normal V1 cards do not print a second name for the bound MFM record, an
+// already-displayed source confirmation, or the internal erratum patch address.
+// The source-evidence census above still checks every one of these fields.
+const presentationOnlyDuplicate=fact=>{
+  const entity=entities.get(fact.entityId),record=inputs.records.get(fact.entityId),pointer='/'+fact.path.join('/');
+  if(['MFM_DETACHMENT','MFM_ENHANCEMENT_COST'].includes(record?.recordType)&&pointer==='/label')return true;
+  if(entity?.kind==='ARMY_RULE_COMPONENT'&&pointer.startsWith('/qualifications/')){
+    const confirmation=entity.qualifications[fact.path[1]].value;
+    assert.ok(entity.data.text.includes(confirmation.sourceText),'Source confirmation no longer present in rule text');
+    return true;
+  }
+  return entity?.kind==='SOURCE_ERRATUM'&&(/^\/(?:directive|operation)$/.test(pointer)||pointer.startsWith('/targetBindings/'));
+};
+const normalNonDatasheetExpected=expected.filter(fact=>!datasheetCardIds.has(fact.entityId)&&!String(fact.contextId).startsWith('unit-')&&!presentationOnlyDuplicate(fact));
+const forceBindings=createEffectiveMfmCatalog().catalog.crossDomainBindings.forceDispositionBindings;
+const normalDisplay=fact=>{
+  const record=inputs.records.get(fact.entityId);
+  if(record?.recordType==='MFM_DETACHMENT'&&fact.path[0]==='forceDispositionIds'){
+    const bound=forceBindings[record.mfmForceDispositionIds[fact.path[1]]];
+    assert.equal(bound.missionForceDispositionId,fact.value);return bound.sourceValue;
+  }
+  return fact.display;
+};
 const nonDatasheetRoots=payload.groups.flatMap(group=>group.itemIds).filter(id=>cards.get(id)?.kind!=='DATASHEET');
 const allowed=new Map([[appPath,'text/html'],[payloadPath,'application/json'],['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],['/books/shared/army-book-app-v2/styles.css','text/css']]);
 allowRosterDependencies(allowed);
@@ -64,12 +88,12 @@ try {
       assert.equal(observed.cardId,fact.entityId===inputs.model.bookId?fact.contextId:fact.entityId);
       assert.equal(observed.visible,true,`${device} hidden ${fact.id}`);
     }
-    // Ordinary navigation remains exhaustive for every non-datasheet root.
-    // Only the datasheet adapter moves diagnostic metadata off the player UI.
+    // Ordinary navigation checks each source-backed player field once in the
+    // explicit V1 book shell; all internal bindings remain covered above.
     const normalExpectedIds=new Set(normalNonDatasheetExpected.map(fact=>fact.id)),normalFacts=new Map();
     for(const rootId of nonDatasheetRoots){const observed=await page.evaluate(id=>{window.ArmyBookAppV2.open(id);const main=document.querySelector('main');return {facts:[...main.querySelectorAll('[data-fact-id]')].map(node=>({id:node.dataset.factId,value:JSON.parse(node.dataset.factValue),entityId:node.dataset.entityId,contextId:node.dataset.contextId,text:node.textContent,visible:!!node.getClientRects().length,cardId:node.closest('[data-card-id]')?.dataset.cardId||''})),overflow:document.documentElement.scrollWidth>innerWidth+1};},rootId);assert.equal(observed.overflow,false,`${device} non-datasheet overflow ${rootId}`);for(const fact of observed.facts.filter(fact=>normalExpectedIds.has(fact.id))){assert.ok(!normalFacts.has(fact.id),`${device} duplicate normal non-datasheet fact ${fact.id}`);normalFacts.set(fact.id,fact);}}
     const normalMissing=normalNonDatasheetExpected.filter(fact=>!normalFacts.has(fact.id)).map(fact=>fact.id);assert.equal(normalFacts.size,normalNonDatasheetExpected.length,`${device} NORMAL_NON_DATASHEET_MISSING ${JSON.stringify(normalMissing.slice(0,30))}`);
-    for(const fact of normalNonDatasheetExpected){const observed=normalFacts.get(fact.id);assert.deepEqual(observed.value,fact.value,`${device} normal WRONG_VALUE ${fact.id}`);assert.equal(observed.text,fact.display,`${device} normal WRONG_DISPLAY ${fact.id}`);assert.equal(observed.entityId,fact.entityId);assert.equal(observed.contextId,fact.contextId);assert.equal(observed.cardId,fact.entityId===inputs.model.bookId?fact.contextId:fact.entityId);assert.equal(observed.visible,true,`${device} hidden normal fact ${fact.id}`);}
+    for(const fact of normalNonDatasheetExpected){const observed=normalFacts.get(fact.id);assert.deepEqual(observed.value,fact.value,`${device} normal WRONG_VALUE ${fact.id}`);assert.equal(observed.text,normalDisplay(fact),`${device} normal WRONG_DISPLAY ${fact.id}`);assert.equal(observed.entityId,fact.entityId);assert.equal(observed.contextId,fact.contextId);assert.equal(observed.cardId,fact.entityId===inputs.model.bookId?fact.contextId:fact.entityId);assert.equal(observed.visible,true,`${device} hidden normal fact ${fact.id}`);}
     // Deep links survive refresh, then normal canonical links and browser history.
     await page.goto(origin+appPath+'#unit-plague-marines');await page.waitForFunction(()=>!!window.ArmyBookAppV2);
     assert.equal(await page.locator('main .v2-current-card').getAttribute('data-card-id'),'unit-plague-marines');

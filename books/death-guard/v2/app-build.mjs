@@ -7,6 +7,7 @@ import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-cor
 import {buildGlossaryProjection} from './glossary-build.mjs';
 import {buildDatasheetReferenceBindings} from './presentation-reference-build.mjs';
 import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datasheet-v1.mjs';
+import {projectBookPresentation} from '../../shared/army-book-app-v2/book-v1-projection.mjs';
 
 export function readAppInputs() {
   // The effective Rule Contract snapshot already contains the complete Effective Book.
@@ -31,12 +32,13 @@ export function buildApp(inputs=readAppInputs()) {
   payload.glossary=glossary.index;
   payload.datasheetPresentation=buildDatasheetPresentation(inputs.model,inputs.artwork || JSON.parse(fs.readFileSync(new URL('../presentation/unit-images.json',import.meta.url),'utf8')));
   payload.datasheetPresentation.referenceBindings=buildDatasheetReferenceBindings(payload.cards);
+  payload.bookPresentation=projectBookPresentation(inputs.model,inputs.records);
   return payload;
 }
 export function writeApp({check=false}={}) {
   const payload=buildApp();
   const output=new Map([['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],['./app.html',`<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Death Guard · Army Book V2</title><link rel="stylesheet" href="../../shared/army-book-app-v2/styles.css"><link rel="stylesheet" href="../../shared/army-book-app-v2/datasheet-v1.css"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Death Guard · Army Book V2</title><link rel="stylesheet" href="../../shared/army-book-app-v2/styles.css"><link rel="stylesheet" href="../../shared/army-book-app-v2/datasheet-v1.css"><link rel="stylesheet" href="../../shared/army-book-app-v2/book-v1.css"></head>
 <body><p role="status">Loading Army Book…</p><script type="module">
 import {mount} from '../../shared/army-book-app-v2/runtime.mjs';
 import {createBrowserRoster} from './roster-boot.mjs';

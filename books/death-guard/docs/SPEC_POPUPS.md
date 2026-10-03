@@ -12,6 +12,19 @@ related-rules component and filter state. Desktop and 390×844 acceptance:
 open each rule kind, verify exact card/hash identity, Back/Forward, Escape,
 and retained filter; `v2/related-rules-browser-qa.mjs` automates these scenarios.
 
+### V2 Army Book presentation
+
+Army Rules, Detachment rules, Enhancements, Stratagems and Updates use the
+same explicit V1 book presentation projection in the Reader and canonical
+detail dialog. Core definitions come from the existing clean Core cards.
+The native V2 dialog retains its history, close, focus and identity resolver;
+its book-rule surface uses V1 colours, typography and a compact 560px maximum
+width. No TERMS registry, legacy definitions or prose-based identity lookup
+is used. Datasheet/profile/weapon dialogs retain the accepted datasheet
+presenter. Desktop and 390×844 acceptance compares the actual V1 surfaces
+and verifies canonical record/text identity through Reader, Related Rules
+and Glossary; `v2/book-v1-browser-qa.mjs` guards the new book cards.
+
 ## Specification update rule
 
 - Any change to popup levels, cycles, positioning, scrolling, animation, Journey/Back, focus, accessibility, or a related test must be reflected in this document at the same time.

@@ -86,11 +86,13 @@ async function contentsFactCensus(page,device){
   });
   assert.equal(census.expected.length,3654,device+' canonical fact denominator changed');
   // Continuous Contents uses the same curated player projection as individual
-  // entries: 2,281 datasheet leaves + 645 other book leaves. Independent source
+  // entries: 2,281 datasheet leaves + 594 other player book leaves. The 51
+  // duplicate/technical leaves remain in the 3654-field source evidence census.
+  // Independent source
   // classification and exact reachability are guarded by datasheet/app browser
   // QA; this navigation guard checks their continuous-page ownership/parity.
-  assert.equal(census.observed.length,2926,device+' full Contents player fact loss or duplication');
-  const actual=new Map(census.observed.map(fact=>[fact.id,fact]));assert.equal(actual.size,2926,device+' full Contents DOM duplicate fact identity');
+  assert.equal(census.observed.length,2875,device+' full Contents player fact loss or duplication');
+  const actual=new Map(census.observed.map(fact=>[fact.id,fact]));assert.equal(actual.size,2875,device+' full Contents DOM duplicate fact identity');
   const expected=new Map(census.expected.map(fact=>[fact.id,fact]));
   for(const observed of census.observed){const fact=expected.get(observed.id);assert.ok(fact,device+' unsourced full Contents fact '+observed.id);assert.deepEqual(observed.value,fact.value,device+' wrong fact value '+fact.id);assert.equal(observed.entityId,fact.entityId,device+' wrong fact entity '+fact.id);assert.equal(observed.contextId,fact.contextId,device+' wrong fact context '+fact.id);}
   return{facts:actual.size,cards:new Set(census.cards).size};
@@ -199,7 +201,7 @@ async function canonicalNavigationContract(page,phone){
 
   if(!phone){
     await choose('nav:detachment-virulent-vectorium:DETACHMENT_RULE');
-    const section=await page.evaluate(()=>{const target=document.querySelector('[data-contents-target="nav:detachment-virulent-vectorium:DETACHMENT_RULE"]'),heading=target?.matches('h1,h2,h3')?target:target?.querySelector('h1,h2,h3');return{hash:decodeURIComponent(location.hash.slice(1)),tag:heading?.tagName,top:heading?.getBoundingClientRect().top,line:document.getElementById('appHeader').getBoundingClientRect().bottom+18,highlight:heading?.classList.contains('v1-navigation-destination')};});
+    const section=await page.evaluate(()=>{const target=document.querySelector('[data-contents-target="nav:detachment-virulent-vectorium:DETACHMENT_RULE"]'),heading=target?.matches('h1,h2,h3,h4,h5,h6')?target:target?.querySelector('h1,h2,h3,h4,h5,h6');return{hash:decodeURIComponent(location.hash.slice(1)),tag:heading?.tagName,top:heading?.getBoundingClientRect().top,line:document.getElementById('appHeader').getBoundingClientRect().bottom+18,highlight:heading?.classList.contains('v1-navigation-destination')};});
     assert.equal(section.hash,'nav:detachment-virulent-vectorium:DETACHMENT_RULE');assert.ok(/^H[1-6]$/.test(section.tag));assert.ok(Math.abs(section.top-section.line)<3);assert.equal(section.highlight,true);
   }
 

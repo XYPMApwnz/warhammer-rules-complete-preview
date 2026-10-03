@@ -5,6 +5,7 @@ import {projectPersonalBook, projectInstanceCards, instanceRoute} from './person
 import {projectContents, mountV1Contents} from './navigation-v1.mjs';
 import {createDatasheetPresenter} from './datasheet-v1.mjs';
 import {installDatasheetLayout, flushDatasheetLayouts} from './datasheet-v1-layout.mjs';
+import {createBookPresenter} from './book-v1.mjs';
 const glossaryRoute = 'view-glossary'; // Presentation route, never a factual identity.
 const rosterRoute = 'view-roster';
 const personalRoute = 'view-roster-guide';
@@ -126,7 +127,7 @@ export function mount(document, payload, options = {}) {
   relatedBar.lastChild.setAttribute('aria-label','Close compatible rules');
   const relatedContent=el('div','v2-dialog-content');relatedDialog.append(relatedBar,relatedContent);shell.append(relatedDialog);
   relatedDialog.addEventListener('click',event=>{if(event.target===relatedDialog)relatedDialog.close();});
-  document.body.replaceChildren(shell);document.body.classList.add('v2-v1-navigation');
+  document.body.replaceChildren(shell);document.body.classList.add('v2-v1-navigation','v2-book-surface');
   const navStyles=el('link');navStyles.rel='stylesheet';navStyles.href=new URL('./navigation-v1.css',import.meta.url).href;document.head.append(navStyles);
   document.title = `${payload.book.title} · Army Book V2`;
   let selectedId = null;
@@ -151,6 +152,7 @@ export function mount(document, payload, options = {}) {
   const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,
     related:renderRelatedRules,roster:options.roster,
     navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
+  const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds});
   let popupPresentation=null;
 
   function factValue(tag, field) {
@@ -276,6 +278,7 @@ export function mount(document, payload, options = {}) {
   }
 
   function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null, primaryDetail = true, sourceEvidence = false} = {}) {
+    if(!sourceEvidence&&bookPresenter.accepts(card))return bookPresenter.render(card,{inDialog,primaryDetail});
     if(card.kind==='DATASHEET'&&!sourceEvidence) {
       const article=datasheets.renderDatasheet(card,{variants,instanceId,inDialog});
       if(inDialog&&primaryDetail)article.querySelector('.unit-header h3').id='v2-detail-heading';
@@ -517,7 +520,7 @@ export function mount(document, payload, options = {}) {
     const appendCard=(parent,rootId)=>{
       if(rendered.has(rootId))return;rendered.add(rootId);
       const card=renderCard(cards.get(rootId));parent.append(card);
-      if(cards.get(rootId).kind==='DETACHMENT')for(const child of model.nodes.get(rootId).children){
+      if(cards.get(rootId).kind==='DETACHMENT'&&!card.classList.contains('v2-book-record'))for(const child of model.nodes.get(rootId).children){
         const first=child.id&&model.groups.get(child.id)?.[0];
         const target=[...card.querySelectorAll('[data-card-id]')].find(node=>node.dataset.cardId===first);
         if(target){const heading=el('h2','v1-contents-heading',child.label);heading.dataset.contentsTarget=child.id;target.before(heading);}
@@ -685,6 +688,7 @@ export function mount(document, payload, options = {}) {
       dialogContent.replaceChildren(...(effectiveCards?.length
         ? effectiveCards.map((card,index)=>renderCard(card,{inDialog:true,variants,instanceId,primaryDetail:index===0}))
         : [renderCard(cards.get(id),{inDialog:true})]));
+      dialog.classList.toggle('v2-book-detail',bookPresenter.accepts(cards.get(id))||cards.get(id).domain==='CORE');
       if (!dialog.open) {
         lastFocus = document.activeElement;
         dialog.showModal();

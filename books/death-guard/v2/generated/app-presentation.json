@@ -194233,5 +194233,3080 @@
         ]
       }
     }
+  },
+  "bookPresentation": {
+    "schema": "army-book-app-v2/book-v1-presentation",
+    "records": {
+      "army-rule-nurgles-gift:contagion-range": {
+        "id": "army-rule-nurgles-gift:contagion-range",
+        "kind": "ARMY_RULE_COMPONENT",
+        "parentId": "army-rule-nurgles-gift",
+        "contextId": "army-rule-nurgles-gift",
+        "source": {
+          "entityId": "army-rule-nurgles-gift:contagion-range"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "army-rule-nurgles-gift:contagion-range",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/armyRules/0/components/0"
+        },
+        "fieldProvenance": {
+          "table": {
+            "sourceId": "dg-v2-contagion-range-images-2026-10-01",
+            "sourcePaths": [
+              "books/death-guard/v2/sources/contagion-range-1-captured-2026-10-01.png",
+              "books/death-guard/v2/sources/contagion-range-2-captured-2026-10-01.png",
+              "books/death-guard/v2/sources/contagion-range-3-captured-2026-10-01.png"
+            ],
+            "sha256s": [
+              "DAF0AB2275429927C7246B109D190D7BE7E542F526738FE9DBC0B2F84E930F35",
+              "BC53B846C69B57D629CBC6501191BCBEEADAFBDE2FD3C1D7F8EFB4A97C1D0EF4",
+              "55D87007CB31015E110179BF4A30EABF0333EC402279262F04FB902F52A2756E"
+            ],
+            "capturedAt": "2026-10-01",
+            "method": "referenced-images-visual-read",
+            "historicalByteIdentity": "NOT_ASSERTED",
+            "sha256": [
+              "DAF0AB2275429927C7246B109D190D7BE7E542F526738FE9DBC0B2F84E930F35",
+              "BC53B846C69B57D629CBC6501191BCBEEADAFBDE2FD3C1D7F8EFB4A97C1D0EF4",
+              "55D87007CB31015E110179BF4A30EABF0333EC402279262F04FB902F52A2756E"
+            ],
+            "authority": "SUPPLEMENTAL_REFERENCED_IMAGE_CAPTURE"
+          },
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:043",
+            "page": 7,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "army-rule-nurgles-gift:contagion-range"
+          }
+        },
+        "tables": [
+          {
+            "id": "army-rule-nurgles-gift:contagion-range::/table",
+            "path": "/table"
+          }
+        ]
+      },
+      "army-rule-nurgles-gift:afflicted": {
+        "id": "army-rule-nurgles-gift:afflicted",
+        "kind": "ARMY_RULE_COMPONENT",
+        "parentId": "army-rule-nurgles-gift",
+        "contextId": "army-rule-nurgles-gift",
+        "source": {
+          "entityId": "army-rule-nurgles-gift:afflicted"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "army-rule-nurgles-gift:afflicted",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/armyRules/0/components/1",
+          "recoveredFrom": {
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+            "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+            "sourceRecordId": "army-rule-nurgles-gift:afflicted",
+            "method": "PINNED_RAW_HTML_COMPONENT"
+          }
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "army-rule-nurgles-gift:skullsquirm-blight": {
+        "id": "army-rule-nurgles-gift:skullsquirm-blight",
+        "kind": "ARMY_RULE_COMPONENT",
+        "parentId": "army-rule-nurgles-gift",
+        "contextId": "army-rule-nurgles-gift",
+        "source": {
+          "entityId": "army-rule-nurgles-gift:skullsquirm-blight"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "army-rule-nurgles-gift:skullsquirm-blight",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/armyRules/0/components/2",
+          "recoveredFrom": {
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+            "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F",
+            "sourceRecordId": "army-rule-nurgles-gift:skullsquirm-blight",
+            "method": "PINNED_RAW_HTML_COMPONENT"
+          }
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:042",
+            "page": 7,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "army-rule-nurgles-gift:skullsquirm-blight"
+          }
+        },
+        "tables": []
+      },
+      "army-rule-nurgles-gift:rattlejoint-ague": {
+        "id": "army-rule-nurgles-gift:rattlejoint-ague",
+        "kind": "ARMY_RULE_COMPONENT",
+        "parentId": "army-rule-nurgles-gift",
+        "contextId": "army-rule-nurgles-gift",
+        "source": {
+          "entityId": "army-rule-nurgles-gift:rattlejoint-ague"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "army-rule-nurgles-gift:rattlejoint-ague",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/armyRules/0/components/3"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "army-rule-nurgles-gift:scabrous-soulrot": {
+        "id": "army-rule-nurgles-gift:scabrous-soulrot",
+        "kind": "ARMY_RULE_COMPONENT",
+        "parentId": "army-rule-nurgles-gift",
+        "contextId": "army-rule-nurgles-gift",
+        "source": {
+          "entityId": "army-rule-nurgles-gift:scabrous-soulrot"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "army-rule-nurgles-gift:scabrous-soulrot",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/armyRules/0/components/4"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "army-rule-nurgles-gift": {
+        "id": "army-rule-nurgles-gift",
+        "kind": "ARMY_RULE",
+        "contextId": "army-rule-nurgles-gift",
+        "source": {
+          "entityId": "army-rule-nurgles-gift"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "army-rule-nurgles-gift",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/armyRules/0"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "componentIds": [
+          "army-rule-nurgles-gift:contagion-range",
+          "army-rule-nurgles-gift:afflicted",
+          "army-rule-nurgles-gift:skullsquirm-blight",
+          "army-rule-nurgles-gift:rattlejoint-ague",
+          "army-rule-nurgles-gift:scabrous-soulrot"
+        ]
+      },
+      "army-rule-pact-of-decay": {
+        "id": "army-rule-pact-of-decay",
+        "kind": "ARMY_RULE",
+        "contextId": "army-rule-pact-of-decay",
+        "source": {
+          "entityId": "army-rule-pact-of-decay"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "army-rule-pact-of-decay",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/armyRules/1"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "componentIds": []
+      },
+      "detachment-virulent-vectorium": {
+        "id": "detachment-virulent-vectorium",
+        "kind": "DETACHMENT",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "ruleId": "detachment-virulent-vectorium:rule",
+        "enhancementIds": [
+          "detachment-virulent-vectorium:enhancement:1",
+          "detachment-virulent-vectorium:enhancement:2",
+          "detachment-virulent-vectorium:enhancement:3",
+          "detachment-virulent-vectorium:enhancement:4"
+        ],
+        "stratagemIds": [
+          "detachment-virulent-vectorium:stratagem:1",
+          "detachment-virulent-vectorium:stratagem:2",
+          "detachment-virulent-vectorium:stratagem:3",
+          "detachment-virulent-vectorium:stratagem:4",
+          "detachment-virulent-vectorium:stratagem:5",
+          "detachment-virulent-vectorium:stratagem:6"
+        ],
+        "pointRecordId": "mfm-detachment-b322e6cc8361575b",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments",
+            "factionId": "death-guard",
+            "sourceTitle": "VIRULENT VECTORIUM"
+          }
+        },
+        "detachmentPoints": {
+          "id": "mfm-detachment-b322e6cc8361575b::/detachmentPoints",
+          "label": "Detachment Points",
+          "value": 3,
+          "type": "text",
+          "contextId": "detachment-virulent-vectorium",
+          "source": {
+            "entityId": "mfm-detachment-b322e6cc8361575b",
+            "path": "/detachmentPoints"
+          }
+        },
+        "forceDispositions": [
+          {
+            "id": "mfm-detachment-b322e6cc8361575b::/forceDispositionIds/0",
+            "label": "Force Disposition",
+            "value": "force-disposition-take-and-hold",
+            "type": "text",
+            "contextId": "detachment-virulent-vectorium",
+            "source": {
+              "entityId": "mfm-detachment-b322e6cc8361575b",
+              "path": "/forceDispositionIds/0"
+            },
+            "displayValue": "TAKE AND HOLD"
+          },
+          {
+            "id": "mfm-detachment-b322e6cc8361575b::/forceDispositionIds/1",
+            "label": "Force Disposition",
+            "value": "force-disposition-purge-the-foe",
+            "type": "text",
+            "contextId": "detachment-virulent-vectorium",
+            "source": {
+              "entityId": "mfm-detachment-b322e6cc8361575b",
+              "path": "/forceDispositionIds/1"
+            },
+            "displayValue": "PURGE THE FOE"
+          }
+        ]
+      },
+      "detachment-virulent-vectorium:rule": {
+        "id": "detachment-virulent-vectorium:rule",
+        "kind": "DETACHMENT_RULE",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:rule"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:rule",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/rule"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:047",
+            "page": 7,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-virulent-vectorium:rule"
+          }
+        },
+        "tables": []
+      },
+      "detachment-virulent-vectorium:enhancement:1": {
+        "id": "detachment-virulent-vectorium:enhancement:1",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:enhancement:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:enhancement:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/enhancements/0"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-8bb2a1551d2f2a03",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "VIRULENT VECTORIUM",
+            "sourceTitle": "Daemon Weapon of Nurgle"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-8bb2a1551d2f2a03::/value"
+      },
+      "detachment-virulent-vectorium:enhancement:2": {
+        "id": "detachment-virulent-vectorium:enhancement:2",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:enhancement:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:enhancement:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/enhancements/1"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-84cdc2fa3764f096",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "VIRULENT VECTORIUM",
+            "sourceTitle": "Furnace of Plagues"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-84cdc2fa3764f096::/value"
+      },
+      "detachment-virulent-vectorium:enhancement:3": {
+        "id": "detachment-virulent-vectorium:enhancement:3",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:enhancement:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:enhancement:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/enhancements/2"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-0291b479baf19ed5",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "VIRULENT VECTORIUM",
+            "sourceTitle": "Arch Contaminator"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-0291b479baf19ed5::/value"
+      },
+      "detachment-virulent-vectorium:enhancement:4": {
+        "id": "detachment-virulent-vectorium:enhancement:4",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:enhancement:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:enhancement:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/enhancements/3"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-90923bc89821bdf7",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "VIRULENT VECTORIUM",
+            "sourceTitle": "Revolting Regeneration"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-90923bc89821bdf7::/value"
+      },
+      "detachment-virulent-vectorium:stratagem:1": {
+        "id": "detachment-virulent-vectorium:stratagem:1",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:stratagem:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:stratagem:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/stratagems/0"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-virulent-vectorium:stratagem:2": {
+        "id": "detachment-virulent-vectorium:stratagem:2",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:stratagem:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:stratagem:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/stratagems/1"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-virulent-vectorium:stratagem:3": {
+        "id": "detachment-virulent-vectorium:stratagem:3",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:stratagem:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:stratagem:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/stratagems/2"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-virulent-vectorium:stratagem:4": {
+        "id": "detachment-virulent-vectorium:stratagem:4",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:stratagem:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:stratagem:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/stratagems/3"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-virulent-vectorium:stratagem:5": {
+        "id": "detachment-virulent-vectorium:stratagem:5",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:stratagem:5"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:stratagem:5",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/stratagems/4"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-virulent-vectorium:stratagem:6": {
+        "id": "detachment-virulent-vectorium:stratagem:6",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-virulent-vectorium",
+        "contextId": "detachment-virulent-vectorium",
+        "source": {
+          "entityId": "detachment-virulent-vectorium:stratagem:6"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-virulent-vectorium:stratagem:6",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/0/stratagems/5"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-shamblerot-vectorium": {
+        "id": "detachment-shamblerot-vectorium",
+        "kind": "DETACHMENT",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "ruleId": "detachment-shamblerot-vectorium:rule",
+        "enhancementIds": [
+          "detachment-shamblerot-vectorium:enhancement:1",
+          "detachment-shamblerot-vectorium:enhancement:2",
+          "detachment-shamblerot-vectorium:enhancement:3",
+          "detachment-shamblerot-vectorium:enhancement:4"
+        ],
+        "stratagemIds": [
+          "detachment-shamblerot-vectorium:stratagem:1",
+          "detachment-shamblerot-vectorium:stratagem:2",
+          "detachment-shamblerot-vectorium:stratagem:3",
+          "detachment-shamblerot-vectorium:stratagem:4",
+          "detachment-shamblerot-vectorium:stratagem:5",
+          "detachment-shamblerot-vectorium:stratagem:6"
+        ],
+        "pointRecordId": "mfm-detachment-78a7708d39b9fae6",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments",
+            "factionId": "death-guard",
+            "sourceTitle": "SHAMBLEROT VECTORIUM"
+          }
+        },
+        "detachmentPoints": {
+          "id": "mfm-detachment-78a7708d39b9fae6::/detachmentPoints",
+          "label": "Detachment Points",
+          "value": 2,
+          "type": "text",
+          "contextId": "detachment-shamblerot-vectorium",
+          "source": {
+            "entityId": "mfm-detachment-78a7708d39b9fae6",
+            "path": "/detachmentPoints"
+          }
+        },
+        "forceDispositions": [
+          {
+            "id": "mfm-detachment-78a7708d39b9fae6::/forceDispositionIds/0",
+            "label": "Force Disposition",
+            "value": "force-disposition-disruption",
+            "type": "text",
+            "contextId": "detachment-shamblerot-vectorium",
+            "source": {
+              "entityId": "mfm-detachment-78a7708d39b9fae6",
+              "path": "/forceDispositionIds/0"
+            },
+            "displayValue": "DISRUPTION"
+          }
+        ]
+      },
+      "detachment-shamblerot-vectorium:rule": {
+        "id": "detachment-shamblerot-vectorium:rule",
+        "kind": "DETACHMENT_RULE",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:rule"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:rule",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/rule"
+        },
+        "fieldProvenance": {},
+        "tables": [
+          {
+            "id": "detachment-shamblerot-vectorium:rule::/tables/0/rows",
+            "path": "/tables/0/rows"
+          }
+        ]
+      },
+      "detachment-shamblerot-vectorium:enhancement:1": {
+        "id": "detachment-shamblerot-vectorium:enhancement:1",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:enhancement:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:enhancement:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/enhancements/0"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-3477e39b8b9040e1",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "SHAMBLEROT VECTORIUM",
+            "sourceTitle": "Witherbone Pipes"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-3477e39b8b9040e1::/value"
+      },
+      "detachment-shamblerot-vectorium:enhancement:2": {
+        "id": "detachment-shamblerot-vectorium:enhancement:2",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:enhancement:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:enhancement:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/enhancements/1"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-f8be0cb2b9258b38",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "SHAMBLEROT VECTORIUM",
+            "sourceTitle": "Lord of the Walking Pox"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-f8be0cb2b9258b38::/value"
+      },
+      "detachment-shamblerot-vectorium:enhancement:3": {
+        "id": "detachment-shamblerot-vectorium:enhancement:3",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:enhancement:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:enhancement:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/enhancements/2"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-5e86fd49bf8322c8",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "SHAMBLEROT VECTORIUM",
+            "sourceTitle": "Sorrowsyphon"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-5e86fd49bf8322c8::/value"
+      },
+      "detachment-shamblerot-vectorium:enhancement:4": {
+        "id": "detachment-shamblerot-vectorium:enhancement:4",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:enhancement:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:enhancement:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/enhancements/3"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-7bbd848f52537535",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "SHAMBLEROT VECTORIUM",
+            "sourceTitle": "Talisman of Burgeoning"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-7bbd848f52537535::/value"
+      },
+      "detachment-shamblerot-vectorium:stratagem:1": {
+        "id": "detachment-shamblerot-vectorium:stratagem:1",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:stratagem:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:stratagem:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/stratagems/0"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-shamblerot-vectorium:stratagem:2": {
+        "id": "detachment-shamblerot-vectorium:stratagem:2",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:stratagem:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:stratagem:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/stratagems/1"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-shamblerot-vectorium:stratagem:3": {
+        "id": "detachment-shamblerot-vectorium:stratagem:3",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:stratagem:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:stratagem:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/stratagems/2"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-shamblerot-vectorium:stratagem:4": {
+        "id": "detachment-shamblerot-vectorium:stratagem:4",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:stratagem:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:stratagem:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/stratagems/3"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-shamblerot-vectorium:stratagem:5": {
+        "id": "detachment-shamblerot-vectorium:stratagem:5",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:stratagem:5"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:stratagem:5",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/stratagems/4"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-shamblerot-vectorium:stratagem:6": {
+        "id": "detachment-shamblerot-vectorium:stratagem:6",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-shamblerot-vectorium",
+        "contextId": "detachment-shamblerot-vectorium",
+        "source": {
+          "entityId": "detachment-shamblerot-vectorium:stratagem:6"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-shamblerot-vectorium:stratagem:6",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/1/stratagems/5"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-tallyband-summoners": {
+        "id": "detachment-tallyband-summoners",
+        "kind": "DETACHMENT",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "ruleId": "detachment-tallyband-summoners:rule",
+        "enhancementIds": [
+          "detachment-tallyband-summoners:enhancement:1",
+          "detachment-tallyband-summoners:enhancement:2",
+          "detachment-tallyband-summoners:enhancement:3",
+          "detachment-tallyband-summoners:enhancement:4"
+        ],
+        "stratagemIds": [
+          "detachment-tallyband-summoners:stratagem:1",
+          "detachment-tallyband-summoners:stratagem:2",
+          "detachment-tallyband-summoners:stratagem:3",
+          "detachment-tallyband-summoners:stratagem:4",
+          "detachment-tallyband-summoners:stratagem:5",
+          "detachment-tallyband-summoners:stratagem:6"
+        ],
+        "pointRecordId": "mfm-detachment-8e7262a2f771a041",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments",
+            "factionId": "death-guard",
+            "sourceTitle": "TALLYBAND SUMMONERS"
+          }
+        },
+        "detachmentPoints": {
+          "id": "mfm-detachment-8e7262a2f771a041::/detachmentPoints",
+          "label": "Detachment Points",
+          "value": 2,
+          "type": "text",
+          "contextId": "detachment-tallyband-summoners",
+          "source": {
+            "entityId": "mfm-detachment-8e7262a2f771a041",
+            "path": "/detachmentPoints"
+          }
+        },
+        "forceDispositions": [
+          {
+            "id": "mfm-detachment-8e7262a2f771a041::/forceDispositionIds/0",
+            "label": "Force Disposition",
+            "value": "force-disposition-disruption",
+            "type": "text",
+            "contextId": "detachment-tallyband-summoners",
+            "source": {
+              "entityId": "mfm-detachment-8e7262a2f771a041",
+              "path": "/forceDispositionIds/0"
+            },
+            "displayValue": "DISRUPTION"
+          }
+        ]
+      },
+      "detachment-tallyband-summoners:rule": {
+        "id": "detachment-tallyband-summoners:rule",
+        "kind": "DETACHMENT_RULE",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:rule"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:rule",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/rule"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-tallyband-summoners:enhancement:1": {
+        "id": "detachment-tallyband-summoners:enhancement:1",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:enhancement:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:enhancement:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/enhancements/0"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:046",
+            "page": 7,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-tallyband-summoners:enhancement:1"
+          }
+        },
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-d6570a0750011685",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "TALLYBAND SUMMONERS",
+            "sourceTitle": "Beckoning Blight"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-d6570a0750011685::/value"
+      },
+      "detachment-tallyband-summoners:enhancement:2": {
+        "id": "detachment-tallyband-summoners:enhancement:2",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:enhancement:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:enhancement:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/enhancements/1"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-327e01ad7ad2572b",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "TALLYBAND SUMMONERS",
+            "sourceTitle": "Fell Harvester"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-327e01ad7ad2572b::/value"
+      },
+      "detachment-tallyband-summoners:enhancement:3": {
+        "id": "detachment-tallyband-summoners:enhancement:3",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:enhancement:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:enhancement:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/enhancements/2"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-05b9cb315d84f370",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "TALLYBAND SUMMONERS",
+            "sourceTitle": "Entropic Knell"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-05b9cb315d84f370::/value"
+      },
+      "detachment-tallyband-summoners:enhancement:4": {
+        "id": "detachment-tallyband-summoners:enhancement:4",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:enhancement:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:enhancement:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/enhancements/3"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-0ced9b991e097ce6",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "TALLYBAND SUMMONERS",
+            "sourceTitle": "Tome of Bounteous Blessings"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-0ced9b991e097ce6::/value"
+      },
+      "detachment-tallyband-summoners:stratagem:1": {
+        "id": "detachment-tallyband-summoners:stratagem:1",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:stratagem:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:stratagem:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/stratagems/0"
+        },
+        "fieldProvenance": {
+          "lines/3/text": {
+            "sourceId": "gw-universal-rules-updates-v1.1-2026-08-26",
+            "effectiveFrom": "2026-08-26",
+            "operationId": "gw-universal-rules-updates-v1.1-2026-08-26:operation:061",
+            "page": 1,
+            "documentPath": "books/death-guard/v2/sources/gw-universal-rules-updates-2026-08-26.pdf",
+            "sourceLocator": "STRATAGEMS THAT ADD NEW UNITS TO YOUR ARMY"
+          }
+        },
+        "tables": []
+      },
+      "detachment-tallyband-summoners:stratagem:2": {
+        "id": "detachment-tallyband-summoners:stratagem:2",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:stratagem:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:stratagem:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/stratagems/1"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-tallyband-summoners:stratagem:3": {
+        "id": "detachment-tallyband-summoners:stratagem:3",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:stratagem:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:stratagem:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/stratagems/2"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-tallyband-summoners:stratagem:4": {
+        "id": "detachment-tallyband-summoners:stratagem:4",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:stratagem:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:stratagem:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/stratagems/3"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-tallyband-summoners:stratagem:5": {
+        "id": "detachment-tallyband-summoners:stratagem:5",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:stratagem:5"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:stratagem:5",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/stratagems/4"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-tallyband-summoners:stratagem:6": {
+        "id": "detachment-tallyband-summoners:stratagem:6",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-tallyband-summoners",
+        "contextId": "detachment-tallyband-summoners",
+        "source": {
+          "entityId": "detachment-tallyband-summoners:stratagem:6"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-tallyband-summoners:stratagem:6",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/2/stratagems/5"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-death-lords-chosen": {
+        "id": "detachment-death-lords-chosen",
+        "kind": "DETACHMENT",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "ruleId": "detachment-death-lords-chosen:rule",
+        "enhancementIds": [
+          "detachment-death-lords-chosen:enhancement:1",
+          "detachment-death-lords-chosen:enhancement:2",
+          "detachment-death-lords-chosen:enhancement:3",
+          "detachment-death-lords-chosen:enhancement:4"
+        ],
+        "stratagemIds": [
+          "detachment-death-lords-chosen:stratagem:1",
+          "detachment-death-lords-chosen:stratagem:2",
+          "detachment-death-lords-chosen:stratagem:3",
+          "detachment-death-lords-chosen:stratagem:4",
+          "detachment-death-lords-chosen:stratagem:5",
+          "detachment-death-lords-chosen:stratagem:6"
+        ],
+        "pointRecordId": "mfm-detachment-6748f74689493c0f",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments",
+            "factionId": "death-guard",
+            "sourceTitle": "DEATH LORD’S CHOSEN"
+          }
+        },
+        "detachmentPoints": {
+          "id": "mfm-detachment-6748f74689493c0f::/detachmentPoints",
+          "label": "Detachment Points",
+          "value": 2,
+          "type": "text",
+          "contextId": "detachment-death-lords-chosen",
+          "source": {
+            "entityId": "mfm-detachment-6748f74689493c0f",
+            "path": "/detachmentPoints"
+          }
+        },
+        "forceDispositions": [
+          {
+            "id": "mfm-detachment-6748f74689493c0f::/forceDispositionIds/0",
+            "label": "Force Disposition",
+            "value": "force-disposition-priority-assets",
+            "type": "text",
+            "contextId": "detachment-death-lords-chosen",
+            "source": {
+              "entityId": "mfm-detachment-6748f74689493c0f",
+              "path": "/forceDispositionIds/0"
+            },
+            "displayValue": "PRIORITY ASSETS"
+          }
+        ]
+      },
+      "detachment-death-lords-chosen:rule": {
+        "id": "detachment-death-lords-chosen:rule",
+        "kind": "DETACHMENT_RULE",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:rule"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:rule",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/rule"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-death-lords-chosen:enhancement:1": {
+        "id": "detachment-death-lords-chosen:enhancement:1",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:enhancement:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:enhancement:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/enhancements/0"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-78d417fd4ce93868",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "DEATH LORD’S CHOSEN",
+            "sourceTitle": "Face of Death"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-78d417fd4ce93868::/value"
+      },
+      "detachment-death-lords-chosen:enhancement:2": {
+        "id": "detachment-death-lords-chosen:enhancement:2",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:enhancement:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:enhancement:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/enhancements/1"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-17ce99236e3b3b35",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "DEATH LORD’S CHOSEN",
+            "sourceTitle": "Vile Vigour"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-17ce99236e3b3b35::/value"
+      },
+      "detachment-death-lords-chosen:enhancement:3": {
+        "id": "detachment-death-lords-chosen:enhancement:3",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:enhancement:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:enhancement:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/enhancements/2"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-86b9e3c5a18732fa",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "DEATH LORD’S CHOSEN",
+            "sourceTitle": "Warprot Talisman"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-86b9e3c5a18732fa::/value"
+      },
+      "detachment-death-lords-chosen:enhancement:4": {
+        "id": "detachment-death-lords-chosen:enhancement:4",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:enhancement:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:enhancement:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/enhancements/3"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-4f4f810645765622",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "DEATH LORD’S CHOSEN",
+            "sourceTitle": "Helm of The Fly King"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-4f4f810645765622::/value"
+      },
+      "detachment-death-lords-chosen:stratagem:1": {
+        "id": "detachment-death-lords-chosen:stratagem:1",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:stratagem:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:stratagem:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/stratagems/0"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-death-lords-chosen:stratagem:2": {
+        "id": "detachment-death-lords-chosen:stratagem:2",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:stratagem:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:stratagem:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/stratagems/1"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-death-lords-chosen:stratagem:3": {
+        "id": "detachment-death-lords-chosen:stratagem:3",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:stratagem:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:stratagem:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/stratagems/2"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-death-lords-chosen:stratagem:4": {
+        "id": "detachment-death-lords-chosen:stratagem:4",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:stratagem:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:stratagem:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/stratagems/3"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-death-lords-chosen:stratagem:5": {
+        "id": "detachment-death-lords-chosen:stratagem:5",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:stratagem:5"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:stratagem:5",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/stratagems/4"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-death-lords-chosen:stratagem:6": {
+        "id": "detachment-death-lords-chosen:stratagem:6",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-death-lords-chosen",
+        "contextId": "detachment-death-lords-chosen",
+        "source": {
+          "entityId": "detachment-death-lords-chosen:stratagem:6"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-death-lords-chosen:stratagem:6",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/3/stratagems/5"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-mortarions-hammer": {
+        "id": "detachment-mortarions-hammer",
+        "kind": "DETACHMENT",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "ruleId": "detachment-mortarions-hammer:rule",
+        "enhancementIds": [
+          "detachment-mortarions-hammer:enhancement:1",
+          "detachment-mortarions-hammer:enhancement:2",
+          "detachment-mortarions-hammer:enhancement:3",
+          "detachment-mortarions-hammer:enhancement:4"
+        ],
+        "stratagemIds": [
+          "detachment-mortarions-hammer:stratagem:1",
+          "detachment-mortarions-hammer:stratagem:2",
+          "detachment-mortarions-hammer:stratagem:3",
+          "detachment-mortarions-hammer:stratagem:4",
+          "detachment-mortarions-hammer:stratagem:5",
+          "detachment-mortarions-hammer:stratagem:6"
+        ],
+        "pointRecordId": "mfm-detachment-d1022febc5af5555",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments",
+            "factionId": "death-guard",
+            "sourceTitle": "MORTARION’S HAMMER"
+          }
+        },
+        "detachmentPoints": {
+          "id": "mfm-detachment-d1022febc5af5555::/detachmentPoints",
+          "label": "Detachment Points",
+          "value": 2,
+          "type": "text",
+          "contextId": "detachment-mortarions-hammer",
+          "source": {
+            "entityId": "mfm-detachment-d1022febc5af5555",
+            "path": "/detachmentPoints"
+          }
+        },
+        "forceDispositions": [
+          {
+            "id": "mfm-detachment-d1022febc5af5555::/forceDispositionIds/0",
+            "label": "Force Disposition",
+            "value": "force-disposition-purge-the-foe",
+            "type": "text",
+            "contextId": "detachment-mortarions-hammer",
+            "source": {
+              "entityId": "mfm-detachment-d1022febc5af5555",
+              "path": "/forceDispositionIds/0"
+            },
+            "displayValue": "PURGE THE FOE"
+          }
+        ]
+      },
+      "detachment-mortarions-hammer:rule": {
+        "id": "detachment-mortarions-hammer:rule",
+        "kind": "DETACHMENT_RULE",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:rule"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:rule",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/rule"
+        },
+        "fieldProvenance": {},
+        "tables": [
+          {
+            "id": "detachment-mortarions-hammer:rule::/tables/0/rows",
+            "path": "/tables/0/rows"
+          }
+        ]
+      },
+      "detachment-mortarions-hammer:enhancement:1": {
+        "id": "detachment-mortarions-hammer:enhancement:1",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:enhancement:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:enhancement:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/enhancements/0"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-2112d0413c4a08e7",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "MORTARION’S HAMMER",
+            "sourceTitle": "Eye of Affliction"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-2112d0413c4a08e7::/value"
+      },
+      "detachment-mortarions-hammer:enhancement:2": {
+        "id": "detachment-mortarions-hammer:enhancement:2",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:enhancement:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:enhancement:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/enhancements/1"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-bb920bbb6ac8c06d",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "MORTARION’S HAMMER",
+            "sourceTitle": "Bilemaw Blight"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-bb920bbb6ac8c06d::/value"
+      },
+      "detachment-mortarions-hammer:enhancement:3": {
+        "id": "detachment-mortarions-hammer:enhancement:3",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:enhancement:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:enhancement:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/enhancements/2"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-fef76c4def11168d",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "MORTARION’S HAMMER",
+            "sourceTitle": "Shriekworm Familiar"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-fef76c4def11168d::/value"
+      },
+      "detachment-mortarions-hammer:enhancement:4": {
+        "id": "detachment-mortarions-hammer:enhancement:4",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:enhancement:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:enhancement:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/enhancements/3"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-c9fd2b31c501cc87",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "MORTARION’S HAMMER",
+            "sourceTitle": "Tendrilous Emissions"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-c9fd2b31c501cc87::/value"
+      },
+      "detachment-mortarions-hammer:stratagem:1": {
+        "id": "detachment-mortarions-hammer:stratagem:1",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:stratagem:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:stratagem:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/stratagems/0"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-mortarions-hammer:stratagem:2": {
+        "id": "detachment-mortarions-hammer:stratagem:2",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:stratagem:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:stratagem:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/stratagems/1"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-mortarions-hammer:stratagem:3": {
+        "id": "detachment-mortarions-hammer:stratagem:3",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:stratagem:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:stratagem:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/stratagems/2"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-mortarions-hammer:stratagem:4": {
+        "id": "detachment-mortarions-hammer:stratagem:4",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:stratagem:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:stratagem:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/stratagems/3"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-mortarions-hammer:stratagem:5": {
+        "id": "detachment-mortarions-hammer:stratagem:5",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:stratagem:5"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:stratagem:5",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/stratagems/4"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-mortarions-hammer:stratagem:6": {
+        "id": "detachment-mortarions-hammer:stratagem:6",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-mortarions-hammer",
+        "contextId": "detachment-mortarions-hammer",
+        "source": {
+          "entityId": "detachment-mortarions-hammer:stratagem:6"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-mortarions-hammer:stratagem:6",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/4/stratagems/5"
+        },
+        "fieldProvenance": {
+          "lines/1/text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:044",
+            "page": 7,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-mortarions-hammer:stratagem:6"
+          },
+          "lines/2/text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:045",
+            "page": 7,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-mortarions-hammer:stratagem:6"
+          }
+        },
+        "tables": []
+      },
+      "detachment-champions-of-contagion": {
+        "id": "detachment-champions-of-contagion",
+        "kind": "DETACHMENT",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "ruleId": "detachment-champions-of-contagion:rule",
+        "enhancementIds": [
+          "detachment-champions-of-contagion:enhancement:1",
+          "detachment-champions-of-contagion:enhancement:2",
+          "detachment-champions-of-contagion:enhancement:3",
+          "detachment-champions-of-contagion:enhancement:4"
+        ],
+        "stratagemIds": [
+          "detachment-champions-of-contagion:stratagem:1",
+          "detachment-champions-of-contagion:stratagem:2",
+          "detachment-champions-of-contagion:stratagem:3",
+          "detachment-champions-of-contagion:stratagem:4",
+          "detachment-champions-of-contagion:stratagem:5",
+          "detachment-champions-of-contagion:stratagem:6"
+        ],
+        "pointRecordId": "mfm-detachment-5ff09836f701c628",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments",
+            "factionId": "death-guard",
+            "sourceTitle": "CHAMPIONS OF CONTAGION"
+          }
+        },
+        "detachmentPoints": {
+          "id": "mfm-detachment-5ff09836f701c628::/detachmentPoints",
+          "label": "Detachment Points",
+          "value": 2,
+          "type": "text",
+          "contextId": "detachment-champions-of-contagion",
+          "source": {
+            "entityId": "mfm-detachment-5ff09836f701c628",
+            "path": "/detachmentPoints"
+          }
+        },
+        "forceDispositions": [
+          {
+            "id": "mfm-detachment-5ff09836f701c628::/forceDispositionIds/0",
+            "label": "Force Disposition",
+            "value": "force-disposition-take-and-hold",
+            "type": "text",
+            "contextId": "detachment-champions-of-contagion",
+            "source": {
+              "entityId": "mfm-detachment-5ff09836f701c628",
+              "path": "/forceDispositionIds/0"
+            },
+            "displayValue": "TAKE AND HOLD"
+          }
+        ]
+      },
+      "detachment-champions-of-contagion:rule": {
+        "id": "detachment-champions-of-contagion:rule",
+        "kind": "DETACHMENT_RULE",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:rule"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:rule",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/rule"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-champions-of-contagion:enhancement:1": {
+        "id": "detachment-champions-of-contagion:enhancement:1",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:enhancement:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:enhancement:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/enhancements/0"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-802b8458963ec3e1",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "CHAMPIONS OF CONTAGION",
+            "sourceTitle": "Final Ingredient"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-802b8458963ec3e1::/value"
+      },
+      "detachment-champions-of-contagion:enhancement:2": {
+        "id": "detachment-champions-of-contagion:enhancement:2",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:enhancement:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:enhancement:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/enhancements/1"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-1f16b67b360fce82",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "CHAMPIONS OF CONTAGION",
+            "sourceTitle": "Visions of Virulence"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-1f16b67b360fce82::/value"
+      },
+      "detachment-champions-of-contagion:enhancement:3": {
+        "id": "detachment-champions-of-contagion:enhancement:3",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:enhancement:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:enhancement:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/enhancements/2"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-32821a6cf43dfcd6",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "CHAMPIONS OF CONTAGION",
+            "sourceTitle": "Needle of Nurgle"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-32821a6cf43dfcd6::/value"
+      },
+      "detachment-champions-of-contagion:enhancement:4": {
+        "id": "detachment-champions-of-contagion:enhancement:4",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:enhancement:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:enhancement:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/enhancements/3"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-416a2d8bc5b08a05",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "CHAMPIONS OF CONTAGION",
+            "sourceTitle": "Cornucophagus"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-416a2d8bc5b08a05::/value"
+      },
+      "detachment-champions-of-contagion:stratagem:1": {
+        "id": "detachment-champions-of-contagion:stratagem:1",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:stratagem:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:stratagem:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/stratagems/0"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-champions-of-contagion:stratagem:2": {
+        "id": "detachment-champions-of-contagion:stratagem:2",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:stratagem:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:stratagem:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/stratagems/1"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-champions-of-contagion:stratagem:3": {
+        "id": "detachment-champions-of-contagion:stratagem:3",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:stratagem:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:stratagem:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/stratagems/2"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-champions-of-contagion:stratagem:4": {
+        "id": "detachment-champions-of-contagion:stratagem:4",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:stratagem:4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:stratagem:4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/stratagems/3"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-champions-of-contagion:stratagem:5": {
+        "id": "detachment-champions-of-contagion:stratagem:5",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:stratagem:5"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:stratagem:5",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/stratagems/4"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-champions-of-contagion:stratagem:6": {
+        "id": "detachment-champions-of-contagion:stratagem:6",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-champions-of-contagion",
+        "contextId": "detachment-champions-of-contagion",
+        "source": {
+          "entityId": "detachment-champions-of-contagion:stratagem:6"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-champions-of-contagion:stratagem:6",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/5/stratagems/5"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "detachment-paragons-of-putrescence": {
+        "id": "detachment-paragons-of-putrescence",
+        "kind": "DETACHMENT",
+        "contextId": "detachment-paragons-of-putrescence",
+        "source": {
+          "entityId": "detachment-paragons-of-putrescence"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-paragons-of-putrescence",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/6"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "ruleId": "detachment-paragons-of-putrescence:rule",
+        "enhancementIds": [
+          "detachment-paragons-of-putrescence:enhancement:1",
+          "detachment-paragons-of-putrescence:enhancement:2"
+        ],
+        "stratagemIds": [
+          "detachment-paragons-of-putrescence:stratagem:1",
+          "detachment-paragons-of-putrescence:stratagem:2",
+          "detachment-paragons-of-putrescence:stratagem:3"
+        ],
+        "pointRecordId": "mfm-detachment-5e0ac78fb606c41f",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments",
+            "factionId": "death-guard",
+            "sourceTitle": "PARAGONS OF PUTRESCENCE"
+          }
+        },
+        "detachmentPoints": {
+          "id": "mfm-detachment-5e0ac78fb606c41f::/detachmentPoints",
+          "label": "Detachment Points",
+          "value": 1,
+          "type": "text",
+          "contextId": "detachment-paragons-of-putrescence",
+          "source": {
+            "entityId": "mfm-detachment-5e0ac78fb606c41f",
+            "path": "/detachmentPoints"
+          }
+        },
+        "forceDispositions": [
+          {
+            "id": "mfm-detachment-5e0ac78fb606c41f::/forceDispositionIds/0",
+            "label": "Force Disposition",
+            "value": "force-disposition-priority-assets",
+            "type": "text",
+            "contextId": "detachment-paragons-of-putrescence",
+            "source": {
+              "entityId": "mfm-detachment-5e0ac78fb606c41f",
+              "path": "/forceDispositionIds/0"
+            },
+            "displayValue": "PRIORITY ASSETS"
+          }
+        ]
+      },
+      "detachment-paragons-of-putrescence:rule": {
+        "id": "detachment-paragons-of-putrescence:rule",
+        "kind": "DETACHMENT_RULE",
+        "parentId": "detachment-paragons-of-putrescence",
+        "contextId": "detachment-paragons-of-putrescence",
+        "source": {
+          "entityId": "detachment-paragons-of-putrescence:rule"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-paragons-of-putrescence:rule",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/6/rule"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:091",
+            "page": 4,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-paragons-of-putrescence:rule"
+          }
+        },
+        "tables": []
+      },
+      "detachment-paragons-of-putrescence:enhancement:1": {
+        "id": "detachment-paragons-of-putrescence:enhancement:1",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-paragons-of-putrescence",
+        "contextId": "detachment-paragons-of-putrescence",
+        "source": {
+          "entityId": "detachment-paragons-of-putrescence:enhancement:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-paragons-of-putrescence:enhancement:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/6/enhancements/0"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:092",
+            "page": 4,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-paragons-of-putrescence:enhancement:1"
+          }
+        },
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-ed169bd0533b5e8c",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "PARAGONS OF PUTRESCENCE",
+            "sourceTitle": "Rejuvenating Swarm"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-ed169bd0533b5e8c::/value"
+      },
+      "detachment-paragons-of-putrescence:enhancement:2": {
+        "id": "detachment-paragons-of-putrescence:enhancement:2",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-paragons-of-putrescence",
+        "contextId": "detachment-paragons-of-putrescence",
+        "source": {
+          "entityId": "detachment-paragons-of-putrescence:enhancement:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-paragons-of-putrescence:enhancement:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/6/enhancements/1"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:093",
+            "page": 4,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-paragons-of-putrescence:enhancement:2"
+          }
+        },
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-727b585f9b211de4",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "PARAGONS OF PUTRESCENCE",
+            "sourceTitle": "Host of the Hybridised Pox"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-727b585f9b211de4::/value"
+      },
+      "detachment-paragons-of-putrescence:stratagem:1": {
+        "id": "detachment-paragons-of-putrescence:stratagem:1",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-paragons-of-putrescence",
+        "contextId": "detachment-paragons-of-putrescence",
+        "source": {
+          "entityId": "detachment-paragons-of-putrescence:stratagem:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-paragons-of-putrescence:stratagem:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/6/stratagems/0"
+        },
+        "fieldProvenance": {
+          "lines": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:094",
+            "page": 4,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-paragons-of-putrescence:stratagem:1"
+          }
+        },
+        "tables": []
+      },
+      "detachment-paragons-of-putrescence:stratagem:2": {
+        "id": "detachment-paragons-of-putrescence:stratagem:2",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-paragons-of-putrescence",
+        "contextId": "detachment-paragons-of-putrescence",
+        "source": {
+          "entityId": "detachment-paragons-of-putrescence:stratagem:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-paragons-of-putrescence:stratagem:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/6/stratagems/1"
+        },
+        "fieldProvenance": {
+          "lines": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:095",
+            "page": 4,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-paragons-of-putrescence:stratagem:2"
+          }
+        },
+        "tables": []
+      },
+      "detachment-paragons-of-putrescence:stratagem:3": {
+        "id": "detachment-paragons-of-putrescence:stratagem:3",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-paragons-of-putrescence",
+        "contextId": "detachment-paragons-of-putrescence",
+        "source": {
+          "entityId": "detachment-paragons-of-putrescence:stratagem:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-paragons-of-putrescence:stratagem:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/6/stratagems/2"
+        },
+        "fieldProvenance": {
+          "lines": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:096",
+            "page": 4,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-paragons-of-putrescence:stratagem:3"
+          }
+        },
+        "tables": []
+      },
+      "detachment-contagion-engines": {
+        "id": "detachment-contagion-engines",
+        "kind": "DETACHMENT",
+        "contextId": "detachment-contagion-engines",
+        "source": {
+          "entityId": "detachment-contagion-engines"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-contagion-engines",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/7"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "ruleId": "detachment-contagion-engines:rule",
+        "enhancementIds": [
+          "detachment-contagion-engines:enhancement:1",
+          "detachment-contagion-engines:enhancement:2"
+        ],
+        "stratagemIds": [
+          "detachment-contagion-engines:stratagem:1",
+          "detachment-contagion-engines:stratagem:2",
+          "detachment-contagion-engines:stratagem:3"
+        ],
+        "pointRecordId": "mfm-detachment-ae194da29bc7d8f2",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments",
+            "factionId": "death-guard",
+            "sourceTitle": "CONTAGION ENGINES"
+          }
+        },
+        "detachmentPoints": {
+          "id": "mfm-detachment-ae194da29bc7d8f2::/detachmentPoints",
+          "label": "Detachment Points",
+          "value": 1,
+          "type": "text",
+          "contextId": "detachment-contagion-engines",
+          "source": {
+            "entityId": "mfm-detachment-ae194da29bc7d8f2",
+            "path": "/detachmentPoints"
+          }
+        },
+        "forceDispositions": [
+          {
+            "id": "mfm-detachment-ae194da29bc7d8f2::/forceDispositionIds/0",
+            "label": "Force Disposition",
+            "value": "force-disposition-reconnaissance",
+            "type": "text",
+            "contextId": "detachment-contagion-engines",
+            "source": {
+              "entityId": "mfm-detachment-ae194da29bc7d8f2",
+              "path": "/forceDispositionIds/0"
+            },
+            "displayValue": "RECONNAISSANCE"
+          }
+        ]
+      },
+      "detachment-contagion-engines:rule": {
+        "id": "detachment-contagion-engines:rule",
+        "kind": "DETACHMENT_RULE",
+        "parentId": "detachment-contagion-engines",
+        "contextId": "detachment-contagion-engines",
+        "source": {
+          "entityId": "detachment-contagion-engines:rule"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-contagion-engines:rule",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/7/rule"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:079",
+            "page": 2,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-contagion-engines:rule"
+          }
+        },
+        "tables": []
+      },
+      "detachment-contagion-engines:enhancement:1": {
+        "id": "detachment-contagion-engines:enhancement:1",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-contagion-engines",
+        "contextId": "detachment-contagion-engines",
+        "source": {
+          "entityId": "detachment-contagion-engines:enhancement:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-contagion-engines:enhancement:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/7/enhancements/0"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:080",
+            "page": 2,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-contagion-engines:enhancement:1"
+          }
+        },
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-a268455347507941",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "CONTAGION ENGINES",
+            "sourceTitle": "Parasitic Woe‑reaper (Upgrade)"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-a268455347507941::/value"
+      },
+      "detachment-contagion-engines:enhancement:2": {
+        "id": "detachment-contagion-engines:enhancement:2",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-contagion-engines",
+        "contextId": "detachment-contagion-engines",
+        "source": {
+          "entityId": "detachment-contagion-engines:enhancement:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-contagion-engines:enhancement:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/7/enhancements/1"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:081",
+            "page": 2,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-contagion-engines:enhancement:2"
+          }
+        },
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-a52715b43ac487a3",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "CONTAGION ENGINES",
+            "sourceTitle": "Lancet of the Worldsore (Upgrade)"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-a52715b43ac487a3::/value"
+      },
+      "detachment-contagion-engines:stratagem:1": {
+        "id": "detachment-contagion-engines:stratagem:1",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-contagion-engines",
+        "contextId": "detachment-contagion-engines",
+        "source": {
+          "entityId": "detachment-contagion-engines:stratagem:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-contagion-engines:stratagem:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/7/stratagems/0"
+        },
+        "fieldProvenance": {
+          "lines": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:082",
+            "page": 2,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-contagion-engines:stratagem:1"
+          }
+        },
+        "tables": []
+      },
+      "detachment-contagion-engines:stratagem:2": {
+        "id": "detachment-contagion-engines:stratagem:2",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-contagion-engines",
+        "contextId": "detachment-contagion-engines",
+        "source": {
+          "entityId": "detachment-contagion-engines:stratagem:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-contagion-engines:stratagem:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/7/stratagems/1"
+        },
+        "fieldProvenance": {
+          "lines": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:083",
+            "page": 2,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-contagion-engines:stratagem:2"
+          }
+        },
+        "tables": []
+      },
+      "detachment-contagion-engines:stratagem:3": {
+        "id": "detachment-contagion-engines:stratagem:3",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-contagion-engines",
+        "contextId": "detachment-contagion-engines",
+        "source": {
+          "entityId": "detachment-contagion-engines:stratagem:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-contagion-engines:stratagem:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/7/stratagems/2"
+        },
+        "fieldProvenance": {
+          "lines": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:084",
+            "page": 2,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-contagion-engines:stratagem:3"
+          }
+        },
+        "tables": []
+      },
+      "detachment-flyblown-host": {
+        "id": "detachment-flyblown-host",
+        "kind": "DETACHMENT",
+        "contextId": "detachment-flyblown-host",
+        "source": {
+          "entityId": "detachment-flyblown-host"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-flyblown-host",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/8"
+        },
+        "fieldProvenance": {},
+        "tables": [],
+        "ruleId": "detachment-flyblown-host:rule",
+        "enhancementIds": [
+          "detachment-flyblown-host:enhancement:1",
+          "detachment-flyblown-host:enhancement:2"
+        ],
+        "stratagemIds": [
+          "detachment-flyblown-host:stratagem:1",
+          "detachment-flyblown-host:stratagem:2",
+          "detachment-flyblown-host:stratagem:3"
+        ],
+        "pointRecordId": "mfm-detachment-7e125e0af0be8a27",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments",
+            "factionId": "death-guard",
+            "sourceTitle": "FLYBLOWN HOST"
+          }
+        },
+        "detachmentPoints": {
+          "id": "mfm-detachment-7e125e0af0be8a27::/detachmentPoints",
+          "label": "Detachment Points",
+          "value": 1,
+          "type": "text",
+          "contextId": "detachment-flyblown-host",
+          "source": {
+            "entityId": "mfm-detachment-7e125e0af0be8a27",
+            "path": "/detachmentPoints"
+          }
+        },
+        "forceDispositions": [
+          {
+            "id": "mfm-detachment-7e125e0af0be8a27::/forceDispositionIds/0",
+            "label": "Force Disposition",
+            "value": "force-disposition-reconnaissance",
+            "type": "text",
+            "contextId": "detachment-flyblown-host",
+            "source": {
+              "entityId": "mfm-detachment-7e125e0af0be8a27",
+              "path": "/forceDispositionIds/0"
+            },
+            "displayValue": "RECONNAISSANCE"
+          }
+        ]
+      },
+      "detachment-flyblown-host:rule": {
+        "id": "detachment-flyblown-host:rule",
+        "kind": "DETACHMENT_RULE",
+        "parentId": "detachment-flyblown-host",
+        "contextId": "detachment-flyblown-host",
+        "source": {
+          "entityId": "detachment-flyblown-host:rule"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-flyblown-host:rule",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/8/rule"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:085",
+            "page": 3,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-flyblown-host:rule"
+          }
+        },
+        "tables": []
+      },
+      "detachment-flyblown-host:enhancement:1": {
+        "id": "detachment-flyblown-host:enhancement:1",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-flyblown-host",
+        "contextId": "detachment-flyblown-host",
+        "source": {
+          "entityId": "detachment-flyblown-host:enhancement:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-flyblown-host:enhancement:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/8/enhancements/0"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:086",
+            "page": 3,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-flyblown-host:enhancement:1"
+          }
+        },
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-3e111dc8394681da",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "FLYBLOWN HOST",
+            "sourceTitle": "Insectile Murmuration (Upgrade)"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-3e111dc8394681da::/value"
+      },
+      "detachment-flyblown-host:enhancement:2": {
+        "id": "detachment-flyblown-host:enhancement:2",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-flyblown-host",
+        "contextId": "detachment-flyblown-host",
+        "source": {
+          "entityId": "detachment-flyblown-host:enhancement:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-flyblown-host:enhancement:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/8/enhancements/1"
+        },
+        "fieldProvenance": {
+          "text": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:087",
+            "page": 3,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-flyblown-host:enhancement:2"
+          }
+        },
+        "tables": [],
+        "pointRecordId": "mfm-enhancement-5c01e8117727acbd",
+        "qualifierRecordIds": [],
+        "mfmProvenance": {
+          "sourceId": "death-guard-mfm-v1.5",
+          "sourceVersion": "v1.5",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-09-30",
+          "sourceCaptureSha256": "9047F00F650B1D24A79AA5C6C0E4D6856975A1BA1D542B449D8F417CE29D35FB",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "death-guard",
+            "detachmentSourceTitle": "FLYBLOWN HOST",
+            "sourceTitle": "Plagueveil (Upgrade)"
+          }
+        },
+        "pointsFieldId": "mfm-enhancement-5c01e8117727acbd::/value"
+      },
+      "detachment-flyblown-host:stratagem:1": {
+        "id": "detachment-flyblown-host:stratagem:1",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-flyblown-host",
+        "contextId": "detachment-flyblown-host",
+        "source": {
+          "entityId": "detachment-flyblown-host:stratagem:1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-flyblown-host:stratagem:1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/8/stratagems/0"
+        },
+        "fieldProvenance": {
+          "lines": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:088",
+            "page": 3,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-flyblown-host:stratagem:1"
+          }
+        },
+        "tables": []
+      },
+      "detachment-flyblown-host:stratagem:2": {
+        "id": "detachment-flyblown-host:stratagem:2",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-flyblown-host",
+        "contextId": "detachment-flyblown-host",
+        "source": {
+          "entityId": "detachment-flyblown-host:stratagem:2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-flyblown-host:stratagem:2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/8/stratagems/1"
+        },
+        "fieldProvenance": {
+          "lines": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:089",
+            "page": 3,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-flyblown-host:stratagem:2"
+          }
+        },
+        "tables": []
+      },
+      "detachment-flyblown-host:stratagem:3": {
+        "id": "detachment-flyblown-host:stratagem:3",
+        "kind": "STRATAGEM",
+        "parentId": "detachment-flyblown-host",
+        "contextId": "detachment-flyblown-host",
+        "source": {
+          "entityId": "detachment-flyblown-host:stratagem:3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "detachment-flyblown-host:stratagem:3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/detachments/8/stratagems/2"
+        },
+        "fieldProvenance": {
+          "lines": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:090",
+            "page": 3,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-flyblown-host:stratagem:3"
+          }
+        },
+        "tables": []
+      },
+      "errata-1": {
+        "id": "errata-1",
+        "kind": "SOURCE_ERRATUM",
+        "contextId": "errata-1",
+        "source": {
+          "entityId": "errata-1"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "errata-1",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/errata/0"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "errata-2": {
+        "id": "errata-2",
+        "kind": "SOURCE_ERRATUM",
+        "contextId": "errata-2",
+        "source": {
+          "entityId": "errata-2"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "errata-2",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/errata/1"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "errata-3": {
+        "id": "errata-3",
+        "kind": "SOURCE_ERRATUM",
+        "contextId": "errata-3",
+        "source": {
+          "entityId": "errata-3"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "errata-3",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/errata/2"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "errata-4": {
+        "id": "errata-4",
+        "kind": "SOURCE_ERRATUM",
+        "contextId": "errata-4",
+        "source": {
+          "entityId": "errata-4"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "errata-4",
+          "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+          "pointer": "/errata/3"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "book-death-guard:introduction": {
+        "id": "book-death-guard:introduction",
+        "kind": "BOOK_USAGE_RULES",
+        "contextId": "book-death-guard:introduction",
+        "source": {
+          "entityId": "book-death-guard:introduction"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "book-death-guard:introduction",
+          "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+          "pointer": "/html/body/div/div[1]/div[3]/div[7]",
+          "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
+      "source-erratum:dg-waha:0005": {
+        "id": "source-erratum:dg-waha:0005",
+        "kind": "SOURCE_ERRATUM",
+        "contextId": "source-erratum:dg-waha:0005",
+        "source": {
+          "entityId": "source-erratum:dg-waha:0005"
+        },
+        "provenance": {
+          "sourceId": "dg-waha-2026-09-25",
+          "sourceRecordId": "source-erratum:dg-waha:0005",
+          "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html",
+          "pointer": "/html/body/div/div[1]/div[3]/div[3]/div[2]/div[2]/clause[1]",
+          "sha256": "9CCA2F02057FE5BA80DB524A4A1AA510B2EA9854D15C929D87679D9499A1565F"
+        },
+        "fieldProvenance": {},
+        "tables": []
+      }
+    }
   }
 }

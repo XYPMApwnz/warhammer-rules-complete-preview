@@ -1,0 +1,339 @@
+/* Actual V1 Army Book presentation, scoped to the V2 book presenter.
+ * Source declarations: styles/tokens.css, styles/content.css and
+ * styles/popups.css. Only presentation selectors are adapted. Navigation
+ * geometry and the accepted .unit-card presenter retain their own styles.
+ */
+body.v2-book-surface {
+  color-scheme: dark;
+  background:
+    linear-gradient(rgba(183, 166, 125, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(183, 166, 125, .028) 1px, transparent 1px),
+    repeating-linear-gradient(135deg, transparent 0 96px, rgba(183,166,125,.018) 97px 99px, transparent 100px 192px),
+    radial-gradient(circle at 84% 7%, rgba(213, 72, 142, .17), transparent 30rem),
+    radial-gradient(circle at 8% 32%, rgba(125, 146, 87, .15), transparent 28rem),
+    #121512;
+  background-size: 42px 42px, 42px 42px, auto, auto, auto, auto;
+}
+body.v2-book-surface .v2-layout { background: transparent; }
+/* Actual V1 header paint, leaving the accepted navigation geometry intact. */
+body.v2-book-surface .v2-topbar {
+  background: linear-gradient(90deg,rgba(125,146,87,.1),transparent 32%,rgba(213,72,142,.07)),rgba(13,15,13,.96);
+  color: #e2dcc9;
+  border-bottom-color: rgba(216,209,191,.14);
+  box-shadow: 0 10px 34px rgba(0,0,0,.28);
+  backdrop-filter: blur(15px);
+}
+body.v2-book-surface .v2-main { color: #e2dcc9; }
+body.v2-book-surface .v2-breadcrumbs { color: #969589; }
+body.v2-book-surface .v2-breadcrumbs :is(button, a) { color: #bfd58c; }
+body.v2-book-surface .v2-breadcrumb-current { color: #e2dcc9; }
+
+:where(.v2-book-record, .v2-book-detail) {
+  color-scheme: dark;
+  --header: 70px;
+  --bg: #0d0f0d;
+  --underhive: #121512;
+  --panel: #191f1a;
+  --panel-2: #252c25;
+  --ink: #e2dcc9;
+  --muted: #969589;
+  --green: #bfd58c;
+  --green-deep: #7d9257;
+  --bronze: #8d7448;
+  --bronze-bright: #c7ae75;
+  --pink: #d5488e;
+  --pink-deep: #74143f;
+  --faction-gradient: linear-gradient(90deg, #c8df7f 0 72%, #c8df7f 74%, #c3167c 82%, #c3167c 100%);
+  --line: rgba(216, 209, 191, .14);
+  --soft-line: rgba(216, 209, 191, .08);
+  --glass: rgba(26, 30, 27, .94);
+  --shadow: 0 26px 58px rgba(0, 0, 0, .46), 0 0 0 1px rgba(0, 0, 0, .48);
+  --radius: 2px;
+  color: var(--ink);
+  font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+.v2-book-record { min-width: 0; scroll-margin-top: 90px; }
+.v2-book-record :is(button, input) { font: inherit; color: inherit; }
+.v2-book-record :is(button, a) { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.v2-book-record :is(button, input, a):focus-visible { outline: 2px solid var(--pink); outline-offset: 4px; }
+.v2-book-record:is(.surface), .v2-book-record .surface {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.045), transparent 22%),
+    linear-gradient(315deg, rgba(141,116,72,.055), transparent 34%),
+    var(--glass);
+  box-shadow: var(--shadow), inset 0 1px rgba(255,255,255,.04), inset 0 -1px rgba(0,0,0,.48);
+}
+.v2-book-record:is(.surface)::before, .v2-book-record .surface::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--green-deep), transparent 58%, var(--pink));
+  pointer-events: none;
+}
+.v2-book-record.content-group, .v2-book-record .content-group { margin-top: 54px; }
+.v2-book-record.content-group + .content-group { padding-top: 12px; border-top: 1px solid var(--soft-line); }
+.v2-book-record .category-title {
+  position: relative;
+  margin: 0 0 20px;
+  padding: 15px 20px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--bronze);
+  border-radius: 0;
+  background:
+    linear-gradient(90deg, rgba(125,146,87,.19), rgba(141,116,72,.12) 55%, rgba(213,72,142,.055)),
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(255,255,255,.018) 13px, transparent 14px 26px);
+  box-shadow: inset 0 1px rgba(255,255,255,.03), 0 12px 26px rgba(0,0,0,.16);
+  font: 800 clamp(25px, 3vw, 32px)/1.08 Georgia, "Times New Roman", serif;
+}
+.v2-book-record .category-title::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 46px;
+  height: 46px;
+  border-top: 1px solid var(--pink);
+  border-right: 1px solid var(--pink);
+  opacity: .55;
+  pointer-events: none;
+}
+.v2-book-record:is(.rule-card, .enhancement), .v2-book-record :is(.rule-card, .enhancement) {
+  padding: 24px;
+  margin: 16px 0;
+  border-color: rgba(199,174,117,.2);
+}
+.v2-book-record :is(.rule-card h3, .enhancement h4), .v2-book-record.rule-card > h3, .v2-book-record.enhancement > h4 {
+  margin: 0 0 8px;
+  font: 700 24px Georgia, "Times New Roman", serif;
+}
+.v2-book-record .content-block { max-width: 860px; }
+.v2-book-record.ability { padding: 15px 16px; border: 1px solid var(--soft-line); border-left: 2px solid var(--green-deep); border-radius: 0; background: rgba(113,129,83,.055); }
+.v2-book-record.ability h5 { margin: 0 0 5px; font-size: 18px; }
+.v2-book-record.ability p { white-space: pre-line; overflow-wrap: anywhere; }
+.v2-book-record .enhancement-cost { font: inherit; }
+.v2-book-record :is(.content-block p, .rule-card p, .enhancement p, .field) { white-space: pre-line; overflow-wrap: anywhere; }
+.v2-book-record :is(.eyebrow, .source) {
+  color: var(--green);
+  font: 800 10px/1.5 ui-monospace, monospace;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.v2-book-record .source { margin-top: 14px; color: var(--bronze-bright); font-size: 9px; overflow-wrap: anywhere; }
+.v2-book-record .source summary { cursor: pointer; }
+.v2-book-record .lead { max-width: 760px; margin: 0 0 28px; color: var(--muted); }
+.v2-book-record .term-button {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline dotted var(--green-deep) 2px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+.v2-book-record .detachment-title { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; }
+.v2-book-record .detachment-dp {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 4px 8px;
+  border: 1px solid var(--pink);
+  color: var(--pink);
+  font: 800 10px/1 ui-monospace, monospace;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+.v2-book-record .detachment-part { margin-top: 34px; scroll-margin-top: calc(var(--header) + 20px); }
+.v2-book-record .detachment-part-title {
+  position: relative;
+  margin: 0 0 16px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--green-deep);
+  background: linear-gradient(90deg, rgba(125,146,87,.15), rgba(141,116,72,.08) 62%, rgba(213,72,142,.035));
+  font: 800 clamp(22px, 3vw, 29px)/1.08 Georgia, "Times New Roman", serif;
+}
+.v2-book-record .detachment-content { display: grid; grid-template-columns: 1fr; gap: 18px; }
+.v2-book-record .stratagem-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,360px),1fr)); gap: 18px; align-items: stretch; }
+.v2-book-record .detachment-content > :is(.rule-card,.enhancement,.stratagem) { width: 100%; max-width: none; margin: 0; }
+.v2-book-record .stratagem-grid > .stratagem { height: 100%; }
+
+/* The final V1 rail/card cascade, consolidated without obsolete declarations. */
+.v2-book-record.stratagem, .v2-book-record .stratagem {
+  --strat-color: #756f61;
+  --strat-soft: color-mix(in srgb,var(--strat-color) 16%,transparent);
+  position: relative;
+  display: grid;
+  grid-template-columns: 72px minmax(0,1fr);
+  align-content: start;
+  max-width: 680px;
+  margin: 24px auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-left: 0;
+  border-radius: 0;
+  background: radial-gradient(circle at 74% 58%,transparent 0 48px,color-mix(in srgb,var(--strat-color) 10%,transparent) 49px 50px,transparent 51px),linear-gradient(120deg,var(--strat-soft),transparent 46%),var(--glass);
+}
+.v2-book-record.stratagem[data-stratagem-type="battle-tactic"], .v2-book-record .stratagem[data-stratagem-type="battle-tactic"] { --strat-color: #247090; }
+.v2-book-record.stratagem[data-stratagem-type="strategic-ploy"], .v2-book-record .stratagem[data-stratagem-type="strategic-ploy"] { --strat-color: #507f72; }
+.v2-book-record.stratagem[data-stratagem-type="wargear"], .v2-book-record .stratagem[data-stratagem-type="wargear"] { --strat-color: #a77b32; }
+.v2-book-record.stratagem[data-stratagem-type="epic-deed"], .v2-book-record .stratagem[data-stratagem-type="epic-deed"] { --strat-color: #a83338; }
+/* The structured display category selects colour only; it never evaluates a
+   rule, reconstructs a field, or resolves gameplay identity. */
+.v2-book-record.stratagem[data-source-category$="BATTLE TACTIC STRATAGEM" i] { --strat-color: #247090; }
+.v2-book-record.stratagem[data-source-category$="STRATEGIC PLOY STRATAGEM" i] { --strat-color: #507f72; }
+.v2-book-record.stratagem[data-source-category$="WARGEAR STRATAGEM" i] { --strat-color: #a77b32; }
+.v2-book-record.stratagem[data-source-category$="EPIC DEED STRATAGEM" i] { --strat-color: #a83338; }
+.v2-book-record.stratagem::before, .v2-book-record .stratagem::before {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 72px;
+  background: linear-gradient(180deg,color-mix(in srgb,var(--strat-color) 72%,#101313),var(--strat-color));
+  border-right: 1px solid color-mix(in srgb,var(--strat-color) 70%,white);
+}
+.v2-book-record.stratagem[data-turn]::after, .v2-book-record .stratagem[data-turn]::after {
+  content: attr(data-turn);
+  position: absolute;
+  z-index: 2;
+  left: 8px;
+  bottom: 18px;
+  width: 56px;
+  padding: 8px 3px;
+  border: 2px solid var(--strat-color);
+  background: #e8e5d7;
+  color: var(--strat-color);
+  font: 900 11px/1.05 ui-monospace,monospace;
+  text-align: center;
+  white-space: pre-line;
+}
+.v2-book-record .stratagem-head {
+  grid-column: 2;
+  position: relative;
+  display: flex;
+  gap: 14px;
+  min-height: 76px;
+  padding: 15px 18px;
+  background: linear-gradient(90deg,color-mix(in srgb,var(--strat-color) 28%,#151916),rgba(17,21,18,.96));
+  border-bottom: 2px solid var(--strat-color);
+  color: var(--ink);
+}
+.v2-book-record .stratagem-head h3 { margin: 0; font: 800 27px Georgia,"Times New Roman",serif; }
+.v2-book-record .stratagem-type { color: color-mix(in srgb,var(--strat-color) 58%,white); font: 800 9px ui-monospace,monospace; letter-spacing: .12em; text-transform: uppercase; }
+.v2-book-record .cp {
+  position: absolute;
+  z-index: 3;
+  left: -62px;
+  top: 52px;
+  width: 52px;
+  height: 52px;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: #e8e5d7;
+  color: var(--strat-color);
+  border: 0;
+  clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%);
+  font: 900 13px ui-monospace,monospace;
+}
+.v2-book-record .field { grid-column: 2; margin: 0; padding: 13px 18px; border-bottom: 1px dotted var(--line); }
+.v2-book-record .field b { color: var(--strat-color); font: 900 10px ui-monospace,monospace; letter-spacing: .1em; text-transform: uppercase; }
+.v2-book-record .data-table { margin: 18px 0; overflow-x: auto; border: 1px solid var(--line); }
+.v2-book-record .data-row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(120px,1fr); }
+.v2-book-record .data-row > div { padding: 11px; border-top: 1px solid var(--soft-line); border-left: 1px solid var(--soft-line); }
+.v2-book-record .data-row > div:first-child { border-left: 0; }
+.v2-book-record .data-head { background: var(--panel-2); font-size: 11px; font-weight: 850; text-transform: uppercase; }
+.v2-book-record .data-head > div { border-top: 0; }
+.v2-book-record figure { margin: 18px 0; }
+.v2-book-record figure img { display: block; max-width: 100%; height: auto; }
+.v2-book-record figcaption { margin-top: 8px; color: var(--muted); font-size: 12px; }
+
+/* Full-document section headings retain the real V1 publication hierarchy. */
+body.v2-book-surface .v1-contents-heading,
+.v2-book-record .section-title {
+  margin: 0 0 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(199,174,117,.35);
+  color: #e2dcc9;
+  font: 800 clamp(34px,5vw,52px)/1 Georgia,"Times New Roman",serif;
+  letter-spacing: -.04em;
+}
+body.v2-book-surface .v1-contents-heading::after,
+.v2-book-record .section-title::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 2px;
+  margin-top: 14px;
+  background: linear-gradient(90deg,#c8df7f 0 74%,#c3167c 82%);
+  box-shadow: 0 0 14px rgba(125,146,87,.18),18px 0 22px rgba(213,72,142,.1);
+}
+/* Library tiles remain an index, styled as dark book surfaces rather than
+ * becoming another full-record renderer. Their sizing/layout is unchanged. */
+body.v2-book-surface .v2-hero { border-radius: 2px; border: 1px solid rgba(199,174,117,.36); border-top: 5px solid #7d9257; background: linear-gradient(120deg,#0c0f0c,rgba(125,146,87,.12)); box-shadow: 0 26px 58px rgba(0,0,0,.46); }
+body.v2-book-surface .v2-hero h1 { font-family: Georgia,"Times New Roman",serif; }
+body.v2-book-surface .v2-library-card { border-radius: 2px; border-color: rgba(216,209,191,.14); background: rgba(26,30,27,.94); }
+body.v2-book-surface .v2-library-card strong { color: #e2dcc9; }
+body.v2-book-surface :is(.v2-kind,.v2-library-arrow) { color: #bfd58c; }
+body.v2-book-surface .v2-section-heading h2 { color: #e2dcc9; font-family: Georgia,"Times New Roman",serif; }
+body.v2-book-surface .v2-section-heading .v2-count { border-radius: 0; background: #252c25; color: #bfd58c; }
+
+/* V1 popup surface on the existing canonical V2 dialog/resolver. */
+.v2-detail-dialog.v2-book-detail {
+  width: min(560px, calc(100% - 28px));
+  border: 1px solid rgba(199,174,117,.52);
+  border-top: 4px solid var(--green-deep);
+  border-radius: 0;
+  background: radial-gradient(circle at 100% 0,rgba(213,72,142,.12),transparent 180px),radial-gradient(circle at 0 100%,rgba(125,146,87,.13),transparent 210px),var(--panel);
+  box-shadow: 0 32px 90px rgba(0,0,0,.82),0 0 0 5px rgba(9,12,9,.72),0 0 34px rgba(191,213,140,.1);
+}
+.v2-detail-dialog.v2-book-detail::backdrop { background: rgba(4,6,4,.55); backdrop-filter: blur(2px); }
+.v2-book-detail .v2-dialog-bar { position: absolute; z-index: 2; top: 12px; right: 12px; padding: 0; border: 0; background: transparent; }
+.v2-book-detail .v2-dialog-bar > span { display: none; }
+.v2-book-detail .v2-icon-button { border: 1px solid var(--line); border-radius: 0; background: var(--panel-2); color: var(--ink); }
+.v2-book-detail .v2-book-record:first-child { margin-top: 0; }
+.v2-book-detail .v2-dialog-content { padding: 20px; }
+.v2-book-detail .v2-dialog-content > :is(.rule-card,.enhancement) { margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none; }
+.v2-book-detail .v2-dialog-content > :is(.rule-card,.enhancement)::before { display: none; }
+.v2-book-detail .v2-dialog-content > :is(.rule-card,.enhancement) > :is(h3,h4) { padding-right: 42px; }
+/* Core keeps its existing clean canonical detail renderer. Only its popup
+   surface takes the same V1 styling; no Core fields or lookup path change. */
+.v2-book-detail .v2-card { border: 0; border-radius: 0; background: transparent; color: var(--ink); }
+.v2-book-detail .v2-card-header { background: transparent; padding: 0 42px 14px 0; border-color: var(--line); }
+.v2-book-detail .v2-card-title { margin: 0; font: 700 24px Georgia,"Times New Roman",serif; }
+.v2-book-detail .v2-fields { padding: 7px 0 0; }
+.v2-book-detail .v2-card-header .v2-permalink { position: static; display: inline-block; margin-top: 10px; }
+.v2-book-detail .v2-field-value { color: var(--ink); }
+.v2-book-detail :is(.v2-field-label,.v2-kind) { color: var(--muted); }
+.v2-book-detail .book-permalink { position: static; display: inline-block; margin-top: 14px; color: var(--green); font-size: 12px; }
+
+@media (max-width: 900px) { .v2-book-record .stratagem-grid { grid-template-columns: 1fr; } }
+@media (max-width: 800px) {
+  body.v2-book-surface {
+    background: linear-gradient(rgba(183,166,125,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(183,166,125,.02) 1px,transparent 1px),#121512;
+    background-size: 42px 42px,42px 42px,auto;
+  }
+  .v2-book-record { text-rendering: auto; font-size: 16.5px; }
+  .v2-book-record:is(.surface), .v2-book-record .surface { box-shadow: inset 0 1px rgba(255,255,255,.04),inset 0 -1px rgba(0,0,0,.48); }
+  .v2-book-record.stratagem, .v2-book-record .stratagem { grid-template-columns: 58px minmax(0,1fr); }
+  .v2-book-record.stratagem::before, .v2-book-record .stratagem::before { width: 58px; }
+  .v2-book-record.stratagem[data-turn]::after, .v2-book-record .stratagem[data-turn]::after { left: 5px; width: 48px; font-size: 9px; }
+  .v2-book-record .stratagem-head { padding-right: 14px; }
+  .v2-book-record .cp { left: -52px; width: 46px; height: 46px; font-size: 11px; }
+  .v2-book-detail .v2-dialog-content { padding: 10px; }
+}
+@media (max-width: 480px) {
+  body.v2-book-surface .v1-contents-heading, .v2-book-record .section-title { font-size: clamp(32px,11vw,44px); }
+}
+@media print {
+  body.v2-book-surface { background: white; }
+  .v2-book-record { break-inside: auto; }
+}

@@ -13,6 +13,7 @@ import {searchGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
 import {expectedDisplay} from './app-qa.mjs';
 import {isLegacyGlossary,validateGlossarySources} from './glossary-qa.mjs';
+import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
@@ -22,7 +23,21 @@ const cards=new Map(payload.cards.map(card=>[card.id,card]));
 const sourceFacts=new Map(enumerateExpectedFacts(inputs.model,inputs.records).map(fact=>[fact.id,{...fact,display:expectedDisplay(fact,inputs.model,inputs.records)}]));
 for(const card of payload.cards.filter(card=>card.domain==='CORE'))for(const field of card.fields)sourceFacts.set(field.id,{id:field.id,entityId:field.source.entityId,contextId:field.contextId,value:field.value,display:field.displayValue===undefined?(typeof field.value==='object'?JSON.stringify(field.value):String(field.value)):String(field.displayValue)});
 const descendants=id=>{const found=new Set(),visit=id=>{assert.ok(!found.has(id),'Duplicate canonical popup child');found.add(id);cards.get(id).children.forEach(visit);};visit(id);return found;};
-const expectedIds=id=>new Set([...descendants(id)].flatMap(id=>cards.get(id).fields.map(field=>field.id)));
+// The book presenter has one normal location for a semantic fact. Duplicate
+// MFM names/source confirmations and internal erratum patch addresses stay in
+// source evidence. book-v1-browser-qa independently proves all 51 omissions.
+const normalField=field=>{
+  const record=inputs.records.get(field.source.entityId),entity=inputs.model.entities.find(entity=>entity.id===field.source.entityId),pointer=field.source.path;
+  if(['MFM_DETACHMENT','MFM_ENHANCEMENT_COST'].includes(record?.recordType)&&pointer==='/label')return false;
+  if(entity?.kind==='ARMY_RULE_COMPONENT'&&pointer.startsWith('/qualifications/'))return false;
+  return !(entity?.kind==='SOURCE_ERRATUM'&&(/^\/(?:directive|operation)$/.test(pointer)||pointer.startsWith('/targetBindings/')));
+};
+const forceBindings=createEffectiveMfmCatalog().catalog.crossDomainBindings.forceDispositionBindings;
+for(const fact of sourceFacts.values()){
+  const record=inputs.records.get(fact.entityId);
+  if(record?.recordType==='MFM_DETACHMENT'&&fact.path?.[0]==='forceDispositionIds')fact.display=forceBindings[record.mfmForceDispositionIds[fact.path[1]]].sourceValue;
+}
+const expectedIds=id=>new Set([...descendants(id)].flatMap(id=>cards.get(id).fields.filter(normalField).map(field=>field.id)));
 const appPath='/books/death-guard/v2/app.html',payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const allowed=new Map([[appPath,'text/html'],[payloadPath,'application/json'],['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],['/books/shared/army-book-app-v2/styles.css','text/css']]);
 allowRosterDependencies(allowed);
@@ -46,7 +61,7 @@ let activePage=null,activeStep='startup';
 const ready=page=>page.waitForFunction(()=>!!window.ArmyBookAppV2);
 const observe=(page,scope)=>page.evaluate(scope=>{
   const root=document.querySelector(scope);if(!root)throw new Error('Missing canonical observation '+scope);
-  const article=root.dataset.cardId?root:root.querySelector('article');
+  const article=root.dataset.cardId?root:root.querySelector('[data-card-id]');
   // V1 column balancing may place disjoint fields of one canonical section in
   // separate ability cards. Observe the complete logical record, not only its
   // first presentation fragment. Exact IDs/values and duplicate checks remain.
@@ -72,7 +87,9 @@ const assertFacts=(observed,id,{reader=false}={})=>{
     assert.equal(node.cardId,fact.entityId===inputs.model.bookId?fact.contextId:fact.entityId);
   }
 };
-const comparable=observed=>({targetId:observed.targetId,text:observed.text,facts:observed.facts});
+// Source footer/permalink chrome may differ between popup and page. Compare
+// the complete canonical player definition, identity and actual field text.
+const comparable=observed=>({targetId:observed.targetId,facts:observed.facts});
 const digest=observed=>createHash('sha256').update(JSON.stringify(comparable(observed))).digest('hex');
 const results=[];
 const sourceSensitivityOnly=process.argv.includes('--source-sensitivity-only');
@@ -186,6 +203,7 @@ try {
   const poisonedGlossary=buildGlossaryProjection(poisonedModel,poisonedCore);
   servedPayload=projectArmyBook(poisonedModel,inputs.records,payload.book);servedPayload.cards.push(...poisonedGlossary.coreCards);servedPayload.glossary=poisonedGlossary.index;servedPayload.relatedRules=payload.relatedRules;
   servedPayload.datasheetPresentation=payload.datasheetPresentation;
+  servedPayload.bookPresentation=payload.bookPresentation;
   const sensitivity=[{targetId:abilityId,query:'Foul Infusion',path:'/blocks/0/text',value:ability.data.blocks[0].text},{targetId:stratagemId,query:stratagem.data.title,path:`/lines/${effectIndex}/text`,value:stratagem.data.lines[effectIndex].text},{targetId:coreSource.id,query:coreSource.title,path:'/semanticContent',value:'CANONICAL_CORE_DEFINITION_POISON_5489'}];
   const sourcePoisonResults=[];
   for(const [device,viewport] of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]) {
