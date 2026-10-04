@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {entityContext} from './rule-contract-build.mjs';
 import {evaluateRole,validateContracts,publicResult} from './rule-contract-schema.mjs';
+import {validateCompatibilityFeasibility,evaluateRequiredRecipients,includeRecipientFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 
 const supportedKinds=new Set(['STRATAGEM','ENHANCEMENT']);
 const any=states=>states.includes('INVALID')?'INVALID':states.includes('TRUE')?'TRUE':states.includes('UNKNOWN')?'UNKNOWN':'FALSE';
@@ -39,7 +40,9 @@ export function evaluateRelatedRule(model,unit,rule,detachmentId) {
     state:evaluateRole(role,contract.conditions||[],armyBookContext(model,unit,role.subject,detachmentId))
   }));
   assert.ok(roles.length,'Rule has no compatibility role: '+rule.id);
-  const state=any(roles.map(role=>role.state));
+  const recipient=evaluateRequiredRecipients(contract,unit.id,model.entities.filter(e=>e.kind==='DATASHEET'&&e.id!==unit.id).map(e=>({canonicalUnitId:e.id})),
+    {book:model,evaluateRole,contextFor:(candidate,subject)=>armyBookContext(model,model.entities.find(e=>e.id===candidate.canonicalUnitId),subject,detachmentId)});
+  const state=includeRecipientFeasibility(any(roles.map(role=>role.state)),recipient);
   return {state,applicability:publicResult[state],roles};
 }
 
@@ -48,6 +51,7 @@ export function evaluateRelatedRule(model,unit,rule,detachmentId) {
  */
 export function buildRelatedRules(model) {
   validateContracts(model);
+  validateCompatibilityFeasibility(model);
   const byId=new Map(model.entities.map(entity=>[entity.id,entity]));
   assert.equal(byId.size,model.entities.length,'Duplicate canonical identity');
   const units=model.entities.filter(entity=>entity.kind==='DATASHEET').sort((a,b)=>a.id.localeCompare(b.id,'en'));
@@ -68,7 +72,7 @@ export function buildRelatedRules(model) {
   }
   const all=summarize(rows),selected=summarize(rows.map(row=>row.selectedDetachment));
   assert.equal(all.INVALID+selected.INVALID,0,'Invalid applicability contract/context');
-  return {schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',queryPurpose:'TARGET_ELIGIBILITY',
+  return {schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',queryPurpose:'TARGET_ELIGIBILITY_WITH_REQUIRED_RECIPIENT_FEASIBILITY',
     contextPolicy:{allDetachments:'UNSPECIFIED_DETACHMENT',selectedDetachment:'EXPLICIT_CANONICAL_ID',roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},
     coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',
     summary:{units:units.length,stratagems:rules.filter(rule=>rule.ruleContract.kind==='STRATAGEM').length,enhancements:rules.filter(rule=>rule.ruleContract.kind==='ENHANCEMENT').length,rows:rows.length,allDetachments:all,selectedDetachment:selected},rows};

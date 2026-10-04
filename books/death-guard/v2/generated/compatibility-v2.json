@@ -1,7 +1,7 @@
 {
   "schema": "death-guard-compatibility-projection/v2",
   "authority": "DISPOSABLE_PROJECTION",
-  "queryPurpose": "TARGET_ELIGIBILITY",
+  "queryPurpose": "TARGET_ELIGIBILITY_WITH_REQUIRED_RECIPIENT_FEASIBILITY",
   "keywordContextPolicy": {
     "model": "OWN_KEYWORDS_ONLY",
     "unit": "COMPONENT_KEYWORD_UNION",
@@ -26118,84 +26118,84 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-chaos-land-raider",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-chaos-predator-annihilator",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-chaos-predator-destructor",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-chaos-rhino",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-chaos-spawn",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-daemon-prince-of-nurgle",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-daemon-prince-of-nurgle-with-wings",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -26214,36 +26214,36 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-defiler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-foetid-bloat-drone",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-foetid-bloat-drone-with-heavy-blight-launcher",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -26274,12 +26274,12 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-helbrute",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -26346,36 +26346,36 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-miasmic-malignifier",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-mortarion",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-myphitic-blight-hauler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -26454,12 +26454,12 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:1",
       "unitId": "unit-plagueburst-crawler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -26550,84 +26550,84 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-chaos-land-raider",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-chaos-predator-annihilator",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-chaos-predator-destructor",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-chaos-rhino",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-chaos-spawn",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-daemon-prince-of-nurgle",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-daemon-prince-of-nurgle-with-wings",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -26646,36 +26646,36 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-defiler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-foetid-bloat-drone",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-foetid-bloat-drone-with-heavy-blight-launcher",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -26706,12 +26706,12 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-helbrute",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -26778,36 +26778,36 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-miasmic-malignifier",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-mortarion",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-myphitic-blight-hauler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -26886,12 +26886,12 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:2",
       "unitId": "unit-plagueburst-crawler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -26982,84 +26982,84 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-chaos-land-raider",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-chaos-predator-annihilator",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-chaos-predator-destructor",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-chaos-rhino",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-chaos-spawn",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-daemon-prince-of-nurgle",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-daemon-prince-of-nurgle-with-wings",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27078,36 +27078,36 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-defiler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-foetid-bloat-drone",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-foetid-bloat-drone-with-heavy-blight-launcher",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27138,12 +27138,12 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-helbrute",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27210,36 +27210,36 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-miasmic-malignifier",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-mortarion",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-myphitic-blight-hauler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27318,12 +27318,12 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:3",
       "unitId": "unit-plagueburst-crawler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27402,144 +27402,144 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-blightlord-terminators",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-chaos-land-raider",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-chaos-predator-annihilator",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-chaos-predator-destructor",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-chaos-rhino",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-chaos-spawn",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-daemon-prince-of-nurgle",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-daemon-prince-of-nurgle-with-wings",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-deathshroud-terminators",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-defiler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-foetid-bloat-drone",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-foetid-bloat-drone-with-heavy-blight-launcher",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27570,12 +27570,12 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-helbrute",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27594,12 +27594,12 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-lord-of-contagion",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27618,12 +27618,12 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-lord-of-virulence",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27642,36 +27642,36 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-miasmic-malignifier",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-mortarion",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-myphitic-blight-hauler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27750,12 +27750,12 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:4",
       "unitId": "unit-plagueburst-crawler",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ]
     },
@@ -27834,8 +27834,8 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:5",
       "unitId": "unit-blightlord-terminators",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
@@ -27906,8 +27906,8 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:5",
       "unitId": "unit-daemon-prince-of-nurgle",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
@@ -27918,8 +27918,8 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:5",
       "unitId": "unit-daemon-prince-of-nurgle-with-wings",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
@@ -27930,8 +27930,8 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:5",
       "unitId": "unit-deathshroud-terminators",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
@@ -28086,8 +28086,8 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:5",
       "unitId": "unit-mortarion",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
@@ -28146,8 +28146,8 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:5",
       "unitId": "unit-plague-marines",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",
@@ -28194,8 +28194,8 @@
     {
       "ruleId": "detachment-champions-of-contagion:stratagem:5",
       "unitId": "unit-poxwalkers",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "primary",

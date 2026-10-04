@@ -117581,7 +117581,7 @@
   "relatedRules": {
     "schema": "army-book-related-rules/v2",
     "authority": "DISPOSABLE_PROJECTION",
-    "queryPurpose": "TARGET_ELIGIBILITY",
+    "queryPurpose": "TARGET_ELIGIBILITY_WITH_REQUIRED_RECIPIENT_FEASIBILITY",
     "contextPolicy": {
       "allDetachments": "UNSPECIFIED_DETACHMENT",
       "selectedDetachment": "EXPLICIT_CANONICAL_ID",
@@ -117597,15 +117597,15 @@
       "rows": 2700,
       "allDetachments": {
         "MATCH": 0,
-        "CONDITIONAL": 796,
-        "NO_MATCH": 1904,
+        "CONDITIONAL": 725,
+        "NO_MATCH": 1975,
         "INVALID": 0,
         "UNRESOLVED": 0
       },
       "selectedDetachment": {
         "MATCH": 89,
-        "CONDITIONAL": 707,
-        "NO_MATCH": 1904,
+        "CONDITIONAL": 636,
+        "NO_MATCH": 1975,
         "INVALID": 0,
         "UNRESOLVED": 0
       }
@@ -121718,23 +121718,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -121744,8 +121744,8 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:5",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
@@ -121754,8 +121754,8 @@
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
@@ -123600,23 +123600,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -123626,23 +123626,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -123652,23 +123652,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -123678,23 +123678,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -125560,23 +125560,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -125586,23 +125586,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -125612,23 +125612,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -125638,23 +125638,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -127520,23 +127520,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -127546,23 +127546,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -127572,23 +127572,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -127598,23 +127598,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -129480,23 +129480,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -129506,23 +129506,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -129532,23 +129532,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -129558,23 +129558,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -131440,23 +131440,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -131466,23 +131466,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -131492,23 +131492,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -131518,23 +131518,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -133400,23 +133400,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -133426,23 +133426,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -133452,23 +133452,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -133478,23 +133478,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -133504,8 +133504,8 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:5",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
@@ -133514,8 +133514,8 @@
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
@@ -135360,23 +135360,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -135386,23 +135386,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -135412,23 +135412,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -135438,23 +135438,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -135464,8 +135464,8 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:5",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
@@ -135474,8 +135474,8 @@
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
@@ -137398,23 +137398,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -137424,8 +137424,8 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:5",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
@@ -137434,8 +137434,8 @@
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
@@ -139280,23 +139280,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -139306,23 +139306,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -139332,23 +139332,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -139358,23 +139358,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -141240,23 +141240,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -141266,23 +141266,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -141292,23 +141292,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -141318,23 +141318,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -143200,23 +143200,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -143226,23 +143226,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -143252,23 +143252,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -143278,23 +143278,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -149080,23 +149080,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -149106,23 +149106,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -149132,23 +149132,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -149158,23 +149158,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -153078,23 +153078,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -156998,23 +156998,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -160840,23 +160840,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -160866,23 +160866,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -160892,23 +160892,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -160918,23 +160918,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -162800,23 +162800,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -162826,23 +162826,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -162852,23 +162852,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -162878,23 +162878,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -162904,8 +162904,8 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:5",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
@@ -162914,8 +162914,8 @@
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
@@ -164760,23 +164760,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -164786,23 +164786,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -164812,23 +164812,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -164838,23 +164838,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -172704,8 +172704,8 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:5",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
@@ -172714,8 +172714,8 @@
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
@@ -178480,23 +178480,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:1",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -178506,23 +178506,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:2",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -178532,23 +178532,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:3",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "FORMED_ATTACHED_UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "FORMED_ATTACHED_UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -178558,23 +178558,23 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:4",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
             "subject": "UNIT",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",
               "subject": "UNIT",
-              "state": "UNKNOWN"
+              "state": "FALSE"
             }
           ]
         }
@@ -180544,8 +180544,8 @@
         "ruleId": "detachment-champions-of-contagion:stratagem:5",
         "detachmentId": "detachment-champions-of-contagion",
         "kind": "STRATAGEM",
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "primary",
@@ -180554,8 +180554,8 @@
           }
         ],
         "selectedDetachment": {
-          "state": "UNKNOWN",
-          "applicability": "CONDITIONAL",
+          "state": "FALSE",
+          "applicability": "NO_MATCH",
           "roles": [
             {
               "roleId": "primary",

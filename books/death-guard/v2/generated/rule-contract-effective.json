@@ -62372,5 +62372,291 @@
         "mfm-leader-eligibility-beabbc66c49cf056"
       ]
     }
-  ]
+  ],
+  "compatibilityFeasibility": {
+    "schema": "roster-v2/static-feasibility",
+    "authority": "DISPOSABLE_PROJECTION",
+    "units": [
+      {
+        "unitId": "unit-beasts-of-nurgle",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-biologus-putrifier",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": [
+          "unit-plague-marines"
+        ]
+      },
+      {
+        "unitId": "unit-blightlord-terminators",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-chaos-land-raider",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-chaos-predator-annihilator",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-chaos-predator-destructor",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-chaos-rhino",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-chaos-spawn",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-daemon-prince-of-nurgle",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-daemon-prince-of-nurgle-with-wings",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-deathshroud-terminators",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-defiler",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-foetid-bloat-drone",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-foetid-bloat-drone-with-heavy-blight-launcher",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-foul-blightspawn",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": [
+          "unit-plague-marines"
+        ]
+      },
+      {
+        "unitId": "unit-great-unclean-one",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-helbrute",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-icon-bearer",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": [
+          "unit-plague-marines"
+        ]
+      },
+      {
+        "unitId": "unit-lord-of-contagion",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": [
+          "unit-blightlord-terminators",
+          "unit-deathshroud-terminators"
+        ]
+      },
+      {
+        "unitId": "unit-lord-of-poxes",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": [
+          "unit-plague-marines"
+        ]
+      },
+      {
+        "unitId": "unit-lord-of-virulence",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": [
+          "unit-blightlord-terminators",
+          "unit-deathshroud-terminators"
+        ]
+      },
+      {
+        "unitId": "unit-malignant-plaguecaster",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": [
+          "unit-plague-marines",
+          "unit-poxwalkers"
+        ]
+      },
+      {
+        "unitId": "unit-miasmic-malignifier",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-mortarion",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-myphitic-blight-hauler",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-noxious-blightbringer",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": [
+          "unit-plague-marines",
+          "unit-poxwalkers"
+        ]
+      },
+      {
+        "unitId": "unit-nurglings",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-plague-drones",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-plague-marines",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-plague-surgeon",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": [
+          "unit-plague-marines"
+        ]
+      },
+      {
+        "unitId": "unit-plaguebearers",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-plagueburst-crawler",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-poxwalkers",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-rotigus",
+        "canBeAttached": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-tallyman",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": [
+          "unit-plague-marines"
+        ]
+      },
+      {
+        "unitId": "unit-typhus",
+        "canBeAttached": true,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 2,
+        "leaderTargetIds": [
+          "unit-blightlord-terminators",
+          "unit-deathshroud-terminators",
+          "unit-poxwalkers"
+        ]
+      }
+    ]
+  }
 }

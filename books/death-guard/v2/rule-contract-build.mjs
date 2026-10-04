@@ -10,6 +10,8 @@ import {parseSourceHtml,sourceNode,sourceNodeText,normalizeSourceText} from './r
 import {extendRosterContracts} from './roster-contract-build.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {validatePredicate} from './rule-contract-schema.mjs';
+import {buildCompatibilityFeasibility} from './feasibility-build.mjs';
+import {staticCapabilities,validateCompatibilityFeasibility,evaluateRequiredRecipients,includeRecipientFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 const directory=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(directory,'../../..');
 const addresses=JSON.parse(fs.readFileSync(path.join(directory,'rule-source-addresses.json'),'utf8'));
@@ -74,6 +76,7 @@ export function buildRuleContractV2() {
     return {sourceId:relation.sourceId,targetId:relation.targetId,role:exception?'SUPPORT_EXCEPTION':'LEADER',additionalLeaders:exception?1:0,
       distinctCanonicalLeaders:true,sourceIds:[relation.mfmRecordId,...(exception?[exception.sourceEntityId]:[])]};
   });
+  extended.compatibilityFeasibility=buildCompatibilityFeasibility(extended);
   validateRosterEffects(extended,validatePredicate,evaluatePredicate);
   return extended;
 }
@@ -100,11 +103,12 @@ export function entityContext(model,unit,subject,detachmentId) {
       for(const keyword of [...other.data.keywords,...other.data.factionKeywords]) if(!keywords.has(keyword))unknownKeywords.add(keyword);
     }
   }
-  return {subject,unitId:unit.id,...(subject==='MODEL'?{modelId}:{}),intrinsicKeywords,keywords,unknownKeywords,abilities,roster:{detachmentId}};
+  return {subject,unitId:unit.id,...(subject==='MODEL'?{modelId}:{}),intrinsicKeywords,keywords,unknownKeywords,abilities,capabilities:staticCapabilities(model,unit.id),roster:{detachmentId}};
 }
 const any=states=>states.includes('INVALID')?'INVALID':states.includes('TRUE')?'TRUE':states.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 export function compileCompatibility(model) {
   validateContracts(model);
+  validateCompatibilityFeasibility(model);
   const core=JSON.parse(fs.readFileSync(path.join(root,'books/core-rules/content/core-rules.digital-11e.json'),'utf8'));
   assert.ok(core.records.find(record=>record.code==='02.05.01')?.text.includes('A model only has its own keywords.'),'Accepted MODEL keyword semantics changed; source review required');
   assert.ok(core.records.find(record=>record.code==='19.03')?.text.includes('An attached unit has all of the keywords of all of its component units.'),'Accepted formed UNIT keyword semantics changed; source review required');
@@ -114,11 +118,13 @@ export function compileCompatibility(model) {
     for(const unit of model.entities.filter(e=>e.kind==='DATASHEET')) {
       const eligibleRoles=contract.roles.filter(role=>(contract.compatibilityRoleIds||[contract.roles[0]?.id]).includes(role.id));
       const evaluations=eligibleRoles.map(role=>({roleId:role.id,state:evaluateRole(role,contract.conditions||[],entityContext(model,unit,role.subject,contract.detachmentId))}));
-      const state=any(evaluations.map(result=>result.state));
+      const recipient=evaluateRequiredRecipients(contract,unit.id,model.entities.filter(e=>e.kind==='DATASHEET'&&e.id!==unit.id).map(e=>({canonicalUnitId:e.id})),
+        {book:model,evaluateRole,contextFor:(candidate,subject)=>entityContext(model,model.entities.find(e=>e.id===candidate.canonicalUnitId),subject,contract.detachmentId)});
+      const state=includeRecipientFeasibility(any(evaluations.map(result=>result.state)),recipient);
       rows.push({ruleId:rule.id,unitId:unit.id,state,applicability:publicResult[state],roles:evaluations});
     }
   }
-  return {schema:'death-guard-compatibility-projection/v2',authority:'DISPOSABLE_PROJECTION',queryPurpose:'TARGET_ELIGIBILITY',keywordContextPolicy:{model:'OWN_KEYWORDS_ONLY',unit:'COMPONENT_KEYWORD_UNION',unavailableFormation:'UNKNOWN',coreSource:'books/core-rules/content/core-rules.digital-11e.json',coreRuleCodes:['02.05.01','19.03'],coreCorpusFingerprint:core.meta.corpusFingerprint,eligibilityOwner:'mfm.relations'},rows};
+  return {schema:'death-guard-compatibility-projection/v2',authority:'DISPOSABLE_PROJECTION',queryPurpose:'TARGET_ELIGIBILITY_WITH_REQUIRED_RECIPIENT_FEASIBILITY',keywordContextPolicy:{model:'OWN_KEYWORDS_ONLY',unit:'COMPONENT_KEYWORD_UNION',unavailableFormation:'UNKNOWN',coreSource:'books/core-rules/content/core-rules.digital-11e.json',coreRuleCodes:['02.05.01','19.03'],coreCorpusFingerprint:core.meta.corpusFingerprint,eligibilityOwner:'mfm.relations'},rows};
 }
 /** Re-enumerate the previous source-card domain. Cards never determine answers. */
 export function previousAmbiguityDomain(model) {

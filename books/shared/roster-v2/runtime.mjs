@@ -1,6 +1,7 @@
 import {lexicalDraft,importNewRecruit} from './import.mjs';
 import {validateRoster,changeAttachment,attachmentCheck,predicateContext,withRosterDetachments} from './context.mjs';
 import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+import {validateCompatibilityFeasibility,evaluateRequiredRecipients,includeRecipientFeasibility} from './compatibility-feasibility.mjs';
 const clone = value=>structuredClone(value);
 const any = values=>values.includes('INVALID')?'INVALID':values.includes('TRUE')?'TRUE':values.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 const fields = value => Object.entries(value).map(([label,value])=>({label,value}));
@@ -11,6 +12,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
   book=structuredClone(book);
   validateRosterEffects(book,validatePredicate,evaluatePredicate);
   const records = new Map(book.entities.map(e=>[e.id,e])), policies = book.rosterAttachmentPolicies;
+  validateCompatibilityFeasibility(book);
   if (records.size !== book.entities.length) throw new TypeError('Ambiguous canonical identity');
   if (!Array.isArray(policies)) throw new TypeError('Missing typed attachment policy');
   for (const policy of policies) if (records.get(policy.sourceId)?.kind!=='DATASHEET' || records.get(policy.targetId)?.kind!=='DATASHEET' || !['LEADER','SUPPORT_EXCEPTION'].includes(policy.role) || ![0,1].includes(policy.additionalLeaders) || !policy.sourceIds?.length) throw new TypeError('Invalid canonical attachment policy');
@@ -63,7 +65,9 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
           const contexts=role.subject==='MODEL'?unit.profiles.map(m=>service.context(instanceId,'MODEL',m.scopeId)):[service.context(instanceId,role.subject)];
           return any(contexts.map(context=>context?evaluateRole(role,contract.conditions||[],context):'FALSE'));
         });
-        const result=any(states);
+        const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units.filter(candidate=>candidate.instanceId!==instanceId),
+          {book,evaluateRole,contextFor:(candidate,subject)=>service.context(candidate.instanceId,subject)});
+        const result=includeRecipientFeasibility(any(states),recipient);
         if (result==='INVALID') throw new TypeError('Invalid roster-aware rule: '+rule.id);
         rows.push({unitId:unit.canonicalUnitId,instanceId,ruleId:rule.id,detachmentId:contract.detachmentId,kind:contract.kind,state:result,applicability:publicResult[result]});
       }

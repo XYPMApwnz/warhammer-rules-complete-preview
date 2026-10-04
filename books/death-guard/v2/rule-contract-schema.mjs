@@ -175,10 +175,21 @@ export function evaluatePredicate(node, context) {
     case 'DETACHMENT': return available(context.roster,'detachmentId',value=>truth(value===a.id));
     case 'LEADING': return available(context.roster,'leading',value=>truth(value===a.value));
     case 'BODYGUARD_ID': return available(context.roster,'bodyguardId',value=>truth(value===a.id));
-    case 'CHARACTER_MODEL_COUNT': return available(context.roster,'characterModelCount',value=>truth(value>=(a.min??0)&&value<=(a.max??Infinity)));
+    case 'CHARACTER_MODEL_COUNT': {
+      if(!Object.hasOwn(context.roster||{},'characterModelCount')&&context.capabilities) {
+        const maximum=context.capabilities.maxCharacterModels;
+        if(!Number.isSafeInteger(maximum)||maximum<0)return 'INVALID';
+        if(maximum<(a.min??0))return 'FALSE';
+      }
+      return available(context.roster,'characterModelCount',value=>truth(value>=(a.min??0)&&value<=(a.max??Infinity)));
+    }
     case 'FIELD': {
       const spec=stateFields[a.key];
       if(!spec||spec.contextLevel!==node.contextLevel||spec.valueType!==typeof a.equals)return 'INVALID';
+      if(a.key==='attached'&&!Object.hasOwn(context.roster||{},a.key)&&context.capabilities) {
+        if(typeof context.capabilities.canBeAttached!=='boolean')return 'INVALID';
+        if(!context.capabilities.canBeAttached)return truth(a.equals===false);
+      }
       // Static capability belongs to the canonical entry, never to keywords
       // inherited from an Attached Unit. Unknown roster state stays unknown
       // only after this prerequisite has been met.

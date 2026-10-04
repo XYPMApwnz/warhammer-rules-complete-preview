@@ -57,6 +57,27 @@ eligible Bodyguard, distinct Leader identity and permitted capacity. Support
 exceptions remain Leader relationships with the accepted coexistence permission.
 No transport or battle-state membership is represented.
 
+The attachment product contract intentionally permits an upgraded Bodyguard
+and two separately enhanced Characters in one source-eligible formed group.
+Army-construction legality remains New Recruit's responsibility. The application
+must not reject this group because it contains several Enhancements/Upgrades.
+Ownership stays on each physical unit; bearer effects remain bearer-scoped and
+UNIT effects follow their actual source-defined formed-unit target. The permanent
+`roster-multiple-enhancements-product-qa.mjs` guard covers three distinct owners,
+duplicate groups, provenance, detach/re-attach and backup/reload.
+
+Related Rules uses disposable static capability bounds derived during build
+from accepted composition and canonical attachment policies. Impossible
+attachment and CHARACTER MODEL-count requirements return NO_MATCH before
+unavailable roster/battle context. MODEL counts do not inherit UNIT keywords.
+Compatibility also checks mandatory source-linked EFFECT_RECIPIENT roles,
+including clause-local roles: book mode needs a canonical eligible recipient;
+roster mode needs an eligible physical recipient instance. This does not execute
+the battle action or require an existing attachment. Leading remains relative
+to the physical component (Leader true, Bodyguard false). Run
+`npm run qa:dg:v2:feasibility` for the independent accepted-source graph/count
+census and the permanent product guard.
+
 Independent accepted-source classification covers 239 rule owners and 306 existing
 clauses: 22 ROSTER_EXECUTABLE, 161 BATTLE_ONLY, 112 NOT_AN_EFFECT and 11 DISPLAY_ONLY.
 The 22 roster clauses contain 25 atomic operations. Their independent source
