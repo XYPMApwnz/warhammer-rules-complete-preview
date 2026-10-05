@@ -355,3 +355,25 @@ body.v2-book-surface .v2-section-heading .v2-count { border-radius: 0; backgroun
 body.v2-book-surface .v2-library-grid > .v2-card-link { color:#bfd58c; }
 body.v2-book-surface .v2-library-grid > .v2-card-link:hover { color:#f0eddd; }
 body.v2-book-surface .v2-library-grid > .v2-card-link:focus-visible { outline:2px solid #bfd58c; outline-offset:3px; }
+
+/* Glossary is an index on the same dark book surface. Keep its existing
+ * layout and canonical links; these colours apply only to Glossary chrome. */
+.v2-glossary {
+  color-scheme: dark;
+  --v2-paper: #191f1a;
+  --v2-ink: #e2dcc9;
+  --v2-muted: #b6b8ab;
+  --v2-green: #bfd58c;
+  --v2-line: rgba(216,209,191,.14);
+  color: var(--v2-ink);
+}
+.v2-glossary .v2-card-header { background: var(--v2-paper); }
+.v2-glossary .v2-card-title { color: var(--v2-ink); }
+.v2-glossary .v2-compatible-item { background: #252c25; }
+.v2-glossary .v2-glossary-result { background: transparent; border-color: var(--v2-line); color: var(--v2-green); overflow-wrap: anywhere; }
+.v2-glossary .v2-glossary-result:hover { background: var(--v2-paper); border-color: var(--v2-green); }
+.v2-glossary .v2-search-kind { text-transform: none; }
+.v2-glossary .v2-search input { background: #0d0f0d; color: var(--v2-ink); border-color: var(--v2-line); }
+.v2-glossary .v2-search input::placeholder { color: var(--v2-muted); opacity: 1; }
+.v2-glossary .v2-library-link:hover { background: #252c25; color: var(--v2-green); }
+.v2-glossary :is(button, a, input):focus-visible { outline-color: var(--v2-green); }

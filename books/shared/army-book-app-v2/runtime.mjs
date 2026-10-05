@@ -613,7 +613,8 @@ export function mount(document, payload, options = {}) {
         const item = el('li', 'v2-compatible-item');
         const link = anchor(entry.matchedLabel || entry.label, entry.targetId, true);
         link.classList.add('v2-glossary-result');
-        item.append(link, el('p', 'v2-search-kind', `${entry.category}${entry.contextLabel ? ' · ' + entry.contextLabel : ''}`));
+        item.append(link);
+        if (entry.contextLabel) item.append(el('p', 'v2-search-kind', entry.contextLabel));
         results.append(item);
       }
       if (!matches.length) results.append(el('li', 'v2-empty', 'No matching entries. Try another term.'));
