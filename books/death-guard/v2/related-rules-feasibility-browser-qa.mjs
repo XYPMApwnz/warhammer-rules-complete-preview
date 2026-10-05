@@ -22,6 +22,16 @@ const server=http.createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
 const mobile='detachment-champions-of-contagion:stratagem:5',champions='detachment-champions-of-contagion';
+const source=JSON.parse(fs.readFileSync(new URL('../sources/waha-11e-current-2026-09-25/corpus.json',import.meta.url),'utf8'));
+const mfm=JSON.parse(fs.readFileSync(new URL('../sources/official-mfm-v1.5.json',import.meta.url),'utf8'));
+const normalize=text=>text.toUpperCase().replace(/[^A-Z0-9]+/g,' ').trim();
+const labels=new Map(source.datasheets.map(sheet=>[normalize(sheet.title),sheet.sourceId.replace(/^datasheet-/,'unit-')]));
+const outgoing=new Map(source.datasheets.map(sheet=>[labels.get(normalize(sheet.title)),new Set()]));
+for(const record of mfm.units.filter(r=>r.status==='CURRENT'&&r.sourceGroup==='UNITS'&&r.relations?.leader))for(const target of record.relations.leader)outgoing.get(labels.get(normalize(record.title))).add(labels.get(normalize(target)));
+const enhancements=source.detachments.flatMap(d=>d.enhancements);
+const walking=enhancements.find(e=>/If the bearer is leading a POXWALKER unit/.test(e.text)).sourceId;
+const talisman=enhancements.find(e=>/^DEATH GUARD model only\. While the bearer is leading a unit, add 1 to the Toughness/.test(e.text)).sourceId;
+const shamblerot=walking.split(':')[0],wall=source.detachments.flatMap(d=>d.stratagems).find(s=>/\band one friendly\b/i.test(s.lines.find(l=>l.label==='TARGET')?.text||'')).sourceId;
 const results=[];
 try{
   for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
@@ -44,6 +54,17 @@ try{
       assert.equal(await dialog.locator('[data-applicability="NO_MATCH"]').count(),0);
       bookQueries++;await close();
     }
+    // Source-derived leading feasibility, including genuine unknown positives.
+    let leadingQueries=0;
+    for(const sheet of source.datasheets.filter(s=>s.factionKeywords.includes('DEATH GUARD')&&s.keywords.includes('CHARACTER')))for(const [ruleId,possible]of [[walking,outgoing.get(labels.get(normalize(sheet.title))).has('unit-poxwalkers')],[talisman,outgoing.get(labels.get(normalize(sheet.title))).size>0]]) {
+      const unitId=labels.get(normalize(sheet.title));
+      await page.evaluate(id=>{window.ArmyBookAppV2.open(id);window.ArmyBookAppV2.openRelatedRules(id);},unitId);
+      await dialog.waitFor();await dialog.locator(`button[data-detachment="${shamblerot}"]`).evaluate(node=>node.click());
+      await dialog.locator('[data-kind="enhancements"]').click();
+      const item=(await visible()).find(row=>row.ruleId===ruleId);
+      assert.equal(item?.applicability??null,possible?'CONDITIONAL':null,`${device}/${unitId}: source-backed leading feasibility`);
+      leadingQueries++;await close();
+    }
     const lord='Char1: 1x Lord of Contagion (110 pts): Manreaper',guard='3x Deathshroud Terminators (150 pts)';
     let rosterQueries=0;
     for(const [units,attach,expected]of [[lord,false,null],[lord+'\n'+guard,false,'CONDITIONAL'],[lord+'\n'+guard,true,null]]){
@@ -61,8 +82,26 @@ try{
       assert(items.every(row=>row.detachmentId===champions&&row.applicability!=='NO_MATCH'));
       rosterQueries++;await close();
     }
+    // A known roster is a collection of actual recipients, not future battle
+    // reinforcements. Pox self-targeting remains possible absent distinctness.
+    for(const [units,expected]of [['5x Plague Marines (90 pts)',null],['5x Plague Marines (90 pts)\n10x Poxwalkers (50 pts)','CONDITIONAL'],['10x Poxwalkers (50 pts)','CONDITIONAL']]) {
+      await page.evaluate(units=>{const app=window.ArmyBookAppV2;assertImport(app.roster.import('+ DETACHMENT: Shamblerot Vectorium\n'+units));app.openPersonalGuide();app.openInstance('parsed-unit-1');function assertImport(result){if(result.status!=='READY')throw new Error('Import failed');}},units);
+      await page.waitForFunction(()=>document.querySelector('main > .unit-card')?.dataset.rosterInstanceId==='parsed-unit-1');
+      await page.locator('main > .unit-card .ds-related-rules-button').click();await dialog.waitFor();
+      await dialog.locator('[data-kind="stratagems"]').click();
+      assert.equal((await visible()).find(row=>row.ruleId===wall)?.applicability??null,expected,device+' mandatory secondary target');
+      rosterQueries++;await close();
+    }
+    await page.evaluate(()=>{const app=window.ArmyBookAppV2;if(app.roster.import('+ DETACHMENT: Shamblerot Vectorium\nChar1: 1x Noxious Blightbringer (50 pts)\nEnhancement: Lord of the Walking Pox (+15 pts)\n10x Poxwalkers (50 pts)').status!=='READY')throw new Error('Import failed');});
+    for(const attached of [false,true,false,true]) {
+      await page.evaluate(attached=>{const app=window.ArmyBookAppV2;if(attached)app.roster.attach('parsed-unit-1','parsed-unit-2');else if(app.roster.state.attachments.length)app.roster.detach('parsed-unit-1');app.openPersonalGuide();app.openInstance('parsed-unit-1');},attached);
+      await page.waitForFunction(()=>document.querySelector('main > .unit-card')?.dataset.rosterInstanceId==='parsed-unit-1');
+      await page.locator('main > .unit-card .ds-related-rules-button').click();await dialog.waitFor();await dialog.locator('[data-kind="enhancements"]').click();
+      assert.equal((await visible()).find(row=>row.ruleId===walking)?.applicability??null,attached?'CONDITIONAL':null,device+' actual leading state');
+      rosterQueries++;await close();
+    }
     assert.deepEqual(errors,[]);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
-    results.push({device,bookQueries,rosterQueries,status:'PASS'});await context.close();
+    results.push({device,bookQueries,leadingQueries,rosterQueries,status:'PASS'});await context.close();
   }
   assert.deepEqual(forbidden,[]);console.log(JSON.stringify({status:'PASS',results,legacyReads:0}));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

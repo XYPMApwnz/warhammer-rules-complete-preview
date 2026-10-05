@@ -118,7 +118,7 @@ export function compileCompatibility(model) {
     for(const unit of model.entities.filter(e=>e.kind==='DATASHEET')) {
       const eligibleRoles=contract.roles.filter(role=>(contract.compatibilityRoleIds||[contract.roles[0]?.id]).includes(role.id));
       const evaluations=eligibleRoles.map(role=>({roleId:role.id,state:evaluateRole(role,contract.conditions||[],entityContext(model,unit,role.subject,contract.detachmentId))}));
-      const recipient=evaluateRequiredRecipients(contract,unit.id,model.entities.filter(e=>e.kind==='DATASHEET'&&e.id!==unit.id).map(e=>({canonicalUnitId:e.id})),
+      const recipient=evaluateRequiredRecipients(contract,unit.id,model.entities.filter(e=>e.kind==='DATASHEET').map(e=>({canonicalUnitId:e.id})),
         {book:model,evaluateRole,contextFor:(candidate,subject)=>entityContext(model,model.entities.find(e=>e.id===candidate.canonicalUnitId),subject,contract.detachmentId)});
       const state=includeRecipientFeasibility(any(evaluations.map(result=>result.state)),recipient);
       rows.push({ruleId:rule.id,unitId:unit.id,state,applicability:publicResult[state],roles:evaluations});

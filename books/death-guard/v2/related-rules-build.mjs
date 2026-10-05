@@ -40,7 +40,7 @@ export function evaluateRelatedRule(model,unit,rule,detachmentId) {
     state:evaluateRole(role,contract.conditions||[],armyBookContext(model,unit,role.subject,detachmentId))
   }));
   assert.ok(roles.length,'Rule has no compatibility role: '+rule.id);
-  const recipient=evaluateRequiredRecipients(contract,unit.id,model.entities.filter(e=>e.kind==='DATASHEET'&&e.id!==unit.id).map(e=>({canonicalUnitId:e.id})),
+  const recipient=evaluateRequiredRecipients(contract,unit.id,model.entities.filter(e=>e.kind==='DATASHEET').map(e=>({canonicalUnitId:e.id})),
     {book:model,evaluateRole,contextFor:(candidate,subject)=>armyBookContext(model,model.entities.find(e=>e.id===candidate.canonicalUnitId),subject,detachmentId)});
   const state=includeRecipientFeasibility(any(roles.map(role=>role.state)),recipient);
   return {state,applicability:publicResult[state],roles};

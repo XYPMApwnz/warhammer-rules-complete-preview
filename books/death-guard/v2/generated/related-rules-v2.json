@@ -17,15 +17,15 @@
     "rows": 2700,
     "allDetachments": {
       "MATCH": 0,
-      "CONDITIONAL": 725,
-      "NO_MATCH": 1975,
+      "CONDITIONAL": 711,
+      "NO_MATCH": 1989,
       "INVALID": 0,
       "UNRESOLVED": 0
     },
     "selectedDetachment": {
       "MATCH": 89,
-      "CONDITIONAL": 636,
-      "NO_MATCH": 1975,
+      "CONDITIONAL": 622,
+      "NO_MATCH": 1989,
       "INVALID": 0,
       "UNRESOLVED": 0
     }
@@ -3192,23 +3192,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -3268,32 +3268,6 @@
     {
       "unitId": "unit-biologus-putrifier",
       "ruleId": "detachment-shamblerot-vectorium:stratagem:1",
-      "detachmentId": "detachment-shamblerot-vectorium",
-      "kind": "STRATAGEM",
-      "state": "FALSE",
-      "applicability": "NO_MATCH",
-      "roles": [
-        {
-          "roleId": "primary",
-          "subject": "UNIT",
-          "state": "FALSE"
-        }
-      ],
-      "selectedDetachment": {
-        "state": "FALSE",
-        "applicability": "NO_MATCH",
-        "roles": [
-          {
-            "roleId": "primary",
-            "subject": "UNIT",
-            "state": "FALSE"
-          }
-        ]
-      }
-    },
-    {
-      "unitId": "unit-biologus-putrifier",
-      "ruleId": "detachment-shamblerot-vectorium:stratagem:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "STRATAGEM",
       "state": "FALSE",
@@ -3319,6 +3293,32 @@
     },
     {
       "unitId": "unit-biologus-putrifier",
+      "ruleId": "detachment-shamblerot-vectorium:stratagem:2",
+      "detachmentId": "detachment-shamblerot-vectorium",
+      "kind": "STRATAGEM",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "primary",
+          "subject": "UNIT",
+          "state": "FALSE"
+        }
+      ],
+      "selectedDetachment": {
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
+        "roles": [
+          {
+            "roleId": "primary",
+            "subject": "UNIT",
+            "state": "FALSE"
+          }
+        ]
+      }
+    },
+    {
+      "unitId": "unit-biologus-putrifier",
       "ruleId": "detachment-shamblerot-vectorium:stratagem:3",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "STRATAGEM",
@@ -16912,23 +16912,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -16964,23 +16964,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:4",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -18872,23 +18872,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -18924,23 +18924,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:4",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -28672,23 +28672,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -34552,23 +34552,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -36512,23 +36512,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -38472,23 +38472,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -40432,23 +40432,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -46312,23 +46312,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -46364,23 +46364,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:4",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -58072,23 +58072,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }
@@ -67872,23 +67872,23 @@
       "ruleId": "detachment-shamblerot-vectorium:enhancement:2",
       "detachmentId": "detachment-shamblerot-vectorium",
       "kind": "ENHANCEMENT",
-      "state": "UNKNOWN",
-      "applicability": "CONDITIONAL",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
       "roles": [
         {
           "roleId": "eligible-owner",
           "subject": "MODEL",
-          "state": "UNKNOWN"
+          "state": "FALSE"
         }
       ],
       "selectedDetachment": {
-        "state": "UNKNOWN",
-        "applicability": "CONDITIONAL",
+        "state": "FALSE",
+        "applicability": "NO_MATCH",
         "roles": [
           {
             "roleId": "eligible-owner",
             "subject": "MODEL",
-            "state": "UNKNOWN"
+            "state": "FALSE"
           }
         ]
       }

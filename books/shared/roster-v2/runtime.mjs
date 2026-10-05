@@ -65,8 +65,8 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
           const contexts=role.subject==='MODEL'?unit.profiles.map(m=>service.context(instanceId,'MODEL',m.scopeId)):[service.context(instanceId,role.subject)];
           return any(contexts.map(context=>context?evaluateRole(role,contract.conditions||[],context):'FALSE'));
         });
-        const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units.filter(candidate=>candidate.instanceId!==instanceId),
-          {book,evaluateRole,contextFor:(candidate,subject)=>service.context(candidate.instanceId,subject)});
+        const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units,
+          {book,evaluateRole,sourceInstanceId:instanceId,contextFor:(candidate,subject)=>service.context(candidate.instanceId,subject)});
         const result=includeRecipientFeasibility(any(states),recipient);
         if (result==='INVALID') throw new TypeError('Invalid roster-aware rule: '+rule.id);
         rows.push({unitId:unit.canonicalUnitId,instanceId,ruleId:rule.id,detachmentId:contract.detachmentId,kind:contract.kind,state:result,applicability:publicResult[result]});

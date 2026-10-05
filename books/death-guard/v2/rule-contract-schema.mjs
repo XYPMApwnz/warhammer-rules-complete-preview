@@ -173,8 +173,23 @@ export function evaluatePredicate(node, context) {
     case 'MODEL_ID': return context.modelId?truth(context.modelId===a.id):'INVALID';
     case 'UNIT_ID': return context.unitId?truth(context.unitId===a.id):'INVALID';
     case 'DETACHMENT': return available(context.roster,'detachmentId',value=>truth(value===a.id));
-    case 'LEADING': return available(context.roster,'leading',value=>truth(value===a.value));
-    case 'BODYGUARD_ID': return available(context.roster,'bodyguardId',value=>truth(value===a.id));
+    case 'LEADING': {
+      if(!Object.hasOwn(context.roster||{},'leading')&&context.capabilities) {
+        if(!Array.isArray(context.capabilities.leaderTargetIds))return 'INVALID';
+        if(!context.capabilities.leaderTargetIds.length)return truth(a.value===false);
+      }
+      return available(context.roster,'leading',value=>truth(value===a.value));
+    }
+    case 'BODYGUARD_ID': {
+      if(!Object.hasOwn(context.roster||{},'bodyguardId')&&context.capabilities) {
+        const {leaderTargetIds,canBeBodyguard}=context.capabilities;
+        if(!Array.isArray(leaderTargetIds)||typeof canBeBodyguard!=='boolean')return 'INVALID';
+        // Bodyguard components also know their own group's Bodyguard identity;
+        // that does not make them Leaders (AH-04).
+        if(!leaderTargetIds.includes(a.id)&&!(canBeBodyguard&&context.unitId===a.id))return 'FALSE';
+      }
+      return available(context.roster,'bodyguardId',value=>truth(value===a.id));
+    }
     case 'CHARACTER_MODEL_COUNT': {
       if(!Object.hasOwn(context.roster||{},'characterModelCount')&&context.capabilities) {
         const maximum=context.capabilities.maxCharacterModels;
