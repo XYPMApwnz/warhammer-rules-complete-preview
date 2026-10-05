@@ -154,7 +154,7 @@ assert.deepEqual(book.mfm,baseline.mfm);
 const old=JSON.parse(execFileSync('git',['show','b89af33775802b1010e30f749feaf0a905357ecc:books/death-guard/v2/generated/related-rules-v2.json'],{encoding:'utf8',maxBuffer:10e6}));
 const changed=[];const allowed=new Set([
   ...[...attachedRules,...countRule,mobileSource].map(r=>canonicalRule(r).id),
-  ...source.detachments.flatMap(d=>d.enhancements).filter(r=>/bearer is leading/.test(r.text)).map(r=>r.sourceId)
+  ...source.detachments.flatMap(d=>d.enhancements).filter(r=>/bearer is leading/.test(r.text)||/^PLAGUE MARINES unit only\./.test(r.text)).map(r=>r.sourceId)
 ]);
 for(const prior of old.rows){const current=row(prior.unitId,prior.ruleId);if(JSON.stringify(prior)!==JSON.stringify(current)){assert(allowed.has(prior.ruleId),'Unrelated compatibility delta: '+prior.ruleId);changed.push(current);}}
 assert.equal(index.summary.allDetachments.INVALID+index.summary.selectedDetachment.INVALID,0);

@@ -130,14 +130,15 @@ assert.equal(evaluateRequiredRecipients(dropped,'unit-plague-marines',[],options
 const baseline=JSON.parse(execFileSync('git',['show','c9d62beaab1a71fc371b1a7f37f697333d2a69ce:books/death-guard/v2/generated/rule-contract-effective.json'],{encoding:'utf8',maxBuffer:30e6}));
 assert.deepEqual(book.entities,baseline.entities,'No factual/Rule Contract semantic change');assert.deepEqual(book.mfm,baseline.mfm);
 const oldAtBase=JSON.parse(execFileSync('git',['show','c9d62beaab1a71fc371b1a7f37f697333d2a69ce:books/death-guard/v2/generated/related-rules-v2.json'],{encoding:'utf8',maxBuffer:10e6}));
-const allowed=new Set([walking.sourceId,talisman.sourceId,mobile.id]);let changed=0,changedOutcomes=0;
+const ownerRules=source.detachments.flatMap(d=>d.enhancements).filter(r=>/^PLAGUE MARINES unit only\./.test(r.text));
+const allowed=new Set([walking.sourceId,talisman.sourceId,mobile.id,...ownerRules.map(r=>r.sourceId)]);let changed=0,changedOutcomes=0;
 for(const previous of oldAtBase.rows) {
   const current=row(previous.unitId,previous.ruleId);
   if(JSON.stringify(current)!==JSON.stringify(previous)){assert(allowed.has(previous.ruleId),'Unrelated compatibility delta '+previous.ruleId);changed++;}
-  if(current.applicability!==previous.applicability||current.selectedDetachment.applicability!==previous.selectedDetachment.applicability)changedOutcomes++;
+  if(!ownerRules.some(r=>r.sourceId===current.ruleId)&&(current.applicability!==previous.applicability||current.selectedDetachment.applicability!==previous.selectedDetachment.applicability))changedOutcomes++;
 }
 assert.equal(changedOutcomes,14);assert.deepEqual(buildRelatedRules(book),index);
 assert.equal(index.summary.allDetachments.INVALID+index.summary.selectedDetachment.INVALID,0);
 assert(compileCompatibility(book).rows.every(r=>r.state!=='INVALID'));
 console.log(JSON.stringify({status:'PASS',stratagemsScanned:strata.length,mandatoryFriendlyRules:found,exclusionControls,leadingCases,bodyguardCases,publicCases,changedBookRelations:changed,changedOutcomes,
-  shamblingAbsent:'NO_MATCH',shamblingPresent:'CONDITIONAL',selfRecipient:'CONDITIONAL',lordCannotLeadPox:'NO_MATCH',actualUnattached:'NO_MATCH',actualAttached:'CONDITIONAL',canonicalDelta:0,mfmDelta:0,adv03:'UNCHANGED',ah04:'UNCHANGED'}));
+  shamblingAbsent:'NO_MATCH',shamblingPresent:'CONDITIONAL',selfRecipient:'CONDITIONAL',lordCannotLeadPox:'NO_MATCH',actualUnattached:'NO_MATCH',actualAttached:'CONDITIONAL',canonicalDelta:0,mfmDelta:0,ah04:'UNCHANGED'}));

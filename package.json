@@ -80,7 +80,7 @@
     "qa:dg:v2:glossary:browser": "node books/death-guard/v2/glossary-browser-qa.mjs",
     "qa:dg:v2:related-popups:browser": "node books/death-guard/v2/related-popup-v1-browser-qa.mjs",
     "qa:dg:v2:warlord": "node books/death-guard/v2/warlord-applicability-qa.mjs",
-    "qa:dg:v2:feasibility": "node books/death-guard/v2/related-rules-feasibility-qa.mjs && node books/death-guard/v2/related-rules-leading-recipient-qa.mjs && node books/death-guard/v2/roster-multiple-enhancements-product-qa.mjs && node books/death-guard/v2/related-rules-qa.mjs && node books/death-guard/v2/warlord-applicability-qa.mjs",
+    "qa:dg:v2:feasibility": "node books/death-guard/v2/related-rules-feasibility-qa.mjs && node books/death-guard/v2/related-rules-leading-recipient-qa.mjs && node books/death-guard/v2/enhancement-owner-qa.mjs && node books/death-guard/v2/roster-multiple-enhancements-product-qa.mjs && node books/death-guard/v2/related-rules-qa.mjs && node books/death-guard/v2/warlord-applicability-qa.mjs",
     "qa:dg:v2:feasibility:browser": "node books/death-guard/v2/related-rules-feasibility-browser-qa.mjs",
     "qa:dg:v2:roster-parser": "node books/death-guard/v2/roster-parser-migration-qa.mjs && node books/death-guard/v2/roster-import-qa.mjs && node books/death-guard/v2/roster-auto-import-qa.mjs && node books/death-guard/v2/roster-multiple-detachments-qa.mjs && node books/death-guard/v2/personal-roster-qa.mjs && node books/death-guard/v2/roster-unit-instance-qa.mjs && node books/death-guard/v2/roster-runtime-qa.mjs",
     "qa:dg:v2:roster-parser:browser": "node books/death-guard/v2/roster-parser-browser-qa.mjs && node books/death-guard/v2/roster-visible-effects-qa.mjs",

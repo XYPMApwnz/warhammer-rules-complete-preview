@@ -212,5 +212,6 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
   else delete roster.isWarlord;
   const abilityNames = (subject==='MODEL'?[model]:members.flatMap(u=>u.profiles)).flatMap(m=>m.abilities.map(a=>a.name));
   return {subject,unitId:subject==='MODEL'?unit.canonicalUnitId:group?projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId:unit.canonicalUnitId,
+    owner:{unitId:unit.canonicalUnitId,keywords:new Set(subject==='MODEL'?model.keywords:unit.keywords),unknownKeywords:new Set()},
     modelId:model?.canonicalProfileId,intrinsicKeywords:new Set(unit.intrinsicKeywords),keywords:new Set(subject==='MODEL'?model?.keywords:group?group.keywords:unit.keywords),abilities:new Set(abilityNames),roster,battle:{}};
 }

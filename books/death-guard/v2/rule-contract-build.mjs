@@ -12,6 +12,7 @@ import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {validatePredicate} from './rule-contract-schema.mjs';
 import {buildCompatibilityFeasibility} from './feasibility-build.mjs';
 import {staticCapabilities,validateCompatibilityFeasibility,evaluateRequiredRecipients,includeRecipientFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
+import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
 const directory=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(directory,'../../..');
 const addresses=JSON.parse(fs.readFileSync(path.join(directory,'rule-source-addresses.json'),'utf8'));
@@ -103,7 +104,9 @@ export function entityContext(model,unit,subject,detachmentId) {
       for(const keyword of [...other.data.keywords,...other.data.factionKeywords]) if(!keywords.has(keyword))unknownKeywords.add(keyword);
     }
   }
-  return {subject,unitId:unit.id,...(subject==='MODEL'?{modelId}:{}),intrinsicKeywords,keywords,unknownKeywords,abilities,capabilities:staticCapabilities(model,unit.id),roster:{detachmentId}};
+  return {subject,unitId:unit.id,...(subject==='MODEL'?{modelId}:{}),intrinsicKeywords,keywords,unknownKeywords,
+    owner:{unitId:unit.id,keywords:new Set(keywords),unknownKeywords:new Set()},
+    abilities,capabilities:staticCapabilities(model,unit.id),roster:{detachmentId}};
 }
 const any=states=>states.includes('INVALID')?'INVALID':states.includes('TRUE')?'TRUE':states.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 export function compileCompatibility(model) {
@@ -117,7 +120,7 @@ export function compileCompatibility(model) {
     const contract=rule.ruleContract;
     for(const unit of model.entities.filter(e=>e.kind==='DATASHEET')) {
       const eligibleRoles=contract.roles.filter(role=>(contract.compatibilityRoleIds||[contract.roles[0]?.id]).includes(role.id));
-      const evaluations=eligibleRoles.map(role=>({roleId:role.id,state:evaluateRole(role,contract.conditions||[],entityContext(model,unit,role.subject,contract.detachmentId))}));
+      const evaluations=eligibleRoles.map(role=>({roleId:role.id,state:evaluateRole(role,contract.conditions||[],enhancementOwnerContext(contract,entityContext(model,unit,role.subject,contract.detachmentId)))}));
       const recipient=evaluateRequiredRecipients(contract,unit.id,model.entities.filter(e=>e.kind==='DATASHEET').map(e=>({canonicalUnitId:e.id})),
         {book:model,evaluateRole,contextFor:(candidate,subject)=>entityContext(model,model.entities.find(e=>e.id===candidate.canonicalUnitId),subject,contract.detachmentId)});
       const state=includeRecipientFeasibility(any(evaluations.map(result=>result.state)),recipient);

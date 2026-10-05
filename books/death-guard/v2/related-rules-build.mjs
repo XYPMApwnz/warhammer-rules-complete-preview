@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {entityContext} from './rule-contract-build.mjs';
 import {evaluateRole,validateContracts,publicResult} from './rule-contract-schema.mjs';
 import {validateCompatibilityFeasibility,evaluateRequiredRecipients,includeRecipientFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
+import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
 
 const supportedKinds=new Set(['STRATAGEM','ENHANCEMENT']);
 const any=states=>states.includes('INVALID')?'INVALID':states.includes('TRUE')?'TRUE':states.includes('UNKNOWN')?'UNKNOWN':'FALSE';
@@ -18,7 +19,10 @@ export function armyBookContext(model,unit,subject,detachmentId) {
   // null is the projector's explicit "no selected Detachment" input; passing
   // undefined would also match factual records without a ruleContract.
   const context=entityContext(model,unit,subject,detachmentId??null);
-  if(subject==='MODEL')context.keywords=new Set([...unit.data.keywords,...unit.data.factionKeywords]);
+  if(subject==='MODEL') {
+    context.keywords=new Set([...unit.data.keywords,...unit.data.factionKeywords]);
+    context.owner.keywords=new Set(context.keywords);
+  }
   context.roster=detachmentId?{detachmentId}:{};
   context.battle={};
   if(!detachmentId && ['UNIT','FORMED_ATTACHED_UNIT'].includes(subject)) {
@@ -27,6 +31,7 @@ export function armyBookContext(model,unit,subject,detachmentId) {
     for(const detachment of model.entities.filter(entity=>entity.kind==='DETACHMENT')) {
       const selected=entityContext(model,unit,subject,detachment.id);
       for(const keyword of selected.keywords) if(!context.keywords.has(keyword))context.unknownKeywords.add(keyword);
+      for(const keyword of selected.owner.keywords) if(!context.owner.keywords.has(keyword))context.owner.unknownKeywords.add(keyword);
     }
   }
   return context;
@@ -37,7 +42,7 @@ export function evaluateRelatedRule(model,unit,rule,detachmentId) {
   const roleIds=contract.compatibilityRoleIds||[contract.roles[0]?.id];
   const roles=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>({
     roleId:role.id,subject:role.subject,
-    state:evaluateRole(role,contract.conditions||[],armyBookContext(model,unit,role.subject,detachmentId))
+    state:evaluateRole(role,contract.conditions||[],enhancementOwnerContext(contract,armyBookContext(model,unit,role.subject,detachmentId)))
   }));
   assert.ok(roles.length,'Rule has no compatibility role: '+rule.id);
   const recipient=evaluateRequiredRecipients(contract,unit.id,model.entities.filter(e=>e.kind==='DATASHEET').map(e=>({canonicalUnitId:e.id})),

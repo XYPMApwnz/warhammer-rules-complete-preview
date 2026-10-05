@@ -1,4 +1,5 @@
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
+import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value => structuredClone(value);
 const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_UNIT_KEYWORD','MODIFY_RULE_METRIC']);
 const bindingSubjects = {SOURCE_MODEL:'MODEL',SOURCE_UNIT:'UNIT',SOURCE_UNIT_MODELS:'MODEL',SOURCE_FORMED_MODELS:'MODEL',LEADERS_OF_SOURCE:'MODEL',ROSTER_UNITS:'UNIT'};
@@ -71,7 +72,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     for (const source of sources) for (const clause of rule.ruleContract.clauses) {
       if (source && rule.kind === 'ENHANCEMENT' && rule.ruleContract.assignment) {
         const ownerRole=rule.ruleContract.roles.find(role=>role.id===rule.ruleContract.assignment.ownerRoleId);
-        const context = predicateContext(state,result,source.instanceId,ownerRole.subject);
+        const context = enhancementOwnerContext(rule.ruleContract,predicateContext(state,result,source.instanceId,ownerRole.subject));
         const eligible = evaluatePredicate(rule.ruleContract.assignment.selector,context);
         if (eligible === 'INVALID') throw new TypeError('Invalid Enhancement owner context');
         if (eligible !== 'TRUE') continue;

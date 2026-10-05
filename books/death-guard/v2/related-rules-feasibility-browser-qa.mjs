@@ -32,6 +32,8 @@ const enhancements=source.detachments.flatMap(d=>d.enhancements);
 const walking=enhancements.find(e=>/If the bearer is leading a POXWALKER unit/.test(e.text)).sourceId;
 const talisman=enhancements.find(e=>/^DEATH GUARD model only\. While the bearer is leading a unit, add 1 to the Toughness/.test(e.text)).sourceId;
 const shamblerot=walking.split(':')[0],wall=source.detachments.flatMap(d=>d.stratagems).find(s=>/\band one friendly\b/i.test(s.lines.find(l=>l.label==='TARGET')?.text||'')).sourceId;
+const ownerRules=enhancements.filter(e=>/^PLAGUE MARINES unit only\./.test(e.text)),flyblown=ownerRules[0].sourceId.split(':')[0];
+const pmId=source.datasheets.find(s=>s.keywords.includes('PLAGUE MARINES')).sourceId.replace(/^datasheet-/,'unit-');
 const results=[];
 try{
   for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
@@ -64,6 +66,22 @@ try{
       const item=(await visible()).find(row=>row.ruleId===ruleId);
       assert.equal(item?.applicability??null,possible?'CONDITIONAL':null,`${device}/${unitId}: source-backed leading feasibility`);
       leadingQueries++;await close();
+    }
+    let ownerQueries=0;
+    for(const sheet of source.datasheets.filter(s=>labels.get(normalize(s.title))===pmId||outgoing.get(labels.get(normalize(s.title))).has(pmId))) {
+      const unitId=labels.get(normalize(sheet.title)),eligible=unitId===pmId;
+      await page.evaluate(id=>{window.ArmyBookAppV2.open(id);window.ArmyBookAppV2.openRelatedRules(id);},unitId);
+      await dialog.waitFor();await dialog.locator('[data-kind="enhancements"]').click();
+      for(const filter of ['',flyblown]) {
+        await dialog.locator(`button[data-detachment="${filter}"]`).evaluate(node=>node.click());
+        const items=await visible();
+        for(const rule of ownerRules) {
+          const item=items.find(row=>row.ruleId===rule.sourceId);
+          assert.equal(item?.applicability??null,eligible?(filter?'MATCH':'CONDITIONAL'):null,`${device}/${unitId}: physical owner eligibility`);
+        }
+        ownerQueries++;
+      }
+      await close();
     }
     const lord='Char1: 1x Lord of Contagion (110 pts): Manreaper',guard='3x Deathshroud Terminators (150 pts)';
     let rosterQueries=0;
@@ -100,8 +118,19 @@ try{
       assert.equal((await visible()).find(row=>row.ruleId===walking)?.applicability??null,attached?'CONDITIONAL':null,device+' actual leading state');
       rosterQueries++;await close();
     }
+    await page.evaluate(()=>{const app=window.ArmyBookAppV2;if(app.roster.import('+ DETACHMENT: Flyblown Host, Virulent Vectorium\nChar1: 1x Biologus Putrifier (50 pts)\n5x Plague Marines (90 pts)\nChar2: 1x Biologus Putrifier (50 pts)\n5x Plague Marines (90 pts)').status!=='READY')throw new Error('Import failed');app.roster.attach('parsed-unit-1','parsed-unit-2');app.roster.attach('parsed-unit-3','parsed-unit-4');});
+    await page.evaluate(ids=>{const app=window.ArmyBookAppV2,snapshot=app.roster.snapshot();for(let i=0;i<snapshot.units.length;i++)snapshot.units[i].enhancementIds=[ids[i<2?0:1]];app.roster.load(snapshot);},ownerRules.map(r=>r.sourceId));
+    for(const instanceId of ['parsed-unit-1','parsed-unit-2','parsed-unit-3','parsed-unit-4']) {
+      await page.evaluate(id=>{const app=window.ArmyBookAppV2;app.openPersonalGuide();app.openInstance(id);},instanceId);
+      await page.waitForFunction(id=>document.querySelector('main > .unit-card')?.dataset.rosterInstanceId===id,instanceId);
+      await page.locator('main > .unit-card .ds-related-rules-button').click();await dialog.waitFor();await dialog.locator('[data-kind="enhancements"]').click();
+      const items=await visible(),eligible=['parsed-unit-2','parsed-unit-4'].includes(instanceId);
+      for(const rule of ownerRules)assert.equal(items.find(row=>row.ruleId===rule.sourceId)?.applicability??null,eligible&&rule===ownerRules[instanceId==='parsed-unit-2'?0:1]?'MATCH':null,device+' exact roster owner');
+      assert(items.every(row=>[flyblown,'detachment-virulent-vectorium'].includes(row.detachmentId)&&row.applicability!=='NO_MATCH'));
+      ownerQueries++;await close();
+    }
     assert.deepEqual(errors,[]);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
-    results.push({device,bookQueries,leadingQueries,rosterQueries,status:'PASS'});await context.close();
+    results.push({device,bookQueries,leadingQueries,rosterQueries,ownerQueries,status:'PASS'});await context.close();
   }
   assert.deepEqual(forbidden,[]);console.log(JSON.stringify({status:'PASS',results,legacyReads:0}));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

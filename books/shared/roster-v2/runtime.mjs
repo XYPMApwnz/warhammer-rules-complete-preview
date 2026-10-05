@@ -2,6 +2,7 @@ import {lexicalDraft,importNewRecruit} from './import.mjs';
 import {validateRoster,changeAttachment,attachmentCheck,predicateContext,withRosterDetachments} from './context.mjs';
 import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
 import {validateCompatibilityFeasibility,evaluateRequiredRecipients,includeRecipientFeasibility} from './compatibility-feasibility.mjs';
+import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value=>structuredClone(value);
 const any = values=>values.includes('INVALID')?'INVALID':values.includes('TRUE')?'TRUE':values.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 const fields = value => Object.entries(value).map(([label,value])=>({label,value}));
@@ -63,7 +64,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
         const roleIds=contract.compatibilityRoleIds || [contract.roles[0]?.id];
         const states=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>{
           const contexts=role.subject==='MODEL'?unit.profiles.map(m=>service.context(instanceId,'MODEL',m.scopeId)):[service.context(instanceId,role.subject)];
-          return any(contexts.map(context=>context?evaluateRole(role,contract.conditions||[],context):'FALSE'));
+          return any(contexts.map(context=>context?evaluateRole(role,contract.conditions||[],enhancementOwnerContext(contract,context)):'FALSE'));
         });
         const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units,
           {book,evaluateRole,sourceInstanceId:instanceId,contextFor:(candidate,subject)=>service.context(candidate.instanceId,subject)});
