@@ -31,8 +31,22 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
   const paragraph=(node,field,className='content-block')=>{
     const block=el('div',className);block.append(factValue('p',field));node.append(block);
   };
+  const textPresentation=(card,field)=>{
+    // A source capture can contain a flattened table occurrence in its prose
+    // as well as typed cells. Suppress only a complete duplicate display line;
+    // keep the original fact/value/provenance and every structured cell intact.
+    const tables=new Map();
+    for(const cell of card.fields.filter(item=>item.presentation==='table-cell')){
+      const cells=tables.get(cell.table.id)||[];cells.push(cell);tables.set(cell.table.id,cells);
+    }
+    const echoes=new Set([...tables.values()].map(cells=>cells.sort((a,b)=>a.table.row-b.table.row||a.table.column-b.table.column).map(cell=>String(cell.value)).join('')));
+    const text=field.displayValue??field.value;
+    if(typeof text!=='string'||!echoes.size)return field;
+    const lines=text.split('\n'),kept=lines.filter(line=>!echoes.has(line.trim()));
+    return kept.length===lines.length?field:{...field,displayValue:kept.join('\n')};
+  };
   const appendText=(node,card)=>{
-    for(const field of card.fields.filter(field=>field.source?.path==='/text'||field.source?.path==='/semanticContent'||/^\/clauses\/\d+\/text$/.test(field.source?.path||'')))paragraph(node,field);
+    for(const field of card.fields.filter(field=>field.source?.path==='/text'||field.source?.path==='/semanticContent'||/^\/clauses\/\d+\/text$/.test(field.source?.path||'')))paragraph(node,textPresentation(card,field));
     // Tables are already atomized into canonical fields. No source/title parsing.
     const groups=new Map();
     for(const field of card.fields.filter(field=>field.presentation==='table-cell')){
@@ -78,7 +92,7 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
   const renderRule=(card,options)=>{
     const ability=card.kind==='DETACHMENT_RULE';
     const node=identity(el('article',ability?'ability':'rule-card surface'),card);node.append(heading(card,ability?'h5':'h3','',options));
-    if(ability){const text=fieldAt(card,'/text');if(text)node.append(factValue('p',text));appendText(node,{...card,fields:card.fields.filter(field=>field.source?.path!=='/text')});}
+    if(ability){const text=fieldAt(card,'/text');if(text)node.append(factValue('p',textPresentation(card,text)));appendText(node,{...card,fields:card.fields.filter(field=>field.source?.path!=='/text')});}
     else appendText(node,card);
     if(card.links?.length){const links=el('p','book-rule-references');for(const link of card.links.filter(link=>visible(link.targetId))){links.append(anchor(link.label||cards.get(link.targetId).title,link.targetId,true),document.createTextNode(' '));}node.append(links);}
     if(options.popup||card.kind==='SOURCE_ERRATUM')sourceFooter(card,node);return node;

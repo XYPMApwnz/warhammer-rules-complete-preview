@@ -153,6 +153,14 @@
   letter-spacing: .04em;
   text-transform: uppercase;
 }
+.unit-card .ds-composition-scope, .popup-weapon-profile .ds-composition-scope {
+  display:block;
+  margin:4px 0 7px;
+  color:var(--green);
+  font:700 11px/1.5 var(--ds-ui,ui-sans-serif,system-ui);
+  overflow-wrap:anywhere;
+}
+.unit-card .model-profile > .ds-composition-scope { margin:0; padding:8px 14px; background:var(--panel-2); }
 .unit-card .ds-granted-ability,
 .unit-card .ds-profile-quantity {
   display: flex;

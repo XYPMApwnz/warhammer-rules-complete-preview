@@ -11,6 +11,8 @@ import {expectedDisplay,legacyClasses,validatePresentation} from './app-qa.mjs';
 
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
+const screenshots=process.env.ARMY_APP_V2_SCREENSHOTS;
+if(screenshots)fs.mkdirSync(screenshots,{recursive:true});
 const app='/books/death-guard/v2/app.html',payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const inputs=readAppInputs(),payload=buildApp(inputs);
 validatePresentation(payload,inputs.model,inputs.records);
@@ -221,6 +223,22 @@ try{
 
     await page.evaluate(()=>window.ArmyBookAppV2.openInstance('parsed-unit-2'));await page.waitForFunction(()=>document.querySelector('main > .unit-card')?.dataset.rosterInstanceId==='parsed-unit-2');
     const shroud=page.locator('main > .unit-card[data-roster-instance-id="parsed-unit-2"]');
+    const captions=['Deathshroud Terminator Champion · 1 model','Deathshroud Terminator · 2 models'];
+    assert.deepEqual(await shroud.locator('.model-profile > .ds-composition-scope').allTextContents(),captions,`${device} detailed profile captions`);
+    assert.deepEqual((await shroud.locator('.profile-base > .ds-base-scope').allTextContents()).map(text=>text.replace(/ · $/,'')),captions,`${device} scoped Base captions`);
+    for(const id of ['datasheet-deathshroud-terminators:weapon:1',...shroudWeapons]){
+      assert.deepEqual(await shroud.locator(`[data-card-id="${id}"] .ds-composition-scope`).allTextContents(),captions,`${device} detailed weapon captions ${id}`);
+      assert.deepEqual(await shroud.locator(`[data-card-id="${id}"] .ds-weapon-quantity`).allTextContents(),[' ×1',' ×2'],`${device} scoped quantities ${id}`);
+    }
+    assert.doesNotMatch(await shroud.innerText(),/parsed-unit-|\/model-row\/|\/LOADOUT\/|\/PROFILE\//,'Internal composition identity leaked');
+    const scopeState=await page.evaluate(()=>({backup:window.ArmyBookAppV2.roster.snapshot(),effective:window.ArmyBookAppV2.roster.effective('parsed-unit-2')}));
+    await page.evaluate(snapshot=>window.ArmyBookAppV2.roster.load(JSON.parse(JSON.stringify(snapshot))),scopeState.backup);
+    assert.deepEqual(await page.evaluate(()=>window.ArmyBookAppV2.roster.effective('parsed-unit-2')),scopeState.effective,'Caption backup roundtrip altered effects');
+    assert.deepEqual(await page.evaluate(()=>window.ArmyBookAppV2.roster.state.units[1].modelRows.map(row=>row.presentationLabel)),['Deathshroud Terminator Champion','Deathshroud Terminator']);
+    if(screenshots){
+      await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:path.join(screenshots,device+'-deathshroud-profiles.png')});
+      await shroud.locator('.weapon-group').first().evaluate(node=>node.scrollIntoView({block:'start'}));await page.screenshot({path:path.join(screenshots,device+'-deathshroud-weapons.png')});
+    }
     for(const id of shroudWeapons){
       const rows=shroud.locator(`[data-card-id="${id}"]`);assert.equal(await rows.count(),2,`${device} grouped physical scope ${id}`);
       const scopes=await rows.evaluateAll(nodes=>nodes.map(node=>node.dataset.compositionId));assert.equal(new Set(scopes).size,2);
@@ -232,6 +250,7 @@ try{
     const shroudScope=shroud.locator(`[data-card-id="${shroudWeapons[0]}"]`).nth(1),compositionId=await shroudScope.getAttribute('data-composition-id');
     await shroudScope.locator('a[data-popup-identity]').click();await page.waitForSelector('dialog[open]');
     assert.equal(await page.locator(`dialog[open] [data-card-id="${shroudWeapons[0]}"]`).getAttribute('data-composition-id'),compositionId);
+    assert.equal(await page.locator(`dialog[open] [data-card-id="${shroudWeapons[0]}"] .ds-composition-scope`).textContent(),captions[1],'Effective popup lost composition caption');
     await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForSelector('dialog[open]',{state:'hidden'});
 
     // Exercise the actual V2 Attachment Setup controls, not an internal
@@ -244,11 +263,21 @@ try{
     await page.evaluate(()=>window.ArmyBookAppV2.openRoster());await page.waitForSelector('main .v2-roster-instance[data-roster-instance-id="parsed-unit-2"]');
     const bodyguard=page.locator('main .v2-roster-instance[data-roster-instance-id="parsed-unit-2"]');await bodyguard.locator('[data-attachment-candidate-for="parsed-unit-2"]').selectOption('parsed-unit-1');await bodyguard.locator('[data-roster-action="attach"]').click();
     await page.waitForFunction(()=>window.ArmyBookAppV2.roster.state.attachments.some(row=>row.leaderInstanceId==='parsed-unit-1'&&row.bodyguardInstanceId==='parsed-unit-2'));
+    await page.reload();await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);
+    await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
+    await page.evaluate(()=>window.ArmyBookAppV2.openInstance('parsed-unit-2'));
+    assert.deepEqual(await page.locator('main .model-profile > .ds-composition-scope').allTextContents(),captions,'Saved/reloaded composition captions lost');
+    // Old backups lack captions. Never infer Champion ownership from quantity.
+    const saved=await page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
+    await page.evaluate(snapshot=>{for(const row of snapshot.units[1].modelRows)delete row.presentationLabel;window.ArmyBookAppV2.roster.load(snapshot);window.ArmyBookAppV2.openInstance('parsed-unit-2');},structuredClone(saved));
+    assert.deepEqual(await page.locator('main .model-profile > .ds-composition-scope').allTextContents(),['Composition group 1 · 1 model','Composition group 2 · 2 models']);
+    assert.deepEqual(await page.evaluate(()=>window.ArmyBookAppV2.roster.effective('parsed-unit-2')),scopeState.effective,'Display captions affected roster-known semantics');
+    await page.evaluate(snapshot=>{window.ArmyBookAppV2.roster.load(snapshot);window.ArmyBookAppV2.openInstance('parsed-unit-2');},saved);
 
     const globals=await page.evaluate(()=>({projection:typeof window.WH_ARMY_ROSTER_PROJECTION,game:typeof window.WH_ARMY_ROSTER_GAME_PROJECTION,context:typeof window.WH_ARMY_ROSTER_CONTEXT,guide:typeof window.DG_ROSTER_GUIDE,legacyRelated:typeof window.WHArmyRelatedRules}));
     assert.deepEqual(globals,{projection:'undefined',game:'undefined',context:'undefined',guide:'undefined',legacyRelated:'undefined'});
     assert.deepEqual(errors,[],`${device} browser errors`);
-    results.push({device,status:'PASS',playerFacts:factsSeen.size,sourceEvidenceFacts:evidence.length,v1Datasheets,markup:'V1',megaBreakdowns:4,fnp:'PASS',physicalScopes:4,popup:'EFFECTIVE',attachmentControls:2,legacyGlobals:0});
+    results.push({device,status:'PASS',playerFacts:factsSeen.size,sourceEvidenceFacts:evidence.length,v1Datasheets,markup:'V1',megaBreakdowns:4,fnp:'PASS',physicalScopes:4,compositionCaptions:'PASS',captionRoundtrip:'PASS',legacyCaptionFallback:'PASS',popup:'EFFECTIVE',attachmentControls:2,legacyGlobals:0});
     await context.close();
   }
   assert.deepEqual(legacyRequests,[],'Legacy factual/runtime/compatibility browser read');

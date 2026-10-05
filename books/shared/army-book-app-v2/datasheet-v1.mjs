@@ -51,6 +51,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     return link;
   };
   const heading=(card,tag='h4')=>{const field=card.fields.find(f=>f.presentation==='heading');return field?factValue(tag,field):el(tag,'',card.title);};
+  const scopeCaption=card=>card.presentationScope
+    ?`${card.presentationScope.label} · ${card.presentationScope.quantity} ${card.presentationScope.quantity===1?'model':'models'}`:null;
   const modifiers=(card,field,instanceId)=>{
     if(!instanceId)return null;
     const trace=roster.effective(instanceId).applied.filter(change=>change.operation==='MODIFY_STAT'&&change.field===pointerKey(field)&&
@@ -69,6 +71,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
   };
   const renderProfile=(card,{instanceId,inDialog=false}={})=>{
     const box=identity(el('div','model-profile'),card,instanceId),used=new Set();
+    const caption=scopeCaption(card);if(caption)box.append(el('h5','ds-composition-scope',caption));
     const titleField=card.fields.find(f=>f.presentation==='heading');if(titleField){box.append(factValue('h5',titleField));used.add(titleField.id);}
     const line=el('div','statline');
     const labels={M:'M',T:'T',SV:'SV',W:'W',LD:'LD',OC:'OC',INSV:'INV'};
@@ -84,7 +87,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     for(const id of card.children || []){
       const child=cards.get(id);
       if(child.kind==='MODEL_BASE'){
-        const base=identity(el('div','profile-base'),child,instanceId);base.append(el('b','','Base: '));
+        const base=identity(el('div','profile-base'),child,instanceId);
+        if(caption)base.append(el('span','ds-base-scope',caption+' · '));
+        base.append(el('b','','Base: '));
         base.append(factValue('span',single(child,'text')));box.append(base);
       }
     }
@@ -98,6 +103,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     link.classList.add('weapon-button');link.classList.remove('v2-reference');
     if(name){link.append(factValue('span',name));used.add(name.id);}else link.textContent=card.title;
     nameLine.append(link);nameCell.append(nameLine);
+    const caption=scopeCaption(card);if(caption)nameCell.append(el('small','ds-composition-scope',caption));
     const tags=el('div','weapon-tags');
     for(const field of card.fields.filter(f=>pointerKey(f)==='abilities'&&!(Array.isArray(f.value)&&!f.value.length))){
       const target=coreTargets[abilityCode(field.value)];const chip=target&&cards.has(target)?anchor('',target,true):el('span');

@@ -41,6 +41,11 @@ const normalDisplay=fact=>{
     const bound=forceBindings[record.mfmForceDispositionIds[fact.path[1]]];
     assert.equal(bound.missionForceDispositionId,fact.value);return bound.sourceValue;
   }
+  const entity=entities.get(fact.entityId);
+  if(fact.path.length===1&&fact.path[0]==='text'&&entity?.data.tables?.length){
+    const tableEchoes=entity.data.tables.map(table=>table.rows.flat().join(''));
+    return fact.value.split('\n').filter(line=>!tableEchoes.includes(line.trim())).join('\n');
+  }
   return fact.display;
 };
 const nonDatasheetRoots=payload.groups.flatMap(group=>group.itemIds).filter(id=>cards.get(id)?.kind!=='DATASHEET');

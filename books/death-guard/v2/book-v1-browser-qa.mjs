@@ -13,6 +13,8 @@ import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
 
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
+const screenshots=process.env.ARMY_APP_V2_SCREENSHOTS;
+if(screenshots)fs.mkdirSync(screenshots,{recursive:true});
 const appPath='/books/death-guard/v2/app.html',payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const inputs=readAppInputs(),payload=buildApp(inputs);
 const kinds=new Set(['BOOK_USAGE_RULES','ARMY_RULE','ARMY_RULE_COMPONENT','DETACHMENT','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','SOURCE_ERRATUM']);
@@ -28,7 +30,11 @@ function expectedPlayerFacts(model,records){
   const add=(entityId,pointer,value,display=value)=>expected.push({id:entityId+'::'+pointer,entityId,contextId:contextIds.get(entityId),value,text:String(display)});
   for(const entity of model.entities.filter(entity=>kinds.has(entity.kind))){
     const {id,data}=entity;
-    for(const key of ['title','text'])if(data[key]!==undefined)add(id,'/'+key,data[key]);
+    for(const key of ['title','text'])if(data[key]!==undefined){
+      const tableEchoes=(data.tables||[]).map(table=>table.rows.flat().join(''));
+      const display=key==='text'?data[key].split('\n').filter(line=>!tableEchoes.includes(line.trim())).join('\n'):data[key];
+      add(id,'/'+key,data[key],display);
+    }
     for(const [index,clause] of (data.clauses||[]).entries())if(clause.text!==undefined)add(id,`/clauses/${index}/text`,clause.text);
     for(const [row,cells] of (data.table||[]).entries())for(const [column,value]of cells.entries())add(id,`/table/${row}/${column}`,value);
     for(const [index,table]of(data.tables||[]).entries())for(const[row,cells]of(table.rows||[]).entries())for(const[column,value]of cells.entries())add(id,`/tables/${index}/rows/${row}/${column}`,value);
@@ -123,6 +129,31 @@ try{
     page.on('pageerror',error=>errors.push(error.message));
     await page.goto(origin+appPath+'#start');await ready(page);await page.waitForTimeout(150);
     const observed=await observe(page);assertFacts(observed,expected,device);
+    // Source-owned table cells must have one display occurrence. Prose retains
+    // its original fact identity/value while the duplicate flattened line is omitted.
+    const tableRules=sourceEntities.filter(entity=>entity.kind==='DETACHMENT_RULE'&&entity.data.tables?.length);
+    const assertTable=async(entity,selector)=>{
+      const card=page.locator(selector);assert.equal(await card.locator('.data-table').count(),entity.data.tables.length);
+      for(const[index,table]of entity.data.tables.entries()){
+        const actual=await card.locator(`.data-table`).nth(index).locator('[data-fact-id]').evaluateAll(nodes=>nodes.map(node=>JSON.parse(node.dataset.factValue)));
+        assert.deepEqual(actual,table.rows.flat(),`${device} unchanged source table values ${entity.id}`);
+        const echo=table.rows.flat().join('');assert.doesNotMatch(await card.innerText(),new RegExp(echo.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')),`${device} duplicate flattened table`);
+        for(const label of table.rows.slice(1).map(row=>row[0]))assert.equal((await card.innerText()).split(label).length-1,1,`${device} duplicated ${label}`);
+      }
+      const text=card.locator(`[data-fact-id="${entity.id}::/text"]`);
+      assert.equal(JSON.parse(await text.getAttribute('data-fact-value')),entity.data.text,'Source text/provenance modified');
+    };
+    for(const entity of tableRules)await assertTable(entity,`main [data-card-id="${entity.id}"]`);
+    for(const entity of tableRules){
+      await page.evaluate(id=>window.ArmyBookAppV2.showDetail(id),entity.id);
+      await assertTable(entity,`dialog.v2-detail-dialog[open] [data-card-id="${entity.id}"]`);
+      await page.keyboard.press('Escape');await page.waitForSelector('dialog.v2-detail-dialog[open]',{state:'hidden'});
+    }
+    if(screenshots){
+      await page.evaluate(()=>window.ArmyBookAppV2.open('detachment-shamblerot-vectorium:rule'));
+      await page.screenshot({path:path.join(screenshots,device+'-numberless-horde.png')});
+      await page.goto(origin+appPath+'#start');await ready(page);
+    }
     const cover=page.locator('main .v2-hero[data-book-artwork]');
     assert.equal(await cover.count(),1,`${device} missing faction cover`);
     const artwork=await cover.getAttribute('data-book-artwork');

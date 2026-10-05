@@ -34,10 +34,27 @@ export function projectInstanceCards(cards, unit, effective) {
   assert(effective.instanceId===unit.instanceId && effective.canonicalUnitId===unit.canonicalUnitId,'Wrong physical projection');
   const variants=new Map(), root=clone(cards.get(unit.canonicalUnitId));
   assert(root?.kind==='DATASHEET','Unresolved canonical datasheet');
+  const scopeCaptions=new Map();
+  unit.modelRows.forEach((row,index)=>{
+    if(row.compositionScope!=='MODEL_ROW')return;
+    const label=typeof row.presentationLabel==='string'&&row.presentationLabel.trim()
+      ?row.presentationLabel:'Composition group '+(index+1);
+    const profileScope=`${unit.instanceId}/${row.rowId}/PROFILE/${row.rowId}`;
+    const profile=effective.profiles.find(item=>item.scopeId===profileScope);
+    if(profile)scopeCaptions.set(profileScope,{label,quantity:profile.quantity});
+    (row.loadouts||[]).forEach((loadout,loadoutIndex)=>{
+      const scopeId=`${unit.instanceId}/${row.rowId}/LOADOUT/${loadout.loadoutId}`;
+      const profile=effective.profiles.find(item=>item.scopeId===scopeId);
+      if(profile)scopeCaptions.set(scopeId,{
+        label:row.loadouts.length>1||scopeCaptions.has(profileScope)?`${label} · Loadout ${loadoutIndex+1}`:label,quantity:profile.quantity
+      });
+    });
+  });
   const annotate = (card, scope) => ({...clone(card),instanceId:unit.instanceId,scopeId:scope || null});
   const overlay = (record, source) => {
     const base=cards.get(record.id);assert(base,'Unresolved effective profile: '+record.id);
     const card=annotate(base,record.scopeId), values=new Map(record.fields.map(field=>[field.label,field.value]));
+    if(scopeCaptions.has(record.scopeId))card.presentationScope=clone(scopeCaptions.get(record.scopeId));
     card.fields=card.fields.flatMap(field=> {
       const path=field.source?.path || '', parts=path.slice(1).split('/');
       if (!values.has(parts[0])) return [field];
