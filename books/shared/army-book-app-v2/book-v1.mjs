@@ -26,8 +26,7 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
     const sources=[metadata.provenance,...Object.values(metadata.fieldProvenance||{})].filter(Boolean);
     const ids=[...new Set(sources.flatMap(source=>[source.sourceId||source.base?.sourceId]).filter(Boolean))];
     if(!ids.length)return;
-    const footer=el('p','source','Source: '+ids.join(' · '));
-    footer.dataset.sourceIds=JSON.stringify(ids);node.append(footer);
+    node.dataset.sourceIds=JSON.stringify(ids);
   };
   const paragraph=(node,field,className='content-block')=>{
     const block=el('div',className);block.append(factValue('p',field));node.append(block);

@@ -481,7 +481,7 @@ export function mount(document, payload, options = {}) {
     }
     hero.append(el('span', 'v2-eyebrow', 'YOUR ARMY. EVERY RULE.'), el('h1', '', payload.book.title), el('p', 'v2-hero-subtitle', 'Explore your army book. Find a datasheet, read a rule, or dive into a detachment.'));
     const meta = el('div', 'v2-book-meta');
-    for (const [label, value] of [['Edition', payload.book.edition], ['Rules', payload.book.currentness], ['Points', payload.book.mfmVersion]]) {
+    for (const [label, value] of [['Edition', payload.book.edition], ['Points', payload.book.mfmVersion]]) {
       if (value !== undefined && value !== null) {
         const badge = el('span', 'v2-meta-badge');
         badge.append(el('span', '', `${label} `), el('strong', '', exactValue(value)));

@@ -15,7 +15,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if (value !== undefined) node.textContent = String(value);
     return node;
   };
-  const named = id => catalog.get(id)?.title || titleForId(id) || id;
+  const named = id => catalog.get(id)?.title || titleForId(id) || 'Unavailable entry';
   const button = (label, action, actionId) => {
     const node = el('button', 'v2-reference', label);
     node.type = 'button';
@@ -39,7 +39,12 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   section.dataset.rosterView = '';
   const style = el('style');
   style.textContent = `
-    .v2-roster { display:grid; gap:20px; min-width:0; }
+    .v2-roster { --v2-paper:#191f1a; --v2-ink:#e2dcc9; --v2-muted:#b7b8aa; --v2-line:#566052; --v2-green:#bfd58c; display:grid; gap:20px; min-width:0; color:var(--v2-ink); }
+    .v2-roster .v2-card { background:var(--v2-paper); color:var(--v2-ink); border-color:var(--v2-line); }
+    .v2-roster .v2-reference { background:#252c25; color:var(--v2-green); border-color:#6c7950; }
+    .v2-roster .v2-reference:hover { background:#313c2a; color:#f0eddd; }
+    .v2-roster :is(button,a,input,select,textarea):focus-visible { outline:2px solid var(--v2-green); outline-offset:3px; }
+    .v2-roster textarea::placeholder { color:var(--v2-muted); opacity:1; }
     .v2-roster h1 { margin:0; font-size:30px; letter-spacing:-.03em; }
     .v2-roster h2 { margin:0 0 14px; font-size:19px; }
     .v2-roster h3 { margin:0 0 10px; font-size:16px; }
@@ -55,8 +60,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     .v2-roster select { width:100%; min-height:42px; }
     .v2-roster select[multiple] { min-height:140px; }
     .v2-roster input[type=checkbox] { min-width:18px; min-height:18px; }
-    .v2-roster-status { margin:0; padding:12px 16px; border-radius:8px; background:#edf3e3; font-size:13px; overflow-wrap:anywhere; }
-    .v2-roster-error { background:#fff0db; color:#70480e; }
+    .v2-roster-status { margin:0; padding:12px 16px; border-radius:8px; background:#252c25; font-size:13px; overflow-wrap:anywhere; }
+    .v2-roster-error { background:#3a281d; color:#ffd799; }
     .v2-roster-bindings { display:grid; gap:13px; margin-top:18px; }
     .v2-roster-bindings fieldset { margin:0; border:1px solid var(--v2-line); padding:14px; border-radius:9px; min-width:0; }
     .v2-roster-bindings legend { padding:0 6px; font-size:13px; font-weight:700; overflow-wrap:anywhere; }
@@ -65,7 +70,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     .v2-roster-instance-header { padding:22px 24px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; border-bottom:1px solid var(--v2-line); }
     .v2-roster-instance-header h2 { margin:4px 0 0; }
     .v2-roster-instance-header > a { margin-left:auto; }
-    .v2-roster-identity { padding:16px 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; background:#f5f7ec; }
+    .v2-roster-identity { padding:16px 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; background:#252c25; }
     .v2-roster-identity dt { font-size:10px; color:var(--v2-muted); font-weight:700; margin-bottom:5px; }
     .v2-roster-identity dd { margin:0; font-size:13px; line-height:1.6; }
     .v2-roster-body { padding:22px 24px; display:grid; gap:22px; }
@@ -73,7 +78,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     .v2-roster-list { padding:0; margin:10px 0; list-style:none; display:grid; gap:9px; }
     .v2-roster-list li { padding:10px 12px; border:1px solid var(--v2-line); border-radius:7px; min-width:0; overflow-wrap:anywhere; font-size:12px; line-height:1.7; }
     .v2-roster-list .v2-reference { margin:3px 5px 3px 0; }
-    .v2-roster-profile { background:#f6f8ee; border:1px solid var(--v2-line); padding:15px; border-radius:9px; margin:10px 0; }
+    .v2-roster-profile { background:#252c25; border:1px solid var(--v2-line); padding:15px; border-radius:9px; margin:10px 0; }
     .v2-roster-profile dl { display:grid; grid-template-columns:repeat(auto-fit,minmax(80px,1fr)); gap:14px; margin:0; }
     .v2-roster-profile dt { color:var(--v2-muted); font-size:10px; }
     .v2-roster-profile dd { margin:4px 0 0; font-size:16px; font-weight:650; overflow-wrap:anywhere; }
@@ -139,9 +144,26 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     status.textContent = String(message);
     status.classList.toggle('v2-roster-error', error);
   }
+  function playerError(error) {
+    const messages = {
+      EMPTY_IMPORT: 'No supported units were found. Paste a New Recruit text export.',
+      INVALID_COMPOSITION: 'The imported unit composition could not be read safely. Check the New Recruit export.',
+      INVALID_SELECTION_QUANTITY: 'An imported wargear quantity could not be read safely. Check the New Recruit export.',
+      CONFLICTING_SELECTION_QUANTITY: 'The export contains conflicting wargear quantities. Check the New Recruit export.',
+      AMBIGUOUS_WARLORD_IDENTITY: 'The Warlord could not be identified safely. Check the New Recruit export.',
+      UNRESOLVED_ENHANCEMENT_OWNER: 'An Enhancement owner could not be identified safely. Check the New Recruit export.',
+      FOREIGN_ENHANCEMENT_CONTEXT: 'An Enhancement belongs to a Detachment that was not imported. Check the New Recruit export.'
+    };
+    return messages[error?.code] || 'An imported entry could not be read safely. Check the New Recruit export or roster backup.';
+  }
+  function actionError(message) {
+    const error = new Error(message);
+    error.playerMessage = message;
+    return error;
+  }
   function checkResult(result) {
     if (result === false || result?.status === 'INVALID' || result?.errors?.length) {
-      throw new Error(result?.errors?.map(error => error.message || error.code || String(error)).join(' ') || 'Roster state could not be validated.');
+      throw actionError(result?.errors?.map(playerError).join(' ') || 'Roster state could not be validated.');
     }
     return result;
   }
@@ -151,7 +173,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     section.setAttribute('aria-busy', 'true');
     section.classList.add('v2-roster-loading');
     try { await action(); }
-    catch (error) { setStatus(error.message || String(error), true); }
+    catch (error) { setStatus(error.playerMessage || 'This action could not be completed. Check the New Recruit export or roster backup and try again.', true); }
     finally { busy = false; section.removeAttribute('aria-busy'); section.classList.remove('v2-roster-loading'); }
   }
   function persist() {
@@ -160,7 +182,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   }
   function saveAndReport(message) {
     const error = persist();
-    setStatus(error ? `${message} This browser could not save the roster: ${error.message}` : message, Boolean(error));
+    setStatus(error ? `${message} This browser could not save the roster. Export a backup to keep your changes.` : message, Boolean(error));
   }
   async function restoreSaved() {
     const saved = window.localStorage.getItem(storageKey);
@@ -196,7 +218,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     preview.append(el('summary', 'v2-roster-hint', `Imported text: ${draft.units.length} physical unit entries`));
     const list = el('ul', 'v2-roster-list');
     draft.units.forEach(unit => {
-      const item = el('li', '', `${unit.name} · ${text(unit.rawQuantity)} imported quantity · ${unit.id}`);
+      const item = el('li', '', `${unit.name} · ${text(unit.rawQuantity)} imported quantity`);
       item.dataset.rawUnitId = unit.id;
       list.append(item);
     });
@@ -214,7 +236,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       rosterArea.scrollIntoView({block: 'start', behavior: 'instant'});
     } else {
       renderBindings(importResult.needsBindings || []);
-      const errors = (importResult.errors || []).map(error => error.message || error.code).join(' ');
+      const errors = (importResult.errors || []).map(playerError).join(' ');
       setStatus(errors || 'Some imported labels need clarification. Resolve the ambiguous entries below or provide a corrected New Recruit export.', importResult.status === 'INVALID');
     }
   }
@@ -224,7 +246,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     select.setAttribute('aria-label', label);
     if (!multiple) { const placeholder = el('option', '', 'Choose an entry…'); placeholder.value = ''; select.append(placeholder); }
     records.forEach(record => {
-      const option = el('option', '', `${record.title} · ${record.id}`);
+      const option = el('option', '', record.title);
       option.value = record.id;
       option.selected = multiple ? (value || []).includes(record.id) : record.id === value;
       select.append(option);
@@ -241,7 +263,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       const fieldset = el('fieldset');
       fieldset.dataset.bindingKind = need.kind;
       fieldset.dataset.bindingKey = need.key;
-      fieldset.append(el('legend', '', need.rawLabel || need.key));
+      fieldset.append(el('legend', '', need.rawLabel || 'Imported entry'));
       const candidates = need.kind === 'SELECTION'
         ? (need.candidates || [])
         : (need.candidateIds || []).map(id => catalog.get(id)).filter(Boolean);
@@ -253,7 +275,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         const label = el('label', 'v2-roster-field', 'Matching source entry');
         const select = el('select');
         select.required = true;
-        select.setAttribute('aria-label', `Matching source entry for ${need.rawLabel || need.key}`);
+        select.setAttribute('aria-label', `Matching source entry for ${need.rawLabel || 'imported entry'}`);
         const placeholder = el('option', '', 'Choose a matching entry…'); placeholder.value = ''; select.append(placeholder);
         candidates.forEach((candidate, index) => {
           const ids = [...(candidate.canonicalProfileIds || []), ...(candidate.canonicalEquipmentIds || [])];
@@ -264,16 +286,16 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         });
         label.append(select); fieldset.append(label);
         read.push(() => {
-          if (select.value === '') throw new Error('Confirm each ambiguous imported entry.');
+          if (select.value === '') throw actionError('Confirm each ambiguous imported entry.');
           const candidate = need.kind === 'SELECTION' ? candidates[Number(select.value)] : candidates.find(record => record.id === select.value);
-          if (!candidate) throw new Error('The chosen import candidate is unavailable.');
+          if (!candidate) throw actionError('The chosen import candidate is unavailable.');
           if (need.kind === 'SELECTION') {
             bindings.selections ||= {};
             const {canonicalProfileIds = [], canonicalEquipmentIds = [], canonicalFieldPaths = {}} = candidate;
             bindings.selections[need.key] = {canonicalProfileIds, canonicalEquipmentIds, canonicalFieldPaths};
           } else {
             const group = {DETACHMENT: 'detachments', DATASHEET: 'units', PROFILE: 'profiles', ENHANCEMENT: 'enhancements'}[need.kind];
-            if (!group) throw new Error(`Unsupported import clarification: ${need.kind}`);
+            if (!group) throw actionError('This imported entry cannot be clarified here. Provide a corrected New Recruit export.');
             bindings[group] ||= {};
             bindings[group][need.key] = candidate.id;
           }
@@ -453,7 +475,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if (members.length || assignment) {
       const attachments = el('section'); attachments.append(el('h3', '', 'Attachments'));
       if (assignment) attachments.append(el('p', '', `Attached to ${names.get(assignment.bodyguardInstanceId)}`));
-      members.forEach(member => attachments.append(el('p', '', `${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)} · ${member.role || 'Character / Support'}`)));
+      members.forEach(member => attachments.append(el('p', '', `${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`)));
       context.append(attachments);
     }
     context.append(renderEffective(instanceId, service.effective(instanceId)), renderRelated(instanceId));
@@ -479,7 +501,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     }
     summary.append(el('p', 'v2-eyebrow', 'Imported Detachments'), detachments,
       button('Open personal guide', () => {
-        if (typeof openPersonalGuide !== 'function') throw new Error('Personal guide navigation is unavailable.');
+        if (typeof openPersonalGuide !== 'function') throw actionError('Personal guide navigation is unavailable.');
         return openPersonalGuide();
       }, 'open-personal-guide'));
     rosterArea.append(summary);
@@ -502,9 +524,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       article.dataset.canonicalUnitId = unit.canonicalUnitId;
       const heading = el('header', 'v2-roster-instance-header');
       const title = el('div');
-      title.append(el('span', 'v2-eyebrow', unit.instanceId), el('h2', '', names.get(unit.instanceId)));
+      title.append(el('h2', '', names.get(unit.instanceId)));
       heading.append(title, button('Effective datasheet', () => {
-        if (typeof showInstance !== 'function') throw new Error('Physical datasheet navigation is unavailable.');
+        if (typeof showInstance !== 'function') throw actionError('Physical datasheet navigation is unavailable.');
         return showInstance(unit.instanceId);
       }, 'show-instance'));
       const body = el('div', 'v2-roster-body');
@@ -523,7 +545,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
             checkResult(await service.detach(member.leaderInstanceId)); renderRoster(); saveAndReport('Character / Support detached.');
           }, 'detach');
           detach.dataset.leaderInstanceId = member.leaderInstanceId;
-          row.append(el('span', '', `${names.get(member.leaderInstanceId)} · ${member.role || 'Character / Support'}`), detach);
+          row.append(el('span', '', `${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`), detach);
           attachments.append(row);
         }
         if (candidates.length) {
@@ -533,7 +555,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
           select.dataset.attachmentCandidateFor = unit.instanceId;
           label.append(select);
           controls.append(label, button('+ Add Character / Support', async () => {
-            if (!select.value) throw new Error('Choose an eligible imported Character / Support.');
+            if (!select.value) throw actionError('Choose an eligible imported Character / Support.');
             checkResult(await service.attach(select.value, unit.instanceId)); renderRoster(); saveAndReport('Character / Support attached.');
           }, 'attach'));
           attachments.append(controls);

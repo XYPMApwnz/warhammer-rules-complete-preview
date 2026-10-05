@@ -130,7 +130,7 @@ try{
     assert.ok((await cover.evaluate(node=>getComputedStyle(node).backgroundImage)).includes(artwork),`${device} cover not rendered`);
     const coverResponse=await page.request.get(artwork);assert.equal(coverResponse.status(),200);assert.match(coverResponse.headers()['content-type'],/image\/jpeg/);
     for(const entity of sourceEntities.filter(entity=>entity.kind==='SOURCE_ERRATUM')){
-      const ids=await page.locator(`main [data-card-id="${entity.id}"] .source`).evaluate(node=>JSON.parse(node.dataset.sourceIds));assert.ok(ids.includes(entity.provenance.sourceId),`${device} current update provenance missing ${entity.id}`);
+      const ids=await page.locator(`main [data-card-id="${entity.id}"]`).evaluate(node=>JSON.parse(node.dataset.sourceIds));assert.ok(ids.includes(entity.provenance.sourceId),`${device} current update provenance missing ${entity.id}`);
     }
     for(const entity of sourceEntities){const rows=observed.records.filter(row=>row.id===entity.id);assert.equal(rows.length,1,`${device} canonical record duplicate ${entity.id}`);}
     assert.equal(await page.locator('main .detachment.content-group').count(),9);

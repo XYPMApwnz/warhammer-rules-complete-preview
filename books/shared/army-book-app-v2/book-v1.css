@@ -351,3 +351,7 @@ body.v2-book-surface .v2-section-heading .v2-count { border-radius: 0; backgroun
   body.v2-book-surface { background: white; }
   .v2-book-record { break-inside: auto; }
 }
+/* Personal-guide links inherit the book surface, rather than the light library palette. */
+body.v2-book-surface .v2-library-grid > .v2-card-link { color:#bfd58c; }
+body.v2-book-surface .v2-library-grid > .v2-card-link:hover { color:#f0eddd; }
+body.v2-book-surface .v2-library-grid > .v2-card-link:focus-visible { outline:2px solid #bfd58c; outline-offset:3px; }
