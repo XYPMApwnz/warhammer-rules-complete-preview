@@ -210,14 +210,51 @@ try{
     await rosterRelated.locator('.related-rules-close').click();await waitRelatedClosed(page);
 
     step=device+'/effective-weapon-popup';
-    const weapon=rosterUnit.locator(`[data-card-id="${lordWeaponId}"]`),scopeId=await weapon.getAttribute('data-composition-id'),weaponSource=weapon.locator('a[data-popup-identity]'),popupIdentity=await weaponSource.getAttribute('data-popup-identity');
-    popup=await openPopup(weaponSource,page,lordWeaponId);const projected=popup.locator(`[data-card-id="${lordWeaponId}"]`);
-    assert.deepEqual(JSON.parse(popupIdentity),[lordWeaponId,'parsed-unit-1',scopeId]);assert.equal(await projected.getAttribute('data-popup-identity'),popupIdentity);
-    assert.equal(await projected.getAttribute('data-roster-instance-id'),'parsed-unit-1');assert.equal(await projected.getAttribute('data-composition-id'),scopeId);
-    for(const[field,value,base,modifier]of[['attacks','6','5','1'],['strength','10','9','1']]){
-      const fact=projected.locator(`[data-fact-id="${lordWeaponId}::/${field}"]`);assert.equal(JSON.parse(await fact.getAttribute('data-fact-value')),value);const cell=fact.locator('xpath=..');assert.equal(await cell.getAttribute('data-roster-base-value'),base);assert.equal(await cell.getAttribute('data-roster-modifier'),modifier);
+    await page.evaluate(()=>{const app=window.ArmyBookAppV2;app.roster.attach('parsed-unit-1','parsed-unit-2');app.rosterPanel.refresh();app.openInstance('parsed-unit-1');});
+    assert.match(await rosterUnit.innerText(),/FEEL NO PAIN\s+4\+/i,'Attached mega-case lost Silent Bodyguard');
+    let scopeId;
+    for(const[id,modified]of[
+      [lordWeaponId,[['attacks','6','5'],['strength','10','9']]],
+      ['datasheet-lord-of-contagion:weapon:2',[['attacks','11','10'],['strength','7','6']]]
+    ]){
+      const weapon=rosterUnit.locator(`[data-card-id="${id}"]`),weaponSource=weapon.locator('a[data-popup-identity]'),popupIdentity=await weaponSource.getAttribute('data-popup-identity');
+      scopeId=await weapon.getAttribute('data-composition-id');
+      popup=await openPopup(weaponSource,page,id);const projected=popup.locator(`[data-card-id="${id}"]`);
+      assert.deepEqual(JSON.parse(popupIdentity),[id,'parsed-unit-1',scopeId]);assert.equal(await projected.getAttribute('data-popup-identity'),popupIdentity);
+      assert.equal(await projected.getAttribute('data-roster-instance-id'),'parsed-unit-1');assert.equal(await projected.getAttribute('data-composition-id'),scopeId);
+      for(const ability of ['lethal hits','SUSTAINED HITS 1','LANCE','DEVASTATING WOUNDS'])assert.ok((await projected.innerText()).toLowerCase().includes(ability.toLowerCase()),`${device} ${id}: mega-case lost ${ability}`);
+      for(const[field,value,base]of modified){
+        const fact=projected.locator(`[data-fact-id="${id}::/${field}"]`);assert.equal(JSON.parse(await fact.getAttribute('data-fact-value')),value);
+        const cell=fact.locator('xpath=..');assert.equal(await cell.getAttribute('data-roster-base-value'),base);assert.equal(await cell.getAttribute('data-roster-modifier'),'1');
+        assert.equal(await cell.locator('.ds-modifier-breakdown').innerText(),`${base} + 1`);
+      }
+      const assertNumericHierarchy=async()=>{
+        const cells=await projected.locator('tbody td').evaluateAll(nodes=>nodes.map(cell=>{
+          const value=cell.querySelector('.ds-effective-value'),breakdown=cell.querySelector('.ds-modifier-breakdown');
+          const valueRect=value.getBoundingClientRect(),detailRect=breakdown?.getBoundingClientRect();
+          return{label:cell.dataset.label,value:value.textContent,text:cell.innerText.trim(),valueDisplay:getComputedStyle(value).display,
+            ...(breakdown?{breakdownDisplay:getComputedStyle(breakdown).display,separateLine:detailRect.top>=valueRect.bottom+2,
+              smallerText:parseFloat(getComputedStyle(breakdown).fontSize)<parseFloat(getComputedStyle(value).fontSize)}:{})};
+        }));
+        for(const cell of cells){
+          if(cell.breakdownDisplay){
+            assert.equal(cell.valueDisplay,'block',`${device} ${id} ${cell.label}: effective value is inline`);
+            assert.equal(cell.breakdownDisplay,'block',`${device} ${id} ${cell.label}: modifier is inline`);
+            assert.equal(cell.separateLine,true,`${device} ${id} ${cell.label}: value and modifier visually concatenate`);
+            assert.equal(cell.smallerText,true,`${device} ${id} ${cell.label}: modifier has no secondary hierarchy`);
+          }else assert.equal(cell.text,cell.value,`${device} ${id} ${cell.label}: unmodified field gained extra output`);
+        }
+      };
+      await assertNumericHierarchy();
+      const poison=await page.addStyleTag({content:'.term-popup .popup-weapon-profile :is(.ds-effective-value,.ds-modifier-breakdown){display:inline!important}'});
+      await assert.rejects(assertNumericHierarchy,/inline|visually concatenate/,'Guard missed lost popup numeric layout');
+      await poison.evaluate(node=>node.remove());await assertNumericHierarchy();
+      if(process.env.ARMY_APP_V2_SCREENSHOTS){
+        fs.mkdirSync(process.env.ARMY_APP_V2_SCREENSHOTS,{recursive:true});
+        await page.screenshot({path:path.join(process.env.ARMY_APP_V2_SCREENSHOTS,`${device}-${id.endsWith(':1')?'strike':'sweep'}-popup.png`)});
+      }
+      await popup.locator('.popup-close').click();await waitPopupClosed(page);assert.equal(await focused(weaponSource),true,'Effective weapon popup did not restore its scoped source');
     }
-    await popup.locator('.popup-close').click();await waitPopupClosed(page);assert.equal(await focused(weaponSource),true,'Effective weapon popup did not restore its scoped source');
 
     const globals=await page.evaluate(()=>({related:typeof window.WHArmyRelatedRules,popups:typeof window.WHPopupController,guide:typeof window.DG_ROSTER_GUIDE,terms:typeof window.CORE_GLOSSARY}));
     assert.deepEqual(globals,{related:'undefined',popups:'undefined',guide:'undefined',terms:'undefined'});

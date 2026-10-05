@@ -131,6 +131,16 @@ dialog.v2-detail-dialog.term-popup.v2-book-detail::backdrop { background:rgba(4,
 .term-popup.v2-detail-dialog .v2-dialog-content { min-height:0; overflow:auto; padding:20px; overscroll-behavior:contain; scrollbar-color:var(--green-deep) var(--bg); }
 .term-popup.v2-detail-dialog .v2-dialog-content:has(>.popup-weapon-profile) { padding:0; }
 .term-popup.v2-detail-dialog .popup-weapon-profile.v2-card h3 { padding-right:42px; }
+/* Effective weapon values use the same hierarchy as the main weapon row. */
+.term-popup .popup-weapon-profile .ds-effective-value { display:block; }
+.term-popup .popup-weapon-profile .ds-modifier-breakdown {
+  display:block;
+  margin-top:4px;
+  color:var(--green);
+  font:700 9px/1.3 var(--ds-data);
+  letter-spacing:.035em;
+  overflow-wrap:anywhere;
+}
 .term-popup .v1-term-detail .v2-card-header { padding:0 42px 8px 0; border:0; }
 .term-popup .v1-term-detail .v2-card-header :is(.v2-kind,.v2-permalink) { display:none; }
 .term-popup .v1-term-detail .v2-fields { display:block; padding:0; margin:0; }
