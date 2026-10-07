@@ -1,3 +1,5 @@
+import {bindClauseCondition,bindDeclarationClauses,inspectDeclarationEvidence} from '../../shared/rule-contract-v2/bindings.mjs';
+export {bindClauseCondition};
 import assert from 'node:assert/strict';
 
 // These source-ID keyed declarations describe applicability and participant
@@ -5,7 +7,6 @@ import assert from 'node:assert/strict';
 // publication, V1 matrix, title lookup or executable battle effect is used.
 const field = ['text'];
 const characterProof = {otherEntityId:'book-death-guard:introduction',field:['clauses',3,'text'],quote:'CHARACTERS'};
-const levels = {STATIC:0,ROSTER:1,BATTLE:2};
 const all = (...args) => ({op:'ALL',args});
 const any = (...args) => ({op:'ANY',args});
 const not = arg => ({op:'NOT',args:[arg]});
@@ -208,48 +209,6 @@ for (const [id,classification] of Object.entries(detachmentClasses)) {
   detachments.get(id).applicabilityClass=classification;
 }
 
-function sourceValue(entity,path) {
-  let value=entity.data;
-  for (const part of path) value=value?.[part];
-  return value;
-}
-function verifyAtoms(value,index,entity) {
-  let level='STATIC';
-  function visit(node) {
-    if (!node || typeof node!=='object') return;
-    if (node.evidence) {
-      const source=index.get(node.evidence.otherEntityId||entity.id);
-      const text=sourceValue(source,node.evidence.field);
-      assert.equal(typeof text,'string',`${entity.id}: source field missing`);
-      assert.ok(text.includes(node.evidence.quote),`${entity.id}: literal accepted source evidence missing: ${node.evidence.quote}`);
-    }
-    if (node.predicate) {
-      assert.ok(Object.hasOwn(levels,node.contextLevel),'Explicit predicate context');
-      if (levels[node.contextLevel]>levels[level]) level=node.contextLevel;
-    }
-    for (const child of Object.values(node)) {
-      if (Array.isArray(child)) child.forEach(visit); else visit(child);
-    }
-  }
-  visit(value);return level;
-}
-export function bindClauseCondition(condition,ownerRole,participantRoles) {
-  let participant;
-  if (condition.roleId) {
-    participant=participantRoles.find(role=>role.id===condition.roleId)||
-      (ownerRole.id===condition.roleId?ownerRole:undefined);
-  } else {
-    // Bearer event predicates stay bound to the bearer even when a different
-    // MODEL is an effect recipient. Equal subject types do not imply identity.
-    assert.equal(condition.subject,ownerRole.subject,'Non-owner condition requires an explicit participant role');
-    participant=ownerRole;
-  }
-  assert.ok(participant,'Unresolved condition role');
-  if (condition.subject!==undefined) assert.equal(condition.subject,participant.subject,'Condition subject differs from its role');
-  condition.subject=participant.subject;
-  if (condition.roleId||participant.id!==ownerRole.id) condition.roleId=participant.id;
-  return condition;
-}
 function compile(model,declarations,kind) {
   const index=new Map(model.entities.map(entity=>[entity.id,entity]));
   const targets=model.entities.filter(entity=>entity.kind===kind);
@@ -260,14 +219,9 @@ function compile(model,declarations,kind) {
     specification.detachmentId=entity.parentId;
     specification.compatibilityRoleIds=['eligible-owner'];
     specification.conditions.unshift(atom('DETACHMENT','ROSTER','ROSTER',{id:entity.parentId},entity.data.text));
-    for (const sourceClause of specification.clauses) for (const sourceField of sourceClause.sourceFields) {
-      if (!specification.sourceFields.some(existing=>JSON.stringify(existing)===JSON.stringify(sourceField))) specification.sourceFields.push(sourceField);
-    }
-    for (const sourceClause of specification.clauses) for (const condition of sourceClause.conditions) {
-      bindClauseCondition(condition,specification.roles[0],sourceClause.roles);
-    }
+    bindDeclarationClauses(specification);
     specification.executionMode='DECLARATIVE_APPLICABILITY';
-    specification.contextLevel=verifyAtoms(specification,index,entity);
+    specification.contextLevel=inspectDeclarationEvidence(specification,index,entity);
     result.set(entity.id,specification);
   }
   return result;

@@ -1,3 +1,4 @@
+import {mergeContractDeclarations,bindCanonicalContract} from '../../shared/rule-contract-v2/bindings.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -44,13 +45,13 @@ function basicContract(entity) {
 export function buildRuleContractV2() {
   const {effective}=buildFactualV2();
   const maps=[buildStratagemContracts(effective),buildEnhancementContracts(effective),buildDetachmentContracts(effective)];
-  const declared=new Map();
-  for(const map of maps) for(const [id,contract] of map) {assert.ok(!declared.has(id),'Duplicate contract producer');declared.set(id,contract);}
+  const declared=mergeContractDeclarations(maps);
   const model=structuredClone(effective);
+  const index=new Map(model.entities.map(entity=>[entity.id,entity]));
   for(const entity of model.entities.filter(entity=>kinds.has(entity.kind))) {
     const semantics=declared.get(entity.id)||basicContract(entity);
-    entity.ruleContract={schema:'death-guard-rule-contract/v2',ruleId:entity.id,ownerId:entity.parentId||model.bookId,sourceId:entity.provenance.sourceId,...semantics};
-    entity.ruleContract.currentness={status:'CURRENT',sourceIds:[...new Set([entity.provenance.sourceId,...Object.values(entity.fieldProvenance||{}).map(proof=>proof.sourceId).filter(Boolean)])]};
+    entity.ruleContract=bindCanonicalContract({entity,bookId:model.bookId,schema:'death-guard-rule-contract/v2',declaration:semantics,index,
+      currentness:{status:'CURRENT',sourceIds:[...new Set([entity.provenance.sourceId,...Object.values(entity.fieldProvenance||{}).map(proof=>proof.sourceId).filter(Boolean)])]}});
     if(entity.kind==='ENHANCEMENT') {
       const binding=model.mfm.enhancementBindings.find(binding=>binding.entityId===entity.id);
       assert.ok(binding,'Missing centralized Enhancement point owner');

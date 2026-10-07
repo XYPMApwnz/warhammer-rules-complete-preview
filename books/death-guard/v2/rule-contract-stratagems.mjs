@@ -1,3 +1,4 @@
+import {createContractClause,bindAttackTarget} from '../../shared/rule-contract-v2/bindings.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {normalizeTargetConditions} from './stratagem-target-conditions.mjs';
@@ -1830,9 +1831,9 @@ function compile(entity, spec) {
     }
     role.conditions = secondaryTarget ? normalizeTargetConditions({target,when,subject,purpose:'SECONDARY_TARGET'}) : conditions;
     roles.push(role);
-    clauses.push({id:entity.id + ':effect-clause:' + (index + 1), roles:[role], conditions:[], sourceFields:secondaryTarget ? [target.field, effect.field] : [effect.field], effectScope:original, operation:declaration.operation,
+    clauses.push(createContractClause({id:entity.id + ':effect-clause:' + (index + 1), roles:[role], conditions:[], sourceFields:secondaryTarget ? [target.field, effect.field] : [effect.field], effectScope:original, operation:declaration.operation,
       effectRecipientRoleIds:purpose === 'ANCHOR' ? [] : [role.id],
-      ...(declaration.lifetimeSourceQuote ? {lifetimeEvidence:evidence(effect, declaration.lifetimeSourceQuote)} : {})});
+      ...(declaration.lifetimeSourceQuote ? {lifetimeEvidence:evidence(effect, declaration.lifetimeSourceQuote)} : {})}));
   }
   // Recipient exclusions are UNIT predicates on the enemy, never primary
   // actor keyword predicates. Initial Mireslick trigger and general recipients
@@ -1864,15 +1865,10 @@ function compile(entity, spec) {
   }
   for (const exclusion of attackTargetExclusions) {
     const recipient=roles.find(role=>role.id==='enemy-effect-recipient');
-    assert.ok(recipient&&recipient.subject==='UNIT'&&recipient.allegiance==='ENEMY',`${entity.id}: unresolved enemy attack-target participant`);
-    assert.equal(exclusion.actorRole.subject,'MODEL','Attack-target exclusion requires a MODEL actor');
-    assert.ok(!recipient.actorRoleId||recipient.actorRoleId===exclusion.actorRole.id,'Conflicting attack-target actor');
-    recipient.binding='ATTACK_TARGET';
-    recipient.actorRoleId=exclusion.actorRole.id;
+    bindAttackTarget({recipient,actor:exclusion.actorRole,clause:clauses[exclusion.clauseIndex]});
     recipient.selector=all(exclusion.keywords.map(value=>not(keyword('UNIT',value,exclusion.proof))));
     // The same participant record governs this attack's recipient. It cannot
     // be replaced by an unrelated otherwise-eligible enemy elsewhere.
-    clauses[exclusion.clauseIndex].roles.push(recipient);
   }
   const restrictions = lines.flatMap((line, index) => line.label.startsWith('RESTRICTION') ? [{id:entity.id + ':restriction:' + index, conditions:[contextual('ROSTER', 'usedThisStratagemThisBattle', 'BATTLE', false, {field:['lines',index,'text'], quote:line.text})], sourceFields:[['lines',index,'text']]}] : []);
   const duration = normalizeStratagemDurations(entity.id, effect, clauses);
