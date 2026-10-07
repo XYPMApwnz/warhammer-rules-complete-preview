@@ -63,9 +63,9 @@ for(const entity of built.book.entities.filter(entity=>entity.kind==='ENHANCEMEN
   check(!leaves(owner.selector).some(atom=>atom.contextLevel==='BATTLE'),'Battle activation confused with owner eligibility');
 }
 for(const unitId of ['skitarii-rangers','skitarii-vanguard']) {
-  const clause=built.book.entities.find(entity=>entity.id===`datasheet-${unitId}:section:1`).ruleContract.clauses.find(clause=>clause.operation==='GRANT_WEAPON_ABILITY');
-  equivalent(clause.operationParameters.targetBinding,'SOURCE_UNIT','Omnispex invented an attachment requirement');
-  equivalent(clause.operationParameters.targetSubject,'UNIT');
+  const clause=built.book.entities.find(entity=>entity.id===`datasheet-${unitId}:section:1`).ruleContract.clauses.find(clause=>clause.id==='block-3');
+  equivalent(clause.rosterEffects[0].targetBinding,'SOURCE_UNIT','Omnispex invented an attachment requirement');
+  equivalent(clause.rosterEffects[0].targetSubject,'UNIT');
 }
 
 // Literal source conditions and roles are inspected separately from producer

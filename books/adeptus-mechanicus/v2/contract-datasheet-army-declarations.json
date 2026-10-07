@@ -2610,21 +2610,99 @@
             ],
             "quote": "Robotic Bodyguard: While a CYBERNETICA DATASMITH model is leading this unit, that model has the Feel No Pain 4+ ability."
           },
-          "rosterClassification": "ROSTER_KNOWN",
+          "rosterClassification": "ROSTER_EXECUTABLE",
           "rosterClassificationNote": {
-            "reason": "Roster-known attached Datasmith recipient; Feel No Pain is an existing operation. No effects execute in this stage."
+            "reason": "Source-proven roster inputs and recipients are bound to existing shared operations. This declaration does not connect or execute an effective-datasheet projection."
           },
-          "rosterEffects": [],
-          "operation": "GRANT_MODEL_ABILITY",
-          "operationParameters": {
-            "targetBinding": "LEADERS_OF_SOURCE",
-            "targetSubject": "MODEL",
-            "ability": {
-              "name": "Feel No Pain",
-              "value": 4
-            },
-            "recipientRoleId": "datasmith"
-          },
+          "rosterEffects": [
+            {
+              "id": "block-1-roster-effect",
+              "operation": "GRANT_MODEL_ABILITY",
+              "targetBinding": "LEADERS_OF_SOURCE",
+              "targetSubject": "MODEL",
+              "ability": {
+                "name": "Feel No Pain",
+                "value": 4
+              },
+              "recipientRoleId": "datasmith",
+              "lifetime": "WHILE_LEADING_SOURCE_UNIT",
+              "conditions": [
+                {
+                  "binding": "TARGET",
+                  "predicate": {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-cybernetica-datasmith:profile:default"
+                    },
+                    "evidence": {
+                      "otherEntityId": "datasheet-cybernetica-datasmith:profile:default",
+                      "field": [
+                        "name"
+                      ],
+                      "quote": "Cybernetica Datasmith"
+                    }
+                  },
+                  "contextLevel": "STATIC"
+                },
+                {
+                  "binding": "TARGET",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "is leading this unit"
+                    }
+                  },
+                  "contextLevel": "ROSTER"
+                },
+                {
+                  "binding": "TARGET",
+                  "predicate": {
+                    "predicate": "BODYGUARD_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "id": "unit-kastelan-robots"
+                    },
+                    "evidence": {
+                      "otherEntityId": "unit-kastelan-robots",
+                      "field": [
+                        "title"
+                      ],
+                      "quote": "Kastelan Robots"
+                    }
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Robotic Bodyguard: While a CYBERNETICA DATASMITH model is leading this unit, that model has the Feel No Pain 4+ ability."
+              }
+            }
+          ],
           "effectRecipientRoleIds": [
             "datasmith"
           ]
@@ -5635,7 +5713,7 @@
               "subject": "UNIT",
               "contextLevel": "ROSTER",
               "arguments": {
-                "key": "omnispexEquipped",
+                "key": "equipmentRequirementSatisfied",
                 "equals": true
               },
               "evidence": {
@@ -5664,19 +5742,70 @@
             ],
             "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
           },
-          "rosterClassification": "ROSTER_KNOWN",
+          "rosterClassification": "ROSTER_EXECUTABLE",
           "rosterClassificationNote": {
-            "reason": "Selected omnispex grants IGNORES COVER to ranged weapons in its bearer’s UNIT. Existing SOURCE_UNIT/UNIT applies both standalone and through formed-unit propagation; MODEL beneficiaries remain explicit. No execution."
+            "reason": "Source-proven roster inputs and recipients are bound to existing shared operations. This declaration does not connect or execute an effective-datasheet projection."
           },
-          "rosterEffects": [],
-          "operation": "GRANT_WEAPON_ABILITY",
-          "operationParameters": {
-            "targetBinding": "SOURCE_UNIT",
-            "targetSubject": "UNIT",
-            "weaponMode": "ranged",
-            "ability": "IGNORES COVER",
-            "recipientRoleId": "bearerUnit"
-          },
+          "rosterEffects": [
+            {
+              "id": "block-3-roster-effect",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "weaponMode": "ranged",
+              "ability": "IGNORES COVER",
+              "recipientRoleId": "bearerUnit",
+              "lifetime": "WHILE_EQUIPMENT_REQUIREMENT_SATISFIED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        2,
+                        "text"
+                      ],
+                      "quote": "Omnispex"
+                    }
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  2,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
+              },
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-skitarii-rangers:section:1",
+                "sourceFieldPath": [
+                  "blocks",
+                  2,
+                  "text"
+                ]
+              }
+            }
+          ],
           "effectRecipientRoleIds": [
             "bearerUnit"
           ]
@@ -6008,7 +6137,7 @@
               "subject": "UNIT",
               "contextLevel": "ROSTER",
               "arguments": {
-                "key": "omnispexEquipped",
+                "key": "equipmentRequirementSatisfied",
                 "equals": true
               },
               "evidence": {
@@ -6037,19 +6166,70 @@
             ],
             "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
           },
-          "rosterClassification": "ROSTER_KNOWN",
+          "rosterClassification": "ROSTER_EXECUTABLE",
           "rosterClassificationNote": {
-            "reason": "Selected omnispex grants IGNORES COVER to ranged weapons in its bearer’s UNIT. Existing SOURCE_UNIT/UNIT applies both standalone and through formed-unit propagation; MODEL beneficiaries remain explicit. No execution."
+            "reason": "Source-proven roster inputs and recipients are bound to existing shared operations. This declaration does not connect or execute an effective-datasheet projection."
           },
-          "rosterEffects": [],
-          "operation": "GRANT_WEAPON_ABILITY",
-          "operationParameters": {
-            "targetBinding": "SOURCE_UNIT",
-            "targetSubject": "UNIT",
-            "weaponMode": "ranged",
-            "ability": "IGNORES COVER",
-            "recipientRoleId": "bearerUnit"
-          },
+          "rosterEffects": [
+            {
+              "id": "block-3-roster-effect",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "weaponMode": "ranged",
+              "ability": "IGNORES COVER",
+              "recipientRoleId": "bearerUnit",
+              "lifetime": "WHILE_EQUIPMENT_REQUIREMENT_SATISFIED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        2,
+                        "text"
+                      ],
+                      "quote": "Omnispex"
+                    }
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  2,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
+              },
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-skitarii-vanguard:section:1",
+                "sourceFieldPath": [
+                  "blocks",
+                  2,
+                  "text"
+                ]
+              }
+            }
+          ],
           "effectRecipientRoleIds": [
             "bearerUnit"
           ]
@@ -7861,21 +8041,87 @@
             ],
             "quote": "Lord of the Machine Cult: While this model is leading a unit, models in that unit have the Feel No Pain 5+ ability. If that unit has the ELECTRO-PRIESTS keyword, models in that unit have the Feel No Pain 4+ ability instead."
           },
-          "rosterClassification": "ROSTER_KNOWN",
+          "rosterClassification": "ROSTER_EXECUTABLE",
           "rosterClassificationNote": {
-            "reason": "Leading and ELECTRO-PRIESTS membership determine the FNP branch from roster context; no execution."
+            "reason": "Source-proven roster inputs and recipients are bound to existing shared operations. This declaration does not connect or execute an effective-datasheet projection."
           },
-          "rosterEffects": [],
-          "operation": "GRANT_MODEL_ABILITY",
-          "operationParameters": {
-            "targetBinding": "SOURCE_FORMED_MODELS",
-            "targetSubject": "MODEL",
-            "ability": {
-              "name": "Feel No Pain",
-              "value": 5
-            },
-            "recipientRoleId": "formedModels"
-          },
+          "rosterEffects": [
+            {
+              "id": "block-1-roster-effect",
+              "operation": "GRANT_MODEL_ABILITY",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "ability": {
+                "name": "Feel No Pain",
+                "value": 5
+              },
+              "recipientRoleId": "formedModels",
+              "lifetime": "WHILE_LEADING",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "While this model is leading a unit"
+                    }
+                  },
+                  "contextLevel": "ROSTER"
+                },
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "op": "NOT",
+                    "args": [
+                      {
+                        "predicate": "UNIT_KEYWORD",
+                        "subject": "FORMED_ATTACHED_UNIT",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "ELECTRO-PRIESTS"
+                        },
+                        "evidence": {
+                          "field": [
+                            "blocks",
+                            0,
+                            "text"
+                          ],
+                          "quote": "ELECTRO-PRIESTS"
+                        }
+                      }
+                    ],
+                    "subject": "FORMED_ATTACHED_UNIT"
+                  },
+                  "contextLevel": "STATIC"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Lord of the Machine Cult: While this model is leading a unit, models in that unit have the Feel No Pain 5+ ability. If that unit has the ELECTRO-PRIESTS keyword, models in that unit have the Feel No Pain 4+ ability instead."
+              }
+            }
+          ],
           "effectRecipientRoleIds": [
             "formedModels"
           ]
@@ -8024,21 +8270,81 @@
             ],
             "quote": "Lord of the Machine Cult: While this model is leading a unit, models in that unit have the Feel No Pain 5+ ability. If that unit has the ELECTRO-PRIESTS keyword, models in that unit have the Feel No Pain 4+ ability instead."
           },
-          "rosterClassification": "ROSTER_KNOWN",
+          "rosterClassification": "ROSTER_EXECUTABLE",
           "rosterClassificationNote": {
-            "reason": "Leading and ELECTRO-PRIESTS membership determine the FNP branch from roster context; no execution."
+            "reason": "Source-proven roster inputs and recipients are bound to existing shared operations. This declaration does not connect or execute an effective-datasheet projection."
           },
-          "rosterEffects": [],
-          "operation": "GRANT_MODEL_ABILITY",
-          "operationParameters": {
-            "targetBinding": "SOURCE_FORMED_MODELS",
-            "targetSubject": "MODEL",
-            "ability": {
-              "name": "Feel No Pain",
-              "value": 4
-            },
-            "recipientRoleId": "formedModels"
-          },
+          "rosterEffects": [
+            {
+              "id": "block-1-electro-priests-roster-effect",
+              "operation": "GRANT_MODEL_ABILITY",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "ability": {
+                "name": "Feel No Pain",
+                "value": 4
+              },
+              "recipientRoleId": "formedModels",
+              "lifetime": "WHILE_LEADING",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "While this model is leading a unit"
+                    }
+                  },
+                  "contextLevel": "ROSTER"
+                },
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "FORMED_ATTACHED_UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "ELECTRO-PRIESTS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "ELECTRO-PRIESTS"
+                    }
+                  },
+                  "contextLevel": "STATIC"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Lord of the Machine Cult: While this model is leading a unit, models in that unit have the Feel No Pain 5+ ability. If that unit has the ELECTRO-PRIESTS keyword, models in that unit have the Feel No Pain 4+ ability instead."
+              }
+            }
+          ],
           "effectRecipientRoleIds": [
             "formedModels"
           ]
@@ -9263,18 +9569,58 @@
             ],
             "quote": "Galvanic Field: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
           },
-          "rosterClassification": "ROSTER_KNOWN",
+          "rosterClassification": "ROSTER_EXECUTABLE",
           "rosterClassificationNote": {
-            "reason": "Leading is roster context. Supported semantic operation is declared without execution."
+            "reason": "Source-proven roster inputs and recipients are bound to existing shared operations. This declaration does not connect or execute an effective-datasheet projection."
           },
-          "rosterEffects": [],
-          "operation": "GRANT_WEAPON_ABILITY",
-          "operationParameters": {
-            "targetBinding": "SOURCE_FORMED_MODELS",
-            "targetSubject": "MODEL",
-            "ability": "LETHAL HITS",
-            "recipientRoleId": "formedModels"
-          },
+          "rosterEffects": [
+            {
+              "id": "block-1-roster-effect",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "ability": "LETHAL HITS",
+              "recipientRoleId": "formedModels",
+              "lifetime": "WHILE_LEADING",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "While this model is leading a unit"
+                    }
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Galvanic Field: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+              }
+            }
+          ],
           "effectRecipientRoleIds": [
             "formedModels"
           ]
@@ -9813,20 +10159,60 @@
             ],
             "quote": "Seekers of Divine Arcana: While this model is leading a unit, add 1 to the Objective Control characteristic of models in that unit."
           },
-          "rosterClassification": "ROSTER_KNOWN",
+          "rosterClassification": "ROSTER_EXECUTABLE",
           "rosterClassificationNote": {
-            "reason": "Leading is roster context. Supported semantic operation is declared without execution."
+            "reason": "Source-proven roster inputs and recipients are bound to existing shared operations. This declaration does not connect or execute an effective-datasheet projection."
           },
-          "rosterEffects": [],
-          "operation": "MODIFY_STAT",
-          "operationParameters": {
-            "targetBinding": "SOURCE_FORMED_MODELS",
-            "targetSubject": "MODEL",
-            "field": "OC",
-            "mode": "ADD",
-            "value": 1,
-            "recipientRoleId": "formedModels"
-          },
+          "rosterEffects": [
+            {
+              "id": "block-1-roster-effect",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "field": "OC",
+              "mode": "ADD",
+              "value": 1,
+              "recipientRoleId": "formedModels",
+              "lifetime": "WHILE_LEADING",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "While this model is leading a unit"
+                    }
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Seekers of Divine Arcana: While this model is leading a unit, add 1 to the Objective Control characteristic of models in that unit."
+              }
+            }
+          ],
           "effectRecipientRoleIds": [
             "formedModels"
           ]
