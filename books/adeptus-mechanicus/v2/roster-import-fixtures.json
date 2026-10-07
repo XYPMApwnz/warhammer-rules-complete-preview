@@ -1,0 +1,1451 @@
+{
+  "schema": "adeptus-mechanicus-roster-import-fixtures/v2",
+  "authority": "QA_ONLY",
+  "fixtureOrigin": "Synthetic New Recruit text exports. Labels, canonical targets, composition and selected equipment are independently transcribed from accepted current-source V2 facts. Point annotations are import metadata, not current price assertions.",
+  "canonicalInput": "books/adeptus-mechanicus/v2/generated/effective.json",
+  "sourceCorpus": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+  "expectedOwnership": "Aggregate equipment belongs to the physical UNIT_INSTANCE. Composition rows retain canonical profile bindings without invented per-infantry weapon owners.",
+  "expectationNotes": [
+    "Expected units follow export order; repeated canonicalId values denote distinct physical instances.",
+    "isWarlord null means the export does not establish assignment. An explicit Warlord establishes the other entries as non-Warlord.",
+    "Multiple canonicalProfileIds in one weapon selection denote one physical selected weapon with all of its canonical firing profiles.",
+    "optionalWargear sourceOptionId is accepted selection evidence; canonicalEquipmentIds/canonicalFieldPaths identify the existing selected equipment owner or exact canonical ability block."
+  ],
+  "fixtures": [
+    {
+      "id": "servitor-detailed-current-source",
+      "description": "Current mixed profiles; Gun and Combat selection rows share one canonical profile while remaining separate imported composition scopes.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n9x Servitor Battleclade (110 pts)\n• 1x Servitor Underseer: Mechanicus pistol, Dataspikes\n• 1x Gun Servitor: Heavy arc rifle, Servo-claw\n• 1x Gun Servitor: Heavy bolter, Servo-claw\n• 5x Combat Servitor: 5 with Phosphor blaster, Servo-claw\n• 1x Combat Servitor: Meltagun, Servo-claw\n\nCreated with newrecruit.eu",
+      "expected": {
+        "selectedDetachmentIds": [
+          "detachment-lords-of-the-forge"
+        ],
+        "units": [
+          {
+            "canonicalId": "unit-servitor-battleclade",
+            "modelCount": 9,
+            "startingStrength": 9,
+            "isWarlord": null,
+            "enhancementIds": [],
+            "composition": [
+              {
+                "label": "Servitor Underseer",
+                "quantity": 1,
+                "canonicalProfileId": "datasheet-servitor-battleclade:profile:servitor-underseer"
+              },
+              {
+                "label": "Gun Servitor",
+                "quantity": 1,
+                "canonicalProfileId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors"
+              },
+              {
+                "label": "Gun Servitor",
+                "quantity": 1,
+                "canonicalProfileId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors"
+              },
+              {
+                "label": "Combat Servitor",
+                "quantity": 5,
+                "canonicalProfileId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors"
+              },
+              {
+                "label": "Combat Servitor",
+                "quantity": 1,
+                "canonicalProfileId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors"
+              }
+            ],
+            "profileQuantities": {
+              "datasheet-servitor-battleclade:profile:servitor-underseer": 1,
+              "datasheet-servitor-battleclade:profile:combat-and-gun-servitors": 8
+            },
+            "weapons": [
+              {
+                "label": "Mechanicus pistol",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-servitor-battleclade:weapon:4"
+                ]
+              },
+              {
+                "label": "Dataspikes",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-servitor-battleclade:weapon:7"
+                ]
+              },
+              {
+                "label": "Heavy arc rifle",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-servitor-battleclade:weapon:1"
+                ]
+              },
+              {
+                "label": "Heavy bolter",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-servitor-battleclade:weapon:2"
+                ]
+              },
+              {
+                "label": "Phosphor blaster",
+                "quantity": 5,
+                "canonicalProfileIds": [
+                  "datasheet-servitor-battleclade:weapon:6"
+                ]
+              },
+              {
+                "label": "Meltagun",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-servitor-battleclade:weapon:5"
+                ]
+              },
+              {
+                "label": "Servo-claw",
+                "quantity": 8,
+                "canonicalProfileIds": [
+                  "datasheet-servitor-battleclade:weapon:8"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "sourceEvidence": [
+        {
+          "entityId": "unit-servitor-battleclade",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:section:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/sections/1"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:wargear:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/wargearOptions/0"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Servitor-Battleclade.html",
+            "pointer": null,
+            "sha256": "6D3B3B7F4036A58681ACFF67A74B900FA91839AA5116E269CC27CB76E67BEA1B",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[1]/div[9]"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:profile:servitor-underseer",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Servitor-Battleclade.html",
+            "pointer": null,
+            "sha256": "6D3B3B7F4036A58681ACFF67A74B900FA91839AA5116E269CC27CB76E67BEA1B",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[1]/div[8]"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:weapon:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/weapons/0"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:weapon:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/weapons/1"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:weapon:4",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/weapons/3"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:weapon:5",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/weapons/4"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:weapon:6",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/weapons/5"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:weapon:7",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/weapons/6"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:weapon:8",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/weapons/7"
+          }
+        },
+        {
+          "entityId": "detachment-lords-of-the-forge",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "multi-detachments-enhancement-owner-warlord",
+      "description": "Two selected Detachments, duplicate Rangers, distinct exact Enhancement owners and explicit Warlord.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade, Eradication Cohort\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-Priest Dominus (100 pts): Warlord, Macrostubber, Volkite blaster, Omnissian axe\nEnhancement: Cognitive Reinforcement (+35 pts)\n\nChar2: 1x Skitarii Marshal (65 pts): Mechanicus pistol, Control stave\nEnhancement: Omnicogitator (+30 pts)\n\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon, 1x Omnispex\n\n10x Skitarii Rangers (85 pts): 9x Galvanic rifle, 1x Arc rifle, 10x Close combat weapon, 1x Enhanced data-tether\n\nCreated with newrecruit.eu",
+      "expected": {
+        "selectedDetachmentIds": [
+          "detachment-haloscreed-battle-clade",
+          "detachment-eradication-cohort"
+        ],
+        "units": [
+          {
+            "canonicalId": "unit-tech-priest-dominus",
+            "modelCount": 1,
+            "startingStrength": 1,
+            "isWarlord": true,
+            "enhancementIds": [
+              "detachment-haloscreed-battle-clade:enhancement:2"
+            ],
+            "weapons": [
+              {
+                "label": "Macrostubber",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:3"
+                ]
+              },
+              {
+                "label": "Volkite blaster",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:5"
+                ]
+              },
+              {
+                "label": "Omnissian axe",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:6"
+                ]
+              }
+            ]
+          },
+          {
+            "canonicalId": "unit-skitarii-marshal",
+            "modelCount": 1,
+            "startingStrength": 1,
+            "isWarlord": false,
+            "enhancementIds": [
+              "detachment-eradication-cohort:enhancement:1"
+            ],
+            "weapons": [
+              {
+                "label": "Mechanicus pistol",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-marshal:weapon:1"
+                ]
+              },
+              {
+                "label": "Control stave",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-marshal:weapon:2"
+                ]
+              }
+            ]
+          },
+          {
+            "canonicalId": "unit-skitarii-rangers",
+            "modelCount": 10,
+            "startingStrength": 10,
+            "isWarlord": false,
+            "enhancementIds": [],
+            "weapons": [
+              {
+                "label": "Galvanic rifle",
+                "quantity": 10,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-rangers:weapon:3"
+                ]
+              },
+              {
+                "label": "Close combat weapon",
+                "quantity": 10,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-rangers:weapon:8"
+                ]
+              }
+            ],
+            "optionalWargear": [
+              {
+                "label": "Omnispex",
+                "quantity": 1,
+                "sourceOptionId": "datasheet-skitarii-rangers:wargear:6",
+                "canonicalEquipmentIds": [
+                  "datasheet-skitarii-rangers:section:1"
+                ],
+                "canonicalFieldPaths": {
+                  "datasheet-skitarii-rangers:section:1": [
+                    "/blocks/2/text"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "canonicalId": "unit-skitarii-rangers",
+            "modelCount": 10,
+            "startingStrength": 10,
+            "isWarlord": false,
+            "enhancementIds": [],
+            "weapons": [
+              {
+                "label": "Galvanic rifle",
+                "quantity": 9,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-rangers:weapon:3"
+                ]
+              },
+              {
+                "label": "Arc rifle",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-rangers:weapon:2"
+                ]
+              },
+              {
+                "label": "Close combat weapon",
+                "quantity": 10,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-rangers:weapon:8"
+                ]
+              }
+            ],
+            "optionalWargear": [
+              {
+                "label": "Enhanced data-tether",
+                "quantity": 1,
+                "sourceOptionId": "datasheet-skitarii-rangers:wargear:6",
+                "canonicalEquipmentIds": [
+                  "datasheet-skitarii-rangers:section:1"
+                ],
+                "canonicalFieldPaths": {
+                  "datasheet-skitarii-rangers:section:1": [
+                    "/blocks/1/text"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "sourceEvidence": [
+        {
+          "entityId": "detachment-haloscreed-battle-clade",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/0"
+          }
+        },
+        {
+          "entityId": "detachment-eradication-cohort",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/1"
+          }
+        },
+        {
+          "entityId": "detachment-haloscreed-battle-clade:enhancement:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/0/enhancements/1"
+          }
+        },
+        {
+          "entityId": "detachment-eradication-cohort:enhancement:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/1/enhancements/0"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:section:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/sections/1"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:wargear:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/wargearOptions/2"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:wargear:6",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/wargearOptions/5"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-marshal:weapon:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21/weapons/0"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-marshal:weapon:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21/weapons/1"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:section:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/sections/0"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:weapon:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/weapons/1"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:weapon:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/weapons/2"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:weapon:8",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/weapons/7"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/2"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:5",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/4"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:6",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/5"
+          }
+        },
+        {
+          "entityId": "unit-skitarii-marshal",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21"
+          }
+        },
+        {
+          "entityId": "unit-skitarii-rangers",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22"
+          }
+        },
+        {
+          "entityId": "unit-tech-priest-dominus",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29"
+          }
+        }
+      ]
+    },
+    {
+      "id": "duplicate-kastelan-different-sizes-and-loadouts",
+      "description": "Physical duplicate same-datasheet units with 2 versus 4 models and different aggregate equipment. No Warlord assignment supplied.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Cohort Cybernetica\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n2x Kastelan Robots (180 pts): 2x Incendine combustor, 2x Twin Kastelan fist\n\n4x Kastelan Robots (360 pts): 4x Heavy phosphor blaster, 4x Kastelan phosphor blaster, 4x Kastelan fist\n\nCreated with newrecruit.eu",
+      "expected": {
+        "selectedDetachmentIds": [
+          "detachment-cohort-cybernetica"
+        ],
+        "units": [
+          {
+            "canonicalId": "unit-kastelan-robots",
+            "modelCount": 2,
+            "startingStrength": 2,
+            "isWarlord": null,
+            "enhancementIds": [],
+            "weapons": [
+              {
+                "label": "Incendine combustor",
+                "quantity": 2,
+                "canonicalProfileIds": [
+                  "datasheet-kastelan-robots:weapon:2"
+                ]
+              },
+              {
+                "label": "Twin Kastelan fist",
+                "quantity": 2,
+                "canonicalProfileIds": [
+                  "datasheet-kastelan-robots:weapon:7"
+                ]
+              }
+            ]
+          },
+          {
+            "canonicalId": "unit-kastelan-robots",
+            "modelCount": 4,
+            "startingStrength": 4,
+            "isWarlord": null,
+            "enhancementIds": [],
+            "weapons": [
+              {
+                "label": "Heavy phosphor blaster",
+                "quantity": 4,
+                "canonicalProfileIds": [
+                  "datasheet-kastelan-robots:weapon:1"
+                ]
+              },
+              {
+                "label": "Kastelan phosphor blaster",
+                "quantity": 4,
+                "canonicalProfileIds": [
+                  "datasheet-kastelan-robots:weapon:3"
+                ]
+              },
+              {
+                "label": "Kastelan fist",
+                "quantity": 4,
+                "canonicalProfileIds": [
+                  "datasheet-kastelan-robots:weapon:6"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-kastelan-robots:section:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10/sections/1"
+          }
+        },
+        {
+          "entityId": "datasheet-kastelan-robots:wargear:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10/wargearOptions/0"
+          }
+        },
+        {
+          "entityId": "datasheet-kastelan-robots:wargear:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10/wargearOptions/1"
+          }
+        },
+        {
+          "entityId": "datasheet-kastelan-robots:weapon:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10/weapons/0"
+          }
+        },
+        {
+          "entityId": "datasheet-kastelan-robots:weapon:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10/weapons/1"
+          }
+        },
+        {
+          "entityId": "datasheet-kastelan-robots:weapon:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10/weapons/2"
+          }
+        },
+        {
+          "entityId": "datasheet-kastelan-robots:weapon:6",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10/weapons/5"
+          }
+        },
+        {
+          "entityId": "datasheet-kastelan-robots:weapon:7",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10/weapons/6"
+          }
+        },
+        {
+          "entityId": "detachment-cohort-cybernetica",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/5"
+          }
+        },
+        {
+          "entityId": "unit-kastelan-robots",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10"
+          }
+        }
+      ]
+    },
+    {
+      "id": "paired-profile-weapon-selection",
+      "description": "One selected physical weapon refers to both accepted firing profiles, not two physical weapons.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-Priest Dominus (65 pts): Eradication ray, Macrostubber, Omnissian axe\n\nCreated with newrecruit.eu",
+      "expected": {
+        "selectedDetachmentIds": [
+          "detachment-lords-of-the-forge"
+        ],
+        "units": [
+          {
+            "canonicalId": "unit-tech-priest-dominus",
+            "modelCount": 1,
+            "startingStrength": 1,
+            "isWarlord": null,
+            "enhancementIds": [],
+            "weapons": [
+              {
+                "label": "Eradication ray",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:1",
+                  "datasheet-tech-priest-dominus:weapon:2"
+                ]
+              },
+              {
+                "label": "Macrostubber",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:3"
+                ]
+              },
+              {
+                "label": "Omnissian axe",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:6"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-tech-priest-dominus:wargear:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/wargearOptions/1"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon-profile-selection",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Tech-priest-Dominus.html",
+            "pointer": null,
+            "sha256": "B486DB2BE3C91063F4AC8616B850B6BE72EAA9919D80A989F6470F133ED0BC45",
+            "xpath": "/html/body/div/div[1]/div[3]/div[69]/span"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/0"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/1"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/2"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:6",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/5"
+          }
+        },
+        {
+          "entityId": "detachment-lords-of-the-forge",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/8"
+          }
+        },
+        {
+          "entityId": "unit-tech-priest-dominus",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29"
+          }
+        }
+      ]
+    },
+    {
+      "id": "detailed-ranger-alpha-and-plasma-selection",
+      "description": "Singular Ranger and Alpha names resolve to the canonical shared profile without losing imported composition rows.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Skitarii Hunter Cohort\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n10x Skitarii Rangers (85 pts): 1x Omnispex\n• 1x Skitarii Ranger Alpha: Galvanic rifle, Close combat weapon, Alpha combat weapon\n• 1x Skitarii Ranger: Plasma caliver, Close combat weapon\n• 8x Skitarii Ranger: 8 with Galvanic rifle, Close combat weapon\n\nCreated with newrecruit.eu",
+      "expected": {
+        "selectedDetachmentIds": [
+          "detachment-skitarii-hunter-cohort"
+        ],
+        "units": [
+          {
+            "canonicalId": "unit-skitarii-rangers",
+            "modelCount": 10,
+            "startingStrength": 10,
+            "isWarlord": null,
+            "enhancementIds": [],
+            "composition": [
+              {
+                "label": "Skitarii Ranger Alpha",
+                "quantity": 1,
+                "canonicalProfileId": "datasheet-skitarii-rangers:profile:default"
+              },
+              {
+                "label": "Skitarii Ranger",
+                "quantity": 1,
+                "canonicalProfileId": "datasheet-skitarii-rangers:profile:default"
+              },
+              {
+                "label": "Skitarii Ranger",
+                "quantity": 8,
+                "canonicalProfileId": "datasheet-skitarii-rangers:profile:default"
+              }
+            ],
+            "weapons": [
+              {
+                "label": "Galvanic rifle",
+                "quantity": 9,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-rangers:weapon:3"
+                ]
+              },
+              {
+                "label": "Close combat weapon",
+                "quantity": 10,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-rangers:weapon:8"
+                ]
+              },
+              {
+                "label": "Alpha combat weapon",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-rangers:weapon:7"
+                ]
+              },
+              {
+                "label": "Plasma caliver",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-skitarii-rangers:weapon:4",
+                  "datasheet-skitarii-rangers:weapon:5"
+                ]
+              }
+            ],
+            "optionalWargear": [
+              {
+                "label": "Omnispex",
+                "quantity": 1,
+                "sourceOptionId": "datasheet-skitarii-rangers:wargear:6",
+                "canonicalEquipmentIds": [
+                  "datasheet-skitarii-rangers:section:1"
+                ],
+                "canonicalFieldPaths": {
+                  "datasheet-skitarii-rangers:section:1": [
+                    "/blocks/2/text"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-skitarii-rangers:section:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/sections/1"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:wargear:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/wargearOptions/0"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:wargear:4",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/wargearOptions/3"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:wargear:6",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/wargearOptions/5"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:weapon-profile-selection",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Skitarii-Rangers.html",
+            "pointer": null,
+            "sha256": "EFCC0B8BD8020A4D9FD19271AB22A2329019C216EFDF4F68B73917D1A4D9FCCC",
+            "xpath": "/html/body/div/div[1]/div[3]/div[61]/span"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:profile:default",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Skitarii-Rangers.html",
+            "pointer": null,
+            "sha256": "EFCC0B8BD8020A4D9FD19271AB22A2329019C216EFDF4F68B73917D1A4D9FCCC",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[1]/div[8]"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:section:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/sections/0"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:weapon:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/weapons/2"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:weapon:4",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/weapons/3"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:weapon:5",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/weapons/4"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:weapon:7",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/weapons/6"
+          }
+        },
+        {
+          "entityId": "datasheet-skitarii-rangers:weapon:8",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22/weapons/7"
+          }
+        },
+        {
+          "entityId": "detachment-skitarii-hunter-cohort",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/4"
+          }
+        },
+        {
+          "entityId": "unit-skitarii-rangers",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22"
+          }
+        }
+      ]
+    },
+    {
+      "id": "additional-weapon-and-optional-wargear",
+      "description": "Explicit total stubber quantity 2 includes the loadout and additional weapon; it must not collapse to 1 or expand to 3.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n1x Onager Dunecrawler (155 pts): Neutron laser, 2x Cognis heavy stubber, Dunecrawler legs, Broad spectrum data-tether\n\nCreated with newrecruit.eu",
+      "expected": {
+        "selectedDetachmentIds": [
+          "detachment-lords-of-the-forge"
+        ],
+        "units": [
+          {
+            "canonicalId": "unit-onager-dunecrawler",
+            "modelCount": 1,
+            "startingStrength": 1,
+            "isWarlord": null,
+            "enhancementIds": [],
+            "weapons": [
+              {
+                "label": "Neutron laser",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-onager-dunecrawler:weapon:5"
+                ]
+              },
+              {
+                "label": "Cognis heavy stubber",
+                "quantity": 2,
+                "canonicalProfileIds": [
+                  "datasheet-onager-dunecrawler:weapon:1"
+                ]
+              },
+              {
+                "label": "Dunecrawler legs",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-onager-dunecrawler:weapon:8"
+                ]
+              }
+            ],
+            "optionalWargear": [
+              {
+                "label": "Broad spectrum data-tether",
+                "quantity": 1,
+                "sourceOptionId": "datasheet-onager-dunecrawler:wargear:3",
+                "canonicalEquipmentIds": [
+                  "datasheet-onager-dunecrawler:wargear:3"
+                ],
+                "canonicalFieldPaths": {
+                  "datasheet-onager-dunecrawler:wargear:3": [
+                    "/text"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-onager-dunecrawler:wargear:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/13/wargearOptions/0"
+          }
+        },
+        {
+          "entityId": "datasheet-onager-dunecrawler:wargear:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/13/wargearOptions/1"
+          }
+        },
+        {
+          "entityId": "datasheet-onager-dunecrawler:wargear:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/13/wargearOptions/2"
+          }
+        },
+        {
+          "entityId": "datasheet-onager-dunecrawler:weapon:1",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/13/weapons/0"
+          }
+        },
+        {
+          "entityId": "datasheet-onager-dunecrawler:weapon:5",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/13/weapons/4"
+          }
+        },
+        {
+          "entityId": "datasheet-onager-dunecrawler:weapon:8",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/13/weapons/7"
+          }
+        },
+        {
+          "entityId": "detachment-lords-of-the-forge",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/8"
+          }
+        },
+        {
+          "entityId": "unit-onager-dunecrawler",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/13"
+          }
+        }
+      ]
+    },
+    {
+      "id": "missing-warlord-is-unknown",
+      "description": "A Character is not inferred to be Warlord when the export omits assignment.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Data-Psalm Conclave\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-Priest Dominus (90 pts): Macrostubber, Volkite blaster, Omnissian axe\nEnhancement: Temporcopia (+25 pts)\n\nCreated with newrecruit.eu",
+      "expected": {
+        "selectedDetachmentIds": [
+          "detachment-data-psalm-conclave"
+        ],
+        "units": [
+          {
+            "canonicalId": "unit-tech-priest-dominus",
+            "modelCount": 1,
+            "startingStrength": 1,
+            "isWarlord": null,
+            "enhancementIds": [
+              "detachment-data-psalm-conclave:enhancement:4"
+            ],
+            "weapons": [
+              {
+                "label": "Macrostubber",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:3"
+                ]
+              },
+              {
+                "label": "Volkite blaster",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:5"
+                ]
+              },
+              {
+                "label": "Omnissian axe",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:6"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "sourceEvidence": [
+        {
+          "entityId": "detachment-data-psalm-conclave:enhancement:4",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/2/enhancements/3"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/sections/1"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/2"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:5",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/4"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:6",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/5"
+          }
+        },
+        {
+          "entityId": "detachment-data-psalm-conclave",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/2"
+          }
+        },
+        {
+          "entityId": "unit-tech-priest-dominus",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29"
+          }
+        }
+      ]
+    },
+    {
+      "id": "duplicate-character-exact-enhancement-owner",
+      "description": "Two physical copies of one Character; only Char1 imports the source-backed Enhancement. Import does not execute its contributed weapon.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-Priest Dominus (90 pts): Macrostubber, Volkite blaster, Omnissian axe\nEnhancement: TL-4Ø9 (+25 pts)\n\nChar2: 1x Tech-Priest Dominus (65 pts): Macrostubber, Volkite blaster, Omnissian axe\n\nCreated with newrecruit.eu",
+      "expected": {
+        "selectedDetachmentIds": [
+          "detachment-lords-of-the-forge"
+        ],
+        "units": [
+          {
+            "canonicalId": "unit-tech-priest-dominus",
+            "modelCount": 1,
+            "startingStrength": 1,
+            "isWarlord": null,
+            "enhancementIds": [
+              "detachment-lords-of-the-forge:enhancement:2"
+            ],
+            "weapons": [
+              {
+                "label": "Macrostubber",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:3"
+                ]
+              },
+              {
+                "label": "Volkite blaster",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:5"
+                ]
+              },
+              {
+                "label": "Omnissian axe",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:6"
+                ]
+              }
+            ]
+          },
+          {
+            "canonicalId": "unit-tech-priest-dominus",
+            "modelCount": 1,
+            "startingStrength": 1,
+            "isWarlord": null,
+            "enhancementIds": [],
+            "weapons": [
+              {
+                "label": "Macrostubber",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:3"
+                ]
+              },
+              {
+                "label": "Volkite blaster",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:5"
+                ]
+              },
+              {
+                "label": "Omnissian axe",
+                "quantity": 1,
+                "canonicalProfileIds": [
+                  "datasheet-tech-priest-dominus:weapon:6"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "sourceEvidence": [
+        {
+          "entityId": "detachment-lords-of-the-forge:enhancement:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/8/enhancements/1"
+          },
+          "fieldProvenance": {
+            "text": {
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/adeptus-mechanicus.html",
+              "sha256": "EA3418DFED77C82437865A5633021A94690807EF510EB85DDD5943F9A98C415B",
+              "xpath": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td"
+            }
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/sections/1"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/2"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:5",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/4"
+          }
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:weapon:6",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/weapons/5"
+          }
+        },
+        {
+          "entityId": "detachment-lords-of-the-forge",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/8"
+          }
+        },
+        {
+          "entityId": "unit-tech-priest-dominus",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ambiguous-partial-unit",
+      "description": "Negative synthetic import; an unresolved or ambiguous selection must not silently bind to a canonical fact.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-Priest (65 pts): Omnissian axe\n\nCreated with newrecruit.eu",
+      "expected": {
+        "mustFailClosed": true,
+        "unresolvedLabels": [
+          "Tech-Priest"
+        ],
+        "category": "UNIT_IDENTITY"
+      },
+      "sourceEvidence": []
+    },
+    {
+      "id": "unresolved-detachment",
+      "description": "Negative synthetic import; an unresolved or ambiguous selection must not silently bind to a canonical fact.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Unknown Mechanicus Cohort\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n1x Tech-Priest Dominus (65 pts): Macrostubber, Volkite blaster, Omnissian axe\n\nCreated with newrecruit.eu",
+      "expected": {
+        "mustFailClosed": true,
+        "unresolvedLabels": [
+          "Unknown Mechanicus Cohort"
+        ],
+        "category": "DETACHMENT_IDENTITY"
+      },
+      "sourceEvidence": []
+    },
+    {
+      "id": "mixed-profile-unknown-member",
+      "description": "Negative synthetic import; an unresolved or ambiguous selection must not silently bind to a canonical fact.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n9x Servitor Battleclade (110 pts)\n• 1x Servitor Technician: Mechanicus pistol, Dataspikes\n• 2x Gun Servitor: 2 with Heavy bolter, Servo-claw\n• 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw\n\nCreated with newrecruit.eu",
+      "expected": {
+        "mustFailClosed": true,
+        "unresolvedLabels": [
+          "Servitor Technician"
+        ],
+        "category": "MODEL_PROFILE_IDENTITY"
+      },
+      "sourceEvidence": [
+        {
+          "entityId": "unit-servitor-battleclade",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18"
+          }
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:section:2",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/sections/1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "unknown-weapon-selection",
+      "description": "Negative synthetic import; an unresolved or ambiguous selection must not silently bind to a canonical fact.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n10x Skitarii Rangers (85 pts): 9x Galvanic rifle, Mystery rifle, 10x Close combat weapon\n\nCreated with newrecruit.eu",
+      "expected": {
+        "mustFailClosed": true,
+        "unresolvedLabels": [
+          "Mystery rifle"
+        ],
+        "category": "WARGEAR_IDENTITY"
+      },
+      "sourceEvidence": []
+    },
+    {
+      "id": "foreign-owner-weapon",
+      "description": "Negative synthetic import; an unresolved or ambiguous selection must not silently bind to a canonical fact.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Skitarii Marshal (35 pts): Macrostubber, Control stave\n\nCreated with newrecruit.eu",
+      "expected": {
+        "mustFailClosed": true,
+        "unresolvedLabels": [
+          "Macrostubber"
+        ],
+        "category": "WARGEAR_OWNER_IDENTITY"
+      },
+      "sourceEvidence": []
+    },
+    {
+      "id": "unknown-enhancement",
+      "description": "Negative synthetic import; an unresolved or ambiguous selection must not silently bind to a canonical fact.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+ FORCE DISPOSITION: Take and Hold\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-Priest Dominus (90 pts): Macrostubber, Volkite blaster, Omnissian axe\nEnhancement: Unknown Cogitation (+25 pts)\n\nCreated with newrecruit.eu",
+      "expected": {
+        "mustFailClosed": true,
+        "unresolvedLabels": [
+          "Unknown Cogitation"
+        ],
+        "category": "ENHANCEMENT_IDENTITY"
+      },
+      "sourceEvidence": []
+    }
+  ]
+}

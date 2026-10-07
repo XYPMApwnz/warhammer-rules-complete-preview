@@ -26,7 +26,7 @@ function identityCandidates(entities,kind,label,ownerId) {
   const exact=scoped.filter(entity=>names(entity).includes(key));
   return {exact,plausible:key && key!=='—'?scoped.filter(entity=>plausible(key,names(entity))):[]};
 }
-function selectionCandidates(entities,unit,label) {
+function selectionCandidates(entities,unit,label,weaponSelections) {
   const key=gearLabel(label), groups=new Map();
   const add = (name,binding) => {
     const k=gearLabel(name);if (!k) return;
@@ -70,6 +70,14 @@ function selectionCandidates(entities,unit,label) {
       add(name,{canonicalProfileIds:[],canonicalEquipmentIds:[entity.id],canonicalFieldPaths:{[entity.id]:[`/blocks/${index}/text`]},sourceReferences:[reference]});
     }
   }
+  // Source-backed import metadata may bind one piece of equipment to several
+  // existing profiles (including ranged and melee). It defines no weapon facts.
+  const declared=new Map();
+  for (const binding of weaponSelections.filter(binding=>binding.ownerId===unit.id)) {
+    const key=gearLabel(binding.label),list=declared.get(key)||[];
+    list.push({canonicalProfileIds:[...binding.canonicalProfileIds],canonicalEquipmentIds:[],canonicalFieldPaths:{}});declared.set(key,list);
+  }
+  for (const [name,bindings] of declared) groups.set(name,bindings);
   const unique = list => [...new Map(list.map(binding=>[JSON.stringify(binding),binding])).values()];
   return {exact:unique(groups.get(key) || []),plausible:unique([...groups].filter(([name])=>plausible(key,[name])).flatMap(([,bindings])=>bindings))};
 }
@@ -146,7 +154,7 @@ function fieldExists(data, pointer) {
   return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean';
 }
 
-export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId} = {}) {
+export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId, weaponSelections=[]} = {}) {
   const errors = [], needsBindings = [], resolutions = [];
   let draft;
   try { draft = lexicalDraft(rawText, parse); }
@@ -212,7 +220,7 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
   const units = [];
   const bindSelection = (raw, unit, startingStrength) => {
     let binding = own(bindings.selections, raw.key);
-    const matches=selectionCandidates(entities,unit,raw.label), candidates=matches.exact.length?matches.exact:matches.plausible;
+    const matches=selectionCandidates(entities,unit,raw.label,weaponSelections), candidates=matches.exact.length?matches.exact:matches.plausible;
     if (!binding) {
       if (matches.exact.length===1) binding=matches.exact[0];
       else {
@@ -273,6 +281,11 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId}
     const unit = exact(own(bindings.units, raw.id), 'DATASHEET', raw.id, raw.name);
     if (!unit) continue;
     const startingStrength = raw.modelRows.length ? raw.modelRows.reduce((sum, row) => sum + row.quantity, 0) : raw.rawQuantity;
+    // Some supported exports use 1x for the unit selection itself. Detailed
+    // rows establish its model count; an explicit larger total must agree.
+    if (raw.modelRows.length && raw.rawQuantity > 1 && startingStrength !== raw.rawQuantity) {
+      issue('CONTRADICTORY_COMPOSITION', raw.id, 'Imported unit total disagrees with its detailed composition');
+    }
     if (!Number.isSafeInteger(startingStrength) || startingStrength < 1 ||
         raw.modelRows.some(row => !quantity(row.quantity) || row.loadouts.some(loadout => !quantity(loadout.quantity)) || row.loadouts.reduce((sum, loadout) => sum + loadout.quantity, 0) > row.quantity)) {
       issue('INVALID_COMPOSITION', raw.id, 'Imported model composition is invalid');

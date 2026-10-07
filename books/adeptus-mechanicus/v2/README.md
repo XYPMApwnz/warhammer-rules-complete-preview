@@ -272,3 +272,40 @@ output through `ARMY_APP_V2_SCREENSHOTS`. It exercises canonical popups, all
 Detachment filters, mixed profiles, navigation/reload/history, legacy disconnect
 and V2 value poison controls. The existing DG app projection remains unchanged;
 its 3,654-fact and 22-clause visible-effect guards remain regression gates.
+
+## New Recruit import boundary
+
+`roster-import.mjs` connects this book to the existing shared V2 parser,
+canonical identity resolver and UNIT_INSTANCE validator. Browser consumers use
+`await loadRosterImport()`; Node consumers can inject the current effective book
+and `roster-import-aliases.json` into `createAdMechRosterImport(book, metadata)`.
+The service exposes `draft`, `import`, `state`, `snapshot` and `load`.
+
+This is an import-only stage. It does not enable roster/attachment UI, compile
+effective effects, infer Warlord or battle state, or modify Army Book output.
+An imported Enhancement is an ownership reference, not an applied effect.
+Unresolved identities/selections return no roster. A failed import retains the
+previous successful snapshot; callers must inspect its result status.
+
+Book-owned import metadata binds Combat/Gun Servitor labels to their existing
+shared canonical profile. Separate imported composition/loadout rows retain
+their quantities and equipment. One Electrostatic gauntlets equipment selection
+references its existing ranged and melee profiles, as the accepted composition
+states. Neither binding adds or changes factual profiles. Aggregate equipment
+stays unit-owned; composition scopes do not invent individual infantry owners.
+
+Source-backed synthetic New Recruit fixtures cover mixed composition, repeated
+physical copies, sizes, weapon modes, optional/additional gear, Enhancement
+owners, multiple Detachments and explicit/missing Warlord. They are QA inputs,
+not factual/runtime inputs. Contradictory explicit model totals fail closed;
+the supported `1x unit` header convention retains detailed composition counts.
+
+```text
+node books/shared/roster-v2/import-service-qa.mjs
+node books/adeptus-mechanicus/v2/roster-import-qa.mjs
+node books/adeptus-mechanicus/v2/roster-import-browser-qa.mjs
+```
+
+The browser guard runs the same import service on desktop and 390x844 phone,
+checks snapshot/reload equality and disconnects all legacy, Rule Contract and
+effect modules. Normal Army Book presentation remains unchanged.

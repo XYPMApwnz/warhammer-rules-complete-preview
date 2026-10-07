@@ -1,0 +1,28 @@
+{
+  "schema": "roster-v2/import-aliases",
+  "aliases": [
+    {
+      "canonicalId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors",
+      "labels": ["Combat Servitor", "Combat Servitors", "Gun Servitor", "Gun Servitors"],
+      "evidence": {
+        "entityId": "datasheet-servitor-battleclade:section:2",
+        "path": "/blocks/0/text"
+      }
+    }
+  ],
+  "weaponSelections": [
+    {
+      "ownerId": "unit-corpuscarii-electro-priests",
+      "label": "Electrostatic gauntlets",
+      "canonicalProfileIds": [
+        "datasheet-corpuscarii-electro-priests:weapon:1",
+        "datasheet-corpuscarii-electro-priests:weapon:2"
+      ],
+      "evidence": [
+        {"entityId": "datasheet-corpuscarii-electro-priests:section:2", "path": "/blocks/0/text"},
+        {"entityId": "datasheet-corpuscarii-electro-priests:weapon:1", "path": "/name"},
+        {"entityId": "datasheet-corpuscarii-electro-priests:weapon:2", "path": "/name"}
+      ]
+    }
+  ]
+}
