@@ -26,7 +26,7 @@ const expected=[['core-fights-first|UNIT|FORMED|{}'],['core-stealth|UNIT|FORMED|
 const built=buildAdMechContracts(),full=compilerInputs(built.book,{abilityReferences:abilityReferences()}).book,book=structuredClone(full);
 for(const entity of book.entities)if(!ids.includes(entity.id))delete entity.ruleContract;
 const index=new Map(book.entities.map(e=>[e.id,e])),evaluator=withRosterDetachments(built.schema.evaluator);
-assert.equal(built.blockedIds.size,3);
+assert.equal(built.blockedIds.size,1);
 assert.equal(evaluator.validateContracts(book).rules,7);
 const root=path.resolve(directory,'../../..');
 for(const [i,id]of ids.entries()){
@@ -163,5 +163,5 @@ assert.deepEqual(touched,wanted,'New grant was never executed');
 for(const entity of readJson('generated/effective.json').entities){
   const {ruleContract,...facts}=built.book.entities.find(e=>e.id===entity.id);assert.deepEqual(facts,entity,'Factual source changed');
 }
-console.log(JSON.stringify({status:'PASS',sourceOwners:7,sourceGrants:wanted.size,cases,blockedOwners:3,
+console.log(JSON.stringify({status:'PASS',sourceOwners:7,sourceGrants:wanted.size,cases,blockedOwners:built.blockedIds.size,
   canonicalReferences:5,mutations:mutations.length,unitModelIsolation:true,detachReattach:true,parameters:true,legacyReads:0}));

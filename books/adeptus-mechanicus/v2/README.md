@@ -135,11 +135,10 @@ two literal `None` options are absences, the introduction is scope guidance,
 and attachment metadata references the authoritative section. The exhaustive
 entity disposition ledger is regenerated with the census.
 
-201 contracts are source-bound and schema-valid. 3 complete owners are
-explicitly `BLOCKED_MISSING_GENERIC_PRIMITIVE`, with their exact source cases,
+203 contracts are source-bound and schema-valid. 1 complete owner is
+explicitly `BLOCKED_MISSING_GENERIC_PRIMITIVE`, with its exact source case,
 semantic atoms, provenance and reasons in `generated/rule-contract-census.json`.
-They are not published as successful partial contracts. The limitations cover
-global MODEL targeting and canonical weapon grants.
+It is not published as a successful partial contract. The remaining limitation is canonical weapon contribution.
 The three Doctrina components preserve their UNIT prerequisite through canonical
 Army Rule reference memberships. The book producer lowers those relationships
 to existing STATIC ANY/UNIT_ID predicates, without a manually authored unit/rule
@@ -167,7 +166,7 @@ formed versus exact physical owner scope, and Scouts 6" / Lone Operative 15"
 retain their source parameters. The pure compatibility build does not need Core
 definitions; roster grant consumers explicitly inject the resolved reference registry.
 
-Five further Enhancement owners compose the existing numeric modifier and weapon-ability mechanisms. BS/WS improvements preserve ranged/melee scope; Range and AP preserve signed numeric direction. Both-Imperative Enhancements retain canonical Protector/Conqueror references, grant their unconditional HEAVY/ASSAULT and BS/WS characteristics from roster ownership, and keep attack-resolution clauses battle-only. Ordinary Doctrina activation remains unexecuted. Lords of the Forge remains blocked on roster-global MODEL recipients, even though its MODEL invulnerable SET is expressible.
+Five further Enhancement owners compose the existing numeric modifier and weapon-ability mechanisms. BS/WS improvements preserve ranged/melee scope; Range and AP preserve signed numeric direction. Both-Imperative Enhancements retain canonical Protector/Conqueror references, grant their unconditional HEAVY/ASSAULT and BS/WS characteristics from roster ownership, and keep attack-resolution clauses battle-only. Ordinary Doctrina activation remains unexecuted. Cohort Cybernetica and Lords of the Forge now select global MODEL/profile recipients using separate containing-UNIT and MODEL selectors. Cybernetica Move +2 uses formed-unit eligibility; Lords of the Forge InSv 4+ and FNP 5+ use each exact TECH-PRIEST profile. Battle-shock-dependent OC and Baffling Data Screed remain nonexecuting battle clauses.
 
 All 51 Stratagems preserve typed current-product applicability. Battle effects
 remain nonexecuting source-backed clauses; 40 explicit lifetime occurrences
@@ -178,7 +177,7 @@ set cardinality likewise remains source-backed battle-resolution metadata.
 The Electrotraction source's explicit BATTLECLADE requirement is preserved,
 even though it has no currently eligible intrinsic Electro-Priest identity.
 
-The 6,834 compatibility rows cover only the 201 represented owners against
+The 6,902 compatibility rows cover only the 203 represented owners against
 34 datasheets; they do not certify the blocked owners or a complete AdMech
 product. They are disposable output and never an authority. The overlay keeps
 semantics under the existing canonical IDs, without copying factual text into
@@ -203,9 +202,13 @@ node books/adeptus-mechanicus/v2/rule-contract-qa.mjs
 node books/adeptus-mechanicus/v2/keyword-roster-effects-qa.mjs
 node books/adeptus-mechanicus/v2/ability-roster-effects-qa.mjs
 node books/adeptus-mechanicus/v2/doctrina-contract-qa.mjs
+node books/adeptus-mechanicus/v2/numeric-roster-effects-qa.mjs
+node books/adeptus-mechanicus/v2/global-model-roster-effects-qa.mjs
 node books/shared/rule-contract-v2/schema-qa.mjs
 node books/shared/rule-contract-v2/bindings-qa.mjs
 node books/shared/roster-v2/ability-effects-qa.mjs
+node books/shared/roster-v2/numeric-effects-qa.mjs
+node books/shared/roster-v2/global-model-effects-qa.mjs
 node books/shared/rule-contract-v2/compatibility-qa.mjs
 ```
 

@@ -22,8 +22,8 @@ const expected=[['BS|ADD|-1|ranged|UNIT|SOURCE_UNIT','HEAVY|||ranged|UNIT|SOURCE
 const built=buildAdMechContracts(),book=structuredClone(compilerInputs(built.book).book);
 for(const entity of book.entities)if(!ids.includes(entity.id)&&!['army-rule-doctrina-imperatives:protector-imperative','army-rule-doctrina-imperatives:conqueror-imperative'].includes(entity.id))delete entity.ruleContract;
 const index=new Map(book.entities.map(e=>[e.id,e])),evaluator=withRosterDetachments(built.schema.evaluator),beforeBook=structuredClone(book);
-assert.equal(built.blockedIds.size,3);
-assert.deepEqual([...built.blockedIds].sort(),['detachment-cohort-cybernetica:rule','detachment-lords-of-the-forge:enhancement:2','detachment-lords-of-the-forge:rule']);
+assert.equal(built.blockedIds.size,1);
+assert.deepEqual([...built.blockedIds].sort(),['detachment-lords-of-the-forge:enhancement:2']);
 const signature=e=>[e.field||e.ability,e.mode||'',e.value??'',e.weaponMode,e.targetSubject,e.targetBinding].join('|');
 function sourceParity(candidate){
   for(const [i,id]of ids.entries()){
@@ -138,5 +138,5 @@ for(const [i,id]of ids.entries()){
 }
 const wanted=new Set(ids.flatMap(id=>index.get(id).ruleContract.clauses.flatMap(c=>c.rosterEffects.map(e=>id+'/'+e.id))));assert.deepEqual(applied,wanted);
 for(const entity of readJson('generated/effective.json').entities){const {ruleContract,...facts}=built.book.entities.find(e=>e.id===entity.id);assert.deepEqual(facts,entity);}
-console.log(JSON.stringify({status:'PASS',sourceOwners:5,sourceEffects:wanted.size,cases,mutations:mutations.length,blockedOwners:3,
+console.log(JSON.stringify({status:'PASS',sourceOwners:5,sourceEffects:wanted.size,cases,mutations:mutations.length,blockedOwners:built.blockedIds.size,
   canonicalImperativeReferences:true,ordinaryBattleActivationUnchanged:true,ownerProfileIsolation:true,baseFactsImmutable:true,legacyReads:0}));

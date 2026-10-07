@@ -2,7 +2,7 @@ import {formRoster, predicateContext, refreshFormedKeywords, selections} from '.
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value => structuredClone(value);
 const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC']);
-const bindingSubjects = {SOURCE_MODEL:'MODEL',SOURCE_UNIT:'UNIT',SOURCE_UNIT_MODELS:'MODEL',SOURCE_FORMED_MODELS:'MODEL',LEADERS_OF_SOURCE:'MODEL',ROSTER_UNITS:'UNIT'};
+const bindingSubjects = {SOURCE_MODEL:'MODEL',SOURCE_UNIT:'UNIT',SOURCE_UNIT_MODELS:'MODEL',SOURCE_FORMED_MODELS:'MODEL',LEADERS_OF_SOURCE:'MODEL',ROSTER_UNITS:'UNIT',ROSTER_MODELS:'MODEL'};
 // Current Core 02.02.01: threshold/AP improvements are signed arithmetic;
 // bounds apply to the combined result, never to each modifier contribution.
 const numericDomain = {
@@ -76,6 +76,17 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
       if (effect.operation === 'GRANT_MODEL_ABILITY' && (effect.targetSubject !== 'MODEL' || effect.ability?.name !== 'Feel No Pain' || !Number.isInteger(effect.ability.value) || effect.ability.value < 2 || effect.ability.value > 6)) throw new TypeError('Invalid MODEL ability');
       if (effect.operation === 'GRANT_ABILITY') validateAbilityGrant(book,effect);
       if (effect.operation === 'GRANT_WEAPON_ABILITY' && (typeof effect.ability !== 'string' || !effect.ability)) throw new TypeError('Invalid weapon ability');
+      if (effect.targetBinding==='ROSTER_MODELS') {
+        const selectors=effect.recipientSelectors;
+        if (!selectors || Object.keys(selectors).length!==2 || !selectors.unit || !selectors.model ||
+            !['PHYSICAL','FORMED'].includes(effect.containingUnitScope)) throw new TypeError('Missing global MODEL recipient scope');
+        if (!Array.isArray(book.rosterProfileBindings)) throw new TypeError('Global MODEL recipients require explicit intrinsic profile bindings');
+        for (const [key,subject] of [['unit','UNIT'],['model','MODEL']]) {
+          validatePredicate(selectors[key],subject,book,entity);
+          if (leaves(selectors[key]).some(predicate=>predicate.contextLevel==='BATTLE')) throw new TypeError('Battle selector in executable MODEL recipients');
+        }
+      } else if (effect.recipientSelectors!==undefined || effect.containingUnitScope!==undefined)
+        throw new TypeError('Global MODEL selectors on a different binding');
       for (const id of [...(effect.weaponIds||[]),...(effect.excludeWeaponIds||[]),...(effect.equipmentRequirement?.excludeWeaponIds||[])]) if (records.get(id)?.kind !== 'WEAPON_PROFILE') throw new TypeError('Unresolved weapon identity');
       const sourceOwners = entity.kind==='ENHANCEMENT' && evaluatePredicate ? book.entities.filter(e=>e.kind==='DATASHEET').filter(unit=>unit.data.profileIds.some(id=> {
         const ownerRole=entity.ruleContract.roles.find(r=>r.id===entity.ruleContract.assignment.ownerRoleId);
@@ -143,6 +154,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
   }
   const targets = (source,effect) => {
     if (effect.targetBinding === 'ROSTER_UNITS') return result.units.map(unit=>({unit}));
+    if (effect.targetBinding === 'ROSTER_MODELS') return result.units.flatMap(unit=>unit.profiles.map(model=>({unit,model})));
     if (!source) throw new TypeError('Missing source physical instance');
     if (effect.targetBinding === 'SOURCE_UNIT') return [{unit:source}];
     const group = result.formedUnits.find(g=>g.formedUnitId === source.formedUnitId);
@@ -181,6 +193,29 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       .filter(key=>!delta.removals.has(key)).sort();
   };
   const eligible = ({rule,clause,effect,source}, target) => {
+    if (effect.targetBinding==='ROSTER_MODELS') {
+      // UNIT membership and MODEL identity are separate selectors. Only the
+      // explicitly formed UNIT scope shares attachment keywords; MODEL context
+      // always comes from this exact imported profile/composition scope.
+      const unitContext=predicateContext(state,result,target.unit.instanceId,'UNIT');
+      if (effect.containingUnitScope==='PHYSICAL') {
+        unitContext.unitId=target.unit.canonicalUnitId;
+        unitContext.keywords=new Set(target.unit.keywords);
+      }
+      const modelContext=predicateContext(state,result,target.unit.instanceId,'MODEL',target.model.scopeId);
+      const statuses=[];
+      for (const [predicate,context] of [[effect.recipientSelectors.unit,unitContext],[effect.recipientSelectors.model,modelContext]]) {
+        if (!context) throw new TypeError('Unresolved global MODEL recipient context');
+        const status=evaluatePredicate(predicate,context);
+        if (status==='INVALID') throw new TypeError('Invalid global MODEL recipient selector: '+rule.id+'/'+effect.id);
+        statuses.push(status);
+      }
+      if (statuses.includes('FALSE')) return false;
+      if (statuses.includes('UNKNOWN')) {
+        target.unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:'Roster recipient context unavailable'});
+        return false;
+      }
+    }
     const knownEquipment=effect.equipmentRequirement&&source?equipmentSatisfied(book,source,effect.equipmentRequirement):undefined;
     const extra = knownEquipment===undefined?{}:{equipmentRequirementSatisfied:knownEquipment};
     for (const condition of effect.conditions) {
@@ -234,6 +269,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       values.set(key,{raw:rawAfter,rows});
       const row=mutate(object,key,after,modelId,weaponId,weaponScope,Boolean(domain));
       if(row && domain){row.characteristic=effect.field;row.rawBefore=rawBefore ?? null;row.rawAfter=rawAfter;rows.push(row);}
+      return row;
     };
     const physicalAbility=effect.operation==='GRANT_ABILITY' && effect.unitScope==='PHYSICAL';
     const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || (!physicalAbility && target.unit.formedUnitId) || target.unit.instanceId}`;
@@ -284,16 +320,22 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
         target.unit=original;
       }
     } else if (effect.operation === 'MODIFY_STAT' && ['M','T','LD','OC','INSV'].includes(effect.field)) {
-      if(effect.field==='INSV' && target.model.profile.INSV===undefined) {
-        const referenceId=target.model.profile.invulnerableSaveId;
+      const profile=target.model.profile,nested=Object.hasOwn(profile.stats || {},effect.field);
+      if(nested && Object.hasOwn(profile,effect.field))throw new TypeError('Duplicate MODEL characteristic owner');
+      const characteristics=nested?profile.stats:profile;
+      if(effect.field==='INSV' && characteristics.INSV===undefined) {
+        const referenceId=profile.invulnerableSaveId;
         if(referenceId) {
           const reference=records.get(referenceId);
           if(reference?.kind!=='INVULNERABLE_SAVE' || reference.parentId!==target.unit.canonicalUnitId ||
               !reference.data.profileIds.includes(target.model.canonicalProfileId))throw new TypeError('Unresolved invulnerable profile scope');
-          target.model.profile.INSV=reference.data.value;
+          characteristics.INSV=reference.data.value;
         }
       }
-      if(!contributionUsed(target.model.scopeId))modifyCharacteristic(target.model.profile,effect.field,target.model.modelInstanceId);
+      if(!contributionUsed(target.model.scopeId)) {
+        const row=modifyCharacteristic(characteristics,effect.field,target.model.modelInstanceId);
+        if(row && nested)row.targetFieldPath=['stats',effect.field];
+      }
     }
     else {
       const weaponRecipients=target.model?[target.unit]:unitRecipients;
