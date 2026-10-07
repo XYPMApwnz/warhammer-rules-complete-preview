@@ -1,10 +1,10 @@
 {
   "schema": "adeptus-mechanicus-rule-contract-census/v2",
   "sourceRules": 204,
-  "built": 189,
-  "valid": 189,
-  "blockedOwners": 15,
-  "blockedCases": 15,
+  "built": 196,
+  "valid": 196,
+  "blockedOwners": 8,
+  "blockedCases": 8,
   "invalidContracts": 0,
   "unboundSourceRules": 0,
   "legacyContractReads": 0,
@@ -12,16 +12,16 @@
     "OTHER_RULE": 46,
     "DATASHEET_ABILITY": 52,
     "ARMY_RULE": 3,
-    "DETACHMENT_RULE": 7,
-    "ENHANCEMENT": 22,
+    "DETACHMENT_RULE": 8,
+    "ENHANCEMENT": 28,
     "STRATAGEM": 51,
     "FAQ_ERRATA_RULE": 8
   },
-  "compatibilityRelations": 6426,
+  "compatibilityRelations": 6664,
   "compatibility": {
     "MATCH": 370,
-    "CONDITIONAL": 1332,
-    "NO_MATCH": 4724,
+    "CONDITIONAL": 1376,
+    "NO_MATCH": 4918,
     "INVALID": 0,
     "UNRESOLVED": 0
   },
@@ -3408,138 +3408,6 @@
     },
     {
       "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-data-psalm-conclave:enhancement:4",
-      "sourceCase": "The bearer’s unit has the Fights First ability.",
-      "semanticAtom": "Fights First for bearer unit",
-      "whyCompositionInsufficient": "GRANT_MODEL_ABILITY only permits Feel No Pain; no operation grants a UNIT ability.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "The bearer’s unit has the Fights First ability."
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "TECH-PRIEST"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "TECH-PRIEST"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-data-psalm-conclave"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/2/enhancements/3"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-skitarii-hunter-cohort:rule",
-      "sourceCase": "Friendly SKITARII INFANTRY, SKITARII MOUNTED and IRONSTRIDER BALLISTARII units have Stealth.",
-      "semanticAtom": "Stealth for qualified friendly units",
-      "whyCompositionInsufficient": "GRANT_MODEL_ABILITY only permits Feel No Pain; no operation grants a UNIT ability.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "Friendly SKITARII INFANTRY, SKITARII MOUNTED and IRONSTRIDER BALLISTARII units have Stealth."
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/4/rule"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-skitarii-hunter-cohort:enhancement:2",
-      "sourceCase": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities.",
-      "semanticAtom": "Infiltrators and Scouts 6\" for bearer and led models",
-      "whyCompositionInsufficient": "GRANT_MODEL_ABILITY only permits Feel No Pain. These MODEL abilities are not weapon abilities or unit keywords.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "SKITARII"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "SKITARII"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-skitarii-hunter-cohort"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/4/enhancements/1"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
       "ruleId": "detachment-cohort-cybernetica:rule",
       "sourceCase": "Add 2\" to the Move characteristic of models in LEGIO CYBERNETICA units from your army.",
       "semanticAtom": "Move +2 for MODELS in qualified roster UNITS",
@@ -3554,120 +3422,6 @@
         "sourceId": "am-waha-11e-2026-09-25",
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
         "pointer": "/detachments/5/rule"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-rad-zone-corps:enhancement:2",
-      "sourceCase": "While the bearer is leading a unit, models in that unit have the Stealth ability.",
-      "semanticAtom": "Stealth for led unit models",
-      "whyCompositionInsufficient": "Leading is roster-known, but GRANT_MODEL_ABILITY only permits Feel No Pain; a keyword or weapon ability cannot substitute.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "While the bearer is leading a unit, models in that unit have the Stealth ability."
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "ADEPTUS MECHANICUS"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "ADEPTUS MECHANICUS"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-rad-zone-corps"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/6/enhancements/1"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-luminen-auto-choir:enhancement:2",
-      "sourceCase": "This unit has Stealth.",
-      "semanticAtom": "Stealth for bearer unit",
-      "whyCompositionInsufficient": "GRANT_MODEL_ABILITY only permits Feel No Pain; no operation grants a UNIT ability.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "This unit has Stealth."
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "TECH-PRIEST"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "TECH-PRIEST"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-luminen-auto-choir"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/7/enhancements/1"
       }
     },
     {
@@ -3743,101 +3497,6 @@
         "sourceId": "am-waha-11e-2026-09-25",
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
         "pointer": "/detachments/8/enhancements/1"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-cohort-acquisitus:enhancement:1",
-      "sourceCase": "This unit has Infiltrators",
-      "semanticAtom": "Infiltrators for bearer unit",
-      "whyCompositionInsufficient": "GRANT_MODEL_ABILITY only permits Feel No Pain; no operation grants a UNIT ability.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "This unit has Infiltrators"
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_ID",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "id": "datasheet-skitarii-marshal:profile:default"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "SKITARII MARSHAL"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-cohort-acquisitus"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/9/enhancements/0"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-cohort-acquisitus:enhancement:2",
-      "sourceCase": "This unit has Lone Operative 15\".",
-      "semanticAtom": "Lone Operative 15\" for physical SERBERYS RAIDERS UNIT Upgrade owner",
-      "whyCompositionInsufficient": "No operation grants Lone Operative or a unit ability with its distance. MODEL ownership and detectionRange modification cannot substitute.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "This unit has Lone Operative 15\"."
-      },
-      "ownerDiagnostic": {
-        "subject": "UNIT",
-        "selector": {
-          "predicate": "UNIT_ID",
-          "subject": "UNIT",
-          "contextLevel": "STATIC",
-          "arguments": {
-            "id": "unit-serberys-raiders"
-          },
-          "evidence": {
-            "field": [
-              "text"
-            ],
-            "quote": "SERBERYS RAIDERS unit only"
-          }
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-cohort-acquisitus",
-        "sourceTypeLabel": "UPGRADE"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/9/enhancements/1"
       }
     }
   ]

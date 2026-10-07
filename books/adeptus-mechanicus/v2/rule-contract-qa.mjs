@@ -25,8 +25,8 @@ const expected=canonical.entities.filter(entity=>
   entity.kind==='DATASHEET_SECTION'&&entity.data.title!=='UNIT COMPOSITION'||
   entity.kind==='WARGEAR_OPTION'&&entity.data.text!=='None');
 equivalent(expected.length,204,'Current accepted owner census changed; review required');
-equivalent(built.schema.evaluator.validateContracts(built.book).rules,189,'Represented owner census changed');
-equivalent(built.blockedIds.size,15,'Complete blocked owner census changed');
+equivalent(built.schema.evaluator.validateContracts(built.book).rules,196,'Represented owner census changed');
+equivalent(built.blockedIds.size,8,'Complete blocked owner census changed');
 equivalent(new Set([...built.book.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id),...built.blockedIds]),
   new Set(expected.map(entity=>entity.id)),'Source rule owner left unaccounted');
 for(const entity of built.book.entities) {
@@ -50,9 +50,16 @@ for(const entity of built.book.entities) {
 check(built.blocked.every(item=>item.ruleId&&JSON.stringify(item).includes('BLOCKED_MISSING_GENERIC_PRIMITIVE')),'Explicit bounded blockers');
 for(const entity of built.book.entities.filter(entity=>entity.kind==='ENHANCEMENT'&&entity.ruleContract)) {
   const owner=entity.ruleContract.roles.find(role=>role.id===entity.ruleContract.assignment.ownerRoleId);
-  check(owner.subject==='MODEL','Published normal Enhancement owner is MODEL');
-  check(leaves(owner.selector).some(atom=>atom.predicate==='MODEL_KEYWORD'&&atom.arguments.keyword==='CHARACTER'&&
-    atom.evidence.otherEntityId==='book-introduction'),'Source-global CHARACTER restriction dropped');
+  if(entity.data.sourceTypeLabel==='UPGRADE') {
+    check(owner.subject==='UNIT','Source UNIT Upgrade owner changed subject');
+    check(leaves(owner.selector).some(atom=>atom.predicate==='UNIT_ID'&&
+      canonical.entities.some(unit=>unit.id===atom.arguments.id&&unit.kind==='DATASHEET')),
+      'Source UNIT Upgrade lost canonical physical owner selector');
+  } else {
+    check(owner.subject==='MODEL','Published normal Enhancement owner is MODEL');
+    check(leaves(owner.selector).some(atom=>atom.predicate==='MODEL_KEYWORD'&&atom.arguments.keyword==='CHARACTER'&&
+      atom.evidence.otherEntityId==='book-introduction'),'Source-global CHARACTER restriction dropped');
+  }
   check(!leaves(owner.selector).some(atom=>atom.contextLevel==='BATTLE'),'Battle activation confused with owner eligibility');
 }
 for(const unitId of ['skitarii-rangers','skitarii-vanguard']) {

@@ -35160,6 +35160,239 @@
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
       }
     },
+    "detachment-data-psalm-conclave:enhancement:4": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-data-psalm-conclave:enhancement:4",
+      "ownerId": "detachment-data-psalm-conclave",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TECH-PRIEST"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TECH-PRIEST"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-data-psalm-conclave"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Data-Psalm Conclave",
+            "otherEntityId": "detachment-data-psalm-conclave"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "unit-fights-first",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TECH-PRIEST"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TECH-PRIEST"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The bearer’s unit has the Fights First ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The bearer’s unit has the Fights First ability."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed scoped canonical ability grant; battle resolution remains unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "unit-fights-first",
+              "operation": "GRANT_ABILITY",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "ability": {
+                "canonicalId": "core-fights-first",
+                "parameters": {}
+              },
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The bearer’s unit has the Fights First ability."
+              },
+              "unitScope": "FORMED"
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-data-psalm-conclave",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TECH-PRIEST"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TECH-PRIEST"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-data-psalm-conclave"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
     "detachment-data-psalm-conclave:stratagem:1": {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-data-psalm-conclave:stratagem:1",
@@ -41416,6 +41649,375 @@
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
       }
     },
+    "detachment-skitarii-hunter-cohort:rule": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-skitarii-hunter-cohort:rule",
+      "ownerId": "detachment-skitarii-hunter-cohort",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "DETACHMENT_RULE",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "beneficiary",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "purpose": "EFFECT_RECIPIENT",
+          "binding": "ROSTER_UNITS",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "SKITARII"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "INFANTRY"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "INFANTRY"
+                    }
+                  }
+                ]
+              },
+              {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "SKITARII"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "MOUNTED"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "MOUNTED"
+                    }
+                  }
+                ]
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "IRONSTRIDER BALLISTARII"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "IRONSTRIDER BALLISTARII"
+                }
+              }
+            ],
+            "subject": "UNIT"
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-skitarii-hunter-cohort"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Skitarii Hunter Cohort",
+            "otherEntityId": "detachment-skitarii-hunter-cohort"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "beneficiary"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "qualifying-unit-stealth",
+          "roles": [
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "op": "ANY",
+                "args": [
+                  {
+                    "op": "ALL",
+                    "args": [
+                      {
+                        "predicate": "UNIT_KEYWORD",
+                        "subject": "UNIT",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "SKITARII"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "SKITARII"
+                        }
+                      },
+                      {
+                        "predicate": "UNIT_KEYWORD",
+                        "subject": "UNIT",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "INFANTRY"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "INFANTRY"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": "ALL",
+                    "args": [
+                      {
+                        "predicate": "UNIT_KEYWORD",
+                        "subject": "UNIT",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "SKITARII"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "SKITARII"
+                        }
+                      },
+                      {
+                        "predicate": "UNIT_KEYWORD",
+                        "subject": "UNIT",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "MOUNTED"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "MOUNTED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "IRONSTRIDER BALLISTARII"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "IRONSTRIDER BALLISTARII"
+                    }
+                  }
+                ],
+                "subject": "UNIT"
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Friendly SKITARII INFANTRY, SKITARII MOUNTED and IRONSTRIDER BALLISTARII units have Stealth."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed scoped canonical ability grant; battle resolution remains unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "qualifying-unit-stealth",
+              "operation": "GRANT_ABILITY",
+              "targetBinding": "ROSTER_UNITS",
+              "targetSubject": "UNIT",
+              "ability": {
+                "canonicalId": "core-stealth",
+                "parameters": {}
+              },
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "TARGET",
+                  "predicate": {
+                    "op": "ANY",
+                    "args": [
+                      {
+                        "op": "ALL",
+                        "args": [
+                          {
+                            "predicate": "UNIT_KEYWORD",
+                            "subject": "UNIT",
+                            "contextLevel": "STATIC",
+                            "arguments": {
+                              "keyword": "SKITARII"
+                            },
+                            "evidence": {
+                              "field": [
+                                "text"
+                              ],
+                              "quote": "SKITARII"
+                            }
+                          },
+                          {
+                            "predicate": "UNIT_KEYWORD",
+                            "subject": "UNIT",
+                            "contextLevel": "STATIC",
+                            "arguments": {
+                              "keyword": "INFANTRY"
+                            },
+                            "evidence": {
+                              "field": [
+                                "text"
+                              ],
+                              "quote": "INFANTRY"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "op": "ALL",
+                        "args": [
+                          {
+                            "predicate": "UNIT_KEYWORD",
+                            "subject": "UNIT",
+                            "contextLevel": "STATIC",
+                            "arguments": {
+                              "keyword": "SKITARII"
+                            },
+                            "evidence": {
+                              "field": [
+                                "text"
+                              ],
+                              "quote": "SKITARII"
+                            }
+                          },
+                          {
+                            "predicate": "UNIT_KEYWORD",
+                            "subject": "UNIT",
+                            "contextLevel": "STATIC",
+                            "arguments": {
+                              "keyword": "MOUNTED"
+                            },
+                            "evidence": {
+                              "field": [
+                                "text"
+                              ],
+                              "quote": "MOUNTED"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "predicate": "UNIT_KEYWORD",
+                        "subject": "UNIT",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "IRONSTRIDER BALLISTARII"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "IRONSTRIDER BALLISTARII"
+                        }
+                      }
+                    ],
+                    "subject": "UNIT"
+                  },
+                  "contextLevel": "STATIC"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Friendly SKITARII INFANTRY, SKITARII MOUNTED and IRONSTRIDER BALLISTARII units have Stealth."
+              },
+              "unitScope": "FORMED"
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-skitarii-hunter-cohort",
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
     "detachment-skitarii-hunter-cohort:enhancement:1": {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-skitarii-hunter-cohort:enhancement:1",
@@ -41644,6 +42246,710 @@
                   "text"
                 ],
                 "quote": "SKITARII MARSHAL"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-skitarii-hunter-cohort"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
+    "detachment-skitarii-hunter-cohort:enhancement:2": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-skitarii-hunter-cohort:enhancement:2",
+      "ownerId": "detachment-skitarii-hunter-cohort",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "SKITARII"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "SKITARII"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-skitarii-hunter-cohort"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Skitarii Hunter Cohort",
+            "otherEntityId": "detachment-skitarii-hunter-cohort"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "bearer-core-infiltrators",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "SKITARII"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": false
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "models in any unit they are leading"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed scoped canonical ability grant; battle resolution remains unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "bearer-core-infiltrators",
+              "operation": "GRANT_ABILITY",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "ability": {
+                "canonicalId": "core-infiltrators",
+                "parameters": {}
+              },
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": false
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "models in any unit they are leading"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+              }
+            }
+          ]
+        },
+        {
+          "id": "led-core-infiltrators",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "SKITARII"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "models in any unit they are leading"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed scoped canonical ability grant; battle resolution remains unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "led-core-infiltrators",
+              "operation": "GRANT_ABILITY",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "ability": {
+                "canonicalId": "core-infiltrators",
+                "parameters": {}
+              },
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "models in any unit they are leading"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+              }
+            }
+          ]
+        },
+        {
+          "id": "bearer-core-scouts",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "SKITARII"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": false
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "models in any unit they are leading"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed scoped canonical ability grant; battle resolution remains unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "bearer-core-scouts",
+              "operation": "GRANT_ABILITY",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "ability": {
+                "canonicalId": "core-scouts",
+                "parameters": {
+                  "distance": 6
+                }
+              },
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": false
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "models in any unit they are leading"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+              }
+            }
+          ]
+        },
+        {
+          "id": "led-core-scouts",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "SKITARII"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "models in any unit they are leading"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed scoped canonical ability grant; battle resolution remains unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "led-core-scouts",
+              "operation": "GRANT_ABILITY",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "ability": {
+                "canonicalId": "core-scouts",
+                "parameters": {
+                  "distance": 6
+                }
+              },
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "models in any unit they are leading"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-skitarii-hunter-cohort",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "SKITARII"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "SKITARII"
               }
             }
           ]
@@ -49156,6 +50462,274 @@
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
       }
     },
+    "detachment-rad-zone-corps:enhancement:2": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-rad-zone-corps:enhancement:2",
+      "ownerId": "detachment-rad-zone-corps",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "ADEPTUS MECHANICUS"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "ADEPTUS MECHANICUS"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-rad-zone-corps"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Rad-Zone Corps",
+            "otherEntityId": "detachment-rad-zone-corps"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "led-model-stealth",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "ADEPTUS MECHANICUS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "ADEPTUS MECHANICUS"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While the bearer is leading a unit, models in that unit have the Stealth ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "While the bearer is leading a unit"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "While the bearer is leading a unit, models in that unit have the Stealth ability."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed scoped canonical ability grant; battle resolution remains unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "led-model-stealth",
+              "operation": "GRANT_ABILITY",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "ability": {
+                "canonicalId": "core-stealth",
+                "parameters": {}
+              },
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "While the bearer is leading a unit"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "While the bearer is leading a unit, models in that unit have the Stealth ability."
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-rad-zone-corps",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS MECHANICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "ADEPTUS MECHANICUS"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-rad-zone-corps"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
     "detachment-rad-zone-corps:enhancement:3": {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-rad-zone-corps:enhancement:3",
@@ -52973,6 +54547,239 @@
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
       }
     },
+    "detachment-luminen-auto-choir:enhancement:2": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-luminen-auto-choir:enhancement:2",
+      "ownerId": "detachment-luminen-auto-choir",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TECH-PRIEST"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TECH-PRIEST"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-luminen-auto-choir"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Luminen Auto-choir",
+            "otherEntityId": "detachment-luminen-auto-choir"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "unit-stealth",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TECH-PRIEST"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TECH-PRIEST"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This unit has Stealth."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "This unit has Stealth."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed scoped canonical ability grant; battle resolution remains unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "unit-stealth",
+              "operation": "GRANT_ABILITY",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "ability": {
+                "canonicalId": "core-stealth",
+                "parameters": {}
+              },
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This unit has Stealth."
+              },
+              "unitScope": "FORMED"
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-luminen-auto-choir",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TECH-PRIEST"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TECH-PRIEST"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-luminen-auto-choir"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
     "detachment-luminen-auto-choir:stratagem:1": {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-luminen-auto-choir:stratagem:1",
@@ -55478,6 +57285,421 @@
       "currentness": {
         "sourceId": "am-waha-11e-2026-09-25",
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
+    "detachment-cohort-acquisitus:enhancement:1": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-cohort-acquisitus:enhancement:1",
+      "ownerId": "detachment-cohort-acquisitus",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-skitarii-marshal:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "SKITARII MARSHAL"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-cohort-acquisitus"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Cohort Acquisitus",
+            "otherEntityId": "detachment-cohort-acquisitus"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "unit-infiltrators",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-skitarii-marshal:profile:default"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII MARSHAL"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This unit has Infiltrators"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "This unit has Infiltrators"
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed scoped canonical ability grant; battle resolution remains unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "unit-infiltrators",
+              "operation": "GRANT_ABILITY",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "ability": {
+                "canonicalId": "core-infiltrators",
+                "parameters": {}
+              },
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This unit has Infiltrators"
+              },
+              "unitScope": "FORMED"
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-cohort-acquisitus",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_ID",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "datasheet-skitarii-marshal:profile:default"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "SKITARII MARSHAL"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-cohort-acquisitus"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
+    "detachment-cohort-acquisitus:enhancement:2": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-cohort-acquisitus:enhancement:2",
+      "ownerId": "detachment-cohort-acquisitus",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-serberys-raiders"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "SERBERYS RAIDERS unit only"
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-cohort-acquisitus"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Cohort Acquisitus",
+            "otherEntityId": "detachment-cohort-acquisitus"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "owner-unit-lone-operative",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-serberys-raiders"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "SERBERYS RAIDERS unit only"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This unit has Lone Operative 15\"."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "This unit has Lone Operative 15\"."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed scoped canonical ability grant; battle resolution remains unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "owner-unit-lone-operative",
+              "operation": "GRANT_ABILITY",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "ability": {
+                "canonicalId": "core-lone-operative",
+                "parameters": {
+                  "distance": 15
+                }
+              },
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This unit has Lone Operative 15\"."
+              },
+              "unitScope": "PHYSICAL"
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-cohort-acquisitus",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "id": "unit-serberys-raiders"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "SERBERYS RAIDERS unit only"
+          }
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-cohort-acquisitus"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "fieldProvenance": {
+          "sourceTypeLabel": {
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/adeptus-mechanicus.html",
+            "sha256": "EA3418DFED77C82437865A5633021A94690807EF510EB85DDD5943F9A98C415B",
+            "xpath": "/html/body/div/div[1]/div[3]/div[17]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td/ul/li/span[1]/span"
+          }
+        }
       }
     },
     "detachment-cohort-acquisitus:stratagem:1": {

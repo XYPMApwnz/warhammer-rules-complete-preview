@@ -5,7 +5,7 @@ import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-f
 
 /** Ephemeral shape adapter. Scope IDs come from canonical profile bindings;
  * no first-profile fallback, title matching or legacy catalogs participate. */
-export function compilerInputs(book) {
+export function compilerInputs(book,{abilityReferences}={}) {
   const view=structuredClone(book),index=new Map(view.entities.map(entity=>[entity.id,entity]));
   const profileBindings=[],referenceSemantics={},composition=[];
   const countBindings=JSON.parse(fs.readFileSync(new URL('./contract-composition-bindings.json',import.meta.url),'utf8')).bindings;
@@ -50,6 +50,7 @@ export function compilerInputs(book) {
   // The shared roster kernel consumes the same explicit intrinsic MODEL scopes
   // as compatibility; the canonical factual snapshot stays unchanged.
   view.rosterProfileBindings=structuredClone(profileBindings);
+  if(abilityReferences)view.rosterAbilityReferences=structuredClone(abilityReferences);
   const attachmentRelations=[];
   for(const declaration of view.entities.filter(entity=>entity.kind==='ATTACHMENT_DECLARATION'&&
       ['LEADER','SUPPORT'].includes(entity.data.roleHeading))) {

@@ -15,7 +15,7 @@ const selected=new Set(ids),built=buildAdMechContracts(),full=compilerInputs(bui
 const book=structuredClone(full),index=new Map(book.entities.map(e=>[e.id,e]));
 for(const entity of book.entities)if(!selected.has(entity.id))delete entity.ruleContract;
 const evaluator=withRosterDetachments(built.schema.evaluator);
-assert.equal(built.blockedIds.size,15);
+assert.equal(built.blockedIds.size,8);
 assert.equal(built.schema.evaluator.validateContracts(book).rules,7);
 validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
 

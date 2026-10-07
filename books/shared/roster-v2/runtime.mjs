@@ -45,6 +45,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
       const canonical=records.get(unit.canonicalUnitId),group=projection.formedUnits.find(g=>g.formedUnitId===unit.formedUnitId);
       const name = id=>records.get(id)?.data.title || records.get(id)?.data.name || id;
       return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
+        ...(unit.abilities?{unitAbilities:clone(unit.abilities)}:{}),
         formedUnit:group?clone(group):null,keywords:group?[...group.keywords]:[...unit.keywords],intrinsicKeywords:[...unit.intrinsicKeywords],
         profiles:unit.profiles.map(m=>({id:m.canonicalProfileId,scopeId:m.scopeId,ownerInstanceId:instanceId,quantity:m.quantity,modelInstanceId:m.modelInstanceId,title:canonical.data.title,
           fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],metrics:clone(m.metrics),abilities:clone(m.abilities)})),

@@ -1,8 +1,38 @@
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value => structuredClone(value);
-const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC']);
+const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC']);
 const bindingSubjects = {SOURCE_MODEL:'MODEL',SOURCE_UNIT:'UNIT',SOURCE_UNIT_MODELS:'MODEL',SOURCE_FORMED_MODELS:'MODEL',LEADERS_OF_SOURCE:'MODEL',ROSTER_UNITS:'UNIT'};
+/** Canonical references and parameter declarations are supplied by the book.
+ * No ability title or source sentence selects runtime behaviour. */
+function validateAbilityGrant(book,effect) {
+  const ability=effect.ability, reference=book.rosterAbilityReferences?.[ability?.canonicalId];
+  if (!['MODEL','UNIT'].includes(effect.targetSubject) || !reference || reference.id!==ability.canonicalId ||
+      typeof reference.title!=='string' || !reference.title || !reference.parameters ||
+      !ability.parameters || typeof ability.parameters!=='object' || Array.isArray(ability.parameters))
+    throw new TypeError('Unresolved canonical ability grant');
+  if (effect.targetSubject==='UNIT' ? !['PHYSICAL','FORMED'].includes(effect.unitScope) : effect.unitScope!==undefined)
+    throw new TypeError('Invalid ability recipient scope');
+  if (Object.keys(ability.parameters).some(key=>!Object.hasOwn(reference.parameters,key)) ||
+      Object.keys(reference.parameters).some(key=>!Object.hasOwn(ability.parameters,key)))
+    throw new TypeError('Unresolved canonical ability parameter');
+  for (const [key,parameter] of Object.entries(reference.parameters)) {
+    const value=ability.parameters[key];
+    if (parameter.type!=='number' || !Number.isFinite(value) ||
+        parameter.min!==undefined && value<parameter.min || parameter.max!==undefined && value>parameter.max)
+      throw new TypeError('Invalid canonical ability parameter');
+  }
+}
+function canonicalAbility(book,effect) {
+  return {canonicalId:effect.ability.canonicalId,name:book.rosterAbilityReferences[effect.ability.canonicalId].title,
+    parameters:Object.fromEntries(Object.entries(effect.ability.parameters).sort(([a],[b])=>a.localeCompare(b,'en')))};
+}
+function grantedAbilities(before,ability) {
+  const key=value=>JSON.stringify([value.canonicalId,value.parameters]);
+  const result=clone(before || []);
+  if (!result.some(value=>key(value)===key(ability))) result.push(ability);
+  return result.sort((a,b)=>key(a).localeCompare(key(b),'en'));
+}
 export function validateRosterEffects(book, validatePredicate, evaluatePredicate) {
   const records = new Map(book.entities.map(e => [e.id,e]));
   for (const entity of book.entities.filter(e=>e.ruleContract)) for (const clause of entity.ruleContract.clauses) {
@@ -20,6 +50,7 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
       if (effect.operation === 'GRANT_MODEL_KEYWORD' && (effect.targetSubject !== 'MODEL' || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid MODEL keyword grant');
       if (effect.operation === 'REMOVE_KEYWORD' && (!['MODEL','UNIT'].includes(effect.targetSubject) || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid scoped keyword removal');
       if (effect.operation === 'GRANT_MODEL_ABILITY' && (effect.targetSubject !== 'MODEL' || effect.ability?.name !== 'Feel No Pain' || !Number.isInteger(effect.ability.value) || effect.ability.value < 2 || effect.ability.value > 6)) throw new TypeError('Invalid MODEL ability');
+      if (effect.operation === 'GRANT_ABILITY') validateAbilityGrant(book,effect);
       if (effect.operation === 'GRANT_WEAPON_ABILITY' && (typeof effect.ability !== 'string' || !effect.ability)) throw new TypeError('Invalid weapon ability');
       for (const id of [...(effect.weaponIds||[]),...(effect.excludeWeaponIds||[]),...(effect.equipmentRequirement?.excludeWeaponIds||[])]) if (records.get(id)?.kind !== 'WEAPON_PROFILE') throw new TypeError('Unresolved weapon identity');
       const sourceOwners = entity.kind==='ENHANCEMENT' && evaluatePredicate ? book.entities.filter(e=>e.kind==='DATASHEET').filter(unit=>unit.data.profileIds.some(id=> {
@@ -131,6 +162,10 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       const participant = condition.binding === 'SOURCE' ? source : target.unit;
       const ctx = predicateContext(state,result,participant?.instanceId,subject,condition.binding === 'TARGET' ? target.model?.scopeId : undefined,condition.binding === 'SOURCE' ? extra : {});
       if (!ctx) return false;
+      if (effect.operation==='GRANT_ABILITY' && effect.unitScope==='PHYSICAL' && subject==='UNIT') {
+        ctx.unitId=participant.canonicalUnitId;
+        ctx.keywords=new Set(participant.keywords);
+      }
       const status = evaluatePredicate(condition.predicate,ctx);
       if (status === 'INVALID') throw new TypeError('Invalid roster predicate: '+rule.id+'/'+effect.id);
       if (status !== 'TRUE') { if (status === 'UNKNOWN') target.unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:status,reason:'Roster context unavailable'}); return false; }
@@ -140,17 +175,19 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
   const apply = (item, target, conditionsChecked=false) => {
     const {rule,clause,effect,source}=item;
     if (!conditionsChecked && !eligible(item,target)) return;
-    const mutate = (object,key,after,targetModelId,targetWeaponId,weaponScope) => {
+    const mutate = (object,key,after,targetModelId,targetWeaponId,weaponScope,recordUnchanged=false) => {
       const before = clone(object[key] ?? null);
-      if (JSON.stringify(before) === JSON.stringify(after)) return;
+      if (JSON.stringify(before) === JSON.stringify(after) && !recordUnchanged) return;
       object[key] = clone(after);
       target.unit.applied.push({ruleId:rule.id,clauseId:clause.id,effectId:effect.id,sourceInstanceId:source?.instanceId || null,targetInstanceId:target.unit.instanceId,
-        targetModelInstanceId:targetModelId || null,targetProfileId:targetWeaponId ? weaponScope?.canonicalProfileId || null : target.model?.canonicalProfileId || null,targetCompositionId:targetWeaponId ? weaponScope?.scopeId || null : target.model?.scopeId || null,targetWeaponProfileId:targetWeaponId || null,operation:effect.operation,field:key,before,after:clone(after),sourceFields:clone(effect.sourceFields),lifetime:effect.lifetime});
+        targetModelInstanceId:targetModelId || null,targetProfileId:targetWeaponId ? weaponScope?.canonicalProfileId || null : target.model?.canonicalProfileId || null,targetCompositionId:targetWeaponId ? weaponScope?.scopeId || null : target.model?.scopeId || null,targetWeaponProfileId:targetWeaponId || null,operation:effect.operation,field:key,before,after:clone(after),sourceFields:clone(effect.sourceFields),lifetime:effect.lifetime,
+        ...(effect.operation==='GRANT_ABILITY'?{targetAbilityId:effect.ability.canonicalId,abilityParameters:clone(effect.ability.parameters)}:{})});
     };
-    const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || target.unit.formedUnitId || target.unit.instanceId}`;
+    const physicalAbility=effect.operation==='GRANT_ABILITY' && effect.unitScope==='PHYSICAL';
+    const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || (!physicalAbility && target.unit.formedUnitId) || target.unit.instanceId}`;
     if (processed.has(marker)) return;
     processed.add(marker);
-    const group=effect.targetSubject==='UNIT'?result.formedUnits.find(g=>g.formedUnitId===target.unit.formedUnitId):null;
+    const group=effect.targetSubject==='UNIT' && !physicalAbility?result.formedUnits.find(g=>g.formedUnitId===target.unit.formedUnitId):null;
     const unitRecipients=group?result.units.filter(u=>group.memberInstanceIds.includes(u.instanceId)):[target.unit];
     if (effect.operation === 'GRANT_UNIT_KEYWORD') for (const unit of unitRecipients) {
       const original=target.unit;target.unit=unit;
@@ -167,6 +204,19 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
         const original=target.unit;target.unit=unit;
         keywordDeltas.get(unit).removals.add(effect.keyword);
         mutate(unit,'keywords',derivedUnitKeywords(unit));target.unit=original;
+      }
+    }
+    else if (effect.operation === 'GRANT_ABILITY') {
+      const ability=canonicalAbility(book,effect);
+      if (effect.targetSubject==='MODEL')
+        mutate(target.model,'abilities',grantedAbilities(target.model.abilities,ability),target.model.modelInstanceId,undefined,undefined,true);
+      else {
+        for (const unit of unitRecipients) {
+          const original=target.unit;target.unit=unit;
+          mutate(unit,'abilities',grantedAbilities(unit.abilities,ability),undefined,undefined,undefined,true);
+          target.unit=original;
+        }
+        if (group) group.abilities=grantedAbilities(group.abilities,ability);
       }
     }
     else if (effect.operation === 'GRANT_MODEL_ABILITY') {
