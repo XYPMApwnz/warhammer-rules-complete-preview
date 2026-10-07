@@ -101,6 +101,382 @@
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
       }
     },
+    "datasheet-archaeopter-fusilave:section:1": {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-archaeopter-fusilave:section:1",
+      "ownerId": "unit-archaeopter-fusilave",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "source",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-archaeopter-fusilave"
+            },
+            "evidence": {
+              "field": [
+                "title"
+              ],
+              "quote": "Archaeopter Fusilave",
+              "otherEntityId": "unit-archaeopter-fusilave"
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "compatibilityRoleIds": [
+        "source"
+      ],
+      "sourceFields": [
+        [
+          "title"
+        ],
+        [
+          "blocks",
+          0,
+          "text"
+        ],
+        [
+          "blocks",
+          1,
+          "text"
+        ],
+        [
+          "blocks",
+          2,
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "block-1",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-archaeopter-fusilave"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Archaeopter Fusilave",
+                  "otherEntityId": "unit-archaeopter-fusilave"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-archaeopter-fusilave:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Archaeopter Fusilave",
+                  "otherEntityId": "datasheet-archaeopter-fusilave:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Bomb Rack: At the end of your opponent’s Fight phase, select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit, and roll six D6 for that unit: for each 4+, that unit suffers 1 mortal wound."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "block-2",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-archaeopter-fusilave"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Archaeopter Fusilave",
+                  "otherEntityId": "unit-archaeopter-fusilave"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-archaeopter-fusilave:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Archaeopter Fusilave",
+                  "otherEntityId": "datasheet-archaeopter-fusilave:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "equipmentRequirementSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Chaff Launcher"
+              },
+              "roleId": "sourceModel"
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Chaff Launcher: The bearer has the SMOKE keyword."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The reviewed keyword effect and its initial roster prerequisites use shared typed operations; battle actions remain deferred."
+          },
+          "rosterEffects": [
+            {
+              "id": "chaff-smoke",
+              "operation": "GRANT_MODEL_KEYWORD",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "keyword": "SMOKE",
+              "lifetime": "WHILE_EQUIPMENT_REQUIREMENT_SATISFIED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Chaff Launcher"
+                    },
+                    "roleId": "sourceModel"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "The bearer has the SMOKE keyword."
+              },
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-archaeopter-fusilave:section:1",
+                "sourceFieldPath": [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "block-3",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-archaeopter-fusilave"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Archaeopter Fusilave",
+                  "otherEntityId": "unit-archaeopter-fusilave"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-archaeopter-fusilave:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Archaeopter Fusilave",
+                  "otherEntityId": "datasheet-archaeopter-fusilave:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "commandUplinkEquipped",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Command Uplink"
+              },
+              "roleId": "sourceModel"
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              2,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              2,
+              "text"
+            ],
+            "quote": "Command Uplink: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "contextLevel": "BATTLE",
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
     "datasheet-archaeopter-stratoraptor:wargear:1": {
       "schema": "rule-contract/v2",
       "ruleId": "datasheet-archaeopter-stratoraptor:wargear:1",
@@ -199,6 +575,382 @@
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
       }
     },
+    "datasheet-archaeopter-stratoraptor:section:1": {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-archaeopter-stratoraptor:section:1",
+      "ownerId": "unit-archaeopter-stratoraptor",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "source",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-archaeopter-stratoraptor"
+            },
+            "evidence": {
+              "field": [
+                "title"
+              ],
+              "quote": "Archaeopter Stratoraptor",
+              "otherEntityId": "unit-archaeopter-stratoraptor"
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "compatibilityRoleIds": [
+        "source"
+      ],
+      "sourceFields": [
+        [
+          "title"
+        ],
+        [
+          "blocks",
+          0,
+          "text"
+        ],
+        [
+          "blocks",
+          1,
+          "text"
+        ],
+        [
+          "blocks",
+          2,
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "block-1",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-archaeopter-stratoraptor"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Archaeopter Stratoraptor",
+                  "otherEntityId": "unit-archaeopter-stratoraptor"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-archaeopter-stratoraptor:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Archaeopter Stratoraptor",
+                  "otherEntityId": "datasheet-archaeopter-stratoraptor:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Strafing Run: Each time this model makes a ranged attack that targets an enemy unit (excluding units that can FLY), add 1 to the Hit roll."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "block-2",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-archaeopter-stratoraptor"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Archaeopter Stratoraptor",
+                  "otherEntityId": "unit-archaeopter-stratoraptor"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-archaeopter-stratoraptor:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Archaeopter Stratoraptor",
+                  "otherEntityId": "datasheet-archaeopter-stratoraptor:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "equipmentRequirementSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Chaff Launcher"
+              },
+              "roleId": "sourceModel"
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Chaff Launcher: The bearer has the SMOKE keyword."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The reviewed keyword effect and its initial roster prerequisites use shared typed operations; battle actions remain deferred."
+          },
+          "rosterEffects": [
+            {
+              "id": "chaff-smoke",
+              "operation": "GRANT_MODEL_KEYWORD",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "keyword": "SMOKE",
+              "lifetime": "WHILE_EQUIPMENT_REQUIREMENT_SATISFIED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Chaff Launcher"
+                    },
+                    "roleId": "sourceModel"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "The bearer has the SMOKE keyword."
+              },
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-archaeopter-stratoraptor:section:1",
+                "sourceFieldPath": [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "block-3",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-archaeopter-stratoraptor"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Archaeopter Stratoraptor",
+                  "otherEntityId": "unit-archaeopter-stratoraptor"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-archaeopter-stratoraptor:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Archaeopter Stratoraptor",
+                  "otherEntityId": "datasheet-archaeopter-stratoraptor:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "commandUplinkEquipped",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Command Uplink"
+              },
+              "roleId": "sourceModel"
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              2,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              2,
+              "text"
+            ],
+            "quote": "Command Uplink: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "contextLevel": "BATTLE",
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
     "datasheet-archaeopter-transvector:wargear:1": {
       "schema": "rule-contract/v2",
       "ruleId": "datasheet-archaeopter-transvector:wargear:1",
@@ -292,6 +1044,419 @@
         }
       ],
       "contextLevel": "STATIC",
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
+    "datasheet-archaeopter-transvector:section:1": {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-archaeopter-transvector:section:1",
+      "ownerId": "unit-archaeopter-transvector",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "source",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-archaeopter-transvector"
+            },
+            "evidence": {
+              "field": [
+                "title"
+              ],
+              "quote": "Archaeopter Transvector",
+              "otherEntityId": "unit-archaeopter-transvector"
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "compatibilityRoleIds": [
+        "source"
+      ],
+      "sourceFields": [
+        [
+          "title"
+        ],
+        [
+          "blocks",
+          0,
+          "text"
+        ],
+        [
+          "blocks",
+          1,
+          "text"
+        ],
+        [
+          "blocks",
+          2,
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "block-1",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-archaeopter-transvector"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Archaeopter Transvector",
+                  "otherEntityId": "unit-archaeopter-transvector"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-archaeopter-transvector:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Archaeopter Transvector",
+                  "otherEntityId": "datasheet-archaeopter-transvector:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "phase",
+                "equals": "MOVEMENT"
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "first Movement phase"
+              },
+              "roleId": "source"
+            },
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "turnOwner",
+                "equals": "FRIENDLY"
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "your first Movement phase"
+              },
+              "roleId": "source"
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Aerial Deployment: In your first Movement phase, this unit can make an ingress move."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "block-2",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-archaeopter-transvector"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Archaeopter Transvector",
+                  "otherEntityId": "unit-archaeopter-transvector"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-archaeopter-transvector:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Archaeopter Transvector",
+                  "otherEntityId": "datasheet-archaeopter-transvector:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "equipmentRequirementSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Chaff Launcher"
+              },
+              "roleId": "sourceModel"
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Chaff Launcher: The bearer has the SMOKE keyword."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The reviewed keyword effect and its initial roster prerequisites use shared typed operations; battle actions remain deferred."
+          },
+          "rosterEffects": [
+            {
+              "id": "chaff-smoke",
+              "operation": "GRANT_MODEL_KEYWORD",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "keyword": "SMOKE",
+              "lifetime": "WHILE_EQUIPMENT_REQUIREMENT_SATISFIED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Chaff Launcher"
+                    },
+                    "roleId": "sourceModel"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "The bearer has the SMOKE keyword."
+              },
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-archaeopter-transvector:section:1",
+                "sourceFieldPath": [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "block-3",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-archaeopter-transvector"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Archaeopter Transvector",
+                  "otherEntityId": "unit-archaeopter-transvector"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-archaeopter-transvector:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Archaeopter Transvector",
+                  "otherEntityId": "datasheet-archaeopter-transvector:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "commandUplinkEquipped",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Command Uplink"
+              },
+              "roleId": "sourceModel"
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              2,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              2,
+              "text"
+            ],
+            "quote": "Command Uplink: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "contextLevel": "BATTLE",
       "currentness": {
         "sourceId": "am-waha-11e-2026-09-25",
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
@@ -1835,6 +3000,373 @@
             "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
           },
           "rosterEffects": []
+        }
+      ],
+      "contextLevel": "BATTLE",
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
+    "datasheet-cybernetica-datasmith:section:1": {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-cybernetica-datasmith:section:1",
+      "ownerId": "unit-cybernetica-datasmith",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "source",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-cybernetica-datasmith"
+            },
+            "evidence": {
+              "field": [
+                "title"
+              ],
+              "quote": "Cybernetica Datasmith",
+              "otherEntityId": "unit-cybernetica-datasmith"
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "compatibilityRoleIds": [
+        "source"
+      ],
+      "sourceFields": [
+        [
+          "title"
+        ],
+        [
+          "blocks",
+          0,
+          "text"
+        ],
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "battle-protocols",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-cybernetica-datasmith"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Cybernetica Datasmith",
+                  "otherEntityId": "unit-cybernetica-datasmith"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-cybernetica-datasmith:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Cybernetica Datasmith",
+                  "otherEntityId": "datasheet-cybernetica-datasmith:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "if this model is leading a KASTELAN ROBOTS unit"
+              },
+              "roleId": "sourceModel"
+            },
+            {
+              "predicate": "BODYGUARD_ID",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "id": "unit-kastelan-robots"
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "KASTELAN ROBOTS unit"
+              },
+              "roleId": "sourceModel"
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Battle Protocols: At the start of the battle, if this model is leading a KASTELAN ROBOTS unit, that unit enters Aegis Protocols (see below). In your Command phase, if this model is leading a KASTELAN ROBOTS unit, you can select one protocol from those listed below for that unit to enter. Once a unit enters a protocol, it remains in that protocol until it enters a different one.\n- Protector Protocol: Add 2 to the Attacks characteristic of ranged weapons equipped by KASTELAN ROBOT models in that unit.\n- Conqueror Protocol: Add 2 to the Attacks characteristic of melee weapons equipped by KASTELAN ROBOT models in that unit.\n- Aegis Protocol: Add 1 to the Toughness characteristic of KASTELAN ROBOT models in that unit."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "data-severed",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-cybernetica-datasmith"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Cybernetica Datasmith",
+                  "otherEntityId": "unit-cybernetica-datasmith"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-cybernetica-datasmith:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Cybernetica Datasmith",
+                  "otherEntityId": "datasheet-cybernetica-datasmith:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "op": "NOT",
+              "subject": "MODEL",
+              "roleId": "sourceModel",
+              "args": [
+                {
+                  "predicate": "BODYGUARD_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "ROSTER",
+                  "arguments": {
+                    "id": "unit-kastelan-robots"
+                  },
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "If there are no KASTELAN ROBOT models in this unit"
+                  }
+                }
+              ]
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Data-severed: If there are no KASTELAN ROBOT models in this unit:\n- This unit loses VEHICLE.\n- This unit has INFANTRY."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Initial roster absence of KASTELAN ROBOT models follows the physical Kastelan Bodyguard binding. Battle model losses and protocol changes require a new battle context and remain unexecuted."
+          },
+          "rosterEffects": [
+            {
+              "id": "remove-vehicle",
+              "operation": "REMOVE_KEYWORD",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "keyword": "VEHICLE",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "op": "NOT",
+                    "subject": "MODEL",
+                    "roleId": "sourceModel",
+                    "args": [
+                      {
+                        "predicate": "BODYGUARD_ID",
+                        "subject": "MODEL",
+                        "contextLevel": "ROSTER",
+                        "arguments": {
+                          "id": "unit-kastelan-robots"
+                        },
+                        "evidence": {
+                          "field": [
+                            "blocks",
+                            1,
+                            "text"
+                          ],
+                          "quote": "If there are no KASTELAN ROBOT models in this unit"
+                        }
+                      }
+                    ]
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "This unit loses VEHICLE."
+              }
+            },
+            {
+              "id": "grant-infantry",
+              "operation": "GRANT_UNIT_KEYWORD",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "keyword": "INFANTRY",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "op": "NOT",
+                    "subject": "MODEL",
+                    "roleId": "sourceModel",
+                    "args": [
+                      {
+                        "predicate": "BODYGUARD_ID",
+                        "subject": "MODEL",
+                        "contextLevel": "ROSTER",
+                        "arguments": {
+                          "id": "unit-kastelan-robots"
+                        },
+                        "evidence": {
+                          "field": [
+                            "blocks",
+                            1,
+                            "text"
+                          ],
+                          "quote": "If there are no KASTELAN ROBOT models in this unit"
+                        }
+                      }
+                    ]
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "This unit has INFANTRY."
+              }
+            }
+          ]
         }
       ],
       "contextLevel": "BATTLE",
@@ -4576,6 +6108,454 @@
         }
       ],
       "contextLevel": "STATIC",
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
+    "datasheet-onager-dunecrawler:section:1": {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-onager-dunecrawler:section:1",
+      "ownerId": "unit-onager-dunecrawler",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "source",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-onager-dunecrawler"
+            },
+            "evidence": {
+              "field": [
+                "title"
+              ],
+              "quote": "Onager Dunecrawler",
+              "otherEntityId": "unit-onager-dunecrawler"
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "compatibilityRoleIds": [
+        "source"
+      ],
+      "sourceFields": [
+        [
+          "title"
+        ],
+        [
+          "blocks",
+          0,
+          "text"
+        ],
+        [
+          "blocks",
+          1,
+          "text"
+        ],
+        [
+          "blocks",
+          2,
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "block-1",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-onager-dunecrawler"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Onager Dunecrawler",
+                  "otherEntityId": "unit-onager-dunecrawler"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-onager-dunecrawler:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Onager Dunecrawler",
+                  "otherEntityId": "datasheet-onager-dunecrawler:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Emanatus Force Field (Aura): While a friendly ADEPTUS MECHANICUS BATTLELINE model is wholly within 6\" of this model, that BATTLELINE model has a 4+ invulnerable save against ranged attacks."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "block-2",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-onager-dunecrawler"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Onager Dunecrawler",
+                  "otherEntityId": "unit-onager-dunecrawler"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-onager-dunecrawler:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Onager Dunecrawler",
+                  "otherEntityId": "datasheet-onager-dunecrawler:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Scuttling Walker: Each time this model makes a Normal, Advance or Fall Back move, it can move through friendly MONSTER and VEHICLE models and sections of terrain features that are 4\" or less in height."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "data-tether-smoke-removal",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-onager-dunecrawler"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Onager Dunecrawler",
+                  "otherEntityId": "unit-onager-dunecrawler"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-onager-dunecrawler:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Onager Dunecrawler",
+                  "otherEntityId": "datasheet-onager-dunecrawler:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "equipmentRequirementSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Broad spectrum data-tether"
+              },
+              "roleId": "sourceModel"
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              2,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              2,
+              "text"
+            ],
+            "quote": "The bearer loses the SMOKE keyword"
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The reviewed keyword effect and its initial roster prerequisites use shared typed operations; battle actions remain deferred."
+          },
+          "rosterEffects": [
+            {
+              "id": "remove-smoke",
+              "operation": "REMOVE_KEYWORD",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "keyword": "SMOKE",
+              "lifetime": "WHILE_EQUIPMENT_REQUIREMENT_SATISFIED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        2,
+                        "text"
+                      ],
+                      "quote": "Broad spectrum data-tether"
+                    },
+                    "roleId": "sourceModel"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "blocks",
+                  2,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "The bearer loses the SMOKE keyword"
+              },
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-onager-dunecrawler:section:1",
+                "sourceFieldPath": [
+                  "blocks",
+                  2,
+                  "text"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "data-tether-command-point",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-onager-dunecrawler"
+                },
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Onager Dunecrawler",
+                  "otherEntityId": "unit-onager-dunecrawler"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "TRIGGER_ACTOR",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-onager-dunecrawler:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "name"
+                  ],
+                  "quote": "Onager Dunecrawler",
+                  "otherEntityId": "datasheet-onager-dunecrawler:profile:default"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "broadSpectrumDataTetherEquipped",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Broad spectrum data-tether"
+              },
+              "roleId": "sourceModel"
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              2,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              2,
+              "text"
+            ],
+            "quote": "each time you target the bearer with a Stratagem, roll one D6: on a 5+, you gain 1CP."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "contextLevel": "BATTLE",
       "currentness": {
         "sourceId": "am-waha-11e-2026-09-25",
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
@@ -17006,6 +18986,436 @@
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
       }
     },
+    "detachment-haloscreed-battle-clade:enhancement:1": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-haloscreed-battle-clade:enhancement:1",
+      "ownerId": "detachment-haloscreed-battle-clade",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-cybernetica-datasmith:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "CYBERNETICA DATASMITH"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-haloscreed-battle-clade"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Haloscreed Battle Clade",
+            "otherEntityId": "detachment-haloscreed-battle-clade"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "halo-override-models",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-cybernetica-datasmith:profile:default"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "CYBERNETICA DATASMITH"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "unitModels",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "models in that unit gain the HALO OVERRIDE keyword"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "BODYGUARD_ID",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "id": "unit-kastelan-robots"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+              },
+              "roleId": "owner"
+            },
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "models in that unit gain the HALO OVERRIDE keyword"
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The reviewed keyword effect and its initial roster prerequisites use shared typed operations; battle actions remain deferred."
+          },
+          "rosterEffects": [
+            {
+              "id": "grant-halo-override",
+              "operation": "GRANT_MODEL_KEYWORD",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "keyword": "HALO OVERRIDE",
+              "lifetime": "WHILE_ATTACHED_UNTIL_END_BATTLE",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "BODYGUARD_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "id": "unit-kastelan-robots"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                },
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "models in that unit gain the HALO OVERRIDE keyword"
+              }
+            }
+          ],
+          "lifetimeEvidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "until the end of the battle"
+          }
+        },
+        {
+          "id": "noospheric-transference-selection-exclusion",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-cybernetica-datasmith:profile:default"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "CYBERNETICA DATASMITH"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "bearerUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "That unit"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "BODYGUARD_ID",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "id": "unit-kastelan-robots"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+              },
+              "roleId": "owner"
+            },
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "That unit cannot be selected when selecting units as part of the Noospheric Transference Detachment rule."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": [],
+          "deferredBattleMetadata": {
+            "kind": "SELECTION_EXCLUSION",
+            "ruleId": "detachment-haloscreed-battle-clade:rule",
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "That unit cannot be selected when selecting units as part of the Noospheric Transference Detachment rule."
+            }
+          }
+        }
+      ],
+      "detachmentId": "detachment-haloscreed-battle-clade",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_ID",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "datasheet-cybernetica-datasmith:profile:default"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "CYBERNETICA DATASMITH"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-haloscreed-battle-clade"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
     "detachment-haloscreed-battle-clade:enhancement:4": {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-haloscreed-battle-clade:enhancement:4",
@@ -19758,6 +22168,416 @@
         }
       ],
       "detachmentId": "detachment-eradication-cohort",
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
+    "detachment-eradication-cohort:enhancement:2": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-eradication-cohort:enhancement:2",
+      "ownerId": "detachment-eradication-cohort",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TECH-PRIEST"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TECH-PRIEST"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-eradication-cohort"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Eradication Cohort",
+            "otherEntityId": "detachment-eradication-cohort"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "skitarii-models-standalone",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TECH-PRIEST"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TECH-PRIEST"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "unitModels",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Models in the bearer’s unit have the SKITARII keyword."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "attached",
+                "equals": false
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Models in the bearer’s unit"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Models in the bearer’s unit have the SKITARII keyword."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The reviewed keyword effect and its initial roster prerequisites use shared typed operations; battle actions remain deferred."
+          },
+          "rosterEffects": [
+            {
+              "id": "grant-skitarii-standalone",
+              "operation": "GRANT_MODEL_KEYWORD",
+              "targetBinding": "SOURCE_UNIT_MODELS",
+              "targetSubject": "MODEL",
+              "keyword": "SKITARII",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": false
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Models in the bearer’s unit"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Models in the bearer’s unit have the SKITARII keyword."
+              }
+            }
+          ]
+        },
+        {
+          "id": "skitarii-models-attached",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TECH-PRIEST"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TECH-PRIEST"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "unitModels",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Models in the bearer’s unit have the SKITARII keyword."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "attached",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Models in the bearer’s unit"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Models in the bearer’s unit have the SKITARII keyword."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The reviewed keyword effect and its initial roster prerequisites use shared typed operations; battle actions remain deferred."
+          },
+          "rosterEffects": [
+            {
+              "id": "grant-skitarii-attached",
+              "operation": "GRANT_MODEL_KEYWORD",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "keyword": "SKITARII",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Models in the bearer’s unit"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Models in the bearer’s unit have the SKITARII keyword."
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-eradication-cohort",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TECH-PRIEST"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TECH-PRIEST"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-eradication-cohort"
+      },
       "currentness": {
         "sourceId": "am-waha-11e-2026-09-25",
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
@@ -45348,6 +48168,18 @@
       "equipmentBearerLabel": {
         "contextLevel": "ROSTER",
         "valueType": "string"
+      },
+      "equipmentRequirementSatisfied": {
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      "commandUplinkEquipped": {
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      "broadSpectrumDataTetherEquipped": {
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
       },
       "battleShocked": {
         "contextLevel": "BATTLE",

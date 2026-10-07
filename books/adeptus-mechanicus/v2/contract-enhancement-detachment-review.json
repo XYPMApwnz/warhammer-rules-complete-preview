@@ -3,19 +3,19 @@
   "source": "books/adeptus-mechanicus/v2/generated/effective.json",
   "counts": {
     "sourceRules": 44,
-    "declarations": 27,
-    "blocked": 17,
-    "enhancementsDeclared": 20,
+    "declarations": 29,
+    "blocked": 15,
+    "enhancementsDeclared": 22,
     "detachmentRulesDeclared": 7,
-    "clauses": 48
+    "clauses": 52
   },
   "validation": {
     "schema": "books/shared/rule-contract-v2/schema.mjs",
     "binding": "books/shared/rule-contract-v2/bindings.mjs",
     "status": "PASS",
-    "rules": 27,
+    "rules": 29,
     "completeSourceOwnerAccounting": "PASS",
-    "characterOwnerQualifier": "All 20 successful MODEL Enhancement owners and 13 blocked MODEL owner diagnostics include accepted book-introduction CHARACTER prerequisite; explicit SERBERYS RAIDERS UPGRADE remains UNIT-owned.",
+    "characterOwnerQualifier": "All 22 successful MODEL Enhancement owners and 11 blocked MODEL owner diagnostics include accepted book-introduction CHARACTER prerequisite; explicit SERBERYS RAIDERS UPGRADE remains UNIT-owned.",
     "weaponMode": "Existing canonical lowercase melee/ranged modes preserved."
   },
   "review": [
@@ -472,6 +472,42 @@
           "id": "analysed-detection-range",
           "rosterClassification": "BATTLE_ONLY",
           "sourceCase": "While a unit is analysed, that unit has +3\" detection range."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-haloscreed-battle-clade:enhancement:1",
+      "status": "DECLARED",
+      "sourceCase": "CYBERNETICA DATASMITH model only. When the bearer is attached to a KASTELAN ROBOTS unit, until the end of the battle, models in that unit gain the HALO OVERRIDE keyword. That unit cannot be selected when selecting units as part of the Noospheric Transference Detachment rule.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "halo-override-models",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "sourceCase": "models in that unit gain the HALO OVERRIDE keyword"
+        },
+        {
+          "id": "noospheric-transference-selection-exclusion",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "That unit cannot be selected when selecting units as part of the Noospheric Transference Detachment rule."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-eradication-cohort:enhancement:2",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. Models in the bearer’s unit have the SKITARII keyword.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "skitarii-models-standalone",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "sourceCase": "Models in the bearer’s unit have the SKITARII keyword."
+        },
+        {
+          "id": "skitarii-models-attached",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "sourceCase": "Models in the bearer’s unit have the SKITARII keyword."
         }
       ]
     }

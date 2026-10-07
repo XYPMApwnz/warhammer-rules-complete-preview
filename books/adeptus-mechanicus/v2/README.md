@@ -120,8 +120,8 @@ current-PDF parity and closed-input checks here.
 
 ## Rule Contract stage: represented subset, explicit limitations
 
-`rule-contract-build.mjs` uses the existing shared schema, typed binders and
-profile-aware compatibility compiler without changing them. The three
+`rule-contract-build.mjs` uses the shared schema, typed binders and
+profile-aware compatibility compiler. The three
 `contract-*-declarations.json` files own reviewed book-specific declarations;
 the corresponding review files are diagnostic records, not runtime inputs.
 No legacy AdMech contract or compatibility answer participates.
@@ -135,16 +135,23 @@ two literal `None` options are absences, the introduction is scope guidance,
 and attachment metadata references the authoritative section. The exhaustive
 entity disposition ledger is regenerated with the census.
 
-179 contracts are source-bound and schema-valid. 25 complete owners are
+186 contracts are source-bound and schema-valid. 18 complete owners are
 explicitly `BLOCKED_MISSING_GENERIC_PRIMITIVE`, with their exact source cases,
 semantic atoms, provenance and reasons in `generated/rule-contract-census.json`.
 They are not published as successful partial contracts. The limitations cover
-STATIC UNIT ability membership, MODEL keyword grants/removal, UNIT keyword
-removal, general abilities, Range/AP/skill changes, imperative overrides,
+STATIC UNIT ability membership, general abilities, Range/AP/skill changes, imperative overrides,
 global MODEL targeting, invulnerable changes and canonical weapon grants.
 All three Army components are blocked: substituting intrinsic MODEL ability
 membership for their source UNIT ability prerequisite would change semantics.
-No new shared primitive or AdMech runtime workaround was added.
+Seven previously blocked owners now use shared MODEL keyword grants and
+MODEL/UNIT keyword removal: three Chaff Launcher sections, Data-severed,
+Onager data-tether, Transoracular Dyad Wafers and Martial Signatum Amplificator.
+Their complete sections retain nonexecuting battle clauses and source-backed
+equipment, attachment and owner prerequisites. Data-severed uses initial
+Kastelan attachment state; battle casualties are not simulated. Transoracular
+Dyad Wafers preserves its Noospheric Transference selection exclusion as
+nonexecuting battle metadata. Martial Signatum has separate standalone and
+attached model bindings under its single existing owner.
 
 All 51 Stratagems preserve typed current-product applicability. Battle effects
 remain nonexecuting source-backed clauses; 40 explicit lifetime occurrences
@@ -155,7 +162,7 @@ set cardinality likewise remains source-backed battle-resolution metadata.
 The Electrotraction source's explicit BATTLECLADE requirement is preserved,
 even though it has no currently eligible intrinsic Electro-Priest identity.
 
-The 6,086 compatibility rows cover only the 179 represented owners against
+The 6,324 compatibility rows cover only the 186 represented owners against
 34 datasheets; they do not certify the blocked owners or a complete AdMech
 product. They are disposable output and never an authority. The overlay keeps
 semantics under the existing canonical IDs, without copying factual text into
@@ -177,6 +184,7 @@ Run with Node.js:
 node books/adeptus-mechanicus/v2/rule-contract-build.mjs
 node books/adeptus-mechanicus/v2/rule-contract-build.mjs --check
 node books/adeptus-mechanicus/v2/rule-contract-qa.mjs
+node books/adeptus-mechanicus/v2/keyword-roster-effects-qa.mjs
 node books/shared/rule-contract-v2/schema-qa.mjs
 node books/shared/rule-contract-v2/bindings-qa.mjs
 node books/shared/rule-contract-v2/compatibility-qa.mjs
@@ -187,6 +195,11 @@ unspecified Detachments, all explicit profiles, exact physical owners, source
 contradictions, duration recipients, generated-row poisoning and deterministic
 rebuild. A closed-input temporary tree contains only this V2 factual snapshot,
 typed declarations and existing shared modules: DG and legacy AM contracts,
-runtime and generated answers are absent. No AdMech effects are executed.
+runtime and generated answers are absent. The focused keyword QA reads the
+captured source again, then executes only the seven newly represented owners
+through the shared effects kernel. It verifies selected/absent/unknown gear,
+separate physical copies, mixed MODEL profiles, standalone and attached
+recipients, repeated recomputation and detach restoration. It introduces no
+general AdMech runtime or additional executable abilities.
 The existing `qa:am` command remains a legacy regression check only; it is not
 the source oracle or contract denominator.

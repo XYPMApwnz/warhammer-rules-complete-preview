@@ -144,6 +144,20 @@ export function changeAttachment(book, state, policies, action, leaderId, bodygu
 }
 export function formRoster(book, state) {
   const records = new Map(book.entities.map(e => [e.id,e]));
+  const profileBindings = book.rosterProfileBindings === undefined ? null : new Map();
+  if (profileBindings) {
+    assert(Array.isArray(book.rosterProfileBindings), 'Invalid intrinsic MODEL bindings');
+    for (const binding of book.rosterProfileBindings) {
+      const unit = records.get(binding.unitId), profile = records.get(binding.profileId);
+      assert(unit?.kind === 'DATASHEET' && profile?.kind === 'PROFILE' && profile.parentId === unit.id &&
+        unit.data.profileIds.includes(profile.id) && !profileBindings.has(profile.id) &&
+        Array.isArray(binding.intrinsicKeywords) && binding.intrinsicKeywords.every(key => typeof key === 'string' && key),
+        'Unresolved or duplicate intrinsic MODEL binding');
+      profileBindings.set(profile.id, binding);
+    }
+    for (const unit of book.entities.filter(e => e.kind === 'DATASHEET'))
+      assert(unit.data.profileIds.every(id => profileBindings.has(id)), 'Incomplete intrinsic MODEL bindings');
+  }
   const units = state.units.map(raw => {
     const canonical = records.get(raw.canonicalUnitId), keywords = [...canonical.data.keywords,...canonical.data.factionKeywords];
     // One semantic MODEL profile per imported composition/loadout group. Quantity
@@ -166,12 +180,17 @@ export function formRoster(book, state) {
           return s.canonicalProfileIds.map(id=>({modelInstanceId,scopeId,canonicalProfileId:id,physicalQuantity,selectionKey:s.selectionKey,data:copy(records.get(id).data)}));
         });
         return {subject:'MODEL',scopeId,quantity:group.quantity,modelInstanceId,unitInstanceId:raw.instanceId,
-          canonicalProfileId:row.canonicalProfileId,canonicalUnitId:raw.canonicalUnitId,keywords:[...keywords],
+          canonicalProfileId:row.canonicalProfileId,canonicalUnitId:raw.canonicalUnitId,
+          ...(profileBindings ? {intrinsicKeywords:[...profileBindings.get(row.canonicalProfileId).intrinsicKeywords]} : {}),
+          keywords:[...(profileBindings?.get(row.canonicalProfileId).intrinsicKeywords || keywords)],
           profile:copy(records.get(row.canonicalProfileId).data),abilities:canonical.data.ruleReferenceIds.flatMap(id=>copy(book.rosterReferenceSemantics?.[id]?.abilities || [])),metrics:{},
           selections:copy(selected),weapons};
       });
     });
-    return {...copy(raw),subject:'UNIT',intrinsicKeywords:[...keywords],keywords:[...keywords],profiles,metrics:{},applied:[],conditional:[],
+    const modelVocabulary = profileBindings ? new Set(canonical.data.profileIds.flatMap(id => profileBindings.get(id).intrinsicKeywords)) : null;
+    const unitKeywords = modelVocabulary ? [...new Set([...keywords.filter(key => !modelVocabulary.has(key)),
+      ...profiles.flatMap(profile => profile.keywords)])].sort() : [...keywords];
+    return {...copy(raw),subject:'UNIT',intrinsicKeywords:[...keywords],keywords:unitKeywords,profiles,metrics:{},applied:[],conditional:[],
       weapons:(raw.selections || []).flatMap(s => s.physicalQuantity ? s.canonicalProfileIds.map(id => ({modelInstanceId:raw.startingStrength===1?raw.instanceId:null,canonicalProfileId:id,physicalQuantity:s.physicalQuantity,selectionKey:s.selectionKey,data:copy(records.get(id).data)})) : [])};
   });
   const formedUnits = [];
@@ -213,5 +232,5 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
   const abilityNames = (subject==='MODEL'?[model]:members.flatMap(u=>u.profiles)).flatMap(m=>m.abilities.map(a=>a.name));
   return {subject,unitId:subject==='MODEL'?unit.canonicalUnitId:group?projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId:unit.canonicalUnitId,
     owner:{unitId:unit.canonicalUnitId,keywords:new Set(subject==='MODEL'?model.keywords:unit.keywords),unknownKeywords:new Set()},
-    modelId:model?.canonicalProfileId,intrinsicKeywords:new Set(unit.intrinsicKeywords),keywords:new Set(subject==='MODEL'?model?.keywords:group?group.keywords:unit.keywords),abilities:new Set(abilityNames),roster,battle:{}};
+    modelId:model?.canonicalProfileId,intrinsicKeywords:new Set(subject==='MODEL' ? model.intrinsicKeywords || unit.intrinsicKeywords : unit.intrinsicKeywords),keywords:new Set(subject==='MODEL'?model?.keywords:group?group.keywords:unit.keywords),abilities:new Set(abilityNames),roster,battle:{}};
 }

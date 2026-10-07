@@ -8082,22 +8082,391 @@
         }
       ],
       "detachmentId": "detachment-cohort-acquisitus"
-    }
-  },
-  "blocked": [
-    {
-      "ruleId": "detachment-haloscreed-battle-clade:enhancement:1",
-      "sourceCase": "models in that unit gain the HALO OVERRIDE keyword",
-      "semanticAtom": "MODEL keyword grant to the attached unit models, and Noospheric Transference selection exclusion",
-      "whyCompositionInsufficient": "GRANT_UNIT_KEYWORD cannot modify each MODEL keyword scope. The separate battle-selection exclusion remains source-backed deferred applicability and does not itself require an executable primitive now.",
-      "evidence": {
-        "field": [
+    },
+    "detachment-haloscreed-battle-clade:enhancement:1": {
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-cybernetica-datasmith:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "CYBERNETICA DATASMITH"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-haloscreed-battle-clade"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Haloscreed Battle Clade",
+            "otherEntityId": "detachment-haloscreed-battle-clade"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
           "text"
-        ],
-        "quote": "models in that unit gain the HALO OVERRIDE keyword"
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "halo-override-models",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-cybernetica-datasmith:profile:default"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "CYBERNETICA DATASMITH"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "unitModels",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "models in that unit gain the HALO OVERRIDE keyword"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "BODYGUARD_ID",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "id": "unit-kastelan-robots"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+              },
+              "roleId": "owner"
+            },
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "models in that unit gain the HALO OVERRIDE keyword"
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The reviewed keyword effect and its initial roster prerequisites use shared typed operations; battle actions remain deferred."
+          },
+          "rosterEffects": [
+            {
+              "id": "grant-halo-override",
+              "operation": "GRANT_MODEL_KEYWORD",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "keyword": "HALO OVERRIDE",
+              "lifetime": "WHILE_ATTACHED_UNTIL_END_BATTLE",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "BODYGUARD_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "id": "unit-kastelan-robots"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                },
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "models in that unit gain the HALO OVERRIDE keyword"
+              }
+            }
+          ],
+          "lifetimeEvidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "until the end of the battle"
+          }
+        },
+        {
+          "id": "noospheric-transference-selection-exclusion",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-cybernetica-datasmith:profile:default"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "CYBERNETICA DATASMITH"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "bearerUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "That unit"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "BODYGUARD_ID",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "id": "unit-kastelan-robots"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+              },
+              "roleId": "owner"
+            },
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When the bearer is attached to a KASTELAN ROBOTS unit"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "That unit cannot be selected when selecting units as part of the Noospheric Transference Detachment rule."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
+          },
+          "rosterEffects": [],
+          "deferredBattleMetadata": {
+            "kind": "SELECTION_EXCLUSION",
+            "ruleId": "detachment-haloscreed-battle-clade:rule",
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "That unit cannot be selected when selecting units as part of the Noospheric Transference Detachment rule."
+            }
+          }
+        }
+      ],
+      "detachmentId": "detachment-haloscreed-battle-clade",
+      "assignment": {
+        "ownerRoleId": "owner",
         "selector": {
           "op": "ALL",
           "args": [
@@ -8136,6 +8505,410 @@
         "detachmentId": "detachment-haloscreed-battle-clade"
       }
     },
+    "detachment-eradication-cohort:enhancement:2": {
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TECH-PRIEST"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TECH-PRIEST"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-eradication-cohort"
+          },
+          "evidence": {
+            "field": [
+              "title"
+            ],
+            "quote": "Eradication Cohort",
+            "otherEntityId": "detachment-eradication-cohort"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "skitarii-models-standalone",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TECH-PRIEST"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TECH-PRIEST"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "unitModels",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Models in the bearer’s unit have the SKITARII keyword."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "attached",
+                "equals": false
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Models in the bearer’s unit"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Models in the bearer’s unit have the SKITARII keyword."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The reviewed keyword effect and its initial roster prerequisites use shared typed operations; battle actions remain deferred."
+          },
+          "rosterEffects": [
+            {
+              "id": "grant-skitarii-standalone",
+              "operation": "GRANT_MODEL_KEYWORD",
+              "targetBinding": "SOURCE_UNIT_MODELS",
+              "targetSubject": "MODEL",
+              "keyword": "SKITARII",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": false
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Models in the bearer’s unit"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Models in the bearer’s unit have the SKITARII keyword."
+              }
+            }
+          ]
+        },
+        {
+          "id": "skitarii-models-attached",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TECH-PRIEST"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TECH-PRIEST"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "unitModels",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Models in the bearer’s unit have the SKITARII keyword."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "attached",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Models in the bearer’s unit"
+              },
+              "roleId": "owner"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Models in the bearer’s unit have the SKITARII keyword."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The reviewed keyword effect and its initial roster prerequisites use shared typed operations; battle actions remain deferred."
+          },
+          "rosterEffects": [
+            {
+              "id": "grant-skitarii-attached",
+              "operation": "GRANT_MODEL_KEYWORD",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "keyword": "SKITARII",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Models in the bearer’s unit"
+                    },
+                    "roleId": "owner"
+                  },
+                  "contextLevel": "ROSTER"
+                }
+              ],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Models in the bearer’s unit have the SKITARII keyword."
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-eradication-cohort",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TECH-PRIEST"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TECH-PRIEST"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-eradication-cohort"
+      }
+    }
+  },
+  "blocked": [
     {
       "ruleId": "detachment-haloscreed-battle-clade:enhancement:2",
       "sourceCase": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit.",
@@ -8305,57 +9078,6 @@
                   "text"
                 ],
                 "quote": "SKITARII MARSHAL"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-eradication-cohort"
-      }
-    },
-    {
-      "ruleId": "detachment-eradication-cohort:enhancement:2",
-      "sourceCase": "Models in the bearer’s unit have the SKITARII keyword.",
-      "semanticAtom": "MODEL keyword grant to bearer unit models",
-      "whyCompositionInsufficient": "GRANT_UNIT_KEYWORD changes UNIT keywords rather than each MODEL keyword scope and cannot preserve physical MODEL eligibility semantics.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "Models in the bearer’s unit have the SKITARII keyword."
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "TECH-PRIEST"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "TECH-PRIEST"
               }
             }
           ]

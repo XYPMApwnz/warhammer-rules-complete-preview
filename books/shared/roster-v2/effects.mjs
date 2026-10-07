@@ -1,7 +1,7 @@
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value => structuredClone(value);
-const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_UNIT_KEYWORD','MODIFY_RULE_METRIC']);
+const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC']);
 const bindingSubjects = {SOURCE_MODEL:'MODEL',SOURCE_UNIT:'UNIT',SOURCE_UNIT_MODELS:'MODEL',SOURCE_FORMED_MODELS:'MODEL',LEADERS_OF_SOURCE:'MODEL',ROSTER_UNITS:'UNIT'};
 export function validateRosterEffects(book, validatePredicate, evaluatePredicate) {
   const records = new Map(book.entities.map(e => [e.id,e]));
@@ -17,6 +17,8 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
       if (effect.operation === 'MODIFY_STAT' && (!['M','T','LD','OC','attacks','strength','damage'].includes(effect.field) || !['ADD','SET'].includes(effect.mode) || !Number.isFinite(effect.value))) throw new TypeError('Invalid characteristic operation');
       if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
       if (effect.operation === 'GRANT_UNIT_KEYWORD' && (effect.targetSubject !== 'UNIT' || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid UNIT keyword grant');
+      if (effect.operation === 'GRANT_MODEL_KEYWORD' && (effect.targetSubject !== 'MODEL' || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid MODEL keyword grant');
+      if (effect.operation === 'REMOVE_KEYWORD' && (!['MODEL','UNIT'].includes(effect.targetSubject) || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid scoped keyword removal');
       if (effect.operation === 'GRANT_MODEL_ABILITY' && (effect.targetSubject !== 'MODEL' || effect.ability?.name !== 'Feel No Pain' || !Number.isInteger(effect.ability.value) || effect.ability.value < 2 || effect.ability.value > 6)) throw new TypeError('Invalid MODEL ability');
       if (effect.operation === 'GRANT_WEAPON_ABILITY' && (typeof effect.ability !== 'string' || !effect.ability)) throw new TypeError('Invalid weapon ability');
       for (const id of [...(effect.weaponIds||[]),...(effect.excludeWeaponIds||[]),...(effect.equipmentRequirement?.excludeWeaponIds||[])]) if (records.get(id)?.kind !== 'WEAPON_PROFILE') throw new TypeError('Unresolved weapon identity');
@@ -93,18 +95,51 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     return selected.flatMap(unit=>unit.profiles.map(model=>({unit,model})));
   };
   const processed = new Set();
-  const apply = ({rule,clause,effect,source}, target) => {
+  const scopedKeywords = pending.some(p => ['GRANT_MODEL_KEYWORD','REMOVE_KEYWORD'].includes(p.effect.operation));
+  // Keyword contributions are derived from immutable starting bags. A UNIT
+  // override never rewrites MODEL facts; removing one MODEL contribution does
+  // not remove an identical contribution supplied by another profile.
+  const keywordBases = new Map(result.units.map(unit => {
+    const modelKeys = new Set(unit.profiles.flatMap(model => model.keywords));
+    return [unit,{unit:[...unit.keywords],own:unit.keywords.filter(key => !modelKeys.has(key)),
+      models:new Map(unit.profiles.map(model => [model,[...model.keywords]]))}];
+  }));
+  const keywordDeltas = new Map();
+  const resetKeywords = () => {
+    keywordDeltas.clear();
+    for (const [unit,base] of keywordBases) {
+      unit.keywords=[...base.unit];
+      keywordDeltas.set(unit,{grants:new Set(),removals:new Set()});
+      for (const [model,keys] of base.models) {
+        model.keywords=[...keys];
+        keywordDeltas.set(model,{grants:new Set(),removals:new Set()});
+      }
+    }
+    refreshFormedKeywords(result);
+  };
+  resetKeywords();
+  const derivedUnitKeywords = unit => {
+    const delta=keywordDeltas.get(unit),base=keywordBases.get(unit);
+    return [...new Set([...base.own,...unit.profiles.flatMap(model=>model.keywords),...delta.grants])]
+      .filter(key=>!delta.removals.has(key)).sort();
+  };
+  const eligible = ({rule,clause,effect,source}, target) => {
     const knownEquipment=effect.equipmentRequirement&&source?equipmentSatisfied(book,source,effect.equipmentRequirement):undefined;
     const extra = knownEquipment===undefined?{}:{equipmentRequirementSatisfied:knownEquipment};
     for (const condition of effect.conditions) {
       const subject = leaves(condition.predicate)[0].subject;
       const participant = condition.binding === 'SOURCE' ? source : target.unit;
       const ctx = predicateContext(state,result,participant?.instanceId,subject,condition.binding === 'TARGET' ? target.model?.scopeId : undefined,condition.binding === 'SOURCE' ? extra : {});
-      if (!ctx) return;
+      if (!ctx) return false;
       const status = evaluatePredicate(condition.predicate,ctx);
       if (status === 'INVALID') throw new TypeError('Invalid roster predicate: '+rule.id+'/'+effect.id);
-      if (status !== 'TRUE') { if (status === 'UNKNOWN') target.unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:status,reason:'Roster context unavailable'}); return; }
+      if (status !== 'TRUE') { if (status === 'UNKNOWN') target.unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:status,reason:'Roster context unavailable'}); return false; }
     }
+    return true;
+  };
+  const apply = (item, target, conditionsChecked=false) => {
+    const {rule,clause,effect,source}=item;
+    if (!conditionsChecked && !eligible(item,target)) return;
     const mutate = (object,key,after,targetModelId,targetWeaponId,weaponScope) => {
       const before = clone(object[key] ?? null);
       if (JSON.stringify(before) === JSON.stringify(after)) return;
@@ -119,7 +154,20 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     const unitRecipients=group?result.units.filter(u=>group.memberInstanceIds.includes(u.instanceId)):[target.unit];
     if (effect.operation === 'GRANT_UNIT_KEYWORD') for (const unit of unitRecipients) {
       const original=target.unit;target.unit=unit;
-      mutate(unit,'keywords',[...new Set([...unit.keywords,effect.keyword])].sort());target.unit=original;
+      keywordDeltas.get(unit).grants.add(effect.keyword);
+      mutate(unit,'keywords',scopedKeywords ? derivedUnitKeywords(unit) : [...new Set([...unit.keywords,effect.keyword])].sort());target.unit=original;
+    }
+    else if (effect.operation === 'GRANT_MODEL_KEYWORD' || effect.operation === 'REMOVE_KEYWORD') {
+      if (effect.targetSubject === 'MODEL') {
+        const delta=keywordDeltas.get(target.model),base=keywordBases.get(target.unit).models.get(target.model);
+        (effect.operation==='REMOVE_KEYWORD'?delta.removals:delta.grants).add(effect.keyword);
+        mutate(target.model,'keywords',[...new Set([...base,...delta.grants])].filter(key=>!delta.removals.has(key)).sort(),target.model.modelInstanceId);
+        target.unit.keywords=derivedUnitKeywords(target.unit);
+      } else for (const unit of unitRecipients) {
+        const original=target.unit;target.unit=unit;
+        keywordDeltas.get(unit).removals.add(effect.keyword);
+        mutate(unit,'keywords',derivedUnitKeywords(unit));target.unit=original;
+      }
     }
     else if (effect.operation === 'GRANT_MODEL_ABILITY') {
       const existing = target.model.abilities.find(a=>a.name === effect.ability.name), next = clone(target.model.abilities.filter(a=>a.name !== effect.ability.name));
@@ -150,16 +198,42 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       }
     }
   };
-  // Monotone keyword grants establish the known vocabulary before dependent effects.
-  const keyword = pending.filter(p=>p.effect.operation === 'GRANT_UNIT_KEYWORD');
-  for (let pass = 0; pass <= keyword.length; pass++) {
-    const before = processed.size;
-    for (const item of keyword) for (const target of targets(item.source,item.effect)) apply(item,target);
-    refreshFormedKeywords(result);
-    if (before === processed.size) break;
-    if (pass === keyword.length) throw new TypeError('Keyword fixed point did not converge');
+  const keywordOperations = new Set(['GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD']);
+  const keyword = pending.filter(p=>keywordOperations.has(p.effect.operation));
+  if (scopedKeywords) {
+    const rank={GRANT_UNIT_KEYWORD:0,GRANT_MODEL_KEYWORD:1,REMOVE_KEYWORD:2};
+    keyword.sort((a,b)=>rank[a.effect.operation]-rank[b.effect.operation] ||
+      a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') ||
+      (a.source?.instanceId||'').localeCompare(b.source?.instanceId||'','en'));
+    const signature=()=>JSON.stringify(result.units.map(unit=>[unit.instanceId,[...unit.keywords].sort(),
+      unit.profiles.map(model=>[model.scopeId,[...model.keywords].sort()])]));
+    const seen=new Set();
+    const bound=keyword.reduce((n,item)=>n+targets(item.source,item.effect).length,0)+1;
+    for (let pass=0;pass<=bound;pass++) {
+      const before=signature();
+      if (seen.has(before)) throw new TypeError('Scoped keyword conditions did not converge');
+      seen.add(before);
+      // Conditions observe the previous complete projection, never a partial
+      // ordering of grants/removals. Rebuild active contributions each pass.
+      const active=keyword.flatMap(item=>targets(item.source,item.effect).filter(target=>eligible(item,target)).map(target=>({item,target})));
+      resetKeywords();processed.clear();
+      for (const unit of result.units) unit.applied=[];
+      for (const {item,target} of active) apply(item,target,true);
+      refreshFormedKeywords(result);
+      if (signature()===before) break;
+      if (pass===bound) throw new TypeError('Scoped keyword conditions did not converge');
+    }
+  } else {
+    // Preserve the established grant-only path and its existing DG projections.
+    for (let pass = 0; pass <= keyword.length; pass++) {
+      const before = processed.size;
+      for (const item of keyword) for (const target of targets(item.source,item.effect)) apply(item,target);
+      refreshFormedKeywords(result);
+      if (before === processed.size) break;
+      if (pass === keyword.length) throw new TypeError('Keyword fixed point did not converge');
+    }
   }
-  for (const item of pending.filter(p=>p.effect.operation !== 'GRANT_UNIT_KEYWORD')) for (const target of targets(item.source,item.effect)) apply(item,target);
+  for (const item of pending.filter(p=>!keywordOperations.has(p.effect.operation))) for (const target of targets(item.source,item.effect)) apply(item,target);
   for (const unit of result.units) {
     unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason)===i);
     for (const model of unit.profiles) {

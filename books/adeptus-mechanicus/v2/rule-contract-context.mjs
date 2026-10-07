@@ -47,6 +47,9 @@ export function compilerInputs(book) {
     }
   }
   assert.equal(countBindings.length,composition.length,'Foreign composition binding');
+  // The shared roster kernel consumes the same explicit intrinsic MODEL scopes
+  // as compatibility; the canonical factual snapshot stays unchanged.
+  view.rosterProfileBindings=structuredClone(profileBindings);
   const attachmentRelations=[];
   for(const declaration of view.entities.filter(entity=>entity.kind==='ATTACHMENT_DECLARATION'&&
       ['LEADER','SUPPORT'].includes(entity.data.roleHeading))) {

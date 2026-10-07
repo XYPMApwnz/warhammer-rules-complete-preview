@@ -1,26 +1,26 @@
 {
   "schema": "adeptus-mechanicus-rule-contract-census/v2",
   "sourceRules": 204,
-  "built": 179,
-  "valid": 179,
-  "blockedOwners": 25,
-  "blockedCases": 25,
+  "built": 186,
+  "valid": 186,
+  "blockedOwners": 18,
+  "blockedCases": 18,
   "invalidContracts": 0,
   "unboundSourceRules": 0,
   "legacyContractReads": 0,
   "byKind": {
     "OTHER_RULE": 46,
-    "DATASHEET_ABILITY": 47,
+    "DATASHEET_ABILITY": 52,
     "DETACHMENT_RULE": 7,
-    "ENHANCEMENT": 20,
+    "ENHANCEMENT": 22,
     "STRATAGEM": 51,
     "FAQ_ERRATA_RULE": 8
   },
-  "compatibilityRelations": 6086,
+  "compatibilityRelations": 6324,
   "compatibility": {
-    "MATCH": 365,
-    "CONDITIONAL": 1222,
-    "NO_MATCH": 4499,
+    "MATCH": 370,
+    "CONDITIONAL": 1230,
+    "NO_MATCH": 4724,
     "INVALID": 0,
     "UNRESOLVED": 0
   },
@@ -3098,166 +3098,6 @@
   "blocked": [
     {
       "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "datasheet-archaeopter-fusilave:section:1",
-      "ownerKind": "DATASHEET_SECTION",
-      "contextLevel": "ROSTER",
-      "missingPrimitive": "MODEL_KEYWORD_GRANT",
-      "reason": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
-      "sourceFields": [
-        [
-          "blocks",
-          1,
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "blocks",
-          1,
-          "text"
-        ],
-        "quote": "The bearer has the SMOKE keyword."
-      },
-      "wholeOwnerBlocked": true,
-      "sourceCase": "The bearer has the SMOKE keyword.",
-      "semanticAtom": "MODEL_KEYWORD_GRANT",
-      "whyCompositionInsufficient": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/datasheets/0/sections/0"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "datasheet-archaeopter-stratoraptor:section:1",
-      "ownerKind": "DATASHEET_SECTION",
-      "contextLevel": "ROSTER",
-      "missingPrimitive": "MODEL_KEYWORD_GRANT",
-      "reason": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
-      "sourceFields": [
-        [
-          "blocks",
-          1,
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "blocks",
-          1,
-          "text"
-        ],
-        "quote": "The bearer has the SMOKE keyword."
-      },
-      "wholeOwnerBlocked": true,
-      "sourceCase": "The bearer has the SMOKE keyword.",
-      "semanticAtom": "MODEL_KEYWORD_GRANT",
-      "whyCompositionInsufficient": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/datasheets/1/sections/0"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "datasheet-archaeopter-transvector:section:1",
-      "ownerKind": "DATASHEET_SECTION",
-      "contextLevel": "ROSTER",
-      "missingPrimitive": "MODEL_KEYWORD_GRANT",
-      "reason": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
-      "sourceFields": [
-        [
-          "blocks",
-          1,
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "blocks",
-          1,
-          "text"
-        ],
-        "quote": "The bearer has the SMOKE keyword."
-      },
-      "wholeOwnerBlocked": true,
-      "sourceCase": "The bearer has the SMOKE keyword.",
-      "semanticAtom": "MODEL_KEYWORD_GRANT",
-      "whyCompositionInsufficient": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/datasheets/2/sections/0"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "datasheet-cybernetica-datasmith:section:1",
-      "ownerKind": "DATASHEET_SECTION",
-      "contextLevel": "ROSTER",
-      "missingPrimitive": "UNIT_KEYWORD_REMOVAL",
-      "reason": "Absence of KASTELAN ROBOT models can be known from initial roster attachments and can change in battle. Existing vocabulary can grant INFANTRY but cannot remove VEHICLE; the complete compound owner is blocked.",
-      "sourceFields": [
-        [
-          "blocks",
-          1,
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "blocks",
-          1,
-          "text"
-        ],
-        "quote": "This unit loses VEHICLE."
-      },
-      "wholeOwnerBlocked": true,
-      "sourceCase": "This unit loses VEHICLE.",
-      "semanticAtom": "UNIT_KEYWORD_REMOVAL",
-      "whyCompositionInsufficient": "Absence of KASTELAN ROBOT models can be known from initial roster attachments and can change in battle. Existing vocabulary can grant INFANTRY but cannot remove VEHICLE; the complete compound owner is blocked.",
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/datasheets/5/sections/0"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "datasheet-onager-dunecrawler:section:1",
-      "ownerKind": "DATASHEET_SECTION",
-      "contextLevel": "ROSTER",
-      "missingPrimitive": "MODEL_KEYWORD_REMOVAL",
-      "reason": "Selected broad spectrum data-tether removes SMOKE from its bearer MODEL. Existing vocabulary has no keyword removal operation.",
-      "sourceFields": [
-        [
-          "blocks",
-          2,
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "blocks",
-          2,
-          "text"
-        ],
-        "quote": "The bearer loses the SMOKE keyword"
-      },
-      "wholeOwnerBlocked": true,
-      "sourceCase": "The bearer loses the SMOKE keyword",
-      "semanticAtom": "MODEL_KEYWORD_REMOVAL",
-      "whyCompositionInsufficient": "Selected broad spectrum data-tether removes SMOKE from its bearer MODEL. Existing vocabulary has no keyword removal operation.",
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/datasheets/13/sections/0"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
       "ruleId": "army-rule-doctrina-imperatives:introduction",
       "ownerKind": "ARMY_RULE_COMPONENT",
       "contextLevel": "STATIC",
@@ -3358,63 +3198,6 @@
         "sourceId": "am-waha-11e-2026-09-25",
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
         "pointer": "/armyRules/0/components/2"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-haloscreed-battle-clade:enhancement:1",
-      "sourceCase": "models in that unit gain the HALO OVERRIDE keyword",
-      "semanticAtom": "MODEL keyword grant to the attached unit models, and Noospheric Transference selection exclusion",
-      "whyCompositionInsufficient": "GRANT_UNIT_KEYWORD cannot modify each MODEL keyword scope. The separate battle-selection exclusion remains source-backed deferred applicability and does not itself require an executable primitive now.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "models in that unit gain the HALO OVERRIDE keyword"
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_ID",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "id": "datasheet-cybernetica-datasmith:profile:default"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "CYBERNETICA DATASMITH"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-haloscreed-battle-clade"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/0/enhancements/0"
       }
     },
     {
@@ -3610,63 +3393,6 @@
         "sourceId": "am-waha-11e-2026-09-25",
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
         "pointer": "/detachments/1/enhancements/0"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-eradication-cohort:enhancement:2",
-      "sourceCase": "Models in the bearer’s unit have the SKITARII keyword.",
-      "semanticAtom": "MODEL keyword grant to bearer unit models",
-      "whyCompositionInsufficient": "GRANT_UNIT_KEYWORD changes UNIT keywords rather than each MODEL keyword scope and cannot preserve physical MODEL eligibility semantics.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "Models in the bearer’s unit have the SKITARII keyword."
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "TECH-PRIEST"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "TECH-PRIEST"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-eradication-cohort"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/1/enhancements/1"
       }
     },
     {
