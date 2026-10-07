@@ -60,8 +60,9 @@ export function projectInstanceCards(cards, unit, effective) {
       if (!values.has(parts[0])) return [field];
       const value=values.get(parts[0]);
       if (Array.isArray(value)) return []; // Reproject the entire typed array below.
-      if (parts.length!==1) return [field];
-      return [{...field,value:clone(value),displayValue:undefined,runtimeDerived:true}];
+      const effectiveValue=parts.slice(1).reduce((child,key)=>child?.[key],value);
+      if(effectiveValue===undefined)return [field];
+      return [{...field,value:clone(effectiveValue),displayValue:undefined,runtimeDerived:true}];
     });
     if (source==='WEAPON_PROFILE' && values.has('mode') && !card.fields.some(field=>field.source?.path==='/mode')) {
       card.fields.push({id:`${base.id}::/mode`,label:'mode',type:'text',value:values.get('mode'),
@@ -77,11 +78,20 @@ export function projectInstanceCards(cards, unit, effective) {
         contextId:base.contextId,source:{entityId:base.id,path:`/${key}/${index}`},runtimeDerived:true}));
     }
     if (source==='PROFILE') {
-      card.rosterAbilities=clone(record.abilities || []);card.rosterMetrics=clone(record.metrics || {});card.rosterQuantity=record.quantity;
+      // Intrinsic reference memberships already have their canonical location.
+      // Only granted abilities add a new effective presentation row.
+      card.rosterAbilities=clone((record.abilities || []).filter(ability=>ability.canonicalId || ability.value!==undefined));card.rosterMetrics=clone(record.metrics || {});card.rosterQuantity=record.quantity;
+      if(values.has('INSV')) {
+        const canonicalField=(card.profileFieldIds||[]).flatMap(id=>[...cards.values()].flatMap(value=>value.fields.filter(field=>field.id===id))).find(field=>field.presentationPath==='/INSV');
+        card.profileFieldIds=(card.profileFieldIds||[]).filter(id=>id!==canonicalField?.id);
+        if(!card.fields.some(field=>(field.presentationPath??field.source?.path)==='/INSV'))card.fields.push({...(canonicalField||{}),
+          id:`${base.id}::/INSV`,label:'Invulnerable Save',type:'text',value:values.get('INSV'),presentationPath:'/INSV',
+          contextId:base.contextId,source:canonicalField?.source||{entityId:base.id,path:'/INSV'},runtimeDerived:true});
+      }
       const derivedField=(path,label,value,displayValue)=>({id:`${base.id}::/${path}`,label,type:'text',value:clone(value),displayValue,
         contextId:base.contextId,source:{entityId:base.id,path:`/${path}`},runtimeDerived:true});
       card.rosterAbilities.forEach((ability,index)=>card.fields.push(derivedField(`rosterAbilities/${index}`,`${ability.name}: `,ability,
-        ability.value===undefined?ability.name:`${ability.value}+`)));
+        ability.value===undefined?ability.name+Object.values(ability.parameters||{}).map(value=>` ${value}"`).join(''):`${ability.value}+`)));
       const metricLabels={contagionRange:'Contagion Range',detectionRange:'Detection Range'};
       for (const [key,metric] of Object.entries(card.rosterMetrics)) {
         assert(Object.hasOwn(metricLabels,key),'Unsupported effective metric presentation: '+key);
@@ -119,6 +129,32 @@ export function projectInstanceCards(cards, unit, effective) {
   effective.keywords.forEach((keyword,index)=>root.fields.push({...firstKeyword,id:`${root.id}::/keywords/${index}`,
     label:'Effective unit keywords',type:'tokens',value:keyword,contextId:root.contextId,
     source:{entityId:root.id,path:`/keywords/${index}`},runtimeDerived:true}));
+  if(root.keywordGroups) {
+    const factionFields=root.fields.filter(field=>field.presentationPath?.startsWith('/factionKeywords/'));
+    const faction=new Set(factionFields.map(field=>field.value));
+    // Nested keyword storage uses the same effective interface as flat storage.
+    // MODEL scopes retain independent bags; the formed UNIT union is separate.
+    root.fields=root.fields.filter(field=>!field.presentationPath?.startsWith('/keywords/'));
+    const groups=[];
+    const add=(label,keywords,key)=>{
+      const labelId=`${root.id}::/rosterKeywordGroups/${key}/label`,fieldIds=[];
+      root.fields.push({id:labelId,label:'',type:'text',value:label,contextId:root.contextId,runtimeDerived:true});
+      keywords.forEach((keyword,index)=>{const id=`${root.id}::/rosterKeywordGroups/${key}/${index}`;fieldIds.push(id);
+        root.fields.push({id,label:'',type:'tokens',value:keyword,contextId:root.contextId,runtimeDerived:true});});
+      groups.push({labelFieldId:labelId,fieldIds});
+    };
+    // Replace, rather than repeat, the temporary flat UNIT keyword overlay.
+    root.fields=root.fields.filter(field=>!field.source?.path.startsWith('/keywords/'));
+    add('Effective unit keywords',effective.keywords.filter(keyword=>!faction.has(keyword)),'unit');
+    if(effective.profiles.length>1)for(const [index,profile]of effective.profiles.entries()) {
+      const canonical=cards.get(profile.id),name=canonical.fields.find(field=>field.source?.path==='/name')?.value||canonical.title;
+      add(`${name} · Model keywords`,(profile.keywords||[]).filter(keyword=>!faction.has(keyword)),`profile-${index}`);
+    }
+    const factionGroup=root.keywordGroups.find(group=>group.fieldIds.some(id=>factionFields.some(field=>field.id===id)));
+    if(factionGroup)groups.push(clone(factionGroup));
+    root.keywordGroups=groups;
+  }
+  root.rosterUnitAbilities=clone(effective.unitAbilities||[]);
   variants.set(root.id,[annotate(root)]);
   return variants;
 }

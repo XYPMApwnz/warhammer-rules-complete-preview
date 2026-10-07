@@ -37,6 +37,7 @@ const forbidden=address=>/\/books\/death-guard\/(?!assets\/)/.test(address)||
   /\/books\/adeptus-mechanicus\/(?!v2\/|assets\/)/.test(address)||
   /(?:target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\.)/.test(address);
 const allowed=address=>address===appPath||address===payloadPath||
+  /^\/books\/adeptus-mechanicus\/v2\/(?:roster-runtime\.mjs|roster-import\.mjs|roster-import-aliases\.json|generated\/roster-runtime\.json)$/.test(address)||
   /^\/books\/shared\/(?:army-book-app-v2|rule-contract-v2|roster-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
   /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
   /^\/books\/adeptus-mechanicus\/assets\/[\w./-]+\.(?:webp|png|jpe?g|svg)$/.test(address)||
@@ -66,7 +67,7 @@ try{
     const page=await context.newPage(),errors=[];
     page.on('pageerror',error=>errors.push(error.message));
     await page.goto(origin+appPath);await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2));
-    assert.equal(await page.evaluate(()=>Boolean(window.ArmyBookAppV2.roster)),false,'Book mode created roster state');
+    assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.roster?.state??null),null,'Book mode invented roster state');
     const normalCoverage=new Map();
     const observeNormal=async()=>{
       const observed=await page.evaluate(()=>({facts:[...document.querySelectorAll('main [data-fact-id],dialog[open] [data-fact-id]')]

@@ -1,6 +1,7 @@
 /** Standalone presentation boundary controls; no army factual inputs. */
 import assert from 'node:assert/strict';
 import {projectArmyBook} from './project.mjs';
+import {projectInstanceCards} from './personal.mjs';
 
 function fixture({nested=false,mixed=false}={}) {
   const entities=[{id:'unit-example',kind:'DATASHEET',data:{name:'Example',profileIds:['profile-a'],keywords:['INFANTRY']}}];
@@ -61,4 +62,44 @@ for(const mutation of [model=>model.entities[1].parentId='another-unit',model=>m
   const model=fixture({nested:true,mixed:true});mutation(model);
   assert.throws(()=>projectArmyBook(model,new Map(),{title:'Synthetic'}));
 }
-console.log(JSON.stringify({status:'PASS',sharedInterface:true,checks,negativeControls:2,armyFactualReads:0}));
+// The same physical-instance overlay accepts flat and nested effective values.
+// A shared canonical save belongs to two profiles, but only one effective scope
+// is modified. These controls need neither an army registry nor an interpreter.
+for(const nested of [false,true]) {
+  const model=fixture({nested,mixed:nested}),payload=projectArmyBook(model,new Map(),{title:'Synthetic'});
+  const cards=new Map(payload.cards.map(card=>[card.id,card])),before=structuredClone(payload);
+  const unit={instanceId:'physical-a',canonicalUnitId:'unit-example',selections:[],
+    modelRows:model.entities[0].data.profileIds.map((canonicalProfileId,index)=>({rowId:'row-'+index,canonicalProfileId,quantity:1,selections:[],loadouts:[]}))};
+  const profiles=unit.modelRows.map((row,index)=>{
+    const data=structuredClone(model.entities.find(entity=>entity.id===row.canonicalProfileId).data);
+    (nested?data.stats:data).M=index?'6"':'8"';if(!index)data.INSV='4+';
+    return {id:row.canonicalProfileId,scopeId:'scope-'+index,quantity:1,
+      fields:Object.entries(data).map(([label,value])=>({label,value})),
+      keywords:index?['INFANTRY','EXAMPLE_FACTION']:['INFANTRY','TECHNICIAN','SMOKE','EXAMPLE_FACTION'],
+      abilities:index?[]:[{id:'intrinsic',name:'Intrinsic ability'},{canonicalId:'synthetic-scouts',name:'Scouts',parameters:{distance:6}}],metrics:{}};
+  });
+  const effective={instanceId:unit.instanceId,canonicalUnitId:unit.canonicalUnitId,profiles,weapons:[],
+    keywords:['INFANTRY','TECHNICIAN','SMOKE','EXAMPLE_FACTION'],unitAbilities:[{canonicalId:'synthetic-stealth',name:'Stealth',parameters:{}}]};
+  const variants=projectInstanceCards(cards,unit,effective),a=variants.get('profile-a')[0];
+  const value=(card,path)=>card.fields.find(field=>(field.presentationPath??field.source?.path)===path)?.value;
+  assert.equal(value(a,'/M'),'8"','Nested effective characteristic must reach the normal statline');
+  assert.equal(value(a,'/INSV'),'4+','Effective save must override its separate canonical owner');
+  assert.equal(a.profileFieldIds?.length||0,0,'Canonical save must not render again after its effective override');
+  assert.deepEqual(a.rosterAbilities,[{canonicalId:'synthetic-scouts',name:'Scouts',parameters:{distance:6}}]);
+  assert.equal(a.fields.find(field=>field.source?.path==='/rosterAbilities/0').displayValue,'Scouts 6"');
+  const root=variants.get('unit-example')[0];assert.deepEqual(root.rosterUnitAbilities,effective.unitAbilities);
+  if(nested) {
+    assert.equal(value(variants.get('profile-b')[0],'/M'),'6"','Sibling profile changed');
+    assert.deepEqual(variants.get('profile-b')[0].profileFieldIds,['save::/value'],'Sibling canonical save changed');
+    const groups=root.keywordGroups.map(group=>({label:root.fields.find(field=>field.id===group.labelFieldId).value,
+      keys:group.fieldIds.map(id=>root.fields.find(field=>field.id===id).value)}));
+    assert.ok(groups.find(group=>group.label==='Specialist · Model keywords').keys.includes('SMOKE'));
+    assert.ok(!groups.find(group=>group.label==='Crew · Model keywords').keys.includes('SMOKE'),'MODEL keyword leaked to sibling presentation');
+    assert.equal(groups.filter(group=>group.label==='Effective unit keywords').length,1);
+  }
+  assert.deepEqual(payload,before,'Instance overlay mutated canonical presentation');
+  assert.deepEqual(projectInstanceCards(cards,unit,effective),variants,'Effective overlay rebuild differs');
+  assert.throws(()=>projectInstanceCards(cards,{...unit,instanceId:'physical-b'},effective),'Wrong physical owner accepted');
+  checks.push(nested?'nested-effective-profile-isolation':'flat-effective-overlay');
+}
+console.log(JSON.stringify({status:'PASS',sharedInterface:true,checks,negativeControls:4,armyFactualReads:0}));

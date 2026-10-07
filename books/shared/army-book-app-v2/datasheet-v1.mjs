@@ -258,6 +258,11 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       }profile.append(instruction);
     }
     const abilityList=el('div','ability-list');abilities.append(abilityList);
+    for(const ability of card.rosterUnitAbilities||[]) {
+      const grant=el('div','ability ds-granted-ability');
+      const label=ability.name+Object.values(ability.parameters||{}).map(value=>` ${value}"`).join('');
+      grant.append(anchor(label,ability.canonicalId,true));abilityList.append(grant);
+    }
     for(const child of children.filter(c=>c.kind==='RULE_REFERENCE'))abilityList.append(renderRuleReference(child,instanceId));
     const rendered=new Set(children.filter(c=>['PROFILE','WEAPON_PROFILE','WEAPON_PROFILE_SELECTION','RULE_REFERENCE','MFM_UNIT_POINTS'].includes(c.kind)).map(c=>c.id));
     for(const child of children.filter(c=>config.sectionRoles[c.id]==='abilities')){

@@ -16,7 +16,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
   validateCompatibilityFeasibility(book);
   if (records.size !== book.entities.length) throw new TypeError('Ambiguous canonical identity');
   if (!Array.isArray(policies)) throw new TypeError('Missing typed attachment policy');
-  for (const policy of policies) if (records.get(policy.sourceId)?.kind!=='DATASHEET' || records.get(policy.targetId)?.kind!=='DATASHEET' || !['LEADER','SUPPORT_EXCEPTION'].includes(policy.role) || ![0,1].includes(policy.additionalLeaders) || !policy.sourceIds?.length) throw new TypeError('Invalid canonical attachment policy');
+  for (const policy of policies) if (records.get(policy.sourceId)?.kind!=='DATASHEET' || records.get(policy.targetId)?.kind!=='DATASHEET' || !['LEADER','SUPPORT','SUPPORT_EXCEPTION'].includes(policy.role) || ![0,1].includes(policy.additionalLeaders) || !policy.sourceIds?.length) throw new TypeError('Invalid canonical attachment policy');
   let state = null, projection = null;
   const service = {
     catalog:book.entities.map(e=>({id:e.id,kind:e.kind,parentId:e.parentId,title:e.data.title || e.data.name || e.id,
@@ -48,7 +48,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
         ...(unit.abilities?{unitAbilities:clone(unit.abilities)}:{}),
         formedUnit:group?clone(group):null,keywords:group?[...group.keywords]:[...unit.keywords],intrinsicKeywords:[...unit.intrinsicKeywords],
         profiles:unit.profiles.map(m=>({id:m.canonicalProfileId,scopeId:m.scopeId,ownerInstanceId:instanceId,quantity:m.quantity,modelInstanceId:m.modelInstanceId,title:canonical.data.title,
-          fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],metrics:clone(m.metrics),abilities:clone(m.abilities)})),
+          fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],keywords:[...m.keywords],intrinsicKeywords:[...(m.intrinsicKeywords||unit.intrinsicKeywords)],metrics:clone(m.metrics),abilities:clone(m.abilities)})),
         weapons:[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))].map(w=>({id:w.canonicalProfileId,title:w.data.name,ownerInstanceId:instanceId,physicalQuantity:w.physicalQuantity,modelInstanceId:w.modelInstanceId,scopeId:w.scopeId || null,selectionKey:w.selectionKey,fields:fields(w.data)})),
         abilities:[...new Set([...canonical.data.sectionIds,...canonical.data.ruleReferenceIds,...canonical.data.wargearOptionIds,...(canonical.data.rawFactIds||[]),
           ...book.entities.filter(e=>e.parentId===canonical.id&&['SUPPLEMENTAL_DATASHEET_RULE','WEAPON_PROFILE_SELECTION','WARGEAR_FOOTNOTE'].includes(e.kind)).map(e=>e.id)])].map(id=>({id,title:name(id),text:clone(records.get(id).data)})),

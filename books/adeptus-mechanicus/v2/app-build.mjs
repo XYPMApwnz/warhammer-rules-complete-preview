@@ -10,6 +10,7 @@ import {projectBookPresentation} from '../../shared/army-book-app-v2/book-v1-pro
 import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datasheet-v1.mjs';
 import {summarizeCompatibility} from '../../shared/rule-contract-v2/compatibility.mjs';
 import {buildPresentationReferences} from './presentation-reference-build.mjs';
+import {writeRosterRuntime} from './roster-build.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 export function readAppInputs() {
@@ -88,15 +89,17 @@ export function buildApp(inputs=readAppInputs()) {
   return payload;
 }
 export function writeApp({check=false}={}) {
+  writeRosterRuntime({check});
   const payload=buildApp(),outputs=new Map([
     ['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],
     ['./app.html',`<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Adeptus Mechanicus · Army Book V2</title><link rel="stylesheet" href="../../shared/army-book-app-v2/styles.css"><link rel="stylesheet" href="../../shared/army-book-app-v2/datasheet-v1.css"><link rel="stylesheet" href="../../shared/army-book-app-v2/book-v1.css"></head>
 <body><p role="status">Loading Army Book…</p><script type="module">
 import {mount} from '../../shared/army-book-app-v2/runtime.mjs';
+import {createBrowserRoster} from './roster-runtime.mjs';
 const response=await fetch('./generated/app-presentation.json');
 if(!response.ok)throw new Error('Army Book payload unavailable');
-mount(document,await response.json());
+mount(document,await response.json(),{roster:await createBrowserRoster()});
 </script></body></html>
 `]]);
   for(const [name,value]of outputs){const location=new URL(name,import.meta.url);if(check)assert.equal(fs.readFileSync(location,'utf8'),value,'Stale Army Book projection: '+name);else fs.writeFileSync(location,value);}
