@@ -6,6 +6,7 @@ import {withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 import {parse} from '../../shared/roster-v2/parser.mjs';
 import * as evaluator from './rule-contract-schema.mjs';
 import {stateFields} from './rule-contract-state-fields.mjs';
+import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
 
 const book=JSON.parse(fs.readFileSync(new URL('./generated/rule-contract-effective.json',import.meta.url),'utf8'));
 const records=new Map(book.entities.map(entity=>[entity.id,entity]));
@@ -103,12 +104,15 @@ assert.equal(evaluator.evaluatePredicate(field(),{subject:'UNIT',keywords:new Se
 
 // Mutations reproduce both original defect paths without touching production
 // artifacts. The guards must reject a lost gate and formed-keyword substitution.
-const baselineKeywords=stateFields.isWarlord.intrinsicAllKeywords;
-try{
-  delete stateFields.isWarlord.intrinsicAllKeywords;
-  const context=armyBookContext(book,records.get('unit-foetid-bloat-drone'),'UNIT',plague.parentId);
-  assert.throws(()=>assert.equal(evaluator.evaluatePredicate(field(),context),'FALSE'));
-}finally{stateFields.isWarlord.intrinsicAllKeywords=baselineKeywords;}
+// Factories snapshot their input: poison the declaration before constructing
+// the mutation evaluator, rather than changing a live production registry.
+const mutatedFields=structuredClone(stateFields);
+delete mutatedFields.isWarlord.intrinsicAllKeywords;
+const mutatedEvaluator=createRuleContractSchema({stateFields:mutatedFields,
+  modelAbilities:['Deadly Demise'],contractSchema:'death-guard-rule-contract/v2'});
+const mutationContext=armyBookContext(book,records.get('unit-foetid-bloat-drone'),'UNIT',plague.parentId);
+assert.throws(()=>assert.equal(mutatedEvaluator.evaluatePredicate(field(),mutationContext),'FALSE'));
+assert.equal(evaluator.evaluatePredicate(field(),mutationContext),'FALSE','Mutation must not contaminate the DG evaluator');
 const poisoned=service.context('parsed-unit-3','UNIT');poisoned.intrinsicKeywords=poisoned.keywords;poisoned.roster.isWarlord=true;
 assert.throws(()=>assert.equal(evaluator.evaluatePredicate(field(),poisoned),'FALSE'));
 const missingAsFalse=unknown.context('parsed-unit-1','UNIT');missingAsFalse.roster.isWarlord=false;

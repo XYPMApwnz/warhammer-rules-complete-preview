@@ -42,6 +42,7 @@ const allowed=new Map([
   ['/books/death-guard/v2/generated/rule-contract-effective.json','application/json'],
   ['/books/death-guard/v2/roster-boot.mjs','text/javascript'],
   ['/books/death-guard/v2/rule-contract-schema.mjs','text/javascript'],
+  ['/books/shared/rule-contract-v2/schema.mjs','text/javascript'],
   ['/books/death-guard/v2/rule-contract-state-fields.mjs','text/javascript'],
   ['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],
   ...['navigation-v1.mjs','navigation-v1-controller.mjs','navigation-v1-targets.mjs'].map(file=>['/books/shared/army-book-app-v2/'+file,'text/javascript']),

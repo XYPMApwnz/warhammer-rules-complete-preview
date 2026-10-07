@@ -36,6 +36,7 @@ const allowed=new Map([
   [app,'text/html'],
   ...['books/death-guard/v2/generated/app-presentation.json','books/death-guard/v2/generated/rule-contract-effective.json'].map(p=>['/'+p,'application/json']),
   ...['books/death-guard/v2/roster-boot.mjs','books/death-guard/v2/rule-contract-schema.mjs','books/death-guard/v2/rule-contract-state-fields.mjs',
+    'books/shared/rule-contract-v2/schema.mjs',
       'books/shared/army-book-app-v2/runtime.mjs','books/shared/army-book-app-v2/navigation-v1.mjs','books/shared/army-book-app-v2/navigation-v1-controller.mjs','books/shared/army-book-app-v2/navigation-v1-targets.mjs','books/shared/army-book-app-v2/roster.mjs','books/shared/army-book-app-v2/personal.mjs','books/shared/army-book-app-v2/glossary.mjs',
       'books/shared/roster-v2/runtime.mjs','books/shared/roster-v2/import.mjs','books/shared/roster-v2/context.mjs','books/shared/roster-v2/effects.mjs','books/shared/roster-v2/parser.mjs'].map(p=>['/'+p,'text/javascript']),
   ['/books/shared/army-book-app-v2/styles.css','text/css'],['/books/shared/army-book-app-v2/navigation-v1.css','text/css']
