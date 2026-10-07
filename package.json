@@ -78,6 +78,7 @@
     "qa:glossary:browser": "node tests/core-reader-popup-glossary-qa.mjs && node tests/glossary-viewer-qa.mjs --browser && node tests/glossary-navigation-coverage-qa.mjs --browser",
     "qa:shared:v2:kernel": "node books/shared/rule-contract-v2/schema-qa.mjs",
     "qa:shared:v2:binders": "node books/shared/rule-contract-v2/bindings-qa.mjs",
+    "qa:shared:v2:compatibility": "node books/shared/rule-contract-v2/compatibility-qa.mjs",
     "qa:dg:v2:glossary": "node books/death-guard/v2/glossary-build.mjs --check && node books/death-guard/v2/app-build.mjs --check && node books/death-guard/v2/glossary-qa.mjs",
     "qa:dg:v2:glossary:browser": "node books/death-guard/v2/glossary-browser-qa.mjs",
     "qa:dg:v2:related-popups:browser": "node books/death-guard/v2/related-popup-v1-browser-qa.mjs",

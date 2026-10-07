@@ -1,3 +1,4 @@
+import {createDGCompatibilityCompiler} from './rule-contract-context.mjs';
 import {mergeContractDeclarations,bindCanonicalContract} from '../../shared/rule-contract-v2/bindings.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -6,14 +7,12 @@ import {fileURLToPath} from 'node:url';
 import {buildFactualV2} from './build.mjs';
 import {buildEnhancementContracts,buildDetachmentContracts} from './rule-contract-enhancements.mjs';
 import {buildStratagemContracts} from './rule-contract-stratagems.mjs';
-import {validateContracts,evaluatePredicate,evaluateRole,publicResult} from './rule-contract-schema.mjs';
+import {validateContracts,evaluatePredicate} from './rule-contract-schema.mjs';
 import {parseSourceHtml,sourceNode,sourceNodeText,normalizeSourceText} from './raw-source.mjs';
 import {extendRosterContracts} from './roster-contract-build.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {validatePredicate} from './rule-contract-schema.mjs';
 import {buildCompatibilityFeasibility} from './feasibility-build.mjs';
-import {staticCapabilities,validateCompatibilityFeasibility,evaluateRequiredRecipients,includeRecipientFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
-import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
 const directory=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(directory,'../../..');
 const addresses=JSON.parse(fs.readFileSync(path.join(directory,'rule-source-addresses.json'),'utf8'));
@@ -83,51 +82,21 @@ export function buildRuleContractV2() {
   return extended;
 }
 /** Explicit projection of a canonical profile, not an interchangeable UNIT/MODEL API. */
-export function entityContext(model,unit,subject,detachmentId) {
-  const intrinsicKeywords=new Set([...unit.data.keywords,...unit.data.factionKeywords]);
-  const keywords=new Set(intrinsicKeywords);
-  for(const rule of model.entities.filter(entity=>entity.ruleContract?.detachmentId===detachmentId)) for(const grant of (rule.ruleContract.clauses||[]).map(clause=>clause.keywordProjection).filter(Boolean)) {
-    if(evaluatePredicate(grant.selector,{subject:grant.subject,unitId:unit.id,keywords,roster:{detachmentId}})==='TRUE')keywords.add(grant.keyword);
-  }
-  const abilities=new Set();
-  // Normalize an accepted Core reference during BUILD; no rule-title lookup or runtime prose parsing.
-  for(const id of unit.data.ruleReferenceIds) {
-    const reference=model.entities.find(entity=>entity.id===id);
-    if(/\bDeadly Demise\b/.test(reference.data.label.replace(/^CORE ABILITIES/,'')))abilities.add('Deadly Demise');
-  }
-  const modelId=unit.data.profileIds.length===1?unit.data.profileIds[0]:undefined;
-  const unknownKeywords=new Set();
-  if(subject==='UNIT'||subject==='FORMED_ATTACHED_UNIT') {
-    // Potential Attached Unit membership is unavailable roster context, not a
-    // permanent change to a Bodyguard's facts or its individual MODEL keywords.
-    for(const edge of model.mfm.relations.filter(edge=>edge.targetId===unit.id||edge.sourceId===unit.id)) {
-      const other=model.entities.find(entity=>entity.id===(edge.targetId===unit.id?edge.sourceId:edge.targetId));
-      for(const keyword of [...other.data.keywords,...other.data.factionKeywords]) if(!keywords.has(keyword))unknownKeywords.add(keyword);
-    }
-  }
-  return {subject,unitId:unit.id,...(subject==='MODEL'?{modelId}:{}),intrinsicKeywords,keywords,unknownKeywords,
-    owner:{unitId:unit.id,keywords:new Set(keywords),unknownKeywords:new Set()},
-    abilities,capabilities:staticCapabilities(model,unit.id),roster:{detachmentId}};
+export function entityContext(model,unit,subject,detachmentId,profileId) {
+  const contexts=createDGCompatibilityCompiler(model).contextsFor(unit.id,subject,
+    {detachmentId,profileId,modelKeywordProjections:true,unknownDetachmentKeywords:false});
+  assert.equal(contexts.length,1,'An explicit MODEL profile is required for a mixed datasheet');
+  return {...contexts[0],roster:{detachmentId}};
 }
-const any=states=>states.includes('INVALID')?'INVALID':states.includes('TRUE')?'TRUE':states.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 export function compileCompatibility(model) {
   validateContracts(model);
-  validateCompatibilityFeasibility(model);
   const core=JSON.parse(fs.readFileSync(path.join(root,'books/core-rules/content/core-rules.digital-11e.json'),'utf8'));
   assert.ok(core.records.find(record=>record.code==='02.05.01')?.text.includes('A model only has its own keywords.'),'Accepted MODEL keyword semantics changed; source review required');
   assert.ok(core.records.find(record=>record.code==='19.03')?.text.includes('An attached unit has all of the keywords of all of its component units.'),'Accepted formed UNIT keyword semantics changed; source review required');
-  const rows=[];
-  for(const rule of model.entities.filter(e=>['STRATAGEM','ENHANCEMENT','DETACHMENT_RULE'].includes(e.ruleContract?.kind))) {
-    const contract=rule.ruleContract;
-    for(const unit of model.entities.filter(e=>e.kind==='DATASHEET')) {
-      const eligibleRoles=contract.roles.filter(role=>(contract.compatibilityRoleIds||[contract.roles[0]?.id]).includes(role.id));
-      const evaluations=eligibleRoles.map(role=>({roleId:role.id,state:evaluateRole(role,contract.conditions||[],enhancementOwnerContext(contract,entityContext(model,unit,role.subject,contract.detachmentId)))}));
-      const recipient=evaluateRequiredRecipients(contract,unit.id,model.entities.filter(e=>e.kind==='DATASHEET').map(e=>({canonicalUnitId:e.id})),
-        {book:model,evaluateRole,contextFor:(candidate,subject)=>entityContext(model,model.entities.find(e=>e.id===candidate.canonicalUnitId),subject,contract.detachmentId)});
-      const state=includeRecipientFeasibility(any(evaluations.map(result=>result.state)),recipient);
-      rows.push({ruleId:rule.id,unitId:unit.id,state,applicability:publicResult[state],roles:evaluations});
-    }
-  }
+  const compiled=createDGCompatibilityCompiler(model).compileRows({kinds:['STRATAGEM','ENHANCEMENT','DETACHMENT_RULE'],
+    contextForRule:rule=>({detachmentId:rule.ruleContract.detachmentId,modelKeywordProjections:true,unknownDetachmentKeywords:false})});
+  const rows=compiled.rows.map(({ruleId,unitId,state,applicability,roles})=>({ruleId,unitId,state,applicability,
+    roles:roles.map(({roleId,state})=>({roleId,state}))}));
   return {schema:'death-guard-compatibility-projection/v2',authority:'DISPOSABLE_PROJECTION',queryPurpose:'TARGET_ELIGIBILITY_WITH_REQUIRED_RECIPIENT_FEASIBILITY',keywordContextPolicy:{model:'OWN_KEYWORDS_ONLY',unit:'COMPONENT_KEYWORD_UNION',unavailableFormation:'UNKNOWN',coreSource:'books/core-rules/content/core-rules.digital-11e.json',coreRuleCodes:['02.05.01','19.03'],coreCorpusFingerprint:core.meta.corpusFingerprint,eligibilityOwner:'mfm.relations'},rows};
 }
 /** Re-enumerate the previous source-card domain. Cards never determine answers. */
