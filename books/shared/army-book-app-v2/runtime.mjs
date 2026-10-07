@@ -526,8 +526,20 @@ export function mount(document, payload, options = {}) {
         if(target){const heading=el('h2','v1-contents-heading',child.label);heading.dataset.contentsTarget=child.id;target.before(heading);}
       }
     };
+    const appendInstance=(parent,entry)=>{
+      // Canonical IDs may repeat in a personal book; the physical instance is
+      // the section identity and supplies the existing effective projection.
+      if(rendered.has(entry.id))return;rendered.add(entry.id);
+      const unit=options.roster.state.units.find(unit=>unit.instanceId===entry.instanceId);
+      const variants=projectInstanceCards(cards,unit,options.roster.effective(entry.instanceId));
+      const section=groupSection(entry.id,entry.label);
+      section.append(renderCard(variants.get(unit.canonicalUnitId)[0],{variants,instanceId:entry.instanceId}));
+      parent.append(section);
+    };
     for(const group of payload.groups.filter(group=>!personalMode&&group.id==='introduction'))for(const rootId of group.itemIds)appendCard(pages,rootId);
     for(const root of model.roots){
+      if(personalMode&&root.attachmentGroup){for(const member of root.members)appendInstance(pages,member);continue;}
+      if(personalMode&&root.instanceId){appendInstance(pages,root);continue;}
       if(root.id==='start'||!root.id)continue;
       const section=groupSection(root.id,root.label);
       if(root.id==='nav:datasheets')for(const category of root.children){const categorySection=groupSection(category.id,category.label);for(const unit of category.children)appendCard(categorySection,unit.canonicalId);section.append(categorySection);}
