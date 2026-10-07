@@ -309,3 +309,41 @@ node books/adeptus-mechanicus/v2/roster-import-browser-qa.mjs
 The browser guard runs the same import service on desktop and 390x844 phone,
 checks snapshot/reload equality and disconnects all legacy, Rule Contract and
 effect modules. Normal Army Book presentation remains unchanged.
+
+## Physical attachment boundary
+
+`roster-attachments.mjs` adds source-backed attachment state through the existing
+shared roster model. `loadRosterAttachments()` loads current V2 records and
+book-owned reference bindings; Node callers can use
+`createAdMechRosterAttachments(book, importMetadata, attachmentBindings)`.
+The public workflow is receiving unit first: `candidates(bodyguardInstanceId)`,
+then `attach(bodyguardInstanceId, participantInstanceId)`. `detach` takes the
+participant ID; `reattach` takes recipient then participant. Import never
+infers an attachment. Failed operations retain the previous physical state.
+
+Current canonical declarations produce 41 distinct eligible relationships.
+Leader and Support roles permit one participant of each role, following current
+Core. Datasmith participation is optional and limited to one Support, with no
+legacy unlimited/multiple-Datasmith exception. Three book-owned typed recipient
+redirects retain their separate source evidence; direct permissions remain
+valid independently of a redirect's additional qualifier.
+
+`state`/`snapshot` preserve exact physical ownership; `groups`, `context` and
+`modelScopes` derive attachment membership and component-relative leading state.
+Profile quantities, intrinsic MODEL keywords/abilities and independently owned
+Enhancements remain unchanged. UNIT context may union the group's keywords.
+This stage exposes no effective datasheet or effect API and enables no new UI;
+the shared formed context is used only to answer attachment/context questions.
+
+```text
+node books/shared/roster-v2/attachment-service-qa.mjs
+node books/adeptus-mechanicus/v2/roster-attachment-qa.mjs
+node books/adeptus-mechanicus/v2/roster-attachment-browser-qa.mjs
+```
+
+Source-backed guards compare every one of the 34x34 canonical candidate pairs,
+exercise physical duplicate candidates, mixed Servitor profiles, separate owners,
+capacity rejection, detach/re-attach, both attachment orders and snapshot reload.
+The standalone shared guard proves the AH05 product override with a Bodyguard
+Upgrade plus independently owned Leader and Support Enhancements, without army
+data. Browser guards disconnect all legacy and effect/projection dependencies.

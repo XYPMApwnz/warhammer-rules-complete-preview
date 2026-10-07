@@ -1,0 +1,1454 @@
+{
+  "schema": "adeptus-mechanicus-roster-attachment-fixtures/v2",
+  "authority": "QA_ONLY",
+  "fixtureOrigin": "Synthetic New Recruit import texts and independently source-backed expected attachment actions. Values and labels come from current accepted canonical records, not legacy contracts. Point annotations are ignored export metadata.",
+  "sourceInput": "books/adeptus-mechanicus/v2/generated/effective.json",
+  "currentDirectRelationsExpected": 41,
+  "currentDirectRelations": [
+    {
+      "participantCanonicalId": "unit-cybernetica-datasmith",
+      "recipientCanonicalId": "unit-kastelan-robots",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-cybernetica-datasmith:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-cybernetica-datasmith:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-skitarii-marshal",
+      "recipientCanonicalId": "unit-hastarii-exterminators",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-skitarii-marshal:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-skitarii-marshal:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-skitarii-marshal",
+      "recipientCanonicalId": "unit-hastarii-fusiliers",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-skitarii-marshal:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-skitarii-marshal:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-skitarii-marshal",
+      "recipientCanonicalId": "unit-skitarii-rangers",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-skitarii-marshal:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-skitarii-marshal:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-skitarii-marshal",
+      "recipientCanonicalId": "unit-skitarii-vanguard",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-skitarii-marshal:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-skitarii-marshal:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-dominus",
+      "recipientCanonicalId": "unit-corpuscarii-electro-priests",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-dominus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-dominus",
+      "recipientCanonicalId": "unit-fulgurite-electro-priests",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-dominus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-dominus",
+      "recipientCanonicalId": "unit-hastarii-exterminators",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-dominus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-dominus",
+      "recipientCanonicalId": "unit-hastarii-fusiliers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-dominus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-dominus",
+      "recipientCanonicalId": "unit-kataphron-breachers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-dominus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-dominus",
+      "recipientCanonicalId": "unit-kataphron-destroyers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-dominus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-dominus",
+      "recipientCanonicalId": "unit-servitor-battleclade",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-dominus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-dominus",
+      "recipientCanonicalId": "unit-skitarii-rangers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-dominus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-dominus",
+      "recipientCanonicalId": "unit-skitarii-vanguard",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-dominus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-enginseer",
+      "recipientCanonicalId": "unit-corpuscarii-electro-priests",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-enginseer:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-enginseer",
+      "recipientCanonicalId": "unit-fulgurite-electro-priests",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-enginseer:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-enginseer",
+      "recipientCanonicalId": "unit-hastarii-exterminators",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-enginseer:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-enginseer",
+      "recipientCanonicalId": "unit-hastarii-fusiliers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-enginseer:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-enginseer",
+      "recipientCanonicalId": "unit-kataphron-breachers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-enginseer:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-enginseer",
+      "recipientCanonicalId": "unit-kataphron-destroyers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-enginseer:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-enginseer",
+      "recipientCanonicalId": "unit-servitor-battleclade",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-enginseer:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-enginseer",
+      "recipientCanonicalId": "unit-skitarii-rangers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-enginseer:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-enginseer",
+      "recipientCanonicalId": "unit-skitarii-vanguard",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-enginseer:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-manipulus",
+      "recipientCanonicalId": "unit-corpuscarii-electro-priests",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-manipulus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-manipulus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-manipulus",
+      "recipientCanonicalId": "unit-fulgurite-electro-priests",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-manipulus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-manipulus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-manipulus",
+      "recipientCanonicalId": "unit-hastarii-exterminators",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-manipulus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-manipulus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-manipulus",
+      "recipientCanonicalId": "unit-hastarii-fusiliers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-manipulus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-manipulus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-manipulus",
+      "recipientCanonicalId": "unit-kataphron-breachers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-manipulus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-manipulus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-manipulus",
+      "recipientCanonicalId": "unit-kataphron-destroyers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-manipulus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-manipulus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-manipulus",
+      "recipientCanonicalId": "unit-servitor-battleclade",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-manipulus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-manipulus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-manipulus",
+      "recipientCanonicalId": "unit-skitarii-rangers",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-manipulus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-manipulus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-tech-priest-manipulus",
+      "recipientCanonicalId": "unit-skitarii-vanguard",
+      "role": "LEADER",
+      "sourceDeclarationId": "datasheet-tech-priest-manipulus:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-tech-priest-manipulus:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-technoarcheologist",
+      "recipientCanonicalId": "unit-corpuscarii-electro-priests",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-technoarcheologist:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-technoarcheologist",
+      "recipientCanonicalId": "unit-fulgurite-electro-priests",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-technoarcheologist:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-technoarcheologist",
+      "recipientCanonicalId": "unit-hastarii-exterminators",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-technoarcheologist:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-technoarcheologist",
+      "recipientCanonicalId": "unit-hastarii-fusiliers",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-technoarcheologist:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-technoarcheologist",
+      "recipientCanonicalId": "unit-kataphron-breachers",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-technoarcheologist:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-technoarcheologist",
+      "recipientCanonicalId": "unit-kataphron-destroyers",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-technoarcheologist:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-technoarcheologist",
+      "recipientCanonicalId": "unit-servitor-battleclade",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-technoarcheologist:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-technoarcheologist",
+      "recipientCanonicalId": "unit-skitarii-rangers",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-technoarcheologist:section:3"
+    },
+    {
+      "participantCanonicalId": "unit-technoarcheologist",
+      "recipientCanonicalId": "unit-skitarii-vanguard",
+      "role": "SUPPORT",
+      "sourceDeclarationId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+      "sourceSectionId": "datasheet-technoarcheologist:section:3"
+    }
+  ],
+  "corePolicyEvidence": {
+    "coreRecordCodes": [
+      "24.22",
+      "24.34"
+    ],
+    "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+    "quote": "Unless otherwise stated, each bodyguard unit can only have one leader unit and one support unit attached to it."
+  },
+  "sourceConstraints": [
+    "Current non-Legends relations have 3 Leader owners with 9 recipients each, Technoarcheologist Support with 9, Marshal Support with 4 and Datasmith Support with 1.",
+    "Datasmith wording says can be attached; it neither requires participation nor grants unlimited or repeated same-role capacity.",
+    "ATTACHED UNIT recipient clauses preserve their source sections but do not manufacture reverse participant relations.",
+    "Servitor Underseer is a distinct canonical profile from Combat and Gun Servitors. Attachment never rewrites intrinsic profile identity.",
+    "Only current AM explicit UNIT-only Upgrade is for Serberys Raiders, which have no canonical Leader or Support recipient relation. No AM Bodyguard Upgrade formed-group example is invented. AH05 general Bodyguard Upgrade behavior needs a separate synthetic product-contract control."
+  ],
+  "expectationNotes": [
+    "actions always name recipient first semantically: select Bodyguard recipient, then participant physical instance.",
+    "All parsed-unit-N identities refer to export order and remain distinct for duplicate canonical datasheets.",
+    "Failed actions must preserve prior membership; successful DETACH removes only the named participant.",
+    "equivalentOrders start from a fresh import and must yield the same final normalized group membership.",
+    "These are attachment/provenance controls only: no Enhancement, ability or Detachment effects execute in this task."
+  ],
+  "fixtures": [
+    {
+      "id": "ordinary-leader-detach-reattach",
+      "description": "Bodyguard-first attach, detach and reattach the ordinary eligible Leader.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-priest Dominus (0 pts)\n\n10x Skitarii Rangers (0 pts)\n\nCreated with newrecruit.eu",
+      "actions": [
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-2",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "DETACH",
+          "recipient": "parsed-unit-2",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-2",
+          "participant": "parsed-unit-1",
+          "valid": true
+        }
+      ],
+      "expectedGroups": [
+        {
+          "recipient": "parsed-unit-2",
+          "participants": [
+            {
+              "instanceId": "parsed-unit-1",
+              "role": "LEADER"
+            }
+          ]
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- CORPUSCARII ELECTRO-PRIESTS\n- FULGURITE ELECTRO-PRIESTS\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- KATAPHRON BREACHERS\n- KATAPHRON DESTROYERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SERVITOR BATTLECLADE\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Tech-priest-Dominus.html",
+            "pointer": null,
+            "sha256": "B486DB2BE3C91063F4AC8616B850B6BE72EAA9919D80A989F6470F133ED0BC45",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-rangers",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-tech-priest-dominus",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29"
+          },
+          "sourceText": ""
+        }
+      ]
+    },
+    {
+      "id": "support-alone-then-leader",
+      "description": "Support is allowed without a Leader; the Leader and Support then share one Bodyguard.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Skitarii Marshal (0 pts)\n\nChar2: 1x Tech-priest Dominus (0 pts)\n\n10x Skitarii Rangers (0 pts)\n\nCreated with newrecruit.eu",
+      "actions": [
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": true
+        }
+      ],
+      "expectedGroups": [
+        {
+          "recipient": "parsed-unit-3",
+          "participants": [
+            {
+              "instanceId": "parsed-unit-1",
+              "role": "SUPPORT"
+            },
+            {
+              "instanceId": "parsed-unit-2",
+              "role": "LEADER"
+            }
+          ]
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-skitarii-marshal:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-skitarii-marshal:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Skitarii-Marshal.html",
+            "pointer": null,
+            "sha256": "31B957FEC8FEFAA17833BA2508B39CF28A9EC8D9977028B6A718FE85841FAC1E",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- CORPUSCARII ELECTRO-PRIESTS\n- FULGURITE ELECTRO-PRIESTS\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- KATAPHRON BREACHERS\n- KATAPHRON DESTROYERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SERVITOR BATTLECLADE\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Tech-priest-Dominus.html",
+            "pointer": null,
+            "sha256": "B486DB2BE3C91063F4AC8616B850B6BE72EAA9919D80A989F6470F133ED0BC45",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-marshal",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-rangers",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-tech-priest-dominus",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29"
+          },
+          "sourceText": ""
+        }
+      ],
+      "equivalentOrders": [
+        [
+          {
+            "action": "ATTACH",
+            "recipient": "parsed-unit-3",
+            "participant": "parsed-unit-2",
+            "valid": true
+          },
+          {
+            "action": "ATTACH",
+            "recipient": "parsed-unit-3",
+            "participant": "parsed-unit-1",
+            "valid": true
+          }
+        ]
+      ],
+      "expectedIntermediateGroups": [
+        [
+          {
+            "recipient": "parsed-unit-3",
+            "participants": [
+              {
+                "instanceId": "parsed-unit-1",
+                "role": "SUPPORT"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "recipient": "parsed-unit-3",
+            "participants": [
+              {
+                "instanceId": "parsed-unit-1",
+                "role": "SUPPORT"
+              },
+              {
+                "instanceId": "parsed-unit-2",
+                "role": "LEADER"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": "duplicate-physical-support-and-bodyguard",
+      "description": "Each duplicate participant and recipient retains independent physical membership; already assigned and already occupied choices are rejected.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Skitarii Marshal (0 pts)\n\nChar2: 1x Skitarii Marshal (0 pts)\n\n10x Skitarii Rangers (0 pts)\n\n10x Skitarii Rangers (0 pts)\n\nCreated with newrecruit.eu",
+      "actions": [
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-4",
+          "participant": "parsed-unit-2",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-4",
+          "participant": "parsed-unit-1",
+          "valid": false
+        },
+        {
+          "action": "DETACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-4",
+          "participant": "parsed-unit-1",
+          "valid": false
+        },
+        {
+          "action": "DETACH",
+          "recipient": "parsed-unit-4",
+          "participant": "parsed-unit-2",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-4",
+          "participant": "parsed-unit-1",
+          "valid": true
+        }
+      ],
+      "expectedGroups": [
+        {
+          "recipient": "parsed-unit-4",
+          "participants": [
+            {
+              "instanceId": "parsed-unit-1",
+              "role": "SUPPORT"
+            }
+          ]
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-skitarii-marshal:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-skitarii-marshal:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Skitarii-Marshal.html",
+            "pointer": null,
+            "sha256": "31B957FEC8FEFAA17833BA2508B39CF28A9EC8D9977028B6A718FE85841FAC1E",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-marshal",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-rangers",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22"
+          },
+          "sourceText": ""
+        }
+      ],
+      "initialCandidateAssertions": [
+        {
+          "recipient": "parsed-unit-3",
+          "validParticipants": [
+            "parsed-unit-1",
+            "parsed-unit-2"
+          ]
+        },
+        {
+          "recipient": "parsed-unit-4",
+          "validParticipants": [
+            "parsed-unit-1",
+            "parsed-unit-2"
+          ]
+        }
+      ],
+      "expectedUnattached": [
+        "parsed-unit-2",
+        "parsed-unit-3"
+      ]
+    },
+    {
+      "id": "two-leaders-rejected",
+      "description": "The current Core one-Leader limit holds even for distinct canonical Leader units.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-priest Dominus (0 pts)\n\nChar2: 1x Tech-priest Enginseer (0 pts)\n\n10x Skitarii Rangers (0 pts)\n\nCreated with newrecruit.eu",
+      "actions": [
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": false
+        },
+        {
+          "action": "DETACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": true
+        }
+      ],
+      "expectedGroups": [
+        {
+          "recipient": "parsed-unit-3",
+          "participants": [
+            {
+              "instanceId": "parsed-unit-2",
+              "role": "LEADER"
+            }
+          ]
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- CORPUSCARII ELECTRO-PRIESTS\n- FULGURITE ELECTRO-PRIESTS\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- KATAPHRON BREACHERS\n- KATAPHRON DESTROYERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SERVITOR BATTLECLADE\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Tech-priest-Dominus.html",
+            "pointer": null,
+            "sha256": "B486DB2BE3C91063F4AC8616B850B6BE72EAA9919D80A989F6470F133ED0BC45",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "datasheet-tech-priest-enginseer:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/30/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- CORPUSCARII ELECTRO-PRIESTS\n- FULGURITE ELECTRO-PRIESTS\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- KATAPHRON BREACHERS\n- KATAPHRON DESTROYERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SERVITOR BATTLECLADE\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Tech-priest-Enginseer.html",
+            "pointer": null,
+            "sha256": "1C73E89AF83B52340B02E316F529038631922D8B902DA82FF9F609E7866CC2F5",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[9]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-rangers",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-tech-priest-dominus",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-tech-priest-enginseer",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/30"
+          },
+          "sourceText": ""
+        }
+      ]
+    },
+    {
+      "id": "two-supports-rejected",
+      "description": "Distinct Support identities do not bypass the one-Support limit.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Skitarii Marshal (0 pts)\n\nChar2: 1x Technoarcheologist (0 pts)\n\n10x Skitarii Rangers (0 pts)\n\nCreated with newrecruit.eu",
+      "actions": [
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": false
+        }
+      ],
+      "expectedGroups": [
+        {
+          "recipient": "parsed-unit-3",
+          "participants": [
+            {
+              "instanceId": "parsed-unit-1",
+              "role": "SUPPORT"
+            }
+          ]
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-skitarii-marshal:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-skitarii-marshal:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Skitarii-Marshal.html",
+            "pointer": null,
+            "sha256": "31B957FEC8FEFAA17833BA2508B39CF28A9EC8D9977028B6A718FE85841FAC1E",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "datasheet-technoarcheologist:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/32/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- CORPUSCARII ELECTRO-PRIESTS\n- FULGURITE ELECTRO-PRIESTS\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- KATAPHRON BREACHERS\n- KATAPHRON DESTROYERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SERVITOR BATTLECLADE\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Technoarcheologist.html",
+            "pointer": null,
+            "sha256": "8B1B3B90EF5909D3F5A48A05F549E9F022BCA1BE13F99B384F32145E46D2CD84",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-marshal",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-rangers",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-technoarcheologist",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/32"
+          },
+          "sourceText": ""
+        }
+      ]
+    },
+    {
+      "id": "datasmith-optional-single-support",
+      "description": "Kastelan can remain standalone. One optional Datasmith Support is allowed, a second same-canonical Support is rejected, and neither Support may select an unsupported recipient.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Cybernetica Datasmith (0 pts)\n\nChar2: 1x Cybernetica Datasmith (0 pts)\n\n2x Kastelan Robots (0 pts)\n\n10x Skitarii Rangers (0 pts)\n\nCreated with newrecruit.eu",
+      "actions": [
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-4",
+          "participant": "parsed-unit-1",
+          "valid": false
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": false
+        },
+        {
+          "action": "DETACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": true
+        }
+      ],
+      "expectedGroups": [
+        {
+          "recipient": "parsed-unit-3",
+          "participants": [
+            {
+              "instanceId": "parsed-unit-2",
+              "role": "SUPPORT"
+            }
+          ]
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-cybernetica-datasmith:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/5/sections/2"
+          },
+          "sourceText": "This model can be attached to the following unit:\n- KASTELAN ROBOTS"
+        },
+        {
+          "entityId": "datasheet-cybernetica-datasmith:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Cybernetica-Datasmith.html",
+            "pointer": null,
+            "sha256": "A21DDE632FEA25DBE93E2DDC9D574B8B7BB3CB587EFAD7A4EAA290FA771E893A",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-cybernetica-datasmith",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/5"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-kastelan-robots",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-rangers",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22"
+          },
+          "sourceText": ""
+        }
+      ],
+      "initialExpectedGroups": [],
+      "optionalParticipation": true,
+      "unboundedMultiplicity": false
+    },
+    {
+      "id": "servitor-mixed-recipient-leader-and-support",
+      "description": "Mixed-profile recipient accepts its direct Leader and Support relations; Marshal remains ineligible.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-priest Dominus (0 pts)\n\nChar2: 1x Technoarcheologist (0 pts)\n\n9x Servitor Battleclade (0 pts)\n• 1x Servitor Underseer\n• 2x Gun Servitor\n• 6x Combat Servitor\n\nChar3: 1x Skitarii Marshal (0 pts)\n\nCreated with newrecruit.eu",
+      "actions": [
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-4",
+          "valid": false
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": true
+        },
+        {
+          "action": "DETACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        }
+      ],
+      "expectedGroups": [
+        {
+          "recipient": "parsed-unit-3",
+          "participants": [
+            {
+              "instanceId": "parsed-unit-1",
+              "role": "LEADER"
+            },
+            {
+              "instanceId": "parsed-unit-2",
+              "role": "SUPPORT"
+            }
+          ]
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-servitor-battleclade:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18/sections/2"
+          },
+          "sourceText": "If a CHARACTER unit from your army with the Leader ability can be attached to a KATAPHRON BREACHERS unit, it can be attached to this unit instead."
+        },
+        {
+          "entityId": "datasheet-servitor-battleclade:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Servitor-Battleclade.html",
+            "pointer": null,
+            "sha256": "6D3B3B7F4036A58681ACFF67A74B900FA91839AA5116E269CC27CB76E67BEA1B",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[5]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "datasheet-skitarii-marshal:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-skitarii-marshal:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Skitarii-Marshal.html",
+            "pointer": null,
+            "sha256": "31B957FEC8FEFAA17833BA2508B39CF28A9EC8D9977028B6A718FE85841FAC1E",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- CORPUSCARII ELECTRO-PRIESTS\n- FULGURITE ELECTRO-PRIESTS\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- KATAPHRON BREACHERS\n- KATAPHRON DESTROYERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SERVITOR BATTLECLADE\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Tech-priest-Dominus.html",
+            "pointer": null,
+            "sha256": "B486DB2BE3C91063F4AC8616B850B6BE72EAA9919D80A989F6470F133ED0BC45",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "datasheet-technoarcheologist:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/32/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- CORPUSCARII ELECTRO-PRIESTS\n- FULGURITE ELECTRO-PRIESTS\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- KATAPHRON BREACHERS\n- KATAPHRON DESTROYERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SERVITOR BATTLECLADE\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Technoarcheologist.html",
+            "pointer": null,
+            "sha256": "8B1B3B90EF5909D3F5A48A05F549E9F022BCA1BE13F99B384F32145E46D2CD84",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-servitor-battleclade",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/18"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-marshal",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-tech-priest-dominus",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-technoarcheologist",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/32"
+          },
+          "sourceText": ""
+        }
+      ],
+      "equivalentOrders": [
+        [
+          {
+            "action": "ATTACH",
+            "recipient": "parsed-unit-3",
+            "participant": "parsed-unit-2",
+            "valid": true
+          },
+          {
+            "action": "ATTACH",
+            "recipient": "parsed-unit-3",
+            "participant": "parsed-unit-1",
+            "valid": true
+          }
+        ]
+      ],
+      "expectedProfileQuantities": {
+        "parsed-unit-3": {
+          "datasheet-servitor-battleclade:profile:servitor-underseer": 1,
+          "datasheet-servitor-battleclade:profile:combat-and-gun-servitors": 8
+        }
+      },
+      "expectedIntrinsicProfileKeywords": {
+        "datasheet-servitor-battleclade:profile:servitor-underseer": {
+          "contains": [
+            "TECH-PRIEST"
+          ]
+        },
+        "datasheet-servitor-battleclade:profile:combat-and-gun-servitors": {
+          "excludes": [
+            "TECH-PRIEST",
+            "CHARACTER"
+          ]
+        }
+      }
+    },
+    {
+      "id": "invalid-character-vehicle-and-self-recipients",
+      "description": "No arbitrary Character, self, vehicle or unsupported Kastelan target becomes a legal Bodyguard.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Lords of the Forge\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-priest Dominus (0 pts)\n\nChar2: 1x Technoarcheologist (0 pts)\n\n1x Onager Dunecrawler (0 pts)\n\n2x Kastelan Robots (0 pts)\n\nCreated with newrecruit.eu",
+      "actions": [
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-1",
+          "participant": "parsed-unit-1",
+          "valid": false
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-2",
+          "participant": "parsed-unit-1",
+          "valid": false
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-1",
+          "participant": "parsed-unit-2",
+          "valid": false
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": false
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": false
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-4",
+          "participant": "parsed-unit-1",
+          "valid": false
+        }
+      ],
+      "expectedGroups": [],
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-onager-dunecrawler:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/13/sections/2"
+          },
+          "sourceText": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- CORPUSCARII ELECTRO-PRIESTS\n- FULGURITE ELECTRO-PRIESTS\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- KATAPHRON BREACHERS\n- KATAPHRON DESTROYERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SERVITOR BATTLECLADE\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Tech-priest-Dominus.html",
+            "pointer": null,
+            "sha256": "B486DB2BE3C91063F4AC8616B850B6BE72EAA9919D80A989F6470F133ED0BC45",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "datasheet-technoarcheologist:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/32/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- CORPUSCARII ELECTRO-PRIESTS\n- FULGURITE ELECTRO-PRIESTS\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- KATAPHRON BREACHERS\n- KATAPHRON DESTROYERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SERVITOR BATTLECLADE\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-technoarcheologist:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Technoarcheologist.html",
+            "pointer": null,
+            "sha256": "8B1B3B90EF5909D3F5A48A05F549E9F022BCA1BE13F99B384F32145E46D2CD84",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-kastelan-robots",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/10"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-onager-dunecrawler",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/13"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-tech-priest-dominus",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-technoarcheologist",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/32"
+          },
+          "sourceText": ""
+        }
+      ]
+    },
+    {
+      "id": "two-enhancement-owners-in-one-formed-group",
+      "description": "Intentional AH05 product behavior: both eligible participants retain independently owned Enhancements. No current AM Bodyguard Upgrade attachment case is invented.",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade, Eradication Cohort\n+++++++++++++++++++++++++++++++++++++++++++++++\n\nChar1: 1x Tech-priest Dominus (0 pts)\nEnhancement: Cognitive Reinforcement (+0 pts)\n\nChar2: 1x Skitarii Marshal (0 pts)\nEnhancement: Omnicogitator (+0 pts)\n\n10x Skitarii Rangers (0 pts)\n\nChar3: 1x Tech-priest Dominus (0 pts)\n\nCreated with newrecruit.eu",
+      "actions": [
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-1",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": true
+        },
+        {
+          "action": "DETACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": true
+        },
+        {
+          "action": "ATTACH",
+          "recipient": "parsed-unit-3",
+          "participant": "parsed-unit-2",
+          "valid": true
+        }
+      ],
+      "expectedGroups": [
+        {
+          "recipient": "parsed-unit-3",
+          "participants": [
+            {
+              "instanceId": "parsed-unit-1",
+              "role": "LEADER"
+            },
+            {
+              "instanceId": "parsed-unit-2",
+              "role": "SUPPORT"
+            }
+          ]
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "entityId": "datasheet-skitarii-marshal:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-skitarii-marshal:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Skitarii-Marshal.html",
+            "pointer": null,
+            "sha256": "31B957FEC8FEFAA17833BA2508B39CF28A9EC8D9977028B6A718FE85841FAC1E",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29/sections/2"
+          },
+          "sourceText": "This model can be attached to the following units:\n- CORPUSCARII ELECTRO-PRIESTS\n- FULGURITE ELECTRO-PRIESTS\n- HASTARII EXTERMINATORS\n- HASTARII FUSILIERS\n- KATAPHRON BREACHERS\n- KATAPHRON DESTROYERS\n- SECUTARII HOPLITES\n- SECUTARII PELTASTS\n- SERVITOR BATTLECLADE\n- SKITARII RANGERS\n- SKITARII VANGUARD"
+        },
+        {
+          "entityId": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Tech-priest-Dominus.html",
+            "pointer": null,
+            "sha256": "B486DB2BE3C91063F4AC8616B850B6BE72EAA9919D80A989F6470F133ED0BC45",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[8]"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-marshal",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/21"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-skitarii-rangers",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/22"
+          },
+          "sourceText": ""
+        },
+        {
+          "entityId": "unit-tech-priest-dominus",
+          "provenance": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/datasheets/29"
+          },
+          "sourceText": ""
+        }
+      ],
+      "equivalentOrders": [
+        [
+          {
+            "action": "ATTACH",
+            "recipient": "parsed-unit-3",
+            "participant": "parsed-unit-2",
+            "valid": true
+          },
+          {
+            "action": "ATTACH",
+            "recipient": "parsed-unit-3",
+            "participant": "parsed-unit-1",
+            "valid": true
+          }
+        ]
+      ],
+      "expectedEnhancementOwners": {
+        "parsed-unit-1": [
+          "detachment-haloscreed-battle-clade:enhancement:2"
+        ],
+        "parsed-unit-2": [
+          "detachment-eradication-cohort:enhancement:1"
+        ],
+        "parsed-unit-3": [],
+        "parsed-unit-4": []
+      },
+      "productContract": "AH05_INDEPENDENT_PHYSICAL_ENHANCEMENT_OWNERS",
+      "expectedUnattached": [
+        "parsed-unit-4"
+      ]
+    }
+  ]
+}

@@ -124,6 +124,16 @@ export function attachmentCheck(book, state, policies, leaderInstanceId, bodygua
   const existing = state.attachments.filter(a => a.bodyguardInstanceId === bodyguardInstanceId);
   const all = [...existing.map(a => state.units.find(u => u.instanceId === a.leaderInstanceId)), source];
   if (all.length > 1) {
+    const relations=all.map(unit=>policies.find(policy=>policy.sourceId===unit.canonicalUnitId&&policy.targetId===target.canonicalUnitId));
+    if (relations.some(policy=>policy.role==='SUPPORT')) {
+      // Ordinary Support is a separate Core role, not an extra-Leader
+      // exception. Each role has one slot; explicit book exceptions retain
+      // their existing interpretation below.
+      if (relations.some(policy=>!['LEADER','SUPPORT'].includes(policy.role)) ||
+          relations.filter(policy=>policy.role==='SUPPORT').length>1 ||
+          relations.filter(policy=>policy.role==='LEADER').length>1) return bad('Canonical Leader/Support capacity exceeded');
+      return {valid:true,role:relation.role,sourceIds:relation.sourceIds};
+    }
     const allowed = all.some(u => policies.some(p => p.sourceId === u.canonicalUnitId && p.targetId === target.canonicalUnitId && p.additionalLeaders === 1));
     if (!allowed || all.length > 2) return bad('Canonical Leader capacity exceeded');
     if (new Set(all.map(u => u.canonicalUnitId)).size !== all.length) return bad('Duplicate canonical Leader excluded');
