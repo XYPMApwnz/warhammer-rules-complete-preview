@@ -59067,6 +59067,255 @@
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
       }
     },
+    "detachment-lords-of-the-forge:enhancement:2": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "ownerId": "detachment-lords-of-the-forge",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TECH-PRIEST"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TECH-PRIEST"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-lords-of-the-forge"
+          },
+          "evidence": {
+            "otherEntityId": "detachment-lords-of-the-forge",
+            "field": [
+              "title"
+            ],
+            "quote": "Lords of the Forge"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ],
+        [
+          "weaponIds"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "canonical-bearer-weapon",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TECH-PRIEST"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TECH-PRIEST"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model has the following weapon:"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ],
+            [
+              "weaponIds"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "This model has the following weapon:"
+          },
+          "effectRecipientRoleIds": [
+            "recipient"
+          ],
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Assigned Enhancement contributes its existing canonical weapon reference only to its exact physical bearer."
+          },
+          "rosterEffects": [
+            {
+              "id": "canonical-weapon",
+              "operation": "CONTRIBUTE_WEAPON_PROFILE",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ],
+                [
+                  "weaponIds"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This model has the following weapon:"
+              },
+              "weaponProfileId": "detachment-lords-of-the-forge:enhancement:2:weapon:1",
+              "weaponMode": "ranged"
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-lords-of-the-forge",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TECH-PRIEST"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TECH-PRIEST"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-lords-of-the-forge"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "fieldProvenance": {
+          "text": {
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/adeptus-mechanicus.html",
+            "sha256": "EA3418DFED77C82437865A5633021A94690807EF510EB85DDD5943F9A98C415B",
+            "xpath": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td"
+          }
+        }
+      }
+    },
     "detachment-lords-of-the-forge:stratagem:1": {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-lords-of-the-forge:stratagem:1",

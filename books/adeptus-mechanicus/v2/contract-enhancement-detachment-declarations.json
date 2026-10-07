@@ -14228,22 +14228,203 @@
         }
       ],
       "detachmentId": "detachment-lords-of-the-forge"
-    }
-  },
-  "blocked": [
-    {
-      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
-      "sourceCase": "This model has the following weapon:",
-      "semanticAtom": "Grant canonical TL-4Ø9 weapon profile to bearer",
-      "whyCompositionInsufficient": "No operation adds a new weapon profile. MODIFY_STAT/GRANT_WEAPON_ABILITY only modify existing equipment and cannot instantiate the separate canonical weapon profile.",
-      "evidence": {
-        "field": [
+    },
+    "detachment-lords-of-the-forge:enhancement:2": {
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TECH-PRIEST"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TECH-PRIEST"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-lords-of-the-forge"
+          },
+          "evidence": {
+            "otherEntityId": "detachment-lords-of-the-forge",
+            "field": [
+              "title"
+            ],
+            "quote": "Lords of the Forge"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
           "text"
         ],
-        "quote": "This model has the following weapon:"
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
+        [
+          "weaponIds"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "canonical-bearer-weapon",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TECH-PRIEST"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TECH-PRIEST"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model has the following weapon:"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ],
+            [
+              "weaponIds"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "This model has the following weapon:"
+          },
+          "effectRecipientRoleIds": [
+            "recipient"
+          ],
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Assigned Enhancement contributes its existing canonical weapon reference only to its exact physical bearer."
+          },
+          "rosterEffects": [
+            {
+              "id": "canonical-weapon",
+              "operation": "CONTRIBUTE_WEAPON_PROFILE",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ],
+                [
+                  "weaponIds"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This model has the following weapon:"
+              },
+              "weaponProfileId": "detachment-lords-of-the-forge:enhancement:2:weapon:1",
+              "weaponMode": "ranged"
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-lords-of-the-forge",
+      "assignment": {
+        "ownerRoleId": "owner",
         "selector": {
           "op": "ALL",
           "args": [
@@ -14282,5 +14463,6 @@
         "detachmentId": "detachment-lords-of-the-forge"
       }
     }
-  ]
+  },
+  "blocked": []
 }

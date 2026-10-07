@@ -22,8 +22,8 @@ const expected=[['BS|ADD|-1|ranged|UNIT|SOURCE_UNIT','HEAVY|||ranged|UNIT|SOURCE
 const built=buildAdMechContracts(),book=structuredClone(compilerInputs(built.book).book);
 for(const entity of book.entities)if(!ids.includes(entity.id)&&!['army-rule-doctrina-imperatives:protector-imperative','army-rule-doctrina-imperatives:conqueror-imperative'].includes(entity.id))delete entity.ruleContract;
 const index=new Map(book.entities.map(e=>[e.id,e])),evaluator=withRosterDetachments(built.schema.evaluator),beforeBook=structuredClone(book);
-assert.equal(built.blockedIds.size,1);
-assert.deepEqual([...built.blockedIds].sort(),['detachment-lords-of-the-forge:enhancement:2']);
+assert.equal(built.blockedIds.size,0);
+assert.deepEqual([...built.blockedIds].sort(),[]);
 const signature=e=>[e.field||e.ability,e.mode||'',e.value??'',e.weaponMode,e.targetSubject,e.targetBinding].join('|');
 function sourceParity(candidate){
   for(const [i,id]of ids.entries()){

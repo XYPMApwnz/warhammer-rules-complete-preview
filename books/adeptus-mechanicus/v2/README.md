@@ -135,10 +135,10 @@ two literal `None` options are absences, the introduction is scope guidance,
 and attachment metadata references the authoritative section. The exhaustive
 entity disposition ledger is regenerated with the census.
 
-203 contracts are source-bound and schema-valid. 1 complete owner is
-explicitly `BLOCKED_MISSING_GENERIC_PRIMITIVE`, with its exact source case,
-semantic atoms, provenance and reasons in `generated/rule-contract-census.json`.
-It is not published as a successful partial contract. The remaining limitation is canonical weapon contribution.
+All 204 contracts are source-bound and schema-valid. No current source owner
+remains blocked. TL-4Ø9 contributes only a reference to the existing canonical
+weapon profile to its exact physical bearer; the canonical weapon definition
+and base datasheet remain unchanged. Ownership does not transfer on attachment.
 The three Doctrina components preserve their UNIT prerequisite through canonical
 Army Rule reference memberships. The book producer lowers those relationships
 to existing STATIC ANY/UNIT_ID predicates, without a manually authored unit/rule
@@ -177,9 +177,8 @@ set cardinality likewise remains source-backed battle-resolution metadata.
 The Electrotraction source's explicit BATTLECLADE requirement is preserved,
 even though it has no currently eligible intrinsic Electro-Priest identity.
 
-The 6,902 compatibility rows cover only the 203 represented owners against
-34 datasheets; they do not certify the blocked owners or a complete AdMech
-product. They are disposable output and never an authority. The overlay keeps
+The 6,936 compatibility rows cover all 204 represented owners against
+34 datasheets; they do not certify a complete AdMech product. They are disposable output and never an authority. The overlay keeps
 semantics under the existing canonical IDs, without copying factual text into
 a second rules catalog. The original base/effective snapshots are unchanged.
 
@@ -204,6 +203,9 @@ node books/adeptus-mechanicus/v2/ability-roster-effects-qa.mjs
 node books/adeptus-mechanicus/v2/doctrina-contract-qa.mjs
 node books/adeptus-mechanicus/v2/numeric-roster-effects-qa.mjs
 node books/adeptus-mechanicus/v2/global-model-roster-effects-qa.mjs
+node books/adeptus-mechanicus/v2/weapon-contribution-roster-effects-qa.mjs
+node books/shared/roster-v2/weapon-contribution-effects-qa.mjs
+node books/shared/roster-v2/weapon-contribution-browser-qa.mjs
 node books/shared/rule-contract-v2/schema-qa.mjs
 node books/shared/rule-contract-v2/bindings-qa.mjs
 node books/shared/roster-v2/ability-effects-qa.mjs

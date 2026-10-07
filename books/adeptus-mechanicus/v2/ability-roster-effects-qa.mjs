@@ -26,7 +26,7 @@ const expected=[['core-fights-first|UNIT|FORMED|{}'],['core-stealth|UNIT|FORMED|
 const built=buildAdMechContracts(),full=compilerInputs(built.book,{abilityReferences:abilityReferences()}).book,book=structuredClone(full);
 for(const entity of book.entities)if(!ids.includes(entity.id))delete entity.ruleContract;
 const index=new Map(book.entities.map(e=>[e.id,e])),evaluator=withRosterDetachments(built.schema.evaluator);
-assert.equal(built.blockedIds.size,1);
+assert.equal(built.blockedIds.size,0);
 assert.equal(evaluator.validateContracts(book).rules,7);
 const root=path.resolve(directory,'../../..');
 for(const [i,id]of ids.entries()){

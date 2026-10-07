@@ -1,7 +1,7 @@
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value => structuredClone(value);
-const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC']);
+const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC','CONTRIBUTE_WEAPON_PROFILE']);
 const bindingSubjects = {SOURCE_MODEL:'MODEL',SOURCE_UNIT:'UNIT',SOURCE_UNIT_MODELS:'MODEL',SOURCE_FORMED_MODELS:'MODEL',LEADERS_OF_SOURCE:'MODEL',ROSTER_UNITS:'UNIT',ROSTER_MODELS:'MODEL'};
 // Current Core 02.02.01: threshold/AP improvements are signed arithmetic;
 // bounds apply to the combined result, never to each modifier contribution.
@@ -76,6 +76,17 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
       if (effect.operation === 'GRANT_MODEL_ABILITY' && (effect.targetSubject !== 'MODEL' || effect.ability?.name !== 'Feel No Pain' || !Number.isInteger(effect.ability.value) || effect.ability.value < 2 || effect.ability.value > 6)) throw new TypeError('Invalid MODEL ability');
       if (effect.operation === 'GRANT_ABILITY') validateAbilityGrant(book,effect);
       if (effect.operation === 'GRANT_WEAPON_ABILITY' && (typeof effect.ability !== 'string' || !effect.ability)) throw new TypeError('Invalid weapon ability');
+      if (effect.operation==='CONTRIBUTE_WEAPON_PROFILE') {
+        const weapon=records.get(effect.weaponProfileId);
+        if (entity.kind!=='ENHANCEMENT' || effect.targetBinding!=='SOURCE_MODEL' ||
+            !entity.ruleContract.assignment || weapon?.kind!=='WEAPON_PROFILE' || weapon.parentId!==entity.id ||
+            !entity.data.weaponIds?.includes(weapon.id)) throw new TypeError('Unresolved canonical weapon contribution owner');
+        if (['weapon','profile','data','definition','physicalQuantity'].some(key=>Object.hasOwn(effect,key)))
+          throw new TypeError('Weapon contribution must reference canonical facts');
+        if (!['ranged','melee'].includes(effect.weaponMode ?? weapon.data.mode) ||
+            effect.weaponMode!==undefined && weapon.data.mode!==undefined && effect.weaponMode!==weapon.data.mode)
+          throw new TypeError('Unresolved canonical weapon mode');
+      } else if (effect.weaponProfileId!==undefined) throw new TypeError('Weapon contribution identity on a different operation');
       if (effect.targetBinding==='ROSTER_MODELS') {
         const selectors=effect.recipientSelectors;
         if (!selectors || Object.keys(selectors).length!==2 || !selectors.unit || !selectors.model ||
@@ -94,7 +105,8 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
       })).map(unit=>unit.id) : [entity.parentId];
       if (['SOURCE_MODEL','SOURCE_UNIT','SOURCE_UNIT_MODELS'].includes(effect.targetBinding)) {
         for (const id of [...(effect.weaponIds||[]),...(effect.excludeWeaponIds||[]),...(effect.equipmentRequirement?.excludeWeaponIds||[]),...(effect.equipmentRequirement?.equipmentId?[effect.equipmentRequirement.equipmentId]:[])]) {
-          if (!sourceOwners.includes(records.get(id)?.parentId)) throw new TypeError('Foreign selected equipment owner');
+          const record=records.get(id),ownContribution=record?.kind==='WEAPON_PROFILE' && record.parentId===entity.id && entity.data.weaponIds?.includes(id);
+          if (!sourceOwners.includes(record?.parentId) && !ownContribution) throw new TypeError('Foreign selected equipment owner');
         }
       }
       for (const condition of effect.conditions) {
@@ -141,10 +153,12 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     for (const source of sources) for (const clause of rule.ruleContract.clauses) {
       if (source && rule.kind === 'ENHANCEMENT' && rule.ruleContract.assignment) {
         const ownerRole=rule.ruleContract.roles.find(role=>role.id===rule.ruleContract.assignment.ownerRoleId);
-        const context = enhancementOwnerContext(rule.ruleContract,predicateContext(state,result,source.instanceId,ownerRole.subject));
-        const eligible = evaluatePredicate(rule.ruleContract.assignment.selector,context);
-        if (eligible === 'INVALID') throw new TypeError('Invalid Enhancement owner context');
-        if (eligible !== 'TRUE') continue;
+        const contexts=clause.rosterEffects.some(effect=>effect.operation==='CONTRIBUTE_WEAPON_PROFILE') && ownerRole.subject==='MODEL'
+          ? source.profiles.map(model=>predicateContext(state,result,source.instanceId,'MODEL',model.scopeId))
+          : [predicateContext(state,result,source.instanceId,ownerRole.subject)];
+        const statuses=contexts.map(context=>evaluatePredicate(rule.ruleContract.assignment.selector,enhancementOwnerContext(rule.ruleContract,context)));
+        if (statuses.includes('INVALID')) throw new TypeError('Invalid Enhancement owner context');
+        if (!statuses.includes('TRUE')) continue;
       }
       if (clause.rosterClassification === 'BATTLE_ONLY') {
         for (const unit of source ? [source] : result.units) unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:clause.rosterClassificationNote.reason});
@@ -152,10 +166,21 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       for (const effect of clause.rosterEffects) pending.push({rule,clause,effect,source});
     }
   }
-  const targets = (source,effect) => {
+  const targets = (source,effect,rule) => {
     if (effect.targetBinding === 'ROSTER_UNITS') return result.units.map(unit=>({unit}));
     if (effect.targetBinding === 'ROSTER_MODELS') return result.units.flatMap(unit=>unit.profiles.map(model=>({unit,model})));
     if (!source) throw new TypeError('Missing source physical instance');
+    if (effect.operation==='CONTRIBUTE_WEAPON_PROFILE') {
+      const contract=rule.ruleContract,role=contract.roles.find(role=>role.id===contract.assignment.ownerRoleId);
+      const candidates=source.profiles.filter(model=>{
+        const context=predicateContext(state,result,source.instanceId,role.subject,model.scopeId);
+        const status=evaluatePredicate(contract.assignment.selector,enhancementOwnerContext(contract,context));
+        if(status==='INVALID')throw new TypeError('Invalid weapon bearer context');
+        return status==='TRUE';
+      });
+      if(candidates.length!==1 || candidates[0].quantity!==1)throw new TypeError('Ambiguous physical weapon bearer');
+      return [{unit:source,model:candidates[0]}];
+    }
     if (effect.targetBinding === 'SOURCE_UNIT') return [{unit:source}];
     const group = result.formedUnits.find(g=>g.formedUnitId === source.formedUnitId);
     const selected = effect.targetBinding === 'SOURCE_FORMED_MODELS' ? group ? result.units.filter(u=>group.memberInstanceIds.includes(u.instanceId)) : [] : effect.targetBinding === 'LEADERS_OF_SOURCE' ? group && group.bodyguardInstanceId === source.instanceId ? result.units.filter(u=>group.leaderInstanceIds.includes(u.instanceId)) : [] : [source];
@@ -277,7 +302,21 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     processed.add(marker);
     const group=effect.targetSubject==='UNIT' && !physicalAbility?result.formedUnits.find(g=>g.formedUnitId===target.unit.formedUnitId):null;
     const unitRecipients=group?result.units.filter(u=>group.memberInstanceIds.includes(u.instanceId)):[target.unit];
-    if (effect.operation === 'GRANT_UNIT_KEYWORD') for (const unit of unitRecipients) {
+    if (effect.operation==='CONTRIBUTE_WEAPON_PROFILE') {
+      const profile=records.get(effect.weaponProfileId);
+      if(target.model.weapons.some(weapon=>weapon.canonicalProfileId===profile.id))return;
+      const data=clone(profile.data);
+      if(data.mode===undefined)data.mode=effect.weaponMode;
+      target.model.weapons.push({modelInstanceId:target.model.modelInstanceId,scopeId:target.model.scopeId,
+        canonicalProfileId:profile.id,physicalQuantity:1,selectionKey:JSON.stringify([rule.id,effect.id]),data,
+        contributedBy:{ruleId:rule.id,effectId:effect.id}});
+      target.unit.applied.push({ruleId:rule.id,clauseId:clause.id,effectId:effect.id,sourceInstanceId:source.instanceId,
+        targetInstanceId:target.unit.instanceId,targetModelInstanceId:target.model.modelInstanceId,
+        targetProfileId:target.model.canonicalProfileId,targetCompositionId:target.model.scopeId,targetWeaponProfileId:profile.id,
+        operation:effect.operation,field:'weapons',before:null,after:{canonicalProfileId:profile.id,physicalQuantity:1},
+        sourceFields:clone(effect.sourceFields),lifetime:effect.lifetime});
+    }
+    else if (effect.operation === 'GRANT_UNIT_KEYWORD') for (const unit of unitRecipients) {
       const original=target.unit;target.unit=unit;
       keywordDeltas.get(unit).grants.add(effect.keyword);
       mutate(unit,'keywords',scopedKeywords ? derivedUnitKeywords(unit) : [...new Set([...unit.keywords,effect.keyword])].sort());target.unit=original;
@@ -364,14 +403,14 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     const signature=()=>JSON.stringify(result.units.map(unit=>[unit.instanceId,[...unit.keywords].sort(),
       unit.profiles.map(model=>[model.scopeId,[...model.keywords].sort()])]));
     const seen=new Set();
-    const bound=keyword.reduce((n,item)=>n+targets(item.source,item.effect).length,0)+1;
+    const bound=keyword.reduce((n,item)=>n+targets(item.source,item.effect,item.rule).length,0)+1;
     for (let pass=0;pass<=bound;pass++) {
       const before=signature();
       if (seen.has(before)) throw new TypeError('Scoped keyword conditions did not converge');
       seen.add(before);
       // Conditions observe the previous complete projection, never a partial
       // ordering of grants/removals. Rebuild active contributions each pass.
-      const active=keyword.flatMap(item=>targets(item.source,item.effect).filter(target=>eligible(item,target)).map(target=>({item,target})));
+      const active=keyword.flatMap(item=>targets(item.source,item.effect,item.rule).filter(target=>eligible(item,target)).map(target=>({item,target})));
       resetKeywords();processed.clear();
       for (const unit of result.units) unit.applied=[];
       for (const {item,target} of active) apply(item,target,true);
@@ -383,17 +422,21 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     // Preserve the established grant-only path and its existing DG projections.
     for (let pass = 0; pass <= keyword.length; pass++) {
       const before = processed.size;
-      for (const item of keyword) for (const target of targets(item.source,item.effect)) apply(item,target);
+      for (const item of keyword) for (const target of targets(item.source,item.effect,item.rule)) apply(item,target);
       refreshFormedKeywords(result);
       if (before === processed.size) break;
       if (pass === keyword.length) throw new TypeError('Keyword fixed point did not converge');
     }
   }
-  const remaining=pending.filter(p=>!keywordOperations.has(p.effect.operation));
+  // Build the effective inventory before applying modifiers/grants to weapons.
+  const contributions=pending.filter(p=>p.effect.operation==='CONTRIBUTE_WEAPON_PROFILE')
+    .sort((a,b)=>a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') || a.source.instanceId.localeCompare(b.source.instanceId,'en'));
+  for(const item of contributions)for(const target of targets(item.source,item.effect,item.rule))apply(item,target);
+  const remaining=pending.filter(p=>!keywordOperations.has(p.effect.operation) && p.effect.operation!=='CONTRIBUTE_WEAPON_PROFILE');
   if(remaining.some(p=>numericDomain[p.effect.field] || p.effect.canonicalContribution))
     remaining.sort((a,b)=>(numericDomain[a.effect.field]&&a.effect.mode==='SET'?0:1)-(numericDomain[b.effect.field]&&b.effect.mode==='SET'?0:1) ||
       a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') || (a.source?.instanceId||'').localeCompare(b.source?.instanceId||'','en'));
-  for (const item of remaining) for (const target of targets(item.source,item.effect)) apply(item,target);
+  for (const item of remaining) for (const target of targets(item.source,item.effect,item.rule)) apply(item,target);
   for(const [object,fields]of numericValues)for(const [field,value]of fields)for(const row of value.rows)row.finalValue=clone(object[field]);
   for (const unit of result.units) {
     unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason)===i);

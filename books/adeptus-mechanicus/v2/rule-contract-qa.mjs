@@ -25,8 +25,8 @@ const expected=canonical.entities.filter(entity=>
   entity.kind==='DATASHEET_SECTION'&&entity.data.title!=='UNIT COMPOSITION'||
   entity.kind==='WARGEAR_OPTION'&&entity.data.text!=='None');
 equivalent(expected.length,204,'Current accepted owner census changed; review required');
-equivalent(built.schema.evaluator.validateContracts(built.book).rules,203,'Represented owner census changed');
-equivalent(built.blockedIds.size,1,'Complete blocked owner census changed');
+equivalent(built.schema.evaluator.validateContracts(built.book).rules,204,'Represented owner census changed');
+equivalent(built.blockedIds.size,0,'Complete blocked owner census changed');
 equivalent(new Set([...built.book.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id),...built.blockedIds]),
   new Set(expected.map(entity=>entity.id)),'Source rule owner left unaccounted');
 for(const entity of built.book.entities) {

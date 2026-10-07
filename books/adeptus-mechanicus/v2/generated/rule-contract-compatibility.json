@@ -88406,6 +88406,656 @@
     },
     {
       "unitId": "unit-archaeopter-fusilave",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-archaeopter-fusilave:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-archaeopter-stratoraptor",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-archaeopter-stratoraptor:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-archaeopter-transvector",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-archaeopter-transvector:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-belisarius-cawl",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "UNKNOWN",
+          "profileResults": [
+            {
+              "profileId": "datasheet-belisarius-cawl:profile:default",
+              "state": "UNKNOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-corpuscarii-electro-priests",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-corpuscarii-electro-priests:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-cybernetica-datasmith",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "UNKNOWN",
+          "profileResults": [
+            {
+              "profileId": "datasheet-cybernetica-datasmith:profile:default",
+              "state": "UNKNOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-fulgurite-electro-priests",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-fulgurite-electro-priests:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-hastarii-exterminators",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-hastarii-exterminators:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-hastarii-fusiliers",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-hastarii-fusiliers:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-ironstrider-ballistarii",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-ironstrider-ballistarii:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-kastelan-robots",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-kastelan-robots:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-kataphron-breachers",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-kataphron-breachers:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-kataphron-destroyers",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-kataphron-destroyers:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-onager-dunecrawler",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-onager-dunecrawler:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-pteraxii-skystalkers",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-pteraxii-skystalkers:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-pteraxii-sterylizors",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-pteraxii-sterylizors:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-serberys-raiders",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-serberys-raiders:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-serberys-sulphurhounds",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-serberys-sulphurhounds:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-servitor-battleclade",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-servitor-battleclade:profile:servitor-underseer",
+              "state": "FALSE"
+            },
+            {
+              "profileId": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-sicarian-infiltrators",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-sicarian-infiltrators:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-sicarian-ruststalkers",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-sicarian-ruststalkers:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-skitarii-marshal",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-skitarii-marshal:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-skitarii-rangers",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-skitarii-rangers:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-skitarii-vanguard",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-skitarii-vanguard:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-skorpius-disintegrator",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-skorpius-disintegrator:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-skorpius-dunerider",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-skorpius-dunerider:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-sydonian-dragoons-with-radium-jezzails",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-sydonian-dragoons-with-radium-jezzails:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-sydonian-dragoons-with-taser-lances",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-sydonian-dragoons-with-taser-lances:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-sydonian-skatros",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "FALSE",
+      "applicability": "NO_MATCH",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "FALSE",
+          "profileResults": [
+            {
+              "profileId": "datasheet-sydonian-skatros:profile:default",
+              "state": "FALSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-tech-priest-dominus",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "UNKNOWN",
+          "profileResults": [
+            {
+              "profileId": "datasheet-tech-priest-dominus:profile:default",
+              "state": "UNKNOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-tech-priest-enginseer",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "UNKNOWN",
+          "profileResults": [
+            {
+              "profileId": "datasheet-tech-priest-enginseer:profile:default",
+              "state": "UNKNOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-tech-priest-manipulus",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "UNKNOWN",
+          "profileResults": [
+            {
+              "profileId": "datasheet-tech-priest-manipulus:profile:default",
+              "state": "UNKNOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-technoarcheologist",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "UNKNOWN",
+          "profileResults": [
+            {
+              "profileId": "datasheet-technoarcheologist:profile:default",
+              "state": "UNKNOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-thulia-ghuld",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
+      "roles": [
+        {
+          "roleId": "owner",
+          "subject": "MODEL",
+          "state": "UNKNOWN",
+          "profileResults": [
+            {
+              "profileId": "datasheet-thulia-ghuld:profile:default",
+              "state": "UNKNOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "unit-archaeopter-fusilave",
       "ruleId": "detachment-lords-of-the-forge:rule",
       "state": "FALSE",
       "applicability": "NO_MATCH",

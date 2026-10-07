@@ -63,6 +63,10 @@ export function projectInstanceCards(cards, unit, effective) {
       if (parts.length!==1) return [field];
       return [{...field,value:clone(value),displayValue:undefined,runtimeDerived:true}];
     });
+    if (source==='WEAPON_PROFILE' && values.has('mode') && !card.fields.some(field=>field.source?.path==='/mode')) {
+      card.fields.push({id:`${base.id}::/mode`,label:'mode',type:'text',value:values.get('mode'),
+        contextId:base.contextId,source:{entityId:base.id,path:'/mode'},runtimeDerived:true});
+    }
     for (const [key,value] of values) if (Array.isArray(value)) {
       const template=base.fields.find(field=>field.source?.path.startsWith('/'+key+'/'));
       if (!value.length) card.fields.push({...(base.fields.find(field=>field.source?.path==='/'+key) || {label:key,type:'text'}),
@@ -91,7 +95,10 @@ export function projectInstanceCards(cards, unit, effective) {
   for (const kind of ['PROFILE','WEAPON_PROFILE']) {
     const records=kind==='PROFILE'?effective.profiles:effective.weapons;
     for (const id of root.children.filter(id=>cards.get(id)?.kind===kind)) variants.set(id,[]);
-    for (const record of records) { const list=variants.get(record.id)||[];list.push(overlay(record,kind));variants.set(record.id,list); }
+    for (const record of records) {
+      const list=variants.get(record.id)||[];list.push(overlay(record,kind));variants.set(record.id,list);
+      if(kind==='WEAPON_PROFILE' && !root.children.includes(record.id))root.children.push(record.id);
+    }
   }
   const selections=[...(unit.selections || []),...unit.modelRows.flatMap(row=>[...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])];
   const selectedEquipment=new Set(selections.filter(selection=>selection.physicalQuantity>0).flatMap(selection=>selection.canonicalEquipmentIds));

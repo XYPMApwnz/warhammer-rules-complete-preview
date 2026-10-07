@@ -1,10 +1,10 @@
 {
   "schema": "adeptus-mechanicus-rule-contract-census/v2",
   "sourceRules": 204,
-  "built": 203,
-  "valid": 203,
-  "blockedOwners": 1,
-  "blockedCases": 1,
+  "built": 204,
+  "valid": 204,
+  "blockedOwners": 0,
+  "blockedCases": 0,
   "invalidContracts": 0,
   "unboundSourceRules": 0,
   "legacyContractReads": 0,
@@ -13,15 +13,15 @@
     "DATASHEET_ABILITY": 52,
     "ARMY_RULE": 3,
     "DETACHMENT_RULE": 10,
-    "ENHANCEMENT": 33,
+    "ENHANCEMENT": 34,
     "STRATAGEM": 51,
     "FAQ_ERRATA_RULE": 8
   },
-  "compatibilityRelations": 6902,
+  "compatibilityRelations": 6936,
   "compatibility": {
     "MATCH": 370,
-    "CONDITIONAL": 1414,
-    "NO_MATCH": 5118,
+    "CONDITIONAL": 1421,
+    "NO_MATCH": 5145,
     "INVALID": 0,
     "UNRESOLVED": 0
   },
@@ -3096,63 +3096,5 @@
       "disposition": "FACT_OR_REFERENCE"
     }
   ],
-  "blocked": [
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
-      "sourceCase": "This model has the following weapon:",
-      "semanticAtom": "Grant canonical TL-4Ø9 weapon profile to bearer",
-      "whyCompositionInsufficient": "No operation adds a new weapon profile. MODIFY_STAT/GRANT_WEAPON_ABILITY only modify existing equipment and cannot instantiate the separate canonical weapon profile.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "This model has the following weapon:"
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "TECH-PRIEST"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "TECH-PRIEST"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-lords-of-the-forge"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/8/enhancements/1"
-      }
-    }
-  ]
+  "blocked": []
 }

@@ -544,8 +544,10 @@ export function mount(document, payload, options = {}) {
   function physicalProfileProjection(id,instanceId) {
     if (!personalMode || !instanceId || !['PROFILE','WEAPON_PROFILE'].includes(cards.get(id)?.kind)) return null;
     const unit=options.roster.state.units.find(unit=>unit.instanceId===instanceId);
-    if (!unit || cards.get(id).parentId!==unit.canonicalUnitId) return null;
-    return projectInstanceCards(cards,unit,options.roster.effective(instanceId));
+    if (!unit) return null;
+    const effective=options.roster.effective(instanceId);
+    if (cards.get(id).parentId!==unit.canonicalUnitId && !effective.weapons.some(weapon=>weapon.id===id)) return null;
+    return projectInstanceCards(cards,unit,effective);
   }
 
   function renderSelected(id, focus = false, instanceId = null) {

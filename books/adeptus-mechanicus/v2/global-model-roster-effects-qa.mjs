@@ -12,7 +12,7 @@ const cyber='detachment-cohort-cybernetica:rule',forge='detachment-lords-of-the-
 const built=buildAdMechContracts(),book=compilerInputs(built.book).book,index=new Map(book.entities.map(e=>[e.id,e]));
 for(const e of book.entities)if(!ids.includes(e.id))delete e.ruleContract;
 const initial=structuredClone(book),api=withRosterDetachments(built.schema.evaluator);
-assert.deepEqual([...built.blockedIds],['detachment-lords-of-the-forge:enhancement:2']);
+assert.deepEqual([...built.blockedIds],[]);
 const quotes={
   [cyber]:'Add 2" to the Move characteristic of models in LEGIO CYBERNETICA units from your army.',
   [forge]:'Friendly TECH-PRIEST models have:\n- 4+ InSv.\n- Feel No Pain 5+.'
@@ -98,4 +98,4 @@ for(const dets of [["detachment-rad-zone-corps"],[cyberDet],[forgeDet],[cyberDet
   assert.deepEqual(alone.units.find(u=>u.instanceId==='robots-b'),attached.units.find(u=>u.instanceId==='robots-b'));
 }
 assert.deepEqual(touched,new Set([cyber+'/model-move',forge+'/model-invulnerable',forge+'/model-fnp']));
-console.log(JSON.stringify({status:'PASS',sourceOwners:2,sourceEffects:3,blockedOwners:1,runtimeCases:cases,appliedProvenanceChecks:applied,mutations,mixedUnderseerServitor:'PASS',canonicalFactsImmutable:'PASS'}));
+console.log(JSON.stringify({status:'PASS',sourceOwners:2,sourceEffects:3,blockedOwners:built.blockedIds.size,runtimeCases:cases,appliedProvenanceChecks:applied,mutations,mixedUnderseerServitor:'PASS',canonicalFactsImmutable:'PASS'}));
