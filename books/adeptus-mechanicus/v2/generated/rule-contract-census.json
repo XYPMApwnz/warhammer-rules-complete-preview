@@ -1,10 +1,10 @@
 {
   "schema": "adeptus-mechanicus-rule-contract-census/v2",
   "sourceRules": 204,
-  "built": 196,
-  "valid": 196,
-  "blockedOwners": 8,
-  "blockedCases": 8,
+  "built": 201,
+  "valid": 201,
+  "blockedOwners": 3,
+  "blockedCases": 3,
   "invalidContracts": 0,
   "unboundSourceRules": 0,
   "legacyContractReads": 0,
@@ -13,15 +13,15 @@
     "DATASHEET_ABILITY": 52,
     "ARMY_RULE": 3,
     "DETACHMENT_RULE": 8,
-    "ENHANCEMENT": 28,
+    "ENHANCEMENT": 33,
     "STRATAGEM": 51,
     "FAQ_ERRATA_RULE": 8
   },
-  "compatibilityRelations": 6664,
+  "compatibilityRelations": 6834,
   "compatibility": {
     "MATCH": 370,
-    "CONDITIONAL": 1376,
-    "NO_MATCH": 4918,
+    "CONDITIONAL": 1404,
+    "NO_MATCH": 5060,
     "INVALID": 0,
     "UNRESOLVED": 0
   },
@@ -3099,315 +3099,6 @@
   "blocked": [
     {
       "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-haloscreed-battle-clade:enhancement:2",
-      "sourceCase": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit.",
-      "semanticAtom": "Simultaneous active Imperatives",
-      "whyCompositionInsufficient": "No existing operation changes active army-rule alternatives; stats or keyword grants cannot preserve both complete Imperative semantics.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "op": "ALL",
-              "args": [
-                {
-                  "predicate": "MODEL_KEYWORD",
-                  "subject": "MODEL",
-                  "contextLevel": "STATIC",
-                  "arguments": {
-                    "keyword": "ADEPTUS MECHANICUS"
-                  },
-                  "evidence": {
-                    "field": [
-                      "text"
-                    ],
-                    "quote": "ADEPTUS MECHANICUS"
-                  }
-                },
-                {
-                  "op": "NOT",
-                  "args": [
-                    {
-                      "predicate": "MODEL_ID",
-                      "subject": "MODEL",
-                      "contextLevel": "STATIC",
-                      "arguments": {
-                        "id": "datasheet-cybernetica-datasmith:profile:default"
-                      },
-                      "evidence": {
-                        "field": [
-                          "text"
-                        ],
-                        "quote": "excluding CYBERNETICA DATASMITH models"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-haloscreed-battle-clade"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/0/enhancements/1"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-haloscreed-battle-clade:enhancement:3",
-      "sourceCase": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit",
-      "semanticAtom": "Ranged weapon Range +6",
-      "whyCompositionInsufficient": "MODIFY_STAT excludes Range. detectionRange is a different metric.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "ADEPTUS MECHANICUS"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "ADEPTUS MECHANICUS"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-haloscreed-battle-clade"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/0/enhancements/2"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-eradication-cohort:enhancement:1",
-      "sourceCase": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit.",
-      "semanticAtom": "Simultaneous active Imperatives",
-      "whyCompositionInsufficient": "No existing operation changes active army-rule alternatives; stats or keyword grants cannot preserve both complete Imperative semantics.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_ID",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "id": "datasheet-skitarii-marshal:profile:default"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "SKITARII MARSHAL"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-eradication-cohort"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/1/enhancements/0"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-eradication-cohort:enhancement:3",
-      "sourceCase": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit",
-      "semanticAtom": "Range +6 alongside Strength +1",
-      "whyCompositionInsufficient": "MODIFY_STAT supports strength but excludes Range. Publishing only Strength would leave the whole rule incomplete.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit"
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "ADEPTUS MECHANICUS"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "ADEPTUS MECHANICUS"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-eradication-cohort"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/1/enhancements/2"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "detachment-eradication-cohort:enhancement:4",
-      "sourceCase": "improve the Armour Penetration and Damage characteristics of those weapons by 1",
-      "semanticAtom": "Melee Armour Penetration improvement alongside Attacks and Damage",
-      "whyCompositionInsufficient": "MODIFY_STAT excludes Armour Penetration; supported attacks/damage operations cannot substitute.",
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "improve the Armour Penetration and Damage characteristics of those weapons by 1"
-      },
-      "ownerDiagnostic": {
-        "subject": "MODEL",
-        "selector": {
-          "op": "ALL",
-          "args": [
-            {
-              "predicate": "MODEL_KEYWORD",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "keyword": "CHARACTER"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "upgrade CHARACTERS using the Enhancements listed here",
-                "otherEntityId": "book-introduction"
-              }
-            },
-            {
-              "predicate": "MODEL_ID",
-              "subject": "MODEL",
-              "contextLevel": "STATIC",
-              "arguments": {
-                "id": "datasheet-skitarii-marshal:profile:default"
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "SKITARII MARSHAL"
-              }
-            }
-          ]
-        },
-        "contextLevel": "ROSTER",
-        "detachmentId": "detachment-eradication-cohort"
-      },
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/detachments/1/enhancements/3"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
       "ruleId": "detachment-cohort-cybernetica:rule",
       "sourceCase": "Add 2\" to the Move characteristic of models in LEGIO CYBERNETICA units from your army.",
       "semanticAtom": "Move +2 for MODELS in qualified roster UNITS",
@@ -3428,13 +3119,26 @@
       "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
       "ruleId": "detachment-lords-of-the-forge:rule",
       "sourceCase": "Friendly TECH-PRIEST models have:\n- 4+ InSv.",
-      "semanticAtom": "4+ invulnerable save for TECH-PRIEST MODELS",
-      "whyCompositionInsufficient": "MODIFY_STAT excludes invulnerable saves; Feel No Pain is not an equivalent save. Publishing the supported FNP atom alone would leave the whole rule incomplete.",
+      "semanticAtom": "Roster-global TECH-PRIEST MODEL recipients",
+      "whyCompositionInsufficient": "MODEL invulnerable save SET 4 is now expressible by MODIFY_STAT INSV; FNP 5+ and canonical ability grants are also expressible. No existing binding selects roster-global MODEL/profile recipients. ROSTER_UNITS cannot replace exact TECH-PRIEST MODEL scope, especially mixed-profile units. This complete owner remains blocked.",
       "evidence": {
         "field": [
           "text"
         ],
         "quote": "Friendly TECH-PRIEST models have:\n- 4+ InSv."
+      },
+      "expressibleNumericEffect": {
+        "operation": "MODIFY_STAT",
+        "field": "INSV",
+        "mode": "SET",
+        "value": 4,
+        "targetSubject": "MODEL",
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "Friendly TECH-PRIEST models have:\n- 4+ InSv."
+        }
       },
       "provenance": {
         "sourceId": "am-waha-11e-2026-09-25",

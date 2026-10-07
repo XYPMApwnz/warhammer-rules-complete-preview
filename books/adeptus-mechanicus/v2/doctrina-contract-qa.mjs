@@ -40,7 +40,7 @@ for(const unit of canonical.entities.filter(e=>e.kind==='DATASHEET'))for(const r
 }
 assert.equal(new Set(sourceMembers).size,34);
 assert.equal(sourceMembers.length,34);
-assert.equal(built.blockedIds.size,8);
+assert.equal(built.blockedIds.size,3);
 let checks=0,mutations=0;
 const check=(actual,expected,message)=>{checks++;assert.deepEqual(actual,expected,message);};
 const negative=run=>{mutations++;assert.throws(run);};

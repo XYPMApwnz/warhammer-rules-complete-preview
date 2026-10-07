@@ -135,12 +135,11 @@ two literal `None` options are absences, the introduction is scope guidance,
 and attachment metadata references the authoritative section. The exhaustive
 entity disposition ledger is regenerated with the census.
 
-196 contracts are source-bound and schema-valid. 8 complete owners are
+201 contracts are source-bound and schema-valid. 3 complete owners are
 explicitly `BLOCKED_MISSING_GENERIC_PRIMITIVE`, with their exact source cases,
 semantic atoms, provenance and reasons in `generated/rule-contract-census.json`.
 They are not published as successful partial contracts. The limitations cover
-Range/AP/skill changes, imperative overrides,
-global MODEL targeting, invulnerable changes and canonical weapon grants.
+global MODEL targeting and canonical weapon grants.
 The three Doctrina components preserve their UNIT prerequisite through canonical
 Army Rule reference memberships. The book producer lowers those relationships
 to existing STATIC ANY/UNIT_ID predicates, without a manually authored unit/rule
@@ -168,6 +167,8 @@ formed versus exact physical owner scope, and Scouts 6" / Lone Operative 15"
 retain their source parameters. The pure compatibility build does not need Core
 definitions; roster grant consumers explicitly inject the resolved reference registry.
 
+Five further Enhancement owners compose the existing numeric modifier and weapon-ability mechanisms. BS/WS improvements preserve ranged/melee scope; Range and AP preserve signed numeric direction. Both-Imperative Enhancements retain canonical Protector/Conqueror references, grant their unconditional HEAVY/ASSAULT and BS/WS characteristics from roster ownership, and keep attack-resolution clauses battle-only. Ordinary Doctrina activation remains unexecuted. Lords of the Forge remains blocked on roster-global MODEL recipients, even though its MODEL invulnerable SET is expressible.
+
 All 51 Stratagems preserve typed current-product applicability. Battle effects
 remain nonexecuting source-backed clauses; 40 explicit lifetime occurrences
 are bound to their actual recipients. Two objective-only lifetimes remain
@@ -177,7 +178,7 @@ set cardinality likewise remains source-backed battle-resolution metadata.
 The Electrotraction source's explicit BATTLECLADE requirement is preserved,
 even though it has no currently eligible intrinsic Electro-Priest identity.
 
-The 6,664 compatibility rows cover only the 196 represented owners against
+The 6,834 compatibility rows cover only the 201 represented owners against
 34 datasheets; they do not certify the blocked owners or a complete AdMech
 product. They are disposable output and never an authority. The overlay keeps
 semantics under the existing canonical IDs, without copying factual text into

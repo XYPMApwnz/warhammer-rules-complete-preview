@@ -28513,6 +28513,1209 @@
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
       }
     },
+    "detachment-haloscreed-battle-clade:enhancement:2": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-haloscreed-battle-clade:enhancement:2",
+      "ownerId": "detachment-haloscreed-battle-clade",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "ADEPTUS MECHANICUS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "ADEPTUS MECHANICUS"
+                    }
+                  },
+                  {
+                    "op": "NOT",
+                    "args": [
+                      {
+                        "predicate": "MODEL_ID",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "id": "datasheet-cybernetica-datasmith:profile:default"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "excluding CYBERNETICA DATASMITH models"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-haloscreed-battle-clade"
+          },
+          "evidence": {
+            "otherEntityId": "detachment-haloscreed-battle-clade",
+            "field": [
+              "title"
+            ],
+            "quote": "Haloscreed Battle Clade"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "protector-roster-characteristics",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "op": "ALL",
+                    "args": [
+                      {
+                        "predicate": "MODEL_KEYWORD",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "ADEPTUS MECHANICUS"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "ADEPTUS MECHANICUS"
+                        }
+                      },
+                      {
+                        "op": "NOT",
+                        "args": [
+                          {
+                            "predicate": "MODEL_ID",
+                            "subject": "MODEL",
+                            "contextLevel": "STATIC",
+                            "arguments": {
+                              "id": "datasheet-cybernetica-datasmith:profile:default"
+                            },
+                            "evidence": {
+                              "field": [
+                                "text"
+                              ],
+                              "quote": "excluding CYBERNETICA DATASMITH models"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+          },
+          "effectRecipientRoleIds": [
+            "recipient"
+          ],
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed bearer/formed-unit characteristics are fully known from roster state; attack resolution remains battle-only."
+          },
+          "rosterEffects": [
+            {
+              "id": "BS",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              },
+              "field": "BS",
+              "mode": "ADD",
+              "value": -1,
+              "weaponMode": "ranged",
+              "referencedRuleId": "army-rule-doctrina-imperatives:protector-imperative",
+              "sourceRuleEvidence": {
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1."
+                }
+              },
+              "canonicalContribution": {
+                "ruleId": "army-rule-doctrina-imperatives:protector-imperative",
+                "clauseId": "imperative-clause-2"
+              }
+            },
+            {
+              "id": "heavy",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              },
+              "ability": "HEAVY",
+              "weaponMode": "ranged",
+              "referencedRuleId": "army-rule-doctrina-imperatives:protector-imperative",
+              "sourceRuleEvidence": {
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Ranged weapons equipped by models in this unit have the [HEAVY] ability."
+                }
+              },
+              "canonicalContribution": {
+                "ruleId": "army-rule-doctrina-imperatives:protector-imperative",
+                "clauseId": "imperative-clause-1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "protector-battle-resolution",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "op": "ALL",
+                    "args": [
+                      {
+                        "predicate": "MODEL_KEYWORD",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "ADEPTUS MECHANICUS"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "ADEPTUS MECHANICUS"
+                        }
+                      },
+                      {
+                        "op": "NOT",
+                        "args": [
+                          {
+                            "predicate": "MODEL_ID",
+                            "subject": "MODEL",
+                            "contextLevel": "STATIC",
+                            "arguments": {
+                              "id": "datasheet-cybernetica-datasmith:profile:default"
+                            },
+                            "evidence": {
+                              "field": [
+                                "text"
+                              ],
+                              "quote": "excluding CYBERNETICA DATASMITH models"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "meleeAttackTargetsUnit",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative",
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time a melee attack targets this unit"
+              },
+              "roleId": "recipientUnit"
+            },
+            {
+              "op": "ANY",
+              "subject": "UNIT",
+              "roleId": "recipientUnit",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "BATTLELINE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "this unit has the BATTLELINE keyword",
+                    "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative"
+                  }
+                },
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "withinFriendlyMechanicusBattleline6",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "- Each time a melee attack targets this unit, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, subtract 1 from the Hit roll.",
+            "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative"
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperatives are source-selected by the Enhancement; attack, proximity and hit/AP resolution remain battle-only."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "conqueror-roster-characteristics",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "op": "ALL",
+                    "args": [
+                      {
+                        "predicate": "MODEL_KEYWORD",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "ADEPTUS MECHANICUS"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "ADEPTUS MECHANICUS"
+                        }
+                      },
+                      {
+                        "op": "NOT",
+                        "args": [
+                          {
+                            "predicate": "MODEL_ID",
+                            "subject": "MODEL",
+                            "contextLevel": "STATIC",
+                            "arguments": {
+                              "id": "datasheet-cybernetica-datasmith:profile:default"
+                            },
+                            "evidence": {
+                              "field": [
+                                "text"
+                              ],
+                              "quote": "excluding CYBERNETICA DATASMITH models"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+          },
+          "effectRecipientRoleIds": [
+            "recipient"
+          ],
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed bearer/formed-unit characteristics are fully known from roster state; attack resolution remains battle-only."
+          },
+          "rosterEffects": [
+            {
+              "id": "WS",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              },
+              "field": "WS",
+              "mode": "ADD",
+              "value": -1,
+              "weaponMode": "melee",
+              "referencedRuleId": "army-rule-doctrina-imperatives:conqueror-imperative",
+              "sourceRuleEvidence": {
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1."
+                }
+              },
+              "canonicalContribution": {
+                "ruleId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                "clauseId": "imperative-clause-2"
+              }
+            },
+            {
+              "id": "assault",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              },
+              "ability": "ASSAULT",
+              "weaponMode": "ranged",
+              "referencedRuleId": "army-rule-doctrina-imperatives:conqueror-imperative",
+              "sourceRuleEvidence": {
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Ranged weapons equipped by models in this unit have the [ASSAULT] ability."
+                }
+              },
+              "canonicalContribution": {
+                "ruleId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                "clauseId": "imperative-clause-1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "conqueror-battle-resolution",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "op": "ALL",
+                    "args": [
+                      {
+                        "predicate": "MODEL_KEYWORD",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "ADEPTUS MECHANICUS"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "ADEPTUS MECHANICUS"
+                        }
+                      },
+                      {
+                        "op": "NOT",
+                        "args": [
+                          {
+                            "predicate": "MODEL_ID",
+                            "subject": "MODEL",
+                            "contextLevel": "STATIC",
+                            "arguments": {
+                              "id": "datasheet-cybernetica-datasmith:profile:default"
+                            },
+                            "evidence": {
+                              "field": [
+                                "text"
+                              ],
+                              "quote": "excluding CYBERNETICA DATASMITH models"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "modelInUnitMakingAttack",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time a model in this unit makes an attack"
+              },
+              "roleId": "recipientUnit"
+            },
+            {
+              "op": "ANY",
+              "subject": "UNIT",
+              "roleId": "recipientUnit",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "BATTLELINE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "this unit has the BATTLELINE keyword",
+                    "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative"
+                  }
+                },
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "withinFriendlyMechanicusBattleline6",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "- Each time a model in this unit makes an attack, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, improve the Armour Penetration characteristic of that attack by 1.",
+            "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative"
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperatives are source-selected by the Enhancement; attack, proximity and hit/AP resolution remain battle-only."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "detachmentId": "detachment-haloscreed-battle-clade",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS MECHANICUS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "ADEPTUS MECHANICUS"
+                  }
+                },
+                {
+                  "op": "NOT",
+                  "args": [
+                    {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-cybernetica-datasmith:profile:default"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "excluding CYBERNETICA DATASMITH models"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-haloscreed-battle-clade"
+      },
+      "canonicalRuleReferences": [
+        "army-rule-doctrina-imperatives:protector-imperative",
+        "army-rule-doctrina-imperatives:conqueror-imperative"
+      ],
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
+    "detachment-haloscreed-battle-clade:enhancement:3": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-haloscreed-battle-clade:enhancement:3",
+      "ownerId": "detachment-haloscreed-battle-clade",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "ADEPTUS MECHANICUS"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "ADEPTUS MECHANICUS"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-haloscreed-battle-clade"
+          },
+          "evidence": {
+            "otherEntityId": "detachment-haloscreed-battle-clade",
+            "field": [
+              "title"
+            ],
+            "quote": "Haloscreed Battle Clade"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "ranged-range",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "ADEPTUS MECHANICUS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "ADEPTUS MECHANICUS"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+          },
+          "effectRecipientRoleIds": [
+            "recipient"
+          ],
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed bearer/formed-unit characteristics are fully known from roster state; attack resolution remains battle-only."
+          },
+          "rosterEffects": [
+            {
+              "id": "range",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+              },
+              "field": "range",
+              "mode": "ADD",
+              "value": 6,
+              "weaponMode": "ranged"
+            }
+          ]
+        },
+        {
+          "id": "hazardous-reroll",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "ADEPTUS MECHANICUS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "ADEPTUS MECHANICUS"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "each time a Hazardous test is taken for that unit, you can re-roll the result."
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Hazardous tests and rerolls are battle resolution."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "detachmentId": "detachment-haloscreed-battle-clade",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS MECHANICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "ADEPTUS MECHANICUS"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-haloscreed-battle-clade"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
     "detachment-haloscreed-battle-clade:enhancement:4": {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-haloscreed-battle-clade:enhancement:4",
@@ -31270,6 +32473,746 @@
         "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
       }
     },
+    "detachment-eradication-cohort:enhancement:1": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-eradication-cohort:enhancement:1",
+      "ownerId": "detachment-eradication-cohort",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-skitarii-marshal:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "SKITARII MARSHAL"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-eradication-cohort"
+          },
+          "evidence": {
+            "otherEntityId": "detachment-eradication-cohort",
+            "field": [
+              "title"
+            ],
+            "quote": "Eradication Cohort"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "protector-roster-characteristics",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-skitarii-marshal:profile:default"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII MARSHAL"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+          },
+          "effectRecipientRoleIds": [
+            "recipient"
+          ],
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed bearer/formed-unit characteristics are fully known from roster state; attack resolution remains battle-only."
+          },
+          "rosterEffects": [
+            {
+              "id": "BS",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              },
+              "field": "BS",
+              "mode": "ADD",
+              "value": -1,
+              "weaponMode": "ranged",
+              "referencedRuleId": "army-rule-doctrina-imperatives:protector-imperative",
+              "sourceRuleEvidence": {
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1."
+                }
+              },
+              "canonicalContribution": {
+                "ruleId": "army-rule-doctrina-imperatives:protector-imperative",
+                "clauseId": "imperative-clause-2"
+              }
+            },
+            {
+              "id": "heavy",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              },
+              "ability": "HEAVY",
+              "weaponMode": "ranged",
+              "referencedRuleId": "army-rule-doctrina-imperatives:protector-imperative",
+              "sourceRuleEvidence": {
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Ranged weapons equipped by models in this unit have the [HEAVY] ability."
+                }
+              },
+              "canonicalContribution": {
+                "ruleId": "army-rule-doctrina-imperatives:protector-imperative",
+                "clauseId": "imperative-clause-1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "protector-battle-resolution",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-skitarii-marshal:profile:default"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII MARSHAL"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "meleeAttackTargetsUnit",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative",
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time a melee attack targets this unit"
+              },
+              "roleId": "recipientUnit"
+            },
+            {
+              "op": "ANY",
+              "subject": "UNIT",
+              "roleId": "recipientUnit",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "BATTLELINE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "this unit has the BATTLELINE keyword",
+                    "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative"
+                  }
+                },
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "withinFriendlyMechanicusBattleline6",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "- Each time a melee attack targets this unit, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, subtract 1 from the Hit roll.",
+            "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative"
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperatives are source-selected by the Enhancement; attack, proximity and hit/AP resolution remain battle-only."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "conqueror-roster-characteristics",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-skitarii-marshal:profile:default"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII MARSHAL"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+          },
+          "effectRecipientRoleIds": [
+            "recipient"
+          ],
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed bearer/formed-unit characteristics are fully known from roster state; attack resolution remains battle-only."
+          },
+          "rosterEffects": [
+            {
+              "id": "WS",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              },
+              "field": "WS",
+              "mode": "ADD",
+              "value": -1,
+              "weaponMode": "melee",
+              "referencedRuleId": "army-rule-doctrina-imperatives:conqueror-imperative",
+              "sourceRuleEvidence": {
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1."
+                }
+              },
+              "canonicalContribution": {
+                "ruleId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                "clauseId": "imperative-clause-2"
+              }
+            },
+            {
+              "id": "assault",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              },
+              "ability": "ASSAULT",
+              "weaponMode": "ranged",
+              "referencedRuleId": "army-rule-doctrina-imperatives:conqueror-imperative",
+              "sourceRuleEvidence": {
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Ranged weapons equipped by models in this unit have the [ASSAULT] ability."
+                }
+              },
+              "canonicalContribution": {
+                "ruleId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                "clauseId": "imperative-clause-1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "conqueror-battle-resolution",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-skitarii-marshal:profile:default"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII MARSHAL"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "modelInUnitMakingAttack",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time a model in this unit makes an attack"
+              },
+              "roleId": "recipientUnit"
+            },
+            {
+              "op": "ANY",
+              "subject": "UNIT",
+              "roleId": "recipientUnit",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "BATTLELINE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "this unit has the BATTLELINE keyword",
+                    "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative"
+                  }
+                },
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "withinFriendlyMechanicusBattleline6",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "- Each time a model in this unit makes an attack, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, improve the Armour Penetration characteristic of that attack by 1.",
+            "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative"
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperatives are source-selected by the Enhancement; attack, proximity and hit/AP resolution remain battle-only."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "detachmentId": "detachment-eradication-cohort",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_ID",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "datasheet-skitarii-marshal:profile:default"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "SKITARII MARSHAL"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-eradication-cohort"
+      },
+      "canonicalRuleReferences": [
+        "army-rule-doctrina-imperatives:protector-imperative",
+        "army-rule-doctrina-imperatives:conqueror-imperative"
+      ],
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
     "detachment-eradication-cohort:enhancement:2": {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-eradication-cohort:enhancement:2",
@@ -31668,6 +33611,545 @@
                   "text"
                 ],
                 "quote": "TECH-PRIEST"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-eradication-cohort"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
+    "detachment-eradication-cohort:enhancement:3": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-eradication-cohort:enhancement:3",
+      "ownerId": "detachment-eradication-cohort",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "ADEPTUS MECHANICUS"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "ADEPTUS MECHANICUS"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-eradication-cohort"
+          },
+          "evidence": {
+            "otherEntityId": "detachment-eradication-cohort",
+            "field": [
+              "title"
+            ],
+            "quote": "Eradication Cohort"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "ranged-range-strength",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "ADEPTUS MECHANICUS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "ADEPTUS MECHANICUS"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit, and add 1 to the Strength characteristic of those weapons."
+          },
+          "effectRecipientRoleIds": [
+            "recipient"
+          ],
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed bearer/formed-unit characteristics are fully known from roster state; attack resolution remains battle-only."
+          },
+          "rosterEffects": [
+            {
+              "id": "range",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit, and add 1 to the Strength characteristic of those weapons."
+              },
+              "field": "range",
+              "mode": "ADD",
+              "value": 6,
+              "weaponMode": "ranged"
+            },
+            {
+              "id": "strength",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit, and add 1 to the Strength characteristic of those weapons."
+              },
+              "field": "strength",
+              "mode": "ADD",
+              "value": 1,
+              "weaponMode": "ranged"
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-eradication-cohort",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS MECHANICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "ADEPTUS MECHANICUS"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-eradication-cohort"
+      },
+      "currentness": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+      }
+    },
+    "detachment-eradication-cohort:enhancement:4": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-eradication-cohort:enhancement:4",
+      "ownerId": "detachment-eradication-cohort",
+      "sourceId": "am-waha-11e-2026-09-25",
+      "kind": "ENHANCEMENT",
+      "contextLevel": "ROSTER",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHARACTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                  "otherEntityId": "book-introduction"
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-skitarii-marshal:profile:default"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "SKITARII MARSHAL"
+                }
+              }
+            ]
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-eradication-cohort"
+          },
+          "evidence": {
+            "otherEntityId": "detachment-eradication-cohort",
+            "field": [
+              "title"
+            ],
+            "quote": "Eradication Cohort"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "bearer-melee-characteristics",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-skitarii-marshal:profile:default"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "SKITARII MARSHAL"
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "improve the Armour Penetration and Damage characteristics of those weapons by 1"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 2 to the Attacks characteristic of melee weapons equipped by the bearer, and improve the Armour Penetration and Damage characteristics of those weapons by 1."
+          },
+          "effectRecipientRoleIds": [
+            "recipient"
+          ],
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Source-backed bearer/formed-unit characteristics are fully known from roster state; attack resolution remains battle-only."
+          },
+          "rosterEffects": [
+            {
+              "id": "attacks",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Add 2 to the Attacks characteristic of melee weapons equipped by the bearer, and improve the Armour Penetration and Damage characteristics of those weapons by 1."
+              },
+              "field": "attacks",
+              "mode": "ADD",
+              "value": 2,
+              "weaponMode": "melee"
+            },
+            {
+              "id": "ap",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Add 2 to the Attacks characteristic of melee weapons equipped by the bearer, and improve the Armour Penetration and Damage characteristics of those weapons by 1."
+              },
+              "field": "ap",
+              "mode": "ADD",
+              "value": -1,
+              "weaponMode": "melee"
+            },
+            {
+              "id": "damage",
+              "operation": "MODIFY_STAT",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_SOURCE_SELECTED",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Add 2 to the Attacks characteristic of melee weapons equipped by the bearer, and improve the Armour Penetration and Damage characteristics of those weapons by 1."
+              },
+              "field": "damage",
+              "mode": "ADD",
+              "value": 1,
+              "weaponMode": "melee"
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-eradication-cohort",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_ID",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "datasheet-skitarii-marshal:profile:default"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "SKITARII MARSHAL"
               }
             }
           ]

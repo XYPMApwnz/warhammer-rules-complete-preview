@@ -3,6 +3,16 @@ import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value => structuredClone(value);
 const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC']);
 const bindingSubjects = {SOURCE_MODEL:'MODEL',SOURCE_UNIT:'UNIT',SOURCE_UNIT_MODELS:'MODEL',SOURCE_FORMED_MODELS:'MODEL',LEADERS_OF_SOURCE:'MODEL',ROSTER_UNITS:'UNIT'};
+// Current Core 02.02.01: threshold/AP improvements are signed arithmetic;
+// bounds apply to the combined result, never to each modifier contribution.
+const numericDomain = {
+  BS:{field:'skill',weaponMode:'ranged',min:2,max:6,suffix:'+'},
+  WS:{field:'skill',weaponMode:'melee',min:2,max:6,suffix:'+'},
+  range:{field:'range',weaponMode:'ranged',min:1,suffix:'"'},
+  ap:{field:'ap',max:0,suffix:''},
+  INSV:{field:'INSV',subject:'MODEL',min:2,suffix:'+'}
+};
+const immutableCharacteristic=value=>['-','*','N/A'].includes(value);
 /** Canonical references and parameter declarations are supplied by the book.
  * No ability title or source sentence selects runtime behaviour. */
 function validateAbilityGrant(book,effect) {
@@ -44,7 +54,21 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
       ids.add(effect.id);
       let proof = entity.data; for (const key of effect.evidence?.field || []) proof = proof?.[key];
       if (!effect.evidence?.quote || typeof proof !== 'string' || !proof.includes(effect.evidence.quote)) throw new TypeError('Unproven roster effect');
-      if (effect.operation === 'MODIFY_STAT' && (!['M','T','LD','OC','attacks','strength','damage'].includes(effect.field) || !['ADD','SET'].includes(effect.mode) || !Number.isFinite(effect.value))) throw new TypeError('Invalid characteristic operation');
+      if (effect.operation === 'MODIFY_STAT') {
+        const domain=numericDomain[effect.field];
+        if ((!domain && !['M','T','LD','OC','attacks','strength','damage'].includes(effect.field)) ||
+            !['ADD','SET'].includes(effect.mode) || !Number.isFinite(effect.value) ||
+            domain && (!Number.isSafeInteger(effect.value) || domain.subject && effect.targetSubject!==domain.subject ||
+              domain.weaponMode && effect.weaponMode!==domain.weaponMode || effect.field==='INSV' && effect.weaponMode!==undefined))
+          throw new TypeError('Invalid characteristic operation');
+      }
+      if (effect.canonicalContribution) {
+        const origin=effect.canonicalContribution,canonical=records.get(origin.ruleId);
+        if (!['MODIFY_STAT','GRANT_WEAPON_ABILITY'].includes(effect.operation) ||
+            !canonical?.ruleContract?.clauses.some(clause=>clause.id===origin.clauseId) ||
+            Object.keys(origin).some(key=>!['ruleId','clauseId'].includes(key)))
+          throw new TypeError('Unresolved canonical effect contribution');
+      }
       if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
       if (effect.operation === 'GRANT_UNIT_KEYWORD' && (effect.targetSubject !== 'UNIT' || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid UNIT keyword grant');
       if (effect.operation === 'GRANT_MODEL_KEYWORD' && (effect.targetSubject !== 'MODEL' || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid MODEL keyword grant');
@@ -87,8 +111,9 @@ function equipmentSatisfied(book, unit, requirement) {
   throw new TypeError('Unknown equipment requirement');
 }
 function changeStat(before, effect) {
+  if (numericDomain[effect.field] && before==null && effect.mode!=='SET') throw new TypeError('Missing characteristic base');
   const raw = String(before), suffix = raw.endsWith('"') ? '"' : raw.endsWith('+') && /^\d+\+$/.test(raw) ? '+' : '';
-  if (effect.mode === 'SET') return `${effect.value}${suffix}`;
+  if (effect.mode === 'SET') return `${effect.value}${numericDomain[effect.field]?.suffix ?? suffix}`;
   const numeric = raw.match(/^(-?\d+)(["+]?)$/);
   if (numeric) return `${Number(numeric[1])+effect.value}${numeric[2]}`;
   const dice = raw.match(/^(\d*D\d+)(?:\s*\+\s*(\d+))?$/i);
@@ -126,6 +151,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     return selected.flatMap(unit=>unit.profiles.map(model=>({unit,model})));
   };
   const processed = new Set();
+  const numericValues=new Map();
   const scopedKeywords = pending.some(p => ['GRANT_MODEL_KEYWORD','REMOVE_KEYWORD'].includes(p.effect.operation));
   // Keyword contributions are derived from immutable starting bags. A UNIT
   // override never rewrites MODEL facts; removing one MODEL contribution does
@@ -181,7 +207,33 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       object[key] = clone(after);
       target.unit.applied.push({ruleId:rule.id,clauseId:clause.id,effectId:effect.id,sourceInstanceId:source?.instanceId || null,targetInstanceId:target.unit.instanceId,
         targetModelInstanceId:targetModelId || null,targetProfileId:targetWeaponId ? weaponScope?.canonicalProfileId || null : target.model?.canonicalProfileId || null,targetCompositionId:targetWeaponId ? weaponScope?.scopeId || null : target.model?.scopeId || null,targetWeaponProfileId:targetWeaponId || null,operation:effect.operation,field:key,before,after:clone(after),sourceFields:clone(effect.sourceFields),lifetime:effect.lifetime,
-        ...(effect.operation==='GRANT_ABILITY'?{targetAbilityId:effect.ability.canonicalId,abilityParameters:clone(effect.ability.parameters)}:{})});
+        ...(effect.operation==='GRANT_ABILITY'?{targetAbilityId:effect.ability.canonicalId,abilityParameters:clone(effect.ability.parameters)}:{}),
+        ...(effect.canonicalContribution?{canonicalContribution:clone(effect.canonicalContribution)}:{})});
+      return target.unit.applied.at(-1);
+    };
+    const contributionUsed=(scope)=>{
+      if(!effect.canonicalContribution)return false;
+      const origin=effect.canonicalContribution;
+      const key=`canonical/${origin.ruleId}/${origin.clauseId}/${target.unit.instanceId}/${scope}/${effect.field || effect.ability}`;
+      if(processed.has(key))return true;
+      processed.add(key);return false;
+    };
+    const modifyCharacteristic=(object,key,modelId,weaponId,weaponScope)=>{
+      const domain=numericDomain[effect.field];
+      if(!numericValues.has(object))numericValues.set(object,new Map());
+      const values=numericValues.get(object),previous=values.get(key),rawBefore=previous?.raw ?? object[key];
+      if(domain && immutableCharacteristic(rawBefore))return;
+      const rawAfter=changeStat(rawBefore,effect);
+      let after=rawAfter;
+      if(domain) {
+        const match=rawAfter.match(/^(-?\d+)(["+]?)$/);
+        if(!match)throw new TypeError('Unsupported typed characteristic');
+        after=`${Math.min(domain.max ?? Infinity,Math.max(domain.min ?? -Infinity,Number(match[1])))}${domain.suffix}`;
+      }
+      const rows=previous?.rows || [];
+      values.set(key,{raw:rawAfter,rows});
+      const row=mutate(object,key,after,modelId,weaponId,weaponScope,Boolean(domain));
+      if(row && domain){row.characteristic=effect.field;row.rawBefore=rawBefore ?? null;row.rawAfter=rawAfter;rows.push(row);}
     };
     const physicalAbility=effect.operation==='GRANT_ABILITY' && effect.unitScope==='PHYSICAL';
     const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || (!physicalAbility && target.unit.formedUnitId) || target.unit.instanceId}`;
@@ -231,18 +283,30 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
         mutate(object,effect.field,{modifier:before.modifier + effect.value,...((effect.max || before.max) ? {max:Math.min(effect.max ?? Infinity,before.max ?? Infinity)} : {})},target.model?.modelInstanceId);
         target.unit=original;
       }
-    } else if (effect.operation === 'MODIFY_STAT' && ['M','T','LD','OC'].includes(effect.field)) mutate(target.model.profile,effect.field,changeStat(target.model.profile[effect.field],effect),target.model.modelInstanceId);
+    } else if (effect.operation === 'MODIFY_STAT' && ['M','T','LD','OC','INSV'].includes(effect.field)) {
+      if(effect.field==='INSV' && target.model.profile.INSV===undefined) {
+        const referenceId=target.model.profile.invulnerableSaveId;
+        if(referenceId) {
+          const reference=records.get(referenceId);
+          if(reference?.kind!=='INVULNERABLE_SAVE' || reference.parentId!==target.unit.canonicalUnitId ||
+              !reference.data.profileIds.includes(target.model.canonicalProfileId))throw new TypeError('Unresolved invulnerable profile scope');
+          target.model.profile.INSV=reference.data.value;
+        }
+      }
+      if(!contributionUsed(target.model.scopeId))modifyCharacteristic(target.model.profile,effect.field,target.model.modelInstanceId);
+    }
     else {
       const weaponRecipients=target.model?[target.unit]:unitRecipients;
       for (const unit of weaponRecipients) {
       const original=target.unit;target.unit=unit;
-      const weapons = target.model ? [...target.model.weapons,...unit.weapons] : [...unit.weapons,...unit.profiles.flatMap(m=>m.weapons)];
+      const weapons = target.model ? [...target.model.weapons,...(effect.operation==='MODIFY_STAT' && unit.profiles.length>1 ? [] : unit.weapons)] : [...unit.weapons,...unit.profiles.flatMap(m=>m.weapons)];
       for (const weapon of weapons) {
         if (effect.weaponMode && weapon.data.mode !== effect.weaponMode || effect.weaponIds && !effect.weaponIds.includes(weapon.canonicalProfileId) || effect.excludeWeaponIds?.includes(weapon.canonicalProfileId)) continue;
         const weaponMarker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.unit.instanceId}/${target.unit.weapons.includes(weapon) ? 'unit' : weapon.scopeId}/${weapon.selectionKey}/${weapon.canonicalProfileId}`;
         if (processed.has(weaponMarker)) continue; processed.add(weaponMarker);
+        if(contributionUsed(`${unit.weapons.includes(weapon)?'unit':weapon.scopeId}/${weapon.selectionKey}/${weapon.canonicalProfileId}`))continue;
         if (effect.operation === 'GRANT_WEAPON_ABILITY') mutate(weapon.data,'abilities',weapon.data.abilities.some(ability=>ability.toUpperCase()===effect.ability.toUpperCase())?[...weapon.data.abilities]:[...weapon.data.abilities,effect.ability],weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
-        else mutate(weapon.data,effect.field,changeStat(weapon.data[effect.field],effect),weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
+        else modifyCharacteristic(weapon.data,numericDomain[effect.field]?.field || effect.field,weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
       }
       target.unit=original;
       }
@@ -283,7 +347,12 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       if (pass === keyword.length) throw new TypeError('Keyword fixed point did not converge');
     }
   }
-  for (const item of pending.filter(p=>!keywordOperations.has(p.effect.operation))) for (const target of targets(item.source,item.effect)) apply(item,target);
+  const remaining=pending.filter(p=>!keywordOperations.has(p.effect.operation));
+  if(remaining.some(p=>numericDomain[p.effect.field] || p.effect.canonicalContribution))
+    remaining.sort((a,b)=>(numericDomain[a.effect.field]&&a.effect.mode==='SET'?0:1)-(numericDomain[b.effect.field]&&b.effect.mode==='SET'?0:1) ||
+      a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') || (a.source?.instanceId||'').localeCompare(b.source?.instanceId||'','en'));
+  for (const item of remaining) for (const target of targets(item.source,item.effect)) apply(item,target);
+  for(const [object,fields]of numericValues)for(const [field,value]of fields)for(const row of value.rows)row.finalValue=clone(object[field]);
   for (const unit of result.units) {
     unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason)===i);
     for (const model of unit.profiles) {
