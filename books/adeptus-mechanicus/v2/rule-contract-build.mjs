@@ -13,6 +13,44 @@ export const declarationFiles=['contract-datasheet-army-declarations.json',
   'contract-enhancement-detachment-declarations.json','contract-stratagem-declarations.json'];
 export const readJson=name=>JSON.parse(fs.readFileSync(path.join(directory,name),'utf8'));
 
+/** Build-time lowering of a book-owned canonical UNIT membership relationship.
+ * The existing UNIT_ID language encodes its denotation; no unit/rule answers
+ * are authored here and no MODEL ability or runtime text lookup is involved. */
+function bindUnitMembership(declaration,index) {
+  const membership=declaration.unitMembership;
+  if(!membership)return;
+  assert.equal(membership.subject,'UNIT');
+  assert.equal(index.get(membership.ruleId)?.kind,'ARMY_RULE','Unresolved membership rule');
+  assert.ok(index.get(membership.ruleId).data.componentIds.some(id=>index.get(id)?.data.text.includes(membership.evidence.quote)),
+    'Membership prerequisite lost source evidence');
+  const members=[];
+  for(const unit of index.values())if(unit.kind==='DATASHEET') {
+    for(const referenceId of unit.data.ruleReferenceIds) {
+      const reference=index.get(referenceId);
+      assert.equal(reference?.kind,'RULE_REFERENCE','Unresolved UNIT rule reference');
+      assert.equal(reference.parentId,unit.id,'Foreign UNIT rule reference');
+      reference.data.groups.forEach((group,g)=>group.entries.forEach((entry,e)=>{
+        if(!entry.sourceTooltipIds.includes(membership.sourceTooltipId))return;
+        assert.equal(group.label,'ARMY RULES','Army membership in wrong reference scope');
+        assert.ok(!members.some(member=>member.unitId===unit.id),'Duplicate UNIT membership');
+        members.push({unitId:unit.id,referenceId,entryId:entry.id,
+          evidence:{otherEntityId:referenceId,field:['groups',g,'entries',e,'sourceTooltipIds'],quote:membership.sourceTooltipId}});
+      }));
+    }
+  }
+  assert.ok(members.length,'Unresolved canonical UNIT membership');
+  members.sort((a,b)=>a.unitId.localeCompare(b.unitId,'en'));
+  membership.references=members;
+  const selector={op:'ANY',args:members.map(member=>({predicate:'UNIT_ID',subject:'UNIT',contextLevel:'STATIC',
+    arguments:{id:member.unitId},evidence:member.evidence}))};
+  const roles=[...declaration.roles,...declaration.clauses.flatMap(clause=>clause.roles)];
+  assert.ok(roles.some(role=>role.id===membership.roleId),'Missing UNIT membership role');
+  for(const role of roles.filter(role=>role.id===membership.roleId)) {
+    assert.equal(role.subject,'UNIT','UNIT prerequisite changed subject');
+    role.selector=structuredClone(selector);
+  }
+}
+
 /** Enumerate existing semantic owners, independently of declarations/old matrices. */
 export function ownerInventory(book) {
   return book.entities.map(entity=>{
@@ -32,6 +70,7 @@ export function buildAdMechContracts({book=readJson('generated/effective.json'),
   const index=new Map(book.entities.map(entity=>[entity.id,entity]));
   assert.equal(index.size,book.entities.length,'Duplicate canonical identity');
   const declarations=mergeContractDeclarations(inputs.map(input=>new Map(Object.entries(input.declarations))));
+  for(const declaration of declarations.values())bindUnitMembership(declaration,index);
   const blocked=inputs.flatMap(input=>input.blocked||[]).map(item=>({
     status:'BLOCKED_MISSING_GENERIC_PRIMITIVE',...item,
     sourceCase:item.sourceCase||item.evidence?.quote,

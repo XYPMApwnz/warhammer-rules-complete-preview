@@ -15,7 +15,7 @@ const selected=new Set(ids),built=buildAdMechContracts(),full=compilerInputs(bui
 const book=structuredClone(full),index=new Map(book.entities.map(e=>[e.id,e]));
 for(const entity of book.entities)if(!selected.has(entity.id))delete entity.ruleContract;
 const evaluator=withRosterDetachments(built.schema.evaluator);
-assert.equal(built.blockedIds.size,18);
+assert.equal(built.blockedIds.size,15);
 assert.equal(built.schema.evaluator.validateContracts(book).rules,7);
 validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
 
@@ -155,5 +155,5 @@ for(const entity of readJson('generated/effective.json').entities){
   const {ruleContract,...facts}=built.book.entities.find(e=>e.id===entity.id);
   assert.deepEqual(facts,entity,'Book-owned lowering changed factual snapshot');
 }
-console.log(JSON.stringify({status:'PASS',sourceOwners:7,sourceEffects:wanted.size,blockedOwners:18,
+console.log(JSON.stringify({status:'PASS',sourceOwners:7,sourceEffects:wanted.size,blockedOwners:built.blockedIds.size,
   actualSharedExecution:true,profileIsolation:true,repeatAttachDetach:true,battleActionsExecuted:false,legacyReads:0}));

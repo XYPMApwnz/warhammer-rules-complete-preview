@@ -1,25 +1,26 @@
 {
   "schema": "adeptus-mechanicus-rule-contract-census/v2",
   "sourceRules": 204,
-  "built": 186,
-  "valid": 186,
-  "blockedOwners": 18,
-  "blockedCases": 18,
+  "built": 189,
+  "valid": 189,
+  "blockedOwners": 15,
+  "blockedCases": 15,
   "invalidContracts": 0,
   "unboundSourceRules": 0,
   "legacyContractReads": 0,
   "byKind": {
     "OTHER_RULE": 46,
     "DATASHEET_ABILITY": 52,
+    "ARMY_RULE": 3,
     "DETACHMENT_RULE": 7,
     "ENHANCEMENT": 22,
     "STRATAGEM": 51,
     "FAQ_ERRATA_RULE": 8
   },
-  "compatibilityRelations": 6324,
+  "compatibilityRelations": 6426,
   "compatibility": {
     "MATCH": 370,
-    "CONDITIONAL": 1230,
+    "CONDITIONAL": 1332,
     "NO_MATCH": 4724,
     "INVALID": 0,
     "UNRESOLVED": 0
@@ -3096,110 +3097,6 @@
     }
   ],
   "blocked": [
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "army-rule-doctrina-imperatives:introduction",
-      "ownerKind": "ARMY_RULE_COMPONENT",
-      "contextLevel": "STATIC",
-      "missingPrimitive": "STATIC_UNIT_ABILITY_MEMBERSHIP",
-      "reason": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
-      "sourceFields": [
-        [
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below."
-      },
-      "prerequisiteEvidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below"
-      },
-      "wholeOwnerBlocked": true,
-      "sourceCase": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.",
-      "semanticAtom": "STATIC_UNIT_ABILITY_MEMBERSHIP",
-      "whyCompositionInsufficient": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/armyRules/0/components/0"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "army-rule-doctrina-imperatives:protector-imperative",
-      "ownerKind": "ARMY_RULE_COMPONENT",
-      "contextLevel": "STATIC",
-      "missingPrimitive": "STATIC_UNIT_ABILITY_MEMBERSHIP",
-      "reason": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
-      "sourceFields": [
-        [
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "Protector Imperative\n- Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n- Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n- Each time a melee attack targets this unit, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, subtract 1 from the Hit roll."
-      },
-      "prerequisiteEvidence": {
-        "otherEntityId": "army-rule-doctrina-imperatives:introduction",
-        "field": [
-          "text"
-        ],
-        "quote": "all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below"
-      },
-      "wholeOwnerBlocked": true,
-      "sourceCase": "Protector Imperative\n- Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n- Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n- Each time a melee attack targets this unit, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, subtract 1 from the Hit roll.",
-      "semanticAtom": "STATIC_UNIT_ABILITY_MEMBERSHIP",
-      "whyCompositionInsufficient": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/armyRules/0/components/1"
-      }
-    },
-    {
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "ruleId": "army-rule-doctrina-imperatives:conqueror-imperative",
-      "ownerKind": "ARMY_RULE_COMPONENT",
-      "contextLevel": "STATIC",
-      "missingPrimitive": "STATIC_UNIT_ABILITY_MEMBERSHIP",
-      "reason": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
-      "sourceFields": [
-        [
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "Conqueror Imperative\n- Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n- Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n- Each time a model in this unit makes an attack, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, improve the Armour Penetration characteristic of that attack by 1."
-      },
-      "prerequisiteEvidence": {
-        "otherEntityId": "army-rule-doctrina-imperatives:introduction",
-        "field": [
-          "text"
-        ],
-        "quote": "all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below"
-      },
-      "wholeOwnerBlocked": true,
-      "sourceCase": "Conqueror Imperative\n- Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n- Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n- Each time a model in this unit makes an attack, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, improve the Armour Penetration characteristic of that attack by 1.",
-      "semanticAtom": "STATIC_UNIT_ABILITY_MEMBERSHIP",
-      "whyCompositionInsufficient": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
-      "provenance": {
-        "sourceId": "am-waha-11e-2026-09-25",
-        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
-        "pointer": "/armyRules/0/components/2"
-      }
-    },
     {
       "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
       "ruleId": "detachment-haloscreed-battle-clade:enhancement:2",

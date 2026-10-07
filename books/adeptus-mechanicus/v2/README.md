@@ -135,14 +135,20 @@ two literal `None` options are absences, the introduction is scope guidance,
 and attachment metadata references the authoritative section. The exhaustive
 entity disposition ledger is regenerated with the census.
 
-186 contracts are source-bound and schema-valid. 18 complete owners are
+189 contracts are source-bound and schema-valid. 15 complete owners are
 explicitly `BLOCKED_MISSING_GENERIC_PRIMITIVE`, with their exact source cases,
 semantic atoms, provenance and reasons in `generated/rule-contract-census.json`.
 They are not published as successful partial contracts. The limitations cover
-STATIC UNIT ability membership, general abilities, Range/AP/skill changes, imperative overrides,
+general abilities, Range/AP/skill changes, imperative overrides,
 global MODEL targeting, invulnerable changes and canonical weapon grants.
-All three Army components are blocked: substituting intrinsic MODEL ability
-membership for their source UNIT ability prerequisite would change semantics.
+The three Doctrina components preserve their UNIT prerequisite through canonical
+Army Rule reference memberships. The book producer lowers those relationships
+to existing STATIC ANY/UNIT_ID predicates, without a manually authored unit/rule
+answer table or MODEL_ABILITY substitution. Protector and Conqueror activation
+are independent UNIT/BATTLE fields: absent battle context stays CONDITIONAL,
+and both can be represented as active without an exclusive option state machine.
+All seven clauses retain source text, lifetime and battle-only applicability;
+none grants HEAVY/ASSAULT or changes BS/WS from ordinary roster state.
 Seven previously blocked owners now use shared MODEL keyword grants and
 MODEL/UNIT keyword removal: three Chaff Launcher sections, Data-severed,
 Onager data-tether, Transoracular Dyad Wafers and Martial Signatum Amplificator.
@@ -162,7 +168,7 @@ set cardinality likewise remains source-backed battle-resolution metadata.
 The Electrotraction source's explicit BATTLECLADE requirement is preserved,
 even though it has no currently eligible intrinsic Electro-Priest identity.
 
-The 6,324 compatibility rows cover only the 186 represented owners against
+The 6,426 compatibility rows cover only the 189 represented owners against
 34 datasheets; they do not certify the blocked owners or a complete AdMech
 product. They are disposable output and never an authority. The overlay keeps
 semantics under the existing canonical IDs, without copying factual text into
@@ -185,6 +191,7 @@ node books/adeptus-mechanicus/v2/rule-contract-build.mjs
 node books/adeptus-mechanicus/v2/rule-contract-build.mjs --check
 node books/adeptus-mechanicus/v2/rule-contract-qa.mjs
 node books/adeptus-mechanicus/v2/keyword-roster-effects-qa.mjs
+node books/adeptus-mechanicus/v2/doctrina-contract-qa.mjs
 node books/shared/rule-contract-v2/schema-qa.mjs
 node books/shared/rule-contract-v2/bindings-qa.mjs
 node books/shared/rule-contract-v2/compatibility-qa.mjs

@@ -18348,90 +18348,1057 @@
         }
       ],
       "contextLevel": "BATTLE"
+    },
+    "army-rule-doctrina-imperatives:introduction": {
+      "kind": "ARMY_RULE",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "unitMembership": {
+        "ruleId": "army-rule-doctrina-imperatives",
+        "subject": "UNIT",
+        "roleId": "recipientUnit",
+        "sourceTooltipId": "#tooltip_content00094",
+        "evidence": {
+          "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+          "field": [
+            "text"
+          ],
+          "quote": "all units from your army that have the Doctrina Imperatives ability"
+        }
+      },
+      "roles": [
+        {
+          "id": "recipientUnit",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "purpose": "EFFECT_RECIPIENT",
+          "binding": "INDEPENDENT_ENTITY",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+              "field": [
+                "text"
+              ],
+              "quote": "all units from your army that have the Doctrina Imperatives ability"
+            }
+          },
+          "conditions": [
+            {
+              "op": "ANY",
+              "subject": "UNIT",
+              "roleId": "recipientUnit",
+              "args": [
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "protectorImperativeActive",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "that Doctrina Imperative is active for your army"
+                  },
+                  "roleId": "recipientUnit"
+                },
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "conquerorImperativeActive",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "that Doctrina Imperative is active for your army"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "conditions": [],
+      "compatibilityRoleIds": [
+        "recipientUnit"
+      ],
+      "sourceFields": [
+        [
+          "title"
+        ],
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "selection-and-activation",
+          "roles": [
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "INDEPENDENT_ENTITY",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": [
+                {
+                  "op": "ANY",
+                  "subject": "UNIT",
+                  "roleId": "recipientUnit",
+                  "args": [
+                    {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "BATTLE",
+                      "arguments": {
+                        "key": "protectorImperativeActive",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "that Doctrina Imperative is active for your army"
+                      },
+                      "roleId": "recipientUnit"
+                    },
+                    {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "BATTLE",
+                      "arguments": {
+                        "key": "conquerorImperativeActive",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "that Doctrina Imperative is active for your army"
+                      },
+                      "roleId": "recipientUnit"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below."
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "lifetimeEvidence": {
+            "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+            "field": [
+              "text"
+            ],
+            "quote": "Until the end of the battle round"
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperative activation and attack resolution require battle state. No battle effect is executed from roster state."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "activationTiming": {
+        "contextLevel": "BATTLE",
+        "evidence": {
+          "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+          "field": [
+            "text"
+          ],
+          "quote": "At the start of the battle round"
+        }
+      },
+      "duration": [
+        {
+          "endpoint": "EXPLICIT_SOURCE_BOUNDARY",
+          "evidence": {
+            "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+            "field": [
+              "text"
+            ],
+            "quote": "Until the end of the battle round"
+          },
+          "roleIds": [
+            "recipientUnit"
+          ],
+          "bindings": [
+            {
+              "clauseId": "selection-and-activation",
+              "roleIds": [
+                "recipientUnit"
+              ],
+              "scopeEvidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "Until the end of the battle round"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "army-rule-doctrina-imperatives:protector-imperative": {
+      "kind": "ARMY_RULE",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "unitMembership": {
+        "ruleId": "army-rule-doctrina-imperatives",
+        "subject": "UNIT",
+        "roleId": "recipientUnit",
+        "sourceTooltipId": "#tooltip_content00094",
+        "evidence": {
+          "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+          "field": [
+            "text"
+          ],
+          "quote": "all units from your army that have the Doctrina Imperatives ability"
+        }
+      },
+      "roles": [
+        {
+          "id": "recipientUnit",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "purpose": "EFFECT_RECIPIENT",
+          "binding": "INDEPENDENT_ENTITY",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+              "field": [
+                "text"
+              ],
+              "quote": "all units from your army that have the Doctrina Imperatives ability"
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "protectorImperativeActive",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "that Doctrina Imperative is active for your army"
+              },
+              "roleId": "recipientUnit"
+            }
+          ]
+        }
+      ],
+      "conditions": [],
+      "compatibilityRoleIds": [
+        "recipientUnit"
+      ],
+      "sourceFields": [
+        [
+          "title"
+        ],
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "imperative-clause-1",
+          "roles": [
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "INDEPENDENT_ENTITY",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": [
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "protectorImperativeActive",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "that Doctrina Imperative is active for your army"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "- Ranged weapons equipped by models in this unit have the [HEAVY] ability."
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "lifetimeEvidence": {
+            "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+            "field": [
+              "text"
+            ],
+            "quote": "Until the end of the battle round"
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperative activation and attack resolution require battle state. No battle effect is executed from roster state."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "imperative-clause-2",
+          "roles": [
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "INDEPENDENT_ENTITY",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": [
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "protectorImperativeActive",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "that Doctrina Imperative is active for your army"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "- Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1."
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "lifetimeEvidence": {
+            "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+            "field": [
+              "text"
+            ],
+            "quote": "Until the end of the battle round"
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperative activation and attack resolution require battle state. No battle effect is executed from roster state."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "imperative-clause-3",
+          "roles": [
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "INDEPENDENT_ENTITY",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": [
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "protectorImperativeActive",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "that Doctrina Imperative is active for your army"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "meleeAttackTargetsUnit",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative",
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time a melee attack targets this unit"
+              },
+              "roleId": "recipientUnit"
+            },
+            {
+              "op": "ANY",
+              "subject": "UNIT",
+              "roleId": "recipientUnit",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "BATTLELINE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "this unit has the BATTLELINE keyword"
+                  }
+                },
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "withinFriendlyMechanicusBattleline6",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:protector-imperative",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "- Each time a melee attack targets this unit, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, subtract 1 from the Hit roll."
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "lifetimeEvidence": {
+            "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+            "field": [
+              "text"
+            ],
+            "quote": "Until the end of the battle round"
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperative activation and attack resolution require battle state. No battle effect is executed from roster state."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "activationTiming": {
+        "contextLevel": "BATTLE",
+        "evidence": {
+          "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+          "field": [
+            "text"
+          ],
+          "quote": "At the start of the battle round"
+        }
+      },
+      "duration": [
+        {
+          "endpoint": "EXPLICIT_SOURCE_BOUNDARY",
+          "evidence": {
+            "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+            "field": [
+              "text"
+            ],
+            "quote": "Until the end of the battle round"
+          },
+          "roleIds": [
+            "recipientUnit"
+          ],
+          "bindings": [
+            {
+              "clauseId": "imperative-clause-1",
+              "roleIds": [
+                "recipientUnit"
+              ],
+              "scopeEvidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "Until the end of the battle round"
+              }
+            },
+            {
+              "clauseId": "imperative-clause-2",
+              "roleIds": [
+                "recipientUnit"
+              ],
+              "scopeEvidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "Until the end of the battle round"
+              }
+            },
+            {
+              "clauseId": "imperative-clause-3",
+              "roleIds": [
+                "recipientUnit"
+              ],
+              "scopeEvidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "Until the end of the battle round"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "army-rule-doctrina-imperatives:conqueror-imperative": {
+      "kind": "ARMY_RULE",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "unitMembership": {
+        "ruleId": "army-rule-doctrina-imperatives",
+        "subject": "UNIT",
+        "roleId": "recipientUnit",
+        "sourceTooltipId": "#tooltip_content00094",
+        "evidence": {
+          "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+          "field": [
+            "text"
+          ],
+          "quote": "all units from your army that have the Doctrina Imperatives ability"
+        }
+      },
+      "roles": [
+        {
+          "id": "recipientUnit",
+          "subject": "UNIT",
+          "allegiance": "FRIENDLY",
+          "purpose": "EFFECT_RECIPIENT",
+          "binding": "INDEPENDENT_ENTITY",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+              "field": [
+                "text"
+              ],
+              "quote": "all units from your army that have the Doctrina Imperatives ability"
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "conquerorImperativeActive",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "that Doctrina Imperative is active for your army"
+              },
+              "roleId": "recipientUnit"
+            }
+          ]
+        }
+      ],
+      "conditions": [],
+      "compatibilityRoleIds": [
+        "recipientUnit"
+      ],
+      "sourceFields": [
+        [
+          "title"
+        ],
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "imperative-clause-1",
+          "roles": [
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "INDEPENDENT_ENTITY",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": [
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "conquerorImperativeActive",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "that Doctrina Imperative is active for your army"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "- Ranged weapons equipped by models in this unit have the [ASSAULT] ability."
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "lifetimeEvidence": {
+            "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+            "field": [
+              "text"
+            ],
+            "quote": "Until the end of the battle round"
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperative activation and attack resolution require battle state. No battle effect is executed from roster state."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "imperative-clause-2",
+          "roles": [
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "INDEPENDENT_ENTITY",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": [
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "conquerorImperativeActive",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "that Doctrina Imperative is active for your army"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "- Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1."
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "lifetimeEvidence": {
+            "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+            "field": [
+              "text"
+            ],
+            "quote": "Until the end of the battle round"
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperative activation and attack resolution require battle state. No battle effect is executed from roster state."
+          },
+          "rosterEffects": []
+        },
+        {
+          "id": "imperative-clause-3",
+          "roles": [
+            {
+              "id": "recipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "INDEPENDENT_ENTITY",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "all units from your army that have the Doctrina Imperatives ability"
+                }
+              },
+              "conditions": [
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "conquerorImperativeActive",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "that Doctrina Imperative is active for your army"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "modelInUnitMakingAttack",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time a model in this unit makes an attack"
+              },
+              "roleId": "recipientUnit"
+            },
+            {
+              "op": "ANY",
+              "subject": "UNIT",
+              "roleId": "recipientUnit",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "BATTLELINE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "this unit has the BATTLELINE keyword"
+                  }
+                },
+                {
+                  "predicate": "FIELD",
+                  "subject": "UNIT",
+                  "contextLevel": "BATTLE",
+                  "arguments": {
+                    "key": "withinFriendlyMechanicusBattleline6",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:conqueror-imperative",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units"
+                  },
+                  "roleId": "recipientUnit"
+                }
+              ]
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "- Each time a model in this unit makes an attack, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, improve the Armour Penetration characteristic of that attack by 1."
+          },
+          "effectRecipientRoleIds": [
+            "recipientUnit"
+          ],
+          "lifetimeEvidence": {
+            "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+            "field": [
+              "text"
+            ],
+            "quote": "Until the end of the battle round"
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Imperative activation and attack resolution require battle state. No battle effect is executed from roster state."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "activationTiming": {
+        "contextLevel": "BATTLE",
+        "evidence": {
+          "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+          "field": [
+            "text"
+          ],
+          "quote": "At the start of the battle round"
+        }
+      },
+      "duration": [
+        {
+          "endpoint": "EXPLICIT_SOURCE_BOUNDARY",
+          "evidence": {
+            "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+            "field": [
+              "text"
+            ],
+            "quote": "Until the end of the battle round"
+          },
+          "roleIds": [
+            "recipientUnit"
+          ],
+          "bindings": [
+            {
+              "clauseId": "imperative-clause-1",
+              "roleIds": [
+                "recipientUnit"
+              ],
+              "scopeEvidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "Until the end of the battle round"
+              }
+            },
+            {
+              "clauseId": "imperative-clause-2",
+              "roleIds": [
+                "recipientUnit"
+              ],
+              "scopeEvidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "Until the end of the battle round"
+              }
+            },
+            {
+              "clauseId": "imperative-clause-3",
+              "roleIds": [
+                "recipientUnit"
+              ],
+              "scopeEvidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "Until the end of the battle round"
+              }
+            }
+          ]
+        }
+      ]
     }
   },
-  "blocked": [
-    {
-      "ruleId": "army-rule-doctrina-imperatives:introduction",
-      "ownerKind": "ARMY_RULE_COMPONENT",
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "contextLevel": "STATIC",
-      "missingPrimitive": "STATIC_UNIT_ABILITY_MEMBERSHIP",
-      "reason": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
-      "sourceFields": [
-        [
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below."
-      },
-      "prerequisiteEvidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below"
-      },
-      "wholeOwnerBlocked": true
-    },
-    {
-      "ruleId": "army-rule-doctrina-imperatives:protector-imperative",
-      "ownerKind": "ARMY_RULE_COMPONENT",
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "contextLevel": "STATIC",
-      "missingPrimitive": "STATIC_UNIT_ABILITY_MEMBERSHIP",
-      "reason": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
-      "sourceFields": [
-        [
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "Protector Imperative\n- Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n- Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n- Each time a melee attack targets this unit, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, subtract 1 from the Hit roll."
-      },
-      "prerequisiteEvidence": {
-        "otherEntityId": "army-rule-doctrina-imperatives:introduction",
-        "field": [
-          "text"
-        ],
-        "quote": "all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below"
-      },
-      "wholeOwnerBlocked": true
-    },
-    {
-      "ruleId": "army-rule-doctrina-imperatives:conqueror-imperative",
-      "ownerKind": "ARMY_RULE_COMPONENT",
-      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
-      "contextLevel": "STATIC",
-      "missingPrimitive": "STATIC_UNIT_ABILITY_MEMBERSHIP",
-      "reason": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
-      "sourceFields": [
-        [
-          "text"
-        ]
-      ],
-      "evidence": {
-        "field": [
-          "text"
-        ],
-        "quote": "Conqueror Imperative\n- Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n- Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n- Each time a model in this unit makes an attack, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, improve the Armour Penetration characteristic of that attack by 1."
-      },
-      "prerequisiteEvidence": {
-        "otherEntityId": "army-rule-doctrina-imperatives:introduction",
-        "field": [
-          "text"
-        ],
-        "quote": "all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below"
-      },
-      "wholeOwnerBlocked": true
-    }
-  ],
+  "blocked": [],
   "dispositions": [
     {
       "entityId": "datasheet-hastarii-exterminators:wargear:1",

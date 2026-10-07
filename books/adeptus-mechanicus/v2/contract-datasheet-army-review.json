@@ -108,6 +108,22 @@
     "broadSpectrumDataTetherEquipped": {
       "contextLevel": "ROSTER",
       "valueType": "boolean"
+    },
+    "protectorImperativeActive": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "conquerorImperativeActive": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "meleeAttackTargetsUnit": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "modelInUnitMakingAttack": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
     }
   },
   "modelAbilities": [
@@ -125,14 +141,15 @@
     "Roster-known semantic operations use the existing vocabulary and are never executed by this contribution.",
     "Doctrina ordinary selection is BATTLE; unconditional Enhancement overrides and unsupported BS/WS operations are reviewed with the Enhancement owner.",
     "Omnispex recipient uses existing SOURCE_UNIT/UNIT so the semantic declaration includes standalone units and attached formations without inventing an attachment requirement.",
-    "All three Army components are blocked on absent STATIC UNIT ability-membership semantics. Rejected MODEL_ABILITY declarations are diagnostic only and are not published. Core evidence: digital 11E 22.02 Faction Abilities and 19.04 Abilities in Attached Units.",
-    "Five previously blocked datasheet sections now contain complete source-backed contracts. Only the selected keyword effects execute in focused shared-kernel QA; compound battle clauses remain nonexecuting. Army components remain blocked."
+    "Five previously blocked datasheet sections now contain complete source-backed contracts. Only the selected keyword effects execute in focused shared-kernel QA; compound battle clauses remain nonexecuting. Army components remain blocked.",
+    "Doctrina UNIT prerequisites are lowered at build time from canonical RULE_REFERENCE memberships using existing ANY/UNIT_ID predicates. Independent UNIT/BATTLE activation fields remain unavailable without battle context; all seven clauses are nonexecuting BATTLE_ONLY. No MODEL_ABILITY substitution, activation engine or shared primitive is introduced.",
+    "The retained blockedArmyDiagnostics are historical rejected MODEL declarations only. Their activeDoctrina/Doctrina MODEL_ABILITY vocabulary does not feed the producer or the active registry. Current Doctrina uses independent per-UNIT BATTLE activation fields."
   ],
   "counts": {
     "substantiveOwners": 109,
-    "declarations": 106,
-    "blocked": 3,
-    "clauses": 144
+    "declarations": 109,
+    "blocked": 0,
+    "clauses": 151
   },
   "blockedArmyDiagnostics": [
     {
@@ -240,7 +257,7 @@
         ],
         "contextLevel": "BATTLE"
       },
-      "publication": "DIAGNOSTIC_ONLY_REJECTED_UNIT_TO_MODEL_SUBSTITUTION"
+      "publication": "HISTORICAL_REJECTED_MODEL_SUBSTITUTION_REPLACED_BY_UNIT_REFERENCE_MEMBERSHIP"
     },
     {
       "ruleId": "army-rule-doctrina-imperatives:protector-imperative",
@@ -540,7 +557,7 @@
         ],
         "contextLevel": "BATTLE"
       },
-      "publication": "DIAGNOSTIC_ONLY_REJECTED_UNIT_TO_MODEL_SUBSTITUTION"
+      "publication": "HISTORICAL_REJECTED_MODEL_SUBSTITUTION_REPLACED_BY_UNIT_REFERENCE_MEMBERSHIP"
     },
     {
       "ruleId": "army-rule-doctrina-imperatives:conqueror-imperative",
@@ -840,7 +857,7 @@
         ],
         "contextLevel": "BATTLE"
       },
-      "publication": "DIAGNOSTIC_ONLY_REJECTED_UNIT_TO_MODEL_SUBSTITUTION"
+      "publication": "HISTORICAL_REJECTED_MODEL_SUBSTITUTION_REPLACED_BY_UNIT_REFERENCE_MEMBERSHIP"
     }
   ]
 }
