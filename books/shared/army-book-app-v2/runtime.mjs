@@ -159,7 +159,7 @@ export function mount(document, payload, options = {}) {
   const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,
     related:renderRelatedRules,roster:options.roster,
     navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
-  const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds});
+  const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds,renderWeapon:datasheets.renderWeapon});
   let popupPresentation=null;
 
   function factValue(tag, field) {

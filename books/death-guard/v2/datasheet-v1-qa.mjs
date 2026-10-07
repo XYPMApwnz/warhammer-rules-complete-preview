@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
-import {fileURLToPath} from 'node:url';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import {projectContents} from '../../shared/army-book-app-v2/navigation-v1.mjs';
 import {buildApp,readAppInputs} from './app-build.mjs';
 import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
 import {validatePresentation} from './app-qa.mjs';
@@ -20,9 +21,16 @@ const navigationFiles=[
   'books/shared/army-book-app-v2/navigation-v1-targets.mjs',
   'books/shared/army-book-app-v2/navigation-v1.css'
 ];
+let navigationBaseline;
 for(const file of navigationFiles){
   const expected=execFileSync('git',['show',`${base}:${file}`],{cwd:repo,encoding:'utf8'}).replaceAll('\r\n','\n');
-  const actual=fs.readFileSync(path.join(repo,file),'utf8').replaceAll('\r\n','\n');
+  let actual=fs.readFileSync(path.join(repo,file),'utf8').replaceAll('\r\n','\n');
+  if(file.endsWith('/navigation-v1.mjs')) {
+    navigationBaseline=expected;
+    // The shared profile interface adds only a source-preserving layout alias.
+    // Freeze every other byte and compare the entire DG tree below as well.
+    actual=actual.replace("field.presentationPath??field.source?.path??''","field.source?.path||''");
+  }
   assert.equal(actual,expected,`Navigation baseline changed: ${file}`);
 }
 
@@ -35,6 +43,10 @@ for(const asset of ['datasheet-system.css','unit-art.css']){
 }
 
 const inputs=readAppInputs(),payload=buildApp(inputs);
+const baselineModule=navigationBaseline.replace(/from '(\.\/[^']+)'/g,(_,relative)=>
+  `from '${pathToFileURL(path.resolve(repo,'books/shared/army-book-app-v2',relative)).href}'`);
+const originalNavigation=await import('data:text/javascript;base64,'+Buffer.from(baselineModule).toString('base64'));
+assert.deepEqual(projectContents(payload),originalNavigation.projectContents(payload),'DG navigation behavior changed');
 const validation=validatePresentation(payload,inputs.model,inputs.records);
 const expected=enumerateExpectedFacts(inputs.model,inputs.records);
 assert.equal(expected.length,3654,'Canonical source-fact census changed');

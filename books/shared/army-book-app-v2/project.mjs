@@ -1,4 +1,5 @@
 /** Disposable presentation projection. No source parsing, gameplay execution or book branches. */
+import {normalizeProfilePresentation} from './profile-projection.mjs';
 const pointer = path => '/' + path.map(v => String(v).replace(/~/g, '~0').replace(/\//g, '~1')).join('/');
 const human = value => String(value).replace(/_/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2');
 const omit = new Set(['order','sourceOrder','class','filterId','detachmentCode','url','sourceBadges','profileIds','weaponIds','sectionIds','wargearOptionIds','ruleReferenceIds','rawFactIds','componentIds','ruleId','enhancementIds','stratagemIds','visuals','flavor','sourceUpdateIds','tableSourceOccurrences']);
@@ -73,5 +74,5 @@ export function projectArmyBook(model, ownedRecords, metadata) {
     ['introduction','Introduction',['BOOK_USAGE_RULES']],['army-rules','Army Rules',['ARMY_RULE']],
     ['datasheets','Datasheets',['DATASHEET']],['detachments','Detachments',['DETACHMENT']],['updates','GW Updates',['SOURCE_ERRATUM']]
   ].map(([id,label,kinds])=>({id,label,itemIds:[...cards.values()].filter(c=>kinds.includes(c.kind)).map(c=>c.id)}));
-  return {schema:'army-book-app-v2/presentation',book:{id:model.bookId,...metadata,currentness:`${model.currentness.currentness} · ${model.currentness.lastReconciledSource}`,mfmVersion:model.mfm.source.label},groups,cards:[...cards.values()],factManifest:manifest};
+  return normalizeProfilePresentation(model,{schema:'army-book-app-v2/presentation',book:{id:model.bookId,...metadata,currentness:`${model.currentness.currentness} · ${model.currentness.lastReconciledSource}`,mfmVersion:model.mfm.source.label},groups,cards:[...cards.values()],factManifest:manifest});
 }

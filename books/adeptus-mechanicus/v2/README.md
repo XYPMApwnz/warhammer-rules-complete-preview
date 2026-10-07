@@ -227,3 +227,48 @@ recipients, repeated recomputation and detach restoration. It introduces no
 general AdMech runtime or additional executable abilities.
 The existing `qa:am` command remains a legacy regression check only; it is not
 the source oracle or contract denominator.
+
+## Normal Army Book application
+
+`app.html` loads one disposable V2 presentation payload and the existing shared
+ArmyBookApp. It does not enable roster mode. Canonical facts and the 204 current
+contracts feed the producer; central MFM records own points. Enhancement costs
+use explicit canonical/MFM bindings, never title matching in production.
+
+Both books use the same shared MODEL-profile presentation boundary. It maps
+flat or nested characteristics to layout fields without changing their source
+addresses, values or owners. Mixed profiles retain separate names, statlines,
+Bases and keyword-scope captions. A shared invulnerable-save record remains one
+owner referenced by its explicit profiles. Single-profile datasheets use the
+same renderer. No army-name branches or separate datasheet renderer are added.
+
+The book renders all 34 datasheets, 35 profiles, 139 weapon profiles (including
+the canonical Enhancement weapon), ten Detachments, 34 Enhancements/Upgrades,
+51 Stratagems and current updates. Source-tooltip bindings open the existing
+canonical Core/Army definitions. Related Rules compiles all 2,890 unit/rule
+relationships and selected-Detachment alternatives from the shared evaluator.
+Book mode leaves roster and battle state unavailable; ordinary Imperatives
+remain conditional. Generated compatibility rows have no factual authority.
+
+The independent application oracle accounts for 3,138 canonical player-facing
+fields. This differs from the 6,481 accepted-source census, which also accounts
+for source occurrences and metadata. Browser QA checks ordinary book/detail
+surfaces before its supplementary full-field view. Single-profile names may
+share their identical datasheet heading, weapon modes appear through the
+ranged/melee groups, and false wargear-presentation flags are not player text.
+All other expected player fields must have their own visible factual binding.
+
+```text
+node books/adeptus-mechanicus/v2/app-build.mjs
+node books/adeptus-mechanicus/v2/app-build.mjs --check
+node books/adeptus-mechanicus/v2/app-qa.mjs
+node books/adeptus-mechanicus/v2/presentation-reference-qa.mjs
+node books/adeptus-mechanicus/v2/app-browser-qa.mjs
+node books/shared/army-book-app-v2/profile-projection-qa.mjs
+```
+
+Browser QA uses Playwright on desktop and 390x844 phone, with optional screenshot
+output through `ARMY_APP_V2_SCREENSHOTS`. It exercises canonical popups, all
+Detachment filters, mixed profiles, navigation/reload/history, legacy disconnect
+and V2 value poison controls. The existing DG app projection remains unchanged;
+its 3,654-fact and 22-clause visible-effect guards remain regression gates.

@@ -28,13 +28,15 @@ const coreTargets=Object.freeze({ASSAULT:'core-assault',HEAVY:'core-heavy',PISTO
   HAZARDOUS:'core-hazardous',IGNORES_COVER:'core-ignores-cover',TWIN_LINKED:'core-twin-linked',
   RAPID_FIRE:'core-rapid-fire',MELTA:'core-melta',EXTRA_ATTACKS:'core-extra-attacks',INDIRECT_FIRE:'core-indirect-fire',
   ONE_SHOT:'core-one-shot',ANTI:'core-anti'});
-const abilityCode=value=>String(value).trim().toUpperCase().replace(/[\[\]]/g,'').replace(/\s+/g,'_').replace(/_(?:\d+\+?|D\d+)$/,'');
-const pointerKey=field=>field.source?.path?.slice(1).split('/')[0];
-const single=(card,key)=>card.fields.find(f=>f.source?.path==='/'+key);
+const abilityCode=value=>String(value).trim().toUpperCase().replace(/[\[\]]/g,'').replace(/\s+/g,'_').replace(/_(?:\d+\+?|D\d+)$/,'').replace(/^ANTI[-_].+$/,'ANTI');
+const layoutPath=field=>field.presentationPath ?? field.source?.path;
+const pointerKey=field=>layoutPath(field)?.slice(1).split('/')[0];
+const single=(card,key)=>card.fields.find(f=>layoutPath(f)==='/'+key);
 const domKey=value=>encodeURIComponent(value).replace(/%/g,'_');
 
 export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,related,roster,navigateSection}) {
   const config=payload.datasheetPresentation;
+  const boundFields=new Map([...cards.values()].flatMap(card=>card.fields.map(field=>[field.id,field])));
   if (config?.schema!=='army-book-app-v2/datasheet-layout') throw new TypeError('Missing V2 datasheet layout metadata');
   const identity=(node,card,instanceId)=>{
     node.dataset.cardId=card.id;node.dataset.entityId=card.source?.entityId || card.id;node.dataset.v2EntityId=card.id;
@@ -75,7 +77,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const titleField=card.fields.find(f=>f.presentation==='heading');if(titleField){box.append(factValue('h5',titleField));used.add(titleField.id);}
     const line=el('div','statline');
     const labels={M:'M',T:'T',SV:'SV',W:'W',LD:'LD',OC:'OC',INSV:'INV'};
-    for(const field of card.fields.filter(f=>Object.hasOwn(labels,pointerKey(f)))){
+    for(const field of [...card.fields,...(card.profileFieldIds||[]).map(id=>boundFields.get(id))].filter(f=>Object.hasOwn(labels,pointerKey(f)))){
       const stat=el('div','stat');stat.append(el('b','',labels[pointerKey(field)]),factValue('span',field));
       const change=modifiers(card,field,instanceId);if(change)stat.append(change);line.append(stat);used.add(field.id);
     }
@@ -89,8 +91,10 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       if(child.kind==='MODEL_BASE'){
         const base=identity(el('div','profile-base'),child,instanceId);
         if(caption)base.append(el('span','ds-base-scope',caption+' · '));
+        else if(titleField)base.append(factValue('span',titleField),document.createTextNode(' · '));
         base.append(el('b','','Base: '));
         base.append(factValue('span',single(child,'text')));box.append(base);
+        for(const note of child.fields.filter(field=>/^\/notes\/\d+$/.test(field.source?.path||'')))base.append(document.createTextNode(' '),factValue('span',note));
       }
     }
     return box;
@@ -112,7 +116,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     nameCell.append(tags);
     if(card.rosterQuantity!==undefined)nameLine.append(el('small','ds-weapon-quantity',` ×${card.rosterQuantity}`));
     if(popup) {const h=el('h3');h.append(nameCell);row.append(h);}else row.append(nameCell);
-    const fieldLabels={range:'Range',attacks:'A',skill:mode?.value==='melee'?'WS':'BS',strength:'S',ap:'AP',damage:'D'};
+    const fieldLabels={range:'Range',attacks:'A',skill:(mode?.value??card.weaponMode)==='melee'?'WS':'BS',strength:'S',ap:'AP',damage:'D'};
     let table,body;
     if(popup){table=el('table','popup-weapon-table');const head=el('tr');for(const label of Object.values(fieldLabels)){const th=el('th','',label);th.scope='col';head.append(th);}const thead=el('thead');thead.append(head);body=el('tr');const tbody=el('tbody');tbody.append(body);table.append(thead,tbody);}
     for(const [key,label] of Object.entries(fieldLabels)){
@@ -145,6 +149,11 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       list.append(content);
     }
     section.append(list);
+    for(const id of card.referenceCardIds||[]){
+      const reference=cards.get(id),line=identity(el('p','book-rule-references'),reference,instanceId);
+      const role=single(reference,'roleHeading');if(role)line.append(factValue('b',role),document.createTextNode(': '));
+      for(const field of reference.fields.filter(field=>/^\/references\/\d+\/targetId$/.test(field.source.path))){const link=anchor('',field.targetIds[0],true);link.append(factValue('span',field));line.append(link,document.createTextNode(' '));}section.append(line);
+    }
     for(const field of card.fields.filter(f=>/^\/qualifications\/\d+\/value\/sourceText$/.test(f.source?.path || ''))){
       const note=el('aside','ds-source-update');note.append(el('b','','Rules update: '),factValue('p',field));section.append(note);
     }
@@ -152,6 +161,20 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
   };
   const renderRuleReference=(card,instanceId)=>{
     const node=identity(el('div','ability shared-abilities'),card,instanceId);
+    const groups=card.fields.filter(field=>/^\/groups\/\d+\/label$/.test(field.source?.path||''));
+    if(groups.length){
+      for(const label of groups){
+        const group=el('span','ability ds-shared-rule-group'),prefix=label.source.path.replace(/label$/,'');
+        const caption=factValue('strong',label);caption.classList.add('ds-rule-reference-label');group.append(caption);
+        for(const field of card.fields.filter(field=>field.source?.path.startsWith(prefix+'entries/')&&field.source.path.endsWith('/label'))){
+          const bindings=config.referenceBindings?.fields?.[field.id];
+          if(!bindings?.length)throw new TypeError('Unbound canonical rule reference: '+field.id);
+          let cursor=0;const value=factValue('span',field);value.replaceChildren();
+          for(const binding of bindings){value.append(document.createTextNode(field.value.slice(cursor,binding.start)),anchor(field.value.slice(binding.start,binding.end),binding.targetId,true));cursor=binding.end;}
+          value.append(document.createTextNode(field.value.slice(cursor)));group.append(value,document.createTextNode(' '));
+        }node.append(group);
+      }return node;
+    }
     for(const field of card.fields){const value=factValue('p',field);
       // Source markers format Core/Faction paragraphs only. No rule definition
       // or identity is looked up from their contents.
@@ -229,7 +252,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     for(const child of children.filter(c=>c.kind==='WEAPON_PROFILE_SELECTION')){
       const instruction=identity(el('aside','ds-profile-selection'),child,instanceId);instruction.append(factValue('p',single(child,'text')));
-      for(const field of child.fields.filter(f=>/\/profileIds\/\d+$/.test(f.source.path))){
+      for(const field of child.fields.filter(f=>/\/(?:profileIds|weaponProfileIds)\/\d+$/.test(f.source.path))){
         // The binding is an explicit canonical reference, not a title join.
         const link=anchor('',field.targetIds[0],true);link.append(factValue('span',field));instruction.append(link,document.createTextNode(' · '));
       }profile.append(instruction);
@@ -278,7 +301,11 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const note=identity(el('p','ds-paid-upgrade'),child,instanceId);note.append(el('b','',child.title+': '),factValue('span',single(child,'value')),document.createTextNode(' pts '),factValue('span',single(child,'sourceLabel')));profile.append(note);
     }
     const keywords=part('keywords','Keywords');
-    for(const [path,label] of [['keywords',instanceId?'Effective unit keywords':'Keywords'],['factionKeywords','Faction Keywords']]){
+    if(card.keywordGroups){for(const group of card.keywordGroups){
+      const line=el('p'),label=card.fields.find(field=>field.id===group.labelFieldId);
+      line.append(factValue('b',label),document.createTextNode(': '));
+      group.fieldIds.forEach((id,index)=>{if(index)line.append(document.createTextNode(', '));line.append(factValue('span',card.fields.find(field=>field.id===id)));});keywords.append(line);
+    }}else for(const [path,label] of [['keywords',instanceId?'Effective unit keywords':'Keywords'],['factionKeywords','Faction Keywords']]){
       const line=el('p');line.append(el('b','',label+': '));const fields=card.fields.filter(f=>f.source?.path.startsWith('/'+path+'/'));
       fields.forEach((field,index)=>{if(index)line.append(document.createTextNode(', '));line.append(factValue('span',field));});keywords.append(line);
     }root.append(keywords);

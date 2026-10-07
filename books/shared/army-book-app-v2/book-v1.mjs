@@ -1,9 +1,9 @@
 /** Actual V1 book templates adapted to canonical V2 fields. Presentation only. */
-const bookKinds = new Set(['BOOK_USAGE_RULES','ARMY_RULE','ARMY_RULE_COMPONENT',
-  'DETACHMENT','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','SOURCE_ERRATUM']);
+const bookKinds = new Set(['BOOK_USAGE_RULES','BOOK_USAGE','ARMY_RULE','ARMY_RULE_COMPONENT',
+  'DETACHMENT','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','SOURCE_ERRATUM','SOURCE_UPDATE_REFERENCE']);
 const fieldAt = (card,path) => card.fields?.find(field=>field.source?.path===path);
 
-export function createBookPresenter({document,payload,cards,el,factValue:makeFactValue,anchor,allowedIds}) {
+export function createBookPresenter({document,payload,cards,el,factValue:makeFactValue,anchor,allowedIds,renderWeapon}) {
   const config=payload.bookPresentation;
   if(config?.schema!=='army-book-app-v2/book-v1-presentation')throw new TypeError('Missing book presentation projection');
   const records=config.records;
@@ -85,8 +85,11 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
   };
   const renderEnhancement=(card,options)=>{
     const node=identity(el('article','enhancement surface'),card),record=records[card.id];
-    node.append(el('div','eyebrow','Enhancement'));const title=heading(card,'h4','',options);cost(record,title);node.append(title);
+    const sourceType=fieldAt(card,'/sourceTypeLabel');
+    if(sourceType){const label=factValue('div',sourceType);label.classList.add('eyebrow');node.append(label);}else node.append(el('div','eyebrow','Enhancement'));
+    const title=heading(card,'h4','',options);cost(record,title);node.append(title);
     const text=fieldAt(card,'/text');if(text)node.append(factValue('p',text));
+    for(const id of card.children.filter(id=>cards.get(id)?.kind==='WEAPON_PROFILE'))node.append(renderWeapon(cards.get(id),{popup:true}));
     if(options.popup)sourceFooter(card,node);return node;
   };
   const renderRule=(card,options)=>{
@@ -94,6 +97,11 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
     const node=identity(el('article',ability?'ability':'rule-card surface'),card);node.append(heading(card,ability?'h5':'h3','',options));
     if(ability){const text=fieldAt(card,'/text');if(text)node.append(factValue('p',textPresentation(card,text)));appendText(node,{...card,fields:card.fields.filter(field=>field.source?.path!=='/text')});}
     else appendText(node,card);
+    if(card.kind==='SOURCE_UPDATE_REFERENCE'){
+      const page=fieldAt(card,'/page');if(page){const line=el('p','source-note');line.append(document.createTextNode('Official update · Page '),factValue('span',page));node.append(line);}
+      const targets=el('p','book-rule-references');
+      for(const field of card.fields.filter(field=>/^\/targetIds\/\d+$/.test(field.source?.path||''))){const link=anchor('',field.targetIds[0],true);link.append(factValue('span',field));targets.append(link,document.createTextNode(' '));}node.append(targets);
+    }
     if(card.links?.length){const links=el('p','book-rule-references');for(const link of card.links.filter(link=>visible(link.targetId))){links.append(anchor(link.label||cards.get(link.targetId).title,link.targetId,true),document.createTextNode(' '));}node.append(links);}
     if(options.popup||card.kind==='SOURCE_ERRATUM')sourceFooter(card,node);return node;
   };

@@ -89,7 +89,7 @@ export function projectContents(payload,state=null,personal=null){
   if(detachments?.itemIds.length)roots.push(branch('nav:detachments','Detachments',detachments.itemIds.map(detachment)));
   const buckets=new Map();
   for(const id of payload.groups.find(group=>group.id==='datasheets')?.itemIds||[]){
-    const keywords=new Set(record(id).fields.filter(field=>/^\/keywords\/\d+$/.test(field.source?.path||'')).map(field=>field.value));
+    const keywords=new Set(record(id).fields.filter(field=>/^\/keywords\/\d+$/.test(field.presentationPath??field.source?.path??'')).map(field=>field.value));
     const [key,label]=categories.find(([keyword])=>keywords.has(keyword))||['OTHER','Other datasheets'];
     if(!buckets.has(key))buckets.set(key,{label,items:[]});buckets.get(key).items.push(leaf(id));
   }
