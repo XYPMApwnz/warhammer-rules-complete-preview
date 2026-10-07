@@ -1,0 +1,829 @@
+{
+  "schema": "am-v2/datasheet-army-contract-review/v1",
+  "stateFields": {
+    "phase": {
+      "contextLevel": "BATTLE",
+      "valueType": "string"
+    },
+    "turnOwner": {
+      "contextLevel": "BATTLE",
+      "valueType": "string"
+    },
+    "hasShotThisPhase": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "characterModelLeadingSource": {
+      "contextLevel": "ROSTER",
+      "valueType": "boolean"
+    },
+    "canAttachToReferencedUnit": {
+      "contextLevel": "ROSTER",
+      "valueType": "boolean"
+    },
+    "remainingWoundsBand": {
+      "contextLevel": "BATTLE",
+      "valueType": "string"
+    },
+    "withinEnemyEngagementRange": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "containsTechPriestModel": {
+      "contextLevel": "ROSTER",
+      "valueType": "boolean"
+    },
+    "atStartOfPhase": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "oncePerBattleUseAvailable": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "omnispexEquipped": {
+      "contextLevel": "ROSTER",
+      "valueType": "boolean"
+    },
+    "atStartOfBattle": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "equipmentBearerLabel": {
+      "contextLevel": "ROSTER",
+      "valueType": "string"
+    },
+    "atStartOfBattleRound": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "activeDoctrina": {
+      "contextLevel": "BATTLE",
+      "valueType": "string"
+    },
+    "withinFriendlyMechanicusBattleline6": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "withinOtherFriendlyMechanicus3": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "withinSource6": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "withinSourceEngagementRange": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "withinSource3": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "withinFriendlyMechanicusVehicle3": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "settingUpAsReinforcements": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    },
+    "withinSource12": {
+      "contextLevel": "BATTLE",
+      "valueType": "boolean"
+    }
+  },
+  "modelAbilities": [
+    "Doctrina Imperatives",
+    "Leader"
+  ],
+  "scope": {
+    "substantiveOwners": 109,
+    "rootArmyRuleAndBookUsage": "DISPOSITION_ONLY",
+    "rosterExecution": "NOT_INTEGRATED"
+  },
+  "notes": [
+    "Section owner identity is preserved; block clause IDs are local contract structure, never independent factual entities.",
+    "Attachment role/capacity declarations do not derive capacities, execute attachment, or create a second factual owner.",
+    "Roster-known semantic operations use the existing vocabulary and are never executed by this contribution.",
+    "Doctrina ordinary selection is BATTLE; unconditional Enhancement overrides and unsupported BS/WS operations are reviewed with the Enhancement owner.",
+    "Omnispex recipient uses existing SOURCE_UNIT/UNIT so the semantic declaration includes standalone units and attached formations without inventing an attachment requirement.",
+    "All three Army components are blocked on absent STATIC UNIT ability-membership semantics. Rejected MODEL_ABILITY declarations are diagnostic only and are not published. Core evidence: digital 11E 22.02 Faction Abilities and 19.04 Abilities in Attached Units."
+  ],
+  "counts": {
+    "substantiveOwners": 109,
+    "declarations": 101,
+    "blocked": 8,
+    "clauses": 129
+  },
+  "blockedArmyDiagnostics": [
+    {
+      "ruleId": "army-rule-doctrina-imperatives:introduction",
+      "formerDeclaration": {
+        "kind": "ARMY_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "roles": [
+          {
+            "id": "recipientModel",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "purpose": "EFFECT_RECIPIENT",
+            "binding": "INDEPENDENT_ENTITY",
+            "selector": {
+              "predicate": "MODEL_ABILITY",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "ability": "Doctrina Imperatives"
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "Doctrina Imperatives"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "compatibilityRoleIds": [
+          "recipientModel"
+        ],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "round-selection",
+            "roles": [
+              {
+                "id": "recipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "INDEPENDENT_ENTITY",
+                "selector": {
+                  "predicate": "MODEL_ABILITY",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "ability": "Doctrina Imperatives"
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Doctrina Imperatives"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "atStartOfBattleRound",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the start of the battle round"
+                },
+                "roleId": "recipientModel"
+              }
+            ],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below."
+            },
+            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
+            },
+            "rosterEffects": []
+          }
+        ],
+        "contextLevel": "BATTLE"
+      },
+      "publication": "DIAGNOSTIC_ONLY_REJECTED_UNIT_TO_MODEL_SUBSTITUTION"
+    },
+    {
+      "ruleId": "army-rule-doctrina-imperatives:protector-imperative",
+      "formerDeclaration": {
+        "kind": "ARMY_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "roles": [
+          {
+            "id": "recipientModel",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "purpose": "EFFECT_RECIPIENT",
+            "binding": "INDEPENDENT_ENTITY",
+            "selector": {
+              "predicate": "MODEL_ABILITY",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "ability": "Doctrina Imperatives"
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "Doctrina Imperatives"
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "activeDoctrina",
+                  "equals": "PROTECTOR"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Protector Imperative"
+                }
+              }
+            ]
+          }
+        ],
+        "conditions": [],
+        "compatibilityRoleIds": [
+          "recipientModel"
+        ],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "imperative-clause-1",
+            "roles": [
+              {
+                "id": "recipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "INDEPENDENT_ENTITY",
+                "selector": {
+                  "predicate": "MODEL_ABILITY",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "ability": "Doctrina Imperatives"
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Doctrina Imperatives"
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "activeDoctrina",
+                      "equals": "PROTECTOR"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Protector Imperative"
+                    }
+                  }
+                ]
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- Ranged weapons equipped by models in this unit have the [HEAVY] ability."
+            },
+            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
+            },
+            "rosterEffects": []
+          },
+          {
+            "id": "imperative-clause-2",
+            "roles": [
+              {
+                "id": "recipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "INDEPENDENT_ENTITY",
+                "selector": {
+                  "predicate": "MODEL_ABILITY",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "ability": "Doctrina Imperatives"
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Doctrina Imperatives"
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "activeDoctrina",
+                      "equals": "PROTECTOR"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Protector Imperative"
+                    }
+                  }
+                ]
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1."
+            },
+            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
+            },
+            "rosterEffects": []
+          },
+          {
+            "id": "imperative-clause-3",
+            "roles": [
+              {
+                "id": "recipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "INDEPENDENT_ENTITY",
+                "selector": {
+                  "predicate": "MODEL_ABILITY",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "ability": "Doctrina Imperatives"
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Doctrina Imperatives"
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "activeDoctrina",
+                      "equals": "PROTECTOR"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Protector Imperative"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "recipientUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "ANCHOR",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "this unit"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [
+              {
+                "op": "ANY",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "BATTLELINE"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "BATTLELINE"
+                    }
+                  },
+                  {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "withinFriendlyMechanicusBattleline6",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units"
+                    }
+                  }
+                ],
+                "roleId": "recipientUnit",
+                "subject": "UNIT"
+              }
+            ],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- Each time a melee attack targets this unit, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, subtract 1 from the Hit roll."
+            },
+            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
+            },
+            "rosterEffects": []
+          }
+        ],
+        "contextLevel": "BATTLE"
+      },
+      "publication": "DIAGNOSTIC_ONLY_REJECTED_UNIT_TO_MODEL_SUBSTITUTION"
+    },
+    {
+      "ruleId": "army-rule-doctrina-imperatives:conqueror-imperative",
+      "formerDeclaration": {
+        "kind": "ARMY_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "roles": [
+          {
+            "id": "recipientModel",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "purpose": "EFFECT_RECIPIENT",
+            "binding": "INDEPENDENT_ENTITY",
+            "selector": {
+              "predicate": "MODEL_ABILITY",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "ability": "Doctrina Imperatives"
+              },
+              "evidence": {
+                "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                "field": [
+                  "text"
+                ],
+                "quote": "Doctrina Imperatives"
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "activeDoctrina",
+                  "equals": "CONQUEROR"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Conqueror Imperative"
+                }
+              }
+            ]
+          }
+        ],
+        "conditions": [],
+        "compatibilityRoleIds": [
+          "recipientModel"
+        ],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "imperative-clause-1",
+            "roles": [
+              {
+                "id": "recipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "INDEPENDENT_ENTITY",
+                "selector": {
+                  "predicate": "MODEL_ABILITY",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "ability": "Doctrina Imperatives"
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Doctrina Imperatives"
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "activeDoctrina",
+                      "equals": "CONQUEROR"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Conqueror Imperative"
+                    }
+                  }
+                ]
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- Ranged weapons equipped by models in this unit have the [ASSAULT] ability."
+            },
+            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
+            },
+            "rosterEffects": []
+          },
+          {
+            "id": "imperative-clause-2",
+            "roles": [
+              {
+                "id": "recipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "INDEPENDENT_ENTITY",
+                "selector": {
+                  "predicate": "MODEL_ABILITY",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "ability": "Doctrina Imperatives"
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Doctrina Imperatives"
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "activeDoctrina",
+                      "equals": "CONQUEROR"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Conqueror Imperative"
+                    }
+                  }
+                ]
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1."
+            },
+            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
+            },
+            "rosterEffects": []
+          },
+          {
+            "id": "imperative-clause-3",
+            "roles": [
+              {
+                "id": "recipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "INDEPENDENT_ENTITY",
+                "selector": {
+                  "predicate": "MODEL_ABILITY",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "ability": "Doctrina Imperatives"
+                  },
+                  "evidence": {
+                    "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Doctrina Imperatives"
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "activeDoctrina",
+                      "equals": "CONQUEROR"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Conqueror Imperative"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "recipientUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "ANCHOR",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "this unit"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [
+              {
+                "op": "ANY",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "BATTLELINE"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "BATTLELINE"
+                    }
+                  },
+                  {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "withinFriendlyMechanicusBattleline6",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units"
+                    }
+                  }
+                ],
+                "roleId": "recipientUnit",
+                "subject": "UNIT"
+              }
+            ],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- Each time a model in this unit makes an attack, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, improve the Armour Penetration characteristic of that attack by 1."
+            },
+            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
+            },
+            "rosterEffects": []
+          }
+        ],
+        "contextLevel": "BATTLE"
+      },
+      "publication": "DIAGNOSTIC_ONLY_REJECTED_UNIT_TO_MODEL_SUBSTITUTION"
+    }
+  ]
+}

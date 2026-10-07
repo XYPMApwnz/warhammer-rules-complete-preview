@@ -1,0 +1,503 @@
+{
+  "authority": "DIAGNOSTIC_REVIEW_ONLY",
+  "source": "books/adeptus-mechanicus/v2/generated/effective.json",
+  "counts": {
+    "sourceRules": 44,
+    "declarations": 27,
+    "blocked": 17,
+    "enhancementsDeclared": 20,
+    "detachmentRulesDeclared": 7,
+    "clauses": 48
+  },
+  "validation": {
+    "schema": "books/shared/rule-contract-v2/schema.mjs",
+    "binding": "books/shared/rule-contract-v2/bindings.mjs",
+    "status": "PASS",
+    "rules": 27,
+    "completeSourceOwnerAccounting": "PASS",
+    "characterOwnerQualifier": "All 20 successful MODEL Enhancement owners and 13 blocked MODEL owner diagnostics include accepted book-introduction CHARACTER prerequisite; explicit SERBERYS RAIDERS UPGRADE remains UNIT-owned.",
+    "weaponMode": "Existing canonical lowercase melee/ranged modes preserved."
+  },
+  "review": [
+    {
+      "ruleId": "detachment-haloscreed-battle-clade:enhancement:4",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST DOMINUS or TECH-PRIEST MANIPULUS model only. Add 3 to the Attacks characteristic of the bearer’s melee weapons and add 1 to the Damage characteristic of the bearer’s melee weapons.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "bearer-melee-statistics",
+          "rosterClassification": "ROSTER_KNOWN",
+          "sourceCase": "Add 3 to the Attacks characteristic of the bearer’s melee weapons and add 1 to the Damage characteristic of the bearer’s melee weapons."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-data-psalm-conclave:enhancement:1",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. The bearer has a Leadership characteristic of 6+ and, once per battle, at the start of any phase, you can select one friendly CULT MECHANICUS unit that is Battle-shocked and within 12\" of the bearer. That unit is no longer Battle-shocked.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "bearer-leadership",
+          "rosterClassification": "ROSTER_KNOWN",
+          "sourceCase": "The bearer has a Leadership characteristic of 6+"
+        },
+        {
+          "id": "remove-battle-shock",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "once per battle, at the start of any phase, you can select one friendly CULT MECHANICUS unit that is Battle-shocked and within 12\" of the bearer. That unit is no longer Battle-shocked."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-data-psalm-conclave:enhancement:2",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. Each time an attack is allocated to the bearer, change the Damage characteristic of that attack to 1.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "allocated-attack-damage",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Each time an attack is allocated to the bearer, change the Damage characteristic of that attack to 1."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-data-psalm-conclave:enhancement:3",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. Once per battle, at the start of your Command phase, you can select the Benediction of the Omnissiah you did not select at the start of the first battle round. Until the start of your next Command phase, that Benediction of the Omnissiah is active for the bearer’s unit in addition to the one that is currently active for your army.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "additional-benediction",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Once per battle, at the start of your Command phase, you can select the Benediction of the Omnissiah you did not select at the start of the first battle round. Until the start of your next Command phase, that Benediction of the Omnissiah is active for the bearer’s unit in addition to the one that is currently active for your army."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-explorator-maniple:enhancement:1",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. At the end of your Command phase, if the bearer is within range of your Acquisition objective marker, roll one D6: on a 4+, you gain 1CP.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "acquisition-command-point",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "At the end of your Command phase, if the bearer is within range of your Acquisition objective marker, roll one D6: on a 4+, you gain 1CP."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-explorator-maniple:enhancement:2",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. While the bearer is leading a unit that is within range of your Acquisition objective marker, models in that unit have a 4+ invulnerable save.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "acquisition-invulnerable-save",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "While the bearer is leading a unit that is within range of your Acquisition objective marker, models in that unit have a 4+ invulnerable save."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-explorator-maniple:enhancement:3",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. While the bearer is leading a unit, each time a model in that unit makes an attack that targets a unit within range of your Acquisition objective marker, add 1 to the Hit roll.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "acquisition-hit-roll",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "While the bearer is leading a unit, each time a model in that unit makes an attack that targets a unit within range of your Acquisition objective marker, add 1 to the Hit roll."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-explorator-maniple:enhancement:4",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. While the bearer is leading a unit that is within range of your Acquisition objective marker, once per phase, you can change the result of one Hit roll, one Wound roll or one saving throw made for that unit to an unmodified 6.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "acquisition-roll-change",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "While the bearer is leading a unit that is within range of your Acquisition objective marker, once per phase, you can change the result of one Hit roll, one Wound roll or one saving throw made for that unit to an unmodified 6."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-skitarii-hunter-cohort:enhancement:1",
+      "status": "DECLARED",
+      "sourceCase": "SKITARII MARSHAL model only. At the start of the battle round, you can select one friendly SKITARII unit within 12\" of the bearer. Until the start of the next battle round, the Protector Imperative and the Conqueror Imperative are both active for that unit.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "selected-unit-imperatives",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "At the start of the battle round, you can select one friendly SKITARII unit within 12\" of the bearer. Until the start of the next battle round, the Protector Imperative and the Conqueror Imperative are both active for that unit."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-skitarii-hunter-cohort:enhancement:3",
+      "status": "DECLARED",
+      "sourceCase": "SKITARII MARSHAL model only. After both players have deployed their armies, you can select up to three SKITARII INFANTRY units from your army and redeploy all of those units. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "redeployment",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "After both players have deployed their armies, you can select up to three SKITARII INFANTRY units from your army and redeploy all of those units. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-skitarii-hunter-cohort:enhancement:4",
+      "status": "DECLARED",
+      "sourceCase": "SKITARII model only. In your Shooting phase, after the bearer’s unit has shot, if it is not within Engagement Range of one or more enemy units, that unit can make a Normal move of up to 6\". If it does, until the end of the turn, that unit is not eligible to declare a charge.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "post-shooting-move",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "In your Shooting phase, after the bearer’s unit has shot, if it is not within Engagement Range of one or more enemy units, that unit can make a Normal move of up to 6\"."
+        },
+        {
+          "id": "post-move-charge-restriction",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "If it does, until the end of the turn, that unit is not eligible to declare a charge."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-cohort-cybernetica:enhancement:1",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. Once per battle round, when a saving throw made for a friendly LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE model within 12\" of the bearer is failed, the bearer can use this Enhancement. If they do, change the Damage characteristic of that attack to 0.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "failed-save-damage-zero",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Once per battle round, when a saving throw made for a friendly LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE model within 12\" of the bearer is failed, the bearer can use this Enhancement. If they do, change the Damage characteristic of that attack to 0."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-cohort-cybernetica:enhancement:2",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. Once per turn, at the start of your opponent’s Shooting phase, select one enemy VEHICLE unit within 12\" of and visible to the bearer. That unit must take a Leadership test: if that test is passed, until the end of the phase, each time a model in that unit makes an attack, subtract 1 from the Hit roll; if that test is failed, that unit is not eligible to shoot this phase.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "leadership-test",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Once per turn, at the start of your opponent’s Shooting phase, select one enemy VEHICLE unit within 12\" of and visible to the bearer. That unit must take a Leadership test:"
+        },
+        {
+          "id": "passed-test-hit-modifier",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "if that test is passed, until the end of the phase, each time a model in that unit makes an attack, subtract 1 from the Hit roll"
+        },
+        {
+          "id": "failed-test-shooting-prohibition",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "if that test is failed, that unit is not eligible to shoot this phase."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-cohort-cybernetica:enhancement:3",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. Once per turn, when a friendly LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE model with the Deadly Demise ability that is within 12\" of the bearer is destroyed, the bearer can use this Enhancement. If it does, do not roll to determine whether any mortal wounds are inflicted as a result of that model’s Deadly Demise ability. Instead, mortal wounds are automatically inflicted.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "automatic-deadly-demise",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Once per turn, when a friendly LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE model with the Deadly Demise ability that is within 12\" of the bearer is destroyed, the bearer can use this Enhancement. If it does, do not roll to determine whether any mortal wounds are inflicted as a result of that model’s Deadly Demise ability. Instead, mortal wounds are automatically inflicted."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-cohort-cybernetica:enhancement:4",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. Ranged weapons equipped by the bearer have the [ANTI-VEHICLE 4+] ability.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "bearer-ranged-anti-vehicle",
+          "rosterClassification": "ROSTER_KNOWN",
+          "sourceCase": "Ranged weapons equipped by the bearer have the [ANTI-VEHICLE 4+] ability."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-rad-zone-corps:enhancement:1",
+      "status": "DECLARED",
+      "sourceCase": "ADEPTUS MECHANICUS model only. From the second battle round onwards, when resolving the Fallout effect of the Rad-bombardment Detachment rule, if the bearer is on the battlefield, roll one D6 for each enemy unit within 6\" of your opponent’s deployment zone, in addition to those that are within your opponent’s deployment zone.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "extended-fallout",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "From the second battle round onwards, when resolving the Fallout effect of the Rad-bombardment Detachment rule, if the bearer is on the battlefield, roll one D6 for each enemy unit within 6\" of your opponent’s deployment zone, in addition to those that are within your opponent’s deployment zone."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-rad-zone-corps:enhancement:3",
+      "status": "DECLARED",
+      "sourceCase": "ADEPTUS MECHANICUS model only. While the bearer is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "led-unit-ranged-sustained-hits",
+          "rosterClassification": "ROSTER_KNOWN",
+          "sourceCase": "While the bearer is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-rad-zone-corps:enhancement:4",
+      "status": "DECLARED",
+      "sourceCase": "ADEPTUS MECHANICUS model only. Ranged weapons equipped by the bearer have the [ANTI-INFANTRY 2+] and [ANTI-MONSTER 4+] abilities.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "bearer-ranged-anti-keywords",
+          "rosterClassification": "ROSTER_KNOWN",
+          "sourceCase": "Ranged weapons equipped by the bearer have the [ANTI-INFANTRY 2+] and [ANTI-MONSTER 4+] abilities."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-luminen-auto-choir:enhancement:1",
+      "status": "DECLARED",
+      "sourceCase": "TECH-PRIEST model only. Enemy units cannot target this unit with snap shooting attacks",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "snap-shooting-target-restriction",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Enemy units cannot target this unit with snap shooting attacks"
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-lords-of-the-forge:enhancement:1",
+      "status": "DECLARED",
+      "sourceCase": "CYBERNETICA DATASMITH model only. At the start of the first battle round, if this unit is an attached unit, this unit has MOBILE until the end of the battle.",
+      "ownerSubject": "MODEL",
+      "clauses": [
+        {
+          "id": "mobile-attached-unit",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "At the start of the first battle round, if this unit is an attached unit, this unit has MOBILE until the end of the battle."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-eradication-cohort:rule",
+      "status": "DECLARED",
+      "sourceCase": "Each time a model in a SKITARII unit from your army makes an attack:\n- If the Protector Imperative is active for that unit, re-roll a Hit roll of 1.\n- If the Conqueror Imperative is active for that unit, re-roll a Wound roll of 1.",
+      "ownerSubject": null,
+      "clauses": [
+        {
+          "id": "protector-hit-reroll",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "If the Protector Imperative is active for that unit, re-roll a Hit roll of 1."
+        },
+        {
+          "id": "conqueror-wound-reroll",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "If the Conqueror Imperative is active for that unit, re-roll a Wound roll of 1."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-haloscreed-battle-clade:rule",
+      "status": "DECLARED",
+      "sourceCase": "In your Command phase, select one or more ADEPTUS MECHANICUS units from your army (including units that are embarked within TRANSPORTS). The maximum number of units you can select depends on the battle size, as follows:\n\nUntil the start of your next Command phase, those units gain the HALO OVERRIDE keyword. Then, select one of the Override abilities below. Until the start of your next Command phase, units from your army with the HALO OVERRIDE keyword have the selected Override ability:\nElectromotive Energisation\nAdd 2\" to the Move characteristic of models in this unit.\nMicroactuator Bracing\nAdd 1 to the Toughness characteristic of models in this unit.\nPredation Protocols\nThis unit is eligible to declare a charge in a turn in which it Advanced.\nMuted Servomotors\nModels in this unit have the Stealth ability.",
+      "ownerSubject": null,
+      "clauses": [
+        {
+          "id": "halo-override-selection",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "In your Command phase, select one or more ADEPTUS MECHANICUS units from your army (including units that are embarked within TRANSPORTS). The maximum number of units you can select depends on the battle size, as follows:"
+        },
+        {
+          "id": "override-choice",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Until the start of your next Command phase, those units gain the HALO OVERRIDE keyword. Then, select one of the Override abilities below. Until the start of your next Command phase, units from your army with the HALO OVERRIDE keyword have the selected Override ability:"
+        },
+        {
+          "id": "electromotive",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Electromotive Energisation\nAdd 2\" to the Move characteristic of models in this unit."
+        },
+        {
+          "id": "microactuator",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Microactuator Bracing\nAdd 1 to the Toughness characteristic of models in this unit."
+        },
+        {
+          "id": "predation",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Predation Protocols\nThis unit is eligible to declare a charge in a turn in which it Advanced."
+        },
+        {
+          "id": "muted-servomotors",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Muted Servomotors\nModels in this unit have the Stealth ability."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-data-psalm-conclave:rule",
+      "status": "DECLARED",
+      "sourceCase": "At the start of the first battle round, select one of the following Benedictions of the Omnissiah to be active for CULT MECHANICUS units from your army until the end of the battle:\nPanegyric Procession\nEach time a CULT MECHANICUS model from your army makes a ranged attack that targets a unit within half range, improve the Armour Penetration characteristic of that attack by 1.\nCitation in Savagery\nEach time a CULT MECHANICUS unit from your army is selected to fight, if that unit made a Charge move this turn, until the end of the phase, add 1 to the Strength and Attacks characteristics of melee weapons equipped by models in that unit.",
+      "ownerSubject": null,
+      "clauses": [
+        {
+          "id": "benediction-selection",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "At the start of the first battle round, select one of the following Benedictions of the Omnissiah to be active for CULT MECHANICUS units from your army until the end of the battle:"
+        },
+        {
+          "id": "panegyric-procession",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Each time a CULT MECHANICUS model from your army makes a ranged attack that targets a unit within half range, improve the Armour Penetration characteristic of that attack by 1."
+        },
+        {
+          "id": "citation-in-savagery",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Each time a CULT MECHANICUS unit from your army is selected to fight, if that unit made a Charge move this turn, until the end of the phase, add 1 to the Strength and Attacks characteristics of melee weapons equipped by models in that unit."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-explorator-maniple:rule",
+      "status": "DECLARED",
+      "sourceCase": "At the start of your Command phase, select one objective marker. Until the start of your next Command phase, that objective marker is your Acquisition objective marker. Each time an ADEPTUS MECHANICUS model from your army makes an attack, if that model’s unit is within range of your Acquisition objective marker, or if the target of that attack is within range of your Acquisition objective marker, re-roll a Wound roll of 1.",
+      "ownerSubject": null,
+      "clauses": [
+        {
+          "id": "acquisition-objective-selection",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "At the start of your Command phase, select one objective marker. Until the start of your next Command phase, that objective marker is your Acquisition objective marker."
+        },
+        {
+          "id": "attacker-unit-acquisition-wound-reroll",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Each time an ADEPTUS MECHANICUS model from your army makes an attack, if that model’s unit is within range of your Acquisition objective marker, or if the target of that attack is within range of your Acquisition objective marker, re-roll a Wound roll of 1."
+        },
+        {
+          "id": "target-unit-acquisition-wound-reroll",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Each time an ADEPTUS MECHANICUS model from your army makes an attack, if that model’s unit is within range of your Acquisition objective marker, or if the target of that attack is within range of your Acquisition objective marker, re-roll a Wound roll of 1."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-rad-zone-corps:rule",
+      "status": "DECLARED",
+      "sourceCase": "BATTLE ROUND1BOMBARDMENT\nAt the start of the first battle round, for each enemy unit within your opponent’s deployment zone, your opponent must decide whether that unit will take cover or stand firm. You then roll one D6 for each of those enemy units and apply the relevant result below:\n- Unit Standing Firm: On a 3+, that unit suffers D3 mortal wounds.\n- Unit Taking Cover: That unit is battle-shocked. On a 5+, that unit suffers D3 mortal wounds\nBATTLE ROUND2 ONWARDSFALLOUT\nAt the start of your Command phase during the second, third, fourth and fifth battle rounds, roll one D6 for each enemy unit within your opponent’s deployment zone. On a 3+, that unit suffers 1 mortal wound and must take a Battle-shock test.",
+      "ownerSubject": null,
+      "clauses": [
+        {
+          "id": "first-round-bombardment",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "At the start of the first battle round, for each enemy unit within your opponent’s deployment zone, your opponent must decide whether that unit will take cover or stand firm. You then roll one D6 for each of those enemy units and apply the relevant result below:"
+        },
+        {
+          "id": "standing-firm",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Unit Standing Firm: On a 3+, that unit suffers D3 mortal wounds."
+        },
+        {
+          "id": "taking-cover",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "Unit Taking Cover: That unit is battle-shocked. On a 5+, that unit suffers D3 mortal wounds"
+        },
+        {
+          "id": "later-round-fallout",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "At the start of your Command phase during the second, third, fourth and fifth battle rounds, roll one D6 for each enemy unit within your opponent’s deployment zone. On a 3+, that unit suffers 1 mortal wound and must take a Battle-shock test."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-luminen-auto-choir:rule",
+      "status": "DECLARED",
+      "sourceCase": "- Friendly CORPUSCARII units’ ranged attacks have [LETHAL HITS].\n- When a friendly FULGURITE unit has fought, that unit heals D3 wounds.\nThis detachment has the DATA-PSALM tag and cannot be taken with another DATA-PSALM detachment.",
+      "ownerSubject": null,
+      "clauses": [
+        {
+          "id": "corpuscarii-lethal-hits",
+          "rosterClassification": "ROSTER_KNOWN",
+          "sourceCase": "Friendly CORPUSCARII units’ ranged attacks have [LETHAL HITS]."
+        },
+        {
+          "id": "fulgurite-healing",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "When a friendly FULGURITE unit has fought, that unit heals D3 wounds."
+        },
+        {
+          "id": "data-psalm-exclusivity",
+          "rosterClassification": "ROSTER_KNOWN",
+          "sourceCase": "This detachment has the DATA-PSALM tag and cannot be taken with another DATA-PSALM detachment."
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-cohort-acquisitus:rule",
+      "status": "DECLARED",
+      "sourceCase": "- Friendly PTERAXII/INFILTRATORS/RANGERS/SERBERYS RAIDERS/ SERBERYS SULPHURHOUNDS units have RECON AUGURY.\n- Friendly RECON AUGURY units have the following ability:\nEnhanced Augurs: In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is analysed:\n- While a unit is analysed, that unit has +3\" detection range.",
+      "ownerSubject": null,
+      "clauses": [
+        {
+          "id": "recon-augury-keyword",
+          "rosterClassification": "ROSTER_KNOWN",
+          "sourceCase": "Friendly PTERAXII/INFILTRATORS/RANGERS/SERBERYS RAIDERS/ SERBERYS SULPHURHOUNDS units have RECON AUGURY."
+        },
+        {
+          "id": "enhanced-augurs-selection",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is analysed:"
+        },
+        {
+          "id": "analysed-detection-range",
+          "rosterClassification": "BATTLE_ONLY",
+          "sourceCase": "While a unit is analysed, that unit has +3\" detection range."
+        }
+      ]
+    }
+  ],
+  "compatibilityDependencies": [
+    {
+      "keyword": "HALO OVERRIDE",
+      "ruleId": "detachment-haloscreed-battle-clade:rule",
+      "subject": "UNIT",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selection can create the keyword in battle; unconditional shared keywordProjection would turn potential eligibility into a false static match."
+    },
+    {
+      "keyword": "HALO OVERRIDE",
+      "ruleId": "detachment-haloscreed-battle-clade:enhancement:1",
+      "subject": "MODEL",
+      "classification": "BLOCKED",
+      "reason": "Source grants to each MODEL in the attached unit; unit projection would lose intrinsic MODEL scope."
+    },
+    {
+      "keyword": "SKITARII",
+      "ruleId": "detachment-eradication-cohort:enhancement:2",
+      "subject": "MODEL",
+      "classification": "BLOCKED",
+      "reason": "Source grants to MODELS in bearer unit. No faithful UNIT substitution."
+    }
+  ],
+  "sourceProblems": []
+}

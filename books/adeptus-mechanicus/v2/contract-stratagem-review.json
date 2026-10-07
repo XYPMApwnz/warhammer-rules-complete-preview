@@ -1,0 +1,5978 @@
+{
+  "schema": "am-stratagem-source-review/v1",
+  "source": "books/adeptus-mechanicus/v2/generated/effective.json",
+  "rules": {
+    "detachment-haloscreed-battle-clade:stratagem:1": {
+      "title": "ERADICATION PROTOCOLS",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase or the Fight phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS unit from your army that has not been selected to shoot or fight this phase."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in your unit makes an attack, re-roll a Wound roll of 1, and, if it is a HALO OVERRIDE unit, re-roll a Hit roll of 1."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in your unit makes an attack, re-roll a Wound roll of 1, and, if it is a HALO OVERRIDE unit, re-roll a Hit roll of 1."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time a model in your unit makes an attack, re-roll a Wound roll of 1, and, if it is a HALO OVERRIDE unit, re-roll a Hit roll of 1."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time a model in your unit makes an attack, re-roll a Wound roll of 1, and, if it is a HALO OVERRIDE unit, re-roll a Hit roll of 1."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-haloscreed-battle-clade",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-haloscreed-battle-clade:stratagem:2": {
+      "title": "TARGETING OVERRIDE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase or the Fight phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS unit from your army that has not been selected to shoot or fight this phase."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in your unit makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in your unit makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time a model in your unit makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time a model in your unit makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-haloscreed-battle-clade",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-haloscreed-battle-clade:stratagem:3": {
+      "title": "NEURAL OVERLOAD",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Movement phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS unit from your army."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "If your unit is a HALO OVERRIDE unit, it suffers D3 mortal wounds. Select one Override ability. Until the start of your next Command phase, that ability is active for your unit. Designer’s Note: This means that if the targeted unit already has the HALO OVERRIDE keyword, it can be affected by multiple Override abilities at the same time, but suffers mortal wounds to do so. Alternatively, if your unit does not have the HALO OVERRIDE keyword, it instead has the chosen Override ability until the start of your next Command phase, but does not benefit from any other Override abilities that are active."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect-1",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase, that ability is active for your unit."
+          }
+        },
+        {
+          "clauseId": "effect-2",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Alternatively, if your unit does not have the HALO OVERRIDE keyword, it instead has the chosen Override ability until the start of your next Command phase, but does not benefit from any other Override abilities that are active."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "START_NEXT_FRIENDLY_COMMAND_PHASE",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect-1",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the start of your next Command phase, that ability is active for your unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase"
+          },
+          "sourceOccurrence": {
+            "start": 96,
+            "end": 138
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        },
+        {
+          "id": "duration-2",
+          "endpoint": "START_NEXT_FRIENDLY_COMMAND_PHASE",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect-2",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Alternatively, if your unit does not have the HALO OVERRIDE keyword, it instead has the chosen Override ability until the start of your next Command phase, but does not benefit from any other Override abilities that are active."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "until the start of your next Command phase"
+          },
+          "sourceOccurrence": {
+            "start": 487,
+            "end": 529
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-haloscreed-battle-clade",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-haloscreed-battle-clade:stratagem:4": {
+      "title": "AGGRESSIVE IMPULSE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Movement phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SKORPIUS DUNERIDER model from your army that has not been selected to move this phase."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the turn, each time an ADEPTUS MECHANICUS unit disembarks from that model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "disembarkingUnit"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the turn, each time an ADEPTUS MECHANICUS unit disembarks from that model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_TURN",
+          "roleIds": [
+            "disembarkingUnit"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "disembarkingUnit"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the turn, each time an ADEPTUS MECHANICUS unit disembarks from that model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the turn"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 25
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-haloscreed-battle-clade",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-haloscreed-battle-clade:stratagem:5": {
+      "title": "GUIDED RETREAT",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Movement phase, just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That ADEPTUS MECHANICUS unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_TURN",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the turn"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 25
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-haloscreed-battle-clade",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-haloscreed-battle-clade:stratagem:6": {
+      "title": "ANALYTICAL DIVINATION",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your opponent’s Movement phase, just after an enemy unit ends a Normal, Advance or Fall Back move."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS INFANTRY unit (excluding KATAPHRON units) from your army that is within 8\" of that enemy unit and not within Engagement Range of one or more enemy units."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Your unit can make a Normal move of up to D6\", or up to 6\" instead if it is a HALO OVERRIDE unit."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Your unit can make a Normal move of up to D6\", or up to 6\" instead if it is a HALO OVERRIDE unit."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-haloscreed-battle-clade",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-eradication-cohort:stratagem:1": {
+      "title": "SERVO‑DRIVEN CHARGE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Fight phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS unit from your army that has not been selected to fight this phase."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, melee weapons equipped by models in your unit have the [LANCE] ability."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, melee weapons equipped by models in your unit have the [LANCE] ability."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, melee weapons equipped by models in your unit have the [LANCE] ability."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, melee weapons equipped by models in your unit have the [LANCE] ability."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-eradication-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-eradication-cohort:stratagem:2": {
+      "title": "UNRELENTING AGGRESSION",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Movement phase, just after an ADEPTUS MECHANICUS unit from your army Falls Back."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That ADEPTUS MECHANICUS unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the turn, your unit is eligible to shoot in a turn in which it Fell Back. If your unit has the SKITARII keyword, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back instead."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the turn, your unit is eligible to shoot in a turn in which it Fell Back. If your unit has the SKITARII keyword, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back instead."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_TURN",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the turn, your unit is eligible to shoot in a turn in which it Fell Back. If your unit has the SKITARII keyword, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back instead."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the turn"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 25
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-eradication-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-eradication-cohort:stratagem:3": {
+      "title": "UNSHACKLED WRATH",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SKITARII unit from your army that has not been selected to shoot this phase."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Select the [SUSTAINED HITS 1] or [LETHAL HITS] ability. Until the end of the phase, ranged weapons equipped by models in your unit have the selected ability. You can instead select the [SUSTAINED HITS 1], [LETHAL HITS] and [HAZARDOUS] abilities to apply to those weapons until the end of the phase."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Select the [SUSTAINED HITS 1] or [LETHAL HITS] ability. Until the end of the phase, ranged weapons equipped by models in your unit have the selected ability. You can instead select the [SUSTAINED HITS 1], [LETHAL HITS] and [HAZARDOUS] abilities to apply to those weapons until the end of the phase."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect-1",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, ranged weapons equipped by models in your unit have the selected ability."
+          }
+        },
+        {
+          "clauseId": "effect-2",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "You can instead select the [SUSTAINED HITS 1], [LETHAL HITS] and [HAZARDOUS] abilities to apply to those weapons until the end of the phase."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect-1",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, ranged weapons equipped by models in your unit have the selected ability."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 56,
+            "end": 82
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        },
+        {
+          "id": "duration-2",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect-2",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "You can instead select the [SUSTAINED HITS 1], [LETHAL HITS] and [HAZARDOUS] abilities to apply to those weapons until the end of the phase."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 271,
+            "end": 297
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-eradication-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-eradication-cohort:stratagem:4": {
+      "title": "THREAT‑COGITATION TARGETERS",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SKITARII VEHICLE unit from your army that has not been selected to shoot this phase."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a ranged attack made by a model in your unit is allocated to a MONSTER or VEHICLE model, you can re-roll the Damage roll."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "staticEffectRestrictions": [
+        {
+          "roleId": "allocatedEnemyModel",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MONSTER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    2,
+                    "text"
+                  ],
+                  "quote": "MONSTER"
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "VEHICLE"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    2,
+                    "text"
+                  ],
+                  "quote": "VEHICLE"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time a ranged attack made by a model in your unit is allocated to a MONSTER or VEHICLE model, you can re-roll the Damage roll."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time a ranged attack made by a model in your unit is allocated to a MONSTER or VEHICLE model, you can re-roll the Damage roll."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-eradication-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-eradication-cohort:stratagem:5": {
+      "title": "PRECISION ONSLAUGHT",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Charge phase, just after a SICARIAN unit from your army declares a charge."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That SICARIAN unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, when your unit ends a Charge move, select one enemy unit within Engagement Range of it, then roll one D6 for each model in your unit that is within Engagement Range of that enemy unit: for each 4+, that enemy unit suffers 1 mortal wound."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, when your unit ends a Charge move, select one enemy unit within Engagement Range of it, then roll one D6 for each model in your unit that is within Engagement Range of that enemy unit: for each 4+, that enemy unit suffers 1 mortal wound."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, when your unit ends a Charge move, select one enemy unit within Engagement Range of it, then roll one D6 for each model in your unit that is within Engagement Range of that enemy unit: for each 4+, that enemy unit suffers 1 mortal wound."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-eradication-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-eradication-cohort:stratagem:6": {
+      "title": "ANALYTIC REPRISALS",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your opponent’s Shooting phase, just after an enemy unit has shot."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SKITARII INFANTRY unit from your army that lost one or more models as a result of the attacking unit’s attacks."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Your unit can shoot as if it were your Shooting phase, but must target only that enemy unit when doing so, and can only do so if that enemy unit is an eligible target."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            2,
+            "text"
+          ],
+          "quote": "must target only that enemy unit when doing so, and can only do so if that enemy unit is an eligible target"
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Your unit can shoot as if it were your Shooting phase, but must target only that enemy unit when doing so, and can only do so if that enemy unit is an eligible target."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-eradication-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-data-psalm-conclave:stratagem:1": {
+      "title": "INCANTATION OF THE IRON SOUL",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Any phase, just after you allocate a mortal wound to a CULT MECHANICUS model from your army."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That CULT MECHANICUS model’s unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, CULT MECHANICUS models in your unit have the Feel No Pain 4+ ability against mortal wounds."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, CULT MECHANICUS models in your unit have the Feel No Pain 4+ ability against mortal wounds."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, CULT MECHANICUS models in your unit have the Feel No Pain 4+ ability against mortal wounds."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-data-psalm-conclave",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-data-psalm-conclave:stratagem:2": {
+      "title": "CHANT OF THE REMORSELESS FIST",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Fight phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One CULT MECHANICUS unit from your army that has not been selected to fight this phase."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a CULT MECHANICUS model in your unit makes a melee attack, add 1 to the Wound roll."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time a CULT MECHANICUS model in your unit makes a melee attack, add 1 to the Wound roll."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time a CULT MECHANICUS model in your unit makes a melee attack, add 1 to the Wound roll."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-data-psalm-conclave",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-data-psalm-conclave:stratagem:3": {
+      "title": "VERSE OF VENGEANCE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Fight phase, just after an enemy unit has selected its targets."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One CULT MECHANICUS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a CULT MECHANICUS model in your unit is destroyed, if that model has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time a CULT MECHANICUS model in your unit is destroyed, if that model has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time a CULT MECHANICUS model in your unit is destroyed, if that model has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-data-psalm-conclave",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-data-psalm-conclave:stratagem:4": {
+      "title": "Tribute of Empathic Veneration",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Start of your Movement phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One CULT MECHANICUS unit from your army and one enemy unit within 18\" of it."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "That enemy unit must take a Battle-shock test. If that test is failed, until the start of your next Command phase, each time a model in that enemy unit makes an attack, subtract 1 from the Hit roll."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "enemyTarget"
+      ],
+      "sourceIssues": [],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            2,
+            "text"
+          ],
+          "quote": "If that test is failed"
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "battle-shock-test",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "That enemy unit must take a Battle-shock test."
+          }
+        },
+        {
+          "clauseId": "failed-test-debuff",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "If that test is failed, until the start of your next Command phase, each time a model in that enemy unit makes an attack, subtract 1 from the Hit roll."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "START_NEXT_FRIENDLY_COMMAND_PHASE",
+          "roleIds": [
+            "enemyTarget"
+          ],
+          "bindings": [
+            {
+              "clauseId": "failed-test-debuff",
+              "roleIds": [
+                "enemyTarget"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "If that test is failed, until the start of your next Command phase, each time a model in that enemy unit makes an attack, subtract 1 from the Hit roll."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "until the start of your next Command phase"
+          },
+          "sourceOccurrence": {
+            "start": 71,
+            "end": 113
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-data-psalm-conclave",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-data-psalm-conclave:stratagem:5": {
+      "title": "LITANY OF THE ELECTROMANCER",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One CULT MECHANICUS unit from your army."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Roll one D6 for each enemy unit within 6\" of one or more CULT MECHANICUS models in your unit, adding 1 to the result if that model is an ELECTRO-PRIEST. On a 5+, that enemy unit suffers D3 mortal wounds."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "enemyRecipients"
+      ],
+      "sourceIssues": [
+        "The source singular ELECTRO-PRIEST is normalized to the current canonical ELECTRO-PRIESTS keyword."
+      ],
+      "staticEffectRestrictions": [
+        {
+          "subject": "MODEL",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CULT MECHANICUS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                2,
+                "text"
+              ],
+              "quote": "CULT MECHANICUS"
+            }
+          },
+          "sourceCase": "Distance anchor must be a CULT MECHANICUS model in the selected unit."
+        },
+        {
+          "subject": "MODEL",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ELECTRO-PRIESTS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                2,
+                "text"
+              ],
+              "quote": "ELECTRO-PRIEST"
+            }
+          },
+          "sourceCase": "The roll bonus applies if the relevant model is an ELECTRO-PRIEST; source spells this keyword in singular."
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Roll one D6 for each enemy unit within 6\" of one or more CULT MECHANICUS models in your unit, adding 1 to the result if that model is an ELECTRO-PRIEST. On a 5+, that enemy unit suffers D3 mortal wounds."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-data-psalm-conclave",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-data-psalm-conclave:stratagem:6": {
+      "title": "LUMINESCENT BLESSING",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One CULT MECHANICUS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, CULT MECHANICUS models in your unit have a 4+ invulnerable save."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, CULT MECHANICUS models in your unit have a 4+ invulnerable save."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, CULT MECHANICUS models in your unit have a 4+ invulnerable save."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-data-psalm-conclave",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-explorator-maniple:stratagem:1": {
+      "title": "CACHED ACQUISITION",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Any phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS unit from your army that was just destroyed while it was within range of an objective marker you controlled. You can use this Stratagem on that unit even though it was just destroyed."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "That objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [],
+      "sourceIssues": [],
+      "deferredBattleSelection": [
+        {
+          "semanticAtom": "OBJECTIVE_MARKER_SUBJECT",
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "That objective marker remains under your control"
+          },
+          "whyExistingCompositionInsufficient": "The existing subjects are MODEL, UNIT, FORMED_ATTACHED_UNIT and ROSTER. None represents an objective marker participant; FIELD can test contextual facts but cannot create an objective target or lifetime recipient."
+        }
+      ],
+      "deferredObjectiveLifetime": {
+        "reason": "Objective marker battle-only recipient is absent from existing subjects; no UNIT or MODEL substitutes for it.",
+        "facts": [
+          {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "until your opponent controls it at the start or end of any turn",
+            "sourceOccurrence": {
+              "start": 97,
+              "end": 160
+            }
+          }
+        ]
+      },
+      "effectClauses": [
+        {
+          "clauseId": "objective-effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "That objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
+          }
+        }
+      ],
+      "durationBindings": [],
+      "detachmentScope": {
+        "detachmentId": "detachment-explorator-maniple",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-explorator-maniple:stratagem:2": {
+      "title": "PRIORITY RECLAMATION",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ],
+        [
+          "lines",
+          3,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Fight phase, just before an ADEPTUS MECHANICUS unit from your army Consolidates."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That ADEPTUS MECHANICUS unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in your unit makes a Consolidation move, it can move up to 6\" instead of up to 3\", provided your unit ends that Consolidation move within range of your Acquisition objective marker."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            2,
+            "text"
+          ],
+          "quote": "provided your unit ends that Consolidation move within range of your Acquisition objective marker"
+        }
+      ],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in your unit makes a Consolidation move, it can move up to 6\" instead of up to 3\", provided your unit ends that Consolidation move within range of your Acquisition objective marker."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time a model in your unit makes a Consolidation move, it can move up to 6\" instead of up to 3\", provided your unit ends that Consolidation move within range of your Acquisition objective marker."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time a model in your unit makes a Consolidation move, it can move up to 6\" instead of up to 3\", provided your unit ends that Consolidation move within range of your Acquisition objective marker."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-explorator-maniple",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-explorator-maniple:stratagem:3": {
+      "title": "INFOSLAVE SKULL",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Command phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TECH-PRIEST model from your army and one objective marker within 24\" of that model (excluding your Acquisition objective marker]."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the start of your next Command phase, that objective marker is also considered to be one of your Acquisition objective markers for all rules purposes."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [],
+      "sourceIssues": [
+        "TARGET contains mismatched closing bracket in the effective source; preserved verbatim."
+      ],
+      "deferredBattleSelection": [
+        {
+          "semanticAtom": "OBJECTIVE_MARKER_SUBJECT",
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "one objective marker within 24\" of that model (excluding your Acquisition objective marker]"
+          },
+          "whyExistingCompositionInsufficient": "The existing subjects are MODEL, UNIT, FORMED_ATTACHED_UNIT and ROSTER. None represents an objective marker participant; FIELD can test contextual facts but cannot create an objective target or lifetime recipient."
+        }
+      ],
+      "deferredObjectiveLifetime": {
+        "reason": "Objective marker battle-only recipient is absent from existing subjects; no UNIT or MODEL substitutes for it.",
+        "facts": [
+          {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase",
+            "sourceOccurrence": {
+              "start": 0,
+              "end": 42
+            }
+          }
+        ]
+      },
+      "effectClauses": [
+        {
+          "clauseId": "objective-effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase, that objective marker is also considered to be one of your Acquisition objective markers for all rules purposes."
+          }
+        }
+      ],
+      "durationBindings": [],
+      "detachmentScope": {
+        "detachmentId": "detachment-explorator-maniple",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-explorator-maniple:stratagem:4": {
+      "title": "AUTO-ORACULAR RETRIEVAL",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS unit from your army that disembarked from a TRANSPORT this turn."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in your unit makes a ranged attack that targets an enemy unit within range of your Acquisition objective marker, add 1 to the Wound roll."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            2,
+            "text"
+          ],
+          "quote": "targets an enemy unit within range of your Acquisition objective marker"
+        }
+      ],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in your unit makes a ranged attack that targets an enemy unit within range of your Acquisition objective marker, add 1 to the Wound roll."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time a model in your unit makes a ranged attack that targets an enemy unit within range of your Acquisition objective marker, add 1 to the Wound roll."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time a model in your unit makes a ranged attack that targets an enemy unit within range of your Acquisition objective marker, add 1 to the Wound roll."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-explorator-maniple",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-explorator-maniple:stratagem:5": {
+      "title": "INCENSE EXHAUSTS",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS INFANTRY unit from your army that was selected as the target of one or more of the attacking unit’s attacks, and one friendly ADEPTUS MECHANICUS SMOKE unit within 6\" of it."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, both of those units have the Stealth ability and the Benefit of Cover."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target",
+        "smokeSupport"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, both of those units have the Stealth ability and the Benefit of Cover."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "target",
+            "smokeSupport"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target",
+                "smokeSupport"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, both of those units have the Stealth ability and the Benefit of Cover."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-explorator-maniple",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-explorator-maniple:stratagem:6": {
+      "title": "REACTIVE SAFEGUARD",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ],
+        [
+          "lines",
+          3,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your opponent’s Charge phase, just after an enemy unit has declared a charge."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS INFANTRY unit from your army within range of your Acquisition objective marker that was selected as a target of that charge, and one friendly ADEPTUS MECHANICUS TRANSPORT."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Your unit can embark within that TRANSPORT."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Your unit can embark within that TRANSPORT."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-explorator-maniple",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-skitarii-hunter-cohort:stratagem:1": {
+      "title": "BIONIC ENDURANCE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SICARIAN, PTERAXII or SYDONIAN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, models in your unit have the Feel No Pain 5+ ability."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, models in your unit have the Feel No Pain 5+ ability."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, models in your unit have the Feel No Pain 5+ ability."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, models in your unit have the Feel No Pain 5+ ability."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-skitarii-hunter-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-skitarii-hunter-cohort:stratagem:2": {
+      "title": "BINHARIC OFFENCE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ],
+        [
+          "lines",
+          3,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "The start of your Shooting phase or the start of the Fight phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "Two SKITARII units from your army that have not been selected to shoot or fight this phase, and one enemy unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, improve the Armour Penetration characteristic of weapons equipped by models in both of your units by 1."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target",
+        "secondTarget"
+      ],
+      "sourceIssues": [],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            3,
+            "text"
+          ],
+          "quote": "Until the end of the phase, each time a model in either of your units makes an attack, it can only target that enemy unit (and only if it is an eligible target)."
+        }
+      ],
+      "deferredBattleSelection": [
+        {
+          "semanticAtom": "DISTINCT_PARTICIPANT_BINDINGS",
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Two SKITARII units"
+          },
+          "whyExistingCompositionInsufficient": "Two independent roles can bind the same unit. Existing predicates have no role identity comparison or quantified distinct target group."
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect-1",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, improve the Armour Penetration characteristic of weapons equipped by models in both of your units by 1."
+          }
+        },
+        {
+          "clauseId": "effect-2",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              3,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time a model in either of your units makes an attack, it can only target that enemy unit (and only if it is an eligible target)."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "target",
+            "secondTarget"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect-1",
+              "roleIds": [
+                "target",
+                "secondTarget"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, improve the Armour Penetration characteristic of weapons equipped by models in both of your units by 1."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        },
+        {
+          "id": "duration-2",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "target",
+            "secondTarget"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect-2",
+              "roleIds": [
+                "target",
+                "secondTarget"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  3,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time a model in either of your units makes an attack, it can only target that enemy unit (and only if it is an eligible target)."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              3,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              3,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-skitarii-hunter-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-skitarii-hunter-cohort:stratagem:3": {
+      "title": "EXPEDITED PURGE PROTOCOL",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Charge phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SKITARII unit from your army."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, your unit is eligible to declare a charge in a turn in which it Advanced."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, your unit is eligible to declare a charge in a turn in which it Advanced."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, your unit is eligible to declare a charge in a turn in which it Advanced."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-skitarii-hunter-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-skitarii-hunter-cohort:stratagem:4": {
+      "title": "ISOLATE AND DESTROY",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SICARIAN, PTERAXII, SYDONIAN, IRONSTRIDER BALLISTARII or SKITARII MOUNTED unit from your army that has not been selected to shoot this phase."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in your unit makes an attack, if there are no other enemy units within 6\" of the unit targeted by that attack, add 1 to the Wound roll."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            2,
+            "text"
+          ],
+          "quote": "if there are no other enemy units within 6\" of the unit targeted by that attack"
+        }
+      ],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in your unit makes an attack, if there are no other enemy units within 6\" of the unit targeted by that attack, add 1 to the Wound roll."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time a model in your unit makes an attack, if there are no other enemy units within 6\" of the unit targeted by that attack, add 1 to the Wound roll."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time a model in your unit makes an attack, if there are no other enemy units within 6\" of the unit targeted by that attack, add 1 to the Wound roll."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-skitarii-hunter-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-skitarii-hunter-cohort:stratagem:5": {
+      "title": "SHROUD PROTOCOLS",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SKITARII INFANTRY unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, your unit can only be selected as the target of a ranged attack if the attacking model is within 18\"."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            2,
+            "text"
+          ],
+          "quote": "if the attacking model is within 18\""
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, your unit can only be selected as the target of a ranged attack if the attacking model is within 18\"."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, your unit can only be selected as the target of a ranged attack if the attacking model is within 18\"."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-skitarii-hunter-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-skitarii-hunter-cohort:stratagem:6": {
+      "title": "PROGRAMMED WITHDRAWAL",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ],
+        [
+          "lines",
+          3,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "End of your opponent’s Fight phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "Up to two SICARIAN units from your army, or one SKITARII INFANTRY or SKITARII MOUNTED unit from your army."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Remove those units from the battlefield and place them into Strategic Reserves."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "targetGroupSource": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "Up to two SICARIAN units from your army, or one SKITARII INFANTRY or SKITARII MOUNTED unit from your army."
+      },
+      "deferredBattleSelection": [
+        {
+          "semanticAtom": "UP_TO_TWO_SICARIAN_OR_ONE_SKITARII_INFANTRY_OR_MOUNTED",
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two SICARIAN units from your army, or one SKITARII INFANTRY or SKITARII MOUNTED unit from your army."
+          },
+          "whyExistingCompositionInsufficient": "Existing single-participant roles and ALL/ANY predicates can express each candidate selector, but cannot constrain the selected group to up to two SICARIAN units or one alternative unit."
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Remove those units from the battlefield and place them into Strategic Reserves."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-skitarii-hunter-cohort",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-cohort-cybernetica:stratagem:1": {
+      "title": "MOTIVE IMPERATIVE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Command phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS VEHICLE unit from your army."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the start of your next Command phase, add 3\" to the Move characteristic of models in your unit and add 1 to Advance and Charge rolls made for it."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the start of your next Command phase, add 3\" to the Move characteristic of models in your unit and add 1 to Advance and Charge rolls made for it."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase, add 3\" to the Move characteristic of models in your unit and add 1 to Advance and Charge rolls made for it."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "START_NEXT_FRIENDLY_COMMAND_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the start of your next Command phase, add 3\" to the Move characteristic of models in your unit and add 1 to Advance and Charge rolls made for it."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 42
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-cohort-cybernetica",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-cohort-cybernetica:stratagem:2": {
+      "title": "AUTO-DIVINATORY TARGETING",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Command phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE unit from your army, and one objective marker."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the start of your next Command phase, ranged weapons equipped by models in your unit have a Ballistic Skill characteristic of 3+ and the [IGNORES COVER] ability, but they can only target units within range of the selected objective marker."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            2,
+            "text"
+          ],
+          "quote": "they can only target units within range of the selected objective marker"
+        }
+      ],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the start of your next Command phase, ranged weapons equipped by models in your unit have a Ballistic Skill characteristic of 3+ and the [IGNORES COVER] ability, but they can only target units within range of the selected objective marker."
+      },
+      "deferredBattleSelection": [
+        {
+          "semanticAtom": "OBJECTIVE_MARKER_SUBJECT",
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "one objective marker"
+          },
+          "whyExistingCompositionInsufficient": "The existing subjects are MODEL, UNIT, FORMED_ATTACHED_UNIT and ROSTER. None represents an objective marker participant; FIELD can test contextual facts but cannot create an objective target or lifetime recipient."
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase, ranged weapons equipped by models in your unit have a Ballistic Skill characteristic of 3+ and the [IGNORES COVER] ability, but they can only target units within range of the selected objective marker."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "START_NEXT_FRIENDLY_COMMAND_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the start of your next Command phase, ranged weapons equipped by models in your unit have a Ballistic Skill characteristic of 3+ and the [IGNORES COVER] ability, but they can only target units within range of the selected objective marker."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 42
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-cohort-cybernetica",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-cohort-cybernetica:stratagem:3": {
+      "title": "MACHINE SPIRIT RESURGENT",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Command phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE unit from your army that is below its Starting Strength."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the start of your next Command phase, each time a model in your unit makes an attack, you can re-roll the Hit roll. If your unit is Below Half-strength, you can re-roll the Wound roll as well."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            2,
+            "text"
+          ],
+          "quote": "If your unit is Below Half-strength"
+        }
+      ],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the start of your next Command phase, each time a model in your unit makes an attack, you can re-roll the Hit roll. If your unit is Below Half-strength, you can re-roll the Wound roll as well."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase, each time a model in your unit makes an attack, you can re-roll the Hit roll. If your unit is Below Half-strength, you can re-roll the Wound roll as well."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "START_NEXT_FRIENDLY_COMMAND_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the start of your next Command phase, each time a model in your unit makes an attack, you can re-roll the Hit roll. If your unit is Below Half-strength, you can re-roll the Wound roll as well."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 42
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-cohort-cybernetica",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-cohort-cybernetica:stratagem:4": {
+      "title": "MACHINE SUPERIORITY",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Command phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE unit from your army."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the turn, your unit is eligible to shoot in a turn in which it Fell Back and you can ignore any or all modifiers to its characteristics and/or to any roll or test made for it (excluding modifiers to saving throws)."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the turn, your unit is eligible to shoot in a turn in which it Fell Back and you can ignore any or all modifiers to its characteristics and/or to any roll or test made for it (excluding modifiers to saving throws)."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_TURN",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the turn, your unit is eligible to shoot in a turn in which it Fell Back and you can ignore any or all modifiers to its characteristics and/or to any roll or test made for it (excluding modifiers to saving throws)."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the turn"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 25
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-cohort-cybernetica",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-cohort-cybernetica:stratagem:5": {
+      "title": "TRANSCENDENT COGITATION",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Command phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE unit from your army."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the start of your next Command phase, the Conqueror Imperative and Protector Imperative are both active for your unit."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase, the Conqueror Imperative and Protector Imperative are both active for your unit."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "START_NEXT_FRIENDLY_COMMAND_PHASE",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the start of your next Command phase, the Conqueror Imperative and Protector Imperative are both active for your unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 42
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-cohort-cybernetica",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-cohort-cybernetica:stratagem:6": {
+      "title": "BENEVOLENCE OF THE OMNISSIAH",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Command phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One LEGIO CYBERNETICA or ADEPTUS MECHANICUS VEHICLE unit from your army."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the start of your next Command phase, models in your unit have the Feel No Pain 6+ ability, which is improved to Feel No Pain 5+ against mortal wounds."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the start of your next Command phase, models in your unit have the Feel No Pain 6+ ability, which is improved to Feel No Pain 5+ against mortal wounds."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase, models in your unit have the Feel No Pain 6+ ability, which is improved to Feel No Pain 5+ against mortal wounds."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "START_NEXT_FRIENDLY_COMMAND_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the start of your next Command phase, models in your unit have the Feel No Pain 6+ ability, which is improved to Feel No Pain 5+ against mortal wounds."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the start of your next Command phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 42
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-cohort-cybernetica",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-rad-zone-corps:stratagem:1": {
+      "title": "BALEFUL HALO",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Fight phase, just after an enemy unit has selected its targets."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS unit from your army (excluding VEHICLE units) that was selected as the target of one or more of that enemy unit’s attacks. If that unit is BATTLELINE, you can also target one friendly SKITARII unit (excluding BATTLELINE units) within 6\" of it."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the turn, each time an attack is made that targets your unit, subtract 1 from the Wound roll."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target",
+        "optionalSupport"
+      ],
+      "sourceIssues": [],
+      "optionalTargetGate": {
+        "primaryRoleId": "target",
+        "selector": {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "BATTLELINE"
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "BATTLELINE"
+          }
+        },
+        "source": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "If that unit is BATTLELINE"
+        }
+      },
+      "deferredBattleSelection": [
+        {
+          "semanticAtom": "OPTIONAL_RECIPIENT_GATED_BY_PRIMARY_STATIC_KEYWORD",
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "If that unit is BATTLELINE, you can also target one friendly SKITARII unit (excluding BATTLELINE units) within 6\" of it."
+          },
+          "whyExistingCompositionInsufficient": "Existing roles have no optional cardinality or cross-role keyword predicate. A FIELD proxy for the primary BATTLELINE selector would misclassify an intrinsic restriction as battle state. The optional role selector and distance are preserved, but its dependency needs a generic participant binding primitive."
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the turn, each time an attack is made that targets your unit, subtract 1 from the Wound roll."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_TURN",
+          "roleIds": [
+            "target",
+            "optionalSupport"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target",
+                "optionalSupport"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the turn, each time an attack is made that targets your unit, subtract 1 from the Wound roll."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the turn"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 25
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-rad-zone-corps",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-rad-zone-corps:stratagem:2": {
+      "title": "EXTINCTION ORDER",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Command phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TECH-PRIEST model from your army and one objective marker within 24\" of that model."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Roll one D6 for each enemy unit within range of that objective marker. On a 4+, that unit suffers 1 mortal wound and it must take a Battle-shock test."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "enemyRecipients"
+      ],
+      "sourceIssues": [],
+      "deferredBattleSelection": [
+        {
+          "semanticAtom": "OBJECTIVE_MARKER_SUBJECT",
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "one objective marker within 24\" of that model"
+          },
+          "whyExistingCompositionInsufficient": "The existing subjects are MODEL, UNIT, FORMED_ATTACHED_UNIT and ROSTER. None represents an objective marker participant; FIELD can test contextual facts but cannot create an objective target or lifetime recipient."
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Roll one D6 for each enemy unit within range of that objective marker. On a 4+, that unit suffers 1 mortal wound and it must take a Battle-shock test."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-rad-zone-corps",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-rad-zone-corps:stratagem:3": {
+      "title": "AGGRESSOR IMPERATIVE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Movement phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SKITARII unit from your army that has not been selected to move this phase. If that unit is BATTLELINE, you can also target one friendly SKITARII unit (excluding BATTLELINE units) within 6\" of it."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time one of those units Advances, do not make an Advance roll for it. Instead, until the end of the phase, add 6\" to the Move characteristic of models in that unit."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target",
+        "optionalSupport"
+      ],
+      "sourceIssues": [],
+      "optionalTargetGate": {
+        "primaryRoleId": "target",
+        "selector": {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "BATTLELINE"
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "BATTLELINE"
+          }
+        },
+        "source": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "If that unit is BATTLELINE"
+        }
+      },
+      "deferredBattleSelection": [
+        {
+          "semanticAtom": "OPTIONAL_RECIPIENT_GATED_BY_PRIMARY_STATIC_KEYWORD",
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "If that unit is BATTLELINE, you can also target one friendly SKITARII unit (excluding BATTLELINE units) within 6\" of it."
+          },
+          "whyExistingCompositionInsufficient": "Existing roles have no optional cardinality or cross-role keyword predicate. A FIELD proxy for the primary BATTLELINE selector would misclassify an intrinsic restriction as battle state. The optional role selector and distance are preserved, but its dependency needs a generic participant binding primitive."
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect-1",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time one of those units Advances, do not make an Advance roll for it."
+          }
+        },
+        {
+          "clauseId": "effect-2",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Instead, until the end of the phase, add 6\" to the Move characteristic of models in that unit."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "target",
+            "optionalSupport"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect-1",
+              "roleIds": [
+                "target",
+                "optionalSupport"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time one of those units Advances, do not make an Advance roll for it."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        },
+        {
+          "id": "duration-2",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "target",
+            "optionalSupport"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect-2",
+              "roleIds": [
+                "target",
+                "optionalSupport"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Instead, until the end of the phase, add 6\" to the Move characteristic of models in that unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 112,
+            "end": 138
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-rad-zone-corps",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-rad-zone-corps:stratagem:4": {
+      "title": "PRE-CALIBRATED PURGE SOLUTION",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS unit from your army that has not been selected to shoot this phase. If that unit is BATTLELINE, you can also target one friendly SKITARII unit (excluding BATTLELINE units) within 6\" of it."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, each time a model in one of those units makes a ranged attack, if the target of that attack is within your opponent’s deployment zone, you can re-roll the Hit roll."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target",
+        "optionalSupport"
+      ],
+      "sourceIssues": [],
+      "optionalTargetGate": {
+        "primaryRoleId": "target",
+        "selector": {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "BATTLELINE"
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "BATTLELINE"
+          }
+        },
+        "source": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "If that unit is BATTLELINE"
+        }
+      },
+      "deferredBattleSelection": [
+        {
+          "semanticAtom": "OPTIONAL_RECIPIENT_GATED_BY_PRIMARY_STATIC_KEYWORD",
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "If that unit is BATTLELINE, you can also target one friendly SKITARII unit (excluding BATTLELINE units) within 6\" of it."
+          },
+          "whyExistingCompositionInsufficient": "Existing roles have no optional cardinality or cross-role keyword predicate. A FIELD proxy for the primary BATTLELINE selector would misclassify an intrinsic restriction as battle state. The optional role selector and distance are preserved, but its dependency needs a generic participant binding primitive."
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, each time a model in one of those units makes a ranged attack, if the target of that attack is within your opponent’s deployment zone, you can re-roll the Hit roll."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "target",
+            "optionalSupport"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target",
+                "optionalSupport"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, each time a model in one of those units makes a ranged attack, if the target of that attack is within your opponent’s deployment zone, you can re-roll the Hit roll."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-rad-zone-corps",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-rad-zone-corps:stratagem:5": {
+      "title": "LETHAL DOSAGE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ADEPTUS MECHANICUS unit from your army that has not been selected to shoot this phase."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, ranged weapons equipped by models in your unit have the [LETHAL HITS] ability."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels"
+      ],
+      "sourceIssues": [],
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, ranged weapons equipped by models in your unit have the [LETHAL HITS] ability."
+      },
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, ranged weapons equipped by models in your unit have the [LETHAL HITS] ability."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, ranged weapons equipped by models in your unit have the [LETHAL HITS] ability."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-rad-zone-corps",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-rad-zone-corps:stratagem:6": {
+      "title": "BULWARK IMPERATIVE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SKITARII unit from your army that was selected as the target of one or more of the attacking unit’s attacks. If that unit is BATTLELINE, you can also target one friendly SKITARII unit (excluding BATTLELINE units) within 6\" of it."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, models in those units from your army have a 4+ invulnerable save."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "recipientModels",
+        "optionalRecipientModels"
+      ],
+      "sourceIssues": [],
+      "optionalTargetGate": {
+        "primaryRoleId": "target",
+        "selector": {
+          "predicate": "UNIT_KEYWORD",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "BATTLELINE"
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "BATTLELINE"
+          }
+        },
+        "source": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "If that unit is BATTLELINE"
+        }
+      },
+      "modelEffectScope": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Until the end of the phase, models in those units from your army have a 4+ invulnerable save."
+      },
+      "deferredBattleSelection": [
+        {
+          "semanticAtom": "OPTIONAL_RECIPIENT_GATED_BY_PRIMARY_STATIC_KEYWORD",
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "If that unit is BATTLELINE, you can also target one friendly SKITARII unit (excluding BATTLELINE units) within 6\" of it."
+          },
+          "whyExistingCompositionInsufficient": "Existing roles have no optional cardinality or cross-role keyword predicate. A FIELD proxy for the primary BATTLELINE selector would misclassify an intrinsic restriction as battle state. The optional role selector and distance are preserved, but its dependency needs a generic participant binding primitive."
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase, models in those units from your army have a 4+ invulnerable save."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_PHASE",
+          "roleIds": [
+            "recipientModels",
+            "optionalRecipientModels"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "recipientModels",
+                "optionalRecipientModels"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Until the end of the phase, models in those units from your army have a 4+ invulnerable save."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Until the end of the phase"
+          },
+          "sourceOccurrence": {
+            "start": 0,
+            "end": 26
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-rad-zone-corps",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-luminen-auto-choir:stratagem:1": {
+      "title": "ECHOES OF THE CONDUIT WARS",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase or the Fight phase, when a friendly ELECTRO-PRIESTS unit is selected to attack."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That ELECTRO-PRIESTS unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Your unit’s attacks that target a unit within range of an objective can: - Re-roll hit rolls of 1. - Re-roll wound rolls of 1."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            2,
+            "text"
+          ],
+          "quote": "attacks that target a unit within range of an objective"
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Your unit’s attacks that target a unit within range of an objective can: - Re-roll hit rolls of 1. - Re-roll wound rolls of 1."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-luminen-auto-choir",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-luminen-auto-choir:stratagem:2": {
+      "title": "CHANT OF ELECTROTRACTION",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Movement phase, when a friendly ELECTRO-PRIESTS BATTLECLADE unit is selected to make an advance move."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That ELECTRO-PRIESTS unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "That move does not prevent your unit from being eligible to declare a charge."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [
+        "WHEN requires BATTLECLADE but TARGET repeats only ELECTRO-PRIESTS. The WHEN conjunction is retained.",
+        "Current canonical keyword scopes place BATTLECLADE only on Servitor Battleclade; no current Electro-Priest datasheet has the required conjunction. This source inconsistency is preserved without factual correction."
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "That move does not prevent your unit from being eligible to declare a charge."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-luminen-auto-choir",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-luminen-auto-choir:stratagem:3": {
+      "title": "MOMENTUM FEEDBACK",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your opponent’s Shooting phase, when an enemy unit that targeted a friendly unengaged ELECTRO-PRIESTS unit has shot."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That ELECTRO-PRIESTS unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Your unit can make a surge move of up to D6\"."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Your unit can make a surge move of up to D6\"."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-luminen-auto-choir",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-lords-of-the-forge:stratagem:1": {
+      "title": "SCRIPTURAL PROGNOSIS",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "In your opponent’s Shooting phase or the Fight phase, when an enemy unit targets a friendly TECH-PRIEST unit that is within range of an objective."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That TECH-PRIEST unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Attacks that target your unit have -1 AP until that enemy unit has attacked."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Attacks that target your unit have -1 AP until that enemy unit has attacked."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "AFTER_PRIMARY_ATTACKED",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Attacks that target your unit have -1 AP until that enemy unit has attacked."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "until that enemy unit has attacked"
+          },
+          "sourceOccurrence": {
+            "start": 41,
+            "end": 75
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-lords-of-the-forge",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-lords-of-the-forge:stratagem:2": {
+      "title": "OVERLOADED SAFEGUARDS",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Movement phase, when a friendly TECH-PRIEST unit is selected to make a fall-back move."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That TECH-PRIEST unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "That move does not prevent your unit from being eligible to shoot/declare a charge."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "That move does not prevent your unit from being eligible to shoot/declare a charge."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-lords-of-the-forge",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-lords-of-the-forge:stratagem:3": {
+      "title": "HOLY AVARICE",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase, when a friendly TECH-PRIEST unit starts an action."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That TECH-PRIEST unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "That action does not prevent your unit from being eligible to shoot."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "That action does not prevent your unit from being eligible to shoot."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-lords-of-the-forge",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-cohort-acquisitus:stratagem:1": {
+      "title": "DEFECT SCRUTINY",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Your Shooting phase, when a friendly ADEPTUS MECHANICUS unit is selected to shoot."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That ADEPTUS MECHANICUS unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Select one visible enemy unit within 12\" of a friendly RECON AUGURY unit. Your unit’s ranged attacks that target that enemy unit have [IGNORES COVER]."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [
+        "The source requires a visible enemy without explicitly identifying the visibility observer; no observer relationship is inferred."
+      ],
+      "effectRestrictions": [
+        {
+          "field": [
+            "lines",
+            2,
+            "text"
+          ],
+          "quote": "ranged attacks that target that enemy unit"
+        }
+      ],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Select one visible enemy unit within 12\" of a friendly RECON AUGURY unit. Your unit’s ranged attacks that target that enemy unit have [IGNORES COVER]."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-cohort-acquisitus",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-cohort-acquisitus:stratagem:2": {
+      "title": "REPOLARISED AUGURS",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "Start of your opponent’s Movement phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One friendly unengaged RECON AUGURY unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Your unit has -3\" detection range until the end of the turn."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Your unit has -3\" detection range until the end of the turn."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-1",
+          "endpoint": "END_CURRENT_TURN",
+          "roleIds": [
+            "target"
+          ],
+          "bindings": [
+            {
+              "clauseId": "effect",
+              "roleIds": [
+                "target"
+              ],
+              "scopeEvidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "Your unit has -3\" detection range until the end of the turn."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "until the end of the turn"
+          },
+          "sourceOccurrence": {
+            "start": 34,
+            "end": 59
+          },
+          "sourceFields": [
+            [
+              "lines",
+              2,
+              "text"
+            ]
+          ]
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-cohort-acquisitus",
+        "canonicalSource": "entity.parentId"
+      }
+    },
+    "detachment-cohort-acquisitus:stratagem:3": {
+      "title": "CLANDESTINE REPOSITION",
+      "sourceFields": [
+        [
+          "lines",
+          0,
+          "text"
+        ],
+        [
+          "lines",
+          1,
+          "text"
+        ],
+        [
+          "lines",
+          2,
+          "text"
+        ]
+      ],
+      "when": {
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "quote": "End of your opponent’s Fight phase."
+      },
+      "target": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One friendly unengaged INFILTRATORS/PTERAXII unit."
+      },
+      "effect": {
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "quote": "Place your unit in strategic reserves."
+      },
+      "classification": "BATTLE_ONLY",
+      "effectRecipientRoleIds": [
+        "target"
+      ],
+      "sourceIssues": [],
+      "effectClauses": [
+        {
+          "clauseId": "effect",
+          "classification": "BATTLE_ONLY",
+          "source": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "Place your unit in strategic reserves."
+          }
+        }
+      ],
+      "durationBindings": [
+        {
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "detachmentScope": {
+        "detachmentId": "detachment-cohort-acquisitus",
+        "canonicalSource": "entity.parentId"
+      }
+    }
+  },
+  "totals": {
+    "rules": 51,
+    "blockedAtoms": 0,
+    "blockedRules": 0,
+    "deferredObjectiveLifetimeRules": 2,
+    "boundLifetimeOccurrences": 40
+  }
+}

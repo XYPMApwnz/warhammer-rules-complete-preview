@@ -1,8 +1,9 @@
 # Adeptus Mechanicus V2 factual foundation
 
 This directory owns the source-to-canonical factual build for Adeptus Mechanicus.
-It is not wired into the published reader or the Death Guard platform. It contains
-no Rule Contracts, applicability answers, attachment interpreter or effect runtime.
+It is not wired into the published reader or the Death Guard platform. The
+separate, bounded Rule Contract build below consumes this factual foundation.
+There is no AdMech attachment interpreter or effect runtime integration yet.
 
 ## Inputs and authority
 
@@ -116,3 +117,76 @@ entrypoint remains blocked by an unchanged DG manifest omission:
 `books/death-guard/sources/death-guard-wargear-option-contracts.v1.json`.
 That global baseline issue is separate from the passing V2 source enrollment,
 current-PDF parity and closed-input checks here.
+
+## Rule Contract stage: represented subset, explicit limitations
+
+`rule-contract-build.mjs` uses the existing shared schema, typed binders and
+profile-aware compatibility compiler without changing them. The three
+`contract-*-declarations.json` files own reviewed book-specific declarations;
+the corresponding review files are diagnostic records, not runtime inputs.
+No legacy AdMech contract or compatibility answer participates.
+
+There are 204 substantive existing canonical rule owners: 52 rule-bearing
+datasheet sections, 39 wargear options, seven weapon-selection instructions,
+three Army Rule components, ten Detachment rules, 34 Enhancements/Upgrades,
+51 Stratagems and eight source errata. Compound abilities remain clauses of
+their existing section owner. The Army Rule root is a reference container;
+two literal `None` options are absences, the introduction is scope guidance,
+and attachment metadata references the authoritative section. The exhaustive
+entity disposition ledger is regenerated with the census.
+
+179 contracts are source-bound and schema-valid. 25 complete owners are
+explicitly `BLOCKED_MISSING_GENERIC_PRIMITIVE`, with their exact source cases,
+semantic atoms, provenance and reasons in `generated/rule-contract-census.json`.
+They are not published as successful partial contracts. The limitations cover
+STATIC UNIT ability membership, MODEL keyword grants/removal, UNIT keyword
+removal, general abilities, Range/AP/skill changes, imperative overrides,
+global MODEL targeting, invulnerable changes and canonical weapon grants.
+All three Army components are blocked: substituting intrinsic MODEL ability
+membership for their source UNIT ability prerequisite would change semantics.
+No new shared primitive or AdMech runtime workaround was added.
+
+All 51 Stratagems preserve typed current-product applicability. Battle effects
+remain nonexecuting source-backed clauses; 40 explicit lifetime occurrences
+are bound to their actual recipients. Two objective-only lifetimes remain
+exact deferred battle metadata (Cached Acquisition and Infoslave Skull),
+without manufacturing an objective as a UNIT, MODEL or ROSTER. Optional target
+set cardinality likewise remains source-backed battle-resolution metadata.
+The Electrotraction source's explicit BATTLECLADE requirement is preserved,
+even though it has no currently eligible intrinsic Electro-Priest identity.
+
+The 6,086 compatibility rows cover only the 179 represented owners against
+34 datasheets; they do not certify the blocked owners or a complete AdMech
+product. They are disposable output and never an authority. The overlay keeps
+semantics under the existing canonical IDs, without copying factual text into
+a second rules catalog. The original base/effective snapshots are unchanged.
+
+The build-only context adapter follows explicit MODEL keyword-scope IDs and
+`contract-composition-bindings.json`. Servitor Underseer and Combat/Gun
+Servitors remain separate; TECH-PRIEST does not leak between profiles. UNIT
+keyword union follows current Core 02.05.01. Source-backed Leader/Support
+references feed the existing feasibility compiler, using current Core 24.22 /
+24.34 one-Leader/one-Support semantics. These are compatibility bounds, not a
+new attachment runtime. Enhancement ownership uses the physical owner's
+intrinsic scope; battle activation never becomes assignment eligibility.
+Omnispex targets UNIT weapons so it does not invent a requirement to be attached.
+
+Run with Node.js:
+
+```text
+node books/adeptus-mechanicus/v2/rule-contract-build.mjs
+node books/adeptus-mechanicus/v2/rule-contract-build.mjs --check
+node books/adeptus-mechanicus/v2/rule-contract-qa.mjs
+node books/shared/rule-contract-v2/schema-qa.mjs
+node books/shared/rule-contract-v2/bindings-qa.mjs
+node books/shared/rule-contract-v2/compatibility-qa.mjs
+```
+
+QA checks every owner disposition and binding, typed conditions, selected and
+unspecified Detachments, all explicit profiles, exact physical owners, source
+contradictions, duration recipients, generated-row poisoning and deterministic
+rebuild. A closed-input temporary tree contains only this V2 factual snapshot,
+typed declarations and existing shared modules: DG and legacy AM contracts,
+runtime and generated answers are absent. No AdMech effects are executed.
+The existing `qa:am` command remains a legacy regression check only; it is not
+the source oracle or contract denominator.

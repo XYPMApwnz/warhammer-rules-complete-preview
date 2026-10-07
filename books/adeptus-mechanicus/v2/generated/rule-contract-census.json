@@ -1,0 +1,4221 @@
+{
+  "schema": "adeptus-mechanicus-rule-contract-census/v2",
+  "sourceRules": 204,
+  "built": 179,
+  "valid": 179,
+  "blockedOwners": 25,
+  "blockedCases": 25,
+  "invalidContracts": 0,
+  "unboundSourceRules": 0,
+  "legacyContractReads": 0,
+  "byKind": {
+    "OTHER_RULE": 46,
+    "DATASHEET_ABILITY": 47,
+    "DETACHMENT_RULE": 7,
+    "ENHANCEMENT": 20,
+    "STRATAGEM": 51,
+    "FAQ_ERRATA_RULE": 8
+  },
+  "compatibilityRelations": 6086,
+  "compatibility": {
+    "MATCH": 365,
+    "CONDITIONAL": 1222,
+    "NO_MATCH": 4499,
+    "INVALID": 0,
+    "UNRESOLVED": 0
+  },
+  "inventory": [
+    {
+      "id": "datasheet-archaeopter-fusilave:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-fusilave:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-fusilave:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-fusilave:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-fusilave:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-archaeopter-fusilave:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-archaeopter-fusilave:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-archaeopter-fusilave:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-fusilave:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-archaeopter-fusilave",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-stratoraptor:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-archaeopter-stratoraptor",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-transvector:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-transvector:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-transvector:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-transvector:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-transvector:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-archaeopter-transvector:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-archaeopter-transvector:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-archaeopter-transvector:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-archaeopter-transvector:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-archaeopter-transvector:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-archaeopter-transvector",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:section:4",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-belisarius-cawl:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-belisarius-cawl",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-corpuscarii-electro-priests:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-corpuscarii-electro-priests:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-corpuscarii-electro-priests:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-corpuscarii-electro-priests:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-corpuscarii-electro-priests:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-corpuscarii-electro-priests:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-corpuscarii-electro-priests:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-corpuscarii-electro-priests:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-corpuscarii-electro-priests:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-corpuscarii-electro-priests",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:section:3:attachment-declaration",
+      "kind": "ATTACHMENT_DECLARATION",
+      "disposition": "REFERENCE_TO_SECTION_OWNER",
+      "ownerId": "datasheet-cybernetica-datasmith:section:3"
+    },
+    {
+      "id": "datasheet-cybernetica-datasmith:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-cybernetica-datasmith",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-fulgurite-electro-priests:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-fulgurite-electro-priests:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-fulgurite-electro-priests:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-fulgurite-electro-priests:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-fulgurite-electro-priests:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-fulgurite-electro-priests:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-fulgurite-electro-priests:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-fulgurite-electro-priests:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-fulgurite-electro-priests",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "EXPLICIT_ABSENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:section:3:attachment-declaration",
+      "kind": "ATTACHMENT_DECLARATION",
+      "disposition": "REFERENCE_TO_SECTION_OWNER",
+      "ownerId": "datasheet-hastarii-exterminators:section:3"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-exterminators:weapon-profile-selection",
+      "kind": "WEAPON_PROFILE_SELECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "unit-hastarii-exterminators",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "EXPLICIT_ABSENCE"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:section:3:attachment-declaration",
+      "kind": "ATTACHMENT_DECLARATION",
+      "disposition": "REFERENCE_TO_SECTION_OWNER",
+      "ownerId": "datasheet-hastarii-fusiliers:section:3"
+    },
+    {
+      "id": "datasheet-hastarii-fusiliers:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-hastarii-fusiliers",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-ironstrider-ballistarii:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-ironstrider-ballistarii",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:weapon:7",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-kastelan-robots:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-kastelan-robots:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-kastelan-robots:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-kastelan-robots:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kastelan-robots:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-kastelan-robots",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-breachers:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-kataphron-breachers",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-kataphron-destroyers:weapon-profile-selection",
+      "kind": "WEAPON_PROFILE_SELECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "unit-kataphron-destroyers",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:weapon:7",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:weapon:8",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:wargear:3",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-onager-dunecrawler:weapon-profile-selection",
+      "kind": "WEAPON_PROFILE_SELECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "unit-onager-dunecrawler",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-skystalkers:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-pteraxii-skystalkers",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-pteraxii-sterylizors:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-pteraxii-sterylizors",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-raiders:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-raiders:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-raiders:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-raiders:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-raiders:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-raiders:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-raiders:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-serberys-raiders:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-serberys-raiders:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-serberys-raiders:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-raiders:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-serberys-raiders",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-serberys-sulphurhounds:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-serberys-sulphurhounds",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:profile:servitor-underseer",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:profile:servitor-underseer:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:profile:combat-and-gun-servitors:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:weapon:7",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:weapon:8",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:section:3:attachment-declaration",
+      "kind": "ATTACHMENT_DECLARATION",
+      "disposition": "REFERENCE_TO_SECTION_OWNER",
+      "ownerId": "datasheet-servitor-battleclade:section:3"
+    },
+    {
+      "id": "datasheet-servitor-battleclade:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-servitor-battleclade",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-infiltrators:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-sicarian-infiltrators",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sicarian-ruststalkers:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-sicarian-ruststalkers",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:section:3:attachment-declaration",
+      "kind": "ATTACHMENT_DECLARATION",
+      "disposition": "REFERENCE_TO_SECTION_OWNER",
+      "ownerId": "datasheet-skitarii-marshal:section:3"
+    },
+    {
+      "id": "datasheet-skitarii-marshal:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-skitarii-marshal",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:weapon:7",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:weapon:8",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:wargear:3",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:wargear:4",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:wargear:5",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:wargear:6",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:wargear:7",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-rangers:weapon-profile-selection",
+      "kind": "WEAPON_PROFILE_SELECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "unit-skitarii-rangers",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:weapon:7",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:weapon:8",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:wargear:3",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:wargear:4",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:wargear:5",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:wargear:6",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:wargear:7",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skitarii-vanguard:weapon-profile-selection",
+      "kind": "WEAPON_PROFILE_SELECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "unit-skitarii-vanguard",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-disintegrator:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-skorpius-disintegrator",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-dunerider:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-dunerider:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-dunerider:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-dunerider:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-dunerider:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skorpius-dunerider:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-skorpius-dunerider:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-skorpius-dunerider:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-skorpius-dunerider:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-skorpius-dunerider",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-radium-jezzails:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-radium-jezzails:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-radium-jezzails:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-radium-jezzails:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-radium-jezzails:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-radium-jezzails:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-radium-jezzails:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-radium-jezzails:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-radium-jezzails:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-radium-jezzails:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-sydonian-dragoons-with-radium-jezzails",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-taser-lances:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-taser-lances:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-taser-lances:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-taser-lances:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-taser-lances:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-taser-lances:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-taser-lances:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-taser-lances:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-dragoons-with-taser-lances:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-sydonian-dragoons-with-taser-lances",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-sydonian-skatros:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-sydonian-skatros",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:section:3:attachment-declaration",
+      "kind": "ATTACHMENT_DECLARATION",
+      "disposition": "REFERENCE_TO_SECTION_OWNER",
+      "ownerId": "datasheet-tech-priest-dominus:section:3"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-dominus:weapon-profile-selection",
+      "kind": "WEAPON_PROFILE_SELECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "unit-tech-priest-dominus",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:section:3:attachment-declaration",
+      "kind": "ATTACHMENT_DECLARATION",
+      "disposition": "REFERENCE_TO_SECTION_OWNER",
+      "ownerId": "datasheet-tech-priest-enginseer:section:3"
+    },
+    {
+      "id": "datasheet-tech-priest-enginseer:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-tech-priest-enginseer",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:section:3:attachment-declaration",
+      "kind": "ATTACHMENT_DECLARATION",
+      "disposition": "REFERENCE_TO_SECTION_OWNER",
+      "ownerId": "datasheet-tech-priest-manipulus:section:3"
+    },
+    {
+      "id": "datasheet-tech-priest-manipulus:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-tech-priest-manipulus",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-technoarcheologist:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-technoarcheologist:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-technoarcheologist:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-technoarcheologist:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-technoarcheologist:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-technoarcheologist:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-technoarcheologist:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-technoarcheologist:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-technoarcheologist:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-technoarcheologist:section:3:attachment-declaration",
+      "kind": "ATTACHMENT_DECLARATION",
+      "disposition": "REFERENCE_TO_SECTION_OWNER",
+      "ownerId": "datasheet-technoarcheologist:section:3"
+    },
+    {
+      "id": "datasheet-technoarcheologist:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "unit-technoarcheologist",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:invulnerable-save",
+      "kind": "INVULNERABLE_SAVE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:profile:default",
+      "kind": "PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:profile:default:base",
+      "kind": "MODEL_BASE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:section:1",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:section:2",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "COMPOSITION_FACT"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:section:3",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:section:4",
+      "kind": "DATASHEET_SECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:keyword-scopes",
+      "kind": "KEYWORD_SCOPES",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "datasheet-thulia-ghuld:weapon-profile-selection",
+      "kind": "WEAPON_PROFILE_SELECTION",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "unit-thulia-ghuld",
+      "kind": "DATASHEET",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "army-rule-doctrina-imperatives",
+      "kind": "ARMY_RULE",
+      "disposition": "RULE_REFERENCE_CONTAINER"
+    },
+    {
+      "id": "army-rule-doctrina-imperatives:introduction",
+      "kind": "ARMY_RULE_COMPONENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "army-rule-doctrina-imperatives:protector-imperative",
+      "kind": "ARMY_RULE_COMPONENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "army-rule-doctrina-imperatives:conqueror-imperative",
+      "kind": "ARMY_RULE_COMPONENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade",
+      "kind": "DETACHMENT",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:rule",
+      "kind": "DETACHMENT_RULE",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:stratagem:1",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:stratagem:2",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:stratagem:3",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:stratagem:4",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:stratagem:5",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-haloscreed-battle-clade:stratagem:6",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort",
+      "kind": "DETACHMENT",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-eradication-cohort:rule",
+      "kind": "DETACHMENT_RULE",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort:stratagem:1",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort:stratagem:2",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort:stratagem:3",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort:stratagem:4",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort:stratagem:5",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-eradication-cohort:stratagem:6",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave",
+      "kind": "DETACHMENT",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:rule",
+      "kind": "DETACHMENT_RULE",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:stratagem:1",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:stratagem:2",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:stratagem:3",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:stratagem:4",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:stratagem:5",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-data-psalm-conclave:stratagem:6",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple",
+      "kind": "DETACHMENT",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-explorator-maniple:rule",
+      "kind": "DETACHMENT_RULE",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple:stratagem:1",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple:stratagem:2",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple:stratagem:3",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple:stratagem:4",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple:stratagem:5",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-explorator-maniple:stratagem:6",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort",
+      "kind": "DETACHMENT",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:rule",
+      "kind": "DETACHMENT_RULE",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:stratagem:1",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:stratagem:2",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:stratagem:3",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:stratagem:4",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:stratagem:5",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-skitarii-hunter-cohort:stratagem:6",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica",
+      "kind": "DETACHMENT",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:rule",
+      "kind": "DETACHMENT_RULE",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:stratagem:1",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:stratagem:2",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:stratagem:3",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:stratagem:4",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:stratagem:5",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-cybernetica:stratagem:6",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps",
+      "kind": "DETACHMENT",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-rad-zone-corps:rule",
+      "kind": "DETACHMENT_RULE",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps:stratagem:1",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps:stratagem:2",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps:stratagem:3",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps:stratagem:4",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps:stratagem:5",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-rad-zone-corps:stratagem:6",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-luminen-auto-choir",
+      "kind": "DETACHMENT",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-luminen-auto-choir:rule",
+      "kind": "DETACHMENT_RULE",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-luminen-auto-choir:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-luminen-auto-choir:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-luminen-auto-choir:stratagem:1",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-luminen-auto-choir:stratagem:2",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-luminen-auto-choir:stratagem:3",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-lords-of-the-forge",
+      "kind": "DETACHMENT",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-lords-of-the-forge:rule",
+      "kind": "DETACHMENT_RULE",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-lords-of-the-forge:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-lords-of-the-forge:enhancement:2:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-lords-of-the-forge:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-lords-of-the-forge:stratagem:1",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-lords-of-the-forge:stratagem:2",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-lords-of-the-forge:stratagem:3",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-acquisitus",
+      "kind": "DETACHMENT",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "detachment-cohort-acquisitus:rule",
+      "kind": "DETACHMENT_RULE",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-acquisitus:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-acquisitus:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-acquisitus:stratagem:1",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-acquisitus:stratagem:2",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "detachment-cohort-acquisitus:stratagem:3",
+      "kind": "STRATAGEM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "errata-1",
+      "kind": "SOURCE_ERRATUM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "errata-2",
+      "kind": "SOURCE_ERRATUM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "errata-3",
+      "kind": "SOURCE_ERRATUM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "errata-4",
+      "kind": "SOURCE_ERRATUM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "errata-5",
+      "kind": "SOURCE_ERRATUM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "errata-6",
+      "kind": "SOURCE_ERRATUM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "errata-7",
+      "kind": "SOURCE_ERRATUM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "faq-1",
+      "kind": "SOURCE_ERRATUM",
+      "disposition": "RULE_OWNER"
+    },
+    {
+      "id": "book-introduction",
+      "kind": "BOOK_USAGE",
+      "disposition": "PRODUCT_SCOPE_INSTRUCTIONS"
+    },
+    {
+      "id": "official-update-reference:errata-1",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-update-reference:errata-2",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-update-reference:errata-3",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-update-reference:errata-4",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-update-reference:errata-5",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-update-reference:errata-6",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-update-reference:errata-7",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-update-reference:faq-1",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-datasheet-update-reference:page:17",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-datasheet-update-reference:page:18",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-datasheet-update-reference:page:19",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    }
+  ],
+  "blocked": [
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "datasheet-archaeopter-fusilave:section:1",
+      "ownerKind": "DATASHEET_SECTION",
+      "contextLevel": "ROSTER",
+      "missingPrimitive": "MODEL_KEYWORD_GRANT",
+      "reason": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
+      "sourceFields": [
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "evidence": {
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "quote": "The bearer has the SMOKE keyword."
+      },
+      "wholeOwnerBlocked": true,
+      "sourceCase": "The bearer has the SMOKE keyword.",
+      "semanticAtom": "MODEL_KEYWORD_GRANT",
+      "whyCompositionInsufficient": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/datasheets/0/sections/0"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "datasheet-archaeopter-stratoraptor:section:1",
+      "ownerKind": "DATASHEET_SECTION",
+      "contextLevel": "ROSTER",
+      "missingPrimitive": "MODEL_KEYWORD_GRANT",
+      "reason": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
+      "sourceFields": [
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "evidence": {
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "quote": "The bearer has the SMOKE keyword."
+      },
+      "wholeOwnerBlocked": true,
+      "sourceCase": "The bearer has the SMOKE keyword.",
+      "semanticAtom": "MODEL_KEYWORD_GRANT",
+      "whyCompositionInsufficient": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/datasheets/1/sections/0"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "datasheet-archaeopter-transvector:section:1",
+      "ownerKind": "DATASHEET_SECTION",
+      "contextLevel": "ROSTER",
+      "missingPrimitive": "MODEL_KEYWORD_GRANT",
+      "reason": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
+      "sourceFields": [
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "evidence": {
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "quote": "The bearer has the SMOKE keyword."
+      },
+      "wholeOwnerBlocked": true,
+      "sourceCase": "The bearer has the SMOKE keyword.",
+      "semanticAtom": "MODEL_KEYWORD_GRANT",
+      "whyCompositionInsufficient": "Selected chaff launcher grants SMOKE to its bearer MODEL. Existing GRANT_UNIT_KEYWORD cannot substitute for MODEL keyword semantics.",
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/datasheets/2/sections/0"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "datasheet-cybernetica-datasmith:section:1",
+      "ownerKind": "DATASHEET_SECTION",
+      "contextLevel": "ROSTER",
+      "missingPrimitive": "UNIT_KEYWORD_REMOVAL",
+      "reason": "Absence of KASTELAN ROBOT models can be known from initial roster attachments and can change in battle. Existing vocabulary can grant INFANTRY but cannot remove VEHICLE; the complete compound owner is blocked.",
+      "sourceFields": [
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "evidence": {
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "quote": "This unit loses VEHICLE."
+      },
+      "wholeOwnerBlocked": true,
+      "sourceCase": "This unit loses VEHICLE.",
+      "semanticAtom": "UNIT_KEYWORD_REMOVAL",
+      "whyCompositionInsufficient": "Absence of KASTELAN ROBOT models can be known from initial roster attachments and can change in battle. Existing vocabulary can grant INFANTRY but cannot remove VEHICLE; the complete compound owner is blocked.",
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/datasheets/5/sections/0"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "datasheet-onager-dunecrawler:section:1",
+      "ownerKind": "DATASHEET_SECTION",
+      "contextLevel": "ROSTER",
+      "missingPrimitive": "MODEL_KEYWORD_REMOVAL",
+      "reason": "Selected broad spectrum data-tether removes SMOKE from its bearer MODEL. Existing vocabulary has no keyword removal operation.",
+      "sourceFields": [
+        [
+          "blocks",
+          2,
+          "text"
+        ]
+      ],
+      "evidence": {
+        "field": [
+          "blocks",
+          2,
+          "text"
+        ],
+        "quote": "The bearer loses the SMOKE keyword"
+      },
+      "wholeOwnerBlocked": true,
+      "sourceCase": "The bearer loses the SMOKE keyword",
+      "semanticAtom": "MODEL_KEYWORD_REMOVAL",
+      "whyCompositionInsufficient": "Selected broad spectrum data-tether removes SMOKE from its bearer MODEL. Existing vocabulary has no keyword removal operation.",
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/datasheets/13/sections/0"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "army-rule-doctrina-imperatives:introduction",
+      "ownerKind": "ARMY_RULE_COMPONENT",
+      "contextLevel": "STATIC",
+      "missingPrimitive": "STATIC_UNIT_ABILITY_MEMBERSHIP",
+      "reason": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below."
+      },
+      "prerequisiteEvidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below"
+      },
+      "wholeOwnerBlocked": true,
+      "sourceCase": "At the start of the battle round, you can select one of the Doctrina Imperatives below. Until the end of the battle round, that Doctrina Imperative is active for your army, and all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below.",
+      "semanticAtom": "STATIC_UNIT_ABILITY_MEMBERSHIP",
+      "whyCompositionInsufficient": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/armyRules/0/components/0"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "army-rule-doctrina-imperatives:protector-imperative",
+      "ownerKind": "ARMY_RULE_COMPONENT",
+      "contextLevel": "STATIC",
+      "missingPrimitive": "STATIC_UNIT_ABILITY_MEMBERSHIP",
+      "reason": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Protector Imperative\n- Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n- Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n- Each time a melee attack targets this unit, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, subtract 1 from the Hit roll."
+      },
+      "prerequisiteEvidence": {
+        "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+        "field": [
+          "text"
+        ],
+        "quote": "all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below"
+      },
+      "wholeOwnerBlocked": true,
+      "sourceCase": "Protector Imperative\n- Ranged weapons equipped by models in this unit have the [HEAVY] ability.\n- Improve the Ballistic Skill characteristic of ranged weapons equipped by models in this unit by 1.\n- Each time a melee attack targets this unit, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, subtract 1 from the Hit roll.",
+      "semanticAtom": "STATIC_UNIT_ABILITY_MEMBERSHIP",
+      "whyCompositionInsufficient": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/armyRules/0/components/1"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "army-rule-doctrina-imperatives:conqueror-imperative",
+      "ownerKind": "ARMY_RULE_COMPONENT",
+      "contextLevel": "STATIC",
+      "missingPrimitive": "STATIC_UNIT_ABILITY_MEMBERSHIP",
+      "reason": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Conqueror Imperative\n- Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n- Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n- Each time a model in this unit makes an attack, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, improve the Armour Penetration characteristic of that attack by 1."
+      },
+      "prerequisiteEvidence": {
+        "otherEntityId": "army-rule-doctrina-imperatives:introduction",
+        "field": [
+          "text"
+        ],
+        "quote": "all units from your army that have the Doctrina Imperatives ability gain the relevant abilities shown below"
+      },
+      "wholeOwnerBlocked": true,
+      "sourceCase": "Conqueror Imperative\n- Ranged weapons equipped by models in this unit have the [ASSAULT] ability.\n- Improve the Weapon Skill characteristic of melee weapons equipped by models in this unit by 1.\n- Each time a model in this unit makes an attack, if this unit has the BATTLELINE keyword and/or it is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, improve the Armour Penetration characteristic of that attack by 1.",
+      "semanticAtom": "STATIC_UNIT_ABILITY_MEMBERSHIP",
+      "whyCompositionInsufficient": "The source gates UNIT recipients on possession of the Doctrina Imperatives ability. Existing MODEL_ABILITY tests intrinsic MODEL membership, and cannot replace that UNIT gate. Shared predicates have no UNIT_ABILITY; FIELD is contextual and rejects STATIC. Core 22.02 treats faction abilities as UNIT abilities; Core 19.04 propagates unit effects to attached-unit models without converting them into intrinsic MODEL membership. The same introduction gate governs both Imperative components. No identity whitelist, keyword equivalence, new primitive or runtime change is introduced.",
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/armyRules/0/components/2"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-haloscreed-battle-clade:enhancement:1",
+      "sourceCase": "models in that unit gain the HALO OVERRIDE keyword",
+      "semanticAtom": "MODEL keyword grant to the attached unit models, and Noospheric Transference selection exclusion",
+      "whyCompositionInsufficient": "GRANT_UNIT_KEYWORD cannot modify each MODEL keyword scope. The separate battle-selection exclusion remains source-backed deferred applicability and does not itself require an executable primitive now.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "models in that unit gain the HALO OVERRIDE keyword"
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_ID",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "datasheet-cybernetica-datasmith:profile:default"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "CYBERNETICA DATASMITH"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-haloscreed-battle-clade"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/0/enhancements/0"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-haloscreed-battle-clade:enhancement:2",
+      "sourceCase": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit.",
+      "semanticAtom": "Simultaneous active Imperatives",
+      "whyCompositionInsufficient": "No existing operation changes active army-rule alternatives; stats or keyword grants cannot preserve both complete Imperative semantics.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS MECHANICUS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "ADEPTUS MECHANICUS"
+                  }
+                },
+                {
+                  "op": "NOT",
+                  "args": [
+                    {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-cybernetica-datasmith:profile:default"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "excluding CYBERNETICA DATASMITH models"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-haloscreed-battle-clade"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/0/enhancements/1"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-haloscreed-battle-clade:enhancement:3",
+      "sourceCase": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit",
+      "semanticAtom": "Ranged weapon Range +6",
+      "whyCompositionInsufficient": "MODIFY_STAT excludes Range. detectionRange is a different metric.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS MECHANICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "ADEPTUS MECHANICUS"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-haloscreed-battle-clade"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/0/enhancements/2"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-eradication-cohort:enhancement:1",
+      "sourceCase": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit.",
+      "semanticAtom": "Simultaneous active Imperatives",
+      "whyCompositionInsufficient": "No existing operation changes active army-rule alternatives; stats or keyword grants cannot preserve both complete Imperative semantics.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_ID",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "datasheet-skitarii-marshal:profile:default"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "SKITARII MARSHAL"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-eradication-cohort"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/1/enhancements/0"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-eradication-cohort:enhancement:2",
+      "sourceCase": "Models in the bearer’s unit have the SKITARII keyword.",
+      "semanticAtom": "MODEL keyword grant to bearer unit models",
+      "whyCompositionInsufficient": "GRANT_UNIT_KEYWORD changes UNIT keywords rather than each MODEL keyword scope and cannot preserve physical MODEL eligibility semantics.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Models in the bearer’s unit have the SKITARII keyword."
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TECH-PRIEST"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TECH-PRIEST"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-eradication-cohort"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/1/enhancements/1"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-eradication-cohort:enhancement:3",
+      "sourceCase": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit",
+      "semanticAtom": "Range +6 alongside Strength +1",
+      "whyCompositionInsufficient": "MODIFY_STAT supports strength but excludes Range. Publishing only Strength would leave the whole rule incomplete.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit"
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS MECHANICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "ADEPTUS MECHANICUS"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-eradication-cohort"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/1/enhancements/2"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-eradication-cohort:enhancement:4",
+      "sourceCase": "improve the Armour Penetration and Damage characteristics of those weapons by 1",
+      "semanticAtom": "Melee Armour Penetration improvement alongside Attacks and Damage",
+      "whyCompositionInsufficient": "MODIFY_STAT excludes Armour Penetration; supported attacks/damage operations cannot substitute.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "improve the Armour Penetration and Damage characteristics of those weapons by 1"
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_ID",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "datasheet-skitarii-marshal:profile:default"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "SKITARII MARSHAL"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-eradication-cohort"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/1/enhancements/3"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-data-psalm-conclave:enhancement:4",
+      "sourceCase": "The bearer’s unit has the Fights First ability.",
+      "semanticAtom": "Fights First for bearer unit",
+      "whyCompositionInsufficient": "GRANT_MODEL_ABILITY only permits Feel No Pain; no operation grants a UNIT ability.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "The bearer’s unit has the Fights First ability."
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TECH-PRIEST"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TECH-PRIEST"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-data-psalm-conclave"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/2/enhancements/3"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-skitarii-hunter-cohort:rule",
+      "sourceCase": "Friendly SKITARII INFANTRY, SKITARII MOUNTED and IRONSTRIDER BALLISTARII units have Stealth.",
+      "semanticAtom": "Stealth for qualified friendly units",
+      "whyCompositionInsufficient": "GRANT_MODEL_ABILITY only permits Feel No Pain; no operation grants a UNIT ability.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Friendly SKITARII INFANTRY, SKITARII MOUNTED and IRONSTRIDER BALLISTARII units have Stealth."
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/4/rule"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-skitarii-hunter-cohort:enhancement:2",
+      "sourceCase": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities.",
+      "semanticAtom": "Infiltrators and Scouts 6\" for bearer and led models",
+      "whyCompositionInsufficient": "GRANT_MODEL_ABILITY only permits Feel No Pain. These MODEL abilities are not weapon abilities or unit keywords.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "The bearer, and models in any unit they are leading, have the Infiltrators and Scouts 6\" abilities."
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "SKITARII"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "SKITARII"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-skitarii-hunter-cohort"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/4/enhancements/1"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-cohort-cybernetica:rule",
+      "sourceCase": "Add 2\" to the Move characteristic of models in LEGIO CYBERNETICA units from your army.",
+      "semanticAtom": "Move +2 for MODELS in qualified roster UNITS",
+      "whyCompositionInsufficient": "MODIFY_STAT M exists, but ROSTER_UNITS binds UNIT targets while MODEL bindings require a physical source instance absent for Detachment rules. Intrinsic MODEL keywords cannot replace UNIT eligibility without dropping attached models.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Add 2\" to the Move characteristic of models in LEGIO CYBERNETICA units from your army."
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/5/rule"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-rad-zone-corps:enhancement:2",
+      "sourceCase": "While the bearer is leading a unit, models in that unit have the Stealth ability.",
+      "semanticAtom": "Stealth for led unit models",
+      "whyCompositionInsufficient": "Leading is roster-known, but GRANT_MODEL_ABILITY only permits Feel No Pain; a keyword or weapon ability cannot substitute.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "While the bearer is leading a unit, models in that unit have the Stealth ability."
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS MECHANICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "ADEPTUS MECHANICUS"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-rad-zone-corps"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/6/enhancements/1"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-luminen-auto-choir:enhancement:2",
+      "sourceCase": "This unit has Stealth.",
+      "semanticAtom": "Stealth for bearer unit",
+      "whyCompositionInsufficient": "GRANT_MODEL_ABILITY only permits Feel No Pain; no operation grants a UNIT ability.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "This unit has Stealth."
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TECH-PRIEST"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TECH-PRIEST"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-luminen-auto-choir"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/7/enhancements/1"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-lords-of-the-forge:rule",
+      "sourceCase": "Friendly TECH-PRIEST models have:\n- 4+ InSv.",
+      "semanticAtom": "4+ invulnerable save for TECH-PRIEST MODELS",
+      "whyCompositionInsufficient": "MODIFY_STAT excludes invulnerable saves; Feel No Pain is not an equivalent save. Publishing the supported FNP atom alone would leave the whole rule incomplete.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Friendly TECH-PRIEST models have:\n- 4+ InSv."
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/8/rule"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-lords-of-the-forge:enhancement:2",
+      "sourceCase": "This model has the following weapon:",
+      "semanticAtom": "Grant canonical TL-4Ø9 weapon profile to bearer",
+      "whyCompositionInsufficient": "No operation adds a new weapon profile. MODIFY_STAT/GRANT_WEAPON_ABILITY only modify existing equipment and cannot instantiate the separate canonical weapon profile.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "This model has the following weapon:"
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TECH-PRIEST"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TECH-PRIEST"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-lords-of-the-forge"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/8/enhancements/1"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-cohort-acquisitus:enhancement:1",
+      "sourceCase": "This unit has Infiltrators",
+      "semanticAtom": "Infiltrators for bearer unit",
+      "whyCompositionInsufficient": "GRANT_MODEL_ABILITY only permits Feel No Pain; no operation grants a UNIT ability.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "This unit has Infiltrators"
+      },
+      "ownerDiagnostic": {
+        "subject": "MODEL",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "CHARACTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                "otherEntityId": "book-introduction"
+              }
+            },
+            {
+              "predicate": "MODEL_ID",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "datasheet-skitarii-marshal:profile:default"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "SKITARII MARSHAL"
+              }
+            }
+          ]
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-cohort-acquisitus"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/9/enhancements/0"
+      }
+    },
+    {
+      "status": "BLOCKED_MISSING_GENERIC_PRIMITIVE",
+      "ruleId": "detachment-cohort-acquisitus:enhancement:2",
+      "sourceCase": "This unit has Lone Operative 15\".",
+      "semanticAtom": "Lone Operative 15\" for physical SERBERYS RAIDERS UNIT Upgrade owner",
+      "whyCompositionInsufficient": "No operation grants Lone Operative or a unit ability with its distance. MODEL ownership and detectionRange modification cannot substitute.",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "This unit has Lone Operative 15\"."
+      },
+      "ownerDiagnostic": {
+        "subject": "UNIT",
+        "selector": {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "id": "unit-serberys-raiders"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "SERBERYS RAIDERS unit only"
+          }
+        },
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-cohort-acquisitus",
+        "sourceTypeLabel": "UPGRADE"
+      },
+      "provenance": {
+        "sourceId": "am-waha-11e-2026-09-25",
+        "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+        "pointer": "/detachments/9/enhancements/1"
+      }
+    }
+  ]
+}
