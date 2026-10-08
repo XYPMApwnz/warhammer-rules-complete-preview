@@ -1,7 +1,7 @@
 /* Actual V1 content.css Related Rules and popups.css term-popup shell. */
-.related-rules-layer{position:fixed;z-index:var(--z-related-rules);inset:0;display:grid;place-items:center;padding:clamp(12px,3vw,36px);background:rgba(4,7,4,.84)}
+.related-rules-layer{position:fixed;z-index:var(--z-related-rules);inset:0;display:grid;place-items:center;padding:clamp(12px,3vw,36px);background:rgba(var(--book-void-rgb, 4, 7, 4), .84)}
 .related-rules-layer[hidden]{display:none}
-.related-rules-dialog{width:min(1180px,100%);height:min(900px,calc(100dvh - 72px));display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;border:1px solid rgba(199,174,117,.42);border-top:4px solid var(--green-deep);background:var(--panel);box-shadow:0 36px 110px rgba(0,0,0,.88)}
+.related-rules-dialog{width:min(1180px,100%);height:min(900px,calc(100dvh - 72px));display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;border:1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .42);border-top:4px solid var(--green-deep);background:var(--panel);box-shadow:0 36px 110px rgba(0,0,0,.88)}
 .related-rules-dialog>header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:20px 24px;border-bottom:1px solid var(--line)}
 .related-rules-dialog>header>div{min-width:0}
 .related-rules-dialog>header span{color:var(--pink);font:800 9px/1 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}
@@ -19,11 +19,11 @@
 .full-related-filter.is-static summary::after,.full-related-filter.is-static>div{display:none}
 .full-related-filter>div{position:absolute;z-index:2;top:calc(100% + 4px);left:0;right:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:6px;border:1px solid var(--line);background:var(--panel);box-shadow:0 18px 46px rgba(0,0,0,.72)}
 .full-related-filter button{padding:9px 12px;text-align:left;cursor:pointer}
-.full-related-filter button[aria-pressed="true"]{color:var(--green);background:rgba(190,230,119,.1)}
+.full-related-filter button[aria-pressed="true"]{color:var(--green);background:rgba(var(--book-accent-rgb, 190, 230, 119), .1)}
 .full-related-tabs{display:flex}
 .full-related-tabs button{padding:0 14px}
 .full-related-tabs button+button{border-left:0}
-.full-related-tabs button[aria-pressed="true"]{background:rgba(190,230,119,.12);box-shadow:inset 0 -2px var(--green)}
+.full-related-tabs button[aria-pressed="true"]{background:rgba(var(--book-accent-rgb, 190, 230, 119), .12);box-shadow:inset 0 -2px var(--green)}
 .full-related-content .related-detachment>h2{margin:0 0 14px;color:var(--green);font:700 28px/1 Georgia,"Times New Roman",serif}
 .full-related-content .related-detachment+.related-detachment{margin-top:28px;padding-top:28px;border-top:1px solid var(--line)}
 .full-related-content .detachment-part{margin:0}
@@ -44,14 +44,14 @@
   max-height: min(76dvh, 640px);
   overflow-y: auto;
   padding: 20px 52px 20px 20px;
-  border: 1px solid rgba(199,174,117,.52);
+  border: 1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .52);
   border-top: 4px solid var(--green-deep);
   border-radius: 0;
   background:
-    radial-gradient(circle at 100% 0, rgba(213,72,142,.12), transparent 180px),
-    radial-gradient(circle at 0 100%, rgba(125,146,87,.13), transparent 210px),
+    radial-gradient(circle at 100% 0, rgba(var(--book-signal-rgb, 213, 72, 142), .12), transparent 180px),
+    radial-gradient(circle at 0 100%, rgba(var(--book-accent-deep-rgb, 125, 146, 87), .13), transparent 210px),
     var(--panel);
-  box-shadow: 0 32px 90px rgba(0,0,0,.82), 0 0 0 5px rgba(9,12,9,.72), 0 0 34px rgba(191,213,140,.1);
+  box-shadow: 0 32px 90px rgba(0,0,0,.82), 0 0 0 5px rgba(var(--book-void-rgb, 9, 12, 9), .72), 0 0 34px rgba(var(--book-accent-rgb, 191, 213, 140), .1);
   animation: popup-in .17s ease both;
 }
 .term-popup::before {
@@ -95,17 +95,17 @@
    surfaces above remain presentation-only. Scope palette to these windows. */
 dialog.v2-related-dialog.related-rules-layer,
 dialog.v2-detail-dialog.term-popup {
-  --bg:#0d0f0d; --panel:#191f1a; --panel-2:#252c25; --void:#0d0f0d;
-  --ink:#e2dcc9; --muted:#969589; --green:#bfd58c; --green-deep:#7d9257;
-  --bronze-bright:#c7ae75; --pink:#d5488e; --line:rgba(216,209,191,.14);
-  --glass:rgba(26,30,27,.94);
-  --faction-gradient:linear-gradient(90deg,#c8df7f 0 72%,#c8df7f 74%,#c3167c 82%,#c3167c 100%);
+  --bg:var(--book-bg, #0d0f0d); --panel:var(--book-panel, #191f1a); --panel-2:var(--book-panel-raised, #252c25); --void:var(--book-bg, #0d0f0d);
+  --ink:var(--book-ink, #e2dcc9); --muted:var(--book-muted, #969589); --green:var(--book-accent, #bfd58c); --green-deep:var(--book-accent-deep, #7d9257);
+  --bronze-bright:var(--book-metal-bright, #c7ae75); --pink:var(--book-signal, #d5488e); --line:rgba(var(--book-ink-rgb, 216, 209, 191), .14);
+  --glass:rgba(var(--book-panel-rgb, 26, 30, 27), .94);
+  --faction-gradient:linear-gradient(90deg,var(--book-accent, #c8df7f) 0 72%,var(--book-accent, #c8df7f) 74%,var(--book-signal, #c3167c) 82%,var(--book-signal, #c3167c) 100%);
   color:var(--ink); box-sizing:border-box;
 }
 dialog.v2-related-dialog.related-rules-layer {
   margin:0; inset:0; width:100vw; max-width:none; height:100dvh; max-height:none;
   padding:clamp(12px,3vw,36px); border:0; border-radius:0;
-  background:rgba(4,7,4,.84); box-shadow:none; overflow:hidden;
+  background:rgba(var(--book-void-rgb, 4, 7, 4), .84); box-shadow:none; overflow:hidden;
 }
 dialog.v2-related-dialog.related-rules-layer[open] { display:grid; }
 dialog.v2-related-dialog.related-rules-layer:not([open]) { display:none; }
@@ -125,7 +125,7 @@ dialog.v2-detail-dialog.term-popup.v2-book-detail {
   max-height:min(76dvh,640px); padding:0; overflow:hidden;
 }
 dialog.v2-detail-dialog.term-popup.v2-book-detail[open] { display:flex; flex-direction:column; }
-dialog.v2-detail-dialog.term-popup.v2-book-detail::backdrop { background:rgba(4,6,4,.34); backdrop-filter:blur(2px); }
+dialog.v2-detail-dialog.term-popup.v2-book-detail::backdrop { background:rgba(var(--book-void-rgb, 4, 6, 4), .34); backdrop-filter:blur(2px); }
 .term-popup.v2-detail-dialog .v2-dialog-bar { position:absolute; z-index:2; top:0; right:0; padding:0; border:0; background:none; }
 .term-popup.v2-detail-dialog .v2-dialog-bar .popup-close { position:absolute; top:10px; right:10px; width:36px; height:36px; min-width:36px; min-height:36px; padding:0; border:1px solid var(--line); background:var(--panel-2); color:var(--ink); font-size:20px; }
 .term-popup.v2-detail-dialog .v2-dialog-content { min-height:0; overflow:auto; padding:20px; overscroll-behavior:contain; scrollbar-color:var(--green-deep) var(--bg); }

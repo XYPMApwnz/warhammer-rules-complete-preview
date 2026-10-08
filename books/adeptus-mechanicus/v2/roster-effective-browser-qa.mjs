@@ -39,7 +39,7 @@ const app='/books/adeptus-mechanicus/v2/app.html';
 const forbidden=address=>/\/books\/death-guard\/(?!assets\/)/.test(address)||
   /\/books\/adeptus-mechanicus\/(?!v2\/|assets\/)/.test(address)||
   /(?:target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\.)/.test(address);
-const allowed=address=>address===app||/^\/books\/adeptus-mechanicus\/v2\/(?:[\w.-]+\.mjs|roster-import-aliases\.json|generated\/(?:app-presentation|roster-runtime)\.json)$/.test(address)||
+const allowed=address=>address===app||/^\/books\/adeptus-mechanicus\/v2\/(?:theme\.css|[\w.-]+\.mjs|roster-import-aliases\.json|generated\/(?:app-presentation|roster-runtime)\.json)$/.test(address)||
   /^\/books\/shared\/(?:army-book-app-v2|rule-contract-v2|roster-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
   /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
   /^\/(?:books\/adeptus-mechanicus\/assets|assets)\/[\w./-]+\.(?:webp|png|jpe?g|svg)$/.test(address);

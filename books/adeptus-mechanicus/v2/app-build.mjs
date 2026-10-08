@@ -79,6 +79,7 @@ export function buildApp(inputs=readAppInputs()) {
   payload.cards.push(...reference.coreCards);payload.datasheetPresentation.referenceBindings=reference.referenceBindings;
   payload.glossary=reference.glossaryIndex;
   payload.bookPresentation=projectBookPresentation(view,records);
+  payload.bookPresentation.coverImage='../assets/mechanicus-cover-800.webp';
   payload.bookPresentation.records['book-introduction']={id:'book-introduction',kind:'BOOK_USAGE',provenance:model.entities.find(entity=>entity.id==='book-introduction').provenance};
   payload.relatedRules=buildRelatedRules(model,inputs.evaluator);
   // Bind existing canonical child weapon classification from its typed source
@@ -94,7 +95,7 @@ export function writeApp({check=false}={}) {
   const payload=buildApp(),outputs=new Map([
     ['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],
     ['./app.html',`<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Adeptus Mechanicus · Army Book V2</title><link rel="stylesheet" href="../../shared/army-book-app-v2/styles.css"><link rel="stylesheet" href="../../shared/army-book-app-v2/datasheet-v1.css"><link rel="stylesheet" href="../../shared/army-book-app-v2/book-v1.css"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Adeptus Mechanicus · Army Book V2</title><link rel="stylesheet" href="../../shared/army-book-app-v2/styles.css"><link rel="stylesheet" href="../../shared/army-book-app-v2/datasheet-v1.css"><link rel="stylesheet" href="../../shared/army-book-app-v2/book-v1.css"><link rel="stylesheet" href="./theme.css"></head>
 <body><p role="status">Loading Army Book…</p><script type="module">
 import {mount} from '../../shared/army-book-app-v2/runtime.mjs';
 import {createBrowserRoster} from './roster-runtime.mjs';

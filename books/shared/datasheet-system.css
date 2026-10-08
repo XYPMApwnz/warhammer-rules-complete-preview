@@ -151,7 +151,7 @@
   margin: 0 0 21px;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--green) 8%, transparent), rgba(7, 11, 8, .78));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--green) 8%, transparent), rgba(var(--book-void-rgb, 7, 11, 8), .78));
   box-shadow: inset 0 8px 24px rgba(0, 0, 0, .2);
 }
 
@@ -366,7 +366,7 @@
 
 .unit-card.ds-layout .ds-profile-strip {
   border-bottom: 1px solid var(--line);
-  background: #0c110d;
+  background: var(--book-bg, #0c110d);
 }
 .unit-card.ds-layout .ds-profile-strip .model-profile > h5 {
   margin: 0;
@@ -601,19 +601,19 @@
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
-  border: 1px solid rgba(199,174,117,.34);
-  background: rgba(8,12,8,.36);
+  border: 1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .34);
+  background: rgba(var(--book-void-rgb, 8, 12, 8), .36);
 }
 .popup-weapon-table th,
 .popup-weapon-table td {
   padding: 8px 5px;
-  border-right: 1px solid rgba(199,174,117,.2);
+  border-right: 1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .2);
   text-align: center;
 }
 .popup-weapon-table th:last-child,
 .popup-weapon-table td:last-child { border-right: 0; }
 .popup-weapon-table th {
-  border-bottom: 1px solid rgba(199,174,117,.22);
+  border-bottom: 1px solid rgba(var(--book-metal-bright-rgb, 199, 174, 117), .22);
   color: var(--muted);
   font: 800 9px/1 ui-monospace, monospace;
   letter-spacing: .06em;
@@ -641,9 +641,9 @@
 .popup-ability-chip {
   min-height: 24px;
   padding: 4px 7px;
-  border: 1px solid rgba(191,213,140,.38);
+  border: 1px solid rgba(var(--book-accent-rgb, 191, 213, 140), .38);
   border-radius: 0;
-  background: rgba(124,151,70,.09);
+  background: rgba(var(--book-accent-deep-rgb, 124, 151, 70), .09);
   color: var(--green);
   font: 800 9px/1.2 ui-monospace, monospace;
   letter-spacing: .035em;

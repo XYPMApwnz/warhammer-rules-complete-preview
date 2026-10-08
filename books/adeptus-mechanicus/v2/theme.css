@@ -1,0 +1,40 @@
+/* Book-owned paint and assets only. Layout and interactions belong to the
+ * shared V1 presentation; an unthemed consumer retains its original paint. */
+:root {
+  color-scheme: dark;
+  --book-register-label: "ARCHIVE REGISTER // MARS";
+  --book-bg: #101318;
+  --book-canvas: #15191f;
+  --book-panel: #1c232c;
+  --book-panel-raised: #28313d;
+  --book-ink: #e9e5da;
+  --book-ink-bright: #fff8eb;
+  --book-muted: #a8b0bb;
+  --book-muted-readable: #bdc4ce;
+  --book-accent: #8cbcff;
+  --book-accent-deep: #4f91e3;
+  --book-signal: #f18075;
+  --book-signal-deep: #681c1a;
+  --book-metal: #909ba8;
+  --book-metal-bright: #c6cdd5;
+  --book-control-line: #62758d;
+  --book-hover: #34445b;
+  --book-ring: rgba(140, 188, 255, .21);
+  --book-ring-soft: rgba(140, 188, 255, .047);
+  --book-ring-faint: rgba(140, 188, 255, .031);
+  --book-bg-rgb: 16, 19, 24;
+  --book-void-rgb: 7, 10, 15;
+  --book-panel-rgb: 28, 35, 44;
+  --book-ink-rgb: 233, 229, 218;
+  --book-accent-rgb: 140, 188, 255;
+  --book-accent-deep-rgb: 79, 145, 227;
+  --book-signal-rgb: 226, 82, 72;
+  --book-metal-rgb: 144, 155, 168;
+  --book-metal-bright-rgb: 198, 205, 213;
+}
+
+/* Keep the URL relative to this book-owned sheet, not a shared consumer. */
+.v2-brand-mark {
+  color: transparent;
+  background: url('../assets/mechanicus-logo.png') center / contain no-repeat;
+}

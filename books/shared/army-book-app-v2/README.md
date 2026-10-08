@@ -120,3 +120,21 @@ Run `books/death-guard/v2/datasheet-v1-qa.mjs` and
 census, frozen navigation, actual V1 shell and desktop/phone mega-case controls.
 `roster-visible-effects-qa.mjs` retains the source-backed 22-clause end-to-end
 checks and negative mutations.
+
+## Book-owned visual identity
+
+Shared V1 CSS accepts optional `--book-*` paint tokens. Background/panel/ink,
+accent/signal/metal and their RGB channels cover gradients, borders, dialogs,
+Glossary and roster chrome. Every fallback retains the original DG paint.
+These tokens change no geometry or behavior and contain no gameplay data.
+
+A book loads its own theme stylesheet alongside the shared styles and supplies
+its existing cover via `bookPresentation.coverImage`. Emblem artwork is styled
+in the book sheet so relative asset URLs stay book-owned. Unit artwork still
+uses the canonical-ID presentation mapping. Do not import legacy book CSS or
+create a separate presenter to apply a faction theme.
+
+`npm run qa:am:v2:theme:browser` compares desktop/390×844 geometry and factual
+DOM output against the pre-theme product, checks DG pixel parity, and saves
+screenshots for manual review. Set `ARMY_APP_V2_SCREENSHOTS` to retain them in a
+chosen directory. The AM library cover uses the existing shared cover layout.

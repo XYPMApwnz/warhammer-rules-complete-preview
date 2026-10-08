@@ -39,10 +39,10 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   section.dataset.rosterView = '';
   const style = el('style');
   style.textContent = `
-    .v2-roster { --v2-paper:#191f1a; --v2-ink:#e2dcc9; --v2-muted:#b7b8aa; --v2-line:#566052; --v2-green:#bfd58c; display:grid; gap:20px; min-width:0; color:var(--v2-ink); }
+    .v2-roster { --v2-paper:var(--book-panel, #191f1a); --v2-ink:var(--book-ink, #e2dcc9); --v2-muted:var(--book-muted-readable, #b7b8aa); --v2-line:var(--book-control-line, #566052); --v2-green:var(--book-accent, #bfd58c); display:grid; gap:20px; min-width:0; color:var(--v2-ink); }
     .v2-roster .v2-card { background:var(--v2-paper); color:var(--v2-ink); border-color:var(--v2-line); }
-    .v2-roster .v2-reference { background:#252c25; color:var(--v2-green); border-color:#6c7950; }
-    .v2-roster .v2-reference:hover { background:#313c2a; color:#f0eddd; }
+    .v2-roster .v2-reference { background:var(--book-panel-raised, #252c25); color:var(--v2-green); border-color:var(--book-control-line, #6c7950); }
+    .v2-roster .v2-reference:hover { background:var(--book-hover, #313c2a); color:var(--book-ink-bright, #f0eddd); }
     .v2-roster :is(button,a,input,select,textarea):focus-visible { outline:2px solid var(--v2-green); outline-offset:3px; }
     .v2-roster textarea::placeholder { color:var(--v2-muted); opacity:1; }
     .v2-roster h1 { margin:0; font-size:30px; letter-spacing:-.03em; }
@@ -60,7 +60,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     .v2-roster select { width:100%; min-height:42px; }
     .v2-roster select[multiple] { min-height:140px; }
     .v2-roster input[type=checkbox] { min-width:18px; min-height:18px; }
-    .v2-roster-status { margin:0; padding:12px 16px; border-radius:8px; background:#252c25; font-size:13px; overflow-wrap:anywhere; }
+    .v2-roster-status { margin:0; padding:12px 16px; border-radius:8px; background:var(--book-panel-raised, #252c25); font-size:13px; overflow-wrap:anywhere; }
     .v2-roster-error { background:#3a281d; color:#ffd799; }
     .v2-roster-bindings { display:grid; gap:13px; margin-top:18px; }
     .v2-roster-bindings fieldset { margin:0; border:1px solid var(--v2-line); padding:14px; border-radius:9px; min-width:0; }
@@ -70,15 +70,15 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     .v2-roster-instance-header { padding:22px 24px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; border-bottom:1px solid var(--v2-line); }
     .v2-roster-instance-header h2 { margin:4px 0 0; }
     .v2-roster-instance-header > a { margin-left:auto; }
-    .v2-roster-identity { padding:16px 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; background:#252c25; }
+    .v2-roster-identity { padding:16px 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; background:var(--book-panel-raised, #252c25); }
     .v2-roster-identity dt { font-size:10px; color:var(--v2-muted); font-weight:700; margin-bottom:5px; }
     .v2-roster-identity dd { margin:0; font-size:13px; line-height:1.6; }
     .v2-roster-body { padding:22px 24px; display:grid; gap:22px; }
-    .v2-roster-model { border-left:3px solid #c8d6ac; padding-left:13px; margin:13px 0; }
+    .v2-roster-model { border-left:3px solid var(--book-accent, #c8d6ac); padding-left:13px; margin:13px 0; }
     .v2-roster-list { padding:0; margin:10px 0; list-style:none; display:grid; gap:9px; }
     .v2-roster-list li { padding:10px 12px; border:1px solid var(--v2-line); border-radius:7px; min-width:0; overflow-wrap:anywhere; font-size:12px; line-height:1.7; }
     .v2-roster-list .v2-reference { margin:3px 5px 3px 0; }
-    .v2-roster-profile { background:#252c25; border:1px solid var(--v2-line); padding:15px; border-radius:9px; margin:10px 0; }
+    .v2-roster-profile { background:var(--book-panel-raised, #252c25); border:1px solid var(--v2-line); padding:15px; border-radius:9px; margin:10px 0; }
     .v2-roster-profile dl { display:grid; grid-template-columns:repeat(auto-fit,minmax(80px,1fr)); gap:14px; margin:0; }
     .v2-roster-profile dt { color:var(--v2-muted); font-size:10px; }
     .v2-roster-profile dd { margin:4px 0 0; font-size:16px; font-weight:650; overflow-wrap:anywhere; }

@@ -8,24 +8,24 @@
   --ds-ui: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   --ds-data: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --header: 70px;
-  --bg: #0d0f0d;
-  --underhive: #121512;
-  --panel: #191f1a;
-  --panel-2: #252c25;
-  --ink: #e2dcc9;
-  --muted: #969589;
-  --green: #bfd58c;
-  --green-deep: #7d9257;
-  --bronze: #8d7448;
-  --bronze-bright: #c7ae75;
-  --pink: #d5488e;
-  --pink-deep: #74143f;
-  --faction-gradient: linear-gradient(90deg, #c8df7f 0 72%, #c8df7f 74%, #c3167c 82%, #c3167c 100%);
-  --line: rgba(216, 209, 191, .14);
-  --soft-line: rgba(216, 209, 191, .08);
+  --bg: var(--book-bg, #0d0f0d);
+  --underhive: var(--book-canvas, #121512);
+  --panel: var(--book-panel, #191f1a);
+  --panel-2: var(--book-panel-raised, #252c25);
+  --ink: var(--book-ink, #e2dcc9);
+  --muted: var(--book-muted, #969589);
+  --green: var(--book-accent, #bfd58c);
+  --green-deep: var(--book-accent-deep, #7d9257);
+  --bronze: var(--book-metal, #8d7448);
+  --bronze-bright: var(--book-metal-bright, #c7ae75);
+  --pink: var(--book-signal, #d5488e);
+  --pink-deep: var(--book-signal-deep, #74143f);
+  --faction-gradient: linear-gradient(90deg, var(--book-accent, #c8df7f) 0 72%, var(--book-accent, #c8df7f) 74%, var(--book-signal, #c3167c) 82%, var(--book-signal, #c3167c) 100%);
+  --line: rgba(var(--book-ink-rgb, 216, 209, 191), .14);
+  --soft-line: rgba(var(--book-ink-rgb, 216, 209, 191), .08);
   /* Composite V1's translucent surface over its original dark substrate,
      independently of the accepted V2 application background. */
-  --glass: color-mix(in srgb, rgb(26, 30, 27) 94%, var(--bg));
+  --glass: color-mix(in srgb, rgb(var(--book-panel-rgb, 26, 30, 27)) 94%, var(--bg));
   --shadow: 0 26px 58px rgba(0, 0, 0, .46), 0 0 0 1px rgba(0, 0, 0, .48);
   --radius: 2px;
   --body-size: 17px;
@@ -126,7 +126,7 @@
 .unit-card .unit-part { scroll-margin-top: calc(var(--header) + 20px); }
 .unit-card .ability-list { display: grid; gap: 8px; }
 .unit-card .ability-choice-list { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 12px; }
-.unit-card .ability-choice { padding: 12px 13px; border: 1px solid var(--soft-line); background: rgba(8,13,10,.26); }
+.unit-card .ability-choice { padding: 12px 13px; border: 1px solid var(--soft-line); background: rgba(var(--book-void-rgb, 8, 13, 10), .26); }
 .unit-card .ability-choice h6 { margin: 0 0 7px; color: var(--green); font: 750 16px Georgia, "Times New Roman", serif; }
 .unit-card .ability-choice p { margin: 0; }
 .unit-card .keyword-list { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -321,16 +321,16 @@
   border-top: 4px solid var(--green-deep);
   border-radius: 0;
   background:
-    radial-gradient(circle at 100% 0, rgba(213,72,142,.1), transparent 280px),
+    radial-gradient(circle at 100% 0, rgba(var(--book-signal-rgb, 213, 72, 142), .1), transparent 280px),
     var(--panel);
   color: var(--ink);
-  box-shadow: 0 40px 120px rgba(0,0,0,.88), 0 0 0 1px rgba(199,174,117,.36);
+  box-shadow: 0 40px 120px rgba(0,0,0,.88), 0 0 0 1px rgba(var(--book-metal-bright-rgb, 199, 174, 117), .36);
 }
-.v2-related-dialog::backdrop { background: rgba(4,7,4,.84); backdrop-filter: blur(3px); }
+.v2-related-dialog::backdrop { background: rgba(var(--book-void-rgb, 4, 7, 4), .84); backdrop-filter: blur(3px); }
 .v2-related-dialog[open] { display: flex; flex-direction: column; }
 .v2-related-dialog .v2-dialog-bar {
   border-bottom: 1px solid var(--line);
-  background: rgba(10,14,11,.86);
+  background: rgba(var(--book-void-rgb, 10, 14, 11), .86);
   color: var(--ink);
 }
 .v2-related-dialog .v2-dialog-bar .v2-icon-button {
@@ -384,15 +384,15 @@
   border-radius: 0;
   color: var(--ink);
   background:
-    radial-gradient(circle at 100% 0, rgba(213,72,142,.12), transparent 320px),
-    radial-gradient(circle at 0 100%, rgba(125,146,87,.12), transparent 360px),
+    radial-gradient(circle at 100% 0, rgba(var(--book-signal-rgb, 213, 72, 142), .12), transparent 320px),
+    radial-gradient(circle at 0 100%, rgba(var(--book-accent-deep-rgb, 125, 146, 87), .12), transparent 360px),
     var(--panel);
-  box-shadow: 0 40px 120px rgba(0,0,0,.88), 0 0 0 1px rgba(199,174,117,.36);
+  box-shadow: 0 40px 120px rgba(0,0,0,.88), 0 0 0 1px rgba(var(--book-metal-bright-rgb, 199, 174, 117), .36);
 }
-.v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile))::backdrop { background: rgba(4,7,4,.84); backdrop-filter: blur(3px); }
+.v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile))::backdrop { background: rgba(var(--book-void-rgb, 4, 7, 4), .84); backdrop-filter: blur(3px); }
 .v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile)) .v2-dialog-bar {
   border-bottom: 1px solid var(--line);
-  background: rgba(10,14,11,.86);
+  background: rgba(var(--book-void-rgb, 10, 14, 11), .86);
   color: var(--ink);
 }
 .v2-detail-dialog:has(:is(.unit-card, .popup-weapon-profile)) .v2-dialog-bar .v2-icon-button {
