@@ -1,7 +1,7 @@
 import {lexicalDraft,importNewRecruit} from './import.mjs';
 import {validateRoster,changeAttachment,attachmentCheck,predicateContext,withRosterDetachments} from './context.mjs';
 import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
-import {validateCompatibilityFeasibility,evaluateRequiredRecipients,includeRecipientFeasibility} from './compatibility-feasibility.mjs';
+import {validateCompatibilityFeasibility,evaluateRequiredRecipients,includeRecipientFeasibility,evaluateCompatibilityRole} from './compatibility-feasibility.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value=>structuredClone(value);
 const any = values=>values.includes('INVALID')?'INVALID':values.includes('TRUE')?'TRUE':values.includes('UNKNOWN')?'UNKNOWN':'FALSE';
@@ -63,9 +63,12 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
         if (!state.detachmentIds.includes(contract.detachmentId)) continue;
         if (detachmentId && contract.detachmentId!==detachmentId) continue;
         const roleIds=contract.compatibilityRoleIds || [contract.roles[0]?.id];
+        const roleContexts=(candidate,role)=>(role.subject==='MODEL'?
+          candidate.profiles.map(m=>service.context(candidate.instanceId,'MODEL',m.scopeId)):
+          [service.context(candidate.instanceId,role.subject)]).filter(Boolean).map(context=>enhancementOwnerContext(contract,context));
         const states=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>{
-          const contexts=role.subject==='MODEL'?unit.profiles.map(m=>service.context(instanceId,'MODEL',m.scopeId)):[service.context(instanceId,role.subject)];
-          return any(contexts.map(context=>context?evaluateRole(role,contract.conditions||[],enhancementOwnerContext(contract,context)):'FALSE'));
+          return any(roleContexts(unit,role).map(context=>evaluateCompatibilityRole(contract,role,context,
+            {evaluateRole,contextsForRole:primary=>projection.units.flatMap(candidate=>roleContexts(candidate,primary))})));
         });
         const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units,
           {book,evaluateRole,sourceInstanceId:instanceId,contextFor:(candidate,subject)=>service.context(candidate.instanceId,subject)});

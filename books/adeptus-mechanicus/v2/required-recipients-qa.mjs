@@ -64,9 +64,16 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
   // Scope closure: no other declarations, factual fields or executable effects change.
   const previous=JSON.parse(execFileSync('git',['show','cd97ef803308ea8a0c44b945d74df57e747e47ad:books/adeptus-mechanicus/v2/generated/rule-contracts.json'],{encoding:'utf8',maxBuffer:40e6}));
   const allowed=new Set(cases.map(test=>test.ruleId));
+  // Subsequent dependent-role repair has its own exact four-owner diff guard.
+  const dependentOwners=new Set([1,3,4,6].map(i=>'detachment-rad-zone-corps:stratagem:'+i));
   for(const entity of built.book.entities.filter(e=>e.ruleContract)) {
     const old=previous.contracts[entity.id],current=entity.ruleContract;
-    if(!allowed.has(entity.id))assert.deepEqual(current,old,'Out-of-scope contract changed: '+entity.id);
+    if(!allowed.has(entity.id)) {
+      const normalized=structuredClone(current);
+      if(dependentOwners.has(entity.id))for(const role of [normalized.roles,...normalized.clauses.map(c=>c.roles)].flat())
+        if(role.id==='optionalSupport'){delete role.optional;delete role.prerequisites;}
+      assert.deepEqual(normalized,old,'Out-of-scope contract changed: '+entity.id);
+    }
     else {
       const strip=value=>{
         value=structuredClone(value);

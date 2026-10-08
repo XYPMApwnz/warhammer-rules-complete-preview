@@ -92,6 +92,24 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
       };
       for (const role of contract.roles) checkRole(role);
       const checkRecipientRequirement=(role,participants)=>{
+        if(role.prerequisites!==undefined) {
+          if(!Array.isArray(role.prerequisites)||!role.prerequisites.length||
+            new Set(role.prerequisites.map(value=>value?.roleId)).size!==role.prerequisites.length)fail('invalid dependent role prerequisites');
+          for(const prerequisite of role.prerequisites) {
+            const primary=participants.get(prerequisite?.roleId);
+            if(!primary||primary.id===role.id||prerequisite.condition?.roleId!==primary.id)fail('unresolved dependent role prerequisite');
+            validateRolePredicate(prerequisite.condition,primary,model,entity);
+          }
+          const visit=(value,ancestors)=>{
+            if(ancestors.includes(value.id))fail('cyclic dependent role prerequisite');
+            for(const prerequisite of value.prerequisites||[]) {
+              const primary=participants.get(prerequisite.roleId);
+              if(!primary)fail('unresolved dependent role prerequisite');
+              visit(primary,[...ancestors,value.id]);
+            }
+          };
+          visit(role,[]);
+        }
         for(const key of ['required','optional'])if(role[key]!==undefined&&typeof role[key]!=='boolean')fail('invalid recipient requirement');
         if(role.required===true&&role.optional===true)fail('conflicting recipient requirement');
         if(role.required===true&&['TARGET','ANCHOR'].includes(role.purpose)) {
@@ -139,8 +157,8 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
         for(const role of local.values()) {
           checkRecipientRequirement(role,new Map([...roles,...local]));
           const canonical=roles.get(role.id);
-          if(canonical&&([canonical,role].some(value=>value.required===true&&['TARGET','ANCHOR'].includes(value.purpose)||value.distinctFromRoleIds)))
-            for(const key of ['required','optional','distinctFromRoleIds','evidence'])
+          if(canonical&&([canonical,role].some(value=>value.required===true&&['TARGET','ANCHOR'].includes(value.purpose)||value.distinctFromRoleIds||value.prerequisites)))
+            for(const key of ['required','optional','distinctFromRoleIds','evidence','prerequisites'])
               if(JSON.stringify(role[key])!==JSON.stringify(canonical[key]))fail('clause recipient requirement binding drift');
         }
         for (const path of clause.sourceFields) if (get(entity.data,path)===undefined) fail('unresolved clause source field');

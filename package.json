@@ -84,7 +84,7 @@
     "qa:am:v2:roster-import:browser": "node books/adeptus-mechanicus/v2/roster-import-browser-qa.mjs",
     "qa:shared:v2:kernel": "node books/shared/rule-contract-v2/schema-qa.mjs",
     "qa:shared:v2:binders": "node books/shared/rule-contract-v2/bindings-qa.mjs",
-    "qa:shared:v2:compatibility": "node books/shared/rule-contract-v2/compatibility-qa.mjs && node books/shared/roster-v2/required-recipients-qa.mjs",
+    "qa:shared:v2:compatibility": "node books/shared/rule-contract-v2/compatibility-qa.mjs && node books/shared/roster-v2/required-recipients-qa.mjs && node books/shared/roster-v2/dependent-roles-qa.mjs",
     "qa:dg:v2:glossary": "node books/death-guard/v2/glossary-build.mjs --check && node books/death-guard/v2/app-build.mjs --check && node books/death-guard/v2/glossary-qa.mjs",
     "qa:dg:v2:glossary:browser": "node books/death-guard/v2/glossary-browser-qa.mjs",
     "qa:dg:v2:related-popups:browser": "node books/death-guard/v2/related-popup-v1-browser-qa.mjs",
@@ -102,6 +102,8 @@
     "qa:help": "node tools/qa-help.mjs",
     "qa:release": "npm run qa:sm && npm run qa:da && npm run qa:ba && npm run qa:dg && npm run qa:am && npm run qa:tyranids && npm run qa:tau && npm run qa:ec && npm run qa:csm && npm run qa:effects && npm run qa:points && npm run qa:roster && npm run qa:glossary && npm run qa:architecture && npm run qa:integration && npm run publication:check && npm run army-books:sources:check",
     "qa:am:v2:required-recipients": "node books/adeptus-mechanicus/v2/required-recipients-qa.mjs",
-    "qa:am:v2:required-recipients:browser": "node books/adeptus-mechanicus/v2/required-recipients-browser-qa.mjs"
+    "qa:am:v2:required-recipients:browser": "node books/adeptus-mechanicus/v2/required-recipients-browser-qa.mjs",
+    "qa:am:v2:dependent-roles": "node books/adeptus-mechanicus/v2/dependent-roles-qa.mjs",
+    "qa:am:v2:dependent-roles:browser": "node books/adeptus-mechanicus/v2/required-recipients-browser-qa.mjs --dependent-roles"
   }
 }

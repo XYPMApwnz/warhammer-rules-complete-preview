@@ -165,3 +165,22 @@ export function evaluateRequiredRecipients(contract,sourceUnitId,candidates,{boo
 }
 
 export const includeRecipientFeasibility=(state,recipient)=>state==='INVALID'||recipient==='INVALID'?'INVALID':state==='FALSE'||recipient==='FALSE'?'FALSE':state==='UNKNOWN'||recipient==='UNKNOWN'?'UNKNOWN':'TRUE';
+
+/** A dependent role is available only when another declared participant can
+ * satisfy its own selector/conditions and the prerequisite bound to it.
+ * This gates that role alone; it never makes an optional recipient mandatory.
+ */
+export function evaluateCompatibilityRole(contract,role,context,{evaluateRole,contextsForRole},ancestors=[]) {
+  if(ancestors.includes(role.id))return 'INVALID';
+  let result=evaluateRole(role,contract.conditions||[],context);
+  for(const prerequisite of role.prerequisites||[]) {
+    const primary=contract.roles.find(value=>value.id===prerequisite.roleId);
+    if(!primary||primary.id===role.id||!prerequisite.condition)return 'INVALID';
+    const states=contextsForRole(primary).map(value=>includeRecipientFeasibility(
+      evaluateCompatibilityRole(contract,primary,value,{evaluateRole,contextsForRole},[...ancestors,role.id]),
+      evaluateRole({...primary,selector:prerequisite.condition,conditions:[]},[],value)));
+    const available=states.includes('INVALID')?'INVALID':states.includes('TRUE')?'TRUE':states.includes('UNKNOWN')?'UNKNOWN':'FALSE';
+    result=includeRecipientFeasibility(result,available);
+  }
+  return result;
+}

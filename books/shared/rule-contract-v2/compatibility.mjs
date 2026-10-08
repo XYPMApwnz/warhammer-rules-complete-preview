@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {subjects} from './schema.mjs';
 import {staticCapabilities,validateCompatibilityFeasibility,evaluateRequiredRecipients,
-  includeRecipientFeasibility} from '../roster-v2/compatibility-feasibility.mjs';
+  includeRecipientFeasibility,evaluateCompatibilityRole} from '../roster-v2/compatibility-feasibility.mjs';
 import {enhancementOwnerContext} from '../roster-v2/compatibility-context.mjs';
 
 const any=states=>states.includes('INVALID')?'INVALID':states.includes('TRUE')?'TRUE':states.includes('UNKNOWN')?'UNKNOWN':'FALSE';
@@ -151,18 +151,22 @@ export function createCompatibilityCompiler(options) {
       options={...options,detachmentId:options.detachmentIds.includes(contract.detachmentId)?contract.detachmentId:null};
     }
     const selected=options.detachmentIds===undefined||!contract.detachmentId||options.detachmentIds.includes(contract.detachmentId);
+    const candidates=options.mode==='ROSTER'?options.instances:units.map(unit=>({canonicalUnitId:unit.id}));
+    assert.ok(Array.isArray(candidates),'Explicit recipient instances required');
+    const roleContext=value=>enhancementOwnerContext(contract,
+      options.detachmentIds!==undefined?{...value,roster:{...value.roster,detachmentId:options.detachmentId}}:value);
+    const prerequisiteContexts=role=>candidates.flatMap(candidate=>contextsFor(candidate.canonicalUnitId,role.subject,
+      {...options,instanceId:candidate.instanceId,profileId:undefined})).map(roleContext);
     const roleIds=contract.compatibilityRoleIds||[contract.roles[0]?.id];
     const roles=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>{
       const contexts=contextsFor(unitId,role.subject,options);
       const evaluations=contexts.map(value=>({...(role.subject==='MODEL'?{profileId:value.modelId}:{}),
-        state:selected?evaluateRole(role,contract.conditions||[],enhancementOwnerContext(contract,
-          options.detachmentIds!==undefined?{...value,roster:{...value.roster,detachmentId:options.detachmentId}}:value)):'FALSE'}));
+        state:selected?evaluateCompatibilityRole(contract,role,roleContext(value),
+          {evaluateRole,contextsForRole:prerequisiteContexts}):'FALSE'}));
       return {roleId:role.id,subject:role.subject,state:any(evaluations.map(row=>row.state)),
         ...(role.subject==='MODEL'?{profileResults:evaluations}:{})};
     });
     assert.ok(roles.length,'Rule has no compatibility role: '+ruleId);
-    const candidates=options.mode==='ROSTER'?options.instances:units.map(unit=>({canonicalUnitId:unit.id}));
-    assert.ok(Array.isArray(candidates),'Explicit recipient instances required');
     if (options.mode==='ROSTER') {
       assert.ok(candidates.every(candidate=>candidate.instanceId&&records.get(candidate.canonicalUnitId)?.kind==='DATASHEET')&&
         new Set(candidates.map(candidate=>candidate.instanceId)).size===candidates.length,'Invalid physical recipient identities');

@@ -4,7 +4,8 @@ import http from 'node:http';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
-import {cases,rosterText,attachedPairText} from './required-recipients-qa.mjs';
+const dependent=process.argv.includes('--dependent-roles');
+const {cases,rosterText,attachedPairText}=await import(dependent?'./dependent-roles-qa.mjs':'./required-recipients-qa.mjs');
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url)),legacy=[],errors=[],requests=[];
 const server=http.createServer((request,response)=>{
@@ -60,8 +61,9 @@ try {
     };
     for(const test of cases)for(const present of [false,true]) {
       await importRoster(rosterText(test,present));
-      await related('parsed-unit-1',test.ruleId,present?'CONDITIONAL':'NO_MATCH',test.id+(present?'-present':'-absent'));
+      await related('parsed-unit-1',test.ruleId,present?'CONDITIONAL':test.absentState||'NO_MATCH',test.id+(present?'-present':'-absent'));
     }
+    if(!dependent) {
     await importRoster(attachedPairText);
     await related('parsed-unit-2',cases[3].ruleId,'CONDITIONAL','AM05-separate');
     const attach=async()=>{
@@ -80,9 +82,10 @@ try {
     await page.locator('[data-roster-action="open-personal-guide"]').click();
     await related('parsed-unit-2',cases[3].ruleId,'CONDITIONAL','AM05-detached');
     await attach();await related('parsed-unit-2',cases[3].ruleId,'NO_MATCH','AM05-reattached');
+    }
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
     results.push({device,status:'PASS',cases:cases.map(test=>test.id),recipientPresenceCases:8,
-      attachmentCardinalityCases:5,conditionalPreserved:true});
+      attachmentCardinalityCases:dependent?0:5,conditionalPreserved:true});
     await context.close();
   }
   assert.deepEqual(errors,[]);assert.deepEqual(legacy,[]);assert.deepEqual(requests,[]);
