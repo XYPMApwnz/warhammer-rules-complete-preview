@@ -75,6 +75,10 @@ export function buildApp(inputs=readAppInputs()) {
     const section=cards.get(entity.data.sourceSectionId);section.referenceCardIds=[...(section.referenceCardIds||[]),entity.id];
   }
   payload.datasheetPresentation=buildDatasheetPresentation(model,inputs.artwork);
+  // Book-owned display choices; canonical/effective facts and calculations
+  // remain unchanged, and other books keep their accepted presentation.
+  Object.assign(payload.datasheetPresentation,{rosterEffectSummary:false,rosterKeywordLabel:'Keywords',
+    basePlacement:'composition',compactPointsLabels:true});
   const reference=buildPresentationReferences({model,cards:payload.cards,coreCatalog:inputs.coreCatalog});
   payload.cards.push(...reference.coreCards);payload.datasheetPresentation.referenceBindings=reference.referenceBindings;
   payload.glossary=reference.glossaryIndex;

@@ -262,6 +262,9 @@
 .unit-card.ds-layout .ds-cost-cell strong { margin-top: 5px; font-size: 23px; }
 .unit-card .ds-cost-schedule { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-column: 1 / -1; }
 .unit-card .ds-cost-schedule > small { grid-column: 1 / -1; padding: 6px 12px; font: 700 9px/1.4 var(--ds-data); color: var(--muted); }
+.unit-card .ds-model-metadata { margin: 12px 0 0; color: var(--muted); font: 500 12px/1.5 var(--ds-ui); }
+.unit-card .ds-model-metadata > summary { cursor: pointer; }
+.unit-card .ds-model-metadata .profile-base { margin: 6px 0 0; }
 
 /* Effective roster effects are a compact factual footer. */
 .unit-card .ds-effect-summary {

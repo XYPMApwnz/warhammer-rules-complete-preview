@@ -82,6 +82,8 @@ try{
     const seenProfiles=new Set(),seenWeapons=new Set(),seenRules=new Set();
     for(const unit of byKind('DATASHEET')){
       await page.evaluate(id=>window.ArmyBookAppV2.open(id),unit.id);
+      // Base sizes remain available through the normal optional model details.
+      await page.locator('main .ds-model-metadata > summary').click();
       const observed=await page.locator('main').evaluate(main=>({
         root:main.querySelector('.v2-current-card')?.dataset.cardId,
         profiles:[...main.querySelectorAll('.model-profile[data-card-id]')].map(node=>({id:node.dataset.cardId,text:node.textContent})),
@@ -156,6 +158,22 @@ try{
         assert.equal(fact.value,false,'Unclassified positive wargear ability qualifier');
         assert.ok(normalCoverage.has(`${owner.id}::/blocks/${fact.path[1]}/text`),'Presentation-only boolean lacks visible source text');
         normalPresentations.set(fact.id,{classification:'NON_PLAYER_SOURCE_ADAPTER_BLOCK_FLAG',value:fact.value});
+      }else if(owner.kind==='ATTACHMENT_DECLARATION'){
+        const section=entities.get(owner.data.sourceSectionId);
+        assert.ok(section,'Attachment source section missing');
+        if(pointer==='/roleHeading'){
+          assert.equal(normalCoverage.get(`${section.id}::/title`)?.value,fact.value,'Attachment role heading lost');
+        }else{
+          assert.match(pointer,/^\/references\/\d+\/targetId$/);
+          const target=entities.get(fact.value);assert.equal(target?.kind,'DATASHEET');
+          const paragraphs=section.data.blocks.map((block,index)=>{
+            assert.equal(normalCoverage.get(`${section.id}::/blocks/${index}/text`)?.value,block.text,'Attachment source paragraph lost');
+            return block.text;
+          }).join('\n');
+          const normalize=text=>text.toUpperCase().replace(/[^A-Z0-9]/g,'');
+          assert.ok(normalize(paragraphs).includes(normalize(target.data.title)),'Attachment recipient missing from source paragraph');
+        }
+        normalPresentations.set(fact.id,{classification:'ATTACHMENT_SOURCE_SECTION_PRESENTATION',value:fact.value});
       }
       const equivalent=normalPresentations.get(fact.id);
       if(equivalent){assert.deepEqual(equivalent.value,fact.value);presentationClassifications[equivalent.classification]=(presentationClassifications[equivalent.classification]||0)+1;}else unaccounted.push(fact);
@@ -173,6 +191,7 @@ try{
     for(const fact of sourceFacts){const observed=seenEvidence.get(fact.id);assert.ok(observed,`${device} missing source fact ${fact.id}`);assert.deepEqual(observed.value,fact.value,`${device} wrong source value ${fact.id}`);assert.equal(observed.entityId,fact.entityId);assert.equal(observed.visible,true);}
     // A genuinely mixed MODEL datasheet retains both source names/statlines.
     await page.evaluate(()=>window.ArmyBookAppV2.open('unit-servitor-battleclade'));
+    await page.locator('main .ds-model-metadata > summary').click();
     assert.match(await page.locator('main .model-profile[data-card-id$="servitor-underseer"]').innerText(),/Servitor Underseer/);
     assert.match(await page.locator('main .model-profile[data-card-id$="combat-and-gun-servitors"]').innerText(),/Combat Servitors and Gun Servitors/);
     assert.equal(await page.locator('main .profile-base').count(),2);

@@ -264,6 +264,7 @@ node books/adeptus-mechanicus/v2/app-build.mjs --check
 node books/adeptus-mechanicus/v2/app-qa.mjs
 node books/adeptus-mechanicus/v2/presentation-reference-qa.mjs
 node books/adeptus-mechanicus/v2/app-browser-qa.mjs
+node books/adeptus-mechanicus/v2/datasheet-presentation-browser-qa.mjs
 node books/shared/army-book-app-v2/profile-projection-qa.mjs
 ```
 
@@ -272,6 +273,12 @@ output through `ARMY_APP_V2_SCREENSHOTS`. It exercises canonical popups, all
 Detachment filters, mixed profiles, navigation/reload/history, legacy disconnect
 and V2 value poison controls. The existing DG app projection remains unchanged;
 its 3,654-fact and 22-clause visible-effect guards remain regression gates.
+
+The datasheet presentation guard checks all 34 sheets on desktop and phone,
+optional profile-scoped base metadata, source paragraphs, tiered points and
+actual personal-guide effective values. It compares DG normal/mega-case
+presentation against the accepted pre-cleanup HEAD and saves six review images
+under `ARMY_APP_V2_SCREENSHOTS` when specified.
 
 ## New Recruit import boundary
 

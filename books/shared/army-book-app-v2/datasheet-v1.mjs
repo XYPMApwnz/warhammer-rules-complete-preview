@@ -150,7 +150,11 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     section.append(list);
     for(const id of card.referenceCardIds||[]){
-      const reference=cards.get(id),line=identity(el('p','book-rule-references'),reference,instanceId);
+      const reference=cards.get(id);
+      // The source attachment paragraph already contains the eligible-unit
+      // list/condition. Keep it once, including exceptions and qualifications.
+      if(reference.kind==='ATTACHMENT_DECLARATION'&&list.childElementCount)continue;
+      const line=identity(el('p','book-rule-references'),reference,instanceId);
       const role=single(reference,'roleHeading');if(role)line.append(factValue('b',role),document.createTextNode(': '));
       for(const field of reference.fields.filter(field=>/^\/references\/\d+\/targetId$/.test(field.source.path))){const link=anchor('',field.targetIds[0],true);link.append(factValue('span',field));line.append(link,document.createTextNode(' '));}section.append(line);
     }
@@ -227,7 +231,13 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           if(!schedules.has(schedulePath)){
             const schedule=el('div','ds-cost-schedule'),label=price.fields.find(f=>f.source.path===schedulePath+'/sourceLabel');
             if(!label)throw new TypeError('Missing points tier: '+schedulePath);
-            schedule.append(factValue('small',label));costGrid.append(schedule);schedules.set(schedulePath,schedule);
+            const caption=factValue('small',label);
+            if(config.compactPointsLabels){
+              const min=price.fields.find(f=>f.source.path===schedulePath+'/minCopies')?.value;
+              const max=price.fields.find(f=>f.source.path===schedulePath+'/maxCopies')?.value;
+              if(min!==undefined)caption.textContent=max===undefined?`Units ${min}+`:min===max?`Unit ${min}`:`Units ${min}–${max}`;
+            }
+            schedule.append(caption);costGrid.append(schedule);schedules.set(schedulePath,schedule);
           }container=schedules.get(schedulePath);
         }
         const cell=identity(el('div','ds-cost-cell'),price,instanceId);cell.dataset.priceEntry=prefix;
@@ -238,10 +248,13 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     cost.append(costGrid);head.append(cost);root.append(head);
     const nav=el('div','local-nav');nav.setAttribute('role','navigation');nav.setAttribute('aria-label','Datasheet sections');root.append(nav);
     const part=(role,label)=>{const section=el('section','unit-part');section.dataset.datasheetSection=role;section.id='ds-'+domKey(JSON.stringify([card.id,instanceId,role]));section.append(el('h4','',label));return section;};
-    const profile=part('profile','Profile & Weapons'),abilities=part('abilities','Abilities');
+    const profile=part('profile','Profile & Weapons'),abilities=part('abilities','Abilities'),baseMetadata=[];
     for(const child of children.filter(c=>c.kind==='PROFILE')){
       const view=renderProfile(child,{instanceId,inDialog}),bases=[...view.querySelectorAll('.profile-base')];profile.append(view);
-      for(const base of bases){const note=el('div','ds-base-note');note.append(base);profile.append(note);}
+      for(const base of bases){
+        if(config.basePlacement==='composition'){base.remove();baseMetadata.push(base);}
+        else{const note=el('div','ds-base-note');note.append(base);profile.append(note);}
+      }
     }
     for(const mode of ['ranged','melee']){
       const weapons=children.filter(c=>c.kind==='WEAPON_PROFILE'&&single(c,'mode')?.value===mode);if(!weapons.length)continue;
@@ -309,12 +322,19 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     for(const child of children.filter(c=>c.kind==='MFM_PAID_UPGRADE')){
       const note=identity(el('p','ds-paid-upgrade'),child,instanceId);note.append(el('b','',child.title+': '),factValue('span',single(child,'value')),document.createTextNode(' pts '),factValue('span',single(child,'sourceLabel')));profile.append(note);
     }
+    if(baseMetadata.length){
+      let composition=root.querySelector('[data-datasheet-section="composition"]');
+      if(!composition){composition=part('composition','Unit Composition');root.append(composition);}
+      const metadata=el('details','ds-model-metadata');metadata.append(el('summary','','Model details'),...baseMetadata);composition.append(metadata);
+    }
     const keywords=part('keywords','Keywords');
     if(card.keywordGroups){for(const group of card.keywordGroups){
       const line=el('p'),label=card.fields.find(field=>field.id===group.labelFieldId);
-      line.append(factValue('b',label),document.createTextNode(': '));
+      const caption=factValue('b',label);
+      if(instanceId&&config.rosterKeywordLabel&&group.labelFieldId===`${card.id}::/rosterKeywordGroups/unit/label`)caption.textContent=config.rosterKeywordLabel;
+      line.append(caption,document.createTextNode(': '));
       group.fieldIds.forEach((id,index)=>{if(index)line.append(document.createTextNode(', '));line.append(factValue('span',card.fields.find(field=>field.id===id)));});keywords.append(line);
-    }}else for(const [path,label] of [['keywords',instanceId?'Effective unit keywords':'Keywords'],['factionKeywords','Faction Keywords']]){
+    }}else for(const [path,label] of [['keywords',instanceId?(config.rosterKeywordLabel||'Effective unit keywords'):'Keywords'],['factionKeywords','Faction Keywords']]){
       const line=el('p');line.append(el('b','',label+': '));const fields=card.fields.filter(f=>f.source?.path.startsWith('/'+path+'/'));
       fields.forEach((field,index)=>{if(index)line.append(document.createTextNode(', '));line.append(factValue('span',field));});keywords.append(line);
     }root.append(keywords);
@@ -330,17 +350,19 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       for(const member of members)context.append(el('p','',`${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${name(member.leaderInstanceId)}`));
       // Detachment selection lives in roster navigation, not repeated on each unit.
       head.after(context);
-      const effects=roster.effective(instanceId),summary=el('article','ability ds-effect-summary');summary.append(el('h5','','Active roster effects'));
-      const sources=new Map();for(const effect of effects.applied){const key=JSON.stringify([effect.ruleId,effect.sourceInstanceId,effect.sourceFields]);if(!sources.has(key))sources.set(key,effect);}
-      for(const effect of sources.values()){
-        const line=el('p');line.dataset.effectSourceRuleId=effect.ruleId;
-        if(effect.sourceInstanceId)line.append(el('span','',name(effect.sourceInstanceId)+' → '));
-        const source=cards.get(effect.ruleId),sourcePath=effect.sourceFields?.[0];
-        const textField=sourcePath&&source.fields.find(f=>f.source.path==='/'+sourcePath.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'));
-        const label=textField?.value.includes(':')?textField.value.slice(0,textField.value.indexOf(':')):
-          source.kind==='DATASHEET_SECTION'?cards.get(source.parentId).title+' ability':source.title;
-        line.append(scopedAnchor(label,source,instanceId,textField?.source.path));summary.append(line);
-      }if(sources.size)abilityList.append(summary);
+      if(config.rosterEffectSummary!==false){
+        const effects=roster.effective(instanceId),summary=el('article','ability ds-effect-summary');summary.append(el('h5','','Active roster effects'));
+        const sources=new Map();for(const effect of effects.applied){const key=JSON.stringify([effect.ruleId,effect.sourceInstanceId,effect.sourceFields]);if(!sources.has(key))sources.set(key,effect);}
+        for(const effect of sources.values()){
+          const line=el('p');line.dataset.effectSourceRuleId=effect.ruleId;
+          if(effect.sourceInstanceId)line.append(el('span','',name(effect.sourceInstanceId)+' → '));
+          const source=cards.get(effect.ruleId),sourcePath=effect.sourceFields?.[0];
+          const textField=sourcePath&&source.fields.find(f=>f.source.path==='/'+sourcePath.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'));
+          const label=textField?.value.includes(':')?textField.value.slice(0,textField.value.indexOf(':')):
+            source.kind==='DATASHEET_SECTION'?cards.get(source.parentId).title+' ability':source.title;
+          line.append(scopedAnchor(label,source,instanceId,textField?.source.path));summary.append(line);
+        }if(sources.size)abilityList.append(summary);
+      }
     }
     if(payload.relatedRules)root.append(related(card.id,instanceId));
     return root;
