@@ -15,7 +15,8 @@ for(const [book,read,build,count]of [['death-guard',readDG,buildDG,36],['adeptus
   assert.deepEqual(inputs.model,before,'Presentation mutated canonical facts/contracts');
   const original=JSON.parse(execFileSync('git',['show',`${baseline}:books/${book}/v2/generated/app-presentation.json`],{cwd:root,maxBuffer:20e6}));
   const unchanged=JSON.parse(JSON.stringify(payload));delete unchanged.datasheetPresentation.normal;
-  assert.deepEqual(unchanged,original,'Non-normal presentation/factual projection changed');
+  delete unchanged.datasheetPresentation.compositionMembers;
+  assert.deepEqual(unchanged,original,'Canonical presentation/factual projection changed');
   assert.deepEqual(build(inputs),payload,'Nondeterministic normal projection');
   const units=payload.cards.filter(card=>card.kind==='DATASHEET');assert.equal(units.length,count);
   const normal=payload.datasheetPresentation.normal;
@@ -49,4 +50,4 @@ for(const [book,read,build,count]of [['death-guard',readDG,buildDG,36],['adeptus
     profileGroups:normal.profileSelections.length,paidOptions:normal.optionCosts.length});
 }
 console.log(JSON.stringify({status:'PASS',results,acceptedSourceFactsChanged:0,sourceDifferenceFactsChanged:0,
-  personalPayloadUnchanged:true}));
+  canonicalPayloadUnchanged:true}));

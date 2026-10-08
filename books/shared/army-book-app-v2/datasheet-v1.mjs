@@ -16,7 +16,15 @@ export function buildDatasheetPresentation(model, images, {bindings,records=new 
     // unit, effect, eligibility relation or other gameplay identity.
     roles[entity.id]=sectionRoles.get(label) || (label.startsWith('DAMAGED:')?'damaged':'additional');
   }
-  return {schema:'army-book-app-v2/datasheet-layout',sectionRoles:roles,
+  // Preserve the canonical composition list separately from its default
+  // equipment paragraph. These are display spans, not inferred model counts.
+  const compositionMembers=model.entities.filter(entity=>roles[entity.id]==='composition').flatMap(entity=>
+    (entity.data.blocks||[]).flatMap((block,index)=>{
+      if(typeof block.text!=='string')return [];
+      const spans=[...block.text.matchAll(/^[-•] .+$/gm)].map(match=>({start:match.index,end:match.index+match[0].length}));
+      return spans.length?[{unitId:entity.parentId,sectionId:entity.id,fieldPath:`/blocks/${index}/text`,spans}]:[];
+    }));
+  return {schema:'army-book-app-v2/datasheet-layout',sectionRoles:roles,compositionMembers,
     normal:buildNormalDatasheetBindings(model,records,bindings),
     artwork:Object.fromEntries(Object.entries(images.units || {}).filter(([id])=>units.has(id)).map(([id,art])=>[id,
       {asset:art.asset,width:art.width,height:art.height,presentation:structuredClone(art.presentation)}]))};
@@ -213,9 +221,16 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const root=identity(el('article','unit-card surface v2-card v2-kind-DATASHEET'),card,instanceId),used=new Set();
     const children=(card.children || []).flatMap(id=>variants?.get(id) || [cards.get(id)]);
     const normal=selectsNormalDatasheetBindings(config,instanceId);
-    const selections=normal?.profileSelections.filter(binding=>binding.unitId===card.id)||[];
+    const canonicalSelections=config.normal?.profileSelections.filter(binding=>binding.unitId===card.id)||[];
+    const selections=instanceId?canonicalSelections.flatMap(binding=>{
+      const selected=children.filter(child=>child.kind==='WEAPON_PROFILE'&&binding.profileIds.includes(child.id));
+      return [...new Set(selected.map(child=>child.scopeId||null))].map(scopeId=>({...binding,scopeId,
+        profileIds:binding.profileIds.filter(id=>selected.some(child=>child.id===id&&(child.scopeId||null)===scopeId))}));
+    }):canonicalSelections;
     const optionCosts=normal?.optionCosts.filter(binding=>binding.unitId===card.id)||[];
-    const boundAbilities=normal?.boundAbilities.filter(binding=>binding.unitId===card.id)||[];
+    const boundAbilities=(config.normal?.boundAbilities||[]).filter(binding=>binding.unitId===card.id);
+    const inventory=new Set([...children.filter(child=>child.kind==='WEAPON_PROFILE').map(child=>child.id),...(card.rosterEquipmentIds||[])]);
+    const availableBoundAbilities=boundAbilities.filter(binding=>!instanceId||inventory.has(binding.itemId));
     const appendOptionCost=(node,itemId)=>{
       for(const cost of optionCosts.filter(binding=>binding.itemId===itemId)){
         const label=el('small','ds-option-cost');label.dataset.costRecordId=cost.costRecordId;
@@ -224,8 +239,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       }
     };
     const appendBoundAbilities=(node,itemId)=>{
-      for(const binding of boundAbilities.filter(binding=>binding.itemId===itemId)){
-        const rule=cards.get(binding.ruleId),item=identity(el('aside','ds-bound-weapon-ability'),rule,null);
+      for(const binding of availableBoundAbilities.filter(binding=>binding.itemId===itemId)){
+        const rule=cards.get(binding.ruleId),item=identity(el('aside','ds-bound-weapon-ability'),rule,instanceId);
         item.dataset.boundWeaponId=itemId;item.dataset.boundAbilityId=binding.ruleId;
         item.append(factValue('p',rule.fields.find(field=>field.source.path===binding.fieldPath)));node.append(item);
       }
@@ -272,7 +287,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     for(const child of children.filter(c=>c.kind==='PROFILE')){
       const view=renderProfile(child,{instanceId,inDialog}),bases=[...view.querySelectorAll('.profile-base')];profile.append(view);
       for(const base of bases){
-        if(normal?.basePlacement==='composition'||config.basePlacement==='composition'){base.remove();baseMetadata.push(base);}
+        if(instanceId||normal?.basePlacement==='composition'||config.basePlacement==='composition'){base.remove();baseMetadata.push(base);}
         else{const note=el('div','ds-base-note');note.append(base);profile.append(note);}
       }
     }
@@ -285,17 +300,21 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         const row=renderWeapon(weapon,{instanceId});
         appendOptionCost(row.querySelector('.weapon-name > div'),weapon.id);grid.append(row);
         appendBoundAbilities(grid,weapon.id);
-        for(const selection of selections.filter(binding=>binding.profileIds.at(-1)===weapon.id)){
+        for(const selection of selections.filter(binding=>binding.profileIds.at(-1)===weapon.id&&(!instanceId||(binding.scopeId||null)===(weapon.scopeId||null)))){
           const instruction=el('aside','ds-profile-selection');instruction.dataset.profileGroupId=selection.groupId;
           instruction.dataset.profileIds=JSON.stringify(selection.profileIds);
           const source=selection.instructionId&&cards.get(selection.instructionId);
           instruction.append(source?factValue('p',single(source,'text')):el('p','',selection.text));
-          for(const id of selection.profileIds)instruction.append(anchor(cards.get(id).title,id,true),document.createTextNode(' · '));
+          if(instanceId&&scopeCaption(weapon))instruction.prepend(el('small','ds-composition-scope',scopeCaption(weapon)));
+          for(const id of selection.profileIds){
+            const target=instanceId?children.find(child=>child.id===id&&(child.scopeId||null)===(selection.scopeId||null)):null;
+            instruction.append(target?scopedAnchor(cards.get(id).title,target,instanceId):anchor(cards.get(id).title,id,true),document.createTextNode(' · '));
+          }
           grid.append(instruction);
         }
       });group.append(grid);profile.append(group);
     }
-    for(const child of children.filter(c=>c.kind==='WEAPON_PROFILE_SELECTION'&&!normal)){
+    for(const child of children.filter(c=>c.kind==='WEAPON_PROFILE_SELECTION'&&!normal&&!instanceId)){
       const instruction=identity(el('aside','ds-profile-selection'),child,instanceId);instruction.append(factValue('p',single(child,'text')));
       const caption=scopeCaption(child);if(caption)instruction.prepend(el('small','ds-composition-scope',caption));
       for(const field of child.fields.filter(f=>/\/(?:profileIds|weaponProfileIds)\/\d+$/.test(f.source.path))){
@@ -322,19 +341,31 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       rendered.add(child.id);
     }
     root.append(profile,abilities);
+    // Equipment rules whose canonical item is not a weapon row still belong
+    // beside a named selected item; construction alternatives remain hidden.
+    if(instanceId)for(const itemId of new Set(availableBoundAbilities.filter(binding=>cards.get(binding.itemId)?.kind==='WARGEAR_OPTION').map(binding=>binding.itemId))){
+      const item=el('div','ds-selected-equipment-rule'),equipment=cards.get(itemId);
+      const label=equipment.fields.find(field=>['/name','/title'].includes(field.source?.path));
+      if(label)item.append(factValue('b',label));
+      appendBoundAbilities(item,itemId);abilityList.append(item);
+    }
     const options=children.filter(c=>c.kind==='WARGEAR_OPTION');
     if(options.length&&!instanceId){const section=part('wargear','Wargear Options');const list=el('ul');for(const child of options){const line=identity(el('li'),child,instanceId);line.append(factValue('span',single(child,'text')));appendOptionCost(line,child.id);appendBoundAbilities(line,child.id);list.append(line);rendered.add(child.id);}section.append(list);root.append(section);}
     for(const child of children.filter(c=>c.kind==='SUPPLEMENTAL_DATASHEET_RULE')){
       if(boundAbilities.some(binding=>binding.ruleId===child.id)){rendered.add(child.id);continue;}
       const item=identity(el('article','ability'),child,instanceId);item.append(factValue('p',single(child,'text')));abilityList.append(item);rendered.add(child.id);
     }
-    for(const child of children.filter(c=>c.kind==='WARGEAR_FOOTNOTE')){const note=identity(el('p','ds-wargear-footnote'),child,instanceId);note.append(factValue('span',single(child,'text')));root.append(note);rendered.add(child.id);}
+    for(const child of children.filter(c=>c.kind==='WARGEAR_FOOTNOTE')){
+      const construction=config.normal?.constructionNotes?.find(binding=>binding.noteId===child.id);
+      if(!instanceId||!construction){const note=identity(el('p','ds-wargear-footnote'),child,instanceId);note.append(factValue('span',single(child,'text')));root.append(note);}
+      rendered.add(child.id);
+    }
     const eligible=children.find(c=>c.kind==='MFM_LEADER_ELIGIBILITY');
     for(const child of children.filter(c=>!rendered.has(c.id))) {
       if(child.kind!=='DATASHEET_SECTION')continue;
       const role=config.sectionRoles[child.id];
       if(role==='leader'&&eligible){
-        if(!instanceId){const leader=part('leader','Leader'),titleField=child.fields.find(f=>f.presentation==='heading');
+        const leader=part('leader','Leader'),titleField=child.fields.find(f=>f.presentation==='heading');
           if(titleField){const title=factValue('span',titleField);title.textContent='Leader';leader.querySelector('h4').replaceChildren(title);}
           leader.append(el('p','','This model can be attached to the following units:'));
           const list=identity(el('ul'),eligible,instanceId);
@@ -346,10 +377,24 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
             const exceptionText=String(field.value).split('\n').filter(line=>!line.startsWith('This model can be attached to the following unit')&&!line.startsWith('- ')).join('\n').trim();
             if(exceptionText){const paragraph=factValue('p',field);paragraph.textContent=exceptionText;leader.append(paragraph);}
           }root.append(leader);
-        }
       }else if(role==='composition'&&instanceId){
         const composition=part('composition','Unit Composition'),unit=roster.state.units.find(u=>u.instanceId===instanceId);
-        composition.append(el('p','',`${unit.startingStrength} ${unit.startingStrength===1?'model':'models'}`));root.append(composition);
+        composition.append(el('p','',`${unit.startingStrength} ${unit.startingStrength===1?'model':'models'}`));
+        const members=el('ul','ds-composition-members');
+        for(const member of card.rosterComposition||[]){const line=el('li','',`${member.quantity} × ${member.label}`);
+          line.dataset.canonicalProfileId=member.profileId;line.dataset.compositionRowId=member.rowId;members.append(line);}
+        if(members.childElementCount)composition.append(members);
+        if(!unit.modelRows.some(row=>row.compositionScope==='MODEL_ROW')){
+          const sourceMembers=(config.compositionMembers||[]).filter(binding=>binding.sectionId===child.id);
+          if(sourceMembers.reduce((total,binding)=>total+binding.spans.length,0)>1){
+            const source=el('details','ds-canonical-composition');source.append(el('summary','','Datasheet composition'));
+            const list=el('ul');
+            for(const binding of sourceMembers){const field=child.fields.find(field=>field.source.path===binding.fieldPath);
+              for(const span of binding.spans){const line=el('li'),text=factValue('span',field);text.textContent=field.value.slice(span.start+2,span.end);line.append(text);list.append(line);}}
+            source.append(list);composition.append(source);
+          }
+        }
+        root.append(composition);
       }else root.append(renderSection(child,{instanceId,inDialog}));
     }
     for(const child of children.filter(c=>c.kind==='MFM_PAID_UPGRADE')){
@@ -365,10 +410,10 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     if(card.keywordGroups){for(const group of card.keywordGroups){
       const line=el('p'),label=card.fields.find(field=>field.id===group.labelFieldId);
       const caption=factValue('b',label);
-      if(instanceId&&config.rosterKeywordLabel&&group.labelFieldId===`${card.id}::/rosterKeywordGroups/unit/label`)caption.textContent=config.rosterKeywordLabel;
+      if(instanceId&&group.labelFieldId===`${card.id}::/rosterKeywordGroups/unit/label`)caption.textContent='Keywords';
       line.append(caption,document.createTextNode(': '));
       group.fieldIds.forEach((id,index)=>{if(index)line.append(document.createTextNode(', '));line.append(factValue('span',card.fields.find(field=>field.id===id)));});keywords.append(line);
-    }}else for(const [path,label] of [['keywords',instanceId?(config.rosterKeywordLabel||'Effective unit keywords'):'Keywords'],['factionKeywords','Faction Keywords']]){
+    }}else for(const [path,label] of [['keywords','Keywords'],['factionKeywords','Faction Keywords']]){
       const line=el('p');line.append(el('b','',label+': '));const fields=card.fields.filter(f=>f.source?.path.startsWith('/'+path+'/'));
       fields.forEach((field,index)=>{if(index)line.append(document.createTextNode(', '));line.append(factValue('span',field));});keywords.append(line);
     }root.append(keywords);
@@ -384,19 +429,6 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       for(const member of members)context.append(el('p','',`${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${name(member.leaderInstanceId)}`));
       // Detachment selection lives in roster navigation, not repeated on each unit.
       head.after(context);
-      if(config.rosterEffectSummary!==false){
-        const effects=roster.effective(instanceId),summary=el('article','ability ds-effect-summary');summary.append(el('h5','','Active roster effects'));
-        const sources=new Map();for(const effect of effects.applied){const key=JSON.stringify([effect.ruleId,effect.sourceInstanceId,effect.sourceFields]);if(!sources.has(key))sources.set(key,effect);}
-        for(const effect of sources.values()){
-          const line=el('p');line.dataset.effectSourceRuleId=effect.ruleId;
-          if(effect.sourceInstanceId)line.append(el('span','',name(effect.sourceInstanceId)+' → '));
-          const source=cards.get(effect.ruleId),sourcePath=effect.sourceFields?.[0];
-          const textField=sourcePath&&source.fields.find(f=>f.source.path==='/'+sourcePath.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'));
-          const label=textField?.value.includes(':')?textField.value.slice(0,textField.value.indexOf(':')):
-            source.kind==='DATASHEET_SECTION'?cards.get(source.parentId).title+' ability':source.title;
-          line.append(scopedAnchor(label,source,instanceId,textField?.source.path));summary.append(line);
-        }if(sources.size)abilityList.append(summary);
-      }
     }
     if(payload.relatedRules)root.append(related(card.id,instanceId));
     return root;

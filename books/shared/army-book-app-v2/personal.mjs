@@ -35,6 +35,16 @@ export function projectInstanceCards(cards, unit, effective) {
   const variants=new Map(), root=clone(cards.get(unit.canonicalUnitId));
   assert(root?.kind==='DATASHEET','Unresolved canonical datasheet');
   const scopeCaptions=new Map();
+  const profileName=id=>{
+    const profile=cards.get(id);
+    return profile?.fields.find(field=>field.source?.path==='/name')?.value || root.title;
+  };
+  // Imported composition rows are display groups, never inferred equipment
+  // owners. Aggregate imports retain their canonical profile and total only.
+  root.rosterComposition=unit.modelRows.map(row=>({rowId:row.rowId,
+    profileId:row.canonicalProfileId,quantity:row.quantity,
+    label:row.compositionScope==='MODEL_ROW'&&row.presentationLabel?.trim()
+      ?row.presentationLabel:profileName(row.canonicalProfileId)}));
   unit.modelRows.forEach((row,index)=>{
     if(row.compositionScope!=='MODEL_ROW')return;
     const label=typeof row.presentationLabel==='string'&&row.presentationLabel.trim()
@@ -49,6 +59,15 @@ export function projectInstanceCards(cards, unit, effective) {
         label:row.loadouts.length>1||scopeCaptions.has(profileScope)?`${label} · Loadout ${loadoutIndex+1}`:label,quantity:profile.quantity
       });
     });
+  });
+  // Some imports establish distinct loadout scopes without a named model row.
+  // Label those existing groups, without assigning weapons to invented models.
+  const counts=new Map(),ordinals=new Map();
+  effective.profiles.forEach(profile=>counts.set(profile.id,(counts.get(profile.id)||0)+1));
+  effective.profiles.forEach(profile=>{
+    const ordinal=(ordinals.get(profile.id)||0)+1;ordinals.set(profile.id,ordinal);
+    if(counts.get(profile.id)>1&&!scopeCaptions.has(profile.scopeId))scopeCaptions.set(profile.scopeId,{
+      label:`${profileName(profile.id)} · Group ${ordinal}`,quantity:profile.quantity,canonicalLabelIncluded:true});
   });
   const annotate = (card, scope) => ({...clone(card),instanceId:unit.instanceId,scopeId:scope || null});
   const overlay = (record, source) => {
@@ -138,6 +157,7 @@ export function projectInstanceCards(cards, unit, effective) {
   }
   const selections=[...(unit.selections || []),...unit.modelRows.flatMap(row=>[...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])];
   const selectedEquipment=new Set(selections.filter(selection=>selection.physicalQuantity>0).flatMap(selection=>selection.canonicalEquipmentIds));
+  root.rosterEquipmentIds=[...selectedEquipment];
   const selectedSourceFields=new Set(selections.filter(selection=>selection.physicalQuantity>0)
     .flatMap(selection=>(selection.sourceReferences || []).map(ref=>JSON.stringify([ref.entityId,ref.path]))));
   for (const id of root.children) {
@@ -153,7 +173,7 @@ export function projectInstanceCards(cards, unit, effective) {
   const firstKeyword=root.fields.find(field=>field.source?.path.startsWith('/keywords/'));
   root.fields=root.fields.filter(field=>!field.source?.path.startsWith('/keywords/'));
   effective.keywords.forEach((keyword,index)=>root.fields.push({...firstKeyword,id:`${root.id}::/keywords/${index}`,
-    label:'Effective unit keywords',type:'tokens',value:keyword,contextId:root.contextId,
+    label:'Keywords',type:'tokens',value:keyword,contextId:root.contextId,
     source:{entityId:root.id,path:`/keywords/${index}`},runtimeDerived:true}));
   if(root.keywordGroups) {
     const factionFields=root.fields.filter(field=>field.presentationPath?.startsWith('/factionKeywords/'));
@@ -171,9 +191,11 @@ export function projectInstanceCards(cards, unit, effective) {
     };
     // Replace, rather than repeat, the temporary flat UNIT keyword overlay.
     root.fields=root.fields.filter(field=>!field.source?.path.startsWith('/keywords/'));
-    add('Effective unit keywords',effective.keywords.filter(keyword=>!faction.has(keyword)),'unit');
+    add('Keywords',effective.keywords.filter(keyword=>!faction.has(keyword)),'unit');
     if(effective.profiles.length>1)for(const [index,profile]of effective.profiles.entries()) {
-      const canonical=cards.get(profile.id),name=canonical.fields.find(field=>field.source?.path==='/name')?.value||canonical.title;
+      const canonicalName=profileName(profile.id),scope=scopeCaptions.get(profile.scopeId);
+      const name=scope?.canonicalLabelIncluded?scope.label:
+        scope?.label && scope.label!==canonicalName ? `${scope.label} (${canonicalName})` : canonicalName;
       add(`${name} · Model keywords`,(profile.keywords||[]).filter(keyword=>!faction.has(keyword)),`profile-${index}`);
     }
     const factionGroup=root.keywordGroups.find(group=>group.fieldIds.some(id=>factionFields.some(field=>field.id===id)));

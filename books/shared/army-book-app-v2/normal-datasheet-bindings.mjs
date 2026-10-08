@@ -66,9 +66,17 @@ export function buildNormalDatasheetBindings(model, records, bindings = {}) {
     if (previous && previous.itemId !== binding.itemId) throw new TypeError('Conflicting ability item binding');
     if (!previous) abilities.set(binding.ruleId, structuredClone(binding));
   }
+  const constructionNotes=(bindings.constructionNotes || []).map(binding=>{
+    requireEntity(binding.unitId,'DATASHEET');
+    requireEntity(binding.noteId,'WARGEAR_FOOTNOTE',binding.unitId);
+    if(!binding.optionIds?.length || binding.standalone!==false)
+      throw new TypeError('Incomplete construction note binding');
+    binding.optionIds.forEach(id=>requireEntity(id,'WARGEAR_OPTION',binding.unitId));
+    return structuredClone(binding);
+  });
   return {basePlacement: 'composition', profileSelections: [...selections.values()],
-    optionCosts: [...costs.values()], boundAbilities: [...abilities.values()]};
+    optionCosts: [...costs.values()], boundAbilities: [...abilities.values()],constructionNotes};
 }
 
-/** Personal Guide deliberately retains its existing projection and layout. */
+/** Cost/base book-mode choices are separate from physical inventory rendering. */
 export const selectsNormalDatasheetBindings = (config, instanceId) => instanceId ? null : config.normal;

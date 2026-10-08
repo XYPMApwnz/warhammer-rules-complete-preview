@@ -95,7 +95,7 @@ for(const nested of [false,true]) {
       keys:group.fieldIds.map(id=>root.fields.find(field=>field.id===id).value)}));
     assert.ok(groups.find(group=>group.label==='Specialist · Model keywords').keys.includes('SMOKE'));
     assert.ok(!groups.find(group=>group.label==='Crew · Model keywords').keys.includes('SMOKE'),'MODEL keyword leaked to sibling presentation');
-    assert.equal(groups.filter(group=>group.label==='Effective unit keywords').length,1);
+    assert.equal(groups.filter(group=>group.label==='Keywords').length,1);
   }
   assert.deepEqual(payload,before,'Instance overlay mutated canonical presentation');
   assert.deepEqual(projectInstanceCards(cards,unit,effective),variants,'Effective overlay rebuild differs');

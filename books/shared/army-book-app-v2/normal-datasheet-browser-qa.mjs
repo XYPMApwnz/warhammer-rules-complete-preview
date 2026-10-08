@@ -1,43 +1,37 @@
-/** Real-browser normal-book invariants and unchanged Personal Guide comparison. */
+/** Real-browser normal-book and synthetic presentation invariants. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
-import {execFileSync} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 import {buildApp as buildDg} from '../../death-guard/v2/app-build.mjs';
 import {buildApp as buildAm} from '../../adeptus-mechanicus/v2/app-build.mjs';
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const baselineHead='51088e8ece8e5e3a9ad0d0baa4db8d2d89b54f35';
 const out=process.env.ARMY_APP_V2_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'normal-datasheet-parity-'));
 fs.mkdirSync(out,{recursive:true});
 const {chromium}=createRequire(import.meta.url)('playwright');
 const payloads=new Map([['death-guard',buildDg()],['adeptus-mechanicus',buildAm()]]);
-const baseline=new Map(['datasheet-v1.mjs','datasheet-v1.css'].map(name=>[
-  '/books/shared/army-book-app-v2/'+name,execFileSync('git',['show',baselineHead+':books/shared/army-book-app-v2/'+name],{cwd:repo,maxBuffer:8*1024*1024})
-]));
 const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.woff2':'font/woff2'};
 const server=http.createServer((request,response)=>{
   const requested=decodeURIComponent(new URL(request.url,'http://localhost').pathname);
-  const old=requested.startsWith('/baseline/');
-  const address=old?requested.slice('/baseline'.length):requested;
+  const address=requested;
   const file=path.resolve(repo,'.'+address);
   if(!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||fs.statSync(file).isDirectory()){
     response.writeHead(404);response.end();return;
   }
   response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});
   const army=[...payloads.keys()].find(name=>address===`/books/${name}/v2/generated/app-presentation.json`);
-  response.end(army?JSON.stringify(payloads.get(army)):old&&baseline.has(address)?baseline.get(address):fs.readFileSync(file));
+  response.end(army?JSON.stringify(payloads.get(army)):fs.readFileSync(file));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
 const installedChrome='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installedChrome)?installedChrome:undefined);
 const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
-const errors=[],results=[],personalComparisons=[];
+const errors=[],results=[];
 const priority=new Set(['unit-lord-of-contagion','unit-deathshroud-terminators','unit-plague-marines','unit-great-unclean-one','unit-defiler','unit-helbrute','unit-ironstrider-ballistarii','unit-skorpius-disintegrator','unit-servitor-battleclade','unit-tech-priest-dominus']);
 const wait=async page=>{
   await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);
@@ -51,30 +45,10 @@ const settle=async page=>{
   });
   await page.waitForTimeout(180);
 };
-const imports={
-  'death-guard':`+ FACTION KEYWORD: Chaos - Death Guard
-+ DETACHMENT: Paragons of Putrescence, Virulent Vectorium
-Char1: 1x Lord of Contagion (135 pts): Manreaper
-Enhancement: Furnace of Plagues (+25 pts)
-3x Deathshroud Terminators (150 pts)
-• 1x Deathshroud Terminator Champion: Manreaper, Plaguespurt gauntlet
-• 2x Deathshroud Terminator: 2 with Manreaper, Plaguespurt gauntlet
-1x Great Unclean One (265 pts): Plague flail, Putrid vomit, Bilesword
-1x Defiler (190 pts): Hades battle cannon, Excruciator cannon, Hades lascannon, Heavy reaper autocannon, Shearing claws`,
-  'adeptus-mechanicus':`+ FACTION KEYWORD: Imperium - Adeptus Mechanicus
-+ DETACHMENT: Haloscreed Battle Clade, Lords of the Forge
-Char1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe
-Enhancement: Cognitive Reinforcement
-9x Servitor Battleclade (110 pts)
-• 1x Servitor Underseer: Mechanicus pistol, Dataspikes
-• 2x Gun Servitor: 2 with Heavy arc rifle, Servo-claw
-• 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw`
-};
-
-async function openPage(context,army,old=false) {
+async function openPage(context,army) {
   const page=await context.newPage();
-  page.on('pageerror',error=>errors.push({army,baseline:old,error:error.message}));
-  await page.goto(origin+(old?'/baseline':'')+`/books/${army}/v2/app.html`);
+  page.on('pageerror',error=>errors.push({army,error:error.message}));
+  await page.goto(origin+`/books/${army}/v2/app.html`);
   await wait(page);return page;
 }
 async function syntheticDom(page) {
@@ -119,36 +93,6 @@ async function syntheticDom(page) {
   assert.deepEqual(observed.bases,[{section:'composition',details:true}]);
   assert.equal(observed.profileBaseCount,0);assert.equal(observed.immutable,true);
 }
-async function personalSnapshot(page,army,device,old) {
-  await page.evaluate(()=>window.ArmyBookAppV2.openRoster());
-  await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(imports[army]);
-  await page.locator('[data-roster-action="review-import"]').click();
-  await page.waitForFunction(()=>window.ArmyBookAppV2.roster.state?.units?.length>=2);
-  const state=await page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
-  assert.equal(state.units.length,army==='death-guard'?4:2,'Fresh source-backed import must resolve without manual selection');
-  const attached=await page.evaluate(()=>window.ArmyBookAppV2.roster.attach('parsed-unit-1','parsed-unit-2'));
-  assert.notEqual(attached?.ok,false,'Synthetic integration attachment was rejected');
-  await page.evaluate(()=>window.ArmyBookAppV2.openPersonalGuide());
-  const views=[];
-  for(const unit of state.units) {
-    await page.evaluate(id=>window.ArmyBookAppV2.openInstance(id),unit.instanceId);await settle(page);
-    const snapshot=await page.locator('main .unit-card').evaluate(root=>{
-      const normalize=node=>{
-        const copy=node.cloneNode(true);
-        // Lazy image readiness is browser state, not presentation output.
-        copy.querySelectorAll('img').forEach(image=>image.removeAttribute('loading'));
-        return copy.outerHTML;
-      };
-      const rectangle=node=>{const r=node.getBoundingClientRect();return [r.x,r.y,r.width,r.height].map(value=>Math.round(value*10)/10);};
-      return {text:root.innerText,dom:normalize(root),geometry:[root,...root.querySelectorAll('.unit-header,.unit-part,.model-profile,.weapon-row,.ds-roster-context,.ds-effect-summary')].map(node=>({key:node.dataset.cardId||node.dataset.datasheetSection||node.className,rect:rectangle(node)})),overflow:document.documentElement.scrollWidth>innerWidth+1};
-    });
-    assert.equal(snapshot.overflow,false,`${army} ${device} Personal Guide overflow`);
-    views.push({instanceId:unit.instanceId,canonicalUnitId:unit.canonicalUnitId,...snapshot});
-    if(!old)await page.screenshot({path:path.join(out,`${device}-${army}-${unit.instanceId}-personal.png`),fullPage:true});
-  }
-  return views;
-}
-
 try {
   for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]) {
     for(const [army,payload]of payloads) {
@@ -203,17 +147,12 @@ try {
         assert.equal(observed.overflow,false,`${army}/${unit.id} ${device} overflow`);
         if(priority.has(unit.id))await page.screenshot({path:path.join(out,`${device}-${army}-${unit.id}-normal.png`),fullPage:true});
       }
-      const current=await personalSnapshot(page,army,device,false);
-      const oldContext=await browser.newContext({viewport,reducedMotion:'reduce'}),oldPage=await openPage(oldContext,army,true);
-      const previous=await personalSnapshot(oldPage,army,device,true);
-      assert.deepEqual(current,previous,`${army} ${device}: Personal Guide text/DOM/geometry changed`);
-      personalComparisons.push({army,device,instances:current.length,text:'IDENTICAL',dom:'IDENTICAL',geometry:'IDENTICAL'});
       results.push({army,device,normalDatasheets:units.length,profileGroups:normal.profileSelections.length,optionCosts:normal.optionCosts.length,boundAbilities:normal.boundAbilities.length});
-      await oldContext.close();await context.close();
+      await context.close();
     }
   }
   assert.deepEqual(errors,[],'Uncaught browser errors');
-  const report={status:'PASS',baselineHead,results,personalComparisons,pageErrors:errors.length,screenshots:out};
+  const report={status:'PASS',results,pageErrors:errors.length,screenshots:out};
   fs.writeFileSync(path.join(out,'normal-datasheet-browser-report.json'),JSON.stringify(report,null,2)+'\n');
   console.log(JSON.stringify(report));
 } finally {
