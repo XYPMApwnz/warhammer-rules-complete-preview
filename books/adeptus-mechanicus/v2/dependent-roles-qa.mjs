@@ -51,6 +51,10 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
   }
   // The previous release remains unchanged outside these four role bindings.
   const base=JSON.parse(execFileSync('git',['show','ef530dad5bddae1521cfca2bbbeba92fa48348d4:books/adeptus-mechanicus/v2/generated/rule-contracts.json'],{encoding:'utf8',maxBuffer:40e6}));
+  // AM-09 separately guards this approved executable equipment-address repair.
+  base.contracts['datasheet-onager-dunecrawler:section:1'].clauses.find(c=>c.id==='data-tether-smoke-removal')
+    .rosterEffects[0].equipmentRequirement={binding:'SOURCE',kind:'EQUIPMENT_PRESENT',
+      equipmentId:'datasheet-onager-dunecrawler:wargear:3',sourceFieldPath:['text']};
   for(const entity of built.book.entities.filter(e=>e.ruleContract)) {
     const current=structuredClone(entity.ruleContract),previous=base.contracts[entity.id];
     if(cases.some(test=>test.ruleId===entity.id))for(const role of [current.roles,...current.clauses.map(c=>c.roles)].flat())

@@ -63,6 +63,11 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
   assert.equal(answer(self,cases[0].ruleId),'CONDITIONAL');controls++;
   // Scope closure: no other declarations, factual fields or executable effects change.
   const previous=JSON.parse(execFileSync('git',['show','cd97ef803308ea8a0c44b945d74df57e747e47ad:books/adeptus-mechanicus/v2/generated/rule-contracts.json'],{encoding:'utf8',maxBuffer:40e6}));
+  // AM-09 separately guards this approved selection/evidence binding repair.
+  // Keep every other executable field and all recipient declarations frozen.
+  previous.contracts['datasheet-onager-dunecrawler:section:1'].clauses.find(c=>c.id==='data-tether-smoke-removal')
+    .rosterEffects[0].equipmentRequirement={binding:'SOURCE',kind:'EQUIPMENT_PRESENT',
+      equipmentId:'datasheet-onager-dunecrawler:wargear:3',sourceFieldPath:['text']};
   const allowed=new Set(cases.map(test=>test.ruleId));
   // Subsequent dependent-role repair has its own exact four-owner diff guard.
   const dependentOwners=new Set([1,3,4,6].map(i=>'detachment-rad-zone-corps:stratagem:'+i));

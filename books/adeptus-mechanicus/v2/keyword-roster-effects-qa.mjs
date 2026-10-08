@@ -92,7 +92,10 @@ for(const name of ['archaeopter-fusilave','archaeopter-stratoraptor','archaeopte
 {
   const a=unit('a','onager-dunecrawler'),b=unit('b','onager-dunecrawler'),roster=state([a,b]);
   assert.ok(modelHas(run(roster),'a','SMOKE'));
-  equip(a,ids[4],2);const result=run(roster);
+  const equipmentId='datasheet-onager-dunecrawler:wargear:3';
+  a.selections=[{selectionKey:'selected-equipment',physicalQuantity:1,canonicalProfileIds:[],
+    canonicalEquipmentIds:[equipmentId],canonicalFieldPaths:{[equipmentId]:['/text']}}];
+  const result=run(roster);
   assert.ok(!modelHas(result,'a','SMOKE')&&!unitHas(result,'a','SMOKE'));
   assert.ok(modelHas(result,'b','SMOKE'));
   assert.ok(physical(result,'a').intrinsicKeywords.includes('SMOKE'));

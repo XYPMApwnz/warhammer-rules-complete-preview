@@ -52,7 +52,12 @@ export function effectiveIntegrationFixture(book) {
   const equip=(u,id,block)=>u.selections.push({selectionKey:'equipment',physicalQuantity:1,canonicalProfileIds:[],canonicalEquipmentIds:[id],canonicalFieldPaths:{[id]:[`/blocks/${block}/text`]}});
   for(const name of ['archaeopter-fusilave','archaeopter-stratoraptor','archaeopter-transvector','onager-dunecrawler','skitarii-rangers','skitarii-vanguard']){
     const u=make(`equipment-${name}`,name),block=name.startsWith('archaeopter-')?1:2;
-    equip(u,`datasheet-${name}:section:1`,block);units.push(u,make(`no-equipment-${name}`,name));
+    if(name==='onager-dunecrawler') {
+      const equipmentId='datasheet-onager-dunecrawler:wargear:3';
+      u.selections.push({selectionKey:'equipment',physicalQuantity:1,canonicalProfileIds:[],
+        canonicalEquipmentIds:[equipmentId],canonicalFieldPaths:{[equipmentId]:['/text']}});
+    } else equip(u,`datasheet-${name}:section:1`,block);
+    units.push(u,make(`no-equipment-${name}`,name));
   }
   for(const name of ['tech-priest-manipulus','technoarcheologist']){
     const u=make(name,name),body=make(`body-${name}`,'servitor-battleclade');units.push(u,body,make(`duplicate-${name}`,name));

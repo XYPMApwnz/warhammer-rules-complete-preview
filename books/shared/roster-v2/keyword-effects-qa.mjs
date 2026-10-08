@@ -188,6 +188,39 @@ check('equipment removal gates distinguish selected, known absent, and unknown e
   assert.equal(matches(state,unknown,'alpha','MODEL','PROFILE_A','profile-a'),'TRUE');
   assert.ok(unit(unknown).conditional.some(row=>row.ruleId===id('equipment-remove')&&row.state==='UNKNOWN'));
 });
+check('selected equipment identity is independent of evidence and exact physical ownership',()=>{
+  const {book,state}=fixture();
+  rule(book,'equipment-evidence',{operation:'REMOVE_KEYWORD',keyword:'PROFILE_A',
+    conditions:[{binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:'equipmentRequirementSatisfied',equals:true},'ROSTER')},targetProfile('profile-a')],
+    equipmentRequirement:{kind:'EQUIPMENT_PRESENT',equipmentId:id('equipment'),sourceFieldPath:['text']}});
+  const source=book.entities.find(e=>e.id===id('equipment-evidence'));
+  source.kind='DATASHEET_SECTION';
+  source.data.blocks=[{text:evidence.quote,wargearAbility:true}];
+  for(const instance of state.units)instance.equipmentContextKnown=true;
+  const selected={selectionKey:'selected-equipment',physicalQuantity:1,canonicalProfileIds:[],
+    canonicalEquipmentIds:[id('equipment')],canonicalFieldPaths:{[id('equipment')]:['/text']}};
+  unit(state).selections=[clone(selected)];
+  const expected=execute(book,state);
+  assert.equal(matches(state,expected,'alpha','MODEL','PROFILE_A','profile-a'),'FALSE');
+  assert.equal(matches(state,expected,'beta','MODEL','PROFILE_A','profile-a'),'TRUE');
+  assert.equal(applied(expected,'equipment-evidence','alpha').length,1);
+  assert.equal(applied(expected,'equipment-evidence','beta').length,0);
+  assertProof(book,applied(expected,'equipment-evidence')[0],'equipment-evidence',
+    {operation:'REMOVE_KEYWORD',word:'PROFILE_A',profileName:'profile-a'});
+  const evidenceOnly=clone(state);
+  unit(evidenceOnly).selections=[{selectionKey:'source-clause-only',physicalQuantity:1,canonicalProfileIds:[],
+    canonicalEquipmentIds:[source.id],canonicalFieldPaths:{[source.id]:['/blocks/0/text']},
+    sourceReferences:[{entityId:source.id,path:'/blocks/0/text'}]}];
+  assert.equal(matches(evidenceOnly,execute(book,evidenceOnly),'alpha','MODEL','PROFILE_A','profile-a'),'TRUE',
+    'Source evidence was incorrectly accepted as selected equipment');
+  const absent=clone(state);unit(absent).selections=[];
+  assert.equal(matches(absent,execute(book,absent),'alpha','MODEL','PROFILE_A','profile-a'),'TRUE');
+  const zero=clone(state);unit(zero).selections[0].physicalQuantity=0;
+  assert.equal(matches(zero,execute(book,zero),'alpha','MODEL','PROFILE_A','profile-a'),'TRUE');
+  assert.deepEqual(execute(book,state),expected,'Re-adding equipment accumulated an effect');
+  const reordered=clone(state);reordered.units.reverse();
+  assert.deepEqual(semantic(execute(book,reordered)),semantic(expected),'Instance order changed ownership');
+});
 check('attachment, detach, and reattach rebuild MODEL grants and formed UNIT contributions',()=>{
   const {book,state}=fixture();rule(book,'formation-grant',{parent:'leader',targetBinding:'SOURCE_FORMED_MODELS',keyword:'FORMED_BONUS',
     conditions:[{binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:'leading',equals:true},'ROSTER')}]});
