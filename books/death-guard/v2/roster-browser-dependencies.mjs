@@ -7,7 +7,7 @@ export function allowRosterDependencies(allowed) {
     'books/shared/rule-contract-v2/schema.mjs',
     'books/shared/roster-v2/runtime.mjs','books/shared/roster-v2/context.mjs','books/shared/roster-v2/effects.mjs','books/shared/roster-v2/import.mjs','books/shared/roster-v2/compatibility-feasibility.mjs','books/shared/roster-v2/compatibility-context.mjs',
     'books/shared/army-book-app-v2/navigation-v1.mjs','books/shared/army-book-app-v2/navigation-v1-controller.mjs','books/shared/army-book-app-v2/navigation-v1-targets.mjs','books/shared/army-book-app-v2/roster.mjs','books/shared/army-book-app-v2/personal.mjs',
-    'books/shared/army-book-app-v2/datasheet-v1.mjs','books/shared/army-book-app-v2/datasheet-v1-layout.mjs','books/shared/army-book-app-v2/book-v1.mjs','books/shared/army-book-app-v2/related-v1.mjs','books/shared/army-book-app-v2/popup-v1.mjs','books/shared/roster-v2/parser.mjs']) allowed.set('/'+file,'text/javascript');
+    'books/shared/army-book-app-v2/datasheet-v1.mjs','books/shared/army-book-app-v2/normal-datasheet-bindings.mjs','books/shared/army-book-app-v2/datasheet-v1-layout.mjs','books/shared/army-book-app-v2/book-v1.mjs','books/shared/army-book-app-v2/related-v1.mjs','books/shared/army-book-app-v2/popup-v1.mjs','books/shared/roster-v2/parser.mjs']) allowed.set('/'+file,'text/javascript');
   allowed.set('/books/shared/army-book-app-v2/navigation-v1.css','text/css');
   allowed.set('/books/shared/army-book-app-v2/datasheet-v1.css','text/css');
   allowed.set('/books/shared/army-book-app-v2/book-v1.css','text/css');

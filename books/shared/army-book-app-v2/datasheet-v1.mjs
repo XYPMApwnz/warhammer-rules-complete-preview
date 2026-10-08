@@ -1,4 +1,5 @@
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
+import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 const sectionRoles = new Map([
   ['ABILITIES','abilities'],['WARGEAR ABILITIES','wargear-abilities'],
   ['UNIT COMPOSITION','composition'],['WARGEAR OPTIONS','wargear'],
@@ -6,7 +7,7 @@ const sectionRoles = new Map([
 ]);
 
 /** Build-time layout metadata, keyed by existing identity; never a factual catalog. */
-export function buildDatasheetPresentation(model, images) {
+export function buildDatasheetPresentation(model, images, {bindings,records=new Map()}={}) {
   const units = new Set(model.entities.filter(e=>e.kind==='DATASHEET').map(e=>e.id));
   const roles = {};
   for (const entity of model.entities) if (entity.kind==='DATASHEET_SECTION') {
@@ -16,6 +17,7 @@ export function buildDatasheetPresentation(model, images) {
     roles[entity.id]=sectionRoles.get(label) || (label.startsWith('DAMAGED:')?'damaged':'additional');
   }
   return {schema:'army-book-app-v2/datasheet-layout',sectionRoles:roles,
+    normal:buildNormalDatasheetBindings(model,records,bindings),
     artwork:Object.fromEntries(Object.entries(images.units || {}).filter(([id])=>units.has(id)).map(([id,art])=>[id,
       {asset:art.asset,width:art.width,height:art.height,presentation:structuredClone(art.presentation)}]))};
 }
@@ -210,6 +212,24 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
   const renderDatasheet=(card,{variants=null,instanceId=null,inDialog=false}={})=>{
     const root=identity(el('article','unit-card surface v2-card v2-kind-DATASHEET'),card,instanceId),used=new Set();
     const children=(card.children || []).flatMap(id=>variants?.get(id) || [cards.get(id)]);
+    const normal=selectsNormalDatasheetBindings(config,instanceId);
+    const selections=normal?.profileSelections.filter(binding=>binding.unitId===card.id)||[];
+    const optionCosts=normal?.optionCosts.filter(binding=>binding.unitId===card.id)||[];
+    const boundAbilities=normal?.boundAbilities.filter(binding=>binding.unitId===card.id)||[];
+    const appendOptionCost=(node,itemId)=>{
+      for(const cost of optionCosts.filter(binding=>binding.itemId===itemId)){
+        const label=el('small','ds-option-cost');label.dataset.costRecordId=cost.costRecordId;
+        label.append(document.createTextNode('+'),factValue('span',cost.valueField),document.createTextNode(' pts'));
+        node.append(label);
+      }
+    };
+    const appendBoundAbilities=(node,itemId)=>{
+      for(const binding of boundAbilities.filter(binding=>binding.itemId===itemId)){
+        const rule=cards.get(binding.ruleId),item=identity(el('aside','ds-bound-weapon-ability'),rule,null);
+        item.dataset.boundWeaponId=itemId;item.dataset.boundAbilityId=binding.ruleId;
+        item.append(factValue('p',rule.fields.find(field=>field.source.path===binding.fieldPath)));node.append(item);
+      }
+    };
     const head=el('div','unit-header v2-card-header'),brand=el('div');brand.append(el('div','eyebrow',`${payload.book.title} · Datasheet`),heading(card,'h3'));head.append(brand);
     const title=card.fields.find(f=>f.presentation==='heading');if(title)used.add(title.id);
     const art=config.artwork[card.id];if(art){
@@ -252,7 +272,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     for(const child of children.filter(c=>c.kind==='PROFILE')){
       const view=renderProfile(child,{instanceId,inDialog}),bases=[...view.querySelectorAll('.profile-base')];profile.append(view);
       for(const base of bases){
-        if(config.basePlacement==='composition'){base.remove();baseMetadata.push(base);}
+        if(normal?.basePlacement==='composition'||config.basePlacement==='composition'){base.remove();baseMetadata.push(base);}
         else{const note=el('div','ds-base-note');note.append(base);profile.append(note);}
       }
     }
@@ -261,9 +281,21 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const group=el('div','weapon-group');group.append(el('h5','',mode==='ranged'?'Ranged Weapons':'Melee Weapons'));
       const grid=el('div','weapon-table');grid.setAttribute('role','table');grid.setAttribute('aria-label',`${mode} weapons`);
       const header=el('div','weapon-row weapon-head');header.setAttribute('role','row');for(const label of ['Weapon','Range','A',mode==='ranged'?'BS':'WS','S','AP','D'])header.append(el('div','',label));grid.append(header);
-      weapons.forEach(weapon=>grid.append(renderWeapon(weapon,{instanceId})));group.append(grid);profile.append(group);
+      weapons.forEach(weapon=>{
+        const row=renderWeapon(weapon,{instanceId});
+        appendOptionCost(row.querySelector('.weapon-name > div'),weapon.id);grid.append(row);
+        appendBoundAbilities(grid,weapon.id);
+        for(const selection of selections.filter(binding=>binding.profileIds.at(-1)===weapon.id)){
+          const instruction=el('aside','ds-profile-selection');instruction.dataset.profileGroupId=selection.groupId;
+          instruction.dataset.profileIds=JSON.stringify(selection.profileIds);
+          const source=selection.instructionId&&cards.get(selection.instructionId);
+          instruction.append(source?factValue('p',single(source,'text')):el('p','',selection.text));
+          for(const id of selection.profileIds)instruction.append(anchor(cards.get(id).title,id,true),document.createTextNode(' · '));
+          grid.append(instruction);
+        }
+      });group.append(grid);profile.append(group);
     }
-    for(const child of children.filter(c=>c.kind==='WEAPON_PROFILE_SELECTION')){
+    for(const child of children.filter(c=>c.kind==='WEAPON_PROFILE_SELECTION'&&!normal)){
       const instruction=identity(el('aside','ds-profile-selection'),child,instanceId);instruction.append(factValue('p',single(child,'text')));
       const caption=scopeCaption(child);if(caption)instruction.prepend(el('small','ds-composition-scope',caption));
       for(const field of child.fields.filter(f=>/\/(?:profileIds|weaponProfileIds)\/\d+$/.test(f.source.path))){
@@ -291,8 +323,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     root.append(profile,abilities);
     const options=children.filter(c=>c.kind==='WARGEAR_OPTION');
-    if(options.length&&!instanceId){const section=part('wargear','Wargear Options');const list=el('ul');for(const child of options){const line=identity(el('li'),child,instanceId);line.append(factValue('span',single(child,'text')));list.append(line);rendered.add(child.id);}section.append(list);root.append(section);}
+    if(options.length&&!instanceId){const section=part('wargear','Wargear Options');const list=el('ul');for(const child of options){const line=identity(el('li'),child,instanceId);line.append(factValue('span',single(child,'text')));appendOptionCost(line,child.id);appendBoundAbilities(line,child.id);list.append(line);rendered.add(child.id);}section.append(list);root.append(section);}
     for(const child of children.filter(c=>c.kind==='SUPPLEMENTAL_DATASHEET_RULE')){
+      if(boundAbilities.some(binding=>binding.ruleId===child.id)){rendered.add(child.id);continue;}
       const item=identity(el('article','ability'),child,instanceId);item.append(factValue('p',single(child,'text')));abilityList.append(item);rendered.add(child.id);
     }
     for(const child of children.filter(c=>c.kind==='WARGEAR_FOOTNOTE')){const note=identity(el('p','ds-wargear-footnote'),child,instanceId);note.append(factValue('span',single(child,'text')));root.append(note);rendered.add(child.id);}
@@ -320,6 +353,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       }else root.append(renderSection(child,{instanceId,inDialog}));
     }
     for(const child of children.filter(c=>c.kind==='MFM_PAID_UPGRADE')){
+      if(optionCosts.some(binding=>binding.costRecordId===child.id))continue;
       const note=identity(el('p','ds-paid-upgrade'),child,instanceId);note.append(el('b','',child.title+': '),factValue('span',single(child,'value')),document.createTextNode(' pts '),factValue('span',single(child,'sourceLabel')));profile.append(note);
     }
     if(baseMetadata.length){

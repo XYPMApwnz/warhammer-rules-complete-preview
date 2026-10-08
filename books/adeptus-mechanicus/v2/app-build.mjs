@@ -19,6 +19,7 @@ export function readAppInputs() {
   const mfmCatalog=createEffectiveMfmCatalog(),mfmBindings=read('./app-mfm-bindings.json');
   return {model:built.book,evaluator:built.schema.evaluator,mfmCatalog,mfmBindings,
     records:bindPoints(built.book,mfmCatalog.catalog,mfmBindings).records,
+    datasheetBindings:read('./normal-datasheet-bindings.json'),
     coreCatalog:createEffectiveCoreCatalog(),artwork:read('../presentation/unit-images.json')};
 }
 function bindPoints(model,catalog,bindings) {
@@ -74,7 +75,9 @@ export function buildApp(inputs=readAppInputs()) {
   for(const entity of model.entities.filter(entity=>entity.kind==='ATTACHMENT_DECLARATION')){
     const section=cards.get(entity.data.sourceSectionId);section.referenceCardIds=[...(section.referenceCardIds||[]),entity.id];
   }
-  payload.datasheetPresentation=buildDatasheetPresentation(model,inputs.artwork);
+  const presentationRecords=new Map([...records,...inputs.mfmCatalog.catalog.paidUpgradeRecords.map(record=>[record.id,record])]);
+  payload.datasheetPresentation=buildDatasheetPresentation(model,inputs.artwork,
+    {bindings:inputs.datasheetBindings,records:presentationRecords});
   // Book-owned display choices; canonical/effective facts and calculations
   // remain unchanged, and other books keep their accepted presentation.
   Object.assign(payload.datasheetPresentation,{rosterEffectSummary:false,rosterKeywordLabel:'Keywords',

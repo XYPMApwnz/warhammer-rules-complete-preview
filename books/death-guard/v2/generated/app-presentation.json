@@ -193069,6 +193069,393 @@
       "datasheet-typhus:section:2": "composition",
       "datasheet-typhus:section:3": "leader"
     },
+    "normal": {
+      "basePlacement": "composition",
+      "profileSelections": [
+        {
+          "unitId": "unit-defiler",
+          "instructionId": "datasheet-defiler:profile-selection:1",
+          "groupId": "datasheet-defiler:profile-group:1",
+          "profileIds": [
+            "datasheet-defiler:weapon:6",
+            "datasheet-defiler:weapon:7"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its profiles to make attacks with.",
+          "source": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "sourceRecordId": "datasheet-defiler:profile-selection:1",
+            "pointer": "pdf/page/5/profile-selection-note",
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+            "page": 5,
+            "sourceLocator": "Defiler / arrow-marked profile-selection note below Melee Weapons",
+            "profileBindings": [
+              {
+                "profileId": "datasheet-defiler:weapon:6",
+                "profileGroupId": "datasheet-defiler:profile-group:1",
+                "sourceLocator": "page:5/Ranged Weapons/Heavy missile launcher - krak/arrow",
+                "arrowTop": 170.7807
+              },
+              {
+                "profileId": "datasheet-defiler:weapon:7",
+                "profileGroupId": "datasheet-defiler:profile-group:1",
+                "sourceLocator": "page:5/Ranged Weapons/Heavy missile launcher - frag/arrow",
+                "arrowTop": 179.2909
+              },
+              {
+                "profileId": "datasheet-defiler:weapon:11",
+                "profileGroupId": "datasheet-defiler:profile-group:2",
+                "sourceLocator": "page:5/Melee Weapons/Shearing claws - strike/arrow",
+                "arrowTop": 245.0529
+              },
+              {
+                "profileId": "datasheet-defiler:weapon:12",
+                "profileGroupId": "datasheet-defiler:profile-group:2",
+                "sourceLocator": "page:5/Melee Weapons/Shearing claws - sweep/arrow",
+                "arrowTop": 253.5569
+              }
+            ],
+            "bindingMethod": "Visually verified PDF arrow symbols, independently checked against PDF vector positions and exact source weapon row identities; canonical consumers use only explicit IDs."
+          }
+        },
+        {
+          "unitId": "unit-defiler",
+          "instructionId": "datasheet-defiler:profile-selection:1",
+          "groupId": "datasheet-defiler:profile-group:2",
+          "profileIds": [
+            "datasheet-defiler:weapon:11",
+            "datasheet-defiler:weapon:12"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its profiles to make attacks with.",
+          "source": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "sourceRecordId": "datasheet-defiler:profile-selection:1",
+            "pointer": "pdf/page/5/profile-selection-note",
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+            "page": 5,
+            "sourceLocator": "Defiler / arrow-marked profile-selection note below Melee Weapons",
+            "profileBindings": [
+              {
+                "profileId": "datasheet-defiler:weapon:6",
+                "profileGroupId": "datasheet-defiler:profile-group:1",
+                "sourceLocator": "page:5/Ranged Weapons/Heavy missile launcher - krak/arrow",
+                "arrowTop": 170.7807
+              },
+              {
+                "profileId": "datasheet-defiler:weapon:7",
+                "profileGroupId": "datasheet-defiler:profile-group:1",
+                "sourceLocator": "page:5/Ranged Weapons/Heavy missile launcher - frag/arrow",
+                "arrowTop": 179.2909
+              },
+              {
+                "profileId": "datasheet-defiler:weapon:11",
+                "profileGroupId": "datasheet-defiler:profile-group:2",
+                "sourceLocator": "page:5/Melee Weapons/Shearing claws - strike/arrow",
+                "arrowTop": 245.0529
+              },
+              {
+                "profileId": "datasheet-defiler:weapon:12",
+                "profileGroupId": "datasheet-defiler:profile-group:2",
+                "sourceLocator": "page:5/Melee Weapons/Shearing claws - sweep/arrow",
+                "arrowTop": 253.5569
+              }
+            ],
+            "bindingMethod": "Visually verified PDF arrow symbols, independently checked against PDF vector positions and exact source weapon row identities; canonical consumers use only explicit IDs."
+          }
+        },
+        {
+          "unitId": "unit-daemon-prince-of-nurgle",
+          "groupId": "unit-daemon-prince-of-nurgle:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-daemon-prince-of-nurgle:weapon:2",
+            "datasheet-daemon-prince-of-nurgle:weapon:3"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Daemon-Prince-of-Nurgle.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "0880A90B2B93425DDF50C8C022E3819F4192667C17D9D31AA01885A0374C65D3"
+          }
+        },
+        {
+          "unitId": "unit-daemon-prince-of-nurgle-with-wings",
+          "groupId": "unit-daemon-prince-of-nurgle-with-wings:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-daemon-prince-of-nurgle-with-wings:weapon:2",
+            "datasheet-daemon-prince-of-nurgle-with-wings:weapon:3"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Daemon-Prince-of-Nurgle-with-Wings.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "9B9823FA7D086189C0099647FBBFA0E7628D987342E7331336E64BE927A5F481"
+          }
+        },
+        {
+          "unitId": "unit-deathshroud-terminators",
+          "groupId": "unit-deathshroud-terminators:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-deathshroud-terminators:weapon:2",
+            "datasheet-deathshroud-terminators:weapon:3"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Deathshroud-Terminators.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "0E84955C523E83576CE1FCE575C41502E3F0808F493C026AE3FF9895B825F19A"
+          }
+        },
+        {
+          "unitId": "unit-great-unclean-one",
+          "groupId": "unit-great-unclean-one:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-great-unclean-one:weapon:4",
+            "datasheet-great-unclean-one:weapon:5"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Great-Unclean-One.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "C3454FABC2822CB879235FF28735943AD147B6FD2400E6A809A89C233A7584BE"
+          }
+        },
+        {
+          "unitId": "unit-helbrute",
+          "groupId": "unit-helbrute:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-helbrute:weapon:3",
+            "datasheet-helbrute:weapon:4"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Helbrute.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "9DA60B6B44D68E7D48777DBDAA0005287EB41FF197E7272C3597EFDC267E8B44"
+          }
+        },
+        {
+          "unitId": "unit-lord-of-contagion",
+          "groupId": "unit-lord-of-contagion:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-lord-of-contagion:weapon:1",
+            "datasheet-lord-of-contagion:weapon:2"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Lord-of-Contagion.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "01A5A1A8C7584A26A38241BD0769A53F892DEB785FBCDCA57D7D24704FD448C4"
+          }
+        },
+        {
+          "unitId": "unit-lord-of-poxes",
+          "groupId": "unit-lord-of-poxes:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-lord-of-poxes:weapon:1",
+            "datasheet-lord-of-poxes:weapon:2"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Lord-of-Poxes.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "72A0CD0CF9627F3ECC0B51267481B0298FDEF30EFD50239B56983067A613CB02"
+          }
+        },
+        {
+          "unitId": "unit-malignant-plaguecaster",
+          "groupId": "unit-malignant-plaguecaster:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-malignant-plaguecaster:weapon:2",
+            "datasheet-malignant-plaguecaster:weapon:3"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Malignant-Plaguecaster.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "3B1AE8A1C7F97489EC0FF3D1C2AB9B3DBE841F3F606680EC1A14BA1E6CF2EF6E"
+          }
+        },
+        {
+          "unitId": "unit-mortarion",
+          "groupId": "unit-mortarion:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-mortarion:weapon:3",
+            "datasheet-mortarion:weapon:4"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Mortarion.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "9B9BFC915FC47C8478D0F525AC792BDDCCF0B3DBE96286763C1934264CA9CDF6"
+          }
+        },
+        {
+          "unitId": "unit-myphitic-blight-hauler",
+          "groupId": "unit-myphitic-blight-hauler:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-myphitic-blight-hauler:weapon:2",
+            "datasheet-myphitic-blight-hauler:weapon:3"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Myphitic-Blight-hauler.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "73590348C929C75ADD064C294222EB7E5864FC8E3D2194AEF299F5F11E7A6F7F"
+          }
+        },
+        {
+          "unitId": "unit-noxious-blightbringer",
+          "groupId": "unit-noxious-blightbringer:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-noxious-blightbringer:weapon:1",
+            "datasheet-noxious-blightbringer:weapon:2"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Noxious-Blightbringer.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "8FCF0B13A7D9A7E6EE27D06FDD21B19DA0A66201A7F39D78B7C8E49557AD36A0"
+          }
+        },
+        {
+          "unitId": "unit-plague-marines",
+          "groupId": "unit-plague-marines:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-plague-marines:weapon:7",
+            "datasheet-plague-marines:weapon:8"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Plague-Marines.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "4304393705009F7FD6E7579D3CB2245D532BA82E631B41B4A04EE44CD4BA2E50"
+          }
+        },
+        {
+          "unitId": "unit-plague-marines",
+          "groupId": "unit-plague-marines:presentation-profile-group:2",
+          "profileIds": [
+            "datasheet-plague-marines:weapon:9",
+            "datasheet-plague-marines:weapon:10"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Plague-Marines.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "4304393705009F7FD6E7579D3CB2245D532BA82E631B41B4A04EE44CD4BA2E50"
+          }
+        },
+        {
+          "unitId": "unit-rotigus",
+          "groupId": "unit-rotigus:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-rotigus:weapon:2",
+            "datasheet-rotigus:weapon:3"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Rotigus.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "92B5A8F498CB72340F1E734A117FCC274B8E6D53DE68E9191849549F02FED150"
+          }
+        },
+        {
+          "unitId": "unit-tallyman",
+          "groupId": "unit-tallyman:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-tallyman:weapon:1",
+            "datasheet-tallyman:weapon:2"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Tallyman.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "2DFA51CFD2034C1246C574BBCA23983083CF3FF4FD230720350CFE3832588536"
+          }
+        },
+        {
+          "unitId": "unit-typhus",
+          "groupId": "unit-typhus:presentation-profile-group:1",
+          "profileIds": [
+            "datasheet-typhus:weapon:1",
+            "datasheet-typhus:weapon:2"
+          ],
+          "text": "Before selecting targets for this weapon, select one of its eligible profiles to make attacks with.",
+          "source": {
+            "sourceId": "dg-waha-2026-09-25",
+            "sourcePath": "books/death-guard/v2/sources/accepted-waha-pages/Typhus.html",
+            "pointer": "#tooltip_contenttooltipPointy",
+            "sha256": "954E46305A5081F9899D31E2E3ECC923A34FD9CE855BF3BF91B247B0D6607FB8"
+          }
+        }
+      ],
+      "optionCosts": [
+        {
+          "unitId": "unit-defiler",
+          "itemId": "datasheet-defiler:weapon:8",
+          "costRecordId": "mfm-paid-upgrade-6365f3bff9597ebb",
+          "optionIds": [
+            "datasheet-defiler:wargear:3",
+            "datasheet-defiler:wargear:4"
+          ],
+          "valueField": {
+            "id": "mfm-paid-upgrade-6365f3bff9597ebb::/value",
+            "label": "Points",
+            "value": 15,
+            "type": "text",
+            "contextId": "unit-defiler",
+            "source": {
+              "entityId": "mfm-paid-upgrade-6365f3bff9597ebb",
+              "path": "/value"
+            }
+          }
+        },
+        {
+          "unitId": "unit-defiler",
+          "itemId": "datasheet-defiler:weapon:4",
+          "costRecordId": "mfm-paid-upgrade-0ec4e0c282a806f6",
+          "optionIds": [
+            "datasheet-defiler:wargear:3",
+            "datasheet-defiler:wargear:4"
+          ],
+          "valueField": {
+            "id": "mfm-paid-upgrade-0ec4e0c282a806f6::/value",
+            "label": "Points",
+            "value": 15,
+            "type": "text",
+            "contextId": "unit-defiler",
+            "source": {
+              "entityId": "mfm-paid-upgrade-0ec4e0c282a806f6",
+              "path": "/value"
+            }
+          }
+        }
+      ],
+      "boundAbilities": [
+        {
+          "unitId": "unit-great-unclean-one",
+          "itemId": "datasheet-great-unclean-one:weapon:6",
+          "ruleId": "datasheet-great-unclean-one:raw-dsAbility:1",
+          "fieldPath": "/text"
+        }
+      ]
+    },
     "artwork": {
       "unit-beasts-of-nurgle": {
         "asset": "assets/unit-images/beasts-of-nurgle.png",

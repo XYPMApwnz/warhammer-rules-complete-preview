@@ -587,3 +587,8 @@
   color: var(--muted);
   font: 700 9px/1.2 var(--ds-data);
 }
+
+/* Explicit canonical option/weapon bindings, within their normal-book group. */
+.unit-card .ds-option-cost { display: inline-block; margin-left: 8px; color: var(--ink); white-space: nowrap; }
+.unit-card .ds-bound-weapon-ability { padding: 10px; border-left: 2px solid var(--green); background: color-mix(in srgb,var(--green) 7%,transparent); }
+.unit-card .ds-bound-weapon-ability p { margin: 0; }

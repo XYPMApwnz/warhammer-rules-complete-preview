@@ -21,7 +21,8 @@ export function readAppInputs() {
     for (const child of [...(record.qualifierIds||[]),...(record.enhancementCostIds||[])]) ids.add(child);
   }
   const artwork=JSON.parse(fs.readFileSync(new URL('../presentation/unit-images.json',import.meta.url),'utf8'));
-  return {model,records,coreCatalog:createEffectiveCoreCatalog(),artwork};
+  const datasheetBindings=JSON.parse(fs.readFileSync(new URL('./normal-datasheet-bindings.json',import.meta.url),'utf8'));
+  return {model,records,coreCatalog:createEffectiveCoreCatalog(),artwork,datasheetBindings};
 }
 export function buildApp(inputs=readAppInputs()) {
   const payload=projectArmyBook(inputs.model,inputs.records,{title:'Death Guard',edition:'11th Edition'});
@@ -30,7 +31,8 @@ export function buildApp(inputs=readAppInputs()) {
   const glossary=buildGlossaryProjection(inputs.model,inputs.coreCatalog || createEffectiveCoreCatalog());
   payload.cards.push(...glossary.coreCards);
   payload.glossary=glossary.index;
-  payload.datasheetPresentation=buildDatasheetPresentation(inputs.model,inputs.artwork || JSON.parse(fs.readFileSync(new URL('../presentation/unit-images.json',import.meta.url),'utf8')));
+  payload.datasheetPresentation=buildDatasheetPresentation(inputs.model,inputs.artwork || JSON.parse(fs.readFileSync(new URL('../presentation/unit-images.json',import.meta.url),'utf8')),
+    {bindings:inputs.datasheetBindings,records:inputs.records});
   payload.datasheetPresentation.referenceBindings=buildDatasheetReferenceBindings(payload.cards);
   payload.bookPresentation=projectBookPresentation(inputs.model,inputs.records);
   payload.bookPresentation.coverImage='../../../assets/death-guard-cover.jpg';
