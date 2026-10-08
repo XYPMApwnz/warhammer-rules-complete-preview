@@ -91,6 +91,20 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
         }
       };
       for (const role of contract.roles) checkRole(role);
+      const checkRecipientRequirement=(role,participants)=>{
+        for(const key of ['required','optional'])if(role[key]!==undefined&&typeof role[key]!=='boolean')fail('invalid recipient requirement');
+        if(role.required===true&&role.optional===true)fail('conflicting recipient requirement');
+        if(role.required===true&&['TARGET','ANCHOR'].includes(role.purpose)) {
+          const proof=role.evidence;
+          if(!Array.isArray(proof?.field)||!proof.quote||!text(get(entity.data,proof.field))?.includes(proof.quote))fail('recipient requirement without source evidence');
+        }
+        if(role.distinctFromRoleIds!==undefined&&(!Array.isArray(role.distinctFromRoleIds)||!role.distinctFromRoleIds.length||
+          new Set(role.distinctFromRoleIds).size!==role.distinctFromRoleIds.length||role.required!==true||
+          !['UNIT','FORMED_ATTACHED_UNIT'].includes(role.subject)||role.distinctFromRoleIds.some(id=>
+            id===role.id||participants.get(id)?.required!==true||!['UNIT','FORMED_ATTACHED_UNIT'].includes(participants.get(id)?.subject))))
+          fail('unresolved distinct recipient role binding');
+      };
+      for(const role of roles.values())checkRecipientRequirement(role,roles);
       for(const id of contract.compatibilityRoleIds||[])if(!roles.has(id))fail('unresolved compatibility role');
       const checkAttackTargetBinding=(role,participants)=>{
         if (role.binding!=='ATTACK_TARGET') return;
@@ -122,6 +136,13 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
           validateRolePredicate(condition,participant,model,entity);
         }
         for (const role of local.values()) checkAttackTargetBinding(role,new Map([...roles,...local]));
+        for(const role of local.values()) {
+          checkRecipientRequirement(role,new Map([...roles,...local]));
+          const canonical=roles.get(role.id);
+          if(canonical&&([canonical,role].some(value=>value.required===true&&['TARGET','ANCHOR'].includes(value.purpose)||value.distinctFromRoleIds)))
+            for(const key of ['required','optional','distinctFromRoleIds','evidence'])
+              if(JSON.stringify(role[key])!==JSON.stringify(canonical[key]))fail('clause recipient requirement binding drift');
+        }
         for (const path of clause.sourceFields) if (get(entity.data,path)===undefined) fail('unresolved clause source field');
       }
       for (const role of roles.values()) if(role.binding==='ATTACK_TARGET') {

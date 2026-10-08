@@ -81,18 +81,23 @@ const withoutRelation=(node,key)=>{
   return node?.predicate==='FIELD'&&node.arguments?.key===key?node.arguments.equals===false:null;
 };
 const requiresRelation=(node,key)=>withoutRelation(node,key)===false;
+const explicitlyRequired=role=>role.required===true&&['TARGET','ANCHOR'].includes(role.purpose);
 
 /** A secondary target is required; a linked effect recipient must be explicitly
  * separate from/leadable by the actor. Passive beneficiaries and created units
  * are not additional targets that must already exist in the imported roster.
  */
 export function requiredRecipientRoles(contract) {
-  const recipientRoles=[...contract.roles.filter(role=>['SECONDARY_TARGET','EFFECT_RECIPIENT'].includes(role.purpose)),...(contract.clauses||[]).flatMap(clause=>(clause.roles||[]).filter(role=>clause.effectRecipientRoleIds?.includes(role.id)))];
+  const recipientRoles=[...contract.roles.filter(role=>['SECONDARY_TARGET','EFFECT_RECIPIENT'].includes(role.purpose)||
+    explicitlyRequired(role)),
+    ...(contract.clauses||[]).flatMap(clause=>(clause.roles||[]).filter(role=>explicitlyRequired(role)||clause.effectRecipientRoleIds?.includes(role.id)))];
   return [...new Map(recipientRoles.map(role=>[JSON.stringify(role),role])).values()].filter(role=>
-    role.allegiance==='FRIENDLY'&&role.binding==='INDEPENDENT_ENTITY'&&['MODEL','UNIT','FORMED_ATTACHED_UNIT'].includes(role.subject)&&
+    role.allegiance==='FRIENDLY'&&['MODEL','UNIT','FORMED_ATTACHED_UNIT'].includes(role.subject)&&
     role.required!==false&&role.optional!==true&&
-    (role.purpose==='SECONDARY_TARGET'||[role.selector,...(role.conditions||[])].some(node=>
-      requiresRelation(node,'canBeLedByPrimary')||requiresRelation(node,'otherFriendlyUnit'))));
+    (explicitlyRequired(role)||
+      (role.binding==='INDEPENDENT_ENTITY'&&
+        (role.purpose==='SECONDARY_TARGET'||[role.selector,...(role.conditions||[])].some(node=>
+          requiresRelation(node,'canBeLedByPrimary')||requiresRelation(node,'otherFriendlyUnit'))))));
 }
 
 /** Product compatibility includes existence of source-required linked recipients.
@@ -102,21 +107,60 @@ export function evaluateRequiredRecipients(contract,sourceUnitId,candidates,{boo
   const roles=requiredRecipientRoles(contract);
   if(!roles.length)return 'TRUE';
   const targets=staticCapabilities(book,sourceUnitId).leaderTargetIds;
-  let result='TRUE';
-  for(const role of roles) {
-    const states=candidates.map(candidate=>{
+  const byId=new Map(roles.map(role=>[role.id,role]));
+  if(byId.size!==roles.length)throw new TypeError('Conflicting required recipient roles');
+  for(const role of roles)if(role.distinctFromRoleIds!==undefined) {
+    if(!Array.isArray(role.distinctFromRoleIds)||new Set(role.distinctFromRoleIds).size!==role.distinctFromRoleIds.length||
+      !['UNIT','FORMED_ATTACHED_UNIT'].includes(role.subject)||role.distinctFromRoleIds.some(id=>
+        id===role.id||!['UNIT','FORMED_ATTACHED_UNIT'].includes(byId.get(id)?.subject)))
+      throw new TypeError('Unresolved distinct recipient role binding');
+  }
+  const source=candidates.find(candidate=>candidate.instanceId===sourceInstanceId);
+  const unitIdentity=(candidate,context)=>candidate?.formedUnitId||context?.formedUnitId||candidate?.instanceId;
+  const sourceIdentity=sourceInstanceId&&(source?unitIdentity(source,contextFor(source,'UNIT')):sourceInstanceId);
+  const compatibilityIds=contract.compatibilityRoleIds||[contract.roles[0]?.id];
+  const pinSource=roles.some(role=>role.required===true&&compatibilityIds.includes(role.id));
+  const choices=roles.map(role=>{
+    const values=candidates.flatMap(candidate=>{
       const context=contextFor(candidate,role.subject);
-      if(!context)return 'FALSE';
-      return evaluateRole(role,[],{...context,roster:{...context.roster,
+      if(!context)return [];
+      const state=evaluateRole(role,[],{...context,roster:{...context.roster,
         // In book context another physical copy can have the same datasheet.
         // In roster context only the actual physical source is "this unit".
         otherFriendlyUnit:sourceInstanceId?candidate.instanceId!==sourceInstanceId:true,
         canBeLedByPrimary:targets.includes(candidate.canonicalUnitId)}});
+      if(state==='FALSE')return [];
+      // MODEL identity stays profile/component scoped. UNIT cardinality counts
+      // an Attached Unit once, even when several imported components match.
+      const identity=sourceInstanceId?(role.subject==='MODEL'?
+        [candidate.instanceId,context.modelId].join('/') : unitIdentity(candidate,context)):
+        candidate.canonicalUnitId+'/potential-copy/'+role.id;
+      if(!identity)throw new TypeError('Missing physical recipient identity');
+      return [{identity,state,isSource:sourceInstanceId?
+        (role.subject==='MODEL'?candidate.instanceId===sourceInstanceId:identity===sourceIdentity):candidate.canonicalUnitId===sourceUnitId}];
     });
-    if(states.includes('INVALID'))return 'INVALID';
-    if(!states.some(state=>state==='TRUE'||state==='UNKNOWN'))return 'FALSE';
-    if(!states.includes('TRUE'))result='UNKNOWN';
+    return [...new Map(values.map(value=>[JSON.stringify(value),value])).values()];
+  });
+  if(choices.some(values=>values.some(value=>value.state==='INVALID')))return 'INVALID';
+  if(choices.some(values=>!values.length))return 'FALSE';
+  let result='FALSE';
+  const assignment=new Map();
+  function assign(index,unknown,includesSource) {
+    if(index===roles.length) {
+      if(pinSource&&!includesSource)return;
+      result=unknown?'UNKNOWN':'TRUE';return;
+    }
+    const role=roles[index];
+    for(const choice of choices[index]) {
+      if([...assignment].some(([id,value])=>value.identity===choice.identity&&
+        (role.distinctFromRoleIds?.includes(id)||byId.get(id).distinctFromRoleIds?.includes(role.id))))continue;
+      assignment.set(role.id,choice);
+      assign(index+1,unknown||choice.state==='UNKNOWN',includesSource||compatibilityIds.includes(role.id)&&choice.isSource);
+      assignment.delete(role.id);
+      if(result==='TRUE')return;
+    }
   }
+  assign(0,false,false);
   return result;
 }
 

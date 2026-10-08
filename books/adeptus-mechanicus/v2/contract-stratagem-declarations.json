@@ -8133,7 +8133,16 @@
                 "quote": "selected as the target of one or more of the attacking unit’s attacks"
               }
             }
-          ]
+          ],
+          "required": true,
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "and one friendly ADEPTUS MECHANICUS SMOKE unit within 6\" of it"
+          }
         },
         {
           "id": "triggerEnemy",
@@ -8234,7 +8243,16 @@
                 "quote": "within 6\" of it"
               }
             }
-          ]
+          ],
+          "required": true,
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "and one friendly ADEPTUS MECHANICUS SMOKE unit within 6\" of it"
+          }
         }
       ],
       "conditions": [
@@ -8434,7 +8452,16 @@
                     "quote": "selected as the target of one or more of the attacking unit’s attacks"
                   }
                 }
-              ]
+              ],
+              "required": true,
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "and one friendly ADEPTUS MECHANICUS SMOKE unit within 6\" of it"
+              }
             },
             {
               "id": "triggerEnemy",
@@ -8535,7 +8562,16 @@
                     "quote": "within 6\" of it"
                   }
                 }
-              ]
+              ],
+              "required": true,
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "and one friendly ADEPTUS MECHANICUS SMOKE unit within 6\" of it"
+              }
             }
           ],
           "conditions": [],
@@ -8675,7 +8711,16 @@
                 "quote": "Every model in your unit must be within 3\" of that TRANSPORT"
               }
             }
-          ]
+          ],
+          "required": true,
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "and one friendly ADEPTUS MECHANICUS TRANSPORT"
+          }
         },
         {
           "id": "triggerEnemy",
@@ -8776,7 +8821,16 @@
                 "quote": "there must be sufficient transport capacity to embark the entire unit"
               }
             }
-          ]
+          ],
+          "required": true,
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "and one friendly ADEPTUS MECHANICUS TRANSPORT"
+          }
         }
       ],
       "conditions": [
@@ -8985,7 +9039,16 @@
                     "quote": "Every model in your unit must be within 3\" of that TRANSPORT"
                   }
                 }
-              ]
+              ],
+              "required": true,
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "and one friendly ADEPTUS MECHANICUS TRANSPORT"
+              }
             },
             {
               "id": "triggerEnemy",
@@ -9086,7 +9149,16 @@
                     "quote": "there must be sufficient transport capacity to embark the entire unit"
                   }
                 }
-              ]
+              ],
+              "required": true,
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "and one friendly ADEPTUS MECHANICUS TRANSPORT"
+              }
             }
           ],
           "conditions": [],
@@ -9686,7 +9758,16 @@
                 "quote": "not been selected to shoot or fight this phase"
               }
             }
-          ]
+          ],
+          "required": true,
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Two SKITARII units from your army"
+          }
         },
         {
           "id": "secondTarget",
@@ -9744,6 +9825,18 @@
                 "quote": "not been selected to shoot or fight this phase"
               }
             }
+          ],
+          "required": true,
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Two SKITARII units from your army"
+          },
+          "distinctFromRoleIds": [
+            "target"
           ]
         },
         {
@@ -10058,7 +10151,16 @@
                     "quote": "not been selected to shoot or fight this phase"
                   }
                 }
-              ]
+              ],
+              "required": true,
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "Two SKITARII units from your army"
+              }
             },
             {
               "id": "secondTarget",
@@ -10116,6 +10218,18 @@
                     "quote": "not been selected to shoot or fight this phase"
                   }
                 }
+              ],
+              "required": true,
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "Two SKITARII units from your army"
+              },
+              "distinctFromRoleIds": [
+                "target"
               ]
             },
             {
@@ -10220,7 +10334,16 @@
                     "quote": "not been selected to shoot or fight this phase"
                   }
                 }
-              ]
+              ],
+              "required": true,
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "Two SKITARII units from your army"
+              }
             },
             {
               "id": "secondTarget",
@@ -10278,6 +10401,18 @@
                     "quote": "not been selected to shoot or fight this phase"
                   }
                 }
+              ],
+              "required": true,
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "Two SKITARII units from your army"
+              },
+              "distinctFromRoleIds": [
+                "target"
               ]
             },
             {
@@ -18439,7 +18574,16 @@
                 "quote": "is selected to shoot"
               }
             }
-          ]
+          ],
+          "required": true,
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "within 12\" of a friendly RECON AUGURY unit"
+          }
         },
         {
           "id": "reconAnchor",
@@ -18462,7 +18606,16 @@
               "quote": "RECON AUGURY"
             }
           },
-          "conditions": []
+          "conditions": [],
+          "required": true,
+          "evidence": {
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "quote": "within 12\" of a friendly RECON AUGURY unit"
+          }
         },
         {
           "id": "enemyTarget",
@@ -18657,7 +18810,16 @@
                     "quote": "is selected to shoot"
                   }
                 }
-              ]
+              ],
+              "required": true,
+              "evidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "within 12\" of a friendly RECON AUGURY unit"
+              }
             },
             {
               "id": "reconAnchor",
@@ -18680,7 +18842,16 @@
                   "quote": "RECON AUGURY"
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "required": true,
+              "evidence": {
+                "field": [
+                  "lines",
+                  2,
+                  "text"
+                ],
+                "quote": "within 12\" of a friendly RECON AUGURY unit"
+              }
             },
             {
               "id": "enemyTarget",

@@ -241,7 +241,8 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
   else delete roster.isWarlord;
   const abilityNames = (subject==='MODEL'?[model]:members.flatMap(u=>u.profiles)).flatMap(m=>m.abilities.map(a=>a.name));
   if(subject!=='MODEL')abilityNames.push(...((subject==='FORMED_ATTACHED_UNIT'?group.abilities:unit.abilities) || []).map(ability=>ability.name));
-  return {subject,unitId:subject==='MODEL'?unit.canonicalUnitId:group?projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId:unit.canonicalUnitId,
+  return {subject,instanceId:unit.instanceId,formedUnitId:group?.formedUnitId||null,
+    unitId:subject==='MODEL'?unit.canonicalUnitId:group?projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId:unit.canonicalUnitId,
     owner:{unitId:unit.canonicalUnitId,keywords:new Set(subject==='MODEL'?model.keywords:unit.keywords),unknownKeywords:new Set()},
     modelId:model?.canonicalProfileId,intrinsicKeywords:new Set(subject==='MODEL' ? model.intrinsicKeywords || unit.intrinsicKeywords : unit.intrinsicKeywords),keywords:new Set(subject==='MODEL'?model?.keywords:group?group.keywords:unit.keywords),abilities:new Set(abilityNames),roster,battle:{}};
 }
