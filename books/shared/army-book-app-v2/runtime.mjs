@@ -558,6 +558,7 @@ export function mount(document, payload, options = {}) {
     const unit=options.roster.state.units.find(unit=>unit.instanceId===instanceId);
     if (!unit) return null;
     const effective=options.roster.effective(instanceId);
+    if(cards.get(id).kind==='WEAPON_PROFILE'&&!effective.weapons.some(weapon=>weapon.id===id))return new Map([[id,[]]]);
     if (cards.get(id).parentId!==unit.canonicalUnitId && !effective.weapons.some(weapon=>weapon.id===id)) return null;
     return projectInstanceCards(cards,unit,effective);
   }
@@ -673,7 +674,7 @@ export function mount(document, payload, options = {}) {
     personalMode=Boolean(rosterPanel && id!==rosterRoute && rosterId && options.roster.state?.rosterId===rosterId);
     const detail = state?.armyBookV2?.detailId === id && cards.has(id);
     navigationBlocked=Boolean(rosterId&&options.roster?.state?.rosterId!==rosterId);
-    const key = JSON.stringify([id, detail, state?.armyBookV2?.detailScopeId, state?.armyBookV2?.detailFieldPath, personalMode,state?.armyBookV2?.contents,state?.armyBookV2?.backgroundContents, state?.armyBookV2?.instanceId, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
+    const key = JSON.stringify([id, detail, state?.armyBookV2?.detailScopeId, state?.armyBookV2?.detailInstanceId, state?.armyBookV2?.detailFieldPath, personalMode,state?.armyBookV2?.contents,state?.armyBookV2?.backgroundContents, state?.armyBookV2?.instanceId, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
     if (routeKey === key) return;
     routeKey = key;
     if(contents?.controller.state.owner==='controller')contents.controller.cancelTransition();
@@ -696,12 +697,13 @@ export function mount(document, payload, options = {}) {
       // projection as its parent card, not a fresh canonical profile. Rule
       // definitions and Glossary details keep their canonical source path.
       const instanceId=personalMode && state.armyBookV2.backgroundView==='PERSONAL'
-        ? state.armyBookV2.backgroundInstanceId : null;
+        ? state.armyBookV2.detailInstanceId || state.armyBookV2.backgroundInstanceId : null;
       const variants=physicalProfileProjection(id,instanceId);
       const projectedCards=variants?.get(id);
       const effectiveCards=projectedCards?.filter(card=>!state.armyBookV2.detailScopeId || card.scopeId===state.armyBookV2.detailScopeId);
       dialogContent.replaceChildren(...(effectiveCards?.length
         ? effectiveCards.map((card,index)=>renderCard(card,{inDialog:true,variants,instanceId,primaryDetail:index===0}))
+        : projectedCards ? [el('p','v2-not-found','This profile is not available in this roster unit.')]
         : [renderCard(cards.get(id),{inDialog:true})]));
       dialog.dataset.canonicalId=id;
       if (!dialog.open) {
@@ -762,7 +764,7 @@ export function mount(document, payload, options = {}) {
     // a duplicate datasheet title or from the first matching roster copy.
     const owner=personalMode && selectedInstanceId && options.roster.state.units.find(unit=>unit.instanceId===selectedInstanceId);
     const instanceId=owner && (id===owner.canonicalUnitId || physicalProfileProjection(id,owner.instanceId)) ? owner.instanceId : null;
-    const state = {armyBookV2: detail ? {detailId: id, detailScopeId:popupPresentation?.scopeId || null, detailFieldPath:popupPresentation?.fieldPath || null, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, backgroundContents:Boolean(window.history.state?.armyBookV2?.contents||main.querySelector('.v1-contents-pages')&&!personalMode), glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: routeOptions.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):selectedView === 'READER'||selectedView==='PERSONAL' ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, ...(routeOptions.contents?{contents:true}:{}), ...(instanceId?{instanceId}:{}), scrollY: 0}};
+    const state = {armyBookV2: detail ? {detailId: id, detailInstanceId:popupPresentation?.instanceId || null, detailScopeId:popupPresentation?.scopeId || null, detailFieldPath:popupPresentation?.fieldPath || null, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, backgroundContents:Boolean(window.history.state?.armyBookV2?.contents||main.querySelector('.v1-contents-pages')&&!personalMode), glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: routeOptions.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):selectedView === 'READER'||selectedView==='PERSONAL' ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, ...(routeOptions.contents?{contents:true}:{}), ...(instanceId?{instanceId}:{}), scrollY: 0}};
     const destination=new URL(window.location.href);destination.hash=nextHash;
     if (routeOptions.fullBook) destination.searchParams.delete('roster');
     else if (personal||routeOptions.personalBook) destination.searchParams.set('roster',routeOptions.rosterId || optionsRosterId());

@@ -49,7 +49,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const link=el('a','term-button v2-reference',label);link.href='#'+encodeURIComponent(card.id);link.dataset.targetId=card.id;
     link.dataset.popupIdentity=JSON.stringify([card.id,instanceId || null,card.scopeId || null]);
     if(card.scopeId)link.dataset.compositionId=card.scopeId;
-    link.addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();showDetail(card.id,{scopeId:card.scopeId || null,fieldPath:fieldPath || null});});
+    link.addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();showDetail(card.id,{instanceId:instanceId || null,scopeId:card.scopeId || null,fieldPath:fieldPath || null});});
     return link;
   };
   const heading=(card,tag='h4')=>{const field=card.fields.find(f=>f.presentation==='heading');return field?factValue(tag,field):el(tag,'',card.title);};
@@ -252,9 +252,13 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     for(const child of children.filter(c=>c.kind==='WEAPON_PROFILE_SELECTION')){
       const instruction=identity(el('aside','ds-profile-selection'),child,instanceId);instruction.append(factValue('p',single(child,'text')));
+      const caption=scopeCaption(child);if(caption)instruction.prepend(el('small','ds-composition-scope',caption));
       for(const field of child.fields.filter(f=>/\/(?:profileIds|weaponProfileIds)\/\d+$/.test(f.source.path))){
         // The binding is an explicit canonical reference, not a title join.
-        const link=anchor('',field.targetIds[0],true);link.append(factValue('span',field));instruction.append(link,document.createTextNode(' · '));
+        const target=instanceId?variants?.get(field.targetIds[0])?.find(weapon=>(weapon.scopeId||null)===(child.scopeId||null)):null;
+        if(instanceId&&!target)throw new TypeError('Unresolved effective weapon selection');
+        const link=target?scopedAnchor('',target,instanceId):anchor('',field.targetIds[0],true);
+        link.append(factValue('span',field));instruction.append(link,document.createTextNode(' · '));
       }profile.append(instruction);
     }
     const abilityList=el('div','ability-list');abilities.append(abilityList);

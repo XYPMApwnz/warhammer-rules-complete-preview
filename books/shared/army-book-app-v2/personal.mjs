@@ -110,6 +110,32 @@ export function projectInstanceCards(cards, unit, effective) {
       if(kind==='WEAPON_PROFILE' && !root.children.includes(record.id))root.children.push(record.id);
     }
   }
+  // Selection instructions are canonical options in book mode. Personal views
+  // retain only references present in this exact effective inventory/scope.
+  for(const id of root.children) {
+    const selection=cards.get(id);if(selection?.kind!=='WEAPON_PROFILE_SELECTION')continue;
+    const references=selection.fields.filter(field=>field.targetIds?.some(target=>cards.get(target)?.kind==='WEAPON_PROFILE'));
+    const referenceIds=new Set(references.map(field=>field.id));
+    const scopes=[...new Set(effective.weapons.filter(weapon=>references.some(field=>field.targetIds.includes(weapon.id)))
+      .map(weapon=>weapon.scopeId||null))];
+    variants.set(id,scopes.map(scope=>{
+      const inventory=new Set(effective.weapons.filter(weapon=>(weapon.scopeId||null)===scope).map(weapon=>weapon.id));
+      const included=references.filter(field=>field.targetIds.some(target=>inventory.has(target)));
+      const includedIds=new Set(included.map(field=>field.id));
+      const groups=new Set(included.map(field=>field.source.path.replace(/\/(?:weaponProfileIds|profileIds)\/\d+$/,'')));
+      const indices=new Set(included.map(field=>field.source.path.replace(/\/(?:weaponProfileIds|profileIds)\//,'/sourceProfileLabels/')));
+      const projected=annotate(selection,scope);
+      if(scopeCaptions.has(scope))projected.presentationScope=clone(scopeCaptions.get(scope));
+      projected.fields=projected.fields.filter(field=>{
+        if(referenceIds.has(field.id))return includedIds.has(field.id);
+        const group=field.source?.path?.match(/^(\/(?:groups|profileGroups)\/\d+)(?:\/|$)/)?.[1];
+        if(group&&!groups.has(group))return false;
+        if(/\/sourceProfileLabels\/\d+$/.test(field.source?.path||''))return indices.has(field.source.path);
+        return true;
+      });
+      return projected;
+    }));
+  }
   const selections=[...(unit.selections || []),...unit.modelRows.flatMap(row=>[...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])];
   const selectedEquipment=new Set(selections.filter(selection=>selection.physicalQuantity>0).flatMap(selection=>selection.canonicalEquipmentIds));
   const selectedSourceFields=new Set(selections.filter(selection=>selection.physicalQuantity>0)
