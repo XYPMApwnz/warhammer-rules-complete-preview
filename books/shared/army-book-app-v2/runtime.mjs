@@ -621,7 +621,7 @@ export function mount(document, payload, options = {}) {
     const results = el('ul', 'v2-compatible-list v2-glossary-results');
     const renderResults = () => {
       const allowed=scopedIds();
-      const matches = searchGlossary(payload.glossary, glossaryQuery).filter(entry=>!allowed || allowed.has(entry.targetId) || cards.get(entry.targetId)?.kind==='CORE_RULE');
+      const matches = searchGlossary(payload.glossary, glossaryQuery).filter(entry=>!allowed || allowed.has(entry.targetId) || cards.get(entry.targetId)?.domain==='CORE');
       status.textContent = `${matches.length} ${matches.length === 1 ? 'entry' : 'entries'} found`;
       results.replaceChildren();
       for (const entry of matches) {

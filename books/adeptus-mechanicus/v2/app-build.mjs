@@ -77,6 +77,7 @@ export function buildApp(inputs=readAppInputs()) {
   payload.datasheetPresentation=buildDatasheetPresentation(model,inputs.artwork);
   const reference=buildPresentationReferences({model,cards:payload.cards,coreCatalog:inputs.coreCatalog});
   payload.cards.push(...reference.coreCards);payload.datasheetPresentation.referenceBindings=reference.referenceBindings;
+  payload.glossary=reference.glossaryIndex;
   payload.bookPresentation=projectBookPresentation(view,records);
   payload.bookPresentation.records['book-introduction']={id:'book-introduction',kind:'BOOK_USAGE',provenance:model.entities.find(entity=>entity.id==='book-introduction').provenance};
   payload.relatedRules=buildRelatedRules(model,inputs.evaluator);
