@@ -16,6 +16,10 @@ for(const [book,read,build,count]of [['death-guard',readDG,buildDG,36],['adeptus
   const original=JSON.parse(execFileSync('git',['show',`${baseline}:books/${book}/v2/generated/app-presentation.json`],{cwd:root,maxBuffer:20e6}));
   const unchanged=JSON.parse(JSON.stringify(payload));delete unchanged.datasheetPresentation.normal;
   delete unchanged.datasheetPresentation.compositionMembers;
+  // Personal ability placement adds typed metadata to existing canonical spans;
+  // normal source fields, identities and all original span bindings stay exact.
+  for(const bindings of Object.values(unchanged.datasheetPresentation.referenceBindings.fields))
+    for(const binding of bindings)for(const key of ['group','parameters','runtimeEntryId','legacyValue'])delete binding[key];
   assert.deepEqual(unchanged,original,'Canonical presentation/factual projection changed');
   assert.deepEqual(build(inputs),payload,'Nondeterministic normal projection');
   const units=payload.cards.filter(card=>card.kind==='DATASHEET');assert.equal(units.length,count);

@@ -3,16 +3,16 @@
 export const DATASHEET_REFERENCE_BINDINGS_SCHEMA = 'army-book-app-v2/datasheet-reference-bindings/v1';
 
 const formalReferences = Object.freeze([
-  Object.freeze({group: 'CORE ABILITIES', label: 'Deadly Demise 1', targetId: 'core-deadly-demise', targetKind: 'CORE_MAIN_RULE'}),
-  Object.freeze({group: 'CORE ABILITIES', label: 'Deadly Demise D3', targetId: 'core-deadly-demise', targetKind: 'CORE_MAIN_RULE'}),
-  Object.freeze({group: 'CORE ABILITIES', label: 'Deadly Demise D6', targetId: 'core-deadly-demise', targetKind: 'CORE_MAIN_RULE'}),
+  Object.freeze({group: 'CORE ABILITIES', label: 'Deadly Demise 1', targetId: 'core-deadly-demise', targetKind: 'CORE_MAIN_RULE', parameters:{value:1}}),
+  Object.freeze({group: 'CORE ABILITIES', label: 'Deadly Demise D3', targetId: 'core-deadly-demise', targetKind: 'CORE_MAIN_RULE', parameters:{value:'D3'}}),
+  Object.freeze({group: 'CORE ABILITIES', label: 'Deadly Demise D6', targetId: 'core-deadly-demise', targetKind: 'CORE_MAIN_RULE', parameters:{value:'D6'}}),
   Object.freeze({group: 'CORE ABILITIES', label: 'Deep Strike', targetId: 'core-deep-strike', targetKind: 'CORE_MAIN_RULE'}),
-  Object.freeze({group: 'CORE ABILITIES', label: 'Feel No Pain 5+', targetId: 'core-feel-no-pain', targetKind: 'CORE_MAIN_RULE'}),
-  Object.freeze({group: 'CORE ABILITIES', label: 'Feel No Pain 6+', targetId: 'core-feel-no-pain', targetKind: 'CORE_MAIN_RULE'}),
-  Object.freeze({group: 'CORE ABILITIES', label: 'Firing Deck 2', targetId: 'core-firing-deck', targetKind: 'CORE_MAIN_RULE'}),
+  Object.freeze({group: 'CORE ABILITIES', label: 'Feel No Pain 5+', targetId: 'core-feel-no-pain', targetKind: 'CORE_MAIN_RULE', parameters:{value:5},legacyValue:true}),
+  Object.freeze({group: 'CORE ABILITIES', label: 'Feel No Pain 6+', targetId: 'core-feel-no-pain', targetKind: 'CORE_MAIN_RULE', parameters:{value:6},legacyValue:true}),
+  Object.freeze({group: 'CORE ABILITIES', label: 'Firing Deck 2', targetId: 'core-firing-deck', targetKind: 'CORE_MAIN_RULE', parameters:{value:2}}),
   Object.freeze({group: 'CORE ABILITIES', label: 'Infiltrators', targetId: 'core-infiltrators', targetKind: 'CORE_MAIN_RULE'}),
   Object.freeze({group: 'CORE ABILITIES', label: 'Leader', targetId: 'core-leader', targetKind: 'CORE_MAIN_RULE'}),
-  Object.freeze({group: 'CORE ABILITIES', label: 'Scouts 6"', targetId: 'core-scouts', targetKind: 'CORE_MAIN_RULE'}),
+  Object.freeze({group: 'CORE ABILITIES', label: 'Scouts 6"', targetId: 'core-scouts', targetKind: 'CORE_MAIN_RULE', parameters:{distance:6}}),
   Object.freeze({group: 'ARMY RULES', label: 'Nurgle’s Gift (Aura)', targetId: 'army-rule-nurgles-gift', targetKind: 'ARMY_RULE'}),
   Object.freeze({group: 'ARMY RULES', label: 'Pact of Decay', targetId: 'army-rule-pact-of-decay', targetKind: 'ARMY_RULE'})
 ]);
@@ -65,7 +65,9 @@ export function buildDatasheetReferenceBindings(cards) {
       for (const token of tokenSpans(field.value, field.id)) {
         const reference = expected.get(`${token.group}\u0000${token.label}`);
         if (!reference) throw new Error(`Unsupported formal rule reference: ${field.id}/${token.group}/${token.label}`);
-        bindings.push({start: token.start, end: token.end, targetId: reference.targetId});
+        const parameters=reference.parameters||{};
+        bindings.push({start: token.start, end: token.end, targetId: reference.targetId,
+          group:reference.group,parameters,...(reference.legacyValue?{legacyValue:true}:{})});
         const key = referenceKey(reference);
         boundCounts.set(key, boundCounts.get(key) + 1);
       }

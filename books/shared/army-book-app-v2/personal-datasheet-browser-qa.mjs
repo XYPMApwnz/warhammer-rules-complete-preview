@@ -136,6 +136,13 @@ async function verifyState(page,army,device,state,label,{load=true,screenshots=f
     const observed=await page.locator('main .unit-card').evaluate(root=>({
       text:root.innerText,instanceId:root.dataset.rosterInstanceId,
       profiles:[...root.querySelectorAll('.model-profile')].map(node=>({id:node.dataset.cardId,scope:node.dataset.compositionId||null,text:node.innerText})),
+      abilityLocations:[...root.querySelectorAll('[data-ability-presentation-identity]')].map(node=>({
+        identity:node.dataset.abilityPresentationIdentity,id:node.dataset.canonicalAbilityId,
+        parameters:JSON.parse(node.dataset.abilityParameters),subject:node.dataset.recipientSubject,
+        scopes:JSON.parse(node.dataset.recipientScopes),text:node.innerText,
+        surface:node.closest('.model-profile')?'PROFILE':'CORE',
+        profile:node.closest('.model-profile')?.dataset.cardId,
+        caption:node.closest('.model-profile')?.querySelector('h5')?.textContent})),
       weapons:[...root.querySelectorAll('.weapon-row:not(.weapon-head)')].map(node=>({id:node.dataset.cardId,scope:node.dataset.compositionId||null,text:node.innerText})),
       sections:[...root.querySelectorAll('[data-datasheet-section]')].map(node=>node.dataset.datasheetSection),
       composition:[...root.querySelectorAll('.ds-composition-members li')].map(node=>node.textContent),
@@ -149,6 +156,24 @@ async function verifyState(page,army,device,state,label,{load=true,screenshots=f
     assert.equal(observed.instanceId,unit.instanceId,description+' wrong physical instance');
     assert.doesNotMatch(observed.text,/Active roster effects|Effective unit keywords|SUPPORT_EXCEPTION|parsed-unit-\d|\bCURRENT\b/,description+' debug content');
     assert.equal(observed.overflow,false,description+' overflow');
+    assert.equal(new Set(observed.abilityLocations.map(ability=>ability.identity)).size,observed.abilityLocations.length,description+' duplicate semantic ability');
+    const effectiveScopes=new Set(effective.profiles.map(profile=>JSON.stringify([unit.instanceId,profile.id,profile.scopeId||null])));
+    for(const ability of observed.abilityLocations){
+      if(ability.subject==='MODEL')assert.ok(ability.scopes.every(scope=>effectiveScopes.has(scope)),description+' foreign MODEL recipient');
+      else assert.deepEqual(ability.scopes,[JSON.stringify([unit.instanceId,'UNIT'])],description+' foreign UNIT recipient');
+      if(ability.surface==='PROFILE'){assert.ok(ability.caption,description+' unlabeled profile-specific ability');assert.equal(ability.scopes.length,1);}
+    }
+    if(army==='death-guard'&&['unit-chaos-spawn','unit-great-unclean-one','unit-mortarion','unit-poxwalkers','unit-rotigus'].includes(unit.canonicalUnitId)){
+      const values=[...new Set(effective.profiles.flatMap(profile=>profile.abilities.filter(ability=>ability.value!==undefined).map(ability=>ability.value)))];
+      const rows=observed.abilityLocations.filter(ability=>ability.id==='core-feel-no-pain');
+      assert.deepEqual(rows.map(row=>row.parameters.value).sort(),values.sort(),description+' intrinsic FNP duplicated/lost');
+      assert.ok(rows.every(row=>row.surface==='CORE'),description+' all-model FNP must use Core');
+    }
+    if(army==='adeptus-mechanicus'&&unit.canonicalUnitId==='unit-skitarii-rangers'){
+      const rows=observed.abilityLocations.filter(ability=>ability.id==='core-scouts'&&ability.parameters.distance===6);
+      assert.equal(rows.length,1,description+' Scouts 6 must render once, including identical Enhancement grant');
+      assert.equal(rows[0].surface,'CORE');
+    }
     assert.equal(observed.arsenalBases,0,description+' Base interrupts Weapons');
     assert.ok(observed.bases.every(base=>base.section==='composition'&&base.details),description+' Base must be optional model metadata');
     const key=record=>JSON.stringify([record.id,record.scopeId||null]);
@@ -224,7 +249,7 @@ try{
     if(army==='death-guard'){
       await page.evaluate(()=>window.ArmyBookAppV2.openInstance('parsed-unit-1'));await settle(page);const before=await snapshot(page);
       await page.evaluate(()=>{window.ArmyBookAppV2.roster.detach('parsed-unit-1');window.ArmyBookAppV2.openInstance('parsed-unit-1');});await settle(page);
-      const detached=await page.locator('main .unit-card').evaluate(root=>({abilities:[...root.querySelectorAll('.model-profile .ds-granted-ability')].map(node=>node.textContent),tags:[...root.querySelectorAll('.weapon-tags')].map(node=>node.textContent)}));
+      const detached=await page.locator('main .unit-card').evaluate(root=>({abilities:[...root.querySelectorAll('[data-ability-presentation-identity]')].map(node=>node.textContent),tags:[...root.querySelectorAll('.weapon-tags')].map(node=>node.textContent)}));
       assert.ok(detached.abilities.every(text=>!/Feel\s+No\s+Pain\s+4\+/i.test(text)));assert.ok(detached.tags.every(text=>!/SUSTAINED HITS 1|LANCE/.test(text)));
       await page.evaluate(()=>{window.ArmyBookAppV2.roster.attach('parsed-unit-1','parsed-unit-2');window.ArmyBookAppV2.openInstance('parsed-unit-1');});await settle(page);
       assert.deepEqual(await snapshot(page),before,device+' detach/re-attach must restore exact effective presentation');

@@ -97,6 +97,7 @@ export function projectInstanceCards(cards, unit, effective) {
         contextId:base.contextId,source:{entityId:base.id,path:`/${key}/${index}`},runtimeDerived:true}));
     }
     if (source==='PROFILE') {
+      card.effectiveAbilities=clone(record.abilities||[]);
       // Intrinsic reference memberships already have their canonical location.
       // Only granted abilities add a new effective presentation row.
       card.rosterAbilities=clone((record.abilities || []).filter(ability=>ability.canonicalId || ability.value!==undefined));card.rosterMetrics=clone(record.metrics || {});card.rosterQuantity=record.quantity;

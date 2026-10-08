@@ -1,5 +1,6 @@
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
 import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
+import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
 const sectionRoles = new Map([
   ['ABILITIES','abilities'],['WARGEAR ABILITIES','wargear-abilities'],
   ['UNIT COMPOSITION','composition'],['WARGEAR OPTIONS','wargear'],
@@ -81,7 +82,17 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const node=el('small','ds-modifier-breakdown',text);node.dataset.rosterBaseValue=String(base);node.dataset.rosterModifier=String(changes.reduce((a,b)=>a+b,0));
     node.dataset.ruleIds=JSON.stringify(trace.map(change=>change.ruleId));return node;
   };
-  const renderProfile=(card,{instanceId,inDialog=false}={})=>{
+  const effectiveAbilityNode=ability=>{
+    const node=el('span','ds-effective-ability');
+    node.dataset.abilityPresentationIdentity=ability.identity;
+    node.dataset.canonicalAbilityId=ability.canonicalId;
+    node.dataset.abilityParameters=JSON.stringify(ability.parameters);
+    node.dataset.recipientSubject=ability.subject;
+    node.dataset.recipientScopes=JSON.stringify(ability.recipientScopes);
+    node.append(anchor(abilityPresentationLabel({...ability,title:cards.get(ability.canonicalId)?.title}),ability.canonicalId,true));
+    return node;
+  };
+  const renderProfile=(card,{instanceId,inDialog=false,abilityPresentation}={})=>{
     const box=identity(el('div','model-profile'),card,instanceId),used=new Set();
     const caption=scopeCaption(card);if(caption)box.append(el('h5','ds-composition-scope',caption));
     const titleField=card.fields.find(f=>f.presentation==='heading');if(titleField){box.append(factValue('h5',titleField));used.add(titleField.id);}
@@ -92,7 +103,10 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const change=modifiers(card,field,instanceId);if(change)stat.append(change);line.append(stat);used.add(field.id);
     }
     box.append(line);
-    for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterAbilities/'))){const pill=el('div','ds-granted-ability');if(field.value?.value!==undefined)pill.append(el('b','',field.label.replace(/:\s*$/,'')+' '));pill.append(factValue('span',field));box.append(pill);used.add(field.id);}
+    if(abilityPresentation){
+      if(abilityPresentation.length&&!caption&&!titleField)box.prepend(el('h5','ds-composition-scope',single(card,'name')?.value||cards.get(card.parentId).title));
+      for(const ability of abilityPresentation){const pill=el('div','ds-granted-ability');pill.append(effectiveAbilityNode(ability));box.append(pill);}
+    }else for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterAbilities/'))){const pill=el('div','ds-granted-ability');if(field.value?.value!==undefined)pill.append(el('b','',field.label.replace(/:\s*$/,'')+' '));pill.append(factValue('span',field));box.append(pill);used.add(field.id);}
     for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterMetrics/'))){
       const metric=el('p','ds-effective-metric');metric.append(el('b','',field.label+': '),factValue('span',field));box.append(metric);
     }
@@ -220,6 +234,12 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
   const renderDatasheet=(card,{variants=null,instanceId=null,inDialog=false}={})=>{
     const root=identity(el('article','unit-card surface v2-card v2-kind-DATASHEET'),card,instanceId),used=new Set();
     const children=(card.children || []).flatMap(id=>variants?.get(id) || [cards.get(id)]);
+    const abilityPresentation=instanceId?projectAbilityPresentation({instanceId,
+      profiles:children.filter(child=>child.kind==='PROFILE').map(child=>({id:child.id,scopeId:child.scopeId,
+        quantity:child.rosterQuantity,abilities:child.effectiveAbilities||child.rosterAbilities||[]})),
+      unitAbilities:card.rosterUnitAbilities||[],
+      references:collectAbilityReferences(children.filter(child=>child.kind==='RULE_REFERENCE'),config.referenceBindings),
+      applied:roster.effective(instanceId).applied||[]}):null;
     const normal=selectsNormalDatasheetBindings(config,instanceId);
     const canonicalSelections=config.normal?.profileSelections.filter(binding=>binding.unitId===card.id)||[];
     const selections=instanceId?canonicalSelections.flatMap(binding=>{
@@ -285,7 +305,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const part=(role,label)=>{const section=el('section','unit-part');section.dataset.datasheetSection=role;section.id='ds-'+domKey(JSON.stringify([card.id,instanceId,role]));section.append(el('h4','',label));return section;};
     const profile=part('profile','Profile & Weapons'),abilities=part('abilities','Abilities'),baseMetadata=[];
     for(const child of children.filter(c=>c.kind==='PROFILE')){
-      const view=renderProfile(child,{instanceId,inDialog}),bases=[...view.querySelectorAll('.profile-base')];profile.append(view);
+      const planned=abilityPresentation?.profiles.find(item=>item.id===child.id&&item.scopeId===(child.scopeId||null));
+      const view=renderProfile(child,{instanceId,inDialog,abilityPresentation:planned?.abilities}),bases=[...view.querySelectorAll('.profile-base')];profile.append(view);
       for(const base of bases){
         if(instanceId||normal?.basePlacement==='composition'||config.basePlacement==='composition'){base.remove();baseMetadata.push(base);}
         else{const note=el('div','ds-base-note');note.append(base);profile.append(note);}
@@ -326,12 +347,28 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       }profile.append(instruction);
     }
     const abilityList=el('div','ability-list');abilities.append(abilityList);
-    for(const ability of card.rosterUnitAbilities||[]) {
+    if(abilityPresentation){
+      const shared=el('div','ability shared-abilities');
+      if(abilityPresentation.core.length){
+        const group=el('span','ability ds-shared-rule-group');group.append(el('strong','ds-rule-reference-label','Core Abilities'));
+        abilityPresentation.core.forEach((ability,index)=>{if(index)group.append(document.createTextNode(', '));group.append(effectiveAbilityNode(ability));});shared.append(group);
+      }
+      const groups=new Map();
+      for(const reference of abilityPresentation.otherReferences){
+        if(!groups.has(reference.group)){
+          const group=el('span','ability ds-shared-rule-group');group.append(el('strong','ds-rule-reference-label',reference.group==='ARMY RULES'?'Army Rules':reference.group));
+          groups.set(reference.group,group);shared.append(group);
+        }
+        const group=groups.get(reference.group);if(group.childElementCount>1)group.append(document.createTextNode(', '));
+        group.append(anchor(reference.label,reference.canonicalId,true));
+      }
+      if(shared.childElementCount)abilityList.append(shared);
+    }else for(const ability of card.rosterUnitAbilities||[]) {
       const grant=el('div','ability ds-granted-ability');
       const label=ability.name+Object.values(ability.parameters||{}).map(value=>` ${value}"`).join('');
       grant.append(anchor(label,ability.canonicalId,true));abilityList.append(grant);
     }
-    for(const child of children.filter(c=>c.kind==='RULE_REFERENCE'))abilityList.append(renderRuleReference(child,instanceId));
+    if(!abilityPresentation)for(const child of children.filter(c=>c.kind==='RULE_REFERENCE'))abilityList.append(renderRuleReference(child,instanceId));
     const rendered=new Set(children.filter(c=>['PROFILE','WEAPON_PROFILE','WEAPON_PROFILE_SELECTION','RULE_REFERENCE','MFM_UNIT_POINTS'].includes(c.kind)).map(c=>c.id));
     for(const child of children.filter(c=>config.sectionRoles[c.id]==='abilities')){
       const section=renderSection(child,{instanceId,inDialog}),items=[...section.querySelector('.ability-list').children];

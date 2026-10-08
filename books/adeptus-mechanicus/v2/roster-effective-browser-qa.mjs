@@ -86,6 +86,14 @@ try{
       assert.equal(found,present,`${device} visible weapon ability ${id}/${name}`);}checks++;}};
   const natural=async(id,pattern,present=true)=>{for(const observed of await surfaces(id)){
     assert.equal(observed.some(row=>pattern.test(row.text)),present,`${device} missing normal presentation ${id}: ${pattern}`);checks++;}};
+  const modelAbility=async(id,canonicalId,parameters,pattern,present=true)=>{
+    const rows=await page.locator('main [data-ability-presentation-identity]').evaluateAll((nodes,{id,canonicalId,parameters})=>nodes.filter(node=>
+      node.dataset.canonicalAbilityId===canonicalId&&JSON.stringify(JSON.parse(node.dataset.abilityParameters))===JSON.stringify(parameters)&&
+      JSON.parse(node.dataset.recipientScopes).some(scope=>JSON.parse(scope)[1]===id)).map(node=>node.innerText),{id,canonicalId,parameters});
+    assert.equal(rows.length,present?1:0,`${device} exact MODEL ability ${id}/${canonicalId} must render once`);
+    if(present)assert.match(rows[0],pattern);checks++;
+    const popup=(await surfaces(id)).at(-1);assert.equal(popup.some(row=>pattern.test(row.text)),present,`${device} popup MODEL ability ${id}/${canonicalId}`);checks++;
+  };
   const usable=async()=>{
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,`${device} horizontal overflow`);
     assert.doesNotMatch(await page.locator('main').innerText(),/parsed-unit-|SUPPORT_EXCEPTION|targetUnitReferenceIds|\bCURRENT\b/);checks++;
@@ -106,7 +114,7 @@ try{
   await field('datasheet-tech-priest-dominus:weapon:5','/skill','2+');
   await field('datasheet-tech-priest-dominus:weapon:6','/skill','2+');
   await ability('datasheet-tech-priest-dominus:weapon:5','HEAVY');await ability('datasheet-tech-priest-dominus:weapon:5','ASSAULT');
-  await natural('datasheet-tech-priest-dominus:profile:default',/Feel No Pain\s*:?\s*5\+/i);await usable();
+  await modelAbility('datasheet-tech-priest-dominus:profile:default','core-feel-no-pain',{value:5},/Feel No Pain\s*:?\s*5\+/i);await usable();
   await open('parsed-unit-2');await field('datasheet-servitor-battleclade:weapon:1','/skill','3+');await usable();
   if(screenshots)await page.screenshot({path:path.join(screenshots,`admech-effective-${device}-imported-servitors.png`),fullPage:true});
 
@@ -141,13 +149,13 @@ try{
   for(const key of ['range','attacks','skill','strength','ap','damage'])await field(contributed,'/'+key,records.get(contributed).data[key]);
   await open('duplicate');assert.equal((await inspect(contributed)).length,0,'Canonical weapon leaked to duplicate');checks++;
   await open('body');assert.equal((await inspect(contributed)).length,0,'Canonical weapon leaked through attachment');checks++;
-  await natural('datasheet-servitor-battleclade:profile:servitor-underseer',/Feel No Pain\s*:?\s*5\+/i);
-  await natural('datasheet-servitor-battleclade:profile:combat-and-gun-servitors',/Feel No Pain\s*:?\s*5\+/i);
+  await modelAbility('datasheet-servitor-battleclade:profile:servitor-underseer','core-feel-no-pain',{value:5},/Feel No Pain\s*:?\s*5\+/i);
+  await modelAbility('datasheet-servitor-battleclade:profile:combat-and-gun-servitors','core-feel-no-pain',{value:5},/Feel No Pain\s*:?\s*5\+/i);
   // Dominus grants FNP to the whole led unit; detach leaves only the global
   // TECH-PRIEST Underseer grant, making profile isolation observable.
   await detach('owner');await open('body');
-  await natural('datasheet-servitor-battleclade:profile:servitor-underseer',/Feel No Pain\s*:?\s*5\+/i);
-  await natural('datasheet-servitor-battleclade:profile:combat-and-gun-servitors',/Feel No Pain\s*:?\s*5\+/i,false);
+  await modelAbility('datasheet-servitor-battleclade:profile:servitor-underseer','core-feel-no-pain',{value:5},/Feel No Pain\s*:?\s*5\+/i);
+  await modelAbility('datasheet-servitor-battleclade:profile:combat-and-gun-servitors','core-feel-no-pain',{value:5},/Feel No Pain\s*:?\s*5\+/i,false);
   await field('datasheet-servitor-battleclade:profile:servitor-underseer','/INSV','4+');
   await natural('datasheet-servitor-battleclade:profile:combat-and-gun-servitors',/INV\s*6\+/i);
   if(screenshots)await page.screenshot({path:path.join(screenshots,`admech-effective-${device}-mixed-profiles.png`),fullPage:true});
@@ -159,8 +167,8 @@ try{
   const hunter='detachment-skitarii-hunter-cohort';
   await load(snapshot([unit('owner','skitarii-marshal',[hunter+':enhancement:2']),unit('body','skitarii-vanguard'),unit('duplicate','skitarii-vanguard')],[hunter]));
   await attach('owner','body');await open('body');
-  await natural('datasheet-skitarii-vanguard:profile:default',/Scouts\s*6"/i);await natural('datasheet-skitarii-vanguard:profile:default',/Infiltrators/i);
-  await open('duplicate');await natural('datasheet-skitarii-vanguard:profile:default',/Scouts\s*6"/i,false);
+  await modelAbility('datasheet-skitarii-vanguard:profile:default','core-scouts',{distance:6},/Scouts\s*6"/i);await modelAbility('datasheet-skitarii-vanguard:profile:default','core-infiltrators',{},/Infiltrators/i);
+  await open('duplicate');await modelAbility('datasheet-skitarii-vanguard:profile:default','core-scouts',{distance:6},/Scouts\s*6"/i,false);
   const acquisitus='detachment-cohort-acquisitus';
   await load(snapshot([unit('owner','serberys-raiders',[acquisitus+':enhancement:2']),unit('duplicate','serberys-raiders')],[acquisitus]));
   await open('owner');assert.match(await page.locator('main').innerText(),/Lone Operative\s*15"/i);checks++;
