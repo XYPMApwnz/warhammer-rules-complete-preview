@@ -45,7 +45,8 @@ const pointerKey=field=>layoutPath(field)?.slice(1).split('/')[0];
 const single=(card,key)=>card.fields.find(f=>layoutPath(f)==='/'+key);
 const domKey=value=>encodeURIComponent(value).replace(/%/g,'_');
 
-export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,related,roster,navigateSection}) {
+export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,related,roster,navigateSection}) {
+  const listen=(node,type,callback)=>lifecycle?lifecycle.listen(node,type,callback):node.addEventListener(type,callback);
   const config=payload.datasheetPresentation;
   const boundFields=new Map([...cards.values()].flatMap(card=>card.fields.map(field=>[field.id,field])));
   if (config?.schema!=='army-book-app-v2/datasheet-layout') throw new TypeError('Missing V2 datasheet layout metadata');
@@ -455,7 +456,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       fields.forEach((field,index)=>{if(index)line.append(document.createTextNode(', '));line.append(factValue('span',field));});keywords.append(line);
     }root.append(keywords);
     const sections=[...root.children].filter(n=>n.classList.contains('unit-part'));
-    for(const section of sections){const tab=el('button','local-tab',section.querySelector('h4')?.textContent || 'Section');tab.type='button';tab.dataset.datasheetTarget=section.id;tab.addEventListener('click',()=>{if(inDialog)section.scrollIntoView({block:'start'});else navigateSection(card.id,section,nav,instanceId);});nav.append(tab);}
+    for(const section of sections){const tab=el('button','local-tab',section.querySelector('h4')?.textContent || 'Section');tab.type='button';tab.dataset.datasheetTarget=section.id;listen(tab,'click',()=>{if(inDialog)section.scrollIntoView({block:'start'});else navigateSection(card.id,section,nav,instanceId);});nav.append(tab);}
     if(instanceId){const u=roster.state.units.find(u=>u.instanceId===instanceId),context=el('div','ds-roster-context');
       const assigned=roster.state.attachments.find(a=>a.leaderInstanceId===instanceId),members=roster.state.attachments.filter(a=>a.bodyguardInstanceId===instanceId);
       const name=id=>{const unit=roster.state.units.find(u=>u.instanceId===id),copies=roster.state.units.filter(u=>u.canonicalUnitId===unit.canonicalUnitId);return cards.get(unit.canonicalUnitId).title+(copies.length>1?` #${copies.findIndex(u=>u.instanceId===id)+1}`:'');};

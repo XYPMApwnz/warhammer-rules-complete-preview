@@ -3,26 +3,61 @@
  * Only construction, V2 identity/mount/history and DOM target resolution are adapted.
  * Accordion, viewport/focus, geometry/scroll ownership, cancellation and settlement
  * algorithms are retained. No V1 factual or roster projection is imported. */
+import {createLifecycle} from './lifecycle.mjs';
+
 export class NavigationController{
     constructor(adapter){
       this.adapter=adapter;
+      this.lifecycle=createLifecycle(window);this.destroyed=false;this.restorations=[];this.savedAttributes=new Map();
       this.breakpoint=800;this.resizeCleanupBreakpoint=800;this.trackingGap=18;this.epsilon=1;
       Object.assign(this,adapter.elements);
+      this.attributeRoots=[this.panel,this.main,this.header,this.scrim,this.menuButton,this.collapseButton];
       this.rosterNavigation={active:false,items:[]};
       this.mobile=window.innerWidth<=this.breakpoint;this.viewportWidth=window.innerWidth;
       this.state={owner:'reader',active:'',instance:'',drawer:false,collapsed:false,transition:0};
       this.frames={reader:0,geometry:0,hash:0};this.geometry={headerBottom:0,ranges:[]};
       this.activeButtons=new Set();this.supportsInert='inert'in HTMLElement.prototype;
       this.highlighter=adapter.highlighter;
+      for(const name of ['nav-drawer-open','nav-collapsed']){const present=document.body.classList.contains(name);this.restorations.push(()=>document.body.classList.toggle(name,present));}
+      const style=document.documentElement.style,headerBottom=style.getPropertyValue('--app-header-bottom'),priority=style.getPropertyPriority('--app-header-bottom');
+      this.restorations.push(()=>{if(headerBottom)style.setProperty('--app-header-bottom',headerBottom,priority);else style.removeProperty('--app-header-bottom');});
+      for(const element of [this.panel,this.main,this.scrim,this.menuButton,this.collapseButton])for(const attribute of ['aria-hidden','aria-expanded','aria-label'])this.saveAttribute(element,attribute);
+      const collapseText=this.collapseButton.textContent;this.restorations.push(()=>{this.collapseButton.textContent=collapseText;});
+      this.lifecycle.cleanup(()=>{if(this.highlighter.destroy)this.highlighter.destroy();else this.highlighter.clear();});
       this.indexNavigationItems();this.bind();this.closeEveryBranch();this.applyViewportState();this.refreshGeometry();
-      this.layoutObserver=new ResizeObserver(()=>this.scheduleGeometry());
+      this.layoutObserver=this.lifecycle.observe(new ResizeObserver(this.lifecycle.guard(()=>this.scheduleGeometry())));
       this.layoutObserver.observe(this.header);this.layoutObserver.observe(this.main);
+      this.removeParentCleanup=adapter.lifecycle?.cleanup(()=>this.destroy());
+    }
+
+    saveAttribute(element,name){
+      if(!element)return;
+      let saved=this.savedAttributes.get(element);if(!saved){saved=new Map();this.savedAttributes.set(element,saved);}if(saved.has(name))return;
+      saved.set(name,element.getAttribute(name));
+    }
+    destroy(){
+      if(this.destroyed)return;
+      if(this.state.owner==='controller')this.stopControlledScroll();
+      this.destroyed=true;
+      this.removeParentCleanup?.();
+      this.state.transition++;this.state.owner='reader';
+      this.lifecycle.destroy();
+      for(const [element,attributes] of this.savedAttributes)for(const [name,value] of attributes){if(value===null)element.removeAttribute(name);else element.setAttribute(name,value);}
+      this.savedAttributes.clear();
+      for(const restore of this.restorations.reverse())restore();
+      this.restorations=[];this.activeButtons.clear();this.frames={reader:0,geometry:0,hash:0};
     }
 
     get active(){return this.state.active||'start';}
     get activeInstance(){return this.state.instance||'';}
 
     indexNavigationItems(){
+      if(this.destroyed)return;
+      // Removed Contents and fallback focus controls have no presentation owner.
+      for(const [element,attributes] of this.savedAttributes)if(!this.attributeRoots.some(root=>root===element||root.contains(element))){
+        for(const [name,value] of attributes){if(value===null)element.removeAttribute(name);else element.setAttribute(name,value);}
+        this.savedAttributes.delete(element);
+      }
       this.items=[...this.tree.querySelectorAll('[data-nav-id]')].map(node=>{
         const row=this.direct(node,'toc-row');
         const button=row?.querySelector('[data-nav-target]');
@@ -42,7 +77,7 @@ export class NavigationController{
     toggle(node){return this.direct(node,'toc-row')?.querySelector('[data-nav-toggle]')||null;}
 
     bind(){
-      this.tree.addEventListener('click',event=>{
+      this.lifecycle.listen(this.tree,'click',event=>{
         const toggle=event.target.closest('[data-nav-toggle]');
         if(toggle&&this.tree.contains(toggle)){
           event.preventDefault();this.toggleBranch(toggle.closest('[data-nav-id]'));return;
@@ -57,16 +92,16 @@ export class NavigationController{
         this.go(label.dataset.navTarget,{historyMode:'push',instanceId:label.dataset.rosterInstance||''});
       });
 
-      this.menuButton.addEventListener('touchstart',event=>{event.preventDefault();this.menuButton.click();},{passive:false});
-      this.menuButton.addEventListener('click',()=>this.setDrawer(!this.state.drawer));
-      this.collapseButton.addEventListener('click',()=>this.setCollapsed(!this.state.collapsed));
-      this.scrim.addEventListener('click',()=>this.setDrawer(false));
-      window.addEventListener('scroll',()=>this.scheduleRead(),{passive:true});
-      window.addEventListener('resize',()=>this.handleResize(),{passive:true});
-      window.addEventListener('wheel',event=>this.cancelTransition(event),{passive:true});
-      window.addEventListener('touchstart',event=>this.cancelTransition(event),{passive:true});
-      window.addEventListener('pointerdown',event=>this.cancelTransition(event),{passive:true});
-      document.addEventListener('keydown',event=>{
+      this.lifecycle.listen(this.menuButton,'touchstart',event=>{event.preventDefault();this.menuButton.click();},{passive:false});
+      this.lifecycle.listen(this.menuButton,'click',()=>this.setDrawer(!this.state.drawer));
+      this.lifecycle.listen(this.collapseButton,'click',()=>this.setCollapsed(!this.state.collapsed));
+      this.lifecycle.listen(this.scrim,'click',()=>this.setDrawer(false));
+      this.lifecycle.listen(window,'scroll',()=>this.scheduleRead(),{passive:true});
+      this.lifecycle.listen(window,'resize',()=>this.handleResize(),{passive:true});
+      this.lifecycle.listen(window,'wheel',event=>this.cancelTransition(event),{passive:true});
+      this.lifecycle.listen(window,'touchstart',event=>this.cancelTransition(event),{passive:true});
+      this.lifecycle.listen(window,'pointerdown',event=>this.cancelTransition(event),{passive:true});
+      this.lifecycle.listen(document,'keydown',event=>{
         if(['PageUp','PageDown','Home','End','ArrowUp','ArrowDown',' '].includes(event.key))this.cancelTransition();
         if(event.key==='Tab'&&this.state.drawer)this.trapDrawerFocus(event);
         if(event.key==='Escape'&&this.state.drawer&&!document.querySelector('dialog[open]'))this.setDrawer(false);
@@ -75,12 +110,16 @@ export class NavigationController{
 
     closeEveryBranch(){for(const item of this.items)this.closeBranch(item.node,{deep:true});}
     closeBranch(node,{deep=true}={}){
+      if(this.destroyed)return;
       const branch=this.branch(node),toggle=this.toggle(node);if(!branch)return;
+      this.saveAttribute(branch,'hidden');this.saveAttribute(toggle,'aria-expanded');
       branch.hidden=true;if(toggle)toggle.setAttribute('aria-expanded','false');
       if(deep)for(const child of branch.children)if(child.matches('[data-nav-id]'))this.closeBranch(child,{deep:true});
     }
     openBranch(node){
+      if(this.destroyed)return;
       const branch=this.branch(node),toggle=this.toggle(node);if(!branch)return;
+      this.saveAttribute(branch,'hidden');this.saveAttribute(toggle,'aria-expanded');
       if(branch.hidden){
         for(const peer of node.parentElement.children)if(peer!==node&&peer.matches('[data-nav-id]'))this.closeBranch(peer,{deep:true});
         branch.hidden=false;
@@ -102,12 +141,13 @@ export class NavigationController{
     }
 
     setInteractive(root,interactive){
-      if(!root)return;
-      if(this.supportsInert){root.inert=!interactive;return;}
+      if(this.destroyed||!root)return;
+      if(this.supportsInert){this.saveAttribute(root,'inert');root.inert=!interactive;return;}
       const key='data-nav-saved-tabindex';
       const selector='a,button,input,select,textarea,[tabindex]';
       const controls=[...(root.matches?.(selector)?[root]:[]),...root.querySelectorAll(selector)];
       for(const control of controls){
+        this.saveAttribute(control,key);this.saveAttribute(control,'tabindex');
         if(!interactive&&!control.hasAttribute(key)){
           control.setAttribute(key,control.getAttribute('tabindex')??'');control.setAttribute('tabindex','-1');
         }else if(interactive&&control.hasAttribute(key)){
@@ -117,6 +157,7 @@ export class NavigationController{
       }
     }
     applyViewportState(){
+      if(this.destroyed)return;
       const panelHidden=this.mobile?!this.state.drawer:this.state.collapsed;
       this.setInteractive(this.panel,!panelHidden);
       this.panel.setAttribute('aria-hidden',String(panelHidden));
@@ -134,19 +175,22 @@ export class NavigationController{
       this.collapseButton.textContent=this.state.collapsed?'▶':'◀';
     }
     setDrawer(open){
+      if(this.destroyed)return;
       const next=this.mobile&&Boolean(open);if(next===this.state.drawer)return;
       const returnFocus=this.state.drawer;
       this.state.drawer=next;this.applyViewportState();
-      if(next)requestAnimationFrame(()=>this.panel.querySelector('[data-nav-target]')?.focus({preventScroll:true}));
+      if(next)this.lifecycle.frame(()=>this.panel.querySelector('[data-nav-target]')?.focus({preventScroll:true}));
       else if(returnFocus)this.menuButton.focus({preventScroll:true});
     }
     setCollapsed(collapsed){
+      if(this.destroyed)return;
       const next=this.mobile?false:Boolean(collapsed);if(next===this.state.collapsed)return;
       const returnFocus=!this.state.collapsed&&this.panel.contains(document.activeElement);
       this.state.collapsed=next;this.applyViewportState();
       if(returnFocus&&next)this.collapseButton.focus({preventScroll:true});
     }
     trapDrawerFocus(event){
+      if(this.destroyed)return;
       const controls=[this.menuButton,...this.panel.querySelectorAll('a,button,input,select,textarea,[tabindex]')].filter(control=>control&&control.tabIndex>=0&&!control.closest('[hidden]'));
       if(controls.length<2)return;
       const menu=controls[0],first=controls[1],last=controls[controls.length-1],active=document.activeElement;
@@ -156,6 +200,7 @@ export class NavigationController{
       else if(event.shiftKey&&active===menu){event.preventDefault();last.focus();}
     }
     handleResize(){
+      if(this.destroyed)return;
       const crossedCleanupBreakpoint=(this.viewportWidth<=this.resizeCleanupBreakpoint)!==(window.innerWidth<=this.resizeCleanupBreakpoint);
       const widthChanged=Math.abs(window.innerWidth-this.viewportWidth)>1;
       this.viewportWidth=window.innerWidth;
@@ -166,7 +211,7 @@ export class NavigationController{
         this.mobile=mobile;this.state.drawer=false;if(mobile)this.state.collapsed=false;this.applyViewportState();
       }
       if(focusWasInPanel&&this.panel.getAttribute('aria-hidden')==='true')this.menuButton.focus({preventScroll:true});
-      requestAnimationFrame(()=>this.scheduleGeometry());
+      this.lifecycle.frame(()=>this.scheduleGeometry());
     }
 
     buttonSet(item){
@@ -177,8 +222,10 @@ export class NavigationController{
       return buttons;
     }
     activate(id,{instanceId='',keepVisible=true,behavior='auto'}={}){
+      if(this.destroyed)return;
       const item=this.itemFor(id,instanceId);if(!item)return;
       const next=this.buttonSet(item);
+      for(const button of new Set([...next,...this.activeButtons])){this.saveAttribute(button,'class');this.saveAttribute(button,'aria-current');}
       for(const button of this.activeButtons)if(!next.has(button)){
         button.classList.remove('is-current','is-ancestor');button.removeAttribute('aria-current');
       }
@@ -189,7 +236,7 @@ export class NavigationController{
       if(keepVisible)this.keepRowVisible(item.row,behavior);
     }
     keepRowVisible(row,behavior='auto'){
-      if(!row||this.panel.inert||this.panel.getAttribute('aria-hidden')==='true')return;
+      if(this.destroyed||!row||this.panel.inert||this.panel.getAttribute('aria-hidden')==='true')return;
       const panel=this.panel.getBoundingClientRect(),item=row.getBoundingClientRect(),gap=12;
       if(item.top<panel.top+gap)this.panel.scrollTo({top:this.panel.scrollTop-(panel.top+gap-item.top),behavior});
       else if(item.bottom>panel.bottom-gap)this.panel.scrollTo({top:this.panel.scrollTop+(item.bottom-panel.bottom+gap),behavior});
@@ -199,10 +246,11 @@ export class NavigationController{
       return Math.max(0,window.scrollY+element.getBoundingClientRect().top-inset);
     }
     scheduleGeometry(){
-      if(this.frames.geometry)return;
-      this.frames.geometry=requestAnimationFrame(()=>{this.frames.geometry=0;this.refreshGeometry();});
+      if(this.destroyed||this.frames.geometry)return;
+      this.frames.geometry=this.lifecycle.frame(()=>{this.frames.geometry=0;this.refreshGeometry();});
     }
     refreshGeometry(){
+      if(this.destroyed)return;
       const scrollY=window.scrollY;
       this.geometry.headerBottom=this.header.getBoundingClientRect().bottom;
       document.documentElement.style.setProperty('--app-header-bottom',`${Math.max(0,this.geometry.headerBottom)}px`);
@@ -244,30 +292,34 @@ export class NavigationController{
       return winner?.item||this.items[0]||null;
     }
     scheduleRead(){
-      if(this.state.owner!=='reader'||this.frames.reader)return;
-      this.frames.reader=requestAnimationFrame(()=>{this.frames.reader=0;this.readViewport();});
+      if(this.destroyed||this.state.owner!=='reader'||this.frames.reader)return;
+      this.frames.reader=this.lifecycle.frame(()=>{this.frames.reader=0;this.readViewport();});
     }
     readViewport(){
-      if(this.state.owner!=='reader'||!this.adapter.tracking())return;
+      if(this.destroyed||this.state.owner!=='reader'||!this.adapter.tracking())return;
       const item=this.pickActive();
       if(item&&(item.id!==this.state.active||item.instanceId!==this.state.instance))this.activate(item.id,{instanceId:item.instanceId});
       else if(item&&!this.pathIsOpen(item.node))this.revealPath(item.node,{includeSelf:true});
     }
 
     async go(id,{historyMode='none',instanceId=''}={}){
+      if(this.destroyed)return;
       const item=this.itemFor(id,instanceId);if(!item)return;
       if(this.mobile&&this.targetKind(id)==='branch'){this.toggleBranch(item.node);return;}
       this.adapter.navigate(id,instanceId,historyMode);
+      if(this.destroyed)return;
       const current=this.itemFor(id,instanceId),section=this.sectionFor(current);
       if(!section)return;
       this.setDrawer(false);this.refreshGeometry();this.navigate(id,section,null,instanceId);
     }
     navigate(id,element,settled,instanceId=''){
+      if(this.destroyed)return;
       const targets=this.adapter.resolve(element);
       if(!targets.scrollTarget)return;
       this.beginTransition(id,this.destination(targets.scrollTarget),()=>{this.highlighter.show(targets.highlightTarget);this.adapter.settled?.(id);settled?.();},instanceId);
     }
     navigateSection(id,section,{nav=null,settled,instanceId=''}={}){
+      if(this.destroyed)return;
       const targets=this.adapter.resolve(section);if(!targets.scrollTarget)return;
       const navHeight=nav?.getBoundingClientRect().height||0;
       const inset=this.geometry.headerBottom+navHeight+this.trackingGap;
@@ -276,6 +328,7 @@ export class NavigationController{
       this.beginTransition(id,this.destination(targets.scrollTarget,inset),complete,instanceId);
     }
     beginTransition(id,destination,settled,instanceId=''){
+      if(this.destroyed)return;
       if(this.state.owner==='controller')this.stopControlledScroll();
       const token=++this.state.transition;this.state.owner='controller';this.activate(id,{instanceId,behavior:'auto'});
       const reachable=this.reachableDestination(destination);
@@ -285,6 +338,7 @@ export class NavigationController{
     }
     reachableDestination(destination){return Math.min(Math.max(0,destination),Math.max(0,document.documentElement.scrollHeight-window.innerHeight));}
     scrollImmediately(top){
+      if(this.destroyed)return;
       const root=document.documentElement,previous=root.style.scrollBehavior;
       root.style.scrollBehavior='auto';
       window.scrollTo({left:window.scrollX,top,behavior:'auto'});
@@ -305,14 +359,15 @@ export class NavigationController{
         if(Date.now()-started>2200){
           this.stopControlledScroll();
           this.scrollImmediately(this.reachableDestination(destination));
-          requestAnimationFrame(()=>{if(token!==this.state.transition)return;this.state.owner='reader';settled?.();this.refreshGeometry();});
+          this.lifecycle.frame(()=>{if(token!==this.state.transition)return;this.state.owner='reader';settled?.();this.refreshGeometry();});
           return;
         }
-        requestAnimationFrame(inspect);
+        this.lifecycle.frame(inspect);
       };
-      requestAnimationFrame(inspect);
+      this.lifecycle.frame(inspect);
     }
     cancelTransition(event){
+      if(this.destroyed)return;
       const target=event?.target;
       if(target&&(this.panel.contains(target)||this.menuButton.contains(target)||this.collapseButton.contains(target)))return;
       if(this.state.owner!=='controller')return;

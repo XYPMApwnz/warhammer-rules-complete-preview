@@ -1,3 +1,5 @@
+import {createLifecycle} from './lifecycle.mjs';
+
 const cardLayouts = new WeakMap();
 const lifecycleByDocument = new WeakMap();
 
@@ -84,6 +86,11 @@ function enhance(card, phoneMedia) {
   const parts = directParts(card);
   const profile = section(parts, 'profile');
   const abilities = section(parts, 'abilities');
+  const originalNodes = [...card.childNodes];
+  const profileNodes = profile ? [...profile.childNodes] : [];
+  const profileHeading = profile && direct(profile, 'h4');
+  const headingNodes = profileHeading ? [...profileHeading.childNodes] : [];
+  const hadLayoutClass = card.classList.contains('ds-layout');
   const localNav = direct(card, '.local-nav');
   let profileStrip = null;
 
@@ -121,6 +128,12 @@ function enhance(card, phoneMedia) {
 
   const layout = {
     card,
+    originalNodes,
+    profile,
+    profileNodes,
+    profileHeading,
+    headingNodes,
+    hadLayoutClass,
     localNav,
     profileStrip,
     phoneMedia,
@@ -128,6 +141,7 @@ function enhance(card, phoneMedia) {
     arsenal,
     support,
     list,
+    listNodes: list ? [...list.childNodes] : [],
     cards: list
       ? Array.from(list.children).filter(node => node.matches?.('.ability'))
       : [],
@@ -164,16 +178,20 @@ export function flushDatasheetLayouts(root) {
  * The renderer owns all factual and interactive nodes; this module only moves
  * those nodes into the V1 presentation containers.
  */
-export function installDatasheetLayout(root, view = window) {
+export function installDatasheetLayout(root, view = window, {lifecycle: parentLifecycle} = {}) {
   if (!root) throw new TypeError('A datasheet root is required');
 
+  const lifecycle = createLifecycle(view);
   const phoneMedia = view.matchMedia('(max-width: 900px)');
   const cards = cardsWithin(root);
+  // A card has one presentation owner, including repeated standalone installs.
+  new Set(cards.map(card => cardLayouts.get(card)?.destroy).filter(Boolean)).forEach(destroy => destroy());
   const layouts = cards.map(card => enhance(card, phoneMedia));
   let frame = 0;
   let ready = Promise.resolve();
   let finishReady = null;
   let destroyed = false;
+  let removeParentCleanup;
 
   const runLayout = () => {
     layouts.forEach(layout => {
@@ -185,7 +203,7 @@ export function installDatasheetLayout(root, view = window) {
   const flush = () => {
     if (destroyed) return root;
     if (frame) {
-      view.cancelAnimationFrame(frame);
+      lifecycle.cancelFrame(frame);
       frame = 0;
       const finish = finishReady;
       finishReady = null;
@@ -199,7 +217,7 @@ export function installDatasheetLayout(root, view = window) {
   const schedule = () => {
     if (destroyed || frame) return ready;
     ready = new Promise(resolve => { finishReady = resolve; });
-    frame = view.requestAnimationFrame(() => {
+    frame = lifecycle.frame(() => {
       frame = 0;
       try {
         runLayout();
@@ -213,7 +231,7 @@ export function installDatasheetLayout(root, view = window) {
   };
 
   const resizeObserver = 'ResizeObserver' in view
-    ? new view.ResizeObserver(entries => {
+    ? lifecycle.observe(new view.ResizeObserver(lifecycle.guard(entries => {
         let changed = false;
         entries.forEach(entry => {
           const layout = cardLayouts.get(entry.target);
@@ -225,31 +243,41 @@ export function installDatasheetLayout(root, view = window) {
           }
         });
         if (changed) schedule();
-      })
+      })))
     : null;
   layouts.forEach(layout => resizeObserver?.observe(layout.card));
 
   const ownerDocument = root.ownerDocument || view.document;
   const onViewportChange = () => schedule();
-  view.addEventListener('resize', onViewportChange, {passive: true});
-  phoneMedia.addEventListener?.('change', onViewportChange);
-  ownerDocument?.fonts?.ready.then(schedule);
+  lifecycle.listen(view, 'resize', onViewportChange, {passive: true});
+  if (phoneMedia.addEventListener) lifecycle.listen(phoneMedia, 'change', onViewportChange);
+  ownerDocument?.fonts?.ready.then(lifecycle.guard(schedule));
   let unwatchLifecycle = () => {};
   const destroy = () => {
     if (destroyed) return;
     destroyed = true;
+    removeParentCleanup?.();
     if (frame) {
-      view.cancelAnimationFrame(frame);
+      lifecycle.cancelFrame(frame);
       frame = 0;
       finishReady?.();
       finishReady = null;
     }
-    view.removeEventListener('resize', onViewportChange);
-    phoneMedia.removeEventListener?.('change', onViewportChange);
-    resizeObserver?.disconnect();
+    lifecycle.destroy();
     unwatchLifecycle();
-    layouts.forEach(restoreAbilities);
+    layouts.forEach(layout => {
+      restoreAbilities(layout);
+      if (layout.list) layout.list.replaceChildren(...layout.listNodes);
+      if (layout.profile) layout.profile.replaceChildren(...layout.profileNodes);
+      if (layout.profileHeading) layout.profileHeading.replaceChildren(...layout.headingNodes);
+      layout.card.replaceChildren(...layout.originalNodes);
+      layout.card.classList.toggle('ds-layout', layout.hadLayoutClass);
+      cardLayouts.delete(layout.card);
+      delete layout.flush;
+      delete layout.destroy;
+    });
   };
+  layouts.forEach(layout => { layout.destroy = destroy; });
   if (ownerDocument?.documentElement) {
     const registration = {
       layouts,
@@ -259,6 +287,7 @@ export function installDatasheetLayout(root, view = window) {
     };
     unwatchLifecycle = watchLifecycle(ownerDocument, view, registration);
   }
+  removeParentCleanup = parentLifecycle?.cleanup(destroy);
   schedule();
 
   return Object.freeze({

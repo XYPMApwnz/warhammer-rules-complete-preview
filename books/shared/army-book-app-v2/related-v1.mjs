@@ -1,8 +1,9 @@
 /** V1 army-related-rules.js dialog templates, with supplied V2 results only.
  * No matcher, catalog fetch, roster inference or executable predicates here.
  */
-export function createV1RelatedPanel({document,detachments,rosterMode,detachmentId='',rowsFor,renderRule,onDetachment}) {
+export function createV1RelatedPanel({document,lifecycle,detachments,rosterMode,detachmentId='',rowsFor,renderRule,onDetachment}) {
   const el=(tag,className,text)=>{const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;};
+  const listen=(node,type,callback)=>lifecycle?lifecycle.listen(node,type,callback):node.addEventListener(type,callback);
   const node=el('div','v1-related-panel');
   const controls=el('div','full-related-controls');
   if(rosterMode)controls.classList.add('is-roster');
@@ -50,11 +51,11 @@ export function createV1RelatedPanel({document,detachments,rosterMode,detachment
   if(filter){
     const head=el('summary');summary=el('span','',choices.find(choice=>choice.id===selected)?.title||'All Detachments');head.append(summary);
     const menu=el('div');
-    for(const choice of choices){const button=el('button','',choice.title);button.type='button';button.dataset.detachment=choice.id;button.setAttribute('aria-pressed',String(choice.id===selected));button.addEventListener('click',()=>{choose(choice.id);onDetachment?.(choice.id);});menu.append(button);}
+    for(const choice of choices){const button=el('button','',choice.title);button.type='button';button.dataset.detachment=choice.id;button.setAttribute('aria-pressed',String(choice.id===selected));listen(button,'click',()=>{choose(choice.id);onDetachment?.(choice.id);});menu.append(button);}
     filter.append(head,menu);controls.append(filter);
   }
   for(const [value,label]of [['stratagems','Stratagems'],['enhancements','Enhancements']]){
-    const button=el('button','',label);button.type='button';button.dataset.kind=value;button.setAttribute('aria-pressed',String(value===kind));button.addEventListener('click',()=>{kind=value;showKind();});tabs.append(button);
+    const button=el('button','',label);button.type='button';button.dataset.kind=value;button.setAttribute('aria-pressed',String(value===kind));listen(button,'click',()=>{kind=value;showKind();});tabs.append(button);
   }
   controls.append(tabs);node.append(controls,content,empty);render();
   return {node,setDetachment:id=>{if(!rosterMode)choose(id);}};

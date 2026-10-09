@@ -1,10 +1,14 @@
+import {createLifecycle} from './lifecycle.mjs';
 /** Optional roster view. The injected service owns every identity, fact and effect. */
-export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL}) {
+export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL,lifecycle:parentLifecycle}) {
   if (!service || !Array.isArray(service.catalog)) throw new TypeError('A canonical roster service is required.');
   for (const method of ['draft', 'import', 'load', 'snapshot', 'effective', 'related', 'candidates', 'attach', 'detach']) {
     if (typeof service[method] !== 'function') throw new TypeError(`Roster service requires ${method}().`);
   }
   const window = document.defaultView;
+  const lifecycle=createLifecycle(window);
+  const forgetParent=parentLifecycle?.cleanup(lifecycle.destroy);
+  lifecycle.cleanup(()=>forgetParent?.());
   const catalog = new Map(service.catalog.map(record => [record.id, record]));
   if (catalog.size !== service.catalog.length) throw new TypeError('Duplicate canonical roster catalog identity.');
   const storageKey = `army-book-app-v2:roster:${bookId}`;
@@ -20,14 +24,14 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const node = el('button', 'v2-reference', label);
     node.type = 'button';
     if (actionId) node.dataset.rosterAction = actionId;
-    node.addEventListener('click', () => run(action));
+    lifecycle.listen(node,'click', () => run(action));
     return node;
   };
   const reference = (id, label = named(id), reader = false) => {
     const link = el('a', 'v2-reference', label);
     link.href = routeURL?routeURL(id,!reader):`#${encodeURIComponent(id)}`;
     link.dataset.targetId = id;
-    link.addEventListener('click', event => {
+    lifecycle.listen(link,'click', event => {
       if (event.button || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) return;
       event.preventDefault();
       const result = reader ? open(id) : showDetail(id);
@@ -120,11 +124,13 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   file.type = 'file';
   file.accept = '.json,application/json';
   file.setAttribute('aria-label', 'Restore a V2 roster backup');
-  file.addEventListener('change', () => run(async () => {
+  lifecycle.listen(file,'change', () => run(async () => {
     const selectedFile = file.files?.[0];
     if (!selectedFile) return;
     const state = JSON.parse(await selectedFile.text());
+    if(!lifecycle.active)return;
     checkResult(await service.load(state));
+    if(!lifecycle.active)return;
     renderRoster();
     saveAndReport('Roster backup restored.');
     file.value = '';
@@ -141,6 +147,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   let busy = false;
 
   function setStatus(message, error = false) {
+    if(!lifecycle.active)return;
     status.textContent = String(message);
     status.classList.toggle('v2-roster-error', error);
   }
@@ -168,15 +175,16 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     return result;
   }
   async function run(action) {
-    if (busy) return;
+    if (busy || !lifecycle.active) return;
     busy = true;
     section.setAttribute('aria-busy', 'true');
     section.classList.add('v2-roster-loading');
     try { await action(); }
     catch (error) { setStatus(error.playerMessage || 'This action could not be completed. Check the New Recruit export or roster backup and try again.', true); }
-    finally { busy = false; section.removeAttribute('aria-busy'); section.classList.remove('v2-roster-loading'); }
+    finally { busy = false; if(lifecycle.active){section.removeAttribute('aria-busy'); section.classList.remove('v2-roster-loading');} }
   }
   function persist() {
+    if(!lifecycle.active)return null;
     try { window.localStorage.setItem(storageKey, JSON.stringify(service.snapshot())); return null; }
     catch (error) { return error; }
   }
@@ -188,6 +196,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const saved = window.localStorage.getItem(storageKey);
     if (!saved) { setStatus('No saved V2 roster was found in this browser.'); return; }
     checkResult(await service.load(JSON.parse(saved)));
+    if(!lifecycle.active)return;
     renderRoster();
     setStatus('Saved roster reloaded and validated.');
   }
@@ -201,17 +210,20 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     document.body.append(link);
     link.click();
     link.remove();
-    window.setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+    const forget=lifecycle.cleanup(()=>window.URL.revokeObjectURL(url));
+    lifecycle.timeout(()=>{window.URL.revokeObjectURL(url);forget();},1000);
     setStatus('Roster backup exported.');
   }
   async function reviewImport() {
     importText = raw.value;
     bindings = {};
     const draft = await service.draft(importText);
+    if(!lifecycle.active)return;
     renderDraft(draft);
     await resolveImport();
   }
   function renderDraft(draft) {
+    if(!lifecycle.active)return;
     draftArea.replaceChildren();
     if (!draft?.units?.length) return;
     const preview = el('details');
@@ -226,10 +238,13 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     draftArea.append(preview);
   }
   async function resolveImport() {
-    importResult = await service.import(importText, structuredClone(bindings));
+    const result = await service.import(importText, structuredClone(bindings));
+    if(!lifecycle.active)return;
+    importResult=result;
     renderDraft(importResult.draft);
     if (importResult.status === 'READY') {
       if (!service.state?.units?.length) checkResult(await service.load(importResult.roster));
+      if(!lifecycle.active)return;
       bindingArea.replaceChildren();
       renderRoster();
       saveAndReport('Roster imported. Attachments are optional. Open your personal guide when ready.');
@@ -254,6 +269,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     return select;
   }
   function renderBindings(needs) {
+    if(!lifecycle.active)return;
     bindingArea.replaceChildren();
     if (!needs.length) return;
     const form = el('form', 'v2-roster-bindings');
@@ -307,7 +323,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       const submit = el('button', 'v2-reference', 'Confirm imported identities');
       submit.type = 'submit'; submit.dataset.rosterAction = 'resolve-bindings';
       form.append(submit);
-      form.addEventListener('submit', event => { event.preventDefault(); run(async () => { read.forEach(readBinding => readBinding()); await resolveImport(); }); });
+      lifecycle.listen(form,'submit', event => { event.preventDefault(); run(async () => { read.forEach(readBinding => readBinding()); await resolveImport(); }); });
     }
     bindingArea.append(form);
   }
@@ -421,7 +437,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       });
       if (!rows.length) results.append(el('li', '', 'No matching or conditional rules in this filter.'));
     };
-    select.addEventListener('change', () => run(fill));
+    lifecycle.listen(select,'change', () => run(fill));
     section.append(label, results); fill();
     return section;
   }
@@ -482,6 +498,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     return context;
   }
   function renderRoster() {
+    if(!lifecycle.active)return;
     const previousScrollY = window.scrollY;
     const activeOwner = document.activeElement?.closest('[data-roster-instance-id]')?.dataset.rosterInstanceId;
     const activeAction = document.activeElement?.dataset.rosterAction;
@@ -578,9 +595,10 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       if (saved) await restoreSaved(); else renderRoster();
     } catch (error) { renderRoster(); throw error; }
   });
-  raw.addEventListener('input', () => {
+  lifecycle.listen(raw,'input', () => {
     bindings = {}; importResult = null; bindingArea.replaceChildren(); draftArea.replaceChildren();
     setStatus('Import this export to resolve its selected entries automatically.');
   });
-  return Object.freeze({render, refresh: renderRoster, renderInstanceContext, ready, storageKey});
+  lifecycle.cleanup(()=>{section.remove();bindings={};importText='';importResult=null;});
+  return Object.freeze({destroy:lifecycle.destroy,get destroyed(){return !lifecycle.active;},render:lifecycle.guard(render), refresh:lifecycle.guard(renderRoster), renderInstanceContext:lifecycle.guard(renderInstanceContext), ready, storageKey});
 }

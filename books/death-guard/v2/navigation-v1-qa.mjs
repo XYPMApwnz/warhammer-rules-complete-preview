@@ -14,14 +14,44 @@ const method=(source,name)=>{
   if(first.endsWith('}'))return first.trim();
   const end=tail.indexOf('\n    }');assert.ok(end>=0);return tail.slice(0,end+6).trim();
 };
+// Resource ownership adds inert-after-destroy guards, snapshots and cancelable
+// scheduling. Strip only those explicit additions before comparing every V1
+// algorithm below. Real teardown/remount behavior is covered independently by
+// books/shared/army-book-app-v2/lifecycle-browser-qa.mjs.
+const lifecycleOnly = source => source
+  .replaceAll('      if(this.destroyed)return;\n','')
+  .replaceAll('      if(!this.lifecycle.active)return null;\n','')
+  .replaceAll('      if(!this.lifecycle.active)return;\n','')
+  .replaceAll('this.destroyed||','')
+  .replaceAll('this.lifecycle.frame(', 'requestAnimationFrame(')
+  .replaceAll('this.lifecycle.clearTimeout(', 'window.clearTimeout(')
+  .replaceAll('this.lifecycle.timeout(', 'window.setTimeout(')
+  .replaceAll('this.view.document', 'document')
+  .replaceAll('this.view.', 'window.')
+  .replaceAll("      this.saveAttribute(branch,'hidden');this.saveAttribute(toggle,'aria-expanded');\n",'')
+  .replaceAll("this.saveAttribute(root,'inert');",'')
+  .replaceAll('        this.saveAttribute(control,key);this.saveAttribute(control,\'tabindex\');\n','')
+  .replaceAll("      for(const button of new Set([...next,...this.activeButtons])){this.saveAttribute(button,'class');this.saveAttribute(button,'aria-current');}\n",'')
+  .replaceAll(`      // Removed Contents and fallback focus controls have no presentation owner.
+      for(const [element,attributes] of this.savedAttributes)if(!this.attributeRoots.some(root=>root===element||root.contains(element))){
+        for(const [name,value] of attributes){if(value===null)element.removeAttribute(name);else element.setAttribute(name,value);}
+        this.savedAttributes.delete(element);
+      }
+`,'');
 const identical=['indexNavigationItems','branch','parentNode','toggle','closeEveryBranch','closeBranch','openBranch','toggleBranch',
   'pathIsOpen','revealPath','setInteractive','applyViewportState','setDrawer','setCollapsed','trapDrawerFocus','handleResize',
   'buttonSet','activate','keepRowVisible','destination','scheduleGeometry','descendsFrom','lastCrossedDescendant','pickActive',
   'scheduleRead','beginTransition','reachableDestination','scrollImmediately','stopControlledScroll','waitForSettle','cancelTransition'];
-for(const name of identical)assert.equal(method(port,name),method(original,name),'Actual V1 algorithm changed: '+name);
+for(const name of identical){
+  assert.equal(lifecycleOnly(method(original,name)),method(original,name),'Lifecycle normalization touched the V1 oracle: '+name);
+  assert.equal(lifecycleOnly(method(port,name)),method(original,name),'Actual V1 algorithm changed: '+name);
+}
+for(const [name,before,after]of [['waitForSettle','stable>=6','stable>=2'],['closeBranch','branch.hidden=true','branch.hidden=false']]){
+  assert.notEqual(lifecycleOnly(method(port,name).replace(before,after)),method(original,name),'Lifecycle normalization hid an algorithm mutation: '+name);
+}
 const v1Targets=read('books/shared/navigation-targets.js');
 const highlight=read('books/shared/army-book-app-v2/navigation-v1-targets.mjs');
-for(const name of ['clear','range','show'])assert.equal(method(highlight,name),method(v1Targets,name),'V1 highlight lifecycle changed');
+for(const name of ['clear','range','show'])assert.equal(lifecycleOnly(method(highlight,name)),method(v1Targets,name),'V1 highlight algorithm changed');
 const runtime=read('books/shared/army-book-app-v2/runtime.mjs');
 const base=execFileSync('git',['show','5d2b9762268f5aedad393912939fbbfce9062b85:books/shared/army-book-app-v2/runtime.mjs'],{cwd:repo,encoding:'utf8'}).replace(/\r\n/g,'\n');
 const slice=(text,start,end)=>text.slice(text.indexOf(start),text.indexOf(end));
@@ -34,7 +64,7 @@ const genericStart='    const allowed = scopedIds();\n    const childrenIds';
 const expectedGeneric=slice(base,genericStart,'  function fillRelatedResults(')
   .replace("field => field.presentation === 'heading'","field => field.presentation === 'heading' || field.type === 'heading'")
   .replace('{depth: depth + 1, ancestors: trail, inDialog, variants, instanceId}', '{depth: depth + 1, ancestors: trail, inDialog, variants, instanceId,sourceEvidence}');
-assert.equal(slice(runtime,genericStart,'  function fillRelatedResults('),expectedGeneric,'Generic card renderer changed beyond source evidence propagation and heading de-duplication');
+assert.equal(slice(runtime,genericStart,'  function fillRelatedResults(').replace('createV1RelatedPanel({document,lifecycle,','createV1RelatedPanel({document,'),expectedGeneric,'Generic card renderer changed beyond source evidence propagation, heading de-duplication and lifecycle injection');
 assert.ok(runtime.includes('datasheets.renderDatasheet(card,{variants,instanceId,inDialog})'),'Missing presentation-only datasheet adapter');
 const expectedPhysical=slice(base,'  function renderInstance(','  function renderLibrary(')
   .replace("    const badge=el('p','v2-compatible-help',title);selected.querySelector('.v2-card-header').after(badge);\n",'')

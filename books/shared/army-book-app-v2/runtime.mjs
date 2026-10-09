@@ -1,4 +1,5 @@
 /** Presentation-only reader. Canonical IDs and supplied fields are its only content authority. */
+import {createLifecycle} from './lifecycle.mjs';
 import {validateGlossary} from './glossary.mjs';
 import {createReferenceContract} from './reference-contract.mjs';
 import {encodeRoute,decodeRoute} from './route-context.mjs';
@@ -45,6 +46,12 @@ export function mount(document, payload, options = {}) {
       relatedByUnit.get(row.unitId).push(row);
     }
   }
+  const lifecycle=createLifecycle(window);
+  const host=options.root || document.body;
+  if(host.ownerDocument!==document)throw new TypeError('Mount root belongs to a different document.');
+  const previousTitle=document.title,previousApi=window.ArmyBookAppV2,previousFocus=document.activeElement;
+  const hadBodyClass=document.body.hasAttribute('class');
+  const bodyClasses=new Map(['v2-v1-navigation','v2-book-surface','v2-datasheet-mode','v2-detail-open'].map(name=>[name,document.body.classList.contains(name)]));
   const el = (tag, className, text) => {
     const node = document.createElement(tag);
     if (className) node.className = className;
@@ -54,7 +61,7 @@ export function mount(document, payload, options = {}) {
   const button = (label, className, action) => {
     const node = el('button', className, label);
     node.type = 'button';
-    node.addEventListener('click', action);
+    lifecycle.listen(node,'click', action);
     return node;
   };
   const exactValue = value => typeof value === 'object' ? JSON.stringify(value) : String(value);
@@ -63,7 +70,7 @@ export function mount(document, payload, options = {}) {
     const node = el('a', detail ? 'v2-reference' : 'v2-card-link', label);
     node.href = routeURL(id,detail,presentation);
     node.dataset.targetId = id;
-    node.addEventListener('click', event => {
+    lifecycle.listen(node,'click', event => {
       if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
       detail ? showDetail(id,presentation) : navigate(id,false,presentation);
@@ -109,7 +116,7 @@ export function mount(document, payload, options = {}) {
   const main = el('main', 'v2-main');
   main.id = 'main';
   main.tabIndex = -1;
-  skip.addEventListener('click', event => {
+  lifecycle.listen(skip,'click', event => {
     event.preventDefault();
     toggleDrawer(false);
     main.focus({preventScroll: true});
@@ -134,11 +141,15 @@ export function mount(document, payload, options = {}) {
   relatedHeading.append(el('span','','Datasheet tools'),relatedTitle);relatedBar.append(relatedHeading,button('×','related-rules-close',()=>relatedDialog.close()));
   relatedBar.lastChild.setAttribute('aria-label','Close compatible rules');
   const relatedContent=el('div','related-rules-body v2-dialog-content');relatedFrame.append(relatedBar,relatedContent);relatedDialog.append(relatedFrame);shell.append(relatedDialog);
-  relatedDialog.addEventListener('click',event=>{if(event.target===relatedDialog)relatedDialog.close();});
-  document.body.replaceChildren(shell);document.body.classList.add('v2-v1-navigation','v2-book-surface');
-  const navStyles=el('link');navStyles.rel='stylesheet';navStyles.href=new URL('./navigation-v1.css',import.meta.url).href;document.head.append(navStyles);
-  const popupStyles=el('link');popupStyles.rel='stylesheet';popupStyles.href=new URL('./popup-v1.css',import.meta.url).href;document.head.append(popupStyles);
-  const referenceStyles=el('link');referenceStyles.rel='stylesheet';referenceStyles.href=new URL('./reference-v1.css',import.meta.url).href;document.head.append(referenceStyles);
+  lifecycle.listen(relatedDialog,'click',event=>{if(event.target===relatedDialog)relatedDialog.close();});
+  host.append(shell);document.body.classList.add('v2-v1-navigation','v2-book-surface');
+  const ownedStyles=[];
+  const stylesheet=url=>{const link=el('link');link.rel='stylesheet';link.href=url;document.head.append(link);ownedStyles.push(link);return link;};
+  for(const name of ['styles.css','datasheet-v1.css','book-v1.css'])stylesheet(new URL(name,import.meta.url).href);
+  for(const url of options.styles || [])stylesheet(new URL(url,document.baseURI).href);
+  const navStyles=el('link');navStyles.rel='stylesheet';navStyles.href=new URL('./navigation-v1.css',import.meta.url).href;document.head.append(navStyles);ownedStyles.push(navStyles);
+  const popupStyles=el('link');popupStyles.rel='stylesheet';popupStyles.href=new URL('./popup-v1.css',import.meta.url).href;document.head.append(popupStyles);ownedStyles.push(popupStyles);
+  const referenceStyles=el('link');referenceStyles.rel='stylesheet';referenceStyles.href=new URL('./reference-v1.css',import.meta.url).href;document.head.append(referenceStyles);ownedStyles.push(referenceStyles);
   document.title = `${payload.book.title} · Army Book V2`;
   let selectedId = null;
   let selectedInstanceId = null;
@@ -157,12 +168,12 @@ export function mount(document, payload, options = {}) {
   const indexed = [...cards.values()].map(card => ({card, text: [card.title, card.kind, ...(card.fields || []).map(field => `${field.label} ${field.displayValue || ''} ${exactValue(field.value)}`)].join(' ').toLocaleLowerCase()}));
   const rosterPanel = options.roster ? createRosterPanel(document, {
     service: options.roster, bookId: payload.book.id, open: id=>id?open(id):openLibrary(), showDetail,
-    openPersonalGuide, showInstance: openInstance, routeURL,
+    openPersonalGuide, showInstance: openInstance, routeURL, lifecycle,
     titleForId: id => cards.get(id)?.title
   }) : null;
   const personalBook = () => projectPersonalBook(payload, options.roster.state);
   const scopedIds = () => personalMode ? personalBook().allowedIds : null;
-  const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,
+  const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,
     related:renderRelatedRules,roster:options.roster,
     navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
   const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds,renderWeapon:datasheets.renderWeapon});
@@ -298,7 +309,7 @@ export function mount(document, payload, options = {}) {
     if(card.kind==='DATASHEET'&&!sourceEvidence) {
       const article=datasheets.renderDatasheet(card,{variants,instanceId,inDialog});
       if(inDialog&&primaryDetail)article.querySelector('.unit-header h3').id='v2-detail-heading';
-      installDatasheetLayout(article,window);
+      installDatasheetLayout(article,window,{lifecycle});
       return article;
     }
     if(inDialog&&['PROFILE','WEAPON_PROFILE'].includes(card.kind)) {
@@ -407,7 +418,7 @@ export function mount(document, payload, options = {}) {
       return (Array.isArray(related)?related:related.rows||[]).filter(row=>service.state.detachmentIds.includes(row.detachmentId)&&
         (row.kind!=='ENHANCEMENT'||unit.enhancementIds.includes(row.ruleId))&&['MATCH','CONDITIONAL'].includes(row.applicability));
     };
-    activeRelatedPanel=createV1RelatedPanel({document,rosterMode,detachmentId:relatedDetachmentId,
+    activeRelatedPanel=createV1RelatedPanel({document,lifecycle,rosterMode,detachmentId:relatedDetachmentId,
       detachments:detachmentCards.filter(card=>!rosterMode||options.roster.state.detachmentIds.includes(card.id)),rowsFor,
       renderRule:id=>bookPresenter.render(cards.get(id)),onDetachment:setRelatedDetachment});
     activeRelatedPanel.node.dataset.unitId=unitId;
@@ -678,7 +689,7 @@ export function mount(document, payload, options = {}) {
       }
       if (!matches.length) results.append(el('li', 'v2-empty', 'No matching entries. Try another term.'));
     };
-    input.addEventListener('input', () => {
+    lifecycle.listen(input,'input', () => {
       glossaryQuery = input.value;
       window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, glossaryQuery}}, '', window.location.href);
       renderResults();
@@ -797,8 +808,8 @@ export function mount(document, payload, options = {}) {
       else if (rosterPanel && (id===personalRoute || id.startsWith('roster-unit/') || rosterId && !options.roster.state)) renderRoster(focus);
       else if(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)renderContentsBook(id);
       else renderSelected(id || null, focus, context.instanceId);
-      if(!referenceView&&!controlledRoute&&(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)){window.requestAnimationFrame(()=>contents.restore(id||'start',state?.armyBookV2?.scrollY));}
-      else if(!focus&&!controlledRoute)window.requestAnimationFrame(()=>window.scrollTo({top:state?.armyBookV2?.scrollY||0,behavior:'instant'}));
+      if(!referenceView&&!controlledRoute&&(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)){lifecycle.frame(()=>contents.restore(id||'start',state?.armyBookV2?.scrollY));}
+      else if(!focus&&!controlledRoute)lifecycle.frame(()=>window.scrollTo({top:state?.armyBookV2?.scrollY||0,behavior:'instant'}));
       if (!focus && lastFocus) {
         // Finish the existing V1 column moves before returning focus to an
         // ability trigger; moving its ancestor afterwards would blur it.
@@ -817,7 +828,7 @@ export function mount(document, payload, options = {}) {
           restoreTarget?.focus({preventScroll:true});
         };
         restoreFocus();
-        window.requestAnimationFrame(()=>window.requestAnimationFrame(restoreFocus));
+        lifecycle.frame(()=>lifecycle.frame(restoreFocus));
       }
       lastFocus = null;
     }
@@ -890,20 +901,20 @@ export function mount(document, payload, options = {}) {
     }
   }
   function toggleDrawer(value){contents?.controller.setDrawer(value);}
-  search.addEventListener('input', renderNavigation);
-  dialog.addEventListener('cancel', event => { event.preventDefault(); closeDetail(); });
-  dialog.addEventListener('click', event => { if (event.target === dialog) closeDetail(); });
-  popupStyles.addEventListener('load',()=>positionV1Popup(dialog,{origin:popupOrigin,rect:popupOriginRect}));
-  window.addEventListener('resize',()=>positionV1Popup(dialog,{origin:popupOrigin,rect:popupOriginRect}),{passive:true});
-  shell.addEventListener('keydown', event => {
+  lifecycle.listen(search,'input', renderNavigation);
+  lifecycle.listen(dialog,'cancel', event => { event.preventDefault(); closeDetail(); });
+  lifecycle.listen(dialog,'click', event => { if (event.target === dialog) closeDetail(); });
+  lifecycle.listen(popupStyles,'load',()=>positionV1Popup(dialog,{origin:popupOrigin,rect:popupOriginRect}));
+  lifecycle.listen(window,'resize',()=>positionV1Popup(dialog,{origin:popupOrigin,rect:popupOriginRect}),{passive:true});
+  lifecycle.listen(shell,'keydown', event => {
     if (!contents?.controller.state.drawer && !dialog.open && selectedView === 'GLOSSARY' && event.key === 'Escape') {
       event.preventDefault();
       closeGlossary();
       return;
     }
   });
-  window.addEventListener('popstate', () => route());
-  window.addEventListener('hashchange', () => route());
+  lifecycle.listen(window,'popstate', () => route());
+  lifecycle.listen(window,'hashchange', () => route());
   function renderAllForQA() {
     if (dialog.open) dialog.close();
     document.body.classList.remove('v2-detail-open');
@@ -923,18 +934,32 @@ export function mount(document, payload, options = {}) {
         ?{personalBook:true,controlled:true}:{contents:true,controlled:true});
     },
     settled:id=>{if(hashId()===id)window.history.replaceState({...window.history.state,armyBookV2:{...window.history.state?.armyBookV2,scrollY:window.scrollY}},'',window.location.href);}
-  });
-  navStyles.addEventListener('load',()=>{contents.controller.refreshGeometry();if(!personalMode&&main.querySelector('.v1-contents-pages')&&hashId()&&contents.isTarget(hashId()))contents.restore(hashId(),window.history.state?.armyBookV2?.scrollY);});
-  new window.MutationObserver(()=>{
+  },{lifecycle});
+  lifecycle.listen(navStyles,'load',()=>{contents.controller.refreshGeometry();if(!personalMode&&main.querySelector('.v1-contents-pages')&&hashId()&&contents.isTarget(hashId()))contents.restore(hashId(),window.history.state?.armyBookV2?.scrollY);});
+  lifecycle.observe(new window.MutationObserver(lifecycle.guard(()=>{
     const state=options.roster?.state;
     const signature=JSON.stringify(state?[state.rosterId,state.detachmentIds,state.units.map(unit=>[unit.instanceId,unit.canonicalUnitId,unit.enhancementIds]),state.attachments]:null);
     if(signature!==lastRosterNavigation){lastRosterNavigation=signature;renderNavigation();}
     contents.controller.scheduleGeometry();
-  }).observe(main,{childList:true,subtree:true});
+  }))).observe(main,{childList:true,subtree:true});
   let lastRosterNavigation=null;
-  const api = Object.freeze({payload, open, showDetail, library, openLibrary, openPersonalGuide, openInstance, renderAllForQA, openRelatedRules, setRelatedDetachment, openGlossary, closeGlossary, openRoster, routeURL, roster: options.roster, rosterPanel, navigation:contents.controller});
+  const safe=callback=>lifecycle.guard(callback);
+  const api = Object.freeze({get destroyed(){return !lifecycle.active;},destroy:lifecycle.destroy,payload, open:safe(open), showDetail:safe(showDetail), library:safe(library), openLibrary:safe(openLibrary), openPersonalGuide:safe(openPersonalGuide), openInstance:safe(openInstance), renderAllForQA:safe(renderAllForQA), openRelatedRules:safe(openRelatedRules), setRelatedDetachment:safe(setRelatedDetachment), openGlossary:safe(openGlossary), closeGlossary:safe(closeGlossary), openRoster:safe(openRoster), routeURL:safe(routeURL), roster: options.roster, rosterPanel, navigation:contents.controller});
+  lifecycle.cleanup(()=>{
+    const restoreFocus=shell.contains(document.activeElement);
+    contents?.destroy();rosterPanel?.destroy();
+    if(dialog.open)dialog.close();if(relatedDialog.open)relatedDialog.close();
+    shell.remove();ownedStyles.forEach(style=>style.remove());
+    for(const [name,present]of bodyClasses)document.body.classList.toggle(name,present);
+    if(!hadBodyClass&&!document.body.className)document.body.removeAttribute('class');
+    document.title=previousTitle;
+    if(restoreFocus&&previousFocus?.isConnected)previousFocus.focus({preventScroll:true});
+    lastFocus=popupOrigin=popupOriginRect=popupPresentation=activeRelatedPanel=null;
+    selectedId=selectedInstanceId=routeKey=null;glossaryQuery=glossaryCategory=relatedDetachmentId='';
+    if(window.ArmyBookAppV2===api){if(previousApi&&!previousApi.destroyed)window.ArmyBookAppV2=previousApi;else delete window.ArmyBookAppV2;}
+  });
   window.ArmyBookAppV2 = api;
   route();
-  if (rosterPanel) rosterPanel.ready.then(()=>{routeKey=null;route();});
+  if (rosterPanel) rosterPanel.ready.then(lifecycle.guard(()=>{routeKey=null;route();}));
   return api;
 }

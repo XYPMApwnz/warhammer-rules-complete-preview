@@ -103,7 +103,9 @@ export function projectContents(payload,state=null,personal=null){
   return {nodes,groups,roots,scope:'FULL'};
 }
 
-export function mountV1Contents(document,elements,bridge){
+export function mountV1Contents(document,elements,bridge,{lifecycle=bridge.lifecycle}={}){
+  const originalNodes=[...elements.tree.childNodes],originalScope=elements.tree.getAttribute('data-scope');
+  let destroyed=false,removeParentCleanup;
   const make=(tag,className,text)=>{const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;};
   let model={nodes:new Map(),groups:new Map(),roots:[]},signature='',controller;
   const section=id=>{
@@ -118,7 +120,7 @@ export function mountV1Contents(document,elements,bridge){
     if(element?.matches('[data-card-id]'))return {scrollTarget:element,highlightTarget:element};
     return {scrollTarget:element?.querySelector(':scope > h1,:scope > h2,:scope > h3')||element,highlightTarget:element};
   };
-  const highlighter=new Highlighter();
+  const highlighter=new Highlighter({view:document.defaultView||window});
   controller=new NavigationController({elements,highlighter,section,resolve,
     kind:id=>model.nodes.get(id)?.children.length?'branch':'target',
     itemId:id=>{const seen=new Set();while(id&&!model.nodes.has(id)&&!seen.has(id)){seen.add(id);id=bridge.parentId?.(id);}return id;},
@@ -149,8 +151,17 @@ export function mountV1Contents(document,elements,bridge){
     }
     return node;
   };
-  return {controller,section,isTarget:id=>model.nodes.has(id),
+  const destroy=()=>{
+    if(destroyed)return;
+    destroyed=true;removeParentCleanup?.();controller.destroy();
+    elements.tree.replaceChildren(...originalNodes);
+    if(originalScope===null)elements.tree.removeAttribute('data-scope');else elements.tree.setAttribute('data-scope',originalScope);
+    model={nodes:new Map(),groups:new Map(),roots:[]};signature='';
+  };
+  removeParentCleanup=lifecycle?.cleanup(destroy);
+  return {controller,section,isTarget:id=>!destroyed&&model.nodes.has(id),destroy,
     refresh(next,id){
+      if(destroyed)return;
       model=next;const nextSignature=JSON.stringify(next.roots);
       if(signature!==nextSignature){
         const open=new Set([...elements.tree.querySelectorAll('[data-nav-id]')].filter(node=>node.querySelector(':scope > .toc-branch')?.hidden===false).map(node=>node.dataset.navId));
@@ -162,7 +173,7 @@ export function mountV1Contents(document,elements,bridge){
       else{for(const button of controller.activeButtons){button.classList.remove('is-current','is-ancestor');button.removeAttribute('aria-current');}controller.activeButtons.clear();controller.state.active='';controller.state.instance='';}
       controller.scheduleGeometry();
     },
-    restore(id,scrollY){const item=controller.itemFor(id),target=section(id);if(!item||!target)return;controller.refreshGeometry();const resolved=resolve(target);controller.beginTransition(id,Number.isFinite(scrollY)?scrollY:controller.destination(resolved.scrollTarget),()=>{highlighter.show(resolved.highlightTarget);bridge.settled?.(id);},item.instanceId);},
-    clear(){signature='';model={nodes:new Map(),groups:new Map(),roots:[]};elements.tree.replaceChildren();controller.indexNavigationItems();controller.activeButtons=new Set();}
+    restore(id,scrollY){if(destroyed)return;const item=controller.itemFor(id),target=section(id);if(!item||!target)return;controller.refreshGeometry();const resolved=resolve(target);controller.beginTransition(id,Number.isFinite(scrollY)?scrollY:controller.destination(resolved.scrollTarget),()=>{highlighter.show(resolved.highlightTarget);bridge.settled?.(id);},item.instanceId);},
+    clear(){if(destroyed)return;signature='';model={nodes:new Map(),groups:new Map(),roots:[]};elements.tree.replaceChildren();controller.indexNavigationItems();controller.activeButtons=new Set();}
   };
 }

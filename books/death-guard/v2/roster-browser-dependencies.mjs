@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 // Explicit test-server allowlist; New Recruit decoding is owned by Roster V2.
 export function allowRosterDependencies(allowed) {
   for (const file of ['books/death-guard/v2/roster-boot.mjs','books/death-guard/v2/rule-contract-schema.mjs','books/death-guard/v2/rule-contract-state-fields.mjs',
-    'books/shared/army-book-app-v2/ability-presentation.mjs',
+    'books/shared/army-book-app-v2/ability-presentation.mjs','books/shared/army-book-app-v2/lifecycle.mjs',
     'books/shared/army-book-app-v2/reference-contract.mjs','books/shared/army-book-app-v2/reference-v1.mjs','books/shared/army-book-app-v2/route-context.mjs',
     'books/shared/rule-contract-v2/schema.mjs',
     'books/shared/roster-v2/runtime.mjs','books/shared/roster-v2/context.mjs','books/shared/roster-v2/effects.mjs','books/shared/roster-v2/import.mjs','books/shared/roster-v2/compatibility-feasibility.mjs','books/shared/roster-v2/compatibility-context.mjs',
