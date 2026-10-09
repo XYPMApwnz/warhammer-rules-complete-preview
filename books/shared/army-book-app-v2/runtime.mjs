@@ -1,6 +1,7 @@
 /** Presentation-only reader. Canonical IDs and supplied fields are its only content authority. */
 import {validateGlossary} from './glossary.mjs';
 import {createReferenceContract} from './reference-contract.mjs';
+import {encodeRoute,decodeRoute} from './route-context.mjs';
 import {createReferencePresenter} from './reference-v1.mjs';
 import {createRosterPanel} from './roster.mjs';
 import {projectPersonalBook, projectInstanceCards, instanceRoute} from './personal.mjs';
@@ -21,7 +22,7 @@ export function mount(document, payload, options = {}) {
   if (cards.has(glossaryRoute)) throw new Error('Canonical identity collides with the Glossary presentation route.');
   if (options.roster && cards.has(rosterRoute)) throw new Error('Canonical identity collides with the Roster presentation route.');
   if (payload.glossary) validateGlossary(payload.glossary, payload.cards);
-  const references=createReferenceContract({cards,index:payload.glossary});
+  const references=createReferenceContract({cards,index:payload.glossary,registryId:payload.book.id});
   for (const card of cards.values()) {
     for (const id of [...(card.children || []), ...(card.links || []).map(link => link.targetId), ...(card.fields || []).flatMap(field => field.targetIds || [])]) {
       if (!cards.has(id)) throw new Error(`Missing canonical target: ${id}`);
@@ -58,15 +59,14 @@ export function mount(document, payload, options = {}) {
   };
   const exactValue = value => typeof value === 'object' ? JSON.stringify(value) : String(value);
   const humanKind = kind => String(kind || 'Entry').replace(/[-_]/g, ' ');
-  const anchor = (label, id, detail = false, {reference=false,fieldPath=null} = {}) => {
+  const anchor = (label, id, detail = false, presentation = {}) => {
     const node = el('a', detail ? 'v2-reference' : 'v2-card-link', label);
-    node.href = `#${encodeURIComponent(id)}`;
-    if(reference){const url=new URL(window.location.href);url.hash=encodeURIComponent(id);url.searchParams.set('view','reference');node.href=url.href;}
+    node.href = routeURL(id,detail,presentation);
     node.dataset.targetId = id;
     node.addEventListener('click', event => {
       if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      detail ? showDetail(id,reference?{reference:true,fieldPath}:null) : reference?navigate(id,false,{reference:true}):open(id);
+      detail ? showDetail(id,presentation) : navigate(id,false,presentation);
     });
     return node;
   };
@@ -157,7 +157,7 @@ export function mount(document, payload, options = {}) {
   const indexed = [...cards.values()].map(card => ({card, text: [card.title, card.kind, ...(card.fields || []).map(field => `${field.label} ${field.displayValue || ''} ${exactValue(field.value)}`)].join(' ').toLocaleLowerCase()}));
   const rosterPanel = options.roster ? createRosterPanel(document, {
     service: options.roster, bookId: payload.book.id, open: id=>id?open(id):openLibrary(), showDetail,
-    openPersonalGuide, showInstance: openInstance,
+    openPersonalGuide, showInstance: openInstance, routeURL,
     titleForId: id => cards.get(id)?.title
   }) : null;
   const personalBook = () => projectPersonalBook(payload, options.roster.state);
@@ -562,13 +562,32 @@ export function mount(document, payload, options = {}) {
   }
 
   function physicalProfileProjection(id,instanceId) {
-    if (!personalMode || !instanceId || !['PROFILE','WEAPON_PROFILE'].includes(cards.get(id)?.kind)) return null;
+    if (!personalMode || !instanceId || !['DATASHEET','PROFILE','WEAPON_PROFILE'].includes(cards.get(id)?.kind)) return null;
     const unit=options.roster.state.units.find(unit=>unit.instanceId===instanceId);
     if (!unit) return null;
     const effective=options.roster.effective(instanceId);
     if(cards.get(id).kind==='WEAPON_PROFILE'&&!effective.weapons.some(weapon=>weapon.id===id))return new Map([[id,[]]]);
-    if (cards.get(id).parentId!==unit.canonicalUnitId && !effective.weapons.some(weapon=>weapon.id===id)) return null;
+    if (id!==unit.canonicalUnitId && cards.get(id).parentId!==unit.canonicalUnitId && !effective.weapons.some(weapon=>weapon.id===id)) return new Map([[id,[]]]);
     return projectInstanceCards(cards,unit,effective);
+  }
+
+  function effectiveReference(id,context) {
+    const variants=physicalProfileProjection(id,context.instanceId);
+    const profiles=options.roster?.effective(context.instanceId).profiles || [];
+    const recipients=profiles.filter(profile=>profile.id===context.profileId&&(!context.scopeId||profile.scopeId===context.scopeId));
+    const selected=(variants?.get(id)||[]).filter(card=>(!context.scopeId||card.scopeId===context.scopeId)&&
+      (!context.profileId||recipients.some(profile=>card.scopeId===profile.scopeId)));
+    return {variants,selected};
+  }
+
+  function renderEffectiveReference(id,context,focus) {
+    selectedView='REFERENCE';selectedId=id;selectedInstanceId=context.instanceId;
+    const {variants,selected}=effectiveReference(id,context);
+    const toolbar=el('nav','v2-breadcrumbs');toolbar.setAttribute('aria-label','Breadcrumb');
+    toolbar.append(button('Personal guide','',openPersonalGuide));
+    main.replaceChildren(toolbar,...(selected.length?selected.map(card=>renderCard(card,{inDialog:true,variants,instanceId:context.instanceId})):
+      [el('p','v2-not-found','This profile is not available in this roster unit.')]));
+    renderNavigation();if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
   }
 
   function renderSelected(id, focus = false, instanceId = null) {
@@ -695,16 +714,35 @@ export function mount(document, payload, options = {}) {
   function route({focus = false} = {}) {
     const id = hashId();
     const state = window.history.state;
-    const rosterId=new URLSearchParams(window.location.search).get('roster');
-    const referenceView=new URLSearchParams(window.location.search).get('view')==='reference'||cards.get(id)?.domain==='CORE';
+    let context;
+    try {context=decodeRoute(window.location.href,{bookId:payload.book.id,identityFor:references.identityFor});}
+    catch {
+      if(dialog.open)dialog.close();
+      main.replaceChildren(el('p','v2-not-found','This link has incomplete or invalid context. Open the book or import the roster to continue.'));return;
+    }
+    const rosterId=context.rosterId;
+    const referenceView=context.destination==='REFERENCE'||context.destination==='GLOSSARY'&&context.canonicalId||cards.get(id)?.domain==='CORE';
     personalMode=Boolean(rosterPanel && id!==rosterRoute && rosterId && options.roster.state?.rosterId===rosterId);
     const detail = state?.armyBookV2?.detailId === id && references.canResolve(id,scopedIds());
     navigationBlocked=Boolean(rosterId&&options.roster?.state?.rosterId!==rosterId);
-    const key = JSON.stringify([id, detail, referenceView, state?.armyBookV2?.detailReference, state?.armyBookV2?.glossaryCategory, state?.armyBookV2?.detailScopeId, state?.armyBookV2?.detailInstanceId, state?.armyBookV2?.detailFieldPath, personalMode,state?.armyBookV2?.contents,state?.armyBookV2?.backgroundContents, state?.armyBookV2?.instanceId, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
+    const key = JSON.stringify([context,id, detail, referenceView, state?.armyBookV2?.detailReference, state?.armyBookV2?.glossaryCategory, personalMode,state?.armyBookV2?.contents,state?.armyBookV2?.backgroundContents, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
     if (routeKey === key) return;
     routeKey = key;
     if(contents?.controller.state.owner==='controller')contents.controller.cancelTransition();
     toggleDrawer(false);
+    if(['HOME','CORE_RULES'].includes(context.destination)) {
+      if(dialog.open)dialog.close();document.body.classList.remove('v2-detail-open');
+      main.replaceChildren(el('p','v2-not-found','This destination is not available in this book reader.'));return;
+    }
+    const identity=references.identityFor(id);
+    const wrongRegistry=identity?identity.registryId!==context.registryId:context.registryId!==payload.book.id;
+    const physicalOwner=context.instanceId&&options.roster?.state?.units.find(unit=>unit.instanceId===context.instanceId);
+    const wrongOwner=context.instanceId&&(!personalMode||!physicalOwner||cards.get(id)?.kind==='DATASHEET'&&physicalOwner.canonicalUnitId!==id);
+    if(context.bookId!==payload.book.id||wrongRegistry||wrongOwner) {
+      if(dialog.open)dialog.close();document.body.classList.remove('v2-detail-open');
+      selectedId=selectedInstanceId=null;selectedView='REFERENCE';
+      main.replaceChildren(el('p','v2-not-found','This link belongs to a different book or an unavailable roster unit.'));renderNavigation();return;
+    }
     if(navigationBlocked&&!(referenceView&&cards.get(id)?.domain==='CORE')){
       selectedId=selectedInstanceId=null;selectedView='ROSTER';main.replaceChildren(el('p','v2-not-found','Imported roster context is unavailable. Import this roster to continue.'));renderNavigation();return;
     }
@@ -713,7 +751,9 @@ export function mount(document, payload, options = {}) {
         glossaryCategory=state.armyBookV2.glossaryCategory || '';
         if (selectedView !== 'GLOSSARY' || glossaryQuery !== (state.armyBookV2.glossaryQuery || '')) renderGlossary(state.armyBookV2.glossaryQuery || '');
       } else if(state.armyBookV2.backgroundView==='REFERENCE') {
-        renderReference(state.armyBookV2.backgroundId);
+        const background=state.armyBookV2.backgroundContext;
+        if(background?.instanceId)renderEffectiveReference(state.armyBookV2.backgroundId,background);
+        else renderReference(state.armyBookV2.backgroundId);
       } else if (state.armyBookV2.backgroundView === 'ROSTER' && rosterPanel) {
         if (selectedView !== 'ROSTER') renderRoster();
       } else if (personalMode && state.armyBookV2.backgroundInstanceId) {
@@ -725,11 +765,9 @@ export function mount(document, payload, options = {}) {
       // A profile opened from an effective instance is the same physical
       // projection as its parent card, not a fresh canonical profile. Rule
       // definitions and Glossary details keep their canonical source path.
-      const instanceId=personalMode && state.armyBookV2.backgroundView==='PERSONAL'
-        ? state.armyBookV2.detailInstanceId || state.armyBookV2.backgroundInstanceId : null;
-      const variants=physicalProfileProjection(id,instanceId);
+      const instanceId=context.instanceId;
+      const {variants,selected:effectiveCards}=instanceId?effectiveReference(id,context):{};
       const projectedCards=variants?.get(id);
-      const effectiveCards=projectedCards?.filter(card=>!state.armyBookV2.detailScopeId || card.scopeId===state.armyBookV2.detailScopeId);
       dialogContent.replaceChildren(...(effectiveCards?.length
         ? effectiveCards.map((card,index)=>renderCard(card,{inDialog:true,variants,instanceId,primaryDetail:index===0}))
         : projectedCards ? [el('p','v2-not-found','This profile is not available in this roster unit.')]
@@ -741,7 +779,7 @@ export function mount(document, payload, options = {}) {
         dialog.showModal();
       }
       dialogContent.scrollTop = state.armyBookV2.detailScrollTop || 0;
-      if(state.armyBookV2.detailFieldPath){const fact=[...dialogContent.querySelectorAll('[data-fact-id]')].find(node=>node.dataset.factId===`${id}::${state.armyBookV2.detailFieldPath}`);fact?.scrollIntoView({block:'nearest'});}
+      if(context.fieldPath){const fact=[...dialogContent.querySelectorAll('[data-fact-id]')].find(node=>node.dataset.factId===`${id}::${context.fieldPath}`);fact?.scrollIntoView({block:'nearest'});}
       document.body.classList.add('v2-detail-open');
       dialogBar.lastChild.focus({preventScroll: true});
       positionV1Popup(dialog,{origin:popupOrigin,rect:popupOriginRect});
@@ -749,13 +787,16 @@ export function mount(document, payload, options = {}) {
       if (dialog.open) dialog.close();
       document.body.classList.remove('v2-detail-open');
       if (id === glossaryRoute && payload.glossary) {glossaryCategory=state?.armyBookV2?.glossaryCategory || '';renderGlossary(state?.armyBookV2?.glossaryQuery || '', focus);}
+      else if (context.destination==='UNIT_INSTANCE')renderInstance(context.instanceId,focus);
+      else if (context.instanceId&&cards.get(id)?.kind==='DATASHEET')renderInstance(context.instanceId,focus);
+      else if (context.instanceId&&['PROFILE','WEAPON_PROFILE'].includes(cards.get(id)?.kind))renderEffectiveReference(id,context,focus);
       else if (referenceView&&references.canResolve(id,scopedIds()))renderReference(id,focus);
       else if (id === rosterRoute && rosterPanel) renderRoster(focus);
       else if (personalMode && id===personalRoute) renderPersonalHome(focus);
       else if (personalMode && id.startsWith('roster-unit/')) renderInstance(routeInstanceId(id),focus);
       else if (rosterPanel && (id===personalRoute || id.startsWith('roster-unit/') || rosterId && !options.roster.state)) renderRoster(focus);
       else if(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)renderContentsBook(id);
-      else renderSelected(id || null, focus, state?.armyBookV2?.instanceId);
+      else renderSelected(id || null, focus, context.instanceId);
       if(!referenceView&&!controlledRoute&&(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)){window.requestAnimationFrame(()=>contents.restore(id||'start',state?.armyBookV2?.scrollY));}
       else if(!focus&&!controlledRoute)window.requestAnimationFrame(()=>window.scrollTo({top:state?.armyBookV2?.scrollY||0,behavior:'instant'}));
       if (!focus && lastFocus) {
@@ -781,6 +822,29 @@ export function mount(document, payload, options = {}) {
       lastFocus = null;
     }
   }
+  function routeContext(id,detail=false,routeOptions={}) {
+    const physicalAlias=id?.startsWith('roster-unit/');
+    const personal=id===personalRoute||physicalAlias;
+    const rosterId=routeOptions.fullBook?null:routeOptions.rosterId ||
+      (personal||routeOptions.personalBook||id===rosterRoute||selectedView==='ROSTER'?optionsRosterId():new URLSearchParams(window.location.search).get('roster'));
+    const kind=cards.get(id)?.kind;
+    const ownerId=routeOptions.instanceId || (personalMode?selectedInstanceId:null);
+    const owner=ownerId&&options.roster?.state?.units.find(unit=>unit.instanceId===ownerId);
+    const effective=owner&&options.roster.effective(ownerId);
+    const projectedTarget=['DATASHEET','PROFILE','WEAPON_PROFILE'].includes(kind);
+    const ownsTarget=owner&&(id===owner.canonicalUnitId||effective.profiles.some(profile=>profile.id===id)||effective.weapons.some(weapon=>weapon.id===id));
+    const instanceId=physicalAlias?routeInstanceId(id):projectedTarget&&rosterId&&(routeOptions.instanceId||ownsTarget)?ownerId:null;
+    const physical=physicalAlias||kind==='DATASHEET'&&instanceId&&!detail;
+    const scopeId=instanceId?routeOptions.scopeId || null:null;
+    const profileId=instanceId?(routeOptions.profileId || (kind==='PROFILE'?id:scopeId?effective?.profiles.find(profile=>profile.scopeId===scopeId)?.id:null)):null;
+    const reference=Boolean(routeOptions.reference||detail||cards.get(id)?.domain==='CORE'||personalMode&&cards.has(id)&&!scopedIds().has(id));
+    const destination=physical?'UNIT_INSTANCE':id===personalRoute?'PERSONAL_GUIDE':id===rosterRoute?'ROSTER':
+      id===glossaryRoute?'GLOSSARY':reference||instanceId?'REFERENCE':'ARMY_BOOK';
+    return {destination,bookId:payload.book.id,registryId:references.identityFor(id)?.registryId || payload.book.id,
+      canonicalId:physical||[personalRoute,rosterRoute,glossaryRoute].includes(id)?null:id || null,
+      rosterId,instanceId,profileId,scopeId,fieldPath:routeOptions.fieldPath || null};
+  }
+  function routeURL(id,detail=false,routeOptions={}) {return encodeRoute(window.location.href,routeContext(id,detail,routeOptions));}
   function navigate(id, detail, routeOptions = {}) {
     const glossary = id === glossaryRoute && Boolean(payload.glossary) && !detail;
     const roster = id === rosterRoute && Boolean(rosterPanel) && !detail;
@@ -790,21 +854,15 @@ export function mount(document, payload, options = {}) {
     if (personalMode && cards.has(id) && !scopedIds().has(id) && !references.canResolve(id,scopedIds())) return false;
     const reference=Boolean(routeOptions.reference || detail&&popupPresentation?.reference || personalMode&&cards.has(id)&&!scopedIds().has(id));
     const nextHash = id ? `#${encodeURIComponent(id)}` : '';
+    let backgroundContext=window.history.state?.armyBookV2?.detailId?window.history.state.armyBookV2.backgroundContext:null;
+    if(!backgroundContext)try{backgroundContext=decodeRoute(window.location.href,{bookId:payload.book.id,identityFor:references.identityFor});}catch{backgroundContext=null;}
     window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, scrollY: window.scrollY, detailScrollTop: dialogContent.scrollTop, ...(selectedView === 'GLOSSARY' ? {glossaryQuery,glossaryCategory} : {})}}, '', window.location.href);
-    // Carry the existing physical owner with its profile projection. The URL
-    // and navigation behavior stay the same; identity is never inferred from
-    // a duplicate datasheet title or from the first matching roster copy.
-    const owner=personalMode && selectedInstanceId && options.roster.state.units.find(unit=>unit.instanceId===selectedInstanceId);
-    const instanceId=owner && (id===owner.canonicalUnitId || physicalProfileProjection(id,owner.instanceId)) ? owner.instanceId : null;
-    const state = {armyBookV2: detail ? {detailId: id, detailReference:reference, glossaryCategory, detailInstanceId:popupPresentation?.instanceId || null, detailScopeId:popupPresentation?.scopeId || null, detailFieldPath:popupPresentation?.fieldPath || null, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, backgroundContents:Boolean(window.history.state?.armyBookV2?.contents||main.querySelector('.v1-contents-pages')&&!personalMode), glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryCategory:'', glossaryQuery: routeOptions.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):['READER','PERSONAL','REFERENCE'].includes(selectedView) ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, glossaryReturnReference:selectedView==='REFERENCE'||Boolean(window.history.state?.armyBookV2?.glossaryReturnReference&&selectedView==='GLOSSARY'), scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, ...(routeOptions.contents?{contents:true}:{}), ...(instanceId?{instanceId}:{}), scrollY: 0}};
-    const destination=new URL(window.location.href);destination.hash=nextHash;
-    if(reference)destination.searchParams.set('view','reference');
-    else destination.searchParams.delete('view');
-    if (routeOptions.fullBook) destination.searchParams.delete('roster');
-    else if (personal||routeOptions.personalBook) destination.searchParams.set('roster',routeOptions.rosterId || optionsRosterId());
+    // History carries presentation/background only. Entity ownership is in the URL.
+    const state = {armyBookV2: detail ? {detailId: id, detailReference:reference, glossaryCategory, backgroundContext, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, backgroundContents:Boolean(window.history.state?.armyBookV2?.contents||main.querySelector('.v1-contents-pages')&&!personalMode), glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryCategory:'', glossaryQuery: routeOptions.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):['READER','PERSONAL','REFERENCE'].includes(selectedView) ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, glossaryReturnReference:selectedView==='REFERENCE'||Boolean(window.history.state?.armyBookV2?.glossaryReturnReference&&selectedView==='GLOSSARY'), scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, ...(routeOptions.contents?{contents:true}:{}), scrollY: 0}};
+    const destination=new URL(routeURL(id,detail,detail?{...routeOptions,...popupPresentation}:routeOptions));
     if (window.location.hash !== nextHash || destination.search!==window.location.search || Boolean(window.history.state?.armyBookV2?.detailId) !== detail) {
       window.history.pushState(state, '', destination.href);
-    } else window.history.replaceState(state, '', window.location.href);
+    } else window.history.replaceState(state, '', destination.href);
     routeKey = null;
     controlledRoute=Boolean(routeOptions.controlled);
     route({focus: !detail&&!controlledRoute});
@@ -874,7 +932,7 @@ export function mount(document, payload, options = {}) {
     contents.controller.scheduleGeometry();
   }).observe(main,{childList:true,subtree:true});
   let lastRosterNavigation=null;
-  const api = Object.freeze({payload, open, showDetail, library, openLibrary, openPersonalGuide, openInstance, renderAllForQA, openRelatedRules, setRelatedDetachment, openGlossary, closeGlossary, openRoster, roster: options.roster, rosterPanel, navigation:contents.controller});
+  const api = Object.freeze({payload, open, showDetail, library, openLibrary, openPersonalGuide, openInstance, renderAllForQA, openRelatedRules, setRelatedDetachment, openGlossary, closeGlossary, openRoster, routeURL, roster: options.roster, rosterPanel, navigation:contents.controller});
   window.ArmyBookAppV2 = api;
   route();
   if (rosterPanel) rosterPanel.ready.then(()=>{routeKey=null;route();});

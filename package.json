@@ -109,6 +109,8 @@
     "qa:am:v2:dependent-roles": "node books/adeptus-mechanicus/v2/dependent-roles-qa.mjs",
     "qa:am:v2:dependent-roles:browser": "node books/adeptus-mechanicus/v2/required-recipients-browser-qa.mjs --dependent-roles",
     "qa:shared:v2:weapon-scope": "node books/shared/army-book-app-v2/weapon-scope-projection-qa.mjs",
+    "qa:shared:v2:routes": "node books/shared/army-book-app-v2/route-context-qa.mjs",
+    "qa:shared:v2:routes:browser": "node books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs && node books/shared/army-book-app-v2/route-context-browser-qa.mjs",
     "qa:shared:v2:references": "node books/shared/army-book-app-v2/reference-contract-qa.mjs",
     "qa:shared:v2:references:browser": "node books/shared/army-book-app-v2/reference-browser-qa.mjs",
     "qa:am:v2:personal-weapons:browser": "node books/adeptus-mechanicus/v2/personal-weapons-browser-qa.mjs"

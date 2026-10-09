@@ -42,6 +42,19 @@ const settle=async page=>{await page.evaluate(async()=>{await document.fonts.rea
 async function openPage(context,army,old=false){const page=await context.newPage();page.on('pageerror',error=>errors.push({army,baseline:old,error:error.message}));await page.goto(origin+(old?'/baseline':'')+`/books/${army}/v2/app.html`);await wait(page);return page;}
 async function snapshot(page){return page.locator('main .unit-card').evaluate(root=>{
   const copy=root.cloneNode(true);copy.querySelectorAll('img').forEach(image=>image.removeAttribute('loading'));
+  // Routing now writes explicit namespace/context URLs. Verify their target
+  // identity before comparing the unchanged presentation DOM and geometry.
+  const payload=window.ArmyBookAppV2.payload;
+  for(const link of root.dataset.rosterInstanceId?[]:copy.querySelectorAll('a[href][data-target-id]')) {
+    const url=new URL(link.getAttribute('href'),location.href),id=link.dataset.targetId;
+    if(decodeURIComponent(url.hash.slice(1))!==id)throw new Error('Normal link changed canonical target');
+    if(url.searchParams.has('v2')) {
+      const registry=payload.cards.find(card=>card.id===id)?.domain==='CORE'?'core-rules':payload.book.id;
+      if(url.searchParams.get('registry')!==registry||url.searchParams.get('book')!==payload.book.id)throw new Error('Wrong normal reference namespace');
+      if(['instance','profile','scope'].some(key=>url.searchParams.has(key)))throw new Error('Effective context leaked into normal book');
+    }
+    link.setAttribute('href','#'+encodeURIComponent(id));
+  }
   const rectangle=node=>{const r=node.getBoundingClientRect();return[r.x,r.y,r.width,r.height].map(value=>Math.round(value*10)/10);};
   return {text:root.innerText,dom:copy.outerHTML,geometry:[root,...root.querySelectorAll('.unit-header,.unit-part,.model-profile,.weapon-row,.ds-roster-context')].map(node=>({key:node.dataset.cardId||node.dataset.datasheetSection||node.className,rect:rectangle(node)})),overflow:document.documentElement.scrollWidth>innerWidth+1};
 });}
@@ -236,7 +249,7 @@ try{
     for(const unit of units){await page.evaluate(id=>window.ArmyBookAppV2.open(id),unit.id);await oldPage.evaluate(id=>window.ArmyBookAppV2.open(id),unit.id);await Promise.all([settle(page),settle(oldPage)]);
       const current=await snapshot(page),previous=await snapshot(oldPage);assert.deepEqual(current,previous,`${army}/${device}/${unit.id}: normal datasheet changed`);
     }
-    normalComparisons.push({army,device,datasheets:units.length,text:'IDENTICAL',dom:'IDENTICAL',geometry:'IDENTICAL'});
+    normalComparisons.push({army,device,datasheets:units.length,text:'IDENTICAL',domExceptValidatedRouteURLs:'IDENTICAL',geometry:'IDENTICAL'});
     console.log(JSON.stringify({phase:'NORMAL_UNCHANGED',army,device,datasheets:units.length}));
     await oldContext.close();
     await verifyState(page,army,device,allUnitFixture(books.get(army)),'all-canonical-units');

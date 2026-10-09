@@ -57,10 +57,10 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     return node;
   };
   const scopedAnchor=(label,card,instanceId,fieldPath)=>{
-    const link=el('a','term-button v2-reference',label);link.href='#'+encodeURIComponent(card.id);link.dataset.targetId=card.id;
+    const link=anchor(label,card.id,true,{instanceId:instanceId || null,scopeId:card.scopeId || null,fieldPath:fieldPath || null});
+    link.className='term-button v2-reference';
     link.dataset.popupIdentity=JSON.stringify([card.id,instanceId || null,card.scopeId || null]);
     if(card.scopeId)link.dataset.compositionId=card.scopeId;
-    link.addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();showDetail(card.id,{instanceId:instanceId || null,scopeId:card.scopeId || null,fieldPath:fieldPath || null});});
     return link;
   };
   const heading=(card,tag='h4')=>{const field=card.fields.find(f=>f.presentation==='heading');return field?factValue(tag,field):el(tag,'',card.title);};

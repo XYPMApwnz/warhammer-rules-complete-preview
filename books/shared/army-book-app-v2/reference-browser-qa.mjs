@@ -6,6 +6,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
 import {createReferenceContract} from './reference-contract.mjs';
+import {encodeRoute} from './route-context.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 
@@ -40,7 +41,7 @@ for(const book of books){
   const effective=read(`books/${book.id}/v2/generated/${book.effective}.json`);
   book.entities=new Map(effective.entities.map(entity=>[entity.id,entity]));book.effectiveModel=effective;
   book.cards=new Map(book.payload.cards.map(card=>[card.id,card]));
-  book.contract=createReferenceContract({cards:book.cards,index:book.payload.glossary});
+  book.contract=createReferenceContract({cards:book.cards,index:book.payload.glossary,registryId:book.id});
   const categories=new Set(book.payload.glossary.entries.map(entry=>entry.category));
   book.samples=[...categories].map(category=>book.payload.glossary.entries.find(entry=>entry.category===category));
   book.aliasEntry=book.payload.glossary.entries.find(entry=>entry.aliases.some(alias=>alias.fieldPath));
@@ -96,7 +97,8 @@ const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CH
 const screenshots=process.env.ARMY_APP_V2_SCREENSHOTS;if(screenshots)fs.mkdirSync(screenshots,{recursive:true});
 const ready=async page=>{await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.rosterPanel));
   await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);await page.waitForLoadState('networkidle');};
-const referenceUrl=(book,id,base=origin+book.app)=>{const url=new URL(base);url.searchParams.set('view','reference');url.hash=encodeURIComponent(id);return url.href;};
+const referenceUrl=(book,id,base=origin+book.app)=>encodeRoute(base,{destination:'REFERENCE',bookId:book.id,
+  registryId:book.contract.identityFor(id)?.registryId || book.id,canonicalId:id,rosterId:new URL(base).searchParams.get('roster')});
 const resultIds=page=>page.locator('main .v2-glossary-result').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId));
 const noInternal=/\b(?:CORE_MAIN_RULE|CORE_CORE_CONCEPT|CORE_ERRATA|CORE_FAQ_CLARIFICATION|CORE_UNIVERSAL_RULE_UPDATE|DATASHEET_SECTION|SUPPLEMENTAL_DATASHEET_RULE|SOURCE_ERRATUM|Source Rule Id)\b/;
 

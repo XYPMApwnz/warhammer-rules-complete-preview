@@ -20,7 +20,10 @@ const publicText = field => {
 const byLabel=(a,b)=>a.label.localeCompare(b.label, 'en', {sensitivity:'base'}) || a.targetId.localeCompare(b.targetId);
 
 /** One canonical reference policy. Personal book membership remains external. */
-export function createReferenceContract({cards,index}) {
+export function createReferenceContract({cards,index,registryId='book',coreRegistryId='core-rules'}) {
+  const identityFor=id=>cards.has(id)?Object.freeze({registryId:cards.get(id).domain==='CORE'?coreRegistryId:registryId,canonicalId:id}):null;
+  const localId=target=>typeof target==='string'?target:
+    target&&identityFor(target.canonicalId)?.registryId===target.registryId?target.canonicalId:null;
   const entries=new Map((index?.entries || []).map(entry=>[entry.targetId,entry]));
   const categoryFor=card=>categories[entries.get(card.id)?.category || card.kind] || 'Reference';
   const dependencies=card=>[...(card.links || []).map(link=>link.targetId),
@@ -34,8 +37,9 @@ export function createReferenceContract({cards,index}) {
     }
     return available;
   }
-  const canResolve=(id,allowedIds=null)=>cards.has(id)&&scope(allowedIds).has(id);
-  function resolve(id,allowedIds=null) {
+  const canResolve=(target,allowedIds=null)=>{const id=localId(target);return cards.has(id)&&scope(allowedIds).has(id);};
+  function resolve(target,allowedIds=null) {
+    const id=localId(target);
     if(!canResolve(id,allowedIds))return null;
     const card=cards.get(id),entry=entries.get(id),available=scope(allowedIds),sections=[],visited=new Set();
     function definition(owner,trail=new Set()) {
@@ -59,7 +63,7 @@ export function createReferenceContract({cards,index}) {
     const references=[...new Set(sections.flatMap(section=>dependencies(section.card)).concat(dependencies(card),sections.filter(section=>section.card.kind==='WEAPON_PROFILE').map(section=>section.card.id)))]
       .filter(targetId=>targetId!==id&&available.has(targetId)&&cards.has(targetId))
       .map(targetId=>({targetId,label:cards.get(targetId).title}));
-    return {targetId:id,title:card.title,titleField:card.fields?.find(field=>field.type==='heading'||field.presentation==='heading'),
+    return {targetId:id,identity:identityFor(id),title:card.title,titleField:card.fields?.find(field=>field.type==='heading'||field.presentation==='heading'),
       category:categoryFor(card),contextLabel:entry?.contextLabel || (card.domain==='CORE'?'Core Rules':'Army Book'),sections,references};
   }
   function search(query,{allowedIds=null,category=''}={}) {
@@ -88,5 +92,5 @@ export function createReferenceContract({cards,index}) {
     return [...new Map([...kinds].map(id=>[categories[id] || 'Reference',{id,label:categories[id] || 'Reference'}])).values()]
       .sort((a,b)=>a.label.localeCompare(b.label)||a.id.localeCompare(b.id));
   }
-  return Object.freeze({resolve,canResolve,search,categories:categoryList,isEntry:id=>entries.has(id)});
+  return Object.freeze({resolve,canResolve,identityFor,search,categories:categoryList,isEntry:id=>entries.has(id)});
 }

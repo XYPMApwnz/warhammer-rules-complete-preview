@@ -1,5 +1,5 @@
 /** Optional roster view. The injected service owns every identity, fact and effect. */
-export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance}) {
+export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL}) {
   if (!service || !Array.isArray(service.catalog)) throw new TypeError('A canonical roster service is required.');
   for (const method of ['draft', 'import', 'load', 'snapshot', 'effective', 'related', 'candidates', 'attach', 'detach']) {
     if (typeof service[method] !== 'function') throw new TypeError(`Roster service requires ${method}().`);
@@ -25,7 +25,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   };
   const reference = (id, label = named(id), reader = false) => {
     const link = el('a', 'v2-reference', label);
-    link.href = `#${encodeURIComponent(id)}`;
+    link.href = routeURL?routeURL(id,!reader):`#${encodeURIComponent(id)}`;
     link.dataset.targetId = id;
     link.addEventListener('click', event => {
       if (event.button || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) return;
