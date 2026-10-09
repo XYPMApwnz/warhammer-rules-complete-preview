@@ -49,8 +49,6 @@ const ruleReferences={
   '01.03':['core-active-player']
 };
 const faqs=catalog.faqs;
-const faqsByPrimary=new Map();
-for(const faq of faqs)faqsByPrimary.set(faq.primaryRule,[...(faqsByPrimary.get(faq.primaryRule)||[]),faq]);
 
 const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const normalize=value=>String(value||'').replace(/\r/g,'').replace(/\s+/g,' ').trim();
@@ -215,10 +213,12 @@ function prose(text,seen=new Set(),excludedId='',hiddenReferences=[]){
 function renderTable(block,seen,excludedId){
   const columns=block.columns.map(column=>`<th>${linkedText(column,seen,excludedId)}</th>`).join('');
   const rows=block.rows.map(row=>`<tr><th>${linkedText(row.label,seen,excludedId)}</th>${row.cells.map(cell=>`<td>${linkedText(cell,seen,excludedId)}</td>`).join('')}</tr>`).join('');
-  return `<div class="table-scroll"><table class="rules-table"><thead><tr><th></th>${columns}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  const rowHeaderIncluded=block.rows.every(row=>block.columns.length===row.cells.length+1);
+  return `<div class="table-scroll"><table class="rules-table"><thead><tr>${rowHeaderIncluded?'':'<th></th>'}${columns}</tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 function renderContent(record,seen=new Set(),excludedId='',hiddenReferences=[]){
+  if(record.sourceConflict)return sourceConflictContent(record,seen,excludedId);
   if(!record.content)return prose(recordText(record),seen,excludedId,hiddenReferences);
   return record.content.map(block=>{
     if(block.type==='paragraph')return `<p>${linkedText(block.text,seen,excludedId)}</p>`;
@@ -231,7 +231,7 @@ function renderContent(record,seen=new Set(),excludedId='',hiddenReferences=[]){
     if(block.type==='comparison-table')return renderTable(block,seen,excludedId);
     if(block.type==='matrix')return `<div class="table-scroll"><table class="rules-table matrix"><caption>${linkedText(block.caption,seen,excludedId)}</caption><tbody>${block.rows.map(row=>`<tr><th>${linkedText(row.condition,seen,excludedId)}</th><td>${linkedText(row.result,seen,excludedId)}</td></tr>`).join('')}</tbody></table></div>`;
     if(block.type==='procedure')return `<ol class="procedure">${block.steps.map(step=>`<li><strong>${linkedText(step.label,seen,excludedId)}</strong>${step.text?` <span>${linkedText(step.text,seen,excludedId)}</span>`:''}${step.items?.length?`<ul>${step.items.map(item=>`<li>${linkedText(item,seen,excludedId)}</li>`).join('')}</ul>`:''}</li>`).join('')}</ol>`;
-    if(block.type==='named-stages')return `<dl class="named-stages">${block.stages.map(stage=>`<div><dt>${escapeHtml(stage.label)}</dt><dd>${stage.text?`<p>${linkedText(stage.text,seen,excludedId)}</p>`:''}${stage.items?.length?`<ul>${stage.items.map(item=>`<li>${linkedText(item,seen,excludedId)}</li>`).join('')}</ul>`:''}</dd></div>`).join('')}</dl>`;
+    if(block.type==='named-stages')return `<dl class="named-stages">${block.stages.map(stage=>`<div><dt>${escapeHtml(stage.label)}</dt><dd>${stage.text?`<p>${linkedText(stage.text,seen,excludedId)}</p>`:''}${stage.items?.length?`<ul>${stage.items.map(item=>`<li>${linkedText(item,seen,excludedId)}</li>`).join('')}</ul>`:''}${stage.afterText?`<p>${linkedText(stage.afterText,seen,excludedId)}</p>`:''}</dd></div>`).join('')}</dl>`;
     return '';
   }).join('');
 }
@@ -242,6 +242,16 @@ function pageLabel(pages){
   return pages.length===1?`page ${pages[0]}`:`pages ${pages[0]}–${pages.at(-1)}`;
 }
 function sourceLabel(record){
+  if(record.sourceConflict)return 'Accepted source variants &middot; unresolved';
+  if(record.provenance?.effectiveSourceBindings?.length){
+    const labels=record.provenance.effectiveSourceBindings.map(binding=>{
+      const source=catalog.getById(binding.sourceRecordId||binding.source.recordId)?.provenance||record.provenance.base;
+      const label=source.sourceClass==='ACCEPTED_OPERATIONAL_SECONDARY'?'Accepted secondary update':source.authorityLevel==='GLOBAL_OFFICIAL'?'Official GW update':'Accepted source update';
+      const artifact=source.sourceArtifact,href=/^https?:\/\//.test(artifact)?artifact:`../../../${artifact}`;
+      return `${label} &middot; <a href="${escapeHtml(href)}" target="_blank" rel="noreferrer">Source ↗</a>`;
+    });
+    return [...new Set(labels)].join(' &middot; ');
+  }
   if(record.currentOfficialOverride){
     const label=record.currentOfficialOverride.sourceClass==='GW_CURRENT_OFFICIAL'?'Official GW update':record.currentOfficialOverride.operation==='compatibility-alias'?'Official PDF · secondary-corroborated alias':'Secondary wording · GW gameplay corroborated';
     return `${label} &middot; <a href="${escapeHtml(record.currentOfficialOverride.sourceArtifact)}" target="_blank" rel="noreferrer">Source ↗</a>`;
@@ -269,10 +279,6 @@ function sourceLinks(pages){
   return `<details class="source-pages"><summary>Sources and original pages</summary><div><a href="${pdfUrl}" target="_blank" rel="noreferrer">Official GW PDF ↗</a>${pageLinks}<a href="${wahapediaUrl}" target="_blank" rel="noreferrer">Secondary reference: Wahapedia 11E ↗</a></div></details>`;
 }
 
-function musterTable(){
-  return `<div class="table-scroll"><table class="battle-size-table"><thead><tr><th>Battle size</th><th>Points</th><th>DP</th><th>Enhancements</th><th>Unit limit</th></tr></thead><tbody><tr><th>Incursion</th><td>1000</td><td>2</td><td>2</td><td>2</td></tr><tr><th>Strike Force</th><td>2000</td><td>3</td><td>4</td><td>3</td></tr></tbody></table></div>`;
-}
-
 function ruleVisuals(code){
   const items=diagrams.filter(item=>diagramRules[item.file]===code);
   if(!items.length)return '';
@@ -288,10 +294,53 @@ function referenceStrip(code,seen=new Set()){
   return `<nav class="rule-references" aria-label="Glossary concepts for ${escapeHtml(code)}"><span>Glossary concepts</span>${items.map(term=>termButton(term,term.title.en)).join('')}</nav>`;
 }
 
-function faqCard(faq){
+function faqPresentationIdentity(faq){
+  return faq.presentationIdentity||JSON.stringify([faq.question,faq.answer].map(value=>normalize(value).replace(/[‘’]/g,"'").replace(/[“”]/g,'"')));
+}
+
+function faqProvenanceLabel(faq){
+  const source=faq.provenance;
+  if(source.sourceClass==='GW_CORE_FAQ')return `Official FAQ &middot; ${escapeHtml(source.sourceLocator.replace(/;\s*/g,' · '))}`;
+  if(source.sourceClass==='ACCEPTED_OPERATIONAL_SECONDARY')return `Accepted Wahapedia FAQ &middot; ${escapeHtml(source.sourceDate)}`;
+  return `FAQ &middot; ${escapeHtml(source.sourceDate||'')}`;
+}
+
+function faqRuleIds(faq){
+  return [...new Set([faq.relationships?.primaryRuleId,...(faq.relationships?.relatedRuleIds||[])].filter(Boolean))];
+}
+
+function faqCard(group,{canonicalAnchors=false,surfaceId=''}={}){
   const seen=new Set();
-  const related=faq.relatedRules.map(code=>termByCode.get(code)).filter(Boolean);
-  return `<aside class="official-faq" id="${escapeHtml(faq.id)}"><span class="source-label">Official FAQ &middot; Rules Appendix &middot; page 88</span><h4>${linkedText(faq.question,seen)}</h4><p>${linkedText(faq.answer,seen)}</p>${related.length?`<nav aria-label="Related rules"><span>Related rules</span>${related.map(term=>termButton(term,term.title.en,'rule-reference')).join('')}</nav>`:''}</aside>`;
+  const faq=group[0];
+  const related=[...new Set(group.flatMap(faqRuleIds))].map(id=>coreTermById.get(id)).filter(Boolean);
+  const anchorId=item=>canonicalAnchors?item.id:`${surfaceId}--${item.id}`;
+  const aliases=group.slice(1).map(item=>`<span id="${escapeHtml(anchorId(item))}" data-faq-alias="${escapeHtml(faq.id)}"></span>`).join('');
+  // Existing chapter URLs remain valid at the explicitly established primary
+  // rule. Related-rule appearances retain their scoped local anchors only.
+  const compatibilityAnchors=canonicalAnchors?'':group.filter(item=>item.relationships?.primaryRuleId===surfaceId).map(item=>`<span id="${escapeHtml(item.id)}" data-faq-compatibility-alias="${escapeHtml(anchorId(item))}"></span>`).join('');
+  const sources=group.map(item=>`<span class="source-label" data-faq-source="${escapeHtml(item.id)}">${faqProvenanceLabel(item)}${item.provenance.sourceArtifact?` &middot; <a href="${escapeHtml(item.provenance.sourceArtifact)}" target="_blank" rel="noreferrer">Source ↗</a>`:''}</span>`).join('');
+  return `<aside class="official-faq" id="${escapeHtml(anchorId(faq))}" data-faq-id="${escapeHtml(faq.id)}">${compatibilityAnchors}${aliases}${sources}<h4>${linkedText(faq.question,seen)}</h4><p>${linkedText(faq.answer,seen)}</p>${related.length?`<nav aria-label="Related rules"><span>Related rules</span>${related.map(term=>termButton(term,term.title.en,'rule-reference')).join('')}</nav>`:''}</aside>`;
+}
+
+function faqCards(items,options){
+  const groups=new Map();
+  for(const faq of items){
+    const identity=faqPresentationIdentity(faq);
+    const group=groups.get(identity)||[];
+    if(!group.some(item=>item.id===faq.id))group.push(faq);
+    groups.set(identity,group);
+  }
+  return [...groups.values()].map(group=>faqCard(group,options)).join('');
+}
+
+function ruleFaqs(record){
+  return faqs.filter(faq=>(record.relationships?.faqIds||[]).includes(faq.id)||faqRuleIds(faq).includes(record.id));
+}
+
+function sourceConflictContent(record,seen,excludedId){
+  const conflict=record.sourceConflict;
+  const variants=conflict.occurrences.map(occurrence=>`<section class="source-variant"><h4 class="official-heading">${escapeHtml(occurrence.title)} · source occurrence ${escapeHtml(occurrence.sourceOrder)}</h4>${prose(occurrence.presentationText??occurrence.content.text,seen,excludedId)}</section>`).join('');
+  return `<aside class="official-faq source-conflict" role="note"><span class="source-label">Unresolved accepted-source conflict</span><p>The accepted sources contain different versions of this rule. Neither version has been established as the current rule.</p></aside>${variants}`;
 }
 
 function stratagemCard(record){
@@ -318,16 +367,15 @@ function stratagemCard(record){
 
 function mainRule(record,children=[]){
   const id=`rule-${slug(record.code)}`;
-  const special=record.code==='25.03'?musterTable():'';
   const inlineChildren=children.filter(child=>child.presentation==='inline');
   const nestedChildren=children.filter(child=>child.presentation!=='inline');
-  const nested=nestedChildren.length?`<div class="subrules">${nestedChildren.map(child=>{const excludedId=termByCode.get(child.code)?.id||'',seen=new Set();const text=renderContent(child,seen,excludedId),childFaqs=(faqsByPrimary.get(child.code)||[]).map(faqCard).join('');return `<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><strong>${escapeHtml(displayTitle(child))}</strong></summary><div><span class="source-label">${sourceLabel(child)}</span>${text}${childFaqs}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
+  const nested=nestedChildren.length?`<div class="subrules">${nestedChildren.map(child=>{const excludedId=termByCode.get(child.code)?.id||'',seen=new Set();const text=renderContent(child,seen,excludedId),childFaqs=faqCards(ruleFaqs(child),{surfaceId:child.id});return `<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><strong>${escapeHtml(displayTitle(child))}</strong></summary><div><span class="source-label">${sourceLabel(child)}</span>${text}${childFaqs}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
   const excludedId=termByCode.get(record.code)?.id||'';
   const seen=new Set();
-  const inline=inlineChildren.map(child=>`<div class="inline-clarification" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}">${renderContent(child,seen,termByCode.get(child.code)?.id||'')}${(faqsByPrimary.get(child.code)||[]).map(faqCard).join('')}</div>`).join('');
-  const text=(record.code==='25.03'?prose(recordText(record).replace(/BATTLE SIZE\nIncursion:[\s\S]*?Unit limit 3\.\n?/,''),seen,excludedId,children.map(child=>child.code)):renderContent(record,seen,excludedId,children.map(child=>child.code)))+inline;
-  const faqHtml=(faqsByPrimary.get(record.code)||[]).map(faqCard).join('');
-  return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><h3>${escapeHtml(displayTitle(record))}</h3><span class="page">${sourceLabel(record)}</span></header><div class="rule-body">${text}${faqHtml}${special}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
+  const inline=inlineChildren.map(child=>`<div class="inline-clarification" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}">${renderContent(child,seen,termByCode.get(child.code)?.id||'')}${faqCards(ruleFaqs(child),{surfaceId:child.id})}</div>`).join('');
+  const text=renderContent(record,seen,excludedId,children.map(child=>child.code))+inline;
+  const faqHtml=faqCards(ruleFaqs(record),{surfaceId:record.id});
+  return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><h3>${escapeHtml(displayTitle(record))}</h3><span class="page">${sourceLabel(record)}</span></header><div class="rule-body">${text}${faqHtml}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
 }
 
 function introductionArticle(){
@@ -369,17 +417,18 @@ function sectionPage(id,index){
 
 const groups=data.groups.map(group=>`<section class="home-section"><header><span class="eyebrow">${escapeHtml(group.pages)}</span><h2>${escapeHtml(group.title)}</h2><p>${escapeHtml(group.description)}</p></header><div class="home-grid">${group.sections.map(section=>`<a class="home-card" href="${fileFor(section.id)}"><small>${escapeHtml(pageLabel(pdf.sections[section.id]||[]))}</small><strong>${escapeHtml(section.title)}</strong><span>${escapeHtml(section.summary)}</span><em>Open chapter →</em></a>`).join('')}</div></section>`).join('');
 const intro=data.introduction;
-const indexContent=`<section class="chapter-hero"><span class="eyebrow">Warhammer 40,000 // Core Rules 11E</span><h2>Core Rules Reference</h2><p>Core Rules</p><div class="hero-actions"><a class="button" href="${fileFor(intro.id)}">Start with Introduction →</a><a class="button source" href="${pdfUrl}" target="_blank" rel="noreferrer">Official GW PDF ↗</a></div></section>${groups}`;
+const faqCatalog=`<section class="home-section" id="faq"><header><h2>FAQ</h2></header>${faqCards(faqs,{canonicalAnchors:true})}</section>`;
+const indexContent=`<section class="chapter-hero"><span class="eyebrow">Warhammer 40,000 // Core Rules 11E</span><h2>Core Rules Reference</h2><p>Core Rules</p><div class="hero-actions"><a class="button" href="${fileFor(intro.id)}">Start with Introduction →</a><a class="button source" href="${pdfUrl}" target="_blank" rel="noreferrer">Official GW PDF ↗</a></div></section>${groups}${faqCatalog}`;
 fs.writeFileSync(path.join(root,'index.html'),shell({title:'Core Rules Reference',content:indexContent}));
 for(const [index,id] of order.entries())fs.writeFileSync(path.join(root,fileFor(id)),sectionPage(id,index));
 const searchIndex=digital.records.map(record=>{
   const sectionId=sectionByNumber.get(record.code.slice(0,2));
-  return {code:record.code,title:record.title,chapter:byId.get(sectionId)?.title||'',text:normalize(`${recordText(record)} ${(record.compatibilityAliases||[]).join(' ')}`),url:`${fileFor(sectionId)}#rule-${slug(record.code)}`};
+  const conflictText=record.sourceConflict?`Unresolved accepted-source conflict. ${record.sourceConflict.occurrences.map(occurrence=>occurrence.content.text).join(' ')}`:'';
+  return {code:record.code,title:record.title,chapter:byId.get(sectionId)?.title||'',text:normalize(`${conflictText||recordText(record)} ${(record.compatibilityAliases||[]).join(' ')}`),url:`${fileFor(sectionId)}#rule-${slug(record.code)}`};
 });
 for(const update of digital.universalRulesUpdates||[])searchIndex.push({code:update.id,title:update.title,chapter:'Stratagems',text:update.text,url:`stratagems.html#${update.id}`});
 for(const faq of faqs){
-  const sectionId=sectionByNumber.get(faq.primaryRule.slice(0,2));
-  searchIndex.push({code:faq.id,title:faq.question,chapter:byId.get(sectionId)?.title||'',text:faq.answer,url:`${fileFor(sectionId)}#${faq.id}`});
+  searchIndex.push({code:faq.id,title:faq.question,chapter:'FAQ',text:faq.answer,url:`index.html#${faq.id}`});
 }
 fs.writeFileSync(path.join(root,'search-index.json'),JSON.stringify(searchIndex));
 const stale=path.join(root,'rules-appendix.html');

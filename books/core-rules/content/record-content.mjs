@@ -19,6 +19,7 @@ export function flattenContent(content=[]){
       for(const stage of block.stages){
         lines.push(`${stage.label}: ${stage.text}`.trim());
         lines.push(...(stage.items||[]).map(item=>`• ${item}`));
+        if(stage.afterText)lines.push(stage.afterText);
       }
     }
   }

@@ -86,7 +86,8 @@ assert(byCode.has('18.06')&&byCode.has('18.07'),'accepted deterministic Waha def
 assert.equal(byCode.get('18.06').title,'ASSAULT DISEMBARK MOVE');
 assert.equal(byCode.get('18.07').title,'SHOCK DISEMBARK MOVE');
 assert(recordText(byCode.get('18.06')).includes('SET-UP DISTANCE')&&recordText(byCode.get('18.07')).includes('SET-UP DISTANCE'),'accepted Waha move definitions must survive normalization');
-assert(recordText(byCode.get('18.04')).includes('same rules and restrictions')&&recordText(byCode.get('18.05'))===recordText(base.records.find(record=>record.code==='18.05')),'the accepted Transport base and pending Emergency sequence must not be silently replaced');
+assert(recordText(byCode.get('18.04')).includes('same rules and restrictions'),'the accepted Transport base must survive official normalization');
+assert(recordText(projection.catalog.getByCode('18.05')).includes('If the above is not possible while remaining unengaged'),'the effective Emergency sequence must apply its enrolled source change');
 const faqs=projection.coreSource.faqs||[];
 assert.equal(new Set(faqs.map(faq=>faq.id)).size,faqs.length,'Core FAQ identities must remain unique');
 for(const faq of faqs){

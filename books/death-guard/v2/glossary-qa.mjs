@@ -35,7 +35,7 @@ export function resolvePointer(value,pointer) {
 }
 
 export function expectedGlossaryTargets(model,coreCatalog) {
-  return new Set([...model.entities.filter(entity=>entity.ruleContract||entity.kind==='DETACHMENT').map(entity=>entity.id),...coreCatalog.records.filter(record=>record.state==='FULL_CONTENT').map(record=>record.id)]);
+  return new Set([...model.entities.filter(entity=>entity.ruleContract||entity.kind==='DETACHMENT').map(entity=>entity.id),...coreCatalog.records.filter(record=>['FULL_CONTENT','SOURCE_CONFLICT'].includes(record.state)).map(record=>record.id)]);
 }
 
 export function expectedNamedAbilityAliases(model) {
@@ -65,7 +65,15 @@ export function expectedCoreFields(record) {
   };
   scalarLeaves(record.title,['title']);
   if(record.code)scalarLeaves(record.code,['code']);
-  if(!record.relationships?.sourceRuleId) {
+  if(record.state==='SOURCE_CONFLICT'){
+    assert.equal(record.sourceConflict.status,'UNRESOLVED_ACCEPTED_SOURCE_CONFLICT');
+    assert.equal(record.semanticContent,null,'Unresolved source conflict cannot have an effective winner');
+    scalarLeaves(record.sourceConflict.notice,['sourceConflict','notice']);
+    record.sourceConflict.occurrences.forEach((occurrence,i)=>{
+      scalarLeaves(occurrence.title,['sourceConflict','occurrences',i,'title']);
+      scalarLeaves(occurrence.presentationText,['sourceConflict','occurrences',i,'presentationText']);
+    });
+  } else if(!record.relationships?.sourceRuleId) {
     if(record.semanticContent!==null&&record.semanticContent!==undefined)scalarLeaves(record.semanticContent,['semanticContent']);
     else if(record.sourceStructure?.text)scalarLeaves(record.sourceStructure.text,['sourceStructure','text']);
   }
@@ -111,7 +119,7 @@ export function validateGlossarySources(index,cards,model,coreCatalog) {
   const core=new Map(coreCatalog.records.map(record=>[record.id,record]));
   let coreFields=0;
   for(const card of cards.filter(card=>card.domain==='CORE')) {
-    const record=core.get(card.id);assert.ok(record&&record.state==='FULL_CONTENT','Core popup outside the existing accepted catalog');
+    const record=core.get(card.id);assert.ok(record&&['FULL_CONTENT','SOURCE_CONFLICT'].includes(record.state),'Core popup outside the existing accepted catalog');
     assert.equal(card.title,record.title,'Core factual title changed');
     const expectedFields=expectedCoreFields(record),observedFields=new Set();
     for(const field of card.fields) {
@@ -128,8 +136,8 @@ export function validateGlossarySources(index,cards,model,coreCatalog) {
       assert.ok(!card.fields.some(field=>field.source.path==='/semanticContent'),'Derived Core alias duplicated its owner definition');
     } else if(record.semanticContent!==null)assert.ok(card.fields.some(field=>field.source.path==='/semanticContent'&&field.value===record.semanticContent),'Core definition omitted from canonical popup');
   }
-  assert.deepEqual(new Set(cards.filter(card=>card.domain==='CORE').map(card=>card.id)),new Set(coreCatalog.records.filter(record=>record.state==='FULL_CONTENT').map(record=>record.id)),'Incomplete Core canonical card census');
-  return {entries:entries.size,dgCanonicalTargets:model.entities.filter(entity=>entity.ruleContract||entity.kind==='DETACHMENT').length,coreCanonicalTargets:coreCatalog.records.filter(record=>record.state==='FULL_CONTENT').length,namedAbilityAliases:namedAliases.length,coreFields};
+  assert.deepEqual(new Set(cards.filter(card=>card.domain==='CORE').map(card=>card.id)),new Set(coreCatalog.records.filter(record=>['FULL_CONTENT','SOURCE_CONFLICT'].includes(record.state)).map(record=>record.id)),'Incomplete Core canonical card census');
+  return {entries:entries.size,dgCanonicalTargets:model.entities.filter(entity=>entity.ruleContract||entity.kind==='DETACHMENT').length,coreCanonicalTargets:coreCatalog.records.filter(record=>['FULL_CONTENT','SOURCE_CONFLICT'].includes(record.state)).length,namedAbilityAliases:namedAliases.length,coreFields};
 }
 
 export function validateGlossarySearch(index,searchGlossary) {

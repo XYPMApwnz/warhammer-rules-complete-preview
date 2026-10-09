@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {recordText} from '../../books/core-rules/content/record-content.mjs';
 import {createCoreFactProjection,canonicalCoreRuleId,CORE_GLOSSARY_EXCLUDED_CODES} from '../../books/core-rules/content/core-fact-projection.mjs';
+import {sourceConflictNotice} from '../../books/shared/canonical-content-v2/effective-content.mjs';
 import {writeCacheRevision} from '../../tools/cache-revision.mjs';
 import {createCanonicalBuildContext} from '../../books/shared/tools/canonical-build-contract.mjs';
 import {buildCanonicalBook} from '../../books/shared/tools/build-army-book.mjs';
@@ -192,9 +193,8 @@ for(const rule of coreDigital.records){
   },'core-rules');
 }
 
-for(const faq of coreSource.faqs||[]){
-  const section=coreSectionByNumber.get(faq.primaryRule.slice(0,2));
-  const related=faq.relatedRules.map(code=>coreDigital.records.find(rule=>rule.code===code)).filter(Boolean).map(digitalCoreId);
+for(const faq of coreFactProjection.catalog.faqs){
+  const related=[...new Set([faq.relationships.primaryRuleId,...(faq.relationships.relatedRuleIds||[])].filter(Boolean))];
   addTerm({
     id:faq.id,
     kind:'core-faq',
@@ -206,11 +206,12 @@ for(const faq of coreSource.faqs||[]){
     definition:{en:`Q: ${faq.question}\nA: ${faq.answer}`},
     aliases:[],
     related,
-    canonicalSource:{documentId:'core-rules',revision:'11e',locator:'Rules Appendix; page 88'},
-    fullRulePath:`books/core-rules/reader/${section}.html#${faq.id}`,
+    canonicalSource:{documentId:'core-rules',revision:'11e',locator:faq.provenance.sourceLocator||faq.provenance.sourceUnitId},
+    provenance:structuredClone(faq.provenance),
+    fullRulePath:faq.fullRulePath,
     status:'verified'
   },'core-rules');
-  addContext('core-rules',faq.id,faq.id,{fullRulePath:`books/core-rules/reader/${section}.html#${faq.id}`});
+  addContext('core-rules',faq.id,faq.id,{fullRulePath:faq.fullRulePath});
 }
 
 for(const [localId,entry] of Object.entries(coreCurated)){
@@ -599,10 +600,10 @@ for(const rule of coreDigital.records){
   if(!term)throw new Error(`Missing digital Core Rules term: ${rule.code} ${rule.title}`);
   term.title={en:digitalTitle(rule)};
   term.kind=rule.kind==='stratagem'?'stratagem':rule.code.startsWith('24.')?'core-ability':'core-rule';
-  const text=recordText(rule);
+  const text=sourceConflictNotice(rule)||recordText(rule);
   const definition=rule.code==='03.03'?text.split('\nWHAT IS COHERENCY?')[0]:text;
   term.definition={en:cleanRuleText(definition)};
-  if(term.summarySource?.kind!=='curated-operational-reference')term.summary={en:concise(text)};
+  if(rule.sourceConflict||term.summarySource?.kind!=='curated-operational-reference')term.summary={en:concise(text)};
   term.canonicalSource={documentId:'core-rules',revision:'11e',locator:rule.code};
   term.matchLabels=[...new Set([...(term.matchLabels||[]),rule.code])];
   term.status='verified';

@@ -409,6 +409,7 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
   };
   function definitionOf(entry){
     const facts=entry.facts||{};
+    if(facts.sourceConflict?.status==='UNRESOLVED_ACCEPTED_SOURCE_CONFLICT')return [facts.sourceConflict.notice,...facts.sourceConflict.occurrences.map(occurrence=>[occurrence.title,occurrence.presentationText].join('\n'))].join('\n\n');
     if(entry.recordType==='DETACHMENT'){const definition=detachmentDefinition(entry);if(definition)return definition;}
     if(entry.recordType==='MISSION_SEQUENCE_RULE')return missionSequenceDefinition(entry);
     if(entry.recordType==='PRIMARY_MISSION'||entry.recordType==='SECONDARY_MISSION')return missionCardDefinition(entry);
@@ -437,7 +438,7 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
     for(const field of ['effect','summary','label']){const value=text(facts[field]);if(value)return value;}
     return'';
   }
-  const summaryOf=(entry,definition)=>text(entry.presentation?.editorialSummary?.text)||definition.split(/\n+/).find(Boolean)||entry.label;
+  const summaryOf=(entry,definition)=>text(entry.facts?.sourceConflict?.notice)||text(entry.presentation?.editorialSummary?.text)||definition.split(/\n+/).find(Boolean)||entry.label;
   function structuredOf(entry){
     const facts=entry.facts||{};
     if(entry.recordType==='DEPLOYMENT'){const deploymentReference=deploymentReferenceOf(entry);if(deploymentReference)return{deploymentReference};}

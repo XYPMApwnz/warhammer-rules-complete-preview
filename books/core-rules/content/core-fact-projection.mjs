@@ -3,6 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 import {createEffectiveCoreCatalog} from './effective-core-catalog.mjs';
+import {sourceConflictNotice} from '../../shared/canonical-content-v2/effective-content.mjs';
 
 const coreRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const defaultRepoRoot=path.resolve(coreRoot,'..','..');
@@ -43,7 +44,8 @@ export function createCoreFactProjection({repoRoot=defaultRepoRoot}={}){
   const terms=new Map(),aliases={};
   for(const rule of catalog.mainRules){
     if(CORE_GLOSSARY_EXCLUDED_CODES.has(rule.code))continue;
-    terms.set(rule.id,{id:rule.id,code:rule.code,kind:rule.kind==='stratagem'?'stratagem':rule.code.startsWith('24.')?'core-ability':'core-rule',title:digitalTitle(rule),summary:concise(rule.semanticContent),definition:cleanRuleText(rule.semanticContent),aliases:[],canonicalSource:{documentId:'core-rules',revision:'11e',locator:rule.code},...(rule.fullRulePath?{fullRulePath:rule.fullRulePath}:{})});
+    const text=sourceConflictNotice(rule)||rule.semanticContent;
+    terms.set(rule.id,{id:rule.id,code:rule.code,kind:rule.kind==='stratagem'?'stratagem':rule.code.startsWith('24.')?'core-ability':'core-rule',title:digitalTitle(rule),summary:concise(text),definition:cleanRuleText(text),aliases:[],canonicalSource:{documentId:'core-rules',revision:'11e',locator:rule.code},...(rule.fullRulePath?{fullRulePath:rule.fullRulePath}:{})});
   }
   for(const [localId,entry] of Object.entries(coreData.terms)){
     const identity=identities.concepts[localId];
@@ -61,8 +63,9 @@ export function createCoreFactProjection({repoRoot=defaultRepoRoot}={}){
     if(CORE_GLOSSARY_EXCLUDED_CODES.has(rule.code))continue;
     const term=terms.get(rule.id);if(!term)throw new Error(`Missing canonical Core fact ${rule.code}`);
     term.title=digitalTitle(rule);term.kind=rule.kind==='stratagem'?'stratagem':rule.code.startsWith('24.')?'core-ability':'core-rule';
-    const definition=rule.code==='03.03'?rule.semanticContent.split('\nWHAT IS COHERENCY?')[0]:rule.semanticContent;
-    term.definition=cleanRuleText(definition);term.summary=concise(rule.semanticContent);
+    const text=sourceConflictNotice(rule)||rule.semanticContent;
+    const definition=rule.code==='03.03'?text.split('\nWHAT IS COHERENCY?')[0]:text;
+    term.definition=cleanRuleText(definition);term.summary=concise(text);
     term.canonicalSource={documentId:'core-rules',revision:'11e',locator:rule.code};
     if(rule.fullRulePath)term.fullRulePath=rule.fullRulePath;
   }

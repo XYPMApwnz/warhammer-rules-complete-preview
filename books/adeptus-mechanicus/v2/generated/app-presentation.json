@@ -62485,7 +62485,7 @@
         {
           "id": "core-rule-01-02-06-splitting-units::/semanticContent",
           "label": "Rule",
-          "value": "Some rules allow you to split units into smaller units (e.g. the Transport ability of Drukhari Venoms). When using such rules:\n• The same models can only be subdivided in this way once (e.g. those smaller units cannot themselves be split further).\n• If a rule is used to split a unit into multiple units before the battle, the starting strength of each individual unit is changed to be equal to the number of models in that unit.\n• A unit must be split into two units, each containing as equal a number of models as possible (when splitting a unit in this way, make a note of which models form each of the two new units). If a rule states a specific starting strength of the split units, but this is not possible based on the number of models in the unit being split (e.g. due to attached Leader/Support models), split the unit as stated above.\nErrata\n01.02.06 Splitting Units\nAdd:\n• A unit must be split into two units, each containing as equal a number of models as possible (when splitting a unit in this way, make a note of which models form each of the two new units). If a rule states a specific starting strength of the split units, but this is not possible based on the number of models in the unit being split (e.g. due to attached Leader/Support models), split the unit as stated above.",
+          "value": "Some rules allow you to split units into smaller units (e.g. the Transport ability of Drukhari Venoms). When using such rules:\n• The same models can only be subdivided in this way once (e.g. those smaller units cannot themselves be split further).\n• If a rule is used to split a unit into multiple units before the battle, the starting strength of each individual unit is changed to be equal to the number of models in that unit.\n• A unit must be split into two units, each containing as equal a number of models as possible (when splitting a unit in this way, make a note of which models form each of the two new units). If a rule states a specific starting strength of the split units, but this is not possible based on the number of models in the unit being split (e.g. due to attached Leader/Support models), split the unit as stated above.",
           "type": "text",
           "contextId": "core-rule-01-02-06-splitting-units",
           "source": {
@@ -64107,7 +64107,7 @@
         {
           "id": "core-rule-01-07-battle-shock-rolls::/semanticContent",
           "label": "Rule",
-          "value": "To make a battle-shock roll for a unit, its controlling player makes a leadership roll for it (see above).\n• If that roll succeeds, that unit does not become battle-shocked.\n• If that roll fails, that unit, and each model in it, is battle-shocked.\nWhile a unit is battle-shocked:\n• The Objective Control (OC) characteristic of all of its models is modified to ‘-’ (02.02).\n• Its controlling player cannot target that unit with stratagems (15).\n• It is not eligible to start an action (16), and any action it has started cannot be completed.\nSEE ALSO\n• Battlefield Morale 01.07.01\n• Battle-shock Test 01.07.02\n\nFAQ\nShow\nQ:If a unit has a rule that allows it to start an action when it is battle-shocked can it also continue doing that action if it becomes battle-shocked after starting an action?\nA:Yes\nQ:If a unit becomes battle-shocked after starting an action does it stop performing that action?\nA:Yes",
+          "value": "To make a battle-shock roll for a unit, its controlling player makes a leadership roll for it (see above).\n• If that roll succeeds, that unit does not become battle-shocked.\n• If that roll fails, that unit, and each model in it, is battle-shocked.\nWhile a unit is battle-shocked:\n• The Objective Control (OC) characteristic of all of its models is modified to ‘-’ (02.02).\n• Its controlling player cannot target that unit with stratagems (15).\n• It is not eligible to start an action (16), and any action it has started cannot be completed.\nSEE ALSO\n• Battlefield Morale 01.07.01\n• Battle-shock Test 01.07.02",
           "type": "text",
           "contextId": "core-rule-01-07-battle-shock-rolls",
           "source": {
@@ -64116,7 +64116,24 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-001",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-044",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-002",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-045",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-01-07-01-battlefield-morale",
@@ -64412,7 +64429,7 @@
         {
           "id": "core-rule-02-02-profiles::/semanticContent",
           "label": "Rule",
-          "value": "These contain the following characteristics that tell you how mighty the models in the unit are:\nMove (M): The speed at which a model traverses the battlefield. If a model has an M characteristic of ‘-’, it can be set up on the battlefield but otherwise cannot be moved.\nToughness (T): The model’s resilience against harm.\nSave (Sv): Presented as a dice result (e.g. 4+), this indicates the protection a model’s armour gives it.\nInvulnerable Save (InSv): Presented as a dice result (e.g. 4+). Some models are protected by esoteric means in addition to physical armour, such as force fields or preternatural reflexes. Not all models have an InSv characteristic, but if they do, it will be listed here.\nWounds (W): Wounds represent how much damage a model can sustain before it is destroyed. If a model’s wounds are reduced to 0 or fewer, that model is destroyed.\nLeadership (Ld): Presented as a dice result (e.g. 7+), this reveals how courageous, determined or self-controlled a model is.\nObjective Control (OC): How effectively a model can control an objective on the battlefield. If a model has an OC characteristic of ‘-’ it is unable to control objectives at all.\nSEE ALSO\nPROFILES AND WEAPONS\n• Modifiers 02.02.01\n• Ignore Modifiers 02.02.02\n• Random Characteristics 02.02.03\n• Healing Or Regaining Lost Wounds 02.02.04\n• Full Wounds Remaining 02.02.05\n• Characteristic Modifiers & Modified Characteristics 02.02.06\n• Destroyed 05.04.04\nFAQ\nShow\nQ:My unit has access to a rule that changes the Damage characteristic of an incoming attack to 0. When such an attack is allocated to a model in that unit, is the Damage changed before or after save rolls?\nA:After.\nQ:How do modifiers to the charge roll (or to the maximum distance of the charge move, such as Take to the Skies) affect the selection of charge targets?\nA:A charging unit may only select charge targets that are within the maximum distance of their charge roll, including any modifiers. If such a modifier occurs after selecting a charge target and causes that charge target to no longer be within the maximum distance, the charging unit would then select new targets (Target No Longer Eligible Or Viable, 04.03.03).\nExample: A unit’s charge roll is 7\", and that unit has a datasheet ability which adds 1 to charge rolls: that charge’s maximum distance is 8\", so you can select charge targets within 8\".\nExample: A FLYING unit chooses to take to the skies and rolls a charge roll of 9\"; that charge’s maximum distance is 7\" (9\" minus the 2\" from taking to the skies), so you can select charge targets within 7\".",
+          "value": "These contain the following characteristics that tell you how mighty the models in the unit are:\nMove (M): The speed at which a model traverses the battlefield. If a model has an M characteristic of ‘-’, it can be set up on the battlefield but otherwise cannot be moved.\nToughness (T): The model’s resilience against harm.\nSave (Sv): Presented as a dice result (e.g. 4+), this indicates the protection a model’s armour gives it.\nInvulnerable Save (InSv): Presented as a dice result (e.g. 4+). Some models are protected by esoteric means in addition to physical armour, such as force fields or preternatural reflexes. Not all models have an InSv characteristic, but if they do, it will be listed here.\nWounds (W): Wounds represent how much damage a model can sustain before it is destroyed. If a model’s wounds are reduced to 0 or fewer, that model is destroyed.\nLeadership (Ld): Presented as a dice result (e.g. 7+), this reveals how courageous, determined or self-controlled a model is.\nObjective Control (OC): How effectively a model can control an objective on the battlefield. If a model has an OC characteristic of ‘-’ it is unable to control objectives at all.\nSEE ALSO\nPROFILES AND WEAPONS\n• Modifiers 02.02.01\n• Ignore Modifiers 02.02.02\n• Random Characteristics 02.02.03\n• Healing Or Regaining Lost Wounds 02.02.04\n• Full Wounds Remaining 02.02.05\n• Characteristic Modifiers & Modified Characteristics 02.02.06\n• Destroyed 05.04.04",
           "type": "text",
           "contextId": "core-rule-02-02-profiles",
           "source": {
@@ -64421,7 +64438,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-003",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-004",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-02-02-01-modifiers",
@@ -64969,7 +64995,7 @@
         {
           "id": "core-rule-02-04-weapons::/semanticContent",
           "label": "Rule",
-          "value": "Weapons have the following characteristics:\nRange (R): How far ranged weapons can shoot. Weapons with an R characteristic of ‘Melee’ are melee weapons.\nAttacks (A): How many attack dice are used each time that weapon is used.\nBallistic Skill (BS): Presented as a dice result (e.g. 4+), this shows how accurate the bearer is when shooting with the relevant ranged weapon.\nWeapon Skill (WS): Presented as a dice result (e.g. 4+), this reflects the bearer’s skill in wielding the relevant melee weapon.\nStrength (S): The higher a weapon’s S characteristic, the more likely it is to wound a foe.\nArmour Penetration (AP): Presented as a modifier to a dice roll (e.g. -1). The larger the modifier, the better the weapon is at cutting through the target’s defences.\nDamage (D): The amount of damage inflicted by an attack.\nSEE ALSO\n• Weapons With No Strength 02.04.01\nFAQ\nShow\nQ:My rule says that \"this units ranged attacks have +1 A\", do each of my attacks get an extra attack dice?\nA:No, it increases the A characteristics of the unit's ranged weapons by 1.",
+          "value": "Weapons have the following characteristics:\nRange (R): How far ranged weapons can shoot. Weapons with an R characteristic of ‘Melee’ are melee weapons.\nAttacks (A): How many attack dice are used each time that weapon is used.\nBallistic Skill (BS): Presented as a dice result (e.g. 4+), this shows how accurate the bearer is when shooting with the relevant ranged weapon.\nWeapon Skill (WS): Presented as a dice result (e.g. 4+), this reflects the bearer’s skill in wielding the relevant melee weapon.\nStrength (S): The higher a weapon’s S characteristic, the more likely it is to wound a foe.\nArmour Penetration (AP): Presented as a modifier to a dice roll (e.g. -1). The larger the modifier, the better the weapon is at cutting through the target’s defences.\nDamage (D): The amount of damage inflicted by an attack.\nSEE ALSO\n• Weapons With No Strength 02.04.01",
           "type": "text",
           "contextId": "core-rule-02-04-weapons",
           "source": {
@@ -64978,7 +65004,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-005",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-014",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-02-04-01-weapons-with-no-strength",
@@ -65090,7 +65125,7 @@
         {
           "id": "core-rule-02-05-keywords::/semanticContent",
           "label": "Rule",
-          "value": "Datasheets have a list of keywords, separated into faction keywords and other keywords. The former are used when deciding which models to include in your army, but otherwise both are functionally the same. Keywords appear in full capitals, in KEYWORD BOLD.\nSome rules are linked to one or more keywords. For example, a rule might say that it applies to INFANTRY units. This means it only applies to units that have the INFANTRY keyword. Singular and plural instances of the same keyword function in the same way.\nSEE ALSO\n• Using Keywords & Mixed Keywords in Units 02.05.01\nFAQ\nShow\nQ:Do rules that affect a keyword include multi-word keywords that contain that keyword? For example, would rules that affect COMMISSAR units affect a unit that has the COMMISSAR GRAVES keyword?\nA:No.",
+          "value": "Datasheets have a list of keywords, separated into faction keywords and other keywords. The former are used when deciding which models to include in your army, but otherwise both are functionally the same. Keywords appear in full capitals, in KEYWORD BOLD.\nSome rules are linked to one or more keywords. For example, a rule might say that it applies to INFANTRY units. This means it only applies to units that have the INFANTRY keyword. Singular and plural instances of the same keyword function in the same way.\nSEE ALSO\n• Using Keywords & Mixed Keywords in Units 02.05.01",
           "type": "text",
           "contextId": "core-rule-02-05-keywords",
           "source": {
@@ -65099,7 +65134,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-006",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-02-05-01-using-keywords-mixed-keywords-in-units",
@@ -65211,7 +65251,7 @@
         {
           "id": "core-rule-02-06-unit-composition-and-other-rules::/semanticContent",
           "label": "Rule",
-          "value": "This section details the number and types of models in the unit. Each of those models will have one set of default wargear, which will be listed here. It may also list other rules, such as which units a leader unit can join or which units can embark within a TRANSPORT.\nSEE ALSO\n• Bearer 02.06.01\n• Unit’s Equipment 02.06.02\nFAQ\nShow\nQ:The Munitorium Field Manual shows my unit can attach to different units then are on it's datasheet, which do I use?\nA:Use the Munitorium Field Manual.",
+          "value": "This section details the number and types of models in the unit. Each of those models will have one set of default wargear, which will be listed here. It may also list other rules, such as which units a leader unit can join or which units can embark within a TRANSPORT.\nSEE ALSO\n• Bearer 02.06.01\n• Unit’s Equipment 02.06.02",
           "type": "text",
           "contextId": "core-rule-02-06-unit-composition-and-other-rules",
           "source": {
@@ -65220,7 +65260,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-007",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-051",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-02-06-01-bearer",
@@ -66019,7 +66068,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-008",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-009",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-010",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-03-03-01-what-is-coherency",
@@ -66131,7 +66193,7 @@
         {
           "id": "core-rule-03-04-engagement::/semanticContent",
           "label": "Rule",
-          "value": "A model’s engagement range is the area of the battlefield within 2\" horizontally and 5\" vertically of it.\n• While a friendly model is within engagement range of one or more enemy models, those models – and the units they belong to – are engaged with each other.\n• While a unit contains no engaged models, that unit is unengaged.\nENGAGEMENT\nThese two units have at least one model within 2\" of the opposing unit, and are therefore engaged with each other.\nFAQ\nShow\nQ:Does my model or unit become engaged while moving through a enemy units engagement range during a move?\nA:No",
+          "value": "A model’s engagement range is the area of the battlefield within 2\" horizontally and 5\" vertically of it.\n• While a friendly model is within engagement range of one or more enemy models, those models – and the units they belong to – are engaged with each other.\n• While a unit contains no engaged models, that unit is unengaged.\nENGAGEMENT\nThese two units have at least one model within 2\" of the opposing unit, and are therefore engaged with each other.",
           "type": "text",
           "contextId": "core-rule-03-04-engagement",
           "source": {
@@ -66140,7 +66202,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-011",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-03-04-01-what-is-engagement",
@@ -66261,7 +66328,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "faq-no-ranged-weapons-eligible-to-shoot",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-04-01-01-models-without-ranged-melee-weapons",
@@ -66625,7 +66697,7 @@
         {
           "id": "core-rule-04-02-select-targets::/semanticContent",
           "label": "Rule",
-          "value": "For each weapon selected:\nWHILE SHOOTING\nSelect one enemy unit to be the target of that weapon. Unless otherwise stated, each target must be:\n• Visible to the model that has that weapon (06.01).\n• Within range of that weapon.\n• Unengaged.\nWHILE FIGHTING\nSelect one or more enemy units to be the targets of that weapon:\n• Each target must be engaged with the model that has that weapon.\n• You cannot select more targets than that weapon’s A characteristic.\n\nSEE ALSO\n• Frame 17.02\n• Shooting at Engaged Monsters and Vehicles 17.03\n• Selecting Targets 04.02.01\n• Against An Attack 04.02.02\n• Single Target 04.02.03\nFAQ\nShow\nQ:When selecting a target unit can the enemy model that is visible to my model and the enemy model that is in range of my model’s weapon be different enemy models in the same unit?\nA:Yes\nQ:Can a model be within range of a weapon if it is not visible?\nA:Yes",
+          "value": "For each weapon selected:\nWHILE SHOOTING\nSelect one enemy unit to be the target of that weapon. Unless otherwise stated, each target must be:\n• Visible to the model that has that weapon (06.01).\n• Within range of that weapon.\n• Unengaged.\nWHILE FIGHTING\nSelect one or more enemy units to be the targets of that weapon:\n• Each target must be engaged with the model that has that weapon.\n• You cannot select more targets than that weapon’s A characteristic.\n\nSEE ALSO\n• Frame 17.02\n• Shooting at Engaged Monsters and Vehicles 17.03\n• Selecting Targets 04.02.01\n• Against An Attack 04.02.02\n• Single Target 04.02.03",
           "type": "text",
           "contextId": "core-rule-04-02-select-targets",
           "source": {
@@ -66634,7 +66706,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-012",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-013",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-04-02-01-selecting-targets",
@@ -66872,7 +66953,7 @@
         {
           "id": "core-rule-04-03-resolve-attacks::/semanticContent",
           "label": "Rule",
-          "value": "Resolve attacks using the following sequence:\n• Select Enemy Unit: Select one of the enemy units targeted by one or more weapons.\n• Gather Attack Dice: Select one weapon targeting that unit that has not yet been used to make attacks against it, and gather a number of D6 equal to that weapon’s A characteristic. These are attack dice – each one represents one attack being made by an attacking model with that weapon.\nIf one or more other weapons targeting that unit make identical attacks to the selected weapon (see below) and those weapons have not yet been used to make attacks against that target, they do so now and you gather those weapons’ attack dice as well (e.g. for three weapons making identical attacks, each with an A characteristic of 2, gather a total of six D6).\n• Resolve Attack Dice: Resolve the attack sequence (05) for all of the attack dice you just gathered.\n• Other Attacks: Follow the first of the instructions below that applies:\nIf there are any weapons targeting the same unit that have not yet been used to make attacks, return to the Gather Attack Dice step.\nOtherwise, if there are any weapons with unresolved attacks targeting a different unit, return to the Select Enemy Unit step.\nOtherwise, if all weapons have been used to make all of their attacks, this sequence ends and the attacking unit’s attacks have been resolved.\nSEE ALSO\n• Random Characteristics 02.02.03\n• Identical Attacks 04.03.01\n• Splitting Melee Attacks 04.03.02\n• Target No Longer Eligible Or Viable 04.03.03\n• Shot 04.03.04\n• Fought 04.03.05\n• Finished Making Its Attacks 04.03.06\nFAQ\nShow\nQ:My rule says that \"this units ranged attacks have +1 A\", do each of my attacks get an extra attack dice?\nA:No, it increases the A characteristics of the unit's ranged weapons by 1.\nQ:When my unit shoots at another unit, how does it work if some models in the target unit are fully visible to some models in my unit, while others are within a terrain area/not fully visible?\nA:For each attacking model in your unit, determine whether the target unit has the benefit of cover, as described in Terrain and Visibility. In this scenario, the target unit will likely have the benefit of cover against some of the attacking models, but not all.\nThis means that, in an example unit where all attacking models are using the same weapon, when you get to the Resolve Attacks step of the Attack Sequence, you will collect dice for attacks made by models against which the target unit has the benefit of cover separately from the dice for attacks made by models against which the target unit does not have the benefit of cover.\nQ:If my unit has weapons that are identical in characteristics, but some of those weapons have [PRECISION] and those weapons targeted a unit without the CHARACTER keyword, do I roll all of those weapons together?\nA:Yes, the [PRECISION] ability is not an applicable ability for those attacks as there is no CHARACTER in the target unit for the ability to trigger its rule.",
+          "value": "Resolve attacks using the following sequence:\n• Select Enemy Unit: Select one of the enemy units targeted by one or more weapons.\n• Gather Attack Dice: Select one weapon targeting that unit that has not yet been used to make attacks against it, and gather a number of D6 equal to that weapon’s A characteristic. These are attack dice – each one represents one attack being made by an attacking model with that weapon.\nIf one or more other weapons targeting that unit make identical attacks to the selected weapon (see below) and those weapons have not yet been used to make attacks against that target, they do so now and you gather those weapons’ attack dice as well (e.g. for three weapons making identical attacks, each with an A characteristic of 2, gather a total of six D6).\n• Resolve Attack Dice: Resolve the attack sequence (05) for all of the attack dice you just gathered.\n• Other Attacks: Follow the first of the instructions below that applies:\nIf there are any weapons targeting the same unit that have not yet been used to make attacks, return to the Gather Attack Dice step.\nOtherwise, if there are any weapons with unresolved attacks targeting a different unit, return to the Select Enemy Unit step.\nOtherwise, if all weapons have been used to make all of their attacks, this sequence ends and the attacking unit’s attacks have been resolved.\nSEE ALSO\n• Random Characteristics 02.02.03\n• Identical Attacks 04.03.01\n• Splitting Melee Attacks 04.03.02\n• Target No Longer Eligible Or Viable 04.03.03\n• Shot 04.03.04\n• Fought 04.03.05\n• Finished Making Its Attacks 04.03.06",
           "type": "text",
           "contextId": "core-rule-04-03-resolve-attacks",
           "source": {
@@ -66881,7 +66962,28 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-005",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-014",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-015",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-035",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-016",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-04-03-01-identical-attacks",
@@ -67308,7 +67410,7 @@
         {
           "id": "core-rule-05-01-hit-rolls::/semanticContent",
           "label": "Rule",
-          "value": "Make one hit roll for each attack dice by rolling one D6. For each result, check if it fails or is a hit by matching the first condition below that applies:\nUnmodified\nFAILS\nUnmodified\nCRITICAL HIT\nEqual to or greater than that attack’s BS/WS characteristicHIT\nAny other resultFAILS\nCRITICAL HITS\nCritical hits are still hits. In addition, other rules can be triggered by a critical hit, such as [LETHAL HITS] (24).\nFAQ\nShow\nQ:My attack has a rule that means it results in a critical hit on a hit roll of 4+. Does this work when snap shooting?\nA:Unless otherwise stated, no: when snap shooting, each attack only hits on a roll of 6.\nQ:My attack has a rule that means it results in a critical hit on a hit roll of 4+, and I would otherwise need a 5+ to hit. Does a 4+ hit?\nA:Yes, except when snap shooting: when snap shooting, each attack only hits on a roll of 6.",
+          "value": "Make one hit roll for each attack dice by rolling one D6. For each result, check if it fails or is a hit by matching the first condition below that applies:\nUnmodified\nFAILS\nUnmodified\nCRITICAL HIT\nEqual to or greater than that attack’s BS/WS characteristicHIT\nAny other resultFAILS\nCRITICAL HITS\nCritical hits are still hits. In addition, other rules can be triggered by a critical hit, such as [LETHAL HITS] (24).",
           "type": "text",
           "contextId": "core-rule-05-01-hit-rolls",
           "source": {
@@ -67317,7 +67419,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-017",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-018",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-05-01-01-critical-hits-and-critical-wounds",
@@ -67559,7 +67670,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-019",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-020",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-021",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-05-03-01-saving-throw",
@@ -67734,7 +67858,7 @@
         {
           "id": "core-rule-05-04-inflict-damage::/semanticContent",
           "label": "Rule",
-          "value": "The opposing player resolves the following sequence for each save roll, working from lowest result(s) to highest result(s), until all attacks are resolved or all models in the target unit are destroyed – in the latter case, any excess attacks are lost.\n• Select Model: Select one model in the current allocation group (see below); this must be a model that has lost one or more wounds if possible.\n• Check Save Roll: For each result, check if that attack inflicts damage or fails by matching the first condition below that applies:\nUnmodified\nINFLICTS DAMAGE\nInvulnerable Save: The models in the current allocation group have an InSv characteristic, and the result is equal to or greater than that characteristic.FAILS\nSave and AP: After modifying the result by the attacking weapon’s AP characteristic, it is equal to or greater than the Sv characteristic of models in the current allocation group.\nExample: An AP characteristic of -1 would modify a save roll of 3 to a 2. For models with a Sv characteristic of 2+ or better, that attack would fail.FAILS\nAny other resultINFLICTS DAMAGE\n• Resolve Damage: If that attack inflicts damage, the selected model loses a number of wounds equal to that attack’s D characteristic. If this reduces that model’s remaining wounds to 0 or fewer, it is destroyed.\n\nFAQ\nShow\nQ:Fight On Death (05.04.05) requires models awaiting such an ability to stay on the battlefield until their unit has attacked (or until the end of the phase). How do these models function while this is the case?\nA:Models awaiting a Fight On Death ability are still present on the battlefield for all rules purposes. This includes (but is not limited to) the following regarding such models:\n• They can be measured to by friendly/enemy abilities.\n• They can be considered visible to friendly/enemy models where relevant.\n• They can use their datasheet abilities.\n• They can be targeted by stratagems.\n• Enemy units can still be engaged with them (which may restrict the opposing player’s consolidation/pile-In moves made as part of an overrun fight).\nQ:In what step during the attack sequence do I roll for Feel No Pain?\nA:In the Resolve Damage step of the Inflict Damage step (05.04).",
+          "value": "The opposing player resolves the following sequence for each save roll, working from lowest result(s) to highest result(s), until all attacks are resolved or all models in the target unit are destroyed – in the latter case, any excess attacks are lost.\n• Select Model: Select one model in the current allocation group (see below); this must be a model that has lost one or more wounds if possible.\n• Check Save Roll: For each result, check if that attack inflicts damage or fails by matching the first condition below that applies:\nUnmodified\nINFLICTS DAMAGE\nInvulnerable Save: The models in the current allocation group have an InSv characteristic, and the result is equal to or greater than that characteristic.FAILS\nSave and AP: After modifying the result by the attacking weapon’s AP characteristic, it is equal to or greater than the Sv characteristic of models in the current allocation group.\nExample: An AP characteristic of -1 would modify a save roll of 3 to a 2. For models with a Sv characteristic of 2+ or better, that attack would fail.FAILS\nAny other resultINFLICTS DAMAGE\n• Resolve Damage: If that attack inflicts damage, the selected model loses a number of wounds equal to that attack’s D characteristic. If this reduces that model’s remaining wounds to 0 or fewer, it is destroyed.",
           "type": "text",
           "contextId": "core-rule-05-04-inflict-damage",
           "source": {
@@ -67743,7 +67867,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-022",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-023",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-059",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-05-04-01-current-allocation-group",
@@ -68057,6 +68194,10 @@
         {
           "targetId": "core-rule-05-04-inflict-damage",
           "label": "Parent Rule Id"
+        },
+        {
+          "targetId": "core-faq-waha-060",
+          "label": "FAQ"
         }
       ]
     },
@@ -68170,7 +68311,7 @@
         {
           "id": "core-rule-06-01-visibility::/semanticContent",
           "label": "Rule",
-          "value": "Line of sight is used to determine visibility between models. For an observing model to have line of sight, it must be possible to draw an imaginary straight line, 1 mm wide, from any part of that model to any part of the model being observed. This line is the line of sight. While doing so, other models in the observing model’s unit and in the observed model’s unit are ignored.\nOther models and units can be either visible or fully visible to the observing model, as shown below. Note that terrain applies additional rules to visibility (13.07).\nModel Visible\nIf any part of another model is visible to the observing model, that model is visible.\nModel Fully Visible\nIf every part of another model that is facing the observing model is visible to the observing model (so the only thing blocking visibility to any part of that other model is that model itself), that model is fully visible.\nUnit Visible\nIf one or more models in a unit are visible to the observing model, that unit is visible.\nUnit Fully Visible\nIf every model in a unit is fully visible to the observing model, that unit is fully visible. When determining this, the observing model can see through other models in that unit.\nFAQ\nShow\nQ:When checking line of sight from one model to another, is this drawn between the bases of those models, or between any part of them?\nA:Line of sight is drawn from any part of the observing model to any part of the model being observed.",
+          "value": "Line of sight is used to determine visibility between models. For an observing model to have line of sight, it must be possible to draw an imaginary straight line, 1 mm wide, from any part of that model to any part of the model being observed. This line is the line of sight. While doing so, other models in the observing model’s unit and in the observed model’s unit are ignored.\nOther models and units can be either visible or fully visible to the observing model, as shown below. Note that terrain applies additional rules to visibility (13.07).\nModel Visible\nIf any part of another model is visible to the observing model, that model is visible.\nModel Fully Visible\nIf every part of another model that is facing the observing model is visible to the observing model (so the only thing blocking visibility to any part of that other model is that model itself), that model is fully visible.\nUnit Visible\nIf one or more models in a unit are visible to the observing model, that unit is visible.\nUnit Fully Visible\nIf every model in a unit is fully visible to the observing model, that unit is fully visible. When determining this, the observing model can see through other models in that unit.",
           "type": "text",
           "contextId": "core-rule-06-01-visibility",
           "source": {
@@ -68179,7 +68320,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-024",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-06-01-01-describing-visible-units",
@@ -68291,7 +68437,7 @@
         {
           "id": "core-rule-06-02-mortal-wounds::/semanticContent",
           "label": "Rule",
-          "value": "Some attacks or rules inflict mortal wounds on units. Each time a unit suffers one or more mortal wounds, its controlling player must resolve the following sequence for each of those mortal wounds, until either all of them have been inflicted or that unit is destroyed:\n• Select Model: Select one model in that unit by following the first instruction below that applies:\nIf a non-CHARACTER model in that unit has lost one or more wounds, you must select that model.\nOtherwise, if that unit contains one or more non-CHARACTER models, you must select one of those models.\nOtherwise, if one or more CHARACTER models in that unit have lost one or more wounds, you must select one of those models.\nOtherwise, you must select one CHARACTER model in that unit.\n• Resolve Damage: The selected model loses 1 wound. If this reduces that model’s remaining wounds to 0, it is destroyed.\nMORTAL WOUNDS AND NORMAL DAMAGE\nWhen resolving attack dice, if those attacks inflict a mixture of both mortal wounds and normal damage, resolve all of the normal damage first, then resolve all of the mortal wounds.\nSEE ALSO\n• Normal Damage 06.02.01\nFAQ\nShow\nQ:I have a rule that triggers when a mortal wound is allocated to a model, when does this happen?\nA:When you select a model in the Select Model step of Mortal Wounds (06.02).",
+          "value": "Some attacks or rules inflict mortal wounds on units. Each time a unit suffers one or more mortal wounds, its controlling player must resolve the following sequence for each of those mortal wounds, until either all of them have been inflicted or that unit is destroyed:\n• Select Model: Select one model in that unit by following the first instruction below that applies:\nIf a non-CHARACTER model in that unit has lost one or more wounds, you must select that model.\nOtherwise, if that unit contains one or more non-CHARACTER models, you must select one of those models.\nOtherwise, if one or more CHARACTER models in that unit have lost one or more wounds, you must select one of those models.\nOtherwise, you must select one CHARACTER model in that unit.\n• Resolve Damage: The selected model loses 1 wound. If this reduces that model’s remaining wounds to 0, it is destroyed.\nMORTAL WOUNDS AND NORMAL DAMAGE\nWhen resolving attack dice, if those attacks inflict a mixture of both mortal wounds and normal damage, resolve all of the normal damage first, then resolve all of the mortal wounds.\nSEE ALSO\n• Normal Damage 06.02.01",
           "type": "text",
           "contextId": "core-rule-06-02-mortal-wounds",
           "source": {
@@ -68300,7 +68446,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-025",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-057",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-06-02-01-normal-damage",
@@ -68412,7 +68567,7 @@
         {
           "id": "core-rule-06-03-hazard-rolls::/semanticContent",
           "label": "Rule",
-          "value": "To make a hazard roll for a unit, roll one D6: on a 1-2, that roll fails and that unit suffers 1 mortal wound, or 3 mortal wounds instead if each model in that unit is a MONSTER/VEHICLE model. If more than one hazard roll is required for a unit, make all of those rolls simultaneously.FAQ\nShow\nQ:I failed hazard rolls from [Hazardous] weapons, do those mortal wounds have to be allocated to the models with the [HAZARDOUS] weapons?\nA:No, you allocate the mortal wounds to the unit as per Mortal Wounds (06.02). (This represents Bob the guardsmen picking up his fallen squad mates plasma gun or that the twisting power of James the Chaos Sorcerer pulling his followers into the warp.)\nQ:If a rule says my unit must make a hazard roll does every model in the unit make a hazard roll?\nA:No, the unit would make 1 single hazard roll.",
+          "value": "To make a hazard roll for a unit, roll one D6: on a 1-2, that roll fails and that unit suffers 1 mortal wound, or 3 mortal wounds instead if each model in that unit is a MONSTER/VEHICLE model. If more than one hazard roll is required for a unit, make all of those rolls simultaneously.",
           "type": "text",
           "contextId": "core-rule-06-03-hazard-rolls",
           "source": {
@@ -68421,7 +68576,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-026",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-057",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-027",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-06-03-01-hazardous-test",
@@ -69922,14 +70090,58 @@
           }
         },
         {
-          "id": "core-rule-09-07-01-desperate-escape::/semanticContent",
-          "label": "Rule",
-          "value": "If a stratagem or ability forces a unit to make a Desperate Escape test, that unit:\n• Must make one hazard roll for each model in that unit.\n• Must make a battle-shock roll.\nSelecting Modes\nSome rules instruct you to select a mode, such as fall-back moves. Modes are mutually exclusive, and you must assess each one in the order presented. When making a move, if your unit does not meet the conditions of any of the modes, it cannot make that move.\nSometimes a mode will be mandatory if applicable (e.g. consolidation modes, 12.08), but in the case of fall-back moves, ordered retreat is not mandatory, so you could select desperate escape instead.\nMany move types state conditions you must meet while/after moving. Those that are labelled with a mode name only apply if you selected that mode; those not labelled with a mode name always apply.",
+          "id": "core-rule-09-07-01-desperate-escape::/sourceConflict/notice",
+          "label": "Accepted source conflict",
+          "value": "Unresolved accepted-source conflict. The enrolled sources contain different versions of this rule. No version has been established as current; consult the source variants in the full rule.",
           "type": "text",
           "contextId": "core-rule-09-07-01-desperate-escape",
           "source": {
             "entityId": "core-rule-09-07-01-desperate-escape",
-            "path": "/semanticContent"
+            "path": "/sourceConflict/notice"
+          }
+        },
+        {
+          "id": "core-rule-09-07-01-desperate-escape::/sourceConflict/occurrences/0/title",
+          "label": "Source variant",
+          "value": "Desperate Escape Test",
+          "type": "text",
+          "contextId": "core-rule-09-07-01-desperate-escape",
+          "source": {
+            "entityId": "core-rule-09-07-01-desperate-escape",
+            "path": "/sourceConflict/occurrences/0/title"
+          }
+        },
+        {
+          "id": "core-rule-09-07-01-desperate-escape::/sourceConflict/occurrences/0/presentationText",
+          "label": "Source variant text",
+          "value": "Some rules may reference the term 'Desperate Escape test'. In all instances this means the hazard rolls made for the desperate escape mode of a fall-back move.\nAbilities that subtract from a unit's Desperate Escape test instead subtract from those hazard rolls.\nExample: A battle-shocked unit makes a fall-back move away from a unit of Bloodletters that have the Bane of Cowards ability. As a result of Bane of Cowards, because the unit making the fall-back move is battle-shocked, the hazard rolls they make as part of their desperate escape will be at -1.",
+          "type": "text",
+          "contextId": "core-rule-09-07-01-desperate-escape",
+          "source": {
+            "entityId": "core-rule-09-07-01-desperate-escape",
+            "path": "/sourceConflict/occurrences/0/presentationText"
+          }
+        },
+        {
+          "id": "core-rule-09-07-01-desperate-escape::/sourceConflict/occurrences/1/title",
+          "label": "Source variant",
+          "value": "Desperate Escape",
+          "type": "text",
+          "contextId": "core-rule-09-07-01-desperate-escape",
+          "source": {
+            "entityId": "core-rule-09-07-01-desperate-escape",
+            "path": "/sourceConflict/occurrences/1/title"
+          }
+        },
+        {
+          "id": "core-rule-09-07-01-desperate-escape::/sourceConflict/occurrences/1/presentationText",
+          "label": "Source variant text",
+          "value": "If a stratagem or ability forces a unit to make a Desperate Escape test, that unit:\n• Must make one hazard roll for each model in that unit.\n\n\n• Must make a battle-shock roll.\n\nSelecting ModesSome rules instruct you to select a mode, such as fall-back moves. Modes are mutually exclusive, and you must assess each one in the order presented. When making a move, if your unit does not meet the conditions of any of the modes, it cannot make that move.\nSometimes a mode will be mandatory if applicable (e.g. consolidation modes, 12.08), but in the case of fall-back moves, ordered retreat is not mandatory, so you could select desperate escape instead.\nMany move types state conditions you must meet while/after moving. Those that are labelled with a mode name only apply if you selected that mode; those not labelled with a mode name always apply.",
+          "type": "text",
+          "contextId": "core-rule-09-07-01-desperate-escape",
+          "source": {
+            "entityId": "core-rule-09-07-01-desperate-escape",
+            "path": "/sourceConflict/occurrences/1/presentationText"
           }
         }
       ],
@@ -70045,7 +70257,7 @@
         {
           "id": "core-rule-10-02-shoot::/semanticContent",
           "label": "Rule",
-          "value": "The active player shoots with their eligible units one at a time, using the sequence below, until all the units they choose to shoot with have been selected to shoot and their attacks have been resolved.\nA unit is eligible to shoot if it is on the battlefield and has not already been selected to shoot this phase.\n• Select Unit: Select one friendly unit that is eligible to shoot; that unit is selected to shoot.\n• Select Shooting Type: Select one shooting type that unit is eligible to make, and resolve it with that unit. This can be one listed below, or one presented elsewhere:\n• Normal shooting\n• Assault shooting\n• Close-quarters shooting\n• Indirect shooting\nShooting types are marked with this icon.\nSEE ALSO\n• Actions 16.00\n• Shooting at Engaged Monsters and Vehicles 17.03\n• Terrain and Visibility 13.07\nFAQ\nShow\nQ:Can I select a unit to shoot or fight if it doesn’t have melee or ranged weapons?\nA:Yes, it just makes no attacks and then the fight type or shoot type is resolved.",
+          "value": "The active player shoots with their eligible units one at a time, using the sequence below, until all the units they choose to shoot with have been selected to shoot and their attacks have been resolved.\nA unit is eligible to shoot if it is on the battlefield and has not already been selected to shoot this phase.\n• Select Unit: Select one friendly unit that is eligible to shoot; that unit is selected to shoot.\n• Select Shooting Type: Select one shooting type that unit is eligible to make, and resolve it with that unit. This can be one listed below, or one presented elsewhere:\n• Normal shooting\n• Assault shooting\n• Close-quarters shooting\n• Indirect shooting\nShooting types are marked with this icon.\nSEE ALSO\n• Actions 16.00\n• Shooting at Engaged Monsters and Vehicles 17.03\n• Terrain and Visibility 13.07",
           "type": "text",
           "contextId": "core-rule-10-02-shoot",
           "source": {
@@ -70054,7 +70266,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-028",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-033",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "faq-no-ranged-weapons-eligible-to-shoot",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-10-03-end-of-shooting-phase",
@@ -70286,7 +70511,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "faq-blast-during-close-quarters-shooting",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "faq-blast-against-engaged-monster-vehicle",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-10-07-indirect-shooting",
@@ -70451,7 +70685,7 @@
         {
           "id": "core-rule-11-02-charge::/semanticContent",
           "label": "Rule",
-          "value": "The active player resolves charges with their eligible units one at a time, using the sequence below, until all of their units they choose to charge with have declared a charge and those charges have been resolved.\n• Declare Charge: Select one friendly unit that has not declared a charge this phase and is eligible to declare a charge (see below). That unit declares a charge.\nA unit is eligible to declare a charge if it is on the battlefield, unless otherwise stated. Here are some rules that prevent a unit from being eligible to declare a charge:\n• It is not within 12\" of one or more enemy units.\n• It is engaged.\n• It made an advance or fall-back move this turn.\n• Make Charge Roll: Make a charge roll by rolling 2D6: the result is the maximum distance for the charge move.\n• Attempt Charge: If it is possible to make a charge move, and if you still want to, make a charge move with that unit (see below). Otherwise, your unit does not make a charge move. In either case, the charge is then resolved.\nSEE ALSO\n• Target No Longer Eligible or Viable 04.03.03\n• Failed Charges 11.02.01\nFAQ\nShow\nQ:When a rule instructs you to perform a charge outside of the charge phase, do I resolve step 2 and 3 of the Charge step (11.02)?\nA:Yes",
+          "value": "The active player resolves charges with their eligible units one at a time, using the sequence below, until all of their units they choose to charge with have declared a charge and those charges have been resolved.\n• Declare Charge: Select one friendly unit that has not declared a charge this phase and is eligible to declare a charge (see below). That unit declares a charge.\nA unit is eligible to declare a charge if it is on the battlefield, unless otherwise stated. Here are some rules that prevent a unit from being eligible to declare a charge:\n• It is not within 12\" of one or more enemy units.\n• It is engaged.\n• It made an advance or fall-back move this turn.\n• Make Charge Roll: Make a charge roll by rolling 2D6: the result is the maximum distance for the charge move.\n• Attempt Charge: If it is possible to make a charge move, and if you still want to, make a charge move with that unit (see below). Otherwise, your unit does not make a charge move. In either case, the charge is then resolved.\nSEE ALSO\n• Target No Longer Eligible or Viable 04.03.03\n• Failed Charges 11.02.01",
           "type": "text",
           "contextId": "core-rule-11-02-charge",
           "source": {
@@ -70460,7 +70694,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-029",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-11-02-01-failed-charges",
@@ -70639,7 +70878,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-030",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-031",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-032",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-12-01-start-of-fight-phase",
@@ -70862,7 +71114,7 @@
         {
           "id": "core-rule-12-04-fight::/semanticContent",
           "label": "Rule",
-          "value": "A unit is eligible to fight if it has not already been selected to fight this phase and one or more of the following apply to it:\n• It is engaged, or it was engaged at the start of this step.\n• It made a charge move this turn.\nPlayers resolve the following sequence until all eligible units have been selected to fight and their attacks have been resolved:\n• Resolve Fights First Combats: Starting with the player whose turn it is, players alternate selecting one friendly Fights First unit that is eligible to fight; that unit is selected to fight (see below). If this is not possible:\n• If there are no Fights First units that are eligible to fight, move to the Resolve Remaining Combats step where this player will select their next unit.\n• Otherwise, the other player selects their next unit.\n• Resolve Remaining Combats: Starting with the player who just moved this sequence onto this step, players alternate selecting one friendly unit that is eligible to fight; that unit is selected to fight. If this is not possible:\n• If there are no units that are eligible to fight, the Fight step ends.\n• Otherwise, the other player selects their next unit.\nAfter resolving a fight in the Resolve Remaining Combats step, if there are one or more Fights First units that are now eligible to fight, return to the Resolve Fights First Combats step.\nFight types are marked with this icon.\nSEE ALSO\n• Eligible to fight, but unable to fight 12.04.01\nFAQ\nShow\nQ:Can I select a unit to shoot or fight if it doesn’t have melee or ranged weapons?\nA:Yes, it just makes no attacks and then the fight type or shoot type is resolved.",
+          "value": "A unit is eligible to fight if it has not already been selected to fight this phase and one or more of the following apply to it:\n• It is engaged, or it was engaged at the start of this step.\n• It made a charge move this turn.\nPlayers resolve the following sequence until all eligible units have been selected to fight and their attacks have been resolved:\n• Resolve Fights First Combats: Starting with the player whose turn it is, players alternate selecting one friendly Fights First unit that is eligible to fight; that unit is selected to fight (see below). If this is not possible:\n• If there are no Fights First units that are eligible to fight, move to the Resolve Remaining Combats step where this player will select their next unit.\n• Otherwise, the other player selects their next unit.\n• Resolve Remaining Combats: Starting with the player who just moved this sequence onto this step, players alternate selecting one friendly unit that is eligible to fight; that unit is selected to fight. If this is not possible:\n• If there are no units that are eligible to fight, the Fight step ends.\n• Otherwise, the other player selects their next unit.\nAfter resolving a fight in the Resolve Remaining Combats step, if there are one or more Fights First units that are now eligible to fight, return to the Resolve Fights First Combats step.\nFight types are marked with this icon.\nSEE ALSO\n• Eligible to fight, but unable to fight 12.04.01",
           "type": "text",
           "contextId": "core-rule-12-04-fight",
           "source": {
@@ -70871,7 +71123,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-028",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-033",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "faq-overrun-fight-without-fight-eligibility",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-12-04-01-eligible-to-fight-but-unable-to-fight",
@@ -71050,7 +71315,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "faq-overrun-fight-without-fight-eligibility",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-12-07-consolidate",
@@ -71128,7 +71398,33 @@
           "sourceDate": "2026-09-25",
           "sourceScope": "GLOBAL_CORE",
           "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
-        }
+        },
+        "effectiveSourceBindings": [
+          {
+            "operation": "REPLACE_VALUE",
+            "targetPath": "/content/0/stages/5/items/0",
+            "source": {
+              "recordId": "core-waha-errata-12-08",
+              "path": "/semanticContent",
+              "contentHash": "D7A3410CB436B19000C4197A968731543A57D5E4FA6B24A18581CD4B33B0ED25"
+            },
+            "sourceRecordId": "core-waha-errata-12-08",
+            "before": "Ongoing Consolidation: Each model that started this move engaged with an enemy unit must still be engaged with that enemy unit.",
+            "effective": "Ongoing Consolidation: Each model that started this move engaged with an enemy unit must still be engaged with that enemy unit. If one or more enemy units engaged with your unit have not been selected to fight this phase, your opponent must select each of those units, one at a time; when each is selected, it becomes eligible to fight and is selected to fight"
+          },
+          {
+            "operation": "REPLACE_VALUE",
+            "targetPath": "/content/0/stages/5/items/2",
+            "source": {
+              "unitId": "waha-core-rule-12-08",
+              "sourceOrder": 72,
+              "path": "/content/lists/2/items/2",
+              "contentHash": "2EC853848F2D84495FD97E1D87581BE3685F8A6CA3FCB1C63904B69F83B4B288"
+            },
+            "before": "Objective Consolidation: Your unit must be within range of the selected objective.",
+            "effective": "Objective Consolidation: Your unit must be unengaged and within range of the selected objective."
+          }
+        ]
       },
       "children": [],
       "fields": [
@@ -71157,7 +71453,7 @@
         {
           "id": "core-rule-12-08-consolidation-move::/semanticContent",
           "label": "Rule",
-          "value": "MAXIMUM DISTANCE: 3\"\nELIGIBLE IF: It is the Fight phase and your unit was eligible to fight this phase.\nEFFECT: Your unit moves as described in Moving (03).\nBEFORE MOVING: Select consolidation mode:\n• Ongoing Consolidation: If your unit is engaged, you must select this mode and select every enemy unit it is engaged with.\n• Engaging Consolidation: Otherwise, if your unit is within 3\" of one or more enemy units, you must select this mode and select one or more of those enemy units.\n• Objective Consolidation: Otherwise, if your unit is within 3\" of one or more objectives, you must select this mode and select one of those objectives.\nWHILE MOVING:\n• Ongoing Consolidation: Models in base-contact with one or more enemy models cannot be moved. Each model that is moved must end its move closer to the closest selected enemy unit, and engaged with it if possible.\n• Engaging Consolidation: Each model that is moved must end its move closer to the closest selected enemy unit, and engaged with it if possible.\n• Objective Consolidation: Each model that is moved must end its move within range of the selected objective if possible, or closer to it if not.\nAFTER MOVING:\n• Ongoing Consolidation: Each model that started this move engaged with an enemy unit must still be engaged with that enemy unit.\n• Engaging Consolidation: Your unit must be engaged with all of the selected enemy units. If one or more enemy units engaged with your unit have not been selected to fight this phase, your opponent must select each of those units, one at a time; when each is selected, it becomes eligible to fight and is selected to fight (12.04).\n• Objective Consolidation: Your unit must be within range of the selected objective.",
+          "value": "MAXIMUM DISTANCE: 3\"\nELIGIBLE IF: It is the Fight phase and your unit was eligible to fight this phase.\nEFFECT: Your unit moves as described in Moving (03).\nBEFORE MOVING: Select consolidation mode:\n• Ongoing Consolidation: If your unit is engaged, you must select this mode and select every enemy unit it is engaged with.\n• Engaging Consolidation: Otherwise, if your unit is within 3\" of one or more enemy units, you must select this mode and select one or more of those enemy units.\n• Objective Consolidation: Otherwise, if your unit is within 3\" of one or more objectives, you must select this mode and select one of those objectives.\nWHILE MOVING:\n• Ongoing Consolidation: Models in base-contact with one or more enemy models cannot be moved. Each model that is moved must end its move closer to the closest selected enemy unit, and engaged with it if possible.\n• Engaging Consolidation: Each model that is moved must end its move closer to the closest selected enemy unit, and engaged with it if possible.\n• Objective Consolidation: Each model that is moved must end its move within range of the selected objective if possible, or closer to it if not.\nAFTER MOVING:\n• Ongoing Consolidation: Each model that started this move engaged with an enemy unit must still be engaged with that enemy unit. If one or more enemy units engaged with your unit have not been selected to fight this phase, your opponent must select each of those units, one at a time; when each is selected, it becomes eligible to fight and is selected to fight\n• Engaging Consolidation: Your unit must be engaged with all of the selected enemy units. If one or more enemy units engaged with your unit have not been selected to fight this phase, your opponent must select each of those units, one at a time; when each is selected, it becomes eligible to fight and is selected to fight (12.04).\n• Objective Consolidation: Your unit must be unengaged and within range of the selected objective.",
           "type": "text",
           "contextId": "core-rule-12-08-consolidation-move",
           "source": {
@@ -71278,7 +71574,7 @@
         {
           "id": "core-rule-13-01-placing-terrain::/semanticContent",
           "label": "Rule",
-          "value": "Before the battle, place a selection of terrain features on the battlefield using one or more of the following methods:\n• Place a well-defined boundary (such as a base or mat) in each location you want to furnish with terrain, then place one or more terrain features wholly within that boundary.\n• Place one terrain feature directly on the battlefield.\n• Place two or more terrain features directly on the battlefield in such a way that together they define the boundary of an area.\nIn each case, the area of the battlefield occupied by that boundary or terrain feature is known as a terrain area. A mission’s deployment map may define the location and dimensions of each terrain area. Otherwise, players must agree on this before the battle.FAQ\nShow\nQ:Are models that are within the boundary of a terrain area, but not on the ground floor of a terrain area (e.g. overhanging parts of FRAME VEHICLES or models on terrain features that are within that terrain area) within that terrain area?\nA:Yes",
+          "value": "Before the battle, place a selection of terrain features on the battlefield using one or more of the following methods:\n• Place a well-defined boundary (such as a base or mat) in each location you want to furnish with terrain, then place one or more terrain features wholly within that boundary.\n• Place one terrain feature directly on the battlefield.\n• Place two or more terrain features directly on the battlefield in such a way that together they define the boundary of an area.\nIn each case, the area of the battlefield occupied by that boundary or terrain feature is known as a terrain area. A mission’s deployment map may define the location and dimensions of each terrain area. Otherwise, players must agree on this before the battle.",
           "type": "text",
           "contextId": "core-rule-13-01-placing-terrain",
           "source": {
@@ -71287,7 +71583,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-034",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-037",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-047",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-13-02-terrain-categories",
@@ -71810,7 +72119,7 @@
         {
           "id": "core-rule-13-08-benefit-of-cover::/semanticContent",
           "label": "Rule",
-          "value": "Each time a ranged attack targets a unit, if every model in that unit meets one or more of the following conditions, that unit has the benefit of cover against that attack:\n• That model has the INFANTRY/BEASTS/SWARM keyword and is within a terrain area.\n• That model is not fully visible to the attacking model due to one or more intervening terrain features and/or one or more intervening obscuring terrain areas (see below).\nEach time a ranged attack targets a unit that has the benefit of cover against it, worsen the BS characteristic of that attack by 1.FAQ\nShow\nQ:When my unit shoots at another unit, how does it work if some models in the target unit are fully visible to some models in my unit, while others are within a terrain area/not fully visible?\nA:For each attacking model in your unit, determine whether the target unit has the benefit of cover, as described in Terrain and Visibility. In this scenario, the target unit will likely have the benefit of cover against some of the attacking models, but not all.\nThis means that, in an example unit where all attacking models are using the same weapon, when you get to the Resolve Attacks step of the Attack Sequence, you will collect dice for attacks made by models against which the target unit has the benefit of cover separately from the dice for attacks made by models against which the target unit does not have the benefit of cover.",
+          "value": "Each time a ranged attack targets a unit, if every model in that unit meets one or more of the following conditions, that unit has the benefit of cover against that attack:\n• That model has the INFANTRY/BEASTS/SWARM keyword and is within a terrain area.\n• That model is not fully visible to the attacking model due to one or more intervening terrain features and/or one or more intervening obscuring terrain areas (see below).\nEach time a ranged attack targets a unit that has the benefit of cover against it, worsen the BS characteristic of that attack by 1.",
           "type": "text",
           "contextId": "core-rule-13-08-benefit-of-cover",
           "source": {
@@ -71819,7 +72128,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-015",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-035",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-13-09-hidden",
@@ -72123,6 +72441,10 @@
         {
           "targetId": "core-rule-13-11-solid",
           "label": "Parent Rule Id"
+        },
+        {
+          "targetId": "core-faq-waha-036",
+          "label": "FAQ"
         }
       ]
     },
@@ -72173,7 +72495,7 @@
         {
           "id": "core-rule-14-01-terrain-objectives::/semanticContent",
           "label": "Rule",
-          "value": "If a mission uses objectives, it will state where they are located on the battlefield. Typically, your mission will have a deployment map showing several points where objectives should be placed. The location of each point should coincide with a terrain area (13.01); that terrain area is the objective, and is called a terrain objective.\nWhen measuring distances to and from an objective, measure to and from the closest part of it.FAQ\nShow\nQ:Are models that are within the boundary of a terrain area, but not on the ground floor of a terrain area (e.g. overhanging parts of FRAME VEHICLES or models on terrain features that are within that terrain area) within that terrain area?\nA:Yes",
+          "value": "If a mission uses objectives, it will state where they are located on the battlefield. Typically, your mission will have a deployment map showing several points where objectives should be placed. The location of each point should coincide with a terrain area (13.01); that terrain area is the objective, and is called a terrain objective.\nWhen measuring distances to and from an objective, measure to and from the closest part of it.",
           "type": "text",
           "contextId": "core-rule-14-01-terrain-objectives",
           "source": {
@@ -72182,7 +72504,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-034",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-037",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-047",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-14-01-01-objectives-not-within-a-terrain-area",
@@ -72294,7 +72629,7 @@
         {
           "id": "core-rule-14-02-level-of-control::/semanticContent",
           "label": "Rule",
-          "value": "At the start of the battle, no objective on the battlefield is controlled by either player. To gain control of an objective, a player will need one or more models with an OC characteristic of 1 or more within range of it. A model is within range of a terrain objective while it is within that terrain area.\nAt the end of each phase and turn, to determine a player’s level of control over an objective, add together the OC characteristics of all the models in that player’s army that are within range of that objective:\n• The player who has the highest level of control over that objective controls that objective.\n• If both players have the same level of control over that objective, unless that objective is secured (see below), that objective is not controlled by either player.\nWhile one or more units from a player’s army are within range of an objective that player controls, for each of those units that contains one or more models with an OC characteristic of 1 or more, that unit is said to be controlling that objective.\nHOLD AT ALL COSTS\nSome units have abilities that are triggered when they control an objective, or when they secure an objective for your army.\nFAQ\nShow\nQ:Is being within range of a terrain objective the same as being within range of an objective marker?\nA:Yes.",
+          "value": "At the start of the battle, no objective on the battlefield is controlled by either player. To gain control of an objective, a player will need one or more models with an OC characteristic of 1 or more within range of it. A model is within range of a terrain objective while it is within that terrain area.\nAt the end of each phase and turn, to determine a player’s level of control over an objective, add together the OC characteristics of all the models in that player’s army that are within range of that objective:\n• The player who has the highest level of control over that objective controls that objective.\n• If both players have the same level of control over that objective, unless that objective is secured (see below), that objective is not controlled by either player.\nWhile one or more units from a player’s army are within range of an objective that player controls, for each of those units that contains one or more models with an OC characteristic of 1 or more, that unit is said to be controlling that objective.\nHOLD AT ALL COSTS\nSome units have abilities that are triggered when they control an objective, or when they secure an objective for your army.",
           "type": "text",
           "contextId": "core-rule-14-02-level-of-control",
           "source": {
@@ -72303,7 +72638,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-038",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-14-02-01-controlling-an-objective-at-the-end-of-a-phase",
@@ -72415,7 +72755,7 @@
         {
           "id": "core-rule-14-03-secured-objectives::/semanticContent",
           "label": "Rule",
-          "value": "Some rules allow an objective to be secured by a player’s army. When an objective is secured by a player’s army, that objective remains under their control – even once they no longer have any units within range of it – until their opponent’s level of control over that objective is greater than theirs at the end of a phase.FAQ\nShow\nQ:If my unit has taken control of an objective at the end of my movement phase and that unit has as an ability that secures an objective they control, can they secure that objective?\nA:Yes",
+          "value": "Some rules allow an objective to be secured by a player’s army. When an objective is secured by a player’s army, that objective remains under their control – even once they no longer have any units within range of it – until their opponent’s level of control over that objective is greater than theirs at the end of a phase.",
           "type": "text",
           "contextId": "core-rule-14-03-secured-objectives",
           "source": {
@@ -72424,7 +72764,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-039",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-040",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-15-01-using-stratagems",
@@ -72473,7 +72822,7 @@
         {
           "id": "core-rule-15-01-using-stratagems::/semanticContent",
           "label": "Rule",
-          "value": "During the battle, both players can use stratagems. Each stratagem states:\n• How many CP it costs to use.\n• WHEN: When it can be used.\n• TARGET: Which units it can target.\n• EFFECT: What the effects of using that stratagem are.\n• RESTRICTIONS: Any additional restrictions that apply.\nEach player can use the same stratagem multiple times during the battle, but the following restrictions apply:\n• Each player cannot use the same stratagem more than once in the same phase.\n• Unless otherwise stated, each player cannot target the same unit with more than one stratagem in the same phase.\nEach time you use a stratagem, resolve the following sequence:\n• Select targets as described in that stratagem.\n• Reduce your CP total by the CP cost listed in that stratagem. If that stratagem contains a section that carries an additional CP cost (e.g. +1CP), you can only use that additional section if you increase the CP cost of that stratagem by the amount shown. If you do not have enough CP remaining, you cannot use that stratagem.\n• Resolve the effects of that stratagem.\nSEE ALSO\n• Rules Sequencing 01.03.02\n• Modifying CP Cost 15.01.01\n• Affected By A Stratagem 15.01.02\n• Stratagem Definitions 15.01.03\nSome stratagems feature optional conditions that carry on additional CP cost. This can depend on the effect you select (see HEROIC INTERVENTION stratagem for example) or other variables such os the keywords of the unit being targeted.\nFAQ\nShow\nQ:After using an ability that increases the CP cost of a stratagem, must my opponent continue to use the selected stratagem at the increased cost if they have the necessary CP available?\nA:Yes.\nQ:After using an ability that increases the CP cost of a stratagem, if my opponent does not have the necessary CP available for the selected stratagem, what happens?\nA:No CP are spent and that stratagem's effects are not resolved (but that stratagem still counts as having been used this phase).\nQ:If a stratagem contains a section that carries an additional CP cost (such as the Into the Fray option of Heroic Intervention), is that additional cost considered to be a modifier?\nA:No, a stratagem that costs 1CP and is making use of an optional +1CP section has an original cost of 2CP.",
+          "value": "During the battle, both players can use stratagems. Each stratagem states:\n• How many CP it costs to use.\n• WHEN: When it can be used.\n• TARGET: Which units it can target.\n• EFFECT: What the effects of using that stratagem are.\n• RESTRICTIONS: Any additional restrictions that apply.\nEach player can use the same stratagem multiple times during the battle, but the following restrictions apply:\n• Each player cannot use the same stratagem more than once in the same phase.\n• Unless otherwise stated, each player cannot target the same unit with more than one stratagem in the same phase.\nEach time you use a stratagem, resolve the following sequence:\n• Select targets as described in that stratagem.\n• Reduce your CP total by the CP cost listed in that stratagem. If that stratagem contains a section that carries an additional CP cost (e.g. +1CP), you can only use that additional section if you increase the CP cost of that stratagem by the amount shown. If you do not have enough CP remaining, you cannot use that stratagem.\n• Resolve the effects of that stratagem.\nSEE ALSO\n• Rules Sequencing 01.03.02\n• Modifying CP Cost 15.01.01\n• Affected By A Stratagem 15.01.02\n• Stratagem Definitions 15.01.03\nSome stratagems feature optional conditions that carry on additional CP cost. This can depend on the effect you select (see HEROIC INTERVENTION stratagem for example) or other variables such os the keywords of the unit being targeted.",
           "type": "text",
           "contextId": "core-rule-15-01-using-stratagems",
           "source": {
@@ -72482,7 +72831,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-041",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-042",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-043",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-15-01-01-modifying-cp-cost",
@@ -73405,7 +73767,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-044",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-045",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "faq-no-ranged-weapons-eligible-to-shoot",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-17-01-moving-monsters-and-vehicles",
@@ -73454,7 +73829,7 @@
         {
           "id": "core-rule-17-01-moving-monsters-and-vehicles::/semanticContent",
           "label": "Rule",
-          "value": "Each time you make a normal or advance move with a unit, MONSTER/VEHICLE models in that unit can be moved through friendly and enemy models (excluding other MONSTER/VEHICLE models).FAQ\nShow\nQ:While making a move type other than a normal/advance move, can my MONSTER/VEHICLE unit move through friendly units?\nA:Yes.",
+          "value": "Each time you make a normal or advance move with a unit, MONSTER/VEHICLE models in that unit can be moved through friendly and enemy models (excluding other MONSTER/VEHICLE models).",
           "type": "text",
           "contextId": "core-rule-17-01-moving-monsters-and-vehicles",
           "source": {
@@ -73463,7 +73838,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-046",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-17-02-frame",
@@ -73512,7 +73892,7 @@
         {
           "id": "core-rule-17-02-frame::/semanticContent",
           "label": "Rule",
-          "value": "Some models do not have a base; many of these are MONSTER/VEHICLE models. Such models have the FRAME keyword, as do some other large models. Whenever a rule refers to a model’s position in relation to anything else on the battlefield (e.g. when measuring distances), if that model has the FRAME keyword, unless otherwise stated, measure to and from the closest point on that model (so not necessarily from its base, if it has one).\nWhen rotating a FRAME model as part of a move, if that model does not have a base, turn it any amount around its central axis, while keeping it upright.FAQ\nShow\nQ:Are models that are within the boundary of a terrain area, but not on the ground floor of a terrain area (e.g. overhanging parts of FRAME VEHICLES or models on terrain features that are within that terrain area) within that terrain area?\nA:Yes",
+          "value": "Some models do not have a base; many of these are MONSTER/VEHICLE models. Such models have the FRAME keyword, as do some other large models. Whenever a rule refers to a model’s position in relation to anything else on the battlefield (e.g. when measuring distances), if that model has the FRAME keyword, unless otherwise stated, measure to and from the closest point on that model (so not necessarily from its base, if it has one).\nWhen rotating a FRAME model as part of a move, if that model does not have a base, turn it any amount around its central axis, while keeping it upright.",
           "type": "text",
           "contextId": "core-rule-17-02-frame",
           "source": {
@@ -73521,7 +73901,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-034",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-037",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-047",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-17-03-shooting-at-engaged-monsters-and-vehicles",
@@ -73597,6 +73990,14 @@
         {
           "targetId": "core-errata-17-03",
           "label": "Errata Ids"
+        },
+        {
+          "targetId": "faq-blast-during-close-quarters-shooting",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "faq-blast-against-engaged-monster-vehicle",
+          "label": "FAQ"
         }
       ]
     },
@@ -73768,7 +74169,7 @@
         {
           "id": "core-rule-18-02-embarking::/semanticContent",
           "label": "Rule",
-          "value": "Once the first battle round has started, a friendly unit can embark within a friendly TRANSPORT model after making a normal, advance or fall-back move, if all of the following conditions apply:\n• Each model in that unit is within 3\" of that TRANSPORT.\n• That unit was not set up on the battlefield this turn.\n• That unit is eligible to embark within that TRANSPORT, as described on that TRANSPORT’s datasheet.\n• That TRANSPORT has sufficient remaining transport capacity for each model in that unit.\nWhen a unit embarks, the active player removes that unit from the battlefield and places it to one side – it is now embarked within that TRANSPORT and is not on the battlefield.\nSEE ALSO\n• Not on the Battlefield 01.02.04\nFAQ\nShow\nQ:Do a unit's abilities continue to function while they are embarked within a TRANSPORT?\nA:Yes, within the restrictions specified by the ability itself. Embarked units are Not On The Battlefield (01.02.04), so any ability requiring visibility or measurement to another unit will fail.\nExample: Azrael is attached to an Intercessor Squad unit and embarked within a TRANSPORT, and that TRANSPORT is making a shooting attack using the Firing Deck ability. While Azrael’s Supreme Grand Master ability is still technically active, it will have no effect, as the requirements of the ability are not met (the ability affects ‘weapons equipped by models’ in Azrael’s unit, and for the purposes of Firing Deck, the TRANSPORT itself is equipped with those weapons instead).\nQ:If a rule says a unit can embark into a TRANSPORT in a turn that unit disembarked, does this ignore the core rules restriction on embarking in a turn that unit made a set up move (see 18.02)?\nA:Yes",
+          "value": "Once the first battle round has started, a friendly unit can embark within a friendly TRANSPORT model after making a normal, advance or fall-back move, if all of the following conditions apply:\n• Each model in that unit is within 3\" of that TRANSPORT.\n• That unit was not set up on the battlefield this turn.\n• That unit is eligible to embark within that TRANSPORT, as described on that TRANSPORT’s datasheet.\n• That TRANSPORT has sufficient remaining transport capacity for each model in that unit.\nWhen a unit embarks, the active player removes that unit from the battlefield and places it to one side – it is now embarked within that TRANSPORT and is not on the battlefield.\nSEE ALSO\n• Not on the Battlefield 01.02.04",
           "type": "text",
           "contextId": "core-rule-18-02-embarking",
           "source": {
@@ -73777,7 +74178,20 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-048",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-049",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "faq-embark-after-scout-move",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-18-02-01-able-to-embark",
@@ -73889,7 +74303,7 @@
         {
           "id": "core-rule-18-03-disembarking::/semanticContent",
           "label": "Rule",
-          "value": "In the active player’s Movement phase, each friendly unit embarked within a TRANSPORT model can disembark from it by making a disembark move (see below).\nIf a TRANSPORT model is destroyed, before removing it from the battlefield, the active player must make an emergency disembark move (see below) with each unit embarked within it.\nSEE ALSO\n• Persisting Rules Effects 01.02.02\n• Hazard Rolls 06.03\n• Rapid Disembark And Limitations 18.04.01\nFAQ\nShow\nQ:If a unit makes any disembark move in a turn (i.e. Disembark move, Emergency Disembark move etc.) has it disembarked that turn?\nA:Yes.",
+          "value": "In the active player’s Movement phase, each friendly unit embarked within a TRANSPORT model can disembark from it by making a disembark move (see below).\nIf a TRANSPORT model is destroyed, before removing it from the battlefield, the active player must make an emergency disembark move (see below) with each unit embarked within it.\nSEE ALSO\n• Persisting Rules Effects 01.02.02\n• Hazard Rolls 06.03\n• Rapid Disembark And Limitations 18.04.01",
           "type": "text",
           "contextId": "core-rule-18-03-disembarking",
           "source": {
@@ -73898,7 +74312,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-050",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-18-04-disembark-move",
@@ -74039,7 +74458,33 @@
           "sourceDate": "2026-09-25",
           "sourceScope": "GLOBAL_CORE",
           "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
-        }
+        },
+        "effectiveSourceBindings": [
+          {
+            "operation": "REPLACE_STAGE",
+            "targetPath": "/content/0/stages/4",
+            "source": {
+              "recordId": "core-waha-errata-18-05",
+              "path": "/sourceStructure",
+              "contentHash": "198CA72CA154B98CAAC7D4994BAF24380633C2795199AA101740270173E02A1D"
+            },
+            "sourceRecordId": "core-waha-errata-18-05",
+            "before": {
+              "label": "WHILE MOVING",
+              "text": "Set up each model in your unit wholly within the set-up distance of that TRANSPORT, and as close as possible to that TRANSPORT. Each model that cannot be set up in this way is destroyed.",
+              "items": []
+            },
+            "effective": {
+              "label": "WHILE MOVING",
+              "text": "Set up each model in your unit:",
+              "items": [
+                "Wholly within the set-up distance of that TRANSPORT, and as close as possible to that TRANSPORT.",
+                "Or: If the above is not possible while remaining unengaged, set up that model wholly within the set-up distance of that TRANSPORT, as close as possible to that TRANSPORT, and engaged."
+              ],
+              "afterText": "Each model that still cannot be set up is destroyed."
+            }
+          }
+        ]
       },
       "children": [],
       "fields": [
@@ -74068,7 +74513,7 @@
         {
           "id": "core-rule-18-05-emergency-disembark-move::/semanticContent",
           "label": "Rule",
-          "value": "SET-UP DISTANCE: 6\"\nELIGIBLE IF: Your unit is embarked within a TRANSPORT model that was just destroyed.\nEFFECT: Your unit is set up as described in Set Up (03.02).\nBEFORE MOVING: Make a hazard roll for each model in your unit (06.03).\nWHILE MOVING: Set up each model in your unit wholly within the set-up distance of that TRANSPORT, and as close as possible to that TRANSPORT. Each model that cannot be set up in this way is destroyed.\nAFTER MOVING: Your unit is battle-shocked and, until the end of the turn, it is not eligible to declare a charge.",
+          "value": "SET-UP DISTANCE: 6\"\nELIGIBLE IF: Your unit is embarked within a TRANSPORT model that was just destroyed.\nEFFECT: Your unit is set up as described in Set Up (03.02).\nBEFORE MOVING: Make a hazard roll for each model in your unit (06.03).\nWHILE MOVING: Set up each model in your unit:\n• Wholly within the set-up distance of that TRANSPORT, and as close as possible to that TRANSPORT.\n• Or: If the above is not possible while remaining unengaged, set up that model wholly within the set-up distance of that TRANSPORT, as close as possible to that TRANSPORT, and engaged.\nEach model that still cannot be set up is destroyed.\nAFTER MOVING: Your unit is battle-shocked and, until the end of the turn, it is not eligible to declare a charge.",
           "type": "text",
           "contextId": "core-rule-18-05-emergency-disembark-move",
           "source": {
@@ -74214,7 +74659,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-050",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-19-01-forming-attached-units",
@@ -74263,7 +74713,7 @@
         {
           "id": "core-rule-19-01-forming-attached-units::/semanticContent",
           "label": "Rule",
-          "value": "Some units have the Leader or Support ability listed on their datasheet (see below). Such units are known as leader units and support units respectively. Both of these abilities allow such units to lead other friendly units (known as bodyguard units) to form attached units. An attached unit is a single unit for all rules purposes. Leader and support units can only lead specific bodyguard units, as listed in the datasheet.\nSEE ALSO\n• Attached Units After Their Bodyguard Unit is Destroyed 19.01.01\nFAQ\nShow\nQ:The Munitorium Field Manual shows my unit can attach to different units then are on it’s datasheet, which do I use?\nA:Use the Munitorium Field Manual.",
+          "value": "Some units have the Leader or Support ability listed on their datasheet (see below). Such units are known as leader units and support units respectively. Both of these abilities allow such units to lead other friendly units (known as bodyguard units) to form attached units. An attached unit is a single unit for all rules purposes. Leader and support units can only lead specific bodyguard units, as listed in the datasheet.\nSEE ALSO\n• Attached Units After Their Bodyguard Unit is Destroyed 19.01.01",
           "type": "text",
           "contextId": "core-rule-19-01-forming-attached-units",
           "source": {
@@ -74272,7 +74722,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-007",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-051",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-19-01-01-attached-units-after-their-bodyguard-unit-is-destroyed",
@@ -74457,7 +74916,7 @@
         {
           "id": "core-rule-19-03-keywords-in-attached-units::/semanticContent",
           "label": "Rule",
-          "value": "An attached unit has all of the keywords of all of its component units. As such, an attached unit is affected by any rule that applies to units with any of those keywords. Note that models in an attached unit do not gain the keywords of other models in that unit that they do not already have. Remember that attacks target units, not models.\nExample: An attached unit contains a leader model with the PSYKER keyword. While that model is part of that unit, that unit has the PSYKER keyword, even if the bodyguard models do not have that keyword. If that unit is attacked by a weapon with the [ANTI-PSYKER 4+] ability, any unmodified wound roll of 4+ made against that unit is a critical wound, even if the attack itself is not allocated to that leader model.\nFAQ\nShow\nQ:Units have all the keywords of all their models, and attached units have all the keywords of all of their component units. How are destroyed models taken into account for these purposes?\nA:These statements are only true so long as the models possessing those keywords remain part of the unit; destroyed models do not contribute their keywords to their prior unit.\nExample: The Aspiring Sorcerer model in a unit of Rubric Marines is destroyed; as none of the remaining models in the unit possess the PSYKER keyword, that unit is no longer a PSYKER unit.",
+          "value": "An attached unit has all of the keywords of all of its component units. As such, an attached unit is affected by any rule that applies to units with any of those keywords. Note that models in an attached unit do not gain the keywords of other models in that unit that they do not already have. Remember that attacks target units, not models.\nExample: An attached unit contains a leader model with the PSYKER keyword. While that model is part of that unit, that unit has the PSYKER keyword, even if the bodyguard models do not have that keyword. If that unit is attacked by a weapon with the [ANTI-PSYKER 4+] ability, any unmodified wound roll of 4+ made against that unit is a critical wound, even if the attack itself is not allocated to that leader model.",
           "type": "text",
           "contextId": "core-rule-19-03-keywords-in-attached-units",
           "source": {
@@ -74466,7 +74925,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-052",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-19-04-abilities-in-attached-units",
@@ -74636,7 +75100,7 @@
         {
           "id": "core-rule-20-01-placing-units-in-strategic-reserves::/semanticContent",
           "label": "Rule",
-          "value": "Before the battle, in the Declare Battle Formations step, you can select one or more friendly units (excluding FORTIFICATIONS) to place in strategic reserves. Instead of setting up these units on the battlefield during deployment, place them to one side; they are strategic reserves units, and will arrive later in the battle.\nUnless otherwise stated, the combined points value of all of your strategic reserves units (including those embarked within TRANSPORTS that are themselves placed in strategic reserves) cannot exceed 50% of your points limit for your battle size.\nSEE ALSO\n• Reserves 20.01.01\nFAQ\nShow\nQ:If I place units in strategic reserves during the battle, can this exceed the 50% of my points limit for the battle restriction as mentioned in Placing Units in Strategic Reserves (20.01)?\nA:Yes. That restriction is applicable before the battle, in the Declare Battle Formations step.\nQ:Does the limit to the combined points value of my units in strategic reserves only apply until the start of the first battle round?\nA:Yes.",
+          "value": "Before the battle, in the Declare Battle Formations step, you can select one or more friendly units (excluding FORTIFICATIONS) to place in strategic reserves. Instead of setting up these units on the battlefield during deployment, place them to one side; they are strategic reserves units, and will arrive later in the battle.\nUnless otherwise stated, the combined points value of all of your strategic reserves units (including those embarked within TRANSPORTS that are themselves placed in strategic reserves) cannot exceed 50% of your points limit for your battle size.\nSEE ALSO\n• Reserves 20.01.01",
           "type": "text",
           "contextId": "core-rule-20-01-placing-units-in-strategic-reserves",
           "source": {
@@ -74645,7 +75109,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-053",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-054",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-20-01-01-reserves",
@@ -75173,7 +75646,7 @@
         {
           "id": "core-rule-21-03-flying-models::/semanticContent",
           "label": "Rule",
-          "value": "Models with the FLY keyword, and units such models are part of, are said to be able to FLY. Some rules also refer to such models/units as FLYING models/FLYING units.\nEach time a FLYING unit is selected to make a normal, advance, fall-back or charge move, before moving any models in that unit, the active player can declare that it will take to the skies. If it does, while resolving that move:\n• Subtract 2\" from the maximum distance.\n• Each time a FLYING model moves:\n• Ignore all vertical distance for the purposes of how far it has moved.\n• It can move through all types of model (including enemy models and MONSTER/VEHICLE models).\n• It can move horizontally and vertically through all categories of terrain feature.\nFAQ\nShow\nQ:When do the effects of a FLYING unit taking to the skies apply?\nA:When that unit is selected to make a normal/advance/fall-back/charge move. Note that for an advance/charge move, this means you must declare that a unit will take to the skies before rolling for that advance/charge move.",
+          "value": "Models with the FLY keyword, and units such models are part of, are said to be able to FLY. Some rules also refer to such models/units as FLYING models/FLYING units.\nEach time a FLYING unit is selected to make a normal, advance, fall-back or charge move, before moving any models in that unit, the active player can declare that it will take to the skies. If it does, while resolving that move:\n• Subtract 2\" from the maximum distance.\n• Each time a FLYING model moves:\n• Ignore all vertical distance for the purposes of how far it has moved.\n• It can move through all types of model (including enemy models and MONSTER/VEHICLE models).\n• It can move horizontally and vertically through all categories of terrain feature.",
           "type": "text",
           "contextId": "core-rule-21-03-flying-models",
           "source": {
@@ -75182,7 +75655,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-055",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-062",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-22-01-aura-abilities",
@@ -76004,7 +76486,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-061",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-assault",
@@ -76120,7 +76607,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "faq-blast-during-close-quarters-shooting",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "faq-blast-against-engaged-monster-vehicle",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-cleave",
@@ -76294,7 +76790,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-060",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-deep-strike",
@@ -76589,7 +77090,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-059",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-fights-first",
@@ -76763,7 +77269,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-057",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-heavy",
@@ -76821,7 +77332,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-062",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-hover",
@@ -77300,7 +77816,12 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-056",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-rule-24-24-01-attached-units-and-lone-operative",
@@ -77895,7 +78416,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-058",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "faq-embark-after-scout-move",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-scout-move",
@@ -77953,7 +78483,16 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-058",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "faq-embark-after-scout-move",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-stealth",
@@ -78645,7 +79184,7 @@
         {
           "id": "core-rule-25-04-fill-your-army-roster::/semanticContent",
           "label": "Rule",
-          "value": "You will now select your detachments, units, WARLORD and enhancements that will be in your army. You will also attach your leader and support units to other units.\nWhen doing so:\n• You cannot exceed any of the values presented in the Select Battle Size table (25.03). For example, in an Incursion battle, you cannot select detachments with a combined value of more than 2 DP.\n• No unit (including attached units) can have more than one enhancement.\n• Your army roster must follow all restrictions placed on it by the rules and units being included in it.\nFAQ\nShow\nQ:Can an attached unit be given an Upgrade?\nA:Yes.\nQ:Can a unit have both an Upgrade and an enhancement?\nA:No, units are prevented from having two enhancements, and Upgrades are enhancements.\nQ:Are Upgrades enhancements?\nA:Yes, Upgrades are a type of enhancement (but not all enhancements are Upgrades).\nQ:Can an EPIC HERO unit form an attached unit with a unit that has an enhancement?\nA:Yes.",
+          "value": "You will now select your detachments, units, WARLORD and enhancements that will be in your army. You will also attach your leader and support units to other units.\nWhen doing so:\n• You cannot exceed any of the values presented in the Select Battle Size table (25.03). For example, in an Incursion battle, you cannot select detachments with a combined value of more than 2 DP.\n• No unit (including attached units) can have more than one enhancement.\n• Your army roster must follow all restrictions placed on it by the rules and units being included in it.",
           "type": "text",
           "contextId": "core-rule-25-04-fill-your-army-roster",
           "source": {
@@ -78654,7 +79193,24 @@
           }
         }
       ],
-      "links": []
+      "links": [
+        {
+          "targetId": "core-faq-waha-063",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-064",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-065",
+          "label": "FAQ"
+        },
+        {
+          "targetId": "core-faq-waha-066",
+          "label": "FAQ"
+        }
+      ]
     },
     {
       "id": "core-waha-errata-12-08",
@@ -82199,7 +82755,19 @@
         "sourceLocator": "waha-core-faq-051",
         "sourceUnitId": "waha-core-faq-051",
         "sourceContentHash": "0BD450D897DC1A270579B03A4F86E4D9DF0880792744016842129C3C39F905FC",
-        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F"
+        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+        "relationshipBinding": {
+          "sourceUnitId": "waha-core-faq-051",
+          "sourceContentHash": "0BD450D897DC1A270579B03A4F86E4D9DF0880792744016842129C3C39F905FC",
+          "evidence": {
+            "sourceUnitId": "waha-core-faq-051",
+            "sourceContentHash": "0BD450D897DC1A270579B03A4F86E4D9DF0880792744016842129C3C39F905FC",
+            "enclosingSourceUnitId": "waha-core-rule-19-01",
+            "sourceOrder": 116,
+            "basis": "SOURCE_BACKED_SEMANTIC_BINDING"
+          },
+          "primaryEstablished": true
+        }
       },
       "children": [],
       "fields": [
@@ -82228,8 +82796,12 @@
       ],
       "links": [
         {
-          "targetId": "core-lethal-hits",
+          "targetId": "core-rule-19-01-forming-attached-units",
           "label": "Primary Rule Id"
+        },
+        {
+          "targetId": "core-rule-02-06-unit-composition-and-other-rules",
+          "label": "Related Rule Ids"
         }
       ]
     },
@@ -82469,7 +83041,17 @@
         "sourceLocator": "waha-core-faq-056",
         "sourceUnitId": "waha-core-faq-056",
         "sourceContentHash": "26DBB48CE5DB5722C28105C0755C36CB17298250959202C89AADE9D2E67C8370",
-        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F"
+        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+        "relationshipBinding": {
+          "sourceUnitId": "waha-core-faq-056",
+          "sourceContentHash": "26DBB48CE5DB5722C28105C0755C36CB17298250959202C89AADE9D2E67C8370",
+          "evidence": {
+            "sourceUnitId": "waha-core-faq-056",
+            "sourceContentHash": "26DBB48CE5DB5722C28105C0755C36CB17298250959202C89AADE9D2E67C8370",
+            "basis": "SOURCE_BACKED_SEMANTIC_BINDING"
+          },
+          "primaryEstablished": true
+        }
       },
       "children": [],
       "fields": [
@@ -82498,7 +83080,7 @@
       ],
       "links": [
         {
-          "targetId": "core-rule-23-04-charging-and-fighting",
+          "targetId": "core-lone-operative",
           "label": "Primary Rule Id"
         }
       ]
@@ -82523,7 +83105,17 @@
         "sourceLocator": "waha-core-faq-057",
         "sourceUnitId": "waha-core-faq-057",
         "sourceContentHash": "21D47C40C64B42F4D34D1D9E933048A48533F13F78DFBA98AAFB90A33D84B3E0",
-        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F"
+        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+        "relationshipBinding": {
+          "sourceUnitId": "waha-core-faq-057",
+          "sourceContentHash": "21D47C40C64B42F4D34D1D9E933048A48533F13F78DFBA98AAFB90A33D84B3E0",
+          "evidence": {
+            "sourceUnitId": "waha-core-faq-057",
+            "sourceContentHash": "21D47C40C64B42F4D34D1D9E933048A48533F13F78DFBA98AAFB90A33D84B3E0",
+            "basis": "MULTIPLE_RELATED_RULES_NO_UNIQUE_PRIMARY"
+          },
+          "primaryEstablished": false
+        }
       },
       "children": [],
       "fields": [
@@ -82552,8 +83144,16 @@
       ],
       "links": [
         {
-          "targetId": "core-rule-23-04-charging-and-fighting",
-          "label": "Primary Rule Id"
+          "targetId": "core-hazardous",
+          "label": "Related Rule Ids"
+        },
+        {
+          "targetId": "core-rule-06-03-hazard-rolls",
+          "label": "Related Rule Ids"
+        },
+        {
+          "targetId": "core-rule-06-02-mortal-wounds",
+          "label": "Related Rule Ids"
         }
       ]
     },
@@ -82577,7 +83177,17 @@
         "sourceLocator": "waha-core-faq-058",
         "sourceUnitId": "waha-core-faq-058",
         "sourceContentHash": "AA5A1C62F968E665B63095087530432F7193621F83E8E6B62DE876CC5A89233A",
-        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F"
+        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+        "relationshipBinding": {
+          "sourceUnitId": "waha-core-faq-058",
+          "sourceContentHash": "AA5A1C62F968E665B63095087530432F7193621F83E8E6B62DE876CC5A89233A",
+          "evidence": {
+            "sourceUnitId": "waha-core-faq-058",
+            "sourceContentHash": "AA5A1C62F968E665B63095087530432F7193621F83E8E6B62DE876CC5A89233A",
+            "basis": "MULTIPLE_RELATED_RULES_NO_UNIQUE_PRIMARY"
+          },
+          "primaryEstablished": false
+        }
       },
       "children": [],
       "fields": [
@@ -82606,8 +83216,12 @@
       ],
       "links": [
         {
-          "targetId": "core-rule-23-04-charging-and-fighting",
-          "label": "Primary Rule Id"
+          "targetId": "core-scouts",
+          "label": "Related Rule Ids"
+        },
+        {
+          "targetId": "core-scout-move",
+          "label": "Related Rule Ids"
         }
       ]
     },
@@ -82631,7 +83245,17 @@
         "sourceLocator": "waha-core-faq-059",
         "sourceUnitId": "waha-core-faq-059",
         "sourceContentHash": "6274D33549199485AA8C59F530C93534D195B2E124E81D541A8E5FD9C9D37B8D",
-        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F"
+        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+        "relationshipBinding": {
+          "sourceUnitId": "waha-core-faq-059",
+          "sourceContentHash": "6274D33549199485AA8C59F530C93534D195B2E124E81D541A8E5FD9C9D37B8D",
+          "evidence": {
+            "sourceUnitId": "waha-core-faq-059",
+            "sourceContentHash": "6274D33549199485AA8C59F530C93534D195B2E124E81D541A8E5FD9C9D37B8D",
+            "basis": "MULTIPLE_RELATED_RULES_NO_UNIQUE_PRIMARY"
+          },
+          "primaryEstablished": false
+        }
       },
       "children": [],
       "fields": [
@@ -82660,8 +83284,12 @@
       ],
       "links": [
         {
-          "targetId": "core-rule-23-04-charging-and-fighting",
-          "label": "Primary Rule Id"
+          "targetId": "core-feel-no-pain",
+          "label": "Related Rule Ids"
+        },
+        {
+          "targetId": "core-rule-05-04-inflict-damage",
+          "label": "Related Rule Ids"
         }
       ]
     },
@@ -82685,7 +83313,17 @@
         "sourceLocator": "waha-core-faq-060",
         "sourceUnitId": "waha-core-faq-060",
         "sourceContentHash": "802807C9F46AA0ACCC1868DE64B56F80A956AD86CE88A3B56BBE18CC9BFCBAE6",
-        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F"
+        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+        "relationshipBinding": {
+          "sourceUnitId": "waha-core-faq-060",
+          "sourceContentHash": "802807C9F46AA0ACCC1868DE64B56F80A956AD86CE88A3B56BBE18CC9BFCBAE6",
+          "evidence": {
+            "sourceUnitId": "waha-core-faq-060",
+            "sourceContentHash": "802807C9F46AA0ACCC1868DE64B56F80A956AD86CE88A3B56BBE18CC9BFCBAE6",
+            "basis": "MULTIPLE_RELATED_RULES_NO_UNIQUE_PRIMARY"
+          },
+          "primaryEstablished": false
+        }
       },
       "children": [],
       "fields": [
@@ -82714,8 +83352,12 @@
       ],
       "links": [
         {
-          "targetId": "core-rule-23-04-charging-and-fighting",
-          "label": "Primary Rule Id"
+          "targetId": "core-deadly-demise",
+          "label": "Related Rule Ids"
+        },
+        {
+          "targetId": "core-rule-05-04-05-fight-on-death",
+          "label": "Related Rule Ids"
         }
       ]
     },
@@ -82739,7 +83381,17 @@
         "sourceLocator": "waha-core-faq-061",
         "sourceUnitId": "waha-core-faq-061",
         "sourceContentHash": "1CD9554D86EEAC3013C763A5BB9D49A77171507D122A04A1DD69A23FFBD1F2B0",
-        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F"
+        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+        "relationshipBinding": {
+          "sourceUnitId": "waha-core-faq-061",
+          "sourceContentHash": "1CD9554D86EEAC3013C763A5BB9D49A77171507D122A04A1DD69A23FFBD1F2B0",
+          "evidence": {
+            "sourceUnitId": "waha-core-faq-061",
+            "sourceContentHash": "1CD9554D86EEAC3013C763A5BB9D49A77171507D122A04A1DD69A23FFBD1F2B0",
+            "basis": "SOURCE_BACKED_SEMANTIC_BINDING"
+          },
+          "primaryEstablished": true
+        }
       },
       "children": [],
       "fields": [
@@ -82768,7 +83420,7 @@
       ],
       "links": [
         {
-          "targetId": "core-rule-23-04-charging-and-fighting",
+          "targetId": "core-anti",
           "label": "Primary Rule Id"
         }
       ]
@@ -82793,7 +83445,17 @@
         "sourceLocator": "waha-core-faq-062",
         "sourceUnitId": "waha-core-faq-062",
         "sourceContentHash": "A6AD85EBB3E375FE63D9D2F57D8D8A175D3BD07F883EACF36A0817BBDB37FA2A",
-        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F"
+        "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+        "relationshipBinding": {
+          "sourceUnitId": "waha-core-faq-062",
+          "sourceContentHash": "A6AD85EBB3E375FE63D9D2F57D8D8A175D3BD07F883EACF36A0817BBDB37FA2A",
+          "evidence": {
+            "sourceUnitId": "waha-core-faq-062",
+            "sourceContentHash": "A6AD85EBB3E375FE63D9D2F57D8D8A175D3BD07F883EACF36A0817BBDB37FA2A",
+            "basis": "SOURCE_BACKED_SEMANTIC_BINDING"
+          },
+          "primaryEstablished": true
+        }
       },
       "children": [],
       "fields": [
@@ -82822,8 +83484,12 @@
       ],
       "links": [
         {
-          "targetId": "core-rule-23-04-charging-and-fighting",
+          "targetId": "core-heavy",
           "label": "Primary Rule Id"
+        },
+        {
+          "targetId": "core-rule-21-03-flying-models",
+          "label": "Related Rule Ids"
         }
       ]
     },

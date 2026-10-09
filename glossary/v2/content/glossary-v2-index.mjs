@@ -84,7 +84,7 @@ function normalizeReferences(record,domain){
 
 function addCoreEntries(entries,coreCatalog){
   for(const record of coreCatalog.records){
-    if(record.state!=='FULL_CONTENT'||CORE_ALIAS_ONLY_ERRATA.has(record.id))continue;
+    if(!['FULL_CONTENT','SOURCE_CONFLICT'].includes(record.state)||CORE_ALIAS_ONLY_ERRATA.has(record.id))continue;
     upsertEntry(entries,createEntry({
       id:entryId('core',record.id),domain:'CORE',recordType:record.recordType,label:record.title,aliases:record.parameters?.aliases||[],canonicalId:record.id,
       references:normalizeReferences(record,'CORE'),provenance:record.provenance,currentness:{asOf:coreCatalog.asOf,state:record.state},sourceOwner:{domain:'CORE',canonicalId:record.id,interface:'createEffectiveCoreCatalog()'},facts:factsWithoutPresentation(record)
@@ -391,4 +391,32 @@ export function createGlossaryV2Index({coreCatalog,armyModels,mfmCatalog,mission
 }
 
 export async function buildGlossaryV2Index(){return createGlossaryV2Index(await loadGlossaryV2Inputs());}
+
+// Scoped publication rebuild: other domains are preserved, never used as Core facts.
+// Core entries are reconstructed by the same canonical projection as a full build.
+export function rebuildCoreGlossaryProjection(publication,{coreCatalog=createEffectiveCoreCatalog(),editorial=readJson('glossary/editorial-contracts.v1.json'),resolutions=readJson('glossary/resolutions.en.json'),supplemental=readJson('glossary/supplemental-terms.en.json')}={}){
+  if(publication.schema!=='wh40k-glossary-v2-index/v1'||publication.factualAuthority!==false)throw new Error('Unsupported Glossary publication');
+  const core=new Map();addCoreEntries(core,coreCatalog);
+  const previousIds=publication.entries.filter(entry=>entry.domain==='CORE').map(entry=>entry.id).sort();
+  if(JSON.stringify(previousIds)!==JSON.stringify([...core.keys()].sort()))throw new Error('Core identity inventory changed; full Glossary rebuild required');
+  const entries=new Map(publication.entries.filter(entry=>entry.domain!=='CORE').map(entry=>[entry.id,clone(entry)]));
+  for(const [id,entry] of core)entries.set(id,entry);
+  applyLegacyPresentation(entries,coreCatalog,editorial,resolutions,supplemental);
+  const result=clone(publication);
+  result.entries=publication.entries.map(entry=>{
+    if(entry.domain!=='CORE')return clone(entry);
+    const projected=core.get(entry.id);
+    // Existing cross-domain link/search placements belong to the untouched books.
+    // They carry identity metadata, never replacement Core text or effective facts.
+    if(entry.contexts.some(context=>Object.keys(context).some(key=>!['effectiveBookId','sourceBookId','parentUnitId','sourceAbilityId','termId'].includes(key))))throw new Error('Core context contains factual overrides; full rebuild required');
+    projected.contexts=clone(entry.contexts);
+    projected.aliases=sortStrings([...projected.aliases,...entry.aliases]);
+    projected.canonicalReferences.sort((a,b)=>`${a.relationType}:${a.id}`.localeCompare(`${b.relationType}:${b.id}`));
+    return projected;
+  });
+  result.coverage.coreEffectiveRecords=coreCatalog.records.length;
+  result.coverage.coreIndexed=core.size;
+  result.coverage.coreNotIndexed={identityOnly:coreCatalog.identityOnly.map(record=>record.id).sort(),aliasOnlyErrata:[...CORE_ALIAS_ONLY_ERRATA].sort()};
+  return deepFreeze(result);
+}
 export {BOOK_IDS,FACTUAL_INPUTS,PRESENTATION_INPUTS};

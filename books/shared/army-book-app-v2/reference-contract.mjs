@@ -21,6 +21,7 @@ const publicText = field => {
   const path=field.source?.path || '';
   return field.presentation==='table-cell' || field.presentation==='caption' || field.presentation==='stat' || field.type==='tokens' ||
     /^\/(?:semanticContent|text|sourceStructure\/text|cp|category|sourceTypeLabel)$/.test(path) ||
+    /^\/sourceConflict\/(?:notice|occurrences\/\d+\/(?:title|presentationText))$/.test(path) ||
     /^\/(?:blocks|lines|clauses)\/\d+\/(?:text|label)$/.test(path);
 };
 const byLabel=(a,b)=>a.label.localeCompare(b.label, 'en', {sensitivity:'base'}) || a.targetId.localeCompare(b.targetId);

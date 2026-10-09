@@ -27,7 +27,7 @@ export function adaptGlobalGlossary(corpus,{bookId='',registryLabels={}}={}) {
     const add=(path,value,label='Rule')=>{if(value!==null&&value!==undefined&&value!=='')fields.push({id:`${entry.id}::${path}`,label,value,type:'text',source:{entityId:owner.canonicalId,path}});};
     if(!entry.canonicalReferences?.some(reference=>reference.relationType==='sourceRuleId'))add('/semanticContent',content.definition);
     for(const [i,line] of (content.mfm?.lines||[]).entries())add(`/blocks/${i}/text`,line,'Points');
-    const links=(entry.canonicalReferences||[]).filter(reference=>byId.has(reference.id)).map(reference=>({targetId:reference.id,label:human(reference.relationType),...(reference.relationType==='sourceRuleId'?{relation:'sourceRuleId'}:{})}));
+    const links=(entry.canonicalReferences||[]).filter(reference=>byId.has(reference.id)).map(reference=>({targetId:reference.id,label:reference.relationType==='faqIds'?'FAQ':human(reference.relationType),...(reference.relationType==='sourceRuleId'?{relation:'sourceRuleId'}:{})}));
     for(const id of content.structured?.terrainLayoutReference?.memberIds||[])if(byId.has(id)&&!links.some(link=>link.targetId===id))links.push({targetId:id,label:'Force Disposition'});
     cards.push({id:entry.id,identity,kind:entry.recordType,domain:entry.domain,title:entry.label,fields,links,children:[],
       provenance:entry.provenance,sourceParentId:entry.parent?.canonicalId||null,

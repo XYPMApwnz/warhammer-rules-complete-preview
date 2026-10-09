@@ -1,0 +1,164 @@
+{
+  "schema": "canonical-content-bindings/v1",
+  "corpusFingerprint": "7AD0124845D23DB5CAADEE077732F8BDB6ECD9B2D713E6977F7917BBE0B14D5F",
+  "effectiveEdits": [
+    {
+      "targetRuleId": "core-rule-12-08-consolidation-move",
+      "targetPath": "/content/0/stages/5/items/0",
+      "operation": "REPLACE_VALUE",
+      "preservePrefixThrough": ": ",
+      "source": {
+        "recordId": "core-waha-errata-12-08",
+        "path": "/semanticContent",
+        "contentHash": "D7A3410CB436B19000C4197A968731543A57D5E4FA6B24A18581CD4B33B0ED25"
+      },
+      "previousHash": "e5124b7ef29102b18e582bc6f9dbb876d789bc9707788d1261a0438ad85eb699"
+    },
+    {
+      "targetRuleId": "core-rule-18-05-emergency-disembark-move",
+      "targetPath": "/content/0/stages/4",
+      "operation": "REPLACE_STAGE",
+      "source": {
+        "recordId": "core-waha-errata-18-05",
+        "path": "/sourceStructure",
+        "contentHash": "198CA72CA154B98CAAC7D4994BAF24380633C2795199AA101740270173E02A1D"
+      },
+      "previousHash": "a8c5d7f4965a14a65af1614f3d9b491c3807ae23f5120c5222e932a7803b7e22"
+    },
+    {
+      "targetRuleId": "core-rule-12-08-consolidation-move",
+      "targetPath": "/content/0/stages/5/items/2",
+      "operation": "REPLACE_VALUE",
+      "source": {
+        "unitId": "waha-core-rule-12-08",
+        "sourceOrder": 72,
+        "path": "/content/lists/2/items/2",
+        "contentHash": "2EC853848F2D84495FD97E1D87581BE3685F8A6CA3FCB1C63904B69F83B4B288"
+      },
+      "previousHash": "080d924c7495f04f75bb0f253592a382e4c24867268a0a08b44bb624c3e75282"
+    }
+  ],
+  "faqRelationships": [
+    {
+      "faqId": "core-faq-waha-051",
+      "sourceContentHash": "0BD450D897DC1A270579B03A4F86E4D9DF0880792744016842129C3C39F905FC",
+      "primaryRuleId": "core-rule-19-01-forming-attached-units",
+      "relatedRuleIds": [
+        "core-rule-02-06-unit-composition-and-other-rules"
+      ],
+      "evidence": {
+        "sourceUnitId": "waha-core-faq-051",
+        "sourceContentHash": "0BD450D897DC1A270579B03A4F86E4D9DF0880792744016842129C3C39F905FC",
+        "enclosingSourceUnitId": "waha-core-rule-19-01",
+        "sourceOrder": 116,
+        "basis": "SOURCE_BACKED_SEMANTIC_BINDING"
+      }
+    },
+    {
+      "faqId": "core-faq-waha-056",
+      "sourceContentHash": "26DBB48CE5DB5722C28105C0755C36CB17298250959202C89AADE9D2E67C8370",
+      "primaryRuleId": "core-lone-operative",
+      "relatedRuleIds": [],
+      "evidence": {
+        "sourceUnitId": "waha-core-faq-056",
+        "sourceContentHash": "26DBB48CE5DB5722C28105C0755C36CB17298250959202C89AADE9D2E67C8370",
+        "basis": "SOURCE_BACKED_SEMANTIC_BINDING"
+      }
+    },
+    {
+      "faqId": "core-faq-waha-057",
+      "sourceContentHash": "21D47C40C64B42F4D34D1D9E933048A48533F13F78DFBA98AAFB90A33D84B3E0",
+      "relatedRuleIds": [
+        "core-hazardous",
+        "core-rule-06-03-hazard-rolls",
+        "core-rule-06-02-mortal-wounds"
+      ],
+      "evidence": {
+        "sourceUnitId": "waha-core-faq-057",
+        "sourceContentHash": "21D47C40C64B42F4D34D1D9E933048A48533F13F78DFBA98AAFB90A33D84B3E0",
+        "basis": "MULTIPLE_RELATED_RULES_NO_UNIQUE_PRIMARY"
+      }
+    },
+    {
+      "faqId": "core-faq-waha-058",
+      "sourceContentHash": "AA5A1C62F968E665B63095087530432F7193621F83E8E6B62DE876CC5A89233A",
+      "relatedRuleIds": [
+        "core-scouts",
+        "core-scout-move"
+      ],
+      "evidence": {
+        "sourceUnitId": "waha-core-faq-058",
+        "sourceContentHash": "AA5A1C62F968E665B63095087530432F7193621F83E8E6B62DE876CC5A89233A",
+        "basis": "MULTIPLE_RELATED_RULES_NO_UNIQUE_PRIMARY"
+      }
+    },
+    {
+      "faqId": "core-faq-waha-059",
+      "sourceContentHash": "6274D33549199485AA8C59F530C93534D195B2E124E81D541A8E5FD9C9D37B8D",
+      "relatedRuleIds": [
+        "core-feel-no-pain",
+        "core-rule-05-04-inflict-damage"
+      ],
+      "evidence": {
+        "sourceUnitId": "waha-core-faq-059",
+        "sourceContentHash": "6274D33549199485AA8C59F530C93534D195B2E124E81D541A8E5FD9C9D37B8D",
+        "basis": "MULTIPLE_RELATED_RULES_NO_UNIQUE_PRIMARY"
+      }
+    },
+    {
+      "faqId": "core-faq-waha-060",
+      "sourceContentHash": "802807C9F46AA0ACCC1868DE64B56F80A956AD86CE88A3B56BBE18CC9BFCBAE6",
+      "relatedRuleIds": [
+        "core-deadly-demise",
+        "core-rule-05-04-05-fight-on-death"
+      ],
+      "evidence": {
+        "sourceUnitId": "waha-core-faq-060",
+        "sourceContentHash": "802807C9F46AA0ACCC1868DE64B56F80A956AD86CE88A3B56BBE18CC9BFCBAE6",
+        "basis": "MULTIPLE_RELATED_RULES_NO_UNIQUE_PRIMARY"
+      }
+    },
+    {
+      "faqId": "core-faq-waha-061",
+      "sourceContentHash": "1CD9554D86EEAC3013C763A5BB9D49A77171507D122A04A1DD69A23FFBD1F2B0",
+      "primaryRuleId": "core-anti",
+      "relatedRuleIds": [],
+      "evidence": {
+        "sourceUnitId": "waha-core-faq-061",
+        "sourceContentHash": "1CD9554D86EEAC3013C763A5BB9D49A77171507D122A04A1DD69A23FFBD1F2B0",
+        "basis": "SOURCE_BACKED_SEMANTIC_BINDING"
+      }
+    },
+    {
+      "faqId": "core-faq-waha-062",
+      "sourceContentHash": "A6AD85EBB3E375FE63D9D2F57D8D8A175D3BD07F883EACF36A0817BBDB37FA2A",
+      "primaryRuleId": "core-heavy",
+      "relatedRuleIds": [
+        "core-rule-21-03-flying-models"
+      ],
+      "evidence": {
+        "sourceUnitId": "waha-core-faq-062",
+        "sourceContentHash": "A6AD85EBB3E375FE63D9D2F57D8D8A175D3BD07F883EACF36A0817BBDB37FA2A",
+        "basis": "SOURCE_BACKED_SEMANTIC_BINDING"
+      }
+    }
+  ],
+  "sourceConflicts": [
+    {
+      "targetRuleId": "core-rule-09-07-01-desperate-escape",
+      "status": "UNRESOLVED_ACCEPTED_SOURCE_CONFLICT",
+      "occurrences": [
+        {
+          "sourceUnitId": "waha-core-rule-09-07-01",
+          "sourceOrder": 52,
+          "contentHash": "B346F7066CFCCDF3073579C9B6E4166E2F6C6037DF3386E8A4A5432DBCFC8528"
+        },
+        {
+          "sourceUnitId": "waha-core-rule-09-07-01",
+          "sourceOrder": 53,
+          "contentHash": "A63ED05A673116DB7B25B11983C9423828F48669A83E46F4634E646F65F408E2"
+        }
+      ]
+    }
+  ]
+}

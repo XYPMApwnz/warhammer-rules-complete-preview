@@ -20,6 +20,7 @@ function fixture(){
   fs.cpSync(path.join(coreRoot,'tools'),path.join(stagedCore,'tools'),{recursive:true});
   fs.copyFileSync(path.join(coreRoot,'reader','build.mjs'),path.join(stagedCore,'reader','build.mjs'));
   fs.copyFileSync(path.join(repoRoot,'books','shared','runtime-asset-versions.json'),path.join(root,'books','shared','runtime-asset-versions.json'));
+  fs.cpSync(path.join(repoRoot,'books','shared','canonical-content-v2'),path.join(root,'books','shared','canonical-content-v2'),{recursive:true});
   return {root,core:stagedCore,reader:path.join(stagedCore,'reader')};
 }
 

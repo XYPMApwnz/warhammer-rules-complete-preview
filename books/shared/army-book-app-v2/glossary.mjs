@@ -40,7 +40,8 @@ function projectCore(coreCatalog) {
   if (ids.size !== records.length) throw new Error('Duplicate effective Core identity');
   const coreCards = [], coreFactManifest = [];
   for (const record of records) {
-    if (!record.id || !record.title || record.state !== 'FULL_CONTENT') throw new Error(`Unavailable Core record: ${record.id}`);
+    const sourceConflict=record.state==='SOURCE_CONFLICT'&&record.sourceConflict?.status==='UNRESOLVED_ACCEPTED_SOURCE_CONFLICT';
+    if (!record.id || !record.title || (record.state !== 'FULL_CONTENT'&&!sourceConflict)) throw new Error(`Unavailable Core record: ${record.id}`);
     const card = {id: record.id, kind: `CORE_${record.recordType}`, title: record.title,
       domain: 'CORE', parentId: null, contextId: record.id, source: {entityId: record.id},
       provenance: structuredClone(record.provenance), children: [], fields: [], links: []};
@@ -62,7 +63,14 @@ function projectCore(coreCatalog) {
     // An existing derived concept points to its existing definition owner.
     // It does not acquire another independent presentation definition.
     const sourceRuleId = record.relationships?.sourceRuleId;
-    if (!sourceRuleId && record.semanticContent !== null && record.semanticContent !== undefined) {
+    if(sourceConflict){
+      if(record.semanticContent!==null||!record.sourceConflict.notice||!record.sourceConflict.occurrences?.length)throw new Error(`Invalid unresolved Core source conflict: ${record.id}`);
+      add(['sourceConflict','notice'],record.sourceConflict.notice,'Accepted source conflict');
+      record.sourceConflict.occurrences.forEach((occurrence,i)=>{
+        add(['sourceConflict','occurrences',i,'title'],occurrence.title,'Source variant');
+        add(['sourceConflict','occurrences',i,'presentationText'],occurrence.presentationText,'Source variant text');
+      });
+    } else if (!sourceRuleId && record.semanticContent !== null && record.semanticContent !== undefined) {
       add(['semanticContent'], record.semanticContent, 'Rule');
     } else if (!sourceRuleId && record.sourceStructure?.text) {
       add(['sourceStructure', 'text'], record.sourceStructure.text, 'Source note');
@@ -72,7 +80,7 @@ function projectCore(coreCatalog) {
       for (const targetId of Array.isArray(value) ? value : [value]) {
         if (!targetId) continue;
         if (!ids.has(targetId)) throw new Error(`Unresolved Core relationship: ${record.id} -> ${targetId}`);
-        card.links.push({targetId, label: human(relation), ...(relation==='sourceRuleId'?{relation}:{})});
+        card.links.push({targetId, label: relation==='faqIds'?'FAQ':human(relation), ...(relation==='sourceRuleId'?{relation}:{})});
       }
     }
     coreCards.push(card);

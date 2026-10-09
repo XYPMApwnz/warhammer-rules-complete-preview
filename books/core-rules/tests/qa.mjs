@@ -151,19 +151,31 @@ for(const record of digital.records){
   const start=generatedReader.indexOf(`data-rule-code="${record.code}"`);
   assert(start>=0,`${record.code} has no rendered source label`);
   const override=effectiveDigital.records.find(rule=>rule.code===record.code)?.currentOfficialOverride;
-  const label=override?(override.sourceClass==='GW_CURRENT_OFFICIAL'?'Official GW update':override.operation==='compatibility-alias'?'Official PDF · secondary-corroborated alias':'Secondary wording · GW gameplay corroborated'):parity.verifiedCodes.has(record.code)?`Official PDF &middot; page ${parity.pages.get(record.code)}`:'Digital 11E';
+  const effectiveRecord=coreProjection.catalog.getByCode(record.code);
+  const binding=effectiveRecord.provenance?.effectiveSourceBindings?.[0];
+  const boundSource=binding&&(coreProjection.catalog.getById(binding.sourceRecordId||binding.source.recordId)?.provenance||effectiveRecord.provenance.base);
+  const boundLabel=boundSource&&(boundSource.sourceClass==='ACCEPTED_OPERATIONAL_SECONDARY'?'Accepted secondary update':boundSource.authorityLevel==='GLOBAL_OFFICIAL'?'Official GW update':'Accepted source update');
+  const label=effectiveRecord.state==='SOURCE_CONFLICT'?'Accepted source variants &middot; unresolved':boundLabel|| (override?(override.sourceClass==='GW_CURRENT_OFFICIAL'?'Official GW update':override.operation==='compatibility-alias'?'Official PDF · secondary-corroborated alias':'Secondary wording · GW gameplay corroborated'):parity.verifiedCodes.has(record.code)?`Official PDF &middot; page ${parity.pages.get(record.code)}`:'Digital 11E');
   assert(generatedReader.slice(start,start+1200).includes(label),`${record.code} has an unverified source label`);
 }
 for(const artifact of ['1&quot;&quot;','modified to ‘-’ Profiles','start an action Actions','Select Battle Size table Select Battle Size'])assert(!generatedReader.includes(artifact),`visible text corruption remains: ${artifact}`);
 assert(generatedReader.includes('>Select Battle Size</button> table'),'Select Battle Size must be linked without duplicating its title');
 assert(generatedReader.includes('>Resolve Attacks</button> step'),'Resolve Attacks must be linked without duplicating its title');
+const canonicalFaqIndex=fs.readFileSync(path.join(readerRoot,'index.html'),'utf8');
 for(const faq of faqs){
-  assert.equal((generatedReader.match(new RegExp(`id="${faq.id}"`,'g'))||[]).length,1,`${faq.id} must render exactly once`);
-  assert(generatedReader.includes('Official FAQ &middot; Rules Appendix &middot; page 88'),'official FAQ source label is missing');
+  const anchor=new RegExp(`(?<![\\w-])id="${faq.id}"`,'g');
+  assert.equal((canonicalFaqIndex.match(anchor)||[]).length,1,`${faq.id} must preserve exactly one canonical index anchor`);
+  for(const file of readerFiles)assert((fs.readFileSync(path.join(readerRoot,file),'utf8').match(anchor)||[]).length<=1,`${file}: ${faq.id} repeats within one page`);
+  assert(/Official FAQ &middot; Rules Appendix (?:&middot;|·) page 88/.test(generatedReader),'official FAQ source label is missing');
   const searchItem=searchIndex.find(item=>item.code===faq.id);
   assert(searchItem&&searchItem.title===faq.question&&searchItem.text===faq.answer,`${faq.id} is missing from search`);
   const term=coreProjection.catalog.getById(faq.id);
   assert(term&&term.title===faq.question&&term.semanticContent&&term.provenance.sourceLocator===`Rules Appendix; page ${faq.page}`,`${faq.id} is missing from the effective Core catalog`);
+}
+for(const faq of pdf.faqs){
+  const owner=coreProjection.catalog.getByCode(faq.primaryRule);
+  const chapter=path.basename(owner.fullRulePath.split('#')[0]);
+  assert(fs.readFileSync(path.join(readerRoot,chapter),'utf8').includes(`id="${faq.id}"`),`${faq.id}: original chapter deep link no longer resolves`);
 }
 assert(!/\b\d{2}\.\d{2}(?:\.\d{2})?\b/.test(visibleReader),'technical rule codes must stay out of visible reader text');
 assert(!/\((?:03|04|05|15|16|24)\)/.test(visibleReader),'chapter references must use clickable names instead of numeric codes');
@@ -240,7 +252,7 @@ assert(readerStyles.includes('.see-also+ul .term{width:100%;min-height:50px'),'e
 assert(readerStyles.includes('.see-also+ul+.subrules{margin-top:8px}'),'external and local rule rows must form one compact list');
 assert(!readerStyles.includes('.brand small,.current,.library{display:none}'),'mobile header keeps its current chapter and Library action');
 const muster=fs.readFileSync(path.join(readerRoot,'muster-armies.html'),'utf8');
-for(const value of ['25.01','25.02','25.03','25.04','Incursion','Strike Force','1000','2000'])assert(muster.includes(value),`Muster Armies is missing ${value}`);
+for(const value of ['25.01','25.02','25.03','25.04','Incursion','Strike Force','1000','2000'])assert(muster.toLowerCase().includes(value.toLowerCase()),`Muster Armies is missing ${value}`);
 const readerIndex=fs.readFileSync(path.join(readerRoot,'index.html'),'utf8');
 for(const id of routeIds)assert(readerIndex.includes(`href="${id}.html"`),`reader Start is missing ${id}`);
 assert(readerIndex.includes('id="searchDialog"')&&readerIndex.includes('id="searchButton"'),'reader shell must expose local search');
