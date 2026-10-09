@@ -78,17 +78,34 @@ are no gameplay definitions in this index. Named abilities embedded within a
 canonical section become aliases bound to that section's exact source field
 address; they do not create new rule owners. Core aliases use the existing Core
 identity registry. Core definition cards project existing records into the same
-card map and detail renderer. Derived concepts link their existing definition
-owner rather than duplicating its definition.
+card map. Derived concepts have a typed `sourceRuleId` relationship to their
+existing definition owner rather than duplicating its definition.
 
-Search matches titles/aliases as presentation text, then opens the existing
-canonical target through the Reader's popup/history resolver. Results contain
+`reference-contract.mjs` supplies one canonical resolver and presentation model
+for catalog results, popups and full articles. Search ranks titles and aliases
+before canonical definition text; its default order is alphabetical. Categories
+have human semantic labels, never registry enums. Results contain
 each canonical target once, including when several aliases match. The Glossary
 view has a reserved presentation route `#view-glossary`, distinct from factual
 IDs. Its query survives popup close, reload and Back/Forward through history
-state; a new Glossary visit starts with an empty query. Close returns to the
-previous Reader card. Desktop and phone share this state and renderer, with
-the existing stylesheet.
+state, as does its category filter; a new Glossary visit starts unfiltered.
+Close returns to the originating Reader card, physical instance or reference article. `reference-v1.mjs` renders the same
+canonical fields in popup and standalone article shells, with book-owned colors.
+Full articles do not use the generic full-record card renderer.
+
+Personal book `allowedIds` still determines roster content. Reference scope is
+separate: clean Core plus explicitly linked canonical references reachable from
+that content. Links and reference fields extend this scope; parent/child inventory
+membership does not. A source-owner definition retains its original field IDs,
+values and provenance when displayed inside another reference entry.
+
+Reference links keep the canonical hash and use `view=reference` only to select
+the full-article shell on native/new-tab navigation. Bare Core hashes also open
+that shell. History selects popup versus article, never canonical availability.
+The same policy applies to clicks, direct URLs, reload and Back/Forward, including
+Personal Guide references. Weapon/profile dialogs retain their effective physical
+instance projection. `qa:shared:v2:references` runs independent synthetic guards;
+`qa:shared:v2:references:browser` checks both books and both viewports.
 
 The application adapter recomputes the index; a saved index cannot override
 canonical facts. Validation rejects missing targets, duplicate identities,

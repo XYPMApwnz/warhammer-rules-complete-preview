@@ -9,7 +9,7 @@ import {fileURLToPath} from 'node:url';
 import {buildApp,readAppInputs} from './app-build.mjs';
 import {readGlossaryInputs,buildGlossaryProjection} from './glossary-build.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
-import {searchGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
+import {createReferenceContract} from '../../shared/army-book-app-v2/reference-contract.mjs';
 import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
 import {expectedDisplay} from './app-qa.mjs';
 import {isLegacyGlossary,validateGlossarySources} from './glossary-qa.mjs';
@@ -20,6 +20,15 @@ const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const payload=buildApp(),inputs=readAppInputs(),glossaryInputs=readGlossaryInputs();
 const census=validateGlossarySources(payload.glossary,payload.cards,inputs.model,glossaryInputs.coreCatalog);
 const cards=new Map(payload.cards.map(card=>[card.id,card]));
+const references=createReferenceContract({cards,index:payload.glossary});
+const referenceIds=id=>{
+  const model=references.resolve(id);
+  const fields=[model.titleField,...model.sections.flatMap(section=>section.fields.filter(field=>field.presentation!=='caption'&&!/^\/lines\/\d+\/label$/.test(field.source?.path||'')))].filter(Boolean);
+  for(const section of model.sections)for(const field of section.fields)if(field.captionFactId)fields.push(section.card.fields.find(item=>item.id===field.captionFactId));
+  const pointId=payload.bookPresentation?.records[id]?.pointRecordId;
+  const point=cards.get(pointId)?.fields.find(field=>field.source?.path==='/value');if(point)fields.push(point);
+  return new Set(fields.filter(Boolean).map(field=>field.id));
+};
 const sourceFacts=new Map(enumerateExpectedFacts(inputs.model,inputs.records).map(fact=>[fact.id,{...fact,display:expectedDisplay(fact,inputs.model,inputs.records)}]));
 for(const card of payload.cards.filter(card=>card.domain==='CORE'))for(const field of card.fields)sourceFacts.set(field.id,{id:field.id,entityId:field.source.entityId,contextId:field.contextId,value:field.value,display:field.displayValue===undefined?(typeof field.value==='object'?JSON.stringify(field.value):String(field.value)):String(field.displayValue)});
 const descendants=id=>{const found=new Set(),visit=id=>{assert.ok(!found.has(id),'Duplicate canonical popup child');found.add(id);cards.get(id).children.forEach(visit);};visit(id);return found;};
@@ -69,27 +78,39 @@ const observe=(page,scope)=>page.evaluate(scope=>{
     ? [...document.querySelectorAll('main [data-card-id]')].filter(node=>node.dataset.cardId===article?.dataset.cardId)
     : [root];
   const nodes=[...new Set(roots.flatMap(node=>[...node.querySelectorAll('[data-fact-id]')]))];
-  return {targetId:article?.dataset.cardId,text:article?.textContent,facts:nodes.map(node=>({id:node.dataset.factId,value:JSON.parse(node.dataset.factValue),entityId:node.dataset.entityId,contextId:node.dataset.contextId,text:node.textContent,cardId:node.closest('[data-card-id]').dataset.cardId,visible:!!node.getClientRects().length})).sort((a,b)=>a.id.localeCompare(b.id)),dialogs:document.querySelectorAll('dialog[open]').length,overflow:document.documentElement.scrollWidth>innerWidth+1};
+  return {reference:Boolean(root.matches('.v1-reference-article')||root.querySelector('.v1-reference-article')),targetId:article?.dataset.cardId,text:article?.textContent,facts:nodes.map(node=>({id:node.dataset.factId,value:JSON.parse(node.dataset.factValue),entityId:node.dataset.entityId,contextId:node.dataset.contextId,text:node.textContent,cardId:node.closest('[data-card-id]').dataset.cardId,visible:!!node.getClientRects().length})).sort((a,b)=>a.id.localeCompare(b.id)),dialogs:document.querySelectorAll('dialog[open]').length,overflow:document.documentElement.scrollWidth>innerWidth+1};
 },scope);
 const expectedReaderIds=id=>{
   const card=cards.get(id);if(card?.kind!=='DATASHEET_SECTION')return expectedIds(id);
   return new Set(card.fields.filter(field=>/^\/blocks\/\d+\/text$/.test(field.source?.path||'')||/^\/qualifications\/\d+\/value\/sourceText$/.test(field.source?.path||'')).map(field=>field.id));
 };
+const referenceDisplay=fact=>{
+  // A structured table is the one public representation of its cells. Its
+  // flattened capture line remains in the raw source fact, not in visible prose.
+  const owner=cards.get(fact.entityId),tables=new Map();
+  for(const field of owner?.fields || [])if(field.presentation==='table-cell'){
+    if(!tables.has(field.table.id))tables.set(field.table.id,[]);tables.get(field.table.id).push(field);
+  }
+  const echoes=new Set([...tables.values()].map(fields=>fields.toSorted((a,b)=>a.table.row-b.table.row||a.table.column-b.table.column).map(field=>String(field.value)).join('')));
+  return fact.display.split('\n').filter(line=>!echoes.has(line.trim())).join('\n');
+};
 const assertFacts=(observed,id,{reader=false}={})=>{
   assert.equal(observed.targetId,id,activeStep+' canonical popup resolver');
   assert.equal(observed.overflow,false,activeStep+' horizontal overflow');
   assert.equal(new Set(observed.facts.map(fact=>fact.id)).size,observed.facts.length,activeStep+' duplicate factual owner');
-  assert.deepEqual(new Set(observed.facts.map(fact=>fact.id)),reader?expectedReaderIds(id):expectedIds(id),activeStep+' incomplete canonical definition');
+  assert.deepEqual(new Set(observed.facts.map(fact=>fact.id)),observed.reference?referenceIds(id):reader?expectedReaderIds(id):expectedIds(id),activeStep+' incomplete canonical definition');
   for(const node of observed.facts) {
     const fact=sourceFacts.get(node.id);assert.ok(fact,activeStep+' unsourced visible fact '+node.id);
-    assert.deepEqual(node.value,fact.value,activeStep+' wrong canonical value '+node.id);assert.equal(node.text,fact.display,activeStep+' wrong visible text '+node.id);
+    assert.deepEqual(node.value,fact.value,activeStep+' wrong canonical value '+node.id);assert.equal(node.text,observed.reference?referenceDisplay(fact):fact.display,activeStep+' wrong visible text '+node.id);
     assert.equal(node.entityId,fact.entityId);assert.equal(node.contextId,fact.contextId);assert.equal(node.visible,true,activeStep+' hidden canonical field');
     assert.equal(node.cardId,fact.entityId===inputs.model.bookId?fact.contextId:fact.entityId);
   }
 };
 // Source footer/permalink chrome may differ between popup and page. Compare
 // the complete canonical player definition, identity and actual field text.
-const comparable=observed=>({targetId:observed.targetId,facts:observed.facts});
+// Reader/Related shells may retain construction metadata. Compare the public
+// definition fields, while assertFacts separately validates every rendered fact.
+const comparable=observed=>({targetId:observed.targetId,facts:observed.facts.filter(fact=>referenceIds(observed.targetId).has(fact.id))});
 const digest=observed=>createHash('sha256').update(JSON.stringify(comparable(observed))).digest('hex');
 const results=[];
 const sourceSensitivityOnly=process.argv.includes('--source-sensitivity-only');
@@ -111,7 +132,7 @@ try {
     const search=async(query,expectedTarget)=>{
       await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill(query);
       const ids=await page.locator('main .v2-glossary-result').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId));
-      assert.deepEqual(ids,searchGlossary(payload.glossary,query).map(entry=>entry.targetId),activeStep+' exact search result parity');
+      assert.deepEqual(ids,references.search(query).map(entry=>entry.targetId),activeStep+' exact search result parity');
       assert.equal(new Set(ids).size,ids.length,activeStep+' duplicate/stale canonical search results');
       if(expectedTarget)assert.ok(ids.includes(expectedTarget),activeStep+' exact alias missing target '+expectedTarget);
       assert.equal(await page.locator('main [data-fact-id]').count(),0,'Search rendered competing definitions');
@@ -143,7 +164,7 @@ try {
       popupChecks++;targetHashes.push({targetId:entry.targetId,facts:popup.facts.length,hash:digest(popup)});
       if((i+1)%100===0)console.log(JSON.stringify({device,stage:'glossary-canonical-census',completed:i+1,total:payload.glossary.entries.length,status:'PASS'}));
     }
-    const expectedCoreFacts=new Set(payload.cards.filter(card=>card.domain==='CORE').flatMap(card=>card.fields.map(field=>field.id)));
+    const expectedCoreFacts=new Set(payload.cards.filter(card=>card.domain==='CORE').flatMap(card=>[...referenceIds(card.id)]));
     assert.deepEqual(coreVisibleFacts,expectedCoreFacts,device+' complete Core glossary field census');
     for(const query of ['','foul infusion','FÓUL INFUSION','Nurgle’s Gift','lethal hits','deep-strike','ZXQ_NO_CANONICAL_GLOSSARY_TERM_5489']) {
       activeStep=device+'/normalized-search/'+query;await search(query);
@@ -154,12 +175,13 @@ try {
       activeStep=device+'/related-parity/'+ruleId;
       const row=payload.relatedRules.rows.find(row=>row.ruleId===ruleId&&['MATCH','CONDITIONAL'].includes(row.applicability));
       await page.evaluate(id=>{window.ArmyBookAppV2.open(id);window.ArmyBookAppV2.openRelatedRules(id);},row.unitId);await page.waitForSelector('dialog.v2-related-dialog[open]');
-      await page.locator('dialog.v2-related-dialog[open] .v2-detachment-filter').selectOption('');
+      await page.locator('dialog.v2-related-dialog[open] .full-related-filter summary').click();await page.locator('dialog.v2-related-dialog[open] .full-related-filter button[data-detachment=""]').click();
+      await page.locator(`dialog.v2-related-dialog[open] .full-related-tabs button[data-kind="${cards.get(ruleId).kind==='ENHANCEMENT'?'enhancements':'stratagems'}"]`).click();
       await page.locator('dialog.v2-related-dialog[open] .v2-compatible-item a').evaluateAll((nodes,id)=>nodes.find(node=>node.dataset.targetId===id).setAttribute('data-qa-related-target','current'),ruleId);
       await page.locator('[data-qa-related-target="current"]').click();await page.waitForSelector('dialog[open]');
-      assert.equal(await page.locator('dialog.v2-related-dialog[open]').count(),0,'Related dialog remained open behind canonical detail');
+      // The V1 Related Rules layer remains beneath its definition popup.
       const related=await observe(page,'dialog.v2-detail-dialog[open]');assertFacts(related,ruleId);assert.deepEqual(comparable(related),snapshots.get(ruleId),activeStep+' Related/Glossary full definition mismatch');
-      await page.keyboard.press('Escape');await page.waitForSelector('dialog.v2-detail-dialog[open]',{state:'hidden'});relatedParityChecks++;
+      await page.keyboard.press('Escape');await page.waitForSelector('dialog.v2-detail-dialog[open]',{state:'hidden'});await page.locator('dialog.v2-related-dialog[open] .related-rules-close').click();relatedParityChecks++;
     }
     // Query and popup history survive refresh and both directions of navigation.
     const named=payload.glossary.entries.find(entry=>entry.aliases.some(alias=>alias.label==='Foul Infusion'));
@@ -224,9 +246,10 @@ try {
       await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});
       if(control.targetId===stratagemId) {
         const row=payload.relatedRules.rows.find(row=>row.ruleId===stratagemId&&['MATCH','CONDITIONAL'].includes(row.applicability));assert.ok(row,'Missing canonical Related sensitivity control');
-        await page.evaluate(id=>{window.ArmyBookAppV2.open(id);window.ArmyBookAppV2.openRelatedRules(id);},row.unitId);await page.locator('dialog.v2-related-dialog[open] .v2-detachment-filter').selectOption('');
+        await page.evaluate(id=>{window.ArmyBookAppV2.open(id);window.ArmyBookAppV2.openRelatedRules(id);},row.unitId);await page.locator('dialog.v2-related-dialog[open] .full-related-filter summary').click();await page.locator('dialog.v2-related-dialog[open] .full-related-filter button[data-detachment=""]').click();
+        await page.locator(`dialog.v2-related-dialog[open] .full-related-tabs button[data-kind="stratagems"]`).click();
         await page.locator('dialog.v2-related-dialog[open] .v2-compatible-item a').evaluateAll((nodes,id)=>nodes.find(node=>node.dataset.targetId===id).setAttribute('data-qa-poison-related','current'),stratagemId);
-        await page.locator('[data-qa-poison-related="current"]').click();await page.waitForSelector('dialog[open]');assert.equal(await page.locator('dialog[open] '+selector).textContent(),control.value);assert.deepEqual(comparable(await observe(page,'dialog[open]')),comparable(reader),'Source sensitivity lost Related/Reader/Glossary shared definition');await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});
+        await page.locator('[data-qa-poison-related="current"]').click();await page.waitForSelector('dialog.v2-detail-dialog[open]');assert.equal(await page.locator('dialog.v2-detail-dialog[open] '+selector).textContent(),control.value);assert.deepEqual(comparable(await observe(page,'dialog.v2-detail-dialog[open]')),comparable(reader),'Source sensitivity lost Related/Reader/Glossary shared definition');await page.keyboard.press('Escape');await page.waitForSelector('dialog.v2-detail-dialog[open]',{state:'hidden'});await page.locator('dialog.v2-related-dialog[open] .related-rules-close').click();
       }
     }
     assert.deepEqual(errors,[],device+' source sensitivity runtime errors');sourcePoisonResults.push({device,canonicalDgAbility:'VISIBLE',canonicalCoreDefinition:'VISIBLE',canonicalStratagemReaderRelatedGlossary:'IDENTICAL',status:'PASS'});await context.close();activePage=null;

@@ -4,7 +4,9 @@ import http from 'node:http';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
-import {searchGlossary,validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
+import {validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
+
+import {createReferenceContract} from '../../shared/army-book-app-v2/reference-contract.mjs';
 
 // Exercise the shipped browser payload, not a second search/detail engine or a
 // generated source replacement. Normal builds remain the producer's job.
@@ -13,6 +15,7 @@ const payload=JSON.parse(fs.readFileSync(path.join(directory,'generated/app-pres
 assert.ok(payload.glossary,'AdMech presentation payload has no glossary index');
 const census=validateGlossary(payload.glossary,payload.cards);
 const cards=new Map(payload.cards.map(card=>[card.id,card]));
+const references=createReferenceContract({cards,index:payload.glossary});
 const core=payload.glossary.entries.find(entry=>entry.targetId==='core-deep-strike');
 const named=payload.glossary.entries.find(entry=>entry.aliases.some(alias=>alias.fieldPath));
 assert.ok(core&&named,'Missing canonical Core / source-heading alias controls');
@@ -60,7 +63,7 @@ try{
   const search=async(query,expectedId,expectedScope=null)=>{
     await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill(query);
     const ids=await visibleResults();
-    const expected=searchGlossary(payload.glossary,query).filter(entry=>!expectedScope||expectedScope.has(entry.targetId)||cards.get(entry.targetId).domain==='CORE').map(entry=>entry.targetId);
+    const expected=references.search(query,{allowedIds:expectedScope}).map(entry=>entry.targetId);
     assert.deepEqual(ids,expected,`${step}: search results differ from canonical index`);
     assert.equal(new Set(ids).size,ids.length,`${step}: duplicate canonical result`);
     if(expectedId)assert.ok(ids.includes(expectedId),`${step}: missing canonical target ${expectedId}`);

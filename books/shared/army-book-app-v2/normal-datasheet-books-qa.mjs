@@ -15,6 +15,11 @@ for(const [book,read,build,count]of [['death-guard',readDG,buildDG,36],['adeptus
   assert.deepEqual(inputs.model,before,'Presentation mutated canonical facts/contracts');
   const original=JSON.parse(execFileSync('git',['show',`${baseline}:books/${book}/v2/generated/app-presentation.json`],{cwd:root,maxBuffer:20e6}));
   const unchanged=JSON.parse(JSON.stringify(payload));delete unchanged.datasheetPresentation.normal;
+  // Reference definition-owner metadata does not alter a datasheet or fact.
+  // Keep every original Core link/label and all canonical fields in the baseline.
+  for(const card of unchanged.cards.filter(card=>card.domain==='CORE'))for(const link of card.links || []) {
+    if(link.relation!==undefined){assert.equal(link.relation,'sourceRuleId');delete link.relation;}
+  }
   delete unchanged.datasheetPresentation.compositionMembers;
   // Personal ability placement adds typed metadata to existing canonical spans;
   // normal source fields, identities and all original span bindings stay exact.

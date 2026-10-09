@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 export function allowRosterDependencies(allowed) {
   for (const file of ['books/death-guard/v2/roster-boot.mjs','books/death-guard/v2/rule-contract-schema.mjs','books/death-guard/v2/rule-contract-state-fields.mjs',
     'books/shared/army-book-app-v2/ability-presentation.mjs',
+    'books/shared/army-book-app-v2/reference-contract.mjs','books/shared/army-book-app-v2/reference-v1.mjs',
     'books/shared/rule-contract-v2/schema.mjs',
     'books/shared/roster-v2/runtime.mjs','books/shared/roster-v2/context.mjs','books/shared/roster-v2/effects.mjs','books/shared/roster-v2/import.mjs','books/shared/roster-v2/compatibility-feasibility.mjs','books/shared/roster-v2/compatibility-context.mjs',
     'books/shared/army-book-app-v2/navigation-v1.mjs','books/shared/army-book-app-v2/navigation-v1-controller.mjs','books/shared/army-book-app-v2/navigation-v1-targets.mjs','books/shared/army-book-app-v2/roster.mjs','books/shared/army-book-app-v2/personal.mjs',
@@ -13,6 +14,7 @@ export function allowRosterDependencies(allowed) {
   allowed.set('/books/shared/army-book-app-v2/datasheet-v1.css','text/css');
   allowed.set('/books/shared/army-book-app-v2/book-v1.css','text/css');
   allowed.set('/books/shared/army-book-app-v2/popup-v1.css','text/css');
+  allowed.set('/books/shared/army-book-app-v2/reference-v1.css','text/css');
   allowed.set('/books/shared/datasheet-system.css','text/css');
   allowed.set('/books/shared/unit-art.css','text/css');
   allowed.set('/assets/death-guard-cover.jpg','image/jpeg');

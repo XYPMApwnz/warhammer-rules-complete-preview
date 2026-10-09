@@ -72,7 +72,7 @@ function projectCore(coreCatalog) {
       for (const targetId of Array.isArray(value) ? value : [value]) {
         if (!targetId) continue;
         if (!ids.has(targetId)) throw new Error(`Unresolved Core relationship: ${record.id} -> ${targetId}`);
-        card.links.push({targetId, label: human(relation)});
+        card.links.push({targetId, label: human(relation), ...(relation==='sourceRuleId'?{relation}:{})});
       }
     }
     coreCards.push(card);

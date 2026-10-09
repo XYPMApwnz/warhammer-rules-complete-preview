@@ -1,5 +1,7 @@
 /** Presentation-only reader. Canonical IDs and supplied fields are its only content authority. */
-import {searchGlossary, validateGlossary} from './glossary.mjs';
+import {validateGlossary} from './glossary.mjs';
+import {createReferenceContract} from './reference-contract.mjs';
+import {createReferencePresenter} from './reference-v1.mjs';
 import {createRosterPanel} from './roster.mjs';
 import {projectPersonalBook, projectInstanceCards, instanceRoute} from './personal.mjs';
 import {projectContents, mountV1Contents} from './navigation-v1.mjs';
@@ -19,6 +21,7 @@ export function mount(document, payload, options = {}) {
   if (cards.has(glossaryRoute)) throw new Error('Canonical identity collides with the Glossary presentation route.');
   if (options.roster && cards.has(rosterRoute)) throw new Error('Canonical identity collides with the Roster presentation route.');
   if (payload.glossary) validateGlossary(payload.glossary, payload.cards);
+  const references=createReferenceContract({cards,index:payload.glossary});
   for (const card of cards.values()) {
     for (const id of [...(card.children || []), ...(card.links || []).map(link => link.targetId), ...(card.fields || []).flatMap(field => field.targetIds || [])]) {
       if (!cards.has(id)) throw new Error(`Missing canonical target: ${id}`);
@@ -55,14 +58,15 @@ export function mount(document, payload, options = {}) {
   };
   const exactValue = value => typeof value === 'object' ? JSON.stringify(value) : String(value);
   const humanKind = kind => String(kind || 'Entry').replace(/[-_]/g, ' ');
-  const anchor = (label, id, detail = false) => {
+  const anchor = (label, id, detail = false, {reference=false,fieldPath=null} = {}) => {
     const node = el('a', detail ? 'v2-reference' : 'v2-card-link', label);
     node.href = `#${encodeURIComponent(id)}`;
+    if(reference){const url=new URL(window.location.href);url.hash=encodeURIComponent(id);url.searchParams.set('view','reference');node.href=url.href;}
     node.dataset.targetId = id;
     node.addEventListener('click', event => {
       if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      detail ? showDetail(id) : open(id);
+      detail ? showDetail(id,reference?{reference:true,fieldPath}:null) : reference?navigate(id,false,{reference:true}):open(id);
     });
     return node;
   };
@@ -134,12 +138,14 @@ export function mount(document, payload, options = {}) {
   document.body.replaceChildren(shell);document.body.classList.add('v2-v1-navigation','v2-book-surface');
   const navStyles=el('link');navStyles.rel='stylesheet';navStyles.href=new URL('./navigation-v1.css',import.meta.url).href;document.head.append(navStyles);
   const popupStyles=el('link');popupStyles.rel='stylesheet';popupStyles.href=new URL('./popup-v1.css',import.meta.url).href;document.head.append(popupStyles);
+  const referenceStyles=el('link');referenceStyles.rel='stylesheet';referenceStyles.href=new URL('./reference-v1.css',import.meta.url).href;document.head.append(referenceStyles);
   document.title = `${payload.book.title} · Army Book V2`;
   let selectedId = null;
   let selectedInstanceId = null;
   let personalMode = false;
   let selectedView = 'READER';
   let glossaryQuery = '';
+  let glossaryCategory = '';
   let contents=null;
   let controlledRoute=false;
   let navigationBlocked=false;
@@ -160,6 +166,8 @@ export function mount(document, payload, options = {}) {
     related:renderRelatedRules,roster:options.roster,
     navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
   const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds,renderWeapon:datasheets.renderWeapon});
+  const referencePresenter=createReferencePresenter({el,factValue,anchor,contract:references,cards,payload,allowedIds:scopedIds,
+    renderWeapon:datasheets.renderWeapon,renderProfile:datasheets.renderProfile});
   let popupPresentation=null;
 
   function factValue(tag, field) {
@@ -285,6 +293,7 @@ export function mount(document, payload, options = {}) {
   }
 
   function renderCard(card, {depth = 0, ancestors = new Set(), inDialog = false, variants = null, instanceId = null, primaryDetail = true, sourceEvidence = false} = {}) {
+    if(!sourceEvidence&&card.domain==='CORE')return referencePresenter.render(card.id,{popup:inDialog});
     if(!sourceEvidence&&bookPresenter.accepts(card))return bookPresenter.render(card,{inDialog,primaryDetail});
     if(card.kind==='DATASHEET'&&!sourceEvidence) {
       const article=datasheets.renderDatasheet(card,{variants,instanceId,inDialog});
@@ -302,7 +311,6 @@ export function mount(document, payload, options = {}) {
     const allowed = scopedIds();
     const childrenIds = (card.children || []).filter(id=>!allowed || allowed.has(id));
     const article = el('article', `v2-card v2-kind-${String(card.kind || 'entry').replace(/[^a-z0-9-]/gi, '-')} v2-depth-${Math.min(depth, 2)}`);
-    if(inDialog&&card.domain==='CORE')article.classList.add('v1-term-detail');
     article.dataset.cardId = card.id;
     article.dataset.entityId = card.source?.entityId || card.id;
     if (instanceId) article.dataset.rosterInstanceId = instanceId;
@@ -598,6 +606,15 @@ export function mount(document, payload, options = {}) {
     }
   }
 
+  function renderReference(id,focus=false) {
+    selectedView='REFERENCE';selectedId=references.canResolve(id,scopedIds())?id:null;selectedInstanceId=null;
+    const toolbar=el('nav','v2-breadcrumbs');toolbar.setAttribute('aria-label','Breadcrumb');
+    toolbar.append(button('Glossary','',openGlossary));
+    const article=referencePresenter.render(id);article.classList.add('v2-current-card');
+    main.replaceChildren(toolbar,article);renderNavigation();
+    if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
+  }
+
   function renderGlossary(query = '', focus = false) {
     selectedView = 'GLOSSARY';
     selectedId = null;
@@ -619,17 +636,25 @@ export function mount(document, payload, options = {}) {
     const status = el('p', 'v2-search-status');
     status.setAttribute('role', 'status');
     const results = el('ul', 'v2-compatible-list v2-glossary-results');
+    const filters=el('div','glossary-categories');filters.setAttribute('role','group');filters.setAttribute('aria-label','Glossary categories');
+    const categories=[{id:'',label:'All'},...references.categories(scopedIds())];
+    if(!categories.some(category=>category.id===glossaryCategory))glossaryCategory='';
+    for(const category of categories){const filter=button(category.label,'',()=>{
+      glossaryCategory=category.id;
+      window.history.replaceState({...window.history.state,armyBookV2:{...window.history.state?.armyBookV2,glossaryCategory}},'',window.location.href);
+      renderResults();
+    });filter.dataset.glossaryCategory=category.id;filters.append(filter);}
     const renderResults = () => {
-      const allowed=scopedIds();
-      const matches = searchGlossary(payload.glossary, glossaryQuery).filter(entry=>!allowed || allowed.has(entry.targetId) || cards.get(entry.targetId)?.domain==='CORE');
+      for(const filter of filters.children)filter.setAttribute('aria-pressed',String(filter.dataset.glossaryCategory===glossaryCategory));
+      const matches = references.search(glossaryQuery,{allowedIds:scopedIds(),category:glossaryCategory});
       status.textContent = `${matches.length} ${matches.length === 1 ? 'entry' : 'entries'} found`;
       results.replaceChildren();
       for (const entry of matches) {
         const item = el('li', 'v2-compatible-item');
-        const link = anchor(entry.matchedLabel || entry.label, entry.targetId, true);
+        const link = anchor(entry.matchedLabel || entry.label, entry.targetId, true,{reference:true,fieldPath:entry.matchedFieldPath});
         link.classList.add('v2-glossary-result');
         item.append(link);
-        if (entry.contextLabel) item.append(el('p', 'v2-search-kind', entry.contextLabel));
+        item.append(el('p', 'v2-search-kind', `${entry.categoryLabel} · ${entry.contextLabel}`));
         results.append(item);
       }
       if (!matches.length) results.append(el('li', 'v2-empty', 'No matching entries. Try another term.'));
@@ -639,7 +664,7 @@ export function mount(document, payload, options = {}) {
       window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, glossaryQuery}}, '', window.location.href);
       renderResults();
     });
-    body.append(label, status, results);
+    body.append(label, filters, status, results);
     section.append(heading, body);
     main.replaceChildren(section);
     renderResults();
@@ -671,20 +696,24 @@ export function mount(document, payload, options = {}) {
     const id = hashId();
     const state = window.history.state;
     const rosterId=new URLSearchParams(window.location.search).get('roster');
+    const referenceView=new URLSearchParams(window.location.search).get('view')==='reference'||cards.get(id)?.domain==='CORE';
     personalMode=Boolean(rosterPanel && id!==rosterRoute && rosterId && options.roster.state?.rosterId===rosterId);
-    const detail = state?.armyBookV2?.detailId === id && cards.has(id);
+    const detail = state?.armyBookV2?.detailId === id && references.canResolve(id,scopedIds());
     navigationBlocked=Boolean(rosterId&&options.roster?.state?.rosterId!==rosterId);
-    const key = JSON.stringify([id, detail, state?.armyBookV2?.detailScopeId, state?.armyBookV2?.detailInstanceId, state?.armyBookV2?.detailFieldPath, personalMode,state?.armyBookV2?.contents,state?.armyBookV2?.backgroundContents, state?.armyBookV2?.instanceId, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
+    const key = JSON.stringify([id, detail, referenceView, state?.armyBookV2?.detailReference, state?.armyBookV2?.glossaryCategory, state?.armyBookV2?.detailScopeId, state?.armyBookV2?.detailInstanceId, state?.armyBookV2?.detailFieldPath, personalMode,state?.armyBookV2?.contents,state?.armyBookV2?.backgroundContents, state?.armyBookV2?.instanceId, state?.armyBookV2?.backgroundId,state?.armyBookV2?.backgroundInstanceId, state?.armyBookV2?.backgroundView, state?.armyBookV2?.glossaryQuery]);
     if (routeKey === key) return;
     routeKey = key;
     if(contents?.controller.state.owner==='controller')contents.controller.cancelTransition();
     toggleDrawer(false);
-    if(navigationBlocked){
+    if(navigationBlocked&&!(referenceView&&cards.get(id)?.domain==='CORE')){
       selectedId=selectedInstanceId=null;selectedView='ROSTER';main.replaceChildren(el('p','v2-not-found','Imported roster context is unavailable. Import this roster to continue.'));renderNavigation();return;
     }
     if (detail) {
       if (state.armyBookV2.backgroundView === 'GLOSSARY' && payload.glossary) {
+        glossaryCategory=state.armyBookV2.glossaryCategory || '';
         if (selectedView !== 'GLOSSARY' || glossaryQuery !== (state.armyBookV2.glossaryQuery || '')) renderGlossary(state.armyBookV2.glossaryQuery || '');
+      } else if(state.armyBookV2.backgroundView==='REFERENCE') {
+        renderReference(state.armyBookV2.backgroundId);
       } else if (state.armyBookV2.backgroundView === 'ROSTER' && rosterPanel) {
         if (selectedView !== 'ROSTER') renderRoster();
       } else if (personalMode && state.armyBookV2.backgroundInstanceId) {
@@ -704,7 +733,8 @@ export function mount(document, payload, options = {}) {
       dialogContent.replaceChildren(...(effectiveCards?.length
         ? effectiveCards.map((card,index)=>renderCard(card,{inDialog:true,variants,instanceId,primaryDetail:index===0}))
         : projectedCards ? [el('p','v2-not-found','This profile is not available in this roster unit.')]
-        : [renderCard(cards.get(id),{inDialog:true})]));
+        : [(cards.get(id).domain==='CORE'||state.armyBookV2.detailReference)&&!['PROFILE','WEAPON_PROFILE'].includes(cards.get(id).kind)
+          ?referencePresenter.render(id,{popup:true}):renderCard(cards.get(id),{inDialog:true})]));
       dialog.dataset.canonicalId=id;
       if (!dialog.open) {
         lastFocus = popupOrigin || document.activeElement;
@@ -718,14 +748,15 @@ export function mount(document, payload, options = {}) {
     } else {
       if (dialog.open) dialog.close();
       document.body.classList.remove('v2-detail-open');
-      if (id === glossaryRoute && payload.glossary) renderGlossary(state?.armyBookV2?.glossaryQuery || '', focus);
+      if (id === glossaryRoute && payload.glossary) {glossaryCategory=state?.armyBookV2?.glossaryCategory || '';renderGlossary(state?.armyBookV2?.glossaryQuery || '', focus);}
+      else if (referenceView&&references.canResolve(id,scopedIds()))renderReference(id,focus);
       else if (id === rosterRoute && rosterPanel) renderRoster(focus);
       else if (personalMode && id===personalRoute) renderPersonalHome(focus);
       else if (personalMode && id.startsWith('roster-unit/')) renderInstance(routeInstanceId(id),focus);
       else if (rosterPanel && (id===personalRoute || id.startsWith('roster-unit/') || rosterId && !options.roster.state)) renderRoster(focus);
       else if(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)renderContentsBook(id);
       else renderSelected(id || null, focus, state?.armyBookV2?.instanceId);
-      if(!controlledRoute&&(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)){window.requestAnimationFrame(()=>contents.restore(id||'start',state?.armyBookV2?.scrollY));}
+      if(!referenceView&&!controlledRoute&&(state?.armyBookV2?.contents||id==='start'||id?.startsWith('nav:')||!personalMode&&cards.has(id)&&cards.get(id).domain!=='CORE'&&!state?.armyBookV2)){window.requestAnimationFrame(()=>contents.restore(id||'start',state?.armyBookV2?.scrollY));}
       else if(!focus&&!controlledRoute)window.requestAnimationFrame(()=>window.scrollTo({top:state?.armyBookV2?.scrollY||0,behavior:'instant'}));
       if (!focus && lastFocus) {
         // Finish the existing V1 column moves before returning focus to an
@@ -756,16 +787,19 @@ export function mount(document, payload, options = {}) {
     const personal = Boolean(rosterPanel) && (id===personalRoute || id?.startsWith('roster-unit/')) && !detail;
     if (id && !cards.has(id) && !glossary && !roster && !personal && !contents?.isTarget(id)) return false;
     if (personal && !rosterPanel) return false;
-    if (personalMode && cards.has(id) && !scopedIds().has(id) && !(detail && cards.get(id).domain==='CORE')) return false;
+    if (personalMode && cards.has(id) && !scopedIds().has(id) && !references.canResolve(id,scopedIds())) return false;
+    const reference=Boolean(routeOptions.reference || detail&&popupPresentation?.reference || personalMode&&cards.has(id)&&!scopedIds().has(id));
     const nextHash = id ? `#${encodeURIComponent(id)}` : '';
-    window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, scrollY: window.scrollY, detailScrollTop: dialogContent.scrollTop, ...(selectedView === 'GLOSSARY' ? {glossaryQuery} : {})}}, '', window.location.href);
+    window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, scrollY: window.scrollY, detailScrollTop: dialogContent.scrollTop, ...(selectedView === 'GLOSSARY' ? {glossaryQuery,glossaryCategory} : {})}}, '', window.location.href);
     // Carry the existing physical owner with its profile projection. The URL
     // and navigation behavior stay the same; identity is never inferred from
     // a duplicate datasheet title or from the first matching roster copy.
     const owner=personalMode && selectedInstanceId && options.roster.state.units.find(unit=>unit.instanceId===selectedInstanceId);
     const instanceId=owner && (id===owner.canonicalUnitId || physicalProfileProjection(id,owner.instanceId)) ? owner.instanceId : null;
-    const state = {armyBookV2: detail ? {detailId: id, detailInstanceId:popupPresentation?.instanceId || null, detailScopeId:popupPresentation?.scopeId || null, detailFieldPath:popupPresentation?.fieldPath || null, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, backgroundContents:Boolean(window.history.state?.armyBookV2?.contents||main.querySelector('.v1-contents-pages')&&!personalMode), glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryQuery: routeOptions.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):selectedView === 'READER'||selectedView==='PERSONAL' ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, ...(routeOptions.contents?{contents:true}:{}), ...(instanceId?{instanceId}:{}), scrollY: 0}};
+    const state = {armyBookV2: detail ? {detailId: id, detailReference:reference, glossaryCategory, detailInstanceId:popupPresentation?.instanceId || null, detailScopeId:popupPresentation?.scopeId || null, detailFieldPath:popupPresentation?.fieldPath || null, backgroundId: selectedId, backgroundInstanceId:selectedInstanceId, backgroundView: selectedView, backgroundContents:Boolean(window.history.state?.armyBookV2?.contents||main.querySelector('.v1-contents-pages')&&!personalMode), glossaryQuery: selectedView === 'GLOSSARY' ? glossaryQuery : '', scrollY: window.scrollY} : glossary ? {view: 'GLOSSARY', glossaryCategory:'', glossaryQuery: routeOptions.query || '', glossaryReturnId: selectedInstanceId?instanceRoute(selectedInstanceId):['READER','PERSONAL','REFERENCE'].includes(selectedView) ? selectedId || (personalMode?personalRoute:null) : window.history.state?.armyBookV2?.glossaryReturnId || null, glossaryReturnReference:selectedView==='REFERENCE'||Boolean(window.history.state?.armyBookV2?.glossaryReturnReference&&selectedView==='GLOSSARY'), scrollY: 0} : roster ? {view: 'ROSTER', scrollY: 0} : {selectedId: id, ...(routeOptions.contents?{contents:true}:{}), ...(instanceId?{instanceId}:{}), scrollY: 0}};
     const destination=new URL(window.location.href);destination.hash=nextHash;
+    if(reference)destination.searchParams.set('view','reference');
+    else destination.searchParams.delete('view');
     if (routeOptions.fullBook) destination.searchParams.delete('roster');
     else if (personal||routeOptions.personalBook) destination.searchParams.set('roster',routeOptions.rosterId || optionsRosterId());
     if (window.location.hash !== nextHash || destination.search!==window.location.search || Boolean(window.history.state?.armyBookV2?.detailId) !== detail) {
@@ -786,7 +820,7 @@ export function mount(document, payload, options = {}) {
   function openInstance(id) { return options.roster?.state?.units?.some(unit=>unit.instanceId===id)?navigate(instanceRoute(id),false,{rosterId:optionsRosterId()}):false; }
   function openRoster() { return rosterPanel ? navigate(rosterRoute, false) : false; }
   function openGlossary() { return payload.glossary ? navigate(glossaryRoute, false, {query: ''}) : false; }
-  function closeGlossary() { return navigate(window.history.state?.armyBookV2?.glossaryReturnId || null, false); }
+  function closeGlossary() { const state=window.history.state?.armyBookV2;return navigate(state?.glossaryReturnId || null, false,{reference:Boolean(state?.glossaryReturnReference)}); }
   function closeDetail() {
     if (window.history.state?.armyBookV2?.detailId) {
       window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state.armyBookV2, detailScrollTop: dialogContent.scrollTop}}, '', window.location.href);
