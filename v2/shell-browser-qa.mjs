@@ -52,7 +52,7 @@ async function active(page,id){await page.waitForFunction(id=>window.WarhammerAp
 async function geometry(page){
   const actual=await page.evaluate(()=>{
     const nav=document.querySelector('[data-v2-primary-nav]'),mount=document.querySelector('[data-v2-mount-root]');
-    const n=nav.getBoundingClientRect(),content=mount.querySelector('.v2-topbar')||mount.querySelector('.v2-home > :first-child');
+    const n=nav.getBoundingClientRect(),content=mount.querySelector('.v2-topbar')||mount.querySelector('.v2-home > :first-child')||mount.querySelector('.v2-library-home .hero > :first-child');
     const m=content.getBoundingClientRect();
     return {nav:{top:n.top,bottom:n.bottom},content:{top:m.top,bottom:m.bottom,tag:content.className},visible:n.width>0&&n.height>0&&n.top>=-1&&n.bottom<=innerHeight,overlap:m.top<n.bottom-1,
       overflow:document.documentElement.scrollWidth>innerWidth+1,

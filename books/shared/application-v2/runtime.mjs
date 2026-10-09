@@ -1,6 +1,7 @@
 import {createLifecycle} from '../army-book-app-v2/lifecycle.mjs';
 import {mount} from '../army-book-app-v2/runtime.mjs';
 import {applicationRouteURL,resolveApplicationRoute} from './routes.mjs';
+import {createHomePresenter,createHomeBranding} from './home.mjs';
 
 /** Top-level destinations only. ArmyBookApp retains all book/roster/reference logic. */
 export function createApplication(document,{registry,entryURL=new URL('../../../v2/app.html',import.meta.url).href,root=document.body}={}) {
@@ -10,7 +11,8 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
   const el=(tag,className,text)=>{const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;};
   const shell=el('div','v2-application-shell');shell.dataset.v2Shell='';
   const header=el('header','v2-primary-header');
-  const brand=el('a','v2-primary-brand','Warhammer 40,000');brand.href=applicationRouteURL(entryURL,{destination:'HOME'});
+  const brand=createHomeBranding(document,applicationRouteURL(entryURL,{destination:'HOME'}));
+  const home=createHomePresenter({document,registry,entryURL});
   const primary=el('nav','v2-primary-nav');primary.dataset.v2PrimaryNav='';primary.setAttribute('aria-label','Application navigation');
   const moduleRoot=el('div','v2-module-root');moduleRoot.dataset.v2MountRoot='';
   const style=el('link');style.rel='stylesheet';style.href=new URL('./shell.css',import.meta.url).href;document.head.append(style);
@@ -58,16 +60,7 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
       const main=page(title,`${title} is not yet integrated into this application.`);
       main.append(el('p','','Army Books already include their canonical rule references and book Glossary.'));return;
     }
-    const main=page(route.sectionId==='army-books'?'Army Books':'Your rules, in one place',
-      'Read an Army Book, explore its rules, or bring your New Recruit roster into a personal guide.');
-    const books=el('section','v2-home-section');if(route.sectionId!=='army-books')books.append(el('h2','','Army Books'));bookChoices(books);main.append(books);
-    if(route.sectionId==='army-books')return;
-    const tools=el('section','v2-home-section');tools.append(el('h2','','Rules and roster'));
-    const grid=el('div','v2-home-grid');
-    grid.append(destinationCard('Core Rules','Core Rules reader — integration to follow.',{destination:'CORE_RULES',registryId:'core-rules'}),
-      destinationCard('Roster','Import, set up attachments, and open your personal guide.',{destination:'ROSTER'}),
-      destinationCard('Mega Glossary','Global rules catalog — integration to follow.',{destination:'GLOSSARY'}));
-    tools.append(grid);main.append(tools);
+    moduleRoot.replaceChildren(home.render(route));
   }
   async function dispatch() {
     if(!lifecycle.active)return;

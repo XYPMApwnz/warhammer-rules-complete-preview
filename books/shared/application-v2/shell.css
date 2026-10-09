@@ -1,8 +1,13 @@
+@import './home.css';
 /* Neutral application chrome. Faction paint is owned by the active module. */
 body.v2-application { margin:0; min-height:100vh; background:#101216; color:#ece7dc; font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; --v2-app-bar-height:64px; }
 [data-v2-shell] { min-width:0; }
 [data-v2-shell] .v2-primary-header { box-sizing:border-box; position:fixed; z-index:100; inset:0 0 auto; height:calc(var(--v2-app-bar-height) + env(safe-area-inset-top)); padding:env(safe-area-inset-top) 24px 0; display:flex; align-items:center; justify-content:space-between; gap:24px; color:#ece7dc; background:#15181e; border-bottom:1px solid #45464c; }
 [data-v2-shell] .v2-primary-brand { color:#e6d6b0; text-decoration:none; font-size:17px; font-weight:750; letter-spacing:.02em; white-space:nowrap; }
+[data-v2-shell] .v2-primary-branding { display:flex; align-items:center; gap:18px; }
+[data-v2-shell] .v2-primary-brand img { display:block; height:42px; width:auto; }
+[data-v2-shell] .v2-primary-publisher { display:block; padding-left:18px; border-left:1px solid rgba(216,209,191,.13); }
+[data-v2-shell] .v2-primary-publisher img { display:block; height:31px; width:auto; }
 [data-v2-shell] .v2-primary-nav { display:flex; gap:5px; align-items:center; min-width:0; }
 [data-v2-shell] .v2-primary-nav a { display:flex; align-items:center; justify-content:center; box-sizing:border-box; min-height:42px; padding:8px 12px; color:#dedee3; background:transparent; border:1px solid transparent; border-radius:2px; text-decoration:none; font:600 13px/1.25 system-ui,sans-serif; white-space:nowrap; }
 [data-v2-shell] .v2-primary-nav a:hover, [data-v2-shell] .v2-primary-nav a[aria-current] { color:#fff3d7; background:#292c33; border-color:#706451; }
@@ -25,10 +30,13 @@ body.v2-application { margin:0; min-height:100vh; background:#101216; color:#ece
 body.v2-application.v2-v1-navigation [data-v2-shell] #appHeader { top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top)); height:var(--v1-nav-header); }
 body.v2-application.v2-v1-navigation [data-v2-shell] #main.v2-main { padding-top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + var(--v1-nav-header) + 34px); }
 body.v2-application.v2-v1-navigation [data-v2-shell] #tocPanel { top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + var(--v1-nav-header) + 18px); }
+@media(max-width:1100px) { [data-v2-shell] .v2-primary-publisher { display:none; } }
 @media(max-width:800px) {
   body.v2-application { --v2-app-bar-height:88px; }
   [data-v2-shell] .v2-primary-header { flex-direction:column; align-items:stretch; justify-content:center; gap:3px; padding-left:10px; padding-right:10px; }
   [data-v2-shell] .v2-primary-brand { font-size:15px; text-align:center; }
+  [data-v2-shell] .v2-primary-branding { justify-content:center; }
+  [data-v2-shell] .v2-primary-brand img { height:28px; }
   [data-v2-shell] .v2-primary-nav { justify-content:space-between; gap:2px; }
   [data-v2-shell] .v2-primary-nav a { font-size:11px; padding:7px 5px; min-height:40px; }
   [data-v2-shell] .v2-home { padding:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + 30px) 18px 48px; }

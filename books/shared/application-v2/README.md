@@ -59,3 +59,26 @@ races, and `qa:shared:v2:shell:browser` for real books on desktop and 390×844.
 `V2_SHELL_SCREENSHOTS` optionally writes screenshots outside the repository.
 Existing module browser suites retain their factual assertions; their test
 servers explicitly allow the new compatibility-entry dependencies.
+
+## V1 Home presentation
+
+`home.mjs` preserves the Library/hero/shelf/card composition of the original
+root `index.html`. Its scoped `home.css` reuses that page's typography,
+background, cover proportions and horizontal scroll-snap behavior. The shared
+primary header keeps its existing navigation and fixed geometry while using
+the existing Warhammer/Games Workshop assets. No second header is mounted.
+
+Book registrations may supply `home: {shelf: {id, title, subtitle, order},
+cover, coverAlt, coverFit, accent, label, order}`. Only registered books create
+shelves; a future category appears from this metadata without shell branches.
+Books without metadata remain available in a generic Army Books shelf. The
+Home presenter never loads a book's factual payload or roster service.
+
+Rules & Tools links use the existing V2 routes. Core Rules and global Mega
+Glossary remain reserved destinations. Legacy status dates, verification
+captions, service-worker controls and application links are not reused.
+
+Run `qa:shared:v2:home` for V1 style comparisons, 390/800/801/1440px browser
+checks, synthetic future categories and comparisons of book presentation
+against the pre-port commit. `V2_HOME_SCREENSHOTS` selects an artifact directory
+outside the repository for manual acceptance images.

@@ -112,6 +112,7 @@
     "qa:shared:v2:routes": "node books/shared/army-book-app-v2/route-context-qa.mjs",
     "qa:shared:v2:shell": "node v2/shell-qa.mjs",
     "qa:shared:v2:shell:browser": "node v2/shell-browser-qa.mjs",
+    "qa:shared:v2:home": "node v2/home-presentation-qa.mjs",
     "qa:shared:v2:lifecycle": "node books/shared/army-book-app-v2/lifecycle-qa.mjs",
     "qa:shared:v2:lifecycle:browser": "node books/shared/army-book-app-v2/lifecycle-browser-qa.mjs",
     "qa:shared:v2:routes:browser": "node books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs && node books/shared/army-book-app-v2/route-context-browser-qa.mjs",

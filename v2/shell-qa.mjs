@@ -66,12 +66,14 @@ const server=http.createServer((request,response)=>{
   if(address==='/v2/app.html'){response.writeHead(200,{'Content-Type':'text/html','Cache-Control':'no-store'});response.end(html);return;}
   if(address==='/fixtures.json'){response.writeHead(200,{'Content-Type':'application/json','Cache-Control':'no-store'});response.end(JSON.stringify(fixtures));return;}
   const allowed=/^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
-    /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address);
+    /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
+    /^\/assets\/(?:warhammer-40000-logo-optimized\.png|games-workshop-logo\.png|core-rules-cover-(?:480\.webp|800\.webp|fallback\.jpg))$/.test(address);
   const file=path.resolve(repo,address.slice(1));
   if(!allowed||!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){
     forbidden.push(address);response.writeHead(404);response.end();return;
   }
-  response.writeHead(200,{'Content-Type':file.endsWith('.css')?'text/css':'text/javascript','Cache-Control':'no-store'});response.end(fs.readFileSync(file));
+  const mime={'.css':'text/css','.mjs':'text/javascript','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg'};
+  response.writeHead(200,{'Content-Type':mime[path.extname(file)],'Cache-Control':'no-store'});response.end(fs.readFileSync(file));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
