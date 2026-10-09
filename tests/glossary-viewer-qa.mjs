@@ -6,7 +6,7 @@ const read=path=>fs.readFileSync(new URL(`../${path}`,import.meta.url),'utf8');
 const viewer=read('glossary/viewer.js');
 const css=read('glossary/viewer-progressive.css');
 const index=read('glossary/index.html');
-const sw=read('service-worker.js');
+const compatibility=read('glossary/v2/compatibility.mjs');
 const registry=JSON.parse(read('glossary/registry.en.json')).terms;
 const aliases=JSON.parse(read('glossary/aliases.en.json')).aliases;
 const values=Object.values(registry);
@@ -107,12 +107,12 @@ assert.equal(visibleTextBlocks(invulnerable),1,'Invulnerable Save characteristic
 
 for(const label of ['Source revision','Source locator','Contributing sources'])assert.ok(viewer.includes(`'${label}'`),`${label} must be available in Registry details`);
 assert.doesNotMatch(index,/<b>\s*3\s*<\/b>\s*connected books/i,'connected-book copy must not contain a stale hardcoded count');
-assert.match(index,/Connected Army Books \+ Core Rules/,'connected-book copy must remain informative');
+assert.match(index,/<script type="module" src="\.\/v2\/compatibility\.mjs"/,'old Glossary entry must delegate to the shared application');
+assert.doesNotMatch(index,/viewer\.js|glossary-v2-runtime\.js|glossary-autolink\.js/,'compatibility entry must not mount a second viewer/resolver');
+assert.match(compatibility,/import \{encodeRoute\} from .*route-context\.mjs/,'compatibility entry must use the shared route contract');
+assert.match(compatibility,/destination:'GLOSSARY'/,'compatibility entry must open the global catalog');
+assert.match(compatibility,/location\.replace\(target\.href\)/,'redirect must replace the legacy history entry');
 assert.match(css,/\.filters\{[^}]*flex-wrap:wrap[^}]*overflow:visible/,'filter chips must wrap instead of clipping');
-
-const viewerAsset=index.match(/<script src="\.\/(viewer\.js\?v=\d+)"/i)?.[1];
-assert.ok(viewerAsset,'Glossary viewer must use a versioned asset URL');
-assert.ok(sw.includes(`"./glossary/${viewerAsset}"`),'service worker and Glossary must use the same viewer asset URL');
 
 // Execute the production parser without running the producer or cache writer.
 const builder=read('glossary/tools/build-glossary.mjs');
@@ -134,8 +134,6 @@ for(const [suffix,abilities] of [['plasma-pistol-standard','Pistol'],['plasma-pi
   assert.equal(term.structured.weapon.Abilities,abilities,'profile mode isolation');
   assert.equal(parse(term.definition.en).Abilities,abilities,'production parser preserves this mode only');
 }
-if(process.argv.includes('--browser'))await (await import('./browser/glossary-profile-full-entry.mjs')).profileBrowserChecks({
-  id:daPistol.id,kind:'weapon',scope:'dark-angels',edition:'11e',title:{en:daPistol.title},summary:{en:daPistol.summary},definition:{en:daPistol.full},
-  structured:{weapon:parse(daPistol.full)},presentation:'profile'
-});
+// Browser coverage follows the active entry point; legacy factual/parser guards above remain intact.
+if(process.argv.includes('--browser'))await import('../v2/glossary-browser-qa.mjs');
 console.log(`Glossary viewer QA passed: ${values.length} canonical entries, ${Object.keys(aliases).length} aliases, ${hiddenExistingPrimary.length} hidden-primary violations, ${characteristics.length} visible characteristics; weapon abilities and mode isolation preserved.`);

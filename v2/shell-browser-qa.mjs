@@ -14,7 +14,7 @@ const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript
 const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
   if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
-  const allowed=/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
+  const allowed=address==='/glossary/v2/generated/index.en.json'||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
     /^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
@@ -52,7 +52,7 @@ async function active(page,id){await page.waitForFunction(id=>window.WarhammerAp
 async function geometry(page){
   const actual=await page.evaluate(()=>{
     const nav=document.querySelector('[data-v2-primary-nav]'),mount=document.querySelector('[data-v2-mount-root]');
-    const n=nav.getBoundingClientRect(),content=mount.querySelector('.v2-topbar')||mount.querySelector('.v2-home > :first-child')||mount.querySelector('.v2-library-home .hero > :first-child');
+    const n=nav.getBoundingClientRect(),content=mount.querySelector('.v2-topbar')||mount.querySelector('.v2-home > :first-child')||mount.querySelector('.v2-library-home .hero > :first-child')||mount.querySelector('.global-glossary-main > :first-child');
     const m=content.getBoundingClientRect();
     return {nav:{top:n.top,bottom:n.bottom},content:{top:m.top,bottom:m.bottom,tag:content.className},visible:n.width>0&&n.height>0&&n.top>=-1&&n.bottom<=innerHeight,overlap:m.top<n.bottom-1,
       overflow:document.documentElement.scrollWidth>innerWidth+1,
@@ -145,7 +145,8 @@ try{
     assert.equal(new URL(page.url()).searchParams.get('v2'),'ROSTER');
     for(const destination of ['CORE_RULES','GLOSSARY']){
       await page.locator(`[data-v2-primary-nav] [data-v2-destination="${destination}"]`).click();await active(page,null);await geometry(page);
-      assert.ok((await page.locator('[data-v2-mount-root]').innerText()).trim().length>20,'Reserved destination has no explanation');
+      if(destination==='GLOSSARY')assert.equal(await page.locator('[data-global-glossary] .v2-glossary').count(),1,'Global Glossary not mounted');
+      else assert.ok((await page.locator('[data-v2-mount-root]').innerText()).trim().length>20,'Reserved destination has no explanation');
     }
     await navigate(page,{destination:'HOME',sectionId:'army-books'});
     const urls={},themes={};

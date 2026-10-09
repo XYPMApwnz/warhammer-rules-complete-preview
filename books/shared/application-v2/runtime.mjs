@@ -2,6 +2,7 @@ import {createLifecycle} from '../army-book-app-v2/lifecycle.mjs';
 import {mount} from '../army-book-app-v2/runtime.mjs';
 import {applicationRouteURL,resolveApplicationRoute} from './routes.mjs';
 import {createHomePresenter,createHomeBranding} from './home.mjs';
+import {mountGlobalGlossary} from './glossary.mjs';
 
 /** Top-level destinations only. ArmyBookApp retains all book/roster/reference logic. */
 export function createApplication(document,{registry,entryURL=new URL('../../../v2/app.html',import.meta.url).href,root=document.body}={}) {
@@ -17,7 +18,7 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
   const moduleRoot=el('div','v2-module-root');moduleRoot.dataset.v2MountRoot='';
   const style=el('link');style.rel='stylesheet';style.href=new URL('./shell.css',import.meta.url).href;document.head.append(style);
   header.append(brand,primary);shell.append(header,moduleRoot);root.append(shell);document.body.classList.add('v2-application');
-  let activeModule=null,activeBookId=null,generation=0,ready=Promise.resolve(),currentRoute=null;
+  let activeModule=null,activeBookId=null,activeModuleKind=null,generation=0,ready=Promise.resolve(),currentRoute=null;
   const destinations=[['HOME','Home'],['CORE_RULES','Core Rules'],['ARMY_BOOK','Army Books'],['ROSTER','Roster'],['GLOSSARY','Mega Glossary']];
   const routeFor=destination=>destination==='ARMY_BOOK'?{destination:'HOME',sectionId:'army-books'}:
     destination==='CORE_RULES'?{destination,registryId:'core-rules'}:
@@ -27,14 +28,14 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
   function updateNavigation() {
     let route;try{route=resolveApplicationRoute(view.location.href,registry);}catch{route=null;}
     currentRoute=route;
-    const selected=route?.module?(route.destination==='ROSTER'?'ROSTER':'ARMY_BOOK'):
+    const selected=activeModuleKind==='GLOSSARY'?'GLOSSARY':route?.module?(route.destination==='ROSTER'?'ROSTER':'ARMY_BOOK'):
       route?.destination==='HOME'&&route.sectionId==='army-books'?'ARMY_BOOK':route?.destination;
     for(const [destination,link]of navLinks) {
       link.href=applicationRouteURL(entryURL,routeFor(destination));
       if(selected===destination)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');
     }
   }
-  function stopModule(){activeModule?.destroy();activeModule=null;activeBookId=null;}
+  function stopModule(){activeModule?.destroy();activeModule=null;activeBookId=null;activeModuleKind=null;}
   function page(title,introduction) {
     document.title=`${title} · Warhammer 40,000`;
     const main=el('main','v2-home');main.tabIndex=-1;
@@ -55,8 +56,8 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
   }
   function renderHome(route) {
     if(route.destination==='ROSTER') {bookChoices(page('Roster','Choose an Army Book to import your New Recruit roster.'),{roster:true});return;}
-    if(route.destination==='CORE_RULES'||route.destination==='GLOSSARY') {
-      const title=route.destination==='CORE_RULES'?'Core Rules':'Mega Glossary';
+    if(route.destination==='CORE_RULES') {
+      const title='Core Rules';
       const main=page(title,`${title} is not yet integrated into this application.`);
       main.append(el('p','','Army Books already include their canonical rule references and book Glossary.'));return;
     }
@@ -74,6 +75,21 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
     let route;
     try{route=resolveApplicationRoute(view.location.href,registry);}catch{
       ++generation;stopModule();page('Link unavailable','This link has incomplete or unsupported context. Choose an Army Book to continue.');return;
+    }
+    if(!route.module&&['GLOSSARY','REFERENCE'].includes(route.destination)) {
+      if(activeModuleKind==='GLOSSARY'&&activeModule){activeModule.sync();updateNavigation();return activeModule;}
+      const token=++generation;stopModule();page('Mega Glossary','Loading references…');
+      try {
+        const response=await view.fetch(new URL('../../../glossary/v2/generated/index.en.json',import.meta.url));
+        if(!response.ok)throw new Error('Glossary unavailable');const corpus=await response.json();
+        if(!lifecycle.active||token!==generation)return;
+        moduleRoot.replaceChildren();
+        activeModule=mountGlobalGlossary(document,corpus,{root:moduleRoot,entryURL,registryLabels:Object.fromEntries(registry.entries.map(book=>[book.id,book.title]))});
+        activeModuleKind='GLOSSARY';updateNavigation();return activeModule;
+      } catch {
+        if(!lifecycle.active||token!==generation)return;
+        stopModule();page('Glossary unavailable','The Glossary could not be loaded. Return Home and try again.');return;
+      }
     }
     if(route.module&&activeBookId===route.bookId&&activeModule)return activeModule;
     const token=++generation;stopModule();

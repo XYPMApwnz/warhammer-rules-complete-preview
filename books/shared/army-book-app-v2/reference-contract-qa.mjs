@@ -210,6 +210,18 @@ check('Independent registries sharing an ID never share definition state',()=>{
   assert.deepEqual(second.search('first distinctive'),[]);
 });
 
+check('Canonical field focus keeps book article identity without collapsing global subentries',()=>{
+  const identity={...contract.identityFor('visible-section'),fieldPath:'/text'};
+  assert.equal(contract.resolve(identity).targetId,'visible-section');
+  assert.equal(contract.resolve({...identity,fieldPath:'/missing'}),null);
+  assert.equal(contract.resolve({...identity,registryId:'another-registry'}),null);
+  const scoped=card('qualified-entry','Scoped Entry','ABILITY',{
+    identity:{registryId:'shared-owner',canonicalId:'shared-rule',fieldPath:'/scope/one'},fields:[field('shared-rule','/text','One definition.')]});
+  const references=createReferenceContract(registry([scoped]));
+  assert.equal(references.resolve(scoped.identity).targetId,scoped.id);
+  assert.equal(references.resolve({...scoped.identity,fieldPath:'/text'}),null);
+});
+
 check('Resolution, search and scope closure leave source records unchanged',()=>{
   assert.deepEqual([...inputs.cards],before,'Reference presentation mutated canonical cards');
 });

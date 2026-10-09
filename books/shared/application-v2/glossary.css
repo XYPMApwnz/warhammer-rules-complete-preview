@@ -1,0 +1,26 @@
+/* Global scope uses the same V1 catalog/article classes with neutral library tokens. */
+.v2-global-glossary { --book-panel:#171c18; --book-ink:#e2dcc9; --book-muted-readable:#bcb9aa; --book-control-line:#615b48; --book-accent:#d2963e; --book-link:#d6bd85; --panel:var(--book-panel); --muted:var(--book-muted-readable); --ink:var(--book-ink); --green-deep:#756849; --faction-gradient:linear-gradient(90deg,#756849,#d2963e); color:var(--book-ink); background:#121512; min-height:100vh; font:16px/1.55 system-ui,sans-serif; }
+.v2-global-glossary * { box-sizing:border-box; }
+.v2-global-glossary .global-glossary-main { max-width:1180px; margin:auto; padding:calc(var(--v2-app-bar-height) + 34px) 24px 60px; }
+.v2-global-glossary .v2-card { border:1px solid var(--book-control-line); background:var(--book-panel); }
+.v2-global-glossary .v2-card-header { padding:20px 24px; border-bottom:1px solid var(--book-control-line); }
+.v2-global-glossary .v2-card-title { margin:0; font:700 36px/1.15 Georgia,serif; }
+.v2-global-glossary .v2-compatible { padding:22px 24px; }
+.v2-global-glossary .v2-search input { width:100%; min-height:44px; padding:10px 12px; color:var(--book-ink); background:#0e130f; border:1px solid var(--book-control-line); font:inherit; }
+.v2-global-glossary .v2-search-status,.v2-global-glossary .v2-search-kind { color:var(--book-muted-readable); font-size:13px; }
+.v2-global-glossary .v2-compatible-list { list-style:none; margin:0; padding:0; }
+.v2-global-glossary .v2-compatible-item { padding:14px 0; border-top:1px solid var(--book-control-line); }
+.v2-global-glossary .v2-compatible-item p { margin:4px 0 0; }
+.v2-global-glossary a { color:var(--book-link); overflow-wrap:anywhere; }
+.v2-global-glossary button { font:inherit; cursor:pointer; }
+.v2-global-glossary .v2-breadcrumbs { margin-bottom:14px; }
+.v2-global-glossary .v2-breadcrumbs button { color:var(--book-ink); background:var(--book-panel); border:1px solid var(--book-control-line); padding:8px 14px; }
+.v2-global-glossary .v2-glossary-more { color:var(--book-ink); background:var(--book-panel); border:1px solid var(--book-control-line); padding:10px 16px; margin-top:16px; }
+.v2-global-glossary .reference-visual { margin:14px 0; }
+.v2-global-glossary .reference-visual img { max-width:100%; height:auto; }
+.v2-global-glossary .term-popup { color:var(--book-ink); margin:0; inset:auto; z-index:200; }
+.v2-global-glossary .term-popup::backdrop { background:rgba(0,0,0,.78); }
+.v2-global-glossary .popup-close { color:var(--book-ink); background:var(--book-panel); border:1px solid var(--book-control-line); }
+.v2-global-glossary :focus-visible { outline:3px solid var(--book-accent); outline-offset:3px; }
+.v2-global-glossary .v2-sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+@media(max-width:800px) { .v2-global-glossary .global-glossary-main { padding:calc(var(--v2-app-bar-height) + 24px) 14px 40px; } .v2-global-glossary .v2-compatible,.v2-global-glossary .v2-card-header { padding:18px 14px; } }

@@ -6,7 +6,7 @@ export function createReferencePresenter({el,factValue,anchor,contract,cards,pay
     if(!model)return el('p','v2-not-found','This reference is unavailable. Choose an entry from the Glossary.');
     const article=el('article','v1-reference-article');article.dataset.cardId=model.targetId;
     const target=cards.get(id);
-    if(['PROFILE','WEAPON_PROFILE'].includes(target.kind)) {
+    if(target.kind==='PROFILE'&&renderProfile||target.kind==='WEAPON_PROFILE'&&renderWeapon) {
       article.append(el('p','reference-context',`${model.category} · ${model.contextLabel}`),
         target.kind==='WEAPON_PROFILE'?renderWeapon(target,{popup:true}):renderProfile(target,{inDialog:true}));
       return article;
@@ -19,8 +19,13 @@ export function createReferencePresenter({el,factValue,anchor,contract,cards,pay
     const point=cards.get(pointId)?.fields.find(field=>field.source?.path==='/value');
     if(point){const cost=el('p','reference-cost');cost.dataset.cardId=pointId;cost.append(value('span',point),documentText(' pts'));header.append(cost);}
     article.append(header);
+    const visuals=target.referenceVisuals;
+    for(const reference of [visuals?.deploymentReference,visuals?.terrainLayoutReference].filter(Boolean)) {
+      const figure=el('figure','reference-visual'),image=el('img');image.src=reference.url;image.alt=reference.alt;
+      image.loading='lazy';figure.append(image);article.append(figure);
+    }
     for(const section of model.sections) {
-      if(section.card.kind==='WEAPON_PROFILE'){article.append(renderWeapon(section.card,{popup:true}));continue;}
+      if(section.card.kind==='WEAPON_PROFILE'&&renderWeapon){article.append(renderWeapon(section.card,{popup:true}));continue;}
       const body=el('section','reference-definition');body.dataset.cardId=section.card.id;
       if(section.card.id!==id)body.append(el('h3','',section.card.title));
       const tables=new Map();

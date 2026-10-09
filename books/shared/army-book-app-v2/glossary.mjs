@@ -133,8 +133,9 @@ export function validateGlossary(index, cards) {
     if (Object.keys(entry).some(key => !['targetId', 'label', 'category', 'contextLabel', 'aliases'].includes(key))) throw new Error(`Factual copy in glossary entry: ${entry.targetId}`);
     for (const alias of entry.aliases) {
       if (typeof alias.label !== 'string' || !alias.label || alias.presentationOnly !== true ||
+          (alias.match !== undefined && !['EXACT', 'NORMALIZED'].includes(alias.match)) ||
           (alias.fieldPath !== undefined && (typeof alias.fieldPath !== 'string' || !alias.fieldPath.startsWith('/'))) ||
-          Object.keys(alias).some(key => !['label', 'fieldPath', 'presentationOnly'].includes(key))) throw new Error(`Malformed glossary alias: ${entry.targetId}`);
+          Object.keys(alias).some(key => !['label', 'fieldPath', 'presentationOnly', 'match'].includes(key))) throw new Error(`Malformed glossary alias: ${entry.targetId}`);
       if (alias.fieldPath && !card.fields.some(field => field.source?.entityId === entry.targetId && field.source?.path === alias.fieldPath)) throw new Error(`Unresolved glossary alias field: ${entry.targetId}${alias.fieldPath}`);
     }
   }

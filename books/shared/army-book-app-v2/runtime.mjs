@@ -4,6 +4,7 @@ import {validateGlossary} from './glossary.mjs';
 import {createReferenceContract} from './reference-contract.mjs';
 import {encodeRoute,decodeRoute} from './route-context.mjs';
 import {createReferencePresenter} from './reference-v1.mjs';
+import {createGlossaryCatalog} from './glossary-v1.mjs';
 import {createRosterPanel} from './roster.mjs';
 import {projectPersonalBook, projectInstanceCards, instanceRoute} from './personal.mjs';
 import {projectContents, mountV1Contents} from './navigation-v1.mjs';
@@ -650,57 +651,17 @@ export function mount(document, payload, options = {}) {
     selectedId = null;
     selectedInstanceId = null;
     glossaryQuery = query;
-    const section = el('section', 'v2-card v2-glossary');
-    const heading = el('header', 'v2-card-header');
-    heading.append(el('h1', 'v2-card-title', 'Glossary'), button('Close glossary', 'v2-library-link', closeGlossary));
-    const body = el('div', 'v2-compatible');
-    const label = el('label', 'v2-search');
-    label.append(el('span', 'v2-sr-only', 'Search glossary'));
-    const input = el('input');
-    input.type = 'search';
-    input.placeholder = 'Search glossary';
-    input.setAttribute('aria-label', 'Search glossary');
-    input.setAttribute('autocomplete', 'off');
-    input.value = query;
-    label.append(input);
-    const status = el('p', 'v2-search-status');
-    status.setAttribute('role', 'status');
-    const results = el('ul', 'v2-compatible-list v2-glossary-results');
-    const filters=el('div','glossary-categories');filters.setAttribute('role','group');filters.setAttribute('aria-label','Glossary categories');
-    const categories=[{id:'',label:'All'},...references.categories(scopedIds())];
-    if(!categories.some(category=>category.id===glossaryCategory))glossaryCategory='';
-    for(const category of categories){const filter=button(category.label,'',()=>{
-      glossaryCategory=category.id;
-      window.history.replaceState({...window.history.state,armyBookV2:{...window.history.state?.armyBookV2,glossaryCategory}},'',window.location.href);
-      renderResults();
-    });filter.dataset.glossaryCategory=category.id;filters.append(filter);}
-    const renderResults = () => {
-      for(const filter of filters.children)filter.setAttribute('aria-pressed',String(filter.dataset.glossaryCategory===glossaryCategory));
-      const matches = references.search(glossaryQuery,{allowedIds:scopedIds(),category:glossaryCategory});
-      status.textContent = `${matches.length} ${matches.length === 1 ? 'entry' : 'entries'} found`;
-      results.replaceChildren();
-      for (const entry of matches) {
-        const item = el('li', 'v2-compatible-item');
-        const link = anchor(entry.matchedLabel || entry.label, entry.targetId, true,{reference:true,fieldPath:entry.matchedFieldPath});
-        link.classList.add('v2-glossary-result');
-        item.append(link);
-        item.append(el('p', 'v2-search-kind', `${entry.categoryLabel} · ${entry.contextLabel}`));
-        results.append(item);
-      }
-      if (!matches.length) results.append(el('li', 'v2-empty', 'No matching entries. Try another term.'));
-    };
-    lifecycle.listen(input,'input', () => {
-      glossaryQuery = input.value;
-      window.history.replaceState({...window.history.state, armyBookV2: {...window.history.state?.armyBookV2, glossaryQuery}}, '', window.location.href);
-      renderResults();
-    });
-    body.append(label, filters, status, results);
-    section.append(heading, body);
-    main.replaceChildren(section);
-    renderResults();
+    const catalog=createGlossaryCatalog({el,button,anchor,lifecycle,contract:references,allowedIds:scopedIds,
+      query,category:glossaryCategory,onClose:closeGlossary,onChange:state=>{
+        glossaryQuery=state.query;glossaryCategory=state.category;
+        const patch=state.changed==='category'?{glossaryCategory}:{glossaryQuery};
+        window.history.replaceState({...window.history.state,armyBookV2:{...window.history.state?.armyBookV2,...patch}},'',window.location.href);
+      }});
+    glossaryCategory=catalog.category;
+    main.replaceChildren(catalog.node);
     renderNavigation();
     if (focus) {
-      input.focus({preventScroll: true});
+      catalog.input.focus({preventScroll: true});
       window.scrollTo({top: 0, behavior: 'instant'});
     }
   }

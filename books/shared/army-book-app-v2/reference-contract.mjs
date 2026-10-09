@@ -9,7 +9,13 @@ const categories = Object.freeze({
   STRATAGEM:'Stratagem', DATASHEET_SECTION:'Datasheet Ability',
   SUPPLEMENTAL_DATASHEET_RULE:'Datasheet Rule', WARGEAR_OPTION:'Wargear',
   WEAPON_PROFILE_SELECTION:'Weapon Profiles', WARGEAR_FOOTNOTE:'Wargear Note',
-  SOURCE_ERRATUM:'Errata', SOURCE_UPDATE_REFERENCE:'Rule Update'
+  SOURCE_ERRATUM:'Errata', SOURCE_UPDATE_REFERENCE:'Rule Update',
+  ABILITY:'Ability', UNIT:'Datasheet', UPDATE:'Update', WARGEAR_ABILITY:'Wargear Ability',
+  FACTION_TERM:'Faction Term', WEAPON_PROFILE:'Weapon Profile', MAIN_RULE:'Main Rule',
+  CORE_CONCEPT:'Core Concept', ERRATA:'Errata', FAQ_CLARIFICATION:'FAQ', UNIVERSAL_RULE_UPDATE:'Rule Update',
+  DEPLOYMENT:'Deployment', MISSION_SEQUENCE_RULE:'Mission Sequence', FORCE_DISPOSITION:'Force Disposition',
+  FORCE_DISPOSITION_MATCHUP:'Force Disposition Matchup', MISSION_REFERENCE_RULE:'Mission Rule',
+  PRIMARY_MISSION:'Primary Mission', SECONDARY_MISSION:'Secondary Mission', TERRAIN_LAYOUT:'Terrain Layout', TWIST:'Twist'
 });
 const publicText = field => {
   const path=field.source?.path || '';
@@ -21,15 +27,31 @@ const byLabel=(a,b)=>a.label.localeCompare(b.label, 'en', {sensitivity:'base'}) 
 
 /** One canonical reference policy. Personal book membership remains external. */
 export function createReferenceContract({cards,index,registryId='book',coreRegistryId='core-rules'}) {
-  const identityFor=id=>cards.has(id)?Object.freeze({registryId:cards.get(id).domain==='CORE'?coreRegistryId:registryId,canonicalId:id}):null;
-  const localId=target=>typeof target==='string'?target:
-    target&&identityFor(target.canonicalId)?.registryId===target.registryId?target.canonicalId:null;
+  const identityFor=id=>cards.has(id)?Object.freeze(cards.get(id).identity || {registryId:cards.get(id).domain==='CORE'?coreRegistryId:registryId,canonicalId:id}):null;
+  const identityKey=identity=>JSON.stringify([identity.registryId,identity.canonicalId,identity.fieldPath||'']);
+  const qualified=new Map();
+  for(const id of cards.keys()) {
+    const key=identityKey(identityFor(id));
+    if(qualified.has(key))throw new TypeError('Duplicate qualified reference identity');
+    qualified.set(key,id);
+  }
+  const localId=target=>{
+    if(typeof target==='string')return target;
+    if(!target)return null;
+    const exact=qualified.get(identityKey(target));
+    if(exact)return exact;
+    // A book article can carry a focus address into one of its canonical fields.
+    // That is distinct from an identity-bearing global subentry path.
+    const articleId=qualified.get(identityKey({...target,fieldPath:null})),article=cards.get(articleId);
+    return article&&!article.identity?.fieldPath&&article.fields?.some(field=>field.source?.path===target.fieldPath)?articleId:null;
+  };
   const entries=new Map((index?.entries || []).map(entry=>[entry.targetId,entry]));
   const categoryFor=card=>categories[entries.get(card.id)?.category || card.kind] || 'Reference';
   const dependencies=card=>[...(card.links || []).map(link=>link.targetId),
     ...(card.fields || []).flatMap(field=>field.targetIds || [])];
+  const allIds=new Set(cards.keys());
   function scope(allowedIds) {
-    if(!allowedIds)return new Set(cards.keys());
+    if(!allowedIds)return allIds;
     const available=new Set([...allowedIds,...[...cards.values()].filter(card=>card.domain==='CORE').map(card=>card.id)]);
     const pending=[...available];
     for(let i=0;i<pending.length;i++)for(const id of dependencies(cards.get(pending[i]) || {})) {
@@ -92,5 +114,22 @@ export function createReferenceContract({cards,index,registryId='book',coreRegis
     return [...new Map([...kinds].map(id=>[categories[id] || 'Reference',{id,label:categories[id] || 'Reference'}])).values()]
       .sort((a,b)=>a.label.localeCompare(b.label)||a.id.localeCompare(b.id));
   }
-  return Object.freeze({resolve,canResolve,identityFor,search,categories:categoryList,isEntry:id=>entries.has(id)});
+  // Explicit identity aliases only. Titles/prose never establish canonical ownership.
+  function resolveAlias(label,{registryId:owner=null,parentId=null,recordType=null}={}) {
+    if(cards.has(label))return label;
+    const token=normalizeGlossaryQuery(label);
+    const eligible=[...entries.values()].filter(entry=>{
+      const card=cards.get(entry.targetId),identity=identityFor(entry.targetId);
+      return (!parentId||card.sourceParentId===parentId||card.contextParentIds?.includes(parentId))&&(!recordType||card.kind===recordType)&&
+        (!owner||identity.registryId===owner||card.domain==='CORE'||card.contextRegistryIds?.includes(owner));
+    });
+    // Exact identity keys may intentionally differ by punctuation/case. Never
+    // collapse those keys into search normalization before resolving them.
+    const exact=eligible.filter(entry=>identityFor(entry.targetId).canonicalId===label||
+      (entry.aliases||[]).some(alias=>alias.match!=='NORMALIZED'&&alias.label===label));
+    if(exact.length===1)return exact[0].targetId;
+    const candidates=eligible.filter(entry=>(entry.aliases||[]).some(alias=>alias.match!=='EXACT'&&normalizeGlossaryQuery(alias.label)===token));
+    return candidates.length===1?candidates[0].targetId:null;
+  }
+  return Object.freeze({resolve,canResolve,identityFor,resolveAlias,search,categories:categoryList,isEntry:id=>entries.has(id)});
 }
