@@ -1,3 +1,4 @@
+import {isApplicationTestDependency} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -36,10 +37,10 @@ const unit=(instanceId,name,enhancementIds=[])=>{
 const snapshot=(units,detachmentIds)=>({schema:'roster-v2/roster',bookId:book.bookId,rosterId:'admech-visible-effects',units,
   detachmentIds,detachments:detachmentIds.map((id,i)=>({instanceId:'detachment-'+i,canonicalDetachmentId:id})),attachments:[],warlordInstanceId:null});
 const app='/books/adeptus-mechanicus/v2/app.html';
-const forbidden=address=>/\/books\/death-guard\/(?!assets\/)/.test(address)||
+const forbidden=address=>!isApplicationTestDependency(address)&&(/\/books\/death-guard\/(?!assets\/)/.test(address)||
   /\/books\/adeptus-mechanicus\/(?!v2\/|assets\/)/.test(address)||
-  /(?:target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\.)/.test(address);
-const allowed=address=>address===app||/^\/books\/adeptus-mechanicus\/v2\/(?:theme\.css|[\w.-]+\.mjs|roster-import-aliases\.json|generated\/(?:app-presentation|roster-runtime)\.json)$/.test(address)||
+  /(?:target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\.)/.test(address));
+const allowed=address=>isApplicationTestDependency(address)||address===app||/^\/books\/adeptus-mechanicus\/v2\/(?:theme\.css|[\w.-]+\.mjs|roster-import-aliases\.json|generated\/(?:app-presentation|roster-runtime)\.json)$/.test(address)||
   /^\/books\/shared\/(?:army-book-app-v2|rule-contract-v2|roster-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
   /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
   /^\/(?:books\/adeptus-mechanicus\/assets|assets)\/[\w./-]+\.(?:webp|png|jpe?g|svg)$/.test(address);

@@ -1,3 +1,4 @@
+import {isApplicationTestDependency} from '../application-v2/browser-test-dependencies.mjs';
 /** Real links on both books; fresh tabs never receive originating history state. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -16,7 +17,7 @@ const forbidden=[],errors=[],results=[];
 const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;
   if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
-  const allowed=/^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
+  const allowed=isApplicationTestDependency(address)||/^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
     /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address);

@@ -1,3 +1,4 @@
+import {isApplicationTestDependency} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -25,7 +26,7 @@ Char2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissia
 const errors=[],forbidden=[];
 const server=http.createServer((request,response)=>{
   const pathname=new URL(request.url,'http://localhost').pathname;
-  if(!/^\/books\/(?:adeptus-mechanicus\/(?:v2|assets)\/|shared\/(?:army-book-app-v2|roster-v2|rule-contract-v2)\/|shared\/(?:datasheet-system|unit-art)\.css$)/.test(pathname)&&!pathname.startsWith('/assets/')){
+  if(!isApplicationTestDependency(pathname)&&!/^\/books\/(?:adeptus-mechanicus\/(?:v2|assets)\/|shared\/(?:army-book-app-v2|roster-v2|rule-contract-v2)\/|shared\/(?:datasheet-system|unit-art)\.css$)/.test(pathname)&&!pathname.startsWith('/assets/')){
     if(pathname!=='/favicon.ico')forbidden.push(pathname);response.writeHead(404);response.end();return;
   }
   const file=path.resolve(repo,'.'+pathname);

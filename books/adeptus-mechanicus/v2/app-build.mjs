@@ -1,3 +1,4 @@
+import {renderCompatibilityEntry} from '../../shared/application-v2/compatibility.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
@@ -101,18 +102,7 @@ export function writeApp({check=false}={}) {
   writeRosterRuntime({check});
   const payload=buildApp(),outputs=new Map([
     ['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],
-    ['./app.html',`<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Adeptus Mechanicus · Army Book V2</title></head>
-<body><p role="status" data-army-book-loading>Loading Army Book…</p><script type="module">
-import {mount} from '../../shared/army-book-app-v2/runtime.mjs';
-import {createBrowserRoster} from './roster-runtime.mjs';
-const response=await fetch('./generated/app-presentation.json');
-if(!response.ok)throw new Error('Army Book payload unavailable');
-const payload=await response.json(),roster=await createBrowserRoster();
-document.querySelector('[data-army-book-loading]')?.remove();
-mount(document,payload,{roster,styles:[new URL('./theme.css',import.meta.url).href]});
-</script></body></html>
-`]]);
+    ['./app.html',renderCompatibilityEntry({title:'Adeptus Mechanicus',bookId:'adeptus-mechanicus'})]]);
   for(const [name,value]of outputs){const location=new URL(name,import.meta.url);if(check)assert.equal(fs.readFileSync(location,'utf8'),value,'Stale Army Book projection: '+name);else fs.writeFileSync(location,value);}
   return payload;
 }

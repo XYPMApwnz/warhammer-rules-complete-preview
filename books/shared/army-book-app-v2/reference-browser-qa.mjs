@@ -1,3 +1,4 @@
+import {isApplicationTestDependency} from '../application-v2/browser-test-dependencies.mjs';
 /** Actual reference consumers on both books and viewports; no alternate renderer. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -75,7 +76,7 @@ for(const book of books){
 }
 
 const requests=[],unexpected=[];
-const allowed=address=>/^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
+const allowed=address=>isApplicationTestDependency(address)||/^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
   /^\/books\/shared\/(?:army-book-app-v2|rule-contract-v2|roster-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
   /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
   /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address);
@@ -97,7 +98,7 @@ const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CH
 const screenshots=process.env.ARMY_APP_V2_SCREENSHOTS;if(screenshots)fs.mkdirSync(screenshots,{recursive:true});
 const ready=async page=>{await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.rosterPanel));
   await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);await page.waitForLoadState('networkidle');};
-const referenceUrl=(book,id,base=origin+book.app)=>encodeRoute(base,{destination:'REFERENCE',bookId:book.id,
+const referenceUrl=(book,id,base=origin+'/v2/app.html')=>encodeRoute(base,{destination:'REFERENCE',bookId:book.id,
   registryId:book.contract.identityFor(id)?.registryId || book.id,canonicalId:id,rosterId:new URL(base).searchParams.get('roster')});
 const resultIds=page=>page.locator('main .v2-glossary-result').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId));
 const noInternal=/\b(?:CORE_MAIN_RULE|CORE_CORE_CONCEPT|CORE_ERRATA|CORE_FAQ_CLARIFICATION|CORE_UNIVERSAL_RULE_UPDATE|DATASHEET_SECTION|SUPPLEMENTAL_DATASHEET_RULE|SOURCE_ERRATUM|Source Rule Id)\b/;

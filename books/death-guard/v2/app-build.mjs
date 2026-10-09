@@ -1,3 +1,4 @@
+import {renderCompatibilityEntry} from '../../shared/application-v2/compatibility.mjs';
 import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
@@ -40,17 +41,7 @@ export function buildApp(inputs=readAppInputs()) {
 }
 export function writeApp({check=false}={}) {
   const payload=buildApp();
-  const output=new Map([['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],['./app.html',`<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Death Guard · Army Book V2</title></head>
-<body><p role="status" data-army-book-loading>Loading Army Book…</p><script type="module">
-import {mount} from '../../shared/army-book-app-v2/runtime.mjs';
-import {createBrowserRoster} from './roster-boot.mjs';
-const response=await fetch('./generated/app-presentation.json');
-if (!response.ok) throw new Error('Army Book payload unavailable');
-const payload=await response.json(),roster=await createBrowserRoster();
-document.querySelector('[data-army-book-loading]')?.remove();
-mount(document,payload,{roster});
-</script></body></html>\n`]]);
+  const output=new Map([['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],['./app.html',renderCompatibilityEntry({title:'Death Guard',bookId:'death-guard'})]]);
   for (const [file,value] of output) {
     const location=new URL(file,import.meta.url);
     if (check) {if (fs.readFileSync(location,'utf8')!==value) throw new Error(`Stale Army Book App output: ${file}`);}

@@ -1,0 +1,41 @@
+/* Neutral application chrome. Faction paint is owned by the active module. */
+body.v2-application { margin:0; min-height:100vh; background:#101216; color:#ece7dc; font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; --v2-app-bar-height:64px; }
+[data-v2-shell] { min-width:0; }
+[data-v2-shell] .v2-primary-header { box-sizing:border-box; position:fixed; z-index:100; inset:0 0 auto; height:calc(var(--v2-app-bar-height) + env(safe-area-inset-top)); padding:env(safe-area-inset-top) 24px 0; display:flex; align-items:center; justify-content:space-between; gap:24px; color:#ece7dc; background:#15181e; border-bottom:1px solid #45464c; }
+[data-v2-shell] .v2-primary-brand { color:#e6d6b0; text-decoration:none; font-size:17px; font-weight:750; letter-spacing:.02em; white-space:nowrap; }
+[data-v2-shell] .v2-primary-nav { display:flex; gap:5px; align-items:center; min-width:0; }
+[data-v2-shell] .v2-primary-nav a { display:flex; align-items:center; justify-content:center; box-sizing:border-box; min-height:42px; padding:8px 12px; color:#dedee3; background:transparent; border:1px solid transparent; border-radius:2px; text-decoration:none; font:600 13px/1.25 system-ui,sans-serif; white-space:nowrap; }
+[data-v2-shell] .v2-primary-nav a:hover, [data-v2-shell] .v2-primary-nav a[aria-current] { color:#fff3d7; background:#292c33; border-color:#706451; }
+/* The existing reader's global current-page rule must not paint application chrome. */
+[data-v2-shell] .v2-primary-nav a[aria-current] { color:#fff3d7 !important; background:#292c33 !important; }
+[data-v2-shell] .v2-primary-header a:focus-visible, [data-v2-shell] .v2-home a:focus-visible { outline:2px solid #dfc48a; outline-offset:3px; }
+[data-v2-shell] .v2-home { box-sizing:border-box; max-width:1180px; min-height:100vh; margin:auto; padding:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + 56px) 32px 72px; color:#ece7dc; background:#101216; }
+[data-v2-shell] .v2-home-kicker { margin:0 0 14px; color:#c7b27f; font-size:12px; font-weight:700; letter-spacing:.14em; }
+[data-v2-shell] .v2-home h1 { margin:0 0 18px; font-size:clamp(30px,4vw,48px); line-height:1.12; color:#f6f1e6; }
+[data-v2-shell] .v2-home-intro { max-width:720px; margin:0; color:#bcbcc6; font-size:17px; }
+[data-v2-shell] .v2-home-section { margin-top:38px; }
+[data-v2-shell] .v2-home h2 { margin:0 0 16px; color:#e6d6b0; font-size:19px; }
+[data-v2-shell] .v2-home-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:18px; margin-top:20px; }
+[data-v2-shell] .v2-home-card { display:flex; flex-direction:column; min-width:0; padding:24px; border:1px solid #49474b; border-top:3px solid #a28c5e; border-radius:2px; background:linear-gradient(140deg,#23262e,#181b21); color:#ece7dc; text-decoration:none; }
+[data-v2-shell] .v2-home-card:hover { border-color:#c0a36c; background:#292c33; }
+[data-v2-shell] .v2-home-card h3 { margin:0 0 10px; font:700 22px/1.2 system-ui,sans-serif; color:#f6f1e6; overflow-wrap:anywhere; }
+[data-v2-shell] .v2-home-card p { margin:0 0 24px; color:#c0c0ca; }
+[data-v2-shell] .v2-home-action { margin-top:auto; color:#e5c98d; font-size:13px; font-weight:650; }
+/* Offset every book-local fixed surface by the common application bar. */
+body.v2-application.v2-v1-navigation [data-v2-shell] #appHeader { top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top)); height:var(--v1-nav-header); }
+body.v2-application.v2-v1-navigation [data-v2-shell] #main.v2-main { padding-top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + var(--v1-nav-header) + 34px); }
+body.v2-application.v2-v1-navigation [data-v2-shell] #tocPanel { top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + var(--v1-nav-header) + 18px); }
+@media(max-width:800px) {
+  body.v2-application { --v2-app-bar-height:88px; }
+  [data-v2-shell] .v2-primary-header { flex-direction:column; align-items:stretch; justify-content:center; gap:3px; padding-left:10px; padding-right:10px; }
+  [data-v2-shell] .v2-primary-brand { font-size:15px; text-align:center; }
+  [data-v2-shell] .v2-primary-nav { justify-content:space-between; gap:2px; }
+  [data-v2-shell] .v2-primary-nav a { font-size:11px; padding:7px 5px; min-height:40px; }
+  [data-v2-shell] .v2-home { padding:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + 30px) 18px 48px; }
+  [data-v2-shell] .v2-home-card { padding:22px; }
+  body.v2-application.v2-v1-navigation [data-v2-shell] #main.v2-main { padding-top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + var(--v1-nav-header) + 20px); }
+  body.v2-application.v2-v1-navigation [data-v2-shell] #tocPanel { top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + var(--v1-nav-header) + 10px); }
+  body.v2-application.v2-v1-navigation [data-v2-shell] #tocScrim { top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top) + var(--v1-nav-header)); }
+  /* Clip card decoration without creating a scroll ancestor for sticky section tabs. */
+  body.v2-application [data-v2-shell] .unit-card.surface { overflow:clip; }
+}

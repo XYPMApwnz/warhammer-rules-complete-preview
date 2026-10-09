@@ -1,3 +1,4 @@
+import {isApplicationTestDependency} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -33,10 +34,10 @@ for(const id of Object.keys(contracts))assert.ok(cards.has(id),`Missing canonica
 
 // This server deliberately cannot serve a legacy factual/runtime file. A
 // request for one receives poisoned content and fails the request census.
-const forbidden=address=>/\/books\/death-guard\/(?!assets\/)/.test(address)||
+const forbidden=address=>!isApplicationTestDependency(address)&&(/\/books\/death-guard\/(?!assets\/)/.test(address)||
   /\/books\/adeptus-mechanicus\/(?!v2\/|assets\/)/.test(address)||
-  /(?:target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\.)/.test(address);
-const allowed=address=>address===appPath||address===payloadPath||
+  /(?:target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\.)/.test(address));
+const allowed=address=>isApplicationTestDependency(address)||address===appPath||address===payloadPath||
   /^\/books\/adeptus-mechanicus\/v2\/(?:theme\.css|roster-runtime\.mjs|roster-import\.mjs|roster-import-aliases\.json|generated\/roster-runtime\.json)$/.test(address)||
   /^\/books\/shared\/(?:army-book-app-v2|rule-contract-v2|roster-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
   /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||

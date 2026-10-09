@@ -1,3 +1,4 @@
+import {allowApplicationTestDependencies} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -58,6 +59,7 @@ const allowed=new Map([
   ['/books/shared/roster-v2/parser.mjs','text/javascript']
 ]);
 const requests=[],legacyRequests=[];
+allowApplicationTestDependencies(allowed);
 const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
   if(!allowed.has(address)) {

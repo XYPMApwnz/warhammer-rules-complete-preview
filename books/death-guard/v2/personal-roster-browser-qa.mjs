@@ -1,3 +1,4 @@
+import {allowApplicationTestDependencies} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -42,6 +43,7 @@ const allowed=new Map([
   ['/books/shared/army-book-app-v2/styles.css','text/css'],['/books/shared/army-book-app-v2/navigation-v1.css','text/css']
 ]);
 const legacyRequests=[];
+allowApplicationTestDependencies(allowed);
 const server=http.createServer((req,res)=>{
   const p=new URL(req.url,'http://localhost').pathname;
   if(!allowed.has(p)){if(p!=='/favicon.ico')legacyRequests.push(p);res.writeHead(p==='/favicon.ico'?404:200,{'Content-Type':'application/json'});res.end('{"POISON_LEGACY_FACTUAL_RUNTIME":true}');return;}

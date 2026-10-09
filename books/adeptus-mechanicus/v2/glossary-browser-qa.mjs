@@ -1,3 +1,4 @@
+import {isApplicationTestDependency} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -34,9 +35,9 @@ Enhancement: TL-4Ø9
 • 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw
 10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon`;
 const app='/books/adeptus-mechanicus/v2/app.html',requests=[],legacy=[],unexpected=[];
-const forbidden=url=>/\/books\/death-guard\/(?!assets\/)/.test(url)||/\/books\/adeptus-mechanicus\/(?!v2\/|assets\/)/.test(url)||
-  /target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\./.test(url);
-const allowed=url=>url===app||/^\/books\/adeptus-mechanicus\/v2\/(?:theme\.css|[\w.-]+\.mjs|roster-import-aliases\.json|generated\/(?:app-presentation|roster-runtime)\.json)$/.test(url)||
+const forbidden=url=>!isApplicationTestDependency(url)&&(/\/books\/death-guard\/(?!assets\/)/.test(url)||/\/books\/adeptus-mechanicus\/(?!v2\/|assets\/)/.test(url)||
+  /target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\./.test(url));
+const allowed=url=>isApplicationTestDependency(url)||url===app||/^\/books\/adeptus-mechanicus\/v2\/(?:theme\.css|[\w.-]+\.mjs|roster-import-aliases\.json|generated\/(?:app-presentation|roster-runtime)\.json)$/.test(url)||
   /^\/books\/shared\/(?:army-book-app-v2|rule-contract-v2|roster-v2)\/[\w.-]+\.(?:mjs|css)$/.test(url)||
   /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(url)||/^\/(?:books\/adeptus-mechanicus\/assets|assets)\/[\w./-]+\.(?:webp|png|jpe?g|svg)$/.test(url);
 const server=http.createServer((request,response)=>{

@@ -245,3 +245,11 @@ Back maintains its own LIFO history and does not replace browser history.
 - Any later change to the section set is made in structured data and the generator, after which the body, navigation tree, and term registry are rebuilt together.
 - Before a popup → Glossary transition, the active search filter is cleared synchronously, the hidden card is revealed, and only then is the scroll destination calculated.
 - The builder calculates the PWA cache version from generated HTML/data and all runtime assets. `--check` must fail if artifacts or the cache key are stale.
+
+## V2 application host
+
+The V2 book entry redirects to `/v2/app.html`, preserving its canonical URL and
+roster context. The neutral application navigation remains separate from this
+book Contents tree. Its bar offsets the book header, Contents panel and mobile
+drawer; it does not change their interaction or semantic target identity.
+See [the shared application contract](../../shared/application-v2/README.md).

@@ -1,8 +1,10 @@
+import {allowApplicationTestDependencies} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 
 // Explicit test-server allowlist; New Recruit decoding is owned by Roster V2.
 export function allowRosterDependencies(allowed) {
+  allowApplicationTestDependencies(allowed);
   for (const file of ['books/death-guard/v2/roster-boot.mjs','books/death-guard/v2/rule-contract-schema.mjs','books/death-guard/v2/rule-contract-state-fields.mjs',
     'books/shared/army-book-app-v2/ability-presentation.mjs','books/shared/army-book-app-v2/lifecycle.mjs',
     'books/shared/army-book-app-v2/reference-contract.mjs','books/shared/army-book-app-v2/reference-v1.mjs','books/shared/army-book-app-v2/route-context.mjs',

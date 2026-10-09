@@ -173,7 +173,7 @@ export function mount(document, payload, options = {}) {
   }) : null;
   const personalBook = () => projectPersonalBook(payload, options.roster.state);
   const scopedIds = () => personalMode ? personalBook().allowedIds : null;
-  const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,
+  const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL:options.assetBaseURL,
     related:renderRelatedRules,roster:options.roster,
     navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
   const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds,renderWeapon:datasheets.renderWeapon});
@@ -494,7 +494,7 @@ export function mount(document, payload, options = {}) {
     main.replaceChildren();
     const hero = el('section', 'v2-hero');
     if(payload.bookPresentation.coverImage){
-      const cover=new URL(payload.bookPresentation.coverImage,document.baseURI).href;
+      const cover=new URL(payload.bookPresentation.coverImage,options.assetBaseURL || document.baseURI).href;
       hero.dataset.bookArtwork=cover;
       hero.style.setProperty('--v1-book-cover',`url("${cover}")`);
     }

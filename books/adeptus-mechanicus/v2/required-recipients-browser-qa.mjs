@@ -1,3 +1,4 @@
+import {isApplicationTestDependency} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -10,7 +11,7 @@ const {cases,rosterText,attachedPairText}=await import(dependent?'./dependent-ro
 const repo=fileURLToPath(new URL('../../../',import.meta.url)),legacy=[],errors=[],requests=[];
 const server=http.createServer((request,response)=>{
   const pathname=new URL(request.url,'http://localhost').pathname;
-  const allowed=/^\/books\/adeptus-mechanicus\/v2\//.test(pathname)||
+  const allowed=isApplicationTestDependency(pathname)||/^\/books\/adeptus-mechanicus\/v2\//.test(pathname)||
     /^\/books\/shared\/(?:army-book-app-v2|roster-v2|rule-contract-v2)\//.test(pathname)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(pathname)||
     /^\/(?:books\/adeptus-mechanicus\/assets|assets)\//.test(pathname);
