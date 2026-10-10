@@ -2,7 +2,7 @@
 // retain canonical IDs, physical ownership and quantities from the export.
 const own = (record, key) => record && Object.hasOwn(record, key) ? record[key] : undefined;
 const clone = value => structuredClone(value);
-const equipmentKinds = new Set(['WARGEAR_OPTION', 'WARGEAR_FOOTNOTE', 'DATASHEET_SECTION', 'SUPPLEMENTAL_DATASHEET_RULE']);
+const equipmentKinds = new Set(['WARGEAR_OPTION', 'WARGEAR_FOOTNOTE', 'DATASHEET_SECTION', 'SUPPLEMENTAL_DATASHEET_RULE', 'UNIT_COMPOSITION']);
 const quantity = value => Number.isSafeInteger(value) && value >= 0;
 
 export const normalizeImportLabel = value => String(value ?? '').normalize('NFKD').replace(/\p{M}/gu,'')
@@ -26,7 +26,7 @@ function identityCandidates(entities,kind,label,ownerId) {
   const exact=scoped.filter(entity=>names(entity).includes(key));
   return {exact,plausible:key && key!=='—'?scoped.filter(entity=>plausible(key,names(entity))):[]};
 }
-function selectionCandidates(entities,unit,label,weaponSelections) {
+function selectionCandidates(entities,unit,label,weaponSelections,equipmentSelections=[]) {
   const key=gearLabel(label), groups=new Map();
   const add = (name,binding) => {
     const k=gearLabel(name);if (!k) return;
@@ -78,6 +78,13 @@ function selectionCandidates(entities,unit,label,weaponSelections) {
     list.push({canonicalProfileIds:[...binding.canonicalProfileIds],canonicalEquipmentIds:[],canonicalFieldPaths:{}});declared.set(key,list);
   }
   for (const [name,bindings] of declared) groups.set(name,bindings);
+  const declaredEquipment=new Map();
+  for(const binding of equipmentSelections.filter(binding=>binding.ownerId===unit.id)) {
+    const key=gearLabel(binding.label),list=declaredEquipment.get(key)||[];
+    list.push({canonicalProfileIds:[],canonicalEquipmentIds:clone(binding.canonicalEquipmentIds),
+      canonicalFieldPaths:clone(binding.canonicalFieldPaths)});declaredEquipment.set(key,list);
+  }
+  for(const [name,bindings] of declaredEquipment)groups.set(name,bindings);
   const unique = list => [...new Map(list.map(binding=>[JSON.stringify(binding),binding])).values()];
   return {exact:unique(groups.get(key) || []),plausible:unique([...groups].filter(([name])=>plausible(key,[name])).flatMap(([,bindings])=>bindings))};
 }
@@ -124,7 +131,8 @@ export function lexicalDraft(rawText, parse) {
     });
     return {id, name: raw.name, sourceRef: raw.sourceRef || '', rawQuantity: raw.quantity,
       points: raw.points, warlord: raw.warlord ?? null, modelRows,
-      selections: rawSelections(raw.wargear, `${id}/unit`, 'UNIT', null)};
+      selections: [...rawSelections(raw.wargear, `${id}/unit`, 'UNIT', null),
+        ...(raw.choiceLines||[]).flatMap((label,index)=>rawSelections(label,`${id}/choice/${index+1}`,'UNIT',null))]};
   });
   const enhancements = (parsed.enhancements || []).map((item, i) => ({...clone(item), key: `enhancement/${i + 1}`}));
   const metadata = {};
@@ -154,7 +162,7 @@ function fieldExists(data, pointer) {
   return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean';
 }
 
-export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId, weaponSelections=[]} = {}) {
+export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId, weaponSelections=[],equipmentSelections=[],optionSelections=[],deferredUnits=[]} = {}) {
   const errors = [], needsBindings = [], resolutions = [];
   let draft;
   try { draft = lexicalDraft(rawText, parse); }
@@ -181,7 +189,8 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
     issue('AMBIGUOUS_WARLORD_IDENTITY', 'warlord', 'Lexical parser could not resolve imported Warlord identity');
   }
   const exact = (id, kind, key, rawLabel, ownerId) => {
-    const scope = kind==='ENHANCEMENT' ? new Map([...entities].filter(([,entity])=>entity.kind!=='ENHANCEMENT' || detachmentIds.includes(entity.parentId))) : entities;
+    const scope = kind==='ENHANCEMENT' ? new Map([...entities].filter(([,entity])=>entity.kind!=='ENHANCEMENT' || detachmentIds.includes(entity.parentId))) :
+      kind==='PROFILE'?new Map([...entities].filter(([id])=>entities.get(ownerId)?.data.profileIds.includes(id))):entities;
     const matches = identityCandidates(scope,kind,rawLabel,ownerId);
     if (kind==='PROFILE' && entities.get(ownerId)?.data.profileIds.length===1) matches.exact=[entities.get(entities.get(ownerId).data.profileIds[0])];
     const candidateIds=(matches.exact.length?matches.exact:matches.plausible).map(entity=>entity.id);
@@ -191,7 +200,8 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
       }
       const state=matches.exact.length>1?'AMBIGUOUS':'UNRESOLVED';
       resolutions.push({kind,key,state,canonicalIds:[]});
-      need(kind,key,rawLabel,ownerId,{candidateIds,state});return null;
+      const deferred=kind==='DATASHEET'?deferredUnits.find(item=>normalizeImportLabel(item.label)===normalizeImportLabel(rawLabel)):null;
+      need(kind,key,rawLabel,ownerId,{candidateIds,state,...(deferred?{reason:deferred.reason}: {})});return null;
     }
     if (typeof id !== 'string') { issue('AMBIGUOUS_BINDING', key, 'Binding must contain one explicit canonical ID'); return null; }
     const entity = entities.get(id);
@@ -220,7 +230,25 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
   const units = [];
   const bindSelection = (raw, unit, startingStrength) => {
     let binding = own(bindings.selections, raw.key);
-    const matches=selectionCandidates(entities,unit,raw.label,weaponSelections), candidates=matches.exact.length?matches.exact:matches.plausible;
+    const matches=selectionCandidates(entities,unit,raw.label,weaponSelections,equipmentSelections), candidates=matches.exact.length?matches.exact:matches.plausible;
+    const options=optionSelections.filter(item=>(item.ownerId===unit.id||detachmentIds.includes(item.detachmentId))&&
+      normalizeImportLabel(item.label)===normalizeImportLabel(raw.label));
+    if(options.length) {
+      let unique=[...new Map(options.map(item=>[item.canonicalOptionId,item])).values()];
+      if(binding?.canonicalOptionId) {
+        unique=unique.filter(item=>item.canonicalOptionId===binding.canonicalOptionId);
+        if(!unique.length){issue('CONFLICTING_IMPORTED_SELECTION',raw.key,'Canonical option does not match this imported choice');return null;}
+      }
+      if(unique.length!==1||matches.exact.length) {need('OPTION',raw.key,raw.label,unit.id,{state:'AMBIGUOUS',candidateIds:unique.map(item=>item.canonicalOptionId)});return null;}
+      const selected=unique[0];
+      if(binding&&binding.canonicalOptionId!==selected.canonicalOptionId) {issue('CONFLICTING_IMPORTED_SELECTION',raw.key,'Canonical option does not match this imported choice');return null;}
+      if(raw.explicitQuantity&&raw.physicalQuantity!==1) {issue('INVALID_OPTION_QUANTITY',raw.key,'A discrete canonical choice must be selected once');return null;}
+      resolutions.push({kind:'OPTION',key:raw.key,state:binding?'MANUAL_RESOLVED':'AUTO_RESOLVED',canonicalIds:[selected.canonicalOptionId]});
+      return {selectionKey:raw.key,canonicalProfileIds:[],canonicalEquipmentIds:[],canonicalOptionIds:[selected.canonicalOptionId],
+        selectionField:selected.selectionField,selectionCardinality:selected.selectionCardinality,physicalQuantity:1,perModelQuantity:null,
+        ...(selected.exclusiveGroupId?{exclusiveGroupId:selected.exclusiveGroupId}:{}),
+        quantityEvidence:clone(raw.quantityEvidence),sourceEvidence:clone(selected.evidence)};
+    }
     if (!binding) {
       if (matches.exact.length===1) binding=matches.exact[0];
       else {
@@ -307,8 +335,25 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
           selections: loadout.selections.map(selection => bindSelection(selection, unit, startingStrength)).filter(Boolean)}))});
     }
     if (raw.warlord !== null && typeof raw.warlord !== 'boolean') issue('INVALID_WARLORD_IDENTITY', raw.id, 'Warlord state must identify a physical unit');
+    const selections=raw.selections.map(selection=>bindSelection(selection,unit,startingStrength)).filter(Boolean);
+    const optionRows=[...selections,...modelRows.flatMap(row=>[...row.selections,...row.loadouts.flatMap(loadout=>loadout.selections)])].filter(item=>item.canonicalOptionIds);
+    const optionState={};
+    for(const name of new Set(optionRows.map(item=>item.selectionField))) {
+      const rows=optionRows.filter(item=>item.selectionField===name),ids=[...new Set(rows.flatMap(item=>item.canonicalOptionIds))];
+      const cardinality=rows[0].selectionCardinality;
+      if(rows.some(item=>item.selectionCardinality!==cardinality)||cardinality==='ONE'&&ids.length>1)
+        issue('CONFLICTING_SELECTED_OPTION',raw.id,'Contradictory canonical option cardinality');
+      optionState[name]=cardinality==='ONE'?ids[0]:ids;
+    }
+    for(const group of new Set(optionRows.map(item=>item.exclusiveGroupId).filter(Boolean))) {
+      if(new Set(optionRows.filter(item=>item.exclusiveGroupId===group).flatMap(item=>item.canonicalOptionIds)).size>1)
+        issue('CONFLICTING_SELECTED_OPTION',raw.id,'Multiple choices for an exclusive canonical selection group');
+    }
+    const equipmentKnown=[...selections,...modelRows.flatMap(row=>[...row.selections,...row.loadouts.flatMap(loadout=>loadout.selections)])]
+      .some(item=>item.canonicalProfileIds.length||item.canonicalEquipmentIds.length);
     units.push({instanceId: raw.id, canonicalUnitId: unit.id, startingStrength, warlord: raw.warlord,
-      modelRows, equipmentContextKnown: Boolean(raw.selections.length || raw.modelRows.some(row=>row.selections.length || row.loadouts.some(loadout=>loadout.selections.length))), selections: raw.selections.map(selection => bindSelection(selection, unit, startingStrength)).filter(Boolean),
+      modelRows, equipmentContextKnown:equipmentKnown, selections,
+      ...optionState,
       enhancementIds: [], raw: {name: raw.name, quantity: raw.rawQuantity, points: raw.points, sourceRef: raw.sourceRef}});
   }
   const byInstance = new Map(units.map(unit => [unit.instanceId, unit]));

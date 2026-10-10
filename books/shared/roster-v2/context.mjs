@@ -56,6 +56,15 @@ export function validateRoster(book, state, policies) {
     assert(typeof unit.instanceId === 'string' && !ids.has(unit.instanceId), 'Duplicate physical instance'); ids.add(unit.instanceId);
     const canonical = records.get(unit.canonicalUnitId);
     assert(canonical?.kind === 'DATASHEET' && positive(unit.startingStrength), 'Unresolved canonical unit/composition');
+    const validOption=id=>{
+      let record=records.get(id);const visited=new Set();
+      if(record?.kind!=='UPGRADE_OPTION')return false;
+      while(record&&!visited.has(record.id)) {
+        if(record.id===canonical.id||state.detachmentIds.includes(record.id))return true;
+        visited.add(record.id);record=records.get(record.parentId);
+      }
+      return false;
+    };
     assert(Array.isArray(unit.modelRows) && unit.modelRows.length, 'Missing profile composition');
     assert(unit.modelRows.reduce((n, row) => n + row.quantity, 0) === unit.startingStrength, 'Starting Strength contradicts composition');
     const rows = new Set();
@@ -71,11 +80,25 @@ export function validateRoster(book, state, policies) {
         assert(Number.isSafeInteger(loadout.quantity) && loadout.quantity >= 0, 'Invalid model loadout quantity');
       }
     }
+    const exclusiveOptions=new Map();
     for (const selection of selections(unit)) {
       assert(Number.isSafeInteger(selection.physicalQuantity) && selection.physicalQuantity >= 0, 'Invalid physical equipment quantity');
-      assert(Array.isArray(selection.canonicalProfileIds) && Array.isArray(selection.canonicalEquipmentIds) && selection.canonicalProfileIds.length + selection.canonicalEquipmentIds.length > 0, 'Unresolved selected equipment');
+      const optionIds=selection.canonicalOptionIds||[];
+      assert(Array.isArray(optionIds)&&new Set(optionIds).size===optionIds.length&&optionIds.every(validOption),'Unresolved selected option');
+      if(optionIds.length) {
+        assert(/^selected[A-Z]\w*Ids?$/.test(selection.selectionField)&&['ONE','MANY'].includes(selection.selectionCardinality),'Invalid canonical option field/cardinality');
+        const value=unit[selection.selectionField];
+        assert(selection.selectionCardinality==='ONE'?optionIds.length===1&&value===optionIds[0]:
+          Array.isArray(value)&&new Set(value).size===value.length&&value.every(validOption)&&optionIds.every(id=>value.includes(id)),'Contradictory selected option state');
+      }
+      if(selection.exclusiveGroupId) {
+        assert(optionIds.length===1&&records.get(optionIds[0]).parentId===selection.exclusiveGroupId,'Invalid exclusive selection group');
+        assert(!exclusiveOptions.has(selection.exclusiveGroupId)||exclusiveOptions.get(selection.exclusiveGroupId)===optionIds[0],'Contradictory exclusive choices');
+        exclusiveOptions.set(selection.exclusiveGroupId,optionIds[0]);
+      }
+      assert(Array.isArray(selection.canonicalProfileIds) && Array.isArray(selection.canonicalEquipmentIds) && selection.canonicalProfileIds.length + selection.canonicalEquipmentIds.length + optionIds.length > 0, 'Unresolved selected equipment');
       for (const id of selection.canonicalProfileIds) assert(canonical.data.weaponIds.includes(id) && records.get(id)?.kind === 'WEAPON_PROFILE', 'Foreign weapon profile');
-      for (const id of selection.canonicalEquipmentIds) assert(records.get(id)?.parentId === canonical.id && ['WARGEAR_OPTION','WARGEAR_FOOTNOTE','DATASHEET_SECTION','SUPPLEMENTAL_DATASHEET_RULE'].includes(records.get(id)?.kind), 'Foreign equipment owner');
+      for (const id of selection.canonicalEquipmentIds) assert(records.get(id)?.parentId === canonical.id && ['WARGEAR_OPTION','WARGEAR_FOOTNOTE','DATASHEET_SECTION','SUPPLEMENTAL_DATASHEET_RULE','UNIT_COMPOSITION'].includes(records.get(id)?.kind), 'Foreign equipment owner');
       for (const [id, paths] of Object.entries(selection.canonicalFieldPaths || {})) for (const pointer of paths) {
         let value = records.get(id)?.data;
         assert(selection.canonicalEquipmentIds.includes(id) && typeof pointer === 'string' && pointer.startsWith('/'), 'Invalid equipment field identity');

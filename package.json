@@ -120,6 +120,8 @@
     "qa:shared:v2:routes:browser": "node books/shared/army-book-app-v2/route-context-synthetic-browser-qa.mjs && node books/shared/army-book-app-v2/route-context-browser-qa.mjs",
     "qa:shared:v2:references": "node books/shared/army-book-app-v2/reference-contract-qa.mjs",
     "qa:shared:v2:references:browser": "node books/shared/army-book-app-v2/reference-browser-qa.mjs",
-    "qa:am:v2:personal-weapons:browser": "node books/adeptus-mechanicus/v2/personal-weapons-browser-qa.mjs"
+    "qa:am:v2:personal-weapons:browser": "node books/adeptus-mechanicus/v2/personal-weapons-browser-qa.mjs",
+    "qa:csm:v2:roster-import": "node books/chaos-space-marines/v2/roster-import-build.mjs --check && node books/shared/roster-v2/import-service-qa.mjs && node books/shared/roster-v2/import-selections-qa.mjs && node books/chaos-space-marines/v2/roster-import-qa.mjs",
+    "qa:csm:v2:roster-import:browser": "node books/chaos-space-marines/v2/roster-import-browser-qa.mjs"
   }
 }

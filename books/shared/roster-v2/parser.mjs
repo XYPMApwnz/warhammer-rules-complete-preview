@@ -139,6 +139,12 @@ export function parse(text, options = {}) {
         if (currentUnit) warlordMarkers.add(currentUnit.id);
         continue;
       }
+      // Explicit labelled choices are lexical input, not inferred keywords.
+      // Canonical option/equipment binding remains the importer's responsibility.
+      if(currentUnit&&!/^\u2022\s*\d+x\s/.test(line)&&/^(?:\u2022\s*)?[^+:]+:\s*\S/.test(line)) {
+        (currentUnit.choiceLines??=[]).push(line.replace(/^\u2022\s*/,''));
+        continue;
+      }
       if (line.startsWith('\u2022')) {
         const model = line.match(/^\u2022\s*(\d+)x\s+([^:]+)(?::\s*(.*))?$/);
         const equipment=selectionParts(model?.[3]),inlineLoadout=equipment.value.match(/^(\d+)\s+with\s+(.+)$/i);

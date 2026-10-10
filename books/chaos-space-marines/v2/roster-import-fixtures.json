@@ -1,0 +1,19 @@
+{
+  "schema": "roster-v2/import-fixtures",
+  "sourceAuthority": "generated/effective.json",
+  "fixtures": [
+    {
+      "id": "native-composition-options-owner-isolation",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War, Pactbound Zealots\n+ WARLORD: Char1: Chaos Lord\nChar1: 1x Chaos Lord (100 pts): Daemon hammer\nEnhancement: Eager for Vengeance\nChar2: 1x Chaos Lord (100 pts): Power fist\nEnhancement: Eye of Abaddon\n5x Legionaries (100 pts): 1x Chaos icon, Mark: Nurgle\n• 1x Aspiring Champion: Plasma pistol, Accursed weapon\n• 4x Legionary: 3 with Boltgun, Close combat weapon\n1 with Plasma gun, Close combat weapon\n10x Legionaries (200 pts)\n• 1x Aspiring Champion: Bolt pistol, Astartes chainsword\n• 9x Legionary: Boltgun, Close combat weapon\n5x Dark Commune (100 pts)\n• 1x Cult Demagogue: Autopistol, Commune stave\n• 1x Mindwitch: Warp Curse, Close combat weapon\n• 1x Iconarch: Autopistol, Close combat weapon, Chaos icon\n• 2x Blessed Blade: Commune blade\n8x Accursed Cultists (100 pts)\n• 3x Torment: Hideous mutations\n• 5x Mutant: Blasphemous appendages\nChar3: 1x Heretic Astartes Daemon Prince (100 pts): Infernal cannon, Hellforged weapons\n• Daemonic Allegiance: Khorne\nChar4: 1x Heretic Astartes Daemon Prince (100 pts): Infernal cannon, Hellforged weapons\nDaemonic Allegiance: Nurgle\nCreated with newrecruit.eu\n",
+      "sourceOwners": [
+        "unit-chaos-lord",
+        "unit-legionaries",
+        "unit-dark-commune",
+        "unit-accursed-cultists",
+        "unit-heretic-astartes-daemon-prince",
+        "detachment-veterans-of-the-long-war",
+        "detachment-pactbound-zealots"
+      ]
+    }
+  ]
+}
