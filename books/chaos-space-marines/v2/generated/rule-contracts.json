@@ -45041,6 +45041,440 @@
         ]
       }
     },
+    "detachment-renegade-warband:rule": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-renegade-warband:rule",
+      "ownerId": "detachment-renegade-warband",
+      "sourceId": "detachment-renegade-warband:rule",
+      "kind": "DETACHMENT_RULE",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-renegade-warband",
+      "sourceFields": [
+        [
+          "content",
+          0,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "RECIPIENT",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "HERETIC ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "content",
+                0,
+                "text"
+              ],
+              "quote": "HERETIC ASTARTES models from your army lose the Dark Pacts ability."
+            }
+          },
+          "conditions": [],
+          "binding": "ROSTER_MODELS"
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-renegade-warband"
+          },
+          "evidence": {
+            "field": [
+              "ruleIds"
+            ],
+            "quote": "detachment-renegade-warband:rule",
+            "otherEntityId": "detachment-renegade-warband"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "recipient"
+      ],
+      "clauses": [
+        {
+          "id": "roster-clause-1",
+          "sourceFields": [
+            [
+              "content",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "content",
+              0,
+              "text"
+            ],
+            "quote": "HERETIC ASTARTES models from your army lose the Dark Pacts ability."
+          },
+          "roles": [
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "RECIPIENT",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "HERETIC ASTARTES"
+                },
+                "evidence": {
+                  "field": [
+                    "content",
+                    0,
+                    "text"
+                  ],
+                  "quote": "HERETIC ASTARTES models from your army lose the Dark Pacts ability."
+                }
+              },
+              "conditions": [],
+              "binding": "ROSTER_MODELS"
+            }
+          ],
+          "conditions": [],
+          "productClassification": "ROSTER_KNOWN",
+          "effect": {
+            "sourceClause": "HERETIC ASTARTES models from your army lose the Dark Pacts ability.",
+            "recipientRoleId": "recipient",
+            "parameters": {
+              "ability": {
+                "canonicalId": "army-rule-dark-pacts"
+              }
+            }
+          },
+          "executionImplemented": false,
+          "operation": "REMOVE_ABILITY",
+          "effectRecipientRoleIds": [
+            "recipient"
+          ]
+        },
+        {
+          "id": "roster-clause-2",
+          "sourceFields": [
+            [
+              "content",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "content",
+              0,
+              "text"
+            ],
+            "quote": "Ranged weapons equipped by HERETIC ASTARTES models from your army have the [ASSAULT] ability."
+          },
+          "roles": [
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "RECIPIENT",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "HERETIC ASTARTES"
+                },
+                "evidence": {
+                  "field": [
+                    "content",
+                    0,
+                    "text"
+                  ],
+                  "quote": "HERETIC ASTARTES models from your army lose the Dark Pacts ability."
+                }
+              },
+              "conditions": [],
+              "binding": "ROSTER_MODELS"
+            }
+          ],
+          "conditions": [],
+          "productClassification": "ROSTER_KNOWN",
+          "effect": {
+            "sourceClause": "Ranged weapons equipped by HERETIC ASTARTES models from your army have the [ASSAULT] ability.",
+            "recipientRoleId": "recipient",
+            "parameters": {
+              "ability": "ASSAULT",
+              "weaponMode": "ranged"
+            }
+          },
+          "executionImplemented": false,
+          "operation": "GRANT_WEAPON_ABILITY",
+          "effectRecipientRoleIds": [
+            "recipient"
+          ]
+        },
+        {
+          "id": "mustering-clause",
+          "sourceFields": [
+            [
+              "content",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "content",
+              0,
+              "text"
+            ],
+            "quote": "When mustering your army, you cannot use the Cults of the Dark Gods rule."
+          },
+          "roles": [
+            {
+              "id": "army",
+              "subject": "ROSTER",
+              "allegiance": "FRIENDLY",
+              "purpose": "RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "ROSTER",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "content",
+                    0,
+                    "text"
+                  ],
+                  "quote": "When mustering your army, you cannot use the Cults of the Dark Gods rule."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "productClassification": "DISPLAY_ONLY",
+          "effect": {
+            "sourceClause": "When mustering your army, you cannot use the Cults of the Dark Gods rule.",
+            "recipientRoleId": "army",
+            "canonicalRuleIds": [
+              "army-rule-cult-of-the-dark-gods"
+            ],
+            "scope": "SOURCE_BACKED_MUSTERING_RESTRICTION"
+          },
+          "executionImplemented": false
+        },
+        {
+          "id": "battle-clause-1",
+          "sourceFields": [
+            [
+              "content",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "content",
+              0,
+              "text"
+            ],
+            "quote": "At the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your Vendetta target, you can re-roll the Hit roll."
+          },
+          "roles": [
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "RECIPIENT",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "HERETIC ASTARTES"
+                    },
+                    "evidence": {
+                      "field": [
+                        "content",
+                        0,
+                        "text"
+                      ],
+                      "quote": "At the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your Vendetta target, you can re-roll the Hit roll."
+                    }
+                  },
+                  {
+                    "op": "NOT",
+                    "args": [
+                      {
+                        "predicate": "MODEL_KEYWORD",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "DAMNED"
+                        },
+                        "evidence": {
+                          "field": [
+                            "content",
+                            0,
+                            "text"
+                          ],
+                          "quote": "At the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your Vendetta target, you can re-roll the Hit roll."
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "conditions": [],
+              "binding": "ROSTER_MODELS"
+            },
+            {
+              "id": "enemy-target",
+              "subject": "UNIT",
+              "allegiance": "ENEMY",
+              "purpose": "TARGET",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "content",
+                    0,
+                    "text"
+                  ],
+                  "quote": "At the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your Vendetta target, you can re-roll the Hit roll."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "ruleActive:detachment-renegade-warband:rule:battle-clause-1",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "content",
+                  0,
+                  "text"
+                ],
+                "quote": "At the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your Vendetta target, you can re-roll the Hit roll."
+              },
+              "roleId": "recipient"
+            }
+          ],
+          "productClassification": "BATTLE_ONLY",
+          "effect": {
+            "sourceClause": "At the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your Vendetta target, you can re-roll the Hit roll.",
+            "recipientRoleId": "recipient"
+          },
+          "executionImplemented": false
+        },
+        {
+          "id": "battle-clause-2",
+          "sourceFields": [
+            [
+              "content",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "content",
+              0,
+              "text"
+            ],
+            "quote": "In your Movement phase, each time you set up or select a HERETIC ASTARTES unit (excluding Battle-shocked units) from your army to move, it can choose to Default to Doctrine. If it does, it must first take a Battle-shock test. Then, select one of the following:\n- Until the end of the turn, this unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n- Until the end of the turn, this unit is eligible to declare a charge in a turn in which it Advanced."
+          },
+          "roles": [
+            {
+              "id": "acting-unit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "RECIPIENT",
+              "selector": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "HERETIC ASTARTES"
+                },
+                "evidence": {
+                  "field": [
+                    "content",
+                    0,
+                    "text"
+                  ],
+                  "quote": "In your Movement phase, each time you set up or select a HERETIC ASTARTES unit (excluding Battle-shocked units) from your army to move, it can choose to Default to Doctrine. If it does, it must first take a Battle-shock test. Then, select one of the following:\n- Until the end of the turn, this unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n- Until the end of the turn, this unit is eligible to declare a charge in a turn in which it Advanced."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "ruleActive:detachment-renegade-warband:rule:battle-clause-2",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "content",
+                  0,
+                  "text"
+                ],
+                "quote": "In your Movement phase, each time you set up or select a HERETIC ASTARTES unit (excluding Battle-shocked units) from your army to move, it can choose to Default to Doctrine. If it does, it must first take a Battle-shock test. Then, select one of the following:\n- Until the end of the turn, this unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n- Until the end of the turn, this unit is eligible to declare a charge in a turn in which it Advanced."
+              },
+              "roleId": "acting-unit"
+            }
+          ],
+          "productClassification": "BATTLE_ONLY",
+          "effect": {
+            "sourceClause": "In your Movement phase, each time you set up or select a HERETIC ASTARTES unit (excluding Battle-shocked units) from your army to move, it can choose to Default to Doctrine. If it does, it must first take a Battle-shock test. Then, select one of the following:\n- Until the end of the turn, this unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n- Until the end of the turn, this unit is eligible to declare a charge in a turn in which it Advanced.",
+            "recipientRoleId": "acting-unit"
+          },
+          "executionImplemented": false
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "e77ea12d312f1bec6ea6632e102777792c06de38",
+        "sourceEvidence": [
+          {
+            "sourceEntityId": "detachment-renegade-warband:rule",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+            "location": "Detachment Rule under Renegade Warband",
+            "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ]
+      }
+    },
     "detachment-renegade-warband:enhancement:1": {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-renegade-warband:enhancement:1",
@@ -99074,6 +99508,14 @@
       },
       "memberOfSelectedUnit:detachment-cult-of-the-arkifane:rule": {
         "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      "ruleActive:detachment-renegade-warband:rule:battle-clause-1": {
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      "ruleActive:detachment-renegade-warband:rule:battle-clause-2": {
+        "contextLevel": "BATTLE",
         "valueType": "boolean"
       },
       "ruleActive:detachment-fellhammer-siege-host:rule": {

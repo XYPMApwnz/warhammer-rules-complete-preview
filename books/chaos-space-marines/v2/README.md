@@ -5,8 +5,9 @@ This is the source-first factual stage based on
 The subsequent semantic overlay uses the existing shared Rule Contract
 schema, binders and compatibility compiler. It is not wired into the Army Book,
 roster import or effect projection. No UI or production executable roster-effect
-declarations are included. The shared numeric MODEL characteristic domain now
-supports Wounds; only Living Carapace's previously blocked owner is lowered.
+declarations are included. The shared runtime now supports Wounds modifiers and
+canonical MODEL ability suppression. Living Carapace and
+Slaves to None are lowered; the specific-ability range blocker remains deferred.
 
 ## Accepted inputs and denominators
 
@@ -103,7 +104,7 @@ website are excluded. No FAQ creates an invented unique gameplay primary owner.
 Wounds modification, canonical ability removal, and a specific ability's range
 modification. It supplies no executable declarations and is not the current
 semantic blocker inventory. The generated Rule Contract census records the
-remaining two blockers after Wounds support.
+remaining specific-ability range blocker after Wounds and ability suppression.
 
 ## Build and verification
 
@@ -152,13 +153,13 @@ not come from legacy CSM contracts or compatibility answers.
 
 | Exclusive owner disposition | Count |
 |---|---:|
-| BUILT | 64 |
+| BUILT | 65 |
 | BATTLE_ONLY_NO_RUNTIME_NEEDED | 249 |
 | NOT_EFFECT_OR_PRESENTATION_ONLY | 227 |
-| BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY | 2 |
+| BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY | 1 |
 
 Both BUILT and battle-only owners have validated applicability contracts:
-**313 contracts total**. Battle-only contracts retain canonical text, source
+**314 contracts total**. Battle-only contracts retain canonical text, source
 evidence, selectors, roles, targets and explicit BATTLE prerequisites; they do
 not implement battle execution. BUILT does not imply executable roster effects
 at this stage. Corrections, source aliases, structured table children,
@@ -187,7 +188,22 @@ node books/chaos-space-marines/v2/rule-contract-qa.mjs
 node books/chaos-space-marines/v2/rule-contract-blocker-qa.mjs
 node books/shared/roster-v2/wounds-effects-qa.mjs
 node books/chaos-space-marines/v2/wounds-modifier-qa.mjs
+node books/shared/roster-v2/ability-suppression-qa.mjs
+node books/chaos-space-marines/v2/ability-suppression-qa.mjs
+node books/shared/army-book-app-v2/ability-presentation-browser-qa.mjs
 ```
+
+Slaves to None's exact current clause suppresses `army-rule-dark-pacts` on
+HERETIC ASTARTES MODEL scopes while Renegade Warband is selected. Its typed
+declaration preserves the separate ranged ASSAULT, mustering and battle-only
+clauses without executing them in this change. The focused capability probe
+lowers only suppression into the existing effect interpreter. Canonical facts
+and source memberships remain unchanged. Effective MODEL bags carry a scoped
+canonical suppression mask so static reference presentation cannot reintroduce
+the removed ability. Independently owned UNIT abilities remain separate.
+Synthetic guards cover identical display names with different canonical IDs,
+mixed profiles, physical duplicates, attachment/condition changes and a wrong-ID
+mutation. The shared renderer is exercised at desktop and 390×844.
 
 The semantic guard checks all MODEL scopes, context availability, physical
 identity rejection, source/owner mutations, battle-state isolation and

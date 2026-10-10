@@ -29,11 +29,25 @@ try{
       const {projectInstanceCards}=await import('/books/shared/army-book-app-v2/personal.mjs');
       const {createDatasheetPresenter}=await import('/books/shared/army-book-app-v2/datasheet-v1.mjs');
       const controls=[['uniform',[[5],[5],[5]]],['subset',[[5],[],[]]],['mixed-values',[[4],[5],[]]],
-        ['same-canonical-different-scope',[[],[4],[5]]],['duplicate-occurrences',[[5,5],[5,5],[5,5]]]];
+        ['same-canonical-different-scope',[[],[4],[5]]],['duplicate-occurrences',[[5,5],[5,5],[5,5]]],
+        ['suppressed-all',[[5],[5],[5]]],['suppressed-first',[[5],[5],[5]]],
+        ['suppressed-reference-all',[[5],[5],[5]]],['suppressed-reference-first',[[5],[5],[5]]],
+        ['suppressed-reference-gun',[[5],[5],[5]]]];
       const cases=[];
       for(const [name,values]of controls){
         const f=createSyntheticPersonalFixture('generic-scope',true);
         f.effective.profiles.forEach((profile,index)=>profile.abilities=values[index].map(value=>({canonicalId:'canonical-defence',name:'Same caption',parameters:{value}})));
+        if(name.startsWith('suppressed-'))f.effective.profiles.forEach((profile,index)=>{
+          if(name.endsWith('-all')||index===(name.endsWith('-gun')?1:0))profile.suppressedAbilityIds=['canonical-defence'];
+        });
+        if(name.startsWith('suppressed-reference-')){
+          const fieldId='canonical-membership::/text',label='Canonical source caption';
+          const reference={id:'canonical-membership',kind:'RULE_REFERENCE',parentId:f.unit.canonicalUnitId,
+            fields:[{id:fieldId,source:{entityId:'canonical-membership',path:'/text'},label:'text',value:label}],children:[]};
+          f.cards.set(reference.id,reference);f.cards.get(f.unit.canonicalUnitId).children.push(reference.id);
+          f.payload.datasheetPresentation.referenceBindings={fields:{[fieldId]:[
+            {targetId:'canonical-defence',parameters:{value:5},group:'ARMY RULES',start:0,end:label.length}]}};
+        }
         const el=(tag,classes='',text)=>{const node=document.createElement(tag);node.className=classes;if(text!==undefined)node.textContent=text;return node;};
         const factValue=(tag,field)=>el(tag,'',String(field.displayValue??field.value));
         const anchor=(label,id)=>{const node=el('a','',label);node.dataset.targetId=id;return node;};
@@ -54,6 +68,16 @@ try{
     });
     for(const control of cases){
       assert.equal(new Set(control.rows.map(row=>row.identity)).size,control.rows.length);
+      if(control.name==='suppressed-reference-gun'){
+        assert.equal(control.rows.length,2);assert.ok(control.rows.every(row=>row.surface==='PROFILE'));
+        assert.ok(!control.rows.some(row=>row.scope===control.scopeIds[1]));
+        assert.ok(control.rows.some(row=>row.profile===control.profileIds[1]&&row.scope===control.scopeIds[2]));continue;
+      }
+      if(control.name.startsWith('suppressed-')&&control.name.endsWith('-all')){assert.equal(control.rows.length,0);continue;}
+      if(control.name.startsWith('suppressed-')&&control.name.endsWith('-first')){
+        assert.equal(control.rows.length,2);assert.ok(control.rows.every(row=>row.surface==='PROFILE'));
+        assert.ok(control.rows.every(row=>row.profile!==control.profileIds[0]&&row.params.value===5));continue;
+      }
       if(['uniform','duplicate-occurrences'].includes(control.name)){assert.equal(control.rows.length,1);assert.equal(control.rows[0].surface,'CORE');assert.equal(control.rows[0].scopes.length,3);}
       else{
         assert.equal(control.rows.length,control.name==='subset'?1:2);

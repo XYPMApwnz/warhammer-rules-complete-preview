@@ -239,7 +239,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const children=(card.children || []).flatMap(id=>variants?.get(id) || [cards.get(id)]);
     const abilityPresentation=instanceId?projectAbilityPresentation({instanceId,
       profiles:children.filter(child=>child.kind==='PROFILE').map(child=>({id:child.id,scopeId:child.scopeId,
-        quantity:child.rosterQuantity,abilities:child.effectiveAbilities||child.rosterAbilities||[]})),
+        quantity:child.rosterQuantity,abilities:child.effectiveAbilities||child.rosterAbilities||[],
+        suppressedAbilityIds:child.suppressedAbilityIds||[]})),
       unitAbilities:card.rosterUnitAbilities||[],
       references:collectAbilityReferences(children.filter(child=>child.kind==='RULE_REFERENCE'),config.referenceBindings),
       applied:roster.effective(instanceId).applied||[]}):null;

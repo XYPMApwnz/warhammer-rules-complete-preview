@@ -33,8 +33,9 @@ export function projectAbilityPresentation({instanceId,profiles,unitAbilities=[]
   const bags=new Map(active.map(profile=>[scopeKey(instanceId,profile),new Map()]));
   for(const profile of active) {
     const bag=bags.get(scopeKey(instanceId,profile));
+    const permitted=ability=>!profile.suppressedAbilityIds?.includes(ability.canonicalId);
     // References without a typed runtime occurrence are unchanged static facts.
-    for(const ref of coreReferences.filter(ref=>!ref.runtimeEntryId&&!ref.legacyValue))bag.set(factKey(ref),clone(ref));
+    for(const ref of coreReferences.filter(ref=>!ref.runtimeEntryId&&!ref.legacyValue&&permitted(ref)))bag.set(factKey(ref),clone(ref));
     for(const ability of profile.abilities||[]) {
       let resolved=ability.canonicalId?{...clone(ability),parameters:abilityParameters(ability)}:intrinsic.get(ability.id);
       if(!resolved&&ability.value!==undefined) {
@@ -44,7 +45,7 @@ export function projectAbilityPresentation({instanceId,profiles,unitAbilities=[]
         const canonicalId=reference?.canonicalId||legacyOperations[change?.operation];
         if(canonicalId)resolved={canonicalId,parameters:abilityParameters(ability),name:ability.name};
       }
-      if(!resolved||resolved.group&&resolved.group!=='CORE ABILITIES')continue;
+      if(!resolved||!permitted(resolved)||resolved.group&&resolved.group!=='CORE ABILITIES')continue;
       const matching=coreReferences.find(ref=>factKey(ref)===factKey(resolved));
       const value={...clone(resolved),...(matching?{label:matching.label}:{})};
       bag.set(factKey(value),value);
@@ -67,9 +68,21 @@ export function projectAbilityPresentation({instanceId,profiles,unitAbilities=[]
     const entry=identify({...clone(ability),subject:'UNIT',recipientScopes:[JSON.stringify([instanceId,'UNIT'])]});
     if(!seen.has(entry.identity)){core.push(entry);seen.add(entry.identity);}
   }
+  const otherReferences=[];
+  for(const reference of references.filter(ref=>ref.group!=='CORE ABILITIES')) {
+    const recipients=active.filter(profile=>!profile.suppressedAbilityIds?.includes(reference.canonicalId));
+    if(recipients.length===active.length)otherReferences.push(reference);
+    else for(const profile of recipients) {
+      const scope=scopeKey(instanceId,profile);
+      const entries=model.get(scope),entry=identify({...clone(reference),subject:'MODEL',recipientScopes:[scope]});
+      const existing=entries.findIndex(ability=>ability.identity===entry.identity);
+      if(existing<0)entries.push(entry);
+      else entries[existing]={...entries[existing],...entry};
+    }
+  }
   return {core,profiles:active.map(profile=>({id:profile.id,scopeId:profile.scopeId||null,
     abilities:model.get(scopeKey(instanceId,profile))})),
-    otherReferences:references.filter(ref=>ref.group!=='CORE ABILITIES')};
+    otherReferences};
 }
 
 export function abilityPresentationLabel(ability) {

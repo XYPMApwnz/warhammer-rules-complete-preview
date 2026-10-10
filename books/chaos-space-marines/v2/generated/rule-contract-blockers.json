@@ -35,43 +35,6 @@
           ]
         }
       ]
-    },
-    {
-      "ruleId": "detachment-renegade-warband:rule",
-      "status": "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY",
-      "reason": "Source-required permanent canonical ability removal is absent from the current shared runtime domain; supported and battle-only remainder remains canonical text.",
-      "evidence": [
-        {
-          "field": [
-            "content",
-            0,
-            "text"
-          ],
-          "quote": "HERETIC ASTARTES models from your army lose the Dark Pacts ability.\nRanged weapons equipped by HERETIC ASTARTES models from your army have the [ASSAULT] ability.\nWhen mustering your army, you cannot use the Cults of the Dark Gods rule.\nVendetta\nAt the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your Vendetta target, you can re-roll the Hit roll.\nTwisted Doctrine\nIn your Movement phase, each time you set up or select a HERETIC ASTARTES unit (excluding Battle-shocked units) from your army to move, it can choose to Default to Doctrine. If it does, it must first take a Battle-shock test. Then, select one of the following:\n- Until the end of the turn, this unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n- Until the end of the turn, this unit is eligible to declare a charge in a turn in which it Advanced."
-        }
-      ],
-      "blockers": [
-        {
-          "missingCapability": "CANONICAL_ABILITY_REMOVAL",
-          "subject": "MODEL",
-          "recipient": "Every eligible HERETIC ASTARTES MODEL/profile in physical roster instances",
-          "condition": "Selected Renegade Warband Detachment",
-          "expectedRosterEffect": "Remove canonical Dark Pacts ability while retaining source facts",
-          "sourceClause": "HERETIC ASTARTES models from your army lose the Dark Pacts ability.",
-          "whyExistingLanguageInsufficient": "Existing REMOVE_KEYWORD removes a keyword, not an ability; GRANT_ABILITY cannot express canonical ability subtraction.",
-          "evidence": {
-            "field": [
-              "content",
-              0,
-              "text"
-            ],
-            "quote": "HERETIC ASTARTES models from your army lose the Dark Pacts ability."
-          },
-          "affectedCanonicalAbilityIds": [
-            "army-rule-dark-pacts"
-          ]
-        }
-      ]
     }
   ]
 }

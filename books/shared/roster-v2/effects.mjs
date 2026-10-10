@@ -1,7 +1,7 @@
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value => structuredClone(value);
-const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC','CONTRIBUTE_WEAPON_PROFILE']);
+const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','REMOVE_ABILITY','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC','CONTRIBUTE_WEAPON_PROFILE']);
 const bindingSubjects = {SOURCE_MODEL:'MODEL',SOURCE_UNIT:'UNIT',SOURCE_UNIT_MODELS:'MODEL',SOURCE_FORMED_MODELS:'MODEL',LEADERS_OF_SOURCE:'MODEL',ROSTER_UNITS:'UNIT',ROSTER_MODELS:'MODEL'};
 // Current Core 02.02.01: threshold/AP improvements are signed arithmetic;
 // bounds apply to the combined result, never to each modifier contribution.
@@ -76,6 +76,13 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
       if (effect.operation === 'REMOVE_KEYWORD' && (!['MODEL','UNIT'].includes(effect.targetSubject) || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid scoped keyword removal');
       if (effect.operation === 'GRANT_MODEL_ABILITY' && (effect.targetSubject !== 'MODEL' || effect.ability?.name !== 'Feel No Pain' || !Number.isInteger(effect.ability.value) || effect.ability.value < 2 || effect.ability.value > 6)) throw new TypeError('Invalid MODEL ability');
       if (effect.operation === 'GRANT_ABILITY') validateAbilityGrant(book,effect);
+      if (effect.operation === 'REMOVE_ABILITY') {
+        const reference=book.rosterAbilityReferences?.[effect.ability?.canonicalId];
+        if(effect.targetSubject!=='MODEL' || effect.unitScope!==undefined ||
+            !reference || reference.id!==effect.ability.canonicalId ||
+            Object.keys(effect.ability).some(key=>key!=='canonicalId'))
+          throw new TypeError('Unresolved canonical MODEL ability suppression');
+      }
       if (effect.operation === 'GRANT_WEAPON_ABILITY' && (typeof effect.ability !== 'string' || !effect.ability)) throw new TypeError('Invalid weapon ability');
       if (effect.operation==='CONTRIBUTE_WEAPON_PROFILE') {
         const weapon=records.get(effect.weaponProfileId);
@@ -268,7 +275,8 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       object[key] = clone(after);
       target.unit.applied.push({ruleId:rule.id,clauseId:clause.id,effectId:effect.id,sourceInstanceId:source?.instanceId || null,targetInstanceId:target.unit.instanceId,
         targetModelInstanceId:targetModelId || null,targetProfileId:targetWeaponId ? weaponScope?.canonicalProfileId || null : target.model?.canonicalProfileId || null,targetCompositionId:targetWeaponId ? weaponScope?.scopeId || null : target.model?.scopeId || null,targetWeaponProfileId:targetWeaponId || null,operation:effect.operation,field:key,before,after:clone(after),sourceFields:clone(effect.sourceFields),lifetime:effect.lifetime,
-        ...(effect.operation==='GRANT_ABILITY'?{targetAbilityId:effect.ability.canonicalId,abilityParameters:clone(effect.ability.parameters)}:{}),
+        ...(['GRANT_ABILITY','REMOVE_ABILITY'].includes(effect.operation)?{targetAbilityId:effect.ability.canonicalId,
+          ...(effect.operation==='GRANT_ABILITY'?{abilityParameters:clone(effect.ability.parameters)}:{})}:{}),
         ...(effect.canonicalContribution?{canonicalContribution:clone(effect.canonicalContribution)}:{})});
       return target.unit.applied.at(-1);
     };
@@ -346,6 +354,15 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
         }
         if (group) group.abilities=grantedAbilities(group.abilities,ability);
       }
+    }
+    else if (effect.operation === 'REMOVE_ABILITY') {
+      // A mask belongs to this effective MODEL scope, never to the canonical
+      // rule or another component. Presentation also consumes it for static
+      // reference occurrences which do not have a runtime ability entry.
+      const canonicalId=effect.ability.canonicalId;
+      target.model.suppressedAbilityIds=[...new Set([...(target.model.suppressedAbilityIds||[]),canonicalId])].sort();
+      mutate(target.model,'abilities',target.model.abilities.filter(ability=>ability.canonicalId!==canonicalId),
+        target.model.modelInstanceId,undefined,undefined,true);
     }
     else if (effect.operation === 'GRANT_MODEL_ABILITY') {
       const existing = target.model.abilities.find(a=>a.name === effect.ability.name), next = clone(target.model.abilities.filter(a=>a.name !== effect.ability.name));
@@ -433,11 +450,18 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
   const contributions=pending.filter(p=>p.effect.operation==='CONTRIBUTE_WEAPON_PROFILE')
     .sort((a,b)=>a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') || a.source.instanceId.localeCompare(b.source.instanceId,'en'));
   for(const item of contributions)for(const target of targets(item.source,item.effect,item.rule))apply(item,target);
-  const remaining=pending.filter(p=>!keywordOperations.has(p.effect.operation) && p.effect.operation!=='CONTRIBUTE_WEAPON_PROFILE');
+  const remaining=pending.filter(p=>!keywordOperations.has(p.effect.operation) &&
+    !['CONTRIBUTE_WEAPON_PROFILE','REMOVE_ABILITY'].includes(p.effect.operation));
   if(remaining.some(p=>numericDomain[p.effect.field] || p.effect.canonicalContribution))
     remaining.sort((a,b)=>(numericDomain[a.effect.field]&&a.effect.mode==='SET'?0:1)-(numericDomain[b.effect.field]&&b.effect.mode==='SET'?0:1) ||
       a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') || (a.source?.instanceId||'').localeCompare(b.source?.instanceId||'','en'));
   for (const item of remaining) for (const target of targets(item.source,item.effect,item.rule)) apply(item,target);
+  // Suppression wins over grants for the same canonical ability while active.
+  // Rebuild starts from immutable facts, so removing its condition restores it.
+  const suppressions=pending.filter(p=>p.effect.operation==='REMOVE_ABILITY').sort((a,b)=>
+    a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') ||
+    (a.source?.instanceId||'').localeCompare(b.source?.instanceId||'','en'));
+  for(const item of suppressions)for(const target of targets(item.source,item.effect,item.rule))apply(item,target);
   for(const [object,fields]of numericValues)for(const [field,value]of fields)for(const row of value.rows)row.finalValue=clone(object[field]);
   for (const unit of result.units) {
     unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason)===i);
