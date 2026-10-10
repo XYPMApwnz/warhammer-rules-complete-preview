@@ -100,6 +100,19 @@ export function validateRoster(book, state, policies) {
     assert(unit.warlord === null || typeof unit.warlord === 'boolean', 'Invalid imported Warlord state');
     assert(Array.isArray(unit.enhancementIds) && new Set(unit.enhancementIds).size === unit.enhancementIds.length, 'Invalid Enhancement ownership');
     for (const id of unit.enhancementIds) assert(records.get(id)?.kind === 'ENHANCEMENT' && state.detachmentIds.includes(records.get(id)?.parentId), 'Unresolved Enhancement context');
+    // Optional exact bearer selections refer to existing physical composition
+    // scopes. They supplement ownership; they never assign an Enhancement.
+    if (unit.enhancementAssignments !== undefined) {
+      assert(Array.isArray(unit.enhancementAssignments), 'Invalid Enhancement bearer assignments');
+      const assigned = new Set();
+      for (const assignment of unit.enhancementAssignments) {
+        assert(assignment && Object.keys(assignment).every(key => ['enhancementId','modelScopeId'].includes(key)) &&
+          unit.enhancementIds.includes(assignment.enhancementId) && !assigned.has(assignment.enhancementId) &&
+          typeof assignment.modelScopeId === 'string' && assignment.modelScopeId.length,
+          'Invalid or duplicate Enhancement bearer assignment');
+        assigned.add(assignment.enhancementId);
+      }
+    }
   }
   const warlords = state.units.filter(u => u.warlord === true);
   assert(warlords.length <= 1 && (warlords[0]?.instanceId || null) === state.warlordInstanceId, 'Ambiguous imported Warlord identity');
