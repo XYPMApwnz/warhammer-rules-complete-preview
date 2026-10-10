@@ -24,6 +24,30 @@ export function groupDisplayRecords(records,identity) {
   }
   return [...groups.values()];
 }
+/** Share an effective annotation only when the same typed effect/source and
+ * final presentation apply to EVERY represented physical profile scope.
+ * Missing execution provenance fails closed; captions/text alone are not IDs. */
+export function uniformProfileAnnotations(members,applied=[]) {
+  if(members.length<2)return [];
+  const annotations=members.map(card=>card.fields.flatMap(field=>{
+    const address=path(field);
+    if(!address?.startsWith('/rosterMetrics/'))return [];
+    const metric=address.slice('/rosterMetrics/'.length);
+    const sources=applied.filter(change=>change.operation==='MODIFY_RULE_METRIC'&&change.field===metric&&
+      change.targetInstanceId===card.instanceId&&
+      (!change.targetProfileId||change.targetProfileId===card.id)&&
+      (!change.targetCompositionId||change.targetCompositionId===card.scopeId));
+    if(!sources.length||sources.some(change=>['ruleId','clauseId','effectId'].some(name=>typeof change[name]!=='string'||!change[name])))return [];
+    const effects=sources.map(change=>[change.operation,change.field,change.ruleId,change.clauseId,change.effectId,
+      change.sourceInstanceId??null,change.sourceFields,change.lifetime]).sort((a,b)=>key(a).localeCompare(key(b)));
+    const identity=key([address,effects,field.value,value(field),field.label]);
+    return [{identity,card,field}];
+  }));
+  return annotations[0].flatMap(annotation=>{
+    const matches=annotations.map(items=>items.filter(item=>item.identity===annotation.identity));
+    return matches.every(items=>items.length===1)?[{identity:annotation.identity,field:annotation.field,members:matches.flat()}]:[];
+  });
+}
 const selectionIdentity=selection=>key([...(selection.canonicalProfileIds||[]).map(id=>['WEAPON',id]),
   ...(selection.canonicalEquipmentIds||[]).map(id=>['EQUIPMENT',id,selection.canonicalFieldPaths?.[id]||[]])].sort((a,b)=>key(a).localeCompare(key(b))));
 /** A selection may reference alternate profiles of ONE item. Its count is not

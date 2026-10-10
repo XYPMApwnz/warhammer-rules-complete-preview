@@ -11,7 +11,7 @@ import {buildApp as buildAm} from '../../adeptus-mechanicus/v2/app-build.mjs';
 import {effectiveIntegrationFixture} from '../../adeptus-mechanicus/v2/roster-effective-qa.mjs';
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const baselineHead='d087cfbadab574f55a7e525c03303a18adb7ef6b';
+const baselineHead=process.env.PERSONAL_DATASHEET_BASELINE_HEAD||'d087cfbadab574f55a7e525c03303a18adb7ef6b';
 const syntheticOnly=process.argv.includes('--synthetic-only');
 const out=process.env.ARMY_APP_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/effective-datasheet-presentation-d087';
 fs.mkdirSync(out,{recursive:true});
@@ -125,6 +125,9 @@ async function effectiveDisplayControls(page,army,device){
       cases.push({name,expectedProfiles:profiles,expectedWeapons:weapons,profiles:root.querySelectorAll('.statline').length,
         weapons:root.querySelectorAll('.weapon-row:not(.weapon-head)').length,rows,
         modelBreakdowns:[...root.querySelectorAll('.model-profile .ds-modifier-breakdown')].map(node=>node.textContent),
+        annotations:[...root.querySelectorAll('.ds-effective-metric')].map(node=>({text:node.textContent,shared:!!node.dataset.profileAnnotationIdentity,
+          scopes:node.dataset.recipientScopes?JSON.parse(node.dataset.recipientScopes):null})),
+        scopeHeadings:[...root.querySelectorAll('.model-profile .ds-composition-scope')].map(node=>node.textContent),
         overflow:document.documentElement.scrollWidth>innerWidth+1});
       layout.destroy();root.remove();
     }
@@ -141,6 +144,14 @@ async function effectiveDisplayControls(page,army,device){
     }
     if(control.name==='different-loadouts')assert.equal(control.rows.length,4,'Same model role, two explicit loadouts remain separate');
     if(control.name==='equal-final-different-bases')assert.deepEqual(control.modelBreakdowns,['4" + 2','5" + 1'],'Equal final stats must not conflate different scoped base/modifier traces');
+    if(control.name.includes('annotation')){
+      const uniform=control.name==='uniform-annotations',partial=control.name==='partial-annotation-applicability';
+      assert.equal(control.annotations.length,uniform?1:partial?2:3,control.name+' visible annotation count');
+      assert.equal(control.annotations.filter(item=>item.shared).length,uniform?1:0,control.name+' shared surface');
+      assert.equal(control.scopeHeadings.length,uniform?0:partial?2:3,control.name+' only non-uniform scopes need captions');
+      if(uniform)assert.equal(control.annotations[0].scopes.length,3,'Shared annotation retains every exact recipient scope');
+      if(control.name==='different-annotation-values')assert.ok(control.annotations.some(item=>item.text.includes('+2"')));
+    }
   }
   syntheticResults.push({army,device,effectivePresentationControls:cases});
 }
@@ -270,6 +281,10 @@ async function verifyState(page,army,device,state,label,{load=true,screenshots=f
     if(label==='source-import'&&unit.canonicalUnitId==='unit-deathshroud-terminators'){
       assert.ok(observed.weapons.every(row=>!/DEVASTATING WOUNDS/.test(row.text)),description+' Furnace owner leakage');
       assert.equal(observed.statlines,1,description+' identical Champion/ordinary stats must render once');
+      const annotations=await page.locator('main .ds-effective-profile-group > .ds-effective-metric').allTextContents();
+      assert.deepEqual(annotations,['Contagion Range: +3" (maximum 12")'],description+' one uniform metric on the merged profile');
+      assert.equal(await page.locator('main .ds-effective-profile-group .model-profile .ds-effective-metric').count(),0,description+' no internal scope annotation duplicates');
+      assert.equal(await page.locator('main .ds-effective-profile-group .model-profile .ds-composition-scope').count(),0,description+' no empty internal annotation headings');
       assert.equal(observed.weapons.length,3,description+' one ranged and two distinct melee modes');
       assert.match(observed.composition[0],/2 × Plaguespurt gauntlet/);
       assert.match(observed.composition[0],/1 × Icon of Despair/);

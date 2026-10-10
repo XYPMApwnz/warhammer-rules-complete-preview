@@ -1,7 +1,7 @@
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
 import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
-import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition} from './effective-datasheet-presentation.mjs';
+import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations} from './effective-datasheet-presentation.mjs';
 const sectionRoles = new Map([
   ['ABILITIES','abilities'],['WARGEAR ABILITIES','wargear-abilities'],
   ['UNIT COMPOSITION','composition'],['WARGEAR OPTIONS','wargear'],
@@ -94,7 +94,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     node.append(anchor(abilityPresentationLabel({...ability,title:cards.get(ability.canonicalId)?.title}),ability.canonicalId,true));
     return node;
   };
-  const renderProfile=(card,{instanceId,inDialog=false,abilityPresentation}={})=>{
+  const metricNode=field=>{const metric=el('p','ds-effective-metric');metric.append(el('b','',field.label+': '),factValue('span',field));return metric;};
+  const renderProfile=(card,{instanceId,inDialog=false,abilityPresentation,sharedMetricFields=new Set()}={})=>{
     const box=identity(el('div','model-profile'),card,instanceId),used=new Set();
     const caption=scopeCaption(card);if(caption)box.append(el('h5','ds-composition-scope',caption));
     const titleField=card.fields.find(f=>f.presentation==='heading');if(titleField){box.append(factValue('h5',titleField));used.add(titleField.id);}
@@ -109,8 +110,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       if(abilityPresentation.length&&!caption&&!titleField)box.prepend(el('h5','ds-composition-scope',single(card,'name')?.value||cards.get(card.parentId).title));
       for(const ability of abilityPresentation){const pill=el('div','ds-granted-ability');pill.append(effectiveAbilityNode(ability));box.append(pill);}
     }else for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterAbilities/'))){const pill=el('div','ds-granted-ability');if(field.value?.value!==undefined)pill.append(el('b','',field.label.replace(/:\s*$/,'')+' '));pill.append(factValue('span',field));box.append(pill);used.add(field.id);}
-    for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterMetrics/'))){
-      const metric=el('p','ds-effective-metric');metric.append(el('b','',field.label+': '),factValue('span',field));box.append(metric);
+    for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterMetrics/')&&!sharedMetricFields.has(f.id))){
+      box.append(metricNode(field));
     }
     for(const id of card.children || []){
       const child=cards.get(id);
@@ -312,6 +313,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const modelGroups=instanceId?groupDisplayRecords(modelCards,child=>profileDisplayKey(child,boundFields)):modelCards.map(child=>({members:[child]}));
     for(const displayGroup of modelGroups){
       const grouped=instanceId&&displayGroup.members.length>1;
+      const sharedAnnotations=grouped?uniformProfileAnnotations(displayGroup.members,roster.effective(instanceId).applied):[];
       const wrapper=grouped?el('div','ds-effective-profile-group'):profile;
       if(grouped){
         const names=[...new Set(displayGroup.members.map(member=>member.presentationScope?.label||single(member,'name')?.value||card.title))];
@@ -326,13 +328,18 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       })).size>1).map(pointerKey):[];
       for(const [memberIndex,child]of displayGroup.members.entries()){
       const planned=abilityPresentation?.profiles.find(item=>item.id===child.id&&item.scopeId===(child.scopeId||null));
-      const view=renderProfile(child,{instanceId,inDialog,abilityPresentation:planned?.abilities}),bases=[...view.querySelectorAll('.profile-base')];
+      const sharedMetricFields=new Set(sharedAnnotations.flatMap(annotation=>annotation.members.filter(member=>member.card===child).map(member=>member.field.id)));
+      const view=renderProfile(child,{instanceId,inDialog,abilityPresentation:planned?.abilities,sharedMetricFields}),bases=[...view.querySelectorAll('.profile-base')];
       if(grouped){
         const line=view.querySelector('.statline');
         if(!memberIndex){
           // Equal effective values can have different base/modifier traces.
           // Only share a breakdown when it is also identical for all scopes.
           [...line.children].forEach((stat,index)=>{if(scopedBreakdowns.includes(pointerKey(profileStatFields(child)[index])))stat.querySelector('.ds-modifier-breakdown')?.remove();});wrapper.append(line);
+          for(const annotation of sharedAnnotations){
+            const node=metricNode(annotation.field);node.dataset.profileAnnotationIdentity=annotation.identity;
+            node.dataset.recipientScopes=JSON.stringify(annotation.members.map(({card})=>[card.id,card.scopeId||null]));wrapper.append(node);
+          }
         }else line.remove();
         for(const field of profileStatFields(child).filter(field=>scopedBreakdowns.includes(pointerKey(field)))){
           const trace=modifiers(child,field,instanceId);if(trace){const note=el('p','ds-effective-metric');note.append(el('b','',pointerKey(field)+': '),trace);view.append(note);}

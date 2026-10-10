@@ -1,7 +1,7 @@
 /** Independent synthetic display controls; no army factual imports. */
 import {createSyntheticPersonalFixture} from './personal-datasheet-qa.mjs';
 import {projectInstanceCards} from './personal.mjs';
-import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition} from './effective-datasheet-presentation.mjs';
+import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations} from './effective-datasheet-presentation.mjs';
 
 export function createEffectivePresentationFixtures(){
   const cases=[];
@@ -26,6 +26,18 @@ export function createEffectivePresentationFixtures(){
     f.effective.weapons[2].fields.find(field=>field.label==='abilities').value=['SUSTAINED HITS 1'];},1,3);
   add('equivalent-ability-order',f=>{f.effective.weapons.forEach((weapon,index)=>weapon.fields.find(field=>field.label==='abilities').value=
     index%2?['HEAVY','ASSAULT']:['ASSAULT','HEAVY']);},1,1);
+  const metrics=f=>{
+    f.effective.profiles.forEach(profile=>profile.metrics={detectionRange:{modifier:3,max:12}});
+    f.effective.applied=f.effective.profiles.map(profile=>({operation:'MODIFY_RULE_METRIC',field:'detectionRange',
+      ruleId:f.id('metric-rule'),clauseId:f.id('metric-clause'),effectId:f.id('metric-effect'),sourceInstanceId:null,
+      targetInstanceId:f.unit.instanceId,targetProfileId:profile.id,targetCompositionId:profile.scopeId,
+      before:{modifier:0},after:{modifier:3,max:12},sourceFields:[{entityId:f.id('metric-rule'),path:'/text'}],lifetime:'WHILE_IN_ROSTER'}));
+  };
+  add('uniform-annotations',metrics,1,1);
+  add('different-annotation-values',f=>{metrics(f);f.effective.profiles[1].metrics.detectionRange.modifier=2;},1,1);
+  add('partial-annotation-applicability',f=>{metrics(f);delete f.effective.profiles[1].metrics.detectionRange;},1,1);
+  add('different-annotation-owners',f=>{metrics(f);f.effective.applied[1].ruleId=f.id('other-metric-rule');},1,1);
+  add('missing-annotation-provenance',f=>{metrics(f);f.effective.applied=[];},1,1);
   return cases;
 }
 export async function runEffectivePresentationGuards(){
@@ -41,6 +53,18 @@ export async function runEffectivePresentationGuards(){
     assert.equal(weaponGroups.length,weapons,name+' final weapon partition');
     assert.deepEqual(modelGroups.flatMap(group=>group.members).map(card=>[card.id,card.scopeId]).sort(),modelCards.map(card=>[card.id,card.scopeId]).sort());
     assert.equal(weaponGroups.reduce((sum,group)=>sum+group.quantity,0),f.effective.weapons.reduce((sum,weapon)=>sum+weapon.physicalQuantity,0));
+    if(name.includes('annotation')){
+      const uniform=uniformProfileAnnotations(modelGroups[0].members,f.effective.applied);
+      assert.equal(uniform.length,name==='uniform-annotations'?1:0,name+' typed annotation intersection');
+      if(uniform.length){
+        assert.deepEqual(uniform[0].members.map(({card})=>[card.id,card.scopeId]),modelCards.map(card=>[card.id,card.scopeId]));
+        assert.equal(uniform[0].field.displayValue,'+3" (maximum 12")');
+        const altered=structuredClone(modelCards);altered[1].fields.find(field=>field.source.path==='/rosterMetrics/detectionRange').displayValue='A distinct display';
+        assert.equal(uniformProfileAnnotations(altered,f.effective.applied).length,0,'Different displayed content stays scoped');
+        const unrelated=structuredClone(modelCards);unrelated[1].fields.find(field=>field.source.path==='/rosterMetrics/detectionRange').source.path='/rosterMetrics/anotherMetric';
+        assert.equal(uniformProfileAnnotations(unrelated,f.effective.applied).length,0,'Equal titles/text cannot merge different typed metrics');
+      }
+    }
     const composition=projectSelectedComposition(f.unit,variants.get(f.unit.canonicalUnitId)[0].rosterComposition);
     assert.equal(composition.groups.reduce((sum,group)=>sum+group.quantity,0),f.unit.startingStrength);
     if(name==='identical'){
