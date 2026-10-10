@@ -12,7 +12,7 @@ const fixture=value=>({entities:[{id:'synthetic-rule',kind:'OTHER_RULE',parentId
   data:{text:'Synthetic source-backed effect'},ruleContract:{clauses:[{
     rosterClassification:'ROSTER_EXECUTABLE',rosterEffects:[value]}]}}]});
 assert.equal(validateRosterEffects(fixture(effect),()=>{}),true);
-assert.throws(()=>validateRosterEffects(fixture({...effect,field:'W'}),()=>{}),/Invalid characteristic/);
+assert.equal(validateRosterEffects(fixture({...effect,field:'W'}),()=>{}),true);
 assert.throws(()=>validateRosterEffects(fixture({...effect,operation:'REMOVE_ABILITY',
   ability:{canonicalId:'synthetic-ability',parameters:{}}}),()=>{}),/Malformed roster effect/);
 assert.throws(()=>validateRosterEffects(fixture({...effect,operation:'MODIFY_RULE_METRIC',
@@ -21,7 +21,6 @@ assert.throws(()=>validateRosterEffects(fixture({...effect,operation:'MODIFY_RUL
 const built=buildCSMContracts(),index=new Map(built.facts.entities.map(entity=>[entity.id,entity]));
 const blocked=[...built.classifications.values()].filter(row=>row.blockers);
 const required=new Map([
-  ['detachment-creations-of-bile:enhancement:2','WOUNDS_CHARACTERISTIC_MODIFIER'],
   ['detachment-renegade-warband:rule','CANONICAL_ABILITY_REMOVAL'],
   ['detachment-cult-of-the-arkifane:enhancement:4','SPECIFIC_CANONICAL_ABILITY_RANGE_MODIFIER']
 ]);
@@ -43,5 +42,8 @@ assert.equal(blocked.find(row=>row.ruleId==='detachment-renegade-warband:rule')
 // roster-effective capability consumer.
 assert.equal(built.classifications.get('detachment-pactbound-zealots:stratagem:1').status,
   'BATTLE_ONLY_NO_RUNTIME_NEEDED');
+assert.equal(built.classifications.get('detachment-creations-of-bile:enhancement:2').status,'BUILT');
+assert.equal(built.declarations.size,313);
+assert.equal([...built.classifications.values()].filter(row=>row.status==='BUILT').length,64);
 console.log(JSON.stringify({status:'PASS',sourceProvenBlockers:blocked.length,
-  independentSyntheticCapabilityProbes:4,newCapabilitiesImplemented:0}));
+  independentSyntheticCapabilityProbes:4,newCapabilitiesImplemented:1}));

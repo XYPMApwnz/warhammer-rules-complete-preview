@@ -2,19 +2,19 @@
   "schema": "csm-rule-contract-census/v2",
   "ruleOwners": 542,
   "counts": {
-    "BUILT": 63,
+    "BUILT": 64,
     "BATTLE_ONLY_NO_RUNTIME_NEEDED": 249,
-    "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY": 3,
+    "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY": 2,
     "NOT_EFFECT_OR_PRESENTATION_ONLY": 227
   },
-  "validContracts": 312,
+  "validContracts": 313,
   "unclassifiedRuleOwners": 0,
   "invalidRuleContracts": 0,
   "unboundRuleContracts": 0,
   "compatibility": {
     "MATCH": 24,
-    "CONDITIONAL": 6167,
-    "NO_MATCH": 10657,
+    "CONDITIONAL": 6170,
+    "NO_MATCH": 10708,
     "INVALID": 0,
     "UNRESOLVED": 0
   },
@@ -12790,31 +12790,14 @@
     },
     {
       "ruleId": "detachment-creations-of-bile:enhancement:2",
-      "status": "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY",
-      "reason": "Source-required permanent/roster-known effect cannot be represented by current shared operation domain. No runtime is implemented.",
+      "status": "BUILT",
+      "reason": "Source-backed bearer W +1 uses the shared numeric MODEL characteristic domain; Feel No Pain 5+ uses the existing ability grant. No battle activation is required.",
       "evidence": [
         {
           "field": [
             "text"
           ],
           "quote": "CHAOS LORD model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability."
-        }
-      ],
-      "blockers": [
-        {
-          "missingCapability": "WOUNDS_CHARACTERISTIC_MODIFIER",
-          "subject": "MODEL",
-          "recipient": "Exact physical bearer MODEL",
-          "condition": "Assigned Enhancement and CHAOS LORD MODEL prerequisite",
-          "expectedRosterEffect": "Base W +1; independent Feel No Pain 5+ remains source-backed",
-          "sourceClause": "Add 1 to the bearer’s Wounds characteristic",
-          "whyExistingLanguageInsufficient": "Shared MODIFY_STAT rejects W: accepted model fields are M/T/LD/OC/INSV. Existing fields cannot express W without misnaming the characteristic.",
-          "evidence": {
-            "field": [
-              "text"
-            ],
-            "quote": "Add 1 to the bearer’s Wounds characteristic"
-          }
         }
       ]
     },

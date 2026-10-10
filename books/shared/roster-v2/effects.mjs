@@ -10,7 +10,8 @@ const numericDomain = {
   WS:{field:'skill',weaponMode:'melee',min:2,max:6,suffix:'+'},
   range:{field:'range',weaponMode:'ranged',min:1,suffix:'"'},
   ap:{field:'ap',max:0,suffix:''},
-  INSV:{field:'INSV',subject:'MODEL',min:2,suffix:'+'}
+  INSV:{field:'INSV',subject:'MODEL',min:2,suffix:'+'},
+  W:{field:'W',subject:'MODEL',suffix:''}
 };
 const immutableCharacteristic=value=>['-','*','N/A'].includes(value);
 /** Canonical references and parameter declarations are supplied by the book.
@@ -59,7 +60,7 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
         if ((!domain && !['M','T','LD','OC','attacks','strength','damage'].includes(effect.field)) ||
             !['ADD','SET'].includes(effect.mode) || !Number.isFinite(effect.value) ||
             domain && (!Number.isSafeInteger(effect.value) || domain.subject && effect.targetSubject!==domain.subject ||
-              domain.weaponMode && effect.weaponMode!==domain.weaponMode || effect.field==='INSV' && effect.weaponMode!==undefined))
+              domain.weaponMode && effect.weaponMode!==domain.weaponMode || domain.subject==='MODEL' && effect.weaponMode!==undefined))
           throw new TypeError('Invalid characteristic operation');
       }
       if (effect.canonicalContribution) {
@@ -358,7 +359,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
         mutate(object,effect.field,{modifier:before.modifier + effect.value,...((effect.max || before.max) ? {max:Math.min(effect.max ?? Infinity,before.max ?? Infinity)} : {})},target.model?.modelInstanceId);
         target.unit=original;
       }
-    } else if (effect.operation === 'MODIFY_STAT' && ['M','T','LD','OC','INSV'].includes(effect.field)) {
+    } else if (effect.operation === 'MODIFY_STAT' && ['M','T','W','LD','OC','INSV'].includes(effect.field)) {
       const profile=target.model.profile,nested=Object.hasOwn(profile.stats || {},effect.field);
       if(nested && Object.hasOwn(profile,effect.field))throw new TypeError('Duplicate MODEL characteristic owner');
       const characteristics=nested?profile.stats:profile;

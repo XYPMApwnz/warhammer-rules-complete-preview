@@ -2,36 +2,6 @@
   "schema": "csm-rule-contract-blockers/v2",
   "owners": [
     {
-      "ruleId": "detachment-creations-of-bile:enhancement:2",
-      "status": "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY",
-      "reason": "Source-required permanent/roster-known effect cannot be represented by current shared operation domain. No runtime is implemented.",
-      "evidence": [
-        {
-          "field": [
-            "text"
-          ],
-          "quote": "CHAOS LORD model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability."
-        }
-      ],
-      "blockers": [
-        {
-          "missingCapability": "WOUNDS_CHARACTERISTIC_MODIFIER",
-          "subject": "MODEL",
-          "recipient": "Exact physical bearer MODEL",
-          "condition": "Assigned Enhancement and CHAOS LORD MODEL prerequisite",
-          "expectedRosterEffect": "Base W +1; independent Feel No Pain 5+ remains source-backed",
-          "sourceClause": "Add 1 to the bearer’s Wounds characteristic",
-          "whyExistingLanguageInsufficient": "Shared MODIFY_STAT rejects W: accepted model fields are M/T/LD/OC/INSV. Existing fields cannot express W without misnaming the characteristic.",
-          "evidence": {
-            "field": [
-              "text"
-            ],
-            "quote": "Add 1 to the bearer’s Wounds characteristic"
-          }
-        }
-      ]
-    },
-    {
       "ruleId": "detachment-cult-of-the-arkifane:enhancement:4",
       "status": "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY",
       "reason": "Source-required permanent/roster-known effect cannot be represented by current shared operation domain. No runtime is implemented.",

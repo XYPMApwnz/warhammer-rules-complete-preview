@@ -9623,6 +9623,249 @@
         ]
       }
     },
+    "detachment-creations-of-bile:enhancement:2": {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-creations-of-bile:enhancement:2",
+      "ownerId": "detachment-creations-of-bile",
+      "sourceId": "detachment-creations-of-bile:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "detachmentId": "detachment-creations-of-bile",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "allegiance": "FRIENDLY",
+          "purpose": "OWNER",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CHAOS LORD"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "CHAOS LORD model only."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "enhancementAssigned:detachment-creations-of-bile:enhancement:2",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "CHAOS LORD model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability."
+              },
+              "roleId": "owner"
+            }
+          ],
+          "binding": "SOURCE_MODEL"
+        }
+      ],
+      "conditions": [
+        {
+          "predicate": "DETACHMENT",
+          "subject": "ROSTER",
+          "contextLevel": "ROSTER",
+          "arguments": {
+            "id": "detachment-creations-of-bile"
+          },
+          "evidence": {
+            "field": [
+              "enhancementIds"
+            ],
+            "quote": "detachment-creations-of-bile:enhancement:2",
+            "otherEntityId": "detachment-creations-of-bile"
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "owner"
+      ],
+      "clauses": [
+        {
+          "id": "roster-clause-1",
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 1 to the bearer’s Wounds characteristic"
+          },
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHAOS LORD"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "CHAOS LORD model only."
+                }
+              },
+              "conditions": [
+                {
+                  "predicate": "FIELD",
+                  "subject": "MODEL",
+                  "contextLevel": "ROSTER",
+                  "arguments": {
+                    "key": "enhancementAssigned:detachment-creations-of-bile:enhancement:2",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "CHAOS LORD model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability."
+                  },
+                  "roleId": "owner"
+                }
+              ],
+              "binding": "SOURCE_MODEL"
+            }
+          ],
+          "conditions": [],
+          "productClassification": "ROSTER_KNOWN",
+          "effectRecipientRoleIds": [
+            "owner"
+          ],
+          "effect": {
+            "sourceClause": "Add 1 to the bearer’s Wounds characteristic",
+            "recipientRoleId": "owner",
+            "parameters": {
+              "field": "W",
+              "mode": "ADD",
+              "value": 1
+            }
+          },
+          "executionImplemented": false,
+          "operation": "MODIFY_STAT"
+        },
+        {
+          "id": "roster-clause-2",
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "the bearer has the Feel No Pain 5+ ability."
+          },
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "CHAOS LORD"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "CHAOS LORD model only."
+                }
+              },
+              "conditions": [
+                {
+                  "predicate": "FIELD",
+                  "subject": "MODEL",
+                  "contextLevel": "ROSTER",
+                  "arguments": {
+                    "key": "enhancementAssigned:detachment-creations-of-bile:enhancement:2",
+                    "equals": true
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "CHAOS LORD model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability."
+                  },
+                  "roleId": "owner"
+                }
+              ],
+              "binding": "SOURCE_MODEL"
+            }
+          ],
+          "conditions": [],
+          "productClassification": "ROSTER_KNOWN",
+          "effectRecipientRoleIds": [
+            "owner"
+          ],
+          "effect": {
+            "sourceClause": "the bearer has the Feel No Pain 5+ ability.",
+            "recipientRoleId": "owner",
+            "parameters": {
+              "ability": {
+                "name": "Feel No Pain",
+                "value": 5
+              }
+            }
+          },
+          "executionImplemented": false,
+          "operation": "GRANT_MODEL_ABILITY"
+        }
+      ],
+      "assignment": {
+        "ownerRoleId": "owner",
+        "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE",
+        "sourceEvidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "CHAOS LORD model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability."
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "e77ea12d312f1bec6ea6632e102777792c06de38",
+        "sourceEvidence": [
+          {
+            "sourceEntityId": "detachment-creations-of-bile:enhancement:2",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+            "location": "enhancements under Creations of Bile",
+            "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ]
+      }
+    },
     "detachment-creations-of-bile:enhancement:3": {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-creations-of-bile:enhancement:3",
@@ -97818,6 +98061,10 @@
         "valueType": "boolean"
       },
       "enhancementAssigned:detachment-creations-of-bile:enhancement:1": {
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      "enhancementAssigned:detachment-creations-of-bile:enhancement:2": {
         "contextLevel": "ROSTER",
         "valueType": "boolean"
       },

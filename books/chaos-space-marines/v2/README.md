@@ -4,8 +4,9 @@ This is the source-first factual stage based on
 `e77ea12d312f1bec6ea6632e102777792c06de38`. The factual foundation is unchanged.
 The subsequent semantic overlay uses the existing shared Rule Contract
 schema, binders and compatibility compiler. It is not wired into the Army Book,
-roster import or effect projection. No UI, executable roster-effect declarations,
-new shared primitives or changes to another book are included.
+roster import or effect projection. No UI or production executable roster-effect
+declarations are included. The shared numeric MODEL characteristic domain now
+supports Wounds; only Living Carapace's previously blocked owner is lowered.
 
 ## Accepted inputs and denominators
 
@@ -98,9 +99,11 @@ effective gameplay text. FAQ has 15 official owners plus two accepted
 secondary-only questions (`faq-3`, `faq-8`); general Core FAQ appended by the
 website are excluded. No FAQ creates an invented unique gameplay primary owner.
 
-`future-capability-gaps.json` records three deferred source consumers only:
+`future-capability-gaps.json` records the factual stage's three deferred source consumers:
 Wounds modification, canonical ability removal, and a specific ability's range
-modification. It supplies no executable declarations.
+modification. It supplies no executable declarations and is not the current
+semantic blocker inventory. The generated Rule Contract census records the
+remaining two blockers after Wounds support.
 
 ## Build and verification
 
@@ -149,13 +152,13 @@ not come from legacy CSM contracts or compatibility answers.
 
 | Exclusive owner disposition | Count |
 |---|---:|
-| BUILT | 63 |
+| BUILT | 64 |
 | BATTLE_ONLY_NO_RUNTIME_NEEDED | 249 |
 | NOT_EFFECT_OR_PRESENTATION_ONLY | 227 |
-| BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY | 3 |
+| BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY | 2 |
 
 Both BUILT and battle-only owners have validated applicability contracts:
-**312 contracts total**. Battle-only contracts retain canonical text, source
+**313 contracts total**. Battle-only contracts retain canonical text, source
 evidence, selectors, roles, targets and explicit BATTLE prerequisites; they do
 not implement battle execution. BUILT does not imply executable roster effects
 at this stage. Corrections, source aliases, structured table children,
@@ -182,6 +185,8 @@ node books/chaos-space-marines/v2/rule-contract-build.mjs
 node books/chaos-space-marines/v2/rule-contract-build.mjs --check
 node books/chaos-space-marines/v2/rule-contract-qa.mjs
 node books/chaos-space-marines/v2/rule-contract-blocker-qa.mjs
+node books/shared/roster-v2/wounds-effects-qa.mjs
+node books/chaos-space-marines/v2/wounds-modifier-qa.mjs
 ```
 
 The semantic guard checks all MODEL scopes, context availability, physical
@@ -192,9 +197,6 @@ legacy CSM, DG/AdMech facts or previous semantic artifacts.
 `generated/rule-contract-blockers.json` contains exact source clauses,
 recipients, conditions, evidence and existing-language limitations for:
 
-- `detachment-creations-of-bile:enhancement:2`: Living Carapace requires W +1
-  on the exact bearer. The current numeric domain rejects W. Its independently
-  expressible FNP clause remains canonical; the owner is explicitly blocked.
 - `detachment-renegade-warband:rule`: Slaves to None removes canonical
   `army-rule-dark-pacts` from eligible MODELS. Keyword removal cannot substitute
   for ability removal.
@@ -202,7 +204,27 @@ recipients, conditions, evidence and existing-language limitations for:
   3 inches to three existing Warpsmith ability identities. Weapon Range or
   unrelated rule metrics cannot substitute for a specific ability range.
 
-The independent blocker guard probes the unchanged shared effect validator with
-non-army synthetic controls. No capability is added. The battle-only Wounds
-increase in Eye of the Gods remains conditional source text, not a fourth
-roster-effective blocker. No other current-product capability gap was found.
+Living Carapace now has two source-bound roster-known clauses: W +1 and the
+existing Feel No Pain 5+ grant, both restricted to its assigned CHAOS LORD
+bearer MODEL. W uses the existing `MODIFY_STAT` numeric machinery, including
+flat and nested statlines. No CSM-specific shared branch or second effect path
+is introduced. A test-only bridge executes these two declarations on canonical
+CSM model/composition facts; it does not start CSM roster integration.
+
+The standalone shared Wounds guard loads no army factual data and tests mixed
+profiles, duplicate instances, remove/restore, attachment changes, numeric
+composition and immutable bases. Both it and the source-bound Living Carapace
+guard reject an intentionally mutated +2 modifier. The independent blocker
+guard still proves ability removal and specific ability-range modification are
+unsupported. Eye of the Gods' battle-only Wounds increase remains conditional
+source text and is not made executable.
+
+DG's 22-clause and AdMech's 43-clause effect regressions pass after this numeric
+extension. `qa:integration` still fails only the older CSM entry
+verification-status/artwork check; the same failure was reproduced from a
+fresh archive of the task's base commit, without applying this change.
+The broader legacy `qa:am` command also retains its isolated-source ownership
+test failure: its temporary fixture omits
+`books/shared/canonical-content-v2/effective-content.mjs`. That exact missing
+dependency was independently reproduced from the same clean base archive;
+AdMech V2 factual, contract and 43-clause effective-runtime guards pass.
