@@ -11,14 +11,14 @@ import {buildApp as buildAm} from '../../adeptus-mechanicus/v2/app-build.mjs';
 import {effectiveIntegrationFixture} from '../../adeptus-mechanicus/v2/roster-effective-qa.mjs';
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const baselineHead='43bd6aaf0e736682af17f75860c3d81bf3104bc1';
+const baselineHead='d087cfbadab574f55a7e525c03303a18adb7ef6b';
 const syntheticOnly=process.argv.includes('--synthetic-only');
-const out=process.env.ARMY_APP_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/personal-datasheet-parity-43bd6aaf';
+const out=process.env.ARMY_APP_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/effective-datasheet-presentation-d087';
 fs.mkdirSync(out,{recursive:true});
 const read=file=>JSON.parse(fs.readFileSync(path.join(repo,file),'utf8'));
 const payloads=new Map([['death-guard',buildDg()],['adeptus-mechanicus',buildAm()]]);
 const books=new Map([['death-guard',read('books/death-guard/v2/generated/rule-contract-effective.json')],['adeptus-mechanicus',read('books/adeptus-mechanicus/v2/generated/roster-runtime.json')]]);
-const baseline=new Map(['datasheet-v1.mjs','datasheet-v1.css','personal.mjs'].map(name=>['/books/shared/army-book-app-v2/'+name,
+const baseline=new Map(['datasheet-v1.mjs','datasheet-v1.css','datasheet-v1-layout.mjs','personal.mjs'].map(name=>['/books/shared/army-book-app-v2/'+name,
   execFileSync('git',['show',baselineHead+':books/shared/army-book-app-v2/'+name],{cwd:repo,maxBuffer:8*1024*1024})]));
 const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.woff2':'font/woff2'};
 const server=http.createServer((request,response)=>{
@@ -41,7 +41,12 @@ const wait=async page=>{await page.waitForFunction(()=>!!window.ArmyBookAppV2?.r
 const settle=async page=>{await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(image=>image.decode().catch(()=>{})));window.scrollTo({top:0,behavior:'instant'});});await page.waitForTimeout(50);};
 async function openPage(context,army,old=false){const page=await context.newPage();page.on('pageerror',error=>errors.push({army,baseline:old,error:error.message}));await page.goto(origin+(old?'/baseline':'')+`/books/${army}/v2/app.html`);await wait(page);return page;}
 async function snapshot(page){return page.locator('main .unit-card').evaluate(root=>{
-  const copy=root.cloneNode(true);copy.querySelectorAll('img').forEach(image=>image.removeAttribute('loading'));
+  const copy=root.cloneNode(true);copy.querySelectorAll('img').forEach(image=>{
+    image.removeAttribute('loading');const url=new URL(image.getAttribute('src'),location.href);
+    // The comparison server mounts the same tree below /baseline. Compare
+    // exact asset paths rather than that test-only mount prefix/origin.
+    image.setAttribute('src',url.pathname.replace(/^\/baseline\//,'/'));
+  });
   // Routing now writes explicit namespace/context URLs. Verify their target
   // identity before comparing the unchanged presentation DOM and geometry.
   const payload=window.ArmyBookAppV2.payload;
@@ -80,7 +85,7 @@ async function syntheticDom(page,army,device){
       for(const [unit,effective,present]of [[f.unit,f.effective,true],[f.duplicate.unit,f.duplicate.effective,false]]){
         const variants=projectInstanceCards(f.cards,unit,effective),root=presenter.renderDatasheet(variants.get(unit.canonicalUnitId)[0],{variants,instanceId:unit.instanceId});document.body.append(root);
         const output={nested,present,text:root.innerText,weapons:[...root.querySelectorAll('.weapon-row:not(.weapon-head)')].map(node=>node.dataset.cardId),
-          composition:[...root.querySelectorAll('.ds-composition-members li')].map(node=>node.textContent),
+          composition:[...root.querySelectorAll('.ds-composition-members > li')].map(node=>node.textContent),
           keywordRows:[...root.querySelectorAll('[data-datasheet-section="keywords"] > p')].map(node=>node.textContent),
           boundRules:[...root.querySelectorAll('.ds-bound-weapon-ability')].map(node=>node.dataset.boundAbilityId),
           equipmentWrappers:root.querySelectorAll('.ds-selected-equipment-rule').length,
@@ -93,13 +98,51 @@ async function syntheticDom(page,army,device){
   for(const control of cases){
     assert.doesNotMatch(control.text,/Active roster effects|Effective unit keywords|WARGEAR OPTION|Import title must not become inferred ownership/);
     assert.equal(control.orphanNotes,0);assert.ok(control.sections.includes('leader'));assert.ok(control.sections.includes('composition'));
-    assert.equal(control.composition.length,control.nested?3:1);assert.equal(control.weapons.length,control.present?(control.nested?3:1):0);
-    assert.deepEqual(control.boundRules.sort(),control.present?[`${control.idPrefix}:equipment-rule`,`${control.idPrefix}:second-equipment-rule`,...Array(control.nested?3:1).fill(`${control.idPrefix}:weapon-rule`)].sort():[]);
+    assert.equal(control.composition.length,control.nested?3:1);assert.equal(control.weapons.length,control.present?1:0);
+    assert.deepEqual(control.boundRules.sort(),control.present?[`${control.idPrefix}:equipment-rule`,`${control.idPrefix}:second-equipment-rule`,`${control.idPrefix}:weapon-rule`].sort():[]);
     assert.equal(control.equipmentWrappers,control.present?1:0,'Several rules on one selected canonical equipment item must not duplicate its label');
     assert.equal(new Set(control.keywordRows).size,control.keywordRows.length);
     if(control.nested){assert.ok(control.keywordRows.some(row=>row.includes('Gun models (Combat and Gun models)')));assert.ok(control.keywordRows.some(row=>row.includes('Combat models (Combat and Gun models)')));}
   }
   syntheticResults.push({army,device,cases:cases.length,profileStorageShapes:2});
+}
+async function effectiveDisplayControls(page,army,device){
+  const cases=await page.evaluate(async()=>{
+    const {createEffectivePresentationFixtures}=await import('/books/shared/army-book-app-v2/effective-datasheet-presentation-qa.mjs');
+    const {projectInstanceCards}=await import('/books/shared/army-book-app-v2/personal.mjs');
+    const {createDatasheetPresenter}=await import('/books/shared/army-book-app-v2/datasheet-v1.mjs');
+    const {installDatasheetLayout}=await import('/books/shared/army-book-app-v2/datasheet-v1-layout.mjs');
+    const cases=[];
+    for(const {name,fixture:f,profiles,weapons}of createEffectivePresentationFixtures()){
+      const el=(tag,classes='',text)=>{const node=document.createElement(tag);node.className=classes;if(text!==undefined)node.textContent=text;return node;};
+      const factValue=(tag,field)=>el(tag,'',String(field.displayValue??field.value));
+      const anchor=(text,id)=>{const link=el('a','',text);link.dataset.targetId=id;return link;};
+      const roster={state:{units:[f.unit],attachments:[]},effective:()=>f.effective};
+      const presenter=createDatasheetPresenter({document,payload:f.payload,cards:f.cards,el,factValue,anchor,related:()=>el('div'),roster});
+      const variants=projectInstanceCards(f.cards,f.unit,f.effective),root=presenter.renderDatasheet(variants.get(f.unit.canonicalUnitId)[0],{variants,instanceId:f.unit.instanceId});
+      document.querySelector('main').append(root);const layout=installDatasheetLayout(root);await layout.ready();
+      const rows=[...root.querySelectorAll('.ds-composition-members > li')].map(line=>({text:line.textContent,items:[...line.querySelectorAll('.ds-selected-loadout > li')].map(item=>item.textContent)}));
+      cases.push({name,expectedProfiles:profiles,expectedWeapons:weapons,profiles:root.querySelectorAll('.statline').length,
+        weapons:root.querySelectorAll('.weapon-row:not(.weapon-head)').length,rows,
+        modelBreakdowns:[...root.querySelectorAll('.model-profile .ds-modifier-breakdown')].map(node=>node.textContent),
+        overflow:document.documentElement.scrollWidth>innerWidth+1});
+      layout.destroy();root.remove();
+    }
+    return cases;
+  });
+  for(const control of cases){
+    assert.equal(control.profiles,control.expectedProfiles,`${army}/${device}/${control.name}: final statline grouping`);
+    assert.equal(control.weapons,control.expectedWeapons,`${army}/${device}/${control.name}: effective weapon grouping`);
+    assert.equal(control.overflow,false,`${army}/${device}/${control.name}: overflow`);
+    if(control.name==='identical'){
+      assert.equal(control.rows.length,3);assert.match(control.rows[0].items[0],/^2 × Shared display weapon$/);
+      assert.match(control.rows[1].items[0],/^1 × Shared display weapon each$/);
+      assert.match(control.rows[2].items[0],/^1 × Shared display weapon each$/);
+    }
+    if(control.name==='different-loadouts')assert.equal(control.rows.length,4,'Same model role, two explicit loadouts remain separate');
+    if(control.name==='equal-final-different-bases')assert.deepEqual(control.modelBreakdowns,['4" + 2','5" + 1'],'Equal final stats must not conflate different scoped base/modifier traces');
+  }
+  syntheticResults.push({army,device,effectivePresentationControls:cases});
 }
 function allUnitFixture(book){
   const index=new Map(book.entities.map(entity=>[entity.id,entity]));
@@ -117,7 +160,7 @@ const dgImport=`+ FACTION KEYWORD: Chaos - Death Guard
 Char1: 1x Lord of Contagion (135 pts): Manreaper
 Enhancement: Furnace of Plagues (+25 pts)
 3x Deathshroud Terminators (150 pts)
-• 1x Deathshroud Terminator Champion: Manreaper, Plaguespurt gauntlet
+• 1x Deathshroud Terminator Champion: Manreaper, 2x Plaguespurt gauntlet, Icon of Despair
 • 2x Deathshroud Terminator: 2 with Manreaper, Plaguespurt gauntlet
 1x Great Unclean One (265 pts): Bilesword, Plague flail, Putrid vomit
 1x Great Unclean One (265 pts): Doomsday bell, Plague flail, Putrid vomit
@@ -148,7 +191,7 @@ async function verifyState(page,army,device,state,label,{load=true,screenshots=f
     const effective=await page.evaluate(id=>window.ArmyBookAppV2.roster.effective(id),unit.instanceId);
     const observed=await page.locator('main .unit-card').evaluate(root=>({
       text:root.innerText,instanceId:root.dataset.rosterInstanceId,
-      profiles:[...root.querySelectorAll('.model-profile')].map(node=>({id:node.dataset.cardId,scope:node.dataset.compositionId||null,text:node.innerText})),
+      profiles:[...root.querySelectorAll('.ds-effective-profile-group,.model-profile')].filter(node=>node.matches('.ds-effective-profile-group')||!node.closest('.ds-effective-profile-group')).flatMap(node=>node.dataset.profileScopes?JSON.parse(node.dataset.profileScopes).map(([id,scope])=>({id,scope})): [{id:node.dataset.cardId,scope:node.dataset.compositionId||null}]),
       abilityLocations:[...root.querySelectorAll('[data-ability-presentation-identity]')].map(node=>({
         identity:node.dataset.abilityPresentationIdentity,id:node.dataset.canonicalAbilityId,
         parameters:JSON.parse(node.dataset.abilityParameters),subject:node.dataset.recipientSubject,
@@ -156,9 +199,10 @@ async function verifyState(page,army,device,state,label,{load=true,screenshots=f
         surface:node.closest('.model-profile')?'PROFILE':'CORE',
         profile:node.closest('.model-profile')?.dataset.cardId,
         caption:node.closest('.model-profile')?.querySelector('h5')?.textContent})),
-      weapons:[...root.querySelectorAll('.weapon-row:not(.weapon-head)')].map(node=>({id:node.dataset.cardId,scope:node.dataset.compositionId||null,text:node.innerText})),
+      weapons:[...root.querySelectorAll('.weapon-row:not(.weapon-head)')].map(node=>({id:node.dataset.cardId,scope:node.dataset.compositionId||null,text:node.innerText,members:node.dataset.weaponScopes?JSON.parse(node.dataset.weaponScopes):[[node.dataset.cardId,node.dataset.compositionId||null]]})),
       sections:[...root.querySelectorAll('[data-datasheet-section]')].map(node=>node.dataset.datasheetSection),
-      composition:[...root.querySelectorAll('.ds-composition-members li')].map(node=>node.textContent),
+      composition:[...root.querySelectorAll('.ds-composition-members > li')].map(node=>node.textContent),
+      statlines:root.querySelectorAll('.statline').length,
       keywords:[...root.querySelectorAll('[data-datasheet-section="keywords"] > p')].map(node=>({label:node.querySelector('b')?.textContent||'',text:node.textContent})),
       factValues:[...root.querySelectorAll('[data-fact-id]')].map(node=>({id:node.dataset.factId,value:JSON.parse(node.dataset.factValue),text:node.textContent})),
       bases:[...root.querySelectorAll('.profile-base')].map(node=>({section:node.closest('[data-datasheet-section]')?.dataset.datasheetSection,details:!!node.closest('details')})),
@@ -190,7 +234,7 @@ async function verifyState(page,army,device,state,label,{load=true,screenshots=f
     assert.equal(observed.arsenalBases,0,description+' Base interrupts Weapons');
     assert.ok(observed.bases.every(base=>base.section==='composition'&&base.details),description+' Base must be optional model metadata');
     const key=record=>JSON.stringify([record.id,record.scopeId||null]);
-    assert.deepEqual(observed.weapons.map(row=>JSON.stringify([row.id,row.scope])).sort(),effective.weapons.map(key).sort(),description+' exact selected/effective inventory');
+    assert.deepEqual(observed.weapons.flatMap(row=>row.members.map(member=>JSON.stringify(member))).sort(),effective.weapons.map(key).sort(),description+' exact selected/effective inventory');
     assert.deepEqual(observed.profiles.map(row=>JSON.stringify([row.id,row.scope])).sort(),effective.profiles.map(key).sort(),description+' MODEL profile isolation');
     profiles+=observed.profiles.length;weapons+=observed.weapons.length;
     const root=cards.get(unit.canonicalUnitId);
@@ -223,7 +267,15 @@ async function verifyState(page,army,device,state,label,{load=true,screenshots=f
         assert.ok(observed.weapons.find(row=>row.id===id)?.text.includes(breakdown),description+' modifier breakdown');
       }
     }
-    if(label==='source-import'&&unit.canonicalUnitId==='unit-deathshroud-terminators')assert.ok(observed.weapons.every(row=>!/DEVASTATING WOUNDS/.test(row.text)),description+' Furnace owner leakage');
+    if(label==='source-import'&&unit.canonicalUnitId==='unit-deathshroud-terminators'){
+      assert.ok(observed.weapons.every(row=>!/DEVASTATING WOUNDS/.test(row.text)),description+' Furnace owner leakage');
+      assert.equal(observed.statlines,1,description+' identical Champion/ordinary stats must render once');
+      assert.equal(observed.weapons.length,3,description+' one ranged and two distinct melee modes');
+      assert.match(observed.composition[0],/2 × Plaguespurt gauntlet/);
+      assert.match(observed.composition[0],/1 × Icon of Despair/);
+      assert.doesNotMatch(observed.composition[0],/can be equipped/,'Composition uses selected equipment captions, not construction-option prose');
+      assert.match(observed.composition[1],/1 × Plaguespurt gauntlet each/);
+    }
     if(screenshots&&priority.has(unit.canonicalUnitId)&&(!captured.has(unit.canonicalUnitId)||label==='source-import')){await page.screenshot({path:path.join(out,`${device}-${army}-${label}-${unit.instanceId}.png`),fullPage:true});captured.add(unit.canonicalUnitId);}
     if(label==='source-import'&&effective.weapons.length){
       const weapon=effective.weapons[0];
@@ -243,6 +295,7 @@ try{
     console.log(JSON.stringify({phase:'START',army,device}));
     const context=await browser.newContext({viewport,reducedMotion:'reduce'}),page=await openPage(context,army);
     await syntheticDom(page,army,device);
+    await effectiveDisplayControls(page,army,device);
     if(syntheticOnly){await context.close();continue;}
     const oldContext=await browser.newContext({viewport,reducedMotion:'reduce'}),oldPage=await openPage(oldContext,army,true);
     const units=payload.cards.filter(card=>card.kind==='DATASHEET');

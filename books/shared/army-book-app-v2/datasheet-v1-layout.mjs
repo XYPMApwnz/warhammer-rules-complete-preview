@@ -96,7 +96,7 @@ function enhance(card, phoneMedia) {
 
   if (profile) {
     const profiles = Array.from(profile.children).filter(node =>
-      node.matches?.('.model-profile,.statline,.profile-base')
+      node.matches?.('.model-profile,.statline,.profile-base,.ds-effective-profile-group')
     );
     if (profiles.length) {
       profileStrip = card.ownerDocument.createElement('div');

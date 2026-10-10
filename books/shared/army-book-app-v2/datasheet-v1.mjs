@@ -1,6 +1,7 @@
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
 import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
+import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition} from './effective-datasheet-presentation.mjs';
 const sectionRoles = new Map([
   ['ABILITIES','abilities'],['WARGEAR ABILITIES','wargear-abilities'],
   ['UNIT COMPOSITION','composition'],['WARGEAR OPTIONS','wargear'],
@@ -305,12 +306,46 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const nav=el('div','local-nav');nav.setAttribute('role','navigation');nav.setAttribute('aria-label','Datasheet sections');root.append(nav);
     const part=(role,label)=>{const section=el('section','unit-part');section.dataset.datasheetSection=role;section.id='ds-'+domKey(JSON.stringify([card.id,instanceId,role]));section.append(el('h4','',label));return section;};
     const profile=part('profile','Profile & Weapons'),abilities=part('abilities','Abilities'),baseMetadata=[];
-    for(const child of children.filter(c=>c.kind==='PROFILE')){
+    const profileStatFields=member=>[...member.fields,...(member.profileFieldIds||[]).map(id=>boundFields.get(id))]
+      .filter(field=>['M','T','SV','W','LD','OC','INSV'].includes(pointerKey(field)));
+    const modelCards=children.filter(c=>c.kind==='PROFILE');
+    const modelGroups=instanceId?groupDisplayRecords(modelCards,child=>profileDisplayKey(child,boundFields)):modelCards.map(child=>({members:[child]}));
+    for(const displayGroup of modelGroups){
+      const grouped=instanceId&&displayGroup.members.length>1;
+      const wrapper=grouped?el('div','ds-effective-profile-group'):profile;
+      if(grouped){
+        const names=[...new Set(displayGroup.members.map(member=>member.presentationScope?.label||single(member,'name')?.value||card.title))];
+        const label=modelGroups.length===1?card.title:names.join(' / ');
+        wrapper.append(el('h5','ds-composition-scope',`${label} · ${displayGroup.quantity} ${displayGroup.quantity===1?'model':'models'}`));
+        wrapper.dataset.profileScopes=JSON.stringify(displayGroup.members.map(member=>[member.id,member.scopeId||null]));
+        profile.append(wrapper);
+      }
+      const scopedBreakdowns=grouped?profileStatFields(displayGroup.members[0]).filter(field=>new Set(displayGroup.members.map(member=>{
+        const matching=profileStatFields(member).find(candidate=>pointerKey(candidate)===pointerKey(field));
+        return matching&&modifiers(member,matching,instanceId)?.textContent||null;
+      })).size>1).map(pointerKey):[];
+      for(const [memberIndex,child]of displayGroup.members.entries()){
       const planned=abilityPresentation?.profiles.find(item=>item.id===child.id&&item.scopeId===(child.scopeId||null));
-      const view=renderProfile(child,{instanceId,inDialog,abilityPresentation:planned?.abilities}),bases=[...view.querySelectorAll('.profile-base')];profile.append(view);
+      const view=renderProfile(child,{instanceId,inDialog,abilityPresentation:planned?.abilities}),bases=[...view.querySelectorAll('.profile-base')];
+      if(grouped){
+        const line=view.querySelector('.statline');
+        if(!memberIndex){
+          // Equal effective values can have different base/modifier traces.
+          // Only share a breakdown when it is also identical for all scopes.
+          [...line.children].forEach((stat,index)=>{if(scopedBreakdowns.includes(pointerKey(profileStatFields(child)[index])))stat.querySelector('.ds-modifier-breakdown')?.remove();});wrapper.append(line);
+        }else line.remove();
+        for(const field of profileStatFields(child).filter(field=>scopedBreakdowns.includes(pointerKey(field)))){
+          const trace=modifiers(child,field,instanceId);if(trace){const note=el('p','ds-effective-metric');note.append(el('b','',pointerKey(field)+': '),trace);view.append(note);}
+        }
+        // Keep exact profile captions and ability/metric scope, independently
+        // of the statline grouping. No model ability is promoted to UNIT here.
+        if(!view.querySelector('.ds-granted-ability,.ds-effective-metric'))view.querySelectorAll('h5').forEach(node=>node.remove());
+      }
       for(const base of bases){
         if(instanceId||normal?.basePlacement==='composition'||config.basePlacement==='composition'){base.remove();baseMetadata.push(base);}
         else{const note=el('div','ds-base-note');note.append(base);profile.append(note);}
+      }
+      if(!grouped||view.childElementCount)wrapper.append(view);
       }
     }
     for(const mode of ['ranged','melee']){
@@ -318,16 +353,36 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const group=el('div','weapon-group');group.append(el('h5','',mode==='ranged'?'Ranged Weapons':'Melee Weapons'));
       const grid=el('div','weapon-table');grid.setAttribute('role','table');grid.setAttribute('aria-label',`${mode} weapons`);
       const header=el('div','weapon-row weapon-head');header.setAttribute('role','row');for(const label of ['Weapon','Range','A',mode==='ranged'?'BS':'WS','S','AP','D'])header.append(el('div','',label));grid.append(header);
-      weapons.forEach(weapon=>{
-        const row=renderWeapon(weapon,{instanceId});
+      const weaponGroups=instanceId?groupDisplayRecords(weapons,weaponDisplayKey):weapons.map(weapon=>({members:[weapon]}));
+      const shownInstructions=new Set();
+      weaponGroups.forEach(displayGroup=>{
+        const weapon=displayGroup.members[0],row=renderWeapon(weapon,{instanceId});
+        if(instanceId&&displayGroup.members.length>1){
+          row.dataset.weaponScopes=JSON.stringify(displayGroup.members.map(member=>[member.id,member.scopeId||null]));
+          row.querySelector('.ds-composition-scope')?.remove();
+          const quantity=row.querySelector('.ds-weapon-quantity');if(quantity)quantity.textContent=` ×${displayGroup.quantity}`;
+          for(const cell of row.querySelectorAll('[data-label]')){
+            const statKey={Range:'range',A:'attacks',BS:'skill',WS:'skill',S:'strength',AP:'ap',D:'damage'}[cell.dataset.label];
+            const traces=displayGroup.members.map(member=>({member,trace:modifiers(member,single(member,statKey),instanceId)}));
+            if(new Set(traces.map(item=>item.trace?.textContent||null)).size>1){
+              cell.querySelector('.ds-modifier-breakdown')?.remove();
+              for(const {member,trace}of traces)if(trace){trace.prepend(document.createTextNode((scopeCaption(member)||cards.get(member.parentId)?.title||'Models')+': '));cell.append(trace);}
+            }
+          }
+        }
         appendOptionCost(row.querySelector('.weapon-name > div'),weapon.id);grid.append(row);
         appendBoundAbilities(grid,weapon.id);
-        for(const selection of selections.filter(binding=>binding.profileIds.at(-1)===weapon.id&&(!instanceId||(binding.scopeId||null)===(weapon.scopeId||null)))){
+        for(const selection of selections.filter(binding=>binding.profileIds.at(-1)===weapon.id&&(!instanceId||displayGroup.members.some(member=>(binding.scopeId||null)===(member.scopeId||null))))){
+          const instructionKey=JSON.stringify([selection.groupId,selection.profileIds.map(id=>{
+            const target=children.find(child=>child.id===id&&(child.scopeId||null)===(selection.scopeId||null));
+            return target?weaponDisplayKey(target):id;
+          })]);
+          if(instanceId&&shownInstructions.has(instructionKey))continue;shownInstructions.add(instructionKey);
           const instruction=el('aside','ds-profile-selection');instruction.dataset.profileGroupId=selection.groupId;
           instruction.dataset.profileIds=JSON.stringify(selection.profileIds);
           const source=selection.instructionId&&cards.get(selection.instructionId);
           instruction.append(source?factValue('p',single(source,'text')):el('p','',selection.text));
-          if(instanceId&&scopeCaption(weapon))instruction.prepend(el('small','ds-composition-scope',scopeCaption(weapon)));
+          if(instanceId&&displayGroup.members.length===1&&scopeCaption(weapon))instruction.prepend(el('small','ds-composition-scope',scopeCaption(weapon)));
           for(const id of selection.profileIds){
             const target=instanceId?children.find(child=>child.id===id&&(child.scopeId||null)===(selection.scopeId||null)):null;
             instruction.append(target?scopedAnchor(cards.get(id).title,target,instanceId):anchor(cards.get(id).title,id,true),document.createTextNode(' · '));
@@ -419,9 +474,45 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         const composition=part('composition','Unit Composition'),unit=roster.state.units.find(u=>u.instanceId===instanceId);
         composition.append(el('p','',`${unit.startingStrength} ${unit.startingStrength===1?'model':'models'}`));
         const members=el('ul','ds-composition-members');
-        for(const member of card.rosterComposition||[]){const line=el('li','',`${member.quantity} × ${member.label}`);
-          line.dataset.canonicalProfileId=member.profileId;line.dataset.compositionRowId=member.rowId;members.append(line);}
+        const selected=projectSelectedComposition(unit,card.rosterComposition||[]);
+        const equipmentList=items=>{
+          const list=el('ul','ds-selected-loadout');
+          for(const item of items){
+            const selection=item.selection||item.selections[0],line=el('li');
+            const each=item.perModel!==null&&item.perModel!==undefined;
+            line.append(document.createTextNode(`${each?item.perModel:item.total} × `));
+            const ids=[...(selection.canonicalProfileIds||[]),...(selection.canonicalEquipmentIds||[])];
+            line.dataset.selectedCanonicalIds=JSON.stringify(ids);
+            // Canonical addresses supply captions; no name/prose lookup can
+            // establish selection or assign it to a physical model.
+            ids.forEach((id,index)=>{
+              if(index)line.append(document.createTextNode(' / '));
+              const target=cards.get(id),name=single(target,'name')||single(target,'title');
+              const paths=selection.canonicalFieldPaths?.[id]||[];
+              const selectedField=target.fields.find(field=>paths.includes(field.source?.path))||single(target,'text');
+              // An already-bound equipment ability supplies its source heading
+              // as a caption, just as renderSection formats a bound heading.
+              // This never resolves an item by text or establishes ownership.
+              const captionField=selection.canonicalEquipmentIds?.length===1&&selection.sourceReferences?.map(reference=>
+                cards.get(reference.entityId)?.fields.find(field=>field.source?.path===reference.path)).find(field=>typeof field?.value==='string'&&field.value.indexOf(':')>0);
+              const field=name||captionField||selectedField;
+              const effectiveTarget=target.kind==='WEAPON_PROFILE'?variants?.get(id)?.find(candidate=>(item.scopeIds||[null]).includes(candidate.scopeId||null)):null;
+              const link=effectiveTarget?scopedAnchor('',effectiveTarget,instanceId):anchor('',id,true);
+              if(field){const caption=factValue('span',field);
+                if(!name&&field.value?.indexOf?.(':')>0)caption.textContent=field.value.slice(0,field.value.indexOf(':'));
+                link.append(caption);
+              }else link.textContent=target.title;
+              line.append(link);
+            });
+            if(each&&item.groupQuantity>1)line.append(document.createTextNode(' each'));
+            list.append(line);
+          }return list;
+        };
+        for(const member of selected.groups){const line=el('li','ds-composition-member');line.append(el('span','',`${member.quantity} × ${member.label}`));
+          line.dataset.canonicalProfileId=member.profileId;line.dataset.compositionRowId=member.rowIds[0];line.dataset.compositionScopes=JSON.stringify(member.scopeIds);
+          if(member.equipment.length)line.append(equipmentList(member.equipment.map(item=>({...item,groupQuantity:member.quantity,scopeIds:member.scopeIds}))));members.append(line);}
         if(members.childElementCount)composition.append(members);
+        if(selected.inventory.length)composition.append(el('h5','','Selected unit inventory'),equipmentList(selected.inventory));
         if(!unit.modelRows.some(row=>row.compositionScope==='MODEL_ROW')){
           const sourceMembers=(config.compositionMembers||[]).filter(binding=>binding.sectionId===child.id);
           if(sourceMembers.reduce((total,binding)=>total+binding.spans.length,0)>1){

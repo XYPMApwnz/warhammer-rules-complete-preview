@@ -161,6 +161,9 @@
   overflow-wrap:anywhere;
 }
 .unit-card .model-profile > .ds-composition-scope { margin:0; padding:8px 14px; background:var(--panel-2); }
+.unit-card .ds-effective-profile-group > .ds-composition-scope { margin:0; padding:8px 14px; background:var(--panel-2); }
+.unit-card .ds-selected-loadout { margin:6px 0 12px; padding-left:20px; font-size:12px; line-height:1.7; overflow-wrap:anywhere; }
+.unit-card .ds-composition-member { margin-bottom:12px; }
 .unit-card .ds-granted-ability,
 .unit-card .ds-profile-quantity {
   display: flex;
