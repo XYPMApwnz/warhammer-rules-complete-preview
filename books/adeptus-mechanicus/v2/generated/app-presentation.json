@@ -70046,6 +70046,87 @@
       "links": []
     },
     {
+      "id": "core-rule-09-07-01-desperate-escape-test",
+      "kind": "CORE_MAIN_RULE",
+      "title": "Desperate Escape Test",
+      "domain": "CORE",
+      "parentId": null,
+      "contextId": "core-rule-09-07-01-desperate-escape-test",
+      "source": {
+        "entityId": "core-rule-09-07-01-desperate-escape-test"
+      },
+      "provenance": {
+        "base": {
+          "sourceId": "waha-core-corpus-2026-09-25",
+          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+          "sourceDate": "2026-09-25",
+          "sourceScope": "GLOBAL_CORE",
+          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+        },
+        "sourceNode": {
+          "sourceUnitId": "waha-core-rule-09-07-01",
+          "anchor": "Desperate-Escape-Test",
+          "sourceOrder": 52,
+          "contentHash": "B346F7066CFCCDF3073579C9B6E4166E2F6C6037DF3386E8A4A5432DBCFC8528"
+        }
+      },
+      "children": [],
+      "fields": [
+        {
+          "id": "core-rule-09-07-01-desperate-escape-test::/title",
+          "label": "Title",
+          "value": "Desperate Escape Test",
+          "type": "heading",
+          "contextId": "core-rule-09-07-01-desperate-escape-test",
+          "source": {
+            "entityId": "core-rule-09-07-01-desperate-escape-test",
+            "path": "/title"
+          }
+        },
+        {
+          "id": "core-rule-09-07-01-desperate-escape-test::/code",
+          "label": "Code",
+          "value": "09.07.01",
+          "type": "text",
+          "contextId": "core-rule-09-07-01-desperate-escape-test",
+          "source": {
+            "entityId": "core-rule-09-07-01-desperate-escape-test",
+            "path": "/code"
+          }
+        },
+        {
+          "id": "core-rule-09-07-01-desperate-escape-test::/semanticContent",
+          "label": "Rule",
+          "value": "Some rules may reference the term 'Desperate Escape test'. In all instances this means the hazard rolls made for the desperate escape mode of a fall-back move.\nAbilities that subtract from a unit's Desperate Escape test instead subtract from those hazard rolls.\nExample: A battle-shocked unit makes a fall-back move away from a unit of Bloodletters that have the Bane of Cowards ability. As a result of Bane of Cowards, because the unit making the fall-back move is battle-shocked, the hazard rolls they make as part of their desperate escape will be at -1.",
+          "type": "text",
+          "contextId": "core-rule-09-07-01-desperate-escape-test",
+          "source": {
+            "entityId": "core-rule-09-07-01-desperate-escape-test",
+            "path": "/semanticContent"
+          }
+        }
+      ],
+      "links": [
+        {
+          "targetId": "core-rule-09-07-fall-back-move",
+          "label": "Parent Rule Id"
+        },
+        {
+          "targetId": "core-rule-06-03-hazard-rolls",
+          "label": "Related Rule Ids"
+        },
+        {
+          "targetId": "core-rule-09-07-fall-back-move",
+          "label": "Related Rule Ids"
+        },
+        {
+          "targetId": "core-rule-08-03-battle-shock",
+          "label": "Related Rule Ids"
+        }
+      ]
+    },
+    {
       "id": "core-rule-09-07-01-desperate-escape",
       "kind": "CORE_MAIN_RULE",
       "title": "Desperate Escape",
@@ -70063,6 +70144,12 @@
           "sourceDate": "2026-09-25",
           "sourceScope": "GLOBAL_CORE",
           "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+        },
+        "sourceNode": {
+          "sourceUnitId": "waha-core-rule-09-07-01",
+          "anchor": "Desperate-Escape",
+          "sourceOrder": 53,
+          "contentHash": "A63ED05A673116DB7B25B11983C9423828F48669A83E46F4634E646F65F408E2"
         }
       },
       "children": [],
@@ -70090,58 +70177,14 @@
           }
         },
         {
-          "id": "core-rule-09-07-01-desperate-escape::/sourceConflict/notice",
-          "label": "Accepted source conflict",
-          "value": "Unresolved accepted-source conflict. The enrolled sources contain different versions of this rule. No version has been established as current; consult the source variants in the full rule.",
+          "id": "core-rule-09-07-01-desperate-escape::/semanticContent",
+          "label": "Rule",
+          "value": "If a stratagem or ability forces a unit to make a Desperate Escape test, that unit:\n• Must make one hazard roll for each model in that unit.\n\n• Must make a battle-shock roll.",
           "type": "text",
           "contextId": "core-rule-09-07-01-desperate-escape",
           "source": {
             "entityId": "core-rule-09-07-01-desperate-escape",
-            "path": "/sourceConflict/notice"
-          }
-        },
-        {
-          "id": "core-rule-09-07-01-desperate-escape::/sourceConflict/occurrences/0/title",
-          "label": "Source variant",
-          "value": "Desperate Escape Test",
-          "type": "text",
-          "contextId": "core-rule-09-07-01-desperate-escape",
-          "source": {
-            "entityId": "core-rule-09-07-01-desperate-escape",
-            "path": "/sourceConflict/occurrences/0/title"
-          }
-        },
-        {
-          "id": "core-rule-09-07-01-desperate-escape::/sourceConflict/occurrences/0/presentationText",
-          "label": "Source variant text",
-          "value": "Some rules may reference the term 'Desperate Escape test'. In all instances this means the hazard rolls made for the desperate escape mode of a fall-back move.\nAbilities that subtract from a unit's Desperate Escape test instead subtract from those hazard rolls.\nExample: A battle-shocked unit makes a fall-back move away from a unit of Bloodletters that have the Bane of Cowards ability. As a result of Bane of Cowards, because the unit making the fall-back move is battle-shocked, the hazard rolls they make as part of their desperate escape will be at -1.",
-          "type": "text",
-          "contextId": "core-rule-09-07-01-desperate-escape",
-          "source": {
-            "entityId": "core-rule-09-07-01-desperate-escape",
-            "path": "/sourceConflict/occurrences/0/presentationText"
-          }
-        },
-        {
-          "id": "core-rule-09-07-01-desperate-escape::/sourceConflict/occurrences/1/title",
-          "label": "Source variant",
-          "value": "Desperate Escape",
-          "type": "text",
-          "contextId": "core-rule-09-07-01-desperate-escape",
-          "source": {
-            "entityId": "core-rule-09-07-01-desperate-escape",
-            "path": "/sourceConflict/occurrences/1/title"
-          }
-        },
-        {
-          "id": "core-rule-09-07-01-desperate-escape::/sourceConflict/occurrences/1/presentationText",
-          "label": "Source variant text",
-          "value": "If a stratagem or ability forces a unit to make a Desperate Escape test, that unit:\n• Must make one hazard roll for each model in that unit.\n\n\n• Must make a battle-shock roll.\n\nSelecting ModesSome rules instruct you to select a mode, such as fall-back moves. Modes are mutually exclusive, and you must assess each one in the order presented. When making a move, if your unit does not meet the conditions of any of the modes, it cannot make that move.\nSometimes a mode will be mandatory if applicable (e.g. consolidation modes, 12.08), but in the case of fall-back moves, ordered retreat is not mandatory, so you could select desperate escape instead.\nMany move types state conditions you must meet while/after moving. Those that are labelled with a mode name only apply if you selected that mode; those not labelled with a mode name always apply.",
-          "type": "text",
-          "contextId": "core-rule-09-07-01-desperate-escape",
-          "source": {
-            "entityId": "core-rule-09-07-01-desperate-escape",
-            "path": "/sourceConflict/occurrences/1/presentationText"
+            "path": "/semanticContent"
           }
         }
       ],
@@ -70149,6 +70192,14 @@
         {
           "targetId": "core-rule-09-07-fall-back-move",
           "label": "Parent Rule Id"
+        },
+        {
+          "targetId": "core-rule-06-03-hazard-rolls",
+          "label": "Related Rule Ids"
+        },
+        {
+          "targetId": "core-rule-01-07-battle-shock-rolls",
+          "label": "Related Rule Ids"
         }
       ]
     },
@@ -141292,6 +141343,13 @@
       {
         "targetId": "core-rule-09-07-01-desperate-escape",
         "label": "Desperate Escape",
+        "category": "CORE_MAIN_RULE",
+        "contextLabel": "Core Rules",
+        "aliases": []
+      },
+      {
+        "targetId": "core-rule-09-07-01-desperate-escape-test",
+        "label": "Desperate Escape Test",
         "category": "CORE_MAIN_RULE",
         "contextLabel": "Core Rules",
         "aliases": []

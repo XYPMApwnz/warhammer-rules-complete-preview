@@ -62,10 +62,12 @@ export function applyCoreCurrentOfficial(base,source=loadCoreCurrentOfficial(),r
   validateCoreCurrentOfficial(source,registry);
   const registered=new Map(registry.sources.map(item=>[item.sourceId,item]));
   const digital=structuredClone(base);
-  const byCode=new Map(digital.records.map(record=>[record.code,record]));
-  if(byCode.size!==digital.records.length)throw new Error('Duplicate base Core rule code');
+  const byCode=new Map();
+  for(const record of digital.records)byCode.set(record.code,[...(byCode.get(record.code)||[]),record]);
   for(const update of source.ruleOverrides){
-    const record=byCode.get(update.code);
+    const candidates=byCode.get(update.code)||[];
+    if(candidates.length>1)throw new Error(`Ambiguous official override code: ${update.code}`);
+    const record=candidates[0];
     if(!record)throw new Error(`Official override has no Core rule: ${update.code}`);
     if(update.operation==='replace-exact-line'){
       if(typeof record.text!=='string'||!update.previousLine||!update.currentLine)throw new Error(`Invalid text override: ${update.code}`);

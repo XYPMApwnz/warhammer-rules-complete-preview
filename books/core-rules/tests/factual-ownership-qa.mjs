@@ -29,8 +29,8 @@ assert.equal(embeddedGroups.length,40,'independent accepted FAQ/main census chan
 const catalog=createEffectiveCoreCatalog();
 const rule=code=>{const record=catalog.getByCode(code);assert(record,`missing rule ${code}`);return record;};
 const faq=number=>catalog.getById(`core-faq-waha-${String(number).padStart(3,'0')}`);
-assert.equal(catalog.records.length,370,'cleanup must preserve every canonical identity');
-assert.deepEqual(new Set(catalog.mainRules.map(record=>record.id)),new Set(Object.values(identities.rules)));
+assert.equal(catalog.records.length,371,'source-node split must preserve all identities and recover the lost definition');
+assert.deepEqual(new Set(catalog.mainRules.map(record=>record.id)),new Set([...Object.values(identities.rules),...Object.values(identities.sourceNodes).map(entry=>entry.id)]));
 assert.deepEqual(new Set(catalog.faqs.map(record=>record.id)),new Set([...Array.from({length:66},(_,index)=>`core-faq-waha-${String(index+1).padStart(3,'0')}`),...officialFaqs.map(record=>record.id)]));
 
 const ongoingExpected=source('waha-core-erratum-001').content.text.replace(/^Change to:/,'');
@@ -74,19 +74,19 @@ assert.equal(rule('18.04.01').relationships.parentRuleId,rule('18.04').id,'Rapid
 assert.notEqual(rule('18.04').id,rule('18.04.01').id);
 assert.deepEqual(rule('25.03').content,base.records.find(record=>record.code==='25.03').content,'Battle Size canonical table values/structure changed');
 
-const conflict=rule('09.07.01');
-assert.equal(conflict.state,'SOURCE_CONFLICT');
-assert.equal(conflict.semanticContent,null,'unresolved conflict must not publish either occurrence as effective fact');
-assert.equal(conflict.sourceConflict.status,'UNRESOLVED_ACCEPTED_SOURCE_CONFLICT');
-const serialized=JSON.stringify(conflict.sourceConflict);
+const distinct=catalog.mainRules.filter(record=>record.sourceCode==='09.07.01');
+assert.equal(distinct.length,2);
+assert.equal(catalog.getByCode('09.07.01'),null,'ambiguous source citation must not choose a canonical owner');
 for(const occurrence of source('waha-core-rule-09-07-01').occurrences){
-  assert(serialized.includes(occurrence.content.contentHash),`conflict dropped occurrence ${occurrence.sourceOrder} hash`);
-  assert(conflict.sourceConflict.occurrences.some(item=>item.sourceOrder===occurrence.sourceOrder),`conflict dropped occurrence ${occurrence.sourceOrder} identity`);
+  const record=catalog.getByAnchor(occurrence.stableDomId);
+  assert.equal(record.state,'FULL_CONTENT');
+  assert.equal(record.provenance.sourceNode.sourceOrder,occurrence.sourceOrder);
+  assert.equal(record.provenance.sourceNode.contentHash,occurrence.content.contentHash);
 }
 const mutateCatalog=mutate=>{const records=structuredClone(catalog.records);const byId=new Map(records.map(record=>[record.id,record]));const copy={...catalog,records,mainRules:catalog.mainRules.map(record=>byId.get(record.id)),faqs:catalog.faqs.map(record=>byId.get(record.id)),errata:catalog.errata.map(record=>byId.get(record.id))};mutate(copy,byId);return copy;};
-assert.throws(()=>validateEffectiveCoreCatalog(mutateCatalog((copy,byId)=>{const record=byId.get(conflict.id);record.state='FULL_CONTENT';record.semanticContent=source('waha-core-rule-09-07-01').occurrences[1].content.text;})),/conflict|adjudicat/i,'silent occurrence selection must fail without registered evidence');
-assert.throws(()=>validateEffectiveCoreCatalog(mutateCatalog((copy,byId)=>{delete byId.get(conflict.id).sourceConflict;})),/conflict/i,'dropping conflict metadata must fail closed');
+assert.throws(()=>validateEffectiveCoreCatalog(mutateCatalog((copy,byId)=>{byId.get(distinct[0].id).semanticContent=distinct[1].semanticContent;})),/source-node ownership/i,'substituting another occurrence payload must fail');
+assert.throws(()=>validateEffectiveCoreCatalog(mutateCatalog((copy,byId)=>{byId.get(distinct[0].id).provenance.sourceNode=structuredClone(distinct[1].sourceNode);})),/source-node ownership/i,'cross-contaminating occurrence provenance must fail');
 assert.throws(()=>validateEffectiveCoreCatalog(mutateCatalog((copy,byId)=>{byId.get(faq(57).id).relationships.primaryRuleId='core-hazardous';})),/primary|owner|binding/i,'invented primary FAQ owner must fail');
 assert.throws(()=>validateEffectiveCoreCatalog(mutateCatalog((copy,byId)=>{byId.get(faq(56).id).provenance.sourceClass='GW_CORE_FAQ';})),/provenance|source.*class|source.*binding/i,'secondary provenance cannot masquerade as official');
 
-console.log(JSON.stringify({status:'PASS',canonicalRecords:catalog.records.length,faqIdentities:catalog.faqs.length,normalizedEmbeddedFaqGroups:embeddedGroups.length,secondaryFaqs:66,officialFaqs:5,sourceConflict:conflict.sourceConflict.status,negativeControls:4}));
+console.log(JSON.stringify({status:'PASS',canonicalRecords:catalog.records.length,faqIdentities:catalog.faqs.length,normalizedEmbeddedFaqGroups:embeddedGroups.length,secondaryFaqs:66,officialFaqs:5,distinctSourceNodes:distinct.length,negativeControls:4}));

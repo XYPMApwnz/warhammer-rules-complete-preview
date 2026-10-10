@@ -30,9 +30,12 @@ const renamed=structuredClone(base);
 renamed.records[0].title='Synthetic title that must not establish identity';
 renamed.records.at(-1).title='Another synthetic display rename';
 const renamedCatalog=createEffectiveCoreCatalog({root:contentRoot,base:renamed});
-for(const rule of base.records)assert.equal(renamedCatalog.getByCode(rule.code).id,catalog.getByCode(rule.code).id,`${rule.code}: title rename changed factual identity`);
+for(const rule of base.records){
+  const lookup=c=>rule.sourceNode?c.getByAnchor(rule.sourceNode.anchor):c.getByCode(rule.code);
+  assert.equal(lookup(renamedCatalog).id,lookup(catalog).id,`${rule.code}: title rename changed factual identity`);
+}
 
-assert.deepEqual(new Set(Object.keys(identities.rules)),new Set(base.records.map(record=>record.code)),'stored Core identities must exactly cover accepted rules');
+assert.deepEqual(new Set(Object.keys(identities.rules)),new Set(base.records.filter(record=>!record.sourceNode).map(record=>record.code)),'stored unambiguous Core identities must exactly cover accepted rules');
 for(const [code,id] of Object.entries(identities.rules))assert.equal(catalog.getByCode(code)?.id,id,`${code}: stored identity was not authoritative`);
 for(const record of catalog.records)for(const target of Object.values(record.relationships||{}).flat().filter(Boolean))assert(catalog.getById(target),`${record.id}: unresolved relationship ${target}`);
 

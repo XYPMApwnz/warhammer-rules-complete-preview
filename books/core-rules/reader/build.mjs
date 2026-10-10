@@ -57,7 +57,10 @@ const escapeRegExp=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const slug=value=>String(value).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 
 const coreTermById=new Map(projection.terms.map(term=>[term.id,{...term,title:{en:term.title},summary:{en:term.summary},definition:{en:term.definition},scope:'global',matchLabels:[term.code,...(term.aliases||[])].filter(Boolean)}]));
-const termByCode=new Map([...coreTermById.values()].filter(term=>term.code).map(term=>[term.code,term]));
+// A source citation is not an identity when separate source nodes reuse it.
+const termByCode=new Map([...coreTermById.values()].filter(term=>term.code&&catalog.getByCode(term.code)).map(term=>[term.code,term]));
+const excludedRuleId=record=>termByCode.get(record.code)?.id||record.id;
+const recordAnchor=record=>record.fullRulePath?.split('#')[1]||`rule-${slug(record.code)}`;
 const displayTitleOverrides={'24.37.01':'Torrent Restrictions'};
 const displayTitle=rule=>displayTitleOverrides[rule.code]||rule.title;
 const sectionReferences=new Map([
@@ -358,24 +361,24 @@ function stratagemCard(record){
   const when=fields.find(field=>field.label.toUpperCase()==='WHEN')?.lines.join(' ')||'';
   const turn=/opponent|enemy/i.test(when)?'their':/\byour\b/i.test(when)?'yours':'any';
   const turnLabel=turn==='their'?'THEIR TURN':turn==='yours'?'YOUR TURN':'ANY TURN';
-  const excludedId=termByCode.get(record.code)?.id||'';
+  const excludedId=excludedRuleId(record);
   const seen=new Set();
   const flavourHtml=flavour.length?`<p class="stratagem-flavour">${linkedText(flavour.join(' '),seen,excludedId)}</p>`:'';
   const fieldsHtml=fields.map(field=>`<section class="field"><span>${escapeHtml(field.label)}</span>${prose(field.lines.join('\n'),seen,excludedId)}</section>`).join('');
-  return `<article class="stratagem turn-${turn}" id="rule-${slug(record.code)}" data-rule-code="${escapeHtml(record.code)}" data-turn="${turnLabel}"><div class="stratagem-rail">${cp?`<strong class="cp"><span>${escapeHtml(cp)}</span></strong>`:''}</div><header class="stratagem-head"><h3>${escapeHtml(record.title)}</h3><p class="stratagem-type">${sourceLabel(record)}</p>${flavourHtml}</header><div class="stratagem-fields">${fieldsHtml}${ruleVisuals(record.code)}</div></article>`;
+  return `<article class="stratagem turn-${turn}" id="${escapeHtml(recordAnchor(record))}" data-rule-id="${escapeHtml(record.id)}" data-rule-code="${escapeHtml(record.code)}" data-turn="${turnLabel}"><div class="stratagem-rail">${cp?`<strong class="cp"><span>${escapeHtml(cp)}</span></strong>`:''}</div><header class="stratagem-head"><h3>${escapeHtml(record.title)}</h3><p class="stratagem-type">${sourceLabel(record)}</p>${flavourHtml}</header><div class="stratagem-fields">${fieldsHtml}${ruleVisuals(record.code)}</div></article>`;
 }
 
 function mainRule(record,children=[]){
-  const id=`rule-${slug(record.code)}`;
+  const id=recordAnchor(record);
   const inlineChildren=children.filter(child=>child.presentation==='inline');
   const nestedChildren=children.filter(child=>child.presentation!=='inline');
-  const nested=nestedChildren.length?`<div class="subrules">${nestedChildren.map(child=>{const excludedId=termByCode.get(child.code)?.id||'',seen=new Set();const text=renderContent(child,seen,excludedId),childFaqs=faqCards(ruleFaqs(child),{surfaceId:child.id});return `<details class="subrule" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}"><summary><strong>${escapeHtml(displayTitle(child))}</strong></summary><div><span class="source-label">${sourceLabel(child)}</span>${text}${childFaqs}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
-  const excludedId=termByCode.get(record.code)?.id||'';
+  const nested=nestedChildren.length?`<div class="subrules">${nestedChildren.map(child=>{const excludedId=excludedRuleId(child),seen=new Set();const text=renderContent(child,seen,excludedId),childFaqs=faqCards(ruleFaqs(child),{surfaceId:child.id});return `<details class="subrule" id="${escapeHtml(recordAnchor(child))}" data-rule-id="${escapeHtml(child.id)}" data-rule-code="${escapeHtml(child.code)}"><summary><strong>${escapeHtml(displayTitle(child))}</strong></summary><div><span class="source-label">${sourceLabel(child)}</span>${text}${childFaqs}${referenceStrip(child.code,seen)}${ruleVisuals(child.code)}</div></details>`;}).join('')}</div>`:'';
+  const excludedId=excludedRuleId(record);
   const seen=new Set();
-  const inline=inlineChildren.map(child=>`<div class="inline-clarification" id="rule-${slug(child.code)}" data-rule-code="${escapeHtml(child.code)}">${renderContent(child,seen,termByCode.get(child.code)?.id||'')}${faqCards(ruleFaqs(child),{surfaceId:child.id})}</div>`).join('');
+  const inline=inlineChildren.map(child=>`<div class="inline-clarification" id="${escapeHtml(recordAnchor(child))}" data-rule-id="${escapeHtml(child.id)}" data-rule-code="${escapeHtml(child.code)}">${renderContent(child,seen,excludedRuleId(child))}${faqCards(ruleFaqs(child),{surfaceId:child.id})}</div>`).join('');
   const text=renderContent(record,seen,excludedId,children.map(child=>child.code))+inline;
   const faqHtml=faqCards(ruleFaqs(record),{surfaceId:record.id});
-  return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><h3>${escapeHtml(displayTitle(record))}</h3><span class="page">${sourceLabel(record)}</span></header><div class="rule-body">${text}${faqHtml}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
+  return `<article class="rule kind-${escapeHtml(record.kind)}" id="${id}" data-rule-id="${escapeHtml(record.id)}" data-rule-code="${escapeHtml(record.code)}"><header class="rule-head"><h3>${escapeHtml(displayTitle(record))}</h3><span class="page">${sourceLabel(record)}</span></header><div class="rule-body">${text}${faqHtml}${referenceStrip(record.code,seen)}${ruleVisuals(record.code)}${nested}</div></article>`;
 }
 
 function introductionArticle(){
@@ -405,7 +408,7 @@ function sectionPage(id,index){
       cards=`${overview}<div class="core-stratagem-grid">${parents.filter(record=>record.code!=='15.01').map(stratagemCard).join('')}</div>${universalUpdateCards()}`;
     }else cards=parents.map(record=>mainRule(record,records.filter(child=>child.code.startsWith(`${record.code}.`)))).join('');
   }
-  const anchors=id==='introduction'?[]:records.filter(record=>record.code.split('.').length===2).map(record=>({id:`rule-${slug(record.code)}`,title:record.title}));
+  const anchors=id==='introduction'?[]:records.filter(record=>record.code.split('.').length===2).map(record=>({id:recordAnchor(record),title:record.title}));
   const onPage=anchors.length?anchors.length>12?`<details class="nav-group on-page"><summary>On this page <span>${anchors.length}</span></summary>${anchors.map(item=>`<a href="#${item.id}">${escapeHtml(item.title)}</a>`).join('')}</details>`:`<section class="nav-group on-page"><h2>On this page</h2>${anchors.map(item=>`<a href="#${item.id}">${escapeHtml(item.title)}</a>`).join('')}</section>`:'';
   const actions=[`<a class="button source" href="${pdfUrl}" target="_blank" rel="noreferrer">Official GW PDF ↗</a>`];
   if(previous)actions.push(`<a class="button" href="${fileFor(previous)}">← ${escapeHtml(byId.get(previous).title)}</a>`);
@@ -424,7 +427,7 @@ for(const [index,id] of order.entries())fs.writeFileSync(path.join(root,fileFor(
 const searchIndex=digital.records.map(record=>{
   const sectionId=sectionByNumber.get(record.code.slice(0,2));
   const conflictText=record.sourceConflict?`Unresolved accepted-source conflict. ${record.sourceConflict.occurrences.map(occurrence=>occurrence.content.text).join(' ')}`:'';
-  return {code:record.code,title:record.title,chapter:byId.get(sectionId)?.title||'',text:normalize(`${conflictText||recordText(record)} ${(record.compatibilityAliases||[]).join(' ')}`),url:`${fileFor(sectionId)}#rule-${slug(record.code)}`};
+  return {id:record.id,code:record.code,title:record.title,chapter:byId.get(sectionId)?.title||'',text:normalize(`${conflictText||recordText(record)} ${(record.compatibilityAliases||[]).join(' ')}`),url:`${fileFor(sectionId)}#${recordAnchor(record)}`};
 });
 for(const update of digital.universalRulesUpdates||[])searchIndex.push({code:update.id,title:update.title,chapter:'Stratagems',text:update.text,url:`stratagems.html#${update.id}`});
 for(const faq of faqs){

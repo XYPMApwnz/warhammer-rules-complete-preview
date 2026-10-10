@@ -1094,9 +1094,113 @@
     },
     {
       "code": "09.07.01",
+      "sourceCode": "09.07.01",
+      "title": "Desperate Escape Test",
+      "text": "Some rules may reference the term 'Desperate Escape test'. In all instances this means the hazard rolls made for the desperate escape mode of a fall-back move.\nAbilities that subtract from a unit's Desperate Escape test instead subtract from those hazard rolls.\nExample: A battle-shocked unit makes a fall-back move away from a unit of Bloodletters that have the Bane of Cowards ability. As a result of Bane of Cowards, because the unit making the fall-back move is battle-shocked, the hazard rolls they make as part of their desperate escape will be at -1.",
+      "kind": "rule",
+      "sourceNode": {
+        "sourceUnitId": "waha-core-rule-09-07-01",
+        "anchor": "Desperate-Escape-Test",
+        "sourceOrder": 52,
+        "contentHash": "B346F7066CFCCDF3073579C9B6E4166E2F6C6037DF3386E8A4A5432DBCFC8528"
+      },
+      "sourceStructure": {
+        "text": "Some rules may reference the term 'Desperate Escape test'. In all instances this means the hazard rolls made for the desperate escape mode of a fall-back move.Abilities that subtract from a unit's Desperate Escape test instead subtract from those hazard rolls.Example: A battle-shocked unit makes a fall-back move away from a unit of Bloodletters that have the Bane of Cowards ability. As a result of Bane of Cowards, because the unit making the fall-back move is battle-shocked, the hazard rolls they make as part of their desperate escape will be at -1.",
+        "lists": [],
+        "tables": [],
+        "notes": [],
+        "examples": [],
+        "references": [
+          {
+            "kind": "tooltip",
+            "label": "hazard rolls",
+            "selector": "#tooltip_content00072",
+            "resolved": true,
+            "identity": "code:06.03"
+          },
+          {
+            "kind": "tooltip",
+            "label": "fall-back move",
+            "selector": "#tooltip_content00073",
+            "resolved": true,
+            "identity": "title:FALL-BACK MOVE09.07"
+          },
+          {
+            "kind": "href",
+            "label": "battle-shocked",
+            "rawTarget": "/wh40k11ed/the-rules/core-rules/#3.-Battle-shock-Step",
+            "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#3.-Battle-shock-Step",
+            "internalCore": true
+          },
+          {
+            "kind": "href",
+            "label": "Bloodletters",
+            "rawTarget": "/wh40k11ed/factions/chaos-daemons/Bloodletters",
+            "target": "https://wahapedia.ru/wh40k11ed/factions/chaos-daemons/Bloodletters",
+            "internalCore": false
+          }
+        ],
+        "contentHash": "B346F7066CFCCDF3073579C9B6E4166E2F6C6037DF3386E8A4A5432DBCFC8528"
+      }
+    },
+    {
+      "code": "09.07.01",
+      "sourceCode": "09.07.01",
       "title": "Desperate Escape",
-      "text": "If a stratagem or ability forces a unit to make a Desperate Escape test, that unit:\n• Must make one hazard roll for each model in that unit.\n• Must make a battle-shock roll.\nSelecting Modes\nSome rules instruct you to select a mode, such as fall-back moves. Modes are mutually exclusive, and you must assess each one in the order presented. When making a move, if your unit does not meet the conditions of any of the modes, it cannot make that move.\nSometimes a mode will be mandatory if applicable (e.g. consolidation modes, 12.08), but in the case of fall-back moves, ordered retreat is not mandatory, so you could select desperate escape instead.\nMany move types state conditions you must meet while/after moving. Those that are labelled with a mode name only apply if you selected that mode; those not labelled with a mode name always apply.",
-      "kind": "rule"
+      "text": "If a stratagem or ability forces a unit to make a Desperate Escape test, that unit:\n• Must make one hazard roll for each model in that unit.\n\n• Must make a battle-shock roll.",
+      "kind": "rule",
+      "sourceNode": {
+        "sourceUnitId": "waha-core-rule-09-07-01",
+        "anchor": "Desperate-Escape",
+        "sourceOrder": 53,
+        "contentHash": "A63ED05A673116DB7B25B11983C9423828F48669A83E46F4634E646F65F408E2"
+      },
+      "sourceStructure": {
+        "text": "If a stratagem or ability forces a unit to make a Desperate Escape test, that unit:Must make one hazard roll for each model in that unit.Must make a battle-shock roll.",
+        "lists": [
+          {
+            "ordered": false,
+            "items": [
+              "Must make one hazard roll for each model in that unit.",
+              "Must make a battle-shock roll."
+            ]
+          }
+        ],
+        "tables": [],
+        "notes": [],
+        "examples": [],
+        "references": [
+          {
+            "kind": "href",
+            "label": "stratagem",
+            "rawTarget": "/wh40k11ed/the-rules/core-rules/#Stratagems",
+            "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Stratagems",
+            "internalCore": true
+          },
+          {
+            "kind": "href",
+            "label": "Desperate Escape",
+            "rawTarget": "/wh40k11ed/the-rules/core-rules/#Desperate-Escape",
+            "target": "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/#Desperate-Escape",
+            "internalCore": true
+          },
+          {
+            "kind": "tooltip",
+            "label": "hazard roll",
+            "selector": "#tooltip_content00072",
+            "resolved": true,
+            "identity": "code:06.03"
+          },
+          {
+            "kind": "tooltip",
+            "label": "battle-shock roll",
+            "selector": "#tooltip_content00126",
+            "resolved": true,
+            "identity": "code:01.07"
+          }
+        ],
+        "contentHash": "A63ED05A673116DB7B25B11983C9423828F48669A83E46F4634E646F65F408E2"
+      }
     },
     {
       "code": "10.01",

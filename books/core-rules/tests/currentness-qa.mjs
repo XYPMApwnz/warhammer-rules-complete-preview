@@ -11,8 +11,10 @@ const base=JSON.parse(fs.readFileSync(path.join(root,'content','core-rules.digit
 const source=loadCoreCurrentOfficial();
 const registry=loadCoreSourceRegistry();
 const effective=applyCoreCurrentOfficial(base,source);
-const byCode=new Map(effective.records.map(record=>[record.code,record]));
-assert.equal(byCode.size,effective.records.length,'effective Core IDs must be unique');
+const byCode=new Map(effective.records.filter(record=>effective.records.filter(other=>other.code===record.code).length===1).map(record=>[record.code,record]));
+const identity=record=>record.sourceNode?.anchor||record.code;
+assert.equal(new Set(effective.records.map(identity)).size,effective.records.length,'effective Core source-node identities must be unique');
+assert.deepEqual(new Set(effective.records.map(identity)),new Set(base.records.map(identity)),'official overrides must preserve source-node identity');
 assert.deepEqual(new Set(effective.records.map(record=>record.code)),new Set(base.records.map(record=>record.code)),'official overrides must not silently add or drop base rule identities');
 assert.deepEqual(new Set(source.ruleOverrides.map(update=>update.code)),new Set(['01.02.03','08.02.01','15.05','15.06','17.03']),'only adjudicated Core changes are accepted');
 assert.deepEqual(new Set(effective.universalRulesUpdates.map(update=>update.id)),new Set([

@@ -609,7 +609,7 @@ for(const rule of coreDigital.records){
   term.status='verified';
   term.presentation=clean(term.summary.en)===clean(term.definition.en)?'atomic':'article';
 }
-const coreTermsByCode=new Map(coreDigital.records.filter(rule=>!glossaryExcludedCodes.has(rule.code)).map(rule=>[rule.code,registry.get(digitalCoreId(rule))]).filter(([,term])=>term));
+const coreTermsByCode=new Map(coreDigital.records.filter(rule=>!glossaryExcludedCodes.has(rule.code)&&coreDigital.records.filter(other=>other.code===rule.code).length===1).map(rule=>[rule.code,registry.get(digitalCoreId(rule))]).filter(([,term])=>term));
 const coreCodes=[...coreTermsByCode.keys()].sort((a,b)=>b.length-a.length);
 const chapterLabels=new Map([
   ['03.01','Moving'],['04.01','Making Attacks'],['05.01','Attack Sequence'],['15.01','Stratagems'],['16.01','Actions']

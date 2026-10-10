@@ -94,4 +94,20 @@ const uru=buildAndRead(({core})=>{
 assert(uru.html.includes(uruMarker)&&uru.search.includes(uruMarker),'Universal Rules Update mutation did not reach Reader card/search');
 assert(!uru.html.includes(oldUru)&&!uru.search.includes(oldUru),'stale Universal Rules Update survived the effective Reader projection');
 
+const split=buildAndRead(()=>{});
+const splitSearch=JSON.parse(split.search).filter(item=>item.code==='09.07.01');
+assert.equal(splitSearch.length,2,'Reader search must retain both same-code source nodes');
+assert.equal(new Set(splitSearch.map(item=>item.id)).size,2,'Reader search collapsed canonical identity');
+assert.equal(new Set(splitSearch.map(item=>item.url)).size,2,'Reader source nodes share a fragment destination');
+for(const item of splitSearch){
+  assert(split.html.includes(`id="${item.url.split('#')[1]}"`),'split search target missing');
+  assert(split.html.includes(`data-rule-id="${item.id}"`),'split reader record missing');
+  assert(!item.text.includes('Selecting Modes'),'sibling callout retained in a split source node');
+  assert(!item.text.includes('source conflict'),'split reader search retained obsolete conflict label');
+}
+assert(splitSearch.some(item=>item.title==='Desperate Escape Test'&&item.text.includes('Some rules may reference the term')),'definition source node lost');
+assert(splitSearch.some(item=>item.title==='Desperate Escape'&&item.text.includes('Must make one hazard roll for each model')),'forced-test source node lost');
+const movementHtml=split.html;
+assert.equal((movementHtml.match(/data-rule-code="09.07.01"/g)||[]).length,2,'Reader did not render both source nodes independently');
+
 console.log('Core Reader propagation QA passed: MAIN_RULE, official override, FAQ and URU mutations reach generated Reader facts without a Glossary tree.');

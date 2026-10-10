@@ -58,11 +58,11 @@ try{
         assert.equal(key(payload.question),key(faq.question),`${faq.id}: old chapter URL opens a different question`);
         assert.equal(key(payload.answer),key(faq.answer),`${faq.id}: old chapter URL opens a different answer`);
       }
-      for(const code of ['12.08','18.05','01.02.06','09.07.01','25.03']){
-        const rule=catalog.getByCode(code),url=rule.fullRulePath.replace('books/core-rules/reader/','');
+      for(const rule of [...['12.08','18.05','01.02.06','25.03'].map(code=>catalog.getByCode(code)),...['Desperate-Escape-Test','Desperate-Escape'].map(anchor=>catalog.getByAnchor(anchor))]){
+        const code=rule.code,url=rule.fullRulePath.replace('books/core-rules/reader/','');
         await page.goto(`${origin}/books/core-rules/reader/${url}`,{waitUntil:'domcontentloaded'});
         await page.locator('details.subrule').evaluateAll(nodes=>nodes.forEach(node=>node.open=true));
-        const card=page.locator(`[data-rule-code="${code}"]`),text=await card.innerText();
+        const card=page.locator(`[data-rule-id="${rule.id}"]`),text=await card.innerText();
         assert(await card.isVisible(),`${name}/${code}: card not visible`);
         const headerCollisions=await card.locator(':scope > .rule-head').evaluateAll(headers=>headers.flatMap(header=>{
           const title=header.querySelector('h3'),source=header.querySelector('.page');
@@ -79,8 +79,11 @@ try{
         if(code==='18.05')assert(text.includes('If the above is not possible while remaining unengaged')&&text.includes('Each model that still cannot be set up is destroyed.'),'Emergency fallback not visible');
         if(code==='01.02.06')assert.equal((text.match(/A unit must be split into two units, each containing as equal a number of models as possible/g)||[]).length,1,'Splitting applied clause duplicated');
         if(code==='09.07.01'){
-          assert(text.toLowerCase().includes('unresolved accepted-source conflict')&&text.includes('Neither version has been established as the current rule.'),'conflict appears adjudicated');
-          assert.equal(await card.locator('.source-variant').count(),2,'conflict must preserve both accepted variants');
+          assert(!text.toLowerCase().includes('source conflict'),'resolved source-node identity still exposes conflict UI');
+          assert(!text.includes('Selecting Modes'),'sibling callout leaked into Desperate Escape owner');
+          if(rule.sourceNode.anchor==='Desperate-Escape-Test')assert(text.includes('Some rules may reference the term'),'definition missing');
+          else assert(text.includes('Must make one hazard roll for each model')&&text.includes('Must make a battle-shock roll'),'forced-test rule missing');
+          assert.equal(await page.locator('[data-rule-code="09.07.01"]').count(),2,'both distinct source nodes must render');
         }
         if(code==='25.03'){
           assert.equal(await card.locator('table').count(),1,'Battle Size must render exactly one canonical structured table');
@@ -89,7 +92,7 @@ try{
           assert(!/\b(?:1000|2000)\b/.test(outside),'Battle Size values duplicated outside canonical table');
         }
         await card.scrollIntoViewIfNeeded();
-        const screenshot=path.join(screenshots,`${name}-${code.replaceAll('.','-')}.png`);await page.screenshot({path:screenshot});screenshotPaths.push(screenshot);
+        const screenshot=path.join(screenshots,`${name}-${rule.id}.png`);await page.screenshot({path:screenshot});screenshotPaths.push(screenshot);
       }
       assert.deepEqual(errors,[],`${name}: uncaught reader errors`);
     }finally{await context.close();}

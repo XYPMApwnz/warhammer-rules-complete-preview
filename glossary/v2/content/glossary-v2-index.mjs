@@ -397,8 +397,18 @@ export async function buildGlossaryV2Index(){return createGlossaryV2Index(await 
 export function rebuildCoreGlossaryProjection(publication,{coreCatalog=createEffectiveCoreCatalog(),editorial=readJson('glossary/editorial-contracts.v1.json'),resolutions=readJson('glossary/resolutions.en.json'),supplemental=readJson('glossary/supplemental-terms.en.json')}={}){
   if(publication.schema!=='wh40k-glossary-v2-index/v1'||publication.factualAuthority!==false)throw new Error('Unsupported Glossary publication');
   const core=new Map();addCoreEntries(core,coreCatalog);
-  const previousIds=publication.entries.filter(entry=>entry.domain==='CORE').map(entry=>entry.id).sort();
-  if(JSON.stringify(previousIds)!==JSON.stringify([...core.keys()].sort()))throw new Error('Core identity inventory changed; full Glossary rebuild required');
+  const previousCore=publication.entries.filter(entry=>entry.domain==='CORE');
+  const previousIds=new Set(previousCore.map(entry=>entry.id));
+  const additions=[...core.values()].filter(entry=>!previousIds.has(entry.id));
+  // An enrolled source-node split may add an owner to an existing source unit.
+  // Arbitrary additions/removals still require the full cross-domain producer.
+  const isSourceNodeSplit=entry=>{
+    const fact=entry.facts,node=fact.sourceNode;
+    return node?.sourceUnitId&&node.anchor&&Number.isInteger(node.sourceOrder)&&node.contentHash&&
+      previousCore.some(previous=>previous.facts.code===(fact.sourceCode||fact.code)&&
+        previous.facts.sourceUnitIds?.includes(node.sourceUnitId)&&core.has(previous.id));
+  };
+  if([...previousIds].some(id=>!core.has(id))||additions.some(entry=>!isSourceNodeSplit(entry)))throw new Error('Core identity inventory changed; full Glossary rebuild required');
   const entries=new Map(publication.entries.filter(entry=>entry.domain!=='CORE').map(entry=>[entry.id,clone(entry)]));
   for(const [id,entry] of core)entries.set(id,entry);
   applyLegacyPresentation(entries,coreCatalog,editorial,resolutions,supplemental);
@@ -414,6 +424,22 @@ export function rebuildCoreGlossaryProjection(publication,{coreCatalog=createEff
     projected.canonicalReferences.sort((a,b)=>`${a.relationType}:${a.id}`.localeCompare(`${b.relationType}:${b.id}`));
     return projected;
   });
+  for(const entry of additions){
+    entry.canonicalReferences.sort((a,b)=>`${a.relationType}:${a.id}`.localeCompare(`${b.relationType}:${b.id}`));
+    result.entries.push(entry);
+  }
+  result.entries.sort((a,b)=>a.id.localeCompare(b.id));
+  if(additions.length){
+    result.counts.total=result.entries.length;
+    result.counts.standalone=result.entries.filter(entry=>!entry.parent).length;
+    result.counts.scopedChildren=result.entries.filter(entry=>entry.parent).length;
+    result.counts.byDomain.CORE=core.size;
+    for(const key of Object.keys(result.counts.byType).filter(key=>key.startsWith('CORE:')))delete result.counts.byType[key];
+    for(const entry of result.entries.filter(entry=>entry.domain==='CORE')){
+      const key=`CORE:${entry.recordType}`;
+      result.counts.byType[key]=(result.counts.byType[key]||0)+1;
+    }
+  }
   result.coverage.coreEffectiveRecords=coreCatalog.records.length;
   result.coverage.coreIndexed=core.size;
   result.coverage.coreNotIndexed={identityOnly:coreCatalog.identityOnly.map(record=>record.id).sort(),aliasOnlyErrata:[...CORE_ALIAS_ONLY_ERRATA].sort()};

@@ -22,6 +22,7 @@ from lxml import html
 
 
 CODE_RE = re.compile(r"\b((?:0[1-9]|1\d|2[0-5])\.\d{2}(?:\.\d{2})?)\b")
+SOURCE_URL = "https://wahapedia.ru/wh40k11ed/the-rules/core-rules/"
 SECTION_BY_NUMBER = {
     "01": "core-concepts", "02": "datasheets", "03": "moving",
     "04": "making-attacks", "05": "attack-sequence", "06": "other-concepts",
@@ -82,10 +83,36 @@ def heading_record(heading) -> dict | None:
         holder.append(deepcopy(sibling))
         sibling = sibling.getnext()
     text = clean_text(holder)
-    return {"code": code, "title": title or code, "text": text}
+    return {
+        "code": code, "sourceCode": code, "title": title or code, "text": text,
+        "sourceNode": {"sourceUrl": SOURCE_URL, "code": code, "anchor": heading.get("id")},
+    }
 
 
-def strip_embedded_records(records: dict[str, dict]) -> None:
+def bind_heading_records(records: dict[str | tuple[str, str], dict], headings) -> None:
+    """A repeated citation code cannot identify distinct source heading nodes."""
+    grouped: dict[str, list[dict]] = {}
+    for heading in headings:
+        record = heading_record(heading)
+        if record:
+            record["kind"] = "muster" if record["code"].startswith("25.") else "rule"
+            grouped.setdefault(record["code"], []).append(record)
+    for code, candidates in grouped.items():
+        if len(candidates) == 1:
+            # Preserve heading-over-tooltip precedence for unambiguous codes.
+            candidates[0].pop("sourceNode")
+            candidates[0].pop("sourceCode")
+            records[code] = candidates[0]
+            continue
+        anchors = [record["sourceNode"]["anchor"] for record in candidates]
+        if not all(anchors) or len(set(anchors)) != len(anchors):
+            raise ValueError(f"Ambiguous Core source nodes for code {code}: distinct anchors required")
+        records.pop(code, None)
+        for record in candidates:
+            records[(code, record["sourceNode"]["anchor"])] = record
+
+
+def strip_embedded_records(records: dict[str | tuple[str, str], dict]) -> None:
     """Remove rule bodies that Wahapedia nests inside a neighbouring heading."""
     for record in records.values():
         text = record.get("text", "")
@@ -111,7 +138,7 @@ def strip_embedded_records(records: dict[str, dict]) -> None:
         record["text"] = re.sub(r"\n{3,}", "\n\n", text).strip()
 
 
-def normalize_record_structure(records: dict[str, dict]) -> None:
+def normalize_record_structure(records: dict[str | tuple[str, str], dict]) -> None:
     """Repair known Wahapedia layout fragments without changing the rule hierarchy."""
     def add_child(code: str, title: str, text: str) -> None:
         records.setdefault(code, {
@@ -194,7 +221,7 @@ def main(input_file: str, output_file: str) -> None:
     source = Path(input_file)
     raw = source.read_bytes()
     document = html.fromstring(raw)
-    records: dict[str, dict] = {}
+    records: dict[str | tuple[str, str], dict] = {}
 
     tooltip_codes: dict[str, list[str]] = {}
     for trigger in document.xpath('//*[@data-tooltip-content]'):
@@ -278,11 +305,7 @@ def main(input_file: str, output_file: str) -> None:
                 "kind": "ability",
             }
 
-    for heading in document.xpath("//h2|//h3"):
-        record = heading_record(heading)
-        if record:
-            record["kind"] = "muster" if record["code"].startswith("25.") else "rule"
-            records[record["code"]] = record
+    bind_heading_records(records, document.xpath("//h2|//h3"))
 
     strip_embedded_records(records)
     normalize_record_structure(records)
@@ -321,7 +344,10 @@ def main(input_file: str, output_file: str) -> None:
             "sha256": hashlib.sha256(raw).hexdigest(),
             "note": "Wahapedia 11E reference snapshot for reader rendering; official GW PDF retained for verification.",
         },
-        "records": sorted(records.values(), key=lambda item: [int(part) for part in item["code"].split(".")]),
+        "records": sorted(records.values(), key=lambda item: (
+            tuple(int(part) for part in item["code"].split(".")),
+            item.get("sourceNode", {}).get("anchor") or "",
+        )),
         "images": images,
     }
     Path(output_file).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

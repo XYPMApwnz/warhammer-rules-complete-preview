@@ -143,22 +143,58 @@
       }
     }
   ],
-  "sourceConflicts": [
+  "sourceConflicts": [],
+  "sourceNodes": [
+    {
+      "targetRuleId": "core-rule-09-07-01-desperate-escape-test",
+      "sourceUnitId": "waha-core-rule-09-07-01",
+      "sourceCode": "09.07.01",
+      "anchor": "Desperate-Escape-Test",
+      "sourceOrder": 52,
+      "contentHash": "B346F7066CFCCDF3073579C9B6E4166E2F6C6037DF3386E8A4A5432DBCFC8528",
+      "textRange": {
+        "start": 30,
+        "end": 585
+      },
+      "referenceIndexes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "relatedRuleIds": [
+        "core-rule-06-03-hazard-rolls",
+        "core-rule-09-07-fall-back-move",
+        "core-rule-08-03-battle-shock"
+      ]
+    },
     {
       "targetRuleId": "core-rule-09-07-01-desperate-escape",
-      "status": "UNRESOLVED_ACCEPTED_SOURCE_CONFLICT",
-      "occurrences": [
-        {
-          "sourceUnitId": "waha-core-rule-09-07-01",
-          "sourceOrder": 52,
-          "contentHash": "B346F7066CFCCDF3073579C9B6E4166E2F6C6037DF3386E8A4A5432DBCFC8528"
-        },
-        {
-          "sourceUnitId": "waha-core-rule-09-07-01",
-          "sourceOrder": 53,
-          "contentHash": "A63ED05A673116DB7B25B11983C9423828F48669A83E46F4634E646F65F408E2"
-        }
-      ]
+      "sourceUnitId": "waha-core-rule-09-07-01",
+      "sourceCode": "09.07.01",
+      "anchor": "Desperate-Escape",
+      "sourceOrder": 53,
+      "contentHash": "A63ED05A673116DB7B25B11983C9423828F48669A83E46F4634E646F65F408E2",
+      "textRange": {
+        "start": 25,
+        "end": 192
+      },
+      "referenceIndexes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "relatedRuleIds": [
+        "core-rule-06-03-hazard-rolls",
+        "core-rule-01-07-battle-shock-rolls"
+      ],
+      "excludedNeighbor": {
+        "start": 192,
+        "end": 859,
+        "anchor": "Selecting-Modes",
+        "canonicalId": "core-rule-09-02-02-selecting-modes"
+      }
     }
   ]
 }

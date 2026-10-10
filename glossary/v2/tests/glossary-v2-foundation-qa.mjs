@@ -25,7 +25,7 @@ const updateItems=admechUpdate.facts.acceptedResultingSemantics.flatMap(group=>g
 assert.match(updateItems.find(item=>item.changedRule.includes('Cyber-psalm Programming')).resultingEffectiveRule,/Add 2" to the Move characteristic/,'page 17 must retain the changed and resulting Detachment rule');
 assert.match(updateItems.find(item=>item.changedRule==='Belisarius Cawl').resultingEffectiveRule,/Canticles of the Omnissiah section[\s\S]*Solar atomiser/,'page 18 must retain the changed and resulting datasheet ability and profile');
 
-assert.equal(index.counts.byDomain.CORE,368,'Core must contribute every full certified factual record except alias-only errata');
+assert.equal(index.counts.byDomain.CORE,369,'Core must contribute every full certified factual record except alias-only errata');
 assert.equal(index.coverage.coreNotIndexed.identityOnly.length,0);
 assert.equal(index.coverage.coreNotIndexed.aliasOnlyErrata.length,2);
 assert.equal(index.counts.byDomain.MISSIONS,156,'Missions must contribute the Standard/Event union plus eight factual FAQ clarifications');

@@ -37,6 +37,44 @@ export function indexWahaCoreCorpus(corpus){
   return {unitById,effectiveNumbered};
 }
 
+// Book-owned occurrence bindings recover independently headed nodes from the
+// accepted capture. Displayed codes are citations, not source-node identities.
+export function bindWahaSourceNodes(records,bindings,unitById){
+  const bound=[];
+  const seen=new Set();
+  for(const binding of bindings){
+    const unit=unitById.get(binding.sourceUnitId);
+    const matches=unit?.occurrences?.filter(item=>item.stableDomId===binding.anchor)||[];
+    const occurrence=matches[0];
+    const key=`${binding.sourceUnitId}#${binding.anchor}`;
+    if(matches.length!==1||seen.has(key)||unit.code!==binding.sourceCode||occurrence.sourceOrder!==binding.sourceOrder||occurrence.content.contentHash!==binding.contentHash)throw new Error(`Invalid source-node binding: ${key}`);
+    seen.add(key);
+    const {start,end}=binding.textRange;
+    if(!Number.isInteger(start)||!Number.isInteger(end)||start<0||end<=start||end>occurrence.content.text.length)throw new Error(`Invalid source-node content range: ${key}`);
+    let text=occurrence.content.text.slice(start,end);
+    for(const list of occurrence.content.lists||[])for(const item of list.items)if(text.includes(item))text=text.replace(item,`\n• ${item}\n`);
+    text=text.replace(/([.!?])(?=[A-Z])/g,'$1\n').trim();
+    const sourceNode={sourceUnitId:unit.id,anchor:binding.anchor,sourceOrder:binding.sourceOrder,contentHash:binding.contentHash};
+    const sourceStructure={...structuredClone(occurrence.content),text:occurrence.content.text.slice(start,end),references:binding.referenceIndexes.map(index=>{
+      const reference=occurrence.content.references[index];
+      if(!reference)throw new Error(`Invalid source-node reference: ${key}`);
+      return structuredClone(reference);
+    })};
+    bound.push({code:unit.code,sourceCode:unit.code,title:occurrence.title,text,kind:'rule',sourceNode,sourceStructure});
+  }
+  const boundCodes=new Set(bindings.map(binding=>binding.sourceCode));
+  for(const record of records){
+    if(boundCodes.has(record.code)&&record.sourceNode?.anchor&&!bindings.some(binding=>binding.sourceCode===record.code&&binding.anchor===record.sourceNode.anchor&&(!record.sourceNode.sourceUnitId||binding.sourceUnitId===record.sourceNode.sourceUnitId)))throw new Error(`Unbound source node: ${record.sourceNode.anchor}`);
+  }
+  for(const sourceUnitId of new Set(bindings.map(binding=>binding.sourceUnitId))){
+    for(const occurrence of unitById.get(sourceUnitId).occurrences){
+      if(!bindings.some(binding=>binding.sourceUnitId===sourceUnitId&&binding.anchor===occurrence.stableDomId))throw new Error(`Unbound source node: ${occurrence.stableDomId}`);
+    }
+  }
+  // Source order controls presentation order only; anchor identity selects owners.
+  return [...records.filter(record=>!boundCodes.has(record.code)),...bound].sort((a,b)=>a.code.localeCompare(b.code)||(a.sourceNode?.sourceOrder??0)-(b.sourceNode?.sourceOrder??0)||String(a.sourceNode?.anchor||'').localeCompare(String(b.sourceNode?.anchor||'')));
+}
+
 function sourceProvenance(unit,sourceId='waha-core-corpus-2026-09-25'){
   return {sourceId,sourceClass:'ACCEPTED_OPERATIONAL_SECONDARY',sourceArtifact:unit.pageUrl,sourceDate:'2026-09-25',sourceScope:'GLOBAL_CORE',authorityLevel:'OPERATIONAL_CONTENT_BASELINE',sourceLocator:unit.id,sourceUnitId:unit.id,sourceContentHash:unit.contentHash,corpusFingerprint:WAHA_CORE_FINGERPRINT};
 }
@@ -90,6 +128,7 @@ export function sourceMappingSkeleton(corpus,identities){
   for(const item of effectiveNumbered){
     const canonicalIds=[];
     if(identities.rules[item.code])canonicalIds.push(identities.rules[item.code]);
+    for(const entry of Object.values(identities.sourceNodes||{}))if(entry.code===item.code)canonicalIds.push(entry.id);
     if(item.code==='24.22'||item.code==='24.23')canonicalIds.push(identities.rules['24.34']);
     mappings.push({sourceEffectiveId:item.id,partition:'NUMBERED_RULE',sourceUnitIds:item.sourceUnitIds,canonicalIds:[...new Set(canonicalIds)],mappingStatus:canonicalIds.length>1?'SOURCE_SPLIT_ACROSS_CANONICAL':'EXACT_ONE_TO_ONE'});
   }

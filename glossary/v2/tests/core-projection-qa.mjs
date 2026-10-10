@@ -21,7 +21,7 @@ const core=rebuilt.entries.filter(entry=>entry.domain==='CORE');
 const coreById=new Map(core.map(entry=>[entry.id,entry]));
 const aliasOnly=new Set(['core-errata-15-05','core-errata-15-06']);
 const expected=catalog.records.filter(record=>!aliasOnly.has(record.id));
-assert.equal(core.length,368);
+assert.equal(core.length,369);
 assert.deepEqual(new Set(core.map(entry=>entry.id)),new Set(expected.map(record=>'core::'+record.id)),'scoped build dropped canonical Core identities');
 assert.equal(JSON.stringify(publication),before,'scoped build mutated its input container');
 const nonCore=value=>value.entries.filter(entry=>entry.domain!=='CORE');
@@ -37,9 +37,20 @@ for(const record of expected){
   const expectedReferences=Object.entries(record.relationships||{}).flatMap(([relationType,ids])=>(Array.isArray(ids)?ids:[ids]).filter(Boolean).map(id=>`${relationType}|${id}`)).sort();
   assert.deepEqual(entry.canonicalReferences.map(reference=>`${reference.relationType}|${reference.canonicalId}`).sort(),expectedReferences,`${record.id}: canonical relations changed`);
   const previous=publication.entries.find(candidate=>candidate.id===entry.id);
-  for(const alias of previous.aliases)assert(entry.aliases.includes(alias),`${record.id}: cross-domain identity alias lost`);
-  assert.deepEqual(entry.contexts,previous.contexts,`${record.id}: cross-domain occurrence placement lost`);
+  for(const alias of previous?.aliases||[])assert(entry.aliases.includes(alias),`${record.id}: cross-domain identity alias lost`);
+  assert.deepEqual(entry.contexts,previous?.contexts||[],`${record.id}: cross-domain occurrence placement lost`);
 }
+// Exercise the source-node addition from the pre-split publication container.
+const beforeSplit=structuredClone(publication);
+beforeSplit.entries=beforeSplit.entries.filter(entry=>entry.id!=='core::core-rule-09-07-01-desperate-escape-test');
+const migrated=rebuildCoreGlossaryProjection(beforeSplit,{coreCatalog:catalog});
+assert(migrated.entries.some(entry=>entry.id==='core::core-rule-09-07-01-desperate-escape-test'),'enrolled source-node split was not published');
+assert.equal(JSON.stringify(nonCore(migrated)),JSON.stringify(nonCore(beforeSplit)),'split migration changed non-Core publication');
+const unsourcedCatalog={...catalog,records:catalog.records.map(record=>record.id==='core-rule-09-07-01-desperate-escape-test'?{...record,sourceNode:undefined}:record)};
+assert.throws(()=>rebuildCoreGlossaryProjection(beforeSplit,{coreCatalog:unsourcedCatalog}),/identity inventory changed/i,'unsourced addition accepted');
+const unrelatedCatalog={...catalog,records:catalog.records.map(record=>record.id==='core-rule-09-07-01-desperate-escape-test'?{...record,sourceNode:{...record.sourceNode,sourceUnitId:'synthetic-unrelated-source'}}:record)};
+assert.throws(()=>rebuildCoreGlossaryProjection(beforeSplit,{coreCatalog:unrelatedCatalog}),/identity inventory changed/i,'unrelated addition accepted');
+
 const poisoned=structuredClone(publication);
 for(const entry of poisoned.entries.filter(entry=>entry.domain==='CORE')){
   entry.facts={text:'OLD_CORE_FACT_POISON',semanticContent:'OLD_CORE_FACT_POISON'};
@@ -57,21 +68,20 @@ const inventoryPoison=structuredClone(publication);
 inventoryPoison.entries=inventoryPoison.entries.filter(entry=>entry.id!=='core::core-deep-strike');
 assert.throws(()=>rebuildCoreGlossaryProjection(inventoryPoison,{coreCatalog:catalog}),/identity inventory changed/i,'scoped rebuild silently changes unrelated identity inventory');
 
-const conflict=catalog.getByCode('09.07.01');
-assert.equal(conflict.semanticContent,null);
-const conflictEntry=coreById.get('core::'+conflict.id);
+assert.equal(catalog.getByCode('09.07.01'),null,'ambiguous code must fail closed');
+const split=['Desperate-Escape-Test','Desperate-Escape'].map(anchor=>catalog.getByAnchor(anchor));
+assert.equal(new Set(split.map(record=>record.id)).size,2);
 const content=createGlobalGlossaryContent({entries:core});
-const projected=content.project(conflictEntry);
-assert(projected.definition.includes(conflict.sourceConflict.notice),'global content adapter lost unresolved conflict notice');
-for(const occurrence of conflict.sourceConflict.occurrences)assert(projected.definition.includes(occurrence.presentationText),'global content adapter dropped an accepted source variant');
-assert.equal(projected.summary,conflict.sourceConflict.notice,'global search summary presents one disputed source as current');
 const adapted=adaptGlobalGlossary({...rebuilt,entries:core});
 const globalContract=createReferenceContract({cards:new Map(adapted.cards.map(card=>[card.id,card])),index:adapted.index,registryId:'mega-glossary'});
-const globalResolved=globalContract.resolve(conflictEntry.id);
-const definitionText=globalResolved.sections.flatMap(section=>section.fields.map(field=>field.value)).join('\n');
-assert(definitionText.includes(conflict.sourceConflict.notice),'canonical global reference resolver lost conflict notice');
-for(const occurrence of conflict.sourceConflict.occurrences)assert(definitionText.includes(occurrence.presentationText),'canonical global reference resolver lost accepted variant');
-assert.equal(globalResolved.identity.canonicalId,conflict.id);
+for(const record of split){
+  const entry=coreById.get('core::'+record.id),projected=content.project(entry);
+  assert(projected.definition,'split canonical entry has no definition');
+  assert(!projected.definition.includes('source conflict'),'split source nodes retain conflict notice');
+  const resolved=globalContract.resolve(entry.id);
+  assert.equal(resolved.identity.canonicalId,record.id);
+  assert.equal(resolved.sections.flatMap(section=>section.fields.map(field=>field.value)).filter(Boolean).length>0,true);
+}
 assert.equal(globalContract.resolveAlias('core-deep-strike'),'core::core-deep-strike','canonical alias no longer resolves');
 const attached=coreById.get('core::core-rule-19-01-forming-attached-units');
 for(const alias of ['chaos-space-marines-ability-support','space-marines-ability-support-3','space-marines-ability-support-4']){
@@ -80,12 +90,14 @@ for(const alias of ['chaos-space-marines-ability-support','space-marines-ability
 }
 const local=buildGlossary({model:{entities:[]},coreCatalog:catalog});
 const localContract=createReferenceContract({cards:new Map(local.coreCards.map(card=>[card.id,card])),index:local.index});
-const localResolved=localContract.resolve(conflict.id,new Set());
-assert(localResolved,'canonical Core reference became unavailable in empty personal-book scope');
-const localText=localResolved.sections.flatMap(section=>section.fields.map(field=>field.value)).join('\n');
-assert(localText.includes(conflict.sourceConflict.notice));
-for(const occurrence of conflict.sourceConflict.occurrences)assert(localText.includes(occurrence.presentationText),'Army Book Core resolver dropped source variant');
-assert(!localResolved.sections.some(section=>section.fields.some(field=>field.source.path==='/semanticContent')),'local reference resolver fabricated adjudicated semantics');
+for(const record of split){
+  const resolved=localContract.resolve(record.id,new Set());
+  assert(resolved,'canonical Core reference unavailable in empty personal-book scope');
+  assert.equal(resolved.identity.canonicalId,record.id);
+  const text=resolved.sections.flatMap(section=>section.fields.map(field=>field.value)).join('\n');
+  assert(!text.includes('source conflict'),'local resolver still exposes conflict');
+  assert(!text.includes('Selecting Modes'),'local resolver contains sibling callout');
+}
 
 execFileSync(process.execPath,[path.join(repo,'glossary/v2/tools/build-glossary-v2.mjs'),'--core-only','--check'],{stdio:'pipe'});
-console.log(JSON.stringify({status:'PASS',canonicalCoreEntries:core.length,canonicalCoreRecords:catalog.records.length,nonCoreEntriesUnchanged:nonCore(rebuilt).length,publicationPoisonRejected:true,identityAliasesPreserved:true,contextFactOverridesRejected:true,sourceConflictGlobalAndBookReferences:'PASS',scopedCliCheck:'PASS'}));
+console.log(JSON.stringify({status:'PASS',canonicalCoreEntries:core.length,canonicalCoreRecords:catalog.records.length,nonCoreEntriesUnchanged:nonCore(rebuilt).length,publicationPoisonRejected:true,identityAliasesPreserved:true,contextFactOverridesRejected:true,distinctSourceNodeGlobalAndBookReferences:'PASS',scopedCliCheck:'PASS'}));

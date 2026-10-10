@@ -63,11 +63,11 @@ const pending=['01.02.06','12.08','13.09','18.04.01','18.05','18.06','18.07','22
 for(const code of pending)assert(catalog.getByCode(code)?.state==='FULL_CONTENT',`${code}: certified source unit remains pending`);
 
 const sourceConflicts=catalog.mainRules.filter(record=>record.state==='SOURCE_CONFLICT');
-assert.deepEqual(sourceConflicts.map(record=>record.code),['09.07.01'],'accepted unresolved conflict inventory changed without source review');
-assert.equal(sourceConflicts[0].semanticContent,null,'unresolved source conflict cannot be certified as current gameplay text');
-assert.equal(sourceConflicts[0].sourceConflict.status,'UNRESOLVED_ACCEPTED_SOURCE_CONFLICT');
+assert.deepEqual(sourceConflicts,[],'distinct source nodes must not be classified as competing versions');
+assert.equal(catalog.getByCode('09.07.01'),null,'ambiguous source citation must not pick an owner');
+for(const anchor of ['Desperate-Escape-Test','Desperate-Escape'])assert.equal(catalog.getByAnchor(anchor)?.state,'FULL_CONTENT');
 console.log(JSON.stringify({
-  status:'CORE_WAHA_SOURCE_ACCOUNTED_WITH_UNRESOLVED_CONFLICT',sourceUnitsAccounted:catalog.sourceMappings.length,canonicalRuleUnits:catalog.records.length,
+  status:'CORE_WAHA_SOURCE_ACCOUNTED',sourceUnitsAccounted:catalog.sourceMappings.length,canonicalRuleUnits:catalog.records.length,
   acceptedStructuredFacts:structuredCount,acceptedReferenceOccurrences:census.entries.length,
   effectiveMainRules:catalog.mainRules.filter(record=>record.state==='FULL_CONTENT').length,unresolvedSourceConflicts:sourceConflicts.map(record=>({id:record.id,status:record.sourceConflict.status})),
   referenceOccurrences:1087,uniqueReferenceEdges:925,referencesExact:1086,sourceDefectReferencesResolved:1,

@@ -2,11 +2,18 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {recordText} from '../content/record-content.mjs';
+import {bindWahaSourceNodes,indexWahaCoreCorpus,loadWahaCoreCorpus} from '../content/waha-core-source.mjs';
 
 const file=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../content/core-rules.digital-11e.json');
 const data=JSON.parse(fs.readFileSync(file,'utf8'));
+const bindings=JSON.parse(fs.readFileSync(path.join(path.dirname(file),'core-effective-bindings.v1.json'),'utf8'));
+data.records=bindWahaSourceNodes(data.records,bindings.sourceNodes||[],indexWahaCoreCorpus(loadWahaCoreCorpus(path.dirname(file))).unitById);
+if(process.argv.includes('--source-nodes-only')){
+  fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
+  process.exit(0);
+}
 
-const byCode=new Map(data.records.map(record=>[record.code,record]));
+const byCode=new Map(data.records.filter(record=>data.records.filter(other=>other.code===record.code).length===1).map(record=>[record.code,record]));
 const addChild=(code,title,text,kind='digital-clarification')=>{
   if(byCode.has(code))return;
   const record={code,title,text,kind};

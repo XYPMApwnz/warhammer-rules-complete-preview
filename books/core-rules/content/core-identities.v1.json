@@ -130,7 +130,6 @@
     "09.05.01": "core-rule-09-05-01-more-than-one-normal-move-in-a-phase",
     "09.06": "core-rule-09-06-advance-move",
     "09.07": "core-rule-09-07-fall-back-move",
-    "09.07.01": "core-rule-09-07-01-desperate-escape",
     "10.01": "core-rule-10-01-start-of-shooting-phase",
     "10.02": "core-rule-10-02-shoot",
     "10.03": "core-rule-10-03-end-of-shooting-phase",
@@ -326,6 +325,18 @@
       "id": "core-bodyguard",
       "ownerCode": "19.01",
       "title": "Bodyguard"
+    }
+  },
+  "sourceNodes": {
+    "Desperate-Escape": {
+      "id": "core-rule-09-07-01-desperate-escape",
+      "code": "09.07.01",
+      "sourceUnitId": "waha-core-rule-09-07-01"
+    },
+    "Desperate-Escape-Test": {
+      "id": "core-rule-09-07-01-desperate-escape-test",
+      "code": "09.07.01",
+      "sourceUnitId": "waha-core-rule-09-07-01"
     }
   }
 }

@@ -112,6 +112,9 @@ function intendedCodeOf(reference, sourceByAnchor) {
   return sectionCode.get(decoded) || null;
 }
 function resolveCanonical(catalog, intendedCode, reference) {
+  const anchor=decodeURIComponent(String(reference.rawTarget||'').split('#')[1]||'');
+  const exact=anchor&&catalog.getByAnchor(anchor);
+  if(exact)return exact;
   const isSupport = intendedCode === "24.23" &&
     /SUPPORT/i.test(String(reference.label || "") + " " + String(reference.identity || ""));
   return isSupport ? catalog.getById("core-support") : catalog.getByCode(intendedCode);

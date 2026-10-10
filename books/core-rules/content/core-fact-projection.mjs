@@ -22,10 +22,13 @@ export const DIGITAL_CORE_TITLE_OVERRIDES=Object.freeze({'24.37.01':'Torrent Res
 const defaultIdentities=readJson(path.join(defaultContentRoot,'core-identities.v1.json'));
 export const DIGITAL_CANONICAL_CORE_IDS=Object.freeze({...defaultIdentities.rules});
 export const canonicalCoreRuleId=(rule,identityRegistry=defaultIdentities)=>{
-  const id=identityRegistry.rules?.[rule.code];
+  const id=rule.id||identityRegistry.sourceNodes?.[rule.sourceNode?.anchor]?.id||identityRegistry.rules?.[rule.code];
   if(!id)throw new Error(`Missing stable Core identity for ${rule.code}`);
   return id;
 };
+
+// A source citation is not an identity when separate source nodes reuse it.
+const uniqueCodeMap=records=>new Map(records.filter(record=>records.filter(other=>other.code===record.code).length===1).map(record=>[record.code,record]));
 
 export function createCoreFactProjection({repoRoot=defaultRepoRoot}={}){
   const contentRoot=path.join(repoRoot,'books','core-rules','content');
@@ -36,7 +39,7 @@ export function createCoreFactProjection({repoRoot=defaultRepoRoot}={}){
   const coreRules=[];
   for(const [sectionId,rules] of Object.entries(coreSource.rules))for(const rule of rules)coreRules.push({...rule,sectionId});
   const coreByTitle=new Map(coreRules.map(rule=>[normalTitle(rule.title),rule]));
-  const coreIdByCode=new Map(catalog.mainRules.map(rule=>[rule.code,rule.id]));
+  const coreIdByCode=new Map([...uniqueCodeMap(catalog.mainRules)].map(([code,rule])=>[code,rule.id]));
   const digitalCoreId=rule=>canonicalCoreRuleId(rule,identities);
   const digitalTitle=rule=>DIGITAL_CORE_TITLE_OVERRIDES[rule.code]||rule.title.replace(/^\d+\.\s*/, '');
   const coreSections=[coreData.introduction,...coreData.groups.flatMap(group=>group.sections)];
@@ -70,7 +73,7 @@ export function createCoreFactProjection({repoRoot=defaultRepoRoot}={}){
     if(rule.fullRulePath)term.fullRulePath=rule.fullRulePath;
   }
   for(const [alias,target] of Object.entries(catalog.aliases))if(target&&alias!==target)aliases[alias]=target;
-  const coreTermsByCode=new Map([...terms.values()].filter(term=>term.code).map(term=>[term.code,term]));
+  const coreTermsByCode=new Map([...terms.values()].filter(term=>term.code&&catalog.getByCode(term.code)).map(term=>[term.code,term]));
   const coreCodes=[...coreTermsByCode.keys()].sort((left,right)=>right.length-left.length||left.localeCompare(right));
   const sectionReferences=new Map([
     ['16.00',{label:'Actions',term:coreTermsByCode.get('16.01')}],

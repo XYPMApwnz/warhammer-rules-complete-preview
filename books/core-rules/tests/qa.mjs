@@ -35,7 +35,8 @@ const digital=JSON.parse(read('content/core-rules.digital-11e.json'));
 const effectiveDigital=applyCoreCurrentOfficial(digital);
 assert.equal(digital.meta.edition,'11E','reader must use the 11E digital reference');
 assert(digital.records.length>0,'the accepted digital Core snapshot must contain records');
-assert.equal(new Set(digital.records.map(record=>record.code)).size,digital.records.length,'digital rule codes must be unique');
+const ruleIdentity=record=>coreProjection.catalog.getByAnchor(record.sourceNode?.anchor)?.id||coreProjection.catalog.getByCode(record.code)?.id;
+assert.equal(new Set(digital.records.map(record=>record.sourceNode?.anchor||record.code)).size,digital.records.length,'digital source-node identities must be unique');
 const recordsByCode=new Map(digital.records.map(record=>[record.code,record]));
 const effectiveRecordsByCode=new Map(effectiveDigital.records.map(record=>[record.code,record]));
 const julyContracts=new Map([
@@ -110,7 +111,7 @@ for(const [index,id] of routeIds.entries()){
     const encodedTitle=rule.title.replace(/\s+/g,' ').trim().replaceAll('&','&amp;').replaceAll("'",'&#39;');
     assert(page.includes(encodedTitle),`${id} is missing title ${rule.title}`);
     const title=rule.title.replace(/^\d+\.\s*/,'').trim().toLowerCase();
-    const term=(coreTermsByCode.get(rule.code)||[]).find(candidate=>candidate.title.en.trim().toLowerCase()===title)||(coreTermsByCode.get(rule.code)||[])[0];
+    const term=glossary[ruleIdentity(rule)];
     if(glossaryExcludedCodes.has(rule.code)){
       assert(!term,`${rule.code} must remain a reader clarification rather than duplicate Coherency in the glossary`);
       routedRules++;
@@ -130,7 +131,9 @@ for(const [index,id] of routeIds.entries()){
 assert.equal(routedRules,digital.records.length,'routed reader must contain every 11E reference record');
 const searchIndex=JSON.parse(fs.readFileSync(path.join(readerRoot,'search-index.json'),'utf8'));
 const expectedSearchCodes=new Set([...digital.records.map(record=>record.code),...effectiveDigital.universalRulesUpdates.map(update=>update.id),...coreProjection.catalog.faqs.map(faq=>faq.id)]);
-assert.deepEqual(new Set(searchIndex.map(item=>item.code)),expectedSearchCodes,'search index must contain every base record, current official update and FAQ exactly once');
+assert.deepEqual(new Set(searchIndex.map(item=>item.code)),expectedSearchCodes,'search index must contain every source code, update and FAQ');
+assert.equal(new Set(searchIndex.map(item=>item.id||item.code)).size,searchIndex.length,'search must preserve distinct canonical source-node identities');
+for(const rule of coreProjection.catalog.mainRules)assert(searchIndex.some(item=>item.id===rule.id),'search dropped canonical rule '+rule.id);
 for(const item of searchIndex){
   const [file,anchor]=item.url.split('#');
   const target=fs.readFileSync(path.join(readerRoot,file),'utf8');
@@ -148,10 +151,10 @@ for(const [code,wording] of julyContracts){
   assert(Object.values(glossary).some(term=>term.canonicalSource?.locator===code&&term.definition?.en?.includes(wording)),`${code} July 2026 update is missing from the effective Core projection`);
 }
 for(const record of digital.records){
-  const start=generatedReader.indexOf(`data-rule-code="${record.code}"`);
+  const start=generatedReader.indexOf(`data-rule-id="${ruleIdentity(record)}"`);
   assert(start>=0,`${record.code} has no rendered source label`);
   const override=effectiveDigital.records.find(rule=>rule.code===record.code)?.currentOfficialOverride;
-  const effectiveRecord=coreProjection.catalog.getByCode(record.code);
+  const effectiveRecord=coreProjection.catalog.getById(ruleIdentity(record));
   const binding=effectiveRecord.provenance?.effectiveSourceBindings?.[0];
   const boundSource=binding&&(coreProjection.catalog.getById(binding.sourceRecordId||binding.source.recordId)?.provenance||effectiveRecord.provenance.base);
   const boundLabel=boundSource&&(boundSource.sourceClass==='ACCEPTED_OPERATIONAL_SECONDARY'?'Accepted secondary update':boundSource.authorityLevel==='GLOBAL_OFFICIAL'?'Official GW update':'Accepted source update');
@@ -201,7 +204,7 @@ for(const parent of digital.records.filter(record=>record.code.split('.').length
   const article=page.slice(start,next<0?page.length:next),parentProse=article.slice(0,article.indexOf('<div class="subrules">'));
   const seeAlso=parentProse.match(/<h4 class="see-also">See also<\/h4><ul>([\s\S]*?)<\/ul>/)?.[1]||'';
   for(const child of children){
-    assert(article.includes(`id="rule-${child.code.replaceAll('.','-')}"`),`${parent.code} is missing local subrule ${child.code}`);
+    assert(article.includes(`id="${coreProjection.catalog.getById(ruleIdentity(child)).fullRulePath.split('#')[1]}"`),`${parent.code} is missing local subrule ${child.code}`);
     for(const term of coreTermsByCode.get(child.code)||[])assert(!seeAlso.includes(`data-term="${term.id}"`),`${parent.code} See also duplicates local subrule ${child.code}`);
   }
 }
