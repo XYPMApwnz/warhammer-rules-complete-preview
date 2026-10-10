@@ -1,0 +1,260 @@
+{
+  "schema": "csm-v2-app-datasheet-bindings/v1",
+  "scope": "Disposable canonical presentation bindings only. Source equipment and ability retain separate canonical owners; selected roster ownership is not inferred. Table visuals reproduce exact accepted source image references without filling or changing canonical cell values.",
+  "boundAbilities": [
+    {
+      "unitId": "unit-legionaries",
+      "itemId": "datasheet-legionaries:wargear:3",
+      "ruleId": "datasheet-legionaries:section:1:block:1:text",
+      "fieldPath": "/text",
+      "sourceEvidence": {
+        "item": [
+          {
+            "sourceEntityId": "datasheet-legionaries:wargear:3",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Legionaries.html",
+            "location": "wargear list/comment ordinal 3",
+            "sha256": "B464CCCE97BA186AB11D2C8515293150717D97A6008CF422A549DC3A4A346C4D",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ],
+        "ability": [
+          {
+            "sourceEntityId": "datasheet-legionaries:section:1#/blocks/1/text",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Legionaries.html",
+            "location": "ABILITIES block 2",
+            "sha256": "B464CCCE97BA186AB11D2C8515293150717D97A6008CF422A549DC3A4A346C4D",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ]
+      }
+    },
+    {
+      "unitId": "unit-sorcerer-in-terminator-armour",
+      "itemId": "datasheet-sorcerer-in-terminator-armour:wargear:2",
+      "ruleId": "datasheet-sorcerer-in-terminator-armour:section:1:block:2:text",
+      "fieldPath": "/text",
+      "sourceEvidence": {
+        "item": [
+          {
+            "sourceEntityId": "datasheet-sorcerer-in-terminator-armour:wargear:2",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Sorcerer-In-Terminator-Armour.html",
+            "location": "wargear list/comment ordinal 2",
+            "sha256": "1749CA312432659C70DEADE19BEEB1CAD19F17E83D737BE89A0B59A122E42E51",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ],
+        "ability": [
+          {
+            "sourceEntityId": "datasheet-sorcerer-in-terminator-armour:section:1#/blocks/2/text",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Sorcerer-In-Terminator-Armour.html",
+            "location": "ABILITIES block 3",
+            "sha256": "1749CA312432659C70DEADE19BEEB1CAD19F17E83D737BE89A0B59A122E42E51",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ]
+      }
+    },
+    {
+      "unitId": "unit-chosen",
+      "itemId": "datasheet-chosen:wargear:5",
+      "ruleId": "datasheet-chosen:section:1:block:1:text",
+      "fieldPath": "/text",
+      "sourceEvidence": {
+        "item": [
+          {
+            "sourceEntityId": "datasheet-chosen:wargear:5",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chosen.html",
+            "location": "wargear list/comment ordinal 5",
+            "sha256": "EB97F448E81CE942D6E7101A9B48E8FEAE013A420CADA1D28ED30D3BCCAA039D",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ],
+        "ability": [
+          {
+            "sourceEntityId": "datasheet-chosen:section:1#/blocks/1/text",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chosen.html",
+            "location": "ABILITIES block 2",
+            "sha256": "EB97F448E81CE942D6E7101A9B48E8FEAE013A420CADA1D28ED30D3BCCAA039D",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ]
+      }
+    },
+    {
+      "unitId": "unit-nemesis-claw",
+      "itemId": "datasheet-nemesis-claw:wargear:6",
+      "ruleId": "datasheet-nemesis-claw:section:1:block:1:text",
+      "fieldPath": "/text",
+      "sourceEvidence": {
+        "item": [
+          {
+            "sourceEntityId": "datasheet-nemesis-claw:wargear:6",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Nemesis-Claw.html",
+            "location": "wargear list/comment ordinal 6",
+            "sha256": "FD0C80E84D3381F16FF47469EF07F34D25C70A01CA3F331C188387E03ED876C3",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ],
+        "ability": [
+          {
+            "sourceEntityId": "datasheet-nemesis-claw:section:1#/blocks/1/text",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Nemesis-Claw.html",
+            "location": "ABILITIES block 2",
+            "sha256": "FD0C80E84D3381F16FF47469EF07F34D25C70A01CA3F331C188387E03ED876C3",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ]
+      }
+    },
+    {
+      "unitId": "unit-possessed",
+      "itemId": "datasheet-possessed:wargear:1",
+      "ruleId": "datasheet-possessed:section:1:block:1:text",
+      "fieldPath": "/text",
+      "sourceEvidence": {
+        "item": [
+          {
+            "sourceEntityId": "datasheet-possessed:wargear:1",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Possessed.html",
+            "location": "wargear list/comment ordinal 1",
+            "sha256": "D55BCF28D89C36D367BA253032702A3CF6A40B8CA32FB1BC412DD57E1DDA944E",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ],
+        "ability": [
+          {
+            "sourceEntityId": "datasheet-possessed:section:1#/blocks/1/text",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Possessed.html",
+            "location": "ABILITIES block 2",
+            "sha256": "D55BCF28D89C36D367BA253032702A3CF6A40B8CA32FB1BC412DD57E1DDA944E",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ]
+      }
+    },
+    {
+      "unitId": "unit-chaos-bikers",
+      "itemId": "datasheet-chaos-bikers:wargear:4",
+      "ruleId": "datasheet-chaos-bikers:section:1:block:1:text",
+      "fieldPath": "/text",
+      "sourceEvidence": {
+        "item": [
+          {
+            "sourceEntityId": "datasheet-chaos-bikers:wargear:4",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chaos-Bikers.html",
+            "location": "wargear list/comment ordinal 4",
+            "sha256": "F2A4865C35670E101454E541F69E623922D7027B36D18FB3E8C0376589752520",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ],
+        "ability": [
+          {
+            "sourceEntityId": "datasheet-chaos-bikers:section:1#/blocks/1/text",
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chaos-Bikers.html",
+            "location": "ABILITIES block 2",
+            "sha256": "F2A4865C35670E101454E541F69E623922D7027B36D18FB3E8C0376589752520",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        ]
+      }
+    }
+  ],
+  "tableVisuals": [
+    {
+      "tableId": "detachment-creations-of-bile:rule:table:1",
+      "fieldPath": "/rows/0/0",
+      "asset": "../assets/source-die-1.png",
+      "width": 36,
+      "height": 36,
+      "alt": "Die face 1",
+      "source": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+        "anchor": "Experimental-Augmentations",
+        "selector": "//*[@id='Experimental-Augmentations']/following-sibling::div[contains(@class,'BreakInsideAvoid')][1]//table[contains(@class,'customTable')]//tr[1]/td[1]/img",
+        "assetUrl": "https://wahapedia.ru/wh40k10ed/img/d1.png",
+        "assetSha256": "dfcc9154e5a2b14ece19a0a2df8a71d84a66363b17d6f7e4f2131103cdb8e4c8"
+      }
+    },
+    {
+      "tableId": "detachment-creations-of-bile:rule:table:1",
+      "fieldPath": "/rows/1/0",
+      "asset": "../assets/source-die-2.png",
+      "width": 36,
+      "height": 36,
+      "alt": "Die face 2",
+      "source": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+        "anchor": "Experimental-Augmentations",
+        "selector": "//*[@id='Experimental-Augmentations']/following-sibling::div[contains(@class,'BreakInsideAvoid')][1]//table[contains(@class,'customTable')]//tr[2]/td[1]/img",
+        "assetUrl": "https://wahapedia.ru/wh40k10ed/img/d2.png",
+        "assetSha256": "825301baecdea3f2274bd118521186dfd94a5c64de240d171fe49d42b805ccc7"
+      }
+    },
+    {
+      "tableId": "detachment-creations-of-bile:rule:table:1",
+      "fieldPath": "/rows/2/0",
+      "asset": "../assets/source-die-3.png",
+      "width": 36,
+      "height": 36,
+      "alt": "Die face 3",
+      "source": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+        "anchor": "Experimental-Augmentations",
+        "selector": "//*[@id='Experimental-Augmentations']/following-sibling::div[contains(@class,'BreakInsideAvoid')][1]//table[contains(@class,'customTable')]//tr[3]/td[1]/img",
+        "assetUrl": "https://wahapedia.ru/wh40k10ed/img/d3.png",
+        "assetSha256": "b081685694d1964ceaab304ebfda023838a494cd2954c9acec1fb2b9fb95c5ce"
+      }
+    },
+    {
+      "tableId": "detachment-creations-of-bile:rule:table:1",
+      "fieldPath": "/rows/3/0",
+      "asset": "../assets/source-die-4.png",
+      "width": 36,
+      "height": 36,
+      "alt": "Die face 4",
+      "source": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+        "anchor": "Experimental-Augmentations",
+        "selector": "//*[@id='Experimental-Augmentations']/following-sibling::div[contains(@class,'BreakInsideAvoid')][1]//table[contains(@class,'customTable')]//tr[4]/td[1]/img",
+        "assetUrl": "https://wahapedia.ru/wh40k10ed/img/d4.png",
+        "assetSha256": "5b0e71a650b0b10ad4103ec68c647dcdd8840ec632115952a2939f8bd30c3e73"
+      }
+    },
+    {
+      "tableId": "detachment-creations-of-bile:rule:table:1",
+      "fieldPath": "/rows/4/0",
+      "asset": "../assets/source-die-5.png",
+      "width": 36,
+      "height": 36,
+      "alt": "Die face 5",
+      "source": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+        "anchor": "Experimental-Augmentations",
+        "selector": "//*[@id='Experimental-Augmentations']/following-sibling::div[contains(@class,'BreakInsideAvoid')][1]//table[contains(@class,'customTable')]//tr[5]/td[1]/img",
+        "assetUrl": "https://wahapedia.ru/wh40k10ed/img/d5.png",
+        "assetSha256": "205e775a1f3dee9d8536ddecdf3179a04c767ae0921b89901cb642f36dc827b8"
+      }
+    },
+    {
+      "tableId": "detachment-creations-of-bile:rule:table:1",
+      "fieldPath": "/rows/5/0",
+      "asset": "../assets/source-die-6.png",
+      "width": 36,
+      "height": 36,
+      "alt": "Die face 6",
+      "source": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+        "anchor": "Experimental-Augmentations",
+        "selector": "//*[@id='Experimental-Augmentations']/following-sibling::div[contains(@class,'BreakInsideAvoid')][1]//table[contains(@class,'customTable')]//tr[6]/td[1]/img",
+        "assetUrl": "https://wahapedia.ru/wh40k10ed/img/d6.png",
+        "assetSha256": "fb17e2670e52e48671e2b6114b8284970020dbe76225afaa8779cfe4d6b284a1"
+      }
+    }
+  ]
+}

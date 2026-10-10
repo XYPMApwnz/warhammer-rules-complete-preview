@@ -1,7 +1,8 @@
 /** Actual V1 book templates adapted to canonical V2 fields. Presentation only. */
 const bookKinds = new Set(['BOOK_USAGE_RULES','BOOK_USAGE','ARMY_RULE','ARMY_RULE_COMPONENT',
   'DETACHMENT','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','SOURCE_ERRATUM','SOURCE_UPDATE_REFERENCE']);
-const fieldAt = (card,path) => card.fields?.find(field=>field.source?.path===path);
+const layoutPath=field=>field.presentationPath??field.source?.path;
+const fieldAt = (card,path) => card.fields?.find(field=>layoutPath(field)===path);
 
 export function createBookPresenter({document,payload,cards,el,factValue:makeFactValue,anchor,allowedIds,renderWeapon}) {
   const config=payload.bookPresentation;
@@ -46,7 +47,7 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
     return kept.length===lines.length?field:{...field,displayValue:kept.join('\n')};
   };
   const appendText=(node,card)=>{
-    for(const field of card.fields.filter(field=>field.source?.path==='/text'||field.source?.path==='/semanticContent'||/^\/clauses\/\d+\/text$/.test(field.source?.path||'')))paragraph(node,textPresentation(card,field));
+    for(const field of card.fields.filter(field=>layoutPath(field)==='/text'||layoutPath(field)==='/semanticContent'||/^\/clauses\/\d+\/text$/.test(layoutPath(field)||'')))paragraph(node,textPresentation(card,field));
     // Tables are already atomized into canonical fields. No source/title parsing.
     const groups=new Map();
     for(const field of card.fields.filter(field=>field.presentation==='table-cell')){
@@ -57,7 +58,7 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
       const metadata=records[card.id]?.tables?.find(item=>item.path===fields[0].table.path||item.id===fields[0].table.id);
       if(metadata?.columns?.length){const header=el('div','data-row data-head');header.setAttribute('role','row');for(const name of metadata.columns){const cell=el('div','',name);cell.setAttribute('role','columnheader');header.append(cell);}table.append(header);}
       const rows=new Map();for(const field of fields){if(!rows.has(field.table.row))rows.set(field.table.row,[]);rows.get(field.table.row).push(field);}
-      for(const rowFields of rows.values()){const row=el('div','data-row');row.setAttribute('role','row');for(const field of rowFields.sort((a,b)=>a.table.column-b.table.column)){const cell=el('div');cell.setAttribute('role','cell');cell.append(factValue('span',field));row.append(cell);}table.append(row);}
+      for(const rowFields of rows.values()){const row=el('div','data-row');row.setAttribute('role','row');for(const field of rowFields.sort((a,b)=>a.table.column-b.table.column)){const cell=el('div');cell.setAttribute('role','cell');cell.append(factValue('span',field));if(field.visual){const image=el('img');Object.assign(image,field.visual);image.src=field.visual.url;cell.append(image);}row.append(cell);}table.append(row);}
       node.append(table);
     }
   };

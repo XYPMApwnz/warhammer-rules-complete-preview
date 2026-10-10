@@ -18,7 +18,7 @@ const dependencies=new Map([
   ...['warhammer-40000-logo-optimized.png','games-workshop-logo.png'].map(name=>[`/assets/${name}`,'image/png']),
   ...['core-rules-cover-480.webp','core-rules-cover-800.webp','adeptus-mechanicus-cover-480.webp','death-guard-cover-480.webp'].map(name=>[`/assets/${name}`,'image/webp']),
   ['/assets/core-rules-cover-fallback.jpg','image/jpeg'],
-  ...['death-guard','adeptus-mechanicus'].map(book=>[
+  ...['death-guard','adeptus-mechanicus','chaos-space-marines'].map(book=>[
     `/books/${book}/v2/registration.mjs`,'text/javascript'])
 ]);
 

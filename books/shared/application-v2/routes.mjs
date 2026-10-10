@@ -4,7 +4,8 @@ import {decodeRoute,encodeRoute} from '../army-book-app-v2/route-context.mjs';
 export function resolveApplicationRoute(address,registry) {
   const url=new URL(address),query=url.searchParams;
   if(['v2','book','registry','section'].some(key=>query.getAll(key).length>1))throw new TypeError('Ambiguous application route');
-  const bookId=query.get('book') || registry.forPath(url.pathname)?.id || null;
+  const bookId=query.get('book') || registry.forPath(url.pathname)?.id ||
+    (query.get('v2')==='ARMY_BOOK'&&registry.has(query.get('registry'))?query.get('registry'):null);
   const destination=query.get('v2') || (bookId?'ARMY_BOOK':'HOME');
   const local=new Set(['ARMY_BOOK','ROSTER','PERSONAL_GUIDE','UNIT_INSTANCE','REFERENCE','GLOSSARY']);
   if(bookId) {

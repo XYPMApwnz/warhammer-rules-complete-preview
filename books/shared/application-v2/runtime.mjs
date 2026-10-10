@@ -22,7 +22,7 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
   const destinations=[['HOME','Home'],['CORE_RULES','Core Rules'],['ARMY_BOOK','Army Books'],['ROSTER','Roster'],['GLOSSARY','Mega Glossary']];
   const routeFor=destination=>destination==='ARMY_BOOK'?{destination:'HOME',sectionId:'army-books'}:
     destination==='CORE_RULES'?{destination,registryId:'core-rules'}:
-    destination==='ROSTER'&&currentRoute?.bookId?{destination,bookId:currentRoute.bookId,registryId:currentRoute.bookId}:{destination};
+    destination==='ROSTER'&&registry.get(currentRoute?.bookId)?.createRoster?{destination,bookId:currentRoute.bookId,registryId:currentRoute.bookId}:{destination};
   const navLinks=new Map();
   for(const [destination,label]of destinations){const link=el('a','',label);link.dataset.v2Destination=destination;navLinks.set(destination,link);primary.append(link);}
   function updateNavigation() {
@@ -50,7 +50,7 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
   }
   function bookChoices(parent,{roster=false}={}) {
     const grid=el('div','v2-home-grid');
-    for(const book of registry.entries)grid.append(destinationCard(book.title,roster?'Import a roster and open your personal guide.':'Army rules, detachments and datasheets.',
+    for(const book of registry.entries.filter(book=>!roster||book.createRoster))grid.append(destinationCard(book.title,roster?'Import a roster and open your personal guide.':'Army rules, detachments and datasheets.',
       {destination:roster?'ROSTER':'ARMY_BOOK',bookId:book.id,registryId:book.id},book.id));
     parent.append(grid);
   }

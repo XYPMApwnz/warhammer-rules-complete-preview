@@ -18,7 +18,7 @@ const categories = Object.freeze({
   PRIMARY_MISSION:'Primary Mission', SECONDARY_MISSION:'Secondary Mission', TERRAIN_LAYOUT:'Terrain Layout', TWIST:'Twist'
 });
 const publicText = field => {
-  const path=field.source?.path || '';
+  const path=field.presentationPath??field.source?.path??'';
   return field.presentation==='table-cell' || field.presentation==='caption' || field.presentation==='stat' || field.type==='tokens' ||
     /^\/(?:semanticContent|text|sourceStructure\/text|cp|category|sourceTypeLabel)$/.test(path) ||
     /^\/sourceConflict\/(?:notice|occurrences\/\d+\/(?:title|presentationText))$/.test(path) ||

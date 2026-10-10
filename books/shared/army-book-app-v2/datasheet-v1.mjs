@@ -163,7 +163,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     section.id='ds-'+domKey(JSON.stringify([card.id,instanceId || null,card.scopeId || null]));
     const used=new Set();const title=card.fields.find(f=>f.presentation==='heading');section.append(heading(card));if(title)used.add(title.id);
     const list=el('div','ability-list');
-    for(const field of card.fields.filter(f=>/^\/blocks\/\d+\/text$/.test(f.source?.path || ''))){
+    for(const field of card.fields.filter(f=>/^\/blocks\/\d+\/text$/.test(layoutPath(f) || ''))){
       const content=el(role==='abilities'||role==='wargear-abilities'?'article':'div',role==='abilities'||role==='wargear-abilities'?'ability':'content-block');
       identity(content,card,instanceId);content.dataset.sourceFieldPath=field.source.path;
       const value=factValue('p',field);
@@ -192,6 +192,18 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
   };
   const renderRuleReference=(card,instanceId)=>{
     const node=identity(el('div','ability shared-abilities'),card,instanceId);
+    if(card.referenceGroupLabel){
+      const group=el('span','ability ds-shared-rule-group');
+      group.append(el('strong','ds-rule-reference-label',card.referenceGroupLabel));
+      for(const field of card.fields.filter(field=>layoutPath(field)==='/label')){
+        const bindings=config.referenceBindings?.fields?.[field.id];
+        if(!bindings?.length)throw new TypeError('Unbound canonical rule reference: '+field.id);
+        const value=factValue('span',field);value.replaceChildren();let cursor=0;
+        for(const binding of bindings){value.append(document.createTextNode(field.value.slice(cursor,binding.start)),anchor(field.value.slice(binding.start,binding.end),binding.targetId,true));cursor=binding.end;}
+        value.append(document.createTextNode(field.value.slice(cursor)));group.append(value);
+      }
+      node.append(group);return node;
+    }
     const groups=card.fields.filter(field=>/^\/groups\/\d+\/label$/.test(field.source?.path||''));
     if(groups.length){
       for(const label of groups){
@@ -302,6 +314,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         }
         const cell=identity(el('div','ds-cost-cell'),price,instanceId);cell.dataset.priceEntry=prefix;
         const value=el('strong');value.append(factValue('span',field),document.createTextNode(' pts'));
+        if(price.pointsSchedule)cell.append(el('small','ds-cost-tier',price.pointsSchedule.label));
         cell.append(factValue('small',caption),value);container.append(cell);
       }
     }
@@ -433,7 +446,25 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const label=ability.name+Object.values(ability.parameters||{}).map(value=>` ${value}"`).join('');
       grant.append(anchor(label,ability.canonicalId,true));abilityList.append(grant);
     }
-    if(!abilityPresentation)for(const child of children.filter(c=>c.kind==='RULE_REFERENCE'))abilityList.append(renderRuleReference(child,instanceId));
+    if(!abilityPresentation){
+      const referenceGroups=new Map();
+      for(const child of children.filter(c=>c.kind==='RULE_REFERENCE')){
+        const reference=renderRuleReference(child,instanceId);
+        if(!child.referenceGroupLabel){abilityList.append(reference);continue;}
+        const existing=referenceGroups.get(child.referenceGroupLabel);
+        if(existing){
+          reference.querySelector('.ds-rule-reference-label').remove();
+          // Keep each canonical occurrence and its fact identity while sharing
+          // the explicitly declared category caption on this datasheet.
+          const occurrence=identity(el('span'),child,instanceId);
+          occurrence.append(...reference.querySelector('.ds-shared-rule-group').childNodes);
+          existing.querySelector('.ds-shared-rule-group').append(document.createTextNode(', '),occurrence);
+        }else{
+          referenceGroups.set(child.referenceGroupLabel,reference);
+          abilityList.append(reference);
+        }
+      }
+    }
     const rendered=new Set(children.filter(c=>['PROFILE','WEAPON_PROFILE','WEAPON_PROFILE_SELECTION','RULE_REFERENCE','MFM_UNIT_POINTS'].includes(c.kind)).map(c=>c.id));
     for(const child of children.filter(c=>config.sectionRoles[c.id]==='abilities')){
       const section=renderSection(child,{instanceId,inDialog}),items=[...section.querySelector('.ability-list').children];

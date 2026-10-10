@@ -48,7 +48,7 @@ export function createReferencePresenter({el,factValue,anchor,contract,cards,pay
         const metadata=payload.bookPresentation?.records[section.card.id]?.tables?.find(item=>item.id===fields[0].table.id||item.path===fields[0].table.path);
         if(metadata?.columns){const head=el('thead'),row=el('tr');for(const label of metadata.columns)row.append(el('th','',label));head.append(row);table.append(head);}
         const rows=new Map();for(const field of fields){if(!rows.has(field.table.row))rows.set(field.table.row,[]);rows.get(field.table.row).push(field);}
-        const tbody=el('tbody');for(const rowFields of rows.values()){const row=el('tr');for(const field of rowFields.toSorted((a,b)=>a.table.column-b.table.column)){const cell=el('td');cell.append(value('span',field));row.append(cell);}tbody.append(row);}table.append(tbody);wrap.append(table);body.append(wrap);
+        const tbody=el('tbody');for(const rowFields of rows.values()){const row=el('tr');for(const field of rowFields.toSorted((a,b)=>a.table.column-b.table.column)){const cell=el('td');cell.append(value('span',field));if(field.visual){const image=el('img');Object.assign(image,field.visual);image.src=field.visual.url;cell.append(image);}row.append(cell);}tbody.append(row);}table.append(tbody);wrap.append(table);body.append(wrap);
       }
       article.append(body);
     }

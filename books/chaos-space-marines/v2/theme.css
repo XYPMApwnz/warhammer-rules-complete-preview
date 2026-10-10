@@ -1,0 +1,35 @@
+/* Book-owned colour configuration. All layout, controls and responsive
+ * behaviour remain in the shared Army Book presentation. */
+:root {
+  color-scheme: dark;
+  --book-register-label: "CHAOS SPACE MARINES";
+  --book-bg: #111114;
+  --book-canvas: #17171b;
+  --book-panel: #202025;
+  --book-panel-raised: #2c2b31;
+  --book-ink: #e9e2d3;
+  --book-ink-bright: #fff6e5;
+  --book-muted: #b0a79c;
+  --book-muted-readable: #c5bbae;
+  --book-accent: #e2bb72;
+  --book-accent-deep: #a98748;
+  --book-link: #edc987;
+  --book-signal: #ef8177;
+  --book-signal-deep: #722c30;
+  --book-metal: #a49379;
+  --book-metal-bright: #d4bea0;
+  --book-control-line: #78654c;
+  --book-hover: #3d3430;
+  --book-ring: rgba(226, 187, 114, .21);
+  --book-ring-soft: rgba(226, 187, 114, .047);
+  --book-ring-faint: rgba(226, 187, 114, .031);
+  --book-bg-rgb: 17, 17, 20;
+  --book-void-rgb: 8, 8, 11;
+  --book-panel-rgb: 32, 32, 37;
+  --book-ink-rgb: 233, 226, 211;
+  --book-accent-rgb: 226, 187, 114;
+  --book-accent-deep-rgb: 169, 135, 72;
+  --book-signal-rgb: 239, 129, 119;
+  --book-metal-rgb: 164, 147, 121;
+  --book-metal-bright-rgb: 212, 190, 160;
+}
