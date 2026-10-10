@@ -6,15 +6,16 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
 import {decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
+import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const requests=[],forbidden=[],errors=[],results=[];
 const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json',
-  '.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg'};
+  '.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webmanifest':'application/manifest+json'};
 const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
   if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
-  const allowed=address==='/glossary/v2/generated/index.en.json'||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
+  const allowed=isApplicationTestDependency(address)||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
     /^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
@@ -52,7 +53,7 @@ async function active(page,id){await page.waitForFunction(id=>window.WarhammerAp
 async function geometry(page){
   const actual=await page.evaluate(()=>{
     const nav=document.querySelector('[data-v2-primary-nav]'),mount=document.querySelector('[data-v2-mount-root]');
-    const n=nav.getBoundingClientRect(),content=mount.querySelector('.v2-topbar')||mount.querySelector('.v2-home > :first-child')||mount.querySelector('.v2-library-home .hero > :first-child')||mount.querySelector('.global-glossary-main > :first-child');
+    const n=nav.getBoundingClientRect(),content=mount.querySelector('.v2-topbar')||mount.querySelector('.v2-home > :first-child')||mount.querySelector('.v2-library-home .hero > :first-child')||mount.querySelector('.global-glossary-main > :first-child')||mount.querySelector('.v2-core-reader');
     const m=content.getBoundingClientRect();
     return {nav:{top:n.top,bottom:n.bottom},content:{top:m.top,bottom:m.bottom,tag:content.className},visible:n.width>0&&n.height>0&&n.top>=-1&&n.bottom<=innerHeight,overlap:m.top<n.bottom-1,
       overflow:document.documentElement.scrollWidth>innerWidth+1,
@@ -146,7 +147,7 @@ try{
     for(const destination of ['CORE_RULES','GLOSSARY']){
       await page.locator(`[data-v2-primary-nav] [data-v2-destination="${destination}"]`).click();await active(page,null);await geometry(page);
       if(destination==='GLOSSARY')assert.equal(await page.locator('[data-global-glossary] .v2-glossary').count(),1,'Global Glossary not mounted');
-      else assert.ok((await page.locator('[data-v2-mount-root]').innerText()).trim().length>20,'Reserved destination has no explanation');
+      else assert.equal(await page.frameLocator('.v2-core-reader').locator('.sidebar nav').count(),1,'Existing Core reader Contents not mounted');
     }
     await navigate(page,{destination:'HOME',sectionId:'army-books'});
     const urls={},themes={};
@@ -217,7 +218,7 @@ try{
     await navigate(page,{destination:'HOME',sectionId:'army-books'});await active(page,null);
     await page.goBack();await active(page,'adeptus-mechanicus');await page.goBack();await active(page,'death-guard');await page.goForward();await active(page,'adeptus-mechanicus');await geometry(page);
     assert.deepEqual(errors,[],'Shell emitted browser exceptions');
-    results.push({device,home:true,reservedDestinations:true,booklessRoster:true,import:true,attachment:true,personalGuide:true,
+    results.push({device,home:true,integratedDestinations:true,booklessRoster:true,import:true,attachment:true,personalGuide:true,
       physicalReference:true,nativeNewTab:true,directReload:true,legacyAdapters:true,backForward:true,lifecycle:true,theme:true,
       neutralPrimaryNavigation:true,bookContentsPreserved:true,sectionNavigation:true,relatedRules:true,popupViewport:true,longCorePopup:true,overflow:false});
     await context.close();

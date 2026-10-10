@@ -2,6 +2,8 @@
 /* Neutral application chrome. Faction paint is owned by the active module. */
 body.v2-application { margin:0; min-height:100vh; background:#101216; color:#ece7dc; font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; --v2-app-bar-height:64px; }
 [data-v2-shell] { min-width:0; }
+[data-v2-shell] .v2-core-host { box-sizing:border-box; height:100dvh; padding-top:calc(var(--v2-app-bar-height) + env(safe-area-inset-top)); }
+[data-v2-shell] .v2-core-reader { display:block; width:100%; height:100%; border:0; }
 [data-v2-shell] .v2-primary-header { box-sizing:border-box; position:fixed; z-index:100; inset:0 0 auto; height:calc(var(--v2-app-bar-height) + env(safe-area-inset-top)); padding:env(safe-area-inset-top) 24px 0; display:flex; align-items:center; justify-content:space-between; gap:24px; color:#ece7dc; background:#15181e; border-bottom:1px solid #45464c; }
 [data-v2-shell] .v2-primary-brand { color:#e6d6b0; text-decoration:none; font-size:17px; font-weight:750; letter-spacing:.02em; white-space:nowrap; }
 [data-v2-shell] .v2-primary-branding { display:flex; align-items:center; gap:18px; }

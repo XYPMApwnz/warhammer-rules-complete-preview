@@ -1,4 +1,4 @@
-# Unified V2 application — Phase 2B
+# Unified V2 application
 
 The canonical entry is `/v2/app.html`. `v2/boot.mjs` composes book-owned
 registrations; the shared shell does not import any army registry or gameplay
@@ -38,9 +38,9 @@ existing bound roster route is used. Query-only book destinations receive the
 existing hash aliases; legacy canonical hashes are left to the module's own
 reference resolver.
 
-`?v2=CORE_RULES&registry=core-rules` and bookless `?v2=GLOSSARY` are reserved
-destinations with an honest integration notice. They do not create replacement
-readers. Book-scoped Glossary and Core references remain module-owned.
+`?v2=CORE_RULES&registry=core-rules` mounts the certified Core reader described
+below. Bookless `?v2=GLOSSARY` mounts the existing global reference catalog.
+Book-scoped Glossary and Core references remain module-owned.
 
 Old book `app.html` files are generated compatibility redirects that preserve
 the complete query and hash and add the book context when absent. Persistent
@@ -75,7 +75,7 @@ Books without metadata remain available in a generic Army Books shelf. The
 Home presenter never loads a book's factual payload or roster service.
 
 Rules & Tools links use the existing V2 routes. Mega Glossary uses the global
-catalog integration described below. Core Rules remains reserved. Legacy status dates, verification
+catalog integration described below. Core Rules uses the existing reader. Legacy status dates, verification
 captions, service-worker controls and application links are not reused.
 
 Run `qa:shared:v2:home` for V1 style comparisons, 390/800/801/1440px browser
@@ -107,3 +107,30 @@ closed on ambiguity. Legacy viewer/resolver scripts are not loaded.
 
 Run `qa:shared:v2:glossary` for corpus/namespace controls and desktop/390px
 navigation, search, native new-tab, popup and lifecycle checks.
+
+## Core Rules reader
+
+`books/core-rules/reader/mount.mjs` hosts the unchanged standalone reader pages
+in a same-origin frame below the application navigation. The frame isolates the
+reader's CSS, globals, listeners and observers. Core keeps its own Contents,
+search, tables, diagrams, callouts and popups; destroying the mount removes the
+frame and its document bridge. There is no second Core renderer or catalog.
+
+The existing reader navigation and search projection supply chapter/anchor
+placement only. The adapter consumes their addresses and canonical identities,
+never their prose. The parent uses the existing V2 route/context contract and
+owns history; chapter changes replace the child location. Real link addresses
+also use V2 routes, so native new-tab opening preserves the same context.
+Reading/popup state is saved in the parent history entry using the reader's
+existing page-state helper. Canonical articles use the existing shared reference
+presenter and resolver. Original standalone URLs remain unchanged.
+
+- Root: `?v2=CORE_RULES&registry=core-rules`
+- Chapter: `?v2=CORE_RULES&registry=core-rules&chapter=<chapter>`
+- Section: `?v2=CORE_RULES&registry=core-rules&chapter=<chapter>&section=<anchor>#<canonical-id>`
+
+Run `qa:shared:v2:core` for placement/identity guards and all 27 mounted reader
+pages on desktop and 390×844, native links, history/popup restoration, shared
+articles, old URLs and cross-book lifecycle isolation. Screenshot evidence is
+written outside the repository. `qa:core` continues to certify the original
+reader and its factual/source foundation independently.

@@ -195,7 +195,7 @@
     const observer=new IntersectionObserver(entries=>{
       const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top)[0];
       if(!visible)return;
-      for(const link of pageLinks)link.toggleAttribute('aria-current',link.hash===`#${visible.target.id}`);
+      for(const link of pageLinks)link.toggleAttribute('aria-current',(link.dataset.readerSection||link.hash)===`#${visible.target.id}`);
     },{rootMargin:'-20% 0px -65% 0px'});
     pageTargets.forEach(target=>observer.observe(target));
   }

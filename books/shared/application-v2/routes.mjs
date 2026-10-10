@@ -17,7 +17,7 @@ export function resolveApplicationRoute(address,registry) {
     return Object.freeze({destination,bookId:null,module:false});
   if(!query.has('v2')&&!url.hash)query.set('v2','HOME');
   const route=decodeRoute(url.href);
-  if(!['HOME','CORE_RULES','GLOSSARY','REFERENCE'].includes(route.destination) || route.canonicalId&&!['GLOSSARY','REFERENCE'].includes(route.destination) ||
+  if(!['HOME','CORE_RULES','GLOSSARY','REFERENCE'].includes(route.destination) || route.canonicalId&&!['CORE_RULES','GLOSSARY','REFERENCE'].includes(route.destination) ||
     route.destination==='CORE_RULES' && route.registryId!=='core-rules')throw new TypeError('This destination is not integrated yet');
   return Object.freeze({...route,module:false});
 }

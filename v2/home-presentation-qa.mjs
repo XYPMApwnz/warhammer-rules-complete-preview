@@ -6,6 +6,7 @@ import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
+import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const base='b7db5f316eda422408f46e709c0918d25c4da806';
@@ -37,7 +38,7 @@ function makeServer(mode){return http.createServer((request,response)=>{
   if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
   if(mode==='current'&&address==='/synthetic-home.html'){response.writeHead(200,{'Content-Type':'text/html'});response.end(syntheticHTML);return;}
   const referenceAllowed=mode==='reference'&&(address==='/'||address==='/index.html'||address==='/manifest.webmanifest'||address==='/books/shared/styles/offline-status.css');
-  const allowed=referenceAllowed||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
+  const allowed=referenceAllowed||isApplicationTestDependency(address)||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
     /^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||

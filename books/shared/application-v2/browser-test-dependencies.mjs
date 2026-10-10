@@ -8,6 +8,11 @@ const dependencies=new Map([
   ['/books/shared/application-v2/home.css','text/css'],
   ['/books/shared/application-v2/glossary.css','text/css'],
   ['/glossary/v2/generated/index.en.json','application/json'],
+  ['/glossary/v2/generated/index.en.js','text/javascript'],
+  ['/glossary/v2/runtime/glossary-v2-runtime.js','text/javascript'],
+  ['/glossary-return.js','text/javascript'],
+  ['/manifest.webmanifest','application/manifest+json'],
+  ['/books/core-rules/reader/mount.mjs','text/javascript'],
   ...['global-glossary','global-glossary-content','glossary-v1'].map(name=>[
     `/books/shared/army-book-app-v2/${name}.mjs`,'text/javascript']),
   ...['warhammer-40000-logo-optimized.png','games-workshop-logo.png'].map(name=>[`/assets/${name}`,'image/png']),
@@ -17,7 +22,9 @@ const dependencies=new Map([
     `/books/${book}/v2/registration.mjs`,'text/javascript'])
 ]);
 
-export const isApplicationTestDependency=pathname=>dependencies.has(pathname);
+export const isApplicationTestDependency=pathname=>dependencies.has(pathname)||
+  /^\/books\/core-rules\/reader\/[\w-]+\.(?:html|js|css|json)$/.test(pathname)||
+  /^\/books\/core-rules\/assets\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(pathname);
 export function allowApplicationTestDependencies(allowed) {
   for(const [pathname,mime]of dependencies)allowed.set(pathname,mime);
 }

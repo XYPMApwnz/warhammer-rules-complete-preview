@@ -56,11 +56,6 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
   }
   function renderHome(route) {
     if(route.destination==='ROSTER') {bookChoices(page('Roster','Choose an Army Book to import your New Recruit roster.'),{roster:true});return;}
-    if(route.destination==='CORE_RULES') {
-      const title='Core Rules';
-      const main=page(title,`${title} is not yet integrated into this application.`);
-      main.append(el('p','','Army Books already include their canonical rule references and book Glossary.'));return;
-    }
     moduleRoot.replaceChildren(home.render(route));
   }
   async function dispatch() {
@@ -75,6 +70,23 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
     let route;
     try{route=resolveApplicationRoute(view.location.href,registry);}catch{
       ++generation;stopModule();page('Link unavailable','This link has incomplete or unsupported context. Choose an Army Book to continue.');return;
+    }
+    if(!route.module&&route.destination==='CORE_RULES') {
+      const token=++generation;
+      try {
+        if(activeModuleKind==='CORE_RULES'&&activeModule){await activeModule.sync(route);if(lifecycle.active&&token===generation)updateNavigation();return activeModule;}
+        stopModule();page('Core Rules','Loading Core Rules…');
+        const {mountCoreReader}=await import('../../core-rules/reader/mount.mjs');
+        if(!lifecycle.active||token!==generation)return;
+        moduleRoot.replaceChildren();
+        activeModule=mountCoreReader(document,{root:moduleRoot,entryURL,route,navigate});activeModuleKind='CORE_RULES';
+        await activeModule.ready;
+        if(!lifecycle.active||token!==generation)return;
+        updateNavigation();return activeModule;
+      } catch {
+        if(!lifecycle.active||token!==generation)return;
+        stopModule();page('Core Rules unavailable','This chapter or section could not be opened. Return Home and try again.');return;
+      }
     }
     if(!route.module&&['GLOSSARY','REFERENCE'].includes(route.destination)) {
       if(activeModuleKind==='GLOSSARY'&&activeModule){activeModule.sync();updateNavigation();return activeModule;}
@@ -114,6 +126,7 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
   function navigate(route) {
     if(!lifecycle.active)return Promise.resolve();
     const url=applicationRouteURL(entryURL,route);
+    activeModule?.capture?.();
     // Top-level entries start a fresh presentation background. Back restores the old entry unchanged.
     view.history.pushState(null,'',url);view.dispatchEvent(new view.PopStateEvent('popstate'));
     return ready;
@@ -124,7 +137,7 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
     if(!header.contains(link)&&!link.hasAttribute('data-v2-shell-link'))return;
     const url=new URL(link.href);
     if(url.origin!==view.location.origin)return;
-    event.preventDefault();view.history.pushState(null,'',url);view.dispatchEvent(new view.PopStateEvent('popstate'));
+    event.preventDefault();activeModule?.capture?.();view.history.pushState(null,'',url);view.dispatchEvent(new view.PopStateEvent('popstate'));
   };
   lifecycle.listen(shell,'click',follow);
   lifecycle.listen(moduleRoot,'click',()=>queueMicrotask(lifecycle.guard(updateNavigation)));
