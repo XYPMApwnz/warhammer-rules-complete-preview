@@ -58,12 +58,16 @@ try{
         assert.equal(key(payload.question),key(faq.question),`${faq.id}: old chapter URL opens a different question`);
         assert.equal(key(payload.answer),key(faq.answer),`${faq.id}: old chapter URL opens a different answer`);
       }
-      for(const rule of [...['12.08','18.05','01.02.06','25.03'].map(code=>catalog.getByCode(code)),...['Desperate-Escape-Test','Desperate-Escape'].map(anchor=>catalog.getByAnchor(anchor))]){
+      for(const rule of [...['05.01','05.04','12.08','18.05','01.02.06','25.03'].map(code=>catalog.getByCode(code)),...['Desperate-Escape-Test','Desperate-Escape'].map(anchor=>catalog.getByAnchor(anchor))]){
         const code=rule.code,url=rule.fullRulePath.replace('books/core-rules/reader/','');
         await page.goto(`${origin}/books/core-rules/reader/${url}`,{waitUntil:'domcontentloaded'});
         await page.locator('details.subrule').evaluateAll(nodes=>nodes.forEach(node=>node.open=true));
         const card=page.locator(`[data-rule-id="${rule.id}"]`),text=await card.innerText();
         assert(await card.isVisible(),`${name}/${code}: card not visible`);
+        for(const fact of (rule.provenance.factSources||[]).filter(fact=>fact.source.artifact)){
+          const normalized=value=>value.replace(/\s+/g,' ').trim();
+          assert(normalized(text).includes(normalized(fact.source.transcription)),`${name}/${code}: page-image numeric outcome missing from rendered canonical fact`);
+        }
         const headerCollisions=await card.locator(':scope > .rule-head').evaluateAll(headers=>headers.flatMap(header=>{
           const title=header.querySelector('h3'),source=header.querySelector('.page');
           if(!title||!source)return [];

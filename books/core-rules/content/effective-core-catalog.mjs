@@ -1,8 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {recordText} from './record-content.mjs';
+import {bindFactSources,validateFactSources,factAt} from './fact-source-bindings.mjs';
 import {applyCoreCurrentOfficial,loadCoreCurrentOfficial,loadCoreSourceRegistry} from './core-current-official.mjs';
 import {bindWahaSourceNodes,createWahaErrataRecords,createWahaFaqRecords,createWahaUniversalUpdateRecords,indexWahaCoreCorpus,loadWahaCoreCorpus,loadWahaKnownSourceDefects,sourceMappingSkeleton} from './waha-core-source.mjs';
 import {applySourceBoundEdits,normalizeFaqOwnership,separateEmbeddedFaqPanels,separateAppliedErrataPanels,applySourceConflicts,validateSourceConflicts,validateFaqOwnership} from '../../shared/canonical-content-v2/effective-content.mjs';
@@ -97,6 +99,7 @@ export function validateEffectiveCoreCatalog(catalog){
   if(!catalog.contentBindings||!catalog.acceptedSourceRegistry||!catalog.sourceUnits)throw new Error('Missing effective Core source ownership contract');
   validateSourceConflicts(catalog.mainRules,catalog.contentBindings.sourceConflicts,{sourceUnits:new Map(Object.entries(catalog.sourceUnits))});
   validateFaqOwnership(catalog.faqs,catalog.contentBindings.faqRelationships);
+  validateFactSources(catalog.mainRules,catalog.contentBindings.factContributions||[],{sources:catalog.acceptedSourceRegistry.sources,resolveSource:catalog.resolveFactSource});
   for(const faq of catalog.faqs){
     const source=catalog.acceptedSourceRegistry.sources.find(item=>item.sourceId===faq.provenance.sourceId);
     if(!source||source.sourceClass!==faq.provenance.sourceClass||source.authorityLevel!==faq.provenance.authorityLevel||source.date!==faq.provenance.sourceDate)throw new Error(`Invalid canonical FAQ provenance: ${faq.id}`);
@@ -115,6 +118,29 @@ export function createEffectiveCoreCatalog({root=contentRoot,base,coreSource,cor
   const sourceDefectLedger=loadWahaKnownSourceDefects(root,wahaCorpus);
   const wahaIndex=indexWahaCoreCorpus(wahaCorpus);
   const bindings=clone(contentBindings||readJson(path.join(root,'core-effective-bindings.v1.json')));
+  const resolveFactSource=source=>{
+    if(source.artifact){
+      const image=(bindings.pageImageEvidence||[]).find(image=>image.artifact===source.artifact);
+      if(!image||['sourceId','page','artifactSha256','parentArtifactSha256'].some(key=>image[key]!==source[key]))throw new Error('Unbound page-image source owner');
+      const bytes=fs.readFileSync(path.resolve(root,source.artifact));
+      if(createHash('sha256').update(bytes).digest('hex')!==source.artifactSha256||source.parentArtifactSha256!==acceptedSource.meta.sha256)throw new Error('Changed accepted page-image evidence');
+      if(!source.page||!source.locator||typeof source.transcription!=='string')throw new Error('Incomplete page-image fact evidence');
+      return source.transcription;
+    }
+    if(source.recordCode){
+      const matches=acceptedBase.records.filter(record=>record.code===source.recordCode);
+      const registered=registry.sources.find(item=>item.sourceId===source.sourceId);
+      if(matches.length!==1||registered?.urlOrLocalArtifact!=='books/core-rules/content/core-rules.digital-11e.json')throw new Error('Invalid accepted digital fact source');
+      return factAt(matches[0],{path:source.path});
+    }
+    if(source.unitId){
+      const registered=registry.sources.find(item=>item.sourceId===source.sourceId);
+      const unit=wahaIndex.unitById.get(source.unitId);
+      if(registered?.sourceId!==baseProvenance(registry).sourceId||!unit||unit.contentHash!==source.contentHash)throw new Error('Invalid accepted corpus fact source');
+      return factAt(unit,{path:source.path});
+    }
+    throw new Error('Missing contributing fact evidence');
+  };
   if(bindings.schema!=='canonical-content-bindings/v1'||bindings.corpusFingerprint!==wahaCorpus.fingerprint)throw new Error('Unbound effective Core normalization declarations');
   const sourceMappings=sourceMappingSkeleton(wahaCorpus,identities);
   validateCoreIdentityRegistry(identities,acceptedBase.records);
@@ -158,6 +184,7 @@ export function createEffectiveCoreCatalog({root=contentRoot,base,coreSource,cor
   mainRules=applySourceBoundEdits(mainRules,bindings.effectiveEdits,{sourceRecords:new Map(errata.map(record=>[record.id,record])),sourceUnits:wahaIndex.unitById});
   mainRules=separateAppliedErrataPanels(separateEmbeddedFaqPanels(mainRules,faqs),errata);
   mainRules=applySourceConflicts(mainRules,bindings.sourceConflicts,{sourceUnits:wahaIndex.unitById});
+  mainRules=bindFactSources(mainRules,bindings.factContributions||[],{sources:registry.sources,resolveSource:resolveFactSource});
   mainByCode=new Map(mainRules.filter(record=>mainRules.filter(other=>other.code===record.code).length===1).map(record=>[record.code,record]));
   const mainById=new Map(mainRules.map(record=>[record.id,record]));
   for(const faq of faqs){
@@ -193,7 +220,7 @@ export function createEffectiveCoreCatalog({root=contentRoot,base,coreSource,cor
   const byCode=new Map([...mainRules,...identityOnly].filter(record=>mainRules.filter(other=>other.code===record.code).length===1).map(record=>[record.code,record]));
   const byAnchor=new Map(mainRules.filter(record=>record.sourceNode).map(record=>[record.sourceNode.anchor,record]));
   const resolveId=value=>byId.has(value)?value:aliases[value]||null;
-  const catalog={schema:EFFECTIVE_CORE_SCHEMA,asOf:'2026-09-25',records,mainRules,errata,faqs,universalUpdates,identityOnly,concepts,aliases,sourceMappings,sourceDefects:clone(sourceDefectLedger.defects),wahaCorpusFingerprint:wahaCorpus.fingerprint,contentBindings:bindings,acceptedSourceRegistry:registry,sourceUnits:Object.fromEntries(wahaIndex.unitById),resolveId,getById:value=>byId.get(resolveId(value))||null,getByCode:code=>byCode.get(code)||null,getByAnchor:anchor=>byAnchor.get(anchor)||null,presentation:{reader:acceptedData,sourceSections:acceptedSource.sections,sourceMeta:acceptedSource.meta,images:effective.images||{},baseMeta:effective.meta},identityRegistry:identities};
+  const catalog={schema:EFFECTIVE_CORE_SCHEMA,asOf:'2026-09-25',records,mainRules,errata,faqs,universalUpdates,identityOnly,concepts,aliases,sourceMappings,sourceDefects:clone(sourceDefectLedger.defects),wahaCorpusFingerprint:wahaCorpus.fingerprint,contentBindings:bindings,acceptedSourceRegistry:registry,sourceUnits:Object.fromEntries(wahaIndex.unitById),resolveFactSource,resolveId,getById:value=>byId.get(resolveId(value))||null,getByCode:code=>byCode.get(code)||null,getByAnchor:anchor=>byAnchor.get(anchor)||null,presentation:{reader:acceptedData,sourceSections:acceptedSource.sections,sourceMeta:acceptedSource.meta,images:effective.images||{},baseMeta:effective.meta},identityRegistry:identities};
   validateEffectiveCoreCatalog(catalog);
   return freeze(catalog);
 }

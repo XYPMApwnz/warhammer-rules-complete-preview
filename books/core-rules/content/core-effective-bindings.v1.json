@@ -196,5 +196,213 @@
         "canonicalId": "core-rule-09-02-02-selecting-modes"
       }
     }
+  ],
+  "factContributions": [
+    {
+      "targetRuleId": "core-rule-05-01-hit-rolls",
+      "target": {
+        "path": "/text",
+        "range": [
+          157,
+          175
+        ]
+      },
+      "valueHash": "eea6b764435421a99b2cb56643119bbc023b31336c2a0021abbddb11d8b4df18",
+      "source": {
+        "sourceId": "gw-core-original-2026-06-01",
+        "artifact": "../assets/pages/page-18.jpg",
+        "page": 18,
+        "locator": "05.01 Hit Rolls; first outcome row (one-pip die)",
+        "artifactSha256": "abe4ee7808ffc960ccb66e659600fa3d2b3da80de77a7f400886919aa72e03b9",
+        "parentArtifactSha256": "f6a2443a44627ac5f0ef08407d29aa5ec7e97339998f05bc35f3ae37bf276833",
+        "transcription": "Unmodified 1\nFAILS"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-05-01-hit-rolls",
+      "target": {
+        "path": "/text",
+        "range": [
+          176,
+          201
+        ]
+      },
+      "valueHash": "9b18c7f81f32e55499ca5e0c1cf4cd16165e07de93fc19eb84d1bfe26409edb2",
+      "source": {
+        "sourceId": "gw-core-original-2026-06-01",
+        "artifact": "../assets/pages/page-18.jpg",
+        "page": 18,
+        "locator": "05.01 Hit Rolls; second outcome row (six-pip die)",
+        "artifactSha256": "abe4ee7808ffc960ccb66e659600fa3d2b3da80de77a7f400886919aa72e03b9",
+        "parentArtifactSha256": "f6a2443a44627ac5f0ef08407d29aa5ec7e97339998f05bc35f3ae37bf276833",
+        "transcription": "Unmodified 6\nCRITICAL HIT"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-05-04-inflict-damage",
+      "target": {
+        "path": "/text",
+        "range": [
+          532,
+          560
+        ]
+      },
+      "valueHash": "d48d26328199d7f2b1da5c4a174373cf27c58fcb1b4e3009214121702b13fd71",
+      "source": {
+        "sourceId": "gw-core-original-2026-06-01",
+        "artifact": "../assets/pages/page-19.jpg",
+        "page": 19,
+        "locator": "05.04 Inflict Damage; first outcome row (one-pip die)",
+        "artifactSha256": "df076137dabd0b2a8ff031783686ae05deb778baa0d10a61920d9bf5167d530d",
+        "parentArtifactSha256": "f6a2443a44627ac5f0ef08407d29aa5ec7e97339998f05bc35f3ae37bf276833",
+        "transcription": "Unmodified 1\nINFLICTS DAMAGE"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-02-02-01-modifiers",
+      "target": {
+        "path": "/text"
+      },
+      "valueHash": "92cd46f691bc3b51c9aa0b9ca44d893a264e51867a05837b5f979624cc2c1712",
+      "source": {
+        "sourceId": "waha-digital-11e-snapshot",
+        "recordCode": "02.02.01",
+        "path": "/text",
+        "locator": "Accepted digital fallback; 02.02.01/text"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-05-02-wound-rolls",
+      "target": {
+        "path": "/content"
+      },
+      "valueHash": "d79976ff3868086e43dc9737c7b9048768ad5e09cc931587f4bdd95962a62417",
+      "source": {
+        "sourceId": "waha-digital-11e-snapshot",
+        "recordCode": "05.02",
+        "path": "/content",
+        "locator": "Accepted digital fallback; 05.02/content"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-25-03-select-battle-size",
+      "target": {
+        "path": "/content/1/rows/0/cells/0"
+      },
+      "valueHash": "ea33dc847d962e75874bfed11cf65b69acebbfa3cabec313effeb7c8b4fc90e1",
+      "source": {
+        "sourceId": "waha-core-corpus-2026-09-25",
+        "unitId": "waha-core-rule-25-03",
+        "contentHash": "1B675200F3EE741691F084A26D505D76922342A320CA03BB3BCBB94D4CA9FF84",
+        "path": "/occurrences/0/content/tables/2/1"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-25-03-select-battle-size",
+      "target": {
+        "path": "/content/1/rows/0/cells/1"
+      },
+      "valueHash": "cc11310c456c3690d5a74c23aa31cc25b4e74cdae146c71e54ad9dbc1d109fde",
+      "source": {
+        "sourceId": "waha-core-corpus-2026-09-25",
+        "unitId": "waha-core-rule-25-03",
+        "contentHash": "1B675200F3EE741691F084A26D505D76922342A320CA03BB3BCBB94D4CA9FF84",
+        "path": "/occurrences/0/content/tables/2/2"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-25-03-select-battle-size",
+      "target": {
+        "path": "/content/1/rows/0/cells/2"
+      },
+      "valueHash": "cc11310c456c3690d5a74c23aa31cc25b4e74cdae146c71e54ad9dbc1d109fde",
+      "source": {
+        "sourceId": "waha-core-corpus-2026-09-25",
+        "unitId": "waha-core-rule-25-03",
+        "contentHash": "1B675200F3EE741691F084A26D505D76922342A320CA03BB3BCBB94D4CA9FF84",
+        "path": "/occurrences/0/content/tables/2/3"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-25-03-select-battle-size",
+      "target": {
+        "path": "/content/1/rows/0/cells/3"
+      },
+      "valueHash": "cc11310c456c3690d5a74c23aa31cc25b4e74cdae146c71e54ad9dbc1d109fde",
+      "source": {
+        "sourceId": "waha-core-corpus-2026-09-25",
+        "unitId": "waha-core-rule-25-03",
+        "contentHash": "1B675200F3EE741691F084A26D505D76922342A320CA03BB3BCBB94D4CA9FF84",
+        "path": "/occurrences/0/content/tables/2/4"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-25-03-select-battle-size",
+      "target": {
+        "path": "/content/1/rows/1/cells/0"
+      },
+      "valueHash": "637116a317aaf00163e5ae8e254bd0fa5625603b98429d84f87e5c8c5240e350",
+      "source": {
+        "sourceId": "waha-core-corpus-2026-09-25",
+        "unitId": "waha-core-rule-25-03",
+        "contentHash": "1B675200F3EE741691F084A26D505D76922342A320CA03BB3BCBB94D4CA9FF84",
+        "path": "/occurrences/0/content/tables/3/1"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-25-03-select-battle-size",
+      "target": {
+        "path": "/content/1/rows/1/cells/1"
+      },
+      "valueHash": "a4aab3f1f08004e907d2357fafe74cab56359bcb32e23f52e7eb1d3a9c0a2ad3",
+      "source": {
+        "sourceId": "waha-core-corpus-2026-09-25",
+        "unitId": "waha-core-rule-25-03",
+        "contentHash": "1B675200F3EE741691F084A26D505D76922342A320CA03BB3BCBB94D4CA9FF84",
+        "path": "/occurrences/0/content/tables/3/2"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-25-03-select-battle-size",
+      "target": {
+        "path": "/content/1/rows/1/cells/2"
+      },
+      "valueHash": "2bf175f9655e7bb7357b9f0a7c6051465a5ae701104ffe741b98e852c0e4d460",
+      "source": {
+        "sourceId": "waha-core-corpus-2026-09-25",
+        "unitId": "waha-core-rule-25-03",
+        "contentHash": "1B675200F3EE741691F084A26D505D76922342A320CA03BB3BCBB94D4CA9FF84",
+        "path": "/occurrences/0/content/tables/3/3"
+      }
+    },
+    {
+      "targetRuleId": "core-rule-25-03-select-battle-size",
+      "target": {
+        "path": "/content/1/rows/1/cells/3"
+      },
+      "valueHash": "a4aab3f1f08004e907d2357fafe74cab56359bcb32e23f52e7eb1d3a9c0a2ad3",
+      "source": {
+        "sourceId": "waha-core-corpus-2026-09-25",
+        "unitId": "waha-core-rule-25-03",
+        "contentHash": "1B675200F3EE741691F084A26D505D76922342A320CA03BB3BCBB94D4CA9FF84",
+        "path": "/occurrences/0/content/tables/3/4"
+      }
+    }
+  ],
+  "pageImageEvidence": [
+    {
+      "sourceId": "gw-core-original-2026-06-01",
+      "artifact": "../assets/pages/page-18.jpg",
+      "page": 18,
+      "artifactSha256": "abe4ee7808ffc960ccb66e659600fa3d2b3da80de77a7f400886919aa72e03b9",
+      "parentArtifactSha256": "f6a2443a44627ac5f0ef08407d29aa5ec7e97339998f05bc35f3ae37bf276833"
+    },
+    {
+      "sourceId": "gw-core-original-2026-06-01",
+      "artifact": "../assets/pages/page-19.jpg",
+      "page": 19,
+      "artifactSha256": "df076137dabd0b2a8ff031783686ae05deb778baa0d10a61920d9bf5167d530d",
+      "parentArtifactSha256": "f6a2443a44627ac5f0ef08407d29aa5ec7e97339998f05bc35f3ae37bf276833"
+    }
   ]
 }

@@ -56,8 +56,10 @@ for(const code of ['01.02.01','05.02','05.03','19.04','03.03','16.01','09.04','1
 }
 const parity=verifyPdfParity(pdf,digital);
 assert.equal(parity.verifiedNormalized.length,76,'unexpected normalized PDF parity count');
-assert.equal(parity.digitalExtension.length,34,'unexpected digital extension count');
-assert.equal(parity.requiresStructuralComparison.length,36,'unexpected structural comparison count');
+assert.equal(parity.digitalExtension.length,33,'unexpected digital extension count');
+assert.equal(parity.requiresStructuralComparison.length,37,'unexpected structural comparison count');
+// Hit-roll dice faces are visible in the accepted page image, lost in PDF text extraction.
+assert(parity.requiresStructuralComparison.includes('05.01'),'image-owned numeric outcomes need source-structure verification');
 assert.deepEqual(parity.missing,[],'every official numbered rule must have a digital counterpart');
 const faqs=pdf.faqs||[];
 assert.equal(faqs.length,5,'Rules Appendix page 88 must provide five FAQs');

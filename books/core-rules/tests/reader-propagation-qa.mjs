@@ -18,6 +18,12 @@ function fixture(){
   fs.cpSync(path.join(coreRoot,'content'),path.join(stagedCore,'content'),{recursive:true});
   fs.cpSync(path.join(coreRoot,'sources'),path.join(stagedCore,'sources'),{recursive:true});
   fs.cpSync(path.join(coreRoot,'tools'),path.join(stagedCore,'tools'),{recursive:true});
+  const bindings=JSON.parse(fs.readFileSync(path.join(coreRoot,'content','core-effective-bindings.v1.json'),'utf8'));
+  for(const image of bindings.pageImageEvidence||[]){
+    const target=path.resolve(stagedCore,'content',image.artifact);
+    fs.mkdirSync(path.dirname(target),{recursive:true});
+    fs.copyFileSync(path.resolve(coreRoot,'content',image.artifact),target);
+  }
   fs.copyFileSync(path.join(coreRoot,'reader','build.mjs'),path.join(stagedCore,'reader','build.mjs'));
   fs.copyFileSync(path.join(repoRoot,'books','shared','runtime-asset-versions.json'),path.join(root,'books','shared','runtime-asset-versions.json'));
   fs.cpSync(path.join(repoRoot,'books','shared','canonical-content-v2'),path.join(root,'books','shared','canonical-content-v2'),{recursive:true});
@@ -36,6 +42,14 @@ function buildAndRead(mutate){
 }
 
 const mainMarker='SYNTHETIC_READER_MAIN_PROPAGATION';
+// A reader must fail closed when source-owned numeric facts are removed, not supply literals.
+assert.throws(()=>buildAndRead(({core})=>{
+  const file=path.join(core,'content','core-rules.digital-11e.json');
+  const data=JSON.parse(fs.readFileSync(file,'utf8'));
+  const record=data.records.find(record=>record.code==='05.01');
+  record.text=record.text.replace('Unmodified 1','Unmodified');
+  fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
+}),/Changed source-bound fact/);
 let oldMain='';
 const main=buildAndRead(({core})=>{
   const file=path.join(core,'content','core-rules.digital-11e.json');
