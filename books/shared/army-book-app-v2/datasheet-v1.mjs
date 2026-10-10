@@ -242,6 +242,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         quantity:child.rosterQuantity,abilities:child.effectiveAbilities||child.rosterAbilities||[],
         suppressedAbilityIds:child.suppressedAbilityIds||[]})),
       unitAbilities:card.rosterUnitAbilities||[],
+      sourceAbilityIds:children.filter(child=>child.effectiveAbilityId).map(child=>child.effectiveAbilityId),
       references:collectAbilityReferences(children.filter(child=>child.kind==='RULE_REFERENCE'),config.referenceBindings),
       applied:roster.effective(instanceId).applied||[]}):null;
     const normal=selectsNormalDatasheetBindings(config,instanceId);
@@ -454,7 +455,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     if(options.length&&!instanceId){const section=part('wargear','Wargear Options');const list=el('ul');for(const child of options){const line=identity(el('li'),child,instanceId);line.append(factValue('span',single(child,'text')));appendOptionCost(line,child.id);appendBoundAbilities(line,child.id);list.append(line);rendered.add(child.id);}section.append(list);root.append(section);}
     for(const child of children.filter(c=>c.kind==='SUPPLEMENTAL_DATASHEET_RULE')){
       if(boundAbilities.some(binding=>binding.ruleId===child.id)){rendered.add(child.id);continue;}
-      const item=identity(el('article','ability'),child,instanceId);item.append(factValue('p',single(child,'text')));abilityList.append(item);rendered.add(child.id);
+      const item=identity(el('article','ability'),child,instanceId);
+      if(instanceId&&child.effectiveAbilityId){const caption=scopeCaption(child);if(caption)item.append(el('h5','ds-composition-scope',caption));}
+      item.append(factValue('p',single(child,'text')));abilityList.append(item);rendered.add(child.id);
     }
     for(const child of children.filter(c=>c.kind==='WARGEAR_FOOTNOTE')){
       const construction=config.normal?.constructionNotes?.find(binding=>binding.noteId===child.id);

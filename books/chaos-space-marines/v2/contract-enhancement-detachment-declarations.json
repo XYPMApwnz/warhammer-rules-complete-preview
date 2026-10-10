@@ -11541,8 +11541,8 @@
     },
     {
       "ruleId": "detachment-cult-of-the-arkifane:enhancement:4",
-      "status": "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY",
-      "reason": "Source-required permanent/roster-known effect cannot be represented by current shared operation domain. No runtime is implemented.",
+      "status": "BUILT",
+      "reason": "Source-backed exact bearer ability range +3 uses canonical ability identities and validated book-owned range bindings. Underlying battle execution remains unchanged.",
       "evidence": [
         {
           "field": [
@@ -11551,28 +11551,354 @@
           "quote": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
         }
       ],
-      "blockers": [
-        {
-          "missingCapability": "SPECIFIC_CANONICAL_ABILITY_RANGE_MODIFIER",
-          "subject": "MODEL",
-          "recipient": "Exact physical WARPSMITH bearer; only three named canonical ability references",
-          "condition": "Assigned Enhancement and WARPSMITH MODEL prerequisite",
-          "expectedRosterEffect": "Add 3 inches to each specified canonical ability range, no change to unrelated abilities or weapon ranges",
-          "sourceClause": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
-          "whyExistingLanguageInsufficient": "Existing MODIFY_STAT range is ranged-weapon-only; MODIFY_RULE_METRIC accepts contagionRange/detectionRange and cannot address specific canonical ability identities.",
-          "evidence": {
+      "declaration": {
+        "kind": "ENHANCEMENT",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "detachmentId": "detachment-cult-of-the-arkifane",
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "MODEL",
+            "allegiance": "FRIENDLY",
+            "purpose": "OWNER",
+            "selector": {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "WARPSMITH"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "WARPSMITH model only."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "key": "enhancementAssigned:detachment-cult-of-the-arkifane:enhancement:4",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
+                },
+                "roleId": "owner"
+              }
+            ],
+            "binding": "SOURCE_MODEL"
+          }
+        ],
+        "conditions": [
+          {
+            "predicate": "DETACHMENT",
+            "subject": "ROSTER",
+            "contextLevel": "ROSTER",
+            "arguments": {
+              "id": "detachment-cult-of-the-arkifane"
+            },
+            "evidence": {
+              "field": [
+                "enhancementIds"
+              ],
+              "quote": "detachment-cult-of-the-arkifane:enhancement:4",
+              "otherEntityId": "detachment-cult-of-the-arkifane"
+            }
+          }
+        ],
+        "compatibilityRoleIds": [
+          "owner"
+        ],
+        "clauses": [
+          {
+            "id": "roster-clause-1",
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
+            },
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "OWNER",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "WARPSMITH"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "WARPSMITH model only."
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "enhancementAssigned:detachment-cult-of-the-arkifane:enhancement:4",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
+                    },
+                    "roleId": "owner"
+                  }
+                ],
+                "binding": "SOURCE_MODEL"
+              }
+            ],
+            "conditions": [],
+            "productClassification": "ROSTER_KNOWN",
+            "effectRecipientRoleIds": [
+              "owner"
+            ],
+            "effect": {
+              "sourceClause": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
+              "recipientRoleId": "owner",
+              "parameters": {
+                "ability": {
+                  "canonicalId": "datasheet-warpsmith:section:1:block:0:text"
+                },
+                "mode": "ADD",
+                "value": 3
+              }
+            },
+            "executionImplemented": false,
+            "operation": "MODIFY_ABILITY_RANGE",
+            "abilityRangeBinding": {
+              "baseValue": 3,
+              "field": [
+                "text"
+              ],
+              "start": 38,
+              "end": 40,
+              "evidence": {
+                "otherEntityId": "datasheet-warpsmith:section:1:block:0:text",
+                "field": [
+                  "text"
+                ],
+                "quote": "Warpsmith: While this model is within 3\" of one or more friendly HERETIC ASTARTES VEHICLE units, this model has the Lone Operative ability."
+              }
+            }
+          },
+          {
+            "id": "roster-clause-2",
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
+            },
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "OWNER",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "WARPSMITH"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "WARPSMITH model only."
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "enhancementAssigned:detachment-cult-of-the-arkifane:enhancement:4",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
+                    },
+                    "roleId": "owner"
+                  }
+                ],
+                "binding": "SOURCE_MODEL"
+              }
+            ],
+            "conditions": [],
+            "productClassification": "ROSTER_KNOWN",
+            "effectRecipientRoleIds": [
+              "owner"
+            ],
+            "effect": {
+              "sourceClause": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
+              "recipientRoleId": "owner",
+              "parameters": {
+                "ability": {
+                  "canonicalId": "datasheet-warpsmith:section:1:block:1:text"
+                },
+                "mode": "ADD",
+                "value": 3
+              }
+            },
+            "executionImplemented": false,
+            "operation": "MODIFY_ABILITY_RANGE",
+            "abilityRangeBinding": {
+              "baseValue": 3,
+              "field": [
+                "text"
+              ],
+              "start": 103,
+              "end": 105,
+              "evidence": {
+                "otherEntityId": "datasheet-warpsmith:section:1:block:1:text",
+                "field": [
+                  "text"
+                ],
+                "quote": "Master of Mechanisms: In your Command phase, select one friendly HERETIC ASTARTES VEHICLE model within 3\" of this model. That VEHICLE model regains up to D3 lost wounds and, until the start of your next Command phase, each time that VEHICLE makes an attack, add 1 to the Hit roll. Each model can only be selected for this ability once per Command phase."
+              }
+            }
+          },
+          {
+            "id": "roster-clause-3",
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
+            },
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "OWNER",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "WARPSMITH"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "WARPSMITH model only."
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "enhancementAssigned:detachment-cult-of-the-arkifane:enhancement:4",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
+                    },
+                    "roleId": "owner"
+                  }
+                ],
+                "binding": "SOURCE_MODEL"
+              }
+            ],
+            "conditions": [],
+            "productClassification": "ROSTER_KNOWN",
+            "effectRecipientRoleIds": [
+              "owner"
+            ],
+            "effect": {
+              "sourceClause": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
+              "recipientRoleId": "owner",
+              "parameters": {
+                "ability": {
+                  "canonicalId": "datasheet-warpsmith:section:1:block:2:text"
+                },
+                "mode": "ADD",
+                "value": 3
+              }
+            },
+            "executionImplemented": false,
+            "operation": "MODIFY_ABILITY_RANGE",
+            "abilityRangeBinding": {
+              "baseValue": 12,
+              "field": [
+                "text"
+              ],
+              "start": 96,
+              "end": 99,
+              "evidence": {
+                "otherEntityId": "datasheet-warpsmith:section:1:block:2:text",
+                "field": [
+                  "text"
+                ],
+                "quote": "Enrage Machine Spirits: At the end of your Movement phase, select one enemy VEHICLE unit within 12\" of this model. That unit must take a Battle-shock test."
+              }
+            }
+          }
+        ],
+        "assignment": {
+          "ownerRoleId": "owner",
+          "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE",
+          "sourceEvidence": {
             "field": [
               "text"
             ],
-            "quote": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
-          },
-          "affectedCanonicalAbilityIds": [
-            "datasheet-warpsmith:section:1:block:0:text",
-            "datasheet-warpsmith:section:1:block:1:text",
-            "datasheet-warpsmith:section:1:block:2:text"
-          ]
+            "quote": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
+          }
         }
-      ]
+      }
     },
     {
       "ruleId": "detachment-renegade-warband:enhancement:1",

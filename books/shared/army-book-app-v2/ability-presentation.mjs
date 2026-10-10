@@ -23,7 +23,7 @@ export function collectAbilityReferences(cards,bindings) {
   }))));
 }
 
-export function projectAbilityPresentation({instanceId,profiles,unitAbilities=[],references=[],applied=[]}) {
+export function projectAbilityPresentation({instanceId,profiles,unitAbilities=[],references=[],applied=[],sourceAbilityIds=[]}) {
   const active=profiles.filter(profile=>profile.quantity===undefined||profile.quantity>0);
   const scopes=active.map(profile=>scopeKey(instanceId,profile));
   const intrinsic=new Map(references.filter(ref=>ref.runtimeEntryId).map(ref=>[ref.runtimeEntryId,ref]));
@@ -33,7 +33,7 @@ export function projectAbilityPresentation({instanceId,profiles,unitAbilities=[]
   const bags=new Map(active.map(profile=>[scopeKey(instanceId,profile),new Map()]));
   for(const profile of active) {
     const bag=bags.get(scopeKey(instanceId,profile));
-    const permitted=ability=>!profile.suppressedAbilityIds?.includes(ability.canonicalId);
+    const permitted=ability=>!profile.suppressedAbilityIds?.includes(ability.canonicalId)&&!sourceAbilityIds.includes(ability.canonicalId);
     // References without a typed runtime occurrence are unchanged static facts.
     for(const ref of coreReferences.filter(ref=>!ref.runtimeEntryId&&!ref.legacyValue&&permitted(ref)))bag.set(factKey(ref),clone(ref));
     for(const ability of profile.abilities||[]) {
@@ -69,7 +69,7 @@ export function projectAbilityPresentation({instanceId,profiles,unitAbilities=[]
     if(!seen.has(entry.identity)){core.push(entry);seen.add(entry.identity);}
   }
   const otherReferences=[];
-  for(const reference of references.filter(ref=>ref.group!=='CORE ABILITIES')) {
+  for(const reference of references.filter(ref=>ref.group!=='CORE ABILITIES'&&!sourceAbilityIds.includes(ref.canonicalId))) {
     const recipients=active.filter(profile=>!profile.suppressedAbilityIds?.includes(reference.canonicalId));
     if(recipients.length===active.length)otherReferences.push(reference);
     else for(const profile of recipients) {

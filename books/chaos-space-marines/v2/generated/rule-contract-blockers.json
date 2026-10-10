@@ -1,40 +1,4 @@
 {
   "schema": "csm-rule-contract-blockers/v2",
-  "owners": [
-    {
-      "ruleId": "detachment-cult-of-the-arkifane:enhancement:4",
-      "status": "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY",
-      "reason": "Source-required permanent/roster-known effect cannot be represented by current shared operation domain. No runtime is implemented.",
-      "evidence": [
-        {
-          "field": [
-            "text"
-          ],
-          "quote": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
-        }
-      ],
-      "blockers": [
-        {
-          "missingCapability": "SPECIFIC_CANONICAL_ABILITY_RANGE_MODIFIER",
-          "subject": "MODEL",
-          "recipient": "Exact physical WARPSMITH bearer; only three named canonical ability references",
-          "condition": "Assigned Enhancement and WARPSMITH MODEL prerequisite",
-          "expectedRosterEffect": "Add 3 inches to each specified canonical ability range, no change to unrelated abilities or weapon ranges",
-          "sourceClause": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
-          "whyExistingLanguageInsufficient": "Existing MODIFY_STAT range is ranged-weapon-only; MODIFY_RULE_METRIC accepts contagionRange/detectionRange and cannot address specific canonical ability identities.",
-          "evidence": {
-            "field": [
-              "text"
-            ],
-            "quote": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
-          },
-          "affectedCanonicalAbilityIds": [
-            "datasheet-warpsmith:section:1:block:0:text",
-            "datasheet-warpsmith:section:1:block:1:text",
-            "datasheet-warpsmith:section:1:block:2:text"
-          ]
-        }
-      ]
-    }
-  ]
+  "owners": []
 }

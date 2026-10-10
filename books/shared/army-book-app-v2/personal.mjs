@@ -131,6 +131,25 @@ export function projectInstanceCards(cards, unit, effective) {
       if(kind==='WEAPON_PROFILE' && !root.children.includes(record.id))root.children.push(record.id);
     }
   }
+  // Effective ability text is supplied by the runtime at a canonical field
+  // address and exact MODEL scope. Never locate a range by parsing prose.
+  const abilityEntries=(effective.abilities||[]).filter(record=>record.abilityRangeField&&root.children.includes(record.id));
+  for(const id of new Set(abilityEntries.map(record=>record.id))){
+    const base=cards.get(id);assert(base,'Unresolved effective canonical ability');
+    variants.set(id,abilityEntries.filter(record=>record.id===id).map(record=>{
+      const card=annotate(base,record.scopeId),path=record.abilityRangeField;
+      const value=path.slice(1).split('/').reduce((value,key)=>value?.[key],record.text);
+      assert(typeof value==='string'&&card.fields.some(field=>field.source?.entityId===id&&field.source.path===path),'Unresolved effective ability source field');
+      card.fields=card.fields.map(field=>field.source?.entityId===id&&field.source.path===path?
+        {...field,value,displayValue:undefined,runtimeDerived:true}:field);
+      card.effectiveAbilityId=id;
+      const profile=effective.profiles.find(profile=>profile.scopeId===record.scopeId&&profile.id===record.profileId);
+      assert(profile,'Unresolved effective ability MODEL scope');
+      card.presentationScope=clone(scopeCaptions.get(record.scopeId)||{
+        label:profileName(record.profileId),quantity:profile.quantity,canonicalLabelIncluded:true});
+      return card;
+    }));
+  }
   // Selection instructions are canonical options in book mode. Personal views
   // retain only references present in this exact effective inventory/scope.
   for(const id of root.children) {

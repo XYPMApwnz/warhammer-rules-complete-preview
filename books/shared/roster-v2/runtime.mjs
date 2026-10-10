@@ -44,6 +44,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
       if (!unit) throw new TypeError('Unresolved physical instance');
       const canonical=records.get(unit.canonicalUnitId),group=projection.formedUnits.find(g=>g.formedUnitId===unit.formedUnitId);
       const name = id=>records.get(id)?.data.title || records.get(id)?.data.name || id;
+      const rangedAbilities=new Set(unit.profiles.flatMap(model=>model.abilities.filter(ability=>ability.rangePresentation).map(ability=>ability.canonicalId)));
       return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
         ...(unit.abilities?{unitAbilities:clone(unit.abilities)}:{}),
         formedUnit:group?clone(group):null,keywords:group?[...group.keywords]:[...unit.keywords],intrinsicKeywords:[...unit.intrinsicKeywords],
@@ -56,7 +57,22 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
             const abilityIds=[...(book.rosterReferenceSemantics?.[id]?.abilities||[]).flatMap(ability=>ability.canonicalId?[ability.canonicalId]:[]),
               ...(book.rosterAbilityReferences?.[id]?[id]:[]),...(records.get(id)?.data.armyRuleId?[records.get(id).data.armyRuleId]:[])];
             return !abilityIds.length || !abilityIds.every(abilityId=>unit.profiles.length && unit.profiles.every(model=>model.suppressedAbilityIds?.includes(abilityId)));
-          }).map(id=>({id,title:name(id),text:clone(records.get(id).data)})),
+          }).flatMap(id=>{
+            const canonical={id,title:name(id),text:clone(records.get(id).data)};
+            if(!rangedAbilities.has(id))return [canonical];
+            const binding=book.rosterAbilityReferences[id].rangeBinding;
+            return unit.profiles.flatMap(model=>{
+              const ability=model.abilities.find(ability=>ability.canonicalId===id);
+              if(!ability||model.suppressedAbilityIds?.includes(id))return [];
+              const entry=clone(canonical);
+              if(ability.rangePresentation){
+                const owner=binding.field.slice(0,-1).reduce((value,key)=>value[key],entry.text);
+                owner[binding.field.at(-1)]=ability.rangePresentation.text;
+              }
+              return [{...entry,scopeId:model.scopeId,profileId:model.canonicalProfileId,
+                abilityRangeField:'/'+binding.field.join('/'),parameters:clone(ability.parameters),ownerInstanceId:instanceId}];
+            });
+          }),
         applied:unit.applied.map(row=>({...clone(row),label:name(row.ruleId)})),conditional:unit.conditional.map(row=>({...clone(row),label:name(row.ruleId)}))};
     },
     related(instanceId,detachmentId=null) {

@@ -1,7 +1,7 @@
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value => structuredClone(value);
-const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','REMOVE_ABILITY','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC','CONTRIBUTE_WEAPON_PROFILE']);
+const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','REMOVE_ABILITY','MODIFY_ABILITY_RANGE','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC','CONTRIBUTE_WEAPON_PROFILE']);
 const bindingSubjects = {SOURCE_MODEL:'MODEL',SOURCE_UNIT:'UNIT',SOURCE_UNIT_MODELS:'MODEL',SOURCE_FORMED_MODELS:'MODEL',LEADERS_OF_SOURCE:'MODEL',ROSTER_UNITS:'UNIT',ROSTER_MODELS:'MODEL'};
 // Current Core 02.02.01: threshold/AP improvements are signed arithmetic;
 // bounds apply to the combined result, never to each modifier contribution.
@@ -82,6 +82,20 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
             !reference || reference.id!==effect.ability.canonicalId ||
             Object.keys(effect.ability).some(key=>key!=='canonicalId'))
           throw new TypeError('Unresolved canonical MODEL ability suppression');
+      }
+      if (effect.operation === 'MODIFY_ABILITY_RANGE') {
+        const canonicalId=effect.ability?.canonicalId,reference=book.rosterAbilityReferences?.[canonicalId];
+        const binding=reference?.rangeBinding,record=records.get(canonicalId);
+        const text=Array.isArray(binding?.field)?binding.field.reduce((value,key)=>value?.[key],record?.data):undefined;
+        if(effect.targetSubject!=='MODEL'||effect.unitScope!==undefined||effect.mode!=='ADD'||
+            !Number.isSafeInteger(effect.value)||effect.value<=0||reference?.id!==canonicalId||
+            Object.keys(effect.ability||{}).some(key=>key!=='canonicalId')||
+            reference?.parameters?.range?.type!=='number'||typeof text!=='string'||!binding.field.length||
+            !Number.isSafeInteger(binding.baseValue)||binding.baseValue<0||
+            !Number.isSafeInteger(binding.start)||!Number.isSafeInteger(binding.end)||
+            binding.start<0||binding.end<=binding.start||binding.end>text.length||
+            text.slice(binding.start,binding.end)!==`${binding.baseValue}"`)
+          throw new TypeError('Unresolved canonical MODEL ability range binding');
       }
       if (effect.operation === 'GRANT_WEAPON_ABILITY' && (typeof effect.ability !== 'string' || !effect.ability)) throw new TypeError('Invalid weapon ability');
       if (effect.operation==='CONTRIBUTE_WEAPON_PROFILE') {
@@ -275,7 +289,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       object[key] = clone(after);
       target.unit.applied.push({ruleId:rule.id,clauseId:clause.id,effectId:effect.id,sourceInstanceId:source?.instanceId || null,targetInstanceId:target.unit.instanceId,
         targetModelInstanceId:targetModelId || null,targetProfileId:targetWeaponId ? weaponScope?.canonicalProfileId || null : target.model?.canonicalProfileId || null,targetCompositionId:targetWeaponId ? weaponScope?.scopeId || null : target.model?.scopeId || null,targetWeaponProfileId:targetWeaponId || null,operation:effect.operation,field:key,before,after:clone(after),sourceFields:clone(effect.sourceFields),lifetime:effect.lifetime,
-        ...(['GRANT_ABILITY','REMOVE_ABILITY'].includes(effect.operation)?{targetAbilityId:effect.ability.canonicalId,
+        ...(['GRANT_ABILITY','REMOVE_ABILITY','MODIFY_ABILITY_RANGE'].includes(effect.operation)?{targetAbilityId:effect.ability.canonicalId,
           ...(effect.operation==='GRANT_ABILITY'?{abilityParameters:clone(effect.ability.parameters)}:{})}:{}),
         ...(effect.canonicalContribution?{canonicalContribution:clone(effect.canonicalContribution)}:{})});
       return target.unit.applied.at(-1);
@@ -364,6 +378,20 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       mutate(target.model,'abilities',target.model.abilities.filter(ability=>ability.canonicalId!==canonicalId),
         target.model.modelInstanceId,undefined,undefined,true);
     }
+    else if (effect.operation === 'MODIFY_ABILITY_RANGE') {
+      const canonicalId=effect.ability.canonicalId,binding=book.rosterAbilityReferences[canonicalId].rangeBinding;
+      const owned=target.model.abilities.filter(ability=>ability.canonicalId===canonicalId);
+      if(owned.length>1)throw new TypeError('Ambiguous canonical MODEL ability range owner');
+      if(!owned.length)return; // A modifier cannot grant an absent ability.
+      const ability=owned[0],before=ability.parameters?.range;
+      if(!Number.isSafeInteger(before)||before<0||!ability.rangePresentation&&before!==binding.baseValue)
+        throw new TypeError('Unresolved canonical MODEL ability base range');
+      const row=mutate(ability.parameters,'range',before+effect.value,target.model.modelInstanceId);
+      const canonicalText=binding.field.reduce((value,key)=>value[key],records.get(canonicalId).data);
+      ability.rangePresentation={field:clone(binding.field),baseValue:binding.baseValue,
+        text:canonicalText.slice(0,binding.start)+`${ability.parameters.range}"`+canonicalText.slice(binding.end)};
+      if(row){row.baseValue=binding.baseValue;row.targetAbilitySource={entityId:canonicalId,field:clone(binding.field)};}
+    }
     else if (effect.operation === 'GRANT_MODEL_ABILITY') {
       const existing = target.model.abilities.find(a=>a.name === effect.ability.name), next = clone(target.model.abilities.filter(a=>a.name !== effect.ability.name));
       next.push({name:effect.ability.name,value:Math.min(existing?.value ?? Infinity,effect.ability.value)});
@@ -451,11 +479,15 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     .sort((a,b)=>a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') || a.source.instanceId.localeCompare(b.source.instanceId,'en'));
   for(const item of contributions)for(const target of targets(item.source,item.effect,item.rule))apply(item,target);
   const remaining=pending.filter(p=>!keywordOperations.has(p.effect.operation) &&
-    !['CONTRIBUTE_WEAPON_PROFILE','REMOVE_ABILITY'].includes(p.effect.operation));
+    !['CONTRIBUTE_WEAPON_PROFILE','REMOVE_ABILITY','MODIFY_ABILITY_RANGE'].includes(p.effect.operation));
   if(remaining.some(p=>numericDomain[p.effect.field] || p.effect.canonicalContribution))
     remaining.sort((a,b)=>(numericDomain[a.effect.field]&&a.effect.mode==='SET'?0:1)-(numericDomain[b.effect.field]&&b.effect.mode==='SET'?0:1) ||
       a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') || (a.source?.instanceId||'').localeCompare(b.source?.instanceId||'','en'));
   for (const item of remaining) for (const target of targets(item.source,item.effect,item.rule)) apply(item,target);
+  const abilityRanges=pending.filter(p=>p.effect.operation==='MODIFY_ABILITY_RANGE').sort((a,b)=>
+    a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') ||
+    (a.source?.instanceId||'').localeCompare(b.source?.instanceId||'','en'));
+  for(const item of abilityRanges)for(const target of targets(item.source,item.effect,item.rule))apply(item,target);
   // Suppression wins over grants for the same canonical ability while active.
   // Rebuild starts from immutable facts, so removing its condition restores it.
   const suppressions=pending.filter(p=>p.effect.operation==='REMOVE_ABILITY').sort((a,b)=>
