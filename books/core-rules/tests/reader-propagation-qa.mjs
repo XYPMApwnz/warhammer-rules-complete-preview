@@ -24,7 +24,7 @@ function fixture(){
     fs.mkdirSync(path.dirname(target),{recursive:true});
     fs.copyFileSync(path.resolve(coreRoot,'content',image.artifact),target);
   }
-  fs.copyFileSync(path.join(coreRoot,'reader','build.mjs'),path.join(stagedCore,'reader','build.mjs'));
+  for(const file of ['build.mjs','presentation.mjs','presentation-bindings.json'])fs.copyFileSync(path.join(coreRoot,'reader',file),path.join(stagedCore,'reader',file));
   fs.copyFileSync(path.join(repoRoot,'books','shared','runtime-asset-versions.json'),path.join(root,'books','shared','runtime-asset-versions.json'));
   fs.cpSync(path.join(repoRoot,'books','shared','canonical-content-v2'),path.join(root,'books','shared','canonical-content-v2'),{recursive:true});
   return {root,core:stagedCore,reader:path.join(stagedCore,'reader')};
@@ -77,6 +77,12 @@ const override=buildAndRead(({core})=>{
   const baseRecord=base.records.find(record=>record.code==='17.03');
   baseRecord.text=baseRecord.text.replace(oldOverride,overrideMarker);
   fs.writeFileSync(baseFile,JSON.stringify(base,null,2)+'\n');
+  // This synthetic replacement no longer applies the real erratum. Its old omission
+  // must not be carried into a different accepted rule text.
+  const presentationFile=path.join(core,'reader','presentation-bindings.json');
+  const presentation=JSON.parse(fs.readFileSync(presentationFile,'utf8'));
+  presentation.appliedErrataPanels=presentation.appliedErrataPanels.filter(binding=>binding.ownerId!=='core-rule-17-03-shooting-at-engaged-monsters-and-vehicles');
+  fs.writeFileSync(presentationFile,JSON.stringify(presentation,null,2)+'\n');
 });
 assert(override.html.includes(overrideMarker)&&override.search.includes(overrideMarker),'official override mutation did not reach Reader card/search');
 assert(new RegExp(`data-term="core-rule-17-03-shooting-at-engaged-monsters-and-vehicles"[^>]*data-term-definition="[^"]*${overrideMarker}`).test(override.html),'official override mutation did not reach Reader popup projection');

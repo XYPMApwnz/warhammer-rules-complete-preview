@@ -25,6 +25,7 @@
   const searchStatus = document.getElementById('searchStatus');
   const searchResults = document.getElementById('searchResults');
   const glossary = window.WH40K_GLOSSARY;
+  const presentation = JSON.parse(document.getElementById('readerPresentation')?.textContent || '{}');
   const searchIndex = glossary.entries().filter(term => term.domain === 'CORE');
   let termOpener;
   let drawerScrollY = 0;
@@ -35,6 +36,22 @@
     termOpener = trigger;
     title.textContent = term.title;
     summary.textContent = term.definition;
+    const view=presentation[term.canonicalId];
+    if(view){
+      let definition=term.definition;
+      const valid=(view.omissions||[]).every(item=>definition.slice(...item.range)===item.expected)&&(view.markers||[]).every(item=>definition.slice(...item.range)===item.expected);
+      if(valid){
+        for(const item of [...(view.omissions||[])].sort((a,b)=>b.range[0]-a.range[0]))definition=definition.slice(0,item.range[0])+definition.slice(item.range[1]);
+        summary.replaceChildren();
+        let offset=0;
+        for(const marker of [...(view.markers||[])].sort((a,b)=>a.offset-b.offset)){
+          summary.append(document.createTextNode(definition.slice(offset,marker.offset)));
+          const image=document.createElement('img');image.className='rule-marker';image.src=marker.src;image.alt=marker.alt;
+          summary.append(image);offset=marker.offset;
+        }
+        summary.append(document.createTextNode(definition.slice(offset).trimEnd()));
+      }
+    }
     full.href = `../../../glossary/index.html#${encodeURIComponent(term.id)}`;
     const fullRulePath=trigger.dataset.fullRulePath;
     rule.hidden = !fullRulePath;

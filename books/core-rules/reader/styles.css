@@ -65,5 +65,6 @@ a{color:inherit}
 .rule-head>*{min-width:0}.rule-head .page{max-width:28ch;overflow-wrap:anywhere;line-height:1.5}.source-label{overflow-wrap:anywhere}
 @media(max-width:680px){.rule-head{grid-template-columns:minmax(0,1fr);gap:8px}.rule-head .page{grid-column:1;max-width:100%}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
-.rules,.rule,.rule-body,.subrules{min-width:0}.table-scroll{width:100%}
+.rules,.rule,.rule-body,.subrules,.subrule,.subrule>div{min-width:0}.subrules{grid-template-columns:minmax(0,1fr)}.table-scroll{width:100%;min-width:0;max-width:100%;overscroll-behavior-x:contain}
+.rule-marker{display:inline-block;width:28px;height:34px;margin-inline:6px;vertical-align:middle;object-fit:contain;background:#eee9dc;border-radius:2px}
 .rule-body>p,.rule-body>ul,.rule-body>ol,.subrule>div>p,.subrule>div>ul{max-width:76ch}.on-page summary{padding:10px 12px;color:var(--bronze-text);font:800 9px ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}.on-page summary span{float:right;color:var(--muted)}.on-page[open] summary{margin-bottom:5px}.on-page a{display:block}

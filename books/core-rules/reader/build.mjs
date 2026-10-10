@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {verifyPdfParity} from '../tools/verify_pdf_parity.mjs';
 import {recordText} from '../content/record-content.mjs';
 import {createCoreFactProjection} from '../content/core-fact-projection.mjs';
+import {createReaderPresentation} from './presentation.mjs';
 
 const root=path.dirname(fileURLToPath(import.meta.url));
 const bookRoot=path.dirname(root);
@@ -11,6 +12,7 @@ const repoRoot=path.resolve(bookRoot,'..','..');
 const runtimeVersions=JSON.parse(fs.readFileSync(path.join(repoRoot,'books','shared','runtime-asset-versions.json'),'utf8'));
 const projection=createCoreFactProjection({repoRoot});
 const catalog=projection.catalog;
+const readerPresentation=createReaderPresentation(catalog,JSON.parse(fs.readFileSync(path.join(root,'presentation-bindings.json'),'utf8')));
 const data=catalog.presentation.reader;
 const pdf=projection.coreSource;
 const modules=[
@@ -189,17 +191,16 @@ function seeAlsoItem(value){
   return term?termButton(term,text,'rule-reference'):linkedText(text,new Set());
 }
 
-function prose(text,seen=new Set(),excludedId='',hiddenReferences=[]){
-  const lines=String(text||'').split(/\n+/).map(line=>line.trim()).filter(Boolean);
+function prose(text,seen=new Set(),excludedId='',hiddenReferences=[],markers=[]){
+  const lines=[...String(text||'').matchAll(/[^\n]+/g)].map(match=>({line:match[0].trim(),start:match.index,end:match.index+match[0].length})).filter(item=>item.line);
   const output=[];
   let bullets=[];
   let previous='';
   let seeAlso=false;
   const flush=()=>{if(bullets.length){const items=seeAlso?bullets.filter(item=>!hiddenReferences.includes(item.match(/\b\d{2}\.\d{2}(?:\.\d{2})?\b/)?.[0])):bullets;if(items.length){if(seeAlso)output.push('<h4 class="see-also">See also</h4>');output.push(`<ul>${items.map(item=>`<li>${seeAlso?seeAlsoItem(item):linkedText(item,seen,excludedId)}</li>`).join('')}</ul>`);}bullets=[];}};
-  for(const line of lines){
+  for(const {line,start,end} of lines){
     if(line===previous)continue;
     previous=line;
-    if(/types are marked with this icon\.?$/i.test(line))continue;
     if(/^SEE ALSO$/i.test(line)){flush();seeAlso=true;continue;}
     if(seeAlso&&/^\d{2}\.\d{2}(?:\.\d{2})?$/.test(line)&&bullets.length){bullets[bullets.length-1]+=` ${line}`;continue;}
     if(/^\u2022\s*/.test(line)){
@@ -207,7 +208,8 @@ function prose(text,seen=new Set(),excludedId='',hiddenReferences=[]){
       continue;
     }
     if(seeAlso&&line!=='PROFILES AND WEAPONS')seeAlso=false;
-    flush();output.push(`<p>${linkedText(line,seen,excludedId)}</p>`);
+    const visuals=markers.filter(marker=>marker.offset>start&&marker.offset<=end).map(marker=>` <img class="rule-marker" src="${escapeHtml(marker.src)}" alt="${escapeHtml(marker.alt)}">`).join('');
+    flush();output.push(`<p>${linkedText(line,seen,excludedId)}${visuals}</p>`);
   }
   flush();
   return output.join('')||'<p>See the linked source.</p>';
@@ -221,8 +223,9 @@ function renderTable(block,seen,excludedId){
 }
 
 function renderContent(record,seen=new Set(),excludedId='',hiddenReferences=[]){
+  record=readerPresentation.recordView(record);
   if(record.sourceConflict)return sourceConflictContent(record,seen,excludedId);
-  if(!record.content)return prose(recordText(record),seen,excludedId,hiddenReferences);
+  if(!record.content)return prose(recordText(record),seen,excludedId,hiddenReferences,record.inlineMarkers);
   return record.content.map(block=>{
     if(block.type==='paragraph')return `<p>${linkedText(block.text,seen,excludedId)}</p>`;
     if(block.type==='heading')return `<h4 class="official-heading">${linkedText(block.text,seen,excludedId)}</h4>`;
@@ -271,10 +274,10 @@ function primaryNav(current=''){
 
 function shell({title,current='',currentLabel='Start',onPage='',content}){
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d0f0d"><link rel="manifest" href="../../../manifest.webmanifest"><title>${escapeHtml(title)} — Core Rules</title><link rel="stylesheet" href="styles.css?v=15"></head><body>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d0f0d"><link rel="manifest" href="../../../manifest.webmanifest"><title>${escapeHtml(title)} — Core Rules</title><link rel="stylesheet" href="styles.css?v=16"></head><body>
 <header class="topbar"><button class="menu" id="navButton" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">☰</button><a class="brand" href="index.html"><strong>Core Rules</strong><small>11E · Reference</small></a><span class="current">${escapeHtml(currentLabel)}</span><button class="search-button" id="searchButton" type="button" aria-label="Search Core Rules">Search</button><a class="library" href="../../../index.html">← Library</a></header><button class="scrim" id="navScrim" type="button" aria-label="Close navigation" hidden></button>
 <aside class="sidebar" id="sidebar"><div class="sidebar-head"><span class="eyebrow">Core register // 11E</span><h1>Contents</h1></div><nav><section class="nav-group"><h2>Reference</h2><a href="index.html"${!current?' aria-current="page"':''}>Start</a></section>${primaryNav(current)}${onPage}</nav><a class="mega" href="../../../glossary/index.html">Mega Glossary →</a></aside>
-<main class="main">${content}</main><a class="popup-return" id="popupReturn" hidden>← Back to popup</a><dialog class="search-dialog" id="searchDialog"><form method="dialog" class="dialog-head"><span>Core Rules // search</span><button type="submit" aria-label="Close search">×</button></form><label for="searchInput">Find a rule</label><input id="searchInput" type="search" autocomplete="off" placeholder="Title or rule text"><p class="search-status" id="searchStatus">Type at least two characters.</p><div class="search-results" id="searchResults"></div></dialog><dialog class="dialog" id="termDialog"><div class="dialog-head"><span>Mega Glossary // quick entry</span><button id="termClose" type="button" aria-label="Close">×</button></div><h2 id="termTitle"></h2><p id="termSummary"></p><a id="termRule" hidden>Open full rule →</a><a id="termFull">Glossary entry →</a></dialog><dialog class="image-dialog" id="imageDialog"><button id="imageClose" type="button" aria-label="Close diagram">×</button><img id="imagePreview" alt=""><p id="imageCaption"></p></dialog><script src="../../../glossary/v2/generated/index.en.js?v=1"></script><script src="../../../glossary/v2/runtime/glossary-v2-runtime.js?v=1"></script><script src="../../../glossary-return.js?v=${runtimeVersions.shared.glossaryReturn}"></script><script src="app.js?v=17"></script></body></html>`;
+<main class="main">${content}</main><a class="popup-return" id="popupReturn" hidden>← Back to popup</a><dialog class="search-dialog" id="searchDialog"><form method="dialog" class="dialog-head"><span>Core Rules // search</span><button type="submit" aria-label="Close search">×</button></form><label for="searchInput">Find a rule</label><input id="searchInput" type="search" autocomplete="off" placeholder="Title or rule text"><p class="search-status" id="searchStatus">Type at least two characters.</p><div class="search-results" id="searchResults"></div></dialog><dialog class="dialog" id="termDialog"><div class="dialog-head"><span>Mega Glossary // quick entry</span><button id="termClose" type="button" aria-label="Close">×</button></div><h2 id="termTitle"></h2><p id="termSummary"></p><a id="termRule" hidden>Open full rule →</a><a id="termFull">Glossary entry →</a></dialog><dialog class="image-dialog" id="imageDialog"><button id="imageClose" type="button" aria-label="Close diagram">×</button><img id="imagePreview" alt=""><p id="imageCaption"></p></dialog><script src="../../../glossary/v2/generated/index.en.js?v=1"></script><script src="../../../glossary/v2/runtime/glossary-v2-runtime.js?v=1"></script><script src="../../../glossary-return.js?v=${runtimeVersions.shared.glossaryReturn}"></script><script type="application/json" id="readerPresentation">${JSON.stringify(readerPresentation.popupData).replaceAll('<','\\u003c')}</script><script src="app.js?v=18"></script></body></html>`;
 }
 
 function sourceLinks(pages){

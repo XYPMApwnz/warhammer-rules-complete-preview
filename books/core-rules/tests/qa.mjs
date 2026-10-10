@@ -230,8 +230,9 @@ assert.equal(glossary['core-rule-03-03-01-what-is-coherency'],undefined,'What Is
 assert(!glossary['core-rule-03-03-coherency'].definition.en.includes('WHAT IS COHERENCY'),'Coherency glossary article must contain the rule without the duplicate explainer');
 assert(glossary['core-lethal-hits'].definition.en.includes('automatically wound')&&glossary['core-lethal-hits'].definition.en.includes('no wound roll'),'Lethal Hits effective definition must explain the mechanic');
 assert(glossary['core-devastating-wounds'].definition.en.includes('mortal wounds equal')&&glossary['core-devastating-wounds'].definition.en.includes('remaining mortal wounds inflicted by that attack are lost'),'Devastating Wounds effective definition must explain the mechanic');
-assert(!visibleReader.includes('PhaseAbility_'),'decorative phase icons must not render as rule diagrams');
-assert(!visibleReader.includes('types are marked with this icon'),'orphaned phase-icon captions must not render');
+const readerBindings=JSON.parse(read('reader/presentation-bindings.json'));
+for(const marker of readerBindings.visualMarkers)assert(generatedReader.includes(`class="rule-marker" src="${marker.asset}" alt="${marker.alt}"`),'source-bound phase marker must render inline');
+assert(visibleReader.includes('types are marked with this icon'),'source-backed icon statements must remain visible');
 assert.equal((generatedReader.match(/data-term="core-rule-02-04-weapons"[^>]*>Attacks<\/button>/g)||[]).length,1,'Attacks is linked only at its characteristic definition');
 const ignoredLabels=new Set(['you','within','weapons','destroyed','dice','set up','keywords','shoot','shooting','dense']);
 for(const button of generatedReader.matchAll(/<button class="([^"]*\bterm\b[^"]*)"[^>]*>([^<]+)<\/button>/g))if(!button[1].includes('rule-reference'))assert(!ignoredLabels.has(button[2].trim().toLowerCase()),`${button[2]} must not clutter prose`);
@@ -243,7 +244,11 @@ for(const image of Object.values(digital.images).flat()){
   assert(fs.existsSync(path.join(root,'assets','diagrams',image.file)),`missing 11E diagram ${image.file}`);
   const optimizedFile=image.file.replace(/\.png$/i,'.webp');
   assert(fs.existsSync(path.join(root,'assets','diagrams',optimizedFile)),`missing optimized 11E diagram ${optimizedFile}`);
-  if(decorativePhaseIcons.has(image.file)){assert(!generatedReader.includes(`assets/diagrams/${optimizedFile}`),`decorative phase icon must stay out of the reader: ${optimizedFile}`);continue;}
+  if(decorativePhaseIcons.has(image.file)){
+    const bound=readerBindings.visualMarkers.some(marker=>marker.enrolledFile===image.file);
+    assert.equal(generatedReader.includes(`assets/diagrams/${optimizedFile}`),bound,`inline icon must follow its explicit presentation binding: ${optimizedFile}`);
+    continue;
+  }
   assert(generatedReader.includes(`assets/diagrams/${optimizedFile}`),`reader does not display diagram ${optimizedFile}`);
   assert(new RegExp(`<figure data-visual-rule="[^"]+">[\\s\\S]*?assets/diagrams/${optimizedFile.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}`).test(generatedReader),`${optimizedFile} is not attached to a specific rule`);
 }

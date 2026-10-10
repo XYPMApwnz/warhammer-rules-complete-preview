@@ -1,0 +1,103 @@
+{
+  "schema": "core-reader-presentation/v1",
+  "appliedErrataPanels": [
+    {
+      "ownerId": "core-rule-13-09-hidden",
+      "erratumId": "core-waha-errata-13-09",
+      "panel": {
+        "path": "/text",
+        "range": [
+          459,
+          654
+        ],
+        "hash": "44094144391ae5f475944ab71b4b397e33844cfea77c07fe53835d26153c2b8f"
+      },
+      "effectiveClause": {
+        "path": "/text",
+        "range": [
+          60,
+          193
+        ],
+        "hash": "6c8b7648603e681e3916da4814318b1f2870b99317f5a302d61f291d664a6c13"
+      },
+      "sourceClause": {
+        "path": "/semanticContent",
+        "range": [
+          1,
+          134
+        ],
+        "hash": "6c8b7648603e681e3916da4814318b1f2870b99317f5a302d61f291d664a6c13"
+      }
+    },
+    {
+      "ownerId": "core-rule-17-03-shooting-at-engaged-monsters-and-vehicles",
+      "erratumId": "core-errata-17-03",
+      "panel": {
+        "path": "/text",
+        "range": [
+          423,
+          557
+        ],
+        "hash": "52b3d006445c26026df71bfb8a2e877812a132994b2b8ec30813fcf9eae1e56e"
+      },
+      "effectiveClause": {
+        "path": "/text",
+        "range": [
+          114,
+          159
+        ],
+        "hash": "cc9114a32ae45d5f2831592c9d4a3224b23851e72edb77945dc0aabd674bd09e"
+      },
+      "sourceClause": {
+        "path": "/semanticContent",
+        "range": [
+          42,
+          87
+        ],
+        "hash": "cc9114a32ae45d5f2831592c9d4a3224b23851e72edb77945dc0aabd674bd09e"
+      }
+    }
+  ],
+  "visualMarkers": [
+    {
+      "ownerId": "core-rule-10-02-shoot",
+      "text": {
+        "path": "/text",
+        "range": [
+          666,
+          707
+        ],
+        "hash": "20cf56c47790665f696e31f773b20ebaf7bb3a5c358016a0455798bcc38d6f0d"
+      },
+      "imagePath": "/shooting-phase/0",
+      "enrolledFile": "PhaseAbility_Shoot.png",
+      "asset": "../assets/diagrams/PhaseAbility_Shoot.webp",
+      "alt": "Shooting type marker",
+      "sourceNote": {
+        "unitId": "waha-core-rule-10-02",
+        "sourceOrder": 55,
+        "path": "/content/notes/0"
+      }
+    },
+    {
+      "ownerId": "core-rule-12-04-fight",
+      "text": {
+        "path": "/text",
+        "range": [
+          1342,
+          1380
+        ],
+        "hash": "3d52c886c58ba27194deb22cbb8853ab8ce17de2878a6b1d7745166ac108116f"
+      },
+      "imagePath": "/fight-phase/2",
+      "enrolledFile": "PhaseAbility_Fight.png",
+      "asset": "../assets/diagrams/PhaseAbility_Fight.webp",
+      "alt": "Fight type marker",
+      "sourceNote": {
+        "unitId": "waha-core-rule-12-04",
+        "sourceOrder": 68,
+        "path": "/content/notes/0"
+      }
+    }
+  ]
+}
