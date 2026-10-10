@@ -1,0 +1,1316 @@
+{
+  "schema": "csm-v2-official-source-bindings/v1",
+  "sourceDocument": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+  "sourceSha256": "f3a8d05ed88bad5085d014bf76fad684b60336f92cf75cf3aed30b989a33a495",
+  "corpusDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json",
+  "normalization": "Unicode whitespace collapsed; source punctuation and typography retained",
+  "columns": [
+    {
+      "key": "37-left",
+      "page": 37,
+      "column": "left",
+      "bbox": [
+        35,
+        190,
+        295,
+        780
+      ],
+      "textSha256": "f034b47d75b09f889ea04a770598c78d6f4a7d689ff561f8ae3382e2df76cf54"
+    },
+    {
+      "key": "37-right",
+      "page": 37,
+      "column": "right",
+      "bbox": [
+        300,
+        190,
+        555,
+        780
+      ],
+      "textSha256": "748a1e8e4b159550a12646aa6ce83d166e076341ca4be250655b15525b6db4db"
+    },
+    {
+      "key": "38-left",
+      "page": 38,
+      "column": "left",
+      "bbox": [
+        35,
+        60,
+        295,
+        780
+      ],
+      "textSha256": "3a09060293f498df1781f87f7a9739c1ac740a7837c7bac5910b787d976c9e11"
+    },
+    {
+      "key": "38-right",
+      "page": 38,
+      "column": "right",
+      "bbox": [
+        300,
+        60,
+        555,
+        780
+      ],
+      "textSha256": "e201a2d9700d95fa1754d25dfcf07f0d503098b54e281beec56077649101c697"
+    },
+    {
+      "key": "39-left",
+      "page": 39,
+      "column": "left",
+      "bbox": [
+        35,
+        50,
+        295,
+        800
+      ],
+      "textSha256": "916ce4bb3022a31155914704a88cebf6b6ad3a585c8797d723d30fbcf66515b3"
+    },
+    {
+      "key": "39-right",
+      "page": 39,
+      "column": "right",
+      "bbox": [
+        300,
+        50,
+        555,
+        800
+      ],
+      "textSha256": "c70a116de1840da62a5b371e56bd1d1ed89f37716370d3cb05136e808caf0a53"
+    }
+  ],
+  "updates": [
+    {
+      "sourceEntityId": "official-update-1",
+      "sourceHeading": "Chaos Cult Detachment, Keywords Section",
+      "sourceOwnerSelector": "detachment-chaos-cult:rule",
+      "columnKey": "37-left",
+      "span": [
+        30,
+        156
+      ],
+      "textSha256": "4bab1f25b18467a06b5a2d9b4e243423fa6b5670033bdb0219f22c0b02039783",
+      "sourceLedgerPointer": "/updates/0/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-chaos-cult:rule",
+          "corpusPointer": "/detachments/8/rule/text",
+          "expectedInputSha256": "454e05f3111b60be401c415be5ebfcc9dc8e90621ffadf7bcff43fb80531c358"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-2",
+      "sourceHeading": "Warped Foresight Enhancement",
+      "sourceOwnerSelector": "detachment-chaos-cult:enhancement:warped-foresight",
+      "columnKey": "37-left",
+      "span": [
+        157,
+        355
+      ],
+      "textSha256": "cb3cf6928f7a2ac0bdb60249815089c5f0b975d67b64a0e3fd5c34aa49fc977b",
+      "sourceLedgerPointer": "/updates/0/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-chaos-cult:enhancement:4",
+          "corpusPointer": "/detachments/8/enhancements/3/text",
+          "expectedInputSha256": "a1b7b7f39032487a415b239c6f8bf4600c03a91bf94c71c46e114bfc8eeddcc7"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-3",
+      "sourceHeading": "Relentless Pursuit Stratagem, Target Section",
+      "sourceOwnerSelector": "detachment-deceptors:stratagem:relentless-pursuit",
+      "columnKey": "37-left",
+      "span": [
+        377,
+        438
+      ],
+      "textSha256": "a038fff79baa2f154b547fed40ac41ef5a8e0d462c5d7d0eb2e9075d0cc8da64",
+      "sourceLedgerPointer": "/updates/0/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-deceptors:stratagem:5",
+          "corpusPointer": "/detachments/4/stratagems/4/lines/1/text",
+          "expectedInputSha256": "957b80cd59c930090f310e56a762809a7532e53acb9b3b6bcd76a114d1d07ee0"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-4",
+      "sourceHeading": "Falsehood Enhancement, third sentence",
+      "sourceOwnerSelector": "detachment-deceptors:enhancement:falsehood",
+      "columnKey": "37-left",
+      "span": [
+        439,
+        690
+      ],
+      "textSha256": "bd3054d81d58730c2eace5afea4e15d8234df342eca3bc9b3c34bda34dd07732",
+      "sourceLedgerPointer": "/updates/0/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-deceptors:enhancement:2",
+          "corpusPointer": "/detachments/4/enhancements/1/text",
+          "expectedInputSha256": "5982e830145628ba5363a4ffe8e2dec33016dfd863fd92e201da56151fb179a1"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-5",
+      "sourceHeading": "Screaming Descent Stratagem, Effect section",
+      "sourceOwnerSelector": "detachment-dread-talons:stratagem:screaming-descent",
+      "columnKey": "37-left",
+      "span": [
+        715,
+        1071
+      ],
+      "textSha256": "69ca0a38b901de02c3d0586fa1b4630a85a9c195af9d1a9ea1c28a2e18537b96",
+      "sourceLedgerPointer": "/updates/0/change",
+      "status": "override",
+      "targets": [
+        {
+          "sourceId": "detachment-dread-talons:stratagem:5",
+          "corpusPointer": "/detachments/5/stratagems/4/lines/2/text",
+          "expectedInputSha256": "20209e316d6ef48388b9b9dc78b4f0c209655d3a1df3e9b44e5b49563d8d39a0"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only.",
+      "patches": [
+        {
+          "targetIndex": 0,
+          "mode": "replace_value",
+          "replacementSpan": [
+            56,
+            355
+          ],
+          "replacementSha256": "8497ff6ab0a7ae0b005bc8fadff18a2f4b716528c9852e4644616bffaf60bbc9"
+        }
+      ]
+    },
+    {
+      "sourceEntityId": "official-update-6",
+      "sourceHeading": "Marks of Chaos Detachment Rule, Restrictions Section",
+      "sourceOwnerSelector": "detachment-pactbound-zealots:rule",
+      "columnKey": "37-left",
+      "span": [
+        1101,
+        1335
+      ],
+      "textSha256": "4cbe927bddc68eb1acc4b7f0b5644419be192db64f9248eeef0b916226d55417",
+      "sourceLedgerPointer": "/updates/0/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-pactbound-zealots:rule",
+          "corpusPointer": "/detachments/0/rule/text",
+          "expectedInputSha256": "7360f3610e7a6cf23b92c809890fdf89214c5c63404b3b6a94730356dd312ac0"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-7",
+      "sourceHeading": "Restrictions Section",
+      "sourceOwnerSelector": "detachment-pactbound-zealots:rule",
+      "columnKey": "37-left",
+      "span": [
+        1336,
+        1485
+      ],
+      "textSha256": "60ffd82b1d505d4bff12f1fe8b33910ec9a8cc79da4dc69ea916bdf11874c31c",
+      "sourceLedgerPointer": "/updates/0/change",
+      "status": "override",
+      "targets": [
+        {
+          "sourceId": "detachment-pactbound-zealots:rule",
+          "corpusPointer": "/detachments/0/rule/text",
+          "expectedInputSha256": "7360f3610e7a6cf23b92c809890fdf89214c5c63404b3b6a94730356dd312ac0"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only.",
+      "patches": [
+        {
+          "targetIndex": 0,
+          "mode": "replace_fragment",
+          "replacementSpan": [
+            33,
+            148
+          ],
+          "replacementSha256": "9df5a0530d59cfb11c521c2d0d49048cc95559d86508fd6aec22ac3cce422767",
+          "expectedFragment": "A CHARACTER unit can only be attached to a unit if both units share the same keyword from the list above."
+        }
+      ]
+    },
+    {
+      "sourceEntityId": "official-update-8",
+      "sourceHeading": "Unfailingly Obdurate Stratagem, Effect Section",
+      "sourceOwnerSelector": "detachment-renegade-raiders:stratagem:unfailingly-obdurate",
+      "columnKey": "37-left",
+      "span": [
+        1514,
+        1736
+      ],
+      "textSha256": "d4105ccab966515a07cd04a7ecbcb10079eef4d0dd21aaa96bc5b5e0aefb335e",
+      "sourceLedgerPointer": "/updates/0/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-renegade-raiders:stratagem:1",
+          "corpusPointer": "/detachments/3/stratagems/0/lines/2/text",
+          "expectedInputSha256": "d7c941ed78a211e065ed5c8d81a6498e7e2c786f987a814659f896473c054dbd"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-9",
+      "sourceHeading": "Feeding Frenzy Stratagem, Target Section",
+      "sourceOwnerSelector": "detachment-soulforged-warpack:stratagem:feeding-frenzy",
+      "columnKey": "37-right",
+      "span": [
+        30,
+        216
+      ],
+      "textSha256": "7623ff4760f16d3759ef8df7a4493cd6d4adfed942da196c4af3ea57743c4c5c",
+      "sourceLedgerPointer": "/updates/1/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-soulforged-warpack:stratagem:6",
+          "corpusPointer": "/detachments/12/stratagems/5/lines/1/text",
+          "expectedInputSha256": "ad2c639df954db3b7c4f36747e3fff45bb08c9d23eac334877b328a630eaa494"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-10",
+      "sourceHeading": "Unstoppable Rampage Stratagem, Target Section",
+      "sourceOwnerSelector": "detachment-soulforged-warpack:stratagem:unstoppable-rampage",
+      "columnKey": "37-right",
+      "span": [
+        217,
+        413
+      ],
+      "textSha256": "abd87367ae27186f32687934f95ae53ae85ea237e1db3d49dc4e9f9cb371c371",
+      "sourceLedgerPointer": "/updates/1/change",
+      "status": "override",
+      "targets": [
+        {
+          "sourceId": "detachment-soulforged-warpack:stratagem:4",
+          "corpusPointer": "/detachments/12/stratagems/3/lines/1/text",
+          "expectedInputSha256": "5f856f372ce45fa7ffb7ef492a99b0c36cca3fef0c54749dd154659962ef4cd8"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only.",
+      "patches": [
+        {
+          "targetIndex": 0,
+          "mode": "replace_value",
+          "replacementSpan": [
+            58,
+            195
+          ],
+          "replacementSha256": "7f73336f520b09916f3d3909a000f2d5e53d4963438782cd13476a4c31dad68e"
+        }
+      ]
+    },
+    {
+      "sourceEntityId": "official-update-11",
+      "sourceHeading": "Predatory Pursuit Stratagem, Target Section",
+      "sourceOwnerSelector": "detachment-soulforged-warpack:stratagem:predatory-pursuit",
+      "columnKey": "37-right",
+      "span": [
+        414,
+        648
+      ],
+      "textSha256": "69c2cb18a3215af1275c13bc3f88c3b47febf59401ddbcdbd2fbd9881706487f",
+      "sourceLedgerPointer": "/updates/1/change",
+      "status": "override",
+      "targets": [
+        {
+          "sourceId": "detachment-soulforged-warpack:stratagem:5",
+          "corpusPointer": "/detachments/12/stratagems/4/lines/1/text",
+          "expectedInputSha256": "1111fbed84e1b0fd4ad92ebfc19fd2353936a3e02491c43cc53d31216c19ec4d"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only.",
+      "patches": [
+        {
+          "targetIndex": 0,
+          "mode": "replace_value",
+          "replacementSpan": [
+            56,
+            233
+          ],
+          "replacementSha256": "b4e8cb394e7b6ddd6bec99759df17b6b2031c8f04f9b1e8a9524363c7452166e"
+        }
+      ]
+    },
+    {
+      "sourceEntityId": "official-update-12",
+      "sourceHeading": "Eager For Vengeance Enhancement",
+      "sourceOwnerSelector": "detachment-veterans-of-the-long-war:enhancement:eager-for-vengeance",
+      "columnKey": "37-right",
+      "span": [
+        685,
+        1139
+      ],
+      "textSha256": "d77c85e0b08b76bf13671f486402551da8adcd29c7ad135c3b5c0f4006fc8405",
+      "sourceLedgerPointer": "/updates/1/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-veterans-of-the-long-war:enhancement:1",
+          "corpusPointer": "/detachments/13/enhancements/0/text",
+          "expectedInputSha256": "8e2c144aa5a74088424afd74a647fd130b0009ab17f3db5b2d5d39c999c4db9c"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-13",
+      "sourceHeading": "Bringers of Despair Stratagem",
+      "sourceOwnerSelector": "detachment-veterans-of-the-long-war:stratagem:bringers-of-despair",
+      "columnKey": "37-right",
+      "span": [
+        1140,
+        1238
+      ],
+      "textSha256": "79d7c12898435448bd5d06159f8468d8ef05d3ab27841c4ca2a5c25c9220f519",
+      "sourceLedgerPointer": "/updates/1/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-veterans-of-the-long-war:stratagem:3",
+          "corpusPointer": "/detachments/13/stratagems/2/cp",
+          "expectedInputSha256": "0a78c618f9a0b2e4e12e3cfea835aca16e757c2fb9a82a35833e120b7018d6cd"
+        },
+        {
+          "sourceId": "detachment-veterans-of-the-long-war:stratagem:3",
+          "corpusPointer": "/detachments/13/stratagems/2/lines/0/text",
+          "expectedInputSha256": "78377fdef7f67ec4695a03317e84a3cd00af101e7c0b3eea835628e3c65e27e0"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-14",
+      "sourceHeading": "Millennia of Experience Stratagem, Target Section",
+      "sourceOwnerSelector": "detachment-veterans-of-the-long-war:stratagem:millennia-of-experience",
+      "columnKey": "37-right",
+      "span": [
+        1239,
+        1305
+      ],
+      "textSha256": "ba73ce159dce9b6521eb3aace3668367e053b2e3772873268e94a864f2bb4efd",
+      "sourceLedgerPointer": "/updates/1/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-veterans-of-the-long-war:stratagem:6",
+          "corpusPointer": "/detachments/13/stratagems/5/lines/1/text",
+          "expectedInputSha256": "9d2ae00c756b63b022f442005a33100792a4a4f80678261ca2a5d5c655ae2dcc"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-15",
+      "sourceHeading": "Contemptuous Disregard Stratagem, Effect Section",
+      "sourceOwnerSelector": "detachment-veterans-of-the-long-war:stratagem:contemptuous-disregard",
+      "columnKey": "37-right",
+      "span": [
+        1306,
+        1530
+      ],
+      "textSha256": "c80f353b778a4306d76ac24cff0c146982ccaec5b4ebf27be5019a895de48c0a",
+      "sourceLedgerPointer": "/updates/1/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-veterans-of-the-long-war:stratagem:2",
+          "corpusPointer": "/detachments/13/stratagems/1/lines/2/text",
+          "expectedInputSha256": "d7c941ed78a211e065ed5c8d81a6498e7e2c786f987a814659f896473c054dbd"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-16",
+      "sourceHeading": "Master of Executions, Core Abilities Section",
+      "sourceOwnerSelector": "datasheet-master-of-executions",
+      "columnKey": "37-right",
+      "span": [
+        1542,
+        1618
+      ],
+      "textSha256": "d946f32af9a07f3cbb8b30cd987484677ee814fa11d4cf7e2c6553e0a0188105",
+      "sourceLedgerPointer": "/updates/1/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-master-of-executions",
+          "corpusPointer": "/datasheets/11/ruleReferences",
+          "expectedInputSha256": "8c3c72e98a179bc23e4355a98e4e3668d98e813ed25942f7e73a9a4c97966a83"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-17",
+      "sourceHeading": "Chaos Land Raider, Chaos Predator Annihilator, Chaos Predator",
+      "sourceOwnerSelector": "MULTI:chaos-land-raider,chaos-predator-annihilator,chaos-predator-destructor,chaos-rhino,chaos-vindicator,khorne-lord-of-skulls,noctilith-crown",
+      "columnKey": "37-right",
+      "span": [
+        1619,
+        1794
+      ],
+      "textSha256": "227b7dae5544fde03a4c01f4b47faa17632d3df1769099ba92b47cd2724cfe2a",
+      "sourceLedgerPointer": "/updates/1/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-chaos-land-raider",
+          "corpusPointer": "/datasheets/41/keywords",
+          "expectedInputSha256": "582414df5106093c71c32c1ded21f25f8630b8c3f1aec729ebcf3fca8375c7c0"
+        },
+        {
+          "sourceId": "datasheet-chaos-predator-annihilator",
+          "corpusPointer": "/datasheets/42/keywords",
+          "expectedInputSha256": "e32537ead30fd54b2b32fd69dbd4b347f052426c1c1ea58bea00cabd6e54d42e"
+        },
+        {
+          "sourceId": "datasheet-chaos-predator-destructor",
+          "corpusPointer": "/datasheets/43/keywords",
+          "expectedInputSha256": "c60c74815aea9f294e2e8b2bb89e21c6895470a4220d32c82c7693433d5ce047"
+        },
+        {
+          "sourceId": "datasheet-chaos-rhino",
+          "corpusPointer": "/datasheets/18/keywords",
+          "expectedInputSha256": "3930b244b505cd69d262b191a782a69f886b712f8b0e3105d51d2c1ed24ff7a2"
+        },
+        {
+          "sourceId": "datasheet-chaos-vindicator",
+          "corpusPointer": "/datasheets/45/keywords",
+          "expectedInputSha256": "f53534f8b5ea9046b999a483aa04337ded8f074f69c0d8e2e2aed9b2bc610c69"
+        },
+        {
+          "sourceId": "datasheet-khorne-lord-of-skulls",
+          "corpusPointer": "/datasheets/50/keywords",
+          "expectedInputSha256": "80a5c71587f6418ab320a05bc6028f562be60fc36d7c2a04542ec6686ecd892a"
+        },
+        {
+          "sourceId": "datasheet-noctilith-crown",
+          "corpusPointer": "/datasheets/52/keywords",
+          "expectedInputSha256": "8f2c22803b7e655262231d718d6baa23f332e92ec087e3c70e71a097e7ca30be"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-18",
+      "sourceHeading": "Heldrake",
+      "sourceOwnerSelector": "datasheet-heldrake",
+      "columnKey": "37-right",
+      "span": [
+        1795,
+        1876
+      ],
+      "textSha256": "f2704bd2319428011c4f224e49f484a9ce574ee98f4cdabf08564815a12a0102",
+      "sourceLedgerPointer": "/updates/1/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-heldrake",
+          "corpusPointer": "/datasheets/49/statline/M",
+          "expectedInputSha256": "72c266f06c35ea63b471ad958f36c7384865d0e3a460242ed6a594962b999d2b"
+        },
+        {
+          "sourceId": "datasheet-heldrake",
+          "corpusPointer": "/datasheets/49/statline/OC",
+          "expectedInputSha256": "98089e6d36f78e9766c9ea34d5acb3611f3a92cd81c5eb102095d924ffc7d08b"
+        },
+        {
+          "sourceId": "datasheet-heldrake",
+          "corpusPointer": "/datasheets/49/keywords",
+          "expectedInputSha256": "d88a81bdfd513a53a5f66f264a175827fd0e7c9f5c7a4dd80d47b1f4d03e77c3"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-19",
+      "sourceHeading": "Abaddon the Despoiler, Dark Destiny Ability",
+      "sourceOwnerSelector": "datasheet-abaddon-the-despoiler",
+      "columnKey": "38-left",
+      "span": [
+        0,
+        200
+      ],
+      "textSha256": "f5efa9cc0eabf8b2ec1d4fcf4dff08459d1a77fb30b2555537c39d8c587b656a",
+      "sourceLedgerPointer": "/updates/2/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-abaddon-the-despoiler:section:1",
+          "corpusPointer": "/datasheets/19/sections/0/blocks/1/text",
+          "expectedInputSha256": "1a18575b08e22a78918a8955e830440a69dc5bf073fa6f8045da82d9a5cc9aa5"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-20",
+      "sourceHeading": "Accursed Cultists, Howling Horde Ability",
+      "sourceOwnerSelector": "datasheet-accursed-cultists",
+      "columnKey": "38-left",
+      "span": [
+        201,
+        434
+      ],
+      "textSha256": "e27cb8879ab414b167a829a0f7f0a25e695aee3e5347d7de25c254e61e6a550e",
+      "sourceLedgerPointer": "/updates/2/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-accursed-cultists:section:1",
+          "corpusPointer": "/datasheets/27/sections/0/blocks/0/text",
+          "expectedInputSha256": "0854aea7d46b2f30a49c4976f384cc8c2a515a0349ab0ff7b0e40f77644834e0"
+        }
+      ],
+      "notes": "Official change heading calls this Howling Horde; Waha current ability label Accursed Horde. Operative replacement body agrees. Header-versus-current label not independent ability: preserve source occurrence exact title, bind same inspected operative clause, do not create two abilities."
+    },
+    {
+      "sourceEntityId": "official-update-21",
+      "sourceHeading": "Cypher, Agent of Discord Ability",
+      "sourceOwnerSelector": "datasheet-cypher",
+      "columnKey": "38-left",
+      "span": [
+        435,
+        700
+      ],
+      "textSha256": "dee0866f96b5008cc6f51a08f133fac1e5f114893c01e262813307594ee415df",
+      "sourceLedgerPointer": "/updates/2/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-cypher:section:1",
+          "corpusPointer": "/datasheets/20/sections/0/blocks/0/text",
+          "expectedInputSha256": "64b77498b6b0177af4215328706d00773e0350585d0e242936dc28b6ecb7d75f"
+        }
+      ],
+      "notes": "Official and Waha both have tht. Accepted source-defects typography policy authorizes transparent nonsemantic tht -> that correction; retain raw evidence."
+    },
+    {
+      "sourceEntityId": "official-update-22",
+      "sourceHeading": "Fabius Bile, Chirurgeon Ability",
+      "sourceOwnerSelector": "datasheet-fabius-bile",
+      "columnKey": "38-left",
+      "span": [
+        701,
+        1018
+      ],
+      "textSha256": "84c9156d8fc4eaab42d652429561c255f3e1e66360f46800b2a928fbdc44630a",
+      "sourceLedgerPointer": "/updates/2/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-fabius-bile:section:1",
+          "corpusPointer": "/datasheets/21/sections/0/blocks/2/text",
+          "expectedInputSha256": "5156696430c639619db9a58299ef9fe12bd2d830645244f15fe1dacdcd7efe5d"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-23",
+      "sourceHeading": "Chaos Lord in Terminator Armour, Keywords Section",
+      "sourceOwnerSelector": "datasheet-chaos-lord-in-terminator-armour",
+      "columnKey": "38-left",
+      "span": [
+        1019,
+        1086
+      ],
+      "textSha256": "38dd26912118572011642d042712960ccd0962794d4b53b05565d2b90dce88e5",
+      "sourceLedgerPointer": "/updates/2/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-chaos-lord-in-terminator-armour",
+          "corpusPointer": "/datasheets/3/keywords",
+          "expectedInputSha256": "51ff9fd1cc834b74e7bf98492acb258ec5f2f87ee7d85a98d36359e3785a3287"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-24",
+      "sourceHeading": "Chaos Rhino, Wargear Options",
+      "sourceOwnerSelector": "datasheet-chaos-rhino",
+      "columnKey": "38-left",
+      "span": [
+        1087,
+        1256
+      ],
+      "textSha256": "41aabe801b192a7862ee878e9fdc9e6038a4dca023a7a2696ce3bdab075b49dc",
+      "sourceLedgerPointer": "/updates/2/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-chaos-rhino",
+          "corpusPointer": "/datasheets/18/wargearOptions/1/text",
+          "expectedInputSha256": "f7836775e9072c252b3278cb101ca3122f74e16389868d6aeb90b1ecec412d55"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-25",
+      "sourceHeading": "Chaos Predator Annihilator, Annihilator Ability",
+      "sourceOwnerSelector": "datasheet-chaos-predator-annihilator",
+      "columnKey": "38-left",
+      "span": [
+        1257,
+        1439
+      ],
+      "textSha256": "ec08b53ed26c795d2206a9f38c22f25f67f3d414137c62b6503dc7fa0c6753f5",
+      "sourceLedgerPointer": "/updates/2/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-chaos-predator-annihilator:section:1",
+          "corpusPointer": "/datasheets/42/sections/0/blocks/0/text",
+          "expectedInputSha256": "5a47375791eae94345aca4b26631bd3e37b6cef18cdab92d3e424058191afe01"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-26",
+      "sourceHeading": "Chaos Predator Destructor, Melee Weapons, Armoured Tracks",
+      "sourceOwnerSelector": "datasheet-chaos-predator-destructor",
+      "columnKey": "38-left",
+      "span": [
+        1440,
+        1516
+      ],
+      "textSha256": "a9063c3e479c02fad26337d24b059693e7efa5249dc0f53c4999fcd1655f8553",
+      "sourceLedgerPointer": "/updates/2/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-chaos-predator-destructor",
+          "corpusPointer": "/datasheets/43/weapons/6/skill",
+          "expectedInputSha256": "c989898f41c07b242e9b47d3c8e4a510a1010e4b50b585089873a9b05d06d4db"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-27",
+      "sourceHeading": "Heretic Astartes Daemon Prince, Abilities Section",
+      "sourceOwnerSelector": "datasheet-heretic-astartes-daemon-prince",
+      "columnKey": "38-left",
+      "span": [
+        1517,
+        1709
+      ],
+      "textSha256": "1506f9bb9792abf0f744d397111d6697eea7b39b41e24a2236c57dc56747c88c",
+      "sourceLedgerPointer": "/updates/2/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-heretic-astartes-daemon-prince:section:1",
+          "corpusPointer": "/datasheets/8/sections/0/blocks/2/text",
+          "expectedInputSha256": "c5ff5354b605980e81fbe79b93c1ff9cfd6d43fd9020c4a93180c7f4bdc58224"
+        }
+      ],
+      "notes": "Waha one-or-more friendly infantry units is semantically equivalent to official a friendly infantry unit. Use official exact wording for effective text; preserve Waha support occurrence."
+    },
+    {
+      "sourceEntityId": "official-update-28",
+      "sourceHeading": "Lord Discordant on Helstalker",
+      "sourceOwnerSelector": "datasheet-lord-discordant-on-helstalker",
+      "columnKey": "38-left",
+      "span": [
+        1710,
+        2494
+      ],
+      "textSha256": "3b5369b0e1246ffec0c72ad9f5028e50e62117bba8b095d391d67dbec3dcbc28",
+      "sourceLedgerPointer": "/updates/2/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-lord-discordant-on-helstalker",
+          "corpusPointer": "/datasheets/10/statline/M",
+          "expectedInputSha256": "602ec07c2667eebe3bf0fe6792dd30b9fb48aa78201a514c8370ef78a5c454e2"
+        },
+        {
+          "sourceId": "datasheet-lord-discordant-on-helstalker",
+          "corpusPointer": "/datasheets/10/statline/INSV",
+          "expectedInputSha256": "c989898f41c07b242e9b47d3c8e4a510a1010e4b50b585089873a9b05d06d4db"
+        },
+        {
+          "sourceId": "datasheet-lord-discordant-on-helstalker:section:1",
+          "corpusPointer": "/datasheets/10/sections/0/blocks/0/text",
+          "expectedInputSha256": "20431ba5e22e3ca6266887737ecaff3ad5c7f7ff8b5e24ddfe46332253e024df"
+        },
+        {
+          "sourceId": "datasheet-lord-discordant-on-helstalker:section:1",
+          "corpusPointer": "/datasheets/10/sections/0/blocks/1/text",
+          "expectedInputSha256": "957815e7f887166774e63364bf800850783bab2c5c6d8682b1e51cd8832409d6"
+        },
+        {
+          "sourceId": "datasheet-lord-discordant-on-helstalker",
+          "corpusPointer": "/datasheets/10/weapons/5",
+          "expectedInputSha256": "e34390b5eefed904daa2d75e5becd0f553189dec089b0ff72f025f36534bc744"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-29",
+      "sourceHeading": "Obliterators, Warp Rift Firepower Ability",
+      "sourceOwnerSelector": "datasheet-obliterators",
+      "columnKey": "38-right",
+      "span": [
+        0,
+        250
+      ],
+      "textSha256": "a2b01b88cc753ce236e7b09e8329bcfa7d6645e8cca919ff72edd9db1492c6f4",
+      "sourceLedgerPointer": "/updates/3/change",
+      "status": "override",
+      "targets": [
+        {
+          "sourceId": "datasheet-obliterators:section:1",
+          "corpusPointer": "/datasheets/34/sections/0/blocks/0/text",
+          "expectedInputSha256": "c15842a99fa98c929846fc3e1f6ddda112adcf7c2dbd159b2a2bd67156011cd0"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only.",
+      "patches": [
+        {
+          "targetIndex": 0,
+          "mode": "replace_value",
+          "replacementSpan": [
+            54,
+            249
+          ],
+          "replacementSha256": "3fe669424472edea8110d3ddfbf124997ccbe1fb7c5b31655784a63b33f198e4"
+        }
+      ]
+    },
+    {
+      "sourceEntityId": "official-update-30",
+      "sourceHeading": "Vashtorr the Arkifane",
+      "sourceOwnerSelector": "datasheet-vashtorr-the-arkifane",
+      "columnKey": "38-right",
+      "span": [
+        251,
+        1115
+      ],
+      "textSha256": "3164f4fa333fd8d75b60b88ca8fa23ebec8cb675f66123888c015ce11512cf16",
+      "sourceLedgerPointer": "/updates/3/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-vashtorr-the-arkifane:section:1",
+          "corpusPointer": "/datasheets/26/sections/0/blocks/2/text",
+          "expectedInputSha256": "299ce3007590e6cfd2e6b9f24de2f05394e464de2b9bbe193a7ae990985dd603"
+        },
+        {
+          "sourceId": "datasheet-vashtorr-the-arkifane:section:1",
+          "corpusPointer": "/datasheets/26/sections/0/blocks/1/text",
+          "expectedInputSha256": "72b946fb7855a00e00aef4f47f8a9efe15bdb4a8f21f2b5cde3a5ad5d1d9aaf1"
+        },
+        {
+          "sourceId": "datasheet-vashtorr-the-arkifane:section:1",
+          "corpusPointer": "/datasheets/26/sections/0/blocks/0/text",
+          "expectedInputSha256": "8fa25fbb81f6ad001d4ba765f5285566d79798b88700f8303221e8cbb8b12bc1"
+        },
+        {
+          "sourceId": "datasheet-vashtorr-the-arkifane",
+          "corpusPointer": "/datasheets/26/weapons/1",
+          "expectedInputSha256": "21ec16dcd8df7be2ef0dda3359f5807e8c869d9c7c8a63480551ad514b9a429a"
+        },
+        {
+          "sourceId": "datasheet-vashtorr-the-arkifane",
+          "corpusPointer": "/datasheets/26/weapons/2",
+          "expectedInputSha256": "3e4bd37e48be779c1821b1f34f486f2012761112f4387b7e5cbba75e05d3afe8"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-31",
+      "sourceHeading": "Warp Talons, Warp Strike Ability",
+      "sourceOwnerSelector": "datasheet-warp-talons",
+      "columnKey": "38-right",
+      "span": [
+        1116,
+        1397
+      ],
+      "textSha256": "d8d1fc906219a24b61cf623ad8dc1becb751ff50da33638b7a9ada9303610f2c",
+      "sourceLedgerPointer": "/updates/3/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-warp-talons:section:1",
+          "corpusPointer": "/datasheets/39/sections/0/blocks/0/text",
+          "expectedInputSha256": "7182c00a656c42fefd82e166a3476146c37ef0732d6f23c12b335283153c8f76"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-32",
+      "sourceHeading": "Chaos Rhino, Transport Section",
+      "sourceOwnerSelector": "datasheet-chaos-rhino",
+      "columnKey": "38-right",
+      "span": [
+        1398,
+        1606
+      ],
+      "textSha256": "584e9cf0b118918f41190348b8f15f978fcfc6f8348bfd6f276893829ee74dc4",
+      "sourceLedgerPointer": "/updates/3/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-chaos-rhino:section:2",
+          "corpusPointer": "/datasheets/18/sections/1/blocks/0/text",
+          "expectedInputSha256": "71f2ea8a1bcfc48b6cb4806f7f3594c9148ce6d255c07a5e170a0b975c9a2319"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-33",
+      "sourceHeading": "Chaos Land Raider, Transport Section",
+      "sourceOwnerSelector": "datasheet-chaos-land-raider",
+      "columnKey": "38-right",
+      "span": [
+        1607,
+        1857
+      ],
+      "textSha256": "5d9d687d8da66d27c27a8196eb46b0dd32e64d61f878c4a370b861da19afd5d6",
+      "sourceLedgerPointer": "/updates/3/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-chaos-land-raider:section:2",
+          "corpusPointer": "/datasheets/41/sections/1/blocks/0/text",
+          "expectedInputSha256": "8d4079a984b0866c008c28583694f993196bc75f19ee954d9e37c41e6ea5c5df"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    },
+    {
+      "sourceEntityId": "official-update-34",
+      "sourceHeading": "Traitor Guardsmen Squad, Twisted Defence Force Ability",
+      "sourceOwnerSelector": "datasheet-traitor-guardsmen-squad",
+      "columnKey": "38-right",
+      "span": [
+        1858,
+        2018
+      ],
+      "textSha256": "9b8737cdf14aeab34e65ea4423734090bf1a2b04b99850c377adb498dc6b67fd",
+      "sourceLedgerPointer": "/updates/3/change",
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "datasheet-traitor-guardsmen-squad:section:1",
+          "corpusPointer": "/datasheets/38/sections/0/blocks/0/text",
+          "expectedInputSha256": "26bd7bffaec5ec5d24f513d2002d41967fd2b0b25854051017c25961f998e3ee"
+        }
+      ],
+      "notes": "Named source-owner selectors are audit identities, not newly created canonical IDs. Source text may include next section header as layout context; facts are edit instruction only."
+    }
+  ],
+  "faqs": [
+    {
+      "sourceId": "faq-2",
+      "columnKey": "39-left",
+      "span": [
+        5,
+        195
+      ],
+      "textSha256": "e4daa0ec325c7312ce9d182810da389e5b952bbc477bd3b6e18449930b143708",
+      "officialOrder": 1
+    },
+    {
+      "sourceId": "faq-4",
+      "columnKey": "39-left",
+      "span": [
+        196,
+        458
+      ],
+      "textSha256": "e5ebe78694fb760d8aa484b6b93038f4ffe34139df7b3eebd40a60d9fcdbdaa0",
+      "officialOrder": 2
+    },
+    {
+      "sourceId": "faq-16",
+      "columnKey": "39-left",
+      "span": [
+        459,
+        583
+      ],
+      "textSha256": "f11349eb3df4b5753fcdd883d905fa1d8e772c3ad1a6b9f56fcd4179cba1b424",
+      "officialOrder": 3
+    },
+    {
+      "sourceId": "faq-5",
+      "columnKey": "39-left",
+      "span": [
+        584,
+        698
+      ],
+      "textSha256": "ef30c5ec888885d51d6ac7f088b35f5f45000036b082dde5a57b3778ed374976",
+      "officialOrder": 4
+    },
+    {
+      "sourceId": "faq-6",
+      "columnKey": "39-left",
+      "span": [
+        699,
+        881
+      ],
+      "textSha256": "2918d84f3e48e6979cd63299faddd1471410b0ac5ff301948bfc3d477e1e3b1a",
+      "officialOrder": 5
+    },
+    {
+      "sourceId": "faq-7",
+      "columnKey": "39-left",
+      "span": [
+        882,
+        1078
+      ],
+      "textSha256": "c490e341b48295315eb6db1a074ed112e750618a36293543a5454dae0a15248c",
+      "officialOrder": 6
+    },
+    {
+      "sourceId": "faq-9",
+      "columnKey": "39-left",
+      "span": [
+        1079,
+        1218
+      ],
+      "textSha256": "3c4c6cd320660b38d4da579435fe966657af476996d56e226a02df6c17c90072",
+      "officialOrder": 7
+    },
+    {
+      "sourceId": "faq-10",
+      "columnKey": "39-left",
+      "span": [
+        1219,
+        1414
+      ],
+      "textSha256": "cda03a994b9f0959dfb0b5b044b65c405b5582a628c79ef2755f6b0ede8281df",
+      "officialOrder": 8
+    },
+    {
+      "sourceId": "faq-17",
+      "columnKey": "39-left",
+      "span": [
+        1415,
+        1670
+      ],
+      "textSha256": "426921ade22477fe715d4a7f751fd368ff3e3ae4582d21e1c5967188c0be7250",
+      "officialOrder": 9
+    },
+    {
+      "sourceId": "faq-11",
+      "columnKey": "39-left",
+      "span": [
+        1671,
+        1856
+      ],
+      "textSha256": "185b6a8504eebc7112f8f3eadf5d9174a8ca985eaf98921cc6e8ecb3596fd4c6",
+      "officialOrder": 10
+    },
+    {
+      "sourceId": "faq-12",
+      "columnKey": "39-left",
+      "span": [
+        1857,
+        2010
+      ],
+      "textSha256": "a354638d36a9a556e648a77844f593a72452687bd323e925a38d380fc19db2df",
+      "officialOrder": 11
+    },
+    {
+      "sourceId": "faq-13",
+      "columnKey": "39-left",
+      "span": [
+        2011,
+        2143
+      ],
+      "textSha256": "6149401def4383b0d712cf15078ef2b6ac82cdfca53ba9d1462e329ac55d20d2",
+      "officialOrder": 12
+    },
+    {
+      "sourceId": "faq-14",
+      "columnKey": "39-right",
+      "span": [
+        0,
+        108
+      ],
+      "textSha256": "841d64cdece15594212afc0cc9ce1aeb5a8231ee01ef00459612ff9db55b85b7",
+      "officialOrder": 13
+    },
+    {
+      "sourceId": "faq-15",
+      "columnKey": "39-right",
+      "span": [
+        109,
+        246
+      ],
+      "textSha256": "0bcd32d36d9e7c7c9dff0ddfef7a9bb39e3f5131688abd0d31fe76191775898a",
+      "officialOrder": 14
+    },
+    {
+      "sourceId": "faq-1",
+      "columnKey": "39-right",
+      "span": [
+        247,
+        468
+      ],
+      "textSha256": "8d174b70d87d733557dbc198bf0be7244ef601055f61a20f5c2bf915308012c1",
+      "officialOrder": 15
+    }
+  ],
+  "secondaryErrata": [
+    {
+      "sourceId": "errata-1",
+      "officialUpdateId": "official-update-12",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-veterans-of-the-long-war:enhancement:1",
+          "corpusPointer": "/detachments/13/enhancements/0/text",
+          "expectedInputSha256": "8e2c144aa5a74088424afd74a647fd130b0009ab17f3db5b2d5d39c999c4db9c"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-2",
+      "officialUpdateId": "official-update-15",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-veterans-of-the-long-war:stratagem:2",
+          "corpusPointer": "/detachments/13/stratagems/1/lines/2/text",
+          "expectedInputSha256": "d7c941ed78a211e065ed5c8d81a6498e7e2c786f987a814659f896473c054dbd"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-3",
+      "officialUpdateId": "official-update-13",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-veterans-of-the-long-war:stratagem:3",
+          "corpusPointer": "/detachments/13/stratagems/2/cp",
+          "expectedInputSha256": "0a78c618f9a0b2e4e12e3cfea835aca16e757c2fb9a82a35833e120b7018d6cd"
+        },
+        {
+          "sourceId": "detachment-veterans-of-the-long-war:stratagem:3",
+          "corpusPointer": "/detachments/13/stratagems/2/lines/0/text",
+          "expectedInputSha256": "78377fdef7f67ec4695a03317e84a3cd00af101e7c0b3eea835628e3c65e27e0"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-4",
+      "officialUpdateId": "official-update-14",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-veterans-of-the-long-war:stratagem:6",
+          "corpusPointer": "/detachments/13/stratagems/5/lines/1/text",
+          "expectedInputSha256": "9d2ae00c756b63b022f442005a33100792a4a4f80678261ca2a5d5c655ae2dcc"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-5",
+      "officialUpdateId": "official-update-4",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-deceptors:enhancement:2",
+          "corpusPointer": "/detachments/4/enhancements/1/text",
+          "expectedInputSha256": "5982e830145628ba5363a4ffe8e2dec33016dfd863fd92e201da56151fb179a1"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-6",
+      "officialUpdateId": "official-update-3",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-deceptors:stratagem:5",
+          "corpusPointer": "/detachments/4/stratagems/4/lines/1/text",
+          "expectedInputSha256": "957b80cd59c930090f310e56a762809a7532e53acb9b3b6bcd76a114d1d07ee0"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-7",
+      "officialUpdateId": "official-update-8",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-renegade-raiders:stratagem:1",
+          "corpusPointer": "/detachments/3/stratagems/0/lines/2/text",
+          "expectedInputSha256": "d7c941ed78a211e065ed5c8d81a6498e7e2c786f987a814659f896473c054dbd"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-8",
+      "officialUpdateId": "official-update-5",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-dread-talons:stratagem:5",
+          "corpusPointer": "/detachments/5/stratagems/4/lines/2/text",
+          "expectedInputSha256": "20209e316d6ef48388b9b9dc78b4f0c209655d3a1df3e9b44e5b49563d8d39a0"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-9",
+      "officialUpdateId": "official-update-6",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-pactbound-zealots:rule",
+          "corpusPointer": "/detachments/0/rule/text",
+          "expectedInputSha256": "7360f3610e7a6cf23b92c809890fdf89214c5c63404b3b6a94730356dd312ac0"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-10",
+      "officialUpdateId": "official-update-7",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-pactbound-zealots:rule",
+          "corpusPointer": "/detachments/0/rule/text",
+          "expectedInputSha256": "7360f3610e7a6cf23b92c809890fdf89214c5c63404b3b6a94730356dd312ac0"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-11",
+      "officialUpdateId": "official-update-2",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-chaos-cult:enhancement:4",
+          "corpusPointer": "/detachments/8/enhancements/3/text",
+          "expectedInputSha256": "a1b7b7f39032487a415b239c6f8bf4600c03a91bf94c71c46e114bfc8eeddcc7"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-12",
+      "officialUpdateId": "official-update-1",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-chaos-cult:rule",
+          "corpusPointer": "/detachments/8/rule/text",
+          "expectedInputSha256": "454e05f3111b60be401c415be5ebfcc9dc8e90621ffadf7bcff43fb80531c358"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-13",
+      "officialUpdateId": "official-update-10",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-soulforged-warpack:stratagem:4",
+          "corpusPointer": "/detachments/12/stratagems/3/lines/1/text",
+          "expectedInputSha256": "5f856f372ce45fa7ffb7ef492a99b0c36cca3fef0c54749dd154659962ef4cd8"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-14",
+      "officialUpdateId": "official-update-11",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-soulforged-warpack:stratagem:5",
+          "corpusPointer": "/detachments/12/stratagems/4/lines/1/text",
+          "expectedInputSha256": "1111fbed84e1b0fd4ad92ebfc19fd2353936a3e02491c43cc53d31216c19ec4d"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-15",
+      "officialUpdateId": "official-update-9",
+      "status": "overlaps_official",
+      "targets": [
+        {
+          "sourceId": "detachment-soulforged-warpack:stratagem:6",
+          "corpusPointer": "/detachments/12/stratagems/5/lines/1/text",
+          "expectedInputSha256": "ad2c639df954db3b7c4f36747e3fff45bb08c9d23eac334877b328a630eaa494"
+        }
+      ]
+    },
+    {
+      "sourceId": "errata-16",
+      "officialUpdateId": null,
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-huron-s-marauders:stratagem:5",
+          "corpusPointer": "/detachments/2/stratagems/4/lines/2/text",
+          "expectedInputSha256": "94defb2f0cb71c69516039e322ea0c99241881be9be6dbaf5d6322e2a37ea36e"
+        }
+      ],
+      "officialEffectiveRulePage": 14
+    },
+    {
+      "sourceId": "errata-17",
+      "officialUpdateId": null,
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-warpstrike-champions:stratagem:1",
+          "corpusPointer": "/detachments/7/stratagems/0/lines/2/text",
+          "expectedInputSha256": "d7c941ed78a211e065ed5c8d81a6498e7e2c786f987a814659f896473c054dbd"
+        }
+      ],
+      "officialEffectiveRulePage": 6
+    },
+    {
+      "sourceId": "errata-18",
+      "officialUpdateId": null,
+      "status": "already_effective",
+      "targets": [
+        {
+          "sourceId": "detachment-warpstrike-champions:stratagem:6",
+          "corpusPointer": "/detachments/7/stratagems/5/lines/2/text",
+          "expectedInputSha256": "eb1d8da5afbe9263a6ca45d80a6e3d0ae0a446a77bf93932e05d1723b3352bbb"
+        }
+      ],
+      "officialEffectiveRulePage": 6
+    }
+  ]
+}

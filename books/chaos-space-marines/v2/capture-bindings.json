@@ -1,0 +1,662 @@
+{
+  "schema": "csm-v2-source-capture-identity-bindings/v1",
+  "units": {
+    "0": {
+      "ownerSourceId": "datasheet-abaddon-the-despoiler",
+      "relations": {
+        "leader": [
+          "datasheet-chaos-terminator-squad",
+          "datasheet-chosen"
+        ]
+      }
+    },
+    "1": {
+      "ownerSourceId": "datasheet-accursed-cultists",
+      "relations": {}
+    },
+    "2": {
+      "ownerSourceId": "datasheet-chaos-bikers",
+      "relations": {}
+    },
+    "3": {
+      "ownerSourceId": "datasheet-chaos-land-raider",
+      "relations": {}
+    },
+    "4": {
+      "ownerSourceId": "datasheet-chaos-lord",
+      "relations": {
+        "leader": [
+          "datasheet-chosen",
+          "datasheet-legionaries",
+          "datasheet-nemesis-claw",
+          "datasheet-red-corsairs-raiders"
+        ]
+      }
+    },
+    "5": {
+      "ownerSourceId": "datasheet-chaos-lord-in-terminator-armour",
+      "relations": {
+        "leader": [
+          "datasheet-chaos-terminator-squad"
+        ]
+      }
+    },
+    "6": {
+      "ownerSourceId": "datasheet-chaos-lord-with-jump-pack",
+      "relations": {
+        "leader": [
+          "datasheet-raptors"
+        ]
+      }
+    },
+    "7": {
+      "ownerSourceId": "datasheet-chaos-predator-annihilator",
+      "relations": {}
+    },
+    "8": {
+      "ownerSourceId": "datasheet-chaos-predator-destructor",
+      "relations": {}
+    },
+    "9": {
+      "ownerSourceId": "datasheet-chaos-rhino",
+      "relations": {}
+    },
+    "10": {
+      "ownerSourceId": "datasheet-chaos-spawn",
+      "relations": {}
+    },
+    "11": {
+      "ownerSourceId": "datasheet-chaos-terminator-squad",
+      "relations": {}
+    },
+    "12": {
+      "ownerSourceId": "datasheet-chaos-vindicator",
+      "relations": {}
+    },
+    "13": {
+      "ownerSourceId": "datasheet-chosen",
+      "relations": {}
+    },
+    "14": {
+      "ownerSourceId": "datasheet-cultist-firebrand",
+      "relations": {
+        "leader": [
+          "datasheet-accursed-cultists",
+          "datasheet-cultist-mob"
+        ]
+      }
+    },
+    "15": {
+      "ownerSourceId": "datasheet-cultist-mob",
+      "relations": {}
+    },
+    "16": {
+      "ownerSourceId": "datasheet-cypher",
+      "relations": {}
+    },
+    "17": {
+      "ownerSourceId": "datasheet-dark-apostle",
+      "relations": {
+        "leader": [
+          "datasheet-accursed-cultists",
+          "datasheet-chosen",
+          "datasheet-cultist-mob",
+          "datasheet-legionaries",
+          "datasheet-nemesis-claw",
+          "datasheet-red-corsairs-raiders"
+        ]
+      }
+    },
+    "18": {
+      "ownerSourceId": "datasheet-dark-commune",
+      "relations": {
+        "leader": [
+          "datasheet-accursed-cultists",
+          "datasheet-cultist-mob"
+        ]
+      }
+    },
+    "19": {
+      "ownerSourceId": "datasheet-defiler",
+      "relations": {}
+    },
+    "20": {
+      "ownerSourceId": "datasheet-fabius-bile",
+      "relations": {
+        "leader": [
+          "datasheet-accursed-cultists",
+          "datasheet-chosen",
+          "datasheet-cultist-mob",
+          "datasheet-legionaries",
+          "datasheet-red-corsairs-raiders"
+        ]
+      }
+    },
+    "21": {
+      "ownerSourceId": "datasheet-fellgor-beastmen",
+      "relations": {}
+    },
+    "22": {
+      "ownerSourceId": "datasheet-forgefiend",
+      "relations": {}
+    },
+    "23": {
+      "ownerSourceId": "datasheet-haarken-worldclaimer",
+      "relations": {
+        "leader": [
+          "datasheet-raptors"
+        ]
+      }
+    },
+    "24": {
+      "ownerSourceId": "datasheet-havocs",
+      "relations": {}
+    },
+    "25": {
+      "ownerSourceId": "datasheet-helbrute",
+      "relations": {}
+    },
+    "26": {
+      "ownerSourceId": "datasheet-heldrake",
+      "relations": {}
+    },
+    "27": {
+      "ownerSourceId": "datasheet-heretic-astartes-daemon-prince",
+      "relations": {}
+    },
+    "28": {
+      "ownerSourceId": "datasheet-heretic-astartes-daemon-prince-with-wings",
+      "relations": {}
+    },
+    "29": {
+      "ownerSourceId": "datasheet-huron-blackheart",
+      "relations": {
+        "leader": [
+          "datasheet-chaos-terminator-squad",
+          "datasheet-chosen",
+          "datasheet-legionaries",
+          "datasheet-red-corsairs-raiders"
+        ]
+      }
+    },
+    "30": {
+      "ownerSourceId": "datasheet-khorne-lord-of-skulls",
+      "relations": {}
+    },
+    "31": {
+      "ownerSourceId": "datasheet-kravek-morne",
+      "relations": {
+        "leader": [
+          "datasheet-chaos-terminator-squad",
+          "datasheet-mutilators",
+          "datasheet-obliterators"
+        ]
+      }
+    },
+    "32": {
+      "ownerSourceId": "datasheet-legionaries",
+      "relations": {}
+    },
+    "33": {
+      "ownerSourceId": "datasheet-lord-discordant-on-helstalker",
+      "relations": {}
+    },
+    "34": {
+      "ownerSourceId": "datasheet-master-of-executions",
+      "relations": {
+        "support": [
+          "datasheet-chosen",
+          "datasheet-legionaries",
+          "datasheet-nemesis-claw",
+          "datasheet-red-corsairs-raiders"
+        ]
+      }
+    },
+    "35": {
+      "ownerSourceId": "datasheet-master-of-possession",
+      "relations": {
+        "leader": [
+          "datasheet-chosen",
+          "datasheet-legionaries",
+          "datasheet-nemesis-claw",
+          "datasheet-possessed",
+          "datasheet-red-corsairs-raiders"
+        ]
+      }
+    },
+    "36": {
+      "ownerSourceId": "datasheet-masters-of-the-maelstrom",
+      "relations": {
+        "support": [
+          "datasheet-chosen",
+          "datasheet-legionaries",
+          "datasheet-red-corsairs-raiders"
+        ]
+      }
+    },
+    "37": {
+      "ownerSourceId": "datasheet-maulerfiend",
+      "relations": {}
+    },
+    "38": {
+      "ownerSourceId": "datasheet-mutilators",
+      "relations": {}
+    },
+    "39": {
+      "ownerSourceId": "datasheet-nemesis-claw",
+      "relations": {}
+    },
+    "40": {
+      "ownerSourceId": "datasheet-noctilith-crown",
+      "relations": {}
+    },
+    "41": {
+      "ownerSourceId": "datasheet-obliterators",
+      "relations": {}
+    },
+    "42": {
+      "ownerSourceId": "datasheet-possessed",
+      "relations": {}
+    },
+    "43": {
+      "ownerSourceId": "datasheet-raptors",
+      "relations": {}
+    },
+    "44": {
+      "ownerSourceId": "datasheet-red-corsairs-raiders",
+      "relations": {}
+    },
+    "45": {
+      "ownerSourceId": "datasheet-red-corsairs-reave-captain",
+      "relations": {
+        "leader": [
+          "datasheet-chosen",
+          "datasheet-legionaries",
+          "datasheet-nemesis-claw",
+          "datasheet-red-corsairs-raiders"
+        ]
+      }
+    },
+    "46": {
+      "ownerSourceId": "datasheet-sorcerer",
+      "relations": {
+        "leader": [
+          "datasheet-chosen",
+          "datasheet-legionaries",
+          "datasheet-nemesis-claw",
+          "datasheet-red-corsairs-raiders"
+        ]
+      }
+    },
+    "47": {
+      "ownerSourceId": "datasheet-sorcerer-in-terminator-armour",
+      "relations": {
+        "leader": [
+          "datasheet-chaos-terminator-squad"
+        ]
+      }
+    },
+    "48": {
+      "ownerSourceId": "datasheet-traitor-enforcer",
+      "relations": {
+        "leader": [
+          "datasheet-traitor-guardsmen-squad"
+        ]
+      }
+    },
+    "49": {
+      "ownerSourceId": "datasheet-traitor-guardsmen-squad",
+      "relations": {}
+    },
+    "50": {
+      "ownerSourceId": "datasheet-vashtorr-the-arkifane",
+      "relations": {}
+    },
+    "51": {
+      "ownerSourceId": "datasheet-venomcrawler",
+      "relations": {}
+    },
+    "52": {
+      "ownerSourceId": "datasheet-warpsmith",
+      "relations": {
+        "leader": [
+          "datasheet-chosen",
+          "datasheet-havocs",
+          "datasheet-legionaries",
+          "datasheet-nemesis-claw",
+          "datasheet-red-corsairs-raiders"
+        ]
+      }
+    },
+    "53": {
+      "ownerSourceId": "datasheet-warp-talons",
+      "relations": {}
+    }
+  },
+  "detachments": {
+    "0": {
+      "ownerSourceId": "detachment-cabal-of-chaos",
+      "enhancementSourceIds": [
+        "detachment-cabal-of-chaos:enhancement:2",
+        "detachment-cabal-of-chaos:enhancement:1"
+      ]
+    },
+    "1": {
+      "ownerSourceId": "detachment-chaos-cult",
+      "enhancementSourceIds": [
+        "detachment-chaos-cult:enhancement:1",
+        "detachment-chaos-cult:enhancement:2",
+        "detachment-chaos-cult:enhancement:3",
+        "detachment-chaos-cult:enhancement:4"
+      ]
+    },
+    "2": {
+      "ownerSourceId": "detachment-creations-of-bile",
+      "enhancementSourceIds": [
+        "detachment-creations-of-bile:enhancement:3",
+        "detachment-creations-of-bile:enhancement:2",
+        "detachment-creations-of-bile:enhancement:4",
+        "detachment-creations-of-bile:enhancement:1"
+      ]
+    },
+    "3": {
+      "ownerSourceId": "detachment-cult-of-the-arkifane",
+      "enhancementSourceIds": [
+        "detachment-cult-of-the-arkifane:enhancement:4",
+        "detachment-cult-of-the-arkifane:enhancement:2",
+        "detachment-cult-of-the-arkifane:enhancement:3",
+        "detachment-cult-of-the-arkifane:enhancement:1"
+      ]
+    },
+    "4": {
+      "ownerSourceId": "detachment-deceptors",
+      "enhancementSourceIds": [
+        "detachment-deceptors:enhancement:1",
+        "detachment-deceptors:enhancement:2",
+        "detachment-deceptors:enhancement:3",
+        "detachment-deceptors:enhancement:4"
+      ]
+    },
+    "5": {
+      "ownerSourceId": "detachment-devotees-of-destruction",
+      "enhancementSourceIds": [
+        "detachment-devotees-of-destruction:enhancement:2",
+        "detachment-devotees-of-destruction:enhancement:1"
+      ]
+    },
+    "6": {
+      "ownerSourceId": "detachment-dread-talons",
+      "enhancementSourceIds": [
+        "detachment-dread-talons:enhancement:1",
+        "detachment-dread-talons:enhancement:2",
+        "detachment-dread-talons:enhancement:3",
+        "detachment-dread-talons:enhancement:4"
+      ]
+    },
+    "7": {
+      "ownerSourceId": "detachment-fellhammer-siege-host",
+      "enhancementSourceIds": [
+        "detachment-fellhammer-siege-host:enhancement:1",
+        "detachment-fellhammer-siege-host:enhancement:2",
+        "detachment-fellhammer-siege-host:enhancement:3",
+        "detachment-fellhammer-siege-host:enhancement:4"
+      ]
+    },
+    "8": {
+      "ownerSourceId": "detachment-huron-s-marauders",
+      "enhancementSourceIds": [
+        "detachment-huron-s-marauders:enhancement:3",
+        "detachment-huron-s-marauders:enhancement:4",
+        "detachment-huron-s-marauders:enhancement:2",
+        "detachment-huron-s-marauders:enhancement:1"
+      ]
+    },
+    "9": {
+      "ownerSourceId": "detachment-murdertalon-raiders",
+      "enhancementSourceIds": [
+        "detachment-murdertalon-raiders:enhancement:2",
+        "detachment-murdertalon-raiders:enhancement:1"
+      ]
+    },
+    "10": {
+      "ownerSourceId": "detachment-nightmare-hunt",
+      "enhancementSourceIds": [
+        "detachment-nightmare-hunt:enhancement:1",
+        "detachment-nightmare-hunt:enhancement:4",
+        "detachment-nightmare-hunt:enhancement:3",
+        "detachment-nightmare-hunt:enhancement:2"
+      ]
+    },
+    "11": {
+      "ownerSourceId": "detachment-pactbound-zealots",
+      "enhancementSourceIds": [
+        "detachment-pactbound-zealots:enhancement:1",
+        "detachment-pactbound-zealots:enhancement:2",
+        "detachment-pactbound-zealots:enhancement:3",
+        "detachment-pactbound-zealots:enhancement:4"
+      ]
+    },
+    "12": {
+      "ownerSourceId": "detachment-renegade-raiders",
+      "enhancementSourceIds": [
+        "detachment-renegade-raiders:enhancement:1",
+        "detachment-renegade-raiders:enhancement:2",
+        "detachment-renegade-raiders:enhancement:3",
+        "detachment-renegade-raiders:enhancement:4"
+      ]
+    },
+    "13": {
+      "ownerSourceId": "detachment-renegade-warband",
+      "enhancementSourceIds": [
+        "detachment-renegade-warband:enhancement:4",
+        "detachment-renegade-warband:enhancement:2",
+        "detachment-renegade-warband:enhancement:3",
+        "detachment-renegade-warband:enhancement:1"
+      ]
+    },
+    "14": {
+      "ownerSourceId": "detachment-soulforged-warpack",
+      "enhancementSourceIds": [
+        "detachment-soulforged-warpack:enhancement:1",
+        "detachment-soulforged-warpack:enhancement:2",
+        "detachment-soulforged-warpack:enhancement:4",
+        "detachment-soulforged-warpack:enhancement:3"
+      ]
+    },
+    "15": {
+      "ownerSourceId": "detachment-veterans-of-the-long-war",
+      "enhancementSourceIds": [
+        "detachment-veterans-of-the-long-war:enhancement:1",
+        "detachment-veterans-of-the-long-war:enhancement:2",
+        "detachment-veterans-of-the-long-war:enhancement:3",
+        "detachment-veterans-of-the-long-war:enhancement:4"
+      ]
+    },
+    "16": {
+      "ownerSourceId": "detachment-warpstrike-champions",
+      "enhancementSourceIds": [
+        "detachment-warpstrike-champions:enhancement:3",
+        "detachment-warpstrike-champions:enhancement:2",
+        "detachment-warpstrike-champions:enhancement:1",
+        "detachment-warpstrike-champions:enhancement:4"
+      ]
+    }
+  },
+  "referenceKinds": {
+    "datasheet-cultist-mob:rule-reference:1": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-legionaries:rule-reference:1": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-lord:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-lord:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-lord-in-terminator-armour:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-lord-in-terminator-armour:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-lord-in-terminator-armour:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-lord-with-jump-pack:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-lord-with-jump-pack:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-lord-with-jump-pack:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-cultist-firebrand:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-cultist-firebrand:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-dark-apostle:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-dark-apostle:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-dark-commune:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-dark-commune:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-heretic-astartes-daemon-prince:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-heretic-astartes-daemon-prince:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-heretic-astartes-daemon-prince-with-wings:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-heretic-astartes-daemon-prince-with-wings:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-heretic-astartes-daemon-prince-with-wings:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-lord-discordant-on-helstalker:rule-reference:1": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-master-of-executions:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-master-of-executions:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-master-of-possession:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-master-of-possession:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-red-corsairs-reave-captain:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-red-corsairs-reave-captain:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-red-corsairs-reave-captain:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-sorcerer:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-sorcerer:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-sorcerer-in-terminator-armour:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-sorcerer-in-terminator-armour:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-sorcerer-in-terminator-armour:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-traitor-enforcer:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-traitor-enforcer:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-warpsmith:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-warpsmith:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-rhino:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-rhino:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-rhino:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-abaddon-the-despoiler:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-abaddon-the-despoiler:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-abaddon-the-despoiler:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-cypher:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-cypher:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-fabius-bile:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-fabius-bile:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-fabius-bile:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-haarken-worldclaimer:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-haarken-worldclaimer:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-haarken-worldclaimer:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-huron-blackheart:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-huron-blackheart:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-huron-blackheart:rule-reference:3": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-huron-blackheart:rule-reference:4": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-kravek-morne:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-kravek-morne:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-kravek-morne:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-masters-of-the-maelstrom:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-masters-of-the-maelstrom:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-vashtorr-the-arkifane:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-vashtorr-the-arkifane:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-vashtorr-the-arkifane:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-accursed-cultists:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-accursed-cultists:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-accursed-cultists:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-terminator-squad:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-terminator-squad:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chosen:rule-reference:1": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-fellgor-beastmen:rule-reference:1": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-havocs:rule-reference:1": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-mutilators:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-mutilators:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-nemesis-claw:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-nemesis-claw:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-obliterators:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-obliterators:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-possessed:rule-reference:1": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-raptors:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-raptors:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-red-corsairs-raiders:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-red-corsairs-raiders:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-traitor-guardsmen-squad:rule-reference:1": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-warp-talons:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-warp-talons:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-bikers:rule-reference:1": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-land-raider:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-land-raider:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-predator-annihilator:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-predator-annihilator:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-predator-destructor:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-predator-destructor:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-spawn:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-spawn:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-chaos-vindicator:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-chaos-vindicator:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-defiler:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-defiler:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-forgefiend:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-forgefiend:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-helbrute:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-helbrute:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-heldrake:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-heldrake:rule-reference:2": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-heldrake:rule-reference:3": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-khorne-lord-of-skulls:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-khorne-lord-of-skulls:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-maulerfiend:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-maulerfiend:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-noctilith-crown:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-noctilith-crown:rule-reference:2": "ARMY_RULE_MEMBERSHIP",
+    "datasheet-venomcrawler:rule-reference:1": "CORE_ABILITY_MEMBERSHIP",
+    "datasheet-venomcrawler:rule-reference:2": "ARMY_RULE_MEMBERSHIP"
+  },
+  "alliedSourceIds": {
+    "official-mfm-v1.5-khorne-berzerkers.json": "allied:khorne-berzerkers",
+    "official-mfm-v1.5-rubric-marines.json": "allied:rubric-marines"
+  },
+  "marksSourceId": "detachment-pactbound-zealots:rule",
+  "armyRuleTargets": {
+    "datasheet-cultist-mob:rule-reference:1": "army-rule-dark-pacts",
+    "datasheet-legionaries:rule-reference:1": "army-rule-dark-pacts",
+    "datasheet-chaos-lord:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-chaos-lord-in-terminator-armour:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-chaos-lord-with-jump-pack:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-cultist-firebrand:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-dark-apostle:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-dark-commune:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-heretic-astartes-daemon-prince:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-heretic-astartes-daemon-prince-with-wings:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-lord-discordant-on-helstalker:rule-reference:1": "army-rule-dark-pacts",
+    "datasheet-master-of-executions:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-master-of-possession:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-red-corsairs-reave-captain:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-sorcerer:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-sorcerer-in-terminator-armour:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-traitor-enforcer:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-warpsmith:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-chaos-rhino:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-abaddon-the-despoiler:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-cypher:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-fabius-bile:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-haarken-worldclaimer:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-huron-blackheart:rule-reference:4": "army-rule-dark-pacts",
+    "datasheet-kravek-morne:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-masters-of-the-maelstrom:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-vashtorr-the-arkifane:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-accursed-cultists:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-chaos-terminator-squad:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-chosen:rule-reference:1": "army-rule-dark-pacts",
+    "datasheet-fellgor-beastmen:rule-reference:1": "army-rule-dark-pacts",
+    "datasheet-havocs:rule-reference:1": "army-rule-dark-pacts",
+    "datasheet-mutilators:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-nemesis-claw:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-obliterators:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-possessed:rule-reference:1": "army-rule-dark-pacts",
+    "datasheet-raptors:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-red-corsairs-raiders:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-traitor-guardsmen-squad:rule-reference:1": "army-rule-dark-pacts",
+    "datasheet-warp-talons:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-chaos-bikers:rule-reference:1": "army-rule-dark-pacts",
+    "datasheet-chaos-land-raider:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-chaos-predator-annihilator:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-chaos-predator-destructor:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-chaos-spawn:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-chaos-vindicator:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-defiler:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-forgefiend:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-helbrute:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-heldrake:rule-reference:3": "army-rule-dark-pacts",
+    "datasheet-khorne-lord-of-skulls:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-maulerfiend:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-noctilith-crown:rule-reference:2": "army-rule-dark-pacts",
+    "datasheet-venomcrawler:rule-reference:2": "army-rule-dark-pacts"
+  }
+}

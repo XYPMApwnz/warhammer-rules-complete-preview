@@ -1,0 +1,30 @@
+{
+  "schema": "csm-v2-future-capability-consumers/v1",
+  "notRuntimeDeclarations": true,
+  "consumers": [
+    {
+      "id": "wounds-characteristic-modifier",
+      "consumerSourceId": "detachment-creations-of-bile:enhancement:2",
+      "sourcePointer": "/detachments/1/enhancements/1/text",
+      "status": "DEFERRED_NOT_IMPLEMENTED",
+      "sourceClause": "CHAOS LORD model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability.",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json"
+    },
+    {
+      "id": "canonical-ability-removal",
+      "consumerSourceId": "detachment-renegade-warband:rule",
+      "sourcePointer": "/detachments/10/rule/text",
+      "status": "DEFERRED_NOT_IMPLEMENTED",
+      "sourceClause": "HERETIC ASTARTES models from your army lose the Dark Pacts ability.\nRanged weapons equipped by HERETIC ASTARTES models from your army have the [ASSAULT] ability.\nWhen mustering your army, you cannot use the Cults of the Dark Gods rule.\nVendetta\nAt the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your Vendetta target, you can re-roll the Hit roll.\nTwisted Doctrine\nIn your Movement phase, each time you set up or select a HERETIC ASTARTES unit (excluding Battle-shocked units) from your army to move, it can choose to Default to Doctrine. If it does, it must first take a Battle-shock test. Then, select one of the following:\n- Until the end of the turn, this unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n- Until the end of the turn, this unit is eligible to declare a charge in a turn in which it Advanced.",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json"
+    },
+    {
+      "id": "canonical-ability-range-modifier",
+      "consumerSourceId": "detachment-cult-of-the-arkifane:enhancement:4",
+      "sourcePointer": "/detachments/9/enhancements/3/text",
+      "status": "DEFERRED_NOT_IMPLEMENTED",
+      "sourceClause": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json"
+    }
+  ]
+}

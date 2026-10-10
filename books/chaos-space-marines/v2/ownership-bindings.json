@@ -1,0 +1,81 @@
+{
+  "schema": "csm-v2-factual-ownership/v1",
+  "tableOccurrences": [
+    {
+      "ownerSourceId": "detachment-creations-of-bile:rule",
+      "tableSourceId": "detachment-creations-of-bile:rule:table:1",
+      "sourceTextSpan": "Cholinergic Accelerants: Add 1 to the Attacks characteristic of melee weapons equipped by this model.Hyperadrenal Infusion: Add 2\" to the Move characteristic of this model.Paraneural Reactions: Improve the Weapon Skill characteristic of melee weapons equipped by this model by 1.Supracutaneous Chitination: Improve the Toughness characteristic of this model by 1.Macrotensile Sinews: Add 1 to the Strength characteristic of melee weapons equipped by this model.Ophthalmic Enhancement: Improve the Ballistic Skill characteristic of ranged weapons equipped by this model by 1.",
+      "relation": "FLATTENED_CAPTURE_OF_STRUCTURED_TABLE"
+    },
+    {
+      "ownerSourceId": "detachment-huron-s-marauders:rule",
+      "tableSourceId": "detachment-huron-s-marauders:rule:table:1",
+      "sourceTextSpan": "Huron’s EliteEach time a model in this unit makes an attack, add 1 to the Hit roll.",
+      "relation": "FLATTENED_CAPTURE_OF_STRUCTURED_TABLE"
+    },
+    {
+      "ownerSourceId": "detachment-huron-s-marauders:rule",
+      "tableSourceId": "detachment-huron-s-marauders:rule:table:2",
+      "sourceTextSpan": "Mobile MaraudersThis unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\nDesigner’s Note: If a unit is gaining eligibility to shoot and declare a charge in a turn in which it Fell Back as a result of being visible to Huron Blackheart, but after making a Fall Back move it is no longer visible to Huron Blackheart, that unit will not be eligible to shoot in your Shooting phase or to declare a charge in your Charge phase unless it is visible again at the start of the respective phase.",
+      "relation": "FLATTENED_CAPTURE_OF_STRUCTURED_TABLE"
+    },
+    {
+      "ownerSourceId": "detachment-deceptors:rule",
+      "tableSourceId": "detachment-deceptors:rule:table:1",
+      "sourceTextSpan": "BATTLE SIZENUMBER OF UNITSLEGIONARIESCULTIST MOBSIncursion Up to 2 units Up to 2 units Strike ForceUp to 3 units Up to 3 units OnslaughtUp to 4 units Up to 4 units",
+      "relation": "FLATTENED_CAPTURE_OF_STRUCTURED_TABLE"
+    },
+    {
+      "ownerSourceId": "detachment-warpstrike-champions:rule",
+      "tableSourceId": "detachment-warpstrike-champions:rule:table:1",
+      "sourceTextSpan": "BATTLE SIZENUMBER OF UNITSIncursionUp to 1 unitStrike ForceUp to 2 unitsOnslaughtUp to 3 units",
+      "relation": "FLATTENED_CAPTURE_OF_STRUCTURED_TABLE"
+    }
+  ],
+  "duplicateNotes": [
+    {
+      "sourceEntityId": "datasheet-legionaries:raw-note:2",
+      "factOwnerSourceId": "datasheet-legionaries:wargear:8"
+    }
+  ],
+  "upgradeSourceReference": "detachment-pactbound-zealots:rule:muster-selection",
+  "marksOptionSourceIds": [
+    "detachment-pactbound-zealots:rule:mark:1",
+    "detachment-pactbound-zealots:rule:mark:2",
+    "detachment-pactbound-zealots:rule:mark:3",
+    "detachment-pactbound-zealots:rule:mark:4",
+    "detachment-pactbound-zealots:rule:mark:5"
+  ],
+  "paidOptionBindings": [
+    {
+      "costSourceId": "datasheet-defiler:mfm:paid:0",
+      "weaponProfileSourceIds": [
+        "datasheet-defiler:weapon:7"
+      ],
+      "optionSourceIds": [
+        "datasheet-defiler:wargear:3",
+        "datasheet-defiler:wargear:4"
+      ]
+    },
+    {
+      "costSourceId": "datasheet-defiler:mfm:paid:1",
+      "weaponProfileSourceIds": [
+        "datasheet-defiler:weapon:6"
+      ],
+      "optionSourceIds": [
+        "datasheet-defiler:wargear:3",
+        "datasheet-defiler:wargear:4"
+      ]
+    },
+    {
+      "costSourceId": "datasheet-forgefiend:mfm:paid:0",
+      "weaponProfileSourceIds": [
+        "datasheet-forgefiend:weapon:1"
+      ],
+      "optionSourceIds": [
+        "datasheet-forgefiend:wargear:1",
+        "datasheet-forgefiend:wargear:2"
+      ]
+    }
+  ]
+}

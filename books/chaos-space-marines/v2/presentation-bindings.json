@@ -1,0 +1,1306 @@
+{
+  "schema": "csm-v2-source-presentation-bindings/v1",
+  "scope": "Book-owned source bindings only. No renderer, effects, compatibility or individual physical weapon ownership is implied. Each dsWeaponRow is bound to its existing canonical source identity; responsive name-only duplicates are occurrence references.",
+  "instructionBindings": [
+    {
+      "id": "csm-weapon-profile-selection-instruction",
+      "kind": "WEAPON_PROFILE_SELECTION_INSTRUCTION",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Legionaries.html",
+      "selector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2"
+    }
+  ],
+  "weaponProfileGroups": [
+    {
+      "id": "datasheet-legionaries:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-legionaries",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-legionaries:weapon:9",
+        "datasheet-legionaries:weapon:10"
+      ]
+    },
+    {
+      "id": "datasheet-legionaries:weapon-profile-group:2",
+      "ownerSourceId": "datasheet-legionaries",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-legionaries:weapon:11",
+        "datasheet-legionaries:weapon:12"
+      ]
+    },
+    {
+      "id": "datasheet-legionaries:weapon-profile-group:3",
+      "ownerSourceId": "datasheet-legionaries",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-legionaries:weapon:13",
+        "datasheet-legionaries:weapon:14"
+      ]
+    },
+    {
+      "id": "datasheet-chaos-lord:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-chaos-lord",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-chaos-lord:weapon:1",
+        "datasheet-chaos-lord:weapon:2"
+      ]
+    },
+    {
+      "id": "datasheet-chaos-lord-with-jump-pack:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-chaos-lord-with-jump-pack",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-chaos-lord-with-jump-pack:weapon:2",
+        "datasheet-chaos-lord-with-jump-pack:weapon:3"
+      ]
+    },
+    {
+      "id": "datasheet-dark-commune:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-dark-commune",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-dark-commune:weapon:2",
+        "datasheet-dark-commune:weapon:3"
+      ]
+    },
+    {
+      "id": "datasheet-heretic-astartes-daemon-prince:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-heretic-astartes-daemon-prince",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-heretic-astartes-daemon-prince:weapon:2",
+        "datasheet-heretic-astartes-daemon-prince:weapon:3"
+      ]
+    },
+    {
+      "id": "datasheet-heretic-astartes-daemon-prince-with-wings:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-heretic-astartes-daemon-prince-with-wings",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-heretic-astartes-daemon-prince-with-wings:weapon:2",
+        "datasheet-heretic-astartes-daemon-prince-with-wings:weapon:3"
+      ]
+    },
+    {
+      "id": "datasheet-master-of-possession:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-master-of-possession",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-master-of-possession:weapon:2",
+        "datasheet-master-of-possession:weapon:3"
+      ]
+    },
+    {
+      "id": "datasheet-red-corsairs-reave-captain:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-red-corsairs-reave-captain",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-red-corsairs-reave-captain:weapon:2",
+        "datasheet-red-corsairs-reave-captain:weapon:3"
+      ]
+    },
+    {
+      "id": "datasheet-sorcerer:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-sorcerer",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-sorcerer:weapon:2",
+        "datasheet-sorcerer:weapon:3"
+      ]
+    },
+    {
+      "id": "datasheet-sorcerer-in-terminator-armour:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-sorcerer-in-terminator-armour",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-sorcerer-in-terminator-armour:weapon:3",
+        "datasheet-sorcerer-in-terminator-armour:weapon:4"
+      ]
+    },
+    {
+      "id": "datasheet-warpsmith:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-warpsmith",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-warpsmith:weapon:3",
+        "datasheet-warpsmith:weapon:4"
+      ]
+    },
+    {
+      "id": "datasheet-vashtorr-the-arkifane:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-vashtorr-the-arkifane",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-vashtorr-the-arkifane:weapon:2",
+        "datasheet-vashtorr-the-arkifane:weapon:3"
+      ]
+    },
+    {
+      "id": "datasheet-chosen:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-chosen",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-chosen:weapon:4",
+        "datasheet-chosen:weapon:5"
+      ]
+    },
+    {
+      "id": "datasheet-fellgor-beastmen:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-fellgor-beastmen",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-fellgor-beastmen:weapon:4",
+        "datasheet-fellgor-beastmen:weapon:5"
+      ]
+    },
+    {
+      "id": "datasheet-havocs:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-havocs",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-havocs:weapon:6",
+        "datasheet-havocs:weapon:7"
+      ]
+    },
+    {
+      "id": "datasheet-havocs:weapon-profile-group:2",
+      "ownerSourceId": "datasheet-havocs",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-havocs:weapon:10",
+        "datasheet-havocs:weapon:11"
+      ]
+    },
+    {
+      "id": "datasheet-havocs:weapon-profile-group:3",
+      "ownerSourceId": "datasheet-havocs",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-havocs:weapon:12",
+        "datasheet-havocs:weapon:13"
+      ]
+    },
+    {
+      "id": "datasheet-mutilators:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-mutilators",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-mutilators:weapon:1",
+        "datasheet-mutilators:weapon:2",
+        "datasheet-mutilators:weapon:3"
+      ]
+    },
+    {
+      "id": "datasheet-nemesis-claw:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-nemesis-claw",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-nemesis-claw:weapon:6",
+        "datasheet-nemesis-claw:weapon:7"
+      ]
+    },
+    {
+      "id": "datasheet-nemesis-claw:weapon-profile-group:2",
+      "ownerSourceId": "datasheet-nemesis-claw",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-nemesis-claw:weapon:8",
+        "datasheet-nemesis-claw:weapon:9"
+      ]
+    },
+    {
+      "id": "datasheet-nemesis-claw:weapon-profile-group:3",
+      "ownerSourceId": "datasheet-nemesis-claw",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-nemesis-claw:weapon:10",
+        "datasheet-nemesis-claw:weapon:11"
+      ]
+    },
+    {
+      "id": "datasheet-obliterators:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-obliterators",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-obliterators:weapon:1",
+        "datasheet-obliterators:weapon:2",
+        "datasheet-obliterators:weapon:3"
+      ]
+    },
+    {
+      "id": "datasheet-raptors:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-raptors",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-raptors:weapon:4",
+        "datasheet-raptors:weapon:5"
+      ]
+    },
+    {
+      "id": "datasheet-raptors:weapon-profile-group:2",
+      "ownerSourceId": "datasheet-raptors",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-raptors:weapon:6",
+        "datasheet-raptors:weapon:7"
+      ]
+    },
+    {
+      "id": "datasheet-traitor-guardsmen-squad:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-traitor-guardsmen-squad",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-traitor-guardsmen-squad:weapon:3",
+        "datasheet-traitor-guardsmen-squad:weapon:4"
+      ]
+    },
+    {
+      "id": "datasheet-traitor-guardsmen-squad:weapon-profile-group:2",
+      "ownerSourceId": "datasheet-traitor-guardsmen-squad",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-traitor-guardsmen-squad:weapon:9",
+        "datasheet-traitor-guardsmen-squad:weapon:10"
+      ]
+    },
+    {
+      "id": "datasheet-chaos-bikers:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-chaos-bikers",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-chaos-bikers:weapon:6",
+        "datasheet-chaos-bikers:weapon:7"
+      ]
+    },
+    {
+      "id": "datasheet-chaos-bikers:weapon-profile-group:2",
+      "ownerSourceId": "datasheet-chaos-bikers",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-chaos-bikers:weapon:8",
+        "datasheet-chaos-bikers:weapon:9"
+      ]
+    },
+    {
+      "id": "datasheet-defiler:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-defiler",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-defiler:weapon:8",
+        "datasheet-defiler:weapon:9"
+      ]
+    },
+    {
+      "id": "datasheet-defiler:weapon-profile-group:2",
+      "ownerSourceId": "datasheet-defiler",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-defiler:weapon:10",
+        "datasheet-defiler:weapon:11"
+      ]
+    },
+    {
+      "id": "datasheet-helbrute:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-helbrute",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-helbrute:weapon:4",
+        "datasheet-helbrute:weapon:5"
+      ]
+    },
+    {
+      "id": "datasheet-khorne-lord-of-skulls:weapon-profile-group:1",
+      "ownerSourceId": "datasheet-khorne-lord-of-skulls",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "weaponProfileSourceIds": [
+        "datasheet-khorne-lord-of-skulls:weapon:6",
+        "datasheet-khorne-lord-of-skulls:weapon:7"
+      ]
+    }
+  ],
+  "instructionOccurrences": [
+    {
+      "sourceEntityId": "datasheet-legionaries:weapon:9",
+      "groupId": "datasheet-legionaries:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Legionaries.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedRowSha256": "753f2b2605ef2104337fcd4ed8d612058b26d4cd7aa5110e1b55687473a6e3c0",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-legionaries:weapon:10",
+      "groupId": "datasheet-legionaries:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Legionaries.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedRowSha256": "8e59df695af71730142b22e8d74568122eee62feffa8211ae6535ebecdfcb773",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-legionaries:weapon:11",
+      "groupId": "datasheet-legionaries:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Legionaries.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedRowSha256": "96ec017a29e8a6406c718a89b2a2227bcc560b4774717db59b1b5b5c3718bfa5",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-legionaries:weapon:12",
+      "groupId": "datasheet-legionaries:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Legionaries.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedRowSha256": "29c25bcdd1a8339b8fd417623c4131514bfd4f34d8a18ddbe7096f6cc964eb63",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-legionaries:weapon:13",
+      "groupId": "datasheet-legionaries:weapon-profile-group:3",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Legionaries.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedRowSha256": "afc6cb51afe4c01a2f223ba60e5ffe07807f5554f8d95030d5dc1661f0af26a0",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-legionaries:weapon:14",
+      "groupId": "datasheet-legionaries:weapon-profile-group:3",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Legionaries.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedRowSha256": "17ba520cf4023c0bebd54212e4ae7feee07b6093044deeda6c4f997967856382",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-chaos-lord:weapon:1",
+      "groupId": "datasheet-chaos-lord:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chaos-Lord.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[111]/span",
+      "expectedRowSha256": "6935526caad0134e33b566bad10bf7cd66c38055bbb137dd8f0fc164b1fcf867",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-chaos-lord:weapon:2",
+      "groupId": "datasheet-chaos-lord:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chaos-Lord.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[111]/span",
+      "expectedRowSha256": "f947d439d69fcfa325603f33a9e6f3eeeea98418de2a5713525970479a726000",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-chaos-lord-with-jump-pack:weapon:2",
+      "groupId": "datasheet-chaos-lord-with-jump-pack:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chaos-Lord-with-Jump-Pack.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[116]/span",
+      "expectedRowSha256": "6935526caad0134e33b566bad10bf7cd66c38055bbb137dd8f0fc164b1fcf867",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-chaos-lord-with-jump-pack:weapon:3",
+      "groupId": "datasheet-chaos-lord-with-jump-pack:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chaos-Lord-with-Jump-Pack.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[116]/span",
+      "expectedRowSha256": "f947d439d69fcfa325603f33a9e6f3eeeea98418de2a5713525970479a726000",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-dark-commune:weapon:2",
+      "groupId": "datasheet-dark-commune:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Dark-Commune.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[110]/span",
+      "expectedRowSha256": "ebcfe351a0ee97f9cba7c7971b9b03a6f355fcbf7a30318cb990c73263b004a2",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-dark-commune:weapon:3",
+      "groupId": "datasheet-dark-commune:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Dark-Commune.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[110]/span",
+      "expectedRowSha256": "6ccb55f26b74ba383ed5ffd01dfa1b89fd928413d4fc75c6f68f8f62659b4723",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-heretic-astartes-daemon-prince:weapon:2",
+      "groupId": "datasheet-heretic-astartes-daemon-prince:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Heretic-Astartes-Daemon-Prince.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[104]/span",
+      "expectedRowSha256": "82a6b932870e77adfdc0732050bb3f3b8d2bba21eb5634833923ae337aa06a04",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-heretic-astartes-daemon-prince:weapon:3",
+      "groupId": "datasheet-heretic-astartes-daemon-prince:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Heretic-Astartes-Daemon-Prince.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[104]/span",
+      "expectedRowSha256": "2b9ce5afe0eadf0c2bcd12eedced92ba02af24105918ee9f942f45fcfeeb92b1",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-heretic-astartes-daemon-prince-with-wings:weapon:2",
+      "groupId": "datasheet-heretic-astartes-daemon-prince-with-wings:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Heretic-Astartes-Daemon-Prince-With-Wings.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[102]/span",
+      "expectedRowSha256": "82a6b932870e77adfdc0732050bb3f3b8d2bba21eb5634833923ae337aa06a04",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-heretic-astartes-daemon-prince-with-wings:weapon:3",
+      "groupId": "datasheet-heretic-astartes-daemon-prince-with-wings:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Heretic-Astartes-Daemon-Prince-With-Wings.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[102]/span",
+      "expectedRowSha256": "2b9ce5afe0eadf0c2bcd12eedced92ba02af24105918ee9f942f45fcfeeb92b1",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-master-of-possession:weapon:2",
+      "groupId": "datasheet-master-of-possession:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Master-Of-Possession.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[110]/span",
+      "expectedRowSha256": "76e88e52ff68fa904e93d5a459e3c472ea3c4ba3ae96ba9ba4a192f67801f952",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-master-of-possession:weapon:3",
+      "groupId": "datasheet-master-of-possession:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Master-Of-Possession.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[110]/span",
+      "expectedRowSha256": "8d809fdb8231fa857eb70f93ec2745f53ebe258a8f4e12e084ae874577d5f993",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-red-corsairs-reave-captain:weapon:2",
+      "groupId": "datasheet-red-corsairs-reave-captain:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Red-Corsairs-Reave-Captain.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[107]/span",
+      "expectedRowSha256": "6935526caad0134e33b566bad10bf7cd66c38055bbb137dd8f0fc164b1fcf867",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-red-corsairs-reave-captain:weapon:3",
+      "groupId": "datasheet-red-corsairs-reave-captain:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Red-Corsairs-Reave-Captain.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[107]/span",
+      "expectedRowSha256": "8985bdadac098d5ed1fd9523a6557a333c8c047165a0f930dd2a004195bd463a",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-sorcerer:weapon:2",
+      "groupId": "datasheet-sorcerer:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Sorcerer.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[113]/span",
+      "expectedRowSha256": "fb81b8dfc1cb216846c679db9aa44d2e66f555e17dcbd0fdbe500d68a993878c",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-sorcerer:weapon:3",
+      "groupId": "datasheet-sorcerer:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Sorcerer.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[113]/span",
+      "expectedRowSha256": "3421dbd0c0c5b95183dc82a083e953793aae736ebd8a43a92b5b94be94862529",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-sorcerer-in-terminator-armour:weapon:3",
+      "groupId": "datasheet-sorcerer-in-terminator-armour:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Sorcerer-In-Terminator-Armour.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[114]/span",
+      "expectedRowSha256": "fb81b8dfc1cb216846c679db9aa44d2e66f555e17dcbd0fdbe500d68a993878c",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-sorcerer-in-terminator-armour:weapon:4",
+      "groupId": "datasheet-sorcerer-in-terminator-armour:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Sorcerer-In-Terminator-Armour.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[114]/span",
+      "expectedRowSha256": "3421dbd0c0c5b95183dc82a083e953793aae736ebd8a43a92b5b94be94862529",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-warpsmith:weapon:3",
+      "groupId": "datasheet-warpsmith:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Warpsmith.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[111]/span",
+      "expectedRowSha256": "6935526caad0134e33b566bad10bf7cd66c38055bbb137dd8f0fc164b1fcf867",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-warpsmith:weapon:4",
+      "groupId": "datasheet-warpsmith:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Warpsmith.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[111]/span",
+      "expectedRowSha256": "f947d439d69fcfa325603f33a9e6f3eeeea98418de2a5713525970479a726000",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-vashtorr-the-arkifane:weapon:2",
+      "groupId": "datasheet-vashtorr-the-arkifane:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Vashtorr-The-Arkifane.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[95]/span",
+      "expectedRowSha256": "b175ccceccf26ca484b4a9ade7f8235e4e0a5832640dcb8b8bb10a1440f66547",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-vashtorr-the-arkifane:weapon:3",
+      "groupId": "datasheet-vashtorr-the-arkifane:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Vashtorr-The-Arkifane.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[95]/span",
+      "expectedRowSha256": "8d2649e672101ac5d04f11f8e2f5532a04ea8b92d19b75643ca878a8b923e596",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-chosen:weapon:4",
+      "groupId": "datasheet-chosen:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chosen.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[92]/span",
+      "expectedRowSha256": "afc6cb51afe4c01a2f223ba60e5ffe07807f5554f8d95030d5dc1661f0af26a0",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-chosen:weapon:5",
+      "groupId": "datasheet-chosen:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chosen.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[92]/span",
+      "expectedRowSha256": "17ba520cf4023c0bebd54212e4ae7feee07b6093044deeda6c4f997967856382",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-fellgor-beastmen:weapon:4",
+      "groupId": "datasheet-fellgor-beastmen:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Fellgor-Beastmen.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[92]/span",
+      "expectedRowSha256": "9e75adb80dce924b8c37a794ea73ef3ae3249d13947cf3c1bb835b499e9ae67c",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-fellgor-beastmen:weapon:5",
+      "groupId": "datasheet-fellgor-beastmen:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Fellgor-Beastmen.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[92]/span",
+      "expectedRowSha256": "5adfbd953270785d85b109266892a79b12f781781e7f07c27bea40a0b9b37c04",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-havocs:weapon:6",
+      "groupId": "datasheet-havocs:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Havocs.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[89]/span",
+      "expectedRowSha256": "1c52ea46e2eb5fc15440cc3c3b8efb2ba2ac97d6007d15ce3e498abb7ee5cc97",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-havocs:weapon:7",
+      "groupId": "datasheet-havocs:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Havocs.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[89]/span",
+      "expectedRowSha256": "458c74390d22b6372425d231c520dc19263ac5aa48a7db8799fca7d94e084e45",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-havocs:weapon:10",
+      "groupId": "datasheet-havocs:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Havocs.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[89]/span",
+      "expectedRowSha256": "96ec017a29e8a6406c718a89b2a2227bcc560b4774717db59b1b5b5c3718bfa5",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-havocs:weapon:11",
+      "groupId": "datasheet-havocs:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Havocs.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[89]/span",
+      "expectedRowSha256": "29c25bcdd1a8339b8fd417623c4131514bfd4f34d8a18ddbe7096f6cc964eb63",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[11]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-havocs:weapon:12",
+      "groupId": "datasheet-havocs:weapon-profile-group:3",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Havocs.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[89]/span",
+      "expectedRowSha256": "76515a245e02d2302f7f40b1f692891e712d8157888da4c68b4bdfe7f38dbcb4",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-havocs:weapon:13",
+      "groupId": "datasheet-havocs:weapon-profile-group:3",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Havocs.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[89]/span",
+      "expectedRowSha256": "774ed4a46524aff5049883b39f65b8940992d5a0e27aacad0d4196f357a1a877",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[12]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-mutilators:weapon:1",
+      "groupId": "datasheet-mutilators:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Mutilators.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[90]/span",
+      "expectedRowSha256": "923b54c2ddd168f116fb1f889fea6307943e38303b02abac722366b19d829bb0",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-mutilators:weapon:2",
+      "groupId": "datasheet-mutilators:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Mutilators.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[90]/span",
+      "expectedRowSha256": "09fc9677a9e05fdca4d608678cd1e9a0d88731aaed23defd1ff14de0e8406ea7",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-mutilators:weapon:3",
+      "groupId": "datasheet-mutilators:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Mutilators.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[6]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[6]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[90]/span",
+      "expectedRowSha256": "d9d9dcb3adfcb6f5cf6726e5c7497b5096abe174ae56811461ec925dc8a4ea0a",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[5]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-nemesis-claw:weapon:6",
+      "groupId": "datasheet-nemesis-claw:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Nemesis-Claw.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[100]/span",
+      "expectedRowSha256": "753f2b2605ef2104337fcd4ed8d612058b26d4cd7aa5110e1b55687473a6e3c0",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-nemesis-claw:weapon:7",
+      "groupId": "datasheet-nemesis-claw:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Nemesis-Claw.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[100]/span",
+      "expectedRowSha256": "8e59df695af71730142b22e8d74568122eee62feffa8211ae6535ebecdfcb773",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-nemesis-claw:weapon:8",
+      "groupId": "datasheet-nemesis-claw:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Nemesis-Claw.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[100]/span",
+      "expectedRowSha256": "96ec017a29e8a6406c718a89b2a2227bcc560b4774717db59b1b5b5c3718bfa5",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-nemesis-claw:weapon:9",
+      "groupId": "datasheet-nemesis-claw:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Nemesis-Claw.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[100]/span",
+      "expectedRowSha256": "29c25bcdd1a8339b8fd417623c4131514bfd4f34d8a18ddbe7096f6cc964eb63",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-nemesis-claw:weapon:10",
+      "groupId": "datasheet-nemesis-claw:weapon-profile-group:3",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Nemesis-Claw.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[100]/span",
+      "expectedRowSha256": "afc6cb51afe4c01a2f223ba60e5ffe07807f5554f8d95030d5dc1661f0af26a0",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-nemesis-claw:weapon:11",
+      "groupId": "datasheet-nemesis-claw:weapon-profile-group:3",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Nemesis-Claw.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[100]/span",
+      "expectedRowSha256": "17ba520cf4023c0bebd54212e4ae7feee07b6093044deeda6c4f997967856382",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-obliterators:weapon:1",
+      "groupId": "datasheet-obliterators:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Obliterators.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[90]/span",
+      "expectedRowSha256": "dfe39707f7b0646ee95ff3913b3d57efc1783ed4bde7067b038f4e31d8cf2518",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-obliterators:weapon:2",
+      "groupId": "datasheet-obliterators:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Obliterators.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[90]/span",
+      "expectedRowSha256": "ad92e2ff4a3d35af296ed5a90b32fe6071c000003a791a7f2cf7c355fe89f4eb",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-obliterators:weapon:3",
+      "groupId": "datasheet-obliterators:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Obliterators.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[6]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[6]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[90]/span",
+      "expectedRowSha256": "71cd32f7b8d68239b3f88bac596c8539c59b5eff778de8dc61c05622098c251d",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[5]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-raptors:weapon:4",
+      "groupId": "datasheet-raptors:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Raptors.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedRowSha256": "afc6cb51afe4c01a2f223ba60e5ffe07807f5554f8d95030d5dc1661f0af26a0",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-raptors:weapon:5",
+      "groupId": "datasheet-raptors:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Raptors.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedRowSha256": "17ba520cf4023c0bebd54212e4ae7feee07b6093044deeda6c4f997967856382",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-raptors:weapon:6",
+      "groupId": "datasheet-raptors:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Raptors.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[7]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[7]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedRowSha256": "ff9ba632e1c524ea2da09a818802fb45017f13388456640e451b30b397ccdb00",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[7]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-raptors:weapon:7",
+      "groupId": "datasheet-raptors:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Raptors.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[7]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[7]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[97]/span",
+      "expectedRowSha256": "4f3a44ebb53e02c342d258e75c947b7235af17336ded297c35639205962b1ca5",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[7]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-traitor-guardsmen-squad:weapon:3",
+      "groupId": "datasheet-traitor-guardsmen-squad:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Traitor-Guardsmen-Squad.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[88]/span",
+      "expectedRowSha256": "100fb6046919f4b1d068c64024febce58eda1dcd9b59c816fef2004202e1d332",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-traitor-guardsmen-squad:weapon:4",
+      "groupId": "datasheet-traitor-guardsmen-squad:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Traitor-Guardsmen-Squad.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[88]/span",
+      "expectedRowSha256": "65f52eae389fd760964ad7edec80f1bd0e743a5cb8a77766433dda697b062751",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[5]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-traitor-guardsmen-squad:weapon:9",
+      "groupId": "datasheet-traitor-guardsmen-squad:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Traitor-Guardsmen-Squad.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[88]/span",
+      "expectedRowSha256": "3636ce9421cd2b7051efbd1757d555e25e4d2517535baccac9a6e377ac4f3b6b",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-traitor-guardsmen-squad:weapon:10",
+      "groupId": "datasheet-traitor-guardsmen-squad:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Traitor-Guardsmen-Squad.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[88]/span",
+      "expectedRowSha256": "54574b3650cb80032e71b09acec4a4239bc6e78dcd4f79f9624b4a6b87f967f3",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-chaos-bikers:weapon:6",
+      "groupId": "datasheet-chaos-bikers:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chaos-Bikers.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[89]/span",
+      "expectedRowSha256": "ff9ba632e1c524ea2da09a818802fb45017f13388456640e451b30b397ccdb00",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-chaos-bikers:weapon:7",
+      "groupId": "datasheet-chaos-bikers:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chaos-Bikers.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[89]/span",
+      "expectedRowSha256": "4f3a44ebb53e02c342d258e75c947b7235af17336ded297c35639205962b1ca5",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-chaos-bikers:weapon:8",
+      "groupId": "datasheet-chaos-bikers:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chaos-Bikers.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[89]/span",
+      "expectedRowSha256": "afc6cb51afe4c01a2f223ba60e5ffe07807f5554f8d95030d5dc1661f0af26a0",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-chaos-bikers:weapon:9",
+      "groupId": "datasheet-chaos-bikers:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Chaos-Bikers.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[89]/span",
+      "expectedRowSha256": "17ba520cf4023c0bebd54212e4ae7feee07b6093044deeda6c4f997967856382",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-defiler:weapon:8",
+      "groupId": "datasheet-defiler:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Defiler.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[93]/span",
+      "expectedRowSha256": "f0b45dcb12bd476e362f31db3bd80e483deb4422514d8ffeaf461a480eb37e4f",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-defiler:weapon:9",
+      "groupId": "datasheet-defiler:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Defiler.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[93]/span",
+      "expectedRowSha256": "5cdaa69e9339c1d8d90ca293013c945a5d09f6925b0ac89165a9f427d58ab029",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-defiler:weapon:10",
+      "groupId": "datasheet-defiler:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Defiler.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[93]/span",
+      "expectedRowSha256": "7821c9c13e469f9c28f5707237b2c08e4120d9506f55dfff72ca8f31aa7050d6",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-defiler:weapon:11",
+      "groupId": "datasheet-defiler:weapon-profile-group:2",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Defiler.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[93]/span",
+      "expectedRowSha256": "bfbfc6ee7da727274bb1e67c0a90277fa2fd294f85097699914af0812e2937e2",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[13]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-helbrute:weapon:4",
+      "groupId": "datasheet-helbrute:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Helbrute.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[90]/span",
+      "expectedRowSha256": "49a9d9aa560521466949baa5c2e82cf9bee8af7cad0c69ce7b526251e92ce0ec",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-helbrute:weapon:5",
+      "groupId": "datasheet-helbrute:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Helbrute.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[90]/span",
+      "expectedRowSha256": "63b7725fdd15cf180f09a41fa07011a42c8940edba3ce1c0a5de62b033dc9a9d",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[6]/tr[3]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-khorne-lord-of-skulls:weapon:6",
+      "groupId": "datasheet-khorne-lord-of-skulls:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Khorne-Lord-Of-Skulls.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[2]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[2]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[90]/span",
+      "expectedRowSha256": "2e461ebdc629c9a6269e5dd0a72992af19d3bf97761c379689b17351849481d1",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[1]/td[1]/div"
+      ]
+    },
+    {
+      "sourceEntityId": "datasheet-khorne-lord-of-skulls:weapon:7",
+      "groupId": "datasheet-khorne-lord-of-skulls:weapon-profile-group:1",
+      "instructionId": "csm-weapon-profile-selection-instruction",
+      "sourceDocument": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Khorne-Lord-Of-Skulls.html",
+      "weaponRowSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[4]",
+      "markerSelector": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[4]/td[1]/div",
+      "templateSelector": "/html/body/div/div[1]/div[3]/div[90]/span",
+      "expectedRowSha256": "c4eab636101d0abb714c3d0afd347833daf7384627f060017d8a1ef249e83f4f",
+      "expectedInstructionTextSha256": "6b4734289a382833a8860ff961a16c06d9b576e8d4a244f366920e850b95f0d2",
+      "responsiveDuplicateMarkerSelectors": [
+        "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[3]/td[1]/div"
+      ]
+    }
+  ],
+  "equipmentAbilityBindings": []
+}
