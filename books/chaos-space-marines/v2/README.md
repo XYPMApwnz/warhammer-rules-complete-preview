@@ -1,9 +1,11 @@
-# Chaos Space Marines V2 factual foundation
+# Chaos Space Marines V2 source-first foundation and Rule Contracts
 
 This is the source-first factual stage based on
-`e77ea12d312f1bec6ea6632e102777792c06de38`. It is deliberately not wired into the
-Army Book, roster, compatibility or effect runtime. No Rule Contracts, effects,
-UI, shared primitives or changes to another book are included.
+`e77ea12d312f1bec6ea6632e102777792c06de38`. The factual foundation is unchanged.
+The subsequent semantic overlay uses the existing shared Rule Contract
+schema, binders and compatibility compiler. It is not wired into the Army Book,
+roster import or effect projection. No UI, executable roster-effect declarations,
+new shared primitives or changes to another book are included.
 
 ## Accepted inputs and denominators
 
@@ -137,3 +139,70 @@ canonical presentation oracle still confirms 3,654 facts. The optional DG
 browser visible-effects guard timed out waiting for `ArmyBookAppV2.rosterPanel`
 after launching the available Chromium binary; it is not reported as passing.
 No browser/UI certification is claimed by this factual-foundation task.
+
+## Source-bound Rule Contract overlay
+
+Four book-owned typed declaration files cover an independent census of **542
+semantic owners** from the canonical record kinds. The remaining **1,283**
+entities are explicitly partitioned as facts/references. These denominators do
+not come from legacy CSM contracts or compatibility answers.
+
+| Exclusive owner disposition | Count |
+|---|---:|
+| BUILT | 63 |
+| BATTLE_ONLY_NO_RUNTIME_NEEDED | 249 |
+| NOT_EFFECT_OR_PRESENTATION_ONLY | 227 |
+| BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY | 3 |
+
+Both BUILT and battle-only owners have validated applicability contracts:
+**312 contracts total**. Battle-only contracts retain canonical text, source
+evidence, selectors, roles, targets and explicit BATTLE prerequisites; they do
+not implement battle execution. BUILT does not imply executable roster effects
+at this stage. Corrections, source aliases, structured table children,
+construction options and static information retain their factual owner and do
+not fabricate a second effect authority.
+
+`rule-contract-context.mjs` provides a disposable book-owned interface to the
+existing shared compiler. Each of the **78 canonical composition members** is a
+MODEL evaluation scope bound to its existing source statline (60 distinct
+statlines). This adds no canonical identity and does not widen role-specific
+keywords when two roles share a statline. Unit, formed-unit and model scopes
+remain distinct. Canonical Army Rule membership is STATIC; assignments,
+selected upgrades, initial attachment state and Detachments require explicit
+ROSTER input; activation and spatial/event state require BATTLE input.
+
+`rule-contract-build.mjs` rejects missing classifications, duplicate owners,
+severed source evidence, invalid contracts and manual pairwise authority. Its
+generated overlay and compatibility rows are disposable projections, not a
+second factual catalog. The factual producer's stage flags continue to describe
+the factual foundation alone. Rebuild/check the separate semantic artifacts:
+
+```text
+node books/chaos-space-marines/v2/rule-contract-build.mjs
+node books/chaos-space-marines/v2/rule-contract-build.mjs --check
+node books/chaos-space-marines/v2/rule-contract-qa.mjs
+node books/chaos-space-marines/v2/rule-contract-blocker-qa.mjs
+```
+
+The semantic guard checks all MODEL scopes, context availability, physical
+identity rejection, source/owner mutations, battle-state isolation and
+deterministic compilation. A closed temporary input tree rebuilds without
+legacy CSM, DG/AdMech facts or previous semantic artifacts.
+
+`generated/rule-contract-blockers.json` contains exact source clauses,
+recipients, conditions, evidence and existing-language limitations for:
+
+- `detachment-creations-of-bile:enhancement:2`: Living Carapace requires W +1
+  on the exact bearer. The current numeric domain rejects W. Its independently
+  expressible FNP clause remains canonical; the owner is explicitly blocked.
+- `detachment-renegade-warband:rule`: Slaves to None removes canonical
+  `army-rule-dark-pacts` from eligible MODELS. Keyword removal cannot substitute
+  for ability removal.
+- `detachment-cult-of-the-arkifane:enhancement:4`: Crown of the Worms adds
+  3 inches to three existing Warpsmith ability identities. Weapon Range or
+  unrelated rule metrics cannot substitute for a specific ability range.
+
+The independent blocker guard probes the unchanged shared effect validator with
+non-army synthetic controls. No capability is added. The battle-only Wounds
+increase in Eye of the Gods remains conditional source text, not a fourth
+roster-effective blocker. No other current-product capability gap was found.

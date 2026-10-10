@@ -1,0 +1,107 @@
+{
+  "schema": "csm-rule-contract-blockers/v2",
+  "owners": [
+    {
+      "ruleId": "detachment-creations-of-bile:enhancement:2",
+      "status": "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY",
+      "reason": "Source-required permanent/roster-known effect cannot be represented by current shared operation domain. No runtime is implemented.",
+      "evidence": [
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "CHAOS LORD model only. Add 1 to the bearer’s Wounds characteristic and the bearer has the Feel No Pain 5+ ability."
+        }
+      ],
+      "blockers": [
+        {
+          "missingCapability": "WOUNDS_CHARACTERISTIC_MODIFIER",
+          "subject": "MODEL",
+          "recipient": "Exact physical bearer MODEL",
+          "condition": "Assigned Enhancement and CHAOS LORD MODEL prerequisite",
+          "expectedRosterEffect": "Base W +1; independent Feel No Pain 5+ remains source-backed",
+          "sourceClause": "Add 1 to the bearer’s Wounds characteristic",
+          "whyExistingLanguageInsufficient": "Shared MODIFY_STAT rejects W: accepted model fields are M/T/LD/OC/INSV. Existing fields cannot express W without misnaming the characteristic.",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 1 to the bearer’s Wounds characteristic"
+          }
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-cult-of-the-arkifane:enhancement:4",
+      "status": "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY",
+      "reason": "Source-required permanent/roster-known effect cannot be represented by current shared operation domain. No runtime is implemented.",
+      "evidence": [
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "WARPSMITH model only. Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
+        }
+      ],
+      "blockers": [
+        {
+          "missingCapability": "SPECIFIC_CANONICAL_ABILITY_RANGE_MODIFIER",
+          "subject": "MODEL",
+          "recipient": "Exact physical WARPSMITH bearer; only three named canonical ability references",
+          "condition": "Assigned Enhancement and WARPSMITH MODEL prerequisite",
+          "expectedRosterEffect": "Add 3 inches to each specified canonical ability range, no change to unrelated abilities or weapon ranges",
+          "sourceClause": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.",
+          "whyExistingLanguageInsufficient": "Existing MODIFY_STAT range is ranged-weapon-only; MODIFY_RULE_METRIC accepts contagionRange/detectionRange and cannot address specific canonical ability identities.",
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 3\" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities."
+          },
+          "affectedCanonicalAbilityIds": [
+            "datasheet-warpsmith:section:1:block:0:text",
+            "datasheet-warpsmith:section:1:block:1:text",
+            "datasheet-warpsmith:section:1:block:2:text"
+          ]
+        }
+      ]
+    },
+    {
+      "ruleId": "detachment-renegade-warband:rule",
+      "status": "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY",
+      "reason": "Source-required permanent canonical ability removal is absent from the current shared runtime domain; supported and battle-only remainder remains canonical text.",
+      "evidence": [
+        {
+          "field": [
+            "content",
+            0,
+            "text"
+          ],
+          "quote": "HERETIC ASTARTES models from your army lose the Dark Pacts ability.\nRanged weapons equipped by HERETIC ASTARTES models from your army have the [ASSAULT] ability.\nWhen mustering your army, you cannot use the Cults of the Dark Gods rule.\nVendetta\nAt the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, that enemy unit is your Vendetta target. Each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your Vendetta target, you can re-roll the Hit roll.\nTwisted Doctrine\nIn your Movement phase, each time you set up or select a HERETIC ASTARTES unit (excluding Battle-shocked units) from your army to move, it can choose to Default to Doctrine. If it does, it must first take a Battle-shock test. Then, select one of the following:\n- Until the end of the turn, this unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n- Until the end of the turn, this unit is eligible to declare a charge in a turn in which it Advanced."
+        }
+      ],
+      "blockers": [
+        {
+          "missingCapability": "CANONICAL_ABILITY_REMOVAL",
+          "subject": "MODEL",
+          "recipient": "Every eligible HERETIC ASTARTES MODEL/profile in physical roster instances",
+          "condition": "Selected Renegade Warband Detachment",
+          "expectedRosterEffect": "Remove canonical Dark Pacts ability while retaining source facts",
+          "sourceClause": "HERETIC ASTARTES models from your army lose the Dark Pacts ability.",
+          "whyExistingLanguageInsufficient": "Existing REMOVE_KEYWORD removes a keyword, not an ability; GRANT_ABILITY cannot express canonical ability subtraction.",
+          "evidence": {
+            "field": [
+              "content",
+              0,
+              "text"
+            ],
+            "quote": "HERETIC ASTARTES models from your army lose the Dark Pacts ability."
+          },
+          "affectedCanonicalAbilityIds": [
+            "army-rule-dark-pacts"
+          ]
+        }
+      ]
+    }
+  ]
+}
