@@ -1,0 +1,36 @@
+{
+  "schema": "csm-roster-reference-bindings/v2",
+  "abilities": {
+    "core-deep-strike": {"title":"Deep Strike","parameters":{}},
+    "core-scouts": {"title":"Scouts","parameters":{"distance":6}},
+    "core-infiltrators": {"title":"Infiltrators","parameters":{}},
+    "core-stealth": {"title":"Stealth","parameters":{}},
+    "core-lone-operative": {"title":"Lone Operative","parameters":{}},
+    "core-feel-no-pain": {"title":"Feel No Pain","parameters":{"value":5}}
+  },
+  "memberships": [
+    {"referenceId":"datasheet-chaos-lord-in-terminator-armour:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-chaos-lord-with-jump-pack:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-heretic-astartes-daemon-prince-with-wings:rule-reference:2","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-sorcerer-in-terminator-armour:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-abaddon-the-despoiler:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-haarken-worldclaimer:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-huron-blackheart:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-kravek-morne:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-vashtorr-the-arkifane:rule-reference:2","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-chaos-terminator-squad:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-mutilators:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-obliterators:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-raptors:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-warp-talons:rule-reference:1","canonicalId":"core-deep-strike","parameters":{},"sourceLabel":"Deep Strike"},
+    {"referenceId":"datasheet-accursed-cultists:rule-reference:2","canonicalId":"core-scouts","parameters":{"distance":6},"sourceLabel":"Scouts 6\""},
+    {"referenceId":"datasheet-red-corsairs-reave-captain:rule-reference:1","canonicalId":"core-infiltrators","parameters":{},"sourceLabel":"Infiltrators"},
+    {"referenceId":"datasheet-red-corsairs-raiders:rule-reference:1","canonicalId":"core-infiltrators","parameters":{},"sourceLabel":"Infiltrators"},
+    {"referenceId":"datasheet-cypher:rule-reference:1","canonicalId":"core-lone-operative","parameters":{},"sourceLabel":"Lone Operative"},
+    {"referenceId":"datasheet-nemesis-claw:rule-reference:1","canonicalId":"core-stealth","parameters":{},"sourceLabel":"Stealth"},
+    {"referenceId":"datasheet-fabius-bile:rule-reference:1","canonicalId":"core-feel-no-pain","parameters":{"value":5},"sourceLabel":"Feel No Pain 5+"},
+    {"referenceId":"datasheet-huron-blackheart:rule-reference:2","canonicalId":"core-feel-no-pain","parameters":{"value":5},"sourceLabel":"Feel No Pain 5+"},
+    {"referenceId":"datasheet-chaos-spawn:rule-reference:1","canonicalId":"core-feel-no-pain","parameters":{"value":5},"sourceLabel":"Feel No Pain 5+"},
+    {"referenceId":"datasheet-accursed-cultists:rule-reference:1","canonicalId":"core-feel-no-pain","parameters":{"value":6},"sourceLabel":"Feel No Pain 6+"}
+  ]
+}

@@ -4,8 +4,9 @@ This is the source-first factual stage based on
 `e77ea12d312f1bec6ea6632e102777792c06de38`. The factual foundation is unchanged.
 The subsequent semantic overlay uses the existing shared Rule Contract
 schema, binders and compatibility compiler. It is not wired into the Army Book,
-roster import or effect projection. No UI or production executable roster-effect
-declarations are included. The shared runtime supports Wounds modifiers,
+roster import or player-facing effect projection. The book-owned executable
+declaration layer below is independently exercised with canonical-ID roster
+inputs; it is not connected to import or UI. The shared runtime supports Wounds modifiers,
 canonical MODEL ability suppression and specific canonical MODEL ability ranges.
 Living Carapace, Slaves to None and Crown of Worms are lowered.
 
@@ -161,8 +162,9 @@ not come from legacy CSM contracts or compatibility answers.
 Both BUILT and battle-only owners have validated applicability contracts:
 **315 contracts total**. Battle-only contracts retain canonical text, source
 evidence, selectors, roles, targets and explicit BATTLE prerequisites; they do
-not implement battle execution. BUILT does not imply executable roster effects
-at this stage. Corrections, source aliases, structured table children,
+not implement battle execution. BUILT does not itself imply executable roster
+effects; the separate declaration census below identifies those clauses.
+Corrections, source aliases, structured table children,
 construction options and static information retain their factual owner and do
 not fabricate a second effect authority.
 
@@ -258,3 +260,75 @@ test failure: its temporary fixture omits
 `books/shared/canonical-content-v2/effective-content.mjs`. That exact missing
 dependency was independently reproduced from the same clean base archive;
 AdMech V2 factual, contract and 43-clause effective-runtime guards pass.
+
+## Book-owned roster-effect declaration layer
+
+`roster-effect-build.mjs` consumes the existing source-backed typed contracts.
+It produces an in-memory disposable view with **57 executable clauses**:
+28 Enhancement, 8 Detachment, 16 Daemonic Allegiance and 5 datasheet clauses.
+All 315 applicability contracts and canonical source records are preserved;
+no generated publication or legacy CSM runtime is an input. No shared runtime
+operation or browser/import path is added.
+
+The 58th executable clause,
+`army-rule-cult-of-the-dark-gods::source-clause`, remains explicitly deferred.
+Its allied recipient foundation, cross-registry roster dependencies and Army
+Faction input are absent. It has no executable effects. No global Army Rule
+dispatch or allied datasheet is introduced.
+
+The declaration projection binds existing operations to canonical clause IDs,
+selectors, exact MODEL/composition recipients, conditions, source evidence and
+duration evidence. Canonical Upgrade owners remain recorded separately from
+their owning physical DATASHEET dispatch address. The eight executable
+bearer-unit gaps use disjoint standalone and attached bindings; Huron's ninth
+scope binding preserves display-only canonical references without executing
+their battle permissions.
+
+`roster-reference-bindings.json` explicitly binds accepted rule-reference
+memberships to canonical ability identities and parameters. Source labels are
+validation evidence, never runtime joins. `roster-effect-context.mjs` supplies
+the existing generic interpreter with these book-owned explicit roster inputs:
+
+- `selectedMarkId`: one canonical Mark option; `null` means known absent and
+  omitted means unknown. Keywords or captions never establish a selected Mark.
+- `selectedUpgradeIds`: canonical option IDs on the unit or exact model row.
+  An empty list means known absent. The currently accepted Allegiance options
+  require singleton MODEL ownership; foreign, competing or ambiguous choices
+  are rejected.
+- `enhancementAssignments`: the existing shared exact bearer composition scope.
+  Aggregate weapon selections never establish individual bearer ownership.
+- `initialAttachments`: an optional explicit physical attachment snapshot for
+  Fabius's start-of-battle prerequisite. Current attachment alone never supplies
+  this historical input, and reattachment to another unit does not satisfy it.
+
+Profile presence uses positive quantities and the canonical statline binding.
+Scouts prerequisites use canonical identity plus exact distance on the actual
+Bodyguard unit. A prerequisite-only shared-runtime projection supplies effective
+abilities without self-enabling the Scouts grant; the final projection rebuilds
+from the same immutable base. The best-save condition preserves intrinsic
+invulnerable saves stronger than 5+. These are input normalization and typed
+binding responsibilities; all selector/condition/effect interpretation remains
+in the existing shared kernel and roster runtime.
+
+```text
+node books/chaos-space-marines/v2/roster-effect-declarations-qa.mjs
+node books/chaos-space-marines/v2/roster-effect-bindings-qa.mjs
+node books/chaos-space-marines/v2/roster-effect-scope-qa.mjs
+```
+
+These guards execute every one of the 57 clauses with deterministic canonical-ID
+fixtures. They cover physical duplicates, mixed profiles, exact weapon ownership,
+all eight bearer-unit scopes, stronger intrinsic saves, selection and attachment
+changes, remove/restore, provenance and immutable canonical inputs. Independent
+expected-output controls reject numeric-value, owner-selector, recipient-selector
+and bearer-unit-binding mutations. Battle-only and display-only clauses have no
+executable effects. This stage makes no import or UI certification claim.
+
+The declaration-stage regression run also reproduces three unrelated legacy
+failures from a fresh archive of `da82228b00fbb29cd737fad5dbb77e733272068e`:
+`qa:csm` expects 1,184,893 bytes for the hub capture instead of its unchanged
+1,181,088 LF bytes; `qa:am` remains 214/215 because its isolated fixture omits
+`canonical-content-v2/effective-content.mjs`; and `qa:integration` retains the
+CSM entry verification-status/artwork assertion. None is counted as a passing
+suite or repaired here. The source-first CSM and targeted DG/AdMech V2 guards
+pass independently.
