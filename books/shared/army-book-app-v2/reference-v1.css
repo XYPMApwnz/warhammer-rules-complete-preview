@@ -16,6 +16,7 @@
 .v1-reference-article a { color: var(--book-link, var(--book-ink, #e2dcc9)); background: transparent; border-color: var(--book-control-line, #565b3b); text-decoration: underline; text-underline-offset: 3px; }
 .v1-reference-article a:hover { background: var(--book-panel-raised, #252c25); color: var(--book-ink, #e2dcc9); }
 .v1-reference-article .reference-table { max-width: 100%; overflow-x: auto; margin: 14px 0; }
+.v1-reference-article .reference-table .reference-fact { white-space: pre-line; }
 .v1-reference-article table { border-collapse: collapse; width: 100%; }
 .v1-reference-article th, .v1-reference-article td { padding: 8px; border: 1px solid var(--book-control-line, #565b3b); text-align: left; }
 .term-popup .v1-reference-article { border: 0; padding: 4px 0; }

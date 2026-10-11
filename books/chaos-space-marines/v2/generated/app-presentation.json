@@ -3104,8 +3104,12 @@
           "table": {
             "id": "detachment-huron-s-marauders:rule:table:1::/rows",
             "row": 0,
-            "column": 0
-          }
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
+          },
+          "displayValue": "Huron’s Elite\n\nHand-picked by Huron Blackheart himself, these warriors strive to retain his favour with feats of arms.\n\nEach time a model in this unit makes an attack, add 1 to the Hit roll."
         },
         {
           "id": "detachment-huron-s-marauders:rule:table:2::/rows/0/0",
@@ -3121,8 +3125,12 @@
           "table": {
             "id": "detachment-huron-s-marauders:rule:table:2::/rows",
             "row": 0,
-            "column": 0
-          }
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
+          },
+          "displayValue": "Mobile Marauders\n\nThe Red Corsairs utilise a highly mobile form of warfare and, under Huron’s watch, are relentless in their aggression.\n\nThis unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n\nDesigner’s Note: If a unit is gaining eligibility to shoot and declare a charge in a turn in which it Fell Back as a result of being visible to Huron Blackheart, but after making a Fall Back move it is no longer visible to Huron Blackheart, that unit will not be eligible to shoot in your Shooting phase or to declare a charge in your Charge phase unless it is visible again at the start of the respective phase."
         }
       ],
       "links": [],
@@ -3161,8 +3169,12 @@
           "table": {
             "id": "detachment-huron-s-marauders:rule:table:1::/rows",
             "row": 0,
-            "column": 0
-          }
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
+          },
+          "displayValue": "Huron’s Elite\n\nHand-picked by Huron Blackheart himself, these warriors strive to retain his favour with feats of arms.\n\nEach time a model in this unit makes an attack, add 1 to the Hit roll."
         }
       ],
       "links": [],
@@ -3201,8 +3213,12 @@
           "table": {
             "id": "detachment-huron-s-marauders:rule:table:2::/rows",
             "row": 0,
-            "column": 0
-          }
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
+          },
+          "displayValue": "Mobile Marauders\n\nThe Red Corsairs utilise a highly mobile form of warfare and, under Huron’s watch, are relentless in their aggression.\n\nThis unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n\nDesigner’s Note: If a unit is gaining eligibility to shoot and declare a charge in a turn in which it Fell Back as a result of being visible to Huron Blackheart, but after making a Fall Back move it is no longer visible to Huron Blackheart, that unit will not be eligible to shoot in your Shooting phase or to declare a charge in your Charge phase unless it is visible again at the start of the respective phase."
         }
       ],
       "links": [],
@@ -5376,7 +5392,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 0,
-            "column": 0
+            "column": 0,
+            "rowSpan": 2,
+            "columnSpan": 1,
+            "header": true
           }
         },
         {
@@ -5393,7 +5412,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 0,
-            "column": 1
+            "column": 1,
+            "rowSpan": 1,
+            "columnSpan": 2,
+            "header": true
           }
         },
         {
@@ -5410,7 +5432,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 1,
-            "column": 0
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": true
           }
         },
         {
@@ -5427,7 +5452,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 1,
-            "column": 1
+            "column": 1,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": true
           }
         },
         {
@@ -5444,7 +5472,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 2,
-            "column": 0
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5461,7 +5492,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 2,
-            "column": 1
+            "column": 1,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5478,7 +5512,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 2,
-            "column": 2
+            "column": 2,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5495,7 +5532,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 3,
-            "column": 0
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5512,7 +5552,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 3,
-            "column": 1
+            "column": 1,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5529,7 +5572,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 3,
-            "column": 2
+            "column": 2,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5546,7 +5592,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 4,
-            "column": 0
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5563,7 +5612,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 4,
-            "column": 1
+            "column": 1,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5580,7 +5632,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 4,
-            "column": 2
+            "column": 2,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         }
       ],
@@ -5620,7 +5675,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 0,
-            "column": 0
+            "column": 0,
+            "rowSpan": 2,
+            "columnSpan": 1,
+            "header": true
           }
         },
         {
@@ -5637,7 +5695,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 0,
-            "column": 1
+            "column": 1,
+            "rowSpan": 1,
+            "columnSpan": 2,
+            "header": true
           }
         },
         {
@@ -5654,7 +5715,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 1,
-            "column": 0
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": true
           }
         },
         {
@@ -5671,7 +5735,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 1,
-            "column": 1
+            "column": 1,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": true
           }
         },
         {
@@ -5688,7 +5755,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 2,
-            "column": 0
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5705,7 +5775,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 2,
-            "column": 1
+            "column": 1,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5722,7 +5795,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 2,
-            "column": 2
+            "column": 2,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5739,7 +5815,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 3,
-            "column": 0
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5756,7 +5835,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 3,
-            "column": 1
+            "column": 1,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5773,7 +5855,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 3,
-            "column": 2
+            "column": 2,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5790,7 +5875,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 4,
-            "column": 0
+            "column": 0,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5807,7 +5895,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 4,
-            "column": 1
+            "column": 1,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         },
         {
@@ -5824,7 +5915,10 @@
           "table": {
             "id": "detachment-deceptors:rule:table:1::/rows",
             "row": 4,
-            "column": 2
+            "column": 2,
+            "rowSpan": 1,
+            "columnSpan": 1,
+            "header": false
           }
         }
       ],
@@ -38197,7 +38291,7 @@
             "path": "/displayName"
           },
           "presentation": "heading",
-          "displayValue": "Leader"
+          "displayValue": "Support"
         }
       ],
       "links": [],
@@ -59087,6 +59181,7 @@
             "entityId": "datasheet-masters-of-the-maelstrom:base:1",
             "path": "/text"
           },
+          "displayValue": "Garreon the Corpsemaster / Garlon Souleater / Katar Garrix: ⌀40mm",
           "presentationPath": "/blocks/108/text"
         },
         {
@@ -59099,6 +59194,7 @@
             "entityId": "datasheet-masters-of-the-maelstrom:base:2",
             "path": "/text"
           },
+          "displayValue": "Captain Sargotta: ⌀40mm; The Enforcer: ⌀32mm",
           "presentationPath": "/blocks/109/text"
         }
       ],
@@ -59268,7 +59364,7 @@
             "path": "/displayName"
           },
           "presentation": "heading",
-          "displayValue": "Leader"
+          "displayValue": "Support"
         }
       ],
       "links": [],
@@ -325493,7 +325589,8 @@
               "path": "/forceDispositions/1"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-pactbound-zealots:rule": {
         "id": "detachment-pactbound-zealots:rule",
@@ -325744,7 +325841,8 @@
               "path": "/forceDispositions/1"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-creations-of-bile:rule": {
         "id": "detachment-creations-of-bile:rule",
@@ -325981,7 +326079,8 @@
               "path": "/forceDispositions/1"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-huron-s-marauders:rule": {
         "id": "detachment-huron-s-marauders:rule",
@@ -326239,7 +326338,8 @@
               "path": "/forceDispositions/1"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-renegade-raiders:rule": {
         "id": "detachment-renegade-raiders:rule",
@@ -326465,7 +326565,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-deceptors:rule": {
         "id": "detachment-deceptors:rule",
@@ -326719,7 +326820,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-dread-talons:rule": {
         "id": "detachment-dread-talons:rule",
@@ -326945,6 +327047,32 @@
               "path": "/forceDispositions/0"
             }
           }
+        ],
+        "qualifiers": [
+          {
+            "kind": {
+              "id": "detachment-nightmare-hunt:mfm::/qualifiers/0/kind",
+              "label": "kind",
+              "value": "UNIQUE",
+              "type": "text",
+              "contextId": "detachment-nightmare-hunt",
+              "source": {
+                "entityId": "detachment-nightmare-hunt:mfm",
+                "path": "/qualifiers/0/kind"
+              }
+            },
+            "value": {
+              "id": "detachment-nightmare-hunt:mfm::/qualifiers/0/value",
+              "label": "Points",
+              "value": "NIGHTMARE",
+              "type": "text",
+              "contextId": "detachment-nightmare-hunt",
+              "source": {
+                "entityId": "detachment-nightmare-hunt:mfm",
+                "path": "/qualifiers/0/value"
+              }
+            }
+          }
         ]
       },
       "detachment-nightmare-hunt:rule": {
@@ -327157,7 +327285,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-warpstrike-champions:rule": {
         "id": "detachment-warpstrike-champions:rule",
@@ -327397,7 +327526,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-chaos-cult:rule": {
         "id": "detachment-chaos-cult:rule",
@@ -327637,7 +327767,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-cult-of-the-arkifane:rule": {
         "id": "detachment-cult-of-the-arkifane:rule",
@@ -327849,7 +327980,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-renegade-warband:rule": {
         "id": "detachment-renegade-warband:rule",
@@ -328061,7 +328193,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-fellhammer-siege-host:rule": {
         "id": "detachment-fellhammer-siege-host:rule",
@@ -328273,7 +328406,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-soulforged-warpack:rule": {
         "id": "detachment-soulforged-warpack:rule",
@@ -328527,7 +328661,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-veterans-of-the-long-war:rule": {
         "id": "detachment-veterans-of-the-long-war:rule",
@@ -328790,7 +328925,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-cabal-of-chaos:rule": {
         "id": "detachment-cabal-of-chaos:rule",
@@ -328925,7 +329061,8 @@
               "path": "/forceDispositions/0"
             }
           }
-        ]
+        ],
+        "qualifiers": []
       },
       "detachment-devotees-of-destruction:rule": {
         "id": "detachment-devotees-of-destruction:rule",
@@ -329058,6 +329195,32 @@
             "source": {
               "entityId": "detachment-murdertalon-raiders:mfm",
               "path": "/forceDispositions/0"
+            }
+          }
+        ],
+        "qualifiers": [
+          {
+            "kind": {
+              "id": "detachment-murdertalon-raiders:mfm::/qualifiers/0/kind",
+              "label": "kind",
+              "value": "UNIQUE",
+              "type": "text",
+              "contextId": "detachment-murdertalon-raiders",
+              "source": {
+                "entityId": "detachment-murdertalon-raiders:mfm",
+                "path": "/qualifiers/0/kind"
+              }
+            },
+            "value": {
+              "id": "detachment-murdertalon-raiders:mfm::/qualifiers/0/value",
+              "label": "Points",
+              "value": "NIGHTMARE",
+              "type": "text",
+              "contextId": "detachment-murdertalon-raiders",
+              "source": {
+                "entityId": "detachment-murdertalon-raiders:mfm",
+                "path": "/qualifiers/0/value"
+              }
             }
           }
         ]

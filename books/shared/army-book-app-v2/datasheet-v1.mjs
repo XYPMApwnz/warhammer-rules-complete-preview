@@ -500,8 +500,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       if(child.kind!=='DATASHEET_SECTION')continue;
       const role=config.sectionRoles[child.id];
       if(role==='leader'&&eligible){
-        const leader=part('leader','Leader'),titleField=child.fields.find(f=>f.presentation==='heading');
-          if(titleField){const title=factValue('span',titleField);title.textContent='Leader';leader.querySelector('h4').replaceChildren(title);}
+        const titleField=child.fields.find(f=>f.presentation==='heading'),label=titleField?.displayValue??'Leader';
+        const leader=part('leader',label);
+          if(titleField){const title=factValue('span',titleField);title.textContent=label;leader.querySelector('h4').replaceChildren(title);}
           leader.append(el('p','','This model can be attached to the following units:'));
           const list=identity(el('ul'),eligible,instanceId);
           for(const field of eligible.fields.filter(f=>f.source.path.startsWith('/targetUnitReferenceIds/'))){const line=el('li'),link=anchor('',field.targetIds[0],true);link.append(factValue('span',field));line.append(link);list.append(line);}leader.append(list);

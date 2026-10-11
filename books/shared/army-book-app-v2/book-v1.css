@@ -252,6 +252,11 @@ body.v2-book-surface .v2-breadcrumb-current { color: var(--book-ink, #e2dcc9); }
 .v2-book-record .data-row > div:first-child { border-left: 0; }
 .v2-book-record .data-head { background: var(--panel-2); font-size: 11px; font-weight: 850; text-transform: uppercase; }
 .v2-book-record .data-head > div { border-top: 0; }
+.v2-book-record .data-row .book-fact-value { white-space: pre-line; }
+.source-table-scroll { max-width: 100%; overflow-x: auto; }
+.source-fact-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.source-fact-table :is(th,td) { padding: 11px; border: 1px solid var(--soft-line); text-align: left; overflow-wrap: anywhere; white-space: pre-line; }
+.source-fact-table th { background: var(--panel-2); }
 .v2-book-record figure { margin: 18px 0; }
 .v2-book-record figure img { display: block; max-width: 100%; height: auto; }
 .v2-book-record figcaption { margin-top: 8px; color: var(--muted); font-size: 12px; }

@@ -1,4 +1,5 @@
 /** Catalog articles and popups share this presentation, not generic record cards. */
+import {hasSourceTableLayout, renderSourceTable} from './source-table.mjs';
 export function createReferencePresenter({el,factValue,anchor,contract,cards,payload,allowedIds,renderWeapon,renderProfile}) {
   const value=(tag,field)=>{const node=factValue(tag,field);node.className='reference-fact';return node;};
   function render(id,{popup=false}={}) {
@@ -44,8 +45,11 @@ export function createReferencePresenter({el,factValue,anchor,contract,cards,pay
         paragraph.append(value('span',display));body.append(paragraph);
       }
       for(const fields of tables.values()) {
-        const wrap=el('div','reference-table'),table=el('table');
         const metadata=payload.bookPresentation?.records[section.card.id]?.tables?.find(item=>item.id===fields[0].table.id||item.path===fields[0].table.path);
+        if(hasSourceTableLayout(fields)){
+          body.append(renderSourceTable({el,fields,factValue:value,metadata,className:'reference-table'}));continue;
+        }
+        const wrap=el('div','reference-table'),table=el('table');
         if(metadata?.columns){const head=el('thead'),row=el('tr');for(const label of metadata.columns)row.append(el('th','',label));head.append(row);table.append(head);}
         const rows=new Map();for(const field of fields){if(!rows.has(field.table.row))rows.set(field.table.row,[]);rows.get(field.table.row).push(field);}
         const tbody=el('tbody');for(const rowFields of rows.values()){const row=el('tr');for(const field of rowFields.toSorted((a,b)=>a.table.column-b.table.column)){const cell=el('td');cell.append(value('span',field));if(field.visual){const image=el('img');Object.assign(image,field.visual);image.src=field.visual.url;cell.append(image);}row.append(cell);}tbody.append(row);}table.append(tbody);wrap.append(table);body.append(wrap);

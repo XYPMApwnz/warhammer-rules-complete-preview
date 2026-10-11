@@ -256,5 +256,129 @@
         "assetSha256": "fb17e2670e52e48671e2b6114b8284970020dbe76225afaa8779cfe4d6b284a1"
       }
     }
+  ],
+  "tableStructures": [
+    {
+      "tableId": "detachment-deceptors:rule:table:1",
+      "source": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54e028296c063629f43e82a9aba26943568dee3ae819e36620f72dec47529c4e",
+        "selector": "//*[@id=\"Masters-of-Misdirection\"]/parent::div//table[contains(@class,\"customTable\")]"
+      },
+      "cells": [
+        {
+          "fieldPath": "/rows/0/0",
+          "rowSpan": 2,
+          "columnSpan": 1,
+          "header": true
+        },
+        {
+          "fieldPath": "/rows/0/1",
+          "rowSpan": 1,
+          "columnSpan": 2,
+          "header": true
+        },
+        {
+          "fieldPath": "/rows/1/0",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": true
+        },
+        {
+          "fieldPath": "/rows/1/1",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": true
+        },
+        {
+          "fieldPath": "/rows/2/0",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false
+        },
+        {
+          "fieldPath": "/rows/2/1",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false
+        },
+        {
+          "fieldPath": "/rows/2/2",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false
+        },
+        {
+          "fieldPath": "/rows/3/0",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false
+        },
+        {
+          "fieldPath": "/rows/3/1",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false
+        },
+        {
+          "fieldPath": "/rows/3/2",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false
+        },
+        {
+          "fieldPath": "/rows/4/0",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false
+        },
+        {
+          "fieldPath": "/rows/4/1",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false
+        },
+        {
+          "fieldPath": "/rows/4/2",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false
+        }
+      ]
+    },
+    {
+      "tableId": "detachment-huron-s-marauders:rule:table:1",
+      "source": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54e028296c063629f43e82a9aba26943568dee3ae819e36620f72dec47529c4e",
+        "selector": "//*[@id=\"Tyrannical-Motivation\"]/parent::div/div[contains(@class,\"BreakInsideAvoid\")][1]//table"
+      },
+      "cells": [
+        {
+          "fieldPath": "/rows/0/0",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false,
+          "displayValue": "Huron’s Elite\n\nHand-picked by Huron Blackheart himself, these warriors strive to retain his favour with feats of arms.\n\nEach time a model in this unit makes an attack, add 1 to the Hit roll."
+        }
+      ]
+    },
+    {
+      "tableId": "detachment-huron-s-marauders:rule:table:2",
+      "source": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54e028296c063629f43e82a9aba26943568dee3ae819e36620f72dec47529c4e",
+        "selector": "//*[@id=\"Tyrannical-Motivation\"]/parent::div/div[contains(@class,\"BreakInsideAvoid\")][2]//table"
+      },
+      "cells": [
+        {
+          "fieldPath": "/rows/0/0",
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "header": false,
+          "displayValue": "Mobile Marauders\n\nThe Red Corsairs utilise a highly mobile form of warfare and, under Huron’s watch, are relentless in their aggression.\n\nThis unit is eligible to shoot and declare a charge in a turn in which it Fell Back.\n\nDesigner’s Note: If a unit is gaining eligibility to shoot and declare a charge in a turn in which it Fell Back as a result of being visible to Huron Blackheart, but after making a Fall Back move it is no longer visible to Huron Blackheart, that unit will not be eligible to shoot in your Shooting phase or to declare a charge in your Charge phase unless it is visible again at the start of the respective phase."
+        }
+      ]
+    }
   ]
 }

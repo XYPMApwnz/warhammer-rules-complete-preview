@@ -13,7 +13,7 @@ const dependencies=new Map([
   ['/glossary-return.js','text/javascript'],
   ['/manifest.webmanifest','application/manifest+json'],
   ['/books/core-rules/reader/mount.mjs','text/javascript'],
-  ...['global-glossary','global-glossary-content','glossary-v1'].map(name=>[
+  ...['global-glossary','global-glossary-content','glossary-v1','source-table'].map(name=>[
     `/books/shared/army-book-app-v2/${name}.mjs`,'text/javascript']),
   ...['warhammer-40000-logo-optimized.png','games-workshop-logo.png'].map(name=>[`/assets/${name}`,'image/png']),
   ...['core-rules-cover-480.webp','core-rules-cover-800.webp','adeptus-mechanicus-cover-480.webp','death-guard-cover-480.webp'].map(name=>[`/assets/${name}`,'image/webp']),

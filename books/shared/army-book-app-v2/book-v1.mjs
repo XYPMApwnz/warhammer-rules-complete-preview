@@ -1,4 +1,5 @@
 /** Actual V1 book templates adapted to canonical V2 fields. Presentation only. */
+import {hasSourceTableLayout, renderSourceTable} from './source-table.mjs';
 const bookKinds = new Set(['BOOK_USAGE_RULES','BOOK_USAGE','ARMY_RULE','ARMY_RULE_COMPONENT',
   'DETACHMENT','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','SOURCE_ERRATUM','SOURCE_UPDATE_REFERENCE']);
 const layoutPath=field=>field.presentationPath??field.source?.path;
@@ -54,8 +55,11 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
       const key=field.table.id;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(field);
     }
     for(const fields of groups.values()){
-      const table=el('div','data-table');table.setAttribute('role','table');
       const metadata=records[card.id]?.tables?.find(item=>item.path===fields[0].table.path||item.id===fields[0].table.id);
+      if(hasSourceTableLayout(fields)){
+        node.append(renderSourceTable({el,fields,factValue,metadata,className:'data-table'}));continue;
+      }
+      const table=el('div','data-table');table.setAttribute('role','table');
       if(metadata?.columns?.length){const header=el('div','data-row data-head');header.setAttribute('role','row');for(const name of metadata.columns){const cell=el('div','',name);cell.setAttribute('role','columnheader');header.append(cell);}table.append(header);}
       const rows=new Map();for(const field of fields){if(!rows.has(field.table.row))rows.set(field.table.row,[]);rows.get(field.table.row).push(field);}
       for(const rowFields of rows.values()){const row=el('div','data-row');row.setAttribute('role','row');for(const field of rowFields.sort((a,b)=>a.table.column-b.table.column)){const cell=el('div');cell.setAttribute('role','cell');cell.append(factValue('span',field));if(field.visual){const image=el('img');Object.assign(image,field.visual);image.src=field.visual.url;cell.append(image);}row.append(cell);}table.append(row);}
@@ -117,6 +121,16 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
     const node=identity(el('section','content-group detachment'),card),title=heading(card,'h3','category-title detachment-title',options);
     if(record.detachmentPoints){const owner=pointCard(record.pointRecordId);const badge=identity(el('span','detachment-dp'),owner);badge.append(factValue('span',record.detachmentPoints),document.createTextNode('DP'));title.append(badge);}node.append(title);
     if(record.forceDispositions?.length){const p=el('p','force-disposition','Force Disposition: ');record.forceDispositions.forEach((binding,index)=>{if(index)p.append(document.createTextNode(' / '));const owner=pointCard(record.pointRecordId);const node=identity(el('span'),owner);node.append(factValue('span',binding));p.append(node);});node.append(p);}
+    if(record.qualifiers?.length){
+      const line=el('p','detachment-qualifiers'),owner=pointCard(record.pointRecordId);
+      for(const [index,qualifier]of record.qualifiers.entries()){
+        if(index)line.append(document.createTextNode(' · '));
+        const item=identity(el('span'),owner);
+        const label=String(qualifier.kind.value).toLowerCase().replace(/(^|_)(\w)/g,(_,separator,letter)=>(separator?' ':'')+letter.toUpperCase());
+        item.append(factValue('span',{...qualifier.kind,displayValue:label}),document.createTextNode(': '),factValue('span',qualifier.value));line.append(item);
+      }
+      node.append(line);
+    }
     if(record.ruleId&&visible(record.ruleId))node.append(part(card,'DETACHMENT_RULE','Detachment Rule – '+cards.get(record.ruleId).title, [record.ruleId],options));
     if(record.enhancementIds?.some(visible))node.append(part(card,'ENHANCEMENT','Enhancements',record.enhancementIds,options));
     if(record.stratagemIds?.some(visible))node.append(part(card,'STRATAGEM','Stratagems',record.stratagemIds,options));

@@ -30,6 +30,8 @@ const visiblePaths={DATASHEET:[],PROFILE:['name','stats'],WEAPON_PROFILE:['name'
 
 export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
   const facts=built.facts,index=new Map(facts.entities.map(e=>[e.id,e]));
+  const sourceToCanonical=new Map(facts.entities.flatMap(e=>(e.provenance||[]).map(p=>[p.sourceEntityId,e.id])));
+  const attachmentRoles=new Map(read('./roster-attachment-bindings.json').declarations.map(binding=>[binding.declarationId,binding.role]));
   const contracts=new Map(built.book.entities.filter(e=>e.ruleContract).map(e=>[e.id,e.ruleContract]));
   const model={...facts,entities:facts.entities.map(entity=>({...structuredClone(entity),label:entity.displayName,
     kind:aliases[entity.kind]||entity.kind,parentId:entity.ownerId===facts.bookId?undefined:entity.ownerId,
@@ -73,7 +75,8 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
       const role={UNIT_COMPOSITION:'composition',ATTACHMENT_DECLARATION:'leader',TRANSPORT_DECLARATION:'transport'}[entity.kind]||'additional';
       roles[entity.id]=role;
       const heading=card.fields.find(f=>f.presentation==='heading');
-      if(heading&&role!=='additional')heading.displayValue={composition:'Unit Composition',leader:'Leader',transport:'Transport'}[role];
+      if(heading&&role!=='additional')heading.displayValue=role==='leader'&&attachmentRoles.get(entity.id)==='SUPPORT'
+        ?'Support':{composition:'Unit Composition',leader:'Leader',transport:'Transport'}[role];
       for(const field of card.fields.filter(f=>/^\/equipmentAndRules\/\d+\/text$/.test(f.source.path)))field.presentationPath=field.source.path.replace('/equipmentAndRules/','/blocks/');
     }
     if(entity.kind==='FAQ')for(const [i,field]of card.fields.entries()){
@@ -97,6 +100,16 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
     if(entity.kind==='MODEL_BASE_METADATA'){
       const composition=facts.entities.find(e=>e.kind==='UNIT_COMPOSITION'&&e.ownerId===entity.ownerId);
       const target=cards.get(composition.id),field=card.fields[0];
+      // A source-bound base exception has distinct composition recipients.
+      // Format those existing bindings instead of displaying the flattened tooltip.
+      const bases=facts.entities.filter(e=>e.kind==='MODEL_BASE_METADATA'&&e.ownerId===entity.ownerId);
+      if(bases.some(base=>new Set(base.data.scopeBindings.map(binding=>binding.value)).size>1)){
+        field.displayValue=entity.data.scopeBindings.map(binding=>{
+          const members=binding.compositionMemberSourceIds.map(id=>index.get(sourceToCanonical.get(id)));
+          assert.ok(members.every(member=>member?.kind==='COMPOSITION_MEMBER'),'Unbound base recipient');
+          return members.map(member=>member.data.composition.name).join(' / ')+': ⌀'+binding.value;
+        }).join('; ');
+      }
       // A separate details paragraph belongs to composition, never Weapons.
       field.label='Base';relocate(field,card,target,`/blocks/${100+target.fields.length}/text`);
     }
@@ -132,12 +145,26 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
     }
   }
   const bindingData=read('./presentation-bindings.json'),appBindings=read('./app-datasheet-bindings.json');
+  for(const binding of appBindings.tableStructures){
+    const source=fs.readFileSync(new URL('../../../'+binding.source.document,import.meta.url),'utf8');
+    assert.equal(crypto.createHash('sha256').update(source).digest('hex'),binding.source.sha256,'Source table structure drift');
+    const owner=cards.get(binding.tableId),parent=cards.get(owner.parentId);
+    for(const cell of binding.cells){
+      const field=owner.fields.find(field=>field.source.path===cell.fieldPath);
+      assert.ok(field?.table,'Unbound presentation table cell');
+      Object.assign(field.table,{rowSpan:cell.rowSpan,columnSpan:cell.columnSpan,header:cell.header});
+      if(cell.displayValue!==undefined){
+        assert.equal(cell.displayValue.replace(/\s/g,''),String(field.value).replace(/\s/g,''),'Source table text changed');
+        field.displayValue=cell.displayValue;
+      }
+      Object.assign(parent.fields.find(candidate=>candidate.id===field.id),structuredClone(field));
+    }
+  }
   // Instructions are enrolled presentation source occurrences, not inferred from profile count.
   const instruction=bindingData.instructionBindings[0];
   const html=fs.readFileSync(new URL('../../../'+instruction.sourceDocument,import.meta.url),'utf8');
   const instructionText=html.match(/<span id="tooltip_contenttooltipPointy"><i>([^<]+)<\/i><\/span>/)?.[1];
   assert.equal(crypto.createHash('sha256').update(instructionText).digest('hex'),instruction.expectedTextSha256,'Enrolled instruction drift');
-  const sourceToCanonical=new Map(facts.entities.flatMap(e=>(e.provenance||[]).map(p=>[p.sourceEntityId,e.id])));
   const profileSelections=bindingData.weaponProfileGroups.map(group=>({unitId:sourceToCanonical.get(group.ownerSourceId),groupId:group.id,
     profileIds:group.weaponProfileSourceIds,instructionId:group.instructionId,text:instructionText,
     source:{sourceId:instruction.sourceDocument,pointer:instruction.selector,sha256:instruction.expectedTextSha256}}));
@@ -166,6 +193,9 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
       const points=model.entities.find(e=>e.kind==='DETACHMENT_ROSTER_METADATA'&&e.parentId===entity.id);
       record.pointRecordId=points.id;record.detachmentPoints=cards.get(points.id).fields.find(f=>f.source.path==='/detachmentPoints');
       record.forceDispositions=cards.get(points.id).fields.filter(f=>f.source.path.startsWith('/forceDispositions/'));
+      record.qualifiers=points.data.qualifiers.map((qualifier,i)=>({
+        kind:cards.get(points.id).fields.find(field=>field.source.path===`/qualifiers/${i}/kind`),
+        value:cards.get(points.id).fields.find(field=>field.source.path===`/qualifiers/${i}/value`)}));
     }
     if(entity.kind==='ENHANCEMENT')record.pointRecordId=entity.data.costRecordIds[0];
   }
