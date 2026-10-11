@@ -6,7 +6,8 @@ import {encodeRoute,decodeRoute} from './route-context.mjs';
 import {createReferencePresenter} from './reference-v1.mjs';
 import {createGlossaryCatalog} from './glossary-v1.mjs';
 import {createRosterPanel} from './roster.mjs';
-import {projectPersonalBook, projectInstanceCards, instanceRoute} from './personal.mjs';
+import {projectPersonalBook, projectInstanceCards, projectFormedUnitCards, instanceRoute} from './personal.mjs';
+import {renderFormedUnit} from './formed-unit-presentation.mjs';
 import {projectContents, mountV1Contents} from './navigation-v1.mjs';
 import {createDatasheetPresenter} from './datasheet-v1.mjs';
 import {installDatasheetLayout, flushDatasheetLayouts} from './datasheet-v1-layout.mjs';
@@ -482,13 +483,18 @@ export function mount(document, payload, options = {}) {
     const unit=options.roster.state.units.find(unit=>unit.instanceId===instanceId);
     if (!unit) {renderPersonalHome(focus);main.prepend(el('p','v2-not-found','This physical unit is not in the imported roster.'));return;}
     selectedView='PERSONAL';selectedInstanceId=instanceId;selectedId=unit.canonicalUnitId;glossaryQuery='';
-    const effective=options.roster.effective(instanceId), variants=projectInstanceCards(cards,unit,effective);
     const title=personalBook().instances.find(entry=>entry.instanceId===instanceId).title;
     const toolbar=el('nav','v2-breadcrumbs');toolbar.append(button('Personal guide','',openPersonalGuide),el('span','', '/'),el('span','',title));
-    const selected=renderCard(variants.get(unit.canonicalUnitId)[0],{variants,instanceId});selected.classList.add('v2-current-card');
+    const selected=renderPhysicalUnit(instanceId);selected.classList.add('v2-current-card');
     selected.dataset.canonicalUnitId=unit.canonicalUnitId;
     main.replaceChildren(toolbar,selected);renderNavigation();
     if(focus){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
+  }
+
+  function renderPhysicalUnit(instanceId) {
+    const view=projectFormedUnitCards(cards,options.roster,instanceId);
+    return renderFormedUnit(view,{el,renderComponent:component=>
+      renderCard(component.card,{variants:component.variants,instanceId:component.unit.instanceId})});
   }
 
   function renderLibrary() {
@@ -549,10 +555,12 @@ export function mount(document, payload, options = {}) {
       // Canonical IDs may repeat in a personal book; the physical instance is
       // the section identity and supplies the existing effective projection.
       if(rendered.has(entry.id))return;rendered.add(entry.id);
-      const unit=options.roster.state.units.find(unit=>unit.instanceId===entry.instanceId);
-      const variants=projectInstanceCards(cards,unit,options.roster.effective(entry.instanceId));
-      const section=groupSection(entry.id,entry.label);
-      section.append(renderCard(variants.get(unit.canonicalUnitId)[0],{variants,instanceId:entry.instanceId}));
+      const view=projectFormedUnitCards(cards,options.roster,entry.instanceId);
+      view.components.forEach(component=>rendered.add(instanceRoute(component.unit.instanceId)));
+      // Each formed component already owns its physical Contents anchor. A
+      // second outer anchor would send a Character link to the Bodyguard.
+      const section=view.formedUnitId?el('section','v1-contents-section'):groupSection(entry.id,entry.label);
+      section.append(renderPhysicalUnit(entry.instanceId));
       parent.append(section);
     };
     for(const group of payload.groups.filter(group=>!personalMode&&group.id==='introduction'))for(const rootId of group.itemIds)appendCard(pages,rootId);

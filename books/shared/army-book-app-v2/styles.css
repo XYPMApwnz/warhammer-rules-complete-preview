@@ -59,10 +59,11 @@ body.v2-datasheet-mode .v2-main {
   min-height: calc(100dvh - 70px);
   color: var(--book-ink, #e2dcc9);
 }
-body.v2-datasheet-mode .v2-main > :is(.v2-breadcrumbs, .unit-card, .v1-contents-pages) {
+body.v2-datasheet-mode .v2-main > :is(.v2-breadcrumbs, .unit-card, .v2-formed-unit, .v1-contents-pages) {
   width: min(100%, 1100px);
   margin-inline: auto;
 }
+.v2-formed-unit { display: grid; gap: 24px; min-width: 0; }
 body.v2-datasheet-mode .v2-breadcrumbs { color: var(--book-muted, #969589); }
 body.v2-datasheet-mode .v2-breadcrumbs :is(button, a) { color: var(--book-accent, #bfd58c); }
 body.v2-datasheet-mode .v2-breadcrumb-current { color: var(--book-ink, #e2dcc9); }

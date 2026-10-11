@@ -2,6 +2,24 @@
 const clone = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 export const instanceRoute = id => `roster-unit/${encodeURIComponent(id)}`;
+/** A formed datasheet is a collection of independently owned presentations,
+ * never a synthetic roster unit. Resolve membership anew on every render. */
+export function projectFormedUnitCards(cards, roster, instanceId) {
+  const state=roster.state, effective=roster.effective(instanceId), group=effective.formedUnit;
+  assert(!group||group.memberInstanceIds.includes(instanceId),'Requested physical component is outside its formed unit');
+  const ids=group?[group.bodyguardInstanceId,...state.units.filter(unit=>
+    group.memberInstanceIds.includes(unit.instanceId)&&unit.instanceId!==group.bodyguardInstanceId).map(unit=>unit.instanceId)]:[instanceId];
+  assert(new Set(ids).size===ids.length&&(!group||ids.length===group.memberInstanceIds.length),'Invalid formed presentation membership');
+  const components=ids.map(id=>{
+    const unit=state.units.find(unit=>unit.instanceId===id);
+    assert(unit,'Missing physical presentation component');
+    const current=id===instanceId?effective:roster.effective(id);
+    assert(!group||current.formedUnit?.formedUnitId===group.formedUnitId,'Inconsistent formed presentation component');
+    const variants=projectInstanceCards(cards,unit,current);
+    return {unit,variants,card:variants.get(unit.canonicalUnitId)[0]};
+  });
+  return {formedUnitId:group?.formedUnitId||null,components};
+}
 export function projectPersonalBook(payload, state) {
   assert(state?.units?.length && state.detachmentIds?.length, 'No imported roster');
   const cards = new Map(payload.cards.map(card => [card.id,card]));

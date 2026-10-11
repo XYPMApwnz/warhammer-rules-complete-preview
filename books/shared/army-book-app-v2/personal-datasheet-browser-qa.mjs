@@ -18,7 +18,7 @@ fs.mkdirSync(out,{recursive:true});
 const read=file=>JSON.parse(fs.readFileSync(path.join(repo,file),'utf8'));
 const payloads=new Map([['death-guard',buildDg()],['adeptus-mechanicus',buildAm()]]);
 const books=new Map([['death-guard',read('books/death-guard/v2/generated/rule-contract-effective.json')],['adeptus-mechanicus',read('books/adeptus-mechanicus/v2/generated/roster-runtime.json')]]);
-const baseline=new Map(['datasheet-v1.mjs','datasheet-v1.css','datasheet-v1-layout.mjs','personal.mjs'].map(name=>['/books/shared/army-book-app-v2/'+name,
+const baseline=new Map(['datasheet-v1.mjs','datasheet-v1.css','datasheet-v1-layout.mjs','personal.mjs','runtime.mjs','styles.css'].map(name=>['/books/shared/army-book-app-v2/'+name,
   execFileSync('git',['show',baselineHead+':books/shared/army-book-app-v2/'+name],{cwd:repo,maxBuffer:8*1024*1024})]));
 const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.woff2':'font/woff2'};
 const server=http.createServer((request,response)=>{
@@ -38,9 +38,13 @@ const browser=await chromium.launch({headless:true,...(executablePath?{executabl
 const errors=[],normalComparisons=[],personalResults=[],syntheticResults=[];
 const priority=new Set(['unit-lord-of-contagion','unit-deathshroud-terminators','unit-great-unclean-one','unit-helbrute','unit-servitor-battleclade','unit-tech-priest-dominus','unit-skitarii-rangers','unit-sicarian-infiltrators']);
 const wait=async page=>{await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);};
-const settle=async page=>{await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(image=>image.decode().catch(()=>{})));window.scrollTo({top:0,behavior:'instant'});});await page.waitForTimeout(50);};
+const settle=async page=>{await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(image=>image.decode().catch(()=>{})));window.scrollTo({top:0,behavior:'instant'});
+  const prefix=location.pathname.startsWith('/baseline/')?'/baseline':'';
+  const {flushDatasheetLayouts}=await import(prefix+'/books/shared/army-book-app-v2/datasheet-v1-layout.mjs');flushDatasheetLayouts(document.querySelector('main'));
+});await page.waitForTimeout(50);};
 async function openPage(context,army,old=false){const page=await context.newPage();page.on('pageerror',error=>errors.push({army,baseline:old,error:error.message}));await page.goto(origin+(old?'/baseline':'')+`/books/${army}/v2/app.html`);await wait(page);return page;}
-async function snapshot(page){return page.locator('main .unit-card').evaluate(root=>{
+async function snapshot(page){const instance=await page.evaluate(()=>new URL(location.href).searchParams.get('instance'));
+  return page.locator(instance?`main .unit-card[data-roster-instance-id="${instance}"]`:'main .unit-card').evaluate(root=>{
   const copy=root.cloneNode(true);copy.querySelectorAll('img').forEach(image=>{
     image.removeAttribute('loading');const url=new URL(image.getAttribute('src'),location.href);
     // The comparison server mounts the same tree below /baseline. Compare
@@ -200,7 +204,7 @@ async function verifyState(page,army,device,state,label,{load=true,screenshots=f
   for(const unit of state.units){
     await page.evaluate(id=>window.ArmyBookAppV2.openInstance(id),unit.instanceId);await settle(page);
     const effective=await page.evaluate(id=>window.ArmyBookAppV2.roster.effective(id),unit.instanceId);
-    const observed=await page.locator('main .unit-card').evaluate(root=>({
+    const observed=await page.locator(`main .unit-card[data-roster-instance-id="${unit.instanceId}"]`).evaluate(root=>({
       text:root.innerText,instanceId:root.dataset.rosterInstanceId,
       profiles:[...root.querySelectorAll('.ds-effective-profile-group,.model-profile')].filter(node=>node.matches('.ds-effective-profile-group')||!node.closest('.ds-effective-profile-group')).flatMap(node=>node.dataset.profileScopes?JSON.parse(node.dataset.profileScopes).map(([id,scope])=>({id,scope})): [{id:node.dataset.cardId,scope:node.dataset.compositionId||null}]),
       abilityLocations:[...root.querySelectorAll('[data-ability-presentation-identity]')].map(node=>({
