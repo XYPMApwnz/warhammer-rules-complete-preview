@@ -76,6 +76,51 @@
         800
       ],
       "textSha256": "c70a116de1840da62a5b371e56bd1d1ed89f37716370d3cb05136e808caf0a53"
+    },
+    {
+      "key": "13-right",
+      "page": 13,
+      "column": "right",
+      "bbox": [
+        300,
+        200,
+        555,
+        780
+      ],
+      "textSha256": "a419a3fd9ce9ddb254db22464f1d9e1e09f157e085f7063a7cfc9de66c32ad6d"
+    }
+  ],
+  "nativeRules": [
+    {
+      "nativeRule": true,
+      "sourceEntityId": "detachment-huron-s-marauders:enhancement:2",
+      "sourceHeading": "Raid Leader",
+      "sourceOwnerSelector": "detachment-huron-s-marauders:enhancement:2",
+      "columnKey": "13-right",
+      "span": [
+        492,
+        716
+      ],
+      "textSha256": "9eed7c4edc9b67ef08d78a485decc570c32ef9b95000c19ffba803e48d85db1e",
+      "status": "native_authority_applied",
+      "targets": [
+        {
+          "sourceId": "detachment-huron-s-marauders:enhancement:2",
+          "corpusPointer": "/detachments/2/enhancements/1/text",
+          "expectedInputSha256": "d2466c703e50cd96143721c42aa26ef09681e363b47390837a2674d5597a6891"
+        }
+      ],
+      "patches": [
+        {
+          "targetIndex": 0,
+          "mode": "replace_value",
+          "replacementSpan": [
+            0,
+            224
+          ],
+          "replacementSha256": "9eed7c4edc9b67ef08d78a485decc570c32ef9b95000c19ffba803e48d85db1e"
+        }
+      ]
     }
   ],
   "updates": [

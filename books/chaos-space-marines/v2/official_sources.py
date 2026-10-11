@@ -65,7 +65,7 @@ def _validate_target(corpus: dict, target: dict):
 
 
 def read_official(root: Path) -> dict:
-    """Return 34 individual official edits and 15 official FAQ occurrences.
+    """Read bound official edits, native rule fields and FAQ occurrences.
 
     ``root`` is the repository root. Returned edit dictionaries deliberately
     retain the collect_sources interface and also expose typed source targets
@@ -89,8 +89,9 @@ def read_official(root: Path) -> dict:
             columns[column["key"]] = (text, column)
 
     updates = []
+    native_rules = []
     seen_spans = set()
-    for bound in binding["updates"]:
+    for bound in [*binding["updates"], *binding.get("nativeRules", [])]:
         text, column = columns[bound["columnKey"]]
         identity = (bound["columnKey"], *bound["span"])
         if identity in seen_spans:
@@ -117,18 +118,19 @@ def read_official(root: Path) -> dict:
             elif patch["mode"] != "replace_value":
                 raise ValueError("Unsupported official text correction operation")
             replacements.append({**patch, "replacement": replacement})
-        updates.append({
+        record = {
             "sourceEntityId": bound["sourceEntityId"],
             "sourceHeading": bound["sourceHeading"],
             "sourceOwnerSelector": bound["sourceOwnerSelector"],
             "sourcePage": column["page"], "sourceColumn": column["column"],
-            "sourceLedgerPointer": bound["sourceLedgerPointer"],
+            "sourceLedgerPointer": bound.get("sourceLedgerPointer"),
             "sourceDocument": binding["sourceDocument"],
             "sourceText": raw, "sourceSpan": bound["span"],
             "sourceTextSha256": bound["textSha256"],
             "status": bound["status"], "targets": copy.deepcopy(bound["targets"]),
             "patches": replacements,
-        })
+        }
+        (native_rules if bound.get("nativeRule") else updates).append(record)
 
     faqs = []
     for bound in binding["faqs"]:
@@ -143,14 +145,14 @@ def read_official(root: Path) -> dict:
             "officialOrder": bound["officialOrder"], "sourceSpan": bound["span"],
             "sourceDocument": binding["sourceDocument"], "sourceTextSha256": bound["textSha256"],
         })
-    for family, key in ((updates, "sourceEntityId"), (faqs, "sourceId")):
+    for family, key in ((updates, "sourceEntityId"), (native_rules, "sourceEntityId"), (faqs, "sourceId")):
         if len({item[key] for item in family}) != len(family):
             raise ValueError("Official source occurrence identity collision")
     secondary = copy.deepcopy(binding["secondaryErrata"])
     for occurrence in secondary:
         for target in occurrence["targets"]:
             _validate_target(corpus, target)
-    return {"updates": updates, "faqs": faqs, "secondaryErrata": secondary,
+    return {"updates": updates, "nativeRules": native_rules, "faqs": faqs, "secondaryErrata": secondary,
             "sourceDocument": binding["sourceDocument"], "sourceSha256": binding["sourceSha256"]}
 
 
@@ -160,12 +162,13 @@ def apply_official_overrides(corpus: dict, official: dict) -> dict:
     The caller retains immutable raw input. A changed source owner or value
     fails closed instead of permitting a title, prose or position fallback.
     """
-    for update in official["updates"]:
+    replacements = [*official["updates"], *official.get("nativeRules", [])]
+    for update in replacements:
         for target in update["targets"]:
             _validate_target(corpus, target)
     effective = copy.deepcopy(corpus)
     touched = set()
-    for update in official["updates"]:
+    for update in replacements:
         for patch in update["patches"]:
             target = update["targets"][patch["targetIndex"]]
             pointer = target["corpusPointer"]

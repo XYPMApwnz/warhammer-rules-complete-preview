@@ -197,11 +197,26 @@ def verify(base, effective):
     expected_changed = {
         "detachment-pactbound-zealots:rule", "detachment-dread-talons:stratagem:5",
         "detachment-soulforged-warpack:stratagem:4", "detachment-soulforged-warpack:stratagem:5",
-        "datasheet-obliterators:section:1#/blocks/0/text"}
+        "datasheet-obliterators:section:1#/blocks/0/text",
+        "detachment-huron-s-marauders:enhancement:2"}
     gameplay = {"DETACHMENT_RULE", "STRATAGEM", "DATASHEET_ABILITY", "EQUIPMENT_ABILITY", "MODEL_PROFILE", "WEAPON_PROFILE", "ENHANCEMENT"}
     changed = {sid for sid, identity in id_map.items() if raw_index[identity]["kind"] in gameplay
                and raw_index[identity]["data"] != effective_index[identity]["data"]}
     assert changed == expected_changed
+    for native in bound.get("nativeRules", []):
+        start, end = native["span"]
+        source_text = columns[native["columnKey"]][start:end]
+        for target in native["targets"]:
+            identity = id_map[target["sourceId"]]
+            raw, current = raw_index[identity], effective_index[identity]
+            assert current["data"]["text"] == source_text, "Native official wording lost"
+            assert current["provenance"][:len(raw["provenance"])] == raw["provenance"], "Captured provenance lost"
+            assert any(evidence["document"] == bound["sourceDocument"]
+                       and evidence["authority"] == "AUTHORITATIVE_CURRENT"
+                       and str(native["span"]) in evidence["location"]
+                       for evidence in current["provenance"]), "Native official provenance missing"
+            assert current["id"] == raw["id"] and current["ownerId"] == raw["ownerId"]
+            assert current.get("appliedCorrectionIds") == raw.get("appliedCorrectionIds"), "Native rule fabricated an erratum"
     for update in bound["updates"]:
         record = effective_index[id_map[update["sourceEntityId"]]]
         start, end = update["span"]
@@ -239,6 +254,8 @@ def main():
         lambda b, e: next(x for x in b["entities"] if x["kind"] == "MODEL_PROFILE")["data"]["stats"].update(W="99"),
         lambda b, e: next(x for x in e["entities"] if x["id"] == "detachment-soulforged-warpack:stratagem:4")["data"]["lines"][1].update(text="One VEHICLE."),
         lambda b, e: next(x for x in e["entities"] if x["kind"] == "OFFICIAL_UPDATE")["data"].update(effectiveTargetIds=[]),
+        lambda b, e: next(x for x in e["entities"] if x["id"] == "detachment-huron-s-marauders:enhancement:2")["data"].update(text="Unverified secondary wording"),
+        lambda b, e: next(x for x in e["entities"] if x["id"] == "detachment-huron-s-marauders:enhancement:2")["provenance"].pop(),
     ]
     for mutation in mutations:
         b, e = copy.deepcopy(base), copy.deepcopy(effective)

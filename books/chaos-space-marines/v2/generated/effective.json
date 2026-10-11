@@ -1594,7 +1594,7 @@
       "displayName": "Raid Leader",
       "data": {
         "title": "Raid Leader",
-        "text": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer’s unit is set up after disembarking from a TRANSPORT that has made a Normal move this turn, the bearer’s unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
+        "text": "Heretic Astartes model only (excluding Damned models). Each time the bearer’s unit is set up after disembarking from a Transport that has made a Normal move this turn, the bearer’s unit is still eligible to declare a charge.",
         "costRecordIds": [
           "detachment-huron-s-marauders:enhancement:2:mfm"
         ]
@@ -1606,6 +1606,13 @@
           "location": "enhancements under Huron's Marauders",
           "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
           "authority": "ACCEPTED_SECONDARY"
+        },
+        {
+          "sourceEntityId": "detachment-huron-s-marauders:enhancement:2",
+          "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+          "location": "PDF page 13 right; normalized column span [492, 716]; native rule",
+          "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+          "authority": "AUTHORITATIVE_CURRENT"
         }
       ]
     },
@@ -55991,7 +55998,7 @@
       "factOwnerId": "detachment-huron-s-marauders:enhancement:2",
       "capturedPayloadSha256": "8295CA8B26B93F32BA643BC2A9788EAA7617A154F4EA9333FCBA937E5A005372",
       "classification": "CANONICAL_FACT",
-      "effectivePayloadSha256": "8295CA8B26B93F32BA643BC2A9788EAA7617A154F4EA9333FCBA937E5A005372"
+      "effectivePayloadSha256": "4DD6EF5875BADAC510EC10D87646B642E6AF5FBE4E1B3D25C203B9B27BBF9104"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders:enhancement:3",

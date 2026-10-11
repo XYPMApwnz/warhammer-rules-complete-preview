@@ -32,7 +32,7 @@ const visiblePaths={DATASHEET:[],PROFILE:['name','stats'],WEAPON_PROFILE:['name'
 export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
   const facts=built.facts,index=new Map(facts.entities.map(e=>[e.id,e]));
   const sourceToCanonical=new Map(facts.entities.flatMap(e=>(e.provenance||[]).map(p=>[p.sourceEntityId,e.id])));
-  const attachmentRoles=new Map(read('./roster-attachment-bindings.json').declarations.map(binding=>[binding.declarationId,binding.role]));
+  const attachmentHeadings={LEADER:'Leader',SUPPORT:'Support','ATTACHED UNIT':'Attached Unit'};
   const contracts=new Map(built.book.entities.filter(e=>e.ruleContract).map(e=>[e.id,e.ruleContract]));
   const model={...facts,entities:facts.entities.map(entity=>({...structuredClone(entity),label:entity.displayName,
     kind:aliases[entity.kind]||entity.kind,parentId:entity.ownerId===facts.bookId?undefined:entity.ownerId,
@@ -76,8 +76,12 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
       const role={UNIT_COMPOSITION:'composition',ATTACHMENT_DECLARATION:'leader',TRANSPORT_DECLARATION:'transport'}[entity.kind]||'additional';
       roles[entity.id]=role;
       const heading=card.fields.find(f=>f.presentation==='heading');
-      if(heading&&role!=='additional')heading.displayValue=role==='leader'&&attachmentRoles.get(entity.id)==='SUPPORT'
-        ?'Support':{composition:'Unit Composition',leader:'Leader',transport:'Transport'}[role];
+      if(heading&&role!=='additional'){
+        const sourceHeading=entity.provenance[0].location;
+        if(role==='leader')assert.ok(attachmentHeadings[sourceHeading],'Unbound source attachment heading');
+        heading.displayValue=role==='leader'?attachmentHeadings[sourceHeading]
+          :{composition:'Unit Composition',transport:'Transport'}[role];
+      }
       for(const field of card.fields.filter(f=>/^\/equipmentAndRules\/\d+\/text$/.test(f.source.path)))field.presentationPath=field.source.path.replace('/equipmentAndRules/','/blocks/');
     }
     if(entity.kind==='FAQ')for(const [i,field]of card.fields.entries()){

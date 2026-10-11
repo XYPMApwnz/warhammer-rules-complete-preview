@@ -267,6 +267,17 @@ def bind_corrections(records, accounting, official, corpus, identities):
         for identity in affected:
             index[identity].setdefault("appliedCorrectionIds", []).append(correction["id"])
             index[identity]["provenance"].extend(copy.deepcopy(correction["provenance"]))
+    # Native official wording is source precedence, not a newly invented erratum.
+    # Retain the captured secondary evidence and append the actual native owner.
+    for native in official.get("nativeRules", []):
+        for target in native["targets"]:
+            for identity in targets(target):
+                index[identity]["provenance"].append({
+                    "sourceEntityId": target["sourceId"],
+                    "document": native["sourceDocument"],
+                    "location": f"PDF page {native['sourcePage']} {native['sourceColumn']}; normalized column span {native['sourceSpan']}; native rule",
+                    "sha256": official["sourceSha256"].upper(),
+                    "authority": "AUTHORITATIVE_CURRENT"})
     return applications
 
 

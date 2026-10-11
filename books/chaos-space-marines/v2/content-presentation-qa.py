@@ -42,11 +42,17 @@ for binding in bindings["tableStructures"]:
             assert re.sub(r"\s", "", field["value"]) == re.sub(r"\s", "", item["displayValue"])
             assert field["displayValue"] == item["displayValue"]
 
-# Display headings retain the exact source role. Eligible recipients are untouched.
+# Source section headings are independent of runtime attachment roles.
+corpus = json.loads((ROOT / "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json").read_text(encoding="utf-8"))
+identities = json.loads((HERE / "identity-bindings.json").read_text(encoding="utf-8"))["bindings"]
+source_ids = {item["id"]: item["sourceEntityId"] for item in identities}
+source_headings = {section["sourceId"]: section["title"].upper()
+                   for unit in corpus["datasheets"] for section in unit["sections"]}
 for declaration in json.loads((HERE / "roster-attachment-bindings.json").read_text(encoding="utf-8"))["declarations"]:
     card = cards[declaration["declarationId"]]
     heading = next(f for f in card["fields"] if f.get("presentation") == "heading")
-    assert heading["displayValue"] == {"LEADER": "Leader", "SUPPORT": "Support"}[declaration["role"]]
+    source_heading = source_headings[source_ids[declaration["declarationId"]]]
+    assert heading["displayValue"] == {"LEADER": "Leader", "SUPPORT": "Support", "ATTACHED UNIT": "Attached Unit"}[source_heading]
 
 print(json.dumps({"status": "PASS", "sourceTableStructures": len(bindings["tableStructures"]),
                   "boundCells": sum(len(b["cells"]) for b in bindings["tableStructures"])}))
