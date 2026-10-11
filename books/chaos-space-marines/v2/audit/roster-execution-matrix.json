@@ -7,8 +7,8 @@
   ],
   "battleBoundary": {
     "contractClauses": 408,
-    "runtimeBattleOnlyClauses": 193,
-    "note": "The requested 306 denominator is not the runtime classification count. Every non-executable contract clause is guarded, not merely a presumed battle count."
+    "runtimeBattleOnlyClauses": 304,
+    "note": "Explicit battle-only classifications are preserved from canonical declarations. Every non-executable contract clause has an empty effect payload."
   },
   "checks": {
     "removeRestore": 44,

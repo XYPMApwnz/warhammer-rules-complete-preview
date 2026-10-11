@@ -423,10 +423,14 @@ Desktop and 390×844 browser API runs independently import every fixture and
 match Node projection, including reload; poisoned dependency boundaries reject
 legacy and presentation modules. These are runtime checks, not UI acceptance.
 
-The current 408 contract clauses contain 57 executable clauses, 193 runtime
-`BATTLE_ONLY` classifications and other display/declaration clauses. The task's
-306 battle-only denominator is not that runtime census. Every non-executable
-clause is checked for an empty effect payload and every applied contribution
+The current 408 contract clauses contain 57 `ROSTER_EXECUTABLE`, 304
+`BATTLE_ONLY`, 30 `DISPLAY_ONLY` and 17 `NOT_AN_EFFECT` classifications.
+Normalization preserves explicit battle classifications from either declaration
+field or the contract's battle-action mode. The classification guard checks all
+111 restored clauses: 106 use existing physical-instance UNKNOWN entries and
+five use the existing canonical reference/compatibility path (including Dark
+Pacts). No global Army Rule dispatch is added. Every non-executable clause is
+checked for an empty effect payload and every applied contribution
 must belong to the exact 57-clause executable set. Cult of the Dark Gods remains
 canonically present and deferred. ROSTER-CONTENT-01, Effective Datasheet UI and
 Personal Guide are unchanged.

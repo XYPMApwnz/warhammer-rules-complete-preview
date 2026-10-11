@@ -173,7 +173,7 @@ export async function run() {
     executable:matrix.length,deferred:[deferredClause],
     battleBoundary:{contractClauses:book.entities.flatMap(rule=>rule.ruleContract?.clauses||[]).length,
       runtimeBattleOnlyClauses:book.entities.flatMap(rule=>rule.ruleContract?.clauses||[]).filter(clause=>clause.rosterClassification==='BATTLE_ONLY').length,
-      note:'The requested 306 denominator is not the runtime classification count. Every non-executable contract clause is guarded, not merely a presumed battle count.'},
+      note:'Explicit battle-only classifications are preserved from canonical declarations. Every non-executable contract clause has an empty effect payload.'},
     checks,matrix};
   const path=new URL('./audit/roster-execution-matrix.json',import.meta.url),text=JSON.stringify(artifact,null,2)+'\n';
   if(process.argv.includes('--write')){fs.mkdirSync(new URL('./audit/',import.meta.url),{recursive:true});fs.writeFileSync(path,text);}

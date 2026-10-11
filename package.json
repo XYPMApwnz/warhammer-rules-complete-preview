@@ -125,7 +125,7 @@
     "qa:csm:v2:roster-import:browser": "node books/chaos-space-marines/v2/roster-import-browser-qa.mjs",
     "qa:csm:v2:attachments": "node books/shared/roster-v2/attachment-service-qa.mjs && node books/shared/roster-v2/attachment-conditions-qa.mjs && node books/chaos-space-marines/v2/roster-attachment-qa.mjs",
     "qa:csm:v2:attachments:browser": "node books/chaos-space-marines/v2/roster-attachment-browser-qa.mjs",
-    "qa:csm:v2:roster-effects": "node books/chaos-space-marines/v2/roster-runtime-build.mjs --check && node books/chaos-space-marines/v2/roster-runtime-qa.mjs && node books/chaos-space-marines/v2/roster-runtime-edge-qa.mjs",
+    "qa:csm:v2:roster-effects": "node books/chaos-space-marines/v2/roster-runtime-build.mjs --check && node books/chaos-space-marines/v2/roster-classification-qa.mjs && node books/chaos-space-marines/v2/roster-runtime-qa.mjs && node books/chaos-space-marines/v2/roster-runtime-edge-qa.mjs",
     "qa:csm:v2:roster-effects:browser": "node books/chaos-space-marines/v2/roster-runtime-browser-qa.mjs"
   }
 }

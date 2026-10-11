@@ -82,7 +82,7 @@ export function buildCSMRosterEffectBook(built=buildCSMContracts()) {
     }
     for(const clause of contract.clauses) {
       clause.rosterEffects=[];
-      clause.rosterClassification=clause.productClassification==='BATTLE_ONLY'||contract.executionMode==='BATTLE_ACTION'
+      clause.rosterClassification=clause.rosterClassification==='BATTLE_ONLY'||clause.productClassification==='BATTLE_ONLY'||contract.executionMode==='BATTLE_ACTION'
         ?'BATTLE_ONLY':clause.productClassification==='NOT_EFFECT'?'NOT_AN_EFFECT':'DISPLAY_ONLY';
       clause.rosterClassificationNote={reason:clause.rosterClassification};
     }
