@@ -11,6 +11,7 @@ import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-cor
 import {renderCompatibilityEntry} from '../../shared/application-v2/compatibility.mjs';
 import {buildPresentationReferences,referenceDeclaration} from './presentation-reference-build.mjs';
 import {buildCSMRosterPresentation} from './roster-presentation.mjs';
+import {modelBaseDisplayValue} from '../../shared/army-book-app-v2/model-base-presentation.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const aliases={MODEL_PROFILE:'PROFILE',CORE_ABILITY_MEMBERSHIP:'RULE_REFERENCE',ARMY_RULE_MEMBERSHIP:'RULE_REFERENCE',
@@ -100,16 +101,12 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
     if(entity.kind==='MODEL_BASE_METADATA'){
       const composition=facts.entities.find(e=>e.kind==='UNIT_COMPOSITION'&&e.ownerId===entity.ownerId);
       const target=cards.get(composition.id),field=card.fields[0];
-      // A source-bound base exception has distinct composition recipients.
-      // Format those existing bindings instead of displaying the flattened tooltip.
+      // Preserve source-bound model captions when base declarations have
+      // different recipients, including exceptions within a model profile.
       const bases=facts.entities.filter(e=>e.kind==='MODEL_BASE_METADATA'&&e.ownerId===entity.ownerId);
-      if(bases.some(base=>new Set(base.data.scopeBindings.map(binding=>binding.value)).size>1)){
-        field.displayValue=entity.data.scopeBindings.map(binding=>{
-          const members=binding.compositionMemberSourceIds.map(id=>index.get(sourceToCanonical.get(id)));
-          assert.ok(members.every(member=>member?.kind==='COMPOSITION_MEMBER'),'Unbound base recipient');
-          return members.map(member=>member.data.composition.name).join(' / ')+': ⌀'+binding.value;
-        }).join('; ');
-      }
+      const displayValue=modelBaseDisplayValue(entity,bases,id=>index.get(sourceToCanonical.get(id)),
+        facts.entities.filter(e=>e.kind==='COMPOSITION_MEMBER'&&e.ownerId===entity.ownerId));
+      if(displayValue!==undefined)field.displayValue=displayValue;
       // A separate details paragraph belongs to composition, never Weapons.
       field.label='Base';relocate(field,card,target,`/blocks/${100+target.fields.length}/text`);
     }
