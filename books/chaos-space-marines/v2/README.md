@@ -332,3 +332,50 @@ failures from a fresh archive of `da82228b00fbb29cd737fad5dbb77e733272068e`:
 CSM entry verification-status/artwork assertion. None is counted as a passing
 suite or repaired here. The source-first CSM and targeted DG/AdMech V2 guards
 pass independently.
+
+## Attachment-only roster service
+
+`roster-attachments.mjs` connects the native canonical import service to the
+existing shared attachment graph. Receiving Bodyguard first, `candidates()`
+returns eligible physical Character/Support instances; `attach()`, `detach()`
+and `reattach()` preserve their independently owned state. No effect interpreter,
+Effective Datasheet projection, Personal Guide or CSM attachment UI is connected.
+
+All **21 source attachment declarations** are bound: 19 participant declarations
+and two recipient substitution declarations. Their **58 native canonical relation
+facts** yield 51 LEADER and seven SUPPORT pairs. Substitution declarations add
+their evidence to existing pairs; they do not invent foreign/Legends recipients.
+Ordinary Core capacity is one LEADER plus one SUPPORT, in either order.
+
+One additional conditional pair (Jump Pack Lord → Warp Talons) preserves two
+independent source permissions, Sorrowscent Vulture and Pact of Cursed Pinions.
+Only the physical owner with the matching assigned Enhancement and selected
+Detachment is eligible. There are **59 distinct native attachment pairs** in
+the adapter, 58 unconditional plus one conditional; no Enhancement stat/ability
+effect executes here. Falsehood's battle-dependent attachment remains excluded.
+
+Pactbound Zealots' current attachment restriction compares each component's
+intrinsic or explicitly selected canonical Mark before formation. Missing Marks
+are not inferred, and the formed-unit keyword union cannot establish a match.
+The small shared typed prerequisite check receives book-owned IDs/bindings;
+it contains no CSM facts or army-specific branch. All previous policies without
+these prerequisites retain their existing behavior.
+
+MODEL keywords use exact canonical composition-member bindings, including
+Dark Commune's Demagogue-only CHARACTER and Mindwitch-only PSYKER. Components,
+quantities, imported loadouts, Enhancements and options remain unchanged in the
+physical snapshot. Cult of the Dark Gods allied import remains deferred.
+
+```text
+npm run qa:csm:v2:attachments
+npm run qa:csm:v2:attachments:browser
+```
+
+The focused guards check all 2,916 native pairs, every base relation's
+attach/detach transition, enrolled evidence hashes, duplicate owners/recipients,
+mixed profiles, role capacity, order independence, illegal-action atomicity,
+selected Marks and Enhancement permission remove/restore. Desktop and 390×844
+browser API checks match Node state/context and survive reload; poisoned
+dependencies prove no legacy, effects, Rule Contracts or presentation code is
+loaded. These are attachment service checks, not a claim that CSM Personal Guide
+or roster UI has been enabled.

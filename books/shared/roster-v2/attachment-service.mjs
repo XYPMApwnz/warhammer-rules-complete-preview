@@ -1,4 +1,4 @@
-import {validateRoster,attachmentCheck,changeAttachment,formRoster,predicateContext} from './context.mjs';
+import {validateRoster,attachmentCheck,changeAttachment,formRoster,predicateContext,validateAttachmentConditions} from './context.mjs';
 
 const clone=value=>structuredClone(value);
 const requireValue=(condition,message)=>{if(!condition)throw new TypeError(message);};
@@ -9,6 +9,7 @@ export function createRosterAttachmentService(book,{importService,policies}) {
   book=clone(book);policies=clone(policies);
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
   requireValue(records.size===book.entities.length&&Array.isArray(policies),'Invalid attachment domain');
+  validateAttachmentConditions(book,policies);
   const edges=new Set();
   for (const policy of policies) {
     const key=policy.sourceId+'/'+policy.targetId;

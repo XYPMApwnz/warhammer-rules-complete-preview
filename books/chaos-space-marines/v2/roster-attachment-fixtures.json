@@ -1,0 +1,126 @@
+{
+  "schema": "roster-v2/attachment-fixtures",
+  "sourceAuthority": "generated/effective.json",
+  "fixtures": [
+    {
+      "id": "duplicate-leader-support-ownership",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\nChar1: 1x Chaos Lord (100 pts): Daemon hammer\nEnhancement: Eager for Vengeance\nChar2: 1x Chaos Lord (100 pts): Power fist\nChar3: 1x Master of Executions (100 pts): Axe of dismemberment\nEnhancement: Eye of Abaddon\nChar4: 1x Master of Executions (100 pts): Axe of dismemberment\n5x Legionaries (100 pts): 1x Chaos icon\n• 1x Aspiring Champion: Plasma pistol, Accursed weapon\n• 4x Legionary: Boltgun, Close combat weapon\n10x Legionaries (200 pts)\n• 1x Aspiring Champion: Bolt pistol, Astartes chainsword\n• 9x Legionary: Boltgun, Close combat weapon\n",
+      "actions": [
+        [
+          "ATTACH",
+          5,
+          1
+        ],
+        [
+          "ATTACH",
+          5,
+          3
+        ],
+        [
+          "DETACH",
+          null,
+          1
+        ],
+        [
+          "REATTACH",
+          5,
+          1
+        ],
+        [
+          "REATTACH",
+          6,
+          1
+        ]
+      ],
+      "orderControl": [
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          3
+        ]
+      ]
+    },
+    {
+      "id": "mixed-profile-components",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n5x Dark Commune (100 pts)\n• 1x Cult Demagogue: Autopistol, Commune stave\n• 1x Mindwitch: Warp Curse, Close combat weapon\n• 1x Iconarch: Autopistol, Close combat weapon, Chaos icon\n• 2x Blessed Blade: Commune blade\n8x Accursed Cultists (100 pts)\n• 3x Torment: Hideous mutations\n• 5x Mutant: Blasphemous appendages\n",
+      "actions": [
+        [
+          "ATTACH",
+          2,
+          1
+        ],
+        [
+          "DETACH",
+          null,
+          1
+        ],
+        [
+          "REATTACH",
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "conditional-nightmare-hunt",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Nightmare Hunt\nChar1: 1x Chaos Lord with Jump Pack (100 pts): Power fist\nEnhancement: Sorrowscent Vulture\nChar2: 1x Chaos Lord with Jump Pack (100 pts): Power fist\n5x Warp Talons (100 pts)\n• 1x Warp Talon Champion: Warp claws\n• 4x Warp Talon: Warp claws\n",
+      "actions": [
+        [
+          "ATTACH",
+          3,
+          1
+        ],
+        [
+          "DETACH",
+          null,
+          1
+        ],
+        [
+          "REATTACH",
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "conditional-murdertalon-raiders",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Murdertalon Raiders\nChar1: 1x Chaos Lord with Jump Pack (100 pts): Power fist\nEnhancement: Pact of Cursed Pinions\nChar2: 1x Chaos Lord with Jump Pack (100 pts): Power fist\n5x Warp Talons (100 pts)\n• 1x Warp Talon Champion: Warp claws\n• 4x Warp Talon: Warp claws\n",
+      "actions": [
+        [
+          "ATTACH",
+          3,
+          1
+        ],
+        [
+          "DETACH",
+          null,
+          1
+        ],
+        [
+          "REATTACH",
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "selected-marks",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Pactbound Zealots\nChar1: 1x Chaos Lord (100 pts): Daemon hammer, Mark: Nurgle\nChar2: 1x Master of Executions (100 pts): Axe of dismemberment, Mark: Nurgle\nChar3: 1x Chaos Lord (100 pts): Power fist, Mark: Khorne\n5x Legionaries (100 pts): Mark: Nurgle\n• 1x Aspiring Champion: Bolt pistol, Astartes chainsword\n• 4x Legionary: Boltgun, Close combat weapon\n",
+      "actions": [
+        [
+          "ATTACH",
+          4,
+          1
+        ],
+        [
+          "ATTACH",
+          4,
+          2
+        ]
+      ]
+    }
+  ]
+}

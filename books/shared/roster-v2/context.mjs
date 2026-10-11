@@ -157,6 +157,9 @@ export function attachmentCheck(book, state, policies, leaderInstanceId, bodygua
   if (state.attachments.some(a => a.leaderInstanceId === leaderInstanceId || a.bodyguardInstanceId === leaderInstanceId || a.leaderInstanceId === bodyguardInstanceId)) return bad('Physical instance already belongs to a formed unit');
   const relation = policies.find(p => p.sourceId === source.canonicalUnitId && p.targetId === target.canonicalUnitId);
   if (!relation) return bad('No canonical attachment relation');
+  if (!attachmentPermission(book,state,relation,source,target)) return bad('Canonical attachment prerequisite not satisfied');
+  const sourceIds=[...new Set([...relation.sourceIds,...(book.rosterAttachmentConstraints||[])
+    .filter(constraint=>state.detachmentIds.includes(constraint.detachmentId)).flatMap(constraint=>constraint.sourceIds)])];
   const existing = state.attachments.filter(a => a.bodyguardInstanceId === bodyguardInstanceId);
   const all = [...existing.map(a => state.units.find(u => u.instanceId === a.leaderInstanceId)), source];
   if (all.length > 1) {
@@ -168,13 +171,13 @@ export function attachmentCheck(book, state, policies, leaderInstanceId, bodygua
       if (relations.some(policy=>!['LEADER','SUPPORT'].includes(policy.role)) ||
           relations.filter(policy=>policy.role==='SUPPORT').length>1 ||
           relations.filter(policy=>policy.role==='LEADER').length>1) return bad('Canonical Leader/Support capacity exceeded');
-      return {valid:true,role:relation.role,sourceIds:relation.sourceIds};
+      return {valid:true,role:relation.role,sourceIds};
     }
     const allowed = all.some(u => policies.some(p => p.sourceId === u.canonicalUnitId && p.targetId === target.canonicalUnitId && p.additionalLeaders === 1));
     if (!allowed || all.length > 2) return bad('Canonical Leader capacity exceeded');
     if (new Set(all.map(u => u.canonicalUnitId)).size !== all.length) return bad('Duplicate canonical Leader excluded');
   }
-  return {valid:true, role:relation.role, sourceIds:relation.sourceIds};
+  return {valid:true, role:relation.role, sourceIds};
 }
 export function changeAttachment(book, state, policies, action, leaderId, bodyguardId) {
   assert(state?.units.some(u=>u.instanceId===leaderId), 'Unresolved physical attachment identity');
@@ -281,4 +284,46 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
     unitId:subject==='MODEL'?unit.canonicalUnitId:group?projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId:unit.canonicalUnitId,
     owner:{unitId:unit.canonicalUnitId,keywords:new Set(subject==='MODEL'?model.keywords:unit.keywords),unknownKeywords:new Set()},
     modelId:model?.canonicalProfileId,intrinsicKeywords:new Set(subject==='MODEL' ? model.intrinsicKeywords || unit.intrinsicKeywords : unit.intrinsicKeywords),keywords:new Set(subject==='MODEL'?model?.keywords:group?group.keywords:unit.keywords),abilities:new Set(abilityNames),roster,battle:{}};
+}
+
+// Typed, book-bound roster prerequisites. This checks attachment permission;
+// it does not grant keywords, execute effects or change component facts.
+export function attachmentPermission(book,state,policy,source,target) {
+  const detachedIds=state.detachmentIds||[];
+  if(policy.availability&&!policy.availability.some(requirement=>
+    detachedIds.includes(requirement.detachmentId)&&source.enhancementIds.includes(requirement.enhancementId)))return false;
+  if(!book.rosterAttachmentConstraints?.length)return true;
+  const records=new Map(book.entities.map(entity=>[entity.id,entity]));
+  const keywords=(unit,constraint)=>{
+    const data=records.get(unit.canonicalUnitId).data;
+    return new Set([...data.keywords,...data.factionKeywords,
+      ...selections(unit).flatMap(selection=>(selection.canonicalOptionIds||[]).map(id=>constraint.optionKeywords[id]).filter(Boolean))]);
+  };
+  for(const constraint of book.rosterAttachmentConstraints||[]) {
+    if(!detachedIds.includes(constraint.detachmentId))continue;
+    const left=keywords(source,constraint),right=keywords(target,constraint);
+    if(!constraint.sharedKeywords.some(keyword=>left.has(keyword)&&right.has(keyword)))return false;
+  }
+  return true;
+}
+
+export function validateAttachmentConditions(book,policies) {
+  const records=new Map(book.entities.map(entity=>[entity.id,entity]));
+  const assert=(condition,message)=>{if(!condition)throw new TypeError(message);};
+  for(const policy of policies)if(policy.availability!==undefined) {
+    assert(Array.isArray(policy.availability)&&policy.availability.length,'Empty attachment availability');
+    for(const requirement of policy.availability)assert(
+      records.get(requirement.detachmentId)?.kind==='DETACHMENT'&&
+      records.get(requirement.enhancementId)?.kind==='ENHANCEMENT'&&
+      records.get(requirement.enhancementId).parentId===requirement.detachmentId&&
+      policy.sourceIds.includes(requirement.enhancementId),'Unbound attachment availability');
+  }
+  for(const constraint of book.rosterAttachmentConstraints||[])assert(
+    records.get(constraint.detachmentId)?.kind==='DETACHMENT'&&
+    Array.isArray(constraint.sharedKeywords)&&constraint.sharedKeywords.length&&
+    constraint.sharedKeywords.every(keyword=>typeof keyword==='string'&&keyword)&&
+    constraint.optionKeywords&&Object.entries(constraint.optionKeywords).every(([id,keyword])=>
+      records.get(id)?.kind==='UPGRADE_OPTION'&&constraint.sharedKeywords.includes(keyword))&&
+    Array.isArray(constraint.sourceIds)&&constraint.sourceIds.length&&constraint.sourceIds.every(id=>records.has(id)),
+    'Unbound attachment constraint');
 }

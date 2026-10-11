@@ -1,0 +1,143 @@
+{
+  "schema": "roster-v2/attachment-bindings",
+  "declarations": [
+    {
+      "declarationId": "datasheet-chaos-lord:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-chaos-lord-in-terminator-armour:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-chaos-lord-with-jump-pack:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-cultist-firebrand:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-dark-apostle:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-dark-commune:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-master-of-executions:section:3",
+      "role": "SUPPORT"
+    },
+    {
+      "declarationId": "datasheet-master-of-possession:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-red-corsairs-reave-captain:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-sorcerer:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-sorcerer-in-terminator-armour:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-traitor-enforcer:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-warpsmith:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-abaddon-the-despoiler:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-fabius-bile:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-haarken-worldclaimer:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-huron-blackheart:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-kravek-morne:section:3",
+      "role": "LEADER"
+    },
+    {
+      "declarationId": "datasheet-masters-of-the-maelstrom:section:3",
+      "role": "SUPPORT"
+    }
+  ],
+  "redirects": [
+    {
+      "declarationId": "datasheet-nemesis-claw:section:3",
+      "baseRecipientId": "unit-legionaries",
+      "role": "LEADER",
+      "requiredKeywords": [
+        "CHARACTER"
+      ],
+      "excludedKeywords": [
+        "EPIC HERO"
+      ]
+    },
+    {
+      "declarationId": "datasheet-red-corsairs-raiders:section:3",
+      "baseRecipientId": "unit-legionaries",
+      "role": "LEADER",
+      "requiredKeywords": [
+        "CHARACTER"
+      ],
+      "excludedKeywords": []
+    }
+  ],
+  "constraints": [
+    {
+      "detachmentId": "detachment-pactbound-zealots",
+      "sharedKeywords": [
+        "KHORNE",
+        "TZEENTCH",
+        "NURGLE",
+        "SLAANESH",
+        "CHAOS UNDIVIDED"
+      ],
+      "optionKeywords": {
+        "detachment-pactbound-zealots:rule:mark:1": "KHORNE",
+        "detachment-pactbound-zealots:rule:mark:2": "TZEENTCH",
+        "detachment-pactbound-zealots:rule:mark:3": "NURGLE",
+        "detachment-pactbound-zealots:rule:mark:4": "SLAANESH",
+        "detachment-pactbound-zealots:rule:mark:5": "CHAOS UNDIVIDED"
+      },
+      "sourceIds": [
+        "detachment-pactbound-zealots:rule",
+        "official-update-7"
+      ]
+    }
+  ],
+  "conditionalRelations": [
+    {
+      "sourceId": "unit-chaos-lord-with-jump-pack",
+      "targetId": "unit-warp-talons",
+      "role": "LEADER",
+      "availability": [
+        {
+          "detachmentId": "detachment-nightmare-hunt",
+          "enhancementId": "detachment-nightmare-hunt:enhancement:4"
+        },
+        {
+          "detachmentId": "detachment-murdertalon-raiders",
+          "enhancementId": "detachment-murdertalon-raiders:enhancement:2"
+        }
+      ]
+    }
+  ]
+}
