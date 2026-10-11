@@ -379,3 +379,54 @@ browser API checks match Node state/context and survive reload; poisoned
 dependencies prove no legacy, effects, Rule Contracts or presentation code is
 loaded. These are attachment service checks, not a claim that CSM Personal Guide
 or roster UI has been enabled.
+
+## Imported roster effect projection
+
+`roster-runtime-build.mjs` composes the existing 57 effect declarations with
+the current 59 attachment policies and profile bindings. Its generated
+`roster-runtime.json` is disposable execution input, not another factual catalog.
+`roster-runtime.mjs` accepts native imported physical snapshots, delegates
+attachment transitions to the existing shared graph, and rebuilds effective
+state through `evaluateCSMRosterDeclarations()` and the shared effect interpreter.
+No shared primitive, interpreter, compatibility logic or presentation is added.
+
+Selection validation uses the canonical import/attachment view. This preserves
+the imported Allegiance `exclusiveGroupId` and canonical option parent even
+though the executable view uses its datasheet parent for dispatch. Neither
+selected ownership nor source evidence is stripped or weakened.
+
+`load(snapshot)` is the semantic input boundary. `projection` returns a copy
+of the resulting effective state; `snapshot()` retains independently owned
+import state. Bodyguard-first `attach`, `detach` and `reattach` recompute it.
+The convenience `import()` works when imported state identifies the bearer
+unambiguously. Ambiguous MODEL bearers require an explicit existing
+`enhancementAssignments` selection before `load`; the runtime does not choose
+the first profile or guess missing selections. Tests declare those physical
+MODEL choices separately from text import. Explicit initial attachment history
+is likewise required for Fabius, never inferred from a current attachment.
+
+```text
+node books/chaos-space-marines/v2/roster-runtime-build.mjs
+node books/chaos-space-marines/v2/roster-runtime-qa.mjs --write
+npm run qa:csm:v2:roster-effects
+npm run qa:csm:v2:roster-effects:browser
+```
+
+`audit/roster-execution-matrix.json` records all 57 positive clauses, the actual
+New Recruit text, canonical evidence, physical selections, explicit bearer and
+attachment inputs, expected scope/operations, and observed effective changes.
+The census exercises 125 effective contributions, 44 ownership remove/restore
+controls, 36 Detachment controls and 34 attachment transitions. Independent
+edge guards test exact numeric values, stronger saves, ability identity,
+mixed profiles, equipment, multiple Detachments and nine mutations.
+Desktop and 390×844 browser API runs independently import every fixture and
+match Node projection, including reload; poisoned dependency boundaries reject
+legacy and presentation modules. These are runtime checks, not UI acceptance.
+
+The current 408 contract clauses contain 57 executable clauses, 193 runtime
+`BATTLE_ONLY` classifications and other display/declaration clauses. The task's
+306 battle-only denominator is not that runtime census. Every non-executable
+clause is checked for an empty effect payload and every applied contribution
+must belong to the exact 57-clause executable set. Cult of the Dark Gods remains
+canonically present and deferred. ROSTER-CONTENT-01, Effective Datasheet UI and
+Personal Guide are unchanged.

@@ -1,7 +1,7 @@
 /** Explicit CSM roster input -> reviewed book-owned context fields. Boolean
  * logic, selectors, recipients and effects remain in the existing shared V2
- * interpreters. No importer or browser roster service is connected here. */
-import assert from 'node:assert/strict';
+ * interpreters. This module owns only input normalization, not an interpreter. */
+const assert={ok:(condition,message)=>{if(!condition)throw new TypeError(message);}};
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
 import {validateRoster,formRoster,withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 import {executeRosterEffects} from '../../shared/roster-v2/effects.mjs';
@@ -105,12 +105,14 @@ export function createCSMRosterEffectContext(book,state,{abilityProjection=formR
     evaluateRole:(role,conditions,context)=>kernel.evaluateRole(role,conditions,bind(context))};
 }
 
-/** Declaration QA / future integration boundary. Both passes rebuild from the
+/** Declaration and imported-runtime boundary. Both passes rebuild from the
  * same immutable canonical base using the same shared interpreter. The first
  * supplies effective ability prerequisites without self-enabling Scouts grants.
  */
-export function evaluateCSMRosterDeclarations(book,input) {
-  const state=validateRoster(book,input,book.rosterAttachmentPolicies);
+export function evaluateCSMRosterDeclarations(book,input,{validationBook=book}={}) {
+  // Imported choices retain canonical declaration ownership. Executable
+  // UPGRADE_OPTION parents are dispatch addresses, not exclusive-choice groups.
+  const state=validateRoster(validationBook,input,book.rosterAttachmentPolicies);
   validateSelections(book,state);
   const dependencies=clone(book);
   const leaves=node=>node.op?node.args.flatMap(leaves):[node];
