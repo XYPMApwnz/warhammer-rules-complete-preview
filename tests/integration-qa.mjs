@@ -60,7 +60,7 @@ for(const book of books){
   check(`${book.id} exposes required production paths`,(book.roster===false||/scripts\/roster-filter\.js\?v=\d+/.test(readerHtml))&&phoneRuntime&&semanticRuntime);
   if(book.matrix)check(`${book.id} Compatible Rules matrix exists`,exists(book.matrix));
   if(book.id==='chaos-space-marines'){
-    check('chaos-space-marines entry exposes verification status and artwork',entryHtml.includes('Verification build')&&entryHtml.includes('chaos-space-marines-cover-480.webp')&&!entryHtml.includes('class="entry-mark"'));
+    check('chaos-space-marines entry exposes source-certified status and artwork',entryHtml.includes('Source-certified')&&entryHtml.includes('chaos-space-marines-cover-480.webp')&&!entryHtml.includes('class="entry-mark"'));
     check('chaos-space-marines reader preserves current publication inventory',(canonicalHtml.match(/<article class="unit-card/g)||[]).length===54&&(canonicalHtml.match(/data-nav-id="detachment-[^"]+"/g)||[]).length===17&&canonicalHtml.includes('faction-hero-cover'));
     assertOwnedMobileRouteInventory({root,bookId:book.id});
     check('chaos-space-marines exposes its exact owned compatibility routes',!/<(?:article|section)\b|class="[^"]*\bunit-card\b|data-rule-id=/.test(phoneHtml));
