@@ -54,10 +54,9 @@ try{
     await page.waitForFunction(()=>window.ArmyBookAppV2?.payload.book.id==='chaos-space-marines');
     await page.screenshot({path:path.join(out,device+'-landing.png')});
     await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();
-    await page.getByRole('heading',{name:'Roster',exact:true}).waitFor();
-    assert.equal(await page.locator('[data-v2-book="chaos-space-marines"]').count(),0);
-    assert.equal(await page.locator('[data-v2-book="death-guard"]').count(),1);
-    assert.equal(await page.locator('[data-v2-book="adeptus-mechanicus"]').count(),1);
+    await page.getByRole('heading',{name:'Attachment Setup',exact:true}).waitFor();
+    assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.payload.book.id),'chaos-space-marines');
+    assert.equal(await page.locator('textarea').count(),1);
     await page.goBack();await page.waitForFunction(()=>window.ArmyBookAppV2?.payload.book.id==='chaos-space-marines');
     for(const address of [url,origin+'/books/chaos-space-marines/v2/app.html']){
       const direct=await context.newPage();await direct.goto(address);await direct.waitForFunction(()=>window.ArmyBookAppV2?.payload.book.id==='chaos-space-marines');
@@ -135,21 +134,21 @@ try{
       if(book==='death-guard'){
         assert.equal(await page.evaluate(text=>window.ArmyBookAppV2.roster.import(text).status,dgMega),'READY');
         await page.evaluate(()=>{const app=window.ArmyBookAppV2;app.roster.attach('parsed-unit-1','parsed-unit-2');app.rosterPanel.refresh();app.openPersonalGuide();app.openInstance('parsed-unit-1');});
-        const lord=page.locator('main > .unit-card');assert.match(await lord.innerText(),/Feel No Pain\s*4\+/i);
+        const lord=page.locator('main .unit-card[data-roster-instance-id="parsed-unit-1"]');assert.match(await lord.innerText(),/Feel No Pain\s*4\+/i);
         for(const [weapon,stat,value]of [[1,'attacks','6'],[1,'strength','10'],[2,'attacks','11'],[2,'strength','7']]){
           assert.equal(await lord.locator(`[data-fact-id="datasheet-lord-of-contagion:weapon:${weapon}::/${stat}"]`).getAttribute('data-fact-value'),JSON.stringify(value));
         }
         await page.evaluate(()=>window.ArmyBookAppV2.openInstance('parsed-unit-2'));
-        assert.doesNotMatch(await page.locator('main > .unit-card').innerText(),/Devastating Wounds/i);
+        assert.doesNotMatch(await page.locator('main .unit-card[data-roster-instance-id="parsed-unit-2"]').innerText(),/Devastating Wounds/i);
         await page.evaluate(()=>{const app=window.ArmyBookAppV2;app.roster.detach('parsed-unit-1');app.rosterPanel.refresh();app.openInstance('parsed-unit-1');});
-        assert.doesNotMatch(await page.locator('main > .unit-card').innerText(),/Feel No Pain\s*4\+/i);
+        assert.doesNotMatch(await lord.innerText(),/Feel No Pain\s*4\+/i);
         await page.evaluate(()=>{const app=window.ArmyBookAppV2;app.roster.attach('parsed-unit-1','parsed-unit-2');app.rosterPanel.refresh();app.openInstance('parsed-unit-1');});
-        assert.match(await page.locator('main > .unit-card').innerText(),/Feel No Pain\s*4\+/i);
+        assert.match(await lord.innerText(),/Feel No Pain\s*4\+/i);
       }
       assert.equal(await page.locator('link[href*="chaos-space-marines/v2/theme.css"]').count(),book==='chaos-space-marines'?1:0);
     }
     assert.equal(await page.evaluate(()=>window.csmOldModule.destroyed),true);
-    assert.equal(await page.evaluate(()=>!!window.ArmyBookAppV2.roster),false);
+    assert.equal(await page.evaluate(()=>!!window.ArmyBookAppV2.roster),true);
     totals[device]={datasheets:54,profiles:seenProfiles.size,weapons:seenWeapons.size,facts:seenFacts.size};await context.close();
   }
   assert.deepEqual(errors,[]);assert.equal(JSON.stringify(facts),snapshot);

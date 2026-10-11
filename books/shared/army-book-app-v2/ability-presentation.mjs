@@ -45,6 +45,11 @@ export function projectAbilityPresentation({instanceId,profiles,unitAbilities=[]
         const canonicalId=reference?.canonicalId||legacyOperations[change?.operation];
         if(canonicalId)resolved={canonicalId,parameters:abilityParameters(ability),name:ability.name};
       }
+      if(resolved&&!resolved.group){
+        const groups=[...new Set(references.filter(ref=>factKey(ref)===factKey(resolved)).map(ref=>ref.group).filter(Boolean))];
+        if(groups.length>1)throw new TypeError('Conflicting canonical ability presentation categories');
+        if(groups.length)resolved.group=groups[0];
+      }
       if(!resolved||!permitted(resolved)||resolved.group&&resolved.group!=='CORE ABILITIES')continue;
       const matching=coreReferences.find(ref=>factKey(ref)===factKey(resolved));
       const value={...clone(resolved),...(matching?{label:matching.label}:{})};

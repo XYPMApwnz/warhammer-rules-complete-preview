@@ -10,6 +10,7 @@ import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datashee
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {renderCompatibilityEntry} from '../../shared/application-v2/compatibility.mjs';
 import {buildPresentationReferences,referenceDeclaration} from './presentation-reference-build.mjs';
+import {buildCSMRosterPresentation} from './roster-presentation.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const aliases={MODEL_PROFILE:'PROFILE',CORE_ABILITY_MEMBERSHIP:'RULE_REFERENCE',ARMY_RULE_MEMBERSHIP:'RULE_REFERENCE',
@@ -184,6 +185,7 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
   }
   assert.ok(payload.relatedRules.rows.every(row=>row.state!=='INVALID'&&row.selectedDetachment.state!=='INVALID'));
   payload.ruleContractIds=built.book.entities.filter(e=>e.ruleContract).map(e=>e.id);
+  payload.rosterPresentation=buildCSMRosterPresentation(facts);
   return payload;
 }
 export function writeApp({check=false}={}){

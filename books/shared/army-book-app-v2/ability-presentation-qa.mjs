@@ -95,4 +95,14 @@ check('Ambiguous legacy numeric identities fail closed',()=>{
   assert.throws(()=>plan([profile('a',[{value:5}])],{references:[
     reference('ability-a',{value:5},{legacyValue:true}),reference('ability-b',{value:5},{legacyValue:true})]}),/Ambiguous legacy/);
 });
+check('Canonical non-Core category remains on its existing surface',()=>{
+  const ability={canonicalId:'synthetic-army-rule',name:'Same caption',parameters:{}};
+  const references=[reference('synthetic-army-rule',{}, {group:'ARMY RULES'})];
+  const result=plan([profile('a',[ability])],{references});
+  assert.equal(result.core.length,0);assert.equal(result.otherReferences.length,1);
+  assert.equal(result.otherReferences[0].canonicalId,ability.canonicalId);
+  const other=plan([profile('a',[{...ability,canonicalId:'different-rule'}])],{references});
+  assert.equal(other.core.length,1);assert.equal(other.core[0].canonicalId,'different-rule');
+  assert.throws(()=>plan([profile('a',[ability])],{references:[...references,reference('synthetic-army-rule',{}, {group:'CORE ABILITIES'})]}),/Conflicting canonical/);
+});
 console.log(JSON.stringify({status:'PASS',syntheticCases:cases,armyFactualReads:0}));

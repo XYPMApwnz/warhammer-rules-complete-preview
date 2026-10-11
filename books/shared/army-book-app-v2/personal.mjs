@@ -2,6 +2,25 @@
 const clone = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 export const instanceRoute = id => `roster-unit/${encodeURIComponent(id)}`;
+/** Book-owned canonical profile bindings apply only to physical views. The
+ * normal book map and every factual field/address remain unchanged. */
+export function prepareRosterPresentationCards(cards,presentation) {
+  if(!presentation)return cards;
+  assert(presentation.schema==='army-book-app-v2/roster-presentation/v1','Invalid roster presentation bindings');
+  const result=new Map(cards),seen=new Set();
+  for(const profile of presentation.profileCards){
+    assert(profile.kind==='PROFILE'&&cards.has(profile.id)&&!seen.has(profile.id),'Invalid canonical roster profile');
+    assert(cards.get(profile.parentId)?.kind==='DATASHEET','Invalid roster profile owner');
+    seen.add(profile.id);result.set(profile.id,clone(profile));
+  }
+  for(const [id,profileIds]of Object.entries(presentation.unitProfileIds)){
+    const unit=clone(cards.get(id));assert(unit?.kind==='DATASHEET','Invalid roster datasheet binding');
+    assert(new Set(profileIds).size===profileIds.length&&profileIds.every(profileId=>seen.has(profileId)&&result.get(profileId).parentId===id),'Foreign roster profile binding');
+    unit.children=unit.children.filter(child=>cards.get(child)?.kind!=='PROFILE'&&!profileIds.includes(child));
+    unit.children.push(...profileIds);result.set(id,unit);
+  }
+  return result;
+}
 /** A formed datasheet is a collection of independently owned presentations,
  * never a synthetic roster unit. Resolve membership anew on every render. */
 export function projectFormedUnitCards(cards, roster, instanceId) {
@@ -55,7 +74,7 @@ export function projectInstanceCards(cards, unit, effective) {
   const scopeCaptions=new Map();
   const profileName=id=>{
     const profile=cards.get(id);
-    return profile?.fields.find(field=>field.source?.path==='/name')?.value || root.title;
+    return profile?.fields.find(field=>(field.presentationPath||field.source?.path)==='/name')?.value || root.title;
   };
   // Imported composition rows are display groups, never inferred equipment
   // owners. Aggregate imports retain their canonical profile and total only.
@@ -197,6 +216,15 @@ export function projectInstanceCards(cards, unit, effective) {
   const selections=[...(unit.selections || []),...unit.modelRows.flatMap(row=>[...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])];
   const selectedEquipment=new Set(selections.filter(selection=>selection.physicalQuantity>0).flatMap(selection=>selection.canonicalEquipmentIds));
   root.rosterEquipmentIds=[...selectedEquipment];
+  const optionIds=new Set([unit.selectedMarkId,...(unit.selectedUpgradeIds||[]),...unit.modelRows.flatMap(row=>row.selectedUpgradeIds||[])].filter(Boolean));
+  root.rosterOptionIds=[...optionIds];
+  for(const id of root.children){
+    const section=cards.get(id);
+    if(!section?.fields.some(field=>cards.get(field.source?.entityId)?.kind==='UPGRADE_OPTION'))continue;
+    const projected=clone(variants.get(id)?.[0]||annotate(section));
+    projected.fields=projected.fields.filter(field=>cards.get(field.source?.entityId)?.kind!=='UPGRADE_OPTION'||optionIds.has(field.source.entityId));
+    variants.set(id,projected.fields.some(field=>field.presentation!=='heading')?[projected]:[]);
+  }
   const selectedSourceFields=new Set(selections.filter(selection=>selection.physicalQuantity>0)
     .flatMap(selection=>(selection.sourceReferences || []).map(ref=>JSON.stringify([ref.entityId,ref.path]))));
   for (const id of root.children) {

@@ -1,4 +1,4 @@
-/** Book-owned presentation registration. Roster integration is intentionally absent. */
+/** Book-owned configuration; all player views use the shared application. */
 export const registration=Object.freeze({
   id:'chaos-space-marines',title:'Chaos Space Marines',
   home:{shelf:{id:'chaos',title:'Chaos',subtitle:'Armies of Chaos',order:30},
@@ -8,5 +8,6 @@ export const registration=Object.freeze({
   styles:[new URL('./theme.css',import.meta.url).href],
   routeAliases:['/books/chaos-space-marines/v2/app.html'],
   async loadPayload(){const response=await fetch(new URL('./generated/app-presentation.json',import.meta.url));
-    if(!response.ok)throw new Error('CSM V2 presentation unavailable');return response.json();}
+    if(!response.ok)throw new Error('CSM V2 presentation unavailable');return response.json();},
+  async createRoster(){return (await import('./roster-boot.mjs')).createBrowserRoster();}
 });

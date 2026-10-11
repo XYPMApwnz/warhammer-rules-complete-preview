@@ -6,7 +6,7 @@ import {encodeRoute,decodeRoute} from './route-context.mjs';
 import {createReferencePresenter} from './reference-v1.mjs';
 import {createGlossaryCatalog} from './glossary-v1.mjs';
 import {createRosterPanel} from './roster.mjs';
-import {projectPersonalBook, projectInstanceCards, projectFormedUnitCards, instanceRoute} from './personal.mjs';
+import {projectPersonalBook, projectInstanceCards, projectFormedUnitCards, prepareRosterPresentationCards, instanceRoute} from './personal.mjs';
 import {renderFormedUnit} from './formed-unit-presentation.mjs';
 import {projectContents, mountV1Contents} from './navigation-v1.mjs';
 import {createDatasheetPresenter} from './datasheet-v1.mjs';
@@ -21,6 +21,7 @@ export function mount(document, payload, options = {}) {
   if (payload?.schema !== 'army-book-app-v2/presentation') throw new TypeError('Unsupported Army Book presentation.');
   const window = document.defaultView;
   const cards = new Map(payload.cards.map(card => [card.id, card]));
+  const effectiveCards=prepareRosterPresentationCards(cards,payload.rosterPresentation);
   if (cards.size !== payload.cards.length) throw new Error('Duplicate canonical card ID.');
   if (cards.has(glossaryRoute)) throw new Error('Canonical identity collides with the Glossary presentation route.');
   if (options.roster && cards.has(rosterRoute)) throw new Error('Canonical identity collides with the Roster presentation route.');
@@ -492,7 +493,7 @@ export function mount(document, payload, options = {}) {
   }
 
   function renderPhysicalUnit(instanceId) {
-    const view=projectFormedUnitCards(cards,options.roster,instanceId);
+    const view=projectFormedUnitCards(effectiveCards,options.roster,instanceId);
     return renderFormedUnit(view,{el,renderComponent:component=>
       renderCard(component.card,{variants:component.variants,instanceId:component.unit.instanceId})});
   }
@@ -555,7 +556,7 @@ export function mount(document, payload, options = {}) {
       // Canonical IDs may repeat in a personal book; the physical instance is
       // the section identity and supplies the existing effective projection.
       if(rendered.has(entry.id))return;rendered.add(entry.id);
-      const view=projectFormedUnitCards(cards,options.roster,entry.instanceId);
+      const view=projectFormedUnitCards(effectiveCards,options.roster,entry.instanceId);
       view.components.forEach(component=>rendered.add(instanceRoute(component.unit.instanceId)));
       // Each formed component already owns its physical Contents anchor. A
       // second outer anchor would send a Character link to the Bodyguard.
@@ -581,13 +582,14 @@ export function mount(document, payload, options = {}) {
   }
 
   function physicalProfileProjection(id,instanceId) {
-    if (!personalMode || !instanceId || !['DATASHEET','PROFILE','WEAPON_PROFILE'].includes(cards.get(id)?.kind)) return null;
+    if (!personalMode || !instanceId) return null;
     const unit=options.roster.state.units.find(unit=>unit.instanceId===instanceId);
     if (!unit) return null;
     const effective=options.roster.effective(instanceId);
+    if(!['DATASHEET','PROFILE','WEAPON_PROFILE'].includes(effectiveCards.get(id)?.kind)&&!effective.abilities.some(ability=>ability.id===id&&ability.abilityRangeField))return null;
     if(cards.get(id).kind==='WEAPON_PROFILE'&&!effective.weapons.some(weapon=>weapon.id===id))return new Map([[id,[]]]);
     if (id!==unit.canonicalUnitId && cards.get(id).parentId!==unit.canonicalUnitId && !effective.weapons.some(weapon=>weapon.id===id)) return new Map([[id,[]]]);
-    return projectInstanceCards(cards,unit,effective);
+    return projectInstanceCards(effectiveCards,unit,effective);
   }
 
   function effectiveReference(id,context) {
@@ -768,7 +770,7 @@ export function mount(document, payload, options = {}) {
       if (id === glossaryRoute && payload.glossary) {glossaryCategory=state?.armyBookV2?.glossaryCategory || '';renderGlossary(state?.armyBookV2?.glossaryQuery || '', focus);}
       else if (context.destination==='UNIT_INSTANCE')renderInstance(context.instanceId,focus);
       else if (context.instanceId&&cards.get(id)?.kind==='DATASHEET')renderInstance(context.instanceId,focus);
-      else if (context.instanceId&&['PROFILE','WEAPON_PROFILE'].includes(cards.get(id)?.kind))renderEffectiveReference(id,context,focus);
+      else if (context.instanceId&&physicalProfileProjection(id,context.instanceId))renderEffectiveReference(id,context,focus);
       else if (referenceView&&references.canResolve(id,scopedIds()))renderReference(id,focus);
       else if (id === rosterRoute && rosterPanel) renderRoster(focus);
       else if (personalMode && id===personalRoute) renderPersonalHome(focus);
@@ -806,12 +808,13 @@ export function mount(document, payload, options = {}) {
     const personal=id===personalRoute||physicalAlias;
     const rosterId=routeOptions.fullBook?null:routeOptions.rosterId ||
       (personal||routeOptions.personalBook||id===rosterRoute||selectedView==='ROSTER'?optionsRosterId():new URLSearchParams(window.location.search).get('roster'));
-    const kind=cards.get(id)?.kind;
     const ownerId=routeOptions.instanceId || (personalMode?selectedInstanceId:null);
     const owner=ownerId&&options.roster?.state?.units.find(unit=>unit.instanceId===ownerId);
     const effective=owner&&options.roster.effective(ownerId);
-    const projectedTarget=['DATASHEET','PROFILE','WEAPON_PROFILE'].includes(kind);
-    const ownsTarget=owner&&(id===owner.canonicalUnitId||effective.profiles.some(profile=>profile.id===id)||effective.weapons.some(weapon=>weapon.id===id));
+    const kind=(owner?effectiveCards:cards).get(id)?.kind;
+    const abilityTarget=effective?.abilities.some(ability=>ability.id===id&&ability.abilityRangeField);
+    const projectedTarget=['DATASHEET','PROFILE','WEAPON_PROFILE'].includes(kind)||abilityTarget;
+    const ownsTarget=owner&&(id===owner.canonicalUnitId||effective.profiles.some(profile=>profile.id===id)||effective.weapons.some(weapon=>weapon.id===id)||abilityTarget);
     const instanceId=physicalAlias?routeInstanceId(id):projectedTarget&&rosterId&&(routeOptions.instanceId||ownsTarget)?ownerId:null;
     const physical=physicalAlias||kind==='DATASHEET'&&instanceId&&!detail;
     const scopeId=instanceId?routeOptions.scopeId || null:null;

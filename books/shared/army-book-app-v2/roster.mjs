@@ -280,14 +280,16 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       fieldset.dataset.bindingKind = need.kind;
       fieldset.dataset.bindingKey = need.key;
       fieldset.append(el('legend', '', need.rawLabel || 'Imported entry'));
-      const candidates = need.kind === 'SELECTION'
+      const candidates = ['SELECTION','ENHANCEMENT_BEARER'].includes(need.kind)
         ? (need.candidates || [])
         : (need.candidateIds || []).map(id => catalog.get(id)).filter(Boolean);
       if (!candidates.length || ['SELECTION_QUANTITY', 'SELECTION_FIELD'].includes(need.kind)) {
         blocked = true;
         fieldset.append(el('p', 'v2-roster-hint', 'This imported entry could not be identified safely. Provide a corrected New Recruit export; roster composition and quantities cannot be changed here.'));
       } else {
-        fieldset.append(el('p', 'v2-roster-hint', 'This label needs clarification. Confirm which matching source entry it represents. Imported quantities remain unchanged.'));
+        fieldset.append(el('p', 'v2-roster-hint', need.kind==='ENHANCEMENT_BEARER'
+          ?'Choose the model that bears this Enhancement. Imported model quantities remain unchanged.'
+          :'This label needs clarification. Confirm which matching source entry it represents. Imported quantities remain unchanged.'));
         const label = el('label', 'v2-roster-field', 'Matching source entry');
         const select = el('select');
         select.required = true;
@@ -305,7 +307,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
           if (select.value === '') throw actionError('Confirm each ambiguous imported entry.');
           const candidate = need.kind === 'SELECTION' ? candidates[Number(select.value)] : candidates.find(record => record.id === select.value);
           if (!candidate) throw actionError('The chosen import candidate is unavailable.');
-          if (need.kind === 'SELECTION') {
+          if(need.kind==='ENHANCEMENT_BEARER'){
+            bindings.enhancementBearers||={};bindings.enhancementBearers[need.key]=candidate.id;
+          }else if (need.kind === 'SELECTION') {
             bindings.selections ||= {};
             const {canonicalProfileIds = [], canonicalEquipmentIds = [], canonicalFieldPaths = {}} = candidate;
             bindings.selections[need.key] = {canonicalProfileIds, canonicalEquipmentIds, canonicalFieldPaths};

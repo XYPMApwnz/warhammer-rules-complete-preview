@@ -596,6 +596,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       context.dataset.rosterContextInstanceId=instanceId;
       if(u.warlord)context.append(el('span','ds-roster-badge','Warlord'));
       u.enhancementIds.forEach(id=>context.append(anchor(cards.get(id).title,id,true)));
+      (card.rosterOptionIds||[]).forEach(id=>{const option=cards.get(id);if(!option)throw new TypeError('Unresolved selected canonical option');
+        const link=anchor(option.title,id,true);link.dataset.selectedOptionId=id;context.append(link);});
       if(assigned)context.append(el('p','',`Leading: ${name(assigned.bodyguardInstanceId)}`));
       for(const member of members)context.append(el('p','',`${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${name(member.leaderInstanceId)}`));
       // Detachment selection lives in roster navigation, not repeated on each unit.

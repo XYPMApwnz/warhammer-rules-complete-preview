@@ -24,7 +24,7 @@ const refs=createReferenceContract({cards,index:payload.glossary,registryId:fact
 for(const id of payload.ruleContractIds){assert.ok(refs.resolve(id)?.sections.length,'Empty canonical rule definition '+id);}
 const glossary=validateGlossary(payload.glossary,payload.cards);
 assert.equal(new Set(payload.ruleContractIds).size,315);
-assert.equal(registration.createRoster,undefined);
+assert.equal(typeof registration.createRoster,'function');
 assert.ok(!payload.cards.some(c=>c.fields.some(f=>f.source?.path.startsWith('/roster'))));
 assert.ok(cards.has('army-rule-cult-of-the-dark-gods'));
 assert.ok(payload.relatedRules.rows.every(r=>r.applicability!=='INVALID'));
@@ -37,4 +37,4 @@ for(const e of facts.entities.filter(e=>['FAQ','OFFICIAL_UPDATE','ERRATA'].inclu
 const publicProjection=JSON.stringify([...cards.values()].filter(c=>c.domain!=='CORE').map(c=>[c.title,...c.fields.map(f=>f.displayValue??f.value)]));
 assert.doesNotMatch(publicProjection,/schemaVersion|sourceEntityId|AUTHORITATIVE_CURRENT|ACCEPTED_SECONDARY|Points v1\.5-scoped-six/);
 console.log(JSON.stringify({status:'PASS',canonicalEntities:facts.entities.length,counts:expected,sourceFieldsChecked:checked,
-  contracts:payload.ruleContractIds.length,glossary,tableVisuals:binding.tableVisuals.length,rosterConnected:false,legacyReads:0}));
+  contracts:payload.ruleContractIds.length,glossary,tableVisuals:binding.tableVisuals.length,rosterConnected:true,legacyReads:0}));

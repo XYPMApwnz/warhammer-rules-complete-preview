@@ -2,10 +2,9 @@ import {projectEffectiveInstance} from './effective-instance.mjs';
 import {lexicalDraft,importNewRecruit} from './import.mjs';
 import {validateRoster,changeAttachment,attachmentCheck,predicateContext,withRosterDetachments} from './context.mjs';
 import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
-import {validateCompatibilityFeasibility,evaluateRequiredRecipients,includeRecipientFeasibility,evaluateCompatibilityRole} from './compatibility-feasibility.mjs';
-import {enhancementOwnerContext} from './compatibility-context.mjs';
+import {validateCompatibilityFeasibility} from './compatibility-feasibility.mjs';
+import {projectRosterRelated} from './related.mjs';
 const clone = value=>structuredClone(value);
-const any = values=>values.includes('INVALID')?'INVALID':values.includes('TRUE')?'TRUE':values.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 const atoms = (value,path=[]) => value && typeof value==='object' ? Object.entries(value).flatMap(([key,child])=>atoms(child,[...path,key])) : [{path:'/'+path.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'),label:path.join(' / '),value}];
 /** Browser/Node runtime consumes the same canonical snapshot and existing evaluator. */
 export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,validatePredicate,publicResult}) {
@@ -41,28 +40,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
     context(instanceId,subject='UNIT',modelId,extra){ return predicateContext(state,projection,instanceId,subject,modelId,extra); },
     effective(instanceId) { return projectEffectiveInstance(book,projection,instanceId); },
     related(instanceId,detachmentId=null) {
-      if (detachmentId && records.get(detachmentId)?.kind!=='DETACHMENT') throw new TypeError('Unresolved filter Detachment');
-      const unit = projection.units.find(u=>u.instanceId===instanceId);if (!unit) throw new TypeError('Unresolved physical related context');
-      const rows = [];
-      for (const rule of book.entities.filter(e=>['STRATAGEM','ENHANCEMENT'].includes(e.ruleContract?.kind))) {
-        const contract=rule.ruleContract;
-        if (!state.detachmentIds.includes(contract.detachmentId)) continue;
-        if (detachmentId && contract.detachmentId!==detachmentId) continue;
-        const roleIds=contract.compatibilityRoleIds || [contract.roles[0]?.id];
-        const roleContexts=(candidate,role)=>(role.subject==='MODEL'?
-          candidate.profiles.map(m=>service.context(candidate.instanceId,'MODEL',m.scopeId)):
-          [service.context(candidate.instanceId,role.subject)]).filter(Boolean).map(context=>enhancementOwnerContext(contract,context));
-        const states=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>{
-          return any(roleContexts(unit,role).map(context=>evaluateCompatibilityRole(contract,role,context,
-            {evaluateRole,contextsForRole:primary=>projection.units.flatMap(candidate=>roleContexts(candidate,primary))})));
-        });
-        const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units,
-          {book,evaluateRole,sourceInstanceId:instanceId,contextFor:(candidate,subject)=>service.context(candidate.instanceId,subject)});
-        const result=includeRecipientFeasibility(any(states),recipient);
-        if (result==='INVALID') throw new TypeError('Invalid roster-aware rule: '+rule.id);
-        rows.push({unitId:unit.canonicalUnitId,instanceId,ruleId:rule.id,detachmentId:contract.detachmentId,kind:contract.kind,state:result,applicability:publicResult[result]});
-      }
-      return rows;
+      return projectRosterRelated({book,state,projection,context:service.context,evaluateRole,publicResult},instanceId,detachmentId);
     }
   };
   return service;
