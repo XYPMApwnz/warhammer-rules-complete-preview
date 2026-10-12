@@ -62,12 +62,23 @@ for(const item of metadata.equipmentSelections) {
     assert.deepEqual(state.units[0].selections[0].sourceReferences,item.sourceReferences);
     const ref=item.sourceReferences[0];let value=records.get(ref.entityId).data;
     for(const part of ref.path.slice(1).split('/'))value=value[part];
-    assert.equal(value.slice(ref.caption.start,ref.caption.end),item.ownerId==='unit-nemesis-claw'?'voice eater':'Chaos icon');
+    assert.equal(value.slice(ref.caption.start,ref.caption.end),item.ownerId==='unit-nemesis-claw'?'voice eater':
+      item.ownerId==='unit-sorcerer-in-terminator-armour'?'Chaos familiar':'Chaos icon');
     assert.equal(ref.bookId,book.bookId);
     assert.deepEqual(item.canonicalEquipmentIds,[ref.entityId]);
   }else assert.equal(state.units[0].selections[0].sourceReferences,undefined,'Other equipment bindings unchanged');
 }
-assert.equal(metadata.equipmentSelections.filter(item=>item.sourceReferences).length,6);
+assert.equal(metadata.equipmentSelections.filter(item=>item.sourceReferences).length,7);
+const familiarBinding=metadata.equipmentSelections.find(item=>item.ownerId==='unit-sorcerer-in-terminator-armour');
+assert.deepEqual(familiarBinding.canonicalEquipmentIds,['datasheet-sorcerer-in-terminator-armour:wargear:2']);
+const familiarText=header+'1x Sorcerer in Terminator Armour (80 pts): Force weapon, Combi-bolter, Chaos familiar\n1x Sorcerer in Terminator Armour (80 pts): Force weapon, Combi-bolter';
+const familiarState=ready(familiarText),familiarSelection=familiarState.units[0].selections.find(s=>s.canonicalEquipmentIds.length);
+assert.equal(familiarSelection.physicalQuantity,1);
+assert.equal(familiarSelection.perModelQuantity,null);
+assert.deepEqual(familiarSelection.sourceReferences,familiarBinding.sourceReferences);
+assert(familiarState.units[0].modelRows.every(row=>row.selections.length===0),'Aggregate equipment must not invent MODEL assignment');
+assert(!selections(familiarState.units[1]).some(s=>s.canonicalEquipmentIds.length));
+const familiarReload=make();familiarReload.load(JSON.parse(JSON.stringify(familiarState)));assert.deepEqual(familiarReload.snapshot(),familiarState);
 const voiceBinding=metadata.equipmentSelections.find(item=>item.ownerId==='unit-nemesis-claw');
 assert.equal(voiceBinding.label,'voice eater');
 assert.deepEqual(voiceBinding.canonicalEquipmentIds,['datasheet-nemesis-claw:wargear:6']);

@@ -49,7 +49,7 @@ const equipment=[
   ['chosen','Chaos icon','wargear:5','/text',true],
   ['possessed','Chaos icon','wargear:1','/text',true],
   ['chaos-bikers','Chaos icon','wargear:4','/text',true],
-  ['sorcerer-in-terminator-armour','Chaos familiar','wargear:2','/text'],
+  ['sorcerer-in-terminator-armour','Chaos familiar','wargear:2','/text',true],
   ['nemesis-claw','voice eater','wargear:6','/text',true],
   // The fixed Iconarch item has no separate selectable-option record. Its
   // existing composition address is the selection owner; the ability record
