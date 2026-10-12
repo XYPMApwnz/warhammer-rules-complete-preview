@@ -2,6 +2,8 @@
 
 This is the first document for a new ChatGPT, Codex or Astra conversation. It records the certified **local** milestone at `8fc01265a18e6c367451d18a7b86bf522edf63e8` on `working/army-books-clean`. Verify the actual HEAD and require a clean tree before work. Do not reset a newer legitimate checkout merely to match this file.
 
+For new independent unified V2 certification, follow the [authoritative certification requirements](PROJECT_SOURCE_OF_TRUTH.md#independent-v2-certification-requirements). The results and counts below remain evidence for the milestone named above; they do not assign new `CONTENT_CERTIFIED` or `USER_PATH_CERTIFIED` results to a different checkout.
+
 ## Milestone boundary
 
 In scope:

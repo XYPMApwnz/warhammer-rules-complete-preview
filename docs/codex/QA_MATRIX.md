@@ -2,6 +2,8 @@
 
 Run `npm run qa:help` for the command list. Begin with minimum QA, add dependent QA only when the stated boundary changes, and reserve `qa:release` for release work.
 
+For independent unified V2 certification of Core, DG, AdMech and CSM, follow the [authoritative certification requirements](../PROJECT_SOURCE_OF_TRUTH.md#independent-v2-certification-requirements). The targeted suites below provide regression evidence; a green suite alone does not establish `CONTENT_CERTIFIED` or `USER_PATH_CERTIFIED`.
+
 | Change area | Minimum QA | Dependent QA | Release-only QA |
 | --- | --- | --- | --- |
 | Space Marines local content/presentation | `qa:sm` | `qa:da`, `qa:ba` when inherited semantics or publication can change | `qa:release` |

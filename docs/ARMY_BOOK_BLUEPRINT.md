@@ -151,6 +151,11 @@ disabled.
 `FULL QA` is independent from ordinary Preview development and MUST NOT block the
 next useful Preview Army Book.
 
+Independent unified V2 certification of Core Rules, Death Guard, Adeptus Mechanicus
+and Chaos Space Marines follows the [authoritative certification requirements](PROJECT_SOURCE_OF_TRUTH.md#independent-v2-certification-requirements)
+for separate `CONTENT_CERTIFIED` and `USER_PATH_CERTIFIED` results. This does not
+change Preview gates, optional capability boundaries or publication approval.
+
 ## FULL-QA-001 - Source parity and updates
 
 Full QA MUST compare the complete rule-bearing inventory with available frozen

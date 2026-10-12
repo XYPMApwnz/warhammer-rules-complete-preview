@@ -23,7 +23,7 @@ Use this short checklist when starting a fresh ChatGPT or Codex conversation. Ne
 - Preserve the chain `accepted source -> canonical fact -> effective contextual fact -> deterministic projection -> UI`.
 - Wahapedia 11E is the operational completeness/content baseline; explicit stronger current GW evidence wins direct conflicts; Warhammer Community MFM v1.5 is the sole MFM owner.
 - Generated output and tests are never factual owners. Source defects stay ledgered; evidence gaps stay unresolved.
-- Distinguish content certification from roster certification.
+- For independent unified V2 audits, report separate `CONTENT_CERTIFIED` and `USER_PATH_CERTIFIED` results under the [authoritative certification requirements](PROJECT_SOURCE_OF_TRUTH.md#independent-v2-certification-requirements). Core uses reader/reference paths instead of roster. Existing milestone PASS results remain historical evidence for their recorded HEAD and scope.
 - Do not reopen a certified class without new source evidence or a reproducible contradiction.
 - Keep tasks bounded. Repair the factual owner or shared producer first, then run focused source-backed and mutation-resistant QA.
 - Do not deploy until the independent Astra red team, adjudication, final aggregate/generated refresh and final release gate are complete.

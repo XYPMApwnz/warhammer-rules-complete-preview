@@ -2,6 +2,8 @@
 
 This document describes the repository at the certified local milestone below. Treat current code, enrolled evidence and passing QA as authoritative when this document and an older handoff disagree. Start a new conversation with `docs/CURRENT_HANDOFF.md`.
 
+For new independent unified V2 audits, use the [certification requirements](#independent-v2-certification-requirements) in section 17. Milestone results and release details below remain historical evidence for their recorded HEAD and scope; this contract does not certify a newer checkout.
+
 ## 1. Current baseline
 
 - Branch: `working/army-books-clean`.
@@ -290,6 +292,147 @@ Major release gates are:
 - focused `qa:points`, `qa:roster`, `qa:effects`, book QA and integration controls for correctness-sensitive changes.
 
 Use focused QA during a repair and reserve `test:full` for explicit checkpoints/release gates. A green test is not independent factual proof when its expected value comes from the same producer under test. Prefer accepted-source comparisons, independent contracts, poisoned-input checks and mutation controls.
+
+### Independent V2 certification requirements
+
+This is the authoritative independent certification contract for Core Rules,
+Death Guard, Adeptus Mechanicus and Chaos Space Marines in the unified V2 app.
+It defines evidence requirements, not new certification results. It supplements
+this document's factual ownership policy and the Army Book Blueprint without
+changing Preview gates, source acceptance, publication scope or release approval.
+Use existing QA, browser harnesses and bounded audits; no new framework is required.
+
+#### Scope, baseline and independence
+
+- Record the audited repository, branch, exact HEAD, tree state, product route,
+  supported capabilities, environments and explicit exclusions. Each of the four
+  sections receives separate `CONTENT_CERTIFIED` and `USER_PATH_CERTIFIED`
+  results; neither result implies the other.
+- Pin accepted source files, versions, exact enrolled hashes, authority, applicable
+  scope and FAQ/errata/update precedence before comparison. Conflicting versions,
+  hash mismatches or unresolved source precedence block the affected certification
+  pending forensic adjudication. Do not refresh sources, repair hashes or choose a
+  winner merely to obtain PASS. A deterministic accepted-source anomaly already
+  bound to the source-defect ledger remains distinct from an unresolved conflict;
+  preserve its wording and disclose the limitation under the existing source policy.
+- Construct a fresh independent oracle directly from accepted source documents,
+  including relevant page images, tables and diagrams. Generated facts, canonical
+  exports, Rule Contracts, runtime declarations, previous oracles, QA expectations
+  and UI output must not determine its expected facts. Those artifacts may be
+  inspected afterward as targets, regression controls or diagnostic evidence.
+  This does not change canonical/effective ownership in production.
+- Reconcile source identities and semantic sets independently before reporting
+  denominators. Keep source entities, fields, clauses, executable operations,
+  model profiles and physical-instance cases distinct. Old counts and PASS results
+  are historical evidence, not a new independent oracle or completeness proof.
+  Absence of a proven defect is not evidence that all required content was checked.
+
+#### CONTENT_CERTIFIED
+
+PASS requires a complete source-to-user reconciliation for the declared content
+scope, covering every required field and entity, not merely record existence:
+
+- Exact values, current rule wording/meaning, qualifiers, restrictions, parameters,
+  canonical/source owners, MODEL/UNIT/profile scope and supporting provenance.
+- All applicable Army Rules, Detachments/subrules, Enhancements, Stratagems,
+  datasheets, model/weapon profiles and modes, abilities, selections/instructions,
+  equipment, wargear options, composition, upgrades, Leader/Support/Attached Unit
+  content, keywords, faction keywords, model-scoped bases and structured content.
+  Core instead covers its complete rules, chapter/section placement, lists, tables,
+  diagrams, concepts and canonical references.
+- Current accepted FAQ/errata/update results, correct relationships and provenance;
+  effective corrected text may replace raw source-edit instructions without losing
+  gameplay content. No missing, unsupported extra or semantically duplicated facts.
+- Comparison against the actual rendered, normally reachable V2 book/reader,
+  including reference surfaces where they are the intended access to content.
+  Generated JSON parity alone cannot certify the user-facing content. Equivalent
+  presentation is allowed only if all source meaning, scope and parameters survive;
+  omitted restrictions, qualifiers or ownership are failures.
+
+#### USER_PATH_CERTIFIED
+
+For DG, AdMech and CSM, PASS requires real supported user journeys through
+`source -> import -> selections -> attachments -> runtime -> UI`, including
+Effective Datasheets and Personal Guide. Independently source-derived cases must
+verify the following wherever applicable:
+
+- Selected/unselected weapons, equipment, upgrades/options and Enhancements;
+  exact source-backed captions, quantities and physical ownership in the final UI.
+  Legal options must not become selections, and aggregate input must not invent
+  individual MODEL ownership or missing bearer choices.
+- Every required roster-known executable operation, with the correct physical
+  recipient, component, MODEL/profile, weapon and UNIT/formed-unit scope. Preserve
+  mixed profiles, all attached Character/Support content, owner identities and
+  instance isolation; presentation deduplication must not erase physical content.
+- Positive cases and meaningful negative controls: absent/wrong selections,
+  missing prerequisites, ineligible recipients, duplicate independent instances,
+  component/profile isolation, attachment transitions and remove/restore choices.
+  Attach/detach/reattach, recompute and reload must be deterministic without stale
+  effects, duplicate keywords or transferred equipment/Enhancement ownership.
+- Independent semantic-to-runtime clause reconciliation: every source-classified
+  clause is accounted for, classifications have source evidence, and no unsupported
+  executable-set change or loss of required conditional visibility is allowed.
+  Only imported/roster-known conditions execute. Battle state or unrecorded
+  historical battle conditions remain conditional/canonical content; a current
+  attachment alone must not invent start-of-battle history. BATTLE_ONLY clauses
+  must not alter effective roster state. Related Rules must preserve applicable
+  MATCH/CONDITIONAL/UNKNOWN visibility and hide NO_MATCH/INVALID as contracted.
+- Actual rendered/browser acceptance on desktop and 390x844 phone: normal
+  navigation, direct/deep links, reload, Back/Forward, supported new-tab references,
+  popup/article round trips and preserved roster/book context. Check readability,
+  table containment, complete content, no internal/debug metadata or uncaught
+  errors, and module switching without leaked state or themes. DOM assertions
+  alone do not establish visual acceptance; retain inspectable visual evidence.
+
+For Core Rules, use reader/chapter/section/navigation/reference journeys instead
+of roster import, attachments, Effective Datasheets or Personal Guide. Verify
+source-backed rules, FAQ/errata results, tables, diagrams, anchors, popups/articles
+and the same applicable desktop/phone, reload and navigation controls.
+
+#### Evidence, comparator validation and reporting
+
+- Every source-derived case must retain checkable source location/identity,
+  expected value/text/owner/scope and its derivation, actual observation, input or
+  roster selections, UI location, comparison result and evidence references.
+  Artifacts must identify their HEAD, source baseline and browser transport;
+  source-field, clause and imported-execution matrices may use existing formats.
+- Validate comparator sensitivity with representative in-memory target mutations:
+  missing profiles, wrong numeric/text values, hidden qualifiers/restrictions,
+  changed section semantics, wrong owner/scope/model-base binding, duplicate
+  content and corrupted block/table structure as applicable. Run each mutated
+  target through the comparator and assert the expected mismatch category.
+  Deliberate unconditional exceptions or weakened assertions are not mutation proof.
+- Reuse existing targeted/regression suites at the affected boundary. Their PASS
+  remains useful regression evidence, but does not replace independent source or
+  real user-path evidence. Do not initiate unrelated repairs or broad release work
+  merely to document or perform a bounded certification audit.
+- Record unfinished/deferred capabilities and their source-backed obligations
+  explicitly. An unavailable required capability blocks full certification of its
+  affected scope; a reproduced incorrect supported behavior fails it. A narrower
+  PASS must name its exclusions and must not be reported as whole-section PASS.
+  Optional visibly unsupported capabilities outside declared scope do not become
+  requirements solely through this contract; no required capability may be silently
+  excluded. Canonical content can PASS while its runtime user path is BLOCKED.
+- Static-byte browser acceptance must use real application bytes and computations
+  without test-side replacement of results. Record it separately from live-hosting
+  verification: it cannot certify deployment, public base paths, network assets,
+  service-worker updates or offline behavior. Existing publication/PWA/release gates
+  still apply when those claims are made; these two statuses do not authorize release.
+
+Use exactly these result values for each status and required case:
+
+| Result | Meaning |
+| --- | --- |
+| PASS | All required evidence for the declared scope is present and all applicable comparisons/controls pass, with no unresolved discrepancy. |
+| FAIL | Checkable source-backed evidence proves incorrect content or supported user behavior; report the exact mismatch. |
+| BLOCKED | Required source authority/integrity, capability or test access prevents completion; state the missing prerequisite. |
+| NOT_ASSESSED | The check has not been performed; no certification claim is made. |
+
+Never roll an unassessed or blocked required case into overall PASS. Report proven
+failures even when another check is blocked. Preserve previous reports and counts
+as evidence for their recorded HEAD, sources and scope; do not retroactively
+invalidate them or automatically transfer their PASS to a new independent audit.
+Adding this contract performs no certification and reopens no closed defect class.
 
 ## 18. Release and Pages workflow
 
