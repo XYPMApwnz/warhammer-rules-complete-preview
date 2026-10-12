@@ -23,7 +23,8 @@ const cases=[
   ['chaos-bikers','3x Chaos Bikers (80 pts)\n• 1x Biker Champion: Bolt pistol, Combi-bolter, Close combat weapon, Chaos icon\n• 2x Chaos Biker: Bolt pistol, Combi-bolter, Close combat weapon'],
   ['chosen','5x Chosen (140 pts)\n• 1x Chosen Champion: Boltgun, Bolt pistol, Accursed weapon, Chaos icon\n• 4x Chosen: Boltgun, Bolt pistol, Accursed weapon'],
   ['legionaries','5x Legionaries (95 pts)\n• 1x Aspiring Champion: Boltgun, Bolt pistol, Close combat weapon, Chaos icon\n• 4x Legionary: Boltgun, Bolt pistol, Close combat weapon'],
-  ['possessed','5x Possessed (130 pts)\n• 1x Possessed Champion: Hideous mutations, Chaos icon\n• 4x Possessed: Hideous mutations']
+  ['possessed','5x Possessed (130 pts)\n• 1x Possessed Champion: Hideous mutations, Chaos icon\n• 4x Possessed: Hideous mutations'],
+  ['nemesis-claw','5x Nemesis Claw (105 pts)\n• 1x Visionary: Bolt pistol, Nostraman chainblade\n• 1x Legionaries: Bolt pistol, Close combat weapon, Voice eater, Astartes chainsword\n• 3x Legionaries: Bolt pistol, Boltgun, Close combat weapon']
 ];
 const bodyguard='10x Cultist Mob (50 pts)\n• 1x Cultist Champion: Autopistol, Brutal assault weapon\n• 9x Chaos Cultist: Autopistol, Brutal assault weapon';
 const ready=async page=>{await page.waitForFunction(()=>!!window.WarhammerAppV2);await page.evaluate(async()=>{
@@ -45,16 +46,19 @@ async function inspect(page,id){return page.evaluate(id=>{const app=window.ArmyB
     // exact label characters independently of wrapping. Visibility is separate.
     .map(node=>({text:node.textContent,visible:node.getClientRects().length>0,ids:JSON.parse(node.dataset.selectedCanonicalIds),owner:node.closest('[data-canonical-profile-id]')?.dataset.canonicalProfileId})),
     snapshot:app.roster.snapshot(),effective:app.roster.effective(id),ability:root.innerText.includes('Chaos Icon: Each time'),
+    voiceAbility:root.innerText.includes('Voice Eater: Enemy units'),
     rows:unit.modelRows.flatMap(row=>row.selections.filter(selection=>selection.canonicalEquipmentIds.length).map(selection=>({owner:row.canonicalProfileId,selection})))};
 },id);}
 function verify(report,slug,selected=true){assert.equal(report.equipment.length,selected?1:0);
   if(!selected)return;
-  assert.equal(report.equipment[0].text,'1 × Chaos icon',slug+' exact equipment caption');
+  assert.equal(report.equipment[0].text,slug==='nemesis-claw'?'1 × voice eater':'1 × Chaos icon',slug+' exact equipment caption');
   assert.equal(report.equipment[0].visible,true,slug+' equipment label is visible');
   assert.deepEqual(report.equipment[0].ids,report.rows[0].selection.canonicalEquipmentIds);
   assert.equal(report.equipment[0].owner,report.rows[0].owner);
-  assert.equal(report.rows[0].selection.physicalQuantity,1);assert.equal(report.ability,true,'Canonical ability heading unchanged');
+  assert.equal(report.rows[0].selection.physicalQuantity,1);
+  assert.equal(slug==='nemesis-claw'?report.voiceAbility:report.ability,true,'Canonical ability heading unchanged');
   if(slug==='dark-commune')assert.equal(report.equipment[0].owner,'datasheet-dark-commune:section:2:member:3');
+  if(slug==='nemesis-claw')assert.equal(report.equipment[0].owner,'datasheet-nemesis-claw:section:2:member:2');
 }
 function withoutCaptions(value){if(Array.isArray(value))return value.map(withoutCaptions);if(!value||typeof value!=='object')return value;
   return Object.fromEntries(Object.entries(value).flatMap(([key,item])=>{
@@ -73,13 +77,16 @@ async function mount(old,viewport){const origin=old?'http://icon-baseline.test':
 try{
   for(const [device,viewport] of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
     const current=await mount(false,viewport),previous=await mount(true,viewport),page=current.page;
-    for(const [slug,block] of cases){const text=header+block+'\n'+block.replace(', Chaos icon','')+(slug==='dark-commune'?'\n'+bodyguard:'');
-      await importText(page,text,slug==='dark-commune'?3:2);await open(page,'parsed-unit-1');const effective=await inspect(page,'parsed-unit-1');verify(effective,slug);
+    for(const [slug,block] of cases){const text=header+block+'\n'+block.replace(slug==='nemesis-claw'?', Voice eater':', Chaos icon','')+
+      (slug==='dark-commune'?'\n'+bodyguard:slug==='nemesis-claw'?'\n1x Chaos Lord (95 pts): Plasma pistol, Daemon hammer':'');
+      const count=['dark-commune','nemesis-claw'].includes(slug)?3:2;
+      await importText(page,text,count);await open(page,'parsed-unit-1');const effective=await inspect(page,'parsed-unit-1');verify(effective,slug);
       await guide(page,'parsed-unit-1');verify(await inspect(page,'parsed-unit-1'),slug);
       await page.reload();await ready(page);assert.deepEqual(await inspect(page,'parsed-unit-1'),effective,'Reload preserves state and caption');
-      await open(page,'parsed-unit-2');verify(await inspect(page,'parsed-unit-2'),slug,false);
+      await open(page,'parsed-unit-2');const absent=await inspect(page,'parsed-unit-2');verify(absent,slug,false);
+      if(slug==='nemesis-claw')assert.equal(absent.voiceAbility,false,'Unselected Voice Eater ability hidden');
       await guide(page,'parsed-unit-2');verify(await inspect(page,'parsed-unit-2'),slug,false);
-      await importText(previous.page,text,slug==='dark-commune'?3:2);await open(previous.page,'parsed-unit-1');const before=await inspect(previous.page,'parsed-unit-1');
+      await importText(previous.page,text,count);await open(previous.page,'parsed-unit-1');const before=await inspect(previous.page,'parsed-unit-1');
       assert.deepEqual(withoutCaptions(effective.snapshot),before.snapshot,'Only caption references may change snapshot');
       assert.deepEqual(withoutCaptions(effective.effective),before.effective,'Gameplay projection unchanged');
       if(slug==='dark-commune'){
@@ -91,6 +98,20 @@ try{
         await page.evaluate(()=>window.ArmyBookAppV2.openRoster());await page.locator('[data-attachment-candidate-for="parsed-unit-3"]').selectOption('parsed-unit-1');
         await page.locator('[data-attachment-target-instance-id="parsed-unit-3"] [data-roster-action="attach"]').click();await page.waitForFunction(()=>window.ArmyBookAppV2.roster.state.attachments.length===1);
         await guide(page,'parsed-unit-3');verify(await inspect(page,'parsed-unit-1'),slug);verify(await inspect(page,'parsed-unit-3'),slug,false);
+      }
+      if(slug==='nemesis-claw'){
+        for(const transition of ['attach','detach','reattach']){
+          await page.evaluate(()=>window.ArmyBookAppV2.openRoster());
+          if(transition==='detach')await page.locator('[data-roster-action="detach"]').click();
+          else {await page.locator('[data-attachment-candidate-for="parsed-unit-1"]').selectOption('parsed-unit-3');
+            await page.locator('[data-attachment-target-instance-id="parsed-unit-1"] [data-roster-action="attach"]').click();}
+          await page.waitForFunction(n=>window.ArmyBookAppV2.roster.state.attachments.length===n,transition==='detach'?0:1);
+          await open(page,'parsed-unit-1');verify(await inspect(page,'parsed-unit-1'),slug);
+          if(transition==='detach')await open(page,'parsed-unit-3');
+          verify(await inspect(page,'parsed-unit-3'),slug,false);
+          await guide(page,'parsed-unit-1');verify(await inspect(page,'parsed-unit-1'),slug);
+          if(transition==='reattach'){await page.reload();await ready(page);verify(await inspect(page,'parsed-unit-1'),slug);verify(await inspect(page,'parsed-unit-3'),slug,false);}
+        }
       }
       results.push({device,slug,effective:'PASS',personalGuide:'PASS',reload:'PASS',isolation:'PASS',semanticComparison:'PASS'});
     }

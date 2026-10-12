@@ -62,12 +62,25 @@ for(const item of metadata.equipmentSelections) {
     assert.deepEqual(state.units[0].selections[0].sourceReferences,item.sourceReferences);
     const ref=item.sourceReferences[0];let value=records.get(ref.entityId).data;
     for(const part of ref.path.slice(1).split('/'))value=value[part];
-    assert.equal(value.slice(ref.caption.start,ref.caption.end),'Chaos icon');
+    assert.equal(value.slice(ref.caption.start,ref.caption.end),item.ownerId==='unit-nemesis-claw'?'voice eater':'Chaos icon');
     assert.equal(ref.bookId,book.bookId);
     assert.deepEqual(item.canonicalEquipmentIds,[ref.entityId]);
   }else assert.equal(state.units[0].selections[0].sourceReferences,undefined,'Other equipment bindings unchanged');
 }
-assert.equal(metadata.equipmentSelections.filter(item=>item.sourceReferences).length,5);
+assert.equal(metadata.equipmentSelections.filter(item=>item.sourceReferences).length,6);
+const voiceBinding=metadata.equipmentSelections.find(item=>item.ownerId==='unit-nemesis-claw');
+assert.equal(voiceBinding.label,'voice eater');
+assert.deepEqual(voiceBinding.canonicalEquipmentIds,['datasheet-nemesis-claw:wargear:6']);
+const voiceText=header+'5x Nemesis Claw (105 pts)\n• 1x Visionary: Bolt pistol, Nostraman chainblade\n• 1x Legionaries: Bolt pistol, Close combat weapon, Voice eater, Astartes chainsword\n• 3x Legionaries: Bolt pistol, Boltgun, Close combat weapon';
+const voiceState=ready(voiceText+'\n'+voiceText.slice(voiceText.indexOf('5x Nemesis Claw')).replace(', Voice eater',''));
+const voiceRows=voiceState.units[0].modelRows.filter(row=>row.selections.some(s=>s.canonicalEquipmentIds.length));
+assert.equal(voiceRows.length,1);
+assert.equal(voiceRows[0].canonicalProfileId,'datasheet-nemesis-claw:section:2:member:2');
+const voiceSelection=voiceRows[0].selections.find(s=>s.canonicalEquipmentIds.length);
+assert.equal(voiceSelection.physicalQuantity,1);
+assert.deepEqual(voiceSelection.sourceReferences,voiceBinding.sourceReferences);
+assert(!selections(voiceState.units[1]).some(s=>s.canonicalEquipmentIds.length));
+const voiceReload=make();voiceReload.load(JSON.parse(JSON.stringify(voiceState)));assert.deepEqual(voiceReload.snapshot(),voiceState);
 for(const item of metadata.optionSelections.filter(item=>item.label.includes(':'))) {
   const unit=records.get(item.ownerId||'unit-legionaries'),state=ready(header+block(unit).replace('(100 pts)',`(100 pts): ${item.label}`));
   const selected=state.units[0][item.selectionField];
