@@ -71,7 +71,7 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
           throw new TypeError('Unresolved canonical effect contribution');
       }
       if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
-      if (effect.operation === 'GRANT_UNIT_KEYWORD' && (effect.targetSubject !== 'UNIT' || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid UNIT keyword grant');
+      if (effect.operation === 'GRANT_UNIT_KEYWORD' && (effect.targetSubject !== 'UNIT' || typeof effect.keyword !== 'string' || !effect.keyword || (effect.unitScope !== undefined && !['FORMED','PHYSICAL'].includes(effect.unitScope)))) throw new TypeError('Invalid UNIT keyword grant');
       if (effect.operation === 'GRANT_MODEL_KEYWORD' && (effect.targetSubject !== 'MODEL' || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid MODEL keyword grant');
       if (effect.operation === 'REMOVE_KEYWORD' && (!['MODEL','UNIT'].includes(effect.targetSubject) || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid scoped keyword removal');
       if (effect.operation === 'GRANT_MODEL_ABILITY' && (effect.targetSubject !== 'MODEL' || effect.ability?.name !== 'Feel No Pain' || !Number.isInteger(effect.ability.value) || effect.ability.value < 2 || effect.ability.value > 6)) throw new TypeError('Invalid MODEL ability');
@@ -279,7 +279,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       const participant = condition.binding === 'SOURCE' ? source : target.unit;
       const ctx = predicateContext(state,result,participant?.instanceId,subject,condition.binding === 'TARGET' ? target.model?.scopeId : ownerModel?.scopeId,condition.binding === 'SOURCE' ? extra : {});
       if (!ctx) return false;
-      if (effect.operation==='GRANT_ABILITY' && effect.unitScope==='PHYSICAL' && subject==='UNIT') {
+      if ((effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD') && effect.unitScope==='PHYSICAL' && subject==='UNIT') {
         ctx.unitId=participant.canonicalUnitId;
         ctx.keywords=new Set(participant.keywords);
       }
@@ -330,11 +330,11 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       if(row && domain){row.characteristic=effect.field;row.rawBefore=rawBefore ?? null;row.rawAfter=rawAfter;rows.push(row);}
       return row;
     };
-    const physicalAbility=effect.operation==='GRANT_ABILITY' && effect.unitScope==='PHYSICAL';
-    const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || (!physicalAbility && target.unit.formedUnitId) || target.unit.instanceId}`;
+    const physicalUnit=(effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD') && effect.unitScope==='PHYSICAL';
+    const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || (!physicalUnit && target.unit.formedUnitId) || target.unit.instanceId}`;
     if (processed.has(marker)) return;
     processed.add(marker);
-    const group=effect.targetSubject==='UNIT' && !physicalAbility?result.formedUnits.find(g=>g.formedUnitId===target.unit.formedUnitId):null;
+    const group=effect.targetSubject==='UNIT' && !physicalUnit?result.formedUnits.find(g=>g.formedUnitId===target.unit.formedUnitId):null;
     const unitRecipients=group?result.units.filter(u=>group.memberInstanceIds.includes(u.instanceId)):[target.unit];
     if (effect.operation==='CONTRIBUTE_WEAPON_PROFILE') {
       const profile=records.get(effect.weaponProfileId);

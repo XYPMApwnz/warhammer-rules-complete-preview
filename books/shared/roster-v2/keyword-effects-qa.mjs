@@ -356,4 +356,192 @@ check('battle conditions and fabricated source evidence cannot authorize roster 
   assert.throws(()=>execute(falseProof.book,falseProof.state));
 });
 
+check('absent and explicit FORMED UNIT scope preserve recipients, context, deduplication and provenance',()=>{
+  for(const targetBinding of ['SOURCE_UNIT','ROSTER_UNITS']) {
+    const {book,state}=fixture();
+    const effect=rule(book,'formed-default',{parent:targetBinding==='SOURCE_UNIT'?'leader':'main',
+      operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',targetBinding,
+      conditions:[{binding:'TARGET',predicate:keyword('UNIT','UNIT_NATIVE')}]});
+    const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+    for(const input of [state,attached]) {
+      delete effect.unitScope;
+      const expected=execute(book,input);
+      effect.unitScope='FORMED';
+      assert.deepEqual(execute(book,input),expected,'Explicit FORMED must preserve the entire default projection');
+      if(input===attached) {
+        assert.ok(unit(expected,'leader').keywords.includes('BONUS'));
+        assert.ok(unit(expected,'alpha').keywords.includes('BONUS'));
+        assert.equal(applied(expected,'formed-default','alpha').length,1);
+        assert.equal(applied(expected,'formed-default','leader').length,1);
+      }
+    }
+  }
+});
+check('PHYSICAL SOURCE_UNIT uses own SOURCE identity and keywords without changing MODEL or sibling bags',()=>{
+  const {book,state}=fixture();
+  rule(book,'physical-source',{parent:'leader',operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+    targetBinding:'SOURCE_UNIT',unitScope:'PHYSICAL',conditions:[
+      {binding:'SOURCE',predicate:atom('UNIT_ID','UNIT',{id:id('leader')})},
+      {binding:'SOURCE',predicate:keyword('UNIT','CHARACTER')}]});
+  rule(book,'borrowed-source',{parent:'leader',operation:'GRANT_UNIT_KEYWORD',keyword:'BORROWED',targetSubject:'UNIT',
+    targetBinding:'SOURCE_UNIT',unitScope:'PHYSICAL',conditions:[{binding:'SOURCE',predicate:keyword('UNIT','UNIT_NATIVE')}]});
+  const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+  const projection=execute(book,attached);
+  assert.ok(unit(projection,'leader').keywords.includes('BONUS'));
+  assertProof(book,applied(projection,'physical-source','leader')[0],'physical-source',
+    {instanceId:'leader',operation:'GRANT_UNIT_KEYWORD'});
+  for(const instanceId of ['alpha','beta'])assert.ok(!unit(projection,instanceId).keywords.includes('BONUS'));
+  assert.ok(projection.units.every(row=>!row.keywords.includes('BORROWED')));
+  assert.ok(projection.units.every(row=>row.profiles.every(model=>!model.keywords.includes('BONUS'))));
+  assert.ok(projection.formedUnits[0].keywords.includes('BONUS'),'Physical contribution must update the formed UNIT union');
+});
+check('PHYSICAL ROSTER_UNITS TARGET conditions work with null source and do not borrow formed identity',()=>{
+  for(const [predicate,recipients] of [
+    [atom('UNIT_ID','UNIT',{id:id('leader')}),['leader']],
+    [atom('UNIT_ID','UNIT',{id:id('mixed')}),['alpha','beta']],
+    [keyword('UNIT','CHARACTER'),['leader']],
+    [keyword('UNIT','UNIT_NATIVE'),['alpha','beta']],
+    [atom('FIELD','UNIT',{key:'leading',equals:true},'ROSTER'),['leader']]
+  ]) {
+    const {book,state}=fixture();
+    rule(book,'physical-target',{parent:'main',operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+      targetBinding:'ROSTER_UNITS',unitScope:'PHYSICAL',conditions:[{binding:'TARGET',predicate}]});
+    const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+    const projection=execute(book,attached);
+    for(const row of projection.units) {
+      assert.equal(row.keywords.includes('BONUS'),recipients.includes(row.instanceId),row.instanceId);
+      assert.ok(row.profiles.every(model=>!model.keywords.includes('BONUS')));
+      const proof=applied(projection,'physical-target',row.instanceId);
+      assert.equal(proof.length,recipients.includes(row.instanceId)?1:0);
+      if(proof.length) {
+        assert.equal(proof[0].sourceInstanceId,null);
+        assert.equal(proof[0].targetInstanceId,row.instanceId);
+        assert.equal(proof[0].targetProfileId,null);
+        assert.deepEqual(proof[0].sourceFields,[['text']]);
+      }
+    }
+  }
+});
+check('PHYSICAL grants deduplicate by physical instance including two recipients in one formation',()=>{
+  const {book,state}=fixture();
+  rule(book,'all-physical',{parent:'main',operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+    targetBinding:'ROSTER_UNITS',unitScope:'PHYSICAL'});
+  const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+  const projection=execute(book,attached);
+  for(const row of projection.units) {
+    assert.equal(row.keywords.filter(word=>word==='BONUS').length,1);
+    assert.equal(applied(projection,'all-physical',row.instanceId).length,1);
+    assert.ok(row.profiles.every(model=>!model.keywords.includes('BONUS')));
+  }
+  assert.equal(projection.formedUnits[0].keywords.filter(word=>word==='BONUS').length,1);
+  const reorderedBook=clone(book);reorderedBook.entities.reverse();
+  const reorderedState=clone(attached);reorderedState.units.reverse();
+  assert.deepEqual(semantic(execute(reorderedBook,reorderedState)),semantic(projection));
+  rule(book,'same-keyword',{parent:'main',operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+    targetBinding:'ROSTER_UNITS',unitScope:'PHYSICAL'});
+  const duplicate=execute(book,attached);
+  for(const row of duplicate.units) {
+    assert.equal(row.keywords.filter(word=>word==='BONUS').length,1);
+    assert.equal(applied(duplicate,'same-keyword',row.instanceId).length,0,'Identical final keyword does not fabricate another change');
+  }
+});
+check('PHYSICAL attachment-dependent grants rebuild without stale component or union keywords',()=>{
+  const {book,state}=fixture();
+  rule(book,'physical-leading',{parent:'leader',operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+    targetBinding:'SOURCE_UNIT',unitScope:'PHYSICAL',conditions:[
+      {binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:'leading',equals:true},'ROSTER')}]});
+  const base=execute(book,state);
+  const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+  const first=execute(book,attached);
+  assert.ok(unit(first,'leader').keywords.includes('BONUS'));
+  assert.ok(!unit(first,'alpha').keywords.includes('BONUS'));
+  const detached=changeAttachment(book,attached,book.rosterAttachmentPolicies,'DETACH','leader');
+  assert.deepEqual(execute(book,detached),base);
+  const restored=changeAttachment(book,detached,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+  assert.deepEqual(execute(book,restored),first);
+  const moved=changeAttachment(book,attached,book.rosterAttachmentPolicies,'REATTACH','leader','beta');
+  const next=execute(book,moved);
+  assert.ok(!unit(next,'alpha').keywords.includes('BONUS'));
+  assert.ok(!unit(next,'beta').keywords.includes('BONUS'));
+  assert.ok(unit(next,'leader').keywords.includes('BONUS'));
+  assert.ok(next.formedUnits.find(group=>group.memberInstanceIds.includes('beta')).keywords.includes('BONUS'));
+});
+check('identical physical Leaders keep independent attachment eligibility and keyword provenance',()=>{
+  const {book,state}=fixture();
+  const duplicate=clone(state.units.find(row=>row.instanceId==='leader'));
+  duplicate.instanceId='leader-copy';state.units.push(duplicate);
+  rule(book,'physical-duplicate',{parent:'leader',operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+    targetBinding:'SOURCE_UNIT',unitScope:'PHYSICAL',conditions:[
+      {binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:'leading',equals:true},'ROSTER')}]});
+  const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+  const first=execute(book,attached);
+  assert.ok(unit(first,'leader').keywords.includes('BONUS'));
+  assert.ok(!unit(first,'leader-copy').keywords.includes('BONUS'));
+  const reordered=clone(attached);reordered.units.reverse();
+  assert.deepEqual(semantic(execute(book,reordered)),semantic(first));
+  const detached=changeAttachment(book,attached,book.rosterAttachmentPolicies,'DETACH','leader');
+  const switched=changeAttachment(book,detached,book.rosterAttachmentPolicies,'ATTACH','leader-copy','alpha');
+  const next=execute(book,switched);
+  assert.ok(!unit(next,'leader').keywords.includes('BONUS'));
+  assert.ok(unit(next,'leader-copy').keywords.includes('BONUS'));
+  assertProof(book,applied(next,'physical-duplicate','leader-copy')[0],'physical-duplicate',
+    {instanceId:'leader-copy',operation:'GRANT_UNIT_KEYWORD'});
+  assert.ok(!unit(next,'alpha').keywords.includes('BONUS'));
+});
+check('PHYSICAL keyword conditions retain fixed-point dependencies and physical MODEL contributions',()=>{
+  const {book,state}=fixture();
+  rule(book,'model-seed',{keyword:'SEED',conditions:[targetProfile('profile-a')]});
+  rule(book,'physical-dependent',{parent:'main',operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+    targetBinding:'ROSTER_UNITS',unitScope:'PHYSICAL',conditions:[{binding:'TARGET',predicate:keyword('UNIT','SEED')}]});
+  const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+  const expected=execute(book,attached);
+  for(const instanceId of ['alpha','beta']) {
+    assert.ok(unit(expected,instanceId).keywords.includes('BONUS'));
+    assert.ok(unit(expected,instanceId).profiles.every(model=>!model.keywords.includes('BONUS')));
+  }
+  assert.ok(!unit(expected,'leader').keywords.includes('BONUS'),'Leader cannot borrow the formed union SEED');
+  const reordered=clone(book);reordered.entities.reverse();
+  const reversed=clone(attached);reversed.units.reverse();
+  assert.deepEqual(semantic(execute(reordered,reversed)),semantic(expected));
+  rule(book,'remove-seed',{operation:'REMOVE_KEYWORD',keyword:'SEED',conditions:[rosterGate(),targetProfile('profile-a')]});
+  assert.ok(execute(book,attached).units.every(row=>!row.keywords.includes('BONUS')),
+    'Removed MODEL contribution cannot enable a PHYSICAL UNIT grant');
+});
+check('PHYSICAL grants preserve grant-only fixed points without borrowing sibling contributions',()=>{
+  const {book,state}=fixture();
+  rule(book,'unit-seed',{parent:'leader',operation:'GRANT_UNIT_KEYWORD',keyword:'SEED',targetSubject:'UNIT',
+    targetBinding:'SOURCE_UNIT',unitScope:'PHYSICAL'});
+  rule(book,'unit-dependent',{parent:'main',operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+    targetBinding:'ROSTER_UNITS',unitScope:'PHYSICAL',conditions:[{binding:'TARGET',predicate:keyword('UNIT','SEED')}]});
+  const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+  const expected=execute(book,attached);
+  assert.ok(unit(expected,'leader').keywords.includes('BONUS'));
+  for(const instanceId of ['alpha','beta'])assert.ok(!unit(expected,instanceId).keywords.includes('BONUS'));
+  const reordered=clone(book);reordered.entities.reverse();
+  assert.deepEqual(semantic(execute(reordered,attached)),semantic(expected));
+});
+check('UNIT keyword scope accepts only absent, FORMED or PHYSICAL and rejects battle execution',()=>{
+  for(const unitScope of [undefined,'FORMED','PHYSICAL']) {
+    const {book,state}=fixture();rule(book,'valid-scope',{operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+      targetBinding:'SOURCE_UNIT',unitScope});assert.ok(execute(book,state));
+  }
+  for(const unitScope of [null,'',false,0,'INVALID',{},[]]) {
+    const {book,state}=fixture();rule(book,'invalid-scope',{operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+      targetBinding:'SOURCE_UNIT',unitScope});assert.throws(()=>execute(book,state),/Invalid UNIT keyword grant/);
+  }
+  const {book,state}=fixture();rule(book,'physical-battle',{operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+    targetBinding:'SOURCE_UNIT',unitScope:'PHYSICAL',conditions:[{
+      binding:'TARGET',predicate:atom('FIELD','UNIT',{key:'syntheticBattleFlag',equals:true},'BATTLE')}]});
+  assert.throws(()=>execute(book,state));
+  const nonExecuting=fixture();
+  rule(nonExecuting.book,'battle-reference',{operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',
+    targetBinding:'SOURCE_UNIT',unitScope:'PHYSICAL'});
+  const clause=nonExecuting.book.entities.at(-1).ruleContract.clauses[0];
+  clause.rosterClassification='BATTLE_ONLY';clause.rosterEffects=[];
+  clause.rosterClassificationNote={reason:'Synthetic battle-only rule remains conditional.'};
+  const projection=execute(nonExecuting.book,nonExecuting.state);
+  assert.ok(projection.units.every(row=>!row.keywords.includes('BONUS')));
+  assert.ok(unit(projection,'alpha').conditional.some(row=>row.ruleId===id('battle-reference')&&row.state==='UNKNOWN'));
+});
+
 console.log(JSON.stringify({status:'PASS',checks:checks.length,names:checks},null,2));
