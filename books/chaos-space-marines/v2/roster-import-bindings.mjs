@@ -45,16 +45,16 @@ const weaponFamilies=[
 ];
 
 const equipment=[
-  ['legionaries','Chaos icon','wargear:3','/text'],
-  ['chosen','Chaos icon','wargear:5','/text'],
-  ['possessed','Chaos icon','wargear:1','/text'],
-  ['chaos-bikers','Chaos icon','wargear:4','/text'],
+  ['legionaries','Chaos icon','wargear:3','/text',true],
+  ['chosen','Chaos icon','wargear:5','/text',true],
+  ['possessed','Chaos icon','wargear:1','/text',true],
+  ['chaos-bikers','Chaos icon','wargear:4','/text',true],
   ['sorcerer-in-terminator-armour','Chaos familiar','wargear:2','/text'],
   ['nemesis-claw','Voice eater','wargear:6','/text'],
   // The fixed Iconarch item has no separate selectable-option record. Its
   // existing composition address is the selection owner; the ability record
   // is evidence about what that item does, not proof of imported ownership.
-  ['dark-commune','Chaos icon','section:2','/equipmentAndRules/0/text']
+  ['dark-commune','Chaos icon','section:2','/equipmentAndRules/0/text',true]
 ];
 
 export function buildImportBindings(book) {
@@ -84,12 +84,21 @@ export function buildImportBindings(book) {
       name.startsWith(label+' – ')||name.startsWith(label+' - ');}), 'Canonical weapon family evidence drift');
     return {ownerId,label,canonicalProfileIds,evidence:canonicalProfileIds.map(id=>evidence(id,'/name'))};
   });
-  const equipmentSelections=equipment.map(([slug,label,suffix,path])=>{
+  const equipmentSelections=equipment.map(([slug,label,suffix,path,quoteCaption])=>{
     const ownerId=`unit-${slug}`,id=`datasheet-${slug}:${suffix}`,entity=records.get(id),ref=evidence(id,path);
     requireFact(entity?.parentId===ownerId&&['WARGEAR_OPTION','UNIT_COMPOSITION','DATASHEET_SECTION'].includes(entity.kind),
       'Foreign canonical equipment selection');
     requireFact(textAt(ref).toLowerCase().includes(label.toLowerCase()),'Canonical equipment label evidence drift');
-    return {ownerId,label,canonicalEquipmentIds:[id],canonicalFieldPaths:{[id]:[path]},evidence:[ref]};
+    // A display span quotes the equipment name from its existing source field.
+    // It neither renames the ability nor changes the selected item's identity.
+    const sourceReferences=[];
+    if(quoteCaption) {
+      const text=textAt(ref),start=text.indexOf(label);
+      requireFact(start>=0&&text.indexOf(label,start+label.length)<0,'Ambiguous canonical equipment caption');
+      sourceReferences.push({...ref,bookId:book.bookId,caption:{start,end:start+label.length}});
+    }
+    return {ownerId,label,canonicalEquipmentIds:[id],canonicalFieldPaths:{[id]:[path]},evidence:[ref],
+      ...(sourceReferences.length?{sourceReferences}:{})};
   });
   const optionSelections=[];
   for(const slug of ['heretic-astartes-daemon-prince','heretic-astartes-daemon-prince-with-wings']) {

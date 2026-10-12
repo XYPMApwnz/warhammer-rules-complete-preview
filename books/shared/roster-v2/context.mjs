@@ -112,6 +112,24 @@ export function validateRoster(book, state, policies) {
         assert(Array.isArray(selection.sourceReferences), 'Invalid equipment source references');
         const seenReferences=new Set();
         for (const reference of selection.sourceReferences) {
+          if(reference?.caption!==undefined) {
+            // A caption can only quote a bounded span of this selected item's
+            // own canonical field. It cannot introduce another source owner.
+            const record=records.get(reference.entityId),span=reference.caption,key=reference.entityId+reference.path;
+            assert(reference.bookId===book.bookId&&selection.canonicalEquipmentIds.length===1&&
+              selection.canonicalEquipmentIds.includes(reference.entityId)&&record?.parentId===canonical.id&&
+              ['WARGEAR_OPTION','WARGEAR_FOOTNOTE','DATASHEET_SECTION','SUPPLEMENTAL_DATASHEET_RULE','UNIT_COMPOSITION'].includes(record.kind)&&
+              selection.canonicalFieldPaths?.[reference.entityId]?.includes(reference.path),'Foreign equipment caption reference');
+            let text=record.data;
+            for(const part of reference.path.slice(1).split('/').map(p=>p.replaceAll('~1','/').replaceAll('~0','~')))
+              text=text!==null&&text!==undefined&&Object.hasOwn(text,part)?text[part]:undefined;
+            assert(typeof text==='string'&&span&&typeof span==='object'&&!Array.isArray(span)&&
+              Object.keys(span).every(key=>['start','end'].includes(key))&&Number.isSafeInteger(span.start)&&Number.isSafeInteger(span.end)&&
+              span.start>=0&&span.end>span.start&&span.end<=text.length&&
+              text.slice(span.start,span.end).trim()===text.slice(span.start,span.end)&&
+              !seenReferences.has(key),'Unresolved equipment caption reference');
+            seenReferences.add(key);continue;
+          }
           const record=records.get(reference?.entityId),match=typeof reference?.path==='string' && reference.path.match(/^\/blocks\/(0|[1-9]\d*)\/text$/);
           assert(record?.parentId===canonical.id && ['WARGEAR_OPTION','WARGEAR_FOOTNOTE','DATASHEET_SECTION','SUPPLEMENTAL_DATASHEET_RULE'].includes(record.kind) && match, 'Foreign equipment source reference');
           const block=record.data.blocks?.[Number(match[1])],key=reference.entityId+reference.path;

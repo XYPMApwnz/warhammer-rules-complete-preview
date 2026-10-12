@@ -81,8 +81,13 @@ function selectionCandidates(entities,unit,label,weaponSelections,equipmentSelec
   const declaredEquipment=new Map();
   for(const binding of equipmentSelections.filter(binding=>binding.ownerId===unit.id)) {
     const key=gearLabel(binding.label),list=declaredEquipment.get(key)||[];
+    const sourceReferences=binding.sourceReferences?.length ? [
+      ...(groups.get(key)||[]).filter(candidate=>JSON.stringify(candidate.canonicalEquipmentIds)===JSON.stringify(binding.canonicalEquipmentIds)&&
+        JSON.stringify(candidate.canonicalFieldPaths)===JSON.stringify(binding.canonicalFieldPaths)).flatMap(candidate=>candidate.sourceReferences||[]),
+      ...clone(binding.sourceReferences)] : [];
     list.push({canonicalProfileIds:[],canonicalEquipmentIds:clone(binding.canonicalEquipmentIds),
-      canonicalFieldPaths:clone(binding.canonicalFieldPaths)});declaredEquipment.set(key,list);
+      canonicalFieldPaths:clone(binding.canonicalFieldPaths),
+      ...(sourceReferences.length?{sourceReferences:[...new Map(sourceReferences.map(ref=>[JSON.stringify(ref),clone(ref)])).values()]}:{})});declaredEquipment.set(key,list);
   }
   for(const [name,bindings] of declaredEquipment)groups.set(name,bindings);
   const unique = list => [...new Map(list.map(binding=>[JSON.stringify(binding),binding])).values()];

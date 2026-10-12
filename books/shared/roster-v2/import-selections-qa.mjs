@@ -55,4 +55,45 @@ const generic=createRosterImportService(book,{optionSelections:genericOptions}).
 assert.equal(generic.status,'READY');
 assert.deepEqual(generic.roster.units[0].selectedConfigurationIds,['blue']);
 assert.equal(generic.roster.units[0].selectedSignalId,'mark');
+// Exact equipment captions quote their own canonical text. The existing
+// ability occurrence remains a separate reference, with unchanged behavior.
+const captionBook=structuredClone(book);
+const item=captionBook.entities.find(entity=>entity.id==='equipment');
+item.data.text='1 model can be equipped with 1 field projector.';
+captionBook.entities.find(entity=>entity.id==='evidence').data.blocks=[{text:'Field Projector: Equipped bearer receives a benefit',wargearAbility:true}];
+const start=item.data.text.indexOf('field projector');
+const captionReference={entityId:'equipment',path:'/text',bookId:captionBook.bookId,caption:{start,end:start+'field projector'.length}};
+const captionBindings=[{...equipmentSelections[0],sourceReferences:[captionReference]}];
+const captionService=()=>createRosterImportService(captionBook,{equipmentSelections:captionBindings});
+const captionResult=captionService().import(header+'1x Crew (10 pts): Field projector\n1x Crew (10 pts)');
+assert.equal(captionResult.status,'READY');
+const captionState=captionResult.roster,selected=captionState.units[0].selections[0];
+assert.deepEqual(selected.sourceReferences,[{entityId:'evidence',path:'/blocks/0/text'},captionReference]);
+assert.deepEqual(selected.canonicalEquipmentIds,['equipment']);
+assert.deepEqual(selected.canonicalFieldPaths,{equipment:['/text']});
+assert.equal(selected.physicalQuantity,1);
+assert.equal(captionState.units[1].selections.length,0);
+assert.equal(item.data.text.slice(captionReference.caption.start,captionReference.caption.end),'field projector');
+const reloaded=captionService();reloaded.load(JSON.parse(JSON.stringify(captionState)));assert.deepEqual(reloaded.snapshot(),captionState);
+const badCaption=mutate=>{
+  const state=structuredClone(captionState),selection=state.units[0].selections[0];
+  mutate(selection.sourceReferences[1],selection);
+  assert.throws(()=>captionService().load(state),/equipment (caption|source) reference/);
+};
+badCaption(ref=>{ref.bookId='foreign-book';});
+badCaption(ref=>{ref.entityId='evidence';}); // Same owner, but not the selected item.
+badCaption(ref=>{ref.entityId='missing';});
+badCaption(ref=>{ref.path='/missing';});
+badCaption(ref=>{ref.caption.start=-1;});
+badCaption(ref=>{ref.caption.end=Number.MAX_SAFE_INTEGER;});
+badCaption(ref=>{ref.caption.end=ref.caption.start;});
+badCaption(ref=>{ref.caption.start=0.5;});
+badCaption(ref=>{ref.caption={start:1,end:2};}); // Whitespace only.
+badCaption((ref,selection)=>{ref.path='/constructor/name';selection.canonicalFieldPaths.equipment=['/constructor/name'];ref.caption={start:0,end:6};});
+badCaption((ref,selection)=>{selection.sourceReferences.push(structuredClone(ref));});
+badCaption(ref=>{delete ref.caption;}); // Plain /text references remain forbidden.
+const foreignOwnerBook=structuredClone(captionBook);foreignOwnerBook.entities.push({id:'foreign-item',kind:'WARGEAR_OPTION',parentId:'other-unit',data:{text:item.data.text}});
+const foreignOwner=structuredClone(captionState);foreignOwner.units[0].selections[0].sourceReferences[1].entityId='foreign-item';
+assert.throws(()=>createRosterImportService(foreignOwnerBook,{equipmentSelections:captionBindings}).load(foreignOwner),/Foreign equipment caption reference/);
+assert.deepEqual(ready('1x Crew (10 pts): Field projector, blue\n1x Crew (10 pts): green'),state,'Existing no-caption imports unchanged');
 console.log(JSON.stringify({status:'PASS',selectionVsEvidence:'PASS',canonicalChoices:'PASS',exclusiveChoice:'PASS',unknownFamiliesPreserved:'PASS',physicalScope:'PASS',removeRestore:'PASS',effectsExecuted:0}));

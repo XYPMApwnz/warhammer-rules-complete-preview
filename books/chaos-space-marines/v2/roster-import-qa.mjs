@@ -58,7 +58,16 @@ for(const item of metadata.equipmentSelections) {
   const unit=records.get(item.ownerId),state=ready(header+block(unit).replace('(100 pts)',`(100 pts): 1x ${item.label}`));
   assert.deepEqual(state.units[0].selections[0].canonicalEquipmentIds,item.canonicalEquipmentIds);
   assert.deepEqual(state.units[0].selections[0].canonicalFieldPaths,item.canonicalFieldPaths);
+  if(item.sourceReferences) {
+    assert.deepEqual(state.units[0].selections[0].sourceReferences,item.sourceReferences);
+    const ref=item.sourceReferences[0];let value=records.get(ref.entityId).data;
+    for(const part of ref.path.slice(1).split('/'))value=value[part];
+    assert.equal(value.slice(ref.caption.start,ref.caption.end),'Chaos icon');
+    assert.equal(ref.bookId,book.bookId);
+    assert.deepEqual(item.canonicalEquipmentIds,[ref.entityId]);
+  }else assert.equal(state.units[0].selections[0].sourceReferences,undefined,'Other equipment bindings unchanged');
 }
+assert.equal(metadata.equipmentSelections.filter(item=>item.sourceReferences).length,5);
 for(const item of metadata.optionSelections.filter(item=>item.label.includes(':'))) {
   const unit=records.get(item.ownerId||'unit-legionaries'),state=ready(header+block(unit).replace('(100 pts)',`(100 pts): ${item.label}`));
   const selected=state.units[0][item.selectionField];
