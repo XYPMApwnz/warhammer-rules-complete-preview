@@ -4,6 +4,10 @@ import assert from 'node:assert/strict';
 import {book,importBook,bindings,fixtures,imported,runtime,runtimeFromState,rows,unit,clone,removeSelection} from './roster-runtime-qa.mjs';
 import {createCSMRosterRuntime} from './roster-runtime.mjs';
 import {formRoster} from '../../shared/roster-v2/context.mjs';
+import {createCSMBrowserRoster} from './roster-boot.mjs';
+import {makePersonalPayload} from './personal-guide-qa.mjs';
+import * as personal from '../../shared/army-book-app-v2/personal.mjs';
+import {selectedMarkClause} from './roster-effect-build.mjs';
 
 const original=JSON.stringify(book),canonical=JSON.stringify(importBook),checks=[],mutations=[];
 const fixture=(owner,clauseId)=>{const found=fixtures.find(f=>f.owner===owner&&(!clauseId||f.clauseId===clauseId));assert.ok(found,owner);return found;};
@@ -82,6 +86,108 @@ test('Selected Mark and Allegiance prerequisites are exact imported identities',
   const prince=fixture('datasheet-heretic-astartes-daemon-prince:section:3:option:3','selected-characteristic-modifier'),p=runtime(prince),s=p.snapshot();
   const a=s.units[0].instanceId,base=formRoster(book,s);assert.equal(Number(stat(profile(p.projection,a),'T')),Number(stat(profile(base,a),'T'))+1);
   p.load(removeSelection(clone(s),prince.owner));assert.equal(stat(profile(p.projection,a),'T'),stat(profile(base,a),'T'));
+});
+
+const markOwner='detachment-pactbound-zealots:rule',markClause='source-clause-1-1';
+const markWords=['KHORNE','TZEENTCH','NURGLE','SLAANESH','CHAOS UNDIVIDED'];
+const markFixture=fixture(markOwner,markClause),markPayload=makePersonalPayload();
+const markCards=personal.prepareRosterPresentationCards(new Map(markPayload.cards.map(card=>[card.id,card])),markPayload.rosterPresentation);
+function markService(text=markFixture.text) {
+  const service=createCSMBrowserRoster(book,importBook,bindings);
+  assert.equal(service.import(text).status,'READY');return service;
+}
+function checkMark(service,instanceId,word) {
+  const raw=service.state.units.find(unit=>unit.instanceId===instanceId),projection=service.projection;
+  const actual=unit(projection,instanceId),base=unit(formRoster(book,service.state),instanceId);
+  assert.deepEqual(actual.keywords.filter(keyword=>markWords.includes(keyword)),word?[word]:[]);
+  assert.deepEqual(actual.profiles.map(model=>model.keywords),base.profiles.map(model=>model.keywords),'UNIT Mark must not rewrite MODEL keywords');
+  assert.deepEqual(actual.profiles.map(model=>model.profile),base.profiles.map(model=>model.profile),'Mark must not execute battle characteristic effects');
+  assert.deepEqual(actual.profiles.map(model=>model.weapons),base.profiles.map(model=>model.weapons),'Mark must not execute Dark Pact weapon effects');
+  const proof=rows(projection,markFixture).filter(row=>row.targetInstanceId===instanceId);
+  assert.equal(proof.length,word?1:0);
+  if(word){assert.equal(proof[0].sourceInstanceId,null);assert.equal(proof[0].targetProfileId,null);assert.equal(proof[0].operation,'GRANT_UNIT_KEYWORD');}
+  const effective=service.effective(instanceId);
+  assert.equal(effective.keywords.filter(keyword=>keyword===word).length,word?1:0);
+  const root=personal.projectInstanceCards(markCards,raw,effective).get(raw.canonicalUnitId)[0];
+  assert.equal(root.fields.filter(field=>field.value===word).length,word?1:0,'Selected UNIT Mark appears once in Personal Guide');
+  assert.deepEqual(root.fields.filter(field=>field.presentationPath?.startsWith('/factionKeywords/')).map(field=>field.value),
+    markCards.get(raw.canonicalUnitId).fields.filter(field=>field.presentationPath?.startsWith('/factionKeywords/')).map(field=>field.value),
+    'Faction Keywords remain source-backed and unchanged');
+}
+for(const word of markWords)test('Real import -> Effective Datasheet -> Personal Guide selected UNIT Mark '+word,()=>{
+  const service=markService(markFixture.text.replaceAll('Mark: KHORNE','Mark: '+word));
+  for(const raw of service.state.units)checkMark(service,raw.instanceId,word);
+  assert.equal(service.state.units[0].selectedMarkId,book.entities.find(entity=>entity.data.selectionRuleId===markOwner&&entity.data.keyword===word).id);
+});
+test('Unselected Marks, duplicate physical owners, change/remove/restore and missing Detachment',()=>{
+  const absent=markService(markFixture.text.replace(/^Mark: KHORNE\n/gm,''));
+  for(const raw of absent.state.units)checkMark(absent,raw.instanceId,null);
+  let index=0;
+  const text=markFixture.text.replaceAll('Mark: KHORNE',()=>`Mark: ${['TZEENTCH','NURGLE','TZEENTCH','NURGLE'][index++]}`);
+  const service=markService(text);
+  const state=service.snapshot(),[a,b]=state.units;
+  checkMark(service,a.instanceId,'TZEENTCH');checkMark(service,b.instanceId,'NURGLE');
+  assert.equal(service.import(text.replace('Mark: TZEENTCH','Mark: SLAANESH')).status,'READY');
+  checkMark(service,a.instanceId,'SLAANESH');checkMark(service,b.instanceId,'NURGLE');
+  const removed=markService(text.replace('Mark: TZEENTCH\n','')).snapshot();
+  assert.ok(!Object.hasOwn(removed.units[0],'selectedMarkId'));
+  service.load(removed);checkMark(service,a.instanceId,null);checkMark(service,b.instanceId,'NURGLE');
+  service.load(state);checkMark(service,a.instanceId,'TZEENTCH');
+  const reordered=clone(state);reordered.units.reverse();service.load(reordered);
+  checkMark(service,a.instanceId,'TZEENTCH');checkMark(service,b.instanceId,'NURGLE');
+  const missing=clone(state);missing.detachmentIds=['detachment-veterans-of-the-long-war'];
+  missing.detachments=[{instanceId:'replacement',canonicalDetachmentId:missing.detachmentIds[0]}];
+  assert.throws(()=>service.load(missing),/Unresolved selected option/);
+  for(const raw of missing.units)removeSelection(missing,raw.selectedMarkId);
+  service.load(missing);for(const raw of missing.units)checkMark(service,raw.instanceId,null);
+  service.load(state);checkMark(service,a.instanceId,'TZEENTCH');
+});
+test('Selected physical Mark retains component ownership through attach/detach/reattach',()=>{
+  const service=markService(),[leader,,bodyguard]=service.state.units,first=service.projection;
+  service.attach(leader.instanceId,bodyguard.instanceId);const attached=service.projection;
+  for(const raw of service.state.units)checkMark(service,raw.instanceId,'KHORNE');
+  assert.equal(attached.formedUnits[0].keywords.filter(keyword=>keyword==='KHORNE').length,1);
+  for(const id of [leader.instanceId,bodyguard.instanceId])assert.equal(rows(attached,markFixture).filter(row=>row.targetInstanceId===id).length,1,'Formation dedup must not lose a physical Mark recipient');
+  service.detach(leader.instanceId);assert.deepEqual(service.projection,first);
+  service.reattach(leader.instanceId,bodyguard.instanceId);assert.deepEqual(service.projection,attached);
+  let ordinal=0;
+  const invalid=markService(markFixture.text.replaceAll('Mark: KHORNE',()=>++ordinal===3?'Mark: NURGLE':'Mark: KHORNE')).snapshot();
+  invalid.attachments=clone(service.state.attachments);
+  assert.throws(()=>service.load(invalid),/attachment|Mark|mark/i,'Different selected Marks cannot form an attachment');
+});
+test('Source-excluded Mark recipients fail closed, including native and selected-option Marks',()=>{
+  for(const id of ['unit-abaddon-the-despoiler','unit-master-of-possession']) {
+    const service=markService(),state=service.snapshot();
+    // The native source exclusion is checked with canonical physical composition,
+    // never by editing source facts or borrowing an Attached Unit keyword.
+    const canonical=book.entities.find(entity=>entity.id===id);
+    state.units[0]={...state.units[0],canonicalUnitId:id,startingStrength:1,
+      modelRows:canonical.data.profileIds.map((profileId,i)=>({rowId:'excluded-'+i,canonicalProfileId:profileId,
+        quantity:book.entities.find(entity=>entity.id===profileId).data.composition.quantity.min,selections:[],loadouts:[]}))};
+    state.units[0].startingStrength=state.units[0].modelRows.reduce((sum,row)=>sum+row.quantity,0);
+    assert.throws(()=>service.load(state),/Source-excluded selected Mark/);
+  }
+  const service=markService(markFixture.text.replaceAll('Mark: KHORNE','Mark: NURGLE')),state=service.snapshot(),native=book.entities.find(entity=>entity.id==='unit-khorne-lord-of-skulls');
+  state.units[0]={...state.units[0],canonicalUnitId:native.id,startingStrength:1,
+    modelRows:native.data.profileIds.map((id,i)=>({rowId:'native-'+i,canonicalProfileId:id,quantity:1,selections:[],loadouts:[]})),
+    selectedMarkId:markOwner+':mark:3'};
+  service.load(state);
+  assert.equal(rows(service.projection,markFixture).filter(row=>row.targetInstanceId===state.units[0].instanceId).length,0);
+  assert.deepEqual(unit(service.projection,state.units[0].instanceId).keywords.filter(word=>markWords.includes(word)),['KHORNE']);
+  const prince=runtime(fixture('datasheet-heretic-astartes-daemon-prince:section:3:option:3','selected-characteristic-modifier')).snapshot();
+  prince.detachmentIds.push('detachment-pactbound-zealots');prince.detachments.push({instanceId:'pactbound',canonicalDetachmentId:'detachment-pactbound-zealots'});
+  prince.units[0].selectedMarkId=markOwner+':mark:4';
+  const projected=runtimeFromState(prince).projection;
+  assert.equal(rows(projected,markFixture).filter(row=>row.targetInstanceId===prince.units[0].instanceId).length,0,'Selected Allegiance already provides a Mark');
+  assert.deepEqual(unit(projected,prince.units[0].instanceId).keywords.filter(word=>markWords.includes(word)),['NURGLE']);
+});
+test('Exactly the five roster Mark grants were added; all battle-only payloads remain empty',()=>{
+  const clause=book.entities.find(entity=>entity.id===markOwner).ruleContract.clauses.find(clause=>clause.id===markClause);
+  assert.equal(selectedMarkClause,markOwner+'::'+markClause);
+  assert.deepEqual(clause.rosterEffects.map(effect=>effect.keyword),markWords);
+  assert.ok(clause.rosterEffects.every(effect=>effect.unitScope==='PHYSICAL'&&effect.targetBinding==='ROSTER_UNITS'&&
+    effect.conditions.every(condition=>condition.binding==='TARGET')));
+  for(const rule of book.entities)for(const clause of rule.ruleContract?.clauses||[])if(clause.rosterClassification==='BATTLE_ONLY')assert.deepEqual(clause.rosterEffects,[]);
 });
 test('Bearer-owned weapons remain isolated from Disciples and attached Bodyguard',()=>{
   const f=fixture('detachment-creations-of-bile:enhancement:4'),service=runtime(f),[a,b,bodyguard]=service.state.units;

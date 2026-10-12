@@ -52,6 +52,10 @@ for(const {rule:canonical,clause:typed} of executableClauses(built)) {
       assert.throws(()=>evaluateCSMRosterDeclarations(book,removed),/Unresolved Enhancement context/);
       removed.units[0].enhancementIds=[];removed.units[0].enhancementAssignments=[];removed.units[0].selectedMarkId=null;
     }
+    if(rule.id==='detachment-pactbound-zealots:rule') {
+      assert.throws(()=>evaluateCSMRosterDeclarations(book,removed),/Unresolved selected canonical Mark/);
+      for(const unit of removed.units)unit.selectedMarkId=null;
+    }
     assert.equal(rows(evaluateCSMRosterDeclarations(book,removed),rule.id,clause.id).length,0,'Unselected Detachment still executes');
     assert.deepEqual(evaluateCSMRosterDeclarations(book,state),result);
   }
@@ -67,7 +71,7 @@ for(const {rule:canonical,clause:typed} of executableClauses(built)) {
   }
   seen.add(`${rule.id}::${clause.id}`);results.push({id:`${rule.id}::${clause.id}`,operationsApplied:applied.length});
 }
-assert.deepEqual(seen,new Set(book.rosterEffectCensus.lowered));assert.equal(seen.size,57);
+assert.deepEqual(seen,new Set(book.rosterEffectCensus.lowered));assert.equal(seen.size,58);
 assert.deepEqual(book.rosterEffectCensus.deferred,[deferredClause]);
 assert.equal(book.entities.find(r=>r.id==='army-rule-cult-of-the-dark-gods').ruleContract.clauses.flatMap(c=>c.rosterEffects).length,0);
 assert.equal(book.entities.find(r=>r.id==='detachment-huron-s-marauders:enhancement:1').ruleContract.clauses[0].rosterClassification,'DISPLAY_ONLY');

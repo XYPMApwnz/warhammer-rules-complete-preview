@@ -8,13 +8,14 @@ import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-f
 
 const clone=structuredClone;
 export const deferredClause='army-rule-cult-of-the-dark-gods::source-clause';
+export const selectedMarkClause='detachment-pactbound-zealots:rule::source-clause-1-1';
 const leaves=node=>node.op?node.args.flatMap(leaves):[node];
 const all=args=>args.length===1?args[0]:{op:'ALL',args};
 const field=(key,subject,equals,evidence)=>({predicate:'FIELD',subject,contextLevel:'ROSTER',arguments:{key,equals},evidence:clone(evidence)});
 
 export function executableClauses(built) {
   return built.book.entities.flatMap(rule=>(rule.ruleContract?.clauses||[])
-    .filter(clause=>(clause.productClassification==='ROSTER_KNOWN'&&clause.operation)||clause.semanticEffects?.length)
+    .filter(clause=>(clause.productClassification==='ROSTER_KNOWN'&&clause.operation)||clause.semanticEffects?.length||`${rule.id}::${clause.id}`===selectedMarkClause)
     .map(clause=>({rule,clause})));
 }
 
@@ -99,6 +100,30 @@ export function buildCSMRosterEffectBook(built=buildCSMContracts()) {
     const rule=records.get(canonical.id),contract=rule.ruleContract;
     const clause=contract.clauses.find(c=>c.id===typed.id);
     const role=id=>clause.roles.find(r=>r.id===id)||contract.roles.find(r=>r.id===id);
+    if(`${rule.id}::${clause.id}`===selectedMarkClause) {
+      const recipient=role(typed.effect.recipientRoleId);
+      assert.equal(typed.productClassification,'ROSTER_KNOWN');
+      assert.equal(recipient.subject,'UNIT');assert.equal(recipient.binding,'ROSTER_UNITS');
+      const marks=book.entities.filter(e=>e.kind==='UPGRADE_OPTION'&&e.data.selectionRuleId===rule.id);
+      const eligibilityKey=`needsMarkSelection:${rule.id}`;
+      registerField(eligibilityKey,'boolean',{kind:'MARK_SELECTION_ELIGIBLE',keywords:marks.map(mark=>mark.data.keyword)});
+      for(const mark of marks) {
+        const conditions=[{binding:'TARGET',predicate:clone(recipient.selector)},
+          {binding:'TARGET',predicate:field(eligibilityKey,'UNIT',true,clause.evidence)},
+          {binding:'TARGET',predicate:field(`sourceBackedUnitMark:${mark.data.keyword}`,'UNIT',true,clause.evidence)}];
+        if(mark.data.keyword==='KHORNE')conditions.push({binding:'TARGET',predicate:{op:'NOT',args:[{
+          predicate:'UNIT_KEYWORD',subject:'UNIT',contextLevel:'STATIC',arguments:{keyword:'PSYKER'},
+          evidence:{field:['content',0,'text'],quote:'You cannot select the KHORNE keyword for a PSYKER unit.'}}]}});
+        clause.rosterEffects.push({id:`${rule.id}::${clause.id}/${mark.id}`,operation:'GRANT_UNIT_KEYWORD',
+          keyword:mark.data.keyword,unitScope:'PHYSICAL',targetSubject:'UNIT',targetBinding:'ROSTER_UNITS',
+          conditions,evidence:clone(clause.evidence),sourceFields:clone(clause.sourceFields),lifetime:'WHILE_SELECTED',
+          provenance:{canonicalRuleId:rule.id,canonicalOwnerId:canonical.ownerId,canonicalClauseId:clause.id,
+            selectedMarkId:mark.id,sourceEvidence:clone(canonical.provenance.sourceEvidence)}});
+      }
+      clause.executionImplemented=true;clause.rosterClassification='ROSTER_EXECUTABLE';
+      clause.rosterClassificationNote={reason:'Explicit source-backed UNIT Mark selected in the physical roster.'};
+      continue;
+    }
     const owner=clause.roles.find(r=>r.purpose==='OWNER')||contract.roles.find(r=>r.purpose==='OWNER');
     const lifetime=contract.duration?.find(d=>d.bindings?.some(b=>b.clauseId===clause.id));
     // UPGRADE_OPTION canonical ownership is a declaration, whereas the existing
@@ -205,7 +230,7 @@ export function buildCSMRosterEffectBook(built=buildCSMContracts()) {
   evaluator.validateContracts(book);validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
   assert.equal(JSON.stringify(built),before,'Lowering mutated canonical facts/contracts');
   const clauses=book.entities.flatMap(r=>(r.ruleContract?.clauses||[]).filter(c=>c.rosterEffects.length).map(c=>`${r.id}::${c.id}`));
-  assert.equal(clauses.length,57);assert.ok(!clauses.includes(deferredClause));
-  book.rosterEffectCensus={executable:58,lowered:clauses,deferred:[deferredClause]};
+  assert.equal(clauses.length,58);assert.ok(!clauses.includes(deferredClause));
+  book.rosterEffectCensus={executable:59,lowered:clauses,deferred:[deferredClause]};
   return book;
 }

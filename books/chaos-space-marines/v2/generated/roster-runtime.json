@@ -4055,11 +4055,806 @@
               "recipientRoleId": "recipient"
             },
             "productClassification": "ROSTER_KNOWN",
-            "executionImplemented": false,
-            "rosterEffects": [],
-            "rosterClassification": "DISPLAY_ONLY",
+            "executionImplemented": true,
+            "rosterEffects": [
+              {
+                "id": "detachment-pactbound-zealots:rule::source-clause-1-1/detachment-pactbound-zealots:rule:mark:1",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "KHORNE",
+                "unitScope": "PHYSICAL",
+                "targetSubject": "UNIT",
+                "targetBinding": "ROSTER_UNITS",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "ALL",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "HERETIC ASTARTES"
+                          },
+                          "evidence": {
+                            "field": [
+                              "content",
+                              0,
+                              "text"
+                            ],
+                            "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
+                          }
+                        },
+                        {
+                          "op": "NOT",
+                          "args": [
+                            {
+                              "predicate": "UNIT_KEYWORD",
+                              "subject": "UNIT",
+                              "contextLevel": "STATIC",
+                              "arguments": {
+                                "keyword": "EPIC HERO"
+                              },
+                              "evidence": {
+                                "field": [
+                                  "content",
+                                  0,
+                                  "text"
+                                ],
+                                "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "needsMarkSelection:detachment-pactbound-zealots:rule",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "content",
+                          0,
+                          "text"
+                        ],
+                        "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                      }
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "sourceBackedUnitMark:KHORNE",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "content",
+                          0,
+                          "text"
+                        ],
+                        "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                      }
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "NOT",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "PSYKER"
+                          },
+                          "evidence": {
+                            "field": [
+                              "content",
+                              0,
+                              "text"
+                            ],
+                            "quote": "You cannot select the KHORNE keyword for a PSYKER unit."
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "content",
+                    0,
+                    "text"
+                  ],
+                  "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                },
+                "sourceFields": [
+                  [
+                    "content",
+                    0,
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SELECTED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-pactbound-zealots:rule",
+                  "canonicalOwnerId": "detachment-pactbound-zealots",
+                  "canonicalClauseId": "source-clause-1-1",
+                  "selectedMarkId": "detachment-pactbound-zealots:rule:mark:1",
+                  "sourceEvidence": [
+                    {
+                      "sourceEntityId": "detachment-pactbound-zealots:rule",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "Detachment Rule under Pactbound Zealots",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    },
+                    {
+                      "sourceEntityId": "official-update-6",
+                      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+                      "location": "PDF page 37 left; normalized column span [1101, 1335]; block official-update-6",
+                      "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+                      "authority": "AUTHORITATIVE_CURRENT"
+                    },
+                    {
+                      "sourceEntityId": "official-update-7",
+                      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+                      "location": "PDF page 37 left; normalized column span [1336, 1485]; block official-update-7",
+                      "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+                      "authority": "AUTHORITATIVE_CURRENT"
+                    },
+                    {
+                      "sourceEntityId": "errata-9",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "errata-9 FAQ/errata wrapper",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    },
+                    {
+                      "sourceEntityId": "errata-10",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "errata-10 FAQ/errata wrapper",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "detachment-pactbound-zealots:rule::source-clause-1-1/detachment-pactbound-zealots:rule:mark:2",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "TZEENTCH",
+                "unitScope": "PHYSICAL",
+                "targetSubject": "UNIT",
+                "targetBinding": "ROSTER_UNITS",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "ALL",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "HERETIC ASTARTES"
+                          },
+                          "evidence": {
+                            "field": [
+                              "content",
+                              0,
+                              "text"
+                            ],
+                            "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
+                          }
+                        },
+                        {
+                          "op": "NOT",
+                          "args": [
+                            {
+                              "predicate": "UNIT_KEYWORD",
+                              "subject": "UNIT",
+                              "contextLevel": "STATIC",
+                              "arguments": {
+                                "keyword": "EPIC HERO"
+                              },
+                              "evidence": {
+                                "field": [
+                                  "content",
+                                  0,
+                                  "text"
+                                ],
+                                "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "needsMarkSelection:detachment-pactbound-zealots:rule",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "content",
+                          0,
+                          "text"
+                        ],
+                        "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                      }
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "sourceBackedUnitMark:TZEENTCH",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "content",
+                          0,
+                          "text"
+                        ],
+                        "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "content",
+                    0,
+                    "text"
+                  ],
+                  "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                },
+                "sourceFields": [
+                  [
+                    "content",
+                    0,
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SELECTED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-pactbound-zealots:rule",
+                  "canonicalOwnerId": "detachment-pactbound-zealots",
+                  "canonicalClauseId": "source-clause-1-1",
+                  "selectedMarkId": "detachment-pactbound-zealots:rule:mark:2",
+                  "sourceEvidence": [
+                    {
+                      "sourceEntityId": "detachment-pactbound-zealots:rule",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "Detachment Rule under Pactbound Zealots",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    },
+                    {
+                      "sourceEntityId": "official-update-6",
+                      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+                      "location": "PDF page 37 left; normalized column span [1101, 1335]; block official-update-6",
+                      "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+                      "authority": "AUTHORITATIVE_CURRENT"
+                    },
+                    {
+                      "sourceEntityId": "official-update-7",
+                      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+                      "location": "PDF page 37 left; normalized column span [1336, 1485]; block official-update-7",
+                      "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+                      "authority": "AUTHORITATIVE_CURRENT"
+                    },
+                    {
+                      "sourceEntityId": "errata-9",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "errata-9 FAQ/errata wrapper",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    },
+                    {
+                      "sourceEntityId": "errata-10",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "errata-10 FAQ/errata wrapper",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "detachment-pactbound-zealots:rule::source-clause-1-1/detachment-pactbound-zealots:rule:mark:3",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "NURGLE",
+                "unitScope": "PHYSICAL",
+                "targetSubject": "UNIT",
+                "targetBinding": "ROSTER_UNITS",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "ALL",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "HERETIC ASTARTES"
+                          },
+                          "evidence": {
+                            "field": [
+                              "content",
+                              0,
+                              "text"
+                            ],
+                            "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
+                          }
+                        },
+                        {
+                          "op": "NOT",
+                          "args": [
+                            {
+                              "predicate": "UNIT_KEYWORD",
+                              "subject": "UNIT",
+                              "contextLevel": "STATIC",
+                              "arguments": {
+                                "keyword": "EPIC HERO"
+                              },
+                              "evidence": {
+                                "field": [
+                                  "content",
+                                  0,
+                                  "text"
+                                ],
+                                "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "needsMarkSelection:detachment-pactbound-zealots:rule",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "content",
+                          0,
+                          "text"
+                        ],
+                        "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                      }
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "sourceBackedUnitMark:NURGLE",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "content",
+                          0,
+                          "text"
+                        ],
+                        "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "content",
+                    0,
+                    "text"
+                  ],
+                  "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                },
+                "sourceFields": [
+                  [
+                    "content",
+                    0,
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SELECTED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-pactbound-zealots:rule",
+                  "canonicalOwnerId": "detachment-pactbound-zealots",
+                  "canonicalClauseId": "source-clause-1-1",
+                  "selectedMarkId": "detachment-pactbound-zealots:rule:mark:3",
+                  "sourceEvidence": [
+                    {
+                      "sourceEntityId": "detachment-pactbound-zealots:rule",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "Detachment Rule under Pactbound Zealots",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    },
+                    {
+                      "sourceEntityId": "official-update-6",
+                      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+                      "location": "PDF page 37 left; normalized column span [1101, 1335]; block official-update-6",
+                      "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+                      "authority": "AUTHORITATIVE_CURRENT"
+                    },
+                    {
+                      "sourceEntityId": "official-update-7",
+                      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+                      "location": "PDF page 37 left; normalized column span [1336, 1485]; block official-update-7",
+                      "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+                      "authority": "AUTHORITATIVE_CURRENT"
+                    },
+                    {
+                      "sourceEntityId": "errata-9",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "errata-9 FAQ/errata wrapper",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    },
+                    {
+                      "sourceEntityId": "errata-10",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "errata-10 FAQ/errata wrapper",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "detachment-pactbound-zealots:rule::source-clause-1-1/detachment-pactbound-zealots:rule:mark:4",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "SLAANESH",
+                "unitScope": "PHYSICAL",
+                "targetSubject": "UNIT",
+                "targetBinding": "ROSTER_UNITS",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "ALL",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "HERETIC ASTARTES"
+                          },
+                          "evidence": {
+                            "field": [
+                              "content",
+                              0,
+                              "text"
+                            ],
+                            "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
+                          }
+                        },
+                        {
+                          "op": "NOT",
+                          "args": [
+                            {
+                              "predicate": "UNIT_KEYWORD",
+                              "subject": "UNIT",
+                              "contextLevel": "STATIC",
+                              "arguments": {
+                                "keyword": "EPIC HERO"
+                              },
+                              "evidence": {
+                                "field": [
+                                  "content",
+                                  0,
+                                  "text"
+                                ],
+                                "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "needsMarkSelection:detachment-pactbound-zealots:rule",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "content",
+                          0,
+                          "text"
+                        ],
+                        "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                      }
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "sourceBackedUnitMark:SLAANESH",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "content",
+                          0,
+                          "text"
+                        ],
+                        "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "content",
+                    0,
+                    "text"
+                  ],
+                  "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                },
+                "sourceFields": [
+                  [
+                    "content",
+                    0,
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SELECTED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-pactbound-zealots:rule",
+                  "canonicalOwnerId": "detachment-pactbound-zealots",
+                  "canonicalClauseId": "source-clause-1-1",
+                  "selectedMarkId": "detachment-pactbound-zealots:rule:mark:4",
+                  "sourceEvidence": [
+                    {
+                      "sourceEntityId": "detachment-pactbound-zealots:rule",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "Detachment Rule under Pactbound Zealots",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    },
+                    {
+                      "sourceEntityId": "official-update-6",
+                      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+                      "location": "PDF page 37 left; normalized column span [1101, 1335]; block official-update-6",
+                      "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+                      "authority": "AUTHORITATIVE_CURRENT"
+                    },
+                    {
+                      "sourceEntityId": "official-update-7",
+                      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+                      "location": "PDF page 37 left; normalized column span [1336, 1485]; block official-update-7",
+                      "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+                      "authority": "AUTHORITATIVE_CURRENT"
+                    },
+                    {
+                      "sourceEntityId": "errata-9",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "errata-9 FAQ/errata wrapper",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    },
+                    {
+                      "sourceEntityId": "errata-10",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "errata-10 FAQ/errata wrapper",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "detachment-pactbound-zealots:rule::source-clause-1-1/detachment-pactbound-zealots:rule:mark:5",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "CHAOS UNDIVIDED",
+                "unitScope": "PHYSICAL",
+                "targetSubject": "UNIT",
+                "targetBinding": "ROSTER_UNITS",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "ALL",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "HERETIC ASTARTES"
+                          },
+                          "evidence": {
+                            "field": [
+                              "content",
+                              0,
+                              "text"
+                            ],
+                            "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
+                          }
+                        },
+                        {
+                          "op": "NOT",
+                          "args": [
+                            {
+                              "predicate": "UNIT_KEYWORD",
+                              "subject": "UNIT",
+                              "contextLevel": "STATIC",
+                              "arguments": {
+                                "keyword": "EPIC HERO"
+                              },
+                              "evidence": {
+                                "field": [
+                                  "content",
+                                  0,
+                                  "text"
+                                ],
+                                "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED. Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "needsMarkSelection:detachment-pactbound-zealots:rule",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "content",
+                          0,
+                          "text"
+                        ],
+                        "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                      }
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "sourceBackedUnitMark:CHAOS UNDIVIDED",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "content",
+                          0,
+                          "text"
+                        ],
+                        "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "content",
+                    0,
+                    "text"
+                  ],
+                  "quote": "When mustering your army, when you select a HERETIC ASTARTES unit to include in your army, if that unit is not an EPIC HERO and does not already have one of the following keywords, you must select one for that unit and note it on your Army Roster: KHORNE. TZEENTCH, NURGLE, SLAANESH, CHAOS UNDIVIDED."
+                },
+                "sourceFields": [
+                  [
+                    "content",
+                    0,
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SELECTED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-pactbound-zealots:rule",
+                  "canonicalOwnerId": "detachment-pactbound-zealots",
+                  "canonicalClauseId": "source-clause-1-1",
+                  "selectedMarkId": "detachment-pactbound-zealots:rule:mark:5",
+                  "sourceEvidence": [
+                    {
+                      "sourceEntityId": "detachment-pactbound-zealots:rule",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "Detachment Rule under Pactbound Zealots",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    },
+                    {
+                      "sourceEntityId": "official-update-6",
+                      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+                      "location": "PDF page 37 left; normalized column span [1101, 1335]; block official-update-6",
+                      "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+                      "authority": "AUTHORITATIVE_CURRENT"
+                    },
+                    {
+                      "sourceEntityId": "official-update-7",
+                      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+                      "location": "PDF page 37 left; normalized column span [1336, 1485]; block official-update-7",
+                      "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+                      "authority": "AUTHORITATIVE_CURRENT"
+                    },
+                    {
+                      "sourceEntityId": "errata-9",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "errata-9 FAQ/errata wrapper",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    },
+                    {
+                      "sourceEntityId": "errata-10",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "errata-10 FAQ/errata wrapper",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  ]
+                }
+              }
+            ],
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "DISPLAY_ONLY"
+              "reason": "Explicit source-backed UNIT Mark selected in the physical roster."
             }
           },
           {
@@ -199195,6 +199990,16 @@
       "kind": "ENHANCEMENT_ASSIGNED",
       "ruleId": "detachment-murdertalon-raiders:enhancement:2"
     },
+    "needsMarkSelection:detachment-pactbound-zealots:rule": {
+      "kind": "MARK_SELECTION_ELIGIBLE",
+      "keywords": [
+        "KHORNE",
+        "TZEENTCH",
+        "NURGLE",
+        "SLAANESH",
+        "CHAOS UNDIVIDED"
+      ]
+    },
     "ledBodyguardHasScouts6:detachment-chaos-cult:enhancement:4": {
       "kind": "LED_BODYGUARD_ABILITY",
       "canonicalId": "core-scouts",
@@ -201138,8 +201943,9 @@
     }
   ],
   "rosterEffectCensus": {
-    "executable": 58,
+    "executable": 59,
     "lowered": [
+      "detachment-pactbound-zealots:rule::source-clause-1-1",
       "detachment-pactbound-zealots:enhancement:2::roster-clause-1",
       "detachment-pactbound-zealots:enhancement:4::roster-clause-1",
       "detachment-creations-of-bile:enhancement:1::roster-clause-1",

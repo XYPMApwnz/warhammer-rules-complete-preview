@@ -63,6 +63,18 @@ export function createCSMRosterEffectContext(book,state,{abilityProjection=formR
         case 'SELECTED_MARK':
           if(unit.selectedMarkId!==undefined)value=unit.selectedMarkId===binding.markId;
           break;
+        case 'MARK_SELECTION_ELIGIBLE': {
+          // Mustering eligibility observes source input, not this grant's own
+          // effective keyword or a neighbouring Attached Unit component.
+          const data=records.get(unit.canonicalUnitId).data;
+          const keywords=new Set([...data.keywords,...data.factionKeywords]);
+          const upgrades=new Set([...(unit.selectedUpgradeIds||[]),...unit.modelRows.flatMap(row=>row.selectedUpgradeIds||[])]);
+          for(const id of upgrades)for(const clause of records.get(id)?.ruleContract?.clauses||[])
+            for(const effect of clause.rosterEffects||[])if(['GRANT_MODEL_KEYWORD','GRANT_UNIT_KEYWORD'].includes(effect.operation))
+              keywords.add(effect.keyword);
+          value=keywords.has('HERETIC ASTARTES')&&!keywords.has('EPIC HERO')&&!binding.keywords.some(keyword=>keywords.has(keyword));
+          break;
+        }
         case 'SELECTED_OPTION': {
           const choices=[...(unit.selectedUpgradeIds||[]),...rows.flatMap(r=>r.selectedUpgradeIds||[])];
           const ids=[...new Set(choices.filter(id=>(records.get(id)?.canonicalOwnerId||records.get(id)?.parentId)===binding.declarationId))];

@@ -164,7 +164,7 @@ export async function run() {
           profileIds:rule.kind==='ENHANCEMENT'?[fixture.bearerProfileId]:source.modelRows.map(row=>row.canonicalProfileId)}:{})})),
       EXPECTED_EFFECT:fixture.expectedOperations,ACTUAL_EFFECT:applied,RESULT:'PASS'});
   }
-  assert.deepEqual(new Set(matrix.map(row=>row.CLAUSE_ID)),valid);assert.equal(matrix.length,57);
+  assert.deepEqual(new Set(matrix.map(row=>row.CLAUSE_ID)),valid);assert.equal(matrix.length,58);
   assert.deepEqual(book.rosterEffectCensus.deferred,[deferredClause]);
   for(const rule of book.entities)for(const clause of rule.ruleContract?.clauses||[])
     if(!valid.has(`${rule.id}::${clause.id}`))assert.deepEqual(clause.rosterEffects,[],'Non-executable payload');

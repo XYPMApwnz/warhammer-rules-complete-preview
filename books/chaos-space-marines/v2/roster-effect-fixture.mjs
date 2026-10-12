@@ -56,6 +56,8 @@ export function clauseFixture(book,ruleId,clauseId) {
   }
   const a=physical(book,'a',canonicalUnitId,rule.kind==='ENHANCEMENT'?[ruleId]:[]),b=physical(book,'b',canonicalUnitId);
   const state=fixtureState(book,detachmentId,[a,b]);
+  if(ruleId==='detachment-pactbound-zealots:rule'&&clauseId==='source-clause-1-1')
+    a.selectedMarkId='detachment-pactbound-zealots:rule:mark:1';
   if(rule.kind==='ENHANCEMENT') {
     assignBearer(book,state,'a',ruleId,profileId);
     const owner=rule.ruleContract.roles.find(r=>r.id===rule.ruleContract.assignment.ownerRoleId);

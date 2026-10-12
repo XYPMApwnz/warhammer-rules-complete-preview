@@ -107,6 +107,18 @@ async function related(page,id){
   }
   await page.getByRole('button',{name:'Close compatible rules',exact:true}).click();
 }
+async function verifyMark(page,word) {
+  const bags=await page.locator('main .unit-card [data-datasheet-section="keywords"]').evaluateAll(sections=>sections.map(section=>
+    [...section.querySelectorAll('p')].map(line=>({label:line.querySelector('b')?.textContent.replace(/:$/,''),
+      words:[...line.querySelectorAll('span[data-fact-id]')].map(span=>span.textContent)}))));
+  assert.ok(bags.length,'Actual rendered Keywords section exists');
+  for(const groups of bags) {
+    const unit=groups.find(group=>group.label==='Keywords');assert.ok(unit);
+    assert.deepEqual(unit.words.filter(keyword=>['KHORNE','TZEENTCH','NURGLE','SLAANESH','CHAOS UNDIVIDED'].includes(keyword)),[word]);
+    assert.ok(groups.filter(group=>group.label!=='Keywords').every(group=>!group.words.includes(word)),
+      'Selected UNIT Mark must not be shown as a MODEL or Faction keyword');
+  }
+}
 try {
   for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
     const context=await browser.newContext({viewport,serviceWorkers:'block'}),page=await context.newPage();page.setDefaultTimeout(20000);
@@ -169,6 +181,16 @@ try {
     await abilityTab.reload();await ready(abilityTab);
     assert.ok((await abilityTab.locator('main').innerText()).includes('within 6"'),'Effective ability range lost after direct reload');
     await clean(abilityTab);await abilityTab.close();await page.bringToFront();
+    const marks=matrix.find(row=>row.CLAUSE_ID==='detachment-pactbound-zealots:rule::source-clause-1-1');
+    for(const word of ['KHORNE','TZEENTCH','NURGLE','SLAANESH','CHAOS UNDIVIDED']) {
+      await importText(page,marks.NEW_RECRUIT_TEXT.replaceAll('Mark: KHORNE','Mark: '+word),4);
+      await open(page,'parsed-unit-1');await verifyMark(page,word);await clean(page);
+      await page.evaluate(()=>window.ArmyBookAppV2.openRoster());
+      await page.locator('[data-roster-action="open-personal-guide"]').click();
+      await page.locator('main [data-roster-nav-instance-id="parsed-unit-1"]').click();
+      await ready(page);await page.waitForSelector('main .unit-card');await verifyMark(page,word);await clean(page);
+      await page.reload();await ready(page);await verifyMark(page,word);
+    }
     const breadth=[];
     for(const row of matrix){
       await page.evaluate(()=>window.ArmyBookAppV2.openRoster());await ready(page);
@@ -191,9 +213,9 @@ try {
       },row);
       await ready(page);await settle(page);await verify(page);breadth.push(row.CLAUSE_ID);
     }
-    assert.equal(new Set(breadth).size,57);
+    assert.equal(new Set(breadth).size,58);
     assert.deepEqual(errors,[]);results.push({device,status:'PASS',realUIImport:true,realUIAttachments:true,effectClauses:breadth.length,canonicalPopup:true,
-      directReload:true,backForward:true,newTab:true,mixed:true,removeRestore:true});await context.close();
+      directReload:true,backForward:true,newTab:true,mixed:true,removeRestore:true,selectedMarkKeywords:'5/5',markEffectiveDatasheets:true,markPersonalGuide:true});await context.close();
   }
   assert.deepEqual(missing,[],'Required resource 404');
   const report={status:'PASS',productionRegistration:true,adapters:0,results,screenshots,errors,missing};

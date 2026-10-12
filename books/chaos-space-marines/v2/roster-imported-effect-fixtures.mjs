@@ -111,6 +111,6 @@ export function buildImportedEffectFixtures(book=buildCSMRosterEffectBook(),buil
         ...(effect.keyword?{keyword:effect.keyword}:{}),
         ...(effect.weaponProfileIds?{weaponProfileIds:structuredClone(effect.weaponProfileIds)}:{})}))};
   });
-  assert.equal(fixtures.length,57);assert.equal(new Set(fixtures.map(fixture=>fixture.id)).size,57);
+  assert.equal(fixtures.length,58);assert.equal(new Set(fixtures.map(fixture=>fixture.id)).size,58);
   return fixtures;
 }

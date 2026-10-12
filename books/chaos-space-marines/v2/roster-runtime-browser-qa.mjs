@@ -62,7 +62,7 @@ try {
       const service=await loadRosterRuntime();service.load(JSON.parse(localStorage.getItem('runtime-qa')));return service.projection;
     });
     assert.deepEqual(restored,expected.at(-1));assert.deepEqual(errors,[]);
-    results.push({device,realImportedClauses:57,nodeProjectionParity:'PASS',reload:'PASS',uiMounted:false});await context.close();
+    results.push({device,realImportedClauses:58,nodeProjectionParity:'PASS',reload:'PASS',uiMounted:false});await context.close();
   }
   assert.deepEqual(unexpected,[]);assert.ok(requested.has('/books/shared/roster-v2/effects.mjs'));
   console.log(JSON.stringify({status:'PASS',results,legacyDependencies:0,presentationDependencies:0,newEffectInterpreter:0}));
