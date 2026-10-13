@@ -44120,7 +44120,7 @@
     {
       "id": "errata-3",
       "kind": "SOURCE_ERRATUM",
-      "title": "Virulent Vectorum Detachment, Worldblight Detachment Rule",
+      "title": "Virulent Vectorium Detachment, Worldblight Detachment Rule",
       "contextId": "errata-3",
       "source": {
         "entityId": "errata-3"
@@ -44130,7 +44130,7 @@
         {
           "id": "errata-3::/title",
           "label": "title",
-          "value": "Virulent Vectorum Detachment, Worldblight Detachment Rule",
+          "value": "Virulent Vectorium Detachment, Worldblight Detachment Rule",
           "type": "text",
           "contextId": "errata-3",
           "source": {
@@ -109633,7 +109633,7 @@
       "path": [
         "title"
       ],
-      "value": "Virulent Vectorum Detachment, Worldblight Detachment Rule",
+      "value": "Virulent Vectorium Detachment, Worldblight Detachment Rule",
       "cardId": "errata-3",
       "contextId": "errata-3",
       "ownerType": "CANONICAL_V2"
@@ -193842,7 +193842,7 @@
       },
       {
         "targetId": "errata-3",
-        "label": "Virulent Vectorum Detachment, Worldblight Detachment Rule",
+        "label": "Virulent Vectorium Detachment, Worldblight Detachment Rule",
         "category": "SOURCE_ERRATUM",
         "contextLabel": "Army Book",
         "aliases": []
@@ -199270,7 +199270,17 @@
           "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
           "pointer": "/errata/2"
         },
-        "fieldProvenance": {},
+        "fieldProvenance": {
+          "title": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:097",
+            "page": 7,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "errata-3",
+            "quote": "VIRULENT VECTORIUM DETACHMENT"
+          }
+        },
         "tables": []
       },
       "errata-4": {

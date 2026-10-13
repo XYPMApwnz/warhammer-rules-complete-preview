@@ -65,6 +65,39 @@ for (const binding of effective.mfm.eligibilityEvidenceBindings) {
   assert.equal(binding.sourceTextRole,'BASE_EVIDENCE_ONLY_FOR_ELIGIBILITY');
 }
 let mutations = 0;
+// Official v1.3 p7 owns the effective erratum heading; the frozen Waha
+// spelling remains base evidence and must not overwrite the official name.
+const erratumId = 'errata-3';
+const officialTitle = 'Virulent Vectorium Detachment, Worldblight Detachment Rule';
+const titleOverlay = enrollment.overlayOperations.find(row => row.targetId === erratumId && row.field.join('/') === 'title');
+assert.ok(titleOverlay,'Official erratum-title overlay required');
+assert.equal(baseById.get(erratumId).data.title,'Virulent Vectorum Detachment, Worldblight Detachment Rule');
+function verifyErratumTitle(model) {
+  const erratum = model.entities.find(entity => entity.id === erratumId);
+  assert.equal(erratum.data.title,officialTitle,'Official v1.3 p7 erratum title');
+  assert.ok(!erratum.data.title.includes('Vectorum'),'Old source typo must not reach the effective heading');
+  assert.deepEqual(erratum.fieldProvenance.title,{
+    sourceId:'gw-death-guard-faction-pack-v1.3-2026-09-30',effectiveFrom:'2026-09-30',
+    operationId:titleOverlay.id,page:7,
+    documentPath:'books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf',
+    sourceLocator:erratumId,quote:'VIRULENT VECTORIUM DETACHMENT'
+  });
+}
+verifyErratumTitle(effective);
+const withoutTitle = buildFactualV2({enrollment:{...enrollment,
+  overlayOperations:enrollment.overlayOperations.filter(row => row.id !== titleOverlay.id)}});
+assert.deepEqual(withoutTitle.base,base,'Accepted base facts remain unchanged');
+assert.throws(() => verifyErratumTitle(withoutTitle.effective),/Official v1.3 p7 erratum title/); mutations++;
+for (const entity of effective.entities) {
+  const previous = withoutTitle.effective.entities.find(row => row.id === entity.id);
+  const unchanged = structuredClone(entity);
+  if (entity.id === erratumId) {
+    unchanged.data.title = previous.data.title;
+    delete unchanged.fieldProvenance.title;
+    if (!Object.keys(unchanged.fieldProvenance).length) delete unchanged.fieldProvenance;
+  }
+  assert.deepEqual(unchanged,previous,`${entity.id}: no unrelated factual, ownership or provenance changes`);
+}
 const baseIntegrity = structuredClone(enrollment); baseIntegrity.acceptedBase.sha256 = '0'.repeat(64);
 assert.throws(() => buildFactualV2({enrollment:baseIntegrity}),/source integrity/); mutations++;
 for (const operation of enrollment.overlayOperations.filter(row => evidence.newSeptemberWeaponTable.targetInventory.some(source => source.targetId === row.targetId && Object.hasOwn(source.fields,row.field[0])))) {

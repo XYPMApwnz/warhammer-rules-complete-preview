@@ -53704,7 +53704,7 @@
       "kind": "SOURCE_ERRATUM",
       "data": {
         "class": "ERRATA",
-        "title": "Virulent Vectorum Detachment, Worldblight Detachment Rule",
+        "title": "Virulent Vectorium Detachment, Worldblight Detachment Rule",
         "text": "Change to:\n'At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.'"
       },
       "provenance": {
@@ -53712,6 +53712,17 @@
         "sourceRecordId": "errata-3",
         "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
         "pointer": "/errata/2"
+      },
+      "fieldProvenance": {
+        "title": {
+          "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+          "effectiveFrom": "2026-09-30",
+          "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:097",
+          "page": 7,
+          "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "sourceLocator": "errata-3",
+          "quote": "VIRULENT VECTORIUM DETACHMENT"
+        }
       },
       "ruleContract": {
         "schema": "death-guard-rule-contract/v2",
@@ -53775,7 +53786,8 @@
         "currentness": {
           "status": "CURRENT",
           "sourceIds": [
-            "dg-waha-2026-09-25"
+            "dg-waha-2026-09-25",
+            "gw-death-guard-faction-pack-v1.3-2026-09-30"
           ]
         }
       }
@@ -59270,6 +59282,23 @@
         "page": 4,
         "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
         "sourceLocator": "detachment-paragons-of-putrescence:stratagem:3"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:097",
+      "targetId": "errata-3",
+      "field": [
+        "title"
+      ],
+      "operation": "REPLACE",
+      "baseValue": "Virulent Vectorum Detachment, Worldblight Detachment Rule",
+      "effectiveValue": "Virulent Vectorium Detachment, Worldblight Detachment Rule",
+      "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "errata-3",
+        "quote": "VIRULENT VECTORIUM DETACHMENT"
       }
     }
   ],
