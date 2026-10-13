@@ -8,6 +8,7 @@ import {createRequire} from 'node:module';
 import {adaptGlobalGlossary} from '../books/shared/army-book-app-v2/global-glossary.mjs';
 import {createReferenceContract} from '../books/shared/army-book-app-v2/reference-contract.mjs';
 import {encodeRoute,decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
+import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const corpus=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
@@ -18,7 +19,7 @@ const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript
 const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
   if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
-  const allowed=/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
+  const allowed=isApplicationTestDependency(address)||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
     /^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
@@ -63,8 +64,13 @@ const popupGeometry=async page=>{
 };
 try {
   for(const [device,viewport]of [['desktop',{width:1440,height:900}],['phone',{width:390,height:844}]]) {
-    const context=await browser.newContext({viewport,serviceWorkers:'block'});context.on('page',page=>{page.setDefaultTimeout(20000);page.on('pageerror',error=>errors.push(error.message));});
+    const context=await browser.newContext({viewport,serviceWorkers:'block'});context.on('page',page=>{page.setDefaultTimeout(20000);page.on('pageerror',error=>errors.push(error.message));
+      page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});});
+    const homeRequestStart=requests.length;
     const page=await context.newPage();await page.goto(entry);await ready(page);
+    assert.deepEqual(requests.slice(homeRequestStart).filter(address=>
+      /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/v2\//.test(address)&&!address.endsWith('/registration.mjs')),
+    [],'Home loaded book factual data or roster service before book selection');
     const home=await page.evaluate(()=>({title:document.title,html:document.querySelector('.v2-library-home').outerHTML,
       background:getComputedStyle(document.querySelector('.v2-library-home')).backgroundImage,styles:[...document.querySelectorAll('link[rel="stylesheet"]')].map(link=>link.href)}));
     await page.locator('.v2-library-home a[data-v2-shell-link][href*="v2=GLOSSARY"]').first().click();await global(page);
