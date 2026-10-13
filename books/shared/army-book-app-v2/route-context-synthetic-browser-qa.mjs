@@ -19,7 +19,7 @@ f.payload.glossary={schema:'army-book-glossary/v2',authority:'DISPOSABLE_PROJECT
   const card=f.cards.get(id);return {targetId:id,label:card.title,category:card.kind,contextLabel:'Synthetic Book',aliases:[]};
 })};
 const a=f.unit,b=f.duplicate.unit;
-const effectiveA=f.effective,effectiveB=structuredClone(effectiveA);
+const effectiveA={...f.effective,abilities:[]},effectiveB=structuredClone(effectiveA);
 effectiveB.instanceId=b.instanceId;
 for(const record of [...effectiveB.profiles,...effectiveB.weapons]){
   record.ownerInstanceId=b.instanceId;record.scopeId=record.scopeId.replace(a.instanceId,b.instanceId);
@@ -42,10 +42,29 @@ modify(effectiveB,['5+','6+','4+'],['11"','12"','13"']);
 const foreign={instanceId:f.id('foreign-owner'),canonicalUnitId:f.id('other-unit'),startingStrength:1,
   enhancementIds:[],modelRows:[{rowId:'other-row',canonicalProfileId:f.id('other-profile'),quantity:1,selections:[],loadouts:[]}],selections:[]};
 const foreignEffective={instanceId:foreign.instanceId,canonicalUnitId:foreign.canonicalUnitId,startingStrength:1,
-  keywords:['INFANTRY'],profiles:[],weapons:[],unitAbilities:[],applied:[],conditional:[]};
+  keywords:['INFANTRY'],profiles:[],weapons:[],abilities:[],unitAbilities:[],applied:[],conditional:[]};
 const state={bookId,rosterId:'synthetic-route-roster',units:[a,b,foreign],attachments:[],detachmentIds:[detachmentId],
   detachments:[{instanceId:'detachment-instance',canonicalDetachmentId:detachmentId}]};
 const data={payload:f.payload,state,effective:{[a.instanceId]:effectiveA,[b.instanceId]:effectiveB,[foreign.instanceId]:foreignEffective}};
+function assertEffectiveFixtures(snapshot) {
+  for(const unit of snapshot.state.units){
+    const effective=snapshot.effective[unit.instanceId];
+    assert.ok(effective,'Missing effective fixture: '+unit.instanceId);
+    assert.equal(effective.instanceId,unit.instanceId,'Wrong effective fixture instance');
+    assert.equal(effective.canonicalUnitId,unit.canonicalUnitId,'Wrong effective fixture canonical owner');
+    for(const key of ['keywords','profiles','weapons','abilities','unitAbilities','applied','conditional'])
+      assert.ok(Array.isArray(effective[key]),unit.instanceId+': '+key+' must be an array');
+    for(const record of [...effective.profiles,...effective.weapons]){
+      assert.equal(record.ownerInstanceId,unit.instanceId,'Wrong profile/weapon physical owner');
+      assert.ok(Array.isArray(record.fields),'Profile/weapon fields must be an array');
+    }
+  }
+}
+assertEffectiveFixtures(data);
+for(const unit of state.units)for(const value of [undefined,{}]){
+  const invalid=structuredClone(data);invalid.effective[unit.instanceId].abilities=value;
+  assert.throws(()=>assertEffectiveFixtures(invalid),/abilities must be an array/);
+}
 const immutable=JSON.stringify(data);
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const html=`<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -81,6 +100,8 @@ const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(
 const {chromium}=createRequire(import.meta.url)('playwright');
 const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
 const errors=[],results=[];
+const browserFailure=Promise.withResolvers();
+const failBrowser=error=>{errors.push(error.message);browserFailure.reject(error);};
 const ready=async page=>{await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.rosterPanel));await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);};
 const physicalURL=instanceId=>encodeRoute(base,{destination:'UNIT_INSTANCE',bookId,registryId:bookId,rosterId:state.rosterId,instanceId});
 const referenceURL=(instanceId,scopeId,profileId,canonicalId=weaponId)=>encodeRoute(base,{destination:'REFERENCE',bookId,registryId:bookId,
@@ -97,9 +118,11 @@ async function blocked(page,url){
   assert.equal(await page.locator('dialog[open]').count(),0,'Invalid identity retained a detail popup');
 }
 try{
+  await Promise.race([(async()=>{
   for(const [device,viewport]of [['desktop',{width:1440,height:900}],['phone',{width:390,height:844}]]){
     const context=await browser.newContext({viewport,serviceWorkers:'block'});
-    context.on('page',page=>{page.on('pageerror',error=>errors.push(error.message));page.setDefaultTimeout(12000);});
+    context.on('page',page=>{page.on('pageerror',failBrowser);page.setDefaultTimeout(12000);
+      page.on('console',message=>{if(message.type()==='error')failBrowser(new Error(message.text()));});});
     const page=await context.newPage();await page.goto(physicalURL(a.instanceId));await ready(page);
     const first=page.locator('main .weapon-row[data-card-id="'+weaponId+'"] a[data-target-id="'+weaponId+'"]').first();
     const href=await first.getAttribute('href'),expectedScope=effectiveA.weapons[0].scopeId;
@@ -144,5 +167,6 @@ try{
   assert.equal(JSON.stringify(data),immutable,'Browser harness mutated immutable fixture');
   const external=requests.filter(address=>address!=='/app.html'&&address!=='/fixture.json'&&address!=='/favicon.ico'&&!platformFile(address));
   assert.deepEqual(external,[],'Unexpected non-platform dependency was requested');
-  console.log(JSON.stringify({status:'PASS',syntheticOnly:true,armyFactualReads:0,results,errors}));
+  console.log(JSON.stringify({status:'PASS',syntheticOnly:true,armyFactualReads:0,fixtureStructureControls:6,results,errors}));
+  })(),browserFailure.promise]);
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
