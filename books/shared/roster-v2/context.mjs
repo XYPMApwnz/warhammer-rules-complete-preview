@@ -113,13 +113,30 @@ export function validateRoster(book, state, policies) {
         const seenReferences=new Set();
         for (const reference of selection.sourceReferences) {
           if(reference?.caption!==undefined) {
-            // A caption can only quote a bounded span of this selected item's
-            // own canonical field. It cannot introduce another source owner.
+            // Own-field captions retain the original validation. A linked
+            // option requires an exact book-owned declaration for this selected
+            // ability block; a roster snapshot cannot authorize a new link.
             const record=records.get(reference.entityId),span=reference.caption,key=reference.entityId+reference.path;
+            const selectedId=selection.canonicalEquipmentIds[0],selected=records.get(selectedId);
+            const ownCaption=selection.canonicalEquipmentIds.includes(reference.entityId)&&
+              selection.canonicalFieldPaths?.[reference.entityId]?.includes(reference.path);
+            const linkedCaption=record?.kind==='WARGEAR_OPTION'&&reference.path==='/text'&&
+              record.provenance?.sourceId&&selected?.provenance?.sourceId&&selected.kind==='DATASHEET_SECTION'&&
+              selected.parentId===canonical.id&&selection.canonicalProfileIds.length===0&&
+              (book.rosterEquipmentCaptionBindings||[]).some(binding=>{
+                const paths=binding.canonicalFieldPaths?.[selectedId],actual=selection.canonicalFieldPaths?.[selectedId];
+                const match=paths?.length===1&&paths[0].match(/^\/blocks\/(0|[1-9]\d*)\/text$/);
+                return binding.ownerId===canonical.id&&binding.canonicalEquipmentIds?.length===1&&
+                  binding.canonicalEquipmentIds[0]===selectedId&&match&&actual?.length===1&&actual[0]===paths[0]&&
+                  selected.data.blocks?.[Number(match[1])]?.wargearAbility===true&&
+                  binding.sourceReferences?.some(declared=>declared.bookId===reference.bookId&&
+                    declared.entityId===reference.entityId&&declared.path===reference.path&&declared.caption&&
+                    declared.caption.start===span?.start&&declared.caption.end===span?.end);
+              });
             assert(reference.bookId===book.bookId&&selection.canonicalEquipmentIds.length===1&&
-              selection.canonicalEquipmentIds.includes(reference.entityId)&&record?.parentId===canonical.id&&
+              record?.parentId===canonical.id&&
               ['WARGEAR_OPTION','WARGEAR_FOOTNOTE','DATASHEET_SECTION','SUPPLEMENTAL_DATASHEET_RULE','UNIT_COMPOSITION'].includes(record.kind)&&
-              selection.canonicalFieldPaths?.[reference.entityId]?.includes(reference.path),'Foreign equipment caption reference');
+              (ownCaption||linkedCaption),'Foreign equipment caption reference');
             let text=record.data;
             for(const part of reference.path.slice(1).split('/').map(p=>p.replaceAll('~1','/').replaceAll('~0','~')))
               text=text!==null&&text!==undefined&&Object.hasOwn(text,part)?text[part]:undefined;

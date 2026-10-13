@@ -536,15 +536,16 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
               // An already-bound equipment ability supplies its source heading
               // as a caption, just as renderSection formats a bound heading.
               // This never resolves an item by text or establishes ownership.
-              const captionReference=selection.canonicalEquipmentIds?.length===1&&selection.sourceReferences?.find(reference=>reference.caption);
+              const captionReference=selection.canonicalEquipmentIds?.length===1&&selection.canonicalEquipmentIds[0]===id&&
+                selection.sourceReferences?.find(reference=>reference.caption);
               const captionSource=captionReference&&cards.get(captionReference.entityId)?.fields.find(field=>field.source?.path===captionReference.path);
               const captionField=selection.canonicalEquipmentIds?.length===1&&selection.sourceReferences?.map(reference=>
                 cards.get(reference.entityId)?.fields.find(field=>field.source?.path===reference.path)).find(field=>typeof field?.value==='string'&&field.value.indexOf(':')>0);
-              const field=name||captionSource||captionField||selectedField;
+              const field=captionSource||name||captionField||selectedField;
               const effectiveTarget=target.kind==='WEAPON_PROFILE'?variants?.get(id)?.find(candidate=>(item.scopeIds||[null]).includes(candidate.scopeId||null)):null;
               const link=effectiveTarget?scopedAnchor('',effectiveTarget,instanceId):anchor('',id,true);
               if(field){const caption=factValue('span',field);
-                if(!name&&captionSource)caption.textContent=captionSource.value.slice(captionReference.caption.start,captionReference.caption.end);
+                if(captionSource)caption.textContent=captionSource.value.slice(captionReference.caption.start,captionReference.caption.end);
                 else if(!name&&field.value?.indexOf?.(':')>0)caption.textContent=field.value.slice(0,field.value.indexOf(':'));
                 link.append(caption);
               }else link.textContent=target.title;

@@ -1,10 +1,10 @@
 import {createRosterAttachmentService} from '../../shared/roster-v2/attachment-service.mjs';
-import {createAdMechRosterImport} from './roster-import.mjs';
+import {createAdMechRosterImport,withEquipmentCaptionBindings} from './roster-import.mjs';
 import {buildRosterAttachmentInputs} from './roster-attachment-build.mjs';
 
 export function createAdMechRosterAttachments(book,importMetadata,attachmentBindings) {
   const inputs=buildRosterAttachmentInputs(book,attachmentBindings);
-  return createRosterAttachmentService(inputs.book,{policies:inputs.policies,importService:createAdMechRosterImport(book,importMetadata)});
+  return createRosterAttachmentService(withEquipmentCaptionBindings(inputs.book),{policies:inputs.policies,importService:createAdMechRosterImport(book,importMetadata)});
 }
 
 export async function loadRosterAttachments({fetch:read=globalThis.fetch}={}) {
