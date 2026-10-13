@@ -141,7 +141,7 @@ check(()=>{
   assert.equal(typed.evaluatePredicate({...predicate(F),contextLevel:'STATIC'},context),'INVALID');
   assert.equal(typed.evaluatePredicate(predicate(F),{...context,roster:{}}),'UNKNOWN');
   assert.equal(typed.evaluatePredicate({op:'NOT',args:[predicate(F)]},context),'FALSE');
-  assert.equal(typed.evaluateRole({subject:'UNIT',selector:{predicate:'ALWAYS',subject:'UNIT',contextLevel:'STATIC'},conditions:[]},[predicate(F),predicate(P)],{...context,subject:'UNIT'}),'TRUE');
+  assert.equal(typed.evaluateRole({subject:'UNIT',selector:{predicate:'ALWAYS',subject:'UNIT',contextLevel:'STATIC',arguments:{}},conditions:[]},[predicate(F),predicate(P)],{...context,subject:'UNIT'}),'TRUE');
 });
 assert.equal(JSON.stringify(book),canonicalBefore);
 console.log(JSON.stringify({status:'PASS',checks,singleDetachmentRegressions:singleRegressions,multiDetachmentImport:'PASS',threeDgDetachments:'PASS',

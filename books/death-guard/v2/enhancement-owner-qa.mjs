@@ -82,15 +82,28 @@ assert.equal(evaluator.evaluateRole(identityRole,[],enhancementOwnerContext({kin
 
 const make=()=>createRosterRuntime(book,{parse,...evaluator});
 const imported=make();
-assert.equal(imported.import('+ DETACHMENT: Flyblown Host, Virulent Vectorium\nChar1: 1x Biologus Putrifier (50 pts)\nEnhancement: Furnace of Plagues (+25 pts)\n5x Plague Marines (90 pts)\nUpgrade: Plagueveil (+20 pts)\nChar2: 1x Biologus Putrifier (50 pts)\n5x Plague Marines (90 pts)').status,'READY');
-// Use explicit canonical ownership in the snapshot; import decoding itself is
-// guarded separately. This also exercises the intentional AH-05 imported state.
-const snapshot=imported.snapshot();snapshot.units[1].enhancementIds=[pmRules[1].sourceId];imported.load(snapshot);
+const result=imported.import('+ DETACHMENT: Flyblown Host, Virulent Vectorium\nChar1: 1x Biologus Putrifier (50 pts)\nEnhancement: Furnace of Plagues (+25 pts)\n5x Plague Marines (90 pts)\nEnhancement: Plagueveil (+20 pts)\nChar2: 1x Biologus Putrifier (50 pts)\n5x Plague Marines (90 pts)');
+assert.equal(result.status,'READY');
+assert.deepEqual(result.needsBindings,[]);assert.deepEqual(result.errors,[]);
+const plagueveil='detachment-flyblown-host:enhancement:2',furnace='detachment-virulent-vectorium:enhancement:2';
+// Assert the import itself owns both Enhancements; never repair its snapshot.
+assert.deepEqual(result.draft.enhancements.map(e=>[e.name,e.ownerUnitId,e.ownerStatus]),[
+  ['Furnace of Plagues','parsed-unit-1','resolved'],['Plagueveil','parsed-unit-2','resolved']]);
+assert.deepEqual(imported.state.units.map(u=>[u.instanceId,u.enhancementIds]),[
+  ['parsed-unit-1',[furnace]],['parsed-unit-2',[plagueveil]],['parsed-unit-3',[]],['parsed-unit-4',[]]]);
+assert.equal(specs.get(plagueveil).subject,'UNIT');assert.equal(specs.get(furnace).subject,'MODEL');
 const ownIds=imported.state.units.map(u=>[u.instanceId,u.enhancementIds]);
 function check(service) {
   for(const id of ['parsed-unit-1','parsed-unit-3'])for(const rule of pmRules)assert.equal(service.related(id).find(r=>r.ruleId===rule.sourceId).applicability,'NO_MATCH');
   for(const id of ['parsed-unit-2','parsed-unit-4'])for(const rule of pmRules)assert.notEqual(service.related(id).find(r=>r.ruleId===rule.sourceId).applicability,'NO_MATCH');
   assert.deepEqual(service.state.units.map(u=>[u.instanceId,u.enhancementIds]),ownIds);
+  const bearer=service.projection.units.find(u=>u.instanceId==='parsed-unit-1');
+  assert.equal(bearer.profiles.length,1);assert.equal(bearer.profiles[0].quantity,1);
+  const contract=records.get(furnace).ruleContract;
+  assert.equal(evaluator.evaluatePredicate(contract.roles[0].selector,
+    enhancementOwnerContext(contract,service.context(bearer.instanceId,'MODEL',bearer.profiles[0].scopeId))),'TRUE');
+  assert(service.projection.units.find(u=>u.instanceId==='parsed-unit-2').applied.some(e=>e.ruleId===plagueveil),
+    'Imported Plagueveil must execute from its physical UNIT owner');
   for(const unit of service.projection.units)for(const effect of unit.applied.filter(r=>pmRules.some(p=>p.sourceId===r.ruleId))) {
     const group=service.projection.formedUnits.find(g=>g.bodyguardInstanceId==='parsed-unit-2');
     assert((group?.memberInstanceIds||['parsed-unit-2']).includes(unit.instanceId),'No propagation into a duplicate group');
