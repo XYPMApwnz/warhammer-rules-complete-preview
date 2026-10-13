@@ -106,9 +106,14 @@ for(const bookId of books){
   }
   assert.ok(emitted>0,`${bookId}: representative current provider states emitted no canonical effects`);nonEmptyBooks+=1;
 }
-assert.equal(sourceContracts,549,'unique source effect contracts');
-assert.equal(effectiveBindings,775,'effective effect bindings');
-assert.equal(effectTypes.size,11,'canonical effect operation vocabulary');
+assert.equal(sourceContracts,566,'unique source effect contracts');
+assert.equal(effectiveBindings,792,'effective effect bindings');
+assert.equal(effectTypes.size,13,'canonical effect operation vocabulary');
+assert.deepEqual(effectTypes,new Set([
+  'CHARACTERISTIC_ADD','CHARACTERISTIC_SET','WEAPON_CHARACTERISTIC_ADD','WEAPON_TAG_GRANT','WEAPON_PROFILE_GRANT',
+  'ABILITY_GRANT','ABILITY_REMOVE','ABILITY_RANGE_ADD','KEYWORD_GRANT','KEYWORD_REMOVE','TRANSPORT_CAPACITY_SET',
+  'TARGETING_RESTRICTION_GRANT','CANONICAL_REFERENCE'
+]),'exact canonical effect operation vocabulary');
 assert.equal(nonEmptyBooks,9,'all supported books must exercise a non-empty actual interpreter result');
 
 const transformed=(provider,transform)=>({gameEffects(context){return transform(provider.gameEffects(context));}});

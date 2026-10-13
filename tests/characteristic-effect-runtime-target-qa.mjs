@@ -2,7 +2,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {effectBindingKey} from '../books/shared/tools/effect-contract.mjs';
 import {createCatalogGameUnit,createRosterFixture} from './helpers/roster-fixtures.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -20,7 +22,8 @@ const catalogs=new Map(books.map(book=>[book,loadCatalog(book)])),operations=[],
 for(const [book,catalog] of catalogs){
   for(const contract of values(catalog.effectContracts))for(const clause of values(contract.clauses))for(const operation of values(clause.operations)){
     if(!['CHARACTERISTIC_ADD','CHARACTERISTIC_SET'].includes(operation.type))continue;
-    operations.push({book,contractId:contract.canonicalRecordId,operationId:operation.id,modifierOnly:operation.parameters?.modifierOnly===true});
+    operations.push({book,contractId:contract.canonicalRecordId,operationId:operation.id,modifierOnly:operation.parameters?.modifierOnly===true,
+      sourceBookId:contract.sourceBookId,bindingKey:effectBindingKey(contract),type:operation.type,target:targetId(operation)});
     const target=targetId(operation);
     for(const unitId of scopedUnitIds(contract,clause)){
       const unit=catalog.units.find(item=>item.id===unitId);
@@ -29,8 +32,14 @@ for(const [book,catalog] of catalogs){
     }
   }
 }
-assert.equal(operations.length,88,'effective characteristic operation inventory');
-assert.equal(new Set(operations.map(item=>item.operationId)).size,62,'unique characteristic operation inventory');
+assert.equal(operations.length,94,'effective characteristic operation inventory');
+assert.equal(new Set(operations.map(item=>item.operationId)).size,68,'unique characteristic operation inventory');
+// defa4cc0's 88 bindings plus six source-verified stat operations; include book,
+// canonical owner, operation identity/type/target and duplicate multiplicity.
+assert.equal(createHash('sha256').update(JSON.stringify(operations.map(item=>JSON.stringify([
+  item.book,item.sourceBookId,item.bindingKey,item.operationId,item.type,item.target
+])).sort())).digest('hex'),'81f0d34a0e71c8a62a0403c23df1db3923427d8821810a93f48d2079fe058da7',
+  'exact scoped characteristic operation inventory');
 assert.deepEqual(operations.filter(item=>item.modifierOnly).map(({book,contractId,operationId})=>({book,contractId,operationId})),[
   {book:'death-guard',contractId:'lord-of-poxes-ability-gift-of-poxes',operationId:'gift-of-poxes-contagion-range'},
   {book:'death-guard',contractId:'detachment-rule-hypervirulent-strains',operationId:'hypervirulent-strains-contagion-range'},
@@ -100,4 +109,4 @@ for(const book of ['space-marines','dark-angels','blood-angels']){
   assert.equal(wrongEffects.some(effect=>effect.source?.id===shieldId),false,`${book}: wrong unit must not receive Storm Shield`);
 }
 
-console.log('Characteristic effect runtime target QA: PASS (88 effective / 62 unique stat operations; 8 explicit modifier-only operations; 0 unresolved missing base fields; 4 excluded dependency target shapes classified; AM Invulnerable 5+ -> 4+; Storm Shield 3 -> 4 in SM/DA/BA).');
+console.log('Characteristic effect runtime target QA: PASS (94 effective / 68 unique stat operations; 8 explicit modifier-only operations; 0 unresolved missing base fields; 4 excluded dependency target shapes classified; AM Invulnerable 5+ -> 4+; Storm Shield 3 -> 4 in SM/DA/BA).');
