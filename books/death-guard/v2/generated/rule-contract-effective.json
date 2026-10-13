@@ -49821,7 +49821,8 @@
       "data": {
         "order": 1,
         "title": "Parasitic Woe‑Reaper",
-        "text": "CONTAGION ENGINE unit only. When this unit has fought, one model in this unit heals D3 wounds."
+        "text": "CONTAGION ENGINE unit only. When this unit has fought, one model in this unit heals D3 wounds.",
+        "sourceTypeLabel": "UPGRADE"
       },
       "provenance": {
         "sourceId": "dg-waha-2026-09-25",
@@ -49856,6 +49857,15 @@
           "page": 2,
           "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
           "sourceLocator": "detachment-contagion-engines:enhancement:1"
+        },
+        "sourceTypeLabel": {
+          "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+          "effectiveFrom": "2026-09-30",
+          "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:098",
+          "page": 2,
+          "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "sourceLocator": "detachment-contagion-engines:enhancement:1",
+          "quote": "PARASITIC WOE‑REAPER UPGRADE"
         }
       },
       "ruleContract": {
@@ -50005,7 +50015,8 @@
       "data": {
         "order": 2,
         "title": "Lancet of the Worldsore",
-        "text": "Friendly HELBRUTE/MYPHITIC BLIGHT-HAULER unit only. This unit has MOBILE."
+        "text": "Friendly HELBRUTE/MYPHITIC BLIGHT-HAULER unit only. This unit has MOBILE.",
+        "sourceTypeLabel": "UPGRADE"
       },
       "provenance": {
         "sourceId": "dg-waha-2026-09-25",
@@ -50040,6 +50051,15 @@
           "page": 2,
           "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
           "sourceLocator": "detachment-contagion-engines:enhancement:2"
+        },
+        "sourceTypeLabel": {
+          "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+          "effectiveFrom": "2026-09-30",
+          "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:099",
+          "page": 2,
+          "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "sourceLocator": "detachment-contagion-engines:enhancement:2",
+          "quote": "LANCET OF THE WORLDSORE UPGRADE"
         }
       },
       "ruleContract": {
@@ -51842,7 +51862,8 @@
       "data": {
         "order": 1,
         "title": "Insectile Murmuration",
-        "text": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1."
+        "text": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1.",
+        "sourceTypeLabel": "UPGRADE"
       },
       "provenance": {
         "sourceId": "dg-waha-2026-09-25",
@@ -51877,6 +51898,15 @@
           "page": 3,
           "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
           "sourceLocator": "detachment-flyblown-host:enhancement:1"
+        },
+        "sourceTypeLabel": {
+          "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+          "effectiveFrom": "2026-09-30",
+          "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:100",
+          "page": 3,
+          "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "sourceLocator": "detachment-flyblown-host:enhancement:1",
+          "quote": "INSECTILE MURMURATION UPGRADE"
         }
       },
       "ruleContract": {
@@ -52026,7 +52056,8 @@
       "data": {
         "order": 2,
         "title": "Plagueveil",
-        "text": "PLAGUE MARINES unit only. This unit has -3\" detection range."
+        "text": "PLAGUE MARINES unit only. This unit has -3\" detection range.",
+        "sourceTypeLabel": "UPGRADE"
       },
       "provenance": {
         "sourceId": "dg-waha-2026-09-25",
@@ -52061,6 +52092,15 @@
           "page": 3,
           "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
           "sourceLocator": "detachment-flyblown-host:enhancement:2"
+        },
+        "sourceTypeLabel": {
+          "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+          "effectiveFrom": "2026-09-30",
+          "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:101",
+          "page": 3,
+          "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "sourceLocator": "detachment-flyblown-host:enhancement:2",
+          "quote": "PLAGUEVEIL UPGRADE"
         }
       },
       "ruleContract": {
@@ -59299,6 +59339,70 @@
         "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
         "sourceLocator": "errata-3",
         "quote": "VIRULENT VECTORIUM DETACHMENT"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:098",
+      "targetId": "detachment-contagion-engines:enhancement:1",
+      "field": [
+        "sourceTypeLabel"
+      ],
+      "operation": "ADD",
+      "effectiveValue": "UPGRADE",
+      "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+      "provenance": {
+        "page": 2,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-contagion-engines:enhancement:1",
+        "quote": "PARASITIC WOE‑REAPER UPGRADE"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:099",
+      "targetId": "detachment-contagion-engines:enhancement:2",
+      "field": [
+        "sourceTypeLabel"
+      ],
+      "operation": "ADD",
+      "effectiveValue": "UPGRADE",
+      "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+      "provenance": {
+        "page": 2,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-contagion-engines:enhancement:2",
+        "quote": "LANCET OF THE WORLDSORE UPGRADE"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:100",
+      "targetId": "detachment-flyblown-host:enhancement:1",
+      "field": [
+        "sourceTypeLabel"
+      ],
+      "operation": "ADD",
+      "effectiveValue": "UPGRADE",
+      "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+      "provenance": {
+        "page": 3,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-flyblown-host:enhancement:1",
+        "quote": "INSECTILE MURMURATION UPGRADE"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:101",
+      "targetId": "detachment-flyblown-host:enhancement:2",
+      "field": [
+        "sourceTypeLabel"
+      ],
+      "operation": "ADD",
+      "effectiveValue": "UPGRADE",
+      "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+      "provenance": {
+        "page": 3,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-flyblown-host:enhancement:2",
+        "quote": "PLAGUEVEIL UPGRADE"
       }
     }
   ],

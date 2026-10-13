@@ -6,7 +6,7 @@ import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 import {allowRosterDependencies} from './roster-browser-dependencies.mjs';
 import {buildApp,readAppInputs} from './app-build.mjs';
-import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
+import {enumerateExpectedFacts,assertUpgradeLabelFacts} from './app-fact-oracle.mjs';
 import {expectedDisplay,legacyClasses,validatePresentation} from './app-qa.mjs';
 
 const {chromium}=createRequire(import.meta.url)('playwright');
@@ -17,7 +17,7 @@ const app='/books/death-guard/v2/app.html',payloadPath='/books/death-guard/v2/ge
 const inputs=readAppInputs(),payload=buildApp(inputs);
 validatePresentation(payload,inputs.model,inputs.records);
 const expected=enumerateExpectedFacts(inputs.model,inputs.records).map(fact=>({...fact,display:expectedDisplay(fact,inputs.model,inputs.records)}));
-assert.equal(expected.length,3654,'Canonical source-fact census changed');
+assert.equal(expected.length,3654+assertUpgradeLabelFacts(expected),'Original canonical census plus four official Upgrade labels');
 const entities=new Map(inputs.model.entities.map(entity=>[entity.id,entity]));
 const recordType=id=>inputs.records.get(id)?.recordType;
 const leaderException=entity=>entity?.kind==='DATASHEET_SECTION'&&entity.data.title==='LEADER'&&entity.data.blocks.some(block=>block.text.split('\n').filter(line=>!/^This model can be attached/.test(line)&&!/^\s*-\s/.test(line)).join('\n').trim());

@@ -7,6 +7,20 @@
 const fail = message => { throw new Error(`Army Book App V2 fact oracle: ${message}`); };
 export const factPointer = path => '/' + path.map(key => String(key).replace(/~/g, '~0').replace(/\//g, '~1')).join('/');
 export const factIdentity = (entityId, path) => `${entityId}::${factPointer(path)}`;
+// Official v1.3 p2-3 explicitly labels these four existing owners UPGRADE.
+// Keep the added fact inventory exact, independently of projection totals.
+export function assertUpgradeLabelFacts(facts) {
+  const ids = new Set([
+    'detachment-contagion-engines:enhancement:1::/sourceTypeLabel',
+    'detachment-contagion-engines:enhancement:2::/sourceTypeLabel',
+    'detachment-flyblown-host:enhancement:1::/sourceTypeLabel',
+    'detachment-flyblown-host:enhancement:2::/sourceTypeLabel'
+  ]);
+  const labels = facts.filter(fact => fact.id.endsWith('::/sourceTypeLabel'));
+  if (labels.length !== ids.size || labels.some(fact => fact.value !== 'UPGRADE' || !ids.delete(fact.id)) || ids.size)
+    fail('missing/extra/duplicate/wrong-owner UPGRADE label facts');
+  return labels.length;
+}
 const patterns = rules => rules.map(([pattern, reason]) => [new RegExp(`^(?:${pattern})$`), reason]);
 const commonDataExclusions = patterns([
   ['/(?:order|sourceOrder)', 'presentation ordering'],
@@ -34,7 +48,7 @@ const entityVisible = Object.freeze({
   ARMY_RULE: ['/(?:title|text)'],
   DETACHMENT: ['/title'],
   DETACHMENT_RULE: ['/(?:title|text)', '/tables/[0-9]+/rows/[0-9]+/[0-9]+'],
-  ENHANCEMENT: ['/(?:title|text)'],
+  ENHANCEMENT: ['/(?:title|text|sourceTypeLabel)'],
   STRATAGEM: ['/(?:title|cp|category)', '/lines/[0-9]+/(?:label|text)'],
   SOURCE_ERRATUM: ['/(?:title|text|directive|operation)', '/targetBindings/[0-9]+/targetId', '/targetBindings/[0-9]+/field/[0-9]+'],
   BOOK_USAGE_RULES: ['/clauses/[0-9]+/text'],

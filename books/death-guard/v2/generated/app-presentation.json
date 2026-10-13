@@ -43134,6 +43134,17 @@
             "entityId": "detachment-contagion-engines:enhancement:1",
             "path": "/text"
           }
+        },
+        {
+          "id": "detachment-contagion-engines:enhancement:1::/sourceTypeLabel",
+          "label": "source Type Label",
+          "value": "UPGRADE",
+          "type": "text",
+          "contextId": "detachment-contagion-engines",
+          "source": {
+            "entityId": "detachment-contagion-engines:enhancement:1",
+            "path": "/sourceTypeLabel"
+          }
         }
       ],
       "links": []
@@ -43172,6 +43183,17 @@
           "source": {
             "entityId": "detachment-contagion-engines:enhancement:2",
             "path": "/text"
+          }
+        },
+        {
+          "id": "detachment-contagion-engines:enhancement:2::/sourceTypeLabel",
+          "label": "source Type Label",
+          "value": "UPGRADE",
+          "type": "text",
+          "contextId": "detachment-contagion-engines",
+          "source": {
+            "entityId": "detachment-contagion-engines:enhancement:2",
+            "path": "/sourceTypeLabel"
           }
         }
       ],
@@ -43642,6 +43664,17 @@
             "entityId": "detachment-flyblown-host:enhancement:1",
             "path": "/text"
           }
+        },
+        {
+          "id": "detachment-flyblown-host:enhancement:1::/sourceTypeLabel",
+          "label": "source Type Label",
+          "value": "UPGRADE",
+          "type": "text",
+          "contextId": "detachment-flyblown-host",
+          "source": {
+            "entityId": "detachment-flyblown-host:enhancement:1",
+            "path": "/sourceTypeLabel"
+          }
         }
       ],
       "links": []
@@ -43680,6 +43713,17 @@
           "source": {
             "entityId": "detachment-flyblown-host:enhancement:2",
             "path": "/text"
+          }
+        },
+        {
+          "id": "detachment-flyblown-host:enhancement:2::/sourceTypeLabel",
+          "label": "source Type Label",
+          "value": "UPGRADE",
+          "type": "text",
+          "contextId": "detachment-flyblown-host",
+          "source": {
+            "entityId": "detachment-flyblown-host:enhancement:2",
+            "path": "/sourceTypeLabel"
           }
         }
       ],
@@ -108819,6 +108863,17 @@
       "ownerType": "CANONICAL_V2"
     },
     {
+      "id": "detachment-contagion-engines:enhancement:1::/sourceTypeLabel",
+      "entityId": "detachment-contagion-engines:enhancement:1",
+      "path": [
+        "sourceTypeLabel"
+      ],
+      "value": "UPGRADE",
+      "cardId": "detachment-contagion-engines:enhancement:1",
+      "contextId": "detachment-contagion-engines",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
       "id": "detachment-contagion-engines:enhancement:2::/title",
       "entityId": "detachment-contagion-engines:enhancement:2",
       "path": [
@@ -108836,6 +108891,17 @@
         "text"
       ],
       "value": "Friendly HELBRUTE/MYPHITIC BLIGHT-HAULER unit only. This unit has MOBILE.",
+      "cardId": "detachment-contagion-engines:enhancement:2",
+      "contextId": "detachment-contagion-engines",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "detachment-contagion-engines:enhancement:2::/sourceTypeLabel",
+      "entityId": "detachment-contagion-engines:enhancement:2",
+      "path": [
+        "sourceTypeLabel"
+      ],
+      "value": "UPGRADE",
       "cardId": "detachment-contagion-engines:enhancement:2",
       "contextId": "detachment-contagion-engines",
       "ownerType": "CANONICAL_V2"
@@ -109229,6 +109295,17 @@
       "ownerType": "CANONICAL_V2"
     },
     {
+      "id": "detachment-flyblown-host:enhancement:1::/sourceTypeLabel",
+      "entityId": "detachment-flyblown-host:enhancement:1",
+      "path": [
+        "sourceTypeLabel"
+      ],
+      "value": "UPGRADE",
+      "cardId": "detachment-flyblown-host:enhancement:1",
+      "contextId": "detachment-flyblown-host",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
       "id": "detachment-flyblown-host:enhancement:2::/title",
       "entityId": "detachment-flyblown-host:enhancement:2",
       "path": [
@@ -109246,6 +109323,17 @@
         "text"
       ],
       "value": "PLAGUE MARINES unit only. This unit has -3\" detection range.",
+      "cardId": "detachment-flyblown-host:enhancement:2",
+      "contextId": "detachment-flyblown-host",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "detachment-flyblown-host:enhancement:2::/sourceTypeLabel",
+      "entityId": "detachment-flyblown-host:enhancement:2",
+      "path": [
+        "sourceTypeLabel"
+      ],
+      "value": "UPGRADE",
       "cardId": "detachment-flyblown-host:enhancement:2",
       "contextId": "detachment-flyblown-host",
       "ownerType": "CANONICAL_V2"
@@ -198827,6 +198915,15 @@
             "page": 2,
             "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
             "sourceLocator": "detachment-contagion-engines:enhancement:1"
+          },
+          "sourceTypeLabel": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:098",
+            "page": 2,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-contagion-engines:enhancement:1",
+            "quote": "PARASITIC WOE‑REAPER UPGRADE"
           }
         },
         "tables": [],
@@ -198870,6 +198967,15 @@
             "page": 2,
             "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
             "sourceLocator": "detachment-contagion-engines:enhancement:2"
+          },
+          "sourceTypeLabel": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:099",
+            "page": 2,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-contagion-engines:enhancement:2",
+            "quote": "LANCET OF THE WORLDSORE UPGRADE"
           }
         },
         "tables": [],
@@ -199083,6 +199189,15 @@
             "page": 3,
             "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
             "sourceLocator": "detachment-flyblown-host:enhancement:1"
+          },
+          "sourceTypeLabel": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:100",
+            "page": 3,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-flyblown-host:enhancement:1",
+            "quote": "INSECTILE MURMURATION UPGRADE"
           }
         },
         "tables": [],
@@ -199126,6 +199241,15 @@
             "page": 3,
             "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
             "sourceLocator": "detachment-flyblown-host:enhancement:2"
+          },
+          "sourceTypeLabel": {
+            "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+            "effectiveFrom": "2026-09-30",
+            "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:101",
+            "page": 3,
+            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+            "sourceLocator": "detachment-flyblown-host:enhancement:2",
+            "quote": "PLAGUEVEIL UPGRADE"
           }
         },
         "tables": [],

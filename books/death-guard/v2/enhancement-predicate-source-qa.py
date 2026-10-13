@@ -99,6 +99,8 @@ def source_census():
         if ':enhancement:' in operation['targetId']:
             overlay_by_target.setdefault(operation['targetId'], []).append(operation)
     official_rows = set()
+    source_upgrades = set()
+    label_rows = set()
     pdfs = {}
     publisher_pages = {}
     try:
@@ -110,6 +112,8 @@ def source_census():
             assert len(owners) == 1, ('Unresolved/ambiguous source address', row['id'])
             owner = owners[0]
             title = owner.xpath('./ul/li/span')[0]
+            if any(has_class(node, 'EnhUpgrade') for node in title.iter()):
+                source_upgrades.add(row['id'])
             copied_title = deepcopy(title)
             for badge in list(copied_title.iter()):
                 if has_class(badge, 'EnhUpgrade'):
@@ -170,8 +174,18 @@ def source_census():
                 operations = overlay_by_target.get(row['id'], [])
                 assert operations and all(item['sourceId'] == official['sourceId'] for item in operations), ('Unbound official Enhancement source', row['id'])
                 for operation in operations:
-                    assert operation['field'] == ['text'], row['id']
                     assert operation['provenance']['page'] == official['page'], row['id']
+                    if operation['field'] == ['sourceTypeLabel']:
+                        assert row['id'] in source_upgrades, ('Invented UPGRADE classification', row['id'])
+                        assert operation['operation'] == 'ADD' and operation['value'] == 'UPGRADE', row['id']
+                        assert operation['provenance']['sourceLocator'] == row['id'], row['id']
+                        assert norm(operation['provenance']['quote']) == norm(proof['title'] + ' UPGRADE'), row['id']
+                        assert norm(operation['provenance']['quote']) in official_text, ('Official UPGRADE evidence changed', row['id'])
+                        assert owner_subject == 'UNIT', ('UPGRADE owner scope changed', row['id'])
+                        assert row['id'] not in label_rows, ('Duplicate UPGRADE label overlay', row['id'])
+                        label_rows.add(row['id'])
+                        continue
+                    assert operation['field'] == ['text'], row['id']
                     if operation['operation'] == 'REPLACE':
                         assert norm(operation['value']) == body, ('Unreviewed current replacement', row['id'])
                     else:
@@ -180,6 +194,7 @@ def source_census():
             else:
                 assert row['id'] not in overlay_by_target, ('New unreviewed Enhancement overlay', row['id'])
         assert official_rows == set(overlay_by_target), 'Incomplete current Enhancement overlay census'
+        assert label_rows == source_upgrades, 'Missing/extra source-backed UPGRADE labels'
     finally:
         for pdf in pdfs.values():
             pdf.close()

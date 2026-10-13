@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {syncBuiltinESMExports} from 'node:module';
 import {createHash} from 'node:crypto';
-import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
+import {enumerateExpectedFacts,assertUpgradeLabelFacts} from './app-fact-oracle.mjs';
 
 const ownFile=fileURLToPath(import.meta.url);
 const sha=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
@@ -169,7 +169,7 @@ export function validateDgUnchanged(payload,model,records,baseline) {
   assert.deepEqual(payload.groups,baseline.groups,'Glossary changed existing Reader navigation');
   assert.deepEqual(payload.relatedRules,baseline.relatedRules,'Glossary changed Related Rules');
   const expected=enumerateExpectedFacts(model,records);
-  assert.equal(expected.length,3654,'DG source denominator changed');
+  assert.equal(expected.length,3654+assertUpgradeLabelFacts(expected),'Original DG denominator plus four official Upgrade labels');
   const fields=new Map(dgCards.flatMap(card=>card.fields.map(field=>[field.id,{card,field}])));
   assert.equal(fields.size,expected.length);
   for(const fact of expected) {

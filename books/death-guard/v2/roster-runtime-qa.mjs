@@ -310,5 +310,39 @@ scenario(() => {
   const clone = make(); clone.load(fixture); assert.deepEqual(clone.projection, before);
 });
 
+// Official UPGRADE captions are presentation metadata, never an import/owner
+// selector. Exercise all four through real import and physical runtime state.
+for (const [id,detachment,unitLine] of [
+  ['detachment-contagion-engines:enhancement:1','Contagion Engines','1x Helbrute (115 pts)'],
+  ['detachment-contagion-engines:enhancement:2','Contagion Engines','1x Helbrute (115 pts)'],
+  ['detachment-flyblown-host:enhancement:1','Flyblown Host','5x Plague Marines (90 pts)'],
+  ['detachment-flyblown-host:enhancement:2','Flyblown Host','5x Plague Marines (90 pts)']
+]) scenario(() => {
+  const entity = byId.get(id);
+  assert.equal(entity.data.sourceTypeLabel,'UPGRADE');
+  assert.equal(entity.ruleContract.roles[0].subject,'UNIT');
+  const beforeLabels = structuredClone(book);
+  for (const row of beforeLabels.entities) {
+    delete row.data.sourceTypeLabel;
+    if (row.fieldProvenance) delete row.fieldProvenance.sourceTypeLabel;
+  }
+  const services = [make(),make(beforeLabels)];
+  for (const service of services) {
+    const result = service.import(`+ DETACHMENT: ${detachment}\n${unitLine}\nEnhancement: ${entity.data.title} (+15 pts)\n${unitLine}\nChar1: 1x Biologus Putrifier (50 pts)`);
+    assert.equal(result.status,'READY');
+    assert.deepEqual(result.draft.enhancements.map(row => [row.ownerUnitId,row.ownerStatus]),[['parsed-unit-1','resolved']]);
+    assert.deepEqual(service.state.units.map(row => row.enhancementIds),[[id],[],[]]);
+    assert.equal(service.related('parsed-unit-3').find(row => row.ruleId === id).applicability,'NO_MATCH');
+    if (detachment === 'Flyblown Host') {
+      service.attach('parsed-unit-3','parsed-unit-1');
+      assert.equal(service.related('parsed-unit-3').find(row => row.ruleId === id).applicability,'NO_MATCH');
+      service.detach('parsed-unit-3'); service.reattach('parsed-unit-3','parsed-unit-1');
+      assert.deepEqual(service.state.units.map(row => row.enhancementIds),[[id],[],[]]);
+    }
+  }
+  assert.deepEqual(services[0].snapshot(),services[1].snapshot(),'Labels do not change imported physical ownership');
+  assert.deepEqual(services[0].projection,services[1].projection,'Labels do not change gameplay projection');
+});
+
 console.log(JSON.stringify({status: 'PASS', sourceClauses: expectedPaths.size, operationsExecuted: coveredEffects.size,
   scenarios, negativeControls: negatives, legacyRuntimeAuthority: 0, deterministicRecompute: 'PASS'}));

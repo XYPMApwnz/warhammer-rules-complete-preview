@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
+import {assertUpgradeLabelFacts} from './app-fact-oracle.mjs';
 
 // Permanent browser proof for the actual V1 NavigationController port. V1 is
 // loaded only as an independent visual/interaction oracle. The V2 page must
@@ -84,15 +85,15 @@ async function contentsFactCensus(page,device){
     const expected=window.ArmyBookAppV2.payload.factManifest,observed=[...document.querySelectorAll('main .v1-contents-pages [data-fact-id]')].map(node=>({id:node.dataset.factId,value:JSON.parse(node.dataset.factValue),entityId:node.dataset.entityId,contextId:node.dataset.contextId,text:node.textContent,cardId:node.closest('[data-card-id]')?.dataset.cardId}));
     return{expected,observed,cards:[...document.querySelectorAll('main .v1-contents-pages [data-card-id]')].map(node=>node.dataset.cardId)};
   });
-  assert.equal(census.expected.length,3654,device+' canonical fact denominator changed');
+  assert.equal(census.expected.length,3654+assertUpgradeLabelFacts(census.expected),device+' original denominator plus four official Upgrade labels');
   // Continuous Contents uses the same curated player projection as individual
-  // entries: 2,281 datasheet leaves + 594 other player book leaves. The 51
-  // duplicate/technical leaves remain in the 3654-field source evidence census.
+  // entries: 2,281 datasheet leaves + 598 other player book leaves. The 51
+  // duplicate/technical leaves remain in the 3658-field source evidence census.
   // Independent source
   // classification and exact reachability are guarded by datasheet/app browser
   // QA; this navigation guard checks their continuous-page ownership/parity.
-  assert.equal(census.observed.length,2875,device+' full Contents player fact loss or duplication');
-  const actual=new Map(census.observed.map(fact=>[fact.id,fact]));assert.equal(actual.size,2875,device+' full Contents DOM duplicate fact identity');
+  assert.equal(census.observed.length,2875+assertUpgradeLabelFacts(census.observed),device+' full Contents player fact loss or duplication');
+  const actual=new Map(census.observed.map(fact=>[fact.id,fact]));assert.equal(actual.size,2879,device+' full Contents DOM duplicate fact identity');
   const expected=new Map(census.expected.map(fact=>[fact.id,fact]));
   for(const observed of census.observed){const fact=expected.get(observed.id);assert.ok(fact,device+' unsourced full Contents fact '+observed.id);assert.deepEqual(observed.value,fact.value,device+' wrong fact value '+fact.id);assert.equal(observed.entityId,fact.entityId,device+' wrong fact entity '+fact.id);assert.equal(observed.contextId,fact.contextId,device+' wrong fact context '+fact.id);}
   return{facts:actual.size,cards:new Set(census.cards).size};

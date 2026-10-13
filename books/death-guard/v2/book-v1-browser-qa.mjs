@@ -9,7 +9,7 @@ import {allowRosterDependencies} from './roster-browser-dependencies.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {projectBookPresentation} from '../../shared/army-book-app-v2/book-v1-projection.mjs';
-import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
+import {enumerateExpectedFacts,assertUpgradeLabelFacts} from './app-fact-oracle.mjs';
 
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
@@ -30,7 +30,7 @@ function expectedPlayerFacts(model,records){
   const add=(entityId,pointer,value,display=value)=>expected.push({id:entityId+'::'+pointer,entityId,contextId:contextIds.get(entityId),value,text:String(display)});
   for(const entity of model.entities.filter(entity=>kinds.has(entity.kind))){
     const {id,data}=entity;
-    for(const key of ['title','text'])if(data[key]!==undefined){
+    for(const key of ['title','text','sourceTypeLabel'])if(data[key]!==undefined){
       const tableEchoes=(data.tables||[]).map(table=>table.rows.flat().join(''));
       const display=key==='text'?data[key].split('\n').filter(line=>!tableEchoes.includes(line.trim())).join('\n'):data[key];
       add(id,'/'+key,data[key],display);
@@ -56,14 +56,14 @@ function expectedPlayerFacts(model,records){
   return expected;
 }
 const expected=expectedPlayerFacts(inputs.model,inputs.records);
-assert.equal(expected.length,594,'Independent normal player atom census');
-// All 645 source-evidence atoms are retained. The 51 not repeated in ordinary
+assert.equal(expected.length,594+assertUpgradeLabelFacts(expected),'Original player atom census plus four official Upgrade labels');
+// All 649 source-evidence atoms are retained. The 51 not repeated in ordinary
 // display have explicit canonical proofs, rather than blanket exclusion.
 const evidenceOwnerIds=new Set([...sourceEntities.map(entity=>entity.id),...inputs.model.mfm.detachmentBindings.map(binding=>binding.mfmRecordId),...inputs.model.mfm.enhancementBindings.map(binding=>binding.mfmRecordId)]);
 const sourceEvidence=enumerateExpectedFacts(inputs.model,inputs.records).filter(fact=>evidenceOwnerIds.has(fact.entityId));
 const playerIds=new Set(expected.map(fact=>fact.id));
 const omitted=sourceEvidence.filter(fact=>!playerIds.has(fact.id));
-assert.equal(sourceEvidence.length,645);assert.equal(omitted.length,51);
+assert.equal(sourceEvidence.length,645+assertUpgradeLabelFacts(sourceEvidence));assert.equal(omitted.length,51);
 const omissionProofs={duplicateMfmName:0,duplicateQualification:0,erratumDirectiveBindings:0};
 for(const fact of omitted){
   if(fact.path.length===1&&fact.path[0]==='label'&&inputs.records.has(fact.entityId)){
@@ -90,6 +90,11 @@ assert.equal(census.DETACHMENT_RULE,9);assert.equal(census.ARMY_RULE,2);assert.e
 
 const allowed=new Map([[appPath,'text/html'],[payloadPath,'application/json'],['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],['/books/shared/army-book-app-v2/styles.css','text/css']]);
 allowRosterDependencies(allowed);
+// The current V2 runtime imports these presenters even in normal Army Book mode.
+allowed.set('/books/shared/army-book-app-v2/formed-unit-presentation.mjs','text/javascript');
+allowed.set('/books/shared/army-book-app-v2/effective-datasheet-presentation.mjs','text/javascript');
+allowed.set('/books/shared/roster-v2/effective-instance.mjs','text/javascript');
+allowed.set('/books/shared/roster-v2/related.mjs','text/javascript');
 let servedPayload=payload,legacyPoison='LEGACY_POISON_A';
 const requests=[],forbidden=[];
 const server=http.createServer((req,res)=>{
@@ -184,7 +189,15 @@ try{
     // The same canonical record is opened through Reader, Related Rules and
     // Glossary. No summary/index copy may become a factual detail owner.
     const strat=sourceEntities.find(entity=>entity.kind==='STRATAGEM'),enh=sourceEntities.find(entity=>entity.kind==='ENHANCEMENT');
-    const detail=async id=>{await page.waitForSelector('dialog[open]');const card=page.locator(`dialog[open] [data-card-id="${id}"]`).first();assert.equal(await card.count(),1);return card.locator('[data-fact-id]').evaluateAll(nodes=>nodes.map(node=>[node.dataset.factId,node.dataset.factValue,node.textContent]));};
+    const detail=async id=>{
+      await page.waitForSelector('dialog[open]');const card=page.locator(`dialog[open] [data-card-id="${id}"]`).first();assert.equal(await card.count(),1);
+      const facts=await card.locator('[data-fact-id]').evaluateAll(nodes=>nodes.map(node=>[node.dataset.factId,node.dataset.factValue,node.textContent]));
+      const entity=sourceEntities.find(entity=>entity.id===id);
+      if(entity.kind==='STRATAGEM')assert.deepEqual(facts.filter(([key])=>/::\/lines\/\d+\/label$/.test(key)).map(([key])=>key),entity.data.lines.map((_,index)=>`${id}::/lines/${index}/label`),'Source rule-block order');
+      // Header CP/category layout differs between the existing detail surfaces;
+      // canonical identity, value and displayed text must all remain identical.
+      return facts.sort(([left],[right])=>left.localeCompare(right));
+    };
     for(const entity of [strat,enh]){
       await page.locator(`main [data-card-id="${entity.id}"] a.v2-reference[data-target-id="${entity.id}"]`).first().click();const reader=await detail(entity.id);await page.keyboard.press('Escape');
       await page.evaluate(()=>window.ArmyBookAppV2.openGlossary());await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill(entity.data.title);

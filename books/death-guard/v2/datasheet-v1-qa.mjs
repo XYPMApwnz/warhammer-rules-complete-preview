@@ -7,7 +7,7 @@ import {projectContents} from '../../shared/army-book-app-v2/navigation-v1.mjs';
 import {createLifecycle} from '../../shared/army-book-app-v2/lifecycle.mjs';
 import {Highlighter} from '../../shared/army-book-app-v2/navigation-v1-targets.mjs';
 import {buildApp,readAppInputs} from './app-build.mjs';
-import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
+import {enumerateExpectedFacts,assertUpgradeLabelFacts} from './app-fact-oracle.mjs';
 import {validatePresentation} from './app-qa.mjs';
 import {buildDatasheetReferenceBindings} from './presentation-reference-build.mjs';
 
@@ -79,7 +79,7 @@ const originalNavigation=await import('data:text/javascript;base64,'+Buffer.from
 assert.deepEqual(projectContents(payload),originalNavigation.projectContents(payload),'DG navigation behavior changed');
 const validation=validatePresentation(payload,inputs.model,inputs.records);
 const expected=enumerateExpectedFacts(inputs.model,inputs.records);
-assert.equal(expected.length,3654,'Canonical source-fact census changed');
+assert.equal(expected.length,3654+assertUpgradeLabelFacts(expected),'Original canonical census plus four official Upgrade labels');
 assert.equal(validation.facts,expected.length);
 
 // The source-evidence census and the player datasheet census are deliberately

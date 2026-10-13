@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {buildFactualV2,buildV2} from './build.mjs';
 import {sourceCurrentness} from './overlay-engine.mjs';
 import {assertNoMfmValues,resolveOwnedFact} from './mfm-boundary.mjs';
+import {assertUpgradeLabelFacts} from './app-fact-oracle.mjs';
 
 const read = name => JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const enrollment = read('./sources/source-enrollment.json');
@@ -98,6 +99,45 @@ for (const entity of effective.entities) {
   }
   assert.deepEqual(unchanged,previous,`${entity.id}: no unrelated factual, ownership or provenance changes`);
 }
+const labelFacts = model => model.entities.filter(entity => Object.hasOwn(entity.data,'sourceTypeLabel'))
+  .map(entity => ({id:entity.id+'::/sourceTypeLabel',value:entity.data.sourceTypeLabel}));
+assertUpgradeLabelFacts(labelFacts(effective));
+const labelOperations = enrollment.overlayOperations.filter(row => row.field.join('/') === 'sourceTypeLabel');
+assert.equal(labelOperations.length,4);
+for (const operation of labelOperations) {
+  const entity = byId.get(operation.targetId);
+  assert.equal(entity.kind,'ENHANCEMENT','Preserve existing canonical classification/identity');
+  assert.equal(Object.hasOwn(baseById.get(entity.id).data,'sourceTypeLabel'),false,'Frozen accepted base remains unchanged');
+  assert.match(entity.data.text,/unit only\./,'UNIT eligibility text retained');
+  const page = entity.parentId === 'detachment-contagion-engines' ? 2 : 3;
+  assert.deepEqual(entity.fieldProvenance.sourceTypeLabel,{
+    sourceId:'gw-death-guard-faction-pack-v1.3-2026-09-30',effectiveFrom:'2026-09-30',operationId:operation.id,
+    page,documentPath:'books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf',
+    sourceLocator:entity.id,quote:entity.data.title.toUpperCase()+' UPGRADE'
+  });
+  const mutant = buildFactualV2({enrollment:{...enrollment,
+    overlayOperations:enrollment.overlayOperations.filter(row => row.id !== operation.id)}}).effective;
+  assert.throws(() => assertUpgradeLabelFacts(labelFacts(mutant)),/UPGRADE label facts/); mutations++;
+}
+const labels = labelFacts(effective);
+for (const mutate of [
+  rows => rows[0].value = 'Enhancement',
+  rows => rows[0].id = 'detachment-virulent-vectorium:enhancement:1::/sourceTypeLabel',
+  rows => rows.push({...rows[0]}),
+  rows => rows.push({id:'unrelated-owner::/sourceTypeLabel',value:'UPGRADE'})
+]) {
+  const mutant = structuredClone(labels); mutate(mutant);
+  assert.throws(() => assertUpgradeLabelFacts(mutant),/UPGRADE label facts/); mutations++;
+}
+const withoutLabels = buildFactualV2({enrollment:{...enrollment,
+  overlayOperations:enrollment.overlayOperations.filter(row => !labelOperations.includes(row))}});
+assert.deepEqual(withoutLabels.base,base);
+const strippedLabels = structuredClone(effective);
+strippedLabels.appliedOverlays = strippedLabels.appliedOverlays.filter(row => row.field.join('/') !== 'sourceTypeLabel');
+for (const entity of strippedLabels.entities) if (Object.hasOwn(entity.data,'sourceTypeLabel')) {
+  delete entity.data.sourceTypeLabel; delete entity.fieldProvenance.sourceTypeLabel;
+}
+assert.deepEqual(strippedLabels,withoutLabels.effective,'Only four display labels/provenance change; other Enhancements and all Stratagems unchanged');
 const baseIntegrity = structuredClone(enrollment); baseIntegrity.acceptedBase.sha256 = '0'.repeat(64);
 assert.throws(() => buildFactualV2({enrollment:baseIntegrity}),/source integrity/); mutations++;
 for (const operation of enrollment.overlayOperations.filter(row => evidence.newSeptemberWeaponTable.targetInventory.some(source => source.targetId === row.targetId && Object.hasOwn(source.fields,row.field[0])))) {
