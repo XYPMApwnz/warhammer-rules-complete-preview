@@ -12,16 +12,20 @@ const repo=fileURLToPath(new URL('../',import.meta.url));
 const requests=[],forbidden=[],errors=[],results=[];
 const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json',
   '.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webmanifest':'application/manifest+json'};
-const server=http.createServer((request,response)=>{
-  const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
-  if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
-  const allowed=isApplicationTestDependency(address)||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
+const isAllowedResource=address=>isApplicationTestDependency(address)||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
     /^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
     /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address);
+assert.equal(isAllowedResource('/books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp'),true);
+for(const address of ['/books/chaos-space-marines/assets/chaos-space-marines-cover-800.webp',
+  '/books/chaos-space-marines/assets/unknown.webp','/books/chaos-space-marines/scripts/data.js',
+  '/books/emperors-children/v2/app.html'])assert.equal(isAllowedResource(address),false,'Unexpected resource admitted: '+address);
+const server=http.createServer((request,response)=>{
+  const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
+  if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
   const file=path.resolve(repo,address.slice(1));
-  if(!allowed||!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){
+  if(!isAllowedResource(address)||!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){
     forbidden.push(address);response.writeHead(404);response.end();return;
   }
   response.writeHead(200,{'Content-Type':types[path.extname(file)],'Cache-Control':'no-store'});response.end(fs.readFileSync(file));
@@ -136,8 +140,16 @@ const screenshot=async(page,name)=>{if(process.env.V2_SHELL_SCREENSHOTS){fs.mkdi
 try{
   for(const [device,viewport]of [['desktop',{width:1440,height:900}],['phone',{width:390,height:844}]]){
     const context=await browser.newContext({viewport,serviceWorkers:'block'});
-    context.on('page',page=>{page.setDefaultTimeout(15000);page.on('pageerror',error=>errors.push(error.message));});
+    context.on('page',page=>{page.setDefaultTimeout(15000);page.on('pageerror',error=>errors.push(error.message));
+      page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});});
+    const homeRequestStart=requests.length;
     const page=await context.newPage();await page.goto(entry);await ready(page);await active(page,null);await geometry(page);
+    await page.waitForFunction(()=>['death-guard','adeptus-mechanicus','chaos-space-marines'].every(id=>{
+      const image=document.querySelector(`[data-v2-book="${id}"] img`);return image?.complete&&image.naturalWidth>0;
+    }));
+    assert.deepEqual(requests.slice(homeRequestStart).filter(address=>
+      /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/v2\//.test(address)&&!address.endsWith('/registration.mjs')),
+    [],'Home loaded book factual data or roster service before book selection');
     await screenshot(page,`shell-home-${device}`);
     assert.equal(await page.locator('[data-v2-shell]').count(),1);
     for(const destination of ['HOME','CORE_RULES','ARMY_BOOK','ROSTER','GLOSSARY'])assert.equal(await page.locator(`[data-v2-primary-nav] [data-v2-destination="${destination}"]`).count(),1);
@@ -152,7 +164,11 @@ try{
     await navigate(page,{destination:'HOME',sectionId:'army-books'});
     const urls={},themes={};
     for(const book of Object.keys(cases)){
+      const bookRequestStart=requests.length;
       const c=cases[book];await page.locator(`[data-v2-book="${book}"]`).first().click();await active(page,book);await geometry(page);
+      assert.deepEqual([...new Set(requests.slice(bookRequestStart).filter(address=>
+        /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/v2\/(?:generated\/|roster-boot\.mjs)/.test(address))
+        .map(address=>address.split('/')[2]))],[book],'Book selection loaded another book factual payload or roster service');
       await screenshot(page,`shell-${book}-${device}`);
       await bookContents(page,device,book);
       assert.equal(new URL(page.url()).pathname,'/v2/app.html','Book selection escaped the unified shell');
@@ -220,7 +236,8 @@ try{
     assert.deepEqual(errors,[],'Shell emitted browser exceptions');
     results.push({device,home:true,integratedDestinations:true,booklessRoster:true,import:true,attachment:true,personalGuide:true,
       physicalReference:true,nativeNewTab:true,directReload:true,legacyAdapters:true,backForward:true,lifecycle:true,theme:true,
-      neutralPrimaryNavigation:true,bookContentsPreserved:true,sectionNavigation:true,relatedRules:true,popupViewport:true,longCorePopup:true,overflow:false});
+      neutralPrimaryNavigation:true,bookContentsPreserved:true,sectionNavigation:true,relatedRules:true,popupViewport:true,longCorePopup:true,
+      homeCovers:true,lazyLoading:true,resourceNegativeControls:4,overflow:false});
     await context.close();
   }
   assert.deepEqual(forbidden,[],'Shell requested a legacy or unexpected resource');
