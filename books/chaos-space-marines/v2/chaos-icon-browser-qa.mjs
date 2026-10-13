@@ -72,10 +72,10 @@ function verify(report,slug,selected=true){assert.equal(report.equipment.length,
   if(slug==='dark-commune')assert.equal(report.equipment[0].owner,'datasheet-dark-commune:section:2:member:3');
   if(slug==='nemesis-claw')assert.equal(report.equipment[0].owner,'datasheet-nemesis-claw:section:2:member:2');
 }
-function withoutCaptions(value){if(Array.isArray(value))return value.map(withoutCaptions);if(!value||typeof value!=='object')return value;
+function withoutCaptions(value,allEquipmentReferences=false){if(Array.isArray(value))return value.map(item=>withoutCaptions(item,allEquipmentReferences));if(!value||typeof value!=='object')return value;
   return Object.fromEntries(Object.entries(value).flatMap(([key,item])=>{
-    if(key==='sourceReferences'){const refs=item.filter(ref=>!ref.caption);return refs.length?[[key,withoutCaptions(refs)]]:[];}
-    return [[key,withoutCaptions(item)]];
+    if(key==='sourceReferences'){if(allEquipmentReferences)return [];const refs=item.filter(ref=>!ref.caption);return refs.length?[[key,withoutCaptions(refs)]]:[];}
+    return [[key,withoutCaptions(item,allEquipmentReferences)]];
   }));}
 async function mount(old,viewport){const origin=old?'http://icon-baseline.test':'http://icon-current.test',context=await browser.newContext({viewport,serviceWorkers:'block'});
   await context.route('**/*',async route=>{const url=new URL(route.request().url()),file=path.resolve(repo,'.'+decodeURIComponent(url.pathname));
@@ -137,7 +137,15 @@ try{
     for(const [army,text] of [['death-guard','+ DETACHMENT: Virulent Vectorium\n5x Plague Marines (95 pts): 5x Boltgun, 5x Plague knives, 1x Icon of despair'],['adeptus-mechanicus',am.text]]){
       const reports=[];for(const session of [current,previous]){await session.page.goto(session.origin+'/v2/app.html?v2=ARMY_BOOK&registry='+army);await ready(session.page);
         await importText(session.page,text,1);await open(session.page,'parsed-unit-1');reports.push(await inspect(session.page,'parsed-unit-1'));}
-      assert.deepEqual(reports[0],reports[1],army+' legacy equipment captions and projection unchanged');
+      if(army==='death-guard'){
+        // DG now explicitly quotes its source equipment caption. The historical
+        // pre-CSM-caption importer also predates ancillary ability references;
+        // neither display reference may be mistaken for a gameplay delta.
+        assert.equal(reports[0].equipment[0].text,'1 × icon of despair');
+        assert.deepEqual(reports[0].equipment.map(({text,...item})=>item),reports[1].equipment.map(({text,...item})=>item));
+        assert.deepEqual(withoutCaptions({...reports[0],equipment:[]},true),withoutCaptions({...reports[1],equipment:[]},true),
+          'DG ownership, quantity and gameplay projection unchanged');
+      }else assert.deepEqual(reports[0],reports[1],army+' legacy equipment captions and projection unchanged');
       assert.ok(reports[0].equipment.length,army+' exercises actual selected equipment');results.push({device,army,legacyCaption:'PASS'});
     }
     await current.context.close();await previous.context.close();
