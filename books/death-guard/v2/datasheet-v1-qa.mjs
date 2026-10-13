@@ -4,42 +4,72 @@ import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {projectContents} from '../../shared/army-book-app-v2/navigation-v1.mjs';
+import {createLifecycle} from '../../shared/army-book-app-v2/lifecycle.mjs';
+import {Highlighter} from '../../shared/army-book-app-v2/navigation-v1-targets.mjs';
 import {buildApp,readAppInputs} from './app-build.mjs';
 import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
 import {validatePresentation} from './app-qa.mjs';
 import {buildDatasheetReferenceBindings} from './presentation-reference-build.mjs';
 
 // This QA intentionally owns no V1 factual input. It checks the independent
-// canonical fact oracle, the V2 presentation envelope, and the frozen V1-style
-// navigation dependency boundary consumed by the datasheet renderer.
+// canonical fact oracle, V1 Contents behavior, and current theme/lifecycle contracts.
 const base='296ecc02542c366fd73065f591745e629a0c24ce';
 const directory=path.dirname(fileURLToPath(import.meta.url));
 const repo=path.resolve(directory,'../../..');
-const navigationFiles=[
-  'books/shared/army-book-app-v2/navigation-v1.mjs',
-  'books/shared/army-book-app-v2/navigation-v1-controller.mjs',
-  'books/shared/army-book-app-v2/navigation-v1-targets.mjs',
-  'books/shared/army-book-app-v2/navigation-v1.css'
-];
-let navigationBaseline;
-for(const file of navigationFiles){
-  const expected=execFileSync('git',['show',`${base}:${file}`],{cwd:repo,encoding:'utf8'}).replaceAll('\r\n','\n');
-  let actual=fs.readFileSync(path.join(repo,file),'utf8').replaceAll('\r\n','\n');
-  if(file.endsWith('/navigation-v1.mjs')) {
-    navigationBaseline=expected;
-    // The shared profile interface adds only a source-preserving layout alias.
-    // Freeze every other byte and compare the entire DG tree below as well.
-    actual=actual.replace("field.presentationPath??field.source?.path??''","field.source?.path||''");
+// The historical module is a behavior oracle for projectContents, not a byte freeze.
+const navigationBaseline=execFileSync('git',['show',`${base}:books/shared/army-book-app-v2/navigation-v1.mjs`],
+  {cwd:repo,encoding:'utf8'});
+const read=file=>fs.readFileSync(path.join(repo,file),'utf8');
+const theme={navigation:read('books/shared/army-book-app-v2/navigation-v1.css'),
+  datasheet:read('books/shared/datasheet-system.css'),art:read('books/shared/unit-art.css')};
+function assertTheme(styles){
+  for(const [property,binding,fallback]of [['panel','panel','#191f1a'],['ink','ink','#e2dcc9'],
+    ['green','accent','#bfd58c'],['pink','signal','#d5488e']]){
+    const declaration=styles.navigation.match(new RegExp(`--v1-nav-${property}:\\s*([^;]+);`))?.[1];
+    assert.match(declaration||'',new RegExp(`^var\\(--book-${binding},\\s*${fallback}\\)$`),`Book-owned navigation theme: ${property}`);
   }
-  assert.equal(actual,expected,`Navigation baseline changed: ${file}`);
+  assert.match(styles.datasheet,/background:\s*var\(--book-bg,\s*#0c110d\)/,'Book-owned datasheet background');
+  assert.match(styles.art,/background:\s*rgba\(var\(--book-panel-rgb,/,'Book-owned artwork panel');
 }
+assertTheme(theme);
+assert.throws(()=>assertTheme({...theme,navigation:theme.navigation.replace('--v1-nav-green: var(--book-accent,','--v1-nav-green: var(--book-ink,')}),
+  {name:'AssertionError'},'Wrong theme mapping must be detected');
+assert.throws(()=>assertTheme({...theme,art:theme.art.replaceAll('--book-panel-rgb','--wrong-panel-rgb')}),
+  {name:'AssertionError'},'Artwork must not bypass the book theme');
+
+function assertLifecycle(create=createLifecycle){
+  const frames=new Map(),timers=new Map();let next=0,disconnected=0;
+  const view={requestAnimationFrame(fn){const id=++next;frames.set(id,fn);return id;},cancelAnimationFrame(id){frames.delete(id);},
+    setTimeout(fn){const id=++next;timers.set(id,fn);return id;},clearTimeout(id){timers.delete(id);}};
+  const target=new class extends EventTarget{
+    handlers=new Set();
+    addEventListener(type,fn,options){this.handlers.add(fn);super.addEventListener(type,fn,options);}
+    removeEventListener(type,fn,options){this.handlers.delete(fn);super.removeEventListener(type,fn,options);}
+  };
+  const owner=create(view),events=[];
+  owner.listen(target,'read',()=>events.push('read'));target.dispatchEvent(new Event('read'));
+  const frame=frames.get(owner.frame(()=>events.push('frame'))),timer=timers.get(owner.timeout(()=>events.push('timer'),0));
+  owner.observe({disconnect(){disconnected++;}});
+  const classes=new Set(),node={dataset:{},classList:{add:name=>classes.add(name),remove:name=>classes.delete(name)}};
+  const highlight=new Highlighter({view,lifecycle:owner});highlight.show(node);assert.equal(classes.size,1);
+  owner.destroy();owner.destroy();
+  assert.equal(owner.active,false);assert.equal(target.handlers.size,0,'Destroyed listeners remain registered');
+  assert.equal(frames.size,0,'Destroyed animation work remains pending');assert.equal(timers.size,0,'Destroyed timer work remains pending');
+  assert.equal(disconnected,1);assert.equal(classes.size,0,'Stale destination highlight');assert.equal(highlight.current.length,0);
+  target.dispatchEvent(new Event('read'));frame();timer();highlight.show(node);
+  assert.deepEqual(events,['read'],'Queued callbacks must remain inert');assert.equal(classes.size,0);
+  const remounted=createLifecycle(view);remounted.listen(target,'read',()=>events.push('remount'));
+  target.dispatchEvent(new Event('read'));assert.deepEqual(events,['read','remount']);remounted.destroy();assert.equal(target.handlers.size,0);
+}
+assertLifecycle();
+assert.throws(()=>assertLifecycle(view=>({...createLifecycle(view),destroy(){}})),{name:'AssertionError'},'Missing destroy must fail');
+assert.throws(()=>assertLifecycle(view=>createLifecycle({...view,cancelAnimationFrame(){},clearTimeout(){}})),
+  {name:'AssertionError'},'Missing cancellation must fail');
 
 const portCss=fs.readFileSync(path.join(repo,'books/shared/army-book-app-v2/datasheet-v1.css'),'utf8');
 for(const asset of ['datasheet-system.css','unit-art.css']){
   assert.ok(portCss.includes(`@import url("../${asset}");`),`Actual V1 stylesheet disconnected: ${asset}`);
-  const file='books/shared/'+asset;
-  assert.equal(fs.readFileSync(path.join(repo,file),'utf8').replaceAll('\r\n','\n'),
-    execFileSync('git',['show',`${base}:${file}`],{cwd:repo,encoding:'utf8'}).replaceAll('\r\n','\n'),`Shared V1 stylesheet changed: ${asset}`);
+  assert.ok(read('books/shared/'+asset).length,`Shared stylesheet missing: ${asset}`);
 }
 
 const inputs=readAppInputs(),payload=buildApp(inputs);
@@ -135,4 +165,4 @@ for(const id of ['datasheet-lord-of-contagion:section:1','datasheet-deathshroud-
   assert.ok(sourceRules.get(id)?.clauses?.some(clause=>clause.rosterClassification==='ROSTER_EXECUTABLE'),`Missing executable source oracle ${id}`);
 }
 
-console.log(JSON.stringify({status:'PASS',sourceFacts:expected.length,playerDatasheetFacts:playerFacts.length,datasheets:datasheets.length,canonicalReferenceBindings:references,referenceRejectionControls:2,navigationBaseline:base,navigationFiles:navigationFiles.length,actualV1Styles:2,megaBaseOracle:'PASS'},null,2));
+console.log(JSON.stringify({status:'PASS',sourceFacts:expected.length,playerDatasheetFacts:playerFacts.length,datasheets:datasheets.length,canonicalReferenceBindings:references,referenceRejectionControls:2,navigationBehaviorBaseline:base,themeContract:'PASS',lifecycleReleaseRemount:'PASS',mutationControls:4,actualV1Styles:2,megaBaseOracle:'PASS'},null,2));
