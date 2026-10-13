@@ -27,8 +27,14 @@ try{
   for(const file of ['book.config.json','tools/extract-datasheets.mjs','tools/source-hash.mjs','sources/bsdata-adeptus-mechanicus-11e.json','content/adeptus-mechanicus-points.en.json'])copy(file);
   copyRepoPath('books/shared/tools/army-core-ability-binding.mjs');
   copyRepoPath('books/shared/content/army-ability-source-bindings.v1.json');
+  copyRepoPath('books/shared/canonical-content-v2/effective-content.mjs');
   copyRepoPath('books/core-rules/content');
   copyRepoPath('books/core-rules/sources/waha-core-2026-09-25');
+  // Core construction validates its bound page-image evidence as well as its
+  // modules. Stage only the assets declared by the existing source bindings.
+  const coreContent=path.join('books','core-rules','content');
+  const coreEvidence=JSON.parse(fs.readFileSync(path.join(root,coreContent,'core-effective-bindings.v1.json'),'utf8'));
+  for(const evidence of coreEvidence.pageImageEvidence)copyRepoPath(path.join(coreContent,evidence.artifact));
 
   const absent=run();
   assert.equal(absent.status,0,`${absent.stdout||''}${absent.stderr||''}`);
@@ -44,8 +50,23 @@ try{
   const rerun=run();
   assert.equal(rerun.status,0,`${rerun.stdout||''}${rerun.stderr||''}`);
   assert.equal(fs.readFileSync(output,'utf8'),expected,'AM Datasheet producer retained facts from a poisoned previous output');
+
+  // Sensitivity control: mutate only the disposable producer to take its
+  // datasheets from the poisoned previous output. It must execute normally,
+  // then fail the same exact-output ownership comparison used above.
+  const stagedProducer=path.join(fixtureRoot,'tools','extract-datasheets.mjs');
+  const producer=fs.readFileSync(stagedProducer,'utf8'),anchor='const output=`${JSON.stringify(result,null,2)}\\n`;';
+  assert.equal(producer.split(anchor).length,2,'Ownership mutation anchor must resolve exactly once');
+  fs.writeFileSync(stagedProducer,producer.replace(anchor,
+    "if(fs.existsSync(outputPath))result.datasheets=JSON.parse(fs.readFileSync(outputPath,'utf8')).datasheets;\n"+anchor));
+  fs.writeFileSync(output,`${JSON.stringify(poisoned,null,2)}\n`);
+  const mutated=run();
+  assert.equal(mutated.status,0,`${mutated.stdout||''}${mutated.stderr||''}`);
+  assert.throws(()=>assert.equal(fs.readFileSync(output,'utf8'),expected,
+    'AM Datasheet producer retained facts from a poisoned previous output'),assert.AssertionError,
+    'Source ownership assertion must reject a producer that consumes previous generated facts');
 }finally{
   fs.rmSync(fixture,{recursive:true,force:true});
 }
 
-console.log('AM Datasheet source ownership QA passed: absent and poisoned previous outputs reconstruct identically.');
+console.log('AM Datasheet source ownership QA passed: absent and poisoned previous outputs reconstruct identically; previous-output ownership mutation detected.');
