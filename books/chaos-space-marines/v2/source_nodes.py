@@ -241,7 +241,7 @@ def collect_sources(root: Path, official: dict) -> list[dict]:
             raise ValueError("Duplicate official FAQ occurrence binding")
         official_faqs[faq["sourceId"]] = faq
     seen_official = set()
-    pdf = relative(book / "sources/chaos-space-marines-faction-pack-v1.2.pdf")
+    pdf = official["sourceDocument"]
     for occurrence in corpus["errata"]:
         if occurrence["class"] == "FAQ" and int(occurrence["sourceId"].split("-")[1]) > 17:
             continue  # Appended general Core FAQ are not CSM factual owners.

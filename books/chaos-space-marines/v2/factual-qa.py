@@ -199,6 +199,9 @@ def verify(base, effective):
         "detachment-soulforged-warpack:stratagem:4", "detachment-soulforged-warpack:stratagem:5",
         "datasheet-obliterators:section:1#/blocks/0/text",
         "detachment-huron-s-marauders:enhancement:2"}
+    # New official profile rows are checked independently by official-v1.3-qa.py.
+    expected_changed.update(target["sourceId"] for update in bound["updates"]
+                            if update.get("profileInventory") for target in update["targets"])
     gameplay = {"DETACHMENT_RULE", "STRATAGEM", "DATASHEET_ABILITY", "EQUIPMENT_ABILITY", "MODEL_PROFILE", "WEAPON_PROFILE", "ENHANCEMENT"}
     changed = {sid for sid, identity in id_map.items() if raw_index[identity]["kind"] in gameplay
                and raw_index[identity]["data"] != effective_index[identity]["data"]}
@@ -236,7 +239,7 @@ def verify(base, effective):
             assert record["factOwnerId"] == id_map[correction["officialUpdateId"]]
     return {"sourceEntities": len(id_map), "profiles": profile_count, "weapons": weapon_count,
             "abilities": ability_count, "wargearOptions": option_count, "officialFaq": 15,
-            "secondaryFaq": 2, "officialCorrections": 34, "secondaryErrata": 18,
+            "secondaryFaq": 2, "officialCorrections": len(bound["updates"]), "secondaryErrata": 18,
             "effectiveFactualOverrides": len(changed), "missingCanonicalFacts": 0,
             "duplicateSemanticOwners": 0, "provenanceGaps": 0}
 

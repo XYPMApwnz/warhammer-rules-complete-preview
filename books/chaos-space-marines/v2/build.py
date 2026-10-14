@@ -245,6 +245,9 @@ def bind_corrections(records, accounting, official, corpus, identities):
         affected = sorted({identity for target in update["targets"] for identity in targets(target)})
         correction["data"] = {"instruction": update["sourceText"], "sourceHeading": update["sourceHeading"],
                               "status": update["status"], "effectiveTargetIds": affected}
+        for key in ("unappliedOccurrences", "adjudications", "profileInventory"):
+            if key in update:
+                correction["data"][key] = copy.deepcopy(update[key])
         for identity in affected:
             index[identity].setdefault("appliedCorrectionIds", []).append(correction["id"])
             index[identity]["provenance"].extend(copy.deepcopy(correction["provenance"]))
@@ -399,7 +402,7 @@ def build(root=ROOT):
     visit(corrected)
     for row in effective_rows:
         sid = row["SOURCE_ENTITY_ID"]
-        if row["ENTITY_TYPE"] in {"DETACHMENT_RULE", "STRATAGEM", "ENHANCEMENT"}:
+        if row["ENTITY_TYPE"] in {"DETACHMENT_RULE", "STRATAGEM", "ENHANCEMENT", "MODEL_PROFILE", "WEAPON_PROFILE"}:
             row["PAYLOAD"] = copy.deepcopy(replacements[sid])
         elif "#/blocks/" in sid:
             container, path = sid.split("#", 1)

@@ -108,6 +108,12 @@ def read_official(root: Path) -> dict:
             replacement = raw[start:end]
             if _sha(replacement) != patch["replacementSha256"]:
                 raise ValueError("Replacement is no longer supported by official source")
+            if patch.get("valueNormalization") == "ASCII_MINUS":
+                if not re.fullmatch(r"\u2011[0-9]+", replacement):
+                    raise ValueError("Official numeric minus normalization is not applicable")
+                replacement = "-" + replacement[1:]
+            elif patch.get("valueNormalization") is not None:
+                raise ValueError("Unsupported official value normalization")
             target = bound["targets"][patch["targetIndex"]]
             current = _validate_target(corpus, target)
             if not isinstance(current, str):
@@ -130,6 +136,9 @@ def read_official(root: Path) -> dict:
             "status": bound["status"], "targets": copy.deepcopy(bound["targets"]),
             "patches": replacements,
         }
+        for key in ("unappliedOccurrences", "adjudications", "profileInventory"):
+            if key in bound:
+                record[key] = copy.deepcopy(bound[key])
         (native_rules if bound.get("nativeRule") else updates).append(record)
 
     faqs = []

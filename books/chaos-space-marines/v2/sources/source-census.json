@@ -1,7 +1,7 @@
 {
   "schema": "csm-v2-frozen-source-census/v1",
   "acceptedBaseHead": "e77ea12d312f1bec6ea6632e102777792c06de38",
-  "countConvention": "Enrolled 54 current non-Legends CSM datasheets; source capture cutoff Sept29/30 2026, not live currentness certification. Census entities are typed source nodes, memberships, structured rows and presentation metadata, not an atomic factual-parity denominator. Parent source text and structured children may reference the same fact; not duplicate canonical ownership. No canonical facts created.",
+  "countConvention": "Enrolled 54 current non-Legends CSM datasheets; source capture cutoff Sept29/30 2026, not live currentness certification. Census entities are typed source nodes, memberships, structured rows and presentation metadata, not an atomic factual-parity denominator. Parent source text and structured children may reference the same fact; not duplicate canonical ownership. No canonical facts created. Official v1.3 adds twelve explicitly bound profile correction rows; the Havocs Bolt pistol occurrence remains an unapplied orphan.",
   "counts": {
     "ARMY_RULE": 2,
     "DETACHMENT": 17,
@@ -38,7 +38,7 @@
     "ALLIED_POINTS_DEPENDENCY": 2,
     "ERRATA": 18,
     "FAQ": 17,
-    "OFFICIAL_UPDATE": 34
+    "OFFICIAL_UPDATE": 46
   },
   "entities": [
     {
@@ -69,61 +69,61 @@
       "sourceEntityId": "detachment-pactbound-zealots:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Pactbound Zealots"
+      "location": "enhancements under Pactbound Zealots"
     },
     {
       "sourceEntityId": "detachment-pactbound-zealots:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Pactbound Zealots"
+      "location": "enhancements under Pactbound Zealots"
     },
     {
       "sourceEntityId": "detachment-pactbound-zealots:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Pactbound Zealots"
+      "location": "enhancements under Pactbound Zealots"
     },
     {
       "sourceEntityId": "detachment-pactbound-zealots:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Pactbound Zealots"
+      "location": "enhancements under Pactbound Zealots"
     },
     {
       "sourceEntityId": "detachment-pactbound-zealots:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Pactbound Zealots"
+      "location": "stratagems under Pactbound Zealots"
     },
     {
       "sourceEntityId": "detachment-pactbound-zealots:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Pactbound Zealots"
+      "location": "stratagems under Pactbound Zealots"
     },
     {
       "sourceEntityId": "detachment-pactbound-zealots:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Pactbound Zealots"
+      "location": "stratagems under Pactbound Zealots"
     },
     {
       "sourceEntityId": "detachment-pactbound-zealots:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Pactbound Zealots"
+      "location": "stratagems under Pactbound Zealots"
     },
     {
       "sourceEntityId": "detachment-pactbound-zealots:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Pactbound Zealots"
+      "location": "stratagems under Pactbound Zealots"
     },
     {
       "sourceEntityId": "detachment-pactbound-zealots:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Pactbound Zealots"
+      "location": "stratagems under Pactbound Zealots"
     },
     {
       "sourceEntityId": "detachment-creations-of-bile",
@@ -147,61 +147,61 @@
       "sourceEntityId": "detachment-creations-of-bile:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Creations of Bile"
+      "location": "enhancements under Creations of Bile"
     },
     {
       "sourceEntityId": "detachment-creations-of-bile:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Creations of Bile"
+      "location": "enhancements under Creations of Bile"
     },
     {
       "sourceEntityId": "detachment-creations-of-bile:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Creations of Bile"
+      "location": "enhancements under Creations of Bile"
     },
     {
       "sourceEntityId": "detachment-creations-of-bile:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Creations of Bile"
+      "location": "enhancements under Creations of Bile"
     },
     {
       "sourceEntityId": "detachment-creations-of-bile:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Creations of Bile"
+      "location": "stratagems under Creations of Bile"
     },
     {
       "sourceEntityId": "detachment-creations-of-bile:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Creations of Bile"
+      "location": "stratagems under Creations of Bile"
     },
     {
       "sourceEntityId": "detachment-creations-of-bile:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Creations of Bile"
+      "location": "stratagems under Creations of Bile"
     },
     {
       "sourceEntityId": "detachment-creations-of-bile:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Creations of Bile"
+      "location": "stratagems under Creations of Bile"
     },
     {
       "sourceEntityId": "detachment-creations-of-bile:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Creations of Bile"
+      "location": "stratagems under Creations of Bile"
     },
     {
       "sourceEntityId": "detachment-creations-of-bile:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Creations of Bile"
+      "location": "stratagems under Creations of Bile"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders",
@@ -231,61 +231,61 @@
       "sourceEntityId": "detachment-huron-s-marauders:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Huron's Marauders"
+      "location": "enhancements under Huron's Marauders"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Huron's Marauders"
+      "location": "enhancements under Huron's Marauders"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Huron's Marauders"
+      "location": "enhancements under Huron's Marauders"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Huron's Marauders"
+      "location": "enhancements under Huron's Marauders"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Huron's Marauders"
+      "location": "stratagems under Huron's Marauders"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Huron's Marauders"
+      "location": "stratagems under Huron's Marauders"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Huron's Marauders"
+      "location": "stratagems under Huron's Marauders"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Huron's Marauders"
+      "location": "stratagems under Huron's Marauders"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Huron's Marauders"
+      "location": "stratagems under Huron's Marauders"
     },
     {
       "sourceEntityId": "detachment-huron-s-marauders:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Huron's Marauders"
+      "location": "stratagems under Huron's Marauders"
     },
     {
       "sourceEntityId": "detachment-renegade-raiders",
@@ -303,61 +303,61 @@
       "sourceEntityId": "detachment-renegade-raiders:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Renegade Raiders"
+      "location": "enhancements under Renegade Raiders"
     },
     {
       "sourceEntityId": "detachment-renegade-raiders:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Renegade Raiders"
+      "location": "enhancements under Renegade Raiders"
     },
     {
       "sourceEntityId": "detachment-renegade-raiders:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Renegade Raiders"
+      "location": "enhancements under Renegade Raiders"
     },
     {
       "sourceEntityId": "detachment-renegade-raiders:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Renegade Raiders"
+      "location": "enhancements under Renegade Raiders"
     },
     {
       "sourceEntityId": "detachment-renegade-raiders:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Raiders"
+      "location": "stratagems under Renegade Raiders"
     },
     {
       "sourceEntityId": "detachment-renegade-raiders:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Raiders"
+      "location": "stratagems under Renegade Raiders"
     },
     {
       "sourceEntityId": "detachment-renegade-raiders:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Raiders"
+      "location": "stratagems under Renegade Raiders"
     },
     {
       "sourceEntityId": "detachment-renegade-raiders:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Raiders"
+      "location": "stratagems under Renegade Raiders"
     },
     {
       "sourceEntityId": "detachment-renegade-raiders:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Raiders"
+      "location": "stratagems under Renegade Raiders"
     },
     {
       "sourceEntityId": "detachment-renegade-raiders:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Raiders"
+      "location": "stratagems under Renegade Raiders"
     },
     {
       "sourceEntityId": "detachment-deceptors",
@@ -381,61 +381,61 @@
       "sourceEntityId": "detachment-deceptors:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Deceptors"
+      "location": "enhancements under Deceptors"
     },
     {
       "sourceEntityId": "detachment-deceptors:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Deceptors"
+      "location": "enhancements under Deceptors"
     },
     {
       "sourceEntityId": "detachment-deceptors:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Deceptors"
+      "location": "enhancements under Deceptors"
     },
     {
       "sourceEntityId": "detachment-deceptors:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Deceptors"
+      "location": "enhancements under Deceptors"
     },
     {
       "sourceEntityId": "detachment-deceptors:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Deceptors"
+      "location": "stratagems under Deceptors"
     },
     {
       "sourceEntityId": "detachment-deceptors:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Deceptors"
+      "location": "stratagems under Deceptors"
     },
     {
       "sourceEntityId": "detachment-deceptors:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Deceptors"
+      "location": "stratagems under Deceptors"
     },
     {
       "sourceEntityId": "detachment-deceptors:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Deceptors"
+      "location": "stratagems under Deceptors"
     },
     {
       "sourceEntityId": "detachment-deceptors:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Deceptors"
+      "location": "stratagems under Deceptors"
     },
     {
       "sourceEntityId": "detachment-deceptors:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Deceptors"
+      "location": "stratagems under Deceptors"
     },
     {
       "sourceEntityId": "detachment-dread-talons",
@@ -453,61 +453,61 @@
       "sourceEntityId": "detachment-dread-talons:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Dread Talons"
+      "location": "enhancements under Dread Talons"
     },
     {
       "sourceEntityId": "detachment-dread-talons:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Dread Talons"
+      "location": "enhancements under Dread Talons"
     },
     {
       "sourceEntityId": "detachment-dread-talons:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Dread Talons"
+      "location": "enhancements under Dread Talons"
     },
     {
       "sourceEntityId": "detachment-dread-talons:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Dread Talons"
+      "location": "enhancements under Dread Talons"
     },
     {
       "sourceEntityId": "detachment-dread-talons:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Dread Talons"
+      "location": "stratagems under Dread Talons"
     },
     {
       "sourceEntityId": "detachment-dread-talons:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Dread Talons"
+      "location": "stratagems under Dread Talons"
     },
     {
       "sourceEntityId": "detachment-dread-talons:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Dread Talons"
+      "location": "stratagems under Dread Talons"
     },
     {
       "sourceEntityId": "detachment-dread-talons:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Dread Talons"
+      "location": "stratagems under Dread Talons"
     },
     {
       "sourceEntityId": "detachment-dread-talons:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Dread Talons"
+      "location": "stratagems under Dread Talons"
     },
     {
       "sourceEntityId": "detachment-dread-talons:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Dread Talons"
+      "location": "stratagems under Dread Talons"
     },
     {
       "sourceEntityId": "detachment-nightmare-hunt",
@@ -525,61 +525,61 @@
       "sourceEntityId": "detachment-nightmare-hunt:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Nightmare Hunt"
+      "location": "enhancements under Nightmare Hunt"
     },
     {
       "sourceEntityId": "detachment-nightmare-hunt:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Nightmare Hunt"
+      "location": "enhancements under Nightmare Hunt"
     },
     {
       "sourceEntityId": "detachment-nightmare-hunt:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Nightmare Hunt"
+      "location": "enhancements under Nightmare Hunt"
     },
     {
       "sourceEntityId": "detachment-nightmare-hunt:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Nightmare Hunt"
+      "location": "enhancements under Nightmare Hunt"
     },
     {
       "sourceEntityId": "detachment-nightmare-hunt:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Nightmare Hunt"
+      "location": "stratagems under Nightmare Hunt"
     },
     {
       "sourceEntityId": "detachment-nightmare-hunt:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Nightmare Hunt"
+      "location": "stratagems under Nightmare Hunt"
     },
     {
       "sourceEntityId": "detachment-nightmare-hunt:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Nightmare Hunt"
+      "location": "stratagems under Nightmare Hunt"
     },
     {
       "sourceEntityId": "detachment-nightmare-hunt:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Nightmare Hunt"
+      "location": "stratagems under Nightmare Hunt"
     },
     {
       "sourceEntityId": "detachment-nightmare-hunt:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Nightmare Hunt"
+      "location": "stratagems under Nightmare Hunt"
     },
     {
       "sourceEntityId": "detachment-nightmare-hunt:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Nightmare Hunt"
+      "location": "stratagems under Nightmare Hunt"
     },
     {
       "sourceEntityId": "detachment-warpstrike-champions",
@@ -603,61 +603,61 @@
       "sourceEntityId": "detachment-warpstrike-champions:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Warpstrike Champions"
+      "location": "enhancements under Warpstrike Champions"
     },
     {
       "sourceEntityId": "detachment-warpstrike-champions:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Warpstrike Champions"
+      "location": "enhancements under Warpstrike Champions"
     },
     {
       "sourceEntityId": "detachment-warpstrike-champions:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Warpstrike Champions"
+      "location": "enhancements under Warpstrike Champions"
     },
     {
       "sourceEntityId": "detachment-warpstrike-champions:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Warpstrike Champions"
+      "location": "enhancements under Warpstrike Champions"
     },
     {
       "sourceEntityId": "detachment-warpstrike-champions:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Warpstrike Champions"
+      "location": "stratagems under Warpstrike Champions"
     },
     {
       "sourceEntityId": "detachment-warpstrike-champions:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Warpstrike Champions"
+      "location": "stratagems under Warpstrike Champions"
     },
     {
       "sourceEntityId": "detachment-warpstrike-champions:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Warpstrike Champions"
+      "location": "stratagems under Warpstrike Champions"
     },
     {
       "sourceEntityId": "detachment-warpstrike-champions:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Warpstrike Champions"
+      "location": "stratagems under Warpstrike Champions"
     },
     {
       "sourceEntityId": "detachment-warpstrike-champions:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Warpstrike Champions"
+      "location": "stratagems under Warpstrike Champions"
     },
     {
       "sourceEntityId": "detachment-warpstrike-champions:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Warpstrike Champions"
+      "location": "stratagems under Warpstrike Champions"
     },
     {
       "sourceEntityId": "detachment-chaos-cult",
@@ -675,61 +675,61 @@
       "sourceEntityId": "detachment-chaos-cult:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Chaos Cult"
+      "location": "enhancements under Chaos Cult"
     },
     {
       "sourceEntityId": "detachment-chaos-cult:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Chaos Cult"
+      "location": "enhancements under Chaos Cult"
     },
     {
       "sourceEntityId": "detachment-chaos-cult:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Chaos Cult"
+      "location": "enhancements under Chaos Cult"
     },
     {
       "sourceEntityId": "detachment-chaos-cult:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Chaos Cult"
+      "location": "enhancements under Chaos Cult"
     },
     {
       "sourceEntityId": "detachment-chaos-cult:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Chaos Cult"
+      "location": "stratagems under Chaos Cult"
     },
     {
       "sourceEntityId": "detachment-chaos-cult:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Chaos Cult"
+      "location": "stratagems under Chaos Cult"
     },
     {
       "sourceEntityId": "detachment-chaos-cult:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Chaos Cult"
+      "location": "stratagems under Chaos Cult"
     },
     {
       "sourceEntityId": "detachment-chaos-cult:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Chaos Cult"
+      "location": "stratagems under Chaos Cult"
     },
     {
       "sourceEntityId": "detachment-chaos-cult:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Chaos Cult"
+      "location": "stratagems under Chaos Cult"
     },
     {
       "sourceEntityId": "detachment-chaos-cult:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Chaos Cult"
+      "location": "stratagems under Chaos Cult"
     },
     {
       "sourceEntityId": "detachment-cult-of-the-arkifane",
@@ -747,61 +747,61 @@
       "sourceEntityId": "detachment-cult-of-the-arkifane:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Cult of the Arkifane"
+      "location": "enhancements under Cult of the Arkifane"
     },
     {
       "sourceEntityId": "detachment-cult-of-the-arkifane:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Cult of the Arkifane"
+      "location": "enhancements under Cult of the Arkifane"
     },
     {
       "sourceEntityId": "detachment-cult-of-the-arkifane:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Cult of the Arkifane"
+      "location": "enhancements under Cult of the Arkifane"
     },
     {
       "sourceEntityId": "detachment-cult-of-the-arkifane:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Cult of the Arkifane"
+      "location": "enhancements under Cult of the Arkifane"
     },
     {
       "sourceEntityId": "detachment-cult-of-the-arkifane:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Cult of the Arkifane"
+      "location": "stratagems under Cult of the Arkifane"
     },
     {
       "sourceEntityId": "detachment-cult-of-the-arkifane:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Cult of the Arkifane"
+      "location": "stratagems under Cult of the Arkifane"
     },
     {
       "sourceEntityId": "detachment-cult-of-the-arkifane:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Cult of the Arkifane"
+      "location": "stratagems under Cult of the Arkifane"
     },
     {
       "sourceEntityId": "detachment-cult-of-the-arkifane:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Cult of the Arkifane"
+      "location": "stratagems under Cult of the Arkifane"
     },
     {
       "sourceEntityId": "detachment-cult-of-the-arkifane:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Cult of the Arkifane"
+      "location": "stratagems under Cult of the Arkifane"
     },
     {
       "sourceEntityId": "detachment-cult-of-the-arkifane:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Cult of the Arkifane"
+      "location": "stratagems under Cult of the Arkifane"
     },
     {
       "sourceEntityId": "detachment-renegade-warband",
@@ -819,61 +819,61 @@
       "sourceEntityId": "detachment-renegade-warband:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Renegade Warband"
+      "location": "enhancements under Renegade Warband"
     },
     {
       "sourceEntityId": "detachment-renegade-warband:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Renegade Warband"
+      "location": "enhancements under Renegade Warband"
     },
     {
       "sourceEntityId": "detachment-renegade-warband:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Renegade Warband"
+      "location": "enhancements under Renegade Warband"
     },
     {
       "sourceEntityId": "detachment-renegade-warband:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Renegade Warband"
+      "location": "enhancements under Renegade Warband"
     },
     {
       "sourceEntityId": "detachment-renegade-warband:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Warband"
+      "location": "stratagems under Renegade Warband"
     },
     {
       "sourceEntityId": "detachment-renegade-warband:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Warband"
+      "location": "stratagems under Renegade Warband"
     },
     {
       "sourceEntityId": "detachment-renegade-warband:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Warband"
+      "location": "stratagems under Renegade Warband"
     },
     {
       "sourceEntityId": "detachment-renegade-warband:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Warband"
+      "location": "stratagems under Renegade Warband"
     },
     {
       "sourceEntityId": "detachment-renegade-warband:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Warband"
+      "location": "stratagems under Renegade Warband"
     },
     {
       "sourceEntityId": "detachment-renegade-warband:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Renegade Warband"
+      "location": "stratagems under Renegade Warband"
     },
     {
       "sourceEntityId": "detachment-fellhammer-siege-host",
@@ -891,61 +891,61 @@
       "sourceEntityId": "detachment-fellhammer-siege-host:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Fellhammer Siege-Host"
+      "location": "enhancements under Fellhammer Siege-Host"
     },
     {
       "sourceEntityId": "detachment-fellhammer-siege-host:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Fellhammer Siege-Host"
+      "location": "enhancements under Fellhammer Siege-Host"
     },
     {
       "sourceEntityId": "detachment-fellhammer-siege-host:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Fellhammer Siege-Host"
+      "location": "enhancements under Fellhammer Siege-Host"
     },
     {
       "sourceEntityId": "detachment-fellhammer-siege-host:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Fellhammer Siege-Host"
+      "location": "enhancements under Fellhammer Siege-Host"
     },
     {
       "sourceEntityId": "detachment-fellhammer-siege-host:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Fellhammer Siege-Host"
+      "location": "stratagems under Fellhammer Siege-Host"
     },
     {
       "sourceEntityId": "detachment-fellhammer-siege-host:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Fellhammer Siege-Host"
+      "location": "stratagems under Fellhammer Siege-Host"
     },
     {
       "sourceEntityId": "detachment-fellhammer-siege-host:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Fellhammer Siege-Host"
+      "location": "stratagems under Fellhammer Siege-Host"
     },
     {
       "sourceEntityId": "detachment-fellhammer-siege-host:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Fellhammer Siege-Host"
+      "location": "stratagems under Fellhammer Siege-Host"
     },
     {
       "sourceEntityId": "detachment-fellhammer-siege-host:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Fellhammer Siege-Host"
+      "location": "stratagems under Fellhammer Siege-Host"
     },
     {
       "sourceEntityId": "detachment-fellhammer-siege-host:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Fellhammer Siege-Host"
+      "location": "stratagems under Fellhammer Siege-Host"
     },
     {
       "sourceEntityId": "detachment-soulforged-warpack",
@@ -963,61 +963,61 @@
       "sourceEntityId": "detachment-soulforged-warpack:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Soulforged Warpack"
+      "location": "enhancements under Soulforged Warpack"
     },
     {
       "sourceEntityId": "detachment-soulforged-warpack:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Soulforged Warpack"
+      "location": "enhancements under Soulforged Warpack"
     },
     {
       "sourceEntityId": "detachment-soulforged-warpack:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Soulforged Warpack"
+      "location": "enhancements under Soulforged Warpack"
     },
     {
       "sourceEntityId": "detachment-soulforged-warpack:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Soulforged Warpack"
+      "location": "enhancements under Soulforged Warpack"
     },
     {
       "sourceEntityId": "detachment-soulforged-warpack:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Soulforged Warpack"
+      "location": "stratagems under Soulforged Warpack"
     },
     {
       "sourceEntityId": "detachment-soulforged-warpack:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Soulforged Warpack"
+      "location": "stratagems under Soulforged Warpack"
     },
     {
       "sourceEntityId": "detachment-soulforged-warpack:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Soulforged Warpack"
+      "location": "stratagems under Soulforged Warpack"
     },
     {
       "sourceEntityId": "detachment-soulforged-warpack:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Soulforged Warpack"
+      "location": "stratagems under Soulforged Warpack"
     },
     {
       "sourceEntityId": "detachment-soulforged-warpack:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Soulforged Warpack"
+      "location": "stratagems under Soulforged Warpack"
     },
     {
       "sourceEntityId": "detachment-soulforged-warpack:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Soulforged Warpack"
+      "location": "stratagems under Soulforged Warpack"
     },
     {
       "sourceEntityId": "detachment-veterans-of-the-long-war",
@@ -1035,61 +1035,61 @@
       "sourceEntityId": "detachment-veterans-of-the-long-war:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Veterans of the Long War"
+      "location": "enhancements under Veterans of the Long War"
     },
     {
       "sourceEntityId": "detachment-veterans-of-the-long-war:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Veterans of the Long War"
+      "location": "enhancements under Veterans of the Long War"
     },
     {
       "sourceEntityId": "detachment-veterans-of-the-long-war:enhancement:3",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Veterans of the Long War"
+      "location": "enhancements under Veterans of the Long War"
     },
     {
       "sourceEntityId": "detachment-veterans-of-the-long-war:enhancement:4",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Veterans of the Long War"
+      "location": "enhancements under Veterans of the Long War"
     },
     {
       "sourceEntityId": "detachment-veterans-of-the-long-war:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Veterans of the Long War"
+      "location": "stratagems under Veterans of the Long War"
     },
     {
       "sourceEntityId": "detachment-veterans-of-the-long-war:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Veterans of the Long War"
+      "location": "stratagems under Veterans of the Long War"
     },
     {
       "sourceEntityId": "detachment-veterans-of-the-long-war:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Veterans of the Long War"
+      "location": "stratagems under Veterans of the Long War"
     },
     {
       "sourceEntityId": "detachment-veterans-of-the-long-war:stratagem:4",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Veterans of the Long War"
+      "location": "stratagems under Veterans of the Long War"
     },
     {
       "sourceEntityId": "detachment-veterans-of-the-long-war:stratagem:5",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Veterans of the Long War"
+      "location": "stratagems under Veterans of the Long War"
     },
     {
       "sourceEntityId": "detachment-veterans-of-the-long-war:stratagem:6",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Veterans of the Long War"
+      "location": "stratagems under Veterans of the Long War"
     },
     {
       "sourceEntityId": "detachment-cabal-of-chaos",
@@ -1107,31 +1107,31 @@
       "sourceEntityId": "detachment-cabal-of-chaos:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Cabal of Chaos"
+      "location": "enhancements under Cabal of Chaos"
     },
     {
       "sourceEntityId": "detachment-cabal-of-chaos:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Cabal of Chaos"
+      "location": "enhancements under Cabal of Chaos"
     },
     {
       "sourceEntityId": "detachment-cabal-of-chaos:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Cabal of Chaos"
+      "location": "stratagems under Cabal of Chaos"
     },
     {
       "sourceEntityId": "detachment-cabal-of-chaos:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Cabal of Chaos"
+      "location": "stratagems under Cabal of Chaos"
     },
     {
       "sourceEntityId": "detachment-cabal-of-chaos:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Cabal of Chaos"
+      "location": "stratagems under Cabal of Chaos"
     },
     {
       "sourceEntityId": "detachment-devotees-of-destruction",
@@ -1149,31 +1149,31 @@
       "sourceEntityId": "detachment-devotees-of-destruction:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Devotees of Destruction"
+      "location": "enhancements under Devotees of Destruction"
     },
     {
       "sourceEntityId": "detachment-devotees-of-destruction:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Devotees of Destruction"
+      "location": "enhancements under Devotees of Destruction"
     },
     {
       "sourceEntityId": "detachment-devotees-of-destruction:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Devotees of Destruction"
+      "location": "stratagems under Devotees of Destruction"
     },
     {
       "sourceEntityId": "detachment-devotees-of-destruction:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Devotees of Destruction"
+      "location": "stratagems under Devotees of Destruction"
     },
     {
       "sourceEntityId": "detachment-devotees-of-destruction:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Devotees of Destruction"
+      "location": "stratagems under Devotees of Destruction"
     },
     {
       "sourceEntityId": "detachment-murdertalon-raiders",
@@ -1191,31 +1191,31 @@
       "sourceEntityId": "detachment-murdertalon-raiders:enhancement:1",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Murdertalon Raiders"
+      "location": "enhancements under Murdertalon Raiders"
     },
     {
       "sourceEntityId": "detachment-murdertalon-raiders:enhancement:2",
       "kind": "ENHANCEMENT",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Enhancements under Murdertalon Raiders"
+      "location": "enhancements under Murdertalon Raiders"
     },
     {
       "sourceEntityId": "detachment-murdertalon-raiders:stratagem:1",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Murdertalon Raiders"
+      "location": "stratagems under Murdertalon Raiders"
     },
     {
       "sourceEntityId": "detachment-murdertalon-raiders:stratagem:2",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Murdertalon Raiders"
+      "location": "stratagems under Murdertalon Raiders"
     },
     {
       "sourceEntityId": "detachment-murdertalon-raiders:stratagem:3",
       "kind": "STRATAGEM",
       "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
-      "location": "Stratagem under Murdertalon Raiders"
+      "location": "stratagems under Murdertalon Raiders"
     },
     {
       "sourceEntityId": "datasheet-cultist-mob",
@@ -10688,14 +10688,14 @@
     {
       "sourceEntityId": "faq-1",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/14"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-1"
     },
     {
       "sourceEntityId": "faq-2",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/0"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-2"
     },
     {
       "sourceEntityId": "faq-3",
@@ -10706,26 +10706,26 @@
     {
       "sourceEntityId": "faq-4",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/1"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-4"
     },
     {
       "sourceEntityId": "faq-5",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/3"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-5"
     },
     {
       "sourceEntityId": "faq-6",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/4"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-6"
     },
     {
       "sourceEntityId": "faq-7",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/5"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-7"
     },
     {
       "sourceEntityId": "faq-8",
@@ -10736,260 +10736,332 @@
     {
       "sourceEntityId": "faq-9",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/6"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-9"
     },
     {
       "sourceEntityId": "faq-10",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/7"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-10"
     },
     {
       "sourceEntityId": "faq-11",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/9"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-11"
     },
     {
       "sourceEntityId": "faq-12",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/10"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-12"
     },
     {
       "sourceEntityId": "faq-13",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/11"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-13"
     },
     {
       "sourceEntityId": "faq-14",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/12"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-14"
     },
     {
       "sourceEntityId": "faq-15",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/13"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-15"
     },
     {
       "sourceEntityId": "faq-16",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/2"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-16"
     },
     {
       "sourceEntityId": "faq-17",
       "kind": "FAQ",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 39; /faqs/8"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39; FAQ occurrence faq-17"
     },
     {
       "sourceEntityId": "official-update-1",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 left; /updates/0/change; block official-update-1"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 left; normalized column span [30, 156]; block official-update-1"
     },
     {
       "sourceEntityId": "official-update-2",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 left; /updates/0/change; block official-update-2"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 left; normalized column span [157, 355]; block official-update-2"
     },
     {
       "sourceEntityId": "official-update-3",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 left; /updates/0/change; block official-update-3"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 left; normalized column span [377, 438]; block official-update-3"
     },
     {
       "sourceEntityId": "official-update-4",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 left; /updates/0/change; block official-update-4"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 left; normalized column span [439, 690]; block official-update-4"
     },
     {
       "sourceEntityId": "official-update-5",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 left; /updates/0/change; block official-update-5"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 left; normalized column span [715, 1071]; block official-update-5"
     },
     {
       "sourceEntityId": "official-update-6",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 left; /updates/0/change; block official-update-6"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 left; normalized column span [1101, 1335]; block official-update-6"
     },
     {
       "sourceEntityId": "official-update-7",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 left; /updates/0/change; block official-update-7"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 left; normalized column span [1336, 1485]; block official-update-7"
     },
     {
       "sourceEntityId": "official-update-8",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 left; /updates/0/change; block official-update-8"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 left; normalized column span [1514, 1736]; block official-update-8"
     },
     {
       "sourceEntityId": "official-update-9",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 right; /updates/1/change; block official-update-9"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 right; normalized column span [30, 216]; block official-update-9"
     },
     {
       "sourceEntityId": "official-update-10",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 right; /updates/1/change; block official-update-10"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 right; normalized column span [217, 413]; block official-update-10"
     },
     {
       "sourceEntityId": "official-update-11",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 right; /updates/1/change; block official-update-11"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 right; normalized column span [414, 648]; block official-update-11"
     },
     {
       "sourceEntityId": "official-update-12",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 right; /updates/1/change; block official-update-12"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 right; normalized column span [685, 1139]; block official-update-12"
     },
     {
       "sourceEntityId": "official-update-13",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 right; /updates/1/change; block official-update-13"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 right; normalized column span [1140, 1238]; block official-update-13"
     },
     {
       "sourceEntityId": "official-update-14",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 right; /updates/1/change; block official-update-14"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 right; normalized column span [1239, 1305]; block official-update-14"
     },
     {
       "sourceEntityId": "official-update-15",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 right; /updates/1/change; block official-update-15"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 37 right; normalized column span [1306, 1530]; block official-update-15"
     },
     {
       "sourceEntityId": "official-update-16",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 right; /updates/1/change; block official-update-16"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 left; normalized column span [1830, 1906]; block official-update-16"
     },
     {
       "sourceEntityId": "official-update-17",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 right; /updates/1/change; block official-update-17"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 left; normalized column span [1907, 2082]; block official-update-17"
     },
     {
       "sourceEntityId": "official-update-18",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 37 right; /updates/1/change; block official-update-18"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 left; normalized column span [2083, 2164]; block official-update-18"
     },
     {
       "sourceEntityId": "official-update-19",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 left; /updates/2/change; block official-update-19"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 left; normalized column span [2165, 2365]; block official-update-19"
     },
     {
       "sourceEntityId": "official-update-20",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 left; /updates/2/change; block official-update-20"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 right; normalized column span [0, 233]; block official-update-20"
     },
     {
       "sourceEntityId": "official-update-21",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 left; /updates/2/change; block official-update-21"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 right; normalized column span [234, 499]; block official-update-21"
     },
     {
       "sourceEntityId": "official-update-22",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 left; /updates/2/change; block official-update-22"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 right; normalized column span [500, 817]; block official-update-22"
     },
     {
       "sourceEntityId": "official-update-23",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 left; /updates/2/change; block official-update-23"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 right; normalized column span [818, 885]; block official-update-23"
     },
     {
       "sourceEntityId": "official-update-24",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 left; /updates/2/change; block official-update-24"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 right; normalized column span [886, 1055]; block official-update-24"
     },
     {
       "sourceEntityId": "official-update-25",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 left; /updates/2/change; block official-update-25"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 right; normalized column span [1056, 1238]; block official-update-25"
     },
     {
       "sourceEntityId": "official-update-26",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 left; /updates/2/change; block official-update-26"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 right; normalized column span [1239, 1315]; block official-update-26"
     },
     {
       "sourceEntityId": "official-update-27",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 left; /updates/2/change; block official-update-27"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 right; normalized column span [1316, 1508]; block official-update-27"
     },
     {
       "sourceEntityId": "official-update-28",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 left; /updates/2/change; block official-update-28"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 right; normalized column span [1509, 2293]; block official-update-28"
     },
     {
       "sourceEntityId": "official-update-29",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 right; /updates/3/change; block official-update-29"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 right; normalized column span [2294, 2544]; block official-update-29"
     },
     {
       "sourceEntityId": "official-update-30",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 right; /updates/3/change; block official-update-30"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39 left; normalized column span [0, 864]; block official-update-30"
     },
     {
       "sourceEntityId": "official-update-31",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 right; /updates/3/change; block official-update-31"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39 left; normalized column span [865, 1146]; block official-update-31"
     },
     {
       "sourceEntityId": "official-update-32",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 right; /updates/3/change; block official-update-32"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39 left; normalized column span [1147, 1355]; block official-update-32"
     },
     {
       "sourceEntityId": "official-update-33",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 right; /updates/3/change; block official-update-33"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39 left; normalized column span [1356, 1606]; block official-update-33"
     },
     {
       "sourceEntityId": "official-update-34",
       "kind": "OFFICIAL_UPDATE",
-      "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
-      "location": "PDF page 38 right; /updates/3/change; block official-update-34"
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 39 left; normalized column span [1607, 1766]; block official-update-34"
+    },
+    {
+      "sourceEntityId": "official-update-35",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 159]; block official-update-35"
+    },
+    {
+      "sourceEntityId": "official-update-36",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 406]; block official-update-36"
+    },
+    {
+      "sourceEntityId": "official-update-37",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 10]; block official-update-37"
+    },
+    {
+      "sourceEntityId": "official-update-38",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 92]; block official-update-38"
+    },
+    {
+      "sourceEntityId": "official-update-39",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 288]; block official-update-39"
+    },
+    {
+      "sourceEntityId": "official-update-40",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 81]; block official-update-40"
+    },
+    {
+      "sourceEntityId": "official-update-41",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 247]; block official-update-41"
+    },
+    {
+      "sourceEntityId": "official-update-42",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 217]; block official-update-42"
+    },
+    {
+      "sourceEntityId": "official-update-43",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 66]; block official-update-43"
+    },
+    {
+      "sourceEntityId": "official-update-44",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 50]; block official-update-44"
+    },
+    {
+      "sourceEntityId": "official-update-45",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 31]; block official-update-45"
+    },
+    {
+      "sourceEntityId": "official-update-46",
+      "kind": "OFFICIAL_UPDATE",
+      "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
+      "location": "PDF page 38 table row; normalized column span [0, 37]; block official-update-46"
     }
   ]
 }

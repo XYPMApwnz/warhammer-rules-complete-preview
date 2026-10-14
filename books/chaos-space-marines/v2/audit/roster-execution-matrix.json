@@ -29,16 +29,16 @@
         },
         {
           "sourceEntityId": "official-update-6",
-          "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+          "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
           "location": "PDF page 37 left; normalized column span [1101, 1335]; block official-update-6",
-          "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+          "sha256": "237A44973F019F0BF72DEF98F747A0FCF2D5644A559B815A64987BDB468A7CF9",
           "authority": "AUTHORITATIVE_CURRENT"
         },
         {
           "sourceEntityId": "official-update-7",
-          "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+          "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
           "location": "PDF page 37 left; normalized column span [1336, 1485]; block official-update-7",
-          "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+          "sha256": "237A44973F019F0BF72DEF98F747A0FCF2D5644A559B815A64987BDB468A7CF9",
           "authority": "AUTHORITATIVE_CURRENT"
         },
         {
@@ -10878,8 +10878,8 @@
           "targetWeaponProfileId": "datasheet-chaos-lord-in-terminator-armour:weapon:1",
           "operation": "MODIFY_STAT",
           "field": "strength",
-          "before": "4",
-          "after": "5",
+          "before": "5",
+          "after": "6",
           "sourceFields": [
             [
               "text"
@@ -10926,8 +10926,8 @@
           "targetWeaponProfileId": "datasheet-chaos-lord-in-terminator-armour:weapon:1",
           "operation": "MODIFY_STAT",
           "field": "ap",
-          "before": "0",
-          "after": "-1",
+          "before": "-1",
+          "after": "-2",
           "sourceFields": [
             [
               "text"
@@ -10935,9 +10935,9 @@
           ],
           "lifetime": "WHILE_ASSIGNED",
           "characteristic": "ap",
-          "rawBefore": "0",
-          "rawAfter": "-1",
-          "finalValue": "-1"
+          "rawBefore": "-1",
+          "rawAfter": "-2",
+          "finalValue": "-2"
         },
         {
           "ruleId": "detachment-warpstrike-champions:enhancement:4",
@@ -10983,9 +10983,9 @@
         },
         {
           "sourceEntityId": "official-update-1",
-          "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+          "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
           "location": "PDF page 37 left; normalized column span [30, 156]; block official-update-1",
-          "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+          "sha256": "237A44973F019F0BF72DEF98F747A0FCF2D5644A559B815A64987BDB468A7CF9",
           "authority": "AUTHORITATIVE_CURRENT"
         },
         {
@@ -11354,9 +11354,9 @@
         },
         {
           "sourceEntityId": "official-update-2",
-          "document": "books/chaos-space-marines/sources/chaos-space-marines-faction-pack-v1.2.pdf",
+          "document": "books/chaos-space-marines/v2/sources/chaos-space-marines-faction-pack-v1.3.pdf",
           "location": "PDF page 37 left; normalized column span [157, 355]; block official-update-2",
-          "sha256": "F3A8D05ED88BAD5085D014BF76FAD684B60336F92CF75CF3AED30B989A33A495",
+          "sha256": "237A44973F019F0BF72DEF98F747A0FCF2D5644A559B815A64987BDB468A7CF9",
           "authority": "AUTHORITATIVE_CURRENT"
         },
         {
@@ -29061,8 +29061,8 @@
           "targetWeaponProfileId": "datasheet-legionaries:weapon:18",
           "operation": "MODIFY_STAT",
           "field": "strength",
-          "before": "4",
-          "after": "5",
+          "before": "5",
+          "after": "6",
           "sourceFields": [
             [
               "text"
@@ -29082,8 +29082,8 @@
           "targetWeaponProfileId": "datasheet-legionaries:weapon:18",
           "operation": "MODIFY_STAT",
           "field": "strength",
-          "before": "4",
-          "after": "5",
+          "before": "5",
+          "after": "6",
           "sourceFields": [
             [
               "text"
@@ -29713,8 +29713,8 @@
           "targetWeaponProfileId": null,
           "operation": "MODIFY_STAT",
           "field": "T",
-          "before": "4",
-          "after": "5",
+          "before": "5",
+          "after": "6",
           "sourceFields": [
             [
               "text"
@@ -29738,8 +29738,8 @@
           "targetWeaponProfileId": null,
           "operation": "MODIFY_STAT",
           "field": "T",
-          "before": "4",
-          "after": "5",
+          "before": "5",
+          "after": "6",
           "sourceFields": [
             [
               "text"
