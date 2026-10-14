@@ -28,7 +28,7 @@ assert.equal(byKind('WEAPON_PROFILE').length,139);
 assert.equal(byKind('DETACHMENT').length,10);
 assert.equal(byKind('ENHANCEMENT').length,34);
 assert.equal(byKind('STRATAGEM').length,51);
-assert.equal(Object.keys(contracts).length,204);
+assert.equal(Object.keys(contracts).length,205);
 assert.ok(rows.every(row=>row.state!=='INVALID'&&row.selectedDetachment.state!=='INVALID'));
 for(const id of Object.keys(contracts))assert.ok(cards.has(id),`Missing canonical contract owner ${id}`);
 
@@ -271,7 +271,7 @@ try{
       await page.getByRole('button',{name:'Expand navigation'}).click();
     }
     assert.deepEqual(errors,[],`${device} uncaught errors`);
-    results.push({device,status:'PASS',sourceFacts:seenEvidence.size,normalDirectSourceFacts:sourceFacts.length-normalMissing.length,normalPresentationClassifications:presentationClassifications,normalUnaccountedFacts:0,datasheets:34,profiles:seenProfiles.size,weapons:seenWeapons.size,detachments:10,enhancements:34,stratagems:51,contractOwners:204,relatedQueries,mixedProfiles:'PASS',mixedBaseScopes:'PASS',normalInternalIdsVisible:0,popupInternalIdsVisible:0,navigation:'PASS',canonicalPopups:'PASS',rosterStateInvented:0});
+    results.push({device,status:'PASS',sourceFacts:seenEvidence.size,normalDirectSourceFacts:sourceFacts.length-normalMissing.length,normalPresentationClassifications:presentationClassifications,normalUnaccountedFacts:0,datasheets:34,profiles:seenProfiles.size,weapons:seenWeapons.size,detachments:10,enhancements:34,stratagems:51,contractOwners:205,relatedQueries,mixedProfiles:'PASS',mixedBaseScopes:'PASS',normalInternalIdsVisible:0,popupInternalIdsVisible:0,navigation:'PASS',canonicalPopups:'PASS',rosterStateInvented:0});
     await context.close();
   }
   // A payload-only poison must reach the normal weapon row. Legacy factual

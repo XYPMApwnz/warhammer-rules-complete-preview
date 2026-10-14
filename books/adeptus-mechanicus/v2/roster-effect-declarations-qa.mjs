@@ -75,8 +75,8 @@ function verify(candidate) {
       }
     }
   }
-  assert.equal(owners,204);
-  assert.deepEqual(counts,{ROSTER_EXECUTABLE:43,BATTLE_ONLY:175,DISPLAY_ONLY:0,NOT_AN_EFFECT:69});
+  assert.equal(owners,205);
+  assert.deepEqual(counts,{ROSTER_EXECUTABLE:43,BATTLE_ONLY:175,DISPLAY_ONLY:0,NOT_AN_EFFECT:70});
   for(const [id,cid,operation,targetBinding,targetSubject,values]of newlyBound) {
     const c=get(id,cid),e=c.rosterEffects[0];
     assert.equal(c.rosterEffects.length,1);
@@ -201,5 +201,5 @@ mutate(ds('kastelan-robots'),'block-1',c=>c.rosterEffects[0].targetBinding='SOUR
 mutate(ds('tech-priest-dominus'),'block-1-electro-priests',c=>c.rosterEffects[0].id=clause(ds('tech-priest-dominus'),'block-1').rosterEffects[0].id);
 mutate('detachment-haloscreed-battle-clade:enhancement:2','conqueror-roster-characteristics',c=>c.rosterEffects[0].field='ap');
 assert.deepEqual(readJson('generated/effective.json'),canonical,'Audit changed canonical data');
-console.log(JSON.stringify({status:'PASS',rules:204,clauses:287,counts,complete:'43/43',newlyBound:7,normalized:7,controls,mutations,
+console.log(JSON.stringify({status:'PASS',rules:205,clauses:288,counts,complete:'43/43',newlyBound:7,normalized:7,controls,mutations,
   unsupported:0,unclassified:0,battleEffectLeakage:0,effectiveDatasheetsProjected:false,sharedRuntimeChanged:false}));

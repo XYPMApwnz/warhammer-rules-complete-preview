@@ -79,7 +79,7 @@ export function validatePresentation(payload,model,records=new Map()) {
   payload.groups.forEach(group=>group.itemIds.forEach(visit));
   for(const entity of model.entities)assert.ok(reachable.has(entity.id),`Unreachable canonical owner ${entity.id}`);
   const contracts=model.entities.filter(entity=>entity.ruleContract);
-  assert.equal(contracts.length,204,'Independent contract-owner denominator');
+  assert.equal(contracts.length,205,'Independent contract-owner denominator');
   for(const entity of contracts) {
     assert.ok(reachable.has(entity.id),`Rule Contract owner invisible ${entity.id}`);
     assert.ok(cards.get(entity.id).fields.length,`Empty Rule Contract presentation ${entity.id}`);
@@ -177,11 +177,11 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
   const unclassified=structuredClone(inputs.model);unclassified.entities[0].data.unrecognizedFutureFact='POISON';
   assert.throws(()=>enumerateExpectedFacts(unclassified));mutations.push('unknown canonical field fails closed');
   const census=JSON.parse(fs.readFileSync(new URL('./generated/factual-census.json',import.meta.url),'utf8'));
-  assert.equal(census.sourceFactsTotal,6481);assert.equal(census.sourceFactsBound,6481);assert.equal(census.sourceFactsMissing,0);
-  assert.equal(Object.values(census.factPartitions).reduce((sum,count)=>sum+count,0),6481,'Independent accepted source partition accounting');
+  assert.equal(census.sourceFactsTotal,6484);assert.equal(census.sourceFactsBound,6484);assert.equal(census.sourceFactsMissing,0);
+  assert.equal(Object.values(census.factPartitions).reduce((sum,count)=>sum+count,0),6484,'Independent accepted source partition accounting');
   const contracts=JSON.parse(fs.readFileSync(new URL('./generated/rule-contract-census.json',import.meta.url),'utf8'));
-  assert.equal(contracts.valid,204);assert.equal(contracts.invalidContracts,0);assert.equal(contracts.unboundSourceRules,0);assert.equal(contracts.blockedOwners,0);
+  assert.equal(contracts.valid,205);assert.equal(contracts.invalidContracts,0);assert.equal(contracts.unboundSourceRules,0);assert.equal(contracts.blockedOwners,0);
   const generated=JSON.parse(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url),'utf8'));
   assert.equal(hash(generated),hash(payload),'Disposable application output stale');
-  console.log(JSON.stringify({status:'PASS',...result,...compatibility,sourceFacts:6481,contracts:204,mutations,...runIsolationQA()},null,2));
+  console.log(JSON.stringify({status:'PASS',...result,...compatibility,sourceFacts:6484,contracts:205,mutations,...runIsolationQA()},null,2));
 }

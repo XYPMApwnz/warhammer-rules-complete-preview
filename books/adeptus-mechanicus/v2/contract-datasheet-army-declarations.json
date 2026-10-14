@@ -19780,6 +19780,94 @@
           ]
         }
       ]
+    },
+    "faq-2": {
+      "kind": "FAQ_ERRATA_RULE",
+      "executionMode": "SOURCE_DIRECTIVE",
+      "roles": [
+        {
+          "id": "sourceDirective",
+          "subject": "ROSTER",
+          "allegiance": "ANY",
+          "purpose": "DECLARED_PARTICIPANT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "ROSTER",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "title"
+              ],
+              "quote": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?"
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "compatibilityRoleIds": [
+        "sourceDirective"
+      ],
+      "sourceFields": [
+        [
+          "class"
+        ],
+        [
+          "title"
+        ],
+        [
+          "text"
+        ]
+      ],
+      "clauses": [
+        {
+          "id": "source-directive",
+          "roles": [
+            {
+              "id": "sourceDirective",
+              "subject": "ROSTER",
+              "allegiance": "ANY",
+              "purpose": "DECLARED_PARTICIPANT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "ROSTER",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "When you have selected the Icon of War ability you want to use."
+          },
+          "rosterClassification": "NOT_AN_EFFECT",
+          "rosterClassificationNote": {
+            "reason": "Update/FAQ directive is preserved as source evidence; operative gameplay remains owned by the referenced current rule."
+          },
+          "rosterEffects": [],
+          "directiveTargets": [
+            "datasheet-thulia-ghuld:section:1",
+            "datasheet-thulia-ghuld:section:4"
+          ]
+        }
+      ],
+      "contextLevel": "STATIC"
     }
   },
   "blocked": [],

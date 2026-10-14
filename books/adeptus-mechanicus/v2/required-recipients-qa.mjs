@@ -73,6 +73,31 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
   const dependentOwners=new Set([1,3,4,6].map(i=>'detachment-rad-zone-corps:stratagem:'+i));
   for(const entity of built.book.entities.filter(e=>e.ruleContract)) {
     const old=previous.contracts[entity.id],current=entity.ruleContract;
+    // Official v1.4 changes only these reviewed fields; retain the historical
+    // freeze for every other contract field and all executable operations.
+    if(entity.id==='faq-2') {
+      assert.equal(old,undefined);
+      assert.equal(current.executionMode,'SOURCE_DIRECTIVE');
+      assert.equal(current.currentness.sourceId,'gw-am-faction-pack-v1.4');
+      assert.ok(current.clauses.every(c=>c.rosterClassification==='NOT_AN_EFFECT'&&c.rosterEffects.length===0));
+      continue;
+    }
+    if(['detachment-luminen-auto-choir:stratagem:2','detachment-haloscreed-battle-clade:stratagem:5'].includes(entity.id)) {
+      const normalized=structuredClone(current);
+      assert.ok(Object.values(current.currentness.fieldProvenance).every(p=>p.sourceId==='gw-am-faction-pack-v1.4'));
+      normalized.currentness=old.currentness;normalized.timing=old.timing;
+      if(entity.id==='detachment-luminen-auto-choir:stratagem:2') {
+        normalized.roles[0].selector=old.roles[0].selector;
+        normalized.clauses[0].roles[0].selector=old.clauses[0].roles[0].selector;
+      } else {
+        normalized.duration=old.duration;normalized.durationFacts=old.durationFacts;
+        normalized.roles[0].conditions=old.roles[0].conditions;
+        normalized.clauses[0].roles[0].conditions=old.clauses[0].roles[0].conditions;
+        normalized.clauses[0].lifetimeEvidence=old.clauses[0].lifetimeEvidence;
+      }
+      assert.deepEqual(normalized,old,'Unreviewed official update contract delta');
+      continue;
+    }
     if(!allowed.has(entity.id)) {
       const normalized=structuredClone(current);
       if(dependentOwners.has(entity.id))for(const role of [normalized.roles,...normalized.clauses.map(c=>c.roles)].flat())

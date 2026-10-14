@@ -67,7 +67,7 @@ export function buildApp(inputs=readAppInputs()) {
   const {model}=inputs, {mfm,records}=bindPoints(model,inputs.mfmCatalog.catalog,inputs.mfmBindings);
   // This view adds presentation ownership bindings only. Canonical data and
   // Rule Contracts are not flattened, interpreted or changed.
-  const view={...model,mfm,currentness:{currentness:'CURRENT',lastReconciledSource:'GW Faction Pack v1.3'}};
+  const view={...model,mfm,currentness:{currentness:'CURRENT',lastReconciledSource:'GW Faction Pack v1.4'}};
   const payload=projectArmyBook(view,records,{title:'Adeptus Mechanicus',edition:'11th Edition'});
   const cards=new Map(payload.cards.map(card=>[card.id,card]));
   payload.groups.find(group=>group.id==='introduction').itemIds=model.entities.filter(entity=>entity.kind==='BOOK_USAGE').map(entity=>entity.id);

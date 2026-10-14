@@ -4,7 +4,7 @@
     "id": "adeptus-mechanicus",
     "title": "Adeptus Mechanicus",
     "edition": "11th Edition",
-    "currentness": "CURRENT · GW Faction Pack v1.3",
+    "currentness": "CURRENT · GW Faction Pack v1.4",
     "mfmVersion": "v1.5-scoped-six"
   },
   "groups": [
@@ -90,6 +90,7 @@
         "errata-6",
         "errata-7",
         "faq-1",
+        "faq-2",
         "official-update-reference:errata-1",
         "official-update-reference:errata-2",
         "official-update-reference:errata-3",
@@ -100,7 +101,10 @@
         "official-update-reference:faq-1",
         "official-datasheet-update-reference:page:17",
         "official-datasheet-update-reference:page:18",
-        "official-datasheet-update-reference:page:19"
+        "official-datasheet-update-reference:page:19",
+        "official-update-reference:chant-v1.4",
+        "official-update-reference:guided-retreat-v1.4",
+        "official-update-reference:faq-2"
       ]
     }
   ],
@@ -45669,7 +45673,7 @@
         {
           "id": "detachment-haloscreed-battle-clade:stratagem:5::/lines/0/text",
           "label": "WHEN",
-          "value": "Your Movement phase, just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move.",
+          "value": "Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move.",
           "type": "text",
           "contextId": "detachment-haloscreed-battle-clade",
           "source": {
@@ -45717,7 +45721,7 @@
         {
           "id": "detachment-haloscreed-battle-clade:stratagem:5::/lines/2/text",
           "label": "EFFECT",
-          "value": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it.",
+          "value": "• If your unit is a HALO OVERRIDE unit, your unit can re-roll hazard rolls.\n• That fall-back move does not prevent your unit from:\n  • Being eligible to shoot.\n  • Being eligible to declare a charge.",
           "type": "text",
           "contextId": "detachment-haloscreed-battle-clade",
           "source": {
@@ -51981,7 +51985,7 @@
         {
           "id": "detachment-luminen-auto-choir:stratagem:2::/lines/0/text",
           "label": "WHEN",
-          "value": "Your Movement phase, when a friendly ELECTRO-PRIESTS BATTLECLADE unit is selected to make an advance move.",
+          "value": "Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move.",
           "type": "text",
           "contextId": "detachment-luminen-auto-choir",
           "source": {
@@ -53599,6 +53603,42 @@
       "links": []
     },
     {
+      "id": "faq-2",
+      "kind": "SOURCE_ERRATUM",
+      "title": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?",
+      "contextId": "faq-2",
+      "source": {
+        "entityId": "faq-2"
+      },
+      "children": [],
+      "fields": [
+        {
+          "id": "faq-2::/title",
+          "label": "title",
+          "value": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?",
+          "type": "text",
+          "contextId": "faq-2",
+          "source": {
+            "entityId": "faq-2",
+            "path": "/title"
+          },
+          "presentation": "heading"
+        },
+        {
+          "id": "faq-2::/text",
+          "label": "Rule",
+          "value": "When you have selected the Icon of War ability you want to use.",
+          "type": "text",
+          "contextId": "faq-2",
+          "source": {
+            "entityId": "faq-2",
+            "path": "/text"
+          }
+        }
+      ],
+      "links": []
+    },
+    {
       "id": "book-introduction",
       "kind": "BOOK_USAGE",
       "title": "BOOK USAGE",
@@ -54616,6 +54656,186 @@
           "contextId": "official-datasheet-update-reference:page:19",
           "source": {
             "entityId": "official-datasheet-update-reference:page:19",
+            "path": "/evidenceRole"
+          }
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "official-update-reference:chant-v1.4",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "title": "Official update · Page 4",
+      "contextId": "official-update-reference:chant-v1.4",
+      "source": {
+        "entityId": "official-update-reference:chant-v1.4"
+      },
+      "children": [],
+      "fields": [
+        {
+          "id": "official-update-reference:chant-v1.4::/page",
+          "label": "page",
+          "value": 4,
+          "type": "text",
+          "contextId": "official-update-reference:chant-v1.4",
+          "source": {
+            "entityId": "official-update-reference:chant-v1.4",
+            "path": "/page"
+          }
+        },
+        {
+          "id": "official-update-reference:chant-v1.4::/targetIds/0",
+          "label": "target Ids",
+          "value": "detachment-luminen-auto-choir:stratagem:2",
+          "type": "reference",
+          "contextId": "official-update-reference:chant-v1.4",
+          "source": {
+            "entityId": "official-update-reference:chant-v1.4",
+            "path": "/targetIds/0"
+          },
+          "targetIds": [
+            "detachment-luminen-auto-choir:stratagem:2"
+          ],
+          "displayValue": "CHANT OF ELECTROTRACTION"
+        },
+        {
+          "id": "official-update-reference:chant-v1.4::/evidenceRole",
+          "label": "evidence Role",
+          "value": "CURRENT_OPERATIVE_WORDING",
+          "type": "text",
+          "contextId": "official-update-reference:chant-v1.4",
+          "source": {
+            "entityId": "official-update-reference:chant-v1.4",
+            "path": "/evidenceRole"
+          }
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "official-update-reference:guided-retreat-v1.4",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "title": "Official update · Page 8",
+      "contextId": "official-update-reference:guided-retreat-v1.4",
+      "source": {
+        "entityId": "official-update-reference:guided-retreat-v1.4"
+      },
+      "children": [],
+      "fields": [
+        {
+          "id": "official-update-reference:guided-retreat-v1.4::/page",
+          "label": "page",
+          "value": 8,
+          "type": "text",
+          "contextId": "official-update-reference:guided-retreat-v1.4",
+          "source": {
+            "entityId": "official-update-reference:guided-retreat-v1.4",
+            "path": "/page"
+          }
+        },
+        {
+          "id": "official-update-reference:guided-retreat-v1.4::/targetIds/0",
+          "label": "target Ids",
+          "value": "detachment-haloscreed-battle-clade:stratagem:5",
+          "type": "reference",
+          "contextId": "official-update-reference:guided-retreat-v1.4",
+          "source": {
+            "entityId": "official-update-reference:guided-retreat-v1.4",
+            "path": "/targetIds/0"
+          },
+          "targetIds": [
+            "detachment-haloscreed-battle-clade:stratagem:5"
+          ],
+          "displayValue": "GUIDED RETREAT"
+        },
+        {
+          "id": "official-update-reference:guided-retreat-v1.4::/evidenceRole",
+          "label": "evidence Role",
+          "value": "CURRENT_OPERATIVE_WORDING",
+          "type": "text",
+          "contextId": "official-update-reference:guided-retreat-v1.4",
+          "source": {
+            "entityId": "official-update-reference:guided-retreat-v1.4",
+            "path": "/evidenceRole"
+          }
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "official-update-reference:faq-2",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "title": "Official update · Page 19",
+      "contextId": "official-update-reference:faq-2",
+      "source": {
+        "entityId": "official-update-reference:faq-2"
+      },
+      "children": [],
+      "fields": [
+        {
+          "id": "official-update-reference:faq-2::/page",
+          "label": "page",
+          "value": 19,
+          "type": "text",
+          "contextId": "official-update-reference:faq-2",
+          "source": {
+            "entityId": "official-update-reference:faq-2",
+            "path": "/page"
+          }
+        },
+        {
+          "id": "official-update-reference:faq-2::/targetIds/0",
+          "label": "target Ids",
+          "value": "faq-2",
+          "type": "reference",
+          "contextId": "official-update-reference:faq-2",
+          "source": {
+            "entityId": "official-update-reference:faq-2",
+            "path": "/targetIds/0"
+          },
+          "targetIds": [
+            "faq-2"
+          ],
+          "displayValue": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?"
+        },
+        {
+          "id": "official-update-reference:faq-2::/targetIds/1",
+          "label": "target Ids",
+          "value": "datasheet-thulia-ghuld:section:1",
+          "type": "reference",
+          "contextId": "official-update-reference:faq-2",
+          "source": {
+            "entityId": "official-update-reference:faq-2",
+            "path": "/targetIds/1"
+          },
+          "targetIds": [
+            "datasheet-thulia-ghuld:section:1"
+          ],
+          "displayValue": "ABILITIES"
+        },
+        {
+          "id": "official-update-reference:faq-2::/targetIds/2",
+          "label": "target Ids",
+          "value": "datasheet-thulia-ghuld:section:4",
+          "type": "reference",
+          "contextId": "official-update-reference:faq-2",
+          "source": {
+            "entityId": "official-update-reference:faq-2",
+            "path": "/targetIds/2"
+          },
+          "targetIds": [
+            "datasheet-thulia-ghuld:section:4"
+          ],
+          "displayValue": "ICON OF WAR"
+        },
+        {
+          "id": "official-update-reference:faq-2::/evidenceRole",
+          "label": "evidence Role",
+          "value": "UPDATE_OR_FAQ",
+          "type": "text",
+          "contextId": "official-update-reference:faq-2",
+          "source": {
+            "entityId": "official-update-reference:faq-2",
             "path": "/evidenceRole"
           }
         }
@@ -122901,7 +123121,7 @@
         0,
         "text"
       ],
-      "value": "Your Movement phase, just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move.",
+      "value": "Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move.",
       "cardId": "detachment-haloscreed-battle-clade:stratagem:5",
       "contextId": "detachment-haloscreed-battle-clade",
       "ownerType": "CANONICAL_V2"
@@ -122953,7 +123173,7 @@
         2,
         "text"
       ],
-      "value": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it.",
+      "value": "• If your unit is a HALO OVERRIDE unit, your unit can re-roll hazard rolls.\n• That fall-back move does not prevent your unit from:\n  • Being eligible to shoot.\n  • Being eligible to declare a charge.",
       "cardId": "detachment-haloscreed-battle-clade:stratagem:5",
       "contextId": "detachment-haloscreed-battle-clade",
       "ownerType": "CANONICAL_V2"
@@ -128137,7 +128357,7 @@
         0,
         "text"
       ],
-      "value": "Your Movement phase, when a friendly ELECTRO-PRIESTS BATTLECLADE unit is selected to make an advance move.",
+      "value": "Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move.",
       "cardId": "detachment-luminen-auto-choir:stratagem:2",
       "contextId": "detachment-luminen-auto-choir",
       "ownerType": "CANONICAL_V2"
@@ -129414,6 +129634,28 @@
       "ownerType": "CANONICAL_V2"
     },
     {
+      "id": "faq-2::/title",
+      "entityId": "faq-2",
+      "path": [
+        "title"
+      ],
+      "value": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?",
+      "cardId": "faq-2",
+      "contextId": "faq-2",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "faq-2::/text",
+      "entityId": "faq-2",
+      "path": [
+        "text"
+      ],
+      "value": "When you have selected the Icon of War ability you want to use.",
+      "cardId": "faq-2",
+      "contextId": "faq-2",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
       "id": "book-introduction::/text",
       "entityId": "book-introduction",
       "path": [
@@ -130148,6 +130390,132 @@
       "value": "UPDATE_DIRECTIVES_ALREADY_PRESENT_IN_CURRENT_DATASHEET_FACTS",
       "cardId": "official-datasheet-update-reference:page:19",
       "contextId": "official-datasheet-update-reference:page:19",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:chant-v1.4::/page",
+      "entityId": "official-update-reference:chant-v1.4",
+      "path": [
+        "page"
+      ],
+      "value": 4,
+      "cardId": "official-update-reference:chant-v1.4",
+      "contextId": "official-update-reference:chant-v1.4",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:chant-v1.4::/targetIds/0",
+      "entityId": "official-update-reference:chant-v1.4",
+      "path": [
+        "targetIds",
+        0
+      ],
+      "value": "detachment-luminen-auto-choir:stratagem:2",
+      "cardId": "official-update-reference:chant-v1.4",
+      "contextId": "official-update-reference:chant-v1.4",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:chant-v1.4::/evidenceRole",
+      "entityId": "official-update-reference:chant-v1.4",
+      "path": [
+        "evidenceRole"
+      ],
+      "value": "CURRENT_OPERATIVE_WORDING",
+      "cardId": "official-update-reference:chant-v1.4",
+      "contextId": "official-update-reference:chant-v1.4",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:guided-retreat-v1.4::/page",
+      "entityId": "official-update-reference:guided-retreat-v1.4",
+      "path": [
+        "page"
+      ],
+      "value": 8,
+      "cardId": "official-update-reference:guided-retreat-v1.4",
+      "contextId": "official-update-reference:guided-retreat-v1.4",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:guided-retreat-v1.4::/targetIds/0",
+      "entityId": "official-update-reference:guided-retreat-v1.4",
+      "path": [
+        "targetIds",
+        0
+      ],
+      "value": "detachment-haloscreed-battle-clade:stratagem:5",
+      "cardId": "official-update-reference:guided-retreat-v1.4",
+      "contextId": "official-update-reference:guided-retreat-v1.4",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:guided-retreat-v1.4::/evidenceRole",
+      "entityId": "official-update-reference:guided-retreat-v1.4",
+      "path": [
+        "evidenceRole"
+      ],
+      "value": "CURRENT_OPERATIVE_WORDING",
+      "cardId": "official-update-reference:guided-retreat-v1.4",
+      "contextId": "official-update-reference:guided-retreat-v1.4",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:faq-2::/page",
+      "entityId": "official-update-reference:faq-2",
+      "path": [
+        "page"
+      ],
+      "value": 19,
+      "cardId": "official-update-reference:faq-2",
+      "contextId": "official-update-reference:faq-2",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:faq-2::/targetIds/0",
+      "entityId": "official-update-reference:faq-2",
+      "path": [
+        "targetIds",
+        0
+      ],
+      "value": "faq-2",
+      "cardId": "official-update-reference:faq-2",
+      "contextId": "official-update-reference:faq-2",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:faq-2::/targetIds/1",
+      "entityId": "official-update-reference:faq-2",
+      "path": [
+        "targetIds",
+        1
+      ],
+      "value": "datasheet-thulia-ghuld:section:1",
+      "cardId": "official-update-reference:faq-2",
+      "contextId": "official-update-reference:faq-2",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:faq-2::/targetIds/2",
+      "entityId": "official-update-reference:faq-2",
+      "path": [
+        "targetIds",
+        2
+      ],
+      "value": "datasheet-thulia-ghuld:section:4",
+      "cardId": "official-update-reference:faq-2",
+      "contextId": "official-update-reference:faq-2",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "official-update-reference:faq-2::/evidenceRole",
+      "entityId": "official-update-reference:faq-2",
+      "path": [
+        "evidenceRole"
+      ],
+      "value": "UPDATE_OR_FAQ",
+      "cardId": "official-update-reference:faq-2",
+      "contextId": "official-update-reference:faq-2",
       "ownerType": "CANONICAL_V2"
     },
     {
@@ -144362,6 +144730,13 @@
         "aliases": []
       },
       {
+        "targetId": "faq-2",
+        "label": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?",
+        "category": "SOURCE_ERRATUM",
+        "contextLabel": "Army Book",
+        "aliases": []
+      },
+      {
         "targetId": "faq-blast-against-engaged-monster-vehicle",
         "label": "When my unit shoots at an engaged MONSTER/VEHICLE unit, can models in my unit target that unit with [BLAST] weapons?",
         "category": "CORE_FAQ_CLARIFICATION",
@@ -144822,7 +145197,30 @@
           "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
           "pointer": "/detachments/0/stratagems/4"
         },
-        "fieldProvenance": {},
+        "fieldProvenance": {
+          "lines/0/text": {
+            "sourceId": "gw-am-faction-pack-v1.4",
+            "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+            "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+            "page": 8,
+            "supersedes": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/detachments/0/stratagems/4"
+            }
+          },
+          "lines/2/text": {
+            "sourceId": "gw-am-faction-pack-v1.4",
+            "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+            "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+            "page": 8,
+            "supersedes": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/detachments/0/stratagems/4"
+            }
+          }
+        },
         "tables": []
       },
       "detachment-haloscreed-battle-clade:stratagem:6": {
@@ -146927,7 +147325,19 @@
           "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
           "pointer": "/detachments/7/stratagems/1"
         },
-        "fieldProvenance": {},
+        "fieldProvenance": {
+          "lines/0/text": {
+            "sourceId": "gw-am-faction-pack-v1.4",
+            "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+            "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+            "page": 4,
+            "supersedes": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/detachments/7/stratagems/1"
+            }
+          }
+        },
         "tables": []
       },
       "detachment-luminen-auto-choir:stratagem:3": {
@@ -147468,6 +147878,22 @@
         "fieldProvenance": {},
         "tables": []
       },
+      "faq-2": {
+        "id": "faq-2",
+        "kind": "SOURCE_ERRATUM",
+        "contextId": "faq-2",
+        "source": {
+          "entityId": "faq-2"
+        },
+        "provenance": {
+          "sourceId": "gw-am-faction-pack-v1.4",
+          "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+          "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+          "page": 19
+        },
+        "fieldProvenance": {},
+        "tables": []
+      },
       "book-introduction": {
         "id": "book-introduction",
         "kind": "BOOK_USAGE",
@@ -147500,15 +147926,15 @@
       "rows": 2890,
       "allDetachments": {
         "MATCH": 0,
-        "CONDITIONAL": 1133,
-        "NO_MATCH": 1757,
+        "CONDITIONAL": 1139,
+        "NO_MATCH": 1751,
         "INVALID": 0,
         "UNRESOLVED": 0
       },
       "selectedDetachment": {
         "MATCH": 188,
-        "CONDITIONAL": 945,
-        "NO_MATCH": 1757,
+        "CONDITIONAL": 951,
+        "NO_MATCH": 1751,
         "INVALID": 0,
         "UNRESOLVED": 0
       }
@@ -160349,23 +160775,23 @@
         "ruleId": "detachment-luminen-auto-choir:stratagem:2",
         "detachmentId": "detachment-luminen-auto-choir",
         "kind": "STRATAGEM",
-        "state": "FALSE",
-        "applicability": "NO_MATCH",
+        "state": "UNKNOWN",
+        "applicability": "CONDITIONAL",
         "roles": [
           {
             "roleId": "target",
             "subject": "UNIT",
-            "state": "FALSE"
+            "state": "UNKNOWN"
           }
         ],
         "selectedDetachment": {
-          "state": "FALSE",
-          "applicability": "NO_MATCH",
+          "state": "UNKNOWN",
+          "applicability": "CONDITIONAL",
           "roles": [
             {
               "roleId": "target",
               "subject": "UNIT",
-              "state": "FALSE"
+              "state": "UNKNOWN"
             }
           ]
         }
@@ -165773,23 +166199,23 @@
         "ruleId": "detachment-luminen-auto-choir:stratagem:2",
         "detachmentId": "detachment-luminen-auto-choir",
         "kind": "STRATAGEM",
-        "state": "FALSE",
-        "applicability": "NO_MATCH",
+        "state": "UNKNOWN",
+        "applicability": "CONDITIONAL",
         "roles": [
           {
             "roleId": "target",
             "subject": "UNIT",
-            "state": "FALSE"
+            "state": "UNKNOWN"
           }
         ],
         "selectedDetachment": {
-          "state": "FALSE",
-          "applicability": "NO_MATCH",
+          "state": "UNKNOWN",
+          "applicability": "CONDITIONAL",
           "roles": [
             {
               "roleId": "target",
               "subject": "UNIT",
-              "state": "FALSE"
+              "state": "UNKNOWN"
             }
           ]
         }
@@ -228437,23 +228863,23 @@
         "ruleId": "detachment-luminen-auto-choir:stratagem:2",
         "detachmentId": "detachment-luminen-auto-choir",
         "kind": "STRATAGEM",
-        "state": "FALSE",
-        "applicability": "NO_MATCH",
+        "state": "UNKNOWN",
+        "applicability": "CONDITIONAL",
         "roles": [
           {
             "roleId": "target",
             "subject": "UNIT",
-            "state": "FALSE"
+            "state": "UNKNOWN"
           }
         ],
         "selectedDetachment": {
-          "state": "FALSE",
-          "applicability": "NO_MATCH",
+          "state": "UNKNOWN",
+          "applicability": "CONDITIONAL",
           "roles": [
             {
               "roleId": "target",
               "subject": "UNIT",
-              "state": "FALSE"
+              "state": "UNKNOWN"
             }
           ]
         }
@@ -231149,23 +231575,23 @@
         "ruleId": "detachment-luminen-auto-choir:stratagem:2",
         "detachmentId": "detachment-luminen-auto-choir",
         "kind": "STRATAGEM",
-        "state": "FALSE",
-        "applicability": "NO_MATCH",
+        "state": "UNKNOWN",
+        "applicability": "CONDITIONAL",
         "roles": [
           {
             "roleId": "target",
             "subject": "UNIT",
-            "state": "FALSE"
+            "state": "UNKNOWN"
           }
         ],
         "selectedDetachment": {
-          "state": "FALSE",
-          "applicability": "NO_MATCH",
+          "state": "UNKNOWN",
+          "applicability": "CONDITIONAL",
           "roles": [
             {
               "roleId": "target",
               "subject": "UNIT",
-              "state": "FALSE"
+              "state": "UNKNOWN"
             }
           ]
         }
@@ -233861,23 +234287,23 @@
         "ruleId": "detachment-luminen-auto-choir:stratagem:2",
         "detachmentId": "detachment-luminen-auto-choir",
         "kind": "STRATAGEM",
-        "state": "FALSE",
-        "applicability": "NO_MATCH",
+        "state": "UNKNOWN",
+        "applicability": "CONDITIONAL",
         "roles": [
           {
             "roleId": "target",
             "subject": "UNIT",
-            "state": "FALSE"
+            "state": "UNKNOWN"
           }
         ],
         "selectedDetachment": {
-          "state": "FALSE",
-          "applicability": "NO_MATCH",
+          "state": "UNKNOWN",
+          "applicability": "CONDITIONAL",
           "roles": [
             {
               "roleId": "target",
               "subject": "UNIT",
-              "state": "FALSE"
+              "state": "UNKNOWN"
             }
           ]
         }
@@ -236573,23 +236999,23 @@
         "ruleId": "detachment-luminen-auto-choir:stratagem:2",
         "detachmentId": "detachment-luminen-auto-choir",
         "kind": "STRATAGEM",
-        "state": "FALSE",
-        "applicability": "NO_MATCH",
+        "state": "UNKNOWN",
+        "applicability": "CONDITIONAL",
         "roles": [
           {
             "roleId": "target",
             "subject": "UNIT",
-            "state": "FALSE"
+            "state": "UNKNOWN"
           }
         ],
         "selectedDetachment": {
-          "state": "FALSE",
-          "applicability": "NO_MATCH",
+          "state": "UNKNOWN",
+          "applicability": "CONDITIONAL",
           "roles": [
             {
               "roleId": "target",
               "subject": "UNIT",
-              "state": "FALSE"
+              "state": "UNKNOWN"
             }
           ]
         }
@@ -240216,6 +240642,7 @@
     "errata-5",
     "errata-6",
     "errata-7",
-    "faq-1"
+    "faq-1",
+    "faq-2"
   ]
 }

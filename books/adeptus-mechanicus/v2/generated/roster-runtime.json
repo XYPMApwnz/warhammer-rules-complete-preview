@@ -44867,7 +44867,7 @@
         "lines": [
           {
             "label": "WHEN",
-            "text": "Your Movement phase, just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move."
+            "text": "Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move."
           },
           {
             "label": "TARGET",
@@ -44875,7 +44875,7 @@
           },
           {
             "label": "EFFECT",
-            "text": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it."
+            "text": "• If your unit is a HALO OVERRIDE unit, your unit can re-roll hazard rolls.\n• That fall-back move does not prevent your unit from:\n  • Being eligible to shoot.\n  • Being eligible to declare a charge."
           }
         ]
       },
@@ -44885,6 +44885,30 @@
         "pointer": "/detachments/0/stratagems/4"
       },
       "parentId": "detachment-haloscreed-battle-clade",
+      "fieldProvenance": {
+        "lines/0/text": {
+          "sourceId": "gw-am-faction-pack-v1.4",
+          "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+          "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+          "page": 8,
+          "supersedes": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/0/stratagems/4"
+          }
+        },
+        "lines/2/text": {
+          "sourceId": "gw-am-faction-pack-v1.4",
+          "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+          "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+          "page": 8,
+          "supersedes": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/0/stratagems/4"
+          }
+        }
+      },
       "ruleContract": {
         "schema": "rule-contract/v2",
         "ruleId": "detachment-haloscreed-battle-clade:stratagem:5",
@@ -44920,7 +44944,7 @@
                 "subject": "UNIT",
                 "contextLevel": "BATTLE",
                 "arguments": {
-                  "key": "justFellBack",
+                  "key": "selectedToFallBackNow",
                   "equals": true
                 },
                 "evidence": {
@@ -44929,7 +44953,7 @@
                     0,
                     "text"
                   ],
-                  "quote": "just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move"
+                  "quote": "is selected to make a fall-back move"
                 }
               }
             ]
@@ -45018,51 +45042,14 @@
             0,
             "text"
           ],
-          "quote": "Your Movement phase, just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move."
+          "quote": "Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move."
         },
         "restrictions": [],
         "duration": [
           {
-            "id": "duration-1",
-            "endpoint": "END_CURRENT_TURN",
-            "roleIds": [
-              "target"
-            ],
-            "bindings": [
-              {
-                "clauseId": "effect",
-                "roleIds": [
-                  "target"
-                ],
-                "scopeEvidence": {
-                  "field": [
-                    "lines",
-                    2,
-                    "text"
-                  ],
-                  "quote": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it."
-                }
-              }
-            ],
-            "evidence": {
-              "field": [
-                "lines",
-                2,
-                "text"
-              ],
-              "quote": "Until the end of the turn"
-            },
-            "sourceOccurrence": {
-              "start": 0,
-              "end": 25
-            },
-            "sourceFields": [
-              [
-                "lines",
-                2,
-                "text"
-              ]
-            ]
+            "id": "duration-not-explicit",
+            "endpoint": "NOT_EXPLICIT",
+            "inferredExpiry": false
           }
         ],
         "clauses": [
@@ -45096,7 +45083,7 @@
                     "subject": "UNIT",
                     "contextLevel": "BATTLE",
                     "arguments": {
-                      "key": "justFellBack",
+                      "key": "selectedToFallBackNow",
                       "equals": true
                     },
                     "evidence": {
@@ -45105,7 +45092,7 @@
                         0,
                         "text"
                       ],
-                      "quote": "just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move"
+                      "quote": "is selected to make a fall-back move"
                     }
                   }
                 ]
@@ -45128,31 +45115,42 @@
                 2,
                 "text"
               ],
-              "quote": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it."
+              "quote": "• If your unit is a HALO OVERRIDE unit, your unit can re-roll hazard rolls.\n• That fall-back move does not prevent your unit from:\n  • Being eligible to shoot.\n  • Being eligible to declare a charge."
             },
             "rosterClassification": "BATTLE_ONLY",
             "rosterEffects": []
           }
         ],
-        "durationFacts": [
-          {
-            "field": [
-              "lines",
-              2,
-              "text"
-            ],
-            "quote": "Until the end of the turn",
-            "sourceOccurrence": {
-              "start": 0,
-              "end": 25
-            }
-          }
-        ],
+        "durationFacts": [],
         "contextLevel": "BATTLE",
         "detachmentId": "detachment-haloscreed-battle-clade",
         "currentness": {
           "sourceId": "am-waha-11e-2026-09-25",
-          "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+          "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+          "fieldProvenance": {
+            "lines/0/text": {
+              "sourceId": "gw-am-faction-pack-v1.4",
+              "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+              "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+              "page": 8,
+              "supersedes": {
+                "sourceId": "am-waha-11e-2026-09-25",
+                "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+                "pointer": "/detachments/0/stratagems/4"
+              }
+            },
+            "lines/2/text": {
+              "sourceId": "gw-am-faction-pack-v1.4",
+              "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+              "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+              "page": 8,
+              "supersedes": {
+                "sourceId": "am-waha-11e-2026-09-25",
+                "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+                "pointer": "/detachments/0/stratagems/4"
+              }
+            }
+          }
         }
       }
     },
@@ -73519,7 +73517,7 @@
         "lines": [
           {
             "label": "WHEN",
-            "text": "Your Movement phase, when a friendly ELECTRO-PRIESTS BATTLECLADE unit is selected to make an advance move."
+            "text": "Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move."
           },
           {
             "label": "TARGET",
@@ -73537,6 +73535,19 @@
         "pointer": "/detachments/7/stratagems/1"
       },
       "parentId": "detachment-luminen-auto-choir",
+      "fieldProvenance": {
+        "lines/0/text": {
+          "sourceId": "gw-am-faction-pack-v1.4",
+          "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+          "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+          "page": 4,
+          "supersedes": {
+            "sourceId": "am-waha-11e-2026-09-25",
+            "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+            "pointer": "/detachments/7/stratagems/1"
+          }
+        }
+      },
       "ruleContract": {
         "schema": "rule-contract/v2",
         "ruleId": "detachment-luminen-auto-choir:stratagem:2",
@@ -73551,41 +73562,20 @@
             "allegiance": "FRIENDLY",
             "purpose": "TARGET",
             "selector": {
-              "op": "ALL",
-              "args": [
-                {
-                  "predicate": "UNIT_KEYWORD",
-                  "subject": "UNIT",
-                  "contextLevel": "STATIC",
-                  "arguments": {
-                    "keyword": "ELECTRO-PRIESTS"
-                  },
-                  "evidence": {
-                    "field": [
-                      "lines",
-                      0,
-                      "text"
-                    ],
-                    "quote": "ELECTRO-PRIESTS"
-                  }
-                },
-                {
-                  "predicate": "UNIT_KEYWORD",
-                  "subject": "UNIT",
-                  "contextLevel": "STATIC",
-                  "arguments": {
-                    "keyword": "BATTLECLADE"
-                  },
-                  "evidence": {
-                    "field": [
-                      "lines",
-                      0,
-                      "text"
-                    ],
-                    "quote": "BATTLECLADE"
-                  }
-                }
-              ]
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ELECTRO-PRIESTS"
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  0,
+                  "text"
+                ],
+                "quote": "ELECTRO-PRIESTS"
+              }
             },
             "conditions": [
               {
@@ -73691,7 +73681,7 @@
             0,
             "text"
           ],
-          "quote": "Your Movement phase, when a friendly ELECTRO-PRIESTS BATTLECLADE unit is selected to make an advance move."
+          "quote": "Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move."
         },
         "restrictions": [],
         "duration": [
@@ -73711,41 +73701,20 @@
                 "allegiance": "FRIENDLY",
                 "purpose": "TARGET",
                 "selector": {
-                  "op": "ALL",
-                  "args": [
-                    {
-                      "predicate": "UNIT_KEYWORD",
-                      "subject": "UNIT",
-                      "contextLevel": "STATIC",
-                      "arguments": {
-                        "keyword": "ELECTRO-PRIESTS"
-                      },
-                      "evidence": {
-                        "field": [
-                          "lines",
-                          0,
-                          "text"
-                        ],
-                        "quote": "ELECTRO-PRIESTS"
-                      }
-                    },
-                    {
-                      "predicate": "UNIT_KEYWORD",
-                      "subject": "UNIT",
-                      "contextLevel": "STATIC",
-                      "arguments": {
-                        "keyword": "BATTLECLADE"
-                      },
-                      "evidence": {
-                        "field": [
-                          "lines",
-                          0,
-                          "text"
-                        ],
-                        "quote": "BATTLECLADE"
-                      }
-                    }
-                  ]
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ELECTRO-PRIESTS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "lines",
+                      0,
+                      "text"
+                    ],
+                    "quote": "ELECTRO-PRIESTS"
+                  }
                 },
                 "conditions": [
                   {
@@ -73796,7 +73765,20 @@
         "detachmentId": "detachment-luminen-auto-choir",
         "currentness": {
           "sourceId": "am-waha-11e-2026-09-25",
-          "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json"
+          "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+          "fieldProvenance": {
+            "lines/0/text": {
+              "sourceId": "gw-am-faction-pack-v1.4",
+              "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+              "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+              "page": 4,
+              "supersedes": {
+                "sourceId": "am-waha-11e-2026-09-25",
+                "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+                "pointer": "/detachments/7/stratagems/1"
+              }
+            }
+          }
         }
       }
     },
@@ -79188,6 +79170,117 @@
       }
     },
     {
+      "id": "faq-2",
+      "kind": "SOURCE_ERRATUM",
+      "data": {
+        "class": "FAQ",
+        "title": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?",
+        "text": "When you have selected the Icon of War ability you want to use."
+      },
+      "provenance": {
+        "sourceId": "gw-am-faction-pack-v1.4",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+        "page": 19
+      },
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "faq-2",
+        "ownerId": "adeptus-mechanicus",
+        "sourceId": "gw-am-faction-pack-v1.4",
+        "kind": "FAQ_ERRATA_RULE",
+        "executionMode": "SOURCE_DIRECTIVE",
+        "roles": [
+          {
+            "id": "sourceDirective",
+            "subject": "ROSTER",
+            "allegiance": "ANY",
+            "purpose": "DECLARED_PARTICIPANT",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "ROSTER",
+              "contextLevel": "STATIC",
+              "arguments": {},
+              "evidence": {
+                "field": [
+                  "title"
+                ],
+                "quote": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "compatibilityRoleIds": [
+          "sourceDirective"
+        ],
+        "sourceFields": [
+          [
+            "class"
+          ],
+          [
+            "title"
+          ],
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "source-directive",
+            "roles": [
+              {
+                "id": "sourceDirective",
+                "subject": "ROSTER",
+                "allegiance": "ANY",
+                "purpose": "DECLARED_PARTICIPANT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "ROSTER",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "title"
+                    ],
+                    "quote": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "When you have selected the Icon of War ability you want to use."
+            },
+            "rosterClassification": "NOT_AN_EFFECT",
+            "rosterClassificationNote": {
+              "reason": "Update/FAQ directive is preserved as source evidence; operative gameplay remains owned by the referenced current rule."
+            },
+            "rosterEffects": [],
+            "directiveTargets": [
+              "datasheet-thulia-ghuld:section:1",
+              "datasheet-thulia-ghuld:section:4"
+            ]
+          }
+        ],
+        "contextLevel": "STATIC",
+        "currentness": {
+          "sourceId": "gw-am-faction-pack-v1.4",
+          "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf"
+        }
+      }
+    },
+    {
       "id": "book-introduction",
       "kind": "BOOK_USAGE",
       "data": {
@@ -79415,6 +79508,59 @@
         "sourceId": "gw-am-faction-pack-v1.3",
         "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.3.pdf",
         "sha256": "F01FB3CAD6EAB30E71EBEA76C8217E8CB0BA591B221F0E86E8A7D07C8FE5C7F8",
+        "page": 19
+      }
+    },
+    {
+      "id": "official-update-reference:chant-v1.4",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "data": {
+        "page": 4,
+        "targetIds": [
+          "detachment-luminen-auto-choir:stratagem:2"
+        ],
+        "evidenceRole": "CURRENT_OPERATIVE_WORDING"
+      },
+      "provenance": {
+        "sourceId": "gw-am-faction-pack-v1.4",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+        "page": 4
+      }
+    },
+    {
+      "id": "official-update-reference:guided-retreat-v1.4",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "data": {
+        "page": 8,
+        "targetIds": [
+          "detachment-haloscreed-battle-clade:stratagem:5"
+        ],
+        "evidenceRole": "CURRENT_OPERATIVE_WORDING"
+      },
+      "provenance": {
+        "sourceId": "gw-am-faction-pack-v1.4",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+        "page": 8
+      }
+    },
+    {
+      "id": "official-update-reference:faq-2",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "data": {
+        "page": 19,
+        "targetIds": [
+          "faq-2",
+          "datasheet-thulia-ghuld:section:1",
+          "datasheet-thulia-ghuld:section:4"
+        ],
+        "evidenceRole": "UPDATE_OR_FAQ"
+      },
+      "provenance": {
+        "sourceId": "gw-am-faction-pack-v1.4",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
         "page": 19
       }
     }
@@ -79761,7 +79907,9 @@
           20,
           27
         ],
-        "reason": "Legends excluded; current non-Legends pages identical to accepted v1.2."
+        "reason": "Historical September baseline retained byte-for-byte; v1.4 owns current official updates.",
+        "status": "HISTORICAL",
+        "supersededBy": "gw-am-faction-pack-v1.4"
       },
       {
         "path": "books/adeptus-mechanicus/v2/sources/gw-faction-pack-v1.3.pages.json",
@@ -79782,13 +79930,47 @@
           "effects",
           "contracts"
         ]
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+        "authority": "OFFICIAL_GW",
+        "version": "1.4",
+        "effectiveFrom": "2026-10-14",
+        "status": "CURRENT",
+        "url": "https://assets.warhammer-community.com/eng_14-10_wh40k_-faction_pack_adeptus-mechanicus-g0jwiuyz3x-f5itnst9j9.pdf",
+        "includedPages": [
+          2,
+          19
+        ],
+        "excludedPages": [
+          20,
+          27
+        ]
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/sources/gw-faction-pack-v1.4.pages.json",
+        "sha256": "81FDEC9B4A6E0EB848121B2DBC1D24A80A4AF34BDA745CA6E925B9A8A8E0BFE9",
+        "authority": "OFFICIAL_PDF_TEXT_EXTRACTION",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf"
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/sources/official-v1.4-updates.json",
+        "sha256": "D03B8A438CB82C61FCB5F2367BC263928CCC9C876234E383EB10884329DA762F",
+        "authority": "OFFICIAL_GW_TRANSCRIPTION",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "pages": [
+          4,
+          8,
+          19
+        ]
       }
     ],
     "sourceAuthority": "Waha 11E operational baseline; stronger current official GW evidence wins conflicts.",
     "integrity": "Exact on-disk SHA256; historical CRLF correspondence recorded separately. Build does not normalize bytes to pass integrity.",
     "scope": {
       "included": [
-        "current Faction Pack 11E v1.3 (2026-09-30)",
+        "current Faction Pack 11E v1.4 (2026-10-14)",
         "34 non-Legends current datasheets"
       ],
       "excluded": [
@@ -79805,7 +79987,7 @@
       },
       "gw-am-faction-pack-v1.3": {
         "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.3.pdf",
-        "role": "CURRENT_OFFICIAL_OVERRIDE_AND_UPDATE_EVIDENCE"
+        "role": "HISTORICAL_OFFICIAL_UPDATE_EVIDENCE"
       },
       "adeptus-mechanicus-codex-carry-forward": {
         "role": "ACCEPTED_TITLE_TRANSCRIPTION_ONLY",
@@ -79813,8 +79995,15 @@
         "allowedPointers": [
           "/detachments/1/stratagems/1/title"
         ]
+      },
+      "gw-am-faction-pack-v1.4": {
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "role": "CURRENT_OFFICIAL_OVERRIDE_AND_UPDATE_EVIDENCE",
+        "version": "1.4",
+        "effectiveFrom": "2026-10-14"
       }
-    }
+    },
+    "currentOfficialSourceId": "gw-am-faction-pack-v1.4"
   },
   "sourceAccounting": [
     {
@@ -125337,7 +125526,7 @@
   ],
   "scope": {
     "included": [
-      "current Faction Pack 11E v1.3 (2026-09-30)",
+      "current Faction Pack 11E v1.4 (2026-10-14)",
       "34 non-Legends current datasheets"
     ],
     "excluded": [
@@ -125380,6 +125569,41 @@
       "after": "Tribute of Empathic Veneration",
       "sourceDefectId": "tribute-emphatic-veneration-title",
       "evidence": "sources/title-adjudication.json"
+    }
+  ],
+  "appliedOfficialUpdates": [
+    {
+      "targetId": "detachment-luminen-auto-choir:stratagem:2",
+      "field": [
+        "lines",
+        0,
+        "text"
+      ],
+      "before": "Your Movement phase, when a friendly ELECTRO-PRIESTS BATTLECLADE unit is selected to make an advance move.",
+      "after": "Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move.",
+      "page": 4
+    },
+    {
+      "targetId": "detachment-haloscreed-battle-clade:stratagem:5",
+      "field": [
+        "lines",
+        0,
+        "text"
+      ],
+      "before": "Your Movement phase, just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move.",
+      "after": "Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move.",
+      "page": 8
+    },
+    {
+      "targetId": "detachment-haloscreed-battle-clade:stratagem:5",
+      "field": [
+        "lines",
+        2,
+        "text"
+      ],
+      "before": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it.",
+      "after": "• If your unit is a HALO OVERRIDE unit, your unit can re-roll hazard rolls.\n• That fall-back move does not prevent your unit from:\n  • Being eligible to shoot.\n  • Being eligible to declare a charge.",
+      "page": 8
     }
   ],
   "rosterProfileBindings": [
@@ -127381,7 +127605,7 @@
         "contextLevel": "BATTLE",
         "valueType": "boolean"
       },
-      "justFellBack": {
+      "selectedToFallBackNow": {
         "contextLevel": "BATTLE",
         "valueType": "boolean"
       },
@@ -127394,6 +127618,10 @@
         "valueType": "boolean"
       },
       "justEndedNormalAdvanceOrFallBackMove": {
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      "justFellBack": {
         "contextLevel": "BATTLE",
         "valueType": "boolean"
       },
@@ -127526,10 +127754,6 @@
         "valueType": "boolean"
       },
       "selectedAttackTargetsNow": {
-        "contextLevel": "BATTLE",
-        "valueType": "boolean"
-      },
-      "selectedToFallBackNow": {
         "contextLevel": "BATTLE",
         "valueType": "boolean"
       },

@@ -1520,7 +1520,7 @@
               "subject": "UNIT",
               "contextLevel": "BATTLE",
               "arguments": {
-                "key": "justFellBack",
+                "key": "selectedToFallBackNow",
                 "equals": true
               },
               "evidence": {
@@ -1529,7 +1529,7 @@
                   0,
                   "text"
                 ],
-                "quote": "just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move"
+                "quote": "is selected to make a fall-back move"
               }
             }
           ]
@@ -1618,51 +1618,14 @@
           0,
           "text"
         ],
-        "quote": "Your Movement phase, just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move."
+        "quote": "Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move."
       },
       "restrictions": [],
       "duration": [
         {
-          "id": "duration-1",
-          "endpoint": "END_CURRENT_TURN",
-          "roleIds": [
-            "target"
-          ],
-          "bindings": [
-            {
-              "clauseId": "effect",
-              "roleIds": [
-                "target"
-              ],
-              "scopeEvidence": {
-                "field": [
-                  "lines",
-                  2,
-                  "text"
-                ],
-                "quote": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it."
-              }
-            }
-          ],
-          "evidence": {
-            "field": [
-              "lines",
-              2,
-              "text"
-            ],
-            "quote": "Until the end of the turn"
-          },
-          "sourceOccurrence": {
-            "start": 0,
-            "end": 25
-          },
-          "sourceFields": [
-            [
-              "lines",
-              2,
-              "text"
-            ]
-          ]
+          "id": "duration-not-explicit",
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
         }
       ],
       "clauses": [
@@ -1696,7 +1659,7 @@
                   "subject": "UNIT",
                   "contextLevel": "BATTLE",
                   "arguments": {
-                    "key": "justFellBack",
+                    "key": "selectedToFallBackNow",
                     "equals": true
                   },
                   "evidence": {
@@ -1705,7 +1668,7 @@
                       0,
                       "text"
                     ],
-                    "quote": "just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move"
+                    "quote": "is selected to make a fall-back move"
                   }
                 }
               ]
@@ -1728,24 +1691,11 @@
               2,
               "text"
             ],
-            "quote": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it."
+            "quote": "• If your unit is a HALO OVERRIDE unit, your unit can re-roll hazard rolls.\n• That fall-back move does not prevent your unit from:\n  • Being eligible to shoot.\n  • Being eligible to declare a charge."
           }
         }
       ],
-      "durationFacts": [
-        {
-          "field": [
-            "lines",
-            2,
-            "text"
-          ],
-          "quote": "Until the end of the turn",
-          "sourceOccurrence": {
-            "start": 0,
-            "end": 25
-          }
-        }
-      ],
+      "durationFacts": [],
       "contextLevel": "BATTLE",
       "detachmentId": "detachment-haloscreed-battle-clade"
     },
@@ -17360,41 +17310,20 @@
           "allegiance": "FRIENDLY",
           "purpose": "TARGET",
           "selector": {
-            "op": "ALL",
-            "args": [
-              {
-                "predicate": "UNIT_KEYWORD",
-                "subject": "UNIT",
-                "contextLevel": "STATIC",
-                "arguments": {
-                  "keyword": "ELECTRO-PRIESTS"
-                },
-                "evidence": {
-                  "field": [
-                    "lines",
-                    0,
-                    "text"
-                  ],
-                  "quote": "ELECTRO-PRIESTS"
-                }
-              },
-              {
-                "predicate": "UNIT_KEYWORD",
-                "subject": "UNIT",
-                "contextLevel": "STATIC",
-                "arguments": {
-                  "keyword": "BATTLECLADE"
-                },
-                "evidence": {
-                  "field": [
-                    "lines",
-                    0,
-                    "text"
-                  ],
-                  "quote": "BATTLECLADE"
-                }
-              }
-            ]
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ELECTRO-PRIESTS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                0,
+                "text"
+              ],
+              "quote": "ELECTRO-PRIESTS"
+            }
           },
           "conditions": [
             {
@@ -17500,7 +17429,7 @@
           0,
           "text"
         ],
-        "quote": "Your Movement phase, when a friendly ELECTRO-PRIESTS BATTLECLADE unit is selected to make an advance move."
+        "quote": "Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move."
       },
       "restrictions": [],
       "duration": [
@@ -17520,41 +17449,20 @@
               "allegiance": "FRIENDLY",
               "purpose": "TARGET",
               "selector": {
-                "op": "ALL",
-                "args": [
-                  {
-                    "predicate": "UNIT_KEYWORD",
-                    "subject": "UNIT",
-                    "contextLevel": "STATIC",
-                    "arguments": {
-                      "keyword": "ELECTRO-PRIESTS"
-                    },
-                    "evidence": {
-                      "field": [
-                        "lines",
-                        0,
-                        "text"
-                      ],
-                      "quote": "ELECTRO-PRIESTS"
-                    }
-                  },
-                  {
-                    "predicate": "UNIT_KEYWORD",
-                    "subject": "UNIT",
-                    "contextLevel": "STATIC",
-                    "arguments": {
-                      "keyword": "BATTLECLADE"
-                    },
-                    "evidence": {
-                      "field": [
-                        "lines",
-                        0,
-                        "text"
-                      ],
-                      "quote": "BATTLECLADE"
-                    }
-                  }
-                ]
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "ELECTRO-PRIESTS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    0,
+                    "text"
+                  ],
+                  "quote": "ELECTRO-PRIESTS"
+                }
               },
               "conditions": [
                 {

@@ -93269,13 +93269,13 @@
     {
       "unitId": "unit-corpuscarii-electro-priests",
       "ruleId": "detachment-luminen-auto-choir:stratagem:2",
-      "state": "FALSE",
-      "applicability": "NO_MATCH",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
       "roles": [
         {
           "roleId": "target",
           "subject": "UNIT",
-          "state": "FALSE"
+          "state": "UNKNOWN"
         }
       ]
     },
@@ -93295,13 +93295,13 @@
     {
       "unitId": "unit-fulgurite-electro-priests",
       "ruleId": "detachment-luminen-auto-choir:stratagem:2",
-      "state": "FALSE",
-      "applicability": "NO_MATCH",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
       "roles": [
         {
           "roleId": "target",
           "subject": "UNIT",
-          "state": "FALSE"
+          "state": "UNKNOWN"
         }
       ]
     },
@@ -93594,52 +93594,52 @@
     {
       "unitId": "unit-tech-priest-dominus",
       "ruleId": "detachment-luminen-auto-choir:stratagem:2",
-      "state": "FALSE",
-      "applicability": "NO_MATCH",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
       "roles": [
         {
           "roleId": "target",
           "subject": "UNIT",
-          "state": "FALSE"
+          "state": "UNKNOWN"
         }
       ]
     },
     {
       "unitId": "unit-tech-priest-enginseer",
       "ruleId": "detachment-luminen-auto-choir:stratagem:2",
-      "state": "FALSE",
-      "applicability": "NO_MATCH",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
       "roles": [
         {
           "roleId": "target",
           "subject": "UNIT",
-          "state": "FALSE"
+          "state": "UNKNOWN"
         }
       ]
     },
     {
       "unitId": "unit-tech-priest-manipulus",
       "ruleId": "detachment-luminen-auto-choir:stratagem:2",
-      "state": "FALSE",
-      "applicability": "NO_MATCH",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
       "roles": [
         {
           "roleId": "target",
           "subject": "UNIT",
-          "state": "FALSE"
+          "state": "UNKNOWN"
         }
       ]
     },
     {
       "unitId": "unit-technoarcheologist",
       "ruleId": "detachment-luminen-auto-choir:stratagem:2",
-      "state": "FALSE",
-      "applicability": "NO_MATCH",
+      "state": "UNKNOWN",
+      "applicability": "CONDITIONAL",
       "roles": [
         {
           "roleId": "target",
           "subject": "UNIT",
-          "state": "FALSE"
+          "state": "UNKNOWN"
         }
       ]
     },
@@ -110070,6 +110070,448 @@
     {
       "unitId": "unit-thulia-ghuld",
       "ruleId": "faq-1",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-archaeopter-fusilave",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-archaeopter-stratoraptor",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-archaeopter-transvector",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-belisarius-cawl",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-corpuscarii-electro-priests",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-cybernetica-datasmith",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-fulgurite-electro-priests",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-hastarii-exterminators",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-hastarii-fusiliers",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-ironstrider-ballistarii",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-kastelan-robots",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-kataphron-breachers",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-kataphron-destroyers",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-onager-dunecrawler",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-pteraxii-skystalkers",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-pteraxii-sterylizors",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-serberys-raiders",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-serberys-sulphurhounds",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-servitor-battleclade",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-sicarian-infiltrators",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-sicarian-ruststalkers",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-skitarii-marshal",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-skitarii-rangers",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-skitarii-vanguard",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-skorpius-disintegrator",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-skorpius-dunerider",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-sydonian-dragoons-with-radium-jezzails",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-sydonian-dragoons-with-taser-lances",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-sydonian-skatros",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-tech-priest-dominus",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-tech-priest-enginseer",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-tech-priest-manipulus",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-technoarcheologist",
+      "ruleId": "faq-2",
+      "state": "TRUE",
+      "applicability": "MATCH",
+      "roles": [
+        {
+          "roleId": "sourceDirective",
+          "subject": "ROSTER",
+          "state": "TRUE"
+        }
+      ]
+    },
+    {
+      "unitId": "unit-thulia-ghuld",
+      "ruleId": "faq-2",
       "state": "TRUE",
       "applicability": "MATCH",
       "roles": [

@@ -9,10 +9,12 @@ There is no AdMech attachment interpreter or effect runtime integration yet.
 
 `sources/enrollment.json` pins exact file bytes and the accepted scope. The
 operational baseline is the current 11E source capture from 25 September 2026.
-The official GW Faction Pack v1.3, dated 30 September 2026, is enrolled here as
-stronger current update/FAQ evidence. Its non-Legends content agrees with the
-accepted operational baseline; the current update checkpoints are independently
-tested against the PDF. Legends, Boarding Actions and Crusade are excluded.
+The official GW Faction Pack v1.4, effective 14 October 2026, is the current
+update/FAQ authority. Historical v1.3 PDF and page extraction remain unchanged.
+`sources/official-v1.4-updates.json` binds the two updated Stratagems and the
+additional Thulia Ghuld FAQ to exact canonical owners and official pages 4, 8
+and 19. Independent literal checks and browser acceptance cover those changes.
+Legends, Boarding Actions and Crusade are excluded.
 
 Existing raw HTML is unchanged. Its checked-in LF bytes differ from the historical
 CRLF capture hashes. Enrollment records both representations, while the build
@@ -31,7 +33,10 @@ The stale occurrence ID in the old defect ledger is recorded in the title eviden
 
 `build.py` derives `generated/base.json` from accepted sources and the book-owned
 identity declarations. It derives `generated/effective.json` by applying only the
-three accepted source adjudications. Rebuild these projections; do not edit them.
+three accepted source adjudications and the guarded official v1.4 field updates.
+The new official FAQ is a source-backed canonical record; battle-dependent
+rules remain conditional and add no executable roster effects.
+Rebuild these projections; do not edit them.
 
 Each entity has an explicit canonical ID and provenance: source ID/path plus a
 JSON pointer, or a raw DOM XPath and SHA256, or an official PDF page. Reference
@@ -104,6 +109,8 @@ python -X utf8 books/adeptus-mechanicus/v2/build.py
 python -X utf8 books/adeptus-mechanicus/v2/build.py --check
 python -X utf8 books/adeptus-mechanicus/v2/factual-qa.py --write-census
 python -X utf8 books/adeptus-mechanicus/v2/source-isolation-qa.py
+node books/adeptus-mechanicus/v2/official-v1.4-qa.mjs
+node books/adeptus-mechanicus/v2/official-v1.4-browser-qa.mjs
 ```
 
 Build/check is network-free. The current official PDF and its text extraction are

@@ -364,6 +364,12 @@ def verify(base, effective):
         expected_record_ids.add(erratum['sourceId'])
         source_fields(index[erratum['sourceId']]['data'], erratum, {'sourceId'}, erratum['sourceId'])
     refs = [row['value'] for row in base['sourceAccounting'] if row['classification']=='REFERENCE_METADATA']
+    expected_record_ids.add('faq-2')
+    source_fields(index['faq-2']['data'], {
+        'class': 'FAQ',
+        'title': 'When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?',
+        'text': 'When you have selected the Icon of War ability you want to use.'
+    }, set(), 'Official v1.4 Thulia FAQ')
     expected_record_ids.update(row['id'] for row in read(HERE/'update-bindings.json'))
     equal(set(ids), expected_record_ids, 'complete source-derived canonical identity domain/no extra semantic owners')
     equal(refs, corpus['references'], 'complete source reference metadata', count=True)
@@ -396,7 +402,23 @@ def verify(base, effective):
                     title = index[target]['data']['title']
                     assert letters(title) in letters(pages[str(data['page'])]), reference['id']+': wrong official source page'
         official_update_parity(index, pages)
-    # Effective changes are exclusively the accepted source-adjudication ledger.
+    # Historical v1.3 evidence remains frozen. The current official source has
+    # three precisely bounded field changes and one additional FAQ.
+    with pdfplumber.open(HERE/'sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf') as pdf:
+        pages = read(HERE/'sources/gw-faction-pack-v1.4.pages.json')
+        for page in range(1, 20):
+            equal(pages[str(page)], pdf.pages[page-1].extract_text(), 'official v1.4 PDF page '+str(page))
+        assert 'VERSION 1.4' in pages['1'] and '14th October 2026' in pages['1']
+        letters = lambda text: re.sub(r'[^a-z0-9]', '', text.lower())
+        faq_page = pdf.pages[18]
+        faq_column = faq_page.crop((faq_page.width/2, 0, faq_page.width, faq_page.height)).extract_text()
+        for text in index['faq-2']['data'].values():
+            if text != 'FAQ':
+                assert letters(text) in letters(faq_column), 'Official Thulia FAQ evidence'
+        assert index['faq-2']['provenance']['sourceId'] == 'gw-am-faction-pack-v1.4'
+        assert index['faq-2']['provenance']['page'] == 19
+    # Effective changes are exclusively the editorial ledger and these exact
+    # independently transcribed current official fields.
     expected_effective = copy.deepcopy(base['entities'])
     modified = {r['id']: r for r in expected_effective}
     operations = read(HERE/'source-adjudications.json')
@@ -406,6 +428,19 @@ def verify(base, effective):
             target = target[key]
         assert target[op['field'][-1]] == op['before']
         target[op['field'][-1]] = op['after']
+    current_fields = [
+        ('detachment-luminen-auto-choir:stratagem:2', 0,
+         'Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move.'),
+        ('detachment-haloscreed-battle-clade:stratagem:5', 0,
+         'Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move.'),
+        ('detachment-haloscreed-battle-clade:stratagem:5', 2,
+         '• If your unit is a HALO OVERRIDE unit, your unit can re-roll hazard rolls.\n'
+         '• That fall-back move does not prevent your unit from:\n'
+         '  • Being eligible to shoot.\n  • Being eligible to declare a charge.')
+    ]
+    for identity, line, text in current_fields:
+        modified[identity]['data']['lines'][line]['text'] = text
+    assert len(effective['appliedOfficialUpdates']) == len(current_fields)
     equal([(r['id'],r['kind'],r.get('parentId'),r['data']) for r in effective['entities']], [(r['id'],r['kind'],r.get('parentId'),r['data']) for r in expected_effective], 'effective factual parity/no unrelated delta')
     servitor = index['unit-servitor-battleclade']['data']['profileIds']
     equal([index[p]['data']['stats']['W'] for p in servitor], ['2','1'], 'Servitor W isolation')
@@ -451,6 +486,13 @@ def main():
         poisoned_effective['sourceLeafAccounting'] = copy.deepcopy(poisoned['sourceLeafAccounting'])
         poisoned_index = {r['id']:r for r in poisoned_effective['entities']}
         for op in read(HERE/'source-adjudications.json'):
+            if op['targetId'] not in poisoned_index:
+                continue
+            field = poisoned_index[op['targetId']]['data']
+            for key in op['field'][:-1]:
+                field = field[key]
+            field[op['field'][-1]] = op['after']
+        for op in read(HERE/'sources/official-v1.4-updates.json')['operations']:
             if op['targetId'] not in poisoned_index:
                 continue
             field = poisoned_index[op['targetId']]['data']

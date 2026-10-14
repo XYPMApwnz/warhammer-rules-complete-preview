@@ -1,0 +1,51 @@
+{
+  "schema": "am-official-source-updates/v1",
+  "sourceId": "gw-am-faction-pack-v1.4",
+  "operations": [
+    {
+      "targetId": "detachment-luminen-auto-choir:stratagem:2",
+      "field": [
+        "lines",
+        0,
+        "text"
+      ],
+      "before": "Your Movement phase, when a friendly ELECTRO-PRIESTS BATTLECLADE unit is selected to make an advance move.",
+      "after": "Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move.",
+      "page": 4
+    },
+    {
+      "targetId": "detachment-haloscreed-battle-clade:stratagem:5",
+      "field": [
+        "lines",
+        0,
+        "text"
+      ],
+      "before": "Your Movement phase, just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move.",
+      "after": "Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move.",
+      "page": 8
+    },
+    {
+      "targetId": "detachment-haloscreed-battle-clade:stratagem:5",
+      "field": [
+        "lines",
+        2,
+        "text"
+      ],
+      "before": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it.",
+      "after": "• If your unit is a HALO OVERRIDE unit, your unit can re-roll hazard rolls.\n• That fall-back move does not prevent your unit from:\n  • Being eligible to shoot.\n  • Being eligible to declare a charge.",
+      "page": 8
+    }
+  ],
+  "records": [
+    {
+      "id": "faq-2",
+      "kind": "SOURCE_ERRATUM",
+      "page": 19,
+      "data": {
+        "class": "FAQ",
+        "title": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?",
+        "text": "When you have selected the Icon of War ability you want to use."
+      }
+    }
+  ]
+}

@@ -15055,6 +15055,21 @@
       }
     },
     {
+      "id": "faq-2",
+      "kind": "SOURCE_ERRATUM",
+      "data": {
+        "class": "FAQ",
+        "title": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?",
+        "text": "When you have selected the Icon of War ability you want to use."
+      },
+      "provenance": {
+        "sourceId": "gw-am-faction-pack-v1.4",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+        "page": 19
+      }
+    },
+    {
       "id": "book-introduction",
       "kind": "BOOK_USAGE",
       "data": {
@@ -15282,6 +15297,59 @@
         "sourceId": "gw-am-faction-pack-v1.3",
         "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.3.pdf",
         "sha256": "F01FB3CAD6EAB30E71EBEA76C8217E8CB0BA591B221F0E86E8A7D07C8FE5C7F8",
+        "page": 19
+      }
+    },
+    {
+      "id": "official-update-reference:chant-v1.4",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "data": {
+        "page": 4,
+        "targetIds": [
+          "detachment-luminen-auto-choir:stratagem:2"
+        ],
+        "evidenceRole": "CURRENT_OPERATIVE_WORDING"
+      },
+      "provenance": {
+        "sourceId": "gw-am-faction-pack-v1.4",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+        "page": 4
+      }
+    },
+    {
+      "id": "official-update-reference:guided-retreat-v1.4",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "data": {
+        "page": 8,
+        "targetIds": [
+          "detachment-haloscreed-battle-clade:stratagem:5"
+        ],
+        "evidenceRole": "CURRENT_OPERATIVE_WORDING"
+      },
+      "provenance": {
+        "sourceId": "gw-am-faction-pack-v1.4",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+        "page": 8
+      }
+    },
+    {
+      "id": "official-update-reference:faq-2",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "data": {
+        "page": 19,
+        "targetIds": [
+          "faq-2",
+          "datasheet-thulia-ghuld:section:1",
+          "datasheet-thulia-ghuld:section:4"
+        ],
+        "evidenceRole": "UPDATE_OR_FAQ"
+      },
+      "provenance": {
+        "sourceId": "gw-am-faction-pack-v1.4",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
         "page": 19
       }
     }
@@ -15628,7 +15696,9 @@
           20,
           27
         ],
-        "reason": "Legends excluded; current non-Legends pages identical to accepted v1.2."
+        "reason": "Historical September baseline retained byte-for-byte; v1.4 owns current official updates.",
+        "status": "HISTORICAL",
+        "supersededBy": "gw-am-faction-pack-v1.4"
       },
       {
         "path": "books/adeptus-mechanicus/v2/sources/gw-faction-pack-v1.3.pages.json",
@@ -15649,13 +15719,47 @@
           "effects",
           "contracts"
         ]
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+        "authority": "OFFICIAL_GW",
+        "version": "1.4",
+        "effectiveFrom": "2026-10-14",
+        "status": "CURRENT",
+        "url": "https://assets.warhammer-community.com/eng_14-10_wh40k_-faction_pack_adeptus-mechanicus-g0jwiuyz3x-f5itnst9j9.pdf",
+        "includedPages": [
+          2,
+          19
+        ],
+        "excludedPages": [
+          20,
+          27
+        ]
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/sources/gw-faction-pack-v1.4.pages.json",
+        "sha256": "81FDEC9B4A6E0EB848121B2DBC1D24A80A4AF34BDA745CA6E925B9A8A8E0BFE9",
+        "authority": "OFFICIAL_PDF_TEXT_EXTRACTION",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf"
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/sources/official-v1.4-updates.json",
+        "sha256": "D03B8A438CB82C61FCB5F2367BC263928CCC9C876234E383EB10884329DA762F",
+        "authority": "OFFICIAL_GW_TRANSCRIPTION",
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "pages": [
+          4,
+          8,
+          19
+        ]
       }
     ],
     "sourceAuthority": "Waha 11E operational baseline; stronger current official GW evidence wins conflicts.",
     "integrity": "Exact on-disk SHA256; historical CRLF correspondence recorded separately. Build does not normalize bytes to pass integrity.",
     "scope": {
       "included": [
-        "current Faction Pack 11E v1.3 (2026-09-30)",
+        "current Faction Pack 11E v1.4 (2026-10-14)",
         "34 non-Legends current datasheets"
       ],
       "excluded": [
@@ -15672,7 +15776,7 @@
       },
       "gw-am-faction-pack-v1.3": {
         "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.3.pdf",
-        "role": "CURRENT_OFFICIAL_OVERRIDE_AND_UPDATE_EVIDENCE"
+        "role": "HISTORICAL_OFFICIAL_UPDATE_EVIDENCE"
       },
       "adeptus-mechanicus-codex-carry-forward": {
         "role": "ACCEPTED_TITLE_TRANSCRIPTION_ONLY",
@@ -15680,8 +15784,15 @@
         "allowedPointers": [
           "/detachments/1/stratagems/1/title"
         ]
+      },
+      "gw-am-faction-pack-v1.4": {
+        "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "role": "CURRENT_OFFICIAL_OVERRIDE_AND_UPDATE_EVIDENCE",
+        "version": "1.4",
+        "effectiveFrom": "2026-10-14"
       }
-    }
+    },
+    "currentOfficialSourceId": "gw-am-faction-pack-v1.4"
   },
   "sourceAccounting": [
     {
@@ -61204,7 +61315,7 @@
   ],
   "scope": {
     "included": [
-      "current Faction Pack 11E v1.3 (2026-09-30)",
+      "current Faction Pack 11E v1.4 (2026-10-14)",
       "34 non-Legends current datasheets"
     ],
     "excluded": [

@@ -258,6 +258,19 @@ def build():
                     record.setdefault('fieldProvenance', {})['sourceTypeLabel'] = {'sourcePath': SOURCE+'/adeptus-mechanicus.html', 'sha256': page_info['adeptus-mechanicus.html']['sha256'], 'xpath': hub.getroottree().getpath(type_labels[0])}
     for i, erratum in enumerate(corpus['errata']):
         add(erratum['sourceId'], 'SOURCE_ERRATUM', None, omit(erratum, ['sourceId']), '/errata/'+str(i))
+    official_updates = read('books/adeptus-mechanicus/v2/sources/official-v1.4-updates.json')
+    official_id = official_updates['sourceId']
+    assert official_id == enrollment['currentOfficialSourceId']
+
+    def official_evidence(source_id, page):
+        source_path = enrollment['sourceIds'][source_id]['sourcePath']
+        artifact = next(s for s in enrollment['artifacts'] if s['path'] == source_path)
+        assert 2 <= page <= 19, 'Official update outside accepted non-Legends scope'
+        return {'sourceId': source_id, 'sourcePath': source_path, 'sha256': artifact['sha256'], 'page': page}
+
+    for record in official_updates['records']:
+        added = add(record['id'], record['kind'], None, record['data'])
+        added['provenance'] = official_evidence(official_id, record['page'])
     # References are explicitly metadata, never executable rules or authority for
     # unit×rule answers. Excluded-mode navigation stays in source accounting only.
     for i, reference in enumerate(corpus['references']):
@@ -273,12 +286,11 @@ def build():
     # Update directives are evidence, not competing copies of operative rules.
     # The exact official document remains a source artifact; these records own
     # only document/page references, with canonical targets, not copied effects.
-    official = 'books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.3.pdf'
     updates = read('books/adeptus-mechanicus/v2/update-bindings.json')
     for update in updates:
         assert all(target in ids for target in update['targetIds']), update['id']+': canonical update target'
-        record = add(update['id'], 'SOURCE_UPDATE_REFERENCE', None, omit(update, ['id']), None)
-        record['provenance'] = {'sourceId': 'gw-am-faction-pack-v1.3', 'sourcePath': official, 'sha256': next(s['sha256'] for s in enrollment['artifacts'] if s['path']==official), 'page': update['page']}
+        record = add(update['id'], 'SOURCE_UPDATE_REFERENCE', None, omit(update, ['id', 'sourceId']), None)
+        record['provenance'] = official_evidence(update.get('sourceId', 'gw-am-faction-pack-v1.3'), update['page'])
     # Every scalar capture leaf has an explicit disposition. This projection
     # accounts for metadata/occurrences as well as facts, without promoting them
     # into a second gameplay owner. Unknown source domains fail the build.
@@ -327,6 +339,19 @@ def build():
         owner[key] = operation['after']
         target.setdefault('fieldProvenance', {})['/'.join(map(str, operation['field']))] = evidence
         effective['appliedSourceAdjudications'].append(copy.deepcopy(operation))
+    effective['appliedOfficialUpdates'] = []
+    for operation in official_updates['operations']:
+        target = index[operation['targetId']]
+        owner = target['data']
+        for key in operation['field'][:-1]:
+            owner = owner[key]
+        key = operation['field'][-1]
+        assert owner[key] == operation['before'], 'Official update does not match accepted prior field'
+        owner[key] = operation['after']
+        target.setdefault('fieldProvenance', {})['/'.join(map(str, operation['field']))] = {
+            **official_evidence(official_id, operation['page']),
+            'supersedes': copy.deepcopy(target['provenance'])}
+        effective['appliedOfficialUpdates'].append(copy.deepcopy(operation))
     return {'base': base, 'effective': effective}
 
 

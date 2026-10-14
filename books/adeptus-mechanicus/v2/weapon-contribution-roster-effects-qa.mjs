@@ -98,6 +98,6 @@ for(const name of ['cybernetica-datasmith','tech-priest-enginseer','tech-priest-
   const s={...structuredClone(state),attachments:[],units:[unit('owner',name,[id]),unit('duplicate',name)]};
   const result=run(s);assert.deepEqual(run(JSON.parse(JSON.stringify(s))),result);
 }
-assert.equal(built.schema.evaluator.validateContracts(built.book).rules,204);
+assert.equal(built.schema.evaluator.validateContracts(built.book).rules,205);
 console.log(JSON.stringify({status:'PASS',sourceOwners:1,existingCanonicalWeaponProfiles:1,runtimeCases:cases,provenanceChecks,mutations,
   exactOwner:true,referenceIdentity:true,baseFactsImmutable:true,blockedOwners:0,legacyContractReads:0}));

@@ -1,8 +1,8 @@
 {
   "schema": "adeptus-mechanicus-rule-contract-census/v2",
-  "sourceRules": 204,
-  "built": 204,
-  "valid": 204,
+  "sourceRules": 205,
+  "built": 205,
+  "valid": 205,
   "blockedOwners": 0,
   "blockedCases": 0,
   "invalidContracts": 0,
@@ -15,13 +15,13 @@
     "DETACHMENT_RULE": 10,
     "ENHANCEMENT": 34,
     "STRATAGEM": 51,
-    "FAQ_ERRATA_RULE": 8
+    "FAQ_ERRATA_RULE": 9
   },
-  "compatibilityRelations": 6936,
+  "compatibilityRelations": 6970,
   "compatibility": {
-    "MATCH": 370,
-    "CONDITIONAL": 1421,
-    "NO_MATCH": 5145,
+    "MATCH": 404,
+    "CONDITIONAL": 1427,
+    "NO_MATCH": 5139,
     "INVALID": 0,
     "UNRESOLVED": 0
   },
@@ -3036,6 +3036,11 @@
       "disposition": "RULE_OWNER"
     },
     {
+      "id": "faq-2",
+      "kind": "SOURCE_ERRATUM",
+      "disposition": "RULE_OWNER"
+    },
+    {
       "id": "book-introduction",
       "kind": "BOOK_USAGE",
       "disposition": "PRODUCT_SCOPE_INSTRUCTIONS"
@@ -3092,6 +3097,21 @@
     },
     {
       "id": "official-datasheet-update-reference:page:19",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-update-reference:chant-v1.4",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-update-reference:guided-retreat-v1.4",
+      "kind": "SOURCE_UPDATE_REFERENCE",
+      "disposition": "FACT_OR_REFERENCE"
+    },
+    {
+      "id": "official-update-reference:faq-2",
       "kind": "SOURCE_UPDATE_REFERENCE",
       "disposition": "FACT_OR_REFERENCE"
     }
