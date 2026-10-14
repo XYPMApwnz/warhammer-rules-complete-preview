@@ -13,6 +13,38 @@ import {isApplicationTestDependency} from '../books/shared/application-v2/browse
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const corpus=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
 const projection=adaptGlobalGlossary(corpus),contract=createReferenceContract({cards:new Map(projection.cards.map(card=>[card.id,card])),index:projection.index});
+const includedBooks=['death-guard','adeptus-mechanicus','chaos-space-marines'];
+const excludedBooks=['emperors-children','tyranids','tau-empire','space-marines','dark-angels','blood-angels'];
+const canonicalEntry=(bookId,canonicalId)=>{
+  const matches=corpus.entries.filter(item=>item.domain==='ARMY'&&item.sourceOwner.bookId===bookId&&item.sourceOwner.canonicalId===canonicalId);
+  assert.equal(matches.length,1,`${bookId}/${canonicalId}: exactly one canonical owner`);return matches[0];
+};
+for(const book of excludedBooks)assert.ok(!corpus.entries.some(item=>item.domain==='ARMY'&&item.sourceOwner.bookId===book&&
+  !(item.contexts||[]).some(context=>includedBooks.includes(context.effectiveBookId))),`${book}: unsupported standalone book`);
+const updatedReferences=[
+  {book:'death-guard',id:'unit-lord-of-contagion',pattern:/\bT\s+7\b/,text:['Invulnerable Save 4+','Vector of Disease','While this model is leading a unit','Manreaper','UNIT COMPOSITION']},
+  {book:'death-guard',id:'datasheet-lord-of-contagion:weapon:1',pattern:/\bS\s+9\b/,text:['AP -2','D 3','lethal hits']},
+  {book:'death-guard',id:'datasheet-lord-of-contagion:section:1',text:['Vector of Disease','While this model is leading a unit','Unholy Resilience','once per battle']},
+  {book:'adeptus-mechanicus',id:'detachment-luminen-auto-choir:stratagem:2',text:[
+    'Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move.',
+    'That move does not prevent your unit from being eligible to declare a charge.'],absent:/BATTLECLADE/},
+  {book:'adeptus-mechanicus',id:'detachment-haloscreed-battle-clade:stratagem:5',text:[
+    'Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move.',
+    'your unit can re-roll hazard rolls.']},
+  {book:'adeptus-mechanicus',id:'faq-2',text:[
+    'When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?',
+    'When you have selected the Icon of War ability you want to use.']},
+  {book:'chaos-space-marines',id:'datasheet-legionaries:profile:1',pattern:/\bT\s+5\b/},
+  {book:'chaos-space-marines',id:'datasheet-havocs:profile:1',pattern:/\bW\s+3\b/},
+  {book:'chaos-space-marines',id:'datasheet-chaos-lord:weapon:4',pattern:/\bS\s+5\b/,text:['Astartes chainblade']}
+];
+const csmAbility=canonicalEntry('chaos-space-marines','datasheet-chaos-lord:section:1:block:0:text');
+for(const book of includedBooks){
+  const points=corpus.entries.filter(item=>item.domain==='ARMY'&&item.sourceOwner.bookId===book&&item.recordType==='UNIT')
+    .flatMap(item=>item.mfm?.pointRecords||[]);
+  assert.ok(points.length,`${book}: source-owned MFM points remain available`);
+  assert.ok(points.every(point=>point.provenance.sourceVersion==='v1.6'),`${book}: stale MFM source version`);
+}
 const requests=[],forbidden=[],errors=[],results=[];
 const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json',
   '.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg'};
@@ -20,10 +52,10 @@ const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
   if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
   const allowed=isApplicationTestDependency(address)||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
-    /^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
+    /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
-    /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address)||
+    /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address)||
     ['/glossary/index.html','/glossary/v2/compatibility.mjs','/glossary/v2/generated/index.en.json'].includes(address);
   const file=path.resolve(repo,address.slice(1));
   if(!allowed||!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){
@@ -125,8 +157,8 @@ try {
     await search(page,longest.label);await targetLink(page,longest.id).click();await article(page,longest.id,true);await popupGeometry(page);
     assert.equal(await page.locator('dialog[open]').evaluate(node=>node.scrollHeight>node.clientHeight),true,'Long reference is not internally scrollable');
     await screenshot(page,device+'-long-popup');await page.keyboard.press('Escape');
-    // Other globally enrolled registries remain visible despite not being mounted books.
-    for(const selected of [corpus.entries.find(entry=>entry.sourceOwner.bookId==='tyranids'&&entry.recordType==='ABILITY'),
+    // Registered V2 books and shared Missions remain globally reachable.
+    for(const selected of [csmAbility,
       corpus.entries.find(entry=>entry.domain==='MISSIONS'&&entry.recordType==='FORCE_DISPOSITION'),
       corpus.entries.find(entry=>entry.recordType==='WEAPON_PROFILE'),
       corpus.entries.find(entry=>entry.recordType==='UNIT'&&entry.mfm?.pointRecords?.length)]) {
@@ -139,6 +171,29 @@ try {
       }
       await geometry(page);
     }
+    for(const reference of updatedReferences){
+      const selected=canonicalEntry(reference.book,reference.id);
+      await page.goto(encodeRoute(entry,{destination:'GLOSSARY',...contract.identityFor(selected.id)}));await ready(page);
+      const node=await article(page,selected.id),text=await node.innerText();
+      for(const expected of reference.text||[])assert.ok(text.includes(expected),`${selected.id}: current source text missing from article`);
+      if(reference.pattern)assert.match(text,reference.pattern,`${selected.id}: current profile value missing from article`);
+      if(reference.absent)assert.doesNotMatch(text,reference.absent,`${selected.id}: superseded qualifier remains visible`);
+      await page.reload();await ready(page);assert.equal(await (await article(page,selected.id)).innerText(),text,'Reload changed canonical reference');
+      await geometry(page);
+    }
+    const excludedLegacyIds={
+      'emperors-children':'army::emperors-children::unit::unit-noise-marines',
+      tyranids:'army::tyranids::unit::unit-barbgaunts',
+      'tau-empire':'army::tau-empire::unit::unit-breacher-team',
+      'space-marines':'army::space-marines::unit::unit-adrax-agatone',
+      'dark-angels':'army::dark-angels::unit::unit-asmodai',
+      'blood-angels':'army::blood-angels::unit::unit-astorath'
+    };
+    for(const [book,id] of Object.entries(excludedLegacyIds)){
+      await page.goto(origin+'/glossary/index.html?book='+book+'#'+encodeURIComponent(id));await ready(page);await global(page);
+      assert.equal(await page.locator('main .v2-not-found').innerText(),'This reference is unavailable. Choose an entry from the Glossary.');
+      assert.equal(await page.locator('main article.v1-reference-article').count(),0,`${book}: excluded link resolved to another rule`);
+    }
     // Full old global IDs and contextual local aliases retain their exact target.
     for(const old of ['/glossary/index.html#'+encodeURIComponent(deep),'/glossary/index.html?book=core-rules#core-deep-strike',
       '/glossary/index.html?book=death-guard#core-deep-strike','/glossary/index.html?book=adeptus-mechanicus#datasheet-deep-strike']) {
@@ -149,7 +204,8 @@ try {
     // Each normal book and its real imported personal guide can enter the global catalog.
     const fixtures={
       'death-guard':'+ DETACHMENT: Virulent Vectorium\nChar1: 1x Lord of Contagion (120 pts): Manreaper',
-      'adeptus-mechanicus':'+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\nChar1: 1x Tech-priest Dominus (75 pts): Volkite blaster, Macrostubber, Omnissian axe'};
+      'adeptus-mechanicus':'+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\nChar1: 1x Tech-priest Dominus (75 pts): Volkite blaster, Macrostubber, Omnissian axe',
+      'chaos-space-marines':'+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Pactbound Zealots\nChar1: 1x Chaos Lord (95 pts): Daemon hammer, Plasma pistol\n  Mark of Chaos: Nurgle'};
     for(const [book,text]of Object.entries(fixtures)) {
       await page.evaluate(route=>window.WarhammerAppV2.navigate(route),{destination:'ARMY_BOOK',bookId:book});await active(page,book);
       const theme=await page.evaluate(()=>({bodyClass:document.body.className,background:getComputedStyle(document.body).backgroundColor,
@@ -161,7 +217,7 @@ try {
       await page.waitForFunction(()=>window.ArmyBookAppV2.roster.state?.units?.length===1);
       await page.evaluate(()=>window.ArmyBookAppV2.openPersonalGuide());await page.waitForSelector('main [data-roster-nav-instance-id]');
       await topGlossary(page);await search(page,'Deep Strike');assert.equal(await targetLink(page,deep).count(),1);
-      const outside=corpus.entries.find(entry=>entry.sourceOwner.bookId==='tyranids'&&entry.recordType==='ABILITY');
+      const outside=book==='chaos-space-marines'?canonicalEntry('adeptus-mechanicus','faq-2'):csmAbility;
       await search(page,outside.label);assert.equal(await targetLink(page,outside.id).count(),1,'Personal Guide incorrectly restricted global references');
       await page.evaluate(()=>{window.previousGlossary={app:window.WarhammerAppV2.activeModule,root:document.querySelector('[data-global-glossary]'),
         controls:[...document.querySelectorAll('[data-global-glossary] a,[data-global-glossary] button,[data-global-glossary] input')]};});
@@ -179,7 +235,8 @@ try {
       background:getComputedStyle(document.querySelector('.v2-library-home')).backgroundImage,styles:[...document.querySelectorAll('link[rel="stylesheet"]')].map(link=>link.href)})),home,'Glossary changed Home presentation');
     results.push({device,corpus:corpus.entries.length,searchTitle:true,searchAliases:true,searchDefinition:true,categories:true,
       canonicalPopup:true,fullArticle:true,closeEscapeOutsideFocus:true,nativeNewTab:true,directReload:true,backForward:true,
-      legacyLinks:true,bookToGlobal:true,personalGuideToGlobal:true,scopeUnrestricted:true,lifecycleCleanup:true,themeIsolation:true,overflow:false});
+      legacyLinks:true,excludedLegacyUnavailable:excludedBooks.length,currentOfficialReferences:updatedReferences.length,mfmVersion:'v1.6',
+      bookToGlobal:true,personalGuideToGlobal:true,scopeUnrestricted:true,lifecycleCleanup:true,themeIsolation:true,overflow:false});
     await context.close();
   }
   assert.deepEqual(errors,[],'Global Glossary raised browser exceptions');assert.deepEqual(forbidden,[],'Global Glossary loaded a legacy/unexpected runtime');

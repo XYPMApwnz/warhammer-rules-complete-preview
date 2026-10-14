@@ -1,0 +1,184 @@
+/** Bounded V2 factual-owner parity; this is not a new independent source audit. */
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import os from 'node:os';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {loadGlossaryV2Inputs,createGlossaryV2Index,assertGlossaryV2Parity} from '../content/glossary-v2-index.mjs';
+import {assertV2ArmyBookParity,V2_ARMY_BOOK_IDS} from '../content/army-v2-projection.mjs';
+import {createGlobalGlossaryContent} from '../../../books/shared/army-book-app-v2/global-glossary-content.mjs';
+
+const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
+const read=relative=>JSON.parse(fs.readFileSync(path.join(repo,relative),'utf8'));
+const inputs=await loadGlossaryV2Inputs(),index=createGlossaryV2Index(inputs);
+const published=read('glossary/v2/generated/index.en.json');
+assertGlossaryV2Parity(published,inputs);
+assert.deepEqual(index.supportedArmyBooks,V2_ARMY_BOOK_IDS);
+const excludedBooks=new Set(['emperors-children','tyranids','tau-empire','space-marines','dark-angels','blood-angels']);
+assert.ok(index.entries.every(entry=>entry.domain!=='ARMY'||!excludedBooks.has(entry.sourceOwner.bookId)),'Unconnected standalone Army Book leaked into V2');
+const centralKinds=new Set(['POINTS_SCHEDULE_ROW','PAID_WARGEAR_COST','DETACHMENT_ROSTER_METADATA','ENHANCEMENT_COST_QUALIFIERS','ALLIED_POINTS_DEPENDENCY','ATTACHMENT_RELATION']);
+const ownerKey=(book,id)=>book+'\0'+id;
+const armyEntries=index.entries.filter(entry=>entry.domain==='ARMY');
+const army=new Map(armyEntries.map(entry=>[ownerKey(entry.sourceOwner.bookId,entry.sourceOwner.canonicalId),entry]));
+assert.equal(army.size,armyEntries.length,'Duplicated canonical Army owner');
+let canonicalFacts=0;
+const expectedArmyKeys=new Set();
+for(const model of inputs.armyModels)for(const entity of model.entities){
+  if(centralKinds.has(entity.kind))continue;
+  const key=ownerKey(model.book.id,entity.id),entry=army.get(key);expectedArmyKeys.add(key);
+  assert.ok(entry,'Missing canonical V2 Glossary record '+key);
+  assert.deepEqual(entry.facts.canonicalData,entity.data,'Canonical data mismatch '+key);
+  assert.deepEqual(entry.provenance,entity.provenance,'Canonical provenance mismatch '+key);
+  assert.equal(entry.sourceOwner.interface,model.factualInterface);
+  const owner=entity.parentId||entity.ownerId;
+  const parent=model.entities.some(candidate=>candidate.id===owner)?owner:null;
+  assert.equal(entry.parent?.canonicalId||null,parent,'Wrong physical/canonical owner '+key);
+  canonicalFacts++;
+}
+assert.deepEqual(new Set(army.keys()),expectedArmyKeys,'Missing/extra canonical Army inventory');
+const entry=(book,id)=>{const result=army.get(ownerKey(book,id));assert.ok(result,book+'/'+id);return result;};
+const display=createGlobalGlossaryContent(index);
+for(const article of armyEntries)assert.ok(display.project(article).definition,'Empty canonical Army article '+article.id);
+for(const model of inputs.armyModels)for(const unit of model.entities.filter(entity=>entity.kind==='DATASHEET')){
+  const projected=entry(model.book.id,unit.id),rendered=display.project(projected).definition;
+  for(const ability of projected.facts.ruleFacts.abilities)if(ability.text&&ability.title&&ability.title!==ability.id)assert.ok(rendered.includes(ability.title),'Canonical ability heading lost '+ability.id);
+  for(const profile of projected.facts.profiles)if(profile.stats.INSV)assert.ok(rendered.includes('Invulnerable Save '+profile.stats.INSV),'Profile save missing from Unit article '+profile.canonicalId);
+  if(unit.data.keywordScopesId){
+    const scopes=model.entities.find(entity=>entity.id===unit.data.keywordScopesId).data.scopes;
+    assert.deepEqual(projected.facts.factionKeywords,[...new Set(scopes.filter(scope=>scope.label==='FACTION KEYWORDS').flatMap(scope=>scope.keywords))]);
+    assert.deepEqual(projected.facts.keywords,[...new Set(scopes.filter(scope=>scope.label!=='FACTION KEYWORDS').flatMap(scope=>scope.keywords))]);
+  }
+}
+for(const component of inputs.armyModels.find(model=>model.book.id==='chaos-space-marines').entities.filter(entity=>entity.kind==='NAMED_RULE_COMPONENT'))assert.ok(display.project(entry('chaos-space-marines','unit-abaddon-the-despoiler')).definition.includes(component.data.text),'Source-owned nested Warmaster component lost');
+assert.ok(display.project(entry('adeptus-mechanicus','unit-tech-priest-dominus')).definition.includes('Invulnerable Save 5+'));
+let multiDispositionControls=0,scheduleControls=0;
+for(const article of armyEntries){
+  if(article.recordType==='DETACHMENT'){
+    const references=article.canonicalReferences.filter(reference=>reference.relationType==='FORCE_DISPOSITION');
+    if(references.length>1){for(const reference of references)assert.ok(display.project(article).definition.includes(index.entries.find(target=>target.id===reference.id).label),'Additional Force Disposition missing '+article.id);multiDispositionControls++;}
+    for(const rule of article.facts.detachmentRules||[])for(const block of rule.content||[])if(block.text)assert.ok(display.project(article).definition.includes(block.text),'Canonical Detachment content omitted '+rule.id);
+  }
+  const lines=display.project(article).mfm.lines;
+  for(const points of article.mfm?.pointRecords||[])for(const schedule of points.pointSchedules||[]){
+    if(schedule.sourceLabel)assert.ok(lines.includes(schedule.sourceLabel),'MFM schedule source qualifier hidden '+article.id);
+    if(Number.isFinite(schedule.minCopies))assert.ok(lines.includes('Units '+schedule.minCopies+(schedule.maxCopies==null?'+':schedule.maxCopies===schedule.minCopies?'':'–'+schedule.maxCopies)),'MFM unit-copy bounds hidden '+article.id);
+    scheduleControls++;
+  }
+}
+assert.ok(multiDispositionControls>0&&scheduleControls>0,'Real MFM disposition/schedule controls were not exercised');
+
+// Literal current official controls retained by the existing bounded v1.4 QA.
+const amWhen='Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move.';
+const amGuidedWhen='Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move.';
+const amGuidedEffect='• If your unit is a HALO OVERRIDE unit, your unit can re-roll hazard rolls.\n• That fall-back move does not prevent your unit from:\n  • Being eligible to shoot.\n  • Being eligible to declare a charge.';
+const chant=entry('adeptus-mechanicus','detachment-luminen-auto-choir:stratagem:2').facts.canonicalData;
+assert.equal(chant.lines.find(line=>line.label==='WHEN').text,amWhen);
+assert.equal(chant.lines.find(line=>line.label==='EFFECT').text,'That move does not prevent your unit from being eligible to declare a charge.');
+assert.ok(!JSON.stringify(chant).includes('BATTLECLADE'),'Old Chant qualifier leaked into Glossary');
+const guided=entry('adeptus-mechanicus','detachment-haloscreed-battle-clade:stratagem:5').facts.canonicalData;
+assert.equal(guided.lines.find(line=>line.label==='WHEN').text,amGuidedWhen);
+assert.equal(guided.lines.find(line=>line.label==='EFFECT').text,amGuidedEffect);
+const faq=entry('adeptus-mechanicus','faq-2').facts.canonicalData;
+assert.equal(faq.title,'When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?');
+assert.equal(faq.text,'When you have selected the Icon of War ability you want to use.');
+
+// Reuse the already reviewed explicit profile inventory, not runtime-derived counts.
+const officialQA=fs.readFileSync(path.join(repo,'books/chaos-space-marines/v2/official-v1.3-qa.py'),'utf8');
+const expectedText=officialQA.match(/^EXPECTED = (\{[\s\S]*?^\})/m);
+assert.ok(expectedText,'Existing reviewed CSM v1.3 literal profile inventory missing');
+const csmExpected=JSON.parse(expectedText[1]);
+for(const [id,fields]of Object.entries(csmExpected)){
+  const data=entry('chaos-space-marines',id).facts.canonicalData;
+  for(const [field,wanted]of Object.entries(fields))assert.equal(data.stats?.[field]??data[field],wanted,'CSM official profile not reflected in Glossary '+id+'/'+field);
+}
+assert.equal(entry('chaos-space-marines','datasheet-legionaries:profile:1').facts.canonicalData.stats.T,'5');
+assert.equal(entry('chaos-space-marines','datasheet-havocs:profile:1').facts.canonicalData.stats.W,'3');
+assert.equal(entry('chaos-space-marines','datasheet-chaos-lord:weapon:4').facts.canonicalData.strength,'5');
+const lordWeapons=armyEntries.filter(record=>record.sourceOwner.bookId==='chaos-space-marines'&&record.parent?.canonicalId==='unit-chaos-lord'&&record.recordType==='WEAPON_PROFILE');
+assert.equal(lordWeapons.filter(record=>record.label==='Astartes chainblade').length,1,'Chaos Lord duplicate chainblade');
+assert.ok(!armyEntries.some(record=>record.sourceOwner.bookId==='chaos-space-marines'&&record.parent?.canonicalId==='unit-havocs'&&record.recordType==='WEAPON_PROFILE'&&/bolt pistol/i.test(record.label)),'Orphan correction invented a Havocs bolt pistol');
+
+// Every augmented current MFM value keeps the central record, version and provenance.
+const catalog=inputs.mfmCatalog,centralRecords=new Map();
+for(const partition of ['unitPointRecords','paidUpgradeRecords','leaderEligibilityRecords','supportEligibilityRecords','detachments','enhancementCosts','qualifierRecords'])for(const record of catalog[partition])centralRecords.set(record.id,record);
+const augmented=new Map();
+const collect=value=>{
+  if(!value||typeof value!=='object')return;
+  if(value.id&&centralRecords.has(value.id)){
+    const copy=structuredClone(value);delete copy.targetEntryIds;delete copy.referenceOnlyTargetIds;
+    assert.deepEqual(copy,centralRecords.get(value.id),'MFM central factual mismatch '+value.id);
+    assert.equal(copy.provenance.sourceVersion,'v1.6','Old source version in Glossary MFM');
+    assert.equal(copy.provenance.effectiveDate,null,'Invented MFM effective date');
+    augmented.set(value.id,copy);return;
+  }
+  for(const child of Object.values(value))collect(child);
+};
+for(const record of index.entries){collect(record.mfm);for(const context of record.contexts||[])collect(context.mfm);if(record.domain==='MFM')collect(record.facts);}
+const boundRecordIds=new Set(inputs.armyModels.flatMap(model=>Object.keys(model.mfmIdentityBindings)));
+for(const partition of ['unitPointRecords','paidUpgradeRecords','detachments','enhancementCosts'])for(const record of catalog[partition]){
+  if(boundRecordIds.has(record.id))assert.ok(augmented.has(record.id),'Missing connected MFM owner '+record.id);
+}
+for(const partition of ['leaderEligibilityRecords','supportEligibilityRecords','qualifierRecords'])for(const record of catalog[partition]){
+  if(V2_ARMY_BOOK_IDS.includes(record.armyBookId||record.factionId))assert.ok(augmented.has(record.id),'Missing MFM eligibility/qualifier '+record.id);
+}
+const dependencyRefs=catalog.unitReferences.filter(record=>V2_ARMY_BOOK_IDS.includes(record.crossFactionDependency?.consumerArmyBookId));
+const dependencyPoints=catalog.unitPointRecords.filter(record=>dependencyRefs.some(reference=>reference.id===record.unitReferenceId));
+assert.deepEqual(new Set(index.entries.filter(record=>record.domain==='MFM').map(record=>record.sourceOwner.canonicalId)),new Set(dependencyPoints.map(record=>record.id)),'Missing/extra source-owned allied dependencies');
+assert.equal(dependencyPoints.length,2,'Reviewed CSM allied points dependencies');
+for(const id of dependencyPoints.map(record=>record.id))assert.ok(augmented.has(id));
+assert.ok([...augmented.values()].every(record=>V2_ARMY_BOOK_IDS.includes(record.armyBookId||record.factionId)||dependencyPoints.some(dependency=>dependency.id===record.id)),'Standalone excluded MFM faction content leaked');
+
+const aliasOnly=new Set(['core-errata-15-05','core-errata-15-06']);
+const expectedCore=inputs.coreCatalog.records.filter(record=>['FULL_CONTENT','SOURCE_CONFLICT'].includes(record.state)&&!aliasOnly.has(record.id));
+assert.deepEqual(new Set(index.entries.filter(record=>record.domain==='CORE').map(record=>record.sourceOwner.canonicalId)),new Set(expectedCore.map(record=>record.id)),'Core canonical inventory changed');
+const missionPartitions=['forceDispositions','primaryMissions','secondaryMissions','deployments','twists','missionSequenceRules','missionReferenceRules','forceDispositionMatchups','terrainLayouts'];
+const expectedMissionIds=new Set(inputs.missionCatalogs.flatMap(catalog=>missionPartitions.flatMap(partition=>catalog[partition].map(record=>record.id))));
+assert.deepEqual(new Set(index.entries.filter(record=>record.domain==='MISSIONS'&&record.recordType!=='FAQ_CLARIFICATION').map(record=>record.sourceOwner.canonicalId)),expectedMissionIds,'Mission canonical inventory changed');
+
+let mutations=0;
+function rejected(action,label){let error;try{action();}catch(cause){error=cause;}assert.ok(error&&error.code==='ERR_ASSERTION','Comparator failed to detect '+label);mutations++;}
+function publicationMutation(label,mutate){const changed=structuredClone(index);mutate(changed);rejected(()=>assertGlossaryV2Parity(changed,inputs),label);}
+const legionaryId=entry('chaos-space-marines','datasheet-legionaries:profile:1').id;
+const profile=publication=>publication.entries.find(record=>record.id===legionaryId);
+publicationMutation('stale numerical value',publication=>{profile(publication).facts.canonicalData.stats.T='4';});
+publicationMutation('missing owner',publication=>{publication.entries=publication.entries.filter(record=>record.id!==legionaryId);});
+publicationMutation('extra/duplicate owner',publication=>{publication.entries.push(structuredClone(profile(publication)));});
+publicationMutation('wrong canonical owner',publication=>{profile(publication).sourceOwner.bookId='death-guard';});
+publicationMutation('lost provenance',publication=>{profile(publication).provenance=[];});
+publicationMutation('wrong displayed normalized profile',publication=>{profile(publication).facts.stats.T='4';});
+publicationMutation('wrong MFM points',publication=>{publication.entries.find(record=>record.mfm?.pointRecords?.length).mfm.pointRecords[0].pointSchedules[0].entries[0].value++;});
+publicationMutation('wrong MFM source version',publication=>{publication.entries.find(record=>record.mfm?.pointRecords?.length).mfm.pointRecords[0].provenance.sourceVersion='v1.5';});
+publicationMutation('wrong canonical caption',publication=>{profile(publication).label='Wrong profile';});
+const changedModels=structuredClone(inputs.armyModels),changedModel=changedModels.find(model=>model.book.id==='chaos-space-marines');
+changedModel.entities.find(entity=>entity.id==='datasheet-legionaries:profile:1').data.stats.T='4';
+rejected(()=>assertV2ArmyBookParity(changedModels),'canonical/Army Book mismatch');
+const wrongOwner=structuredClone(inputs.armyModels);
+wrongOwner.find(model=>model.book.id==='chaos-space-marines').entities.find(entity=>entity.id==='datasheet-legionaries:profile:1').ownerId='unit-chaos-lord';
+rejected(()=>assertV2ArmyBookParity(wrongOwner),'canonical/Army Book wrong owner');
+rejected(()=>assertV2ArmyBookParity(inputs.armyModels,{published:bookId=>{
+  const payload=structuredClone(inputs.armyModels.find(model=>model.book.id===bookId).appPayload);
+  payload.factManifest[0].value='STALE';return payload;
+}}),'stale Army Book projection');
+const changedInputs={...inputs,armyModels:structuredClone(inputs.armyModels)};
+const changedSource=changedInputs.armyModels.find(model=>model.book.id==='chaos-space-marines');
+changedSource.entities.find(entity=>entity.id==='datasheet-legionaries:profile:1').data.stats.T='4';
+changedSource.appPayload.factManifest.find(field=>field.entityId==='datasheet-legionaries:profile:1'&&field.path.join('/')==='stats/T').value='4';
+changedSource.appPayload.cards.find(card=>card.id==='datasheet-legionaries:profile:1').fields.find(field=>field.source.path==='/stats/T').value='4';
+assertV2ArmyBookParity(changedInputs.armyModels,{published:bookId=>changedInputs.armyModels.find(model=>model.book.id===bookId).appPayload});
+rejected(()=>assertGlossaryV2Parity(index,changedInputs),'source change with matching fresh Army Book cannot leave old Glossary');
+const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const artifacts=['index.en.json','index.en.js'].map(name=>path.join(repo,'glossary/v2/generated',name));
+const beforeHashes=artifacts.map(digest),temporary=fs.mkdtempSync(path.join(os.tmpdir(),'v2-glossary-stale-'));
+try{
+  const stale=structuredClone(index);stale.entries.find(record=>record.id===legionaryId).facts.canonicalData.stats.T='4';
+  const publicationFile=path.join(temporary,'stale-index.json');fs.writeFileSync(publicationFile,JSON.stringify(stale));
+  let error;try{execFileSync(process.execPath,['glossary/v2/tools/build-glossary-v2.mjs','--core-only','--check','--publication='+publicationFile],{cwd:repo,encoding:'utf8',stdio:['ignore','pipe','pipe'],maxBuffer:16*1024*1024});}catch(cause){error=cause;}
+  assert.ok(error&&error.status!==0&&/Stale non-Core factual publication/.test(error.stderr||''),'Scoped CLI failed to reject stale Army publication');mutations++;
+}finally{
+  assert.ok(path.resolve(temporary).startsWith(path.resolve(os.tmpdir())+path.sep),'Unexpected temporary cleanup path');
+  fs.rmSync(temporary,{recursive:true,force:true});
+}
+assert.deepEqual(artifacts.map(digest),beforeHashes,'Scoped --check modified generated publications');
+console.log(JSON.stringify({status:'PASS',armyBooks:V2_ARMY_BOOK_IDS,canonicalOwners:canonicalFacts,csmOfficialProfiles:Object.keys(csmExpected).length,mfmRecords:augmented.size,sourceOwnedDependencies:dependencyPoints.length,coreRecords:expectedCore.length,missionRecords:expectedMissionIds.size,mutationControls:mutations}));

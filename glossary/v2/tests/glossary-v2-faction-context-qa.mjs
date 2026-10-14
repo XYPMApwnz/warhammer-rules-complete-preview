@@ -1,61 +1,83 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import path from 'node:path';
-import vm from 'node:vm';
-import {fileURLToPath} from 'node:url';
-import {buildGlossaryV2Index,loadGlossaryV2Inputs} from '../content/glossary-v2-index.mjs';
+import {adaptGlobalGlossary} from '../../../books/shared/army-book-app-v2/global-glossary.mjs';
+import {createGlobalGlossaryContent} from '../../../books/shared/army-book-app-v2/global-glossary-content.mjs';
+import {createReferenceContract} from '../../../books/shared/army-book-app-v2/reference-contract.mjs';
+import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
+import {buildGlossaryV2Index} from '../content/glossary-v2-index.mjs';
 
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
+const root=new URL('../../../',import.meta.url),read=file=>JSON.parse(fs.readFileSync(new URL(file,root),'utf8'));
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines'];
+const excluded=['emperors-children','tyranids','tau-empire','space-marines','dark-angels','blood-angels'];
+const sources=new Map(books.map(book=>[book,new Map(read(`books/${book}/v2/generated/effective.json`).entities.map(entity=>[entity.id,entity]))]));
 const index=await buildGlossaryV2Index();
-const repeat=await buildGlossaryV2Index();
-assert.deepEqual(repeat,index,'context-aware Glossary V2 projection must remain deterministic');
-assert.equal(index.counts.total,4706);
-assert.equal(index.counts.standalone,1808);
-assert.equal(index.counts.scopedChildren,2898);
-
-const byId=new Map(index.entries.map(entry=>[entry.id,entry]));
-const stormId='army::space-marines::detachment::stormlance-task-force';
-const terminatorId='army::space-marines::unit::unit-terminator-squad';
-const ravenwingId='army::space-marines::unit::unit-chaplain-on-bike';
-const storm=byId.get(stormId),terminator=byId.get(terminatorId),ravenwing=byId.get(ravenwingId);
-assert(storm&&terminator&&ravenwing,'shared SM-family controls must remain one canonical entry each');
-const context=(entry,bookId)=>entry.contexts.find(item=>item.effectiveBookId===bookId);
-assert.equal(storm.mfm.detachment.detachmentPoints,3);
-assert.equal(context(storm,'dark-angels').mfm.detachment.detachmentPoints,3);
-assert.equal(context(storm,'blood-angels').mfm.detachment.detachmentPoints,2);
-assert(!terminator.facts.keywords.includes('DEATHWING'),'canonical Space Marines facts must not absorb the DA overlay');
-assert(context(terminator,'dark-angels').factOverrides.keywords.includes('DEATHWING'));
-assert(context(ravenwing,'dark-angels').factOverrides.keywords.includes('RAVENWING'));
-
-const inputs=await loadGlossaryV2Inputs();
-const family=new Map(inputs.armyModels.filter(model=>['space-marines','dark-angels','blood-angels'].includes(model.book.id)).map(model=>[model.book.id,model]));
-const sharedUnits=new Map();
-for(const [bookId,model] of family)for(const unit of model.units){
-  if(bookId!=='space-marines'&&unit.sourceBookId!=='space-marines')continue;
-  const rows=sharedUnits.get(unit.id)||[];rows.push({bookId,keywords:[...(unit.keywords||unit.intrinsicKeywords||[])].sort()});sharedUnits.set(unit.id,rows);
+assert.ok(JSON.stringify(index)===JSON.stringify(await buildGlossaryV2Index()),'Connected V2 projection is deterministic');
+assert.ok(JSON.stringify(index)===JSON.stringify(read('glossary/v2/generated/index.en.json')),'Published corpus is the current V2 projection');
+const mfm=createEffectiveMfmCatalog().catalog;
+const dependencies=['mfm-unit-points-a273c224855f8ac1','mfm-unit-points-ae6cc14baed6e18a'];
+function verify(candidate){
+  assert.deepEqual(candidate.supportedArmyBooks,books,'Exact connected books and order');
+  const armies=candidate.entries.filter(entry=>entry.domain==='ARMY');
+  assert.deepEqual([...new Set(armies.map(entry=>entry.sourceOwner.bookId))].sort(),[...books].sort(),'No unsupported standalone factual owners');
+  assert.equal(armies.filter(entry=>entry.recordType==='UNIT').length,124,'Complete connected datasheets');
+  for(const entry of armies){
+    const source=sources.get(entry.sourceOwner.bookId)?.get(entry.sourceOwner.canonicalId);
+    assert.ok(source,`${entry.id}: factual owner is a connected canonical V2 entity`);
+    assert.deepEqual(entry.facts.canonicalData,source.data,`${entry.id}: another faction did not overwrite canonical facts`);
+    assert.deepEqual(entry.contexts.map(context=>context.effectiveBookId),[entry.sourceOwner.bookId],`${entry.id}: book membership isolation`);
+    assert.ok(entry.contexts.every(context=>!context.factOverrides&&!context.omittedFactFields),`${entry.id}: no legacy faction overlays`);
+  }
+  const points=candidate.entries.filter(entry=>entry.domain==='MFM');
+  assert.deepEqual(points.map(entry=>entry.sourceOwner.canonicalId).sort(),dependencies,'Only two source-owned CSM points dependencies survive');
+  for(const entry of points){
+    const canonical=mfm.unitPointRecords.find(record=>record.id===entry.sourceOwner.canonicalId);
+    assert.deepEqual(entry.facts,canonical,`${entry.id}: exact central MFM dependency`);
+    assert.equal(entry.facts.provenance.sourceVersion,'v1.6');
+    assert.deepEqual(entry.contexts,[{effectiveBookId:'chaos-space-marines',dependencyKind:'POINTS_ONLY'}]);
+    assert.ok(['thousand-sons','world-eaters'].includes(entry.sourceOwner.factionId));
+  }
+  for(const book of excluded){
+    assert.ok(!armies.some(entry=>entry.sourceOwner.bookId===book),`${book}: no standalone book`);
+    assert.ok(!candidate.entries.some(entry=>(entry.contexts||[]).some(context=>context.effectiveBookId===book)),`${book}: no residual context`);
+  }
 }
-const contextualKeywordUnits=[...sharedUnits].filter(([,rows])=>rows.length>1&&new Set(rows.map(row=>JSON.stringify(row.keywords))).size>1);
-assert.equal(contextualKeywordUnits.length,29,'the complete proven DA keyword-overlay family must remain represented');
-for(const [unitId,rows] of contextualKeywordUnits){
-  const entry=byId.get(`army::space-marines::unit::${unitId}`);assert(entry,`${unitId}: shared canonical article missing`);
-  for(const row of rows){const override=context(entry,row.bookId)?.factOverrides||{},facts={...entry.facts,...override};assert.deepEqual([...facts.keywords].sort(),row.keywords,`${unitId}/${row.bookId}: contextual keywords diverged from effective Army model`);}
+verify(index);
+const projection=adaptGlobalGlossary(index),contract=createReferenceContract({cards:new Map(projection.cards.map(card=>[card.id,card])),index:projection.index});
+const core=contract.resolveAlias('core-deep-strike');assert.ok(core,'Shared Core reference remains reachable');
+for(const book of books)assert.equal(contract.resolveAlias('core-deep-strike',{registryId:book}),core,`${book}: Core alias retains the single owner`);
+
+// Identical local weapon IDs across actual books remain distinct qualified identities.
+const sharedCanonical=index.entries.filter(entry=>entry.domain==='ARMY'&&entry.recordType==='WEAPON_PROFILE')
+  .find(entry=>index.entries.some(other=>other.domain==='ARMY'&&other.recordType==='WEAPON_PROFILE'&&other.sourceOwner.canonicalId===entry.sourceOwner.canonicalId&&other.sourceOwner.bookId!==entry.sourceOwner.bookId));
+assert.ok(sharedCanonical,'Cross-book canonical-ID collision control must be exercised');
+const shared=index.entries.filter(entry=>entry.domain==='ARMY'&&entry.sourceOwner.canonicalId===sharedCanonical.sourceOwner.canonicalId);
+assert.ok(shared.length>1);
+for(const entry of shared){
+  const book=entry.sourceOwner.bookId;
+  assert.equal(contract.resolveAlias(entry.sourceOwner.canonicalId,{registryId:book}),entry.id,`${book}: qualified alias ownership`);
+  assert.equal(contract.resolve(contract.identityFor(entry.id)).targetId,entry.id);
+  for(const requested of books){
+    const view=createGlobalGlossaryContent({entries:index.entries,bookId:requested}).project(entry);
+    assert.deepEqual(view.entry.facts,entry.facts,`${book}/${requested}: no foreign context rewrites facts`);
+  }
 }
-
-const sandbox={window:{WH40K_GLOSSARY_V2_INDEX:index}};vm.createContext(sandbox);
-vm.runInContext(fs.readFileSync(path.join(root,'glossary/v2/runtime/glossary-v2-runtime.js'),'utf8'),sandbox,{filename:'glossary-v2-runtime.js'});
-const api=sandbox.window.WH40K_GLOSSARY;
-const stormViews=Object.fromEntries(['space-marines','dark-angels','blood-angels'].map(bookId=>[bookId,api.resolveView(bookId,stormId)]));
-assert.match(stormViews['space-marines'].definition,/Detachment Points: 3DP\./);
-assert.match(stormViews['dark-angels'].definition,/Detachment Points: 3DP\./);
-assert.match(stormViews['blood-angels'].definition,/Detachment Points: 2DP\./);
-assert.equal(new Set(Object.values(stormViews).map(view=>view.id)).size,1,'context must not duplicate the canonical Stormlance identity');
-assert.match(api.resolveView('dark-angels',terminatorId).definition,/KEYWORDS[\s\S]*DEATHWING/);
-assert.doesNotMatch(api.resolveView('space-marines',terminatorId).definition,/DEATHWING/);
-assert.doesNotMatch(api.resolveView('blood-angels',terminatorId).definition,/DEATHWING/);
-assert.match(api.resolveView('dark-angels',ravenwingId).definition,/KEYWORDS[\s\S]*RAVENWING/);
-assert.doesNotMatch(api.resolveView('space-marines',ravenwingId).definition,/RAVENWING/);
-assert.equal(api.forBook('dark-angels')[terminatorId].id,terminatorId);
-assert.equal(api.forBook('blood-angels')[stormId].scope,'blood-angels');
-assert.equal(api.standaloneEntries({bookId:'dark-angels'}).length,index.counts.standalone);
-
-console.log('PASS Glossary V2 faction context: Stormlance DP and all 29 DA inherited keyword overlays resolve by requested effective book without identity/count changes.');
+assert.equal(contract.resolveAlias(sharedCanonical.sourceOwner.canonicalId),null,'Ambiguous unqualified canonical ID fails closed');
+const excludedIds={
+  'emperors-children':'unit-noise-marines',tyranids:'unit-barbgaunts','tau-empire':'unit-breacher-team',
+  'space-marines':'unit-adrax-agatone','dark-angels':'unit-asmodai','blood-angels':'unit-astorath'
+};
+for(const [book,id] of Object.entries(excludedIds)){
+  assert.equal(contract.resolveAlias(`army::${book}::unit::${id}`,{registryId:book}),null,`${book}: old qualified identity unavailable`);
+  assert.equal(contract.resolve({registryId:book,canonicalId:id,fieldPath:`/glossary/army::${book}::unit::${id}`}),null,`${book}: excluded direct route unavailable`);
+}
+let mutations=0;
+for(const mutate of [
+  value=>{value.supportedArmyBooks.push('emperors-children');},
+  value=>{value.entries.find(entry=>entry.domain==='ARMY').sourceOwner.bookId='tyranids';},
+  value=>{value.entries.find(entry=>entry.domain==='ARMY').contexts[0].effectiveBookId='tau-empire';},
+  value=>{value.entries.find(entry=>entry.domain==='ARMY').contexts[0].factOverrides={keywords:['DEATHWING']};},
+  value=>{value.entries=value.entries.filter(entry=>entry.id!=='mfm::'+dependencies[0]);},
+  value=>{value.entries.find(entry=>entry.domain==='MFM').facts.provenance.sourceVersion='v1.5';},
+  value=>{value.entries.find(entry=>entry.domain==='MFM').contexts[0].effectiveBookId='emperors-children';}
+]){const copy=structuredClone(index);mutate(copy);assert.throws(()=>verify(copy),assert.AssertionError,'Comparator must reject changed faction/dependency input');mutations++;}
+console.log(JSON.stringify({status:'PASS',connectedBooks:books,excludedStandaloneBooks:excluded.length,datasheets:124,pointsDependencies:dependencies.length,sharedLocalIdentities:shared.length,mutations}));

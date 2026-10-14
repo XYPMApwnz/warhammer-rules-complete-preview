@@ -2,6 +2,7 @@
 export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', registryLabels={}}) {
   if(!Array.isArray(entries))throw new TypeError('Global glossary entries are required');
   const byId=new Map(entries.map(entry=>[entry.id,entry]));
+  const canonicalArmy=new Map(entries.filter(entry=>entry.domain==='ARMY').map(entry=>[entry.sourceOwner.bookId+'\0'+entry.sourceOwner.canonicalId,entry]));
   if(byId.size!==entries.length)throw new TypeError('Duplicate qualified global glossary identity');
   const normalize=value=>String(value||'').replace(/[\u2018\u2019]/g,"'").replace(/[\u2013\u2014]/g,'-').replace(/\s+/g,' ').trim().toLocaleLowerCase();
   const ownerLabel=id=>registryLabels[id] || String(id||'').replaceAll('-',' ').replace(/\b\w/g,c=>c.toUpperCase());
@@ -56,7 +57,7 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
     if(!profile||typeof profile!=='object')return'';
     const stats=profile.stats&&typeof profile.stats==='object'?profile.stats:{};
     const value=(...keys)=>{for(const key of keys)if(stats[key]!==undefined&&stats[key]!==null&&String(stats[key]).trim())return String(stats[key]).trim();return'';};
-    const characteristicLines=[['M',value('M')],['T',value('T')],['Sv',value('Sv','SV')],['W',value('W')],['Ld',value('Ld','LD')],['OC',value('OC')],['Invulnerable Save',value('Invulnerable','Inv')],['Base',value('Base')]]
+    const characteristicLines=[['M',value('M')],['T',value('T')],['Sv',value('Sv','SV')],['W',value('W')],['Ld',value('Ld','LD')],['OC',value('OC')],['Invulnerable Save',value('INSV','Invulnerable','Inv')],['Base',value('Base')]]
       .filter(([,stat])=>stat)
       .map(([label,stat])=>`${label} ${stat}`);
     return [text(profile.name),characteristicLines.join(' · ')].filter(Boolean).join('\n');
@@ -82,10 +83,16 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
     if(profiles.length)sections.push(`MODEL PROFILES\n${profiles.join('\n\n')}`);
     const weapons=entries.filter(candidate=>candidate.domain==='ARMY'&&candidate.recordType==='WEAPON_PROFILE'&&candidate.parent?.canonicalId===facts.id&&candidate.sourceOwner?.bookId===entry.sourceOwner?.bookId);
     if(weapons.length)sections.push(`WEAPON PROFILES\n${weapons.map(weapon=>`• ${weapon.label}: ${weaponProfileDefinition(weapon.facts||{})}`).join('\n')}`);
-    const abilities=Array.isArray(facts.ruleFacts?.abilities)?facts.ruleFacts.abilities.map(text).filter(Boolean):[];
+    const abilities=Array.isArray(facts.ruleFacts?.abilities)?facts.ruleFacts.abilities.map(ability=>{
+      if(typeof ability==='string')return text(ability);
+      const body=text(ability.text),heading=ability.title===ability.id?'':text(ability.title);
+      if(!body)return'';
+      return heading&&!normalize(body).startsWith(normalize(heading))?heading+'\n'+body:body;
+    }).filter(Boolean):[];
     if(abilities.length)sections.push(`ABILITIES\n${abilities.map(ability=>`• ${ability}`).join('\n')}`);
     for(const section of facts.referenceSections||[])if(text(section.title)&&section.lines?.length)sections.push(`${section.title.toLocaleUpperCase()}\n${section.lines.join('\n')}`);
     if((facts.keywords||[]).length)sections.push(`KEYWORDS\n${facts.keywords.join(', ')}`);
+    if((facts.factionKeywords||[]).length)sections.push(`FACTION KEYWORDS\n${facts.factionKeywords.join(', ')}`);
     return sections.join('\n\n');
   };
   const weaponProfileDefinition=facts=>{
@@ -93,9 +100,9 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
   };
   const detachmentDefinition=entry=>{
     const facts=entry.facts||{},lines=[];
-    const forceDisposition=entry.canonicalReferences?.find(reference=>reference.relationType==='FORCE_DISPOSITION'),forceDispositionLabel=forceDisposition&&byId.get(forceDisposition.id)?.label;
+    const forceDispositionLabels=(entry.canonicalReferences||[]).filter(reference=>reference.relationType==='FORCE_DISPOSITION').map(reference=>byId.get(reference.id)?.label).filter(Boolean);
     const detachmentPoints=entry.mfm?.detachment?.detachmentPoints;
-    if(forceDispositionLabel||Number.isFinite(detachmentPoints))lines.push([forceDispositionLabel&&`Force Disposition: ${forceDispositionLabel}.`,Number.isFinite(detachmentPoints)&&`Detachment Points: ${detachmentPoints}DP.`].filter(Boolean).join(' '));
+    if(forceDispositionLabels.length||Number.isFinite(detachmentPoints))lines.push([forceDispositionLabels.length&&`Force Disposition: ${forceDispositionLabels.join(', ')}.`,Number.isFinite(detachmentPoints)&&`Detachment Points: ${detachmentPoints}DP.`].filter(Boolean).join(' '));
     if(text(facts.tagline))lines.push(text(facts.tagline));
     if(text(facts.restrictions))lines.push(`Restrictions: ${text(facts.restrictions)}`);
     const tags=[...(facts.tags||[]),...(entry.mfm?.qualifiers||[]).map(record=>record.label)].filter(Boolean);
@@ -111,6 +118,7 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
           for(const row of block.rows)ruleLines.push((Array.isArray(row)?row:[row.label,...(row.cells||[])]).filter(value=>value!==null&&value!==undefined&&String(value).trim()).join(' | '));
         }
       }
+      for(const collection of [rule.content,rule.clauses,rule.tables]){const content=collectContent(collection);if(content)ruleLines.push(content);}
       if(ruleLines.length)lines.push([text(rule.title),...ruleLines].filter(Boolean).join('\n'));
     }
     return lines.join('\n');
@@ -407,8 +415,33 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
     const reference=terrainLayoutReferenceOf(entry);if(!reference)return'';
     return [`MATCHUP\n${reference.matchupLabel}`,`FORCE DISPOSITIONS\n${reference.memberLabels.join(' ↔ ')}`,`LAYOUT VARIANT\n${reference.variant}`,`BATTLEFIELD\n${reference.battlefieldWidthInches}\" × ${reference.battlefieldHeightInches}\". ${reference.orientation}`,`OFFICIAL SOURCE\n${reference.officialSource}. Registered Event Companion page ${reference.officialPdfPage}.`,`VISUAL REFERENCE\nAccepted secondary measurements view. The official Event Companion remains the factual authority.`,`GEOMETRY STATUS\nSource references registered. Verified machine-readable ${reference.pendingLayers.join(', ')} remain pending digitization.`].join('\n\n');
   };
-  function definitionOf(entry){
+  function definitionOf(entry,seen=new Set()){
+    if(seen.has(entry.id))return'';
+    seen=new Set([...seen,entry.id]);
     const facts=entry.facts||{};
+    const owned=id=>canonicalArmy.get(entry.sourceOwner?.bookId+'\0'+id);
+    const referenceContent=ids=>ids.map(id=>{const target=owned(id);return target&&[target.label,definitionOf(target,seen)].filter(Boolean).join('\n');}).filter(Boolean).join('\n\n');
+    if(facts.canonicalData){
+      if(text(facts.text)&&facts.tables?.length)return [facts.text,collectContent(facts.tables)].filter(Boolean).join('\n');
+      if(entry.recordType==='PROFILE')return unitProfileDefinition({name:entry.label,stats:facts.stats});
+      if(entry.recordType==='STRATAGEM')return [facts.cp,...(facts.lines||[]).map(line=>typeof line==='string'?line:[line.label,line.text].filter(Boolean).join(': '))].filter(Boolean).join('\n');
+      if(entry.recordType==='UNIT_COMPOSITION')return collectContent(facts.equipmentAndRules);
+      if(entry.recordType==='STRUCTURED_RULE_TABLE')return collectContent([{rows:facts.rows,columns:facts.columns}]);
+      if(['KEYWORD_MEMBERSHIP','FACTION_KEYWORD'].includes(entry.recordType))return facts.keyword||entry.label;
+      if(entry.recordType==='INVULNERABLE_SAVE')return 'Invulnerable Save: '+facts.value;
+      if(entry.recordType==='COMPOSITION_MEMBER')return text(facts.sourceText);
+      if(facts.officialQuestion||facts.officialAnswer)return [facts.officialQuestion,facts.officialAnswer].filter(Boolean).join('\n');
+      if(text(facts.instruction))return facts.instruction;
+      if(entry.recordType==='KEYWORD_SCOPES')return (facts.scopes||[]).map(scope=>scope.label+'\n'+scope.keywords.join(', ')).join('\n\n');
+      if(entry.recordType==='RULE_REFERENCE'&&facts.groups)return facts.groups.map(group=>group.label+'\n'+group.entries.map(record=>record.label).join(', ')).join('\n\n');
+      if(entry.recordType==='SOURCE_UPDATE_REFERENCE')return ['Official update · Page '+facts.page,...(facts.targetIds||[]).map(id=>owned(id)?.label).filter(Boolean)].join('\n');
+      if(facts.sourceSectionId)return referenceContent([facts.sourceSectionId]);
+      if(facts.factReferenceId)return referenceContent([facts.factReferenceId]);
+      if(facts.componentIds?.length)return referenceContent(facts.componentIds);
+      if(facts.clauses?.length)return collectContent(facts.clauses);
+      if(entry.recordType==='UPGRADE_DECLARATION')return referenceContent([facts.selectionRuleId,...facts.optionIds||[]].filter(Boolean));
+      if(entry.recordType==='UPGRADE_OPTION'&&facts.keyword)return facts.keyword+'\n'+referenceContent([facts.selectionRuleId].filter(Boolean));
+    }
     if(facts.sourceConflict?.status==='UNRESOLVED_ACCEPTED_SOURCE_CONFLICT')return [facts.sourceConflict.notice,...facts.sourceConflict.occurrences.map(occurrence=>[occurrence.title,occurrence.presentationText].join('\n'))].join('\n\n');
     if(entry.recordType==='DETACHMENT'){const definition=detachmentDefinition(entry);if(definition)return definition;}
     if(entry.recordType==='MISSION_SEQUENCE_RULE')return missionSequenceDefinition(entry);
@@ -467,10 +500,14 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
   const mfmPresentation=entry=>{
     const mfm=entry.mfm||{},lines=[];
     if(Number.isFinite(mfm.enhancementCost?.value))lines.push(mfm.enhancementCost.value+' pts');
-    for(const point of mfm.pointRecords||[])for(const schedule of point.pointSchedules||[])for(const option of schedule.entries||[]) {
-      if(!Number.isFinite(option.value))continue;
-      const count=Number.isFinite(option.minModels)?option.minModels===option.maxModels?String(option.minModels):option.minModels+'–'+option.maxModels:'';
-      lines.push((count?count+' '+(option.maxModels===1?'model':'models'):text(option.sourceLabel))+' — '+option.value+' pts');
+    for(const point of mfm.pointRecords||[])for(const schedule of point.pointSchedules||[]) {
+      if(text(schedule.sourceLabel))lines.push(text(schedule.sourceLabel));
+      if(Number.isFinite(schedule.minCopies))lines.push('Units '+schedule.minCopies+(schedule.maxCopies==null?'+':schedule.maxCopies===schedule.minCopies?'':'–'+schedule.maxCopies));
+      for(const option of schedule.entries||[]) {
+        if(!Number.isFinite(option.value))continue;
+        const count=Number.isFinite(option.minModels)?option.minModels===option.maxModels?String(option.minModels):option.minModels+'–'+option.maxModels:'';
+        lines.push((count?count+' '+(option.maxModels===1?'model':'models'):text(option.sourceLabel))+' — '+option.value+' pts');
+      }
     }
     for(const option of mfm.paidUpgrades||[])if(Number.isFinite(option.value))lines.push(option.label+' — +'+option.value+' pts');
     for(const qualifier of mfm.qualifiers||[])if(qualifier.label&&!entry.facts?.tags?.includes(qualifier.label))lines.push(qualifier.label);
@@ -478,7 +515,7 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
       const targets=[...new Set((mfm[field]||[]).flatMap(relation=>relation.targetEntryIds||[]))].map(id=>byId.get(id)?.label).filter(Boolean);
       if(targets.length)lines.push(label+': '+targets.join(', '));
     }
-    return Object.freeze({lines:Object.freeze([...new Set(lines)])});
+    return Object.freeze({lines:Object.freeze(lines)});
   };
   function project(entry,{bookId=defaultBookId}={}) {
     if(!entry||!byId.has(entry.id))throw new TypeError('Unknown qualified global glossary entry');

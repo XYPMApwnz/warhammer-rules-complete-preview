@@ -1,38 +1,29 @@
 import fs from 'node:fs';
+import assert from 'node:assert/strict';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createEffectiveCoreCatalog} from '../../../books/core-rules/content/effective-core-catalog.mjs';
-import {createCanonicalBuildContext} from '../../../books/shared/tools/canonical-build-contract.mjs';
-import {buildCanonicalBook} from '../../../books/shared/tools/build-army-book.mjs';
+import {loadV2ArmyModels,assertV2ArmyBookParity,V2_ARMY_BOOK_IDS,V2_FACTUAL_INTERFACES} from './army-v2-projection.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 import {createEffectiveMissionCatalog,MISSION_SCOPES} from '../../../missions/content/effective-mission-catalog.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
-const BOOK_IDS=Object.freeze(['death-guard','adeptus-mechanicus','tyranids','tau-empire','emperors-children','chaos-space-marines','space-marines','dark-angels','blood-angels']);
+const BOOK_IDS=V2_ARMY_BOOK_IDS;
 const FACTUAL_INPUTS=Object.freeze([
   'books/core-rules/content/effective-core-catalog.mjs',
-  'books/shared/tools/build-army-book.mjs#projectionOnly',
+  ...Object.values(V2_FACTUAL_INTERFACES),
   'mfm/content/effective-mfm-catalog.mjs',
   'missions/content/effective-mission-catalog.mjs'
 ]);
 const PRESENTATION_INPUTS=Object.freeze(['glossary/editorial-contracts.v1.json','glossary/resolutions.en.json','glossary/supplemental-terms.en.json']);
 const MISSION_PARTITIONS=Object.freeze(['forceDispositions','primaryMissions','secondaryMissions','deployments','twists','missionSequenceRules','missionReferenceRules','forceDispositionMatchups','terrainLayouts']);
 const CORE_ALIAS_ONLY_ERRATA=new Set(['core-errata-15-05','core-errata-15-06']);
-const REQUIRED_EFFECTIVE_ARMY_GLOSSARY_FACTS=Object.freeze({
-  'adeptus-mechanicus':Object.freeze(['recon-augury','data-psalm','halo-override'])
-});
-const CORE_SUPPORT_OCCURRENCES=Object.freeze(new Map([
-  ['chaos-space-marines-ability-support',Object.freeze({bookId:'chaos-space-marines',unitId:'unit-masters-of-the-maelstrom',coreId:'core-rule-19-01-forming-attached-units'})],
-  ['space-marines-ability-support-3',Object.freeze({bookId:'space-marines',unitId:'unit-cato-sicarius',coreId:'core-rule-19-01-forming-attached-units'})],
-  ['space-marines-ability-support-4',Object.freeze({bookId:'space-marines',unitId:'unit-wardens-of-ultramar',coreId:'core-rule-19-01-forming-attached-units'})]
-]));
 
 const clone=value=>structuredClone(value);
 const readJson=relative=>JSON.parse(fs.readFileSync(path.join(repo,relative),'utf8'));
 const sortStrings=values=>[...new Set(values.filter(Boolean))].sort((left,right)=>left.localeCompare(right));
 const entryId=(domain,...ids)=>[domain,...ids].join('::');
 const deepFreeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){for(const child of Object.values(value))deepFreeze(child);Object.freeze(value);}return value;};
-const sourceBook=(record,fallback)=>record?.sourceBookId||record?.dependencyBook||fallback;
 
 function semanticText(value,{skip=new Set()}={}){
   const strings=[];
@@ -54,7 +45,7 @@ function factsWithoutPresentation(record){
 }
 
 function createEntry({id,domain,recordType,label,aliases=[],canonicalId,parent=null,references=[],provenance=null,currentness=null,sourceOwner,facts,contexts=[]}){
-  return {id,domain,recordType,label,aliases:sortStrings(aliases),searchableContent:semanticText(facts,{skip:new Set(['id','sourceId','sourceBookId','recordType','sourceArtifact','sourceCaptureSha256','contentHash'])}),parent,canonicalReferences:references,currentness,provenance,sourceOwner,facts,contexts,presentation:{}};
+  return {id,domain,recordType,label,aliases:sortStrings(aliases),searchableContent:semanticText(facts,{skip:new Set(['id','sourceId','sourceBookId','recordType','sourceArtifact','sourceCaptureSha256','contentHash','canonicalData'])}),parent,canonicalReferences:references,currentness,provenance,sourceOwner,facts,contexts,presentation:{}};
 }
 
 function upsertEntry(entries,entry,context){
@@ -98,231 +89,83 @@ function addCoreEntries(entries,coreCatalog){
   }
 }
 
-function unitContext(model,record){return {effectiveBookId:model.book.id,sourceBookId:sourceBook(record,model.book.id)};}
 
-function addArmyEntry(entries,model,recordType,record,{parentId=null,canonicalId=record.id,label=record.title||record.name,aliases=[],facts=record,references=[],ownerBookId=null,contextData={}}={}){
-  if(!canonicalId)throw new Error(`${model.book.id}: ${recordType} has no stable canonical identity`);
-  const ownerBook=ownerBookId||sourceBook(record,model.book.id),id=entryId('army',ownerBook,recordType.toLowerCase(),...(parentId?[parentId]:[]),canonicalId),context={...unitContext(model,{...record,sourceBookId:ownerBook}),...contextData};
-  return upsertEntry(entries,createEntry({id,domain:'ARMY',recordType,label,aliases,canonicalId,parent:parentId?{domain:'ARMY',canonicalId:parentId}:null,references,provenance:record.provenance||record.source||null,currentness:{publicationState:record.publicationState||record.status||'CURRENT'},sourceOwner:{domain:'ARMY',bookId:ownerBook,canonicalId,interface:'buildCanonicalBook(...,{projectionOnly:true})'},facts:factsWithoutPresentation(facts)}),context);
-}
-
-function addGenericUnitChildren(entries,lookups,model,unit){
-  const ownerBook=sourceBook(unit,model.book.id),unitEntry=lookups.unit.get(`${model.book.id}::${unit.id}`);
-  for(const ability of [...(unit.abilities||[]),...(unit.wargearAbilities||[])]){
-    const stableId=ability.termId||ability.id||ability.sourceAbilityId,supportOccurrence=CORE_SUPPORT_OCCURRENCES.get(stableId);
-    if(supportOccurrence){
-      if(model.book.id!==supportOccurrence.bookId||unit.id!==supportOccurrence.unitId)throw new Error(`${model.book.id}/${unit.id}: conflicting Support occurrence ${stableId}`);
-      if(String(ability.text||'').trim())throw new Error(`${model.book.id}/${unit.id}: Support occurrence ${stableId} unexpectedly owns gameplay text`);
-      const core=entries.get(entryId('core',supportOccurrence.coreId));
-      if(!core)throw new Error(`${model.book.id}/${unit.id}: unknown Core Support owner ${supportOccurrence.coreId}`);
-      core.aliases=sortStrings([...core.aliases,stableId]);
-      const context={effectiveBookId:model.book.id,sourceBookId:ownerBook,parentUnitId:unit.id,sourceAbilityId:ability.sourceAbilityId||null,termId:stableId};
-      if(!core.contexts.some(item=>JSON.stringify(item)===JSON.stringify(context)))core.contexts.push(context);
-      continue;
-    }
-    if(ability.coreAbilityId){const coreId=entryId('core',ability.coreAbilityId),core=entries.get(coreId);if(!core)throw new Error(`${model.book.id}/${unit.id}: unknown Core ability ${ability.coreAbilityId}`);core.contexts.push({effectiveBookId:model.book.id,sourceBookId:ownerBook,parentUnitId:unit.id,sourceAbilityId:ability.sourceAbilityId||null,termId:ability.termId||null});continue;}
-    if(!stableId)throw new Error(`${model.book.id}/${unit.id}: local ability ${ability.title} has no stable identity`);
-    const armyRule=lookups.armyRule.get(`${model.book.id}::${stableId}`);
-    if(armyRule){
-      const context={effectiveBookId:model.book.id,sourceBookId:ownerBook,parentUnitId:unit.id,sourceAbilityId:ability.sourceAbilityId||null,termId:stableId};
-      if(!armyRule.contexts.some(item=>JSON.stringify(item)===JSON.stringify(context)))armyRule.contexts.push(context);
-      continue;
-    }
-    const wargear=unit.wargearAbilities?.includes(ability);
-    addArmyEntry(entries,model,wargear?'WARGEAR_ABILITY':'ABILITY',ability,{parentId:wargear?unit.id:null,canonicalId:stableId,ownerBookId:ownerBook,contextData:{parentUnitId:unit.id},references:[{domain:'ARMY',id:unitEntry.id,canonicalId:unit.id,relationType:'PARENT_UNIT'}]});
-  }
-  for(const weapon of unit.weapons||[]){
-    if(!weapon.id||weapon.sourceUnitId!==unit.id)throw new Error(`${model.book.id}/${unit.id}: weapon profile lacks persistent parent-scoped identity`);
-    addArmyEntry(entries,model,'WEAPON_PROFILE',weapon,{parentId:unit.id,canonicalId:weapon.id,label:weapon.name,aliases:weapon.termId?[weapon.termId]:[],ownerBookId:ownerBook,contextData:{parentUnitId:unit.id},references:[{domain:'ARMY',id:unitEntry.id,canonicalId:unit.id,relationType:'PARENT_UNIT'}]});
-  }
-}
-
-function addStructuredUnitChildren(entries,lookups,model,unit){
-  const unitEntry=lookups.unit.get(`${model.book.id}::${unit.id}`),ownerBook=sourceBook(unit,model.book.id);
-  const blocks=[...(unit.blocks||[]).map(block=>({block,sectionTitle:''})),...(unit.subsections||[]).flatMap(section=>(section.blocks||[]).map(block=>({block,sectionTitle:section.title||''})))];
-  for(const {block,sectionTitle} of blocks){
-    if(block.type==='ability'){
-      const stableId=block.termId||block.id;
-      if(!stableId)throw new Error(`${model.book.id}/${unit.id}: structured ability ${block.title} has no stable identity`);
-      const aggregate=['CORE','FACTION'].includes(block.title)&&!block.termId;
-      const recordType=sectionTitle==='Wargear Abilities'?'WARGEAR_ABILITY':'ABILITY';
-      addArmyEntry(entries,model,recordType,block,{parentId:recordType==='WARGEAR_ABILITY'||aggregate?unit.id:null,canonicalId:stableId,ownerBookId:ownerBook,contextData:{parentUnitId:unit.id},references:[{domain:'ARMY',id:unitEntry.id,canonicalId:unit.id,relationType:'PARENT_UNIT'}]});
-    }
-    if(block.type==='weapon')for(const profile of block.profiles?.length?block.profiles:[block]){
-      const stableId=profile.id||profile.termId;
-      if(!stableId)throw new Error(`${model.book.id}/${unit.id}: structured weapon ${profile.name||block.title} has no stable identity`);
-      addArmyEntry(entries,model,'WEAPON_PROFILE',profile,{parentId:unit.id,canonicalId:stableId,label:profile.name||block.title,aliases:profile.termId?[profile.termId]:[],ownerBookId:ownerBook,contextData:{parentUnitId:unit.id},references:[{domain:'ARMY',id:unitEntry.id,canonicalId:unit.id,relationType:'PARENT_UNIT'}]});
-    }
-  }
-}
-
-function addRequiredEffectiveArmyGlossaryFacts(entries,model){
-  const required=REQUIRED_EFFECTIVE_ARMY_GLOSSARY_FACTS[model.book.id]||[];
-  if(!required.length)return;
-  const byId=new Map((model.glossary||[]).map(record=>[record.id,record]));
-  for(const id of required){
-    const record=byId.get(id);
-    if(!record?.title||!record?.full||!record?.sectionId)throw new Error(`${model.book.id}: required effective Army glossary fact ${id} is incomplete`);
-    const owner=[...entries.values()].find(entry=>entry.domain==='ARMY'&&entry.sourceOwner.bookId===model.book.id&&entry.sourceOwner.canonicalId===record.sectionId);
-    if(!owner)throw new Error(`${model.book.id}: ${id} references missing canonical Army rule ${record.sectionId}`);
-    addArmyEntry(entries,model,'FACTION_TERM',record,{
-      canonicalId:record.id,
-      aliases:record.aliases||[],
-      facts:{id:record.id,title:record.title,summary:record.summary,text:record.full,sectionId:record.sectionId},
-      references:[{domain:'ARMY',id:owner.id,canonicalId:record.sectionId,relationType:'DEFINED_BY_RULE'}]
-    });
-  }
-}
-
-function addDeathGuardArmyRuleComponents(entries,model,lookups){
-  if(model.book.id!=='death-guard')return;
-  const ownerId='army-rule-nurgles-gift',owner=lookups.armyRule.get(`${model.book.id}::${ownerId}`),rule=(model.rules?.armyRules||[]).find(record=>record.id===ownerId)||model.rules?.armyRule;
-  if(!owner||rule?.id!==ownerId)throw new Error('death-guard: Nurgle\u2019s Gift factual owner is unavailable');
-  const rangeTable=(rule.blocks||[]).find(block=>block.type==='table'&&block.columns?.includes('Contagion Range'));
-  const rangeCap=(rule.blocks||[]).find(block=>block.id==='contagion-range-cap');
-  if(!rangeTable||!rangeCap)throw new Error('death-guard: Contagion Range structured facts are incomplete');
-  const components=[
-    {id:'contagion-range',title:'Contagion Range',blocks:[rangeTable,rangeCap]},
-    ...['afflicted','skullsquirm-blight','rattlejoint-ague','scabrous-soulrot'].map(id=>{
-      const subsection=(rule.subsections||[]).find(record=>record.id===id);
-      if(!subsection)throw new Error(`death-guard: Nurgle\u2019s Gift component ${id} is unavailable`);
-      return subsection;
-    })
-  ];
-  for(const component of components)addArmyEntry(entries,model,'ARMY_RULE_COMPONENT',component,{
-    parentId:ownerId,
-    references:[{domain:'ARMY',id:owner.id,canonicalId:ownerId,relationType:'PARENT_ARMY_RULE'}]
-  });
-}
-
-function deathGuardUnitArticleFacts(unit){
-  const statline=(unit.blocks||[]).find(block=>block.type==='statline');
-  const composition=(unit.subsections||[]).find(section=>section.title==='Unit Composition');
-  if(!statline?.values||!composition)throw new Error(`death-guard/${unit.id}: structured Unit article facts are incomplete`);
-  const paragraphText=blocks=>(blocks||[]).filter(block=>block.type==='p'&&String(block.text||'').trim()).map(block=>block.text.trim());
-  const notes=paragraphText(unit.blocks);
-  const referenceSections=(unit.subsections||[])
-    .filter(section=>!['Abilities','Keywords','Unit Composition','Wargear Abilities'].includes(section.title))
-    .map(section=>({title:section.title,lines:paragraphText(section.blocks)}))
-    .filter(section=>section.lines.length);
-  return {
-    id:unit.id,title:unit.title,publicationState:unit.publicationState,category:unit.category,
-    profiles:[{name:unit.title,stats:clone(statline.values)}],
-    composition:paragraphText(composition.blocks).join('\n'),
-    keywords:clone(unit.intrinsicKeywords||unit.ruleFacts?.intrinsicKeywords||[]),
-    ruleFacts:unit.ruleFacts||null,
-    notes,
-    referenceSections
-  };
-}
-
-function detachmentArticleFacts(model,detachment){
-  const article={id:detachment.id,title:detachment.title,tagline:detachment.tagline,restrictions:detachment.restrictions,tags:detachment.tags,sourcePages:detachment.sourcePages,provenance:detachment.provenance};
-  const canonicalRules=(model.detachmentRules||[]).filter(rule=>rule.detachmentId===detachment.id).map(factsWithoutPresentation);
-  if(canonicalRules.length)return {...article,detachmentRules:canonicalRules};
-  const structuredRules=(detachment.subsections||[]).flatMap(section=>{
-    const blocks=(section.blocks||[]).filter(block=>block.type==='ability'||block.type==='table');
-    const owner=blocks.find(block=>block.type==='ability');
-    if(!owner)return[];
-    return [{id:owner.termId||owner.id,title:owner.title||section.title,blocks:clone(blocks)}];
-  });
-  const detachmentRules=structuredRules.length?structuredRules:detachment.rule?[factsWithoutPresentation(detachment.rule)]:[];
-  if(!detachmentRules.length)throw new Error(`${model.book.id}/${detachment.id}: Detachment has no accepted gameplay rule projection`);
-  return {...article,detachmentRules};
-}
-
-function updateArticleFacts(model,update){
-  if(model.book.id!=='adeptus-mechanicus'||update.id!=='rules-updates')return update;
-  const byId=(records,id,kind)=>{const record=records.find(item=>item.id===id);if(!record)throw new Error(`adeptus-mechanicus/${update.id}: missing ${kind} ${id}`);return record;};
-  const unit=id=>byId(model.units,id,'unit');
-  const detachment=id=>byId(model.detachments,id,'Detachment');
-  const ability=(unitId,termId)=>{const record=unit(unitId).abilities?.find(item=>item.termId===termId);if(!record)throw new Error(`adeptus-mechanicus/${update.id}: missing ability ${unitId}/${termId}`);return record;};
-  const weapon=(unitId,termId)=>{const record=unit(unitId).weapons?.find(item=>item.termId===termId);if(!record)throw new Error(`adeptus-mechanicus/${update.id}: missing weapon ${unitId}/${termId}`);return record;};
-  const weaponText=record=>`${record.name}: Range ${record.range}; A ${record.a}; ${String(record.range).toLowerCase()==='melee'?'WS':'BS'} ${record.skill}; S ${record.s}; AP ${record.ap}; D ${record.d}${record.abilities?`; ${record.abilities}`:''}.`;
-  const abilityText=record=>[record.openingText,...(record.options||[]).flatMap(option=>[option.title,...(option.effects||[]),option.text]),record.text].filter(Boolean).join('\n');
-  const detachmentRule=id=>{const record=detachment(id).rule;if(!record?.id||!record?.text)throw new Error(`adeptus-mechanicus/${update.id}: incomplete Detachment rule ${id}`);return record;};
-  const affectedDoctrinaUnits=['unit-belisarius-cawl','unit-corpuscarii-electro-priests','unit-cybernetica-datasmith','unit-fulgurite-electro-priests','unit-kastelan-robots','unit-tech-priest-dominus','unit-tech-priest-enginseer','unit-tech-priest-manipulus','unit-technoarcheologist'].map(id=>unit(id).title);
-  const cawl=unit('unit-belisarius-cawl'),datasmith=unit('unit-cybernetica-datasmith'),fusilave=unit('unit-archaeopter-fusilave'),stratoraptor=unit('unit-archaeopter-stratoraptor'),transvector=unit('unit-archaeopter-transvector');
-  const veiledHunter=byId(model.enhancements,'enhancement-veiled-hunter','Enhancement');
-  const acceptedResultingSemantics=[
-    {sourcePage:17,section:'ARMY RULES',items:[
-      {changedRule:'Doctrina Imperatives — Protector and Conqueror Imperatives',resultingEffectiveRule:model.rules.armyRule.options.map(option=>`${option.label.toUpperCase()} IMPERATIVE\n${option.effects.join('\n')}`).join('\n\n')}
-    ]},
-    {sourcePage:17,section:'DETACHMENT RULES AND ENHANCEMENT',items:[
-      {changedRule:`${detachment('detachment-cohort-cybernetica').title} — ${detachmentRule('detachment-cohort-cybernetica').title}`,resultingEffectiveRule:detachmentRule('detachment-cohort-cybernetica').text},
-      {changedRule:`${detachment('detachment-rad-zone-corps').title} — ${detachmentRule('detachment-rad-zone-corps').title}`,resultingEffectiveRule:detachmentRule('detachment-rad-zone-corps').text},
-      {changedRule:`${detachment('detachment-skitarii-hunter-cohort').title} — ${detachmentRule('detachment-skitarii-hunter-cohort').title}`,resultingEffectiveRule:detachmentRule('detachment-skitarii-hunter-cohort').text},
-      {changedRule:`${detachment('detachment-skitarii-hunter-cohort').title} — ${veiledHunter.title}`,resultingEffectiveRule:veiledHunter.text}
-    ]},
-    {sourcePage:17,section:'DATASHEET UPDATES',items:[
-      {changedRule:'Doctrina Imperatives faction ability added',resultingEffectiveRule:affectedDoctrinaUnits.join('; ')},
-      {changedRule:fusilave.title,resultingEffectiveRule:[`M ${fusilave.stats.M}; OC ${fusilave.stats.OC}.`,abilityText(ability(fusilave.id,'datasheet-bomb-rack'))].join('\n')},
-      {changedRule:stratoraptor.title,resultingEffectiveRule:`M ${stratoraptor.stats.M}; OC ${stratoraptor.stats.OC}.`},
-      {changedRule:transvector.title,resultingEffectiveRule:[`M ${transvector.stats.M}; Keywords: ${transvector.intrinsicKeywords.join(', ')}.`,abilityText(ability(transvector.id,'datasheet-aerial-deployment'))].join('\n')}
-    ]},
-    {sourcePage:18,section:'DATASHEET UPDATES',items:[
-      {changedRule:cawl.title,resultingEffectiveRule:[`M ${cawl.stats.M}; Keywords: ${cawl.intrinsicKeywords.join(', ')}.`,abilityText(ability(cawl.id,'datasheet-canticles-of-the-omnissiah')),weaponText(weapon(cawl.id,'weapon-solar-atomiser'))].join('\n')},
-      {changedRule:datasmith.title,resultingEffectiveRule:[`Keywords: ${datasmith.intrinsicKeywords.join(', ')}.`,abilityText(ability(datasmith.id,'core-support')),abilityText(ability(datasmith.id,'datasheet-data-severed'))].join('\n')},
-      {changedRule:unit('unit-ironstrider-ballistarii').title,resultingEffectiveRule:['weapon-twin-cognis-autocannon','weapon-twin-cognis-lascannon-2'].map(id=>weaponText(weapon('unit-ironstrider-ballistarii',id))).join('\n')},
-      {changedRule:`${unit('unit-kastelan-robots').title} — ${ability('unit-kastelan-robots','datasheet-repulsor-grid').title}`,resultingEffectiveRule:abilityText(ability('unit-kastelan-robots','datasheet-repulsor-grid'))},
-      {changedRule:unit('unit-onager-dunecrawler').title,resultingEffectiveRule:['weapon-daedalus-missile-launcher','weapon-eradication-beamer-dissipated','weapon-eradication-beamer-focused','weapon-neutron-laser','weapon-twin-onager-heavy-phosphor-blaster'].map(id=>weaponText(weapon('unit-onager-dunecrawler',id))).concat(abilityText(ability('unit-onager-dunecrawler','datasheet-scuttling-walker'))).join('\n')},
-      {changedRule:`${unit('unit-serberys-raiders').title} — ${ability('unit-serberys-raiders','datasheet-tactica-obliqua').title}`,resultingEffectiveRule:abilityText(ability('unit-serberys-raiders','datasheet-tactica-obliqua'))},
-      {changedRule:unit('unit-sicarian-infiltrators').title,resultingEffectiveRule:['weapon-power-weapon-2','weapon-taser-goad-2'].map(id=>weaponText(weapon('unit-sicarian-infiltrators',id))).join('\n')}
-    ]}
-  ];
-  return {...update,acceptedResultingSemantics};
-}
-
+const mfmOwnedKinds=new Set(['POINTS_SCHEDULE_ROW','PAID_WARGEAR_COST','DETACHMENT_ROSTER_METADATA','ENHANCEMENT_COST_QUALIFIERS','ALLIED_POINTS_DEPENDENCY','ATTACHMENT_RELATION']);
+const types={DATASHEET:'UNIT',MODEL_PROFILE:'PROFILE',DATASHEET_ABILITY:'ABILITY',EQUIPMENT_ABILITY:'WARGEAR_ABILITY',ERRATA:'ERRATA',FAQ:'FAQ_CLARIFICATION',OFFICIAL_UPDATE:'UPDATE',BOOK_USAGE:'BOOK_USAGE_RULES'};
 function addArmyEntries(entries,models){
-  const lookups={unit:new Map(),detachment:new Map(),enhancement:new Map(),armyRule:new Map()};
+  const lookups={unit:new Map(),detachment:new Map(),enhancement:new Map(),armyRule:new Map(),mfm:new Map()};
   for(const model of models){
-    for(const unit of model.units){
-      const facts=model.book.id==='death-guard'?deathGuardUnitArticleFacts(unit):{id:unit.id,title:unit.title,publicationState:unit.publicationState,category:unit.category,profiles:unit.profiles||unit.stats||[],composition:unit.composition||unit.compositionText||null,keywords:unit.keywords||unit.intrinsicKeywords||[],ruleFacts:unit.ruleFacts||null};
-      const entry=addArmyEntry(entries,model,'UNIT',unit,{facts});
-      lookups.unit.set(`${model.book.id}::${unit.id}`,entry);
-    }
-    for(const detachment of model.detachments){
-      const entry=addArmyEntry(entries,model,'DETACHMENT',detachment,{facts:detachmentArticleFacts(model,detachment)});
-      lookups.detachment.set(`${model.book.id}::${detachment.id}`,entry);
-    }
-    for(const enhancement of model.enhancements){
-      const enhancementFacts=factsWithoutPresentation(enhancement);for(const field of ['value','points','mfmRecordId','mfmQualifiers'])delete enhancementFacts[field];
-      const entry=addArmyEntry(entries,model,'ENHANCEMENT',enhancement,{parentId:enhancement.detachmentId,aliases:[...(enhancement.aliases||[]),...(model.presentation?.glossaryV2CompatibilityTerms&&enhancement.termId?[enhancement.termId]:[])],facts:enhancementFacts,references:[{domain:'ARMY',id:lookups.detachment.get(`${model.book.id}::${enhancement.detachmentId}`)?.id||null,canonicalId:enhancement.detachmentId,relationType:'DETACHMENT'}]});
-      lookups.enhancement.set(`${model.book.id}::${enhancement.detachmentId}::${enhancement.id}`,entry);
-    }
-    for(const rule of model.detachmentRules||[])addArmyEntry(entries,model,'DETACHMENT_RULE',rule,{parentId:rule.detachmentId,aliases:model.presentation?.glossaryV2CompatibilityTerms&&rule.presentationTermId?[rule.presentationTermId]:[],references:[{domain:'ARMY',id:lookups.detachment.get(`${model.book.id}::${rule.detachmentId}`)?.id||null,canonicalId:rule.detachmentId,relationType:'DETACHMENT'}]});
-    for(const detachment of model.detachments){
-      for(const stratagem of detachment.stratagems||[])addArmyEntry(entries,model,'STRATAGEM',stratagem,{parentId:detachment.id,aliases:model.presentation?.glossaryV2CompatibilityTerms&&stratagem.termId?[stratagem.termId]:[],references:[{domain:'ARMY',id:lookups.detachment.get(`${model.book.id}::${detachment.id}`)?.id||null,canonicalId:detachment.id,relationType:'DETACHMENT'}]});
-      if(!model.detachmentRules)for(const subsection of detachment.subsections||[])for(const block of subsection.blocks||[]){
-        if(block.type==='ability'&&/rule/i.test(subsection.id||''))addArmyEntry(entries,model,'DETACHMENT_RULE',block,{parentId:detachment.id,canonicalId:block.termId||block.id,references:[{domain:'ARMY',id:lookups.detachment.get(`${model.book.id}::${detachment.id}`)?.id||null,canonicalId:detachment.id,relationType:'DETACHMENT'}]});
-        if(block.type==='rule'&&String(block.id||'').startsWith('stratagem-'))addArmyEntry(entries,model,'STRATAGEM',block,{parentId:detachment.id,references:[{domain:'ARMY',id:lookups.detachment.get(`${model.book.id}::${detachment.id}`)?.id||null,canonicalId:detachment.id,relationType:'DETACHMENT'}]});
+    if(!BOOK_IDS.includes(model.book.id)||!model.factualInterface||!Array.isArray(model.entities))throw new Error('Non-V2 factual owner');
+    const book=model.book.id,records=new Map(model.entities.map(e=>[e.id,e])),ownerOf=e=>e.parentId||e.ownerId;
+    const sourceRows=model.entities.filter(e=>!mfmOwnedKinds.has(e.kind));
+    const entryByCanonical=new Map();
+    const label=e=>e.displayName||e.label||e.data.title||e.data.name||e.data.composition?.name||(types[e.kind]==='PROFILE'||e.kind==='PROFILE'?records.get(ownerOf(e))?.data.title:null)||e.id;
+    const children=e=>model.entities.filter(child=>ownerOf(child)===e.id);
+    const blockText=(e,seen=new Set())=>{
+      if(!e||seen.has(e.id))return'';seen=new Set([...seen,e.id]);
+      const data=e.data,parts=data.blocks||data.clauses||data.equipmentAndRules||[];
+      return data.text||data.sourceText||parts.map(b=>b.text||b.rows?.map(r=>r.join(' | ')).join('\n')).filter(Boolean).join('\n')||
+        (data.componentIds||[]).map(id=>blockText(records.get(id),seen)).filter(Boolean).join('\n');
+    };
+    const profileStats=e=>{
+      const stats=clone(e.data.stats||e.data.statline||Object.fromEntries(Object.entries(e.data).filter(([k])=>['M','T','SV','W','LD','OC','INSV'].includes(k))));
+      if(e.data.invulnerableSaveId){const save=records.get(e.data.invulnerableSaveId);if(save?.kind!=='INVULNERABLE_SAVE'||!save.data.profileIds.includes(e.id))throw new Error('Unresolved V2 profile save owner '+e.id);stats.INSV=save.data.value;}
+      return stats;
+    };
+    for(const entity of sourceRows){
+      const type=types[entity.kind]||entity.kind,parent=ownerOf(entity),parentId=records.has(parent)?parent:null,data=clone(entity.data);
+      const facts={...data,id:entity.id,title:label(entity),canonicalData:clone(entity.data)};
+      if(type==='WEAPON_PROFILE')Object.assign(facts,{a:data.attacks??data.a,s:data.strength??data.s,d:data.damage??data.d});
+      if(type==='PROFILE')facts.stats=profileStats(entity);
+      if(type==='UNIT'){
+        const profileIds=data.profileIds||data.modelProfileIds||[];
+        facts.profiles=profileIds.map(id=>{const e=records.get(id);if(!e)throw new Error('Unresolved V2 profile '+id);return{canonicalId:id,name:label(e),stats:profileStats(e)};});
+        const sectionIds=[...new Set([...(data.sectionIds||[]),...children(entity).filter(e=>['ATTACHMENT_DECLARATION','TRANSPORT_DECLARATION','SPECIAL_DATASHEET_RULE','UPGRADE_DECLARATION'].includes(e.kind)).map(e=>e.id)])],sections=sectionIds.map(id=>records.get(id)).filter(Boolean),roles=model.appPayload.datasheetPresentation?.sectionRoles||{};
+        facts.composition=sections.filter(e=>roles[e.id]==='composition').map(e=>blockText(e)).join('\n');
+        const composition=children(entity).find(e=>e.kind==='UNIT_COMPOSITION');
+        if(composition)facts.composition=[...(composition.data.memberIds||[]).map(id=>blockText(records.get(id))),...(composition.data.equipmentAndRules||[]).map(b=>b.text)].filter(Boolean).join('\n');
+        const membership=children(entity).filter(e=>['KEYWORD_MEMBERSHIP','FACTION_KEYWORD'].includes(e.kind));
+        facts.keywords=data.keywords||membership.filter(e=>e.kind==='KEYWORD_MEMBERSHIP').map(e=>e.data.keyword);
+        facts.factionKeywords=data.factionKeywords||membership.filter(e=>e.kind==='FACTION_KEYWORD').map(e=>e.data.keyword);
+        const scopes=records.get(data.keywordScopesId)?.data.scopes||[];
+        if(!facts.keywords.length)facts.keywords=[...new Set(scopes.filter(v=>v.label!=='FACTION KEYWORDS').flatMap(v=>v.keywords||[]))];
+        if(!facts.factionKeywords.length)facts.factionKeywords=[...new Set(scopes.filter(v=>v.label==='FACTION KEYWORDS').flatMap(v=>v.keywords||[]))];
+        const abilities=children(entity).filter(e=>['DATASHEET_ABILITY','EQUIPMENT_ABILITY','SUPPLEMENTAL_DATASHEET_RULE'].includes(e.kind)||e.kind==='DATASHEET_SECTION'&&roles[e.id]==='abilities');
+        facts.ruleFacts={abilities:abilities.map(e=>({id:e.id,title:label(e),text:blockText(e)}))};
+        facts.referenceSections=sections.filter(e=>roles[e.id]!=='composition'&&roles[e.id]!=='abilities').map(e=>({title:label(e),lines:[blockText(e)].filter(Boolean)}));
       }
-      if(!model.detachmentRules&&detachment.rule?.id)addArmyEntry(entries,model,'DETACHMENT_RULE',detachment.rule,{parentId:detachment.id,ownerBookId:sourceBook(detachment,model.book.id),references:[{domain:'ARMY',id:lookups.detachment.get(`${model.book.id}::${detachment.id}`)?.id||null,canonicalId:detachment.id,relationType:'DETACHMENT'}]});
+      if(type==='DETACHMENT')facts.detachmentRules=children(entity).filter(e=>e.kind==='DETACHMENT_RULE').map(e=>({id:e.id,title:label(e),...clone(e.data)}));
+      const id=entryId('army',book,type.toLowerCase(),...(parentId?[parentId]:[]),entity.id);
+      const entry=createEntry({id,domain:'ARMY',recordType:type,label:label(entity),canonicalId:entity.id,parent:parentId?{domain:'ARMY',canonicalId:parentId}:null,provenance:clone(entity.provenance),currentness:{publicationState:'CURRENT'},sourceOwner:{domain:'ARMY',bookId:book,canonicalId:entity.id,interface:model.factualInterface},facts});
+      entry.contexts=[{effectiveBookId:book,sourceBookId:book,...(parentId?{parentUnitId:parentId}:{})}];
+      upsertEntry(entries,entry);entryByCanonical.set(entity.id,entry);
+      if(type==='UNIT')lookups.unit.set(book+'::'+entity.id,entry);
+      if(type==='DETACHMENT')lookups.detachment.set(book+'::'+entity.id,entry);
+      if(type==='ENHANCEMENT')lookups.enhancement.set(book+'::'+parentId+'::'+entity.id,entry);
+      if(type==='ARMY_RULE')lookups.armyRule.set(book+'::'+entity.id,entry);
     }
-    for(const rule of model.rules?.armyRules||[]){const entry=addArmyEntry(entries,model,'ARMY_RULE',rule,{aliases:model.presentation?.glossaryV2CompatibilityTerms&&rule.presentationTermId?[rule.presentationTermId]:[],ownerBookId:rule.source==='dependency'&&rule.sourceBook?rule.sourceBook:null});for(const id of [rule.id,rule.termId].filter(Boolean))lookups.armyRule.set(`${model.book.id}::${id}`,entry);}
-    if(model.rules?.armyRule?.id){const rule=model.rules.armyRule,entry=addArmyEntry(entries,model,'ARMY_RULE',rule,{aliases:model.presentation?.glossaryV2CompatibilityTerms&&rule.presentationTermId?[rule.presentationTermId]:[],ownerBookId:rule.source==='dependency'&&rule.sourceBook?rule.sourceBook:null});for(const id of [rule.id,rule.termId].filter(Boolean))lookups.armyRule.set(`${model.book.id}::${id}`,entry);}
-    addDeathGuardArmyRuleComponents(entries,model,lookups);
-    addRequiredEffectiveArmyGlossaryFacts(entries,model);
-    const updates=Array.isArray(model.rules?.updates)?model.rules.updates:model.rules?.updates?[model.rules.updates]:[];
-    for(const update of updates)if(update.id)addArmyEntry(entries,model,'UPDATE',update,{facts:updateArticleFacts(model,update)});
-    for(const unit of model.units){if(unit.subsections||unit.blocks)addStructuredUnitChildren(entries,lookups,model,unit);else addGenericUnitChildren(entries,lookups,model,unit);}
+    for(const entity of sourceRows){
+      const entry=entryByCanonical.get(entity.id),refs=[];
+      const visit=(value,path=[])=>{if(typeof value==='string'){const own=entryByCanonical.get(value),core=entries.get(entryId('core',value));if(own&&own!==entry)refs.push({domain:'ARMY',id:own.id,canonicalId:value,relationType:path.join('/')});else if(core)refs.push({domain:'CORE',id:core.id,canonicalId:value,relationType:path.join('/')});}else if(Array.isArray(value))value.forEach((v,i)=>visit(v,[...path,i]));else if(value&&typeof value==='object')Object.entries(value).forEach(([k,v])=>visit(v,[...path,k]));};
+      visit(entity.data);const parent=entryByCanonical.get(ownerOf(entity));if(parent)refs.push({domain:'ARMY',id:parent.id,canonicalId:ownerOf(entity),relationType:'OWNER'});
+      for(const [fieldId,bindings]of Object.entries(model.appPayload.datasheetPresentation?.referenceBindings?.fields||{})){
+        if(!fieldId.startsWith(entity.id+'::/'))continue;
+        for(const binding of bindings){
+          const target=entryByCanonical.get(binding.targetId)||entries.get(entryId('core',binding.targetId))||[...entries.values()].find(candidate=>candidate.domain==='CORE'&&candidate.aliases.includes(binding.targetId));
+          if(!target)throw new Error('Unresolved Army Book V2 reference target '+binding.targetId);
+          refs.push({domain:target.domain,id:target.id,canonicalId:target.sourceOwner.canonicalId,relationType:binding.group,parameters:clone(binding.parameters||{})});
+          if(target.domain==='CORE'){
+            const context={effectiveBookId:book,sourceBookId:book,parentUnitId:ownerOf(entity),sourceAbilityId:entity.id,termId:binding.targetId};
+            if(!target.contexts.some(existing=>JSON.stringify(existing)===JSON.stringify(context)))target.contexts.push(context);
+            if(binding.targetId==='core-support'&&book==='chaos-space-marines')target.aliases=sortStrings([...target.aliases,'chaos-space-marines-ability-support']);
+          }
+        }
+      }
+      entry.canonicalReferences=refs;
+    }
+    for(const [recordId,entityId]of Object.entries(model.mfmIdentityBindings||{})){const entry=entryByCanonical.get(entityId);if(!entry)throw new Error('MFM identity without V2 owner '+entityId);lookups.mfm.set(recordId,entry);}
   }
   return lookups;
-}
-
-function attachDeathGuardCompatibility(entries,models){
-  const model=models.find(item=>item.book.id==='death-guard');if(!model)return;
-  const armyBindings=new Map([['nurgles-gift','army-rule-nurgles-gift']]);
-  const coreBindings=new Map([['core-mobile','core::core-rule-13-06-terrain-and-movement'],['core-detection-range','core::core-rule-13-09-hidden'],['core-frame','core::core-rule-17-02-frame']]);
-  const values=[...entries.values()],byCanonical=new Map();for(const entry of values){const id=entry.sourceOwner?.canonicalId;if(!byCanonical.has(id))byCanonical.set(id,[]);byCanonical.get(id).push(entry);}
-  for(const legacy of model.glossary||[]){
-    let candidates=[...(byCanonical.get(legacy.sectionId)||[]),...(byCanonical.get(legacy.id)||[])].filter(entry=>entry.sourceOwner?.bookId==='death-guard'||entry.domain==='CORE');
-    if(!candidates.length&&legacy.kind==='detachment'&&legacy.sectionId){const owner=model.detachments.find(detachment=>(detachment.subsections||[]).some(section=>section.id===legacy.sectionId));if(owner)candidates=values.filter(entry=>entry.domain==='ARMY'&&entry.sourceOwner?.bookId==='death-guard'&&entry.recordType==='DETACHMENT'&&entry.sourceOwner.canonicalId===owner.id);}
-    candidates=[...new Map(candidates.map(entry=>[entry.id,entry])).values()];
-    if(candidates.length===1){candidates[0].aliases=sortStrings([...candidates[0].aliases,legacy.id]);continue;}
-    const armyTarget=armyBindings.get(legacy.id),army=armyTarget&&values.find(entry=>entry.domain==='ARMY'&&entry.sourceOwner?.bookId==='death-guard'&&entry.sourceOwner.canonicalId===armyTarget);if(army){army.aliases=sortStrings([...army.aliases,legacy.id]);continue;}
-    const core=coreBindings.get(legacy.id)&&entries.get(coreBindings.get(legacy.id));if(core)core.aliases=sortStrings([...core.aliases,legacy.id]);
-  }
 }
 
 function addMissionEntries(entries,missionCatalogs){
@@ -339,6 +182,14 @@ function addMissionEntries(entries,missionCatalogs){
 }
 
 function attachMfm(entries,lookups,mfmCatalog){
+  const dependencyRefs=new Set(mfmCatalog.unitReferences.filter(ref=>BOOK_IDS.includes(ref.crossFactionDependency?.consumerArmyBookId)).map(ref=>ref.id));
+  const pointIds=new Set(mfmCatalog.unitPointRecords.filter(record=>BOOK_IDS.includes(record.factionId)||dependencyRefs.has(record.unitReferenceId)).map(record=>record.id));
+  mfmCatalog={...mfmCatalog,unitPointRecords:mfmCatalog.unitPointRecords.filter(record=>pointIds.has(record.id)),paidUpgradeRecords:mfmCatalog.paidUpgradeRecords.filter(record=>pointIds.has(record.unitPointRecordId)),leaderEligibilityRecords:mfmCatalog.leaderEligibilityRecords.filter(record=>BOOK_IDS.includes(record.factionId)),supportEligibilityRecords:mfmCatalog.supportEligibilityRecords.filter(record=>BOOK_IDS.includes(record.factionId)),detachments:mfmCatalog.detachments.filter(record=>BOOK_IDS.includes(record.armyBookId)),enhancementCosts:mfmCatalog.enhancementCosts.filter(record=>BOOK_IDS.includes(record.armyBookId)),qualifierRecords:mfmCatalog.qualifierRecords.filter(record=>BOOK_IDS.includes(record.armyBookId))};
+  for(const record of mfmCatalog.unitPointRecords.filter(record=>dependencyRefs.has(record.unitReferenceId))){
+    const ref=mfmCatalog.unitReferences.find(ref=>ref.id===record.unitReferenceId),consumer=ref.crossFactionDependency.consumerArmyBookId;
+    const entry=createEntry({id:entryId('mfm',record.id),domain:'MFM',recordType:'MFM_UNIT_POINTS',label:record.label,canonicalId:record.id,provenance:record.provenance,currentness:{sourceVersion:record.provenance.sourceVersion},sourceOwner:{domain:'MFM',canonicalId:record.id,factionId:record.factionId,interface:'createEffectiveMfmCatalog()'},facts:clone(record),contexts:[{effectiveBookId:consumer,dependencyKind:'POINTS_ONLY'}]});
+    upsertEntry(entries,entry);lookups.unit.set(ref.armyBinding.armyBookId+'::'+ref.armyBinding.armyUnitId,entry);
+  }
   const refs=new Map(mfmCatalog.unitReferences.map(record=>[record.id,record])),pointsById=new Map(mfmCatalog.unitPointRecords.map(record=>[record.id,record]));
   const augmentation={pointRecords:0,paidUpgrades:0,leaderRelations:0,supportRelations:0,detachments:0,enhancementCosts:0,qualifiers:0,referenceOnlyPointRecords:[]};
   const unitEntryFor=reference=>reference?.armyBinding?.bindingStatus==='BOUND'?lookups.unit.get(`${reference.armyBinding.armyBookId}::${reference.armyBinding.armyUnitId}`):null;
@@ -351,9 +202,9 @@ function attachMfm(entries,lookups,mfmCatalog){
   for(const record of mfmCatalog.unitPointRecords){const ref=refs.get(record.unitReferenceId),entry=unitEntryFor(ref);if(!entry){augmentation.referenceOnlyPointRecords.push(record.id);continue;}entry.mfm??={};entry.mfm.pointRecords??=[];entry.mfm.pointRecords.push(clone(record));augmentation.pointRecords++;}
   for(const record of mfmCatalog.paidUpgradeRecords){const point=pointsById.get(record.unitPointRecordId),ref=refs.get(point?.unitReferenceId),entry=unitEntryFor(ref);if(!entry)throw new Error(`${record.id}: paid upgrade has no bound Army unit`);entry.mfm??={};entry.mfm.paidUpgrades??=[];entry.mfm.paidUpgrades.push(clone(record));augmentation.paidUpgrades++;}
   for(const [partition,key] of [['leaderEligibilityRecords','leaderRelations'],['supportEligibilityRecords','supportRelations']])for(const record of mfmCatalog[partition]){const source=unitEntryFor(refs.get(record.sourceUnitReferenceId));if(!source)throw new Error(`${record.id}: eligibility source has no bound Army unit`);const targets=record.targetUnitReferenceIds.map(id=>unitEntryFor(refs.get(id))).filter(Boolean),referenceOnlyTargetIds=record.targetUnitReferenceIds.filter(id=>!unitEntryFor(refs.get(id)));source.mfm??={};source.mfm[key]??=[];source.mfm[key].push({...clone(record),targetEntryIds:targets.map(item=>item.id),referenceOnlyTargetIds});augmentation[key]+=record.targetUnitReferenceIds.length;}
-  for(const record of mfmCatalog.detachments){const entry=lookups.detachment.get(`${record.armyBookId}::${record.armyDetachmentId}`);if(!entry)throw new Error(`${record.id}: Detachment has no bound Army entry`);contextualMfm(entry,record.factionId).detachment=clone(record);entry.canonicalReferences.push({domain:'MISSIONS',id:entryId('missions',record.missionForceDispositionId),canonicalId:record.missionForceDispositionId,relationType:'FORCE_DISPOSITION'});const mission=entries.get(entryId('missions',record.missionForceDispositionId));if(!mission)throw new Error(`${record.id}: unknown Mission Force Disposition ${record.missionForceDispositionId}`);mission.mfm??={};mission.mfm.assignedDetachmentIds??=[];mission.mfm.assignedDetachmentIds.push(entry.id);augmentation.detachments++;}
-  for(const record of mfmCatalog.enhancementCosts){const entry=lookups.enhancement.get(`${record.armyBookId}::${record.armyDetachmentId}::${record.armyEnhancementId}`);if(!entry)throw new Error(`${record.id}: Enhancement cost has no bound Army entry`);entry.mfm??={};entry.mfm.enhancementCost=clone(record);augmentation.enhancementCosts++;}
-  for(const record of mfmCatalog.qualifierRecords){let entry=null;if(record.ownerKind==='DETACHMENT')entry=lookups.detachment.get(`${record.armyBookId}::${record.armyOwnerId}`);else if(record.ownerKind==='UNIT')entry=lookups.unit.get(`${record.armyBookId}::${record.armyOwnerId}`);else if(record.ownerKind==='ENHANCEMENT'){for(const [key,candidate] of lookups.enhancement)if(key.startsWith(`${record.armyBookId}::`)&&key.endsWith(`::${record.armyOwnerId}`)){entry=candidate;break;}}if(!entry)throw new Error(`${record.id}: qualifier owner has no bound Army entry`);const mfm=contextualMfm(entry,record.factionId);mfm.qualifiers??=[];mfm.qualifiers.push(clone(record));augmentation.qualifiers++;}
+  for(const record of mfmCatalog.detachments){const entry=lookups.mfm.get(record.id)||lookups.detachment.get(`${record.armyBookId}::${record.armyDetachmentId}`);if(!entry)throw new Error(`${record.id}: Detachment has no bound Army entry`);contextualMfm(entry,record.factionId).detachment=clone(record);for(const dispositionId of record.missionForceDispositionIds||[record.missionForceDispositionId]){entry.canonicalReferences.push({domain:'MISSIONS',id:entryId('missions',dispositionId),canonicalId:dispositionId,relationType:'FORCE_DISPOSITION'});const mission=entries.get(entryId('missions',dispositionId));if(!mission)throw new Error(record.id+': unknown Mission Force Disposition '+dispositionId);mission.mfm??={};mission.mfm.assignedDetachmentIds??=[];mission.mfm.assignedDetachmentIds.push(entry.id);}augmentation.detachments++;}
+  for(const record of mfmCatalog.enhancementCosts){const entry=lookups.mfm.get(record.id)||lookups.enhancement.get(`${record.armyBookId}::${record.armyDetachmentId}::${record.armyEnhancementId}`);if(!entry)throw new Error(`${record.id}: Enhancement cost has no bound Army entry`);entry.mfm??={};entry.mfm.enhancementCost=clone(record);augmentation.enhancementCosts++;}
+  for(const record of mfmCatalog.qualifierRecords){let entry=lookups.mfm.get(record.ownerId)||null;if(!entry&&record.ownerKind==='DETACHMENT')entry=lookups.detachment.get(`${record.armyBookId}::${record.armyOwnerId}`);else if(!entry&&record.ownerKind==='UNIT')entry=lookups.unit.get(`${record.armyBookId}::${record.armyOwnerId}`);else if(!entry&&record.ownerKind==='ENHANCEMENT'){for(const [key,candidate] of lookups.enhancement)if(key.startsWith(`${record.armyBookId}::`)&&key.endsWith(`::${record.armyOwnerId}`)){entry=candidate;break;}}if(!entry)throw new Error(`${record.id}: qualifier owner has no bound Army entry`);const mfm=contextualMfm(entry,record.factionId);mfm.qualifiers??=[];mfm.qualifiers.push(clone(record));augmentation.qualifiers++;}
   augmentation.referenceOnlyPointRecords.sort();
   return augmentation;
 }
@@ -364,8 +215,15 @@ function applyLegacyPresentation(entries,coreCatalog,editorial,resolutions,suppl
   for(const summary of editorial.summaries||[]){const matches=byCanonical.get(summary.termId)||[];if(matches.length!==1){editorialUnresolved.push(summary.termId);continue;}matches[0].presentation.editorialSummary={text:summary.summary,revision:summary.editorialRevision,contentHash:summary.contentHash};editorialMigrated++;}
   for(const [alias,decision] of Object.entries(resolutions.aliases||{})){const canonical=coreCatalog.resolveId(decision.target),target=entries.get(entryId('core',canonical));if(!target)throw new Error(`Legacy resolution target ${decision.target} is absent from V2`);target.aliases=sortStrings([...target.aliases,alias]);target.presentation.aliasMetadata??=[];target.presentation.aliasMetadata.push({alias,parameters:decision.parameters||null,reason:decision.reason,source:'glossary/resolutions.en.json'});resolutionAliasesMigrated++;}
   const explicitTargets=supplemental.v2Targets||{};
-  for(const [legacyId,targetId] of Object.entries(explicitTargets))if(!entries.has(targetId))throw new Error(`Legacy presentation target ${legacyId} resolves to absent V2 entry ${targetId}`);
-  const resolveSupplementalTarget=value=>entries.get(explicitTargets[value])||entries.get(entryId('core',coreCatalog.resolveId(value)))||byCanonical.get(value)?.[0]||null;
+
+  for(const [alias,id]of Object.entries(explicitTargets))if(!entries.has(id))throw new Error(`${alias} resolves to absent V2 entry ${id}`);
+  const resolveSupplementalTarget=value=>{
+    if(explicitTargets[value])return entries.get(explicitTargets[value]);
+    const core=entries.get(entryId('core',coreCatalog.resolveId(value)));
+    if(core)return core;
+    const candidates=byCanonical.get(value)||[];
+    return candidates.length===1?candidates[0]:null;
+  };
   for(const [alias,targetId] of Object.entries(supplemental.aliases||{})){const target=resolveSupplementalTarget(targetId);if(!target)continue;target.aliases=sortStrings([...target.aliases,alias]);supplementalAliasesMigrated++;}
   for(const [targetId,labels] of Object.entries(supplemental.matchLabels||{})){const target=resolveSupplementalTarget(targetId);if(!target)continue;target.aliases=sortStrings([...target.aliases,...labels]);supplementalAliasesMigrated+=labels.length;}
   for(const [label,targetId] of Object.entries(supplemental.preferredMatches||{})){const target=resolveSupplementalTarget(targetId);if(!target){preferredMatchesUnresolved.push({label,targetId});continue;}target.presentation.preferredMatchLabels??=[];target.presentation.preferredMatchLabels=sortStrings([...target.presentation.preferredMatchLabels,label]);preferredMatchesMigrated++;}
@@ -377,19 +235,25 @@ function applyLegacyPresentation(entries,coreCatalog,editorial,resolutions,suppl
 export async function loadGlossaryV2Inputs(){
   const coreCatalog=createEffectiveCoreCatalog(),mfmCatalog=createEffectiveMfmCatalog().catalog;
   const missionCatalogs=[MISSION_SCOPES.STANDARD_MATCHED_PLAY,MISSION_SCOPES.EVENT_PLAY].map(scope=>createEffectiveMissionCatalog({scope,coreCatalog}).catalog);
-  const armyModels=[];
-  for(const bookId of BOOK_IDS){const configPath=path.join(repo,'books',bookId,'book.config.json'),context=createCanonicalBuildContext({args:[],configPath,repo}),{effectiveBookModel}=await buildCanonicalBook(context,{projectionOnly:true});armyModels.push(effectiveBookModel);}
+  const armyModels=loadV2ArmyModels();
   return {coreCatalog,armyModels,mfmCatalog,missionCatalogs,editorial:readJson('glossary/editorial-contracts.v1.json'),resolutions:readJson('glossary/resolutions.en.json'),supplemental:readJson('glossary/supplemental-terms.en.json')};
 }
 
 export function createGlossaryV2Index({coreCatalog,armyModels,mfmCatalog,missionCatalogs,editorial,resolutions,supplemental}){
-  const entries=new Map();addCoreEntries(entries,coreCatalog);const armyLookups=addArmyEntries(entries,armyModels);attachDeathGuardCompatibility(entries,armyModels);addMissionEntries(entries,missionCatalogs);const mfmAugmentation=attachMfm(entries,armyLookups,mfmCatalog);const legacy=applyLegacyPresentation(entries,coreCatalog,editorial,resolutions,supplemental);
+  assertV2ArmyBookParity(armyModels);
+  assert.deepEqual(armyModels.map(model=>model.book.id),BOOK_IDS,'Glossary must use exactly the connected V2 books');
+  assert.equal(mfmCatalog.sourceVersion,'v1.6-scoped-six','Glossary MFM source is stale');
+  const entries=new Map();addCoreEntries(entries,coreCatalog);const armyLookups=addArmyEntries(entries,armyModels);addMissionEntries(entries,missionCatalogs);const mfmAugmentation=attachMfm(entries,armyLookups,mfmCatalog);const legacy=applyLegacyPresentation(entries,coreCatalog,editorial,resolutions,supplemental);
   const ordered=[...entries.values()].map(entry=>{entry.aliases=sortStrings(entry.aliases);entry.contexts.sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)));entry.canonicalReferences=entry.canonicalReferences.filter(ref=>ref.id).sort((a,b)=>`${a.relationType}:${a.id}`.localeCompare(`${b.relationType}:${b.id}`));if(entry.mfm?.assignedDetachmentIds)entry.mfm.assignedDetachmentIds=sortStrings(entry.mfm.assignedDetachmentIds);for(const context of entry.contexts||[])if(context.mfm?.assignedDetachmentIds)context.mfm.assignedDetachmentIds=sortStrings(context.mfm.assignedDetachmentIds);return entry;}).sort((a,b)=>a.id.localeCompare(b.id));
   const counts={total:ordered.length,standalone:ordered.filter(entry=>!entry.parent).length,scopedChildren:ordered.filter(entry=>entry.parent).length,byDomain:{},byType:{}};for(const entry of ordered){counts.byDomain[entry.domain]=(counts.byDomain[entry.domain]||0)+1;const key=`${entry.domain}:${entry.recordType}`;counts.byType[key]=(counts.byType[key]||0)+1;}
-  const index={schema:'wh40k-glossary-v2-index/v1',language:'en',currentnessCutoff:'2026-09-22',factualAuthority:false,factualInputs:[...FACTUAL_INPUTS],presentationInputs:[...PRESENTATION_INPUTS],supportedArmyBooks:[...BOOK_IDS],counts,coverage:{coreEffectiveRecords:coreCatalog.records.length,coreIndexed:counts.byDomain.CORE||0,coreNotIndexed:{identityOnly:coreCatalog.identityOnly.map(record=>record.id).sort(),aliasOnlyErrata:[...CORE_ALIAS_ONLY_ERRATA].sort()},armyEffectiveBooks:armyModels.map(model=>model.book.id),missionsScopes:missionCatalogs.map(catalog=>catalog.scope),mfm:{sourceVersion:mfmCatalog.sourceVersion,scope:mfmCatalog.scope,standaloneArticles:0,augmentation:mfmAugmentation},legacy},entries:ordered};
+  const index={schema:'wh40k-glossary-v2-index/v1',language:'en',currentnessCutoff:mfmCatalog.currentnessCutoff,factualAuthority:false,factualInputs:[...FACTUAL_INPUTS],presentationInputs:[...PRESENTATION_INPUTS],supportedArmyBooks:[...BOOK_IDS],counts,coverage:{coreEffectiveRecords:coreCatalog.records.length,coreIndexed:counts.byDomain.CORE||0,coreNotIndexed:{identityOnly:coreCatalog.identityOnly.map(record=>record.id).sort(),aliasOnlyErrata:[...CORE_ALIAS_ONLY_ERRATA].sort()},armyEffectiveBooks:armyModels.map(model=>model.book.id),missionsScopes:missionCatalogs.map(catalog=>catalog.scope),mfm:{sourceVersion:mfmCatalog.sourceVersion,scope:mfmCatalog.scope,standaloneArticles:ordered.filter(entry=>entry.domain==='MFM').length,augmentation:mfmAugmentation},legacy},entries:ordered};
   return deepFreeze(JSON.parse(JSON.stringify(index)));
 }
 
+export function assertGlossaryV2Parity(publication,inputs){
+  assert.deepEqual(publication,createGlossaryV2Index(inputs),'Stale Glossary index or canonical factual mismatch');
+  return true;
+}
 export async function buildGlossaryV2Index(){return createGlossaryV2Index(await loadGlossaryV2Inputs());}
 
 // Scoped publication rebuild: other domains are preserved, never used as Core facts.

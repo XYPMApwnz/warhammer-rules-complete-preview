@@ -83,11 +83,12 @@ for(const record of split){
   assert.equal(resolved.sections.flatMap(section=>section.fields.map(field=>field.value)).filter(Boolean).length>0,true);
 }
 assert.equal(globalContract.resolveAlias('core-deep-strike'),'core::core-deep-strike','canonical alias no longer resolves');
-const attached=coreById.get('core::core-rule-19-01-forming-attached-units');
-for(const alias of ['chaos-space-marines-ability-support','space-marines-ability-support-3','space-marines-ability-support-4']){
+const attached=coreById.get('core::core-support');
+for(const alias of ['chaos-space-marines-ability-support']){
   assert(attached.aliases.includes(alias),`${alias}: external book-owned reference metadata lost`);
   assert.equal(globalContract.resolveAlias(alias),attached.id,`${alias}: external book alias no longer resolves`);
 }
+for(const alias of ['space-marines-ability-support-3','space-marines-ability-support-4'])assert.equal(globalContract.resolveAlias(alias),null,'Excluded standalone book occurrence must be unavailable');
 const local=buildGlossary({model:{entities:[]},coreCatalog:catalog});
 const localContract=createReferenceContract({cards:new Map(local.coreCards.map(card=>[card.id,card])),index:local.index});
 for(const record of split){
