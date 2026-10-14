@@ -1,0 +1,2561 @@
+{
+  "schema": "ec-v2-rule-contract-foundation/v1",
+  "authority": "BOOK_OWNED_DERIVED_CONTRACT_OVERLAY",
+  "scope": {
+    "implementedRules": 10,
+    "remainingLegacyContracts": "NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD"
+  },
+  "sourceFingerprint": "B9D7A1C2D7DF7A5B8E27C6F9307C0B230E9A8DFB75338B7A457CFA0B415D2F7C",
+  "declarationFingerprint": "58194693F1984FC535B50DA8D153670A6CF8E805673BA764B6FEDA5A4C6723C0",
+  "contracts": [
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-lord-exultant:section:1",
+      "ownerId": "unit-lord-exultant",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DATASHEET_DECLARATION",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "blocks",
+          0,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_ID",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "datasheet-lord-exultant:profile:1"
+            },
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Perfectionists: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_FORMED_MODELS",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Perfectionists: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-lord-exultant:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Perfectionists: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Perfectionists: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "leading a unit"
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Perfectionists: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact source owner, assignment and formation are roster-known."
+          },
+          "rosterEffects": [
+            {
+              "id": "datasheet-lord-exultant:section:1::roster-known/effect-1",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "ability": "LETHAL HITS",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_LEADING",
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Perfectionists: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "leading a unit"
+                    }
+                  }
+                }
+              ],
+              "provenance": {
+                "canonicalRuleId": "datasheet-lord-exultant:section:1",
+                "canonicalOwnerId": "unit-lord-exultant",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Lord-Exultant.html",
+                  "sha256": "409015D879DDF536CF0C08EE8CCAE95B361F1D9BDE31BDFF27FFB68C80328F06",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/9/sections/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_FORMED_MODELS"
+              }
+            }
+          ]
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "9583a5a7521bf6f6002d5a1a76b1c148bcc2a280",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Lord-Exultant.html",
+          "sha256": "409015D879DDF536CF0C08EE8CCAE95B361F1D9BDE31BDFF27FFB68C80328F06",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/datasheets/9/sections/0",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-lord-kakophonist:section:1",
+      "ownerId": "unit-lord-kakophonist",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DATASHEET_DECLARATION",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "blocks",
+          0,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_ID",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "datasheet-lord-kakophonist:profile:1"
+            },
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Obsessive Annunciation: While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_FORMED_MODELS",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Obsessive Annunciation: While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-lord-kakophonist:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Obsessive Annunciation: While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Obsessive Annunciation: While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "leading a unit"
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Obsessive Annunciation: While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact source owner, assignment and formation are roster-known."
+          },
+          "rosterEffects": [
+            {
+              "id": "datasheet-lord-kakophonist:section:1::roster-known/effect-1",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "ability": "SUSTAINED HITS 1",
+              "weaponMode": "ranged",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_LEADING",
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Obsessive Annunciation: While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "leading a unit"
+                    }
+                  }
+                }
+              ],
+              "provenance": {
+                "canonicalRuleId": "datasheet-lord-kakophonist:section:1",
+                "canonicalOwnerId": "unit-lord-kakophonist",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Lord-Kakophonist.html",
+                  "sha256": "5EF7C302C7F97FCFC765DDC95F1C24A11D9D706446A4AF93C0240A308A682BC5",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/12/sections/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_FORMED_MODELS"
+              }
+            }
+          ]
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "9583a5a7521bf6f6002d5a1a76b1c148bcc2a280",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Lord-Kakophonist.html",
+          "sha256": "5EF7C302C7F97FCFC765DDC95F1C24A11D9D706446A4AF93C0240A308A682BC5",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/datasheets/12/sections/0",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-spectacle-of-slaughter:rule",
+      "ownerId": "detachment-spectacle-of-slaughter",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "DETACHMENT_RULE",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "FLAWLESS BLADES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Friendly FLAWLESS BLADES units have Fights First"
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "ROSTER_UNITS",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Friendly FLAWLESS BLADES units have Fights First"
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "FLAWLESS BLADES"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly FLAWLESS BLADES units have Fights First"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly FLAWLESS BLADES units have Fights First"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Friendly FLAWLESS BLADES units have Fights First"
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact source owner, assignment and formation are roster-known."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-spectacle-of-slaughter:rule::roster-known/effect-1",
+              "operation": "GRANT_ABILITY",
+              "ability": {
+                "canonicalId": "core-fights-first",
+                "parameters": {}
+              },
+              "unitScope": "FORMED",
+              "targetBinding": "ROSTER_UNITS",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_DETACHMENT_SELECTED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Friendly FLAWLESS BLADES units have Fights First"
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [
+                {
+                  "binding": "TARGET",
+                  "predicate": {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "FLAWLESS BLADES"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Friendly FLAWLESS BLADES units have Fights First"
+                    }
+                  }
+                }
+              ],
+              "provenance": {
+                "canonicalRuleId": "detachment-spectacle-of-slaughter:rule",
+                "canonicalOwnerId": "detachment-spectacle-of-slaughter",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/7/rule",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "ROSTER_UNITS"
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-spectacle-of-slaughter",
+      "currentness": {
+        "acceptedBaseHead": "9583a5a7521bf6f6002d5a1a76b1c148bcc2a280",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/7/rule",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-court-of-the-phoenician:enhancement:2",
+      "ownerId": "detachment-court-of-the-phoenician",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "LORD EXULTANT"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "LORD EXULTANT"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact source owner, assignment and formation are roster-known."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-court-of-the-phoenician:enhancement:2::roster-known/effect-1",
+              "operation": "MODIFY_STAT",
+              "field": "M",
+              "mode": "ADD",
+              "value": 1,
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [],
+              "provenance": {
+                "canonicalRuleId": "detachment-court-of-the-phoenician:enhancement:2",
+                "canonicalOwnerId": "detachment-court-of-the-phoenician",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/4/enhancements/1",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_MODEL"
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-court-of-the-phoenician",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "MODEL_KEYWORD",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "LORD EXULTANT"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer."
+          }
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-c96e91c539b4419f",
+        "detachmentId": "mfm-detachment-7e76f5e0c401ec50",
+        "qualifierIds": [
+          "mfm-qualifier-2c135ed536a65870"
+        ],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "COURT OF THE PHOENICIAN",
+            "sourceTitle": "Exalted Patron"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "9583a5a7521bf6f6002d5a1a76b1c148bcc2a280",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/4/enhancements/1",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-court-of-the-phoenician:enhancement:4",
+      "ownerId": "detachment-court-of-the-phoenician",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "DAEMON PRINCE"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+                }
+              }
+            ]
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "EMPEROR’S CHILDREN"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "DAEMON PRINCE"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact source owner, assignment and formation are roster-known."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-court-of-the-phoenician:enhancement:4::roster-known/effect-1",
+              "operation": "MODIFY_STAT",
+              "field": "strength",
+              "mode": "ADD",
+              "value": 1,
+              "weaponMode": "melee",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [],
+              "provenance": {
+                "canonicalRuleId": "detachment-court-of-the-phoenician:enhancement:4",
+                "canonicalOwnerId": "detachment-court-of-the-phoenician",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/4/enhancements/3",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_MODEL"
+              }
+            },
+            {
+              "id": "detachment-court-of-the-phoenician:enhancement:4::roster-known/effect-2",
+              "operation": "MODIFY_STAT",
+              "field": "attacks",
+              "mode": "ADD",
+              "value": 1,
+              "weaponMode": "melee",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [],
+              "provenance": {
+                "canonicalRuleId": "detachment-court-of-the-phoenician:enhancement:4",
+                "canonicalOwnerId": "detachment-court-of-the-phoenician",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/4/enhancements/3",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_MODEL"
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-court-of-the-phoenician",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "EMPEROR’S CHILDREN"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "DAEMON PRINCE"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+              }
+            }
+          ]
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-96185217ace182d7",
+        "detachmentId": "mfm-detachment-7e76f5e0c401ec50",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "COURT OF THE PHOENICIAN",
+            "sourceTitle": "Spiritsliver"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "9583a5a7521bf6f6002d5a1a76b1c148bcc2a280",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/4/enhancements/3",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-frenzied-host:enhancement:1",
+      "ownerId": "detachment-frenzied-host",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "LORD EXULTANT"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "LORD EXULTANT model only. This model’s melee attacks have +1 S."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "LORD EXULTANT model only. This model’s melee attacks have +1 S."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "LORD EXULTANT"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD EXULTANT model only. This model’s melee attacks have +1 S."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD EXULTANT model only. This model’s melee attacks have +1 S."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "LORD EXULTANT model only. This model’s melee attacks have +1 S."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact source owner, assignment and formation are roster-known."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-frenzied-host:enhancement:1::roster-known/effect-1",
+              "operation": "MODIFY_STAT",
+              "field": "strength",
+              "mode": "ADD",
+              "value": 1,
+              "weaponMode": "melee",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "LORD EXULTANT model only. This model’s melee attacks have +1 S."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [],
+              "provenance": {
+                "canonicalRuleId": "detachment-frenzied-host:enhancement:1",
+                "canonicalOwnerId": "detachment-frenzied-host",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/8/enhancements/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_MODEL"
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-frenzied-host",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "MODEL_KEYWORD",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "LORD EXULTANT"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "LORD EXULTANT model only. This model’s melee attacks have +1 S."
+          }
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-632de7deea09e820",
+        "detachmentId": "mfm-detachment-9b892ff13e0dc5ad",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "FRENZIED HOST",
+            "sourceTitle": "Euphoric Crown"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "9583a5a7521bf6f6002d5a1a76b1c148bcc2a280",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/8/enhancements/0",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-frenzied-host:enhancement:2",
+      "ownerId": "detachment-frenzied-host",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "LORD EXULTANT"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "LORD EXULTANT model only. This unit’s ranged attacks have +1 AP."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "LORD EXULTANT model only. This unit’s ranged attacks have +1 AP."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "LORD EXULTANT"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD EXULTANT model only. This unit’s ranged attacks have +1 AP."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD EXULTANT model only. This unit’s ranged attacks have +1 AP."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "LORD EXULTANT model only. This unit’s ranged attacks have +1 AP."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact source owner, assignment and formation are roster-known."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-frenzied-host:enhancement:2::roster-known/effect-1",
+              "operation": "MODIFY_STAT",
+              "field": "ap",
+              "mode": "ADD",
+              "value": -1,
+              "weaponMode": "ranged",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "LORD EXULTANT model only. This unit’s ranged attacks have +1 AP."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [],
+              "provenance": {
+                "canonicalRuleId": "detachment-frenzied-host:enhancement:2",
+                "canonicalOwnerId": "detachment-frenzied-host",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/8/enhancements/1",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_UNIT"
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-frenzied-host",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "MODEL_KEYWORD",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "LORD EXULTANT"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "LORD EXULTANT model only. This unit’s ranged attacks have +1 AP."
+          }
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-a4b10818158fdf7d",
+        "detachmentId": "mfm-detachment-9b892ff13e0dc5ad",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "FRENZIED HOST",
+            "sourceTitle": "Howling Plate"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "9583a5a7521bf6f6002d5a1a76b1c148bcc2a280",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/8/enhancements/1",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-peerless-bladesmen:enhancement:3",
+      "ownerId": "detachment-peerless-bladesmen",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact source owner, assignment and formation are roster-known."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-peerless-bladesmen:enhancement:3::roster-known/effect-1",
+              "operation": "MODIFY_STAT",
+              "field": "attacks",
+              "mode": "ADD",
+              "value": 1,
+              "weaponMode": "melee",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN model only. Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [],
+              "provenance": {
+                "canonicalRuleId": "detachment-peerless-bladesmen:enhancement:3",
+                "canonicalOwnerId": "detachment-peerless-bladesmen",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/3/enhancements/2",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_MODEL"
+              }
+            },
+            {
+              "id": "detachment-peerless-bladesmen:enhancement:3::roster-known/effect-2",
+              "operation": "MODIFY_STAT",
+              "field": "damage",
+              "mode": "ADD",
+              "value": 1,
+              "weaponMode": "melee",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN model only. Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [],
+              "provenance": {
+                "canonicalRuleId": "detachment-peerless-bladesmen:enhancement:3",
+                "canonicalOwnerId": "detachment-peerless-bladesmen",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/3/enhancements/2",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_MODEL"
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-peerless-bladesmen",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "MODEL_KEYWORD",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "EMPEROR’S CHILDREN"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer."
+          }
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-a54c5a91cc1321f4",
+        "detachmentId": "mfm-detachment-751153783cfe2135",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "PEERLESS BLADESMEN",
+            "sourceTitle": "Distortion"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "9583a5a7521bf6f6002d5a1a76b1c148bcc2a280",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/3/enhancements/2",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-coterie-of-the-conceited:enhancement:2",
+      "ownerId": "detachment-coterie-of-the-conceited",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_FORMED_MODELS",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "leading a unit"
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact source owner, assignment and formation are roster-known."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-coterie-of-the-conceited:enhancement:2::roster-known/effect-1",
+              "operation": "MODIFY_STAT",
+              "field": "LD",
+              "mode": "ADD",
+              "value": -1,
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_LEADING",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN model only. While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "leading a unit"
+                    }
+                  }
+                }
+              ],
+              "provenance": {
+                "canonicalRuleId": "detachment-coterie-of-the-conceited:enhancement:2",
+                "canonicalOwnerId": "detachment-coterie-of-the-conceited",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/0/enhancements/1",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_FORMED_MODELS"
+              }
+            },
+            {
+              "id": "detachment-coterie-of-the-conceited:enhancement:2::roster-known/effect-2",
+              "operation": "MODIFY_STAT",
+              "field": "OC",
+              "mode": "ADD",
+              "value": 1,
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_LEADING",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN model only. While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "leading a unit"
+                    }
+                  }
+                }
+              ],
+              "provenance": {
+                "canonicalRuleId": "detachment-coterie-of-the-conceited:enhancement:2",
+                "canonicalOwnerId": "detachment-coterie-of-the-conceited",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/0/enhancements/1",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_FORMED_MODELS"
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-coterie-of-the-conceited",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "MODEL_KEYWORD",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "EMPEROR’S CHILDREN"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1."
+          }
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-083737853660e984",
+        "detachmentId": "mfm-detachment-961301a2d6c7cc4f",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "COTERIE OF THE CONCEITED",
+            "sourceTitle": "Pledge of Dark Glory"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "9583a5a7521bf6f6002d5a1a76b1c148bcc2a280",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/0/enhancements/1",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-slaaneshs-chosen:enhancement:4",
+      "ownerId": "detachment-slaaneshs-chosen",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. The bearer’s melee weapons have the [PRECISION] ability, and each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. The bearer’s melee weapons have the [PRECISION] ability, and each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. The bearer’s melee weapons have the [PRECISION] ability, and each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. The bearer’s melee weapons have the [PRECISION] ability, and each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The bearer’s melee weapons have the [PRECISION] ability"
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact source owner, assignment and formation are roster-known."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-slaaneshs-chosen:enhancement:4::roster-known/effect-1",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "ability": "PRECISION",
+              "weaponMode": "melee",
+              "targetBinding": "SOURCE_MODEL",
+              "targetSubject": "MODEL",
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The bearer’s melee weapons have the [PRECISION] ability"
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "conditions": [],
+              "provenance": {
+                "canonicalRuleId": "detachment-slaaneshs-chosen:enhancement:4",
+                "canonicalOwnerId": "detachment-slaaneshs-chosen",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/5/enhancements/3",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_MODEL"
+              }
+            }
+          ]
+        },
+        {
+          "id": "character-attack",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. The bearer’s melee weapons have the [PRECISION] ability, and each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "meleeAttackTargetsCharacter",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+          },
+          "sourceText": "each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Requires an actual melee attack targeting a CHARACTER unit; no battle state is simulated."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "detachmentId": "detachment-slaaneshs-chosen",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "MODEL_KEYWORD",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "EMPEROR’S CHILDREN"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. The bearer’s melee weapons have the [PRECISION] ability, and each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+          }
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-b40bba7a24a62ef4",
+        "detachmentId": "mfm-detachment-0a531332ffbbbba0",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "SLAANESH’S CHOSEN",
+            "sourceTitle": "Slayer of Champions"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "9583a5a7521bf6f6002d5a1a76b1c148bcc2a280",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/5/enhancements/3",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    }
+  ],
+  "abilityReferences": {
+    "core-fights-first": {
+      "id": "core-fights-first",
+      "title": "FIGHTS FIRST",
+      "parameters": {},
+      "provenance": {
+        "base": {
+          "sourceId": "waha-core-corpus-2026-09-25",
+          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+          "sourceDate": "2026-09-25",
+          "sourceScope": "GLOBAL_CORE",
+          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+        }
+      }
+    }
+  },
+  "attachmentPolicies": [
+    {
+      "sourceId": "unit-lucius-the-eternal",
+      "targetId": "unit-flawless-blades",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-lucius-the-eternal:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-124ae89286008eea"
+    },
+    {
+      "sourceId": "unit-lord-exultant",
+      "targetId": "unit-infractors",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-lord-exultant:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-8824abb3763c9d97"
+    },
+    {
+      "sourceId": "unit-lord-exultant",
+      "targetId": "unit-tormentors",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-lord-exultant:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-8824abb3763c9d97"
+    },
+    {
+      "sourceId": "unit-lord-kakophonist",
+      "targetId": "unit-chaos-terminators",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-lord-kakophonist:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-cbaf97070e774ac4"
+    },
+    {
+      "sourceId": "unit-lord-kakophonist",
+      "targetId": "unit-noise-marines",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-lord-kakophonist:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-cbaf97070e774ac4"
+    },
+    {
+      "sourceId": "unit-sorcerer",
+      "targetId": "unit-infractors",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-sorcerer:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-fa18ef72513dc34f"
+    },
+    {
+      "sourceId": "unit-sorcerer",
+      "targetId": "unit-noise-marines",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-sorcerer:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-fa18ef72513dc34f"
+    },
+    {
+      "sourceId": "unit-sorcerer",
+      "targetId": "unit-tormentors",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-sorcerer:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-fa18ef72513dc34f"
+    },
+    {
+      "sourceId": "unit-lord-exultant",
+      "targetId": "unit-flawless-blades",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "detachment-court-of-the-phoenician:enhancement:2"
+      ],
+      "mfmReferenceId": "mfm-qualifier-2c135ed536a65870",
+      "availability": [
+        {
+          "detachmentId": "detachment-court-of-the-phoenician",
+          "enhancementId": "detachment-court-of-the-phoenician:enhancement:2"
+        }
+      ]
+    }
+  ]
+}
