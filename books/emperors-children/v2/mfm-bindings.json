@@ -1,0 +1,1336 @@
+{
+  "schema": "ec-v2-central-mfm-bindings/v1",
+  "authority": "REFERENCE_BINDINGS_ONLY_NO_FACT_VALUES",
+  "currentnessCutoff": "2026-10-14",
+  "unitBindings": [
+    {
+      "entityId": "unit-noise-marines",
+      "sourceEntityId": "datasheet-noise-marines",
+      "mfmRecordId": "mfm-unit-points-dfb0c25d8d6bbf7c",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "NOISE MARINES",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-ad08ff6682eb0ac5",
+      "armyUnitId": "unit-noise-marines"
+    },
+    {
+      "entityId": "unit-tormentors",
+      "sourceEntityId": "datasheet-tormentors",
+      "mfmRecordId": "mfm-unit-points-f3928484387ccb61",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "TORMENTORS",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-aece7bf95cb59250",
+      "armyUnitId": "unit-tormentors"
+    },
+    {
+      "entityId": "unit-chaos-rhino",
+      "sourceEntityId": "datasheet-chaos-rhino",
+      "mfmRecordId": "mfm-unit-points-a360ae292da96923",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "CHAOS RHINO",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-61e87916d76f254e",
+      "armyUnitId": "unit-chaos-rhino"
+    },
+    {
+      "entityId": "unit-keeper-of-secrets",
+      "sourceEntityId": "datasheet-keeper-of-secrets",
+      "mfmRecordId": "mfm-unit-points-f0aab206571061c4",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "KEEPER OF SECRETS",
+        "sourceGroup": "LEGIONS OF EXCESS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-e0a560d6e0ad40a1",
+      "armyUnitId": "unit-keeper-of-secrets"
+    },
+    {
+      "entityId": "unit-daemonettes",
+      "sourceEntityId": "datasheet-daemonettes",
+      "mfmRecordId": "mfm-unit-points-701f057f8b419df1",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "DAEMONETTES",
+        "sourceGroup": "LEGIONS OF EXCESS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-e68ce60757d150c4",
+      "armyUnitId": "unit-daemonettes"
+    },
+    {
+      "entityId": "unit-seekers",
+      "sourceEntityId": "datasheet-seekers",
+      "mfmRecordId": "mfm-unit-points-ef27599d32180863",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "SEEKERS",
+        "sourceGroup": "LEGIONS OF EXCESS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-810b4fb08617b8a9",
+      "armyUnitId": "unit-seekers"
+    },
+    {
+      "entityId": "unit-shalaxi-helbane",
+      "sourceEntityId": "datasheet-shalaxi-helbane",
+      "mfmRecordId": "mfm-unit-points-3ca489aeca0a7158",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "SHALAXI HELBANE",
+        "sourceGroup": "LEGIONS OF EXCESS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-41f8c9bbbc9fb97a",
+      "armyUnitId": "unit-shalaxi-helbane"
+    },
+    {
+      "entityId": "unit-fulgrim",
+      "sourceEntityId": "datasheet-fulgrim",
+      "mfmRecordId": "mfm-unit-points-56163322cb8023af",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "FULGRIM",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-6da2779a918b5d73",
+      "armyUnitId": "unit-fulgrim"
+    },
+    {
+      "entityId": "unit-flawless-blades",
+      "sourceEntityId": "datasheet-flawless-blades",
+      "mfmRecordId": "mfm-unit-points-f18b50866c07493f",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "FLAWLESS BLADES",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-e8300d322ff9847a",
+      "armyUnitId": "unit-flawless-blades"
+    },
+    {
+      "entityId": "unit-lord-exultant",
+      "sourceEntityId": "datasheet-lord-exultant",
+      "mfmRecordId": "mfm-unit-points-5fada8f823f78643",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "LORD EXULTANT",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-0b86daa4dfc36200",
+      "armyUnitId": "unit-lord-exultant"
+    },
+    {
+      "entityId": "unit-daemon-prince-of-slaanesh",
+      "sourceEntityId": "datasheet-daemon-prince-of-slaanesh",
+      "mfmRecordId": "mfm-unit-points-a55b4dd39d91eea9",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "DAEMON PRINCE OF SLAANESH",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-ac889ec5a95b6048",
+      "armyUnitId": "unit-daemon-prince-of-slaanesh"
+    },
+    {
+      "entityId": "unit-chaos-terminators",
+      "sourceEntityId": "datasheet-chaos-terminators",
+      "mfmRecordId": "mfm-unit-points-cfb4a02219c4ad7b",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "CHAOS TERMINATORS",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-b2f81eeb2fd9aba7",
+      "armyUnitId": "unit-chaos-terminators"
+    },
+    {
+      "entityId": "unit-lord-kakophonist",
+      "sourceEntityId": "datasheet-lord-kakophonist",
+      "mfmRecordId": "mfm-unit-points-5600c9b172c6c51a",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "LORD KAKOPHONIST",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-a179357bdc3a237e",
+      "armyUnitId": "unit-lord-kakophonist"
+    },
+    {
+      "entityId": "unit-chaos-spawn",
+      "sourceEntityId": "datasheet-chaos-spawn",
+      "mfmRecordId": "mfm-unit-points-701e8dd37a31c9ea",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "CHAOS SPAWN",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-5e958d1d4e8a3fa3",
+      "armyUnitId": "unit-chaos-spawn"
+    },
+    {
+      "entityId": "unit-daemon-prince-of-slaanesh-with-wings",
+      "sourceEntityId": "datasheet-daemon-prince-of-slaanesh-with-wings",
+      "mfmRecordId": "mfm-unit-points-c385c644049bfb32",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "DAEMON PRINCE OF SLAANESH WITH WINGS",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-511d88e8c16f55e0",
+      "armyUnitId": "unit-daemon-prince-of-slaanesh-with-wings"
+    },
+    {
+      "entityId": "unit-infractors",
+      "sourceEntityId": "datasheet-infractors",
+      "mfmRecordId": "mfm-unit-points-4ea81d1488927986",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "INFRACTORS",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-7435e083605af51d",
+      "armyUnitId": "unit-infractors"
+    },
+    {
+      "entityId": "unit-lucius-the-eternal",
+      "sourceEntityId": "datasheet-lucius-the-eternal",
+      "mfmRecordId": "mfm-unit-points-c152328d3e6eaf46",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "LUCIUS THE ETERNAL",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-1bd5558e49a057f2",
+      "armyUnitId": "unit-lucius-the-eternal"
+    },
+    {
+      "entityId": "unit-sorcerer",
+      "sourceEntityId": "datasheet-sorcerer",
+      "mfmRecordId": "mfm-unit-points-4726053396e9c7ff",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "SORCERER",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-680509c893bb9d47",
+      "armyUnitId": "unit-sorcerer"
+    },
+    {
+      "entityId": "unit-chaos-land-raider",
+      "sourceEntityId": "datasheet-chaos-land-raider",
+      "mfmRecordId": "mfm-unit-points-5d0bdb038faae7fd",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "CHAOS LAND RAIDER",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-588a96c9ffcdd1a2",
+      "armyUnitId": "unit-chaos-land-raider"
+    },
+    {
+      "entityId": "unit-heldrake",
+      "sourceEntityId": "datasheet-heldrake",
+      "mfmRecordId": "mfm-unit-points-bf2222a96748b219",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "HELDRAKE",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-99ef69d5f4af30ca",
+      "armyUnitId": "unit-heldrake"
+    },
+    {
+      "entityId": "unit-defiler",
+      "sourceEntityId": "datasheet-defiler",
+      "mfmRecordId": "mfm-unit-points-df8424a9fdeb2ca5",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "DEFILER",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-4bdc6340aedb505d",
+      "armyUnitId": "unit-defiler"
+    },
+    {
+      "entityId": "unit-maulerfiend",
+      "sourceEntityId": "datasheet-maulerfiend",
+      "mfmRecordId": "mfm-unit-points-e20a0cdeeea31105",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "MAULERFIEND",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-08c530a4a082d626",
+      "armyUnitId": "unit-maulerfiend"
+    },
+    {
+      "entityId": "unit-fiends",
+      "sourceEntityId": "datasheet-fiends",
+      "mfmRecordId": "mfm-unit-points-a3220173474a7868",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_UNIT_POINTS",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "emperors-children",
+        "sourceTitle": "FIENDS",
+        "sourceGroup": "LEGIONS OF EXCESS",
+        "status": "CURRENT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmUnitReferenceId": "mfm-unit-ref-2032f46d09954711",
+      "armyUnitId": "unit-fiends"
+    }
+  ],
+  "detachmentBindings": [
+    {
+      "entityId": "detachment-coterie-of-the-conceited",
+      "sourceEntityId": "detachment-coterie-of-the-conceited",
+      "mfmRecordId": "mfm-detachment-961301a2d6c7cc4f",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_DETACHMENT",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "emperors-children",
+        "sourceTitle": "COTERIE OF THE CONCEITED"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyDetachmentId": "coterie-of-the-conceited"
+    },
+    {
+      "entityId": "detachment-carnival-of-excess",
+      "sourceEntityId": "detachment-carnival-of-excess",
+      "mfmRecordId": "mfm-detachment-93445f9c8df320a5",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_DETACHMENT",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "emperors-children",
+        "sourceTitle": "CARNIVAL OF EXCESS"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyDetachmentId": "carnival-of-excess"
+    },
+    {
+      "entityId": "detachment-rapid-evisceration",
+      "sourceEntityId": "detachment-rapid-evisceration",
+      "mfmRecordId": "mfm-detachment-0cd771e9201be3a9",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_DETACHMENT",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "emperors-children",
+        "sourceTitle": "RAPID EVISCERATION"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyDetachmentId": "rapid-evisceration"
+    },
+    {
+      "entityId": "detachment-peerless-bladesmen",
+      "sourceEntityId": "detachment-peerless-bladesmen",
+      "mfmRecordId": "mfm-detachment-751153783cfe2135",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_DETACHMENT",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "emperors-children",
+        "sourceTitle": "PEERLESS BLADESMEN"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyDetachmentId": "peerless-bladesmen"
+    },
+    {
+      "entityId": "detachment-court-of-the-phoenician",
+      "sourceEntityId": "detachment-court-of-the-phoenician",
+      "mfmRecordId": "mfm-detachment-7e76f5e0c401ec50",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_DETACHMENT",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "emperors-children",
+        "sourceTitle": "COURT OF THE PHOENICIAN"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyDetachmentId": "court-of-the-phoenician"
+    },
+    {
+      "entityId": "detachment-slaaneshs-chosen",
+      "sourceEntityId": "detachment-slaaneshs-chosen",
+      "mfmRecordId": "mfm-detachment-0a531332ffbbbba0",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_DETACHMENT",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "emperors-children",
+        "sourceTitle": "SLAANESH’S CHOSEN"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyDetachmentId": "slaaneshs-chosen"
+    },
+    {
+      "entityId": "detachment-mercurial-host",
+      "sourceEntityId": "detachment-mercurial-host",
+      "mfmRecordId": "mfm-detachment-f5d91b98cb39b545",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_DETACHMENT",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "emperors-children",
+        "sourceTitle": "MERCURIAL HOST"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyDetachmentId": "mercurial-host"
+    },
+    {
+      "entityId": "detachment-spectacle-of-slaughter",
+      "sourceEntityId": "detachment-spectacle-of-slaughter",
+      "mfmRecordId": "mfm-detachment-56996422dd40a230",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_DETACHMENT",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "emperors-children",
+        "sourceTitle": "SPECTACLE OF SLAUGHTER"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyDetachmentId": "spectacle-of-slaughter"
+    },
+    {
+      "entityId": "detachment-frenzied-host",
+      "sourceEntityId": "detachment-frenzied-host",
+      "mfmRecordId": "mfm-detachment-9b892ff13e0dc5ad",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_DETACHMENT",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "emperors-children",
+        "sourceTitle": "FRENZIED HOST"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyDetachmentId": "frenzied-host"
+    },
+    {
+      "entityId": "detachment-elegant-brutes",
+      "sourceEntityId": "detachment-elegant-brutes",
+      "mfmRecordId": "mfm-detachment-5b619a99165f35cb",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_DETACHMENT",
+      "scopeOwnerId": "emperors-children",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "emperors-children",
+        "sourceTitle": "ELEGANT BRUTES"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyDetachmentId": "elegant-brutes"
+    }
+  ],
+  "enhancementBindings": [
+    {
+      "entityId": "detachment-coterie-of-the-conceited:enhancement:1",
+      "sourceEntityId": "detachment-coterie-of-the-conceited:enhancement:1",
+      "mfmRecordId": "mfm-enhancement-731788738d324cb3",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-coterie-of-the-conceited",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "COTERIE OF THE CONCEITED",
+        "sourceTitle": "Pledge of Eternal Servitude"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-pledge-of-eternal-servitude",
+      "armyDetachmentId": "coterie-of-the-conceited",
+      "mfmDetachmentRecordId": "mfm-detachment-961301a2d6c7cc4f"
+    },
+    {
+      "entityId": "detachment-coterie-of-the-conceited:enhancement:2",
+      "sourceEntityId": "detachment-coterie-of-the-conceited:enhancement:2",
+      "mfmRecordId": "mfm-enhancement-083737853660e984",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-coterie-of-the-conceited",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "COTERIE OF THE CONCEITED",
+        "sourceTitle": "Pledge of Dark Glory"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-pledge-of-dark-glory",
+      "armyDetachmentId": "coterie-of-the-conceited",
+      "mfmDetachmentRecordId": "mfm-detachment-961301a2d6c7cc4f"
+    },
+    {
+      "entityId": "detachment-coterie-of-the-conceited:enhancement:3",
+      "sourceEntityId": "detachment-coterie-of-the-conceited:enhancement:3",
+      "mfmRecordId": "mfm-enhancement-faa97aafb8009195",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-coterie-of-the-conceited",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "COTERIE OF THE CONCEITED",
+        "sourceTitle": "Pledge of Mortal Pain"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-pledge-of-mortal-pain",
+      "armyDetachmentId": "coterie-of-the-conceited",
+      "mfmDetachmentRecordId": "mfm-detachment-961301a2d6c7cc4f"
+    },
+    {
+      "entityId": "detachment-coterie-of-the-conceited:enhancement:4",
+      "sourceEntityId": "detachment-coterie-of-the-conceited:enhancement:4",
+      "mfmRecordId": "mfm-enhancement-a7b22d74f86ff843",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-coterie-of-the-conceited",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "COTERIE OF THE CONCEITED",
+        "sourceTitle": "Pledge of Unholy Fortune"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-pledge-of-unholy-fortune",
+      "armyDetachmentId": "coterie-of-the-conceited",
+      "mfmDetachmentRecordId": "mfm-detachment-961301a2d6c7cc4f"
+    },
+    {
+      "entityId": "detachment-carnival-of-excess:enhancement:1",
+      "sourceEntityId": "detachment-carnival-of-excess:enhancement:1",
+      "mfmRecordId": "mfm-enhancement-03a251d4e568bb90",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-carnival-of-excess",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "CARNIVAL OF EXCESS",
+        "sourceTitle": "Empyric Suffusion"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-empyric-suffusion",
+      "armyDetachmentId": "carnival-of-excess",
+      "mfmDetachmentRecordId": "mfm-detachment-93445f9c8df320a5"
+    },
+    {
+      "entityId": "detachment-carnival-of-excess:enhancement:2",
+      "sourceEntityId": "detachment-carnival-of-excess:enhancement:2",
+      "mfmRecordId": "mfm-enhancement-42c6509f6423de50",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-carnival-of-excess",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "CARNIVAL OF EXCESS",
+        "sourceTitle": "Dark Blessings"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-dark-blessings",
+      "armyDetachmentId": "carnival-of-excess",
+      "mfmDetachmentRecordId": "mfm-detachment-93445f9c8df320a5"
+    },
+    {
+      "entityId": "detachment-carnival-of-excess:enhancement:3",
+      "sourceEntityId": "detachment-carnival-of-excess:enhancement:3",
+      "mfmRecordId": "mfm-enhancement-acbd1e73b225a230",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-carnival-of-excess",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "CARNIVAL OF EXCESS",
+        "sourceTitle": "Possessed Blade"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-possessed-blade",
+      "armyDetachmentId": "carnival-of-excess",
+      "mfmDetachmentRecordId": "mfm-detachment-93445f9c8df320a5"
+    },
+    {
+      "entityId": "detachment-carnival-of-excess:enhancement:4",
+      "sourceEntityId": "detachment-carnival-of-excess:enhancement:4",
+      "mfmRecordId": "mfm-enhancement-a351dcda8ab82b73",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-carnival-of-excess",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "CARNIVAL OF EXCESS",
+        "sourceTitle": "Warp Walker"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-warp-walker",
+      "armyDetachmentId": "carnival-of-excess",
+      "mfmDetachmentRecordId": "mfm-detachment-93445f9c8df320a5"
+    },
+    {
+      "entityId": "detachment-rapid-evisceration:enhancement:1",
+      "sourceEntityId": "detachment-rapid-evisceration:enhancement:1",
+      "mfmRecordId": "mfm-enhancement-d5fefff1b08c424a",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-rapid-evisceration",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "RAPID EVISCERATION",
+        "sourceTitle": "Sublime Prescience"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-sublime-prescience",
+      "armyDetachmentId": "rapid-evisceration",
+      "mfmDetachmentRecordId": "mfm-detachment-0cd771e9201be3a9"
+    },
+    {
+      "entityId": "detachment-rapid-evisceration:enhancement:2",
+      "sourceEntityId": "detachment-rapid-evisceration:enhancement:2",
+      "mfmRecordId": "mfm-enhancement-375a79b75e5301fd",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-rapid-evisceration",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "RAPID EVISCERATION",
+        "sourceTitle": "Spearhead Striker"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-spearhead-striker",
+      "armyDetachmentId": "rapid-evisceration",
+      "mfmDetachmentRecordId": "mfm-detachment-0cd771e9201be3a9"
+    },
+    {
+      "entityId": "detachment-rapid-evisceration:enhancement:3",
+      "sourceEntityId": "detachment-rapid-evisceration:enhancement:3",
+      "mfmRecordId": "mfm-enhancement-2c82bdbba75f4054",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-rapid-evisceration",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "RAPID EVISCERATION",
+        "sourceTitle": "Accomplished Tactician"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-accomplished-tactician",
+      "armyDetachmentId": "rapid-evisceration",
+      "mfmDetachmentRecordId": "mfm-detachment-0cd771e9201be3a9"
+    },
+    {
+      "entityId": "detachment-rapid-evisceration:enhancement:4",
+      "sourceEntityId": "detachment-rapid-evisceration:enhancement:4",
+      "mfmRecordId": "mfm-enhancement-e001a1fbb6232af1",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-rapid-evisceration",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "RAPID EVISCERATION",
+        "sourceTitle": "Heretek Adept"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-heretek-adept",
+      "armyDetachmentId": "rapid-evisceration",
+      "mfmDetachmentRecordId": "mfm-detachment-0cd771e9201be3a9"
+    },
+    {
+      "entityId": "detachment-peerless-bladesmen:enhancement:1",
+      "sourceEntityId": "detachment-peerless-bladesmen:enhancement:1",
+      "mfmRecordId": "mfm-enhancement-a11b495719fd796a",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-peerless-bladesmen",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "PEERLESS BLADESMEN",
+        "sourceTitle": "Faultless Opportunist"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-faultless-opportunist",
+      "armyDetachmentId": "peerless-bladesmen",
+      "mfmDetachmentRecordId": "mfm-detachment-751153783cfe2135"
+    },
+    {
+      "entityId": "detachment-peerless-bladesmen:enhancement:2",
+      "sourceEntityId": "detachment-peerless-bladesmen:enhancement:2",
+      "mfmRecordId": "mfm-enhancement-240cefea4526db25",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-peerless-bladesmen",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "PEERLESS BLADESMEN",
+        "sourceTitle": "Blinding Speed"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-blinding-speed",
+      "armyDetachmentId": "peerless-bladesmen",
+      "mfmDetachmentRecordId": "mfm-detachment-751153783cfe2135"
+    },
+    {
+      "entityId": "detachment-peerless-bladesmen:enhancement:3",
+      "sourceEntityId": "detachment-peerless-bladesmen:enhancement:3",
+      "mfmRecordId": "mfm-enhancement-a54c5a91cc1321f4",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-peerless-bladesmen",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "PEERLESS BLADESMEN",
+        "sourceTitle": "Distortion"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-distortion",
+      "armyDetachmentId": "peerless-bladesmen",
+      "mfmDetachmentRecordId": "mfm-detachment-751153783cfe2135"
+    },
+    {
+      "entityId": "detachment-peerless-bladesmen:enhancement:4",
+      "sourceEntityId": "detachment-peerless-bladesmen:enhancement:4",
+      "mfmRecordId": "mfm-enhancement-a807118f1dbeb70f",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-peerless-bladesmen",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "PEERLESS BLADESMEN",
+        "sourceTitle": "Rise to the Challenge"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-rise-to-the-challenge",
+      "armyDetachmentId": "peerless-bladesmen",
+      "mfmDetachmentRecordId": "mfm-detachment-751153783cfe2135"
+    },
+    {
+      "entityId": "detachment-court-of-the-phoenician:enhancement:1",
+      "sourceEntityId": "detachment-court-of-the-phoenician:enhancement:1",
+      "mfmRecordId": "mfm-enhancement-c61db5138230cb0a",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-court-of-the-phoenician",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "COURT OF THE PHOENICIAN",
+        "sourceTitle": "Tears of the Phoenix"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-tears-of-the-phoenix",
+      "armyDetachmentId": "court-of-the-phoenician",
+      "mfmDetachmentRecordId": "mfm-detachment-7e76f5e0c401ec50"
+    },
+    {
+      "entityId": "detachment-court-of-the-phoenician:enhancement:2",
+      "sourceEntityId": "detachment-court-of-the-phoenician:enhancement:2",
+      "mfmRecordId": "mfm-enhancement-c96e91c539b4419f",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-court-of-the-phoenician",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "COURT OF THE PHOENICIAN",
+        "sourceTitle": "Exalted Patron"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-exalted-patron",
+      "armyDetachmentId": "court-of-the-phoenician",
+      "mfmDetachmentRecordId": "mfm-detachment-7e76f5e0c401ec50"
+    },
+    {
+      "entityId": "detachment-court-of-the-phoenician:enhancement:3",
+      "sourceEntityId": "detachment-court-of-the-phoenician:enhancement:3",
+      "mfmRecordId": "mfm-enhancement-abae6e675813ca0e",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-court-of-the-phoenician",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "COURT OF THE PHOENICIAN",
+        "sourceTitle": "Soulstain Made Manifest"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-soulstain-made-manifest",
+      "armyDetachmentId": "court-of-the-phoenician",
+      "mfmDetachmentRecordId": "mfm-detachment-7e76f5e0c401ec50"
+    },
+    {
+      "entityId": "detachment-court-of-the-phoenician:enhancement:4",
+      "sourceEntityId": "detachment-court-of-the-phoenician:enhancement:4",
+      "mfmRecordId": "mfm-enhancement-96185217ace182d7",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-court-of-the-phoenician",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "COURT OF THE PHOENICIAN",
+        "sourceTitle": "Spiritsliver"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-spiritsliver",
+      "armyDetachmentId": "court-of-the-phoenician",
+      "mfmDetachmentRecordId": "mfm-detachment-7e76f5e0c401ec50"
+    },
+    {
+      "entityId": "detachment-slaaneshs-chosen:enhancement:1",
+      "sourceEntityId": "detachment-slaaneshs-chosen:enhancement:1",
+      "mfmRecordId": "mfm-enhancement-cef7597e08b3b076",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-slaaneshs-chosen",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "SLAANESH’S CHOSEN",
+        "sourceTitle": "Eager to Prove"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-eager-to-prove",
+      "armyDetachmentId": "slaaneshs-chosen",
+      "mfmDetachmentRecordId": "mfm-detachment-0a531332ffbbbba0"
+    },
+    {
+      "entityId": "detachment-slaaneshs-chosen:enhancement:2",
+      "sourceEntityId": "detachment-slaaneshs-chosen:enhancement:2",
+      "mfmRecordId": "mfm-enhancement-260bd68990eca9b1",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-slaaneshs-chosen",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "SLAANESH’S CHOSEN",
+        "sourceTitle": "Repulsed by Weakness"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-repulsed-by-weakness",
+      "armyDetachmentId": "slaaneshs-chosen",
+      "mfmDetachmentRecordId": "mfm-detachment-0a531332ffbbbba0"
+    },
+    {
+      "entityId": "detachment-slaaneshs-chosen:enhancement:3",
+      "sourceEntityId": "detachment-slaaneshs-chosen:enhancement:3",
+      "mfmRecordId": "mfm-enhancement-ff3916c2e31778c2",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-slaaneshs-chosen",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "SLAANESH’S CHOSEN",
+        "sourceTitle": "Proud and Vainglorious"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-proud-and-vainglorious",
+      "armyDetachmentId": "slaaneshs-chosen",
+      "mfmDetachmentRecordId": "mfm-detachment-0a531332ffbbbba0"
+    },
+    {
+      "entityId": "detachment-slaaneshs-chosen:enhancement:4",
+      "sourceEntityId": "detachment-slaaneshs-chosen:enhancement:4",
+      "mfmRecordId": "mfm-enhancement-b40bba7a24a62ef4",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-slaaneshs-chosen",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "SLAANESH’S CHOSEN",
+        "sourceTitle": "Slayer of Champions"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-slayer-of-champions",
+      "armyDetachmentId": "slaaneshs-chosen",
+      "mfmDetachmentRecordId": "mfm-detachment-0a531332ffbbbba0"
+    },
+    {
+      "entityId": "detachment-mercurial-host:enhancement:1",
+      "sourceEntityId": "detachment-mercurial-host:enhancement:1",
+      "mfmRecordId": "mfm-enhancement-bb00410ffd1d69c0",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-mercurial-host",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "MERCURIAL HOST",
+        "sourceTitle": "Steeped in Suffering"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-steeped-in-suffering",
+      "armyDetachmentId": "mercurial-host",
+      "mfmDetachmentRecordId": "mfm-detachment-f5d91b98cb39b545"
+    },
+    {
+      "entityId": "detachment-mercurial-host:enhancement:2",
+      "sourceEntityId": "detachment-mercurial-host:enhancement:2",
+      "mfmRecordId": "mfm-enhancement-0b6db675996e6e94",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-mercurial-host",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "MERCURIAL HOST",
+        "sourceTitle": "Intoxicating Musk"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-intoxicating-musk",
+      "armyDetachmentId": "mercurial-host",
+      "mfmDetachmentRecordId": "mfm-detachment-f5d91b98cb39b545"
+    },
+    {
+      "entityId": "detachment-mercurial-host:enhancement:3",
+      "sourceEntityId": "detachment-mercurial-host:enhancement:3",
+      "mfmRecordId": "mfm-enhancement-364c437fc21eae20",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-mercurial-host",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "MERCURIAL HOST",
+        "sourceTitle": "Tactical Perfection"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-tactical-perfection",
+      "armyDetachmentId": "mercurial-host",
+      "mfmDetachmentRecordId": "mfm-detachment-f5d91b98cb39b545"
+    },
+    {
+      "entityId": "detachment-mercurial-host:enhancement:4",
+      "sourceEntityId": "detachment-mercurial-host:enhancement:4",
+      "mfmRecordId": "mfm-enhancement-54ca3b6d0c7e8794",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-mercurial-host",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "MERCURIAL HOST",
+        "sourceTitle": "Loathsome Dexterity"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-loathsome-dexterity",
+      "armyDetachmentId": "mercurial-host",
+      "mfmDetachmentRecordId": "mfm-detachment-f5d91b98cb39b545"
+    },
+    {
+      "entityId": "detachment-spectacle-of-slaughter:enhancement:1",
+      "sourceEntityId": "detachment-spectacle-of-slaughter:enhancement:1",
+      "mfmRecordId": "mfm-enhancement-a34fca745cd9fe36",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-spectacle-of-slaughter",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "SPECTACLE OF SLAUGHTER",
+        "sourceTitle": "Eager Patrons (Upgrade)"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-eager-patrons",
+      "armyDetachmentId": "spectacle-of-slaughter",
+      "mfmDetachmentRecordId": "mfm-detachment-56996422dd40a230"
+    },
+    {
+      "entityId": "detachment-spectacle-of-slaughter:enhancement:2",
+      "sourceEntityId": "detachment-spectacle-of-slaughter:enhancement:2",
+      "mfmRecordId": "mfm-enhancement-d87365e1c9c26b33",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-spectacle-of-slaughter",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "SPECTACLE OF SLAUGHTER",
+        "sourceTitle": "Beguiling Grotesquerie (Upgrade)"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-beguiling-grotesquerie",
+      "armyDetachmentId": "spectacle-of-slaughter",
+      "mfmDetachmentRecordId": "mfm-detachment-56996422dd40a230"
+    },
+    {
+      "entityId": "detachment-frenzied-host:enhancement:1",
+      "sourceEntityId": "detachment-frenzied-host:enhancement:1",
+      "mfmRecordId": "mfm-enhancement-632de7deea09e820",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-frenzied-host",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "FRENZIED HOST",
+        "sourceTitle": "Euphoric Crown"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-euphoric-crown",
+      "armyDetachmentId": "frenzied-host",
+      "mfmDetachmentRecordId": "mfm-detachment-9b892ff13e0dc5ad"
+    },
+    {
+      "entityId": "detachment-frenzied-host:enhancement:2",
+      "sourceEntityId": "detachment-frenzied-host:enhancement:2",
+      "mfmRecordId": "mfm-enhancement-a4b10818158fdf7d",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-frenzied-host",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "FRENZIED HOST",
+        "sourceTitle": "Howling Plate"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-howling-plate",
+      "armyDetachmentId": "frenzied-host",
+      "mfmDetachmentRecordId": "mfm-detachment-9b892ff13e0dc5ad"
+    },
+    {
+      "entityId": "detachment-elegant-brutes:enhancement:1",
+      "sourceEntityId": "detachment-elegant-brutes:enhancement:1",
+      "mfmRecordId": "mfm-enhancement-dacef9222772aee6",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-elegant-brutes",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "ELEGANT BRUTES",
+        "sourceTitle": "Cacophonic Accompaniment"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-cacophonic-accompaniment",
+      "armyDetachmentId": "elegant-brutes",
+      "mfmDetachmentRecordId": "mfm-detachment-5b619a99165f35cb"
+    },
+    {
+      "entityId": "detachment-elegant-brutes:enhancement:2",
+      "sourceEntityId": "detachment-elegant-brutes:enhancement:2",
+      "mfmRecordId": "mfm-enhancement-ca039e696fc806bd",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_ENHANCEMENT_COST",
+      "scopeOwnerId": "detachment-elegant-brutes",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "ELEGANT BRUTES",
+        "sourceTitle": "Frenzied Ferocity (Upgrade)"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "armyEnhancementId": "enhancement-frenzied-ferocity",
+      "armyDetachmentId": "elegant-brutes",
+      "mfmDetachmentRecordId": "mfm-detachment-5b619a99165f35cb"
+    }
+  ],
+  "paidUpgradeBindings": [
+    {
+      "entityId": "datasheet-defiler:weapon:6",
+      "sourceEntityId": "datasheet-defiler:weapon:6",
+      "mfmRecordId": "mfm-paid-upgrade-4b28fd7fd35bcbea",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_PAID_UPGRADE",
+      "scopeOwnerId": "unit-defiler",
+      "sourceLocator": {
+        "partition": "units.paidOptions",
+        "factionId": "emperors-children",
+        "sourceTitle": "DEFILER",
+        "sourceGroup": "WARGEAR OPTIONS",
+        "sourceLabel": "per Hades Lascannon"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "weaponProfileSourceIds": [
+        "datasheet-defiler:weapon:6"
+      ],
+      "optionSourceIds": [
+        "datasheet-defiler:wargear:3",
+        "datasheet-defiler:wargear:4"
+      ]
+    },
+    {
+      "entityId": "datasheet-defiler:weapon:7",
+      "sourceEntityId": "datasheet-defiler:weapon:7",
+      "mfmRecordId": "mfm-paid-upgrade-ff40d0cfcf1986eb",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_PAID_UPGRADE",
+      "scopeOwnerId": "unit-defiler",
+      "sourceLocator": {
+        "partition": "units.paidOptions",
+        "factionId": "emperors-children",
+        "sourceTitle": "DEFILER",
+        "sourceGroup": "WARGEAR OPTIONS",
+        "sourceLabel": "per Heavy Reaper Autocannon"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "weaponProfileSourceIds": [
+        "datasheet-defiler:weapon:7"
+      ],
+      "optionSourceIds": [
+        "datasheet-defiler:wargear:3",
+        "datasheet-defiler:wargear:4"
+      ]
+    }
+  ],
+  "leaderEligibilityBindings": [
+    {
+      "entityId": "unit-lucius-the-eternal",
+      "sourceEntityId": "datasheet-lucius-the-eternal:section:3",
+      "mfmRecordId": "mfm-leader-eligibility-124ae89286008eea",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_LEADER_ELIGIBILITY",
+      "scopeOwnerId": "unit-lucius-the-eternal",
+      "sourceLocator": {
+        "partition": "units.relations.leader",
+        "factionId": "emperors-children",
+        "sourceTitle": "LUCIUS THE ETERNAL"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "sourceUnitId": "unit-lucius-the-eternal",
+      "targetUnitIds": [
+        "unit-flawless-blades"
+      ]
+    },
+    {
+      "entityId": "unit-lord-exultant",
+      "sourceEntityId": "datasheet-lord-exultant:section:3",
+      "mfmRecordId": "mfm-leader-eligibility-8824abb3763c9d97",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_LEADER_ELIGIBILITY",
+      "scopeOwnerId": "unit-lord-exultant",
+      "sourceLocator": {
+        "partition": "units.relations.leader",
+        "factionId": "emperors-children",
+        "sourceTitle": "LORD EXULTANT"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "sourceUnitId": "unit-lord-exultant",
+      "targetUnitIds": [
+        "unit-infractors",
+        "unit-tormentors"
+      ]
+    },
+    {
+      "entityId": "unit-lord-kakophonist",
+      "sourceEntityId": "datasheet-lord-kakophonist:section:3",
+      "mfmRecordId": "mfm-leader-eligibility-cbaf97070e774ac4",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_LEADER_ELIGIBILITY",
+      "scopeOwnerId": "unit-lord-kakophonist",
+      "sourceLocator": {
+        "partition": "units.relations.leader",
+        "factionId": "emperors-children",
+        "sourceTitle": "LORD KAKOPHONIST"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "sourceUnitId": "unit-lord-kakophonist",
+      "targetUnitIds": [
+        "unit-chaos-terminators",
+        "unit-noise-marines"
+      ]
+    },
+    {
+      "entityId": "unit-sorcerer",
+      "sourceEntityId": "datasheet-sorcerer:section:3",
+      "mfmRecordId": "mfm-leader-eligibility-fa18ef72513dc34f",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_LEADER_ELIGIBILITY",
+      "scopeOwnerId": "unit-sorcerer",
+      "sourceLocator": {
+        "partition": "units.relations.leader",
+        "factionId": "emperors-children",
+        "sourceTitle": "SORCERER"
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "sourceUnitId": "unit-sorcerer",
+      "targetUnitIds": [
+        "unit-infractors",
+        "unit-noise-marines",
+        "unit-tormentors"
+      ]
+    }
+  ],
+  "qualifierBindings": [
+    {
+      "entityId": "detachment-court-of-the-phoenician:enhancement:2",
+      "sourceEntityId": "detachment-court-of-the-phoenician:enhancement:2",
+      "mfmRecordId": "mfm-qualifier-2c135ed536a65870",
+      "expectedFaction": "emperors-children",
+      "recordType": "MFM_QUALIFIER",
+      "scopeOwnerId": "detachment-court-of-the-phoenician",
+      "sourceLocator": {
+        "partition": "detachments.enhancements.qualifiers",
+        "factionId": "emperors-children",
+        "detachmentSourceTitle": "COURT OF THE PHOENICIAN",
+        "sourceTitle": "Exalted Patron",
+        "kind": "LEADER",
+        "values": [
+          "FLAWLESS BLADES"
+        ]
+      },
+      "sourceId": "emperors-children-mfm-v1.6",
+      "mfmOwnerRecordId": "mfm-enhancement-c96e91c539b4419f",
+      "armyOwnerId": "enhancement-exalted-patron"
+    }
+  ]
+}

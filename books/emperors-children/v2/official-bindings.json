@@ -1,0 +1,1624 @@
+{
+  "schema": "ec-v2-official-source-bindings/v1",
+  "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+  "sourceDocument": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+  "sourceSha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+  "effectiveFrom": "2026-09-30",
+  "occurrences": [
+    {
+      "id": "ec-official-v1.3:frantic-focus",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 3,
+        "bbox": [
+          45,
+          237,
+          296,
+          369
+        ],
+        "textSha256": "8B7F1A4C0709DFA1D014B853D690777AE4848230EA925D74BE35671D8A527132"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-frenzied-host:rule",
+          "targetId": "detachment-frenzied-host:rule",
+          "corpusPointer": "/detachments/8/rule/text",
+          "field": "/text",
+          "beforeSha256": "8D14F956658E001096BFA6E1D70F2B32D85CF2F5932283A3C0F94FB4348CC5CC",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                175,
+                362
+              ],
+              "sha256": "BD6990B171269408F6F2D86338CB7ABF0527A5886858118AB8001D9C37CA3437",
+              "typography": [
+                "NONBREAKING_HYPHEN_TO_ASCII"
+              ]
+            },
+            {
+              "span": [
+                363,
+                445
+              ],
+              "sha256": "857741F2C9640483170536DACB4B38AE55003C425C6DD00D1E7C2F63F88F890E"
+            }
+          ],
+          "join": "\n"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:vengeful-surge",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          300,
+          215,
+          555,
+          315
+        ],
+        "textSha256": "ACD7C539962ADD242FC3190A2B6827CBEBFD6413FF116DEC3E02BBF3BB02EDFC"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-slaaneshs-chosen:stratagem:6",
+          "targetId": "detachment-slaaneshs-chosen:stratagem:6",
+          "corpusPointer": "/detachments/5/stratagems/5/lines/0/text",
+          "field": "/lines/0/text",
+          "beforeSha256": "684C1870A9860CD40CCC175B8993C5C4408EC8D7DFC996CC8315A1C4B02DC04E",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                43,
+                183
+              ],
+              "sha256": "BDAEF999958B342DFA1FC40CCEED7E750333D55FC99BD69170E314663AFC2786"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "detachment-slaaneshs-chosen:stratagem:6",
+          "targetId": "detachment-slaaneshs-chosen:stratagem:6",
+          "corpusPointer": "/detachments/5/stratagems/5/lines/1/text",
+          "field": "/lines/1/text",
+          "beforeSha256": "66CBBDDB4244A276ABE338FB370E64D4EA6987F79730332D197B8A7208F882AF",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                192,
+                231
+              ],
+              "sha256": "98B6A11CFFB0448A2C1D8A5D2703EF2C19CC8A56D98CF9B45D48A403705B3339"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "detachment-slaaneshs-chosen:stratagem:6",
+          "targetId": "detachment-slaaneshs-chosen:stratagem:6",
+          "corpusPointer": "/detachments/5/stratagems/5/lines/2/text",
+          "field": "/lines/2/text",
+          "beforeSha256": "1E22427164E4346C185B308A8A49A832626659240D9F22D10F6B3F21BF256DC8",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                240,
+                408
+              ],
+              "sha256": "D1831BFCA02844837ED4EE506789229664342863F2D40A85CD7941A8841BA7CF"
+            }
+          ],
+          "join": ""
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:unit-t6",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          303,
+          477,
+          554,
+          491
+        ],
+        "textSha256": "DDB3C43CDBC661CDC98E5EAD6F78053F43CA61B5BC47BE2DDA75531F2A1EBFB5"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-chaos-terminators:profile:1",
+          "targetId": "datasheet-chaos-terminators:profile:1",
+          "corpusPointer": "/datasheets/11/profiles/0/stats/T",
+          "field": "/stats/T",
+          "beforeSha256": "D10A4BC9E0C1FA4E8F3D7CE2512B8756E47CA5FA451F373C39A1431BB88DB49F",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "E7F6C011776E8DB7CD330B54174FD76F7D0216B612387A5FFCFB81E6F0919683"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-lord-kakophonist:profile:1",
+          "targetId": "datasheet-lord-kakophonist:profile:1",
+          "corpusPointer": "/datasheets/12/profiles/0/stats/T",
+          "field": "/stats/T",
+          "beforeSha256": "D10A4BC9E0C1FA4E8F3D7CE2512B8756E47CA5FA451F373C39A1431BB88DB49F",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "E7F6C011776E8DB7CD330B54174FD76F7D0216B612387A5FFCFB81E6F0919683"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-lucius-the-eternal:profile:1",
+          "targetId": "datasheet-lucius-the-eternal:profile:1",
+          "corpusPointer": "/datasheets/16/profiles/0/stats/T",
+          "field": "/stats/T",
+          "beforeSha256": "D10A4BC9E0C1FA4E8F3D7CE2512B8756E47CA5FA451F373C39A1431BB88DB49F",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "E7F6C011776E8DB7CD330B54174FD76F7D0216B612387A5FFCFB81E6F0919683"
+            }
+          ],
+          "join": ""
+        }
+      ],
+      "adjudications": [
+        {
+          "classification": "SOURCE_SPELLING_ANOMALY",
+          "officialSpelling": "Lord Kakophanist",
+          "acceptedUnitSourceId": "datasheet-lord-kakophonist",
+          "canonicalUnitId": "unit-lord-kakophonist",
+          "targetCanonicalId": "datasheet-lord-kakophonist:profile:1",
+          "scope": "THIS_OFFICIAL_ROW_AND_UNIT_ONLY",
+          "evidence": {
+            "sourceCompositionId": "datasheet-lord-kakophonist:section:2",
+            "modelProfileId": "datasheet-lord-kakophonist:profile:1"
+          },
+          "globalAliasCreated": false
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:unit-t5",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          303,
+          490,
+          554,
+          504
+        ],
+        "textSha256": "000A58E313B3FE7B57657038B400237847DB9E88A1E553FE560E20A6B1F82703"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-infractors:profile:1",
+          "targetId": "datasheet-infractors:profile:1",
+          "corpusPointer": "/datasheets/15/profiles/0/stats/T",
+          "field": "/stats/T",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-lord-exultant:profile:1",
+          "targetId": "datasheet-lord-exultant:profile:1",
+          "corpusPointer": "/datasheets/9/profiles/0/stats/T",
+          "field": "/stats/T",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-sorcerer:profile:1",
+          "targetId": "datasheet-sorcerer:profile:1",
+          "corpusPointer": "/datasheets/17/profiles/0/stats/T",
+          "field": "/stats/T",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-tormentors:profile:1",
+          "targetId": "datasheet-tormentors:profile:1",
+          "corpusPointer": "/datasheets/1/profiles/0/stats/T",
+          "field": "/stats/T",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:unit-w3",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          303,
+          503,
+          554,
+          516
+        ],
+        "textSha256": "E8FB0AFE12B648B75993A973F95197EA1C644DB437700C3A4CFC8F3E2B6BDCD1"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-noise-marines:profile:1",
+          "targetId": "datasheet-noise-marines:profile:1",
+          "corpusPointer": "/datasheets/0/profiles/0/stats/W",
+          "field": "/stats/W",
+          "beforeSha256": "CC11310C456C3690D5A74C23AA31CC25B4E74CDAE146C71E54AD9DBC1D109FDE",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "4E07408562BEDB8B60CE05C1DECFE3AD16B72230967DE01F640B7E4729B49FCE"
+            }
+          ],
+          "join": ""
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:bolt-pistol",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          303,
+          555,
+          554,
+          579
+        ],
+        "textSha256": "5243BFF17C32E852BA9C4936F0AE6603EF01942D0B164313DEBFBD250396D864"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-flawless-blades:weapon:1",
+          "targetId": "datasheet-flawless-blades:weapon:1",
+          "corpusPointer": "/datasheets/8/weapons/0/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-flawless-blades:weapon:1",
+          "targetId": "datasheet-flawless-blades:weapon:1",
+          "corpusPointer": "/datasheets/8/weapons/0/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                63,
+                65
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-infractors:weapon:1",
+          "targetId": "datasheet-infractors:weapon:1",
+          "corpusPointer": "/datasheets/15/weapons/0/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-infractors:weapon:1",
+          "targetId": "datasheet-infractors:weapon:1",
+          "corpusPointer": "/datasheets/15/weapons/0/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                63,
+                65
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-lord-exultant:weapon:1",
+          "targetId": "datasheet-lord-exultant:weapon:1",
+          "corpusPointer": "/datasheets/9/weapons/0/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-lord-exultant:weapon:1",
+          "targetId": "datasheet-lord-exultant:weapon:1",
+          "corpusPointer": "/datasheets/9/weapons/0/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                63,
+                65
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-sorcerer:weapon:3",
+          "targetId": "datasheet-sorcerer:weapon:3",
+          "corpusPointer": "/datasheets/17/weapons/2/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-sorcerer:weapon:3",
+          "targetId": "datasheet-sorcerer:weapon:3",
+          "corpusPointer": "/datasheets/17/weapons/2/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                63,
+                65
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-tormentors:weapon:1",
+          "targetId": "datasheet-tormentors:weapon:1",
+          "corpusPointer": "/datasheets/1/weapons/0/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-tormentors:weapon:1",
+          "targetId": "datasheet-tormentors:weapon:1",
+          "corpusPointer": "/datasheets/1/weapons/0/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                63,
+                65
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:boltgun",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          303,
+          579,
+          554,
+          603
+        ],
+        "textSha256": "05E34075DF3BF05959A0BE3B0CE755CAF8295762BDECC44F5A3D226196CA92C4"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-tormentors:weapon:2",
+          "targetId": "datasheet-tormentors:weapon:2",
+          "corpusPointer": "/datasheets/1/weapons/1/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-tormentors:weapon:2",
+          "targetId": "datasheet-tormentors:weapon:2",
+          "corpusPointer": "/datasheets/1/weapons/1/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                26,
+                28
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:combi-bolter",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          303,
+          603,
+          554,
+          628
+        ],
+        "textSha256": "925E6E2ECDCD036E84805F80C86EF08ABCF3CC5269ABE907A0C589E4FFE1D0F3"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-chaos-land-raider:weapon:1",
+          "targetId": "datasheet-chaos-land-raider:weapon:1",
+          "corpusPointer": "/datasheets/18/weapons/0/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-chaos-land-raider:weapon:1",
+          "targetId": "datasheet-chaos-land-raider:weapon:1",
+          "corpusPointer": "/datasheets/18/weapons/0/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                58,
+                60
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-chaos-rhino:weapon:1",
+          "targetId": "datasheet-chaos-rhino:weapon:1",
+          "corpusPointer": "/datasheets/2/weapons/0/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-chaos-rhino:weapon:1",
+          "targetId": "datasheet-chaos-rhino:weapon:1",
+          "corpusPointer": "/datasheets/2/weapons/0/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                58,
+                60
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-chaos-terminators:weapon:1",
+          "targetId": "datasheet-chaos-terminators:weapon:1",
+          "corpusPointer": "/datasheets/11/weapons/0/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-chaos-terminators:weapon:1",
+          "targetId": "datasheet-chaos-terminators:weapon:1",
+          "corpusPointer": "/datasheets/11/weapons/0/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                58,
+                60
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:combi-weapon",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          303,
+          628,
+          554,
+          652
+        ],
+        "textSha256": "03E40003EDBE465BAD2892CA490FA3BDC17021F6206AB04D3568091EE0C41BB7"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-chaos-land-raider:weapon:2",
+          "targetId": "datasheet-chaos-land-raider:weapon:2",
+          "corpusPointer": "/datasheets/18/weapons/1/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-chaos-land-raider:weapon:2",
+          "targetId": "datasheet-chaos-land-raider:weapon:2",
+          "corpusPointer": "/datasheets/18/weapons/1/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                58,
+                60
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-chaos-rhino:weapon:2",
+          "targetId": "datasheet-chaos-rhino:weapon:2",
+          "corpusPointer": "/datasheets/2/weapons/1/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-chaos-rhino:weapon:2",
+          "targetId": "datasheet-chaos-rhino:weapon:2",
+          "corpusPointer": "/datasheets/2/weapons/1/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                58,
+                60
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-chaos-terminators:weapon:2",
+          "targetId": "datasheet-chaos-terminators:weapon:2",
+          "corpusPointer": "/datasheets/11/weapons/1/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                2,
+                3
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-chaos-terminators:weapon:2",
+          "targetId": "datasheet-chaos-terminators:weapon:2",
+          "corpusPointer": "/datasheets/11/weapons/1/ap",
+          "field": "/ap",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                58,
+                60
+              ],
+              "sha256": "1BAD6B8CF97131FCEAB8543E81F7757195FBB1D36B376EE994AD1CF17699C464"
+            }
+          ],
+          "join": ""
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:close-combat-weapon",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          303,
+          652,
+          554,
+          674
+        ],
+        "textSha256": "2D624B48171C0BF9BD07FBE4A16BF225E87C122F1BF07052F00507276A1DE445"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-lord-exultant:weapon:5",
+          "targetId": "datasheet-lord-exultant:weapon:5",
+          "corpusPointer": "/datasheets/9/weapons/4/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                63,
+                64
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-lord-kakophonist:weapon:2",
+          "targetId": "datasheet-lord-kakophonist:weapon:2",
+          "corpusPointer": "/datasheets/12/weapons/1/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                63,
+                64
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-noise-marines:weapon:5",
+          "targetId": "datasheet-noise-marines:weapon:5",
+          "corpusPointer": "/datasheets/0/weapons/4/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                63,
+                64
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        },
+        {
+          "sourceId": "datasheet-tormentors:weapon:8",
+          "targetId": "datasheet-tormentors:weapon:8",
+          "corpusPointer": "/datasheets/1/weapons/7/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                63,
+                64
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        }
+      ],
+      "adjudications": [
+        {
+          "classification": "SOURCE_SPELLING_ANOMALY",
+          "officialSpelling": "Lord Kakophanist",
+          "acceptedUnitSourceId": "datasheet-lord-kakophonist",
+          "canonicalUnitId": "unit-lord-kakophonist",
+          "targetCanonicalId": "datasheet-lord-kakophonist:weapon:2",
+          "scope": "THIS_OFFICIAL_ROW_AND_UNIT_ONLY",
+          "evidence": {
+            "sourceCompositionId": "datasheet-lord-kakophonist:section:2",
+            "modelProfileId": "datasheet-lord-kakophonist:profile:1"
+          },
+          "globalAliasCreated": false
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:duelling-sabre",
+      "group": "V13_CHANGE",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          303,
+          674,
+          554,
+          686
+        ],
+        "textSha256": "0A731A538BBF0C666153458CD0DAF04662D8F54DAB0C813FFB8EFF0D62B98A44"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-infractors:weapon:4",
+          "targetId": "datasheet-infractors:weapon:4",
+          "corpusPointer": "/datasheets/15/weapons/3/strength",
+          "field": "/strength",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                17,
+                18
+              ],
+              "sha256": "EF2D127DE37B942BAAD06145E54B0C619A1F22327B2EBBCFBEC78F5564AFE39D"
+            }
+          ],
+          "join": ""
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-01",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          40,
+          246,
+          296,
+          286
+        ],
+        "textSha256": "40DE92A4BE94AEF881188444C41BB320CADEB597DB08868CAEFB240B94A8D666"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-carnival-of-excess:enhancement:1",
+          "targetId": "detachment-carnival-of-excess:enhancement:1",
+          "corpusPointer": "/detachments/1/enhancements/0/text",
+          "field": "/text",
+          "beforeSha256": "6105465D9CC705A8DC92D26FB4E0A63D665F2FF7FE953402AE301FCD77E9F04B",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-02",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          40,
+          293,
+          296,
+          317
+        ],
+        "textSha256": "59791677312D00F830C94708DDB9ACBBFC32B57EA17714571EB4D22995224B30"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-carnival-of-excess:stratagem:6",
+          "targetId": "detachment-carnival-of-excess:stratagem:6",
+          "corpusPointer": "/detachments/1/stratagems/5/lines/2/text",
+          "field": "/lines/2/text",
+          "beforeSha256": "3203AE63EE659BFA520FC1084C09152FC794CB7DBBF270C2C6D816A39664475E",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-03",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          40,
+          337,
+          296,
+          391
+        ],
+        "textSha256": "07763ADA83E993A5C2F0F92FA72F1F6B2953C379E7142AFCFC34E24AF3D62DAA"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-coterie-of-the-conceited:stratagem:6",
+          "targetId": "detachment-coterie-of-the-conceited:stratagem:6",
+          "corpusPointer": "/detachments/0/stratagems/5/lines/2/text",
+          "field": "/lines/2/text",
+          "beforeSha256": "11C44DF5F9C2099D8C8726F2A4B19037951B69164D4E2855065C4F2CF5437050",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                59,
+                221
+              ],
+              "sha256": "87C3EF0F9E10B754808BCD8B1B5F89842E5B8AE4490FAB51EFCD2315E1B4AD59"
+            }
+          ],
+          "join": ""
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-04",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          40,
+          414,
+          296,
+          439
+        ],
+        "textSha256": "6520968ACE6FC1360D7457898EF5807E58B085F601EC9A7E8C43F2E194DC2E9B"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-mercurial-host:stratagem:4",
+          "targetId": "detachment-mercurial-host:stratagem:4",
+          "corpusPointer": "/detachments/6/stratagems/3/lines/1/text",
+          "field": "/lines/1/text",
+          "beforeSha256": "8DA26EBEA1D62C22E04674E7A51E74A33C374E7BF6B0FDD76622092759074E65",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-05",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          40,
+          461,
+          296,
+          535
+        ],
+        "textSha256": "7E7E6F572707164BA9DF6E786B49430FC7CFB40D9E13C321389E67D3C380A0FE"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-peerless-bladesmen:enhancement:1",
+          "targetId": "detachment-peerless-bladesmen:enhancement:1",
+          "corpusPointer": "/detachments/3/enhancements/0/text",
+          "field": "/text",
+          "beforeSha256": "16978056106EE950BC84E6CA06FB3ED1709E7C3CF2EFABC25BD25A1B1AA5D786",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                46,
+                180
+              ],
+              "sha256": "F0FC44EF5AE7C1606FD475C0CD4D31A4CE659C383F958AF7383E130375D11EB7"
+            },
+            {
+              "span": [
+                181,
+                201
+              ],
+              "sha256": "CFDD7D04EAA066F1ED8CF4CE1C38D4C6079CCE1BC28F7121AA096B5E6C4F6AEC",
+              "typography": [
+                "BULLET_TO_ASCII"
+              ]
+            },
+            {
+              "span": [
+                202,
+                283
+              ],
+              "sha256": "658D3690F5D85D41E7A9078BD2CDE4E752793204B57BA0065D4C70712B866F26",
+              "typography": [
+                "BULLET_TO_ASCII"
+              ]
+            }
+          ],
+          "join": "\n"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-06",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          40,
+          684,
+          296,
+          724
+        ],
+        "textSha256": "7997425E680007E3C6F951D6F291D61EDB60C655DE03BFB70BF90E4533B08E70"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-rapid-evisceration:rule",
+          "targetId": "detachment-rapid-evisceration:rule",
+          "corpusPointer": "/detachments/2/rule/text",
+          "field": "/text",
+          "beforeSha256": "1BC68D1622494D6E602DCED08EB3530A80270FE42A1B24AC747C02B96DAD9CAE",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-07",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          300,
+          325,
+          555,
+          424
+        ],
+        "textSha256": "242715E3BE8EC1988B5568035ADD415D1929219346886886B3A33BE54161A652"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-slaaneshs-chosen:stratagem:5",
+          "targetId": "detachment-slaaneshs-chosen:stratagem:5",
+          "corpusPointer": "/detachments/5/stratagems/4/lines",
+          "field": "/lines",
+          "beforeSha256": "122D702F2947F07F85C31F932DBA1D10DC897A193ECD23F009B5C2C6EFA695F8",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-08",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 6,
+        "bbox": [
+          380,
+          367,
+          552,
+          501
+        ],
+        "textSha256": "9CE56C1B99AAF8EDBDF9A695B63CA9EF36522FC329AEA254BB976A0205A7C3DD"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-court-of-the-phoenician:stratagem:6",
+          "targetId": "detachment-court-of-the-phoenician:stratagem:6",
+          "corpusPointer": "/detachments/4/stratagems/5/lines",
+          "field": "/lines",
+          "beforeSha256": "E877B509EAC5D91C750F3D19B818220A999DBF58E61FBDCFC7EFB919BB512A5A",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-09",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          40,
+          549,
+          296,
+          675
+        ],
+        "textSha256": "B4541233E8043231A3EBCEDFD1FD4B29A01BF364274D779DCED34A9B16975526"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-rapid-evisceration:stratagem:1",
+          "targetId": "detachment-rapid-evisceration:stratagem:1",
+          "corpusPointer": "/detachments/2/stratagems/0/lines",
+          "field": "/lines",
+          "beforeSha256": "0C29F3745D09728637221B5E3677346A33D5FD64AF935DE029B77460234A1A4E",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-10",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 9,
+        "bbox": [
+          300,
+          699,
+          555,
+          756
+        ],
+        "textSha256": "3C1C1EA67071C86620CF0FC3AB421319768B885DD23F7C65B431BA56F8E62C3D"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-chaos-spawn:section:1",
+          "targetId": "datasheet-chaos-spawn:section:1",
+          "corpusPointer": "/datasheets/13/sections/0/blocks/0/text",
+          "field": "/blocks/0/text",
+          "beforeSha256": "502EAA76B708C14A5D962D39DD887F40A65A7CA13230D51E06B7ACCAE56218B1",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-11",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          61,
+          300,
+          145
+        ],
+        "textSha256": "531AD0F244446D2CA3616119CD5F2949A77EA5F5009FE3FC10E8D76BA7256D07"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-chaos-terminators:section:1",
+          "targetId": "datasheet-chaos-terminators:section:1",
+          "corpusPointer": "/datasheets/11/sections/0/blocks/0/text",
+          "field": "/blocks/0/text",
+          "beforeSha256": "4D936232125E8842648878C9C2A95E58BF9B30F1E6E79284BBEACEE70A96A2B9",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-12",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          149,
+          300,
+          178
+        ],
+        "textSha256": "B75E6DF9F7A898B0159805A2C8D2190FAC6BB451729B917CD2DAB1F12D986BEB"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-flawless-blades:weapon:2",
+          "targetId": "datasheet-flawless-blades:weapon:2",
+          "corpusPointer": "/datasheets/8/weapons/1/attacks",
+          "field": "/attacks",
+          "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-13",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          182,
+          300,
+          209
+        ],
+        "textSha256": "16E7FC96673BC16F443348DB17773D89453E9ED42B8E5311CF908956E971EE1E"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-fulgrim",
+          "targetId": "unit-fulgrim",
+          "corpusPointer": "/datasheets/7/keywords",
+          "field": "/keywords",
+          "beforeSha256": "83BF92D63B42DE3E207E6F4C050474F28CEC80B54DD093F8540927C6E8878E6A",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-14",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          215,
+          300,
+          254
+        ],
+        "textSha256": "7D64CE864374D73747EFD58ADC5672271502CAAACBA9EFBD00FF8166F3B70C5E"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-heldrake:profile:1",
+          "targetId": "datasheet-heldrake:profile:1",
+          "corpusPointer": "/datasheets/19/profiles/0/stats/M",
+          "field": "/stats/M",
+          "beforeSha256": "72C266F06C35EA63B471AD958F36C7384865D0E3A460242ED6A594962B999D2B",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        },
+        {
+          "sourceId": "datasheet-heldrake:profile:1",
+          "targetId": "datasheet-heldrake:profile:1",
+          "corpusPointer": "/datasheets/19/profiles/0/stats/SV",
+          "field": "/stats/SV",
+          "beforeSha256": "D6CA79D72504C181A2EF76F4F984F5A04568E56457CC2B12E2C374DBB9179887",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        },
+        {
+          "sourceId": "datasheet-heldrake:profile:1",
+          "targetId": "datasheet-heldrake:profile:1",
+          "corpusPointer": "/datasheets/19/profiles/0/stats/OC",
+          "field": "/stats/OC",
+          "beforeSha256": "98089E6D36F78E9766C9EA34D5ACB3611F3A92CD81C5EB102095D924FFC7D08B",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        },
+        {
+          "sourceId": "datasheet-heldrake",
+          "targetId": "unit-heldrake",
+          "corpusPointer": "/datasheets/19/keywords",
+          "field": "/keywords",
+          "beforeSha256": "615675636874B0569F147ACED38DB68CF4BC1DACF7D299F979355F3B8EABAA35",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-15",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          259,
+          300,
+          287
+        ],
+        "textSha256": "95467E61FDA2E926301D65F5DC9B80AA3B7D62468C9D3396F0B8D8F4EB268091"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-infractors:weapon:5",
+          "targetId": "datasheet-infractors:weapon:5",
+          "corpusPointer": "/datasheets/15/weapons/4/strength",
+          "field": "/strength",
+          "beforeSha256": "D10A4BC9E0C1FA4E8F3D7CE2512B8756E47CA5FA451F373C39A1431BB88DB49F",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-16",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          292,
+          300,
+          320
+        ],
+        "textSha256": "68A6E805CCD48D94FB0F222E85898E465CFB0A79053C46695FEF7D1627CC4A4E"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-tormentors:weapon:9",
+          "targetId": "datasheet-tormentors:weapon:9",
+          "corpusPointer": "/datasheets/1/weapons/8/strength",
+          "field": "/strength",
+          "beforeSha256": "D10A4BC9E0C1FA4E8F3D7CE2512B8756E47CA5FA451F373C39A1431BB88DB49F",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-17",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          325,
+          300,
+          352
+        ],
+        "textSha256": "7AE8079819D57D6D684E8539D32390B1DB68123BA4115857740A6F928A6E7E39"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-chaos-land-raider",
+          "targetId": "unit-chaos-land-raider",
+          "corpusPointer": "/datasheets/18/keywords",
+          "field": "/keywords",
+          "beforeSha256": "83214800CB60B166E0655DF95F9348123863F7F236C6EF3B478207045821F1BF",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-18",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          325,
+          300,
+          352
+        ],
+        "textSha256": "7AE8079819D57D6D684E8539D32390B1DB68123BA4115857740A6F928A6E7E39"
+      },
+      "patches": [
+        {
+          "sourceId": "datasheet-chaos-rhino",
+          "targetId": "unit-chaos-rhino",
+          "corpusPointer": "/datasheets/2/keywords",
+          "field": "/keywords",
+          "beforeSha256": "A93C6418B99F2B78B1B8F75CC8CD83F54CF6D9FA7769C7C9DE10E879988D05AC",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-19",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          382,
+          300,
+          418
+        ],
+        "textSha256": "83AF62CC162B0F3ADD82B65198A01EC1BD67B3155FF2D474B7C65F951C1506CD"
+      },
+      "patches": [
+        {
+          "sourceId": "faq-1",
+          "targetId": "faq-1",
+          "corpusPointer": "/errata/10/text",
+          "field": "/text",
+          "beforeSha256": "FA1191DF0062E8E77F22DA1E50B8283CFF7FEE630AC31FFDC58AC613F51147F2",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-20",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "ALREADY_CURRENT",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          425,
+          300,
+          472
+        ],
+        "textSha256": "A81E04A710F96CDAA7E18CBD0FCA5A50C35985F9F649EC7F464E7B9036052D4E"
+      },
+      "patches": [
+        {
+          "sourceId": "faq-2",
+          "targetId": "faq-2",
+          "corpusPointer": "/errata/11/text",
+          "field": "/text",
+          "beforeSha256": "CF87B23D0F70CFF8F9CE62B411AD616FD9BE0B93EDEBA67C70F647E5A4B848E1",
+          "mode": "VERIFY_ALREADY_CURRENT"
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:accepted-occurrence-21",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 10,
+        "bbox": [
+          40,
+          480,
+          300,
+          550
+        ],
+        "textSha256": "6D1610F4034B7F788A4DCFECF219A651DD762F4176E488B18999401C287A108D"
+      },
+      "patches": [
+        {
+          "sourceId": "faq-3",
+          "targetId": "faq-3",
+          "corpusPointer": "/errata/12/text",
+          "field": "/text",
+          "beforeSha256": "5B267A8B4117BBD8211484B34DFDD106C34D5F3E4579516B804D6898FB553C21",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                307,
+                311
+              ],
+              "sha256": "5F9A2B795615BA6A3D5455FD5624D773FBCA5BCD16249C421FD37411DC9837DA"
+            }
+          ],
+          "join": ""
+        }
+      ]
+    },
+    {
+      "id": "ec-official-v1.3:native-cacophonic-accompaniment",
+      "group": "HISTORICAL_CORRECTION_OR_CURRENTNESS_CHECK",
+      "status": "APPLIED",
+      "sourceBox": {
+        "page": 2,
+        "bbox": [
+          53,
+          433,
+          296,
+          469
+        ],
+        "textSha256": "7934D358C71C2DF69A526CFFC6D6E170B0EDDC88D3203498E371628E7D0FA866"
+      },
+      "patches": [
+        {
+          "sourceId": "detachment-elegant-brutes:enhancement:1",
+          "targetId": "detachment-elegant-brutes:enhancement:1",
+          "corpusPointer": "/detachments/9/enhancements/0/text",
+          "field": "/text",
+          "beforeSha256": "40E02449B7AADD592AC9AB8909EF73B3FD782BD490941B1211668BDE430C98BE",
+          "mode": "SOURCE_SPANS",
+          "parts": [
+            {
+              "span": [
+                0,
+                28
+              ],
+              "sha256": "49C93886413FC01F5CD4565B4C66BC0F8E121046B0437E8A7C0C0E7F6532AC4A"
+            },
+            {
+              "span": [
+                29,
+                58
+              ],
+              "sha256": "D4BC9EC683B1D38A1FF9BC1E2C07429D61B72904D37DC1246777BE3A87D032A7"
+            },
+            {
+              "span": [
+                59,
+                109
+              ],
+              "sha256": "F45D60A3A6E0A6619BD376E65177824C1E4652A363D1C2580C2CCA66F9762EBC"
+            }
+          ],
+          "join": "\n"
+        }
+      ],
+      "sourceAdjudication": "Existing source-defects stronger-official-update-precedence; raw accepted nested list omitted from corpus extraction."
+    }
+  ]
+}

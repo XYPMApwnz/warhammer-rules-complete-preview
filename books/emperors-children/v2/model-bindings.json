@@ -1,0 +1,895 @@
+{
+  "schema": "ec-v2-model-source-bindings/v1",
+  "authority": "SOURCE_PHYSICAL_MODEL_BINDINGS_ONLY_NO_EXECUTABLE_CONDITIONS",
+  "datasheets": [
+    {
+      "sourceId": "datasheet-noise-marines",
+      "entityId": "unit-noise-marines",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-noise-marines:section:2:member:1",
+          "sourceLine": "- 1 Disharmonist",
+          "name": "Disharmonist",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-noise-marines:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-noise-marines:section:2",
+              "path": "/datasheets/0/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-noise-marines:section:2:member:2",
+          "sourceLine": "- 5 Noise Marines",
+          "name": "Noise Marines",
+          "quantity": {
+            "min": 5,
+            "max": 5
+          },
+          "modelProfileSourceId": "datasheet-noise-marines:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-noise-marines:section:2",
+              "path": "/datasheets/0/sections/1/blocks/0/text",
+              "sourceLineIndex": 1
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-noise-marines:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-noise-marines:section:2:member:1",
+            "datasheet-noise-marines:section:2:member:2"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-tormentors",
+      "entityId": "unit-tormentors",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-tormentors:section:2:member:1",
+          "sourceLine": "- 1 Obsessionist",
+          "name": "Obsessionist",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-tormentors:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-tormentors:section:2",
+              "path": "/datasheets/1/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-tormentors:section:2:member:2",
+          "sourceLine": "- 4-9 Tormentors",
+          "name": "Tormentors",
+          "quantity": {
+            "min": 4,
+            "max": 9
+          },
+          "modelProfileSourceId": "datasheet-tormentors:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-tormentors:section:2",
+              "path": "/datasheets/1/sections/1/blocks/0/text",
+              "sourceLineIndex": 1
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-tormentors:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-tormentors:section:2:member:1",
+            "datasheet-tormentors:section:2:member:2"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-chaos-rhino",
+      "entityId": "unit-chaos-rhino",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-chaos-rhino:section:3:member:1",
+          "sourceLine": "- 1 Chaos Rhino",
+          "name": "Chaos Rhino",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-chaos-rhino:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-chaos-rhino:section:3",
+              "path": "/datasheets/2/sections/2/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-chaos-rhino:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-chaos-rhino:section:3:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-keeper-of-secrets",
+      "entityId": "unit-keeper-of-secrets",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-keeper-of-secrets:section:2:member:1",
+          "sourceLine": "- 1 Keeper of Secrets",
+          "name": "Keeper of Secrets",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-keeper-of-secrets:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-keeper-of-secrets:section:2",
+              "path": "/datasheets/3/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-keeper-of-secrets:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-keeper-of-secrets:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-daemonettes",
+      "entityId": "unit-daemonettes",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-daemonettes:section:2:member:1",
+          "sourceLine": "- 1 Alluress",
+          "name": "Alluress",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-daemonettes:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-daemonettes:section:2",
+              "path": "/datasheets/4/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-daemonettes:section:2:member:2",
+          "sourceLine": "- 9 Daemonettes",
+          "name": "Daemonettes",
+          "quantity": {
+            "min": 9,
+            "max": 9
+          },
+          "modelProfileSourceId": "datasheet-daemonettes:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-daemonettes:section:2",
+              "path": "/datasheets/4/sections/1/blocks/0/text",
+              "sourceLineIndex": 1
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-daemonettes:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-daemonettes:section:2:member:1",
+            "datasheet-daemonettes:section:2:member:2"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-seekers",
+      "entityId": "unit-seekers",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-seekers:section:2:member:1",
+          "sourceLine": "- 1 Heartseeker",
+          "name": "Heartseeker",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-seekers:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-seekers:section:2",
+              "path": "/datasheets/5/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-seekers:section:2:member:2",
+          "sourceLine": "- 4-9 Seekers",
+          "name": "Seekers",
+          "quantity": {
+            "min": 4,
+            "max": 9
+          },
+          "modelProfileSourceId": "datasheet-seekers:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-seekers:section:2",
+              "path": "/datasheets/5/sections/1/blocks/0/text",
+              "sourceLineIndex": 1
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-seekers:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-seekers:section:2:member:1",
+            "datasheet-seekers:section:2:member:2"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-shalaxi-helbane",
+      "entityId": "unit-shalaxi-helbane",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-shalaxi-helbane:section:2:member:1",
+          "sourceLine": "- 1 Shalaxi Helbane – EPIC HERO",
+          "name": "Shalaxi Helbane",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-shalaxi-helbane:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-shalaxi-helbane:section:2",
+              "path": "/datasheets/6/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-shalaxi-helbane:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-shalaxi-helbane:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-fulgrim",
+      "entityId": "unit-fulgrim",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-fulgrim:section:3:member:1",
+          "sourceLine": "- 1 Fulgrim – EPIC HERO",
+          "name": "Fulgrim",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-fulgrim:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-fulgrim:section:3",
+              "path": "/datasheets/7/sections/2/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-fulgrim:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-fulgrim:section:3:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-flawless-blades",
+      "entityId": "unit-flawless-blades",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-flawless-blades:section:2:member:1",
+          "sourceLine": "- 3-6 Flawless Blades",
+          "name": "Flawless Blades",
+          "quantity": {
+            "min": 3,
+            "max": 6
+          },
+          "modelProfileSourceId": "datasheet-flawless-blades:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-flawless-blades:section:2",
+              "path": "/datasheets/8/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-flawless-blades:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-flawless-blades:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-lord-exultant",
+      "entityId": "unit-lord-exultant",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-lord-exultant:section:2:member:1",
+          "sourceLine": "- 1 Lord Exultant",
+          "name": "Lord Exultant",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-lord-exultant:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-lord-exultant:section:2",
+              "path": "/datasheets/9/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-lord-exultant:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-lord-exultant:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-daemon-prince-of-slaanesh",
+      "entityId": "unit-daemon-prince-of-slaanesh",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-daemon-prince-of-slaanesh:section:2:member:1",
+          "sourceLine": "- 1 Daemon Prince of Slaanesh",
+          "name": "Daemon Prince of Slaanesh",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-daemon-prince-of-slaanesh:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-daemon-prince-of-slaanesh:section:2",
+              "path": "/datasheets/10/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-daemon-prince-of-slaanesh:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-daemon-prince-of-slaanesh:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-chaos-terminators",
+      "entityId": "unit-chaos-terminators",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-chaos-terminators:section:2:member:1",
+          "sourceLine": "- 1 Terminator Champion",
+          "name": "Terminator Champion",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-chaos-terminators:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-chaos-terminators:section:2",
+              "path": "/datasheets/11/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-chaos-terminators:section:2:member:2",
+          "sourceLine": "- 4 Chaos Terminators",
+          "name": "Chaos Terminators",
+          "quantity": {
+            "min": 4,
+            "max": 4
+          },
+          "modelProfileSourceId": "datasheet-chaos-terminators:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-chaos-terminators:section:2",
+              "path": "/datasheets/11/sections/1/blocks/0/text",
+              "sourceLineIndex": 1
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-chaos-terminators:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-chaos-terminators:section:2:member:1",
+            "datasheet-chaos-terminators:section:2:member:2"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-lord-kakophonist",
+      "entityId": "unit-lord-kakophonist",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-lord-kakophonist:section:2:member:1",
+          "sourceLine": "- 1 Lord Kakophonist",
+          "name": "Lord Kakophonist",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-lord-kakophonist:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-lord-kakophonist:section:2",
+              "path": "/datasheets/12/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-lord-kakophonist:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-lord-kakophonist:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-chaos-spawn",
+      "entityId": "unit-chaos-spawn",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-chaos-spawn:section:2:member:1",
+          "sourceLine": "- 2 Chaos Spawn",
+          "name": "Chaos Spawn",
+          "quantity": {
+            "min": 2,
+            "max": 2
+          },
+          "modelProfileSourceId": "datasheet-chaos-spawn:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-chaos-spawn:section:2",
+              "path": "/datasheets/13/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-chaos-spawn:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-chaos-spawn:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-daemon-prince-of-slaanesh-with-wings",
+      "entityId": "unit-daemon-prince-of-slaanesh-with-wings",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-daemon-prince-of-slaanesh-with-wings:section:2:member:1",
+          "sourceLine": "- 1 Daemon Prince of Slaanesh with Wings",
+          "name": "Daemon Prince of Slaanesh with Wings",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-daemon-prince-of-slaanesh-with-wings:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-daemon-prince-of-slaanesh-with-wings:section:2",
+              "path": "/datasheets/14/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-daemon-prince-of-slaanesh-with-wings:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-daemon-prince-of-slaanesh-with-wings:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-infractors",
+      "entityId": "unit-infractors",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-infractors:section:2:member:1",
+          "sourceLine": "- 1 Obsessionist",
+          "name": "Obsessionist",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-infractors:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-infractors:section:2",
+              "path": "/datasheets/15/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-infractors:section:2:member:2",
+          "sourceLine": "- 4-9 Infractors",
+          "name": "Infractors",
+          "quantity": {
+            "min": 4,
+            "max": 9
+          },
+          "modelProfileSourceId": "datasheet-infractors:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-infractors:section:2",
+              "path": "/datasheets/15/sections/1/blocks/0/text",
+              "sourceLineIndex": 1
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-infractors:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-infractors:section:2:member:1",
+            "datasheet-infractors:section:2:member:2"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-lucius-the-eternal",
+      "entityId": "unit-lucius-the-eternal",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-lucius-the-eternal:section:2:member:1",
+          "sourceLine": "- 1 Lucius the Eternal – EPIC HERO",
+          "name": "Lucius the Eternal",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-lucius-the-eternal:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-lucius-the-eternal:section:2",
+              "path": "/datasheets/16/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-lucius-the-eternal:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-lucius-the-eternal:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-sorcerer",
+      "entityId": "unit-sorcerer",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-sorcerer:section:2:member:1",
+          "sourceLine": "- 1 Sorcerer",
+          "name": "Sorcerer",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-sorcerer:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-sorcerer:section:2",
+              "path": "/datasheets/17/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-sorcerer:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-sorcerer:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-chaos-land-raider",
+      "entityId": "unit-chaos-land-raider",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-chaos-land-raider:section:3:member:1",
+          "sourceLine": "- 1 Chaos Land Raider",
+          "name": "Chaos Land Raider",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-chaos-land-raider:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-chaos-land-raider:section:3",
+              "path": "/datasheets/18/sections/2/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-chaos-land-raider:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-chaos-land-raider:section:3:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-heldrake",
+      "entityId": "unit-heldrake",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-heldrake:section:2:member:1",
+          "sourceLine": "- 1 Heldrake",
+          "name": "Heldrake",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-heldrake:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-heldrake:section:2",
+              "path": "/datasheets/19/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-heldrake:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-heldrake:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-defiler",
+      "entityId": "unit-defiler",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-defiler:section:2:member:1",
+          "sourceLine": "- 1 Defiler",
+          "name": "Defiler",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-defiler:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-defiler:section:2",
+              "path": "/datasheets/20/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-defiler:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-defiler:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-maulerfiend",
+      "entityId": "unit-maulerfiend",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-maulerfiend:section:2:member:1",
+          "sourceLine": "- 1 Maulerfiend",
+          "name": "Maulerfiend",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-maulerfiend:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-maulerfiend:section:2",
+              "path": "/datasheets/21/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-maulerfiend:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-maulerfiend:section:2:member:1"
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-fiends",
+      "entityId": "unit-fiends",
+      "compositionMembers": [
+        {
+          "sourceId": "datasheet-fiends:section:2:member:1",
+          "sourceLine": "- 1 Blissbringer",
+          "name": "Blissbringer",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-fiends:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-fiends:section:2",
+              "path": "/datasheets/22/sections/1/blocks/0/text",
+              "sourceLineIndex": 0
+            }
+          ]
+        },
+        {
+          "sourceId": "datasheet-fiends:section:2:member:2",
+          "sourceLine": "- 2-5 Fiends",
+          "name": "Fiends",
+          "quantity": {
+            "min": 2,
+            "max": 5
+          },
+          "modelProfileSourceId": "datasheet-fiends:profile:1",
+          "sourceReferences": [
+            {
+              "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "sourceId": "datasheet-fiends:section:2",
+              "path": "/datasheets/22/sections/1/blocks/0/text",
+              "sourceLineIndex": 1
+            }
+          ]
+        }
+      ],
+      "statProfiles": [
+        {
+          "sourceId": "datasheet-fiends:profile:1",
+          "compositionMemberSourceIds": [
+            "datasheet-fiends:section:2:member:1",
+            "datasheet-fiends:section:2:member:2"
+          ]
+        }
+      ]
+    }
+  ],
+  "ruleScopeBindings": [
+    {
+      "sourceEntityId": "datasheet-lord-exultant:section:4",
+      "scope": "COMPOSITION_MEMBER",
+      "compositionMemberSourceIds": [
+        "datasheet-lord-exultant:section:2:member:1"
+      ],
+      "modelProfileSourceIds": [
+        "datasheet-lord-exultant:profile:1"
+      ],
+      "sourceQualifier": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities.",
+      "sourceReferences": [
+        {
+          "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "sourceId": "datasheet-lord-exultant:section:4",
+          "path": "/datasheets/9/sections/3/blocks/0/text"
+        }
+      ]
+    }
+  ]
+}
