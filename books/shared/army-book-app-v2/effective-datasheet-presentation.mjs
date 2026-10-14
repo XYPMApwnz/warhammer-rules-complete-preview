@@ -50,6 +50,10 @@ export function uniformProfileAnnotations(members,applied=[]) {
 }
 const selectionIdentity=selection=>key([...(selection.canonicalProfileIds||[]).map(id=>['WEAPON',id]),
   ...(selection.canonicalEquipmentIds||[]).map(id=>['EQUIPMENT',id,selection.canonicalFieldPaths?.[id]||[]])].sort((a,b)=>key(a).localeCompare(key(b))));
+// Roster options (for example a selected UNIT keyword) are not physical items.
+// Keep their state/presentation elsewhere; inventory requires an actual item ID.
+const physicalSelection=selection=>selection.physicalQuantity>0&&
+  ((selection.canonicalProfileIds?.length||0)+(selection.canonicalEquipmentIds?.length||0)>0);
 /** A selection may reference alternate profiles of ONE item. Its count is not
  * multiplied by the number of canonical profiles. Aggregate inventory stays
  * aggregate; only explicit imported row/loadout ownership permits 'each'. */
@@ -63,7 +67,7 @@ export function projectSelectedComposition(unit,composition) {
     for(const part of parts){
       const items=new Map();
       for(const [selection,count]of [...(row.selections||[]).map(selection=>[selection,row.quantity]),...part.selections.map(selection=>[selection,part.quantity])]){
-        if(!(selection.physicalQuantity>0))continue;
+        if(!physicalSelection(selection))continue;
         const perModel=Number.isFinite(selection.perModelQuantity)?selection.perModelQuantity:null;
         const signature=selectionIdentity(selection),previous=items.get(signature);
         // A legacy total on a subdivided row cannot be allocated to subgroups.
@@ -80,9 +84,9 @@ export function projectSelectedComposition(unit,composition) {
       group.quantity+=part.quantity;group.scopeIds.push(part.scopeId);group.rowIds.push(row.rowId);
     }
   }
-  const inventory=(unit.selections||[]).filter(selection=>selection.physicalQuantity>0).map(selection=>({selection,total:selection.physicalQuantity}));
+  const inventory=(unit.selections||[]).filter(physicalSelection).map(selection=>({selection,total:selection.physicalQuantity}));
   // Preserve unresolved scoped totals once, without assigning them to models.
   for(const row of unit.modelRows)if((row.loadouts||[]).some(loadout=>loadout.quantity>0&&loadout.quantity<row.quantity))for(const selection of row.selections||[])
-    if(selection.physicalQuantity>0&&!Number.isFinite(selection.perModelQuantity))inventory.push({selection,total:selection.physicalQuantity,rowId:row.rowId});
+    if(physicalSelection(selection)&&!Number.isFinite(selection.perModelQuantity))inventory.push({selection,total:selection.physicalQuantity,rowId:row.rowId});
   return {groups:[...groups.values()],inventory};
 }

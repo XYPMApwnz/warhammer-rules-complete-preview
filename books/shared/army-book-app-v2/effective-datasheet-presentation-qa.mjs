@@ -100,6 +100,26 @@ export async function runEffectivePresentationGuards(){
   assert.equal(fullRow.groups.filter(group=>group.rowIds.includes(row.rowId)).flatMap(group=>group.equipment).length,1);
   assert.equal(fullRow.groups.find(group=>group.rowIds.includes(row.rowId)).equipment[0].perModel,null,'A known group total does not prove per-model multiplicity');
   checks.push('multimode-physical-multiplicity','unknown-ownership-fails-closed','legacy-full-row-total-once');
+  const withOptions=structuredClone(legacy),option={canonicalProfileIds:[],canonicalEquipmentIds:[],
+    canonicalOptionIds:['synthetic-keyword-option'],selectionField:'selectedMarkId',physicalQuantity:1,perModelQuantity:null};
+  withOptions.selections.push(structuredClone(option));
+  withOptions.modelRows[0].selections.push(structuredClone(option));
+  withOptions.modelRows[0].loadouts[0].selections.push({...structuredClone(option),perModelQuantity:1});
+  const optionBefore=structuredClone(withOptions),onlyItems=projectSelectedComposition(withOptions,[]);
+  assert.deepEqual(onlyItems,projectSelectedComposition(legacy,[]),'Options must not change physical composition or inventory');
+  assert.deepEqual(withOptions,optionBefore,'Display filtering must preserve imported options');
+  withOptions.modelRows[0].loadouts[0].quantity=1;
+  assert.ok(projectSelectedComposition(withOptions,[]).inventory.every(item=>item.selection.canonicalProfileIds.length||item.selection.canonicalEquipmentIds.length),
+    'Option-only selections must not reappear as unallocated row totals');
+  const noItems=structuredClone(f.unit);noItems.selections=[structuredClone(option)];
+  for(const member of noItems.modelRows){member.selections=[structuredClone(option)];member.loadouts=[];}
+  const empty=projectSelectedComposition(noItems,[]);assert.equal(empty.inventory.length,0);
+  assert.ok(empty.groups.every(group=>group.equipment.length===0),'No empty item in MODEL equipment');
+  assert.equal(empty.groups.reduce((sum,group)=>sum+group.quantity,0),noItems.modelRows.reduce((sum,member)=>sum+member.quantity,0));
+  const physicalWithOption=structuredClone(f.unit);physicalWithOption.selections[0].canonicalOptionIds=['synthetic-equipment-option'];
+  assert.deepEqual(projectSelectedComposition(physicalWithOption,[]).inventory[0].selection,physicalWithOption.selections[0],
+    'An option annotation must not hide a real selected item');
+  checks.push('option-only-unit-row-loadout-excluded','option-state-immutable','physical-items-with-options-preserved');
   return {status:'PASS',checks,armyFactualReads:0};
 }
 if(typeof process!=='undefined'&&process.argv?.[1]){const {pathToFileURL}=await import('node:url');
