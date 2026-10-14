@@ -12,6 +12,7 @@ import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-f
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {consumeMfm,resolveOwnedFact} from './mfm-boundary.mjs';
 import {declarations} from './rule-contract-declarations.mjs';
+import {permissionDeclarations,permissionStateFields} from './rule-contract-permission-declarations.mjs';
 
 const directory=path.dirname(fileURLToPath(import.meta.url));
 const read=file=>JSON.parse(fs.readFileSync(path.join(directory,file),'utf8'));
@@ -21,18 +22,20 @@ const all=args=>args.length===1?args[0]:{op:'ALL',args};
 const at=(value,field)=>field.reduce((value,key)=>value?.[key],value);
 const subject=binding=>['SOURCE_UNIT','ROSTER_UNITS'].includes(binding)?'UNIT':'MODEL';
 
-export function buildECContracts({facts=read('generated/effective.json'),inputs=declarations}={}) {
+export function buildECContracts({facts=read('generated/effective.json'),inputs=declarations,permissionInputs=permissionDeclarations}={}) {
   const before=JSON.stringify(facts),book=clone(facts),index=new Map(book.entities.map(e=>[e.id,e]));
   assert.equal(index.size,book.entities.length,'Duplicate canonical identity');
   assert.equal(inputs.length,10,'Only the reviewed ten-rule scope is implemented');
   assert.equal(new Set(inputs.map(input=>input.ruleId)).size,10,'Duplicate semantic owner');
+  assert.ok([0,5].includes(permissionInputs.length),'Only the reviewed five permissions may be added');
+  assert.equal(new Set([...inputs,...permissionInputs].map(input=>input.ruleId)).size,10+permissionInputs.length,'Duplicate semantic owner');
   book.ruleContractsStarted=true;
   const mfm=consumeMfm(facts.entities);
-  const schema=createRuleContractSchema({stateFields:{meleeAttackTargetsCharacter:{contextLevel:'BATTLE',valueType:'boolean'}}});
+  const schema=createRuleContractSchema({stateFields:{meleeAttackTargetsCharacter:{contextLevel:'BATTLE',valueType:'boolean'},...permissionStateFields}});
   // Identity and factual data remain unchanged; PROFILE is the existing shared
   // engine interface for this disposable MODEL_PROFILE view, not a new owner.
   for(const entity of book.entities.filter(e=>e.kind==='MODEL_PROFILE'))entity.kind='PROFILE';
-  const fightsFirst=createEffectiveCoreCatalog().getById('core-fights-first');
+  const core=createEffectiveCoreCatalog(),fightsFirst=core.getById('core-fights-first');
   assert.equal(fightsFirst?.kind,'ability','Unresolved canonical Core ability');
   assert.equal(fightsFirst.state,'FULL_CONTENT','Core ability lacks source content');
   book.rosterAbilityReferences={'core-fights-first':{id:fightsFirst.id,title:fightsFirst.title,parameters:{},
@@ -112,6 +115,62 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
     entity.ruleContract.clauses[0].rosterEffects=effects;
     contracts.push(entity.ruleContract);
   }
+  for(const input of permissionInputs) {
+    const entity=index.get(input.ruleId),evidence={field:['text'],quote:input.quote};
+    assert.equal(entity?.kind,input.kind,'Wrong permission canonical identity');
+    assert.equal(entity.parentId,input.ownerId,'Wrong permission owner');
+    assert.equal(entity.data.title,input.name);assert.equal(entity.data.text,input.quote,'Permission source changed');
+    const atom=(predicate,subject,args,quote=input.quote,contextLevel='STATIC')=>({predicate,subject,contextLevel,
+      arguments:args,evidence:{field:['text'],quote}});
+    const ownerSubject=input.kind==='ENHANCEMENT'?'MODEL':'UNIT';
+    const selector=input.kind==='DETACHMENT_RULE'?atom('UNIT_KEYWORD','UNIT',{keyword:input.keyword}):
+      input.keywords.length?all(input.keywords.map(keyword=>atom('MODEL_KEYWORD','MODEL',{keyword}))):atom('ALWAYS','MODEL',{});
+    const owner={id:'owner',subject:ownerSubject,purpose:'OWNER',allegiance:'FRIENDLY',
+      binding:input.kind==='ENHANCEMENT'?'SOURCE_MODEL':'ROSTER_UNITS',selector,conditions:[]};
+    const recipient={id:'recipient',subject:'UNIT',purpose:'RECIPIENT',allegiance:'FRIENDLY',binding:input.targetBinding,
+      selector:input.kind==='DETACHMENT_RULE'?clone(selector):atom('ALWAYS','UNIT',{}),conditions:[]};
+    const actor=input.event.subject==='MODEL'?{id:'acting-model',subject:'MODEL',purpose:'ACTOR',allegiance:'FRIENDLY',
+      binding:'SOURCE_FORMED_MODELS',selector:atom('ALWAYS','MODEL',{}),conditions:[]}:clone(recipient);
+    const event=atom('FIELD',input.event.subject,{key:input.event.key,equals:true},input.event.quote,'BATTLE');
+    event.roleId=actor.id;
+    const source=clone(entity.fieldProvenance?.text||entity.provenance);
+    book.rosterAbilityReferences[entity.id]={id:entity.id,title:entity.data.title,parameters:{},
+      sourceReference:{bookId:book.bookId,entityId:entity.id,path:'/text'},provenance:source};
+    const declaration={kind:input.kind,executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'BATTLE',detachmentId:entity.parentId,
+      sourceFields:[['text']],roles:[owner,recipient],conditions:[],canonicalRuleReferences:[entity.id],
+      restrictions:input.restrictions.map(quote=>({field:['text'],quote})),
+      clauses:[{id:'permission-reference',roles:[clone(owner),clone(recipient)],conditions:[],sourceFields:[['text']],
+        evidence:clone(evidence),rosterClassification:'ROSTER_EXECUTABLE',
+        rosterClassificationNote:{reason:'Grant only the canonical passive permission reference; no battle payload is executed.'},rosterEffects:[]},
+      {id:input.event.id,roles:[clone(owner),clone(recipient),...(actor.id==='acting-model'?[actor]:[])],conditions:[event],
+        sourceFields:[['text']],evidence:clone(evidence),sourceText:entity.data.text,
+        effect:{sourceClause:entity.data.text,recipientRoleId:'recipient',parameters:{canonicalRuleReferences:[entity.id]}},
+        rosterClassification:'BATTLE_ONLY',rosterClassificationNote:{reason:'Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed.'},rosterEffects:[]}]};
+    if(input.kind==='ENHANCEMENT') {
+      declaration.assignment={ownerRoleId:'owner',selector:clone(selector)};
+      const binding=mfm.enhancementBindings.find(binding=>binding.entityId===entity.id),record=resolveOwnedFact(binding?.mfmRecordId);
+      assert.equal(binding.scopeOwnerId,entity.parentId,'Wrong MFM Enhancement Detachment');
+      assert.deepEqual(record.qualifierIds,[],'Unlowered MFM eligibility qualifier');
+      declaration.mfmReferences={enhancementId:record.id,detachmentId:record.detachmentId,qualifierIds:[],provenance:clone(record.provenance)};
+    }
+    if(input.coreReferenceId) {
+      const reference=core.getById(input.coreReferenceId);
+      assert.equal(reference?.state,'FULL_CONTENT','Unresolved Core permission dependency');
+      declaration.canonicalRuleReferences.push(reference.id);
+      declaration.coreReferences=[{id:reference.id,provenance:clone(reference.provenance)}];
+    }
+    const contract=bindCanonicalContract({entity,bookId:book.bookId,schema:'rule-contract/v2',index,
+      declaration:bindDeclarationClauses(declaration),currentness:{acceptedBaseHead:'6d15477e5bfa12ca2a7fe7b75da68a82c685dd5b',
+        factualOwner:source,currentOfficialSource:'gw-ec-faction-pack-v1.3-2026-09-30'}});
+    contract.clauses[0].rosterEffects=[{id:`${entity.id}::permission-reference/effect-1`,operation:'GRANT_ABILITY',
+      ability:{canonicalId:entity.id,parameters:{}},targetSubject:'UNIT',targetBinding:input.targetBinding,unitScope:'FORMED',
+      conditions:input.kind==='DETACHMENT_RULE'?[{binding:'TARGET',predicate:clone(selector)}]:[],
+      lifetime:input.kind==='DETACHMENT_RULE'?'WHILE_DETACHMENT_SELECTED':'WHILE_ASSIGNED',
+      evidence:clone(evidence),sourceFields:[['text']],
+      provenance:{canonicalRuleId:entity.id,canonicalOwnerId:entity.parentId,canonicalClauseId:'permission-reference',
+        sourceEvidence:source,recipientBinding:input.targetBinding}}];
+    entity.ruleContract=contract;contracts.push(contract);
+  }
   const composition=book.entities.filter(e=>e.kind==='DATASHEET').flatMap(unit=>unit.data.profileIds.map(profileId=>({
     unitId:unit.id,profileId,intrinsicKeywords:[...unit.data.keywords,...unit.data.factionKeywords],
     maxModels:unit.data.compositionMemberIds.map(id=>index.get(id)).filter(member=>member.data.modelProfileId===profileId)
@@ -120,11 +179,13 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
   schema.validateContracts(book);
   validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),before,'Factual input mutated');
-  const scope={implementedRules:10,remainingLegacyContracts:'NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD'};
+  const scope={implementedRules:10+permissionInputs.length,directReuseRules:10,bindingAdaptationRules:permissionInputs.length,
+    remainingLegacyContracts:'NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD'};
   return {book,schema,contracts,scope,
     artifact:{schema:'ec-v2-rule-contract-foundation/v1',authority:'BOOK_OWNED_DERIVED_CONTRACT_OVERLAY',
       scope,
       sourceFingerprint:sha(JSON.stringify(facts)),declarationFingerprint:sha(fs.readFileSync(new URL('./rule-contract-declarations.mjs',import.meta.url))),
+      permissionDeclarationFingerprint:sha(fs.readFileSync(new URL('./rule-contract-permission-declarations.mjs',import.meta.url))),
       contracts,abilityReferences:book.rosterAbilityReferences,attachmentPolicies:book.rosterAttachmentPolicies}};
 }
 

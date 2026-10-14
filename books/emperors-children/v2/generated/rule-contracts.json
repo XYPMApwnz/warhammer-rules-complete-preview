@@ -2,11 +2,14 @@
   "schema": "ec-v2-rule-contract-foundation/v1",
   "authority": "BOOK_OWNED_DERIVED_CONTRACT_OVERLAY",
   "scope": {
-    "implementedRules": 10,
+    "implementedRules": 15,
+    "directReuseRules": 10,
+    "bindingAdaptationRules": 5,
     "remainingLegacyContracts": "NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD"
   },
   "sourceFingerprint": "B9D7A1C2D7DF7A5B8E27C6F9307C0B230E9A8DFB75338B7A457CFA0B415D2F7C",
   "declarationFingerprint": "58194693F1984FC535B50DA8D153670A6CF8E805673BA764B6FEDA5A4C6723C0",
+  "permissionDeclarationFingerprint": "15606F87E278ADAE304540C6E9BC30A3D2E5C52FA0E29668E42CFD797FC226FF",
   "contracts": [
     {
       "schema": "rule-contract/v2",
@@ -2441,6 +2444,1795 @@
         },
         "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
       }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-mercurial-host:rule",
+      "ownerId": "detachment-mercurial-host",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "DETACHMENT_RULE",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-mercurial-host",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "binding": "ROSTER_UNITS",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "ROSTER_UNITS",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "canonicalRuleReferences": [
+        "detachment-mercurial-host:rule"
+      ],
+      "restrictions": [
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "You can re-roll"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN units from your army"
+        }
+      ],
+      "clauses": [
+        {
+          "id": "permission-reference",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Grant only the canonical passive permission reference; no battle payload is executed."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-mercurial-host:rule::permission-reference/effect-1",
+              "operation": "GRANT_ABILITY",
+              "ability": {
+                "canonicalId": "detachment-mercurial-host:rule",
+                "parameters": {}
+              },
+              "targetSubject": "UNIT",
+              "targetBinding": "ROSTER_UNITS",
+              "unitScope": "FORMED",
+              "conditions": [
+                {
+                  "binding": "TARGET",
+                  "predicate": {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "EMPEROR’S CHILDREN"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+                    }
+                  }
+                }
+              ],
+              "lifetime": "WHILE_DETACHMENT_SELECTED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "provenance": {
+                "canonicalRuleId": "detachment-mercurial-host:rule",
+                "canonicalOwnerId": "detachment-mercurial-host",
+                "canonicalClauseId": "permission-reference",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/6/rule",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "ROSTER_UNITS"
+              }
+            }
+          ]
+        },
+        {
+          "id": "advance-roll",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "unitAdvanceRoll",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Advance rolls made for EMPEROR’S CHILDREN units from your army"
+              },
+              "roleId": "recipient"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+          },
+          "sourceText": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army.",
+          "effect": {
+            "sourceClause": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army.",
+            "recipientRoleId": "recipient",
+            "parameters": {
+              "canonicalRuleReferences": [
+                "detachment-mercurial-host:rule"
+              ]
+            }
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "6d15477e5bfa12ca2a7fe7b75da68a82c685dd5b",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/6/rule",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-court-of-the-phoenician:enhancement:1",
+      "ownerId": "detachment-court-of-the-phoenician",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-court-of-the-phoenician",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "canonicalRuleReferences": [
+        "detachment-court-of-the-phoenician:enhancement:1"
+      ],
+      "restrictions": [
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "melee attack"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "you can ignore any or all modifiers"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "Weapon Skill characteristic"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "Hit roll and Wound roll"
+        }
+      ],
+      "clauses": [
+        {
+          "id": "permission-reference",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Grant only the canonical passive permission reference; no battle payload is executed."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-court-of-the-phoenician:enhancement:1::permission-reference/effect-1",
+              "operation": "GRANT_ABILITY",
+              "ability": {
+                "canonicalId": "detachment-court-of-the-phoenician:enhancement:1",
+                "parameters": {}
+              },
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "unitScope": "FORMED",
+              "conditions": [],
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "provenance": {
+                "canonicalRuleId": "detachment-court-of-the-phoenician:enhancement:1",
+                "canonicalOwnerId": "detachment-court-of-the-phoenician",
+                "canonicalClauseId": "permission-reference",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/4/enhancements/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_UNIT"
+              }
+            }
+          ]
+        },
+        {
+          "id": "melee-attack",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "acting-model",
+              "subject": "MODEL",
+              "purpose": "ACTOR",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "meleeAttack",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time a model in the bearer’s unit makes a melee attack"
+              },
+              "roleId": "acting-model"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+          },
+          "sourceText": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll.",
+          "effect": {
+            "sourceClause": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll.",
+            "recipientRoleId": "recipient",
+            "parameters": {
+              "canonicalRuleReferences": [
+                "detachment-court-of-the-phoenician:enhancement:1"
+              ]
+            }
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "MODEL_KEYWORD",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "EMPEROR’S CHILDREN"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+          }
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-c61db5138230cb0a",
+        "detachmentId": "mfm-detachment-7e76f5e0c401ec50",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "COURT OF THE PHOENICIAN",
+            "sourceTitle": "Tears of the Phoenix"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "6d15477e5bfa12ca2a7fe7b75da68a82c685dd5b",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/4/enhancements/0",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-mercurial-host:enhancement:4",
+      "ownerId": "detachment-mercurial-host",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-mercurial-host",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "canonicalRuleReferences": [
+        "detachment-mercurial-host:enhancement:4"
+      ],
+      "restrictions": [
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "Normal, Advance or Fall Back move"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "through enemy models"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "can move within Engagement Range"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "cannot end that move within Engagement Range of them"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "any Desperate Escape test is automatically passed"
+        }
+      ],
+      "clauses": [
+        {
+          "id": "permission-reference",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Grant only the canonical passive permission reference; no battle payload is executed."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-mercurial-host:enhancement:4::permission-reference/effect-1",
+              "operation": "GRANT_ABILITY",
+              "ability": {
+                "canonicalId": "detachment-mercurial-host:enhancement:4",
+                "parameters": {}
+              },
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "unitScope": "FORMED",
+              "conditions": [],
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "provenance": {
+                "canonicalRuleId": "detachment-mercurial-host:enhancement:4",
+                "canonicalOwnerId": "detachment-mercurial-host",
+                "canonicalClauseId": "permission-reference",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/6/enhancements/3",
+                  "authority": "ACCEPTED_SECONDARY"
+                },
+                "recipientBinding": "SOURCE_UNIT"
+              }
+            }
+          ]
+        },
+        {
+          "id": "movement",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "acting-model",
+              "subject": "MODEL",
+              "purpose": "ACTOR",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "normalAdvanceFallBackMove",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move"
+              },
+              "roleId": "acting-model"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+          },
+          "sourceText": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+          "effect": {
+            "sourceClause": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+            "recipientRoleId": "recipient",
+            "parameters": {
+              "canonicalRuleReferences": [
+                "detachment-mercurial-host:enhancement:4"
+              ]
+            }
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "MODEL_KEYWORD",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "EMPEROR’S CHILDREN"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+          }
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-54ca3b6d0c7e8794",
+        "detachmentId": "mfm-detachment-f5d91b98cb39b545",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "MERCURIAL HOST",
+            "sourceTitle": "Loathsome Dexterity"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "6d15477e5bfa12ca2a7fe7b75da68a82c685dd5b",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/6/enhancements/3",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-peerless-bladesmen:enhancement:1",
+      "ownerId": "detachment-peerless-bladesmen",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-peerless-bladesmen",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "canonicalRuleReferences": [
+        "detachment-peerless-bladesmen:enhancement:1",
+        "core-rule-15-11-heroic-intervention"
+      ],
+      "restrictions": [
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "regardless of any other uses of that stratagem this phase"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "If you do:"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "That use is -1 CP."
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "That use does not prevent any uses of that stratagem on other units this phase."
+        }
+      ],
+      "clauses": [
+        {
+          "id": "permission-reference",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Grant only the canonical passive permission reference; no battle payload is executed."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-peerless-bladesmen:enhancement:1::permission-reference/effect-1",
+              "operation": "GRANT_ABILITY",
+              "ability": {
+                "canonicalId": "detachment-peerless-bladesmen:enhancement:1",
+                "parameters": {}
+              },
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "unitScope": "FORMED",
+              "conditions": [],
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "provenance": {
+                "canonicalRuleId": "detachment-peerless-bladesmen:enhancement:1",
+                "canonicalOwnerId": "detachment-peerless-bladesmen",
+                "canonicalClauseId": "permission-reference",
+                "sourceEvidence": {
+                  "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+                  "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+                  "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+                  "page": 9,
+                  "bbox": [
+                    40,
+                    461,
+                    296,
+                    535
+                  ],
+                  "textSha256": "7E7E6F572707164BA9DF6E786B49430FC7CFB40D9E13C321389E67D3C380A0FE",
+                  "effectiveFrom": "2026-09-30",
+                  "authority": "AUTHORITATIVE_CURRENT",
+                  "correctionId": "ec-official-v1.3:accepted-occurrence-05",
+                  "sourcePointer": "/detachments/3/enhancements/0/text",
+                  "supersedes": {
+                    "sourceId": "ec-waha-11e-2026-09-28",
+                    "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                    "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                    "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                    "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                    "pointer": "/detachments/3/enhancements/0",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                },
+                "recipientBinding": "SOURCE_UNIT"
+              }
+            }
+          ]
+        },
+        {
+          "id": "heroic-intervention",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "heroicInterventionSelected",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "You can target this unit with the Heroic Intervention stratagem"
+              },
+              "roleId": "recipient"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+          },
+          "sourceText": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase.",
+          "effect": {
+            "sourceClause": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase.",
+            "recipientRoleId": "recipient",
+            "parameters": {
+              "canonicalRuleReferences": [
+                "detachment-peerless-bladesmen:enhancement:1"
+              ]
+            }
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "ALWAYS",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {},
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+          }
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-a11b495719fd796a",
+        "detachmentId": "mfm-detachment-751153783cfe2135",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "PEERLESS BLADESMEN",
+            "sourceTitle": "Faultless Opportunist"
+          }
+        }
+      },
+      "coreReferences": [
+        {
+          "id": "core-rule-15-11-heroic-intervention",
+          "provenance": {
+            "base": {
+              "sourceId": "waha-core-corpus-2026-09-25",
+              "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+              "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+              "sourceDate": "2026-09-25",
+              "sourceScope": "GLOBAL_CORE",
+              "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+            }
+          }
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "6d15477e5bfa12ca2a7fe7b75da68a82c685dd5b",
+        "factualOwner": {
+          "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+          "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+          "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+          "page": 9,
+          "bbox": [
+            40,
+            461,
+            296,
+            535
+          ],
+          "textSha256": "7E7E6F572707164BA9DF6E786B49430FC7CFB40D9E13C321389E67D3C380A0FE",
+          "effectiveFrom": "2026-09-30",
+          "authority": "AUTHORITATIVE_CURRENT",
+          "correctionId": "ec-official-v1.3:accepted-occurrence-05",
+          "sourcePointer": "/detachments/3/enhancements/0/text",
+          "supersedes": {
+            "sourceId": "ec-waha-11e-2026-09-28",
+            "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+            "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+            "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+            "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+            "pointer": "/detachments/3/enhancements/0",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-carnival-of-excess:enhancement:1",
+      "ownerId": "detachment-carnival-of-excess",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-carnival-of-excess",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "canonicalRuleReferences": [
+        "detachment-carnival-of-excess:enhancement:1",
+        "core-rule-15-11-heroic-intervention"
+      ],
+      "restrictions": [
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "When you target this unit"
+        },
+        {
+          "field": [
+            "text"
+          ],
+          "quote": "that use is -1 CP."
+        }
+      ],
+      "clauses": [
+        {
+          "id": "permission-reference",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Grant only the canonical passive permission reference; no battle payload is executed."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-carnival-of-excess:enhancement:1::permission-reference/effect-1",
+              "operation": "GRANT_ABILITY",
+              "ability": {
+                "canonicalId": "detachment-carnival-of-excess:enhancement:1",
+                "parameters": {}
+              },
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "unitScope": "FORMED",
+              "conditions": [],
+              "lifetime": "WHILE_ASSIGNED",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "provenance": {
+                "canonicalRuleId": "detachment-carnival-of-excess:enhancement:1",
+                "canonicalOwnerId": "detachment-carnival-of-excess",
+                "canonicalClauseId": "permission-reference",
+                "sourceEvidence": {
+                  "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+                  "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+                  "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+                  "page": 9,
+                  "bbox": [
+                    40,
+                    246,
+                    296,
+                    286
+                  ],
+                  "textSha256": "40DE92A4BE94AEF881188444C41BB320CADEB597DB08868CAEFB240B94A8D666",
+                  "effectiveFrom": "2026-09-30",
+                  "authority": "AUTHORITATIVE_CURRENT",
+                  "correctionId": "ec-official-v1.3:accepted-occurrence-01",
+                  "sourcePointer": "/detachments/1/enhancements/0/text",
+                  "supersedes": {
+                    "sourceId": "ec-waha-11e-2026-09-28",
+                    "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                    "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                    "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                    "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                    "pointer": "/detachments/1/enhancements/0",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                },
+                "recipientBinding": "SOURCE_UNIT"
+              }
+            }
+          ]
+        },
+        {
+          "id": "heroic-intervention",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "heroicInterventionSelected",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When you target this unit with the Heroic Intervention stratagem"
+              },
+              "roleId": "recipient"
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+          },
+          "sourceText": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
+          "effect": {
+            "sourceClause": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
+            "recipientRoleId": "recipient",
+            "parameters": {
+              "canonicalRuleReferences": [
+                "detachment-carnival-of-excess:enhancement:1"
+              ]
+            }
+          },
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "MODEL_KEYWORD",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "EMPEROR’S CHILDREN"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+          }
+        }
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-03a251d4e568bb90",
+        "detachmentId": "mfm-detachment-93445f9c8df320a5",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "CARNIVAL OF EXCESS",
+            "sourceTitle": "Empyric Suffusion"
+          }
+        }
+      },
+      "coreReferences": [
+        {
+          "id": "core-rule-15-11-heroic-intervention",
+          "provenance": {
+            "base": {
+              "sourceId": "waha-core-corpus-2026-09-25",
+              "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+              "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+              "sourceDate": "2026-09-25",
+              "sourceScope": "GLOBAL_CORE",
+              "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+            }
+          }
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "6d15477e5bfa12ca2a7fe7b75da68a82c685dd5b",
+        "factualOwner": {
+          "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+          "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+          "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+          "page": 9,
+          "bbox": [
+            40,
+            246,
+            296,
+            286
+          ],
+          "textSha256": "40DE92A4BE94AEF881188444C41BB320CADEB597DB08868CAEFB240B94A8D666",
+          "effectiveFrom": "2026-09-30",
+          "authority": "AUTHORITATIVE_CURRENT",
+          "correctionId": "ec-official-v1.3:accepted-occurrence-01",
+          "sourcePointer": "/detachments/1/enhancements/0/text",
+          "supersedes": {
+            "sourceId": "ec-waha-11e-2026-09-28",
+            "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+            "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+            "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+            "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+            "pointer": "/detachments/1/enhancements/0",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
     }
   ],
   "abilityReferences": {
@@ -2456,6 +4248,135 @@
           "sourceDate": "2026-09-25",
           "sourceScope": "GLOBAL_CORE",
           "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+        }
+      }
+    },
+    "detachment-mercurial-host:rule": {
+      "id": "detachment-mercurial-host:rule",
+      "title": "Quicksilver Grace",
+      "parameters": {},
+      "sourceReference": {
+        "bookId": "emperors-children",
+        "entityId": "detachment-mercurial-host:rule",
+        "path": "/text"
+      },
+      "provenance": {
+        "sourceId": "ec-waha-11e-2026-09-28",
+        "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+        "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+        "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+        "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+        "pointer": "/detachments/6/rule",
+        "authority": "ACCEPTED_SECONDARY"
+      }
+    },
+    "detachment-court-of-the-phoenician:enhancement:1": {
+      "id": "detachment-court-of-the-phoenician:enhancement:1",
+      "title": "Tears of the Phoenix",
+      "parameters": {},
+      "sourceReference": {
+        "bookId": "emperors-children",
+        "entityId": "detachment-court-of-the-phoenician:enhancement:1",
+        "path": "/text"
+      },
+      "provenance": {
+        "sourceId": "ec-waha-11e-2026-09-28",
+        "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+        "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+        "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+        "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+        "pointer": "/detachments/4/enhancements/0",
+        "authority": "ACCEPTED_SECONDARY"
+      }
+    },
+    "detachment-mercurial-host:enhancement:4": {
+      "id": "detachment-mercurial-host:enhancement:4",
+      "title": "Loathsome Dexterity",
+      "parameters": {},
+      "sourceReference": {
+        "bookId": "emperors-children",
+        "entityId": "detachment-mercurial-host:enhancement:4",
+        "path": "/text"
+      },
+      "provenance": {
+        "sourceId": "ec-waha-11e-2026-09-28",
+        "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+        "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+        "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+        "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+        "pointer": "/detachments/6/enhancements/3",
+        "authority": "ACCEPTED_SECONDARY"
+      }
+    },
+    "detachment-peerless-bladesmen:enhancement:1": {
+      "id": "detachment-peerless-bladesmen:enhancement:1",
+      "title": "Faultless Opportunist",
+      "parameters": {},
+      "sourceReference": {
+        "bookId": "emperors-children",
+        "entityId": "detachment-peerless-bladesmen:enhancement:1",
+        "path": "/text"
+      },
+      "provenance": {
+        "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+        "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+        "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+        "page": 9,
+        "bbox": [
+          40,
+          461,
+          296,
+          535
+        ],
+        "textSha256": "7E7E6F572707164BA9DF6E786B49430FC7CFB40D9E13C321389E67D3C380A0FE",
+        "effectiveFrom": "2026-09-30",
+        "authority": "AUTHORITATIVE_CURRENT",
+        "correctionId": "ec-official-v1.3:accepted-occurrence-05",
+        "sourcePointer": "/detachments/3/enhancements/0/text",
+        "supersedes": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/3/enhancements/0",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      }
+    },
+    "detachment-carnival-of-excess:enhancement:1": {
+      "id": "detachment-carnival-of-excess:enhancement:1",
+      "title": "Empyric Suffusion",
+      "parameters": {},
+      "sourceReference": {
+        "bookId": "emperors-children",
+        "entityId": "detachment-carnival-of-excess:enhancement:1",
+        "path": "/text"
+      },
+      "provenance": {
+        "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+        "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+        "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+        "page": 9,
+        "bbox": [
+          40,
+          246,
+          296,
+          286
+        ],
+        "textSha256": "40DE92A4BE94AEF881188444C41BB320CADEB597DB08868CAEFB240B94A8D666",
+        "effectiveFrom": "2026-09-30",
+        "authority": "AUTHORITATIVE_CURRENT",
+        "correctionId": "ec-official-v1.3:accepted-occurrence-01",
+        "sourcePointer": "/detachments/1/enhancements/0/text",
+        "supersedes": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/1/enhancements/0",
+          "authority": "ACCEPTED_SECONDARY"
         }
       }
     }

@@ -63,7 +63,8 @@ function inventory(contracts) {
     }
   }
 }
-check(()=>inventory(built.contracts));
+const directContracts=built.contracts.slice(0,10);
+check(()=>inventory(directContracts));
 
 // Verify actual raw captures and corpus occurrences, rather than treating
 // generated text or legacy effect contracts as an independent source oracle.
@@ -239,16 +240,16 @@ check(()=>{
 
 // Mutations run the real inventory comparator/engine validators. Exceptions
 // are consequences of changed data, never manufactured as a test result.
-poison(built.contracts,x=>x.pop(),inventory);
-poison(built.contracts,x=>x.push(structuredClone(x[0])),inventory);
-poison(built.contracts,x=>x[3].ownerId='unit-infractors',inventory);
-poison(built.contracts,x=>x[3].clauses[0].rosterEffects[0].value=2,inventory);
-poison(built.contracts,x=>x[6].clauses[0].rosterEffects[0].targetBinding='SOURCE_MODEL',inventory);
-poison(built.contracts,x=>delete x[1].clauses[0].rosterEffects[0].weaponMode,inventory);
+poison(directContracts,x=>x.pop(),inventory);
+poison(directContracts,x=>x.push(structuredClone(x[0])),inventory);
+poison(directContracts,x=>x[3].ownerId='unit-infractors',inventory);
+poison(directContracts,x=>x[3].clauses[0].rosterEffects[0].value=2,inventory);
+poison(directContracts,x=>x[6].clauses[0].rosterEffects[0].targetBinding='SOURCE_MODEL',inventory);
+poison(directContracts,x=>delete x[1].clauses[0].rosterEffects[0].weaponMode,inventory);
 poison(book,x=>x.entities.find(e=>e.id===expected[9][0]).ruleContract.clauses[1].rosterEffects.push(
   structuredClone(x.entities.find(e=>e.id===expected[9][0]).ruleContract.clauses[0].rosterEffects[0])),
   x=>validateRosterEffects(x,schema.validatePredicate,schema.evaluatePredicate));
-poison(built.contracts,x=>x[0].clauses[0].rosterEffects[0].conditions=[],inventory);
+poison(directContracts,x=>x[0].clauses[0].rosterEffects[0].conditions=[],inventory);
 poison(facts,x=>x.entities.find(e=>e.id===exalted).parentId='detachment-peerless-bladesmen',x=>buildECContracts({facts:x}));
 poison(facts,x=>x.entities.find(e=>e.id==='datasheet-lord-exultant:profile:1').data.stats.T='4',x=>{
   assert.deepEqual(buildECContracts({facts:x}).artifact,built.artifact,'Stale factual dependency must invalidate the saved overlay');
