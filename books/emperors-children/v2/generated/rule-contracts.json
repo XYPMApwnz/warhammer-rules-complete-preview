@@ -9,6 +9,8 @@
     "formationSourceOwners": 6,
     "finalBindingRules": 4,
     "shiningAegisRules": 1,
+    "instrumentRuleFamilies": 1,
+    "instrumentSourceOwners": 2,
     "remainingLegacyContracts": "NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD"
   },
   "sourceFingerprint": "B9D7A1C2D7DF7A5B8E27C6F9307C0B230E9A8DFB75338B7A457CFA0B415D2F7C",
@@ -17,6 +19,59 @@
   "formationBindingFingerprint": "FF55AEF6168F9EEEBC32DE67DC5C4500102541E5A7BAFE38A10F50A84A30FAFA",
   "finalBindingFingerprint": "C98CCEE572AA66849390F92BC35E0DA9450AD987D2CBC523CB93E6DF7594D939",
   "aegisBindingFingerprint": "DF6A00EF6B7AC9FFD3DE17E8FEC18824B57530E19B7E61919E22CD53B536D6AB",
+  "instrumentBindingFingerprint": "5462AD9431A9FDFD80803D88AEB6B07FDB84D9FFA14DE534F8366ADC27C4488E",
+  "equipmentRestrictions": [
+    {
+      "ownerId": "unit-daemonettes",
+      "profileId": "datasheet-daemonettes:profile:1",
+      "eligibleMemberId": "datasheet-daemonettes:section:2:member:2",
+      "instrumentId": "datasheet-daemonettes:wargear:1",
+      "iconId": "datasheet-daemonettes:wargear:2",
+      "scope": "MODEL",
+      "maximumEach": 1,
+      "evidence": [
+        {
+          "entityId": "datasheet-daemonettes:wargear:1",
+          "field": [
+            "text"
+          ],
+          "quote": "1 Daemonette that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos."
+        },
+        {
+          "entityId": "datasheet-daemonettes:wargear:2",
+          "field": [
+            "text"
+          ],
+          "quote": "1 Daemonette that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+        }
+      ]
+    },
+    {
+      "ownerId": "unit-seekers",
+      "profileId": "datasheet-seekers:profile:1",
+      "eligibleMemberId": "datasheet-seekers:section:2:member:2",
+      "instrumentId": "datasheet-seekers:wargear:1",
+      "iconId": "datasheet-seekers:wargear:2",
+      "scope": "MODEL",
+      "maximumEach": 1,
+      "evidence": [
+        {
+          "entityId": "datasheet-seekers:wargear:1",
+          "field": [
+            "text"
+          ],
+          "quote": "1 Seeker that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos."
+        },
+        {
+          "entityId": "datasheet-seekers:wargear:2",
+          "field": [
+            "text"
+          ],
+          "quote": "1 Seeker that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+        }
+      ]
+    }
+  ],
   "selectionOptions": [
     {
       "id": "detachment-carnival-of-excess:enhancement:3::choice::datasheet-noise-marines:weapon:5",
@@ -6454,6 +6509,11 @@
           "blocks",
           1,
           "text"
+        ],
+        [
+          "blocks",
+          2,
+          "text"
         ]
       ],
       "roles": [
@@ -6498,6 +6558,28 @@
                 "text"
               ],
               "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "instrument-recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                2,
+                "text"
+              ],
+              "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
             }
           },
           "conditions": []
@@ -6770,6 +6852,178 @@
           "rosterClassificationNote": {
             "reason": "Selected physical owner/equipment and existing formation determine recipients."
           }
+        },
+        {
+          "id": "instrument-of-chaos",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-daemonettes"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "instrument-recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "equipmentRequirementSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "datasheet-daemonettes:wargear:1",
+                "field": [
+                  "text"
+                ],
+                "quote": "1 Daemonette that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              2,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              2,
+              "text"
+            ],
+            "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
+          },
+          "sourceText": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "datasheet-daemonettes:section:1::instrument-of-chaos/chargeRoll",
+              "operation": "MODIFY_RULE_METRIC",
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "unitScope": "FORMED",
+              "field": "chargeRoll",
+              "mode": "ADD",
+              "value": 1,
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-daemonettes:wargear:1",
+                "sourceFieldPath": [
+                  "text"
+                ]
+              },
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "otherEntityId": "datasheet-daemonettes:wargear:1",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "1 Daemonette that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  2,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_EQUIPMENT_SELECTED",
+              "provenance": {
+                "canonicalRuleId": "datasheet-daemonettes:section:1",
+                "canonicalOwnerId": "unit-daemonettes",
+                "canonicalClauseId": "instrument-of-chaos",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Daemonettes.html",
+                  "sha256": "F8A92ACD1E4CD2FAB39618AD826A313874D0505E2181CCAEC759910D45723A41",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/4/sections/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Selected Instrument supplies a UNIT Charge-roll modifier; no roll or charge is executed."
+          },
+          "currentness": {
+            "acceptedBaseHead": "499d1d92cbb40ce1f6ecbb7c03463bd7f6993b0c",
+            "factualOwner": {
+              "sourceId": "ec-waha-11e-2026-09-28",
+              "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Daemonettes.html",
+              "sha256": "F8A92ACD1E4CD2FAB39618AD826A313874D0505E2181CCAEC759910D45723A41",
+              "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+              "pointer": "/datasheets/4/sections/0",
+              "authority": "ACCEPTED_SECONDARY"
+            },
+            "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+          }
         }
       ],
       "currentness": {
@@ -6798,6 +7052,11 @@
         [
           "blocks",
           1,
+          "text"
+        ],
+        [
+          "blocks",
+          2,
           "text"
         ]
       ],
@@ -6843,6 +7102,28 @@
                 "text"
               ],
               "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "instrument-recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                2,
+                "text"
+              ],
+              "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
             }
           },
           "conditions": []
@@ -7114,6 +7395,178 @@
           ],
           "rosterClassificationNote": {
             "reason": "Selected physical owner/equipment and existing formation determine recipients."
+          }
+        },
+        {
+          "id": "instrument-of-chaos",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-seekers"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "instrument-recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "equipmentRequirementSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "datasheet-seekers:wargear:1",
+                "field": [
+                  "text"
+                ],
+                "quote": "1 Seeker that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              2,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              2,
+              "text"
+            ],
+            "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
+          },
+          "sourceText": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "datasheet-seekers:section:1::instrument-of-chaos/chargeRoll",
+              "operation": "MODIFY_RULE_METRIC",
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "unitScope": "FORMED",
+              "field": "chargeRoll",
+              "mode": "ADD",
+              "value": 1,
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-seekers:wargear:1",
+                "sourceFieldPath": [
+                  "text"
+                ]
+              },
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "otherEntityId": "datasheet-seekers:wargear:1",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "1 Seeker that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  2,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_EQUIPMENT_SELECTED",
+              "provenance": {
+                "canonicalRuleId": "datasheet-seekers:section:1",
+                "canonicalOwnerId": "unit-seekers",
+                "canonicalClauseId": "instrument-of-chaos",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Seekers.html",
+                  "sha256": "188AC0D70A2209D93C6BEE99DE5BBEB2BAEC42A50B9F46F23F3CDF9618151A70",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/5/sections/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Selected Instrument supplies a UNIT Charge-roll modifier; no roll or charge is executed."
+          },
+          "currentness": {
+            "acceptedBaseHead": "499d1d92cbb40ce1f6ecbb7c03463bd7f6993b0c",
+            "factualOwner": {
+              "sourceId": "ec-waha-11e-2026-09-28",
+              "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Seekers.html",
+              "sha256": "188AC0D70A2209D93C6BEE99DE5BBEB2BAEC42A50B9F46F23F3CDF9618151A70",
+              "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+              "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+              "pointer": "/datasheets/5/sections/0",
+              "authority": "ACCEPTED_SECONDARY"
+            },
+            "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
           }
         }
       ],

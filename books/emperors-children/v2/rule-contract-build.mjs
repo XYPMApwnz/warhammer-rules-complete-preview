@@ -16,6 +16,7 @@ import {permissionDeclarations,permissionStateFields} from './rule-contract-perm
 import {formationBindings,formationStateFields,bindFormationContracts} from './rule-contract-formation-bindings.mjs';
 import {finalBindings,finalStateFields,bindFinalContracts} from './rule-contract-final-bindings.mjs';
 import {aegisBinding,bindShiningAegis} from './rule-contract-aegis-bindings.mjs';
+import {instrumentBindings,bindInstruments} from './rule-contract-instrument-bindings.mjs';
 
 const directory=path.dirname(fileURLToPath(import.meta.url));
 const read=file=>JSON.parse(fs.readFileSync(path.join(directory,file),'utf8'));
@@ -25,7 +26,7 @@ const all=args=>args.length===1?args[0]:{op:'ALL',args};
 const at=(value,field)=>field.reduce((value,key)=>value?.[key],value);
 const subject=binding=>['SOURCE_UNIT','ROSTER_UNITS'].includes(binding)?'UNIT':'MODEL';
 
-export function buildECContracts({facts=read('generated/effective.json'),inputs=declarations,permissionInputs=permissionDeclarations,formationInputs=formationBindings,finalInputs=finalBindings,aegisInputs=[aegisBinding]}={}) {
+export function buildECContracts({facts=read('generated/effective.json'),inputs=declarations,permissionInputs=permissionDeclarations,formationInputs=formationBindings,finalInputs=finalBindings,aegisInputs=[aegisBinding],instrumentInputs=formationInputs.length?instrumentBindings:[]}={}) {
   const before=JSON.stringify(facts),book=clone(facts),index=new Map(book.entities.map(e=>[e.id,e]));
   assert.equal(index.size,book.entities.length,'Duplicate canonical identity');
   assert.equal(inputs.length,10,'Only the reviewed ten-rule scope is implemented');
@@ -177,6 +178,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
   const additions=bindFormationContracts({book,index,mfm,core,inputs:formationInputs});contracts.push(...additions);
   const finals=bindFinalContracts({book,index,mfm,inputs:finalInputs});contracts.push(...finals);
   const aegis=bindShiningAegis({book,index,inputs:aegisInputs});contracts.push(...aegis);
+  const instrumentOwners=bindInstruments({book,index,inputs:instrumentInputs});
   const composition=book.entities.filter(e=>e.kind==='DATASHEET').flatMap(unit=>unit.data.profileIds.map(profileId=>({
     unitId:unit.id,profileId,intrinsicKeywords:[...unit.data.keywords,...unit.data.factionKeywords],
     maxModels:unit.data.compositionMemberIds.map(id=>index.get(id)).filter(member=>member.data.modelProfileId===profileId)
@@ -189,6 +191,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
     formationRuleFamilies:additions.length?5:0,formationSourceOwners:additions.length,
     finalBindingRules:finals.length,
     shiningAegisRules:aegis.length,
+    instrumentRuleFamilies:instrumentOwners?1:0,instrumentSourceOwners:instrumentOwners,
     remainingLegacyContracts:'NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD'};
   return {book,schema,contracts,scope,
     artifact:{schema:'ec-v2-rule-contract-foundation/v1',authority:'BOOK_OWNED_DERIVED_CONTRACT_OVERLAY',
@@ -198,6 +201,8 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
       formationBindingFingerprint:sha(fs.readFileSync(new URL('./rule-contract-formation-bindings.mjs',import.meta.url))),
       finalBindingFingerprint:sha(fs.readFileSync(new URL('./rule-contract-final-bindings.mjs',import.meta.url))),
       aegisBindingFingerprint:sha(fs.readFileSync(new URL('./rule-contract-aegis-bindings.mjs',import.meta.url))),
+      instrumentBindingFingerprint:sha(fs.readFileSync(new URL('./rule-contract-instrument-bindings.mjs',import.meta.url))),
+      equipmentRestrictions:book.rosterEquipmentRestrictions,
       selectionOptions:book.rosterSelectionOptions||[],
       contextBindings:book.rosterContextBindings||{},
       contracts,abilityReferences:book.rosterAbilityReferences,attachmentPolicies:book.rosterAttachmentPolicies}};

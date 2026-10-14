@@ -72,7 +72,11 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
             Object.keys(origin).some(key=>!['ruleId','clauseId'].includes(key)))
           throw new TypeError('Unresolved canonical effect contribution');
       }
-      if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
+      if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange','chargeRoll'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
+      if (effect.operation === 'MODIFY_RULE_METRIC' && effect.field==='chargeRoll' &&
+          (effect.targetSubject!=='UNIT' || !['PHYSICAL','FORMED'].includes(effect.unitScope) ||
+           !Number.isSafeInteger(effect.value) || effect.max!==undefined || effect.weaponMode!==undefined || effect.weaponIds!==undefined))
+        throw new TypeError('Invalid typed UNIT Charge-roll modifier');
       if (effect.operation === 'GRANT_UNIT_KEYWORD' && (effect.targetSubject !== 'UNIT' || typeof effect.keyword !== 'string' || !effect.keyword || (effect.unitScope !== undefined && !['FORMED','PHYSICAL'].includes(effect.unitScope)))) throw new TypeError('Invalid UNIT keyword grant');
       if (effect.operation === 'GRANT_MODEL_KEYWORD' && (effect.targetSubject !== 'MODEL' || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid MODEL keyword grant');
       if (effect.operation === 'REMOVE_KEYWORD' && (!['MODEL','UNIT'].includes(effect.targetSubject) || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid scoped keyword removal');
@@ -332,7 +336,8 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       if(row && domain){row.characteristic=effect.field;row.rawBefore=rawBefore ?? null;row.rawAfter=rawAfter;rows.push(row);}
       return row;
     };
-    const physicalUnit=(effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD') && effect.unitScope==='PHYSICAL';
+    const physicalUnit=(effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD' ||
+      effect.operation==='MODIFY_RULE_METRIC' && effect.field==='chargeRoll') && effect.unitScope==='PHYSICAL';
     const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || (!physicalUnit && target.unit.formedUnitId) || target.unit.instanceId}`;
     if (processed.has(marker)) return;
     processed.add(marker);
@@ -515,6 +520,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
     unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason)===i);
     for (const model of unit.profiles) {
       for (const [field,metric] of Object.entries(unit.metrics)) {
+        if(field==='chargeRoll')continue; // A UNIT roll modifier is never a MODEL characteristic or metric.
         const own = model.metrics[field] || {modifier:0};
         model.metrics[field] = {modifier:own.modifier+metric.modifier,...((own.max||metric.max)?{max:Math.min(own.max??Infinity,metric.max??Infinity)}:{})};
       }

@@ -13,7 +13,7 @@ import {executeRosterEffects} from '../../shared/roster-v2/effects.mjs';
 
 const directory=path.dirname(fileURLToPath(import.meta.url)),root=path.resolve(directory,'../../..');
 const facts=JSON.parse(fs.readFileSync(path.join(directory,'generated/effective.json'),'utf8'));
-const original=JSON.stringify(facts),{book,schema,contracts,artifact}=buildECContracts({facts});
+const original=JSON.stringify(facts),{book,schema,contracts,artifact}=buildECContracts({facts,instrumentInputs:[]});
 const canonical=new Map(facts.entities.map(e=>[e.id,e])),added=contracts.slice(15,21);
 const [CAC,FREN,EAGER,ICON_D,ICON_S,HOST]=[
   'detachment-elegant-brutes:enhancement:1','detachment-elegant-brutes:enhancement:2',
@@ -198,7 +198,7 @@ check(()=>{
   assert.throws(()=>change(noDaemonLeader,'ATTACH','l','d'),/No canonical attachment relation/);
 });
 check(()=>{
-  assert.deepEqual(buildECContracts({formationInputs:[],finalInputs:[],aegisInputs:[]}).contracts,contracts.slice(0,15),'Previous fifteen contracts changed');
+  assert.deepEqual(buildECContracts({formationInputs:[],finalInputs:[],aegisInputs:[],instrumentInputs:[]}).contracts,contracts.slice(0,15),'Previous fifteen contracts changed');
   assert.deepEqual(book.entities.filter(e=>e.authority!=='SOURCE_BACKED_SELECTION_BINDING').map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]),facts.entities.map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]));
   assert.equal(artifact.scope.formationRuleFamilies,5);assert.equal(artifact.scope.formationSourceOwners,6);assert.equal(added.length,6);
 });

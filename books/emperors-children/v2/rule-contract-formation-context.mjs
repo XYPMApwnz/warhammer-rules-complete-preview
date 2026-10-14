@@ -3,8 +3,10 @@
 import assert from 'node:assert/strict';
 import {validateRoster,withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 import {weaponChoiceContext} from './rule-contract-choice-context.mjs';
+import {validateInstrumentSelections} from './rule-contract-instrument-bindings.mjs';
 
 export function createFormationContext(book,state,schema) {
+  validateInstrumentSelections(book,state);
   const binding=book.rosterContextBindings?.lordOfHostDeclaredBattleline;
   const kernel=withRosterDetachments(schema),records=new Map(book.entities.map(e=>[e.id,e]));
   const bindChoice=weaponChoiceContext(book,state,schema);
