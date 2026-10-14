@@ -3,11 +3,10 @@ import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-cata
 const clone=value=>structuredClone(value);
 const edgeKey=edge=>`${edge.role}\0${edge.sourceId}\0${edge.targetId}`;
 const v15Books=new Set(['death-guard','adeptus-mechanicus','tyranids','tau-empire','emperors-children','chaos-space-marines']);
-const sourceMetadataFor=bookId=>Object.freeze(v15Books.has(bookId)?{
-  label:'Official MFM v1.5',version:'v1.5',currentnessCutoff:'2026-09-30',verifiedAt:'2026-09-30',authority:'OFFICIAL_GAMES_WORKSHOP_LIVE_MFM'
-}:{
-  label:'Official MFM v1.4',version:'v1.4',currentnessCutoff:'2026-09-22',verifiedAt:'2026-09-22',authority:'OFFICIAL_GAMES_WORKSHOP_LIVE_MFM'
-});
+const sourceMetadataFor=snapshot=>{
+  if(!snapshot)throw new Error('MFM source snapshot is required for Army projection');
+  return Object.freeze({label:`Official MFM ${snapshot.version}`,version:snapshot.version,currentnessCutoff:snapshot.currentnessCutoff,verifiedAt:snapshot.verifiedAt??snapshot.currentnessCutoff,authority:snapshot.authority,...(snapshot.version==='v1.6'?{observedAt:snapshot.observedAt,effectiveDate:snapshot.effectiveDate}:{})});
+};
 
 const armyRelationOverlays=Object.freeze({
   'death-guard':new Set([
@@ -51,7 +50,7 @@ const flattenSchedule=(bookId,unitId,schedules)=>schedules.flatMap(schedule=>(sc
 }));
 
 export function createEffectiveMfmArmyProjection(bookId){
-  const sourceMetadata=sourceMetadataFor(bookId),{catalog}=createEffectiveMfmCatalog(),unitRefs=new Map(catalog.unitReferences.map(item=>[item.id,item])),pointById=new Map(catalog.unitPointRecords.map(item=>[item.id,item])),forceBindings=catalog.crossDomainBindings.forceDispositionBindings;
+  const {catalog}=createEffectiveMfmCatalog(),sourceMetadata=sourceMetadataFor(catalog.sourceSnapshots.find(snapshot=>snapshot.factionId===bookId&&!snapshot.consumerArmyBookId)),unitRefs=new Map(catalog.unitReferences.map(item=>[item.id,item])),pointById=new Map(catalog.unitPointRecords.map(item=>[item.id,item])),forceBindings=catalog.crossDomainBindings.forceDispositionBindings;
   const factionPoints=catalog.unitPointRecords.filter(item=>item.factionId===bookId),factionPointIds=new Set(factionPoints.map(item=>item.id));
   const paidByPoint=new Map();
   for(const item of catalog.paidUpgradeRecords.filter(item=>item.factionId===bookId)){const values=paidByPoint.get(item.unitPointRecordId)||[];values.push(item);paidByPoint.set(item.unitPointRecordId,values);}
@@ -112,7 +111,7 @@ export function createEffectiveMfmArmyProjection(bookId){
     if(candidates.length!==1)throw new Error(`${consumerArmyBookId}: allied MFM identity ${unitId} resolved ${candidates.length} times`);
     const reference=candidates[0],point=catalog.unitPointRecords.find(item=>item.unitReferenceId===reference.id&&item.status==='CURRENT');
     if(!point)throw new Error(`${consumerArmyBookId}: allied MFM identity ${unitId} has no current point schedule`);
-    const pointsSource=sourceMetadataFor(consumerArmyBookId);
+    const pointsSource=sourceMetadataFor(catalog.sourceSnapshots.find(snapshot=>snapshot.sourceId===point.provenance.sourceId));
     return{id:unitId,unitId,title:point.label,sourceBookId:reference.factionId,sourceLayer:'centralized-mfm-allied-dependency',publicationState:'Current',points:flattenSchedule(reference.factionId,unitId,point.pointSchedules),paidWargear:(paidByPoint.get(point.id)||[]).map(item=>({name:armyPaidUpgradeLabel(item.label),value:item.value,modifiers:[]})),pointsSource,mfmRecordId:point.id,unitReferenceId:reference.id,publicationRecord:{id:unitId,title:point.label,status:'Current',sourceLayer:point.sourceGroup,points:flattenSchedule(reference.factionId,unitId,point.pointSchedules),paidWargear:[],pointsSource,mfmRecordId:point.id}};
   });
   return Object.freeze({bookId,sourceMetadata,pointsForArmyBook,alliedUnitsForArmyBook,deathGuardPoints,relationEdges,qualifierRecordsFor,referenceOnlyUnitRecords:clone(referenceOnlyUnitRecords.map(({point,reference})=>({mfmRecordId:point.id,label:point.label,unitReferenceId:reference.id,reason:reference.armyBinding.reason}))),boundUnitCount:boundUnitRecords.length,factionPointCount:factionPointIds.size});

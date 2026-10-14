@@ -1,0 +1,61 @@
+{
+  "schema": "warhammer-mfm-cross-faction-unit-capture/v1",
+  "title": "Munitorum Field Manual",
+  "edition": "Warhammer 40,000 11th Edition",
+  "consumerArmyBookId": "chaos-space-marines",
+  "sourceFactionId": "world-eaters",
+  "sourceFactionLabel": "World Eaters",
+  "version": "v1.6",
+  "sourceUpdatedAt": null,
+  "capturedAt": "2026-10-14",
+  "currentnessCutoff": "2026-10-14",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+  "url": "https://mfm.warhammer-community.com/en/world-eaters",
+  "currentnessEvidence": {
+    "liveVersion": "v1.6",
+    "observedAt": "2026-10-14",
+    "effectiveDate": null,
+    "officialEffectiveDateStatus": "NOT_ESTABLISHED"
+  },
+  "rawArtifacts": [
+    {
+      "path": "csm-khorne-berzerkers.html",
+      "sha256": "90BE6BE8B59A21FE73094918E7D40DB1CA42B0EC7979CEDB1821CF9B113B2A3D",
+      "bytes": 325233,
+      "state": "CURRENT"
+    }
+  ],
+  "sourceLocator": {
+    "partition": "UNITS",
+    "sourceTitle": "KHORNE BERZERKERS"
+  },
+  "unit": {
+    "title": "KHORNE BERZERKERS",
+    "sourceGroup": "UNITS",
+    "status": "CURRENT",
+    "pointSchedules": [
+      {
+        "sourceLabel": "YOUR UNIT COSTS",
+        "entries": [
+          {
+            "sourceLabel": "10 models",
+            "minModels": 10,
+            "maxModels": 10,
+            "value": 170
+          },
+          {
+            "sourceLabel": "20 models",
+            "minModels": 20,
+            "maxModels": 20,
+            "value": 330
+          }
+        ]
+      }
+    ]
+  },
+  "effectiveDate": null,
+  "observedAt": "2026-10-14",
+  "verifiedAt": "2026-10-14",
+  "captureSha256": "AD2D58C4627FB8BF73094E350B49B5C8230A9D3F9F1B0A2BFE94EC51F5DB4EE0"
+}

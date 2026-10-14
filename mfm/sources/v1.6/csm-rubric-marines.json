@@ -1,0 +1,81 @@
+{
+  "schema": "warhammer-mfm-cross-faction-unit-capture/v1",
+  "title": "Munitorum Field Manual",
+  "edition": "Warhammer 40,000 11th Edition",
+  "consumerArmyBookId": "chaos-space-marines",
+  "sourceFactionId": "thousand-sons",
+  "sourceFactionLabel": "Thousand Sons",
+  "version": "v1.6",
+  "sourceUpdatedAt": null,
+  "capturedAt": "2026-10-14",
+  "currentnessCutoff": "2026-10-14",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+  "url": "https://mfm.warhammer-community.com/en/thousand-sons",
+  "currentnessEvidence": {
+    "liveVersion": "v1.6",
+    "observedAt": "2026-10-14",
+    "effectiveDate": null,
+    "officialEffectiveDateStatus": "NOT_ESTABLISHED"
+  },
+  "rawArtifacts": [
+    {
+      "path": "csm-rubric-marines.html",
+      "sha256": "FB5E62725FBA2A3557AD6C2ABE9939BF188F097CE27F6DE3245FF354898C5867",
+      "bytes": 339970,
+      "state": "CURRENT"
+    }
+  ],
+  "sourceLocator": {
+    "partition": "UNITS",
+    "sourceTitle": "RUBRIC MARINES"
+  },
+  "unit": {
+    "title": "RUBRIC MARINES",
+    "sourceGroup": "UNITS",
+    "status": "CURRENT",
+    "pointSchedules": [
+      {
+        "sourceLabel": "YOUR 1ST TO 3RD UNITS COST",
+        "minCopies": 1,
+        "maxCopies": 3,
+        "entries": [
+          {
+            "sourceLabel": "5 models",
+            "minModels": 5,
+            "maxModels": 5,
+            "value": 115
+          },
+          {
+            "sourceLabel": "10 models",
+            "minModels": 10,
+            "maxModels": 10,
+            "value": 210
+          }
+        ]
+      },
+      {
+        "sourceLabel": "YOUR 4TH + UNIT COSTS",
+        "minCopies": 4,
+        "entries": [
+          {
+            "sourceLabel": "5 models",
+            "minModels": 5,
+            "maxModels": 5,
+            "value": 125
+          },
+          {
+            "sourceLabel": "10 models",
+            "minModels": 10,
+            "maxModels": 10,
+            "value": 220
+          }
+        ]
+      }
+    ]
+  },
+  "effectiveDate": null,
+  "observedAt": "2026-10-14",
+  "verifiedAt": "2026-10-14",
+  "captureSha256": "9E485825FD2D7556902C28AA2FE48784C0E6D13EA34CB808911764CDC84B871F"
+}

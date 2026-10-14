@@ -9,7 +9,13 @@ export function validateRegistry(sources) {
   for (const source of sources) {
     assert.ok(source.id && !ids.has(source.id),`Duplicate independent source ownership: ${source.id}`);
     ids.add(source.id);
-    for (const field of ['type','versionOrDate','authority','effectiveFrom','status']) assert.ok(source[field],`${source.id}: missing ${field}`);
+    for (const field of ['type','versionOrDate','authority','status']) assert.ok(source[field],`${source.id}: missing ${field}`);
+    if(source.type==='CENTRALIZED_MFM_REFERENCE'&&source.authority==='CENTRALIZED_MFM'&&source.versionOrDate==='v1.6'){
+      assert.equal(source.effectiveDate,null,`${source.id}: MFM effective date is unconfirmed`);
+      assert.equal(source.effectiveFrom,undefined,`${source.id}: observation date is not an effective date`);
+      assert.match(source.verifiedAt||'',/^\d{4}-\d{2}-\d{2}$/,`${source.id}: verification date required`);
+      assert.equal(source.currentnessCutoff,source.verifiedAt,`${source.id}: MFM observation cutoff drift`);
+    }else assert.ok(source.effectiveFrom,`${source.id}: missing effectiveFrom`);
     assert.ok(['CURRENT','SUPERSEDED'].includes(source.status),`${source.id}: ambiguous lifecycle`);
     assert.ok(source.url || source.provenance,`${source.id}: provenance required`);
     if (source.path) assert.match(source.sha256,/^[a-f0-9]{64}$/i,`${source.id}: integrity required`);

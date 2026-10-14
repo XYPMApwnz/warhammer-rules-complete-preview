@@ -1,0 +1,1864 @@
+{
+  "schema": "warhammer-mfm-live-capture/v1",
+  "title": "Munitorum Field Manual",
+  "edition": "Warhammer 40,000 11th Edition",
+  "factionId": "tau-empire",
+  "factionLabel": "T'au Empire",
+  "version": "v1.6",
+  "sourceUpdatedAt": null,
+  "capturedAt": "2026-10-14",
+  "currentnessCutoff": "2026-10-14",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+  "url": "https://mfm.warhammer-community.com/en/tau-empire",
+  "currentnessEvidence": {
+    "liveVersion": "v1.6",
+    "observedAt": "2026-10-14",
+    "effectiveDate": null,
+    "officialEffectiveDateStatus": "NOT_ESTABLISHED"
+  },
+  "rawArtifacts": [
+    {
+      "path": "tau-empire.html",
+      "sha256": "EC11CA97154E77F4A9303098FFDA500E79D6F4F2346BF50510D64AE829FE14B9",
+      "bytes": 357590,
+      "state": "CURRENT"
+    },
+    {
+      "path": "tau-empire-legends.html",
+      "sha256": "BE33AB46A5444BC58BF2BCF9B27C8241939CE02C5E23DBB4ED875A9B13369F53",
+      "bytes": 366688,
+      "state": "LEGENDS_VISIBLE"
+    }
+  ],
+  "sourceGroups": [
+    "UNITS",
+    "LEGENDS"
+  ],
+  "counts": {
+    "currentUnits": 43,
+    "legendsUnits": 19,
+    "totalPricedUnits": 62,
+    "pointSchedules": 79,
+    "pointRows": 97,
+    "paidOptions": 7,
+    "leaderRecords": 12,
+    "leaderEdges": 29,
+    "supportRecords": 0,
+    "supportEdges": 0,
+    "detachments": 7,
+    "enhancements": 23,
+    "detachmentQualifierRecords": 4,
+    "enhancementQualifierRecords": 0
+  },
+  "units": [
+    {
+      "title": "AX-1-0 TIGER SHARK",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST UNIT COSTS",
+          "minCopies": 1,
+          "maxCopies": 1,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 315
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 2ND + UNIT COSTS",
+          "minCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 375
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "BREACHER TEAM",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "BROADSIDE BATTLESUITS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 75
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 150
+            },
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 255
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 95
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 170
+            },
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 275
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per High-yield Missile Pods",
+          "title": "High-yield Missile Pods",
+          "value": 5,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "CADRE FIREBLADE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 50
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "BREACHER TEAM",
+          "STRIKE TEAM"
+        ]
+      }
+    },
+    {
+      "title": "COMMANDER FARSIGHT",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 70
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CRISIS FIREKNIFE BATTLESUITS",
+          "CRISIS STARSCYTHE BATTLESUITS",
+          "CRISIS SUNFORGE BATTLESUITS"
+        ]
+      }
+    },
+    {
+      "title": "COMMANDER IN COLDSTAR BATTLESUIT",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 95
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CRISIS FIREKNIFE BATTLESUITS",
+          "CRISIS STARSCYTHE BATTLESUITS",
+          "CRISIS SUNFORGE BATTLESUITS"
+        ]
+      }
+    },
+    {
+      "title": "COMMANDER IN ENFORCER BATTLESUIT",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CRISIS FIREKNIFE BATTLESUITS",
+          "CRISIS STARSCYTHE BATTLESUITS",
+          "CRISIS SUNFORGE BATTLESUITS"
+        ]
+      }
+    },
+    {
+      "title": "COMMANDER SHADOWSUN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CRISIS FIREKNIFE BATTLESUITS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 100
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 110
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Missile pod",
+          "title": "Missile pod",
+          "value": 5,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "CRISIS STARSCYTHE BATTLESUITS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 100
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 110
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per T'au flamer",
+          "title": "T'au flamer",
+          "value": 5,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "CRISIS SUNFORGE BATTLESUITS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 125
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 135
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DARKSTRIDER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "PATHFINDER TEAM"
+        ]
+      }
+    },
+    {
+      "title": "DEVILFISH",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 3RD UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 75
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 4TH + UNIT COSTS",
+          "minCopies": 4,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 85
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ETHEREAL",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 50
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "BREACHER TEAM",
+          "STRIKE TEAM"
+        ]
+      }
+    },
+    {
+      "title": "FIRESIGHT TEAM",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 55
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "GHOSTKEEL BATTLESUIT",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 150
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 165
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Cyclic Ion Raker",
+          "title": "Cyclic Ion Raker",
+          "value": 15,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "HAMMERHEAD GUNSHIP",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 150
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 160
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KROOT CARNIVORES",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 65
+            },
+            {
+              "sourceLabel": "20 models",
+              "minModels": 20,
+              "maxModels": 20,
+              "value": 130
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KROOT FARSTALKERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "12 models",
+              "minModels": 12,
+              "maxModels": 12,
+              "value": 75
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "12 models",
+              "minModels": 12,
+              "maxModels": 12,
+              "value": 85
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KROOT FLESH SHAPER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 45
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "KROOT CARNIVORES",
+          "KROOT FARSTALKERS"
+        ]
+      }
+    },
+    {
+      "title": "KROOT HOUNDS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 45
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 65
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KROOT LONE-SPEAR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KROOTOX RAMPAGERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 85
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 170
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 95
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 180
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KROOTOX RIDERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 45
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 60
+            },
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 90
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KROOT TRAIL SHAPER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 50
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "KROOT CARNIVORES",
+          "KROOT FARSTALKERS"
+        ]
+      }
+    },
+    {
+      "title": "KROOT WAR SHAPER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "KROOT CARNIVORES",
+          "KROOT FARSTALKERS"
+        ]
+      }
+    },
+    {
+      "title": "MANTA",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 2100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "PATHFINDER TEAM",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 85
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 100
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Ion Rifle",
+          "title": "Ion Rifle",
+          "value": 5,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "PIRANHAS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 65
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 110
+            },
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 165
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 75
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 120
+            },
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 175
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RAZORSHARK STRIKE FIGHTER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 160
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RIPTIDE BATTLESUIT",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 190
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 220
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Ion Accelerator",
+          "title": "Ion Accelerator",
+          "value": 25,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "SKY RAY GUNSHIP",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 140
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "STEALTH BATTLESUITS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 100
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 110
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "STORMSURGE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST UNIT COSTS",
+          "minCopies": 1,
+          "maxCopies": 1,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 375
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 2ND + UNIT COSTS",
+          "minCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "STRIKE TEAM",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 70
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SUN SHARK BOMBER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 150
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "TA’UNAR SUPREMACY ARMOUR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST UNIT COSTS",
+          "minCopies": 1,
+          "maxCopies": 1,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 790
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 2ND + UNIT COSTS",
+          "minCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 890
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "THE TWIN LANCE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 240
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "TIDEWALL DRONEPORT",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 85
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "TIDEWALL GUNRIG",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 90
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "TIDEWALL SHIELDLINE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 85
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "+ 1 Tidewall Defence Platform",
+          "title": "1 Tidewall Defence Platform",
+          "value": 20,
+          "sourceGroup": "YOUR UNIT COSTS"
+        }
+      ]
+    },
+    {
+      "title": "TIGER SHARK",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST UNIT COSTS",
+          "minCopies": 1,
+          "maxCopies": 1,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 395
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 2ND + UNIT COSTS",
+          "minCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 445
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "VESPID STINGWINGS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 70
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 115
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "AUN’SHI",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 50
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "BREACHER TEAM",
+          "KROOT CARNIVORES",
+          "KROOT FARSTALKERS",
+          "STRIKE TEAM"
+        ]
+      }
+    },
+    {
+      "title": "AUN’VA",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 65
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "BARRACUDA",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 220
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "COMMANDER IN CRISIS BATTLESUIT",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CRISIS BATTLESUITS",
+          "CRISIS FIREKNIFE BATTLESUITS",
+          "CRISIS STARSCYTHE BATTLESUITS",
+          "CRISIS SUNFORGE BATTLESUITS"
+        ]
+      }
+    },
+    {
+      "title": "CRISIS BATTLESUITS",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 200
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DRONE SENTRY TURRET",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 50
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "GREAT KNARLOC",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HEAVY GUN DRONES",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 45
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KNARLOC RIDERS",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 110
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "LONGSTRIKE",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 140
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ORCA DROPSHIP",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 275
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "R’VARNA BATTLESUIT",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "REMORA STEALTH DRONES",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 160
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "REMOTE SENSOR TOWER",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 50
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SHAS’O R’ALAI",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "XV9 HAZARD BATTLESUITS"
+        ]
+      }
+    },
+    {
+      "title": "TETRAS",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 80
+            },
+            {
+              "sourceLabel": "4 models",
+              "minModels": 4,
+              "maxModels": 4,
+              "value": 160
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "TX42 PIRANHA",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "XV9 HAZARD BATTLESUITS",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 55
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 110
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Y’VAHRA BATTLESUIT",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 210
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "detachments": [
+    {
+      "title": "ADVANCED ACQUISITION CADRE",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Negation Emitters (Upgrade)",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Unmasking Suite (Upgrade)",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "AUXILIARY CADRE",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [
+        {
+          "kind": "UNIQUE",
+          "value": "AUXILIARY"
+        }
+      ],
+      "enhancements": [
+        {
+          "title": "Admired Leader",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Student of Kauyon",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "EXPERIMENTAL PROTOTYPE CADRE",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [
+        {
+          "kind": "UNIQUE",
+          "value": "BATTLESUIT"
+        }
+      ],
+      "enhancements": [
+        {
+          "title": "Plasma Accelerator Rifle",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Supernova Launcher",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Thermoneutronic Projector",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "KAUYON",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Exemplar of the Kauyon",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Precision of the Patient Hunter",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Solid-image Projection Unit",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Through Unity, Devastation",
+          "value": 30,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "KROOT HUNTING PACK",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "TAKE AND HOLD"
+      ],
+      "qualifiers": [
+        {
+          "kind": "UNIQUE",
+          "value": "AUXILIARY"
+        }
+      ],
+      "enhancements": [
+        {
+          "title": "Borthrod Gland",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Kroothawk Flock",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Nomadic Hunter",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Root-carved Weapons",
+          "value": 10,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "MONT’KA",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "TAKE AND HOLD",
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Coordinated Exploitation",
+          "value": 30,
+          "qualifiers": []
+        },
+        {
+          "title": "Exemplar of the Mont’ka",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Strategic Conqueror",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Strike Swiftly",
+          "value": 45,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "RETALIATION CADRE",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "PURGE THE FOE",
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [
+        {
+          "kind": "UNIQUE",
+          "value": "BATTLESUIT"
+        }
+      ],
+      "enhancements": [
+        {
+          "title": "Internal Grenade Racks",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Prototype Weapon System",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Puretide Engram Neurochip",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Starflare Ignition System",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    }
+  ],
+  "effectiveDate": null,
+  "observedAt": "2026-10-14",
+  "verifiedAt": "2026-10-14",
+  "captureSha256": "001D814605EDEFCB6A486F8B5F0B83A875FBA22933D2AD55FF6B536B7F861EA8"
+}

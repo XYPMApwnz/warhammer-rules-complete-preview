@@ -2718,6 +2718,279 @@
         }
       ],
       "notes": "Official currentness evidence for the scoped six-book MFM v1.5 migration; out-of-scope Space Marines-family projections remain on v1.4."
+    },
+    {
+      "book": "death-guard",
+      "sourceId": "death-guard-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "f28dd07f43226e4e47872e11fa2fa28997107555be6117bee4188dbddf0fd04b",
+      "lastChecked": "2026-10-14",
+      "upstreamObservedAt": "2026-10-14",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "supersedesSourceId": "death-guard-mfm-v1.5",
+      "effectiveDate": null,
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/death-guard.json",
+          "normalization": "lf",
+          "sha256": "d96310c1218ff4e39623a2116d25e7da499edc4e697083c7bd6befb7635200b5"
+        },
+        {
+          "path": "mfm/sources/v1.6/death-guard.html",
+          "normalization": "bytes",
+          "sha256": "fb9afb96ebd2751801672294b7a9b63d798c04bc1f8811b444be429087735413"
+        },
+        {
+          "path": "mfm/sources/v1.6/death-guard-legends.html",
+          "normalization": "bytes",
+          "sha256": "23ae47285cc8714ffa3ae9f5a27108c09f554399d9d4ae14026697792aae676e"
+        }
+      ],
+      "notes": "Official v1.6 observed 2026-10-14. Effective date not established. Existing DOM extractor reused; semantic equality to historical v1.5 verified before acceptance."
+    },
+    {
+      "book": "adeptus-mechanicus",
+      "sourceId": "adeptus-mechanicus-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "67e1ab677b4965a6e9d798c5a7582bfdffba492d25e6695369daa8d0cfce93c1",
+      "lastChecked": "2026-10-14",
+      "upstreamObservedAt": "2026-10-14",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "supersedesSourceId": "adeptus-mechanicus-mfm-v1.5",
+      "effectiveDate": null,
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/adeptus-mechanicus.json",
+          "normalization": "lf",
+          "sha256": "704049b7856869dd2f673cdda8e7a461182fff43dc2dbd44348d6c238b017d0b"
+        },
+        {
+          "path": "mfm/sources/v1.6/adeptus-mechanicus.html",
+          "normalization": "bytes",
+          "sha256": "cc05765b7a499f5123feb40883d593c47ed8a27cddfc08e27836c5d6d387eaed"
+        },
+        {
+          "path": "mfm/sources/v1.6/adeptus-mechanicus-legends.html",
+          "normalization": "bytes",
+          "sha256": "c2d1ff6881da81a356e78ac9572b3397691469164d576d852dc1eed260ef266d"
+        }
+      ],
+      "notes": "Official v1.6 observed 2026-10-14. Effective date not established. Existing DOM extractor reused; semantic equality to historical v1.5 verified before acceptance."
+    },
+    {
+      "book": "chaos-space-marines",
+      "sourceId": "chaos-space-marines-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "2f00aa55cdab5428f6068edf5942a0905fed28bfc8b793434eabdd901e3f6f67",
+      "lastChecked": "2026-10-14",
+      "upstreamObservedAt": "2026-10-14",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "supersedesSourceId": "chaos-space-marines-mfm-v1.5",
+      "effectiveDate": null,
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/chaos-space-marines.json",
+          "normalization": "lf",
+          "sha256": "053009122e1f6a8606f64c1c5368e394b2845277161f14027c574d4ed5b4bc90"
+        },
+        {
+          "path": "mfm/sources/v1.6/chaos-space-marines.html",
+          "normalization": "bytes",
+          "sha256": "df48cc15455dbbbae43fdb9aa7af7ef4cee8385b4e934019c26726845898982c"
+        },
+        {
+          "path": "mfm/sources/v1.6/chaos-space-marines-legends.html",
+          "normalization": "bytes",
+          "sha256": "5ae5e09b4f79f68c98bad07a7d14edad8c8e2c3db9e510669a6298fc95cc4023"
+        }
+      ],
+      "notes": "Official v1.6 observed 2026-10-14. Effective date not established. Existing DOM extractor reused; semantic equality to historical v1.5 verified before acceptance."
+    },
+    {
+      "book": "emperors-children",
+      "sourceId": "emperors-children-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "b5772e21ceb4a002c8dc674546e1702d838e91190d2d30f10292f927f19ac341",
+      "lastChecked": "2026-10-14",
+      "upstreamObservedAt": "2026-10-14",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "supersedesSourceId": "emperors-children-mfm-v1.5",
+      "effectiveDate": null,
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/emperors-children.json",
+          "normalization": "lf",
+          "sha256": "721ed6c3237081f6b22c9d6122e47584c879c785d82c0df040f7fe0ba4cdd03d"
+        },
+        {
+          "path": "mfm/sources/v1.6/emperors-children.html",
+          "normalization": "bytes",
+          "sha256": "c00c12eaf3a065958dcf1298b21b46e26bc6df0868a1f084919712bd98dd2ebd"
+        }
+      ],
+      "notes": "Official v1.6 observed 2026-10-14. Effective date not established. Existing DOM extractor reused; semantic equality to historical v1.5 verified before acceptance."
+    },
+    {
+      "book": "tyranids",
+      "sourceId": "tyranids-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "fa92fe2172599be19c9cac682afa5fdfb67f0525f21103b724b5e9461637a5fc",
+      "lastChecked": "2026-10-14",
+      "upstreamObservedAt": "2026-10-14",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "supersedesSourceId": "tyranids-mfm-v1.5",
+      "effectiveDate": null,
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/tyranids.json",
+          "normalization": "lf",
+          "sha256": "175c853dbf824b3576d3b75829eaac0d64dd705ab791315c348c2624ac64cad3"
+        },
+        {
+          "path": "mfm/sources/v1.6/tyranids.html",
+          "normalization": "bytes",
+          "sha256": "d6b2e0acad2e2f8698ef0a438d03b01bd6bc2f3980a5b3e13326c3396df71e78"
+        },
+        {
+          "path": "mfm/sources/v1.6/tyranids-legends.html",
+          "normalization": "bytes",
+          "sha256": "ad2f0408eeda6feee0a02d8d6ecff9b8019d7a2762fb6332b3b51a26ffb2f4dd"
+        }
+      ],
+      "notes": "Official v1.6 observed 2026-10-14. Effective date not established. Existing DOM extractor reused; semantic equality to historical v1.5 verified before acceptance."
+    },
+    {
+      "book": "tau-empire",
+      "sourceId": "tau-empire-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "e6cbf701c616d3856cced06be23b74cffee2dbb61c69ebb740e8362662f522a5",
+      "lastChecked": "2026-10-14",
+      "upstreamObservedAt": "2026-10-14",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "supersedesSourceId": "tau-empire-mfm-v1.5",
+      "effectiveDate": null,
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/tau-empire.json",
+          "normalization": "lf",
+          "sha256": "6d04432798a1cda5bd06b0feb471b5cd4aead4c52036622e71182ecdf781e007"
+        },
+        {
+          "path": "mfm/sources/v1.6/tau-empire.html",
+          "normalization": "bytes",
+          "sha256": "ec11ca97154e77f4a9303098ffda500e79d6f4f2346bf50510d64ae829fe14b9"
+        },
+        {
+          "path": "mfm/sources/v1.6/tau-empire-legends.html",
+          "normalization": "bytes",
+          "sha256": "be33ab46a5444bc58bf2bcf9b27c8241939ce02c5e23dbb4ed875a9b13369f53"
+        }
+      ],
+      "notes": "Official v1.6 observed 2026-10-14. Effective date not established. Existing DOM extractor reused; semantic equality to historical v1.5 verified before acceptance."
+    },
+    {
+      "book": "chaos-space-marines",
+      "sourceId": "csm-allied-khorne-berzerkers-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "0aa9fac96377e25a76e0fb72460f1a7dcd7fab59651f4ed161aff892f31ad8b5",
+      "lastChecked": "2026-10-14",
+      "upstreamObservedAt": "2026-10-14",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "supersedesSourceId": "csm-allied-khorne-berzerkers-mfm-v1.5",
+      "effectiveDate": null,
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/csm-khorne-berzerkers.json",
+          "normalization": "lf",
+          "sha256": "a5090028798810ee727332a34d87e2b34b3a7ee6b57555254bf2048687f98a6a"
+        },
+        {
+          "path": "mfm/sources/v1.6/csm-khorne-berzerkers.html",
+          "normalization": "bytes",
+          "sha256": "90be6be8b59a21fe73094918e7d40db1ca42b0ec7979cedb1821cf9b113b2a3d"
+        }
+      ],
+      "notes": "Official v1.6 observed 2026-10-14. Effective date not established. Existing DOM extractor reused; semantic equality to historical v1.5 verified before acceptance."
+    },
+    {
+      "book": "chaos-space-marines",
+      "sourceId": "csm-allied-rubric-marines-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "a3ccd3e1bcec8d7d5190eeadc10e1487501859b0290ceacef1d1015e8a6b0f7e",
+      "lastChecked": "2026-10-14",
+      "upstreamObservedAt": "2026-10-14",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "supersedesSourceId": "csm-allied-rubric-marines-mfm-v1.5",
+      "effectiveDate": null,
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/csm-rubric-marines.json",
+          "normalization": "lf",
+          "sha256": "c98eb09162028cca19a6bc971969f0912365899b3914403bc93be390d81f75af"
+        },
+        {
+          "path": "mfm/sources/v1.6/csm-rubric-marines.html",
+          "normalization": "bytes",
+          "sha256": "fb5e62725fba2a3557ad6c2abe9939bf188f097ce27f6de3245ff354898c5867"
+        }
+      ],
+      "notes": "Official v1.6 observed 2026-10-14. Effective date not established. Existing DOM extractor reused; semantic equality to historical v1.5 verified before acceptance."
     }
   ],
   "dormantLiveTools": [

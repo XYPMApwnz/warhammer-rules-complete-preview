@@ -12,7 +12,7 @@ import {validateMfmCrossDomainBindings} from '../content/mfm-model-contract.mjs'
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const readJson = relative => JSON.parse(fs.readFileSync(path.join(ROOT, relative), 'utf8'));
 const clone = value => structuredClone(value);
-const registry = readJson('mfm/content/mfm-army-mission-bindings.json');
+const registry = readJson('mfm/content/mfm-v1.6-army-mission-bindings.json');
 validateMfmCrossDomainBindings(registry);
 
 const canonical = createCanonicalMfmFacts({repoRoot: ROOT, crossDomainBindings: registry});
@@ -47,8 +47,8 @@ for (const detachment of canonical.detachments) {
   assert.ok(detachment.missionForceDispositionIds.every(id=>missionForceIds.has(id)));
   assert.deepEqual(detachment.forceDispositionIds,detachment.missionForceDispositionIds);
 }
-const scopedMultiForce=canonical.detachments.filter(item=>item.provenance.sourceVersion==='v1.5'&&item.forceDispositionIds.length>1);
-assert.equal(scopedMultiForce.length,12,'scoped v1.5 multi-Force Detachment denominator');
+const scopedMultiForce=canonical.detachments.filter(item=>item.provenance.sourceVersion==='v1.6'&&item.forceDispositionIds.length>1);
+assert.equal(scopedMultiForce.length,12,'scoped v1.6 multi-Force Detachment denominator');
 for(const item of scopedMultiForce){
   assert.equal(new Set(item.forceDispositionIds).size,item.forceDispositionIds.length,`${item.id}: duplicate effective Force Disposition`);
   assert.deepEqual([...item.forceDispositionIds].sort(),[...item.missionForceDispositionIds].sort(),`${item.id}: incomplete Mission membership`);
@@ -112,7 +112,7 @@ assert.deepEqual(huron.targetUnitReferenceIds, huron.rawMfmTargetUnitReferenceId
 assert.equal(huron.targetUnitReferenceIds.length, 4);
 assert.equal(huron.targetUnitReferenceIds.includes('mfm-unit-ref-0e38e3f6cbaf70e3'), false);
 assert.deepEqual(huron.sourceConflict.conflictingEvidenceTargetIds.map(item => item.mfmUnitReferenceId), ['mfm-unit-ref-0e38e3f6cbaf70e3']);
-assert.equal(huron.sourceConflict.provenance.mfm.sourceId, 'chaos-space-marines-mfm-v1.5');
+assert.equal(huron.sourceConflict.provenance.mfm.sourceId, 'chaos-space-marines-mfm-v1.6');
 assert.equal(huron.sourceConflict.provenance.officialFactionPack.sourceId, 'chaos-space-marines-faction-pack-v1.2');
 
 const forceCrossWire = clone(registry);

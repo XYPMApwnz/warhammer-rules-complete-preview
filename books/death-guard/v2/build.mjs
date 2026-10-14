@@ -7,6 +7,7 @@ import {normalizeDeathGuardCorpus} from './normalize.mjs';
 import {preserveFoundationFacts} from './foundation-facts.mjs';
 import {applyOverlays,sourceCurrentness} from './overlay-engine.mjs';
 import {consumeMfm,assertNoMfmValues} from './mfm-boundary.mjs';
+import {createEffectiveMfmArmyProjection} from '../../shared/tools/effective-mfm-army-projection.mjs';
 import {compareV1Facts,loadV1ComparisonModel} from './compare-v1.mjs';
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
@@ -22,8 +23,11 @@ export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/
   const baseSource = {id:'dg-waha-2026-09-25',type:'WAHA_CAPTURE',versionOrDate:corpus.captureDate,authority:'ACCEPTED_WAHA',
     path:corpusPath,sha256:enrollment.acceptedBase.sha256,effectiveFrom:corpus.captureDate,status:'CURRENT',
     url:corpus.pages.find(page => page.file === 'death-guard.html').url,provenance:{corpusFingerprint:corpus.corpusFingerprint},reconciled:true};
-  const mfmSource = {id:'centralized-death-guard-mfm-v1.5',type:'CENTRALIZED_MFM_REFERENCE',versionOrDate:'v1.5',authority:'CENTRALIZED_MFM',
-    effectiveFrom:'2026-09-30',status:'CURRENT',url:'https://mfm.warhammer-community.com/en/death-guard',provenance:{module:'books/shared/tools/effective-mfm-army-projection.mjs'},reconciled:true};
+  const mfmMetadata = createEffectiveMfmArmyProjection('death-guard').sourceMetadata;
+  const mfmSource = {id:`centralized-death-guard-mfm-${mfmMetadata.version}`,type:'CENTRALIZED_MFM_REFERENCE',versionOrDate:mfmMetadata.version,authority:'CENTRALIZED_MFM',
+    ...(mfmMetadata.version==='v1.6'?{effectiveDate:null,verifiedAt:mfmMetadata.verifiedAt,currentnessCutoff:mfmMetadata.currentnessCutoff}:
+      {effectiveFrom:mfmMetadata.currentnessCutoff}),
+    status:'CURRENT',url:'https://mfm.warhammer-community.com/en/death-guard',provenance:{module:'books/shared/tools/effective-mfm-army-projection.mjs'},reconciled:true};
   const sources = [baseSource,mfmSource,...enrollment.sources];
   for (const source of sources.filter(source => source.path)) assert.equal(sha(fs.readFileSync(path.join(root,source.path))),source.sha256.toUpperCase(),`${source.id}: source integrity`);
   for (const page of corpus.pages) assert.equal(sha(fs.readFileSync(path.join(root,'books/death-guard/v2/sources/accepted-waha-pages',page.file))),page.sha256,`${page.file}: original pinned capture integrity`);
@@ -43,7 +47,7 @@ export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/
   assertNoMfmValues(projected.entities);
   const mfm = consumeMfm(projected.entities);
   assert.equal(mfm.source.version,mfmSource.versionOrDate,'Central MFM source version must match enrolled reference');
-  assert.equal(mfm.source.currentnessCutoff,mfmSource.effectiveFrom,'Central MFM source date must match enrolled reference');
+  assert.equal(mfm.source.currentnessCutoff,mfmSource.currentnessCutoff||mfmSource.effectiveFrom,'Central MFM observation cutoff must match enrolled reference');
   const unresolvedGaps = base.captureGaps.filter(gap => !projected.appliedOverlays.some(operation => operation.targetId === gap.entityId && JSON.stringify(operation.field) === JSON.stringify(gap.field)));
   const blockers = [...(enrollment.blockingItems || []),...unresolvedGaps];
   const official = sources.filter(source => source.authority === 'OFFICIAL_GW' && source.type === 'OFFICIAL_PDF' && source.status === 'CURRENT').sort((a,b) => b.effectiveFrom.localeCompare(a.effectiveFrom));

@@ -1,0 +1,943 @@
+{
+  "schema": "warhammer-mfm-live-capture/v1",
+  "title": "Munitorum Field Manual",
+  "edition": "Warhammer 40,000 11th Edition",
+  "factionId": "emperors-children",
+  "factionLabel": "Emperor's Children",
+  "version": "v1.6",
+  "sourceUpdatedAt": null,
+  "capturedAt": "2026-10-14",
+  "currentnessCutoff": "2026-10-14",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+  "url": "https://mfm.warhammer-community.com/en/emperors-children",
+  "currentnessEvidence": {
+    "liveVersion": "v1.6",
+    "observedAt": "2026-10-14",
+    "effectiveDate": null,
+    "officialEffectiveDateStatus": "NOT_ESTABLISHED"
+  },
+  "rawArtifacts": [
+    {
+      "path": "emperors-children.html",
+      "sha256": "C00C12EAF3A065958DCF1298B21B46E26BC6DF0868A1F084919712BD98DD2EBD",
+      "bytes": 315033,
+      "state": "CURRENT"
+    }
+  ],
+  "sourceGroups": [
+    "UNITS",
+    "LEGIONS OF EXCESS"
+  ],
+  "counts": {
+    "currentUnits": 23,
+    "legendsUnits": 0,
+    "totalPricedUnits": 23,
+    "pointSchedules": 32,
+    "pointRows": 37,
+    "paidOptions": 2,
+    "leaderRecords": 4,
+    "leaderEdges": 8,
+    "supportRecords": 0,
+    "supportEdges": 0,
+    "detachments": 10,
+    "enhancements": 34,
+    "detachmentQualifierRecords": 0,
+    "enhancementQualifierRecords": 1
+  },
+  "units": [
+    {
+      "title": "CHAOS LAND RAIDER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 210
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 230
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS RHINO",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 3RD UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 70
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 4TH + UNIT COSTS",
+          "minCopies": 4,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS SPAWN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 70
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS TERMINATORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 155
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DAEMON PRINCE OF SLAANESH",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST UNIT COSTS",
+          "minCopies": 1,
+          "maxCopies": 1,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 165
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 2ND + UNIT COSTS",
+          "minCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 180
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DAEMON PRINCE OF SLAANESH WITH WINGS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST UNIT COSTS",
+          "minCopies": 1,
+          "maxCopies": 1,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 205
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 2ND + UNIT COSTS",
+          "minCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 225
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DEFILER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST UNIT COSTS",
+          "minCopies": 1,
+          "maxCopies": 1,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 300
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 2ND + UNIT COSTS",
+          "minCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 350
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Heavy Reaper Autocannon",
+          "title": "Heavy Reaper Autocannon",
+          "value": 15,
+          "sourceGroup": "WARGEAR OPTIONS"
+        },
+        {
+          "sourceLabel": "per Hades Lascannon",
+          "title": "Hades Lascannon",
+          "value": 15,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "FLAWLESS BLADES",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 95
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 190
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "FULGRIM",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 340
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "HELDRAKE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 175
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "INFRACTORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 95
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 175
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "LORD EXULTANT",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 95
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 105
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "INFRACTORS",
+          "TORMENTORS"
+        ]
+      }
+    },
+    {
+      "title": "LORD KAKOPHONIST",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 70
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "CHAOS TERMINATORS",
+          "NOISE MARINES"
+        ]
+      }
+    },
+    {
+      "title": "LUCIUS THE ETERNAL",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 130
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "FLAWLESS BLADES"
+        ]
+      }
+    },
+    {
+      "title": "MAULERFIEND",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 120
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 130
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "NOISE MARINES",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 160
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 175
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SORCERER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 55
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "INFRACTORS",
+          "NOISE MARINES",
+          "TORMENTORS"
+        ]
+      }
+    },
+    {
+      "title": "TORMENTORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 85
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 170
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DAEMONETTES",
+      "sourceGroup": "LEGIONS OF EXCESS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "FIENDS",
+      "sourceGroup": "LEGIONS OF EXCESS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 90
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 190
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "KEEPER OF SECRETS",
+      "sourceGroup": "LEGIONS OF EXCESS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 265
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 280
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SEEKERS",
+      "sourceGroup": "LEGIONS OF EXCESS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 85
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 155
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SHALAXI HELBANE",
+      "sourceGroup": "LEGIONS OF EXCESS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 315
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "detachments": [
+    {
+      "title": "CARNIVAL OF EXCESS",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "DISRUPTION",
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Dark Blessings",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Empyric Suffusion",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Possessed Blade",
+          "value": 35,
+          "qualifiers": []
+        },
+        {
+          "title": "Warp Walker",
+          "value": 35,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "COTERIE OF THE CONCEITED",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "PRIORITY ASSETS",
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Pledge of Dark Glory",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Pledge of Eternal Servitude",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Pledge of Mortal Pain",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Pledge of Unholy Fortune",
+          "value": 30,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "COURT OF THE PHOENICIAN",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Exalted Patron",
+          "value": 15,
+          "qualifiers": [
+            {
+              "kind": "LEADER",
+              "values": [
+                "FLAWLESS BLADES"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Soulstain Made Manifest",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Spiritsliver",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Tears of the Phoenix",
+          "value": 25,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "ELEGANT BRUTES",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "TAKE AND HOLD"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Cacophonic Accompaniment",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Frenzied Ferocity (Upgrade)",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "FRENZIED HOST",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Euphoric Crown",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Howling Plate",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "MERCURIAL HOST",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Intoxicating Musk",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Loathsome Dexterity",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Steeped in Suffering",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Tactical Perfection",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "PEERLESS BLADESMEN",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Blinding Speed",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Distortion",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Faultless Opportunist",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Rise to the Challenge",
+          "value": 30,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "RAPID EVISCERATION",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Accomplished Tactician",
+          "value": 35,
+          "qualifiers": []
+        },
+        {
+          "title": "Heretek Adept",
+          "value": 35,
+          "qualifiers": []
+        },
+        {
+          "title": "Spearhead Striker",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Sublime Prescience",
+          "value": 25,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "SLAANESH’S CHOSEN",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Eager to Prove",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Proud and Vainglorious",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Repulsed by Weakness",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Slayer of Champions",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "SPECTACLE OF SLAUGHTER",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Beguiling Grotesquerie (Upgrade)",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Eager Patrons (Upgrade)",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    }
+  ],
+  "effectiveDate": null,
+  "observedAt": "2026-10-14",
+  "verifiedAt": "2026-10-14",
+  "captureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD"
+}

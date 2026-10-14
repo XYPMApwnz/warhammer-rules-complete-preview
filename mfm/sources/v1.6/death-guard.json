@@ -1,0 +1,1378 @@
+{
+  "schema": "warhammer-mfm-live-capture/v1",
+  "title": "Munitorum Field Manual",
+  "edition": "Warhammer 40,000 11th Edition",
+  "factionId": "death-guard",
+  "factionLabel": "Death Guard",
+  "version": "v1.6",
+  "sourceUpdatedAt": null,
+  "capturedAt": "2026-10-14",
+  "currentnessCutoff": "2026-10-14",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+  "url": "https://mfm.warhammer-community.com/en/death-guard",
+  "currentnessEvidence": {
+    "liveVersion": "v1.6",
+    "observedAt": "2026-10-14",
+    "effectiveDate": null,
+    "officialEffectiveDateStatus": "NOT_ESTABLISHED"
+  },
+  "rawArtifacts": [
+    {
+      "path": "death-guard.html",
+      "sha256": "FB9AFB96EBD2751801672294B7A9B63D798C04BC1F8811B444BE429087735413",
+      "bytes": 342441,
+      "state": "CURRENT"
+    },
+    {
+      "path": "death-guard-legends.html",
+      "sha256": "23AE47285CC8714FFA3AE9F5A27108C09F554399D9D4AE14026697792AAE676E",
+      "bytes": 346188,
+      "state": "LEGENDS_VISIBLE"
+    }
+  ],
+  "sourceGroups": [
+    "UNITS",
+    "PLAGUE LEGIONS",
+    "LEGENDS"
+  ],
+  "counts": {
+    "currentUnits": 36,
+    "legendsUnits": 5,
+    "totalPricedUnits": 41,
+    "pointSchedules": 52,
+    "pointRows": 67,
+    "paidOptions": 2,
+    "leaderRecords": 14,
+    "leaderEdges": 22,
+    "supportRecords": 0,
+    "supportEdges": 0,
+    "detachments": 9,
+    "enhancements": 30,
+    "detachmentQualifierRecords": 0,
+    "enhancementQualifierRecords": 0
+  },
+  "units": [
+    {
+      "title": "BIOLOGUS PUTRIFIER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "PLAGUE MARINES"
+        ]
+      }
+    },
+    {
+      "title": "BLIGHTLORD TERMINATORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 115
+            },
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 185
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 370
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 145
+            },
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 215
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS LAND RAIDER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 220
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 240
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS PREDATOR ANNIHILATOR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 130
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 140
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS PREDATOR DESTRUCTOR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 140
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 150
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS RHINO",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 3RD UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 75
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 4TH + UNIT COSTS",
+          "minCopies": 4,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 85
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "CHAOS SPAWN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DAEMON PRINCE OF NURGLE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 185
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DAEMON PRINCE OF NURGLE WITH WINGS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 160
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DEATHSHROUD TERMINATORS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 150
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 305
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 160
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 315
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DEFILER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST UNIT COSTS",
+          "minCopies": 1,
+          "maxCopies": 1,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 300
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 2ND + UNIT COSTS",
+          "minCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 350
+            }
+          ]
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Heavy Reaper Autocannon",
+          "title": "Heavy Reaper Autocannon",
+          "value": 15,
+          "sourceGroup": "WARGEAR OPTIONS"
+        },
+        {
+          "sourceLabel": "per Hades Lascannon",
+          "title": "Hades Lascannon",
+          "value": 15,
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "FOETID BLOAT-DRONE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 100
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 110
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 125
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 135
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "FOUL BLIGHTSPAWN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "PLAGUE MARINES"
+        ]
+      }
+    },
+    {
+      "title": "HELBRUTE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 105
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ICON BEARER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 45
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "PLAGUE MARINES"
+        ]
+      }
+    },
+    {
+      "title": "LORD OF CONTAGION",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 110
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "BLIGHTLORD TERMINATORS",
+          "DEATHSHROUD TERMINATORS"
+        ]
+      }
+    },
+    {
+      "title": "LORD OF POXES",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 65
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "PLAGUE MARINES"
+        ]
+      }
+    },
+    {
+      "title": "LORD OF VIRULENCE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 90
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "BLIGHTLORD TERMINATORS",
+          "DEATHSHROUD TERMINATORS"
+        ]
+      }
+    },
+    {
+      "title": "MALIGNANT PLAGUECASTER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "PLAGUE MARINES",
+          "POXWALKERS"
+        ]
+      }
+    },
+    {
+      "title": "MIASMIC MALIGNIFIER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 105
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "MORTARION",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 375
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "MYPHITIC BLIGHT-HAULERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 95
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 190
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "NOXIOUS BLIGHTBRINGER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 50
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "PLAGUE MARINES",
+          "POXWALKERS"
+        ]
+      }
+    },
+    {
+      "title": "PLAGUEBURST CRAWLER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 170
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "PLAGUE MARINES",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 90
+            },
+            {
+              "sourceLabel": "7 models",
+              "minModels": 7,
+              "maxModels": 7,
+              "value": 125
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 175
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "PLAGUE SURGEON",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 50
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "PLAGUE MARINES"
+        ]
+      }
+    },
+    {
+      "title": "POXWALKERS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 65
+            },
+            {
+              "sourceLabel": "20 models",
+              "minModels": 20,
+              "maxModels": 20,
+              "value": 130
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "TALLYMAN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "PLAGUE MARINES"
+        ]
+      }
+    },
+    {
+      "title": "TYPHUS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 90
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "BLIGHTLORD TERMINATORS",
+          "DEATHSHROUD TERMINATORS",
+          "POXWALKERS"
+        ]
+      }
+    },
+    {
+      "title": "BEASTS OF NURGLE",
+      "sourceGroup": "PLAGUE LEGIONS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 70
+            },
+            {
+              "sourceLabel": "2 models",
+              "minModels": 2,
+              "maxModels": 2,
+              "value": 140
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "GREAT UNCLEAN ONE",
+      "sourceGroup": "PLAGUE LEGIONS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "minCopies": 1,
+          "maxCopies": 2,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 265
+            }
+          ]
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "minCopies": 3,
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 280
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "NURGLINGS",
+      "sourceGroup": "PLAGUE LEGIONS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 45
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 90
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "PLAGUEBEARERS",
+      "sourceGroup": "PLAGUE LEGIONS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 115
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "PLAGUE DRONES",
+      "sourceGroup": "PLAGUE LEGIONS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 110
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 220
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ROTIGUS",
+      "sourceGroup": "PLAGUE LEGIONS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 280
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DEATH GUARD CHAOS LORD",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 65
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "PLAGUE MARINES"
+        ]
+      }
+    },
+    {
+      "title": "DEATH GUARD CHAOS LORD IN TERMINATOR ARMOUR",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 85
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "BLIGHTLORD TERMINATORS",
+          "DEATHSHROUD TERMINATORS"
+        ]
+      }
+    },
+    {
+      "title": "DEATH GUARD CULTISTS",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 50
+            },
+            {
+              "sourceLabel": "20 models",
+              "minModels": 20,
+              "maxModels": 20,
+              "value": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DEATH GUARD POSSESSED",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 155
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 310
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DEATH GUARD SORCERER IN TERMINATOR ARMOUR",
+      "sourceGroup": "LEGENDS",
+      "status": "LEGENDS",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 70
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "BLIGHTLORD TERMINATORS",
+          "DEATHSHROUD TERMINATORS"
+        ]
+      }
+    }
+  ],
+  "detachments": [
+    {
+      "title": "CHAMPIONS OF CONTAGION",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "TAKE AND HOLD"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Cornucophagus",
+          "value": 35,
+          "qualifiers": []
+        },
+        {
+          "title": "Final Ingredient",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Needle of Nurgle",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Visions of Virulence",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "CONTAGION ENGINES",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Lancet of the Worldsore (Upgrade)",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Parasitic Woe‑reaper (Upgrade)",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "DEATH LORD’S CHOSEN",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Face of Death",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Helm of The Fly King",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Vile Vigour",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Warprot Talisman",
+          "value": 30,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "FLYBLOWN HOST",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Insectile Murmuration (Upgrade)",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Plagueveil (Upgrade)",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "MORTARION’S HAMMER",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Bilemaw Blight",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Eye of Affliction",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Shriekworm Familiar",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Tendrilous Emissions",
+          "value": 30,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "PARAGONS OF PUTRESCENCE",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Host of the Hybridised Pox",
+          "value": 40,
+          "qualifiers": []
+        },
+        {
+          "title": "Rejuvenating Swarm",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "SHAMBLEROT VECTORIUM",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Lord of the Walking Pox",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Sorrowsyphon",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Talisman of Burgeoning",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Witherbone Pipes",
+          "value": 25,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "TALLYBAND SUMMONERS",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Beckoning Blight",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Entropic Knell",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Fell Harvester",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Tome of Bounteous Blessings",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "VIRULENT VECTORIUM",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "TAKE AND HOLD",
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Arch Contaminator",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Daemon Weapon of Nurgle",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Furnace of Plagues",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Revolting Regeneration",
+          "value": 30,
+          "qualifiers": []
+        }
+      ]
+    }
+  ],
+  "effectiveDate": null,
+  "observedAt": "2026-10-14",
+  "verifiedAt": "2026-10-14",
+  "captureSha256": "FE37E1C1345013C350DF7D5DE188592E67096C71FFB58686EF42F5AE49487EEA"
+}
