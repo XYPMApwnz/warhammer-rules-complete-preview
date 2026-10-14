@@ -26,7 +26,7 @@ function fixture() {
     entities.push({id:id(name),kind:'DATASHEET',data:{title:name,keywords:name==='leader'?['CHARACTER']:['BODYGUARD'],
       factionKeywords:[],profileIds:profiles.map(id),ruleReferenceIds:[],weaponIds}});
     for(const profile of profiles) {
-      entities.push({id:id(profile),parentId:id(name),kind:'PROFILE',data:{name:profile,M:'6"',T:'4',LD:'6+',OC:'1',INSV:'5+'}});
+      entities.push({id:id(profile),parentId:id(name),kind:'PROFILE',data:{name:profile,M:'6"',T:'4',SV:'5+',LD:'6+',OC:'1',INSV:'5+'}});
       rosterProfileBindings.push({unitId:id(name),profileId:id(profile),intrinsicKeywords:name==='leader'?['CHARACTER']:['PROFILE_'+profile],abilities:[],referenceIds:[]});
       for(const mode of ['ranged','melee'])entities.push({id:id(profile+'-'+mode),parentId:id(name),kind:'WEAPON_PROFILE',data:{
         name:profile+' '+mode,mode,range:mode==='ranged'?'18"':'Melee',skill:'4+',attacks:'2',strength:'5',ap:'-1',damage:'1',abilities:[]}});
@@ -108,6 +108,57 @@ check('AP without a weapon-mode limitation applies to both modes of only the sel
   const {book,state}=fixture();rule(book,state,'ap-both',{field:'ap',weaponMode:null});const result=execute(book,state);
   assert.equal(weapon(result).data.ap,'-2');assert.equal(weapon(result,'a-melee').data.ap,'-2');
   assert.equal(weapon(result,'b-ranged').data.ap,'-1');assert.equal(weapon(result,'b-melee').data.ap,'-1');
+});
+check('ordinary MODEL SV SET preserves Invulnerable, weapons and other physical profiles',()=>{
+  const {book,state}=fixture();rule(book,state,'save-set',{field:'SV',mode:'SET',value:3,weaponMode:null});
+  const result=execute(book,state);assert.equal(profile(result).profile.SV,'3+');
+  assert.equal(profile(result).profile.INSV,'5+');assert.equal(profile(result,'b').profile.SV,'5+');
+  assert.equal(profile(result,'a','beta').profile.SV,'5+');assert.equal(profile(result,'leader-profile','leader').profile.SV,'5+');
+  assert.deepEqual(weapon(result).data,book.entities.find(e=>e.id===id('a-ranged')).data);
+  proof(result,'save-set',{field:'SV',weaponName:null,before:'5+',after:'3+'});
+  assert.equal(unit(result).applied[0].characteristic,'SV');
+  assert.deepEqual(execute(book,state),result,'Recompute must not accumulate');
+  const off=clone(state);unit(off).enhancementIds=[];assert.equal(profile(execute(book,off)).profile.SV,'5+');
+});
+check('ordinary Save uses the existing nested MODEL stats projection',()=>{
+  const {book,state}=fixture(),data=book.entities.find(e=>e.id===id('a')).data;
+  data.stats={SV:data.SV};delete data.SV;
+  rule(book,state,'nested-save',{field:'SV',mode:'SET',value:3,weaponMode:null});
+  const result=execute(book,state);assert.equal(profile(result).profile.stats.SV,'3+');
+  assert.equal(profile(result).profile.SV,undefined);assert.deepEqual(unit(result).applied[0].targetFieldPath,['stats','SV']);
+  assert.equal(profile(result).profile.INSV,'5+');
+});
+check('ordinary Save SET resolves one physical bearer among identical MODEL profiles',()=>{
+  const {book,state}=fixture(),alpha=unit(state),first=clone(alpha.modelRows[0]),second=clone(first);
+  first.rowId='bearer';first.quantity=1;second.rowId='other';second.quantity=1;
+  alpha.modelRows=[first,second,alpha.modelRows[1]];
+  rule(book,state,'exact-save',{targetBinding:'SOURCE_MODEL',field:'SV',mode:'SET',value:3,weaponMode:null,conditions:[]});
+  const contract=book.entities.find(e=>e.id===id('exact-save')).ruleContract;
+  contract.roles[0].subject='MODEL';contract.roles[0].selector=atom('MODEL_ID','MODEL',{id:id('a')});
+  contract.assignment.selector=clone(contract.roles[0].selector);
+  alpha.enhancementAssignments=[{enhancementId:id('exact-save'),modelScopeId:'alpha/bearer/PROFILE/bearer'}];
+  const result=execute(book,state),profiles=unit(result).profiles;
+  assert.equal(profiles[0].profile.SV,'3+');assert.equal(profiles[1].profile.SV,'5+');
+  assert.equal(profiles[2].profile.SV,'5+');assert.equal(profile(result,'a','beta').profile.SV,'5+');
+  assert.equal(unit(result).applied[0].targetCompositionId,'alpha/bearer/PROFILE/bearer');
+  assert.ok(profiles.every(p=>p.profile.INSV==='5+'));
+});
+check('ordinary Save rejects UNIT targets, ADD, weapon modes and invalid SET values',()=>{
+  for(const patch of [{targetSubject:'UNIT',targetBinding:'SOURCE_UNIT',conditions:[]},{mode:'ADD'},
+    {weaponMode:'melee'},{value:'3+'},{value:1},{value:0},{value:3.5},{value:NaN}]) {
+    const {book,state}=fixture();rule(book,state,'invalid-save',{field:'SV',mode:'SET',value:3,weaponMode:null,...patch});
+    assert.throws(()=>execute(book,state),/Invalid characteristic operation/);
+  }
+  const {book,state}=fixture();rule(book,state,'unknown-stat',{field:'CHARGE',value:1,weaponMode:null});
+  assert.throws(()=>execute(book,state),/Invalid characteristic operation/,'Characteristic whitelist remains closed');
+});
+check('ordinary Save isolation survives attach, detach and reattach',()=>{
+  const {book,state}=fixture();rule(book,state,'save-attachment',{field:'SV',mode:'SET',value:3,weaponMode:null});
+  const baseline=execute(book,state),attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+  const first=execute(book,attached);assert.equal(profile(first).profile.SV,'3+');
+  assert.equal(profile(first,'leader-profile','leader').profile.SV,'5+');assert.equal(profile(first,'b').profile.SV,'5+');
+  const detached=changeAttachment(book,attached,book.rosterAttachmentPolicies,'DETACH','leader');assert.deepEqual(execute(book,detached),baseline);
+  assert.deepEqual(execute(book,changeAttachment(book,detached,book.rosterAttachmentPolicies,'REATTACH','leader','alpha')),first);
 });
 check('MODEL Invulnerable SET preserves the other profile and canonical base',()=>{
   const {book,state}=fixture();rule(book,state,'invuln-set',{field:'INSV',mode:'SET',value:4,weaponMode:null});const result=execute(book,state);

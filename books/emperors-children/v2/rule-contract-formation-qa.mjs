@@ -198,7 +198,7 @@ check(()=>{
   assert.throws(()=>change(noDaemonLeader,'ATTACH','l','d'),/No canonical attachment relation/);
 });
 check(()=>{
-  assert.deepEqual(buildECContracts({formationInputs:[],finalInputs:[]}).contracts,contracts.slice(0,15),'Previous fifteen contracts changed');
+  assert.deepEqual(buildECContracts({formationInputs:[],finalInputs:[],aegisInputs:[]}).contracts,contracts.slice(0,15),'Previous fifteen contracts changed');
   assert.deepEqual(book.entities.filter(e=>e.authority!=='SOURCE_BACKED_SELECTION_BINDING').map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]),facts.entities.map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]));
   assert.equal(artifact.scope.formationRuleFamilies,5);assert.equal(artifact.scope.formationSourceOwners,6);assert.equal(added.length,6);
 });

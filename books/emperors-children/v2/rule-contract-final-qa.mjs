@@ -14,7 +14,7 @@ import {executeRosterEffects} from '../../shared/roster-v2/effects.mjs';
 const directory=path.dirname(fileURLToPath(import.meta.url)),root=path.resolve(directory,'../../..');
 const facts=JSON.parse(fs.readFileSync(path.join(directory,'generated/effective.json'),'utf8')),original=JSON.stringify(facts);
 const {book,schema,contracts,artifact}=buildECContracts({facts}),canonical=new Map(facts.entities.map(e=>[e.id,e]));
-const finals=contracts.slice(21),BG='detachment-spectacle-of-slaughter:enhancement:2';
+const finals=contracts.slice(21,25),BG='detachment-spectacle-of-slaughter:enhancement:2';
 const RHINO='datasheet-chaos-rhino:section:2',RAIDER='datasheet-chaos-land-raider:section:2';
 const expected=[
   [bladeId,'detachment-carnival-of-excess','EMPEROR’S CHILDREN model only. At the start of the battle, select one melee weapon equipped by the bearer; add 1 to the Attacks characteristic of that weapon. In addition, each time the bearer is selected to fight, it can use this Enhancement. If it does, while resolving those attacks, add 1 to the Damage characteristic of that weapon and that weapon has the [devastating wounds] and [hazardous] abilities.'],
@@ -200,7 +200,7 @@ check(()=>{
   assert.deepEqual(r.state.units,input.units);assert.deepEqual(r.state.attachments,[]);
   for(const u of r.projection.units)assert.ok(!u.applied.some(a=>[RHINO,RAIDER].includes(a.ruleId)),'Transport declaration must not embark or mutate');
 });
-check(()=>assert.deepEqual(buildECContracts({finalInputs:[]}).contracts,contracts.slice(0,21),'Previous twenty families / twenty-one owners unchanged'));
+check(()=>assert.deepEqual(buildECContracts({finalInputs:[],aegisInputs:[]}).contracts,contracts.slice(0,21),'Previous twenty families / twenty-one owners unchanged'));
 
 mutate(finals,x=>x.pop(),inventory);mutate(finals,x=>x.push(structuredClone(x[0])),inventory);
 mutate(finals,x=>x[0].clauses[0].rosterEffects[0].value=2,inventory);

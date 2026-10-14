@@ -164,7 +164,7 @@ check(()=>{
   assert.throws(()=>s.load(state(e.owner,[ambiguous])),/Ambiguous physical Enhancement bearer/);
 });
 check(()=>{
-  assert.deepEqual(buildECContracts({permissionInputs:[],formationInputs:[],finalInputs:[]}).contracts,contracts.slice(0,10),'Previous ten contracts changed');
+  assert.deepEqual(buildECContracts({permissionInputs:[],formationInputs:[],finalInputs:[],aegisInputs:[]}).contracts,contracts.slice(0,10),'Previous ten contracts changed');
   assert.deepEqual(book.entities.filter(e=>e.authority!=='SOURCE_BACKED_SELECTION_BINDING').map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]),
     facts.entities.map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]));
   assert.equal(artifact.scope.directReuseRules,10);assert.equal(artifact.scope.bindingAdaptationRules,5);

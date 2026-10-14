@@ -2,12 +2,13 @@
   "schema": "ec-v2-rule-contract-foundation/v1",
   "authority": "BOOK_OWNED_DERIVED_CONTRACT_OVERLAY",
   "scope": {
-    "implementedRules": 25,
+    "implementedRules": 26,
     "directReuseRules": 10,
     "bindingAdaptationRules": 5,
     "formationRuleFamilies": 5,
     "formationSourceOwners": 6,
     "finalBindingRules": 4,
+    "shiningAegisRules": 1,
     "remainingLegacyContracts": "NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD"
   },
   "sourceFingerprint": "B9D7A1C2D7DF7A5B8E27C6F9307C0B230E9A8DFB75338B7A457CFA0B415D2F7C",
@@ -15,6 +16,7 @@
   "permissionDeclarationFingerprint": "15606F87E278ADAE304540C6E9BC30A3D2E5C52FA0E29668E42CFD797FC226FF",
   "formationBindingFingerprint": "FF55AEF6168F9EEEBC32DE67DC5C4500102541E5A7BAFE38A10F50A84A30FAFA",
   "finalBindingFingerprint": "C98CCEE572AA66849390F92BC35E0DA9450AD987D2CBC523CB93E6DF7594D939",
+  "aegisBindingFingerprint": "DF6A00EF6B7AC9FFD3DE17E8FEC18824B57530E19B7E61919E22CD53B536D6AB",
   "selectionOptions": [
     {
       "id": "detachment-carnival-of-excess:enhancement:3::choice::datasheet-noise-marines:weapon:5",
@@ -11666,6 +11668,284 @@
           "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
           "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
           "pointer": "/datasheets/18/sections/1",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-keeper-of-secrets:section:1",
+      "ownerId": "unit-keeper-of-secrets",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "binding": "SOURCE_MODEL",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_ID",
+            "subject": "MODEL",
+            "arguments": {
+              "id": "datasheet-keeper-of-secrets:profile:1"
+            },
+            "contextLevel": "STATIC",
+            "evidence": {
+              "field": [
+                "blocks",
+                2,
+                "text"
+              ],
+              "quote": "Shining Aegis: The bearer has a Save characteristic of 3+."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "bearer",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "binding": "SOURCE_MODEL",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_ID",
+            "subject": "MODEL",
+            "arguments": {
+              "id": "datasheet-keeper-of-secrets:profile:1"
+            },
+            "contextLevel": "STATIC",
+            "evidence": {
+              "field": [
+                "blocks",
+                2,
+                "text"
+              ],
+              "quote": "Shining Aegis: The bearer has a Save characteristic of 3+."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "sourceFields": [
+        [
+          "blocks",
+          2,
+          "text"
+        ]
+      ],
+      "equipmentSelection": {
+        "equipmentId": "datasheet-keeper-of-secrets:section:1",
+        "sourceFieldPath": [
+          "blocks",
+          2,
+          "text"
+        ],
+        "modelProfileId": "datasheet-keeper-of-secrets:profile:1",
+        "sourceOptionId": "datasheet-keeper-of-secrets:wargear:1",
+        "cardinality": "ONE",
+        "physicalOwner": "SOURCE_SINGLETON_MODEL"
+      },
+      "clauses": [
+        {
+          "id": "shining-aegis",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "binding": "SOURCE_MODEL",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "arguments": {
+                  "id": "datasheet-keeper-of-secrets:profile:1"
+                },
+                "contextLevel": "STATIC",
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Shining Aegis: The bearer has a Save characteristic of 3+."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "bearer",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "binding": "SOURCE_MODEL",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "arguments": {
+                  "id": "datasheet-keeper-of-secrets:profile:1"
+                },
+                "contextLevel": "STATIC",
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Shining Aegis: The bearer has a Save characteristic of 3+."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "arguments": {
+                "key": "equipmentRequirementSatisfied",
+                "equals": true
+              },
+              "contextLevel": "ROSTER",
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Shining Aegis: The bearer has a Save characteristic of 3+."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              2,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              2,
+              "text"
+            ],
+            "quote": "Shining Aegis: The bearer has a Save characteristic of 3+."
+          },
+          "sourceText": "Shining Aegis: The bearer has a Save characteristic of 3+.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "datasheet-keeper-of-secrets:section:1::shining-aegis/SV",
+              "operation": "MODIFY_STAT",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_MODEL",
+              "field": "SV",
+              "mode": "SET",
+              "value": 3,
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-keeper-of-secrets:section:1",
+                "sourceFieldPath": [
+                  "blocks",
+                  2,
+                  "text"
+                ]
+              },
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "contextLevel": "ROSTER",
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        2,
+                        "text"
+                      ],
+                      "quote": "Shining Aegis: The bearer has a Save characteristic of 3+."
+                    }
+                  }
+                },
+                {
+                  "binding": "TARGET",
+                  "predicate": {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "arguments": {
+                      "id": "datasheet-keeper-of-secrets:profile:1"
+                    },
+                    "contextLevel": "STATIC",
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        2,
+                        "text"
+                      ],
+                      "quote": "Shining Aegis: The bearer has a Save characteristic of 3+."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  2,
+                  "text"
+                ],
+                "quote": "Shining Aegis: The bearer has a Save characteristic of 3+."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  2,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_EQUIPMENT_SELECTED",
+              "provenance": {
+                "canonicalRuleId": "datasheet-keeper-of-secrets:section:1",
+                "canonicalOwnerId": "unit-keeper-of-secrets",
+                "canonicalClauseId": "shining-aegis",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Keeper-of-Secrets.html",
+                  "sha256": "4B6A037ACF0F5295ED1FCA11FC42D18944A8800B1A2C9F7FCA58467477D733AB",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/3/sections/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Exact selected Shining Aegis occurrence on its singleton MODEL bearer; ordinary Save only."
+          }
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "9e3284e9481d993f05058fb99ee9f37ec39708b0",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Keeper-of-Secrets.html",
+          "sha256": "4B6A037ACF0F5295ED1FCA11FC42D18944A8800B1A2C9F7FCA58467477D733AB",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/datasheets/3/sections/0",
           "authority": "ACCEPTED_SECONDARY"
         },
         "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"

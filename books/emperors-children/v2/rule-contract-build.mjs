@@ -15,6 +15,7 @@ import {declarations} from './rule-contract-declarations.mjs';
 import {permissionDeclarations,permissionStateFields} from './rule-contract-permission-declarations.mjs';
 import {formationBindings,formationStateFields,bindFormationContracts} from './rule-contract-formation-bindings.mjs';
 import {finalBindings,finalStateFields,bindFinalContracts} from './rule-contract-final-bindings.mjs';
+import {aegisBinding,bindShiningAegis} from './rule-contract-aegis-bindings.mjs';
 
 const directory=path.dirname(fileURLToPath(import.meta.url));
 const read=file=>JSON.parse(fs.readFileSync(path.join(directory,file),'utf8'));
@@ -24,7 +25,7 @@ const all=args=>args.length===1?args[0]:{op:'ALL',args};
 const at=(value,field)=>field.reduce((value,key)=>value?.[key],value);
 const subject=binding=>['SOURCE_UNIT','ROSTER_UNITS'].includes(binding)?'UNIT':'MODEL';
 
-export function buildECContracts({facts=read('generated/effective.json'),inputs=declarations,permissionInputs=permissionDeclarations,formationInputs=formationBindings,finalInputs=finalBindings}={}) {
+export function buildECContracts({facts=read('generated/effective.json'),inputs=declarations,permissionInputs=permissionDeclarations,formationInputs=formationBindings,finalInputs=finalBindings,aegisInputs=[aegisBinding]}={}) {
   const before=JSON.stringify(facts),book=clone(facts),index=new Map(book.entities.map(e=>[e.id,e]));
   assert.equal(index.size,book.entities.length,'Duplicate canonical identity');
   assert.equal(inputs.length,10,'Only the reviewed ten-rule scope is implemented');
@@ -175,6 +176,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
   }
   const additions=bindFormationContracts({book,index,mfm,core,inputs:formationInputs});contracts.push(...additions);
   const finals=bindFinalContracts({book,index,mfm,inputs:finalInputs});contracts.push(...finals);
+  const aegis=bindShiningAegis({book,index,inputs:aegisInputs});contracts.push(...aegis);
   const composition=book.entities.filter(e=>e.kind==='DATASHEET').flatMap(unit=>unit.data.profileIds.map(profileId=>({
     unitId:unit.id,profileId,intrinsicKeywords:[...unit.data.keywords,...unit.data.factionKeywords],
     maxModels:unit.data.compositionMemberIds.map(id=>index.get(id)).filter(member=>member.data.modelProfileId===profileId)
@@ -183,9 +185,10 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
   schema.validateContracts(book);
   validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),before,'Factual input mutated');
-  const scope={implementedRules:10+permissionInputs.length+additions.length+finals.length,directReuseRules:10,bindingAdaptationRules:permissionInputs.length,
+  const scope={implementedRules:10+permissionInputs.length+additions.length+finals.length+aegis.length,directReuseRules:10,bindingAdaptationRules:permissionInputs.length,
     formationRuleFamilies:additions.length?5:0,formationSourceOwners:additions.length,
     finalBindingRules:finals.length,
+    shiningAegisRules:aegis.length,
     remainingLegacyContracts:'NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD'};
   return {book,schema,contracts,scope,
     artifact:{schema:'ec-v2-rule-contract-foundation/v1',authority:'BOOK_OWNED_DERIVED_CONTRACT_OVERLAY',
@@ -194,6 +197,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
       permissionDeclarationFingerprint:sha(fs.readFileSync(new URL('./rule-contract-permission-declarations.mjs',import.meta.url))),
       formationBindingFingerprint:sha(fs.readFileSync(new URL('./rule-contract-formation-bindings.mjs',import.meta.url))),
       finalBindingFingerprint:sha(fs.readFileSync(new URL('./rule-contract-final-bindings.mjs',import.meta.url))),
+      aegisBindingFingerprint:sha(fs.readFileSync(new URL('./rule-contract-aegis-bindings.mjs',import.meta.url))),
       selectionOptions:book.rosterSelectionOptions||[],
       contextBindings:book.rosterContextBindings||{},
       contracts,abilityReferences:book.rosterAbilityReferences,attachmentPolicies:book.rosterAttachmentPolicies}};
