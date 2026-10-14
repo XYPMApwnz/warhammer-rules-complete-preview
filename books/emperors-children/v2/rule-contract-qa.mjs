@@ -260,7 +260,7 @@ poison(book,x=>delete x.rosterAttachmentPolicies.find(p=>p.mfmReferenceId==='mfm
 });
 check(()=>{
   assert.equal(book.ruleContractsStarted,true);assert.equal(book.rosterRuntimeStarted,false,'No EC service wiring');
-  assert.deepEqual(book.entities.map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]),
+  assert.deepEqual(book.entities.filter(e=>e.authority!=='SOURCE_BACKED_SELECTION_BINDING').map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]),
     facts.entities.map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]),'Canonical facts or identities changed');
   assert.deepEqual(book.entities.filter(e=>e.ruleContract).map(e=>e.id).sort(),built.contracts.map(c=>c.ruleId).sort());
   const host=book.entities.find(e=>e.id==='datasheet-lord-exultant:section:4').ruleContract;

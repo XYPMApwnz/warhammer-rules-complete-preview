@@ -2,10 +2,12 @@
  * V2. No current attachment is inferred to have occurred at a historical step. */
 import assert from 'node:assert/strict';
 import {validateRoster,withRosterDetachments} from '../../shared/roster-v2/context.mjs';
+import {weaponChoiceContext} from './rule-contract-choice-context.mjs';
 
 export function createFormationContext(book,state,schema) {
   const binding=book.rosterContextBindings?.lordOfHostDeclaredBattleline;
   const kernel=withRosterDetachments(schema),records=new Map(book.entities.map(e=>[e.id,e]));
+  const bindChoice=weaponChoiceContext(book,state,schema);
   let initial;
   if(state.initialAttachmentStep!==undefined) {
     assert.equal(state.initialAttachmentStep,binding?.step,'Unconfirmed initial attachment timing');
@@ -18,6 +20,7 @@ export function createFormationContext(book,state,schema) {
     // An undated snapshot does not establish the named source timing.
   }
   const bind=context=>{
+    context=bindChoice(context);
     if(!binding||context?.subject!=='MODEL'||context.modelId!==binding.profileId)return context;
     const roster={...context.roster};delete roster.lordOfHostDeclaredBattleline;
     if(initial!==undefined) {
