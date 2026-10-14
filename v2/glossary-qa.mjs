@@ -10,11 +10,13 @@ const corpus=JSON.parse(fs.readFileSync(new URL('../glossary/v2/generated/index.
 const immutable=JSON.stringify(corpus),projection=adaptGlobalGlossary(corpus);
 const cards=new Map(projection.cards.map(card=>[card.id,card]));
 const contract=createReferenceContract({cards,index:projection.index});
-assert.equal(projection.cards.length,corpus.entries.length);
-assert.equal(projection.index.entries.length,corpus.entries.length);
+const fieldViews=corpus.entries.flatMap(entry=>(entry.presentation?.referenceFields||[]).map(field=>({entry,field,id:entry.id+'::'+field.path})));
+const projectedTotal=corpus.entries.length+fieldViews.length;
+assert.equal(projection.cards.length,projectedTotal);
+assert.equal(projection.index.entries.length,projectedTotal);
 assert.deepEqual(projection.counts,globalGlossaryCounts(corpus));
-assert.deepEqual(validateGlossary(projection.index,projection.cards),{entries:corpus.entries.length,unresolvedTargets:0,unresolvedAliases:0,factualCopies:0});
-assert.deepEqual([...cards.keys()].sort(),corpus.entries.map(entry=>entry.id).sort());
+assert.deepEqual(validateGlossary(projection.index,projection.cards),{entries:projectedTotal,unresolvedTargets:0,unresolvedAliases:0,factualCopies:0});
+assert.deepEqual([...cards.keys()].sort(),[...corpus.entries.map(entry=>entry.id),...fieldViews.map(field=>field.id)].sort());
 const identities=new Set(),definitions=[];
 for(const original of corpus.entries) {
   const model=contract.resolve(original.id),identity=contract.identityFor(original.id);
@@ -30,8 +32,16 @@ for(const original of corpus.entries) {
   assert.ok(model.sections.flatMap(section=>section.fields).every(field=>! /\b[A-Z]+(?:_[A-Z]+)+\b/.test(String(field.value))),'Internal enums in projected definition '+original.id);
   definitions.push(model.sections.flatMap(section=>section.fields.map(field=>field.value)).join('\n'));
 }
+for(const {entry,field,id}of fieldViews) {
+  const identity=contract.identityFor(id),key=JSON.stringify(identity);
+  assert.ok(!identities.has(key),'Qualified field identity collision '+key);identities.add(key);
+  assert.deepEqual(identity,{registryId:entry.sourceOwner.bookId,canonicalId:entry.sourceOwner.canonicalId,fieldPath:field.path});
+  assert.equal(contract.resolve(identity)?.targetId,id);
+  assert.equal(decodeRoute(encodeRoute('https://example.invalid/v2/app.html',{destination:'GLOSSARY',...identity})).fieldPath,field.path);
+  assert.deepEqual(cards.get(id).fields[0].source,{entityId:entry.sourceOwner.canonicalId,path:field.path});
+}
 assert.equal(JSON.stringify(corpus),immutable,'Display adaptation mutated corpus');
-assert.equal(contract.search('').length,corpus.entries.length);
+assert.equal(contract.search('').length,projectedTotal);
 for(const category of contract.categories()) {
   assert.ok(!category.label.includes('_'));
   const results=contract.search('',{category:category.id});assert.ok(results.length,'Empty category '+category.id);

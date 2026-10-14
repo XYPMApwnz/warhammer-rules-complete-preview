@@ -92,6 +92,39 @@ function addCoreEntries(entries,coreCatalog){
 
 const mfmOwnedKinds=new Set(['POINTS_SCHEDULE_ROW','PAID_WARGEAR_COST','DETACHMENT_ROSTER_METADATA','ENHANCEMENT_COST_QUALIFIERS','ALLIED_POINTS_DEPENDENCY','ATTACHMENT_RELATION']);
 const types={DATASHEET:'UNIT',MODEL_PROFILE:'PROFILE',DATASHEET_ABILITY:'ABILITY',EQUIPMENT_ABILITY:'WARGEAR_ABILITY',ERRATA:'ERRATA',FAQ:'FAQ_CLARIFICATION',OFFICIAL_UPDATE:'UPDATE',BOOK_USAGE:'BOOK_USAGE_RULES'};
+// These source-owned groups contain named ability fields outside the ordinary
+// ABILITIES section. Their container and canonical field identities stay intact.
+const namedAbilityGroups=new Map([
+  ['datasheet-mortarion:section:1','datasheet-mortarion:section:3'],
+  ['datasheet-belisarius-cawl:section:4','datasheet-belisarius-cawl:section:1'],
+  ['datasheet-thulia-ghuld:section:4','datasheet-thulia-ghuld:section:1']
+]);
+function abilityPresentation(entity,model) {
+  if(entity.kind==='NAMED_RULE_COMPONENT') {
+    assert.equal(entity.ownerId,'datasheet-abaddon-the-despoiler:section:5','Unreviewed named ability group');
+    return {referenceCategory:'ABILITY',referenceContext:{canonicalId:'datasheet-abaddon-the-despoiler:section:1:block:0:text'}};
+  }
+  if(entity.kind==='SUPPLEMENTAL_DATASHEET_RULE'&&entity.id==='datasheet-great-unclean-one:raw-dsAbility:1') {
+    const weapon=model.entities.find(record=>record.id==='datasheet-great-unclean-one:weapon:6');
+    assert.ok(weapon?.parentId===entity.parentId&&weapon.data.abilities.includes('Reverberating summons'),'Supplemental weapon ability lost its source weapon binding');
+    assert.ok(entity.data.text.startsWith('Reverberating Summons: '));
+    return {referenceCategory:'WARGEAR_ABILITY',referenceLabel:entity.data.text.split(': ')[0]};
+  }
+  if(entity.kind!=='DATASHEET_SECTION')return {};
+  const result={referenceCategory:'REFERENCE'};
+  if(model.appPayload.datasheetPresentation?.sectionRoles?.[entity.id]!=='abilities'&&!namedAbilityGroups.has(entity.id))return result;
+  result.referenceFields=entity.data.blocks.map((block,index)=>{
+    const path=`/blocks/${index}/text`,factId=entity.id+'::'+path;
+    const fact=model.appPayload.factManifest.find(field=>field.id===factId);
+    assert.ok(fact?.ownerType==='CANONICAL_V2'&&fact.entityId===entity.id&&fact.contextId===(entity.parentId||entity.ownerId),'Ability field has no Army Book canonical owner '+factId);
+    assert.deepEqual(fact.path,['blocks',index,'text']);assert.equal(fact.value,block.text);
+    const separator=block.text.indexOf(': ');
+    assert.ok(separator>0&&typeof block.wargearAbility==='boolean','Unnamed/unclassified canonical ability field '+factId);
+    return {path,factId,label:block.text.slice(0,separator),category:block.wargearAbility?'WARGEAR_ABILITY':'ABILITY',provenance:clone(entity.fieldProvenance?.[path.slice(1)]||entity.provenance),
+      ...(namedAbilityGroups.has(entity.id)?{referenceContext:{canonicalId:namedAbilityGroups.get(entity.id),path:'/blocks/0/text'}}:{})};
+  });
+  return result;
+}
 function addArmyEntries(entries,models){
   const lookups={unit:new Map(),detachment:new Map(),enhancement:new Map(),armyRule:new Map(),mfm:new Map()};
   for(const model of models){
@@ -137,6 +170,7 @@ function addArmyEntries(entries,models){
       if(type==='DETACHMENT')facts.detachmentRules=children(entity).filter(e=>e.kind==='DETACHMENT_RULE').map(e=>({id:e.id,title:label(e),...clone(e.data)}));
       const id=entryId('army',book,type.toLowerCase(),...(parentId?[parentId]:[]),entity.id);
       const entry=createEntry({id,domain:'ARMY',recordType:type,label:label(entity),canonicalId:entity.id,parent:parentId?{domain:'ARMY',canonicalId:parentId}:null,provenance:clone(entity.provenance),currentness:{publicationState:'CURRENT'},sourceOwner:{domain:'ARMY',bookId:book,canonicalId:entity.id,interface:model.factualInterface},facts});
+      Object.assign(entry.presentation,abilityPresentation(entity,model));
       entry.contexts=[{effectiveBookId:book,sourceBookId:book,...(parentId?{parentUnitId:parentId}:{})}];
       upsertEntry(entries,entry);entryByCanonical.set(entity.id,entry);
       if(type==='UNIT')lookups.unit.set(book+'::'+entity.id,entry);
@@ -162,6 +196,10 @@ function addArmyEntries(entries,models){
         }
       }
       entry.canonicalReferences=refs;
+      if(entity.id==='datasheet-great-unclean-one:raw-dsAbility:1') {
+        const weapon=entryByCanonical.get('datasheet-great-unclean-one:weapon:6');
+        entry.canonicalReferences.push({domain:'ARMY',id:weapon.id,canonicalId:weapon.sourceOwner.canonicalId,relationType:'WEAPON'});
+      }
     }
     for(const [recordId,entityId]of Object.entries(model.mfmIdentityBindings||{})){const entry=entryByCanonical.get(entityId);if(!entry)throw new Error('MFM identity without V2 owner '+entityId);lookups.mfm.set(recordId,entry);}
   }

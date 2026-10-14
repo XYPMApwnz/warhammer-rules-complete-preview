@@ -2134,7 +2134,44 @@
           "parentUnitId": "unit-archaeopter-fusilave"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-archaeopter-fusilave:section:1::/blocks/0/text",
+            "label": "Bomb Rack",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/0/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-archaeopter-fusilave:section:1::/blocks/1/text",
+            "label": "Chaff Launcher",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/0/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-archaeopter-fusilave:section:1::/blocks/2/text",
+            "label": "Command Uplink",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/0/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-archaeopter-fusilave::datasheet-archaeopter-fusilave:section:2",
@@ -2197,7 +2234,9 @@
           "parentUnitId": "unit-archaeopter-fusilave"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-archaeopter-stratoraptor::datasheet-archaeopter-stratoraptor:section:1",
@@ -2276,7 +2315,44 @@
           "parentUnitId": "unit-archaeopter-stratoraptor"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-archaeopter-stratoraptor:section:1::/blocks/0/text",
+            "label": "Strafing Run",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/1/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-archaeopter-stratoraptor:section:1::/blocks/1/text",
+            "label": "Chaff Launcher",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/1/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-archaeopter-stratoraptor:section:1::/blocks/2/text",
+            "label": "Command Uplink",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/1/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-archaeopter-stratoraptor::datasheet-archaeopter-stratoraptor:section:2",
@@ -2339,7 +2415,9 @@
           "parentUnitId": "unit-archaeopter-stratoraptor"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-archaeopter-transvector::datasheet-archaeopter-transvector:section:1",
@@ -2418,7 +2496,44 @@
           "parentUnitId": "unit-archaeopter-transvector"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-archaeopter-transvector:section:1::/blocks/0/text",
+            "label": "Aerial Deployment",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/2/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-archaeopter-transvector:section:1::/blocks/1/text",
+            "label": "Chaff Launcher",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/2/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-archaeopter-transvector:section:1::/blocks/2/text",
+            "label": "Command Uplink",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/2/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-archaeopter-transvector::datasheet-archaeopter-transvector:section:2",
@@ -2481,7 +2596,9 @@
           "parentUnitId": "unit-archaeopter-transvector"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-archaeopter-transvector::datasheet-archaeopter-transvector:section:3",
@@ -2544,7 +2661,9 @@
           "parentUnitId": "unit-archaeopter-transvector"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-belisarius-cawl::datasheet-belisarius-cawl:section:1",
@@ -2623,7 +2742,44 @@
           "parentUnitId": "unit-belisarius-cawl"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-belisarius-cawl:section:1::/blocks/0/text",
+            "label": "Canticles of the Omnissiah",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/3/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-belisarius-cawl:section:1::/blocks/1/text",
+            "label": "Mechanicus Bodyguard",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/3/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-belisarius-cawl:section:1::/blocks/2/text",
+            "label": "Self-repair Mechanisms",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/3/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-belisarius-cawl::datasheet-belisarius-cawl:section:2",
@@ -2686,7 +2842,9 @@
           "parentUnitId": "unit-belisarius-cawl"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-belisarius-cawl::datasheet-belisarius-cawl:section:3",
@@ -2749,7 +2907,9 @@
           "parentUnitId": "unit-belisarius-cawl"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-belisarius-cawl::datasheet-belisarius-cawl:section:4",
@@ -2828,7 +2988,56 @@
           "parentUnitId": "unit-belisarius-cawl"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-belisarius-cawl:section:4::/blocks/0/text",
+            "label": "Invocation of Machine Vengeance",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/3/sections/3"
+            },
+            "referenceContext": {
+              "canonicalId": "datasheet-belisarius-cawl:section:1",
+              "path": "/blocks/0/text"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-belisarius-cawl:section:4::/blocks/1/text",
+            "label": "Mantra of Discipline",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/3/sections/3"
+            },
+            "referenceContext": {
+              "canonicalId": "datasheet-belisarius-cawl:section:1",
+              "path": "/blocks/0/text"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-belisarius-cawl:section:4::/blocks/2/text",
+            "label": "Shroudpsalm (Aura)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/3/sections/3"
+            },
+            "referenceContext": {
+              "canonicalId": "datasheet-belisarius-cawl:section:1",
+              "path": "/blocks/0/text"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-corpuscarii-electro-priests::datasheet-corpuscarii-electro-priests:section:1",
@@ -2891,7 +3100,22 @@
           "parentUnitId": "unit-corpuscarii-electro-priests"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-corpuscarii-electro-priests:section:1::/blocks/0/text",
+            "label": "Electro-shock",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/4/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-corpuscarii-electro-priests::datasheet-corpuscarii-electro-priests:section:2",
@@ -2954,7 +3178,9 @@
           "parentUnitId": "unit-corpuscarii-electro-priests"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-cybernetica-datasmith::datasheet-cybernetica-datasmith:section:1",
@@ -3025,7 +3251,33 @@
           "parentUnitId": "unit-cybernetica-datasmith"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-cybernetica-datasmith:section:1::/blocks/0/text",
+            "label": "Battle Protocols",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/5/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-cybernetica-datasmith:section:1::/blocks/1/text",
+            "label": "Data-severed",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/5/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-cybernetica-datasmith::datasheet-cybernetica-datasmith:section:2",
@@ -3088,7 +3340,9 @@
           "parentUnitId": "unit-cybernetica-datasmith"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-cybernetica-datasmith::datasheet-cybernetica-datasmith:section:3",
@@ -3151,7 +3405,9 @@
           "parentUnitId": "unit-cybernetica-datasmith"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-fulgurite-electro-priests::datasheet-fulgurite-electro-priests:section:1",
@@ -3214,7 +3470,22 @@
           "parentUnitId": "unit-fulgurite-electro-priests"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-fulgurite-electro-priests:section:1::/blocks/0/text",
+            "label": "Electro-infusion",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/6/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-fulgurite-electro-priests::datasheet-fulgurite-electro-priests:section:2",
@@ -3277,7 +3548,9 @@
           "parentUnitId": "unit-fulgurite-electro-priests"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-hastarii-exterminators::datasheet-hastarii-exterminators:section:1",
@@ -3340,7 +3613,22 @@
           "parentUnitId": "unit-hastarii-exterminators"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-hastarii-exterminators:section:1::/blocks/0/text",
+            "label": "Broad-spectrum Targeting Augurs",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/7/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-hastarii-exterminators::datasheet-hastarii-exterminators:section:2",
@@ -3403,7 +3691,9 @@
           "parentUnitId": "unit-hastarii-exterminators"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-hastarii-exterminators::datasheet-hastarii-exterminators:section:3",
@@ -3466,7 +3756,9 @@
           "parentUnitId": "unit-hastarii-exterminators"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-hastarii-fusiliers::datasheet-hastarii-fusiliers:section:1",
@@ -3529,7 +3821,22 @@
           "parentUnitId": "unit-hastarii-fusiliers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-hastarii-fusiliers:section:1::/blocks/0/text",
+            "label": "Monocular Targeting Helms",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/8/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-hastarii-fusiliers::datasheet-hastarii-fusiliers:section:2",
@@ -3592,7 +3899,9 @@
           "parentUnitId": "unit-hastarii-fusiliers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-hastarii-fusiliers::datasheet-hastarii-fusiliers:section:3",
@@ -3655,7 +3964,9 @@
           "parentUnitId": "unit-hastarii-fusiliers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-ironstrider-ballistarii::datasheet-ironstrider-ballistarii:section:1",
@@ -3726,7 +4037,33 @@
           "parentUnitId": "unit-ironstrider-ballistarii"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-ironstrider-ballistarii:section:1::/blocks/0/text",
+            "label": "Elevated Strider",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/9/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-ironstrider-ballistarii:section:1::/blocks/1/text",
+            "label": "Broad Spectrum Data-tether",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/9/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-ironstrider-ballistarii::datasheet-ironstrider-ballistarii:section:2",
@@ -3789,7 +4126,9 @@
           "parentUnitId": "unit-ironstrider-ballistarii"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-kastelan-robots::datasheet-kastelan-robots:section:1",
@@ -3860,7 +4199,33 @@
           "parentUnitId": "unit-kastelan-robots"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-kastelan-robots:section:1::/blocks/0/text",
+            "label": "Robotic Bodyguard",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/10/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-kastelan-robots:section:1::/blocks/1/text",
+            "label": "Repulsor Grid",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/10/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-kastelan-robots::datasheet-kastelan-robots:section:2",
@@ -3923,7 +4288,9 @@
           "parentUnitId": "unit-kastelan-robots"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-kataphron-breachers::datasheet-kataphron-breachers:section:1",
@@ -3986,7 +4353,22 @@
           "parentUnitId": "unit-kataphron-breachers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-kataphron-breachers:section:1::/blocks/0/text",
+            "label": "Breaching Command",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/11/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-kataphron-breachers::datasheet-kataphron-breachers:section:2",
@@ -4049,7 +4431,9 @@
           "parentUnitId": "unit-kataphron-breachers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-kataphron-destroyers::datasheet-kataphron-destroyers:section:1",
@@ -4112,7 +4496,22 @@
           "parentUnitId": "unit-kataphron-destroyers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-kataphron-destroyers:section:1::/blocks/0/text",
+            "label": "Sentinel Directives",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/12/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-kataphron-destroyers::datasheet-kataphron-destroyers:section:2",
@@ -4175,7 +4574,9 @@
           "parentUnitId": "unit-kataphron-destroyers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-onager-dunecrawler::datasheet-onager-dunecrawler:section:1",
@@ -4254,7 +4655,44 @@
           "parentUnitId": "unit-onager-dunecrawler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-onager-dunecrawler:section:1::/blocks/0/text",
+            "label": "Emanatus Force Field (Aura)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/13/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-onager-dunecrawler:section:1::/blocks/1/text",
+            "label": "Scuttling Walker",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/13/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-onager-dunecrawler:section:1::/blocks/2/text",
+            "label": "Broad spectrum data-tether",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/13/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-onager-dunecrawler::datasheet-onager-dunecrawler:section:2",
@@ -4317,7 +4755,9 @@
           "parentUnitId": "unit-onager-dunecrawler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-onager-dunecrawler::datasheet-onager-dunecrawler:section:3",
@@ -4380,7 +4820,9 @@
           "parentUnitId": "unit-onager-dunecrawler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-pteraxii-skystalkers::datasheet-pteraxii-skystalkers:section:1",
@@ -4443,7 +4885,22 @@
           "parentUnitId": "unit-pteraxii-skystalkers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-pteraxii-skystalkers:section:1::/blocks/0/text",
+            "label": "Ride the Thermals",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/14/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-pteraxii-skystalkers::datasheet-pteraxii-skystalkers:section:2",
@@ -4506,7 +4963,9 @@
           "parentUnitId": "unit-pteraxii-skystalkers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-pteraxii-sterylizors::datasheet-pteraxii-sterylizors:section:1",
@@ -4569,7 +5028,22 @@
           "parentUnitId": "unit-pteraxii-sterylizors"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-pteraxii-sterylizors:section:1::/blocks/0/text",
+            "label": "Searing Conflagration",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/15/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-pteraxii-sterylizors::datasheet-pteraxii-sterylizors:section:2",
@@ -4632,7 +5106,9 @@
           "parentUnitId": "unit-pteraxii-sterylizors"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-serberys-raiders::datasheet-serberys-raiders:section:1",
@@ -4703,7 +5179,33 @@
           "parentUnitId": "unit-serberys-raiders"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-serberys-raiders:section:1::/blocks/0/text",
+            "label": "Tactica Obliqua",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/16/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-serberys-raiders:section:1::/blocks/1/text",
+            "label": "Enhanced data-tether",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/16/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-serberys-raiders::datasheet-serberys-raiders:section:2",
@@ -4766,7 +5268,9 @@
           "parentUnitId": "unit-serberys-raiders"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-serberys-sulphurhounds::datasheet-serberys-sulphurhounds:section:1",
@@ -4829,7 +5333,22 @@
           "parentUnitId": "unit-serberys-sulphurhounds"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-serberys-sulphurhounds:section:1::/blocks/0/text",
+            "label": "Line-breakers",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/17/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-serberys-sulphurhounds::datasheet-serberys-sulphurhounds:section:2",
@@ -4892,7 +5411,9 @@
           "parentUnitId": "unit-serberys-sulphurhounds"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-servitor-battleclade::datasheet-servitor-battleclade:section:1",
@@ -4955,7 +5476,22 @@
           "parentUnitId": "unit-servitor-battleclade"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-servitor-battleclade:section:1::/blocks/0/text",
+            "label": "Network Override",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/18/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-servitor-battleclade::datasheet-servitor-battleclade:section:2",
@@ -5018,7 +5554,9 @@
           "parentUnitId": "unit-servitor-battleclade"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-servitor-battleclade::datasheet-servitor-battleclade:section:3",
@@ -5081,7 +5619,9 @@
           "parentUnitId": "unit-servitor-battleclade"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sicarian-infiltrators::datasheet-sicarian-infiltrators:section:1",
@@ -5152,7 +5692,33 @@
           "parentUnitId": "unit-sicarian-infiltrators"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-sicarian-infiltrators:section:1::/blocks/0/text",
+            "label": "Voices in the Code",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/19/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-sicarian-infiltrators:section:1::/blocks/1/text",
+            "label": "Neurostatic Interference (Aura)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/19/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sicarian-infiltrators::datasheet-sicarian-infiltrators:section:2",
@@ -5215,7 +5781,9 @@
           "parentUnitId": "unit-sicarian-infiltrators"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sicarian-ruststalkers::datasheet-sicarian-ruststalkers:section:1",
@@ -5278,7 +5846,22 @@
           "parentUnitId": "unit-sicarian-ruststalkers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-sicarian-ruststalkers:section:1::/blocks/0/text",
+            "label": "Optimised Gait",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/20/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sicarian-ruststalkers::datasheet-sicarian-ruststalkers:section:2",
@@ -5341,7 +5924,9 @@
           "parentUnitId": "unit-sicarian-ruststalkers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skitarii-marshal::datasheet-skitarii-marshal:section:1",
@@ -5412,7 +5997,33 @@
           "parentUnitId": "unit-skitarii-marshal"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-skitarii-marshal:section:1::/blocks/0/text",
+            "label": "Control Edict",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/21/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-skitarii-marshal:section:1::/blocks/1/text",
+            "label": "Servo-skull Uplink",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/21/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skitarii-marshal::datasheet-skitarii-marshal:section:2",
@@ -5475,7 +6086,9 @@
           "parentUnitId": "unit-skitarii-marshal"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skitarii-marshal::datasheet-skitarii-marshal:section:3",
@@ -5538,7 +6151,9 @@
           "parentUnitId": "unit-skitarii-marshal"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skitarii-rangers::datasheet-skitarii-rangers:section:1",
@@ -5617,7 +6232,44 @@
           "parentUnitId": "unit-skitarii-rangers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-skitarii-rangers:section:1::/blocks/0/text",
+            "label": "Objective Scouted",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/22/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-skitarii-rangers:section:1::/blocks/1/text",
+            "label": "Enhanced data-tether",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/22/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-skitarii-rangers:section:1::/blocks/2/text",
+            "label": "Omnispex",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/22/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skitarii-rangers::datasheet-skitarii-rangers:section:2",
@@ -5680,7 +6332,9 @@
           "parentUnitId": "unit-skitarii-rangers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skitarii-vanguard::datasheet-skitarii-vanguard:section:1",
@@ -5759,7 +6413,44 @@
           "parentUnitId": "unit-skitarii-vanguard"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-skitarii-vanguard:section:1::/blocks/0/text",
+            "label": "Rad-saturation (Aura)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/23/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-skitarii-vanguard:section:1::/blocks/1/text",
+            "label": "Enhanced data-tether",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/23/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-skitarii-vanguard:section:1::/blocks/2/text",
+            "label": "Omnispex",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/23/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skitarii-vanguard::datasheet-skitarii-vanguard:section:2",
@@ -5822,7 +6513,9 @@
           "parentUnitId": "unit-skitarii-vanguard"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skorpius-disintegrator::datasheet-skorpius-disintegrator:section:1",
@@ -5893,7 +6586,33 @@
           "parentUnitId": "unit-skorpius-disintegrator"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-skorpius-disintegrator:section:1::/blocks/0/text",
+            "label": "Broad Spectrum Data-tether",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/24/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-skorpius-disintegrator:section:1::/blocks/1/text",
+            "label": "Blistering Salvoes",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/24/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skorpius-disintegrator::datasheet-skorpius-disintegrator:section:2",
@@ -5956,7 +6675,9 @@
           "parentUnitId": "unit-skorpius-disintegrator"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skorpius-disintegrator::datasheet-skorpius-disintegrator:section:3",
@@ -6019,7 +6740,9 @@
           "parentUnitId": "unit-skorpius-disintegrator"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skorpius-dunerider::datasheet-skorpius-dunerider:section:1",
@@ -6090,7 +6813,33 @@
           "parentUnitId": "unit-skorpius-dunerider"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-skorpius-dunerider:section:1::/blocks/0/text",
+            "label": "Broad Spectrum Data-tether",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/25/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-skorpius-dunerider:section:1::/blocks/1/text",
+            "label": "Fire Support",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/25/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skorpius-dunerider::datasheet-skorpius-dunerider:section:2",
@@ -6153,7 +6902,9 @@
           "parentUnitId": "unit-skorpius-dunerider"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-skorpius-dunerider::datasheet-skorpius-dunerider:section:3",
@@ -6216,7 +6967,9 @@
           "parentUnitId": "unit-skorpius-dunerider"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sydonian-dragoons-with-radium-jezzails::datasheet-sydonian-dragoons-with-radium-jezzails:section:1",
@@ -6287,7 +7040,33 @@
           "parentUnitId": "unit-sydonian-dragoons-with-radium-jezzails"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-sydonian-dragoons-with-radium-jezzails:section:1::/blocks/0/text",
+            "label": "Focused Hunters",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/26/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-sydonian-dragoons-with-radium-jezzails:section:1::/blocks/1/text",
+            "label": "Broad Spectrum Data-tether",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/26/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sydonian-dragoons-with-radium-jezzails::datasheet-sydonian-dragoons-with-radium-jezzails:section:2",
@@ -6350,7 +7129,9 @@
           "parentUnitId": "unit-sydonian-dragoons-with-radium-jezzails"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sydonian-dragoons-with-taser-lances::datasheet-sydonian-dragoons-with-taser-lances:section:1",
@@ -6421,7 +7202,33 @@
           "parentUnitId": "unit-sydonian-dragoons-with-taser-lances"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-sydonian-dragoons-with-taser-lances:section:1::/blocks/0/text",
+            "label": "Dynamic Efficiency",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/27/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-sydonian-dragoons-with-taser-lances:section:1::/blocks/1/text",
+            "label": "Broad Spectrum Data-tether",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/27/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sydonian-dragoons-with-taser-lances::datasheet-sydonian-dragoons-with-taser-lances:section:2",
@@ -6484,7 +7291,9 @@
           "parentUnitId": "unit-sydonian-dragoons-with-taser-lances"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sydonian-skatros::datasheet-sydonian-skatros:section:1",
@@ -6555,7 +7364,33 @@
           "parentUnitId": "unit-sydonian-skatros"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-sydonian-skatros:section:1::/blocks/0/text",
+            "label": "Dread Snipers",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/28/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-sydonian-skatros:section:1::/blocks/1/text",
+            "label": "Achillan Eye",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/28/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sydonian-skatros::datasheet-sydonian-skatros:section:2",
@@ -6618,7 +7453,9 @@
           "parentUnitId": "unit-sydonian-skatros"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-sydonian-skatros::datasheet-sydonian-skatros:section:3",
@@ -6681,7 +7518,9 @@
           "parentUnitId": "unit-sydonian-skatros"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-tech-priest-dominus::datasheet-tech-priest-dominus:section:1",
@@ -6752,7 +7591,33 @@
           "parentUnitId": "unit-tech-priest-dominus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-tech-priest-dominus:section:1::/blocks/0/text",
+            "label": "Lord of the Machine Cult",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/29/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-tech-priest-dominus:section:1::/blocks/1/text",
+            "label": "Data-spike",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/29/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-tech-priest-dominus::datasheet-tech-priest-dominus:section:2",
@@ -6815,7 +7680,9 @@
           "parentUnitId": "unit-tech-priest-dominus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-tech-priest-dominus::datasheet-tech-priest-dominus:section:3",
@@ -6878,7 +7745,9 @@
           "parentUnitId": "unit-tech-priest-dominus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-tech-priest-enginseer::datasheet-tech-priest-enginseer:section:1",
@@ -6957,7 +7826,44 @@
           "parentUnitId": "unit-tech-priest-enginseer"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-tech-priest-enginseer:section:1::/blocks/0/text",
+            "label": "Enginseer",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/30/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-tech-priest-enginseer:section:1::/blocks/1/text",
+            "label": "Omnissiah’s Blessing",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/30/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-tech-priest-enginseer:section:1::/blocks/2/text",
+            "label": "Vengeance for the Omnissiah",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/30/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-tech-priest-enginseer::datasheet-tech-priest-enginseer:section:2",
@@ -7020,7 +7926,9 @@
           "parentUnitId": "unit-tech-priest-enginseer"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-tech-priest-enginseer::datasheet-tech-priest-enginseer:section:3",
@@ -7083,7 +7991,9 @@
           "parentUnitId": "unit-tech-priest-enginseer"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-tech-priest-manipulus::datasheet-tech-priest-manipulus:section:1",
@@ -7154,7 +8064,33 @@
           "parentUnitId": "unit-tech-priest-manipulus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-tech-priest-manipulus:section:1::/blocks/0/text",
+            "label": "Galvanic Field",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/31/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-tech-priest-manipulus:section:1::/blocks/1/text",
+            "label": "Defend the Divine Work",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/31/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-tech-priest-manipulus::datasheet-tech-priest-manipulus:section:2",
@@ -7217,7 +8153,9 @@
           "parentUnitId": "unit-tech-priest-manipulus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-tech-priest-manipulus::datasheet-tech-priest-manipulus:section:3",
@@ -7280,7 +8218,9 @@
           "parentUnitId": "unit-tech-priest-manipulus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-technoarcheologist::datasheet-technoarcheologist:section:1",
@@ -7351,7 +8291,33 @@
           "parentUnitId": "unit-technoarcheologist"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-technoarcheologist:section:1::/blocks/0/text",
+            "label": "Seekers of Divine Arcana",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/32/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-technoarcheologist:section:1::/blocks/1/text",
+            "label": "Cogitative Instincts",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/32/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-technoarcheologist::datasheet-technoarcheologist:section:2",
@@ -7414,7 +8380,9 @@
           "parentUnitId": "unit-technoarcheologist"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-technoarcheologist::datasheet-technoarcheologist:section:3",
@@ -7477,7 +8445,9 @@
           "parentUnitId": "unit-technoarcheologist"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-thulia-ghuld::datasheet-thulia-ghuld:section:1",
@@ -7556,7 +8526,44 @@
           "parentUnitId": "unit-thulia-ghuld"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-thulia-ghuld:section:1::/blocks/0/text",
+            "label": "Rod of the War Forge",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/33/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-thulia-ghuld:section:1::/blocks/1/text",
+            "label": "Mechanicus Bodyguard",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/33/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-thulia-ghuld:section:1::/blocks/2/text",
+            "label": "Secutor of Olympus",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/33/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-thulia-ghuld::datasheet-thulia-ghuld:section:2",
@@ -7619,7 +8626,9 @@
           "parentUnitId": "unit-thulia-ghuld"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-thulia-ghuld::datasheet-thulia-ghuld:section:3",
@@ -7682,7 +8691,9 @@
           "parentUnitId": "unit-thulia-ghuld"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::adeptus-mechanicus::datasheet_section::unit-thulia-ghuld::datasheet-thulia-ghuld:section:4",
@@ -7761,7 +8772,56 @@
           "parentUnitId": "unit-thulia-ghuld"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-thulia-ghuld:section:4::/blocks/0/text",
+            "label": "Fanatical Devotion",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/33/sections/3"
+            },
+            "referenceContext": {
+              "canonicalId": "datasheet-thulia-ghuld:section:1",
+              "path": "/blocks/0/text"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-thulia-ghuld:section:4::/blocks/1/text",
+            "label": "Adaptive Tactics",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/33/sections/3"
+            },
+            "referenceContext": {
+              "canonicalId": "datasheet-thulia-ghuld:section:1",
+              "path": "/blocks/0/text"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-thulia-ghuld:section:4::/blocks/2/text",
+            "label": "The Fires of Mars",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "am-waha-11e-2026-09-25",
+              "sourcePath": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/33/sections/3"
+            },
+            "referenceContext": {
+              "canonicalId": "datasheet-thulia-ghuld:section:1",
+              "path": "/blocks/0/text"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::adeptus-mechanicus::detachment_rule::detachment-cohort-acquisitus::detachment-cohort-acquisitus:rule",
@@ -135558,7 +136618,12 @@
           "parentUnitId": "datasheet-abaddon-the-despoiler:section:5"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "ABILITY",
+        "referenceContext": {
+          "canonicalId": "datasheet-abaddon-the-despoiler:section:1:block:0:text"
+        }
+      }
     },
     {
       "id": "army::chaos-space-marines::named_rule_component::datasheet-abaddon-the-despoiler:section:5::datasheet-abaddon-the-despoiler:section:5:block:1:text",
@@ -135614,7 +136679,12 @@
           "parentUnitId": "datasheet-abaddon-the-despoiler:section:5"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "ABILITY",
+        "referenceContext": {
+          "canonicalId": "datasheet-abaddon-the-despoiler:section:1:block:0:text"
+        }
+      }
     },
     {
       "id": "army::chaos-space-marines::named_rule_component::datasheet-abaddon-the-despoiler:section:5::datasheet-abaddon-the-despoiler:section:5:block:2:text",
@@ -135670,7 +136740,12 @@
           "parentUnitId": "datasheet-abaddon-the-despoiler:section:5"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "ABILITY",
+        "referenceContext": {
+          "canonicalId": "datasheet-abaddon-the-despoiler:section:1:block:0:text"
+        }
+      }
     },
     {
       "id": "army::chaos-space-marines::no_wargear_options::unit-chaos-spawn::datasheet-chaos-spawn:wargear:1",
@@ -219476,7 +220551,23 @@
           "parentUnitId": "unit-beasts-of-nurgle"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-beasts-of-nurgle:section:1::/blocks/0/text",
+            "label": "Grotesque Regeneration",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-beasts-of-nurgle:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/0/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-beasts-of-nurgle::datasheet-beasts-of-nurgle:section:2",
@@ -219540,7 +220631,9 @@
           "parentUnitId": "unit-beasts-of-nurgle"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-biologus-putrifier::datasheet-biologus-putrifier:section:1",
@@ -219612,7 +220705,35 @@
           "parentUnitId": "unit-biologus-putrifier"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-biologus-putrifier:section:1::/blocks/0/text",
+            "label": "Foul Infusion",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-biologus-putrifier:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/1/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-biologus-putrifier:section:1::/blocks/1/text",
+            "label": "Extraction of Fresh Disease",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-biologus-putrifier:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/1/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-biologus-putrifier::datasheet-biologus-putrifier:section:2",
@@ -219676,7 +220797,9 @@
           "parentUnitId": "unit-biologus-putrifier"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-biologus-putrifier::datasheet-biologus-putrifier:section:3",
@@ -219740,7 +220863,9 @@
           "parentUnitId": "unit-biologus-putrifier"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-blightlord-terminators::datasheet-blightlord-terminators:section:1",
@@ -219804,7 +220929,23 @@
           "parentUnitId": "unit-blightlord-terminators"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-blightlord-terminators:section:1::/blocks/0/text",
+            "label": "Blistering Fusillade",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-blightlord-terminators:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/2/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-blightlord-terminators::datasheet-blightlord-terminators:section:2",
@@ -219868,7 +221009,9 @@
           "parentUnitId": "unit-blightlord-terminators"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-land-raider::datasheet-chaos-land-raider:section:1",
@@ -219932,7 +221075,25 @@
           "parentUnitId": "unit-chaos-land-raider"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-chaos-land-raider:section:1::/blocks/0/text",
+            "label": "Assault Ramp",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "gw-universal-rules-updates-v1.1-2026-08-26",
+              "effectiveFrom": "2026-08-26",
+              "operationId": "gw-universal-rules-updates-v1.1-2026-08-26:operation:060",
+              "page": 1,
+              "documentPath": "books/death-guard/v2/sources/gw-universal-rules-updates-2026-08-26.pdf",
+              "sourceLocator": "MOVE TYPES FOR DISEMBARKING UNITS"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-land-raider::datasheet-chaos-land-raider:section:2",
@@ -219996,7 +221157,9 @@
           "parentUnitId": "unit-chaos-land-raider"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-land-raider::datasheet-chaos-land-raider:section:3",
@@ -220060,7 +221223,9 @@
           "parentUnitId": "unit-chaos-land-raider"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-land-raider::datasheet-chaos-land-raider:section:4",
@@ -220124,7 +221289,9 @@
           "parentUnitId": "unit-chaos-land-raider"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-predator-annihilator::datasheet-chaos-predator-annihilator:section:1",
@@ -220188,7 +221355,23 @@
           "parentUnitId": "unit-chaos-predator-annihilator"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-chaos-predator-annihilator:section:1::/blocks/0/text",
+            "label": "Metalophagic Infection",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-chaos-predator-annihilator:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/4/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-predator-annihilator::datasheet-chaos-predator-annihilator:section:2",
@@ -220252,7 +221435,9 @@
           "parentUnitId": "unit-chaos-predator-annihilator"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-predator-annihilator::datasheet-chaos-predator-annihilator:section:3",
@@ -220316,7 +221501,9 @@
           "parentUnitId": "unit-chaos-predator-annihilator"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-predator-destructor::datasheet-chaos-predator-destructor:section:1",
@@ -220380,7 +221567,23 @@
           "parentUnitId": "unit-chaos-predator-destructor"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-chaos-predator-destructor:section:1::/blocks/0/text",
+            "label": "Hail of Corrosive Disease",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-chaos-predator-destructor:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/5/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-predator-destructor::datasheet-chaos-predator-destructor:section:2",
@@ -220444,7 +221647,9 @@
           "parentUnitId": "unit-chaos-predator-destructor"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-predator-destructor::datasheet-chaos-predator-destructor:section:3",
@@ -220508,7 +221713,9 @@
           "parentUnitId": "unit-chaos-predator-destructor"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-rhino::datasheet-chaos-rhino:section:1",
@@ -220572,7 +221779,23 @@
           "parentUnitId": "unit-chaos-rhino"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-chaos-rhino:section:1::/blocks/0/text",
+            "label": "Fire Support",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-chaos-rhino:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/6/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-rhino::datasheet-chaos-rhino:section:2",
@@ -220636,7 +221859,9 @@
           "parentUnitId": "unit-chaos-rhino"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-rhino::datasheet-chaos-rhino:section:3",
@@ -220700,7 +221925,9 @@
           "parentUnitId": "unit-chaos-rhino"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-spawn::datasheet-chaos-spawn:section:1",
@@ -220764,7 +221991,23 @@
           "parentUnitId": "unit-chaos-spawn"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-chaos-spawn:section:1::/blocks/0/text",
+            "label": "Lethal Ichor",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-chaos-spawn:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/7/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-chaos-spawn::datasheet-chaos-spawn:section:2",
@@ -220828,7 +222071,9 @@
           "parentUnitId": "unit-chaos-spawn"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-daemon-prince-of-nurgle-with-wings::datasheet-daemon-prince-of-nurgle-with-wings:section:1",
@@ -220900,7 +222145,35 @@
           "parentUnitId": "unit-daemon-prince-of-nurgle-with-wings"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-daemon-prince-of-nurgle-with-wings:section:1::/blocks/0/text",
+            "label": "Horrifying Visage",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-daemon-prince-of-nurgle-with-wings:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/9/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-daemon-prince-of-nurgle-with-wings:section:1::/blocks/1/text",
+            "label": "Enfeebling Miasma (Aura)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-daemon-prince-of-nurgle-with-wings:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/9/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-daemon-prince-of-nurgle-with-wings::datasheet-daemon-prince-of-nurgle-with-wings:section:2",
@@ -220964,7 +222237,9 @@
           "parentUnitId": "unit-daemon-prince-of-nurgle-with-wings"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-daemon-prince-of-nurgle::datasheet-daemon-prince-of-nurgle:section:1",
@@ -221044,7 +222319,47 @@
           "parentUnitId": "unit-daemon-prince-of-nurgle"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-daemon-prince-of-nurgle:section:1::/blocks/0/text",
+            "label": "Death Guard Defenders",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-daemon-prince-of-nurgle:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/8/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-daemon-prince-of-nurgle:section:1::/blocks/1/text",
+            "label": "Fevered Strategist",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-daemon-prince-of-nurgle:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/8/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-daemon-prince-of-nurgle:section:1::/blocks/2/text",
+            "label": "Miasma of Pestilence (Aura)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-daemon-prince-of-nurgle:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/8/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-daemon-prince-of-nurgle::datasheet-daemon-prince-of-nurgle:section:2",
@@ -221108,7 +222423,9 @@
           "parentUnitId": "unit-daemon-prince-of-nurgle"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-deathshroud-terminators::datasheet-deathshroud-terminators:section:1",
@@ -221188,7 +222505,49 @@
           "parentUnitId": "unit-deathshroud-terminators"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-deathshroud-terminators:section:1::/blocks/0/text",
+            "label": "Silent Bodyguard",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-deathshroud-terminators:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/10/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-deathshroud-terminators:section:1::/blocks/1/text",
+            "label": "Death Approaches",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+              "effectiveFrom": "2026-09-30",
+              "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:055",
+              "page": 7,
+              "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+              "sourceLocator": "datasheet-deathshroud-terminators:section:1"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-deathshroud-terminators:section:1::/blocks/2/text",
+            "label": "Icon of Despair (Aura)",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-deathshroud-terminators:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/10/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-deathshroud-terminators::datasheet-deathshroud-terminators:section:2",
@@ -221252,7 +222611,9 @@
           "parentUnitId": "unit-deathshroud-terminators"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-defiler::datasheet-defiler:section:1",
@@ -221324,7 +222685,39 @@
           "parentUnitId": "unit-defiler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-defiler:section:1::/blocks/0/text",
+            "label": "Scuttling Walker",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+              "effectiveFrom": "2026-09-30",
+              "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:075",
+              "page": 5,
+              "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+              "sourceLocator": "datasheet-defiler:section:1"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-defiler:section:1::/blocks/1/text",
+            "label": "Barrage of Filth",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+              "effectiveFrom": "2026-09-30",
+              "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:076",
+              "page": 5,
+              "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+              "sourceLocator": "datasheet-defiler:section:1"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-defiler::datasheet-defiler:section:2",
@@ -221388,7 +222781,9 @@
           "parentUnitId": "unit-defiler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-defiler::datasheet-defiler:section:3",
@@ -221452,7 +222847,9 @@
           "parentUnitId": "unit-defiler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-foetid-bloat-drone-with-heavy-blight-launcher::datasheet-foetid-bloat-drone-with-heavy-blight-launcher:section:1",
@@ -221516,7 +222913,23 @@
           "parentUnitId": "unit-foetid-bloat-drone-with-heavy-blight-launcher"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:section:1::/blocks/0/text",
+            "label": "Explosive Blight",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-foetid-bloat-drone-with-heavy-blight-launcher:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/13/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-foetid-bloat-drone-with-heavy-blight-launcher::datasheet-foetid-bloat-drone-with-heavy-blight-launcher:section:2",
@@ -221580,7 +222993,9 @@
           "parentUnitId": "unit-foetid-bloat-drone-with-heavy-blight-launcher"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-foetid-bloat-drone::datasheet-foetid-bloat-drone:section:1",
@@ -221644,7 +223059,23 @@
           "parentUnitId": "unit-foetid-bloat-drone"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-foetid-bloat-drone:section:1::/blocks/0/text",
+            "label": "Hovering Death",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-foetid-bloat-drone:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/12/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-foetid-bloat-drone::datasheet-foetid-bloat-drone:section:2",
@@ -221708,7 +223139,9 @@
           "parentUnitId": "unit-foetid-bloat-drone"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-foul-blightspawn::datasheet-foul-blightspawn:section:1",
@@ -221780,7 +223213,35 @@
           "parentUnitId": "unit-foul-blightspawn"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-foul-blightspawn:section:1::/blocks/0/text",
+            "label": "Blinding Spray",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-foul-blightspawn:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/14/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-foul-blightspawn:section:1::/blocks/1/text",
+            "label": "Putrefying Stink",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-foul-blightspawn:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/14/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-foul-blightspawn::datasheet-foul-blightspawn:section:2",
@@ -221844,7 +223305,9 @@
           "parentUnitId": "unit-foul-blightspawn"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-foul-blightspawn::datasheet-foul-blightspawn:section:3",
@@ -221908,7 +223371,9 @@
           "parentUnitId": "unit-foul-blightspawn"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-great-unclean-one::datasheet-great-unclean-one:section:1",
@@ -221980,7 +223445,35 @@
           "parentUnitId": "unit-great-unclean-one"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-great-unclean-one:section:1::/blocks/0/text",
+            "label": "Daemon Lord of Nurgle (Aura)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-great-unclean-one:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/15/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-great-unclean-one:section:1::/blocks/1/text",
+            "label": "Nurgle’s Rot (Psychic)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-great-unclean-one:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/15/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-great-unclean-one::datasheet-great-unclean-one:section:2",
@@ -222044,7 +223537,9 @@
           "parentUnitId": "unit-great-unclean-one"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-great-unclean-one::datasheet-great-unclean-one:section:3",
@@ -222108,7 +223603,9 @@
           "parentUnitId": "unit-great-unclean-one"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-helbrute::datasheet-helbrute:section:1",
@@ -222180,7 +223677,35 @@
           "parentUnitId": "unit-helbrute"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-helbrute:section:1::/blocks/0/text",
+            "label": "Diseased Malice",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-helbrute:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/16/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-helbrute:section:1::/blocks/1/text",
+            "label": "Froth-spattered Frenzy",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-helbrute:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/16/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-helbrute::datasheet-helbrute:section:2",
@@ -222244,7 +223769,9 @@
           "parentUnitId": "unit-helbrute"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-icon-bearer::datasheet-icon-bearer:section:1",
@@ -222316,7 +223843,35 @@
           "parentUnitId": "unit-icon-bearer"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-icon-bearer:section:1::/blocks/0/text",
+            "label": "Unclean Icon",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-icon-bearer:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/17/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-icon-bearer:section:1::/blocks/1/text",
+            "label": "Blessed Icon of Disease",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-icon-bearer:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/17/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-icon-bearer::datasheet-icon-bearer:section:2",
@@ -222380,7 +223935,9 @@
           "parentUnitId": "unit-icon-bearer"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-icon-bearer::datasheet-icon-bearer:section:3",
@@ -222444,7 +224001,9 @@
           "parentUnitId": "unit-icon-bearer"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-lord-of-contagion::datasheet-lord-of-contagion:section:1",
@@ -222516,7 +224075,35 @@
           "parentUnitId": "unit-lord-of-contagion"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-lord-of-contagion:section:1::/blocks/0/text",
+            "label": "Vector of Disease",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-lord-of-contagion:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/18/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-lord-of-contagion:section:1::/blocks/1/text",
+            "label": "Unholy Resilience",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-lord-of-contagion:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/18/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-lord-of-contagion::datasheet-lord-of-contagion:section:2",
@@ -222580,7 +224167,9 @@
           "parentUnitId": "unit-lord-of-contagion"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-lord-of-contagion::datasheet-lord-of-contagion:section:3",
@@ -222644,7 +224233,9 @@
           "parentUnitId": "unit-lord-of-contagion"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-lord-of-poxes::datasheet-lord-of-poxes:section:1",
@@ -222716,7 +224307,35 @@
           "parentUnitId": "unit-lord-of-poxes"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-lord-of-poxes:section:1::/blocks/0/text",
+            "label": "Gift of Poxes",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-lord-of-poxes:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/19/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-lord-of-poxes:section:1::/blocks/1/text",
+            "label": "Shroud of Disease",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-lord-of-poxes:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/19/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-lord-of-poxes::datasheet-lord-of-poxes:section:2",
@@ -222780,7 +224399,9 @@
           "parentUnitId": "unit-lord-of-poxes"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-lord-of-poxes::datasheet-lord-of-poxes:section:3",
@@ -222844,7 +224465,9 @@
           "parentUnitId": "unit-lord-of-poxes"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-lord-of-virulence::datasheet-lord-of-virulence:section:1",
@@ -222916,7 +224539,35 @@
           "parentUnitId": "unit-lord-of-virulence"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-lord-of-virulence:section:1::/blocks/0/text",
+            "label": "Virulent Aura",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-lord-of-virulence:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/20/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-lord-of-virulence:section:1::/blocks/1/text",
+            "label": "Blight Bombardment",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-lord-of-virulence:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/20/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-lord-of-virulence::datasheet-lord-of-virulence:section:2",
@@ -222980,7 +224631,9 @@
           "parentUnitId": "unit-lord-of-virulence"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-lord-of-virulence::datasheet-lord-of-virulence:section:3",
@@ -223044,7 +224697,9 @@
           "parentUnitId": "unit-lord-of-virulence"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-malignant-plaguecaster::datasheet-malignant-plaguecaster:section:1",
@@ -223116,7 +224771,35 @@
           "parentUnitId": "unit-malignant-plaguecaster"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-malignant-plaguecaster:section:1::/blocks/0/text",
+            "label": "Gift of Contagion (Psychic)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-malignant-plaguecaster:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/21/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-malignant-plaguecaster:section:1::/blocks/1/text",
+            "label": "Pestilent Fallout (Psychic)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-malignant-plaguecaster:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/21/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-malignant-plaguecaster::datasheet-malignant-plaguecaster:section:2",
@@ -223180,7 +224863,9 @@
           "parentUnitId": "unit-malignant-plaguecaster"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-malignant-plaguecaster::datasheet-malignant-plaguecaster:section:3",
@@ -223244,7 +224929,9 @@
           "parentUnitId": "unit-malignant-plaguecaster"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-miasmic-malignifier::datasheet-miasmic-malignifier:section:1",
@@ -223308,7 +224995,9 @@
           "parentUnitId": "unit-miasmic-malignifier"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-miasmic-malignifier::datasheet-miasmic-malignifier:section:2",
@@ -223388,7 +225077,47 @@
           "parentUnitId": "unit-miasmic-malignifier"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-miasmic-malignifier:section:2::/blocks/0/text",
+            "label": "Putrescent Fog (Aura)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-miasmic-malignifier:section:2",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/22/sections/1"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-miasmic-malignifier:section:2::/blocks/1/text",
+            "label": "Diseased Cover",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-miasmic-malignifier:section:2",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/22/sections/1"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-miasmic-malignifier:section:2::/blocks/2/text",
+            "label": "Fortification",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-miasmic-malignifier:section:2",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/22/sections/1"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-miasmic-malignifier::datasheet-miasmic-malignifier:section:3",
@@ -223452,7 +225181,9 @@
           "parentUnitId": "unit-miasmic-malignifier"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-mortarion::datasheet-mortarion:section:1",
@@ -223532,7 +225263,63 @@
           "parentUnitId": "unit-mortarion"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-mortarion:section:1::/blocks/0/text",
+            "label": "Diseased Influence",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+              "effectiveFrom": "2026-09-30",
+              "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:056",
+              "page": 7,
+              "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+              "sourceLocator": "datasheet-mortarion:section:1"
+            },
+            "referenceContext": {
+              "canonicalId": "datasheet-mortarion:section:3",
+              "path": "/blocks/0/text"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-mortarion:section:1::/blocks/1/text",
+            "label": "Boon of Death",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-mortarion:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/23/sections/0"
+            },
+            "referenceContext": {
+              "canonicalId": "datasheet-mortarion:section:3",
+              "path": "/blocks/0/text"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-mortarion:section:1::/blocks/2/text",
+            "label": "Inflamed Reprisal",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+              "effectiveFrom": "2026-09-30",
+              "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:057",
+              "page": 8,
+              "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+              "sourceLocator": "datasheet-mortarion:section:1"
+            },
+            "referenceContext": {
+              "canonicalId": "datasheet-mortarion:section:3",
+              "path": "/blocks/0/text"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-mortarion::datasheet-mortarion:section:2",
@@ -223596,7 +225383,9 @@
           "parentUnitId": "unit-mortarion"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-mortarion::datasheet-mortarion:section:3",
@@ -223668,7 +225457,35 @@
           "parentUnitId": "unit-mortarion"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-mortarion:section:3::/blocks/0/text",
+            "label": "Lord of the Death Guard",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-mortarion:section:3",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/23/sections/2"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-mortarion:section:3::/blocks/1/text",
+            "label": "Host of Plagues",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-mortarion:section:3",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/23/sections/2"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-mortarion::datasheet-mortarion:section:4",
@@ -223732,7 +225549,9 @@
           "parentUnitId": "unit-mortarion"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-mortarion::datasheet-mortarion:section:5",
@@ -223796,7 +225615,9 @@
           "parentUnitId": "unit-mortarion"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-myphitic-blight-hauler::datasheet-myphitic-blight-hauler:section:1",
@@ -223860,7 +225681,23 @@
           "parentUnitId": "unit-myphitic-blight-hauler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-myphitic-blight-hauler:section:1::/blocks/0/text",
+            "label": "Tank Hunters",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-myphitic-blight-hauler:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/24/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-myphitic-blight-hauler::datasheet-myphitic-blight-hauler:section:2",
@@ -223924,7 +225761,9 @@
           "parentUnitId": "unit-myphitic-blight-hauler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-noxious-blightbringer::datasheet-noxious-blightbringer:section:1",
@@ -223996,7 +225835,35 @@
           "parentUnitId": "unit-noxious-blightbringer"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-noxious-blightbringer:section:1::/blocks/0/text",
+            "label": "Sickening Vitality",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-noxious-blightbringer:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/25/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-noxious-blightbringer:section:1::/blocks/1/text",
+            "label": "Tocsin of Misery (Aura)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-noxious-blightbringer:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/25/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-noxious-blightbringer::datasheet-noxious-blightbringer:section:2",
@@ -224060,7 +225927,9 @@
           "parentUnitId": "unit-noxious-blightbringer"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-noxious-blightbringer::datasheet-noxious-blightbringer:section:3",
@@ -224124,7 +225993,9 @@
           "parentUnitId": "unit-noxious-blightbringer"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-nurglings::datasheet-nurglings:section:1",
@@ -224188,7 +226059,23 @@
           "parentUnitId": "unit-nurglings"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-nurglings:section:1::/blocks/0/text",
+            "label": "Mischief Makers",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-nurglings:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/26/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-nurglings::datasheet-nurglings:section:2",
@@ -224252,7 +226139,9 @@
           "parentUnitId": "unit-nurglings"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plague-drones::datasheet-plague-drones:section:1",
@@ -224332,7 +226221,47 @@
           "parentUnitId": "unit-plague-drones"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-plague-drones:section:1::/blocks/0/text",
+            "label": "Death’s Heads",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-plague-drones:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/27/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-plague-drones:section:1::/blocks/1/text",
+            "label": "Daemonic Icon",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-plague-drones:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/27/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-plague-drones:section:1::/blocks/2/text",
+            "label": "Instrument of Chaos",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-plague-drones:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/27/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plague-drones::datasheet-plague-drones:section:2",
@@ -224396,7 +226325,9 @@
           "parentUnitId": "unit-plague-drones"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plague-marines::datasheet-plague-marines:section:1",
@@ -224468,7 +226399,35 @@
           "parentUnitId": "unit-plague-marines"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-plague-marines:section:1::/blocks/0/text",
+            "label": "Infused with the Blessings of Nurgle",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-plague-marines:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/28/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-plague-marines:section:1::/blocks/1/text",
+            "label": "Icon of Despair (Aura)",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-plague-marines:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/28/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plague-marines::datasheet-plague-marines:section:2",
@@ -224532,7 +226491,9 @@
           "parentUnitId": "unit-plague-marines"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plague-surgeon::datasheet-plague-surgeon:section:1",
@@ -224604,7 +226565,35 @@
           "parentUnitId": "unit-plague-surgeon"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-plague-surgeon:section:1::/blocks/0/text",
+            "label": "Tainted Narthecium",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-plague-surgeon:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/29/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-plague-surgeon:section:1::/blocks/1/text",
+            "label": "Inflamed Infections",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-plague-surgeon:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/29/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plague-surgeon::datasheet-plague-surgeon:section:2",
@@ -224668,7 +226657,9 @@
           "parentUnitId": "unit-plague-surgeon"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plague-surgeon::datasheet-plague-surgeon:section:3",
@@ -224732,7 +226723,9 @@
           "parentUnitId": "unit-plague-surgeon"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plaguebearers::datasheet-plaguebearers:section:1",
@@ -224812,7 +226805,47 @@
           "parentUnitId": "unit-plaguebearers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-plaguebearers:section:1::/blocks/0/text",
+            "label": "Infected Outbreak",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-plaguebearers:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/30/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-plaguebearers:section:1::/blocks/1/text",
+            "label": "Daemonic Icon",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-plaguebearers:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/30/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/2/text",
+            "factId": "datasheet-plaguebearers:section:1::/blocks/2/text",
+            "label": "Instrument of Chaos",
+            "category": "WARGEAR_ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-plaguebearers:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/30/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plaguebearers::datasheet-plaguebearers:section:2",
@@ -224876,7 +226909,9 @@
           "parentUnitId": "unit-plaguebearers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plagueburst-crawler::datasheet-plagueburst-crawler:section:1",
@@ -224940,7 +226975,25 @@
           "parentUnitId": "unit-plagueburst-crawler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-plagueburst-crawler:section:1::/blocks/0/text",
+            "label": "Spore-laced Shock Waves",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+              "effectiveFrom": "2026-09-30",
+              "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:059",
+              "page": 8,
+              "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+              "sourceLocator": "datasheet-plagueburst-crawler:section:1"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plagueburst-crawler::datasheet-plagueburst-crawler:section:2",
@@ -225004,7 +227057,9 @@
           "parentUnitId": "unit-plagueburst-crawler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-plagueburst-crawler::datasheet-plagueburst-crawler:section:3",
@@ -225068,7 +227123,9 @@
           "parentUnitId": "unit-plagueburst-crawler"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-poxwalkers::datasheet-poxwalkers:section:1",
@@ -225132,7 +227189,23 @@
           "parentUnitId": "unit-poxwalkers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-poxwalkers:section:1::/blocks/0/text",
+            "label": "Curse of the Walking Pox",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-poxwalkers:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/32/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-poxwalkers::datasheet-poxwalkers:section:2",
@@ -225196,7 +227269,9 @@
           "parentUnitId": "unit-poxwalkers"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-rotigus::datasheet-rotigus:section:1",
@@ -225268,7 +227343,35 @@
           "parentUnitId": "unit-rotigus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-rotigus:section:1::/blocks/0/text",
+            "label": "Virulent Blessing (Psychic)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-rotigus:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/33/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-rotigus:section:1::/blocks/1/text",
+            "label": "Deluge of Nurgle (Aura)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-rotigus:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/33/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-rotigus::datasheet-rotigus:section:2",
@@ -225332,7 +227435,9 @@
           "parentUnitId": "unit-rotigus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-rotigus::datasheet-rotigus:section:3",
@@ -225396,7 +227501,9 @@
           "parentUnitId": "unit-rotigus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-tallyman::datasheet-tallyman:section:1",
@@ -225468,7 +227575,35 @@
           "parentUnitId": "unit-tallyman"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-tallyman:section:1::/blocks/0/text",
+            "label": "Malicious Calculations",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-tallyman:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/34/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-tallyman:section:1::/blocks/1/text",
+            "label": "Sevenfold Chant",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-tallyman:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/34/sections/0"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-tallyman::datasheet-tallyman:section:2",
@@ -225532,7 +227667,9 @@
           "parentUnitId": "unit-tallyman"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-tallyman::datasheet-tallyman:section:3",
@@ -225596,7 +227733,9 @@
           "parentUnitId": "unit-tallyman"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-typhus::datasheet-typhus:section:1",
@@ -225668,7 +227807,37 @@
           "parentUnitId": "unit-typhus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE",
+        "referenceFields": [
+          {
+            "path": "/blocks/0/text",
+            "factId": "datasheet-typhus:section:1::/blocks/0/text",
+            "label": "The Destroyer Hive",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "dg-waha-2026-09-25",
+              "sourceRecordId": "datasheet-typhus:section:1",
+              "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
+              "pointer": "/datasheets/35/sections/0"
+            }
+          },
+          {
+            "path": "/blocks/1/text",
+            "factId": "datasheet-typhus:section:1::/blocks/1/text",
+            "label": "Eater Plague (Psychic)",
+            "category": "ABILITY",
+            "provenance": {
+              "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+              "effectiveFrom": "2026-09-30",
+              "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:058",
+              "page": 8,
+              "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+              "sourceLocator": "datasheet-typhus:section:1"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-typhus::datasheet-typhus:section:2",
@@ -225732,7 +227901,9 @@
           "parentUnitId": "unit-typhus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::datasheet_section::unit-typhus::datasheet-typhus:section:3",
@@ -225796,7 +227967,9 @@
           "parentUnitId": "unit-typhus"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "REFERENCE"
+      }
     },
     {
       "id": "army::death-guard::detachment_rule::detachment-champions-of-contagion::detachment-champions-of-contagion:rule",
@@ -242436,6 +244609,12 @@
           "id": "army::death-guard::unit::unit-great-unclean-one",
           "canonicalId": "unit-great-unclean-one",
           "relationType": "OWNER"
+        },
+        {
+          "domain": "ARMY",
+          "id": "army::death-guard::weapon_profile::unit-great-unclean-one::datasheet-great-unclean-one:weapon:6",
+          "canonicalId": "datasheet-great-unclean-one:weapon:6",
+          "relationType": "WEAPON"
         }
       ],
       "currentness": {
@@ -242473,7 +244652,10 @@
           "parentUnitId": "unit-great-unclean-one"
         }
       ],
-      "presentation": {}
+      "presentation": {
+        "referenceCategory": "WARGEAR_ABILITY",
+        "referenceLabel": "Reverberating Summons"
+      }
     },
     {
       "id": "army::death-guard::unit::unit-beasts-of-nurgle",

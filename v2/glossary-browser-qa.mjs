@@ -13,6 +13,22 @@ import {isApplicationTestDependency} from '../books/shared/application-v2/browse
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const corpus=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
 const projection=adaptGlobalGlossary(corpus),contract=createReferenceContract({cards:new Map(projection.cards.map(card=>[card.id,card])),index:projection.index});
+const projectedEntries=projection.index.entries.length;
+assert.equal(corpus.entries.length,3283,'Canonical source-entry inventory must remain unchanged');
+assert.equal(projectedEntries,3422,'139 source-field references augment, rather than replace, the canonical catalog');
+const abilitySamples=[
+  {book:'death-guard',id:'datasheet-lord-of-contagion:section:1',path:'/blocks/0/text',label:'Vector of Disease',category:'ABILITY'},
+  {book:'adeptus-mechanicus',id:'datasheet-skitarii-rangers:section:1',path:'/blocks/0/text',label:'Objective Scouted',category:'ABILITY'},
+  {book:'chaos-space-marines',id:'datasheet-chaos-lord:section:1:block:0:text',label:'Lord of Chaos',category:'ABILITY'},
+  {book:'chaos-space-marines',id:'datasheet-abaddon-the-despoiler:section:5:block:0:text',label:'Paragon of Hatred (Aura)',category:'ABILITY',
+    governing:{id:'datasheet-abaddon-the-despoiler:section:1:block:0:text'}},
+  {book:'adeptus-mechanicus',id:'datasheet-belisarius-cawl:section:4',path:'/blocks/0/text',label:'Invocation of Machine Vengeance',category:'ABILITY',
+    governing:{id:'datasheet-belisarius-cawl:section:1',path:'/blocks/0/text'}},
+  {book:'death-guard',id:'datasheet-plague-marines:section:1',path:'/blocks/1/text',label:'Icon of Despair (Aura)',category:'WARGEAR_ABILITY'},
+  {book:'adeptus-mechanicus',id:'datasheet-skitarii-rangers:section:1',path:'/blocks/2/text',label:'Omnispex',category:'WARGEAR_ABILITY'},
+  {book:'chaos-space-marines',id:'datasheet-legionaries:section:1:block:1:text',label:'Chaos Icon',category:'WARGEAR_ABILITY'},
+  {book:'death-guard',id:'datasheet-great-unclean-one:raw-dsAbility:1',label:'Reverberating Summons',category:'WARGEAR_ABILITY'}
+];
 const includedBooks=['death-guard','adeptus-mechanicus','chaos-space-marines'];
 const excludedBooks=['emperors-children','tyranids','tau-empire','space-marines','dark-angels','blood-angels'];
 const canonicalEntry=(bookId,canonicalId)=>{
@@ -106,17 +122,67 @@ try {
     const home=await page.evaluate(()=>({title:document.title,html:document.querySelector('.v2-library-home').outerHTML,
       background:getComputedStyle(document.querySelector('.v2-library-home')).backgroundImage,styles:[...document.querySelectorAll('link[rel="stylesheet"]')].map(link=>link.href)}));
     await page.locator('.v2-library-home a[data-v2-shell-link][href*="v2=GLOSSARY"]').first().click();await global(page);
-    assert.equal(await page.locator('.v2-search-status').innerText(),`${corpus.entries.length} entries found`);
+    assert.equal(await page.locator('.v2-search-status').innerText(),`${projectedEntries} entries found`);
     assert.equal(await page.locator('.v2-glossary-result').count(),120,'Initial global catalog must preserve V1 progressive loading');
     await page.getByRole('button',{name:'Show more entries',exact:true}).click();
     assert.equal(await page.locator('.v2-glossary-result').count(),240,'Progressive loading silently truncated global coverage');
-    assert.equal(await page.locator('.v2-search-status').innerText(),`${corpus.entries.length} entries found`);
+    assert.equal(await page.locator('.v2-search-status').innerText(),`${projectedEntries} entries found`);
     assert.equal(await page.locator('[data-glossary-category=""]').getAttribute('aria-pressed'),'true');await geometry(page);
     await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await screenshot(page,device+'-catalog');
     const category=contract.categories().find(category=>category.label==='Core Concept');assert.ok(category);
     await page.locator('[data-glossary-category="'+category.id+'"]').click();
     const expected=contract.search('',{category:category.id}).map(entry=>entry.targetId).sort();
     assert.deepEqual(await page.locator('.v2-glossary-result').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId).sort()),expected);
+    await page.locator('[data-glossary-category=""]').click();
+    for(const [label,total,perBook]of [['Ability',213,{'death-guard':61,'adeptus-mechanicus':60,'chaos-space-marines':92}],
+      ['Wargear Ability',26,{'death-guard':7,'adeptus-mechanicus':12,'chaos-space-marines':7}]]){
+      const selected=contract.categories().find(category=>category.label===label);assert.ok(selected,`${label}: category exists`);
+      await page.locator('[data-glossary-category="'+selected.id+'"]').click();
+      const expected=contract.search('',{category:selected.id});assert.equal(expected.length,total,`${label}: exact source-derived inventory`);
+      for(const [book,count]of Object.entries(perBook))assert.equal(expected.filter(row=>contract.identityFor(row.targetId).registryId===book).length,count,`${label}/${book}: missing or extra abilities`);
+      while(await page.getByRole('button',{name:'Show more entries',exact:true}).count()){
+        const before=await page.locator('.v2-glossary-result').count();
+        await page.getByRole('button',{name:'Show more entries',exact:true}).click();
+        assert.ok(await page.locator('.v2-glossary-result').count()>before,'Ability progressive loading made no progress');
+      }
+      assert.deepEqual(await page.locator('.v2-glossary-result').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId).sort()),expected.map(row=>row.targetId).sort(),`${label}: complete visible inventory`);
+      assert.ok(expected.every(row=>!/^(?:ABILITIES|UNIT COMPOSITION|COMPOSITION|TRANSPORT|LEADER|ATTACHED UNIT)$|^DAMAGED(?:[:\s]|$)/i.test(row.label)),`${label}: structural sections incorrectly classified as abilities`);
+      await geometry(page);await screenshot(page,device+'-'+selected.id.toLowerCase()+'-category');
+    }
+    for(const sample of abilitySamples){
+      const source=canonicalEntry(sample.book,sample.id);
+      const matches=projection.cards.filter(card=>card.identity.registryId===sample.book&&card.identity.canonicalId===sample.id&&
+        (sample.path?card.identity.fieldPath===sample.path:card.id===source.id));
+      assert.equal(matches.length,1,`${sample.label}: unique canonical field/card identity`);
+      const target=matches[0];assert.equal(target.title,sample.label);
+      assert.equal(projection.index.entries.find(row=>row.targetId===target.id).category,sample.category);
+      const expectedText=sample.path?sample.path.slice(1).split('/').reduce((node,key)=>node[key],source.facts.canonicalData):source.facts.canonicalData.text;
+      if(sample.path)assert.ok(expectedText.startsWith(sample.label+':'),`${sample.label}: canonical heading and source text`);
+      const expectedTexts=[expectedText];
+      if(sample.governing){
+        const governing=canonicalEntry(sample.book,sample.governing.id).facts.canonicalData;
+        const text=sample.governing.path?sample.governing.path.slice(1).split('/').reduce((node,key)=>node[key],governing):governing.text;
+        assert.match(text,/Command phase, select one/,'Governing source must preserve ability selection timing');
+        assert.ok(text.includes('Until the start of your next Command phase, this model has that ability.'),'Governing duration must remain explicit');
+        expectedTexts.push(text);
+      }
+      const category=contract.categories().find(category=>category.id===sample.category);assert.ok(category);
+      await page.locator('[data-glossary-category="'+category.id+'"]').click();await search(page,sample.label);
+      const link=targetLink(page,target.id);assert.equal(await link.count(),1);
+      const direct=await link.getAttribute('href');assert.deepEqual(decodeRoute(direct),decodeRoute(encodeRoute(entry,{destination:'GLOSSARY',...target.identity})));
+      await link.click();const popup=await article(page,target.id,true);await popupGeometry(page);
+      assert.deepEqual(await popup.locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,`${sample.label}: popup must contain its exact source field and applicable governing condition`);
+      await popup.getByRole('link',{name:'Open full entry',exact:true}).click();const full=await article(page,target.id);
+      assert.deepEqual(await full.locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,`${sample.label}: article source-field and condition parity`);
+      if(sample.path)assert.equal(decodeRoute(page.url()).fieldPath,sample.path,'Qualified source field lost from route');
+      await page.reload();await ready(page);assert.deepEqual(await (await article(page,target.id)).locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,'Reload lost source field or governing condition');
+      await page.goBack();await ready(page);assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),sample.label,'Back lost ability search');
+      assert.equal(await page.locator('[data-glossary-category="'+category.id+'"]').getAttribute('aria-pressed'),'true','Back lost ability category');
+      await page.goForward();await ready(page);await article(page,target.id);
+      await page.goto(direct);await ready(page);assert.deepEqual(await (await article(page,target.id)).locator('.reference-definition .reference-fact').allTextContents(),expectedTexts,'Direct qualified reference lost its ability or governing condition');
+      await geometry(page);await screenshot(page,device+'-'+sample.book+'-'+sample.label.toLowerCase().replace(/[^a-z0-9]+/g,'-'));
+      await topGlossary(page);await search(page,'');
+    }
     await page.locator('[data-glossary-category=""]').click();
     const deep='core::core-deep-strike';await search(page,'Deep Strike');assert.equal(await targetLink(page,deep).count(),1);
     await search(page,'core-anti-infantry');assert.equal(await targetLink(page,'core::core-anti').count(),1,'Alias search lost canonical reference');
@@ -233,7 +299,8 @@ try {
     await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await active(page,null);
     assert.deepEqual(await page.evaluate(()=>({title:document.title,html:document.querySelector('.v2-library-home').outerHTML,
       background:getComputedStyle(document.querySelector('.v2-library-home')).backgroundImage,styles:[...document.querySelectorAll('link[rel="stylesheet"]')].map(link=>link.href)})),home,'Glossary changed Home presentation');
-    results.push({device,corpus:corpus.entries.length,searchTitle:true,searchAliases:true,searchDefinition:true,categories:true,
+    results.push({device,corpus:corpus.entries.length,projectedEntries,abilityCategories:{ability:213,wargearAbility:26},qualifiedAbilitySamples:abilitySamples.length,
+      searchTitle:true,searchAliases:true,searchDefinition:true,categories:true,
       canonicalPopup:true,fullArticle:true,closeEscapeOutsideFocus:true,nativeNewTab:true,directReload:true,backForward:true,
       legacyLinks:true,excludedLegacyUnavailable:excludedBooks.length,currentOfficialReferences:updatedReferences.length,mfmVersion:'v1.6',
       bookToGlobal:true,personalGuideToGlobal:true,scopeUnrestricted:true,lifecycleCleanup:true,themeIsolation:true,overflow:false});

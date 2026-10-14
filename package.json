@@ -116,7 +116,7 @@
     "qa:shared:v2:core": "node v2/core-reader-qa.mjs && node v2/core-reader-browser-qa.mjs",
     "glossary:v2:build": "node glossary/v2/tools/build-glossary-v2.mjs",
     "glossary:v2:check": "node glossary/v2/tools/build-glossary-v2.mjs --check",
-    "qa:glossary:v2": "npm run glossary:v2:check && node glossary/v2/tests/v2-owner-parity-qa.mjs && node glossary/v2/tests/core-projection-qa.mjs && node glossary/v2/tests/glossary-v2-foundation-qa.mjs && node glossary/v2/tests/glossary-v2-unit-rendering-qa.mjs && node glossary/v2/tests/glossary-v2-faction-context-qa.mjs && node v2/glossary-qa.mjs",
+    "qa:glossary:v2": "npm run glossary:v2:check && node glossary/v2/tests/v2-owner-parity-qa.mjs && node glossary/v2/tests/ability-category-qa.mjs && node glossary/v2/tests/core-projection-qa.mjs && node glossary/v2/tests/glossary-v2-foundation-qa.mjs && node glossary/v2/tests/glossary-v2-unit-rendering-qa.mjs && node glossary/v2/tests/glossary-v2-faction-context-qa.mjs && node v2/glossary-qa.mjs",
     "qa:shared:v2:glossary": "npm run qa:glossary:v2 && node v2/glossary-browser-qa.mjs",
     "qa:shared:v2:lifecycle": "node books/shared/army-book-app-v2/lifecycle-qa.mjs",
     "qa:shared:v2:lifecycle:browser": "node books/shared/army-book-app-v2/lifecycle-browser-qa.mjs",
