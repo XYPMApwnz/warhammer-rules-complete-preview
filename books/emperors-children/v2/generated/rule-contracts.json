@@ -2,14 +2,30 @@
   "schema": "ec-v2-rule-contract-foundation/v1",
   "authority": "BOOK_OWNED_DERIVED_CONTRACT_OVERLAY",
   "scope": {
-    "implementedRules": 15,
+    "implementedRules": 21,
     "directReuseRules": 10,
     "bindingAdaptationRules": 5,
+    "formationRuleFamilies": 5,
+    "formationSourceOwners": 6,
     "remainingLegacyContracts": "NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD"
   },
   "sourceFingerprint": "B9D7A1C2D7DF7A5B8E27C6F9307C0B230E9A8DFB75338B7A457CFA0B415D2F7C",
   "declarationFingerprint": "58194693F1984FC535B50DA8D153670A6CF8E805673BA764B6FEDA5A4C6723C0",
   "permissionDeclarationFingerprint": "15606F87E278ADAE304540C6E9BC30A3D2E5C52FA0E29668E42CFD797FC226FF",
+  "formationBindingFingerprint": "FF55AEF6168F9EEEBC32DE67DC5C4500102541E5A7BAFE38A10F50A84A30FAFA",
+  "contextBindings": {
+    "lordOfHostDeclaredBattleline": {
+      "kind": "INITIAL_ATTACHMENT",
+      "sourceId": "unit-lord-exultant",
+      "profileId": "datasheet-lord-exultant:profile:1",
+      "step": "DECLARE_BATTLE_FORMATIONS",
+      "bodyguardKeywords": [
+        "EMPEROR’S CHILDREN",
+        "BATTLELINE"
+      ],
+      "sourceRuleId": "datasheet-lord-exultant:section:4"
+    }
+  },
   "contracts": [
     {
       "schema": "rule-contract/v2",
@@ -4233,6 +4249,2002 @@
         },
         "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
       }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-elegant-brutes:enhancement:1",
+      "ownerId": "detachment-elegant-brutes",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "LORD KAKOPHONIST"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient-1",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient-2",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "source-effect-1",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "LORD KAKOPHONIST"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient-1",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+          },
+          "sourceText": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER].",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "detachment-elegant-brutes:enhancement:1::source-effect-1/effect",
+              "operation": "GRANT_ABILITY",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_MODEL",
+              "ability": {
+                "canonicalId": "core-deep-strike",
+                "parameters": {}
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-elegant-brutes:enhancement:1",
+                "canonicalOwnerId": "detachment-elegant-brutes",
+                "canonicalClauseId": "source-effect-1",
+                "sourceEvidence": {
+                  "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+                  "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+                  "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+                  "page": 2,
+                  "bbox": [
+                    53,
+                    433,
+                    296,
+                    469
+                  ],
+                  "textSha256": "7934D358C71C2DF69A526CFFC6D6E170B0EDDC88D3203498E371628E7D0FA866",
+                  "effectiveFrom": "2026-09-30",
+                  "authority": "AUTHORITATIVE_CURRENT",
+                  "correctionId": "ec-official-v1.3:native-cacophonic-accompaniment",
+                  "sourcePointer": "/detachments/9/enhancements/0/text",
+                  "supersedes": {
+                    "sourceId": "ec-waha-11e-2026-09-28",
+                    "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                    "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                    "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                    "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                    "pointer": "/detachments/9/enhancements/0",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Selected physical owner/equipment and existing formation determine recipients."
+          }
+        },
+        {
+          "id": "source-effect-2",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "LORD KAKOPHONIST"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient-2",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+          },
+          "sourceText": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER].",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "detachment-elegant-brutes:enhancement:1::source-effect-2/effect",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "weaponMode": "ranged",
+              "ability": "IGNORES COVER",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-elegant-brutes:enhancement:1",
+                "canonicalOwnerId": "detachment-elegant-brutes",
+                "canonicalClauseId": "source-effect-2",
+                "sourceEvidence": {
+                  "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+                  "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+                  "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+                  "page": 2,
+                  "bbox": [
+                    53,
+                    433,
+                    296,
+                    469
+                  ],
+                  "textSha256": "7934D358C71C2DF69A526CFFC6D6E170B0EDDC88D3203498E371628E7D0FA866",
+                  "effectiveFrom": "2026-09-30",
+                  "authority": "AUTHORITATIVE_CURRENT",
+                  "correctionId": "ec-official-v1.3:native-cacophonic-accompaniment",
+                  "sourcePointer": "/detachments/9/enhancements/0/text",
+                  "supersedes": {
+                    "sourceId": "ec-waha-11e-2026-09-28",
+                    "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                    "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                    "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                    "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                    "pointer": "/detachments/9/enhancements/0",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Selected physical owner/equipment and existing formation determine recipients."
+          }
+        }
+      ],
+      "detachmentId": "detachment-elegant-brutes",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "MODEL_KEYWORD",
+          "subject": "MODEL",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "keyword": "LORD KAKOPHONIST"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+          }
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-dacef9222772aee6",
+        "detachmentId": "mfm-detachment-5b619a99165f35cb",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "ELEGANT BRUTES",
+            "sourceTitle": "Cacophonic Accompaniment"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "05ef00be54d9f876cad262b324e8ba011e6d05d6",
+        "factualOwner": {
+          "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+          "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+          "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+          "page": 2,
+          "bbox": [
+            53,
+            433,
+            296,
+            469
+          ],
+          "textSha256": "7934D358C71C2DF69A526CFFC6D6E170B0EDDC88D3203498E371628E7D0FA866",
+          "effectiveFrom": "2026-09-30",
+          "authority": "AUTHORITATIVE_CURRENT",
+          "correctionId": "ec-official-v1.3:native-cacophonic-accompaniment",
+          "sourcePointer": "/detachments/9/enhancements/0/text",
+          "supersedes": {
+            "sourceId": "ec-waha-11e-2026-09-28",
+            "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+            "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+            "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+            "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+            "pointer": "/detachments/9/enhancements/0",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-elegant-brutes:enhancement:2",
+      "ownerId": "detachment-elegant-brutes",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-chaos-terminators"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN TERMINATOR SQUAD unit only. This unit’s attacks have [SUSTAINED HITS 1]."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient-1",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN TERMINATOR SQUAD unit only. This unit’s attacks have [SUSTAINED HITS 1]."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "source-effect-1",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-chaos-terminators"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN TERMINATOR SQUAD unit only. This unit’s attacks have [SUSTAINED HITS 1]."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient-1",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN TERMINATOR SQUAD unit only. This unit’s attacks have [SUSTAINED HITS 1]."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN TERMINATOR SQUAD unit only. This unit’s attacks have [SUSTAINED HITS 1]."
+          },
+          "sourceText": "EMPEROR’S CHILDREN TERMINATOR SQUAD unit only. This unit’s attacks have [SUSTAINED HITS 1].",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "detachment-elegant-brutes:enhancement:2::source-effect-1/effect",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "ability": "SUSTAINED HITS 1",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN TERMINATOR SQUAD unit only. This unit’s attacks have [SUSTAINED HITS 1]."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-elegant-brutes:enhancement:2",
+                "canonicalOwnerId": "detachment-elegant-brutes",
+                "canonicalClauseId": "source-effect-1",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/9/enhancements/1",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Selected physical owner/equipment and existing formation determine recipients."
+          }
+        }
+      ],
+      "detachmentId": "detachment-elegant-brutes",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "id": "unit-chaos-terminators"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "EMPEROR’S CHILDREN TERMINATOR SQUAD unit only. This unit’s attacks have [SUSTAINED HITS 1]."
+          }
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_UNIT",
+        "classification": "UNIT_UPGRADE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-ca039e696fc806bd",
+        "detachmentId": "mfm-detachment-5b619a99165f35cb",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "ELEGANT BRUTES",
+            "sourceTitle": "Frenzied Ferocity (Upgrade)"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "05ef00be54d9f876cad262b324e8ba011e6d05d6",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/9/enhancements/1",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-spectacle-of-slaughter:enhancement:1",
+      "ownerId": "detachment-spectacle-of-slaughter",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-flawless-blades"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient-1",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT_MODELS",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "source-effect-1",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-flawless-blades"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient-1",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+          },
+          "sourceText": "FLAWLESS BLADES unit only. This unit has +2\" M.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "detachment-spectacle-of-slaughter:enhancement:1::source-effect-1/effect",
+              "operation": "MODIFY_STAT",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_UNIT_MODELS",
+              "field": "M",
+              "mode": "ADD",
+              "value": 2,
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": false
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-spectacle-of-slaughter:enhancement:1",
+                "canonicalOwnerId": "detachment-spectacle-of-slaughter",
+                "canonicalClauseId": "source-effect-1",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/7/enhancements/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              }
+            },
+            {
+              "id": "detachment-spectacle-of-slaughter:enhancement:1::source-effect-1/effect/formed",
+              "operation": "MODIFY_STAT",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "field": "M",
+              "mode": "ADD",
+              "value": 2,
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-spectacle-of-slaughter:enhancement:1",
+                "canonicalOwnerId": "detachment-spectacle-of-slaughter",
+                "canonicalClauseId": "source-effect-1",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+                  "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/detachments/7/enhancements/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Selected physical owner/equipment and existing formation determine recipients."
+          }
+        }
+      ],
+      "detachmentId": "detachment-spectacle-of-slaughter",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "id": "unit-flawless-blades"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+          }
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_UNIT",
+        "classification": "UNIT_UPGRADE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-a34fca745cd9fe36",
+        "detachmentId": "mfm-detachment-56996422dd40a230",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "SPECTACLE OF SLAUGHTER",
+            "sourceTitle": "Eager Patrons (Upgrade)"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "05ef00be54d9f876cad262b324e8ba011e6d05d6",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/7/enhancements/0",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-daemonettes:section:1",
+      "ownerId": "unit-daemonettes",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-daemonettes"
+            },
+            "evidence": {
+              "field": [
+                "blocks",
+                1,
+                "text"
+              ],
+              "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient-1",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT_MODELS",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                1,
+                "text"
+              ],
+              "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "source-effect-1",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-daemonettes"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient-1",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "equipmentRequirementSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "datasheet-daemonettes:wargear:2",
+                "field": [
+                  "text"
+                ],
+                "quote": "1 Daemonette that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+          },
+          "sourceText": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "datasheet-daemonettes:section:1::source-effect-1/effect",
+              "operation": "MODIFY_STAT",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_UNIT_MODELS",
+              "field": "LD",
+              "mode": "SET",
+              "value": 6,
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "otherEntityId": "datasheet-daemonettes:wargear:2",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "1 Daemonette that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+                    }
+                  }
+                },
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": false
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_EQUIPMENT_SELECTED",
+              "provenance": {
+                "canonicalRuleId": "datasheet-daemonettes:section:1",
+                "canonicalOwnerId": "unit-daemonettes",
+                "canonicalClauseId": "source-effect-1",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Daemonettes.html",
+                  "sha256": "F8A92ACD1E4CD2FAB39618AD826A313874D0505E2181CCAEC759910D45723A41",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/4/sections/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              },
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-daemonettes:wargear:2",
+                "sourceFieldPath": [
+                  "text"
+                ]
+              }
+            },
+            {
+              "id": "datasheet-daemonettes:section:1::source-effect-1/effect/formed",
+              "operation": "MODIFY_STAT",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "field": "LD",
+              "mode": "SET",
+              "value": 6,
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "otherEntityId": "datasheet-daemonettes:wargear:2",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "1 Daemonette that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+                    }
+                  }
+                },
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_EQUIPMENT_SELECTED",
+              "provenance": {
+                "canonicalRuleId": "datasheet-daemonettes:section:1",
+                "canonicalOwnerId": "unit-daemonettes",
+                "canonicalClauseId": "source-effect-1",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Daemonettes.html",
+                  "sha256": "F8A92ACD1E4CD2FAB39618AD826A313874D0505E2181CCAEC759910D45723A41",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/4/sections/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              },
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-daemonettes:wargear:2",
+                "sourceFieldPath": [
+                  "text"
+                ]
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Selected physical owner/equipment and existing formation determine recipients."
+          }
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "05ef00be54d9f876cad262b324e8ba011e6d05d6",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Daemonettes.html",
+          "sha256": "F8A92ACD1E4CD2FAB39618AD826A313874D0505E2181CCAEC759910D45723A41",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/datasheets/4/sections/0",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-seekers:section:1",
+      "ownerId": "unit-seekers",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-seekers"
+            },
+            "evidence": {
+              "field": [
+                "blocks",
+                1,
+                "text"
+              ],
+              "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient-1",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT_MODELS",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                1,
+                "text"
+              ],
+              "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "source-effect-1",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-seekers"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient-1",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "equipmentRequirementSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "otherEntityId": "datasheet-seekers:wargear:2",
+                "field": [
+                  "text"
+                ],
+                "quote": "1 Seeker that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+          },
+          "sourceText": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "datasheet-seekers:section:1::source-effect-1/effect",
+              "operation": "MODIFY_STAT",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_UNIT_MODELS",
+              "field": "LD",
+              "mode": "SET",
+              "value": 6,
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "otherEntityId": "datasheet-seekers:wargear:2",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "1 Seeker that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+                    }
+                  }
+                },
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": false
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_EQUIPMENT_SELECTED",
+              "provenance": {
+                "canonicalRuleId": "datasheet-seekers:section:1",
+                "canonicalOwnerId": "unit-seekers",
+                "canonicalClauseId": "source-effect-1",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Seekers.html",
+                  "sha256": "188AC0D70A2209D93C6BEE99DE5BBEB2BAEC42A50B9F46F23F3CDF9618151A70",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/5/sections/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              },
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-seekers:wargear:2",
+                "sourceFieldPath": [
+                  "text"
+                ]
+              }
+            },
+            {
+              "id": "datasheet-seekers:section:1::source-effect-1/effect/formed",
+              "operation": "MODIFY_STAT",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "field": "LD",
+              "mode": "SET",
+              "value": 6,
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "equipmentRequirementSatisfied",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "otherEntityId": "datasheet-seekers:wargear:2",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "1 Seeker that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+                    }
+                  }
+                },
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  1,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_EQUIPMENT_SELECTED",
+              "provenance": {
+                "canonicalRuleId": "datasheet-seekers:section:1",
+                "canonicalOwnerId": "unit-seekers",
+                "canonicalClauseId": "source-effect-1",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Seekers.html",
+                  "sha256": "188AC0D70A2209D93C6BEE99DE5BBEB2BAEC42A50B9F46F23F3CDF9618151A70",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/5/sections/0",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              },
+              "equipmentRequirement": {
+                "binding": "SOURCE",
+                "kind": "EQUIPMENT_PRESENT",
+                "equipmentId": "datasheet-seekers:wargear:2",
+                "sourceFieldPath": [
+                  "text"
+                ]
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Selected physical owner/equipment and existing formation determine recipients."
+          }
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "05ef00be54d9f876cad262b324e8ba011e6d05d6",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Seekers.html",
+          "sha256": "188AC0D70A2209D93C6BEE99DE5BBEB2BAEC42A50B9F46F23F3CDF9618151A70",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/datasheets/5/sections/0",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-lord-exultant:section:4",
+      "ownerId": "unit-lord-exultant",
+      "sourceId": "ec-waha-11e-2026-09-28",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "blocks",
+          0,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_ID",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "datasheet-lord-exultant:profile:1"
+            },
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient-1",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient-2",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "source-effect-1",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-lord-exultant:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient-1",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "lordOfHostDeclaredBattleline",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+          },
+          "sourceText": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "datasheet-lord-exultant:section:4::source-effect-1/effect",
+              "operation": "GRANT_ABILITY",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_MODEL",
+              "ability": {
+                "canonicalId": "core-infiltrators",
+                "parameters": {}
+              },
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "lordOfHostDeclaredBattleline",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "lifetime": "SOURCE_DECLARE_BATTLE_FORMATIONS_CONDITION",
+              "provenance": {
+                "canonicalRuleId": "datasheet-lord-exultant:section:4",
+                "canonicalOwnerId": "unit-lord-exultant",
+                "canonicalClauseId": "source-effect-1",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Lord-Exultant.html",
+                  "sha256": "409015D879DDF536CF0C08EE8CCAE95B361F1D9BDE31BDFF27FFB68C80328F06",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/9/sections/3",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Requires explicit source-valid Declare Battle Formations snapshot; current attachment alone cannot activate."
+          }
+        },
+        {
+          "id": "source-effect-2",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-lord-exultant:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient-2",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "key": "lordOfHostDeclaredBattleline",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+          },
+          "sourceText": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterEffects": [
+            {
+              "id": "datasheet-lord-exultant:section:4::source-effect-2/effect",
+              "operation": "GRANT_ABILITY",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_MODEL",
+              "ability": {
+                "canonicalId": "core-scouts",
+                "parameters": {
+                  "distance": 6
+                }
+              },
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "lordOfHostDeclaredBattleline",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "lifetime": "SOURCE_DECLARE_BATTLE_FORMATIONS_CONDITION",
+              "provenance": {
+                "canonicalRuleId": "datasheet-lord-exultant:section:4",
+                "canonicalOwnerId": "unit-lord-exultant",
+                "canonicalClauseId": "source-effect-2",
+                "sourceEvidence": {
+                  "sourceId": "ec-waha-11e-2026-09-28",
+                  "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Lord-Exultant.html",
+                  "sha256": "409015D879DDF536CF0C08EE8CCAE95B361F1D9BDE31BDFF27FFB68C80328F06",
+                  "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+                  "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+                  "pointer": "/datasheets/9/sections/3",
+                  "authority": "ACCEPTED_SECONDARY"
+                }
+              }
+            }
+          ],
+          "rosterClassificationNote": {
+            "reason": "Requires explicit source-valid Declare Battle Formations snapshot; current attachment alone cannot activate."
+          }
+        }
+      ],
+      "duration": [
+        {
+          "endpoint": "NOT_EXPLICIT",
+          "inferredExpiry": false
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "05ef00be54d9f876cad262b324e8ba011e6d05d6",
+        "factualOwner": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Lord-Exultant.html",
+          "sha256": "409015D879DDF536CF0C08EE8CCAE95B361F1D9BDE31BDFF27FFB68C80328F06",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/datasheets/9/sections/3",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
+      }
     }
   ],
   "abilityReferences": {
@@ -4377,6 +6389,56 @@
           "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
           "pointer": "/detachments/1/enhancements/0",
           "authority": "ACCEPTED_SECONDARY"
+        }
+      }
+    },
+    "core-deep-strike": {
+      "id": "core-deep-strike",
+      "title": "DEEP STRIKE",
+      "parameters": {},
+      "provenance": {
+        "base": {
+          "sourceId": "waha-core-corpus-2026-09-25",
+          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+          "sourceDate": "2026-09-25",
+          "sourceScope": "GLOBAL_CORE",
+          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+        }
+      }
+    },
+    "core-infiltrators": {
+      "id": "core-infiltrators",
+      "title": "INFILTRATORS",
+      "parameters": {},
+      "provenance": {
+        "base": {
+          "sourceId": "waha-core-corpus-2026-09-25",
+          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+          "sourceDate": "2026-09-25",
+          "sourceScope": "GLOBAL_CORE",
+          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+        }
+      }
+    },
+    "core-scouts": {
+      "id": "core-scouts",
+      "title": "SCOUTS",
+      "parameters": {
+        "distance": {
+          "type": "number",
+          "min": 0
+        }
+      },
+      "provenance": {
+        "base": {
+          "sourceId": "waha-core-corpus-2026-09-25",
+          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+          "sourceDate": "2026-09-25",
+          "sourceScope": "GLOBAL_CORE",
+          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
         }
       }
     }

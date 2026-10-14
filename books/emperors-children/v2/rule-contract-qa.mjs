@@ -263,7 +263,8 @@ check(()=>{
   assert.deepEqual(book.entities.map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]),
     facts.entities.map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]),'Canonical facts or identities changed');
   assert.deepEqual(book.entities.filter(e=>e.ruleContract).map(e=>e.id).sort(),built.contracts.map(c=>c.ruleId).sort());
-  assert.ok(!book.entities.find(e=>e.id==='datasheet-lord-exultant:section:4').ruleContract,'Lord of the Host must remain factual only');
+  const host=book.entities.find(e=>e.id==='datasheet-lord-exultant:section:4').ruleContract;
+  assert.equal(host.ownerId,'unit-lord-exultant');assert.equal(host.roles[0].subject,'MODEL');
 });
 assert.equal(JSON.stringify(facts),original,'Canonical factual input changed');
 console.log(JSON.stringify({status:'PASS',sourceBindings:10,executableOperations:13,conditionalClauses:1,

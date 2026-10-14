@@ -13,7 +13,7 @@ import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 const directory=path.dirname(fileURLToPath(import.meta.url)),root=path.resolve(directory,'../../..');
 const facts=JSON.parse(fs.readFileSync(path.join(directory,'generated/effective.json'),'utf8'));
 const {book,schema,contracts,artifact}=buildECContracts({facts}),canonical=new Map(facts.entities.map(e=>[e.id,e]));
-const permissionContracts=contracts.slice(10),original=JSON.stringify(facts);
+const permissionContracts=contracts.slice(10,15),original=JSON.stringify(facts);
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex').toUpperCase();
 const text=value=>value.replace(/[▪•]/g,'-').replace(/[‑−]/g,'-').replace(/[‘’]/g,"'").replace(/\s/g,'');
 let checks=0,mutations=0;
@@ -164,10 +164,10 @@ check(()=>{
   assert.throws(()=>s.load(state(e.owner,[ambiguous])),/Ambiguous physical Enhancement bearer/);
 });
 check(()=>{
-  assert.deepEqual(buildECContracts({permissionInputs:[]}).contracts,contracts.slice(0,10),'Previous ten contracts changed');
+  assert.deepEqual(buildECContracts({permissionInputs:[],formationInputs:[]}).contracts,contracts.slice(0,10),'Previous ten contracts changed');
   assert.deepEqual(book.entities.map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]),
     facts.entities.map(e=>[e.id,e.parentId,e.data,e.provenance,e.fieldProvenance]));
-  assert.equal(artifact.scope.implementedRules,15);assert.equal(artifact.scope.bindingAdaptationRules,5);
+  assert.equal(artifact.scope.directReuseRules,10);assert.equal(artifact.scope.bindingAdaptationRules,5);
 });
 
 mutate(permissionContracts,x=>x.pop(),inventory);
