@@ -1,11 +1,18 @@
 const requireValue=(condition,message)=>{if(!condition)throw new TypeError(message);};
+// Exact accepted native occurrences, not a label-based ability normalizer.
+// Keep the occurrence ID so baseline presentation and source provenance survive
+// numeric grants, suppression and reconstruction after attachment changes.
+const nativeFnp=new Map(['fulgurite-electro-priests','corpuscarii-electro-priests'].map(slug=>{
+  const referenceId=`datasheet-${slug}:rule-reference:1`;
+  return [referenceId+':entry:1:1',{referenceId,unitId:'unit-'+slug,value:5}];
+}));
 
 /** Ephemeral canonical shape/reference adapter, not a factual owner. Source
  * grammar stays book-owned; runtime receives only typed roles and exact IDs. */
 export function buildRosterAttachmentInputs(canonical,bindings) {
   const book=structuredClone(canonical),records=new Map(book.entities.map(entity=>[entity.id,entity]));
   requireValue(records.size===book.entities.length&&bindings?.schema==='roster-v2/attachment-bindings','Invalid attachment inputs');
-  book.rosterProfileBindings=[];book.rosterReferenceSemantics={};
+  book.rosterProfileBindings=[];book.rosterReferenceSemantics={};const nativeSeen=new Set();
   for(const unit of book.entities.filter(entity=>entity.kind==='DATASHEET')) {
     const owner=records.get(unit.data.keywordScopesId);
     requireValue(owner?.kind==='KEYWORD_SCOPES'&&owner.parentId===unit.id,'Invalid canonical keyword owner');
@@ -19,9 +26,18 @@ export function buildRosterAttachmentInputs(canonical,bindings) {
     }
     for(const id of unit.data.ruleReferenceIds) {
       const reference=records.get(id);requireValue(reference?.kind==='RULE_REFERENCE'&&reference.parentId===unit.id,'Invalid canonical ability reference');
-      book.rosterReferenceSemantics[id]={abilities:reference.data.groups.flatMap(group=>group.entries.map(entry=>({id:entry.id,name:entry.label})))};
+      book.rosterReferenceSemantics[id]={abilities:reference.data.groups.flatMap(group=>group.entries.map(entry=>{
+        const numeric=nativeFnp.get(entry.id);
+        if(!numeric)return {id:entry.id,name:entry.label};
+        requireValue(numeric.referenceId===id&&numeric.unitId===unit.id&&entry.label==='Feel No Pain 5+'&&
+          group.label==='CORE ABILITIES'&&entry.sourceTooltipIds?.length===1&&entry.sourceTooltipIds[0]==='#tooltip_content00037'&&
+          reference.provenance?.sourceId==='am-waha-11e-2026-09-25'&&reference.provenance.pointer&&!nativeSeen.has(entry.id),
+          'Unbound native numeric FNP evidence: '+entry.id);
+        nativeSeen.add(entry.id);return {id:entry.id,name:'Feel No Pain',value:numeric.value};
+      }))};
     }
   }
+  requireValue(nativeSeen.size===nativeFnp.size,'Missing accepted native FNP occurrence');
   const declarations=book.entities.filter(entity=>entity.kind==='ATTACHMENT_DECLARATION'),policies=new Map();
   const source=(declaration)=>{
     const section=records.get(declaration.data.sourceSectionId);

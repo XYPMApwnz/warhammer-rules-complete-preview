@@ -134,5 +134,6 @@ extended.newRequirements.push({bookId:additional.bookId,canonicalId:additional.s
   sourceEvidence:'Synthetic ledger-only guard control',reviewDecision:'EXECUTABLE_REQUIRED'});
 assert.equal(assessEffectCoverage(extended,[...expectations.cases,additional],[...results.map(r=>r.id),additional.id]).historicalRequired,397);
 assert.throws(()=>assessEffectCoverage(extended,[...expectations.cases,additional],results.map(r=>r.id)),/Unverified current obligation/);
-console.log(JSON.stringify({status:'PASS',results,mutationsRejected:mutations.length,mutations,coverage,
-  realNewRecruitExportTested:false,sharedExecutorChanged:false}));
+export const chargeSourceGuardResult={status:'PASS',results,mutationsRejected:mutations.length,mutations,coverage,
+  realNewRecruitExportTested:false,sharedExecutorChanged:false};
+console.log(JSON.stringify(chargeSourceGuardResult));

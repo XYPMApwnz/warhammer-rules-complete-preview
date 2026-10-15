@@ -1,0 +1,44 @@
+{
+  "authority": "Independent accepted raw source expectations; no numeric expectation is read from production bindings.",
+  "id": "am-native-fnp",
+  "auditRowId": "adeptus-mechanicus:115",
+  "bookId": "adeptus-mechanicus",
+  "source": {
+    "canonicalId": "datasheet-tech-priest-dominus:section:1",
+    "ownerId": "unit-tech-priest-dominus",
+    "field": ["blocks", 0, "text"],
+    "quote": "Lord of the Machine Cult: While this model is leading a unit, models in that unit have the Feel No Pain 5+ ability. If that unit has the ELECTRO-PRIESTS keyword, models in that unit have the Feel No Pain 4+ ability instead.",
+    "document": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Tech-priest-Dominus.html",
+    "sha256": "b486db2be3c91063f4ac8616b850b6be72eaa9919d80a989f6470f133ed0bc45"
+  },
+  "nativeSources": [
+    {
+      "canonicalId": "datasheet-fulgurite-electro-priests:rule-reference:1",
+      "ownerId": "unit-fulgurite-electro-priests",
+      "entryId": "datasheet-fulgurite-electro-priests:rule-reference:1:entry:1:1",
+      "quote": "Feel No Pain 5+",
+      "document": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Fulgurite-Electro-priests.html",
+      "sha256": "6939e44eb56c8b07aecdeef7ec3acf99bd9266ae649fa4063e20f6bcb384c575"
+    },
+    {
+      "canonicalId": "datasheet-corpuscarii-electro-priests:rule-reference:1",
+      "ownerId": "unit-corpuscarii-electro-priests",
+      "entryId": "datasheet-corpuscarii-electro-priests:rule-reference:1:entry:1:1",
+      "quote": "Feel No Pain 5+",
+      "document": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Corpuscarii-Electro-priests.html",
+      "sha256": "e8bc032f2b3520ce4f0b3cfc1a54bc6ae2dac3cc94c108e4af8bd60b710f34af"
+    }
+  ],
+  "expectedClauseId": "block-1-electro-priests",
+  "expectedOperation": {
+    "operation": "GRANT_MODEL_ABILITY",
+    "targetSubject": "MODEL",
+    "targetBinding": "SOURCE_FORMED_MODELS",
+    "ability": {"name": "Feel No Pain", "value": 4},
+    "lifetime": "WHILE_LEADING"
+  },
+  "nativeValue": 5,
+  "grantedValue": 4,
+  "ordinaryLedUnitValue": 5,
+  "scope": "Each physical MODEL in the led UNIT, including the leader; independent physical instances remain native."
+}

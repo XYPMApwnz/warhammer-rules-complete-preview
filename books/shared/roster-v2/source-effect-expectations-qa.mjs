@@ -11,7 +11,8 @@ export function assertSourceEffectExpectation({expectation,book,applied,observat
   assert.equal(source.field.reduce((value,key)=>value?.[key],entity.data),source.quote,'SOURCE TEXT: '+source.canonicalId);
   assert.ok(entity.provenance,'SOURCE PROVENANCE: '+source.canonicalId);
   assert.ok(entity.ruleContract,'CONTRACT PRESENT: '+source.canonicalId);
-  const effects=entity.ruleContract.clauses.flatMap(clause=>(clause.rosterEffects||[]).map(effect=>({clause,effect})))
+  const effects=entity.ruleContract.clauses.filter(clause=>!expectation.expectedClauseId||clause.id===expectation.expectedClauseId)
+    .flatMap(clause=>(clause.rosterEffects||[]).map(effect=>({clause,effect})))
     .filter(({effect})=>effect.operation===expectedOperation.operation&&effect.field===expectedOperation.field);
   assert.ok(effects.length,'EXECUTABLE BINDING REQUIRED: '+source.canonicalId);
   for(const {clause,effect}of effects){
