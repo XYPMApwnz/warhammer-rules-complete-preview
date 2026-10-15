@@ -16,7 +16,7 @@ const inputs=await loadGlossaryV2Inputs(),index=createGlossaryV2Index(inputs);
 const published=read('glossary/v2/generated/index.en.json');
 assertGlossaryV2Parity(published,inputs);
 assert.deepEqual(index.supportedArmyBooks,V2_ARMY_BOOK_IDS);
-const excludedBooks=new Set(['tyranids','tau-empire','space-marines','dark-angels','blood-angels']);
+const excludedBooks=new Set(['tau-empire','space-marines','dark-angels','blood-angels']);
 assert.ok(index.entries.every(entry=>entry.domain!=='ARMY'||!excludedBooks.has(entry.sourceOwner.bookId)),'Unconnected standalone Army Book leaked into V2');
 const centralKinds=new Set(['POINTS_SCHEDULE_ROW','PAID_WARGEAR_COST','DETACHMENT_ROSTER_METADATA','ENHANCEMENT_COST_QUALIFIERS','ALLIED_POINTS_DEPENDENCY','ATTACHMENT_RELATION']);
 const ownerKey=(book,id)=>book+'\0'+id;
@@ -26,7 +26,7 @@ assert.equal(army.size,armyEntries.length,'Duplicated canonical Army owner');
 let canonicalFacts=0;
 const expectedArmyKeys=new Set();
 for(const model of inputs.armyModels)for(const entity of model.entities){
-  if(centralKinds.has(entity.kind))continue;
+  if(centralKinds.has(entity.kind)||entity.data.status==='SUPERSEDED')continue;
   const key=ownerKey(model.book.id,entity.id),entry=army.get(key);expectedArmyKeys.add(key);
   assert.ok(entry,'Missing canonical V2 Glossary record '+key);
   assert.deepEqual(entry.facts.canonicalData,entity.data,'Canonical data mismatch '+key);

@@ -20,7 +20,7 @@ const dependencies=new Map([
   ['/assets/core-rules-cover-fallback.jpg','image/jpeg'],
   ['/books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp','image/webp'],
   ['/books/emperors-children/assets/emperors-children-cover-480.webp','image/webp'],
-  ...['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'].map(book=>[
+  ...['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids'].map(book=>[
     `/books/${book}/v2/registration.mjs`,'text/javascript'])
 ]);
 

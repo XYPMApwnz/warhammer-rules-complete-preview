@@ -149,14 +149,14 @@ try{
       const image=document.querySelector(`[data-v2-book="${id}"] img`);return image?.complete&&image.naturalWidth>0;
     }));
     assert.deepEqual(requests.slice(homeRequestStart).filter(address=>
-      /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children)\/v2\//.test(address)&&!address.endsWith('/registration.mjs')),
+      /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children|tyranids)\/v2\//.test(address)&&!address.endsWith('/registration.mjs')),
     [],'Home loaded book factual data or roster service before book selection');
     await screenshot(page,`shell-home-${device}`);
     assert.equal(await page.locator('[data-v2-shell]').count(),1);
     for(const destination of ['HOME','CORE_RULES','ARMY_BOOK','ROSTER','GLOSSARY'])assert.equal(await page.locator(`[data-v2-primary-nav] [data-v2-destination="${destination}"]`).count(),1);
     assert.deepEqual(await page.locator('.v2-library-home [data-v2-book]').evaluateAll(nodes=>nodes.map(node=>node.dataset.v2Book)),
-      ['adeptus-mechanicus','death-guard','chaos-space-marines','emperors-children'],'Exact four Army Books on Home');
-    for(const book of ['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'])assert.ok(await page.locator(`[data-v2-book="${book}"]`).count()>0,'Home omits a registered book');
+      ['adeptus-mechanicus','death-guard','chaos-space-marines','emperors-children','tyranids'],'Exact five Army Books on Home');
+    for(const book of ['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids'])assert.ok(await page.locator(`[data-v2-book="${book}"]`).count()>0,'Home omits a registered book');
     await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await active(page,null);
     assert.equal(new URL(page.url()).searchParams.get('v2'),'ROSTER');
     for(const destination of ['CORE_RULES','GLOSSARY']){
@@ -170,7 +170,7 @@ try{
       const bookRequestStart=requests.length;
       const c=cases[book];await page.locator(`[data-v2-book="${book}"]`).first().click();await active(page,book);await geometry(page);
       assert.deepEqual([...new Set(requests.slice(bookRequestStart).filter(address=>
-        /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children)\/v2\/(?:generated\/|roster-boot\.mjs)/.test(address))
+        /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children|tyranids)\/v2\/(?:generated\/|roster-boot\.mjs)/.test(address))
         .map(address=>address.split('/')[2]))],[book],'Book selection loaded another book factual payload or roster service');
       await screenshot(page,`shell-${book}-${device}`);
       await bookContents(page,device,book);

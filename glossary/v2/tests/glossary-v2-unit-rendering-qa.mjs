@@ -7,10 +7,10 @@ import {createReferenceContract} from '../../../books/shared/army-book-app-v2/re
 const root=new URL('../../../',import.meta.url);
 const read=file=>JSON.parse(fs.readFileSync(new URL(file,root),'utf8'));
 const index=read('glossary/v2/generated/index.en.json');
-const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'];
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids'];
 const sources=new Map(books.map(book=>[book,read(`books/${book}/v2/generated/effective.json`).entities]));
 const units=[...sources].flatMap(([book,entities])=>entities.filter(entity=>entity.kind==='DATASHEET').map(entity=>({book,entity})));
-assert.equal(units.length,147,'All 36 DG, 34 AdMech, 54 CSM and 23 EC canonical datasheets are required');
+assert.equal(units.length,199,'All 36 DG, 34 AdMech, 54 CSM, 23 EC and 52 Tyranids canonical datasheets are required');
 const owner=entity=>entity.parentId||entity.ownerId;
 const statsOf=(entity,byId)=>{
   const stats={...(entity.data.stats||entity.data.statline||Object.fromEntries(Object.entries(entity.data).filter(([key])=>['M','T','SV','W','LD','OC','INSV'].includes(key))))};
@@ -54,7 +54,7 @@ function verify(candidate){
     assert.deepEqual(entry.facts.profiles.map(profile=>profile.canonicalId),profileIds,`${entry.id}: exact model-profile inventory and order`);
     const content=display.project(entry),definition=content.definition;
     assert.doesNotMatch(definition,/\[object Object\]/,`${entry.id}: readable definition`);
-    for(const heading of ['UNIT COMPOSITION','MODEL PROFILES','WEAPON PROFILES','ABILITIES','KEYWORDS'])
+    for(const heading of ['UNIT COMPOSITION','MODEL PROFILES','ABILITIES','KEYWORDS'])
       assert.ok(definition.includes(heading),`${entry.id}: ${heading}`);
     const composition=children.find(row=>row.kind==='UNIT_COMPOSITION');
     if(composition){
@@ -82,6 +82,7 @@ function verify(candidate){
       assert.equal(content.structured.modelProfiles.length,profileIds.length,`${entry.id}: mixed model profiles preserved`);
     }
     const weapons=children.filter(row=>row.kind==='WEAPON_PROFILE');
+    assert.equal(definition.includes('WEAPON PROFILES'),weapons.length>0,`${entry.id}: weapon section must match source-owned inventory`);
     const renderedWeapons=candidate.entries.filter(row=>row.domain==='ARMY'&&row.recordType==='WEAPON_PROFILE'&&row.sourceOwner.bookId===book&&row.parent?.canonicalId===entity.id);
     assert.deepEqual(renderedWeapons.map(row=>row.sourceOwner.canonicalId).sort(),weapons.map(row=>row.id).sort(),`${entry.id}: exact physical weapon inventory`);
     for(const weapon of weapons){

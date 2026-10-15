@@ -132,7 +132,15 @@ function addArmyEntries(entries,models){
   for(const model of models){
     if(!BOOK_IDS.includes(model.book.id)||!model.factualInterface||!Array.isArray(model.entities))throw new Error('Non-V2 factual owner');
     const book=model.book.id,records=new Map(model.entities.map(e=>[e.id,e])),ownerOf=e=>e.parentId||e.ownerId;
-    const sourceRows=model.entities.filter(e=>!mfmOwnedKinds.has(e.kind));
+    const sourceRows=model.entities.filter(entity=>{
+      if(mfmOwnedKinds.has(entity.kind))return false;
+      if(entity.data.status!=='SUPERSEDED')return true;
+      const owner=records.get(ownerOf(entity));
+      assert.equal(entity.kind,'RULE_REFERENCE','Unreviewed superseded factual kind');
+      assert.equal(entity.data.suppressionProvenance?.authority,'AUTHORITATIVE_CURRENT','Missing official suppression provenance');
+      assert.ok(owner?.data.ruleReferenceIds&&!owner.data.ruleReferenceIds.includes(entity.id),'Suppressed reference is still an active unit fact');
+      return false;
+    });
     const entryByCanonical=new Map();
     const label=e=>e.displayName||e.label||e.data.title||e.data.name||e.data.composition?.name||(types[e.kind]==='PROFILE'||e.kind==='PROFILE'?records.get(ownerOf(e))?.data.title:null)||e.id;
     const children=e=>model.entities.filter(child=>ownerOf(child)===e.id);
@@ -155,6 +163,13 @@ function addArmyEntries(entries,models){
         for(const targetId of data.semanticTableIds)assert.equal(records.get(targetId)?.kind,'STRUCTURED_RULE_TABLE','Missing semantic table owner');
         facts.componentIds=clone(data.semanticTableIds);
       }
+      if(type==='SOURCE_PRESENTATION_NOTE'&&data.classification==='TABLE_OCCURRENCE_IN_RULE_TEXT'){
+        const owners=model.entities.filter(record=>record.sourceEntityId===data.renderedBySourceId);
+        assert.equal(owners.length,1,'Missing/ambiguous source-owned table text');
+        assert.equal(owners[0].kind,'DETACHMENT_RULE','Unreviewed table occurrence owner');
+        facts.componentIds=[owners[0].id];
+      }
+      if(type==='SOURCE_CONFLICT')facts.text=[data.classification,data.decision,...(data.officialEvidence||[]).map(evidence=>evidence.text)].filter(Boolean).join('\n');
       if(type==='WEAPON_PROFILE')Object.assign(facts,{a:data.attacks??data.a,s:data.strength??data.s,d:data.damage??data.d});
       if(type==='PROFILE')facts.stats=profileStats(entity);
       if(type==='UNIT'){

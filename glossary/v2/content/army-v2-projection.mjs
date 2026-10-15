@@ -16,17 +16,21 @@ import {buildApp as buildCSMApp} from '../../../books/chaos-space-marines/v2/app
 import {buildECContracts} from '../../../books/emperors-children/v2/rule-contract-build.mjs';
 import {buildApp as buildECApp} from '../../../books/emperors-children/v2/app-build.mjs';
 import {consumeMfm as consumeECMfm} from '../../../books/emperors-children/v2/mfm-boundary.mjs';
+import {buildTyranidsContracts} from '../../../books/tyranids/v2/rule-contract-build.mjs';
+import {buildApp as buildTyranidsApp} from '../../../books/tyranids/v2/app-build.mjs';
+import {consumeMfm as consumeTyranidsMfm} from '../../../books/tyranids/v2/mfm-boundary.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const read=relative=>JSON.parse(fs.readFileSync(path.join(repo,relative),'utf8'));
 const sameProjection=(actual,expected,message)=>assert.ok(JSON.stringify(actual)===JSON.stringify(expected),message);
-export const V2_ARMY_BOOK_IDS=Object.freeze(['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children']);
+export const V2_ARMY_BOOK_IDS=Object.freeze(['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids']);
 export const V2_FACTUAL_INTERFACES=Object.freeze({
   'death-guard':'books/death-guard/v2/build.mjs#buildFactualV2().effective',
   'adeptus-mechanicus':'books/adeptus-mechanicus/v2/build.py#build().effective',
   'chaos-space-marines':'books/chaos-space-marines/v2/build.py#build().effective',
-  'emperors-children':'books/emperors-children/v2/build.py#build().effective'
+  'emperors-children':'books/emperors-children/v2/build.py#build().effective',
+  'tyranids':'books/tyranids/v2/build.py#build().effective'
 });
 
 function pythonRuntime() {
@@ -104,7 +108,7 @@ function mfmIdentityBindings(model,{factualModel}={}) {
     const id=reference.armyBinding.armyUnitId;if(!entities.has(id))continue;
     add(reference.id,id);
     for(const points of catalog.unitPointRecords.filter(record=>record.unitReferenceId===reference.id))add(points.id,id);
-    if(bookId!=='emperors-children')for(const paid of catalog.paidUpgradeRecords.filter(record=>record.unitReferenceId===reference.id))add(paid.id,id);
+    if(!['emperors-children','tyranids'].includes(bookId))for(const paid of catalog.paidUpgradeRecords.filter(record=>record.unitReferenceId===reference.id))add(paid.id,id);
   }
   if(bookId==='death-guard') {
     for(const key of ['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings'])for(const binding of factualModel.mfm[key])add(binding.mfmRecordId,binding.entityId);
@@ -114,6 +118,9 @@ function mfmIdentityBindings(model,{factualModel}={}) {
   } else if(bookId==='emperors-children') {
     const consumed=consumeECMfm(model.entities);
     for(const key of ['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings'])for(const binding of consumed[key])add(binding.mfmRecordId,binding.entityId);
+  } else if(bookId==='tyranids') {
+    const consumed=consumeTyranidsMfm(model.entities);
+    for(const key of ['unitBindings','detachmentBindings','enhancementBindings','paidOptionBindings'])for(const binding of consumed.partitions[key])add(binding.mfmRecordId,binding.entityId);
   } else {
     const capture=read('books/chaos-space-marines/sources/official-mfm-v1.5.json');
     const captured=read('books/chaos-space-marines/v2/capture-bindings.json');
@@ -148,11 +155,14 @@ export function loadV2ArmyModels(options={}) {
   const csm=read('books/chaos-space-marines/v2/generated/effective.json'),csmBuilt=buildCSMContracts({facts:csm});
   const ec=read('books/emperors-children/v2/generated/effective.json'),ecBuilt=buildECContracts({facts:ec});
   sameProjection(read('books/emperors-children/v2/generated/rule-contracts.json'),ecBuilt.artifact,'Stale EC contract projection');
+  const tyr=read('books/tyranids/v2/generated/effective.json'),tyrBuilt=buildTyranidsContracts({facts:tyr});
+  sameProjection(read('books/tyranids/v2/generated/rule-contracts.json'),tyrBuilt.artifact,'Stale Tyranids contract projection');
   const models=[
     {book:{id:'death-guard'},entities:dg.entities,appPayload:buildDGApp({...dgInputs,model:dgContract,records})},
     {book:{id:'adeptus-mechanicus'},entities:am.entities,appPayload:buildAdMechApp(amInputs)},
     {book:{id:'chaos-space-marines'},entities:csm.entities,appPayload:buildCSMApp(csmBuilt,{relatedRules:read('books/chaos-space-marines/v2/generated/app-presentation.json').relatedRules})},
-    {book:{id:'emperors-children'},entities:ec.entities,presentationEntities:ecBuilt.book.entities.filter(entity=>!ec.entities.some(fact=>fact.id===entity.id)),appPayload:buildECApp(ecBuilt)}
+    {book:{id:'emperors-children'},entities:ec.entities,presentationEntities:ecBuilt.book.entities.filter(entity=>!ec.entities.some(fact=>fact.id===entity.id)),appPayload:buildECApp(ecBuilt)},
+    {book:{id:'tyranids'},entities:tyr.entities,appPayload:buildTyranidsApp(tyrBuilt)}
   ].map(model=>({...model,factualInterface:V2_FACTUAL_INTERFACES[model.book.id],mfmIdentityBindings:mfmIdentityBindings(model,{factualModel:dg})}));
   assertV2ArmyBookParity(models);
   return models;

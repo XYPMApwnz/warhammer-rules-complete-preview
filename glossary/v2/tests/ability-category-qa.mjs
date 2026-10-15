@@ -10,7 +10,7 @@ import {encodeRoute,decodeRoute} from '../../../books/shared/army-book-app-v2/ro
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
-const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'];
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids'];
 const specialGroups=new Set(['datasheet-mortarion:section:1','datasheet-belisarius-cawl:section:4','datasheet-thulia-ghuld:section:4','datasheet-fulgrim:section:5']);
 const selectionContexts={
   'datasheet-mortarion:section:1':{canonicalId:'datasheet-mortarion:section:3',path:'/blocks/0/text'},
@@ -105,9 +105,9 @@ function reconcile(corpus){
 }
 const {projection}=reconcile(publication);
 const counts=Object.fromEntries(books.map(book=>[book,{abilities:[...expected.values()].filter(entry=>entry.book===book&&entry.category==='ABILITY').length,wargearAbilities:[...expected.values()].filter(entry=>entry.book===book&&entry.category==='WARGEAR_ABILITY').length}]));
-assert.deepEqual(counts,{'death-guard':{abilities:61,wargearAbilities:7},'adeptus-mechanicus':{abilities:60,wargearAbilities:12},'chaos-space-marines':{abilities:92,wargearAbilities:7},'emperors-children':{abilities:38,wargearAbilities:7}},'Reviewed source-block inventory changed');
-assert.equal(aggregates.size,97);
-assert.equal([...expected.values()].filter(entry=>entry.path).length,183);
+assert.deepEqual(counts,{'death-guard':{abilities:61,wargearAbilities:7},'adeptus-mechanicus':{abilities:60,wargearAbilities:12},'chaos-space-marines':{abilities:92,wargearAbilities:7},'emperors-children':{abilities:38,wargearAbilities:7},tyranids:{abilities:79,wargearAbilities:0}},'Reviewed source-block inventory changed');
+assert.equal(aggregates.size,149);
+assert.equal([...expected.values()].filter(entry=>entry.path).length,262);
 const firstField=[...expected.values()].find(entry=>entry.path),firstEntryId=firstField.targetId.slice(0,-('::'+firstField.path).length);
 const getEntry=corpus=>corpus.entries.find(entry=>entry.id===firstEntryId);
 let mutations=0;
@@ -128,4 +128,4 @@ detected('missing governing named-ability condition',corpus=>{delete corpus.entr
 detected('foreign governing context',corpus=>{const originalId=contextualField.targetId.slice(0,-('::'+contextualField.path).length);corpus.entries.find(entry=>entry.id===originalId).presentation.referenceFields.find(field=>field.path===contextualField.path).referenceContext={canonicalId:'datasheet-chaos-lord:section:1:block:0:text'};});
 detected('wrong physical UNIT governing context',corpus=>{const originalId=contextualField.targetId.slice(0,-('::'+contextualField.path).length);corpus.entries.find(entry=>entry.id===originalId).presentation.referenceFields.find(field=>field.path===contextualField.path).referenceContext={canonicalId:'datasheet-biologus-putrifier:section:1',path:'/blocks/0/text'};});
 assert.equal(JSON.stringify(publication),untouched,'Presentation projection mutated canonical publication');
-console.log(JSON.stringify({status:'PASS',abilityCategories:counts,sourceOwnedFieldViews:183,originalAggregateURLs:aggregates.size,governingConditionControls:[...expected.values()].filter(entry=>entry.context).length,nonAbilityControls:excluded.length,mutationControls:mutations,canonicalDataUnchanged:true,totalViews:projection.cards.length}));
+console.log(JSON.stringify({status:'PASS',abilityCategories:counts,sourceOwnedFieldViews:[...expected.values()].filter(entry=>entry.path).length,originalAggregateURLs:aggregates.size,governingConditionControls:[...expected.values()].filter(entry=>entry.context).length,nonAbilityControls:excluded.length,mutationControls:mutations,canonicalDataUnchanged:true,totalViews:projection.cards.length}));
