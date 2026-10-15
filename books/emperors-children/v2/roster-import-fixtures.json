@@ -1,0 +1,32 @@
+{
+  "schema": "ec-v2/source-backed-import-fixtures/v1",
+  "formatAuthority": "Existing shared New Recruit FACTION/DETACHMENT, unit, Enhancement, bullet MODEL and loadout grammar",
+  "captureStatus": "Constructed source-backed cases, not claimed as downloaded or browser-exported captures",
+  "sources": ["sources/waha-11e-current-2026-09-28/corpus.json", "sources/bsdata-emperors-children-11e.json", "v2/generated/effective.json", "central MFM v1.6 references"],
+  "fixtures": [
+    {
+      "id": "character-bodyguard",
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Court of the Phoenician\n+ WARLORD: Char1: Lord Exultant\nChar1: 1x Lord Exultant (95 pts): Bolt pistol, Plasma pistol, Phoenix power spear, Close combat weapon\nEnhancement: Exalted Patron (+15 pts)\n5x Infractors (95 pts)\n• 1x Obsessionist: Bolt pistol, Power sword\n• 4x Infractor: Bolt pistol, Duelling sabre\nCreated with newrecruit.eu\n"
+    },
+    {
+      "id": "legions-physical-equipment",
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Carnival of Excess\n1x Keeper of Secrets (265 pts): Phantasmagoria, Snapping claws, Witstealer sword, Shining aegis\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws, Instrument of Chaos\n• 1x Daemonette: Slashing claws, Daemonic icon\n• 7x Daemonette: Slashing claws\n5x Seekers (85 pts)\n• 1x Heartseeker: Lashing tongues, Slashing claws\n• 1x Seeker: Lashing tongues, Slashing claws, Instrument of Chaos\n• 1x Seeker: Lashing tongues, Slashing claws, Daemonic icon\n• 2x Seeker: Lashing tongues, Slashing claws\n1x Shalaxi Helbane (315 pts): Lash of Slaanesh, Pavane of Slaanesh, Snapping claws, Soulpiercer\n3x Fiends (90 pts)\n• 1x Blissbringer: Barbed tail and dissecting claws\n• 2x Fiend: Barbed tail and dissecting claws\n"
+    },
+    {
+      "id": "unit-upgrades",
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Elegant Brutes, Spectacle of Slaughter\n5x Chaos Terminators (155 pts)\n• 1x Terminator Champion: Accursed weapon, Combi-bolter\n• 4x Accursed weapon and combi-bolter: Accursed weapon, Combi-bolter\nEnhancement: Frenzied Ferocity\n3x Flawless Blades (95 pts)\n• 3x Flawless Blade: Bolt pistol, Blissblade\nEnhancement: Eager Patrons\n3x Flawless Blades (95 pts)\n• 3x Flawless Blade: Bolt pistol, Blissblade\nEnhancement: Beguiling Grotesquerie\n"
+    },
+    {
+      "id": "possessed-blade-missing-decision",
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Carnival of Excess\nChar1: 1x Lord Exultant (95 pts): Bolt pistol, Plasma pistol, Phoenix power spear, Close combat weapon\nEnhancement: Possessed Blade (+35 pts)\n"
+    },
+    {
+      "id": "aggregate-equipment-unresolved",
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Carnival of Excess\n10x Daemonettes (100 pts): 1x Instrument of Chaos, 1x Daemonic icon\n• 1x Alluress: Slashing claws\n• 9x Daemonette: Slashing claws\n"
+    },
+    {
+      "id": "bsdata-model-variants",
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Carnival of Excess\n6x Noise Marines (160 pts)\n• 1x Disharmonist: Sonic blaster, Close combat weapon\n• 4x Noise Marine w/ sonic blaster: Sonic blaster, Close combat weapon\n• 1x Noise Marine w/ blastmaster: Blastmaster, Close combat weapon\n5x Tormentors (85 pts)\n• 1x Obsessionist: Bolt pistol, Power sword\n• 3x Tormentor: Boltgun, Close combat weapon\n• 1x Tormentor w/ plasma gun: Plasma gun, Close combat weapon\n"
+    }
+  ]
+}
