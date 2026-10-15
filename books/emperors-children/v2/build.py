@@ -13,6 +13,7 @@ from collections import Counter
 from pathlib import Path
 from lxml import html
 from official_sources import read_official
+from detachment_rules import read_named_rules, validate_named_rules
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
@@ -70,7 +71,7 @@ def verify_sources(root, enrollment):
     return artifacts
 
 
-def collect_sources(corpus, models):
+def collect_sources(corpus, models, named_rules=()):
     """Source addresses only. Canonical identities come from the frozen registry."""
     rows = []
     def add(item, kind, parent, pointer, document, data=None):
@@ -112,6 +113,15 @@ def collect_sources(corpus, models):
         if item['class'] == 'FAQ' and int(item['sourceId'].split('-')[1]) > 3:
             continue
         add(item, item['class'], None, f'/errata/{i}', hub)
+    # V2 restores a raw sibling omitted by the frozen historical corpus. Its
+    # stable identity and official body come from reviewed source addresses.
+    for rule in named_rules:
+        if any(row['sourceId'] == rule['id'] for row in rows):
+            continue
+        rows.append({'sourceId': rule['id'], 'kind': 'DETACHMENT_RULE', 'parentSourceId': rule['owner'],
+            'sourcePointer': '#'+rule['anchor'], 'document': hub, 'provenance': rule['provenance'],
+            'payload': {'title': rule['title'], 'text': rule['text'], 'tables': [],
+                        'referenceBindings': rule['referenceBindings']}})
     unique(rows, 'sourceId')
     return rows
 
@@ -245,7 +255,7 @@ def canonicalize(rows, registry, models, artifacts, corpus, root):
             if scoped:
                 item['recipientBindings'] = [{**copy.deepcopy(rule), 'compositionMemberIds': [canonical(value) for value in rule['compositionMemberSourceIds']], 'modelProfileIds': [canonical(value) for value in rule['modelProfileSourceIds']], 'executable': False} for rule in scoped]
         proof = {'sourceId': 'ec-waha-11e-2026-09-28', 'document': row['document'], 'sha256': artifacts[row['document']]['sha256'], 'corpusDocument': SOURCE+'/corpus.json', 'corpusSha256': artifacts[SOURCE+'/corpus.json']['sha256'], 'pointer': row['sourcePointer'], 'authority': 'ACCEPTED_SECONDARY'}
-        record = {'id': canonical(sid), 'kind': kind, 'data': item, 'provenance': proof}
+        record = {'id': canonical(sid), 'kind': kind, 'data': item, 'provenance': copy.deepcopy(row.get('provenance', proof))}
         if row['parentSourceId']:
             record['parentId'] = canonical(row['parentSourceId'])
         records.append(record)
@@ -260,8 +270,10 @@ def build(root=ROOT):
     artifacts = verify_sources(root, enrollment)
     corpus = read(root/SOURCE/'corpus.json'); models = read(here/'model-bindings.json')
     validate_model_sources(corpus, models, artifacts, root)
-    rows = collect_sources(corpus, models)
+    named_rules = read_named_rules(root, corpus)
+    rows = collect_sources(corpus, models, named_rules)
     records, accounting = canonicalize(rows, read(here/'identity-bindings.json'), models, artifacts, corpus, root)
+    validate_named_rules(records, named_rules)
     by_source = {row['sourceId']: row for row in rows}
     bindings = {row['sourceEntityId']: row for row in read(here/'identity-bindings.json')['bindings']}
     for i, unit in enumerate(corpus['datasheets']):

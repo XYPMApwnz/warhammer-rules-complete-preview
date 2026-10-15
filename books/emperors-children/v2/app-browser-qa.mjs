@@ -114,6 +114,63 @@ async function nativeFnp(page,device){
  await page.goto(direct);await ready(page);await check(['parsed-unit-2']);
  assert.deepEqual((await snapshot(page)).units,raw.units,'FNP presentation changed physical import');
 }
+async function masterOfThePageant(page,device){
+ const court='detachment-court-of-the-phoenician',id=court+':rule:master-of-the-pageant';
+ const facts=JSON.parse(fs.readFileSync(new URL('./generated/effective.json',import.meta.url)));
+ const owner=facts.entities.find(e=>e.id===id),primary=facts.entities.find(e=>e.id===court+':rule');
+ const fact=()=>page.locator(`main [data-fact-id="${id}::/text"]`);
+ const checkCourt=async()=>{
+  assert.equal(await page.locator(`main [data-card-id="${id}"]`).count(),1,'Missing/duplicate sibling rule');
+  assert.equal(await fact().innerText(),owner.data.text,'Court lost official conditional text');
+  assert.equal(await page.locator(`main [data-fact-id="${court}:rule::/text"]`).innerText(),primary.data.text,'Sensational Performance changed');
+  for(const binding of owner.data.referenceBindings){
+   const link=page.locator(`main [data-card-id="${id}"] a[data-target-id="${binding.targetId}"]`);await link.click();
+   const popup=page.locator('dialog[open]');await popup.waitFor();
+   assert.match(await popup.innerText(),new RegExp(binding.label,'i'));await page.keyboard.press('Escape');
+  }
+  await geometry(page);
+ };
+ await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await ready(page);
+ await page.locator('[data-v2-book="emperors-children"]').click();await ready(page);
+ await page.locator(`main a.v2-library-card[data-target-id="${court}"]`).click();await checkCourt();
+ const normalDirect=page.url();await page.reload();await ready(page);await checkCourt();
+ await page.screenshot({path:path.join(out,device+'-master-army-book.png'),fullPage:false});
+ // The preceding native-FNP import contains Fulgrim and Court. Every change
+ // below is navigation; CP and physical import/effective values must be stable.
+ const before=await snapshot(page);
+ const effectiveBefore=await page.evaluate(()=>window.ArmyBookAppV2.roster.effective('parsed-unit-5'));
+ await roster(page);await page.locator('[data-roster-action="open-personal-guide"]').click();
+ await page.locator(`main a[data-canonical-id="${court}"]`).click();await checkCourt();
+ await page.reload();await ready(page);await checkCourt();
+ await page.screenshot({path:path.join(out,device+'-master-personal-guide.png'),fullPage:false});
+ await roster(page);await effective(page,'parsed-unit-4');
+ assert.equal(await page.locator(`main [data-card-id="${id}"]`).count(),0,'Detachment CP permission became a Bodyguard ability');
+ assert.deepEqual(await snapshot(page),before);
+ assert.deepEqual(await page.evaluate(()=>window.ArmyBookAppV2.roster.effective('parsed-unit-5')),effectiveBefore,'Reading conditional permission changed CP/effects');
+ if(unified){
+  const index=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
+  const target=index.entries.find(e=>e.sourceOwner?.bookId==='emperors-children'&&e.sourceOwner.canonicalId===id);
+  assert.ok(target);assert.deepEqual(target.facts.canonicalData,owner.data);assert.deepEqual(target.provenance,owner.provenance);
+  await page.locator('[data-v2-primary-nav] [data-v2-destination="GLOSSARY"]').click();await ready(page);
+  await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill('Master of the Pageant');
+  const result=page.locator(`.v2-glossary-result[data-target-id="${target.id}"]`);await result.waitFor();await result.click();
+  const popup=page.locator('dialog[open]');await popup.waitFor();
+  assert.deepEqual(await popup.locator('.reference-definition .reference-fact').allTextContents(),[owner.data.text]);
+  await popup.getByRole('link',{name:'Open full entry',exact:true}).click();
+  const article=page.locator(`main article[data-card-id="${target.id}"]`);await article.waitFor();const direct=page.url();
+  for(const binding of owner.data.referenceBindings){
+   const referenced=index.entries.find(e=>e.sourceOwner?.bookId==='emperors-children'&&e.sourceOwner.canonicalId===binding.targetId);
+   await article.locator(`a[data-target-id="${referenced.id}"]`).click();await page.locator('dialog[open]').waitFor();
+   assert.match(await page.locator('dialog[open]').innerText(),new RegExp(binding.label,'i'));await page.keyboard.press('Escape');
+  }
+  await page.reload();await ready(page);await article.waitFor();
+  assert.deepEqual(await article.locator('.reference-definition .reference-fact').allTextContents(),[owner.data.text]);
+  await page.goBack();await ready(page);await page.goForward();await ready(page);await article.waitFor();
+  await page.goto(direct);await ready(page);await article.waitFor();await geometry(page);
+  await page.screenshot({path:path.join(out,device+'-master-glossary.png'),fullPage:false});
+ }
+ await page.goto(normalDirect);await ready(page);await checkCourt();
+}
 async function unifiedReferences(page,device){
  const home=async()=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await ready(page);};
  const openBook=async id=>{await home();await page.locator(`[data-v2-book="${id}"]`).click();await ready(page);};
@@ -148,7 +205,12 @@ async function unifiedReferences(page,device){
  await openBook('emperors-children');await page.locator('main a.v2-library-card[data-target-id="unit-noise-marines"]').click();
  assert.match(await page.locator('main .statline').first().innerText(),/W\s*3\b/);
  for(const [book,id]of [['death-guard','unit-lord-of-contagion'],['adeptus-mechanicus','unit-tech-priest-dominus'],['chaos-space-marines','unit-chaos-lord']]){
-   await openBook(book);await page.locator(`main a.v2-library-card[data-target-id="${id}"]`).click();
+   await openBook(book);
+   const previous=JSON.parse(fs.readFileSync(path.join(repo,`books/${book}/v2/generated/app-presentation.json`),'utf8'));
+   const detachment=previous.cards.find(card=>card.kind==='DETACHMENT'),rule=previous.bookPresentation.records[detachment.id].ruleId;
+   await page.locator(`main a.v2-library-card[data-target-id="${detachment.id}"]`).click();
+   assert.equal(await page.locator(`main [data-card-id="${rule}"]`).count(),1,'Existing single-rule Detachment changed: '+book);
+   await geometry(page);await openBook(book);await page.locator(`main a.v2-library-card[data-target-id="${id}"]`).click();
    await page.locator('main .unit-card').first().waitFor();await geometry(page);
  }
  await openBook('emperors-children');await roster(page);
@@ -175,6 +237,7 @@ try{
    await page.goBack();await page.locator('dialog[open]').waitFor({state:'hidden'});
    await page.goForward();await page.locator('dialog[open]').waitFor();await page.goBack();
    await nativeFnp(page,device);
+   await masterOfThePageant(page,device);
    await imported(page,fixture('character-bodyguard'),2);const rawBefore=await snapshot(page);
    await attach(page);await effective(page,'parsed-unit-2');
    let visible=await units(page);assert.deepEqual(visible.map(v=>v.id).sort(),['parsed-unit-1','parsed-unit-2']);
@@ -235,7 +298,7 @@ try{
    await guide(page);await page.goBack();await page.locator('main .unit-card').first().waitFor();await page.goForward();await ready(page);
    await page.goto(direct);await ready(page);await geometry(page);
    if(unified)await unifiedReferences(page,device);
-   results.push({device,nativeFnp:true,armyBookReference:true,import:true,attachments:true,formedComponents:true,legionsEquipment:true,selectedUnselected:true,cacophonicScopes:true,lordOfTheHostTiming:true,battleConditionsVisible:true,unitUpgrades:true,possessedBladeExplicitChoice:true,guide:true,reload:true,history:true,unifiedGlossaryParity:unified,returnToExistingBooks:unified,overflow:false});
+   results.push({device,nativeFnp:true,masterOfThePageant:true,armyBookReference:true,import:true,attachments:true,formedComponents:true,legionsEquipment:true,selectedUnselected:true,cacophonicScopes:true,lordOfTheHostTiming:true,battleConditionsVisible:true,unitUpgrades:true,possessedBladeExplicitChoice:true,guide:true,reload:true,history:true,unifiedGlossaryParity:unified,returnToExistingBooks:unified,overflow:false});
   };
   try{await Promise.race([scenario(),pageFailure]);}catch(error){
    await page.screenshot({path:path.join(out,device+'-failure.png'),fullPage:true});

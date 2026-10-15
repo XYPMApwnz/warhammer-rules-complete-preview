@@ -49,7 +49,7 @@ export function buildApp(built=buildECContracts(),{coreCatalog=createEffectiveCo
   for(const entity of model.entities){
     if(['FAQ','ERRATA'].includes(entity.kind))entity.kind='SOURCE_ERRATUM';
     if(entity.kind==='DETACHMENT'){
-      assert.equal(entity.data.ruleIds.length,1,'Ambiguous Detachment presentation rule');
+      assert.ok(entity.data.ruleIds.length&&new Set(entity.data.ruleIds).size===entity.data.ruleIds.length,'Missing/duplicate Detachment presentation rule');
       entity.data.ruleId=entity.data.ruleIds[0];
     }
   }
@@ -115,6 +115,17 @@ export function buildApp(built=buildECContracts(),{coreCatalog=createEffectiveCo
   }
   payload.datasheetPresentation.referenceBindings={schema:'army-book-app-v2/datasheet-reference-bindings/v1',fields};
   payload.bookPresentation=projectBookPresentation(model,records);
+  for(const entity of model.entities.filter(entity=>entity.data.referenceBindings)){
+    const card=cards.get(entity.id);
+    card.links=entity.data.referenceBindings.map(binding=>{
+      const target=model.entities.find(target=>target.id===binding.targetId);
+      assert.equal(target?.kind,'STRATAGEM','Unresolved exact Detachment rule reference');
+      assert.equal(target.parentId,entity.parentId,'Foreign Detachment rule reference');
+      assert.equal(target.data.title.toUpperCase(),binding.label.toUpperCase(),'Wrong source Stratagem reference');
+      assert.ok(entity.data.text.includes(binding.label),'Reference label absent from canonical rule');
+      return clone(binding);
+    });
+  }
   payload.bookPresentation.coverImage='../assets/emperors-children-cover-800.webp';
   for(const entity of model.entities.filter(entity=>entity.kind==='SOURCE_UPDATE_REFERENCE'))payload.bookPresentation.records[entity.id]={id:entity.id,kind:entity.kind,provenance:clone(entity.provenance),tables:[]};
   payload.ruleContractIds=built.book.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id);

@@ -1805,7 +1805,8 @@
       "data": {
         "title": "Court of the Phoenician",
         "ruleIds": [
-          "detachment-court-of-the-phoenician:rule"
+          "detachment-court-of-the-phoenician:rule",
+          "detachment-court-of-the-phoenician:rule:master-of-the-pageant"
         ],
         "enhancementIds": [
           "detachment-court-of-the-phoenician:enhancement:1",
@@ -12345,6 +12346,47 @@
       }
     },
     {
+      "id": "detachment-court-of-the-phoenician:rule:master-of-the-pageant",
+      "kind": "DETACHMENT_RULE",
+      "data": {
+        "title": "Master of the Pageant",
+        "text": "Once per battle round, when you target a Fulgrim unit from your army with the Sinuous Breach or Prideful Superiority Stratagem, you can reduce the CP cost of that use of that Stratagem by 1CP.",
+        "referenceBindings": [
+          {
+            "label": "Sinuous Breach",
+            "targetId": "detachment-court-of-the-phoenician:stratagem:3"
+          },
+          {
+            "label": "Prideful Superiority",
+            "targetId": "detachment-court-of-the-phoenician:stratagem:2"
+          }
+        ],
+        "tableIds": []
+      },
+      "provenance": {
+        "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+        "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+        "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+        "page": 5,
+        "bbox": [
+          155,
+          574,
+          316,
+          627
+        ],
+        "textSha256": "9D0B6CFDD8DD47155A2925A047DDEB07100F5AC4B130B61B0AA5234141586A28",
+        "effectiveFrom": "2026-09-30",
+        "authority": "AUTHORITATIVE_CURRENT",
+        "acceptedOccurrence": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "anchor": "Master-of-the-Pageant"
+        }
+      },
+      "parentId": "detachment-court-of-the-phoenician"
+    },
+    {
       "id": "ec-official-v1.3:frantic-focus",
       "kind": "SOURCE_UPDATE_REFERENCE",
       "data": {
@@ -16091,6 +16133,12 @@
       "sourceEntityId": "faq-3",
       "sourcePointer": "/errata/12",
       "entityId": "faq-3",
+      "classification": "CANONICAL_FACT"
+    },
+    {
+      "sourceEntityId": "detachment-court-of-the-phoenician:rule:master-of-the-pageant",
+      "sourcePointer": "#Master-of-the-Pageant",
+      "entityId": "detachment-court-of-the-phoenician:rule:master-of-the-pageant",
       "classification": "CANONICAL_FACT"
     },
     {

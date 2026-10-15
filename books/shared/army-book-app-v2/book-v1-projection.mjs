@@ -50,6 +50,11 @@ export function projectBookPresentation(model, ownedRecords) {
       .map(id => requireEntity(id, 'ARMY_RULE_COMPONENT', entity.id));
     if (entity.kind === 'DETACHMENT') {
       record.ruleId = requireEntity(entity.data.ruleId, 'DETACHMENT_RULE', entity.id);
+      if(entity.data.ruleIds?.length>1) {
+        if(new Set(entity.data.ruleIds).size!==entity.data.ruleIds.length||entity.data.ruleIds[0]!==record.ruleId)
+          throw new Error('Duplicate/inconsistent Detachment rule presentation');
+        record.ruleIds=entity.data.ruleIds.map(id=>requireEntity(id,'DETACHMENT_RULE',entity.id));
+      }
       record.enhancementIds = entity.data.enhancementIds.map(id => requireEntity(id, 'ENHANCEMENT', entity.id));
       record.stratagemIds = entity.data.stratagemIds.map(id => requireEntity(id, 'STRATAGEM', entity.id));
     }

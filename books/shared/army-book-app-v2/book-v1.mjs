@@ -131,7 +131,8 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
       }
       node.append(line);
     }
-    if(record.ruleId&&visible(record.ruleId))node.append(part(card,'DETACHMENT_RULE','Detachment Rule – '+cards.get(record.ruleId).title, [record.ruleId],options));
+    const ruleIds=record.ruleIds||[record.ruleId].filter(Boolean);
+    if(ruleIds.some(visible))node.append(part(card,'DETACHMENT_RULE',ruleIds.length>1?'Detachment Rules':'Detachment Rule – '+cards.get(record.ruleId).title,ruleIds,options));
     if(record.enhancementIds?.some(visible))node.append(part(card,'ENHANCEMENT','Enhancements',record.enhancementIds,options));
     if(record.stratagemIds?.some(visible))node.append(part(card,'STRATAGEM','Stratagems',record.stratagemIds,options));
     sourceFooter(card,node);return node;

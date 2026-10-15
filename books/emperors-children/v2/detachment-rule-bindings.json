@@ -1,0 +1,28 @@
+{
+  "schema": "ec-v2-named-detachment-rule-bindings/v1",
+  "sourceDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+  "sourceSha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+  "rules": [
+    {"owner": "detachment-coterie-of-the-conceited", "anchor": "Pledges-to-the-Dark-Prince", "id": "detachment-coterie-of-the-conceited:rule"},
+    {"owner": "detachment-carnival-of-excess", "anchor": "Daemonic-Empowerment", "id": "detachment-carnival-of-excess:rule"},
+    {"owner": "detachment-rapid-evisceration", "anchor": "Mechanised-Murder", "id": "detachment-rapid-evisceration:rule"},
+    {"owner": "detachment-peerless-bladesmen", "anchor": "Exquisite-Swordsmanship", "id": "detachment-peerless-bladesmen:rule"},
+    {"owner": "detachment-court-of-the-phoenician", "anchor": "Sensational-Performance", "id": "detachment-court-of-the-phoenician:rule"},
+    {"owner": "detachment-court-of-the-phoenician", "anchor": "Master-of-the-Pageant", "id": "detachment-court-of-the-phoenician:rule:master-of-the-pageant"},
+    {"owner": "detachment-slaaneshs-chosen", "anchor": "Internal-Rivalries", "id": "detachment-slaaneshs-chosen:rule"},
+    {"owner": "detachment-mercurial-host", "anchor": "Quicksilver-Grace", "id": "detachment-mercurial-host:rule"},
+    {"owner": "detachment-spectacle-of-slaughter", "anchor": "Entitled-to-Victory", "id": "detachment-spectacle-of-slaughter:rule"},
+    {"owner": "detachment-frenzied-host", "anchor": "Frantic-Focus", "id": "detachment-frenzied-host:rule"},
+    {"owner": "detachment-elegant-brutes", "anchor": "Eager-to-Kill", "id": "detachment-elegant-brutes:rule"}
+  ],
+  "officialAddition": {
+    "id": "detachment-court-of-the-phoenician:rule:master-of-the-pageant",
+    "page": 5,
+    "bbox": [155, 574, 316, 627],
+    "textSha256": "9D0B6CFDD8DD47155A2925A047DDEB07100F5AC4B130B61B0AA5234141586A28",
+    "referenceBindings": [
+      {"label": "Sinuous Breach", "targetId": "detachment-court-of-the-phoenician:stratagem:3"},
+      {"label": "Prideful Superiority", "targetId": "detachment-court-of-the-phoenician:stratagem:2"}
+    ]
+  }
+}
