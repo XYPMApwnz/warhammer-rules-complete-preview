@@ -97,7 +97,8 @@ const types={DATASHEET:'UNIT',MODEL_PROFILE:'PROFILE',DATASHEET_ABILITY:'ABILITY
 const namedAbilityGroups=new Map([
   ['datasheet-mortarion:section:1','datasheet-mortarion:section:3'],
   ['datasheet-belisarius-cawl:section:4','datasheet-belisarius-cawl:section:1'],
-  ['datasheet-thulia-ghuld:section:4','datasheet-thulia-ghuld:section:1']
+  ['datasheet-thulia-ghuld:section:4','datasheet-thulia-ghuld:section:1'],
+  ['datasheet-fulgrim:section:5','datasheet-fulgrim:section:2']
 ]);
 function abilityPresentation(entity,model) {
   if(entity.kind==='NAMED_RULE_COMPONENT') {
@@ -111,6 +112,7 @@ function abilityPresentation(entity,model) {
     return {referenceCategory:'WARGEAR_ABILITY',referenceLabel:entity.data.text.split(': ')[0]};
   }
   if(entity.kind!=='DATASHEET_SECTION')return {};
+  if(model.book.id==='emperors-children'&&entity.id==='datasheet-lord-exultant:section:4')return {referenceCategory:'ABILITY',referenceLabel:entity.data.title};
   const result={referenceCategory:'REFERENCE'};
   if(model.appPayload.datasheetPresentation?.sectionRoles?.[entity.id]!=='abilities'&&!namedAbilityGroups.has(entity.id))return result;
   result.referenceFields=entity.data.blocks.map((block,index)=>{
@@ -121,7 +123,7 @@ function abilityPresentation(entity,model) {
     const separator=block.text.indexOf(': ');
     assert.ok(separator>0&&typeof block.wargearAbility==='boolean','Unnamed/unclassified canonical ability field '+factId);
     return {path,factId,label:block.text.slice(0,separator),category:block.wargearAbility?'WARGEAR_ABILITY':'ABILITY',provenance:clone(entity.fieldProvenance?.[path.slice(1)]||entity.provenance),
-      ...(namedAbilityGroups.has(entity.id)?{referenceContext:{canonicalId:namedAbilityGroups.get(entity.id),path:'/blocks/0/text'}}:{})};
+      ...(namedAbilityGroups.has(entity.id)?{referenceContext:{canonicalId:namedAbilityGroups.get(entity.id),path:entity.id==='datasheet-fulgrim:section:5'?'/blocks/1/text':'/blocks/0/text'}}:{})};
   });
   return result;
 }
@@ -148,13 +150,18 @@ function addArmyEntries(entries,models){
     for(const entity of sourceRows){
       const type=types[entity.kind]||entity.kind,parent=ownerOf(entity),parentId=records.has(parent)?parent:null,data=clone(entity.data);
       const facts={...data,id:entity.id,title:label(entity),canonicalData:clone(entity.data)};
+      if(type==='SOURCE_PRESENTATION_NOTE'&&data.semanticTableIds){
+        assert.equal(data.classification,'LAYOUT_WRAPPER_REFERENCE','Unreviewed source presentation note');
+        for(const targetId of data.semanticTableIds)assert.equal(records.get(targetId)?.kind,'STRUCTURED_RULE_TABLE','Missing semantic table owner');
+        facts.componentIds=clone(data.semanticTableIds);
+      }
       if(type==='WEAPON_PROFILE')Object.assign(facts,{a:data.attacks??data.a,s:data.strength??data.s,d:data.damage??data.d});
       if(type==='PROFILE')facts.stats=profileStats(entity);
       if(type==='UNIT'){
         const profileIds=data.profileIds||data.modelProfileIds||[];
         facts.profiles=profileIds.map(id=>{const e=records.get(id);if(!e)throw new Error('Unresolved V2 profile '+id);return{canonicalId:id,name:label(e),stats:profileStats(e)};});
         const sectionIds=[...new Set([...(data.sectionIds||[]),...children(entity).filter(e=>['ATTACHMENT_DECLARATION','TRANSPORT_DECLARATION','SPECIAL_DATASHEET_RULE','UPGRADE_DECLARATION'].includes(e.kind)).map(e=>e.id)])],sections=sectionIds.map(id=>records.get(id)).filter(Boolean),roles=model.appPayload.datasheetPresentation?.sectionRoles||{};
-        facts.composition=sections.filter(e=>roles[e.id]==='composition').map(e=>blockText(e)).join('\n');
+        facts.composition=sections.filter(e=>roles[e.id]==='composition').map(e=>[...(e.data.memberIds||[]).map(id=>blockText(records.get(id))),blockText(e)].filter(Boolean).join('\n')).join('\n');
         const composition=children(entity).find(e=>e.kind==='UNIT_COMPOSITION');
         if(composition)facts.composition=[...(composition.data.memberIds||[]).map(id=>blockText(records.get(id))),...(composition.data.equipmentAndRules||[]).map(b=>b.text)].filter(Boolean).join('\n');
         const membership=children(entity).filter(e=>['KEYWORD_MEMBERSHIP','FACTION_KEYWORD'].includes(e.kind));

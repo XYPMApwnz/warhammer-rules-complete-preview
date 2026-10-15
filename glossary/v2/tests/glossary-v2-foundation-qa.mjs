@@ -106,7 +106,7 @@ const actualDispositionAssignments=forceDispositions.flatMap(disposition=>dispos
 })).sort();
 assert.deepEqual(actualDispositionAssignments,expectedDispositionAssignments,'Exact connected Detachment/Force Disposition assignments, including multi-disposition owners');
 assert.equal(new Set(actualDispositionAssignments).size,actualDispositionAssignments.length,'No duplicate assignment within one Force Disposition');
-assert.equal(new Set(forceDispositions.flatMap(entry=>entry.mfm.assignedDetachmentIds)).size,36,'Every connected Detachment assigned');
+assert.equal(new Set(forceDispositions.flatMap(entry=>entry.mfm.assignedDetachmentIds)).size,46,'Every connected Detachment assigned');
 assert(forceDispositions.every(entry=>entry.facts.physicalMultiplicity===2),'each Force Disposition must retain its physical card multiplicity');
 assert.equal(forceDispositionMatchups.length,15,'all 15 unordered matchup identities must be projected');
 assert.equal(new Set(forceDispositionMatchups.map(entry=>entry.id)).size,15,'matchup identities must remain unique');
@@ -180,8 +180,8 @@ assert(index.entries.some(entry=>entry.recordType==='DETACHMENT'&&entry.mfm?.det
 assert(index.entries.some(entry=>entry.recordType==='ENHANCEMENT'&&entry.mfm?.enhancementCost),'bound MFM cost must augment Army Enhancements');
 
 const detachmentEntries=index.entries.filter(entry=>entry.recordType==='DETACHMENT');
-assert.equal(detachmentEntries.length,36,'All connected V2 Detachments');
-assert.equal(new Set(detachmentEntries.map(entry=>entry.id)).size,36);
+assert.equal(detachmentEntries.length,46,'All connected V2 Detachments');
+assert.equal(new Set(detachmentEntries.map(entry=>entry.id)).size,46);
 for(const entry of detachmentEntries){
   const model=inputs.armyModels.find(model=>model.book.id===entry.sourceOwner.bookId);
   const source=model.entities.find(entity=>entity.id===entry.sourceOwner.canonicalId);
@@ -237,7 +237,7 @@ assert(!index.entries.some(entry=>entry.id==='keyword-death-guard'),'Death Guard
 const transportPreferred=index.entries.filter(entry=>entry.presentation.preferredMatchLabels?.includes('transport'));
 assert.deepEqual(transportPreferred.map(entry=>entry.id),['core::core-rule-18-01-transport-capacity'],'transport preferred match must resolve through the accepted keyword-transport migration binding');
 
-const excluded=['emperors-children','tyranids','tau-empire','space-marines','dark-angels','blood-angels'];
+const excluded=['tyranids','tau-empire','space-marines','dark-angels','blood-angels'];
 assert(!index.entries.some(entry=>entry.domain==='ARMY'&&excluded.includes(entry.sourceOwner.bookId)),'No excluded standalone Army facts');
 assert(!index.entries.some(entry=>entry.sourceOwner.canonicalId==='army-rule-oath-of-moment'),'Unconnected Space Marines rule must not be promoted');
 const coreSupport=index.entries.find(entry=>entry.id==='core::core-support');

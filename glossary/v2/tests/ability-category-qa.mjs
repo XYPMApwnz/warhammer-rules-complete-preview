@@ -10,12 +10,13 @@ import {encodeRoute,decodeRoute} from '../../../books/shared/army-book-app-v2/ro
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
-const books=['death-guard','adeptus-mechanicus','chaos-space-marines'];
-const specialGroups=new Set(['datasheet-mortarion:section:1','datasheet-belisarius-cawl:section:4','datasheet-thulia-ghuld:section:4']);
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'];
+const specialGroups=new Set(['datasheet-mortarion:section:1','datasheet-belisarius-cawl:section:4','datasheet-thulia-ghuld:section:4','datasheet-fulgrim:section:5']);
 const selectionContexts={
   'datasheet-mortarion:section:1':{canonicalId:'datasheet-mortarion:section:3',path:'/blocks/0/text'},
   'datasheet-belisarius-cawl:section:4':{canonicalId:'datasheet-belisarius-cawl:section:1',path:'/blocks/0/text'},
-  'datasheet-thulia-ghuld:section:4':{canonicalId:'datasheet-thulia-ghuld:section:1',path:'/blocks/0/text'}
+  'datasheet-thulia-ghuld:section:4':{canonicalId:'datasheet-thulia-ghuld:section:1',path:'/blocks/0/text'},
+  'datasheet-fulgrim:section:5':{canonicalId:'datasheet-fulgrim:section:2',path:'/blocks/1/text'}
 };
 const sourceModels=new Map(books.map(book=>[book,read('books/'+book+'/v2/generated/effective.json')]));
 const publication=read('glossary/v2/generated/index.en.json');
@@ -44,6 +45,8 @@ for(const [book,model]of sourceModels){
         const fieldPath='/blocks/'+index+'/text';
         add(entry,block.wargearAbility?'WARGEAR_ABILITY':'ABILITY',{path:fieldPath,label:block.text.slice(0,separator),body:block.text,physicalOwner,unitOwner,provenance:entity.fieldProvenance?.[fieldPath.slice(1)]||entity.provenance,context:contextFor(selectionContexts[entity.id])});
       });
+    }else if(book==='emperors-children'&&entity.id==='datasheet-lord-exultant:section:4'){
+      add(entry,'ABILITY',{label:entity.data.title,body:entity.data.blocks[0].text,physicalOwner,unitOwner});
     }else if(entity.kind==='DATASHEET_ABILITY'||entity.kind==='NAMED_RULE_COMPONENT'){
       add(entry,'ABILITY',{label:entity.displayName||entity.data.title,body:entity.data.text,physicalOwner,unitOwner,context:entity.kind==='NAMED_RULE_COMPONENT'?contextFor({canonicalId:'datasheet-abaddon-the-despoiler:section:1:block:0:text'}):undefined});
     }else if(entity.kind==='EQUIPMENT_ABILITY'||entity.id==='datasheet-great-unclean-one:raw-dsAbility:1'){
@@ -102,9 +105,9 @@ function reconcile(corpus){
 }
 const {projection}=reconcile(publication);
 const counts=Object.fromEntries(books.map(book=>[book,{abilities:[...expected.values()].filter(entry=>entry.book===book&&entry.category==='ABILITY').length,wargearAbilities:[...expected.values()].filter(entry=>entry.book===book&&entry.category==='WARGEAR_ABILITY').length}]));
-assert.deepEqual(counts,{'death-guard':{abilities:61,wargearAbilities:7},'adeptus-mechanicus':{abilities:60,wargearAbilities:12},'chaos-space-marines':{abilities:92,wargearAbilities:7}},'Reviewed source-block inventory changed');
-assert.equal(aggregates.size,73);
-assert.equal([...expected.values()].filter(entry=>entry.path).length,139);
+assert.deepEqual(counts,{'death-guard':{abilities:61,wargearAbilities:7},'adeptus-mechanicus':{abilities:60,wargearAbilities:12},'chaos-space-marines':{abilities:92,wargearAbilities:7},'emperors-children':{abilities:38,wargearAbilities:7}},'Reviewed source-block inventory changed');
+assert.equal(aggregates.size,97);
+assert.equal([...expected.values()].filter(entry=>entry.path).length,183);
 const firstField=[...expected.values()].find(entry=>entry.path),firstEntryId=firstField.targetId.slice(0,-('::'+firstField.path).length);
 const getEntry=corpus=>corpus.entries.find(entry=>entry.id===firstEntryId);
 let mutations=0;
@@ -125,4 +128,4 @@ detected('missing governing named-ability condition',corpus=>{delete corpus.entr
 detected('foreign governing context',corpus=>{const originalId=contextualField.targetId.slice(0,-('::'+contextualField.path).length);corpus.entries.find(entry=>entry.id===originalId).presentation.referenceFields.find(field=>field.path===contextualField.path).referenceContext={canonicalId:'datasheet-chaos-lord:section:1:block:0:text'};});
 detected('wrong physical UNIT governing context',corpus=>{const originalId=contextualField.targetId.slice(0,-('::'+contextualField.path).length);corpus.entries.find(entry=>entry.id===originalId).presentation.referenceFields.find(field=>field.path===contextualField.path).referenceContext={canonicalId:'datasheet-biologus-putrifier:section:1',path:'/blocks/0/text'};});
 assert.equal(JSON.stringify(publication),untouched,'Presentation projection mutated canonical publication');
-console.log(JSON.stringify({status:'PASS',abilityCategories:counts,sourceOwnedFieldViews:139,originalAggregateURLs:aggregates.size,governingConditionControls:[...expected.values()].filter(entry=>entry.context).length,nonAbilityControls:excluded.length,mutationControls:mutations,canonicalDataUnchanged:true,totalViews:projection.cards.length}));
+console.log(JSON.stringify({status:'PASS',abilityCategories:counts,sourceOwnedFieldViews:183,originalAggregateURLs:aggregates.size,governingConditionControls:[...expected.values()].filter(entry=>entry.context).length,nonAbilityControls:excluded.length,mutationControls:mutations,canonicalDataUnchanged:true,totalViews:projection.cards.length}));

@@ -39,7 +39,7 @@ function makeServer(mode){return http.createServer((request,response)=>{
   if(mode==='current'&&address==='/synthetic-home.html'){response.writeHead(200,{'Content-Type':'text/html'});response.end(syntheticHTML);return;}
   const referenceAllowed=mode==='reference'&&(address==='/'||address==='/index.html'||address==='/manifest.webmanifest'||address==='/books/shared/styles/offline-status.css');
   const allowed=referenceAllowed||isApplicationTestDependency(address)||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
-    /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
+    /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
     /^\/(?:assets|books\/[\w-]+\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address);
@@ -63,12 +63,12 @@ const ready=async page=>{
 };
 const navigate=async(page,route)=>{await page.evaluate(async route=>{await window.WarhammerAppV2.navigate(route);},route);await ready(page);};
 // Product inventory is independent of the registry/presenter under test.
-const bookIds=['adeptus-mechanicus','death-guard','chaos-space-marines'];
-const bookTitles=['Adeptus Mechanicus','Death Guard','Chaos Space Marines'];
+const bookIds=['adeptus-mechanicus','death-guard','chaos-space-marines','emperors-children'];
+const bookTitles=['Adeptus Mechanicus','Death Guard','Chaos Space Marines','Emperor’s Children'];
 function assertHomeInventory(model,booksOnly=false){
   assert.deepEqual(model.shelves,booksOnly?
-    [['imperium',['adeptus-mechanicus']],['chaos',['death-guard','chaos-space-marines']]]:
-    [['rules-tools',[]],['imperium',['adeptus-mechanicus']],['chaos',['death-guard','chaos-space-marines']]],
+    [['imperium',['adeptus-mechanicus']],['chaos',['death-guard','chaos-space-marines','emperors-children']]]:
+    [['rules-tools',[]],['imperium',['adeptus-mechanicus']],['chaos',['death-guard','chaos-space-marines','emperors-children']]],
   'Missing/extra/duplicated or incorrectly ordered Home books/shelves');
   assert.deepEqual(model.books.map(book=>book.id),bookIds,'Exact Unified V2 book inventory');
   assert.deepEqual(model.books.map(book=>book.title),bookTitles,'Canonical Home captions');
@@ -94,7 +94,7 @@ const homeInventory=async page=>{
   }));
 };
 function checkInventoryMutations(model){
-  for(const mutate of [copy=>copy.books.pop(),copy=>copy.books.push({...copy.books[0],id:'emperors-children'}),
+  for(const mutate of [copy=>copy.books.pop(),copy=>copy.books.push({...copy.books[0],id:'tyranids'}),
     copy=>copy.shelves.find(([id])=>id==='chaos')[1].reverse(),copy=>copy.books.push({...copy.books[0]}),
     copy=>{copy.books[2].href=copy.books[2].href.replace('registry=chaos-space-marines','registry=death-guard');}]){
     const copy=structuredClone(model);mutate(copy);
@@ -104,7 +104,7 @@ function checkInventoryMutations(model){
 async function screenshot(page,name){const file=path.join(artifacts,name+'.png');await page.screenshot({path:file,fullPage:true});screenshots.push(file);}
 async function homeStyle(page,selector){return page.locator(selector).first().evaluate(node=>{const style=getComputedStyle(node);return {fontFamily:style.fontFamily,fontSize:style.fontSize,fontWeight:style.fontWeight,letterSpacing:style.letterSpacing,color:style.color,lineHeight:style.lineHeight};});}
 async function bookSnapshot(page,book){
-  const id={'death-guard':'unit-lord-of-contagion','adeptus-mechanicus':'unit-tech-priest-dominus','chaos-space-marines':'unit-chaos-lord'}[book];
+  const id={'death-guard':'unit-lord-of-contagion','adeptus-mechanicus':'unit-tech-priest-dominus','chaos-space-marines':'unit-chaos-lord','emperors-children':'unit-lord-exultant'}[book];
   await page.evaluate(id=>window.ArmyBookAppV2.open(id),id);await ready(page);await page.evaluate(()=>scrollTo(0,0));
   assert.equal(await page.locator(`main .unit-card[data-card-id="${id}"]`).count(),1,'Book route did not render the requested datasheet');
   await page.evaluate(async()=>{await document.fonts.ready;await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
@@ -140,13 +140,13 @@ try{
     assert.equal(await page.locator('.v2-library-home .hero').count(),1);assert.equal(await page.locator('.v2-library-home .support').count(),1);assert.equal(await page.locator('.v2-library-home .footer').count(),1);
     assert.deepEqual(await page.locator('[data-home-shelf]').evaluateAll(nodes=>nodes.map(node=>node.dataset.homeShelf)),['rules-tools','imperium','chaos']);
     assert.deepEqual(await page.locator('[data-home-shelf="imperium"] [data-v2-book]').evaluateAll(nodes=>nodes.map(node=>node.dataset.v2Book)),['adeptus-mechanicus']);
-    assert.deepEqual(await page.locator('[data-home-shelf="chaos"] [data-v2-book]').evaluateAll(nodes=>nodes.map(node=>node.dataset.v2Book)),['death-guard','chaos-space-marines']);
+    assert.deepEqual(await page.locator('[data-home-shelf="chaos"] [data-v2-book]').evaluateAll(nodes=>nodes.map(node=>node.dataset.v2Book)),['death-guard','chaos-space-marines','emperors-children']);
     assert.equal(await page.locator('[data-home-shelf="rules-tools"] .book').count(),3);
     const inventory=await homeInventory(page);assertHomeInventory(inventory);checkInventoryMutations(inventory);
     assert.equal(requests.current.filter(address=>address.includes('/generated/')).length,factRequestsBefore,'Initial Home loaded factual payloads');
     const links=await page.locator('.v2-library-home a').evaluateAll(nodes=>nodes.filter(node=>new URL(node.href).origin===location.origin).map(node=>({path:new URL(node.href).pathname,query:new URL(node.href).search,hash:new URL(node.href).hash})));
     assert.ok(links.length>=5&&links.every(link=>link.path==='/v2/app.html'),'Legacy Home navigation link');
-    for(const [destination,book,registry,hash]of [['CORE_RULES',null,'core-rules',''],['ARMY_BOOK','death-guard','death-guard',''],['ARMY_BOOK','adeptus-mechanicus','adeptus-mechanicus',''],['ARMY_BOOK','chaos-space-marines','chaos-space-marines',''],['ROSTER',null,null,''],['GLOSSARY',null,null,'#view-glossary']]){
+    for(const [destination,book,registry,hash]of [['CORE_RULES',null,'core-rules',''],['ARMY_BOOK','death-guard','death-guard',''],['ARMY_BOOK','adeptus-mechanicus','adeptus-mechanicus',''],['ARMY_BOOK','chaos-space-marines','chaos-space-marines',''],['ARMY_BOOK','emperors-children','emperors-children',''],['ROSTER',null,null,''],['GLOSSARY',null,null,'#view-glossary']]){
       assert.ok(links.some(link=>{const query=new URLSearchParams(link.query);return query.get('v2')===destination&&query.get('book')===book&&query.get('registry')===registry&&link.hash===hash;}),'Missing canonical route '+destination+'/'+book);
     }
     const text=await page.locator('.v2-library-home').innerText();assert.ok(!/Verification build|Audit run|Refresh due|Active roster effects|Source status/i.test(text),'Stale implementation/status labels');
@@ -181,8 +181,8 @@ try{
       assert.equal(await chaos.evaluate(node=>node.scrollWidth>node.clientWidth),true,'Phone Chaos shelf must scroll');
       await chaos.evaluate(node=>node.scrollTo({left:node.scrollWidth,behavior:'instant'}));
       await page.waitForFunction(()=>document.querySelector('[data-home-shelf="chaos"] .book-row').scrollLeft>0);
-      assert.equal(await chaos.evaluate(node=>{const card=node.querySelector('[data-v2-book="chaos-space-marines"]'),row=node.getBoundingClientRect(),box=card.getBoundingClientRect();
-        return box.left>=row.left-1&&box.right<=row.right+1;}),true,'CSM card is not reachable through Chaos shelf scrolling');
+      assert.equal(await chaos.evaluate(node=>{const card=node.querySelector('[data-v2-book="emperors-children"]'),row=node.getBoundingClientRect(),box=card.getBoundingClientRect();
+        return box.left>=row.left-1&&box.right<=row.right+1;}),true,'EC card is not reachable through Chaos shelf scrolling');
       await chaos.evaluate(node=>node.scrollTo({left:0,behavior:'instant'}));
     }
     await page.evaluate(()=>{document.activeElement?.blur();scrollTo(0,0);});await page.waitForTimeout(250);await screenshot(page,'v2-home-'+device+'-ported');
@@ -192,11 +192,11 @@ try{
     if(device==='desktop'||device==='phone'){
       const baseline=await context.newPage();await baseline.goto(origins.baseline+'/v2/app.html');await ready(baseline);
       const baselineHomeBody=await baseline.evaluate(()=>({color:getComputedStyle(document.body).color,background:getComputedStyle(document.body).backgroundColor}));
-      for(const book of ['death-guard','adeptus-mechanicus','chaos-space-marines']){
+      for(const book of bookIds){
         await page.locator(`[data-v2-book="${book}"]`).click();await ready(page);assert.equal(await page.evaluate(()=>window.WarhammerAppV2.activeBookId),book);
         assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.payload.book.id),book,'Home opened the wrong book payload');
         assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.payload.cards.filter(card=>card.kind==='DATASHEET').length),
-          {'death-guard':36,'adeptus-mechanicus':34,'chaos-space-marines':54}[book],'Home book must be implemented and reachable');
+          {'death-guard':36,'adeptus-mechanicus':34,'chaos-space-marines':54,'emperors-children':23}[book],'Home book must be implemented and reachable');
         await navigate(baseline,{destination:'ARMY_BOOK',bookId:book,registryId:book});
         const current=await bookSnapshot(page,book),before=await bookSnapshot(baseline,book);
         if(JSON.stringify(current)!==JSON.stringify(before)){

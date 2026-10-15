@@ -7,10 +7,10 @@ import {createReferenceContract} from '../../../books/shared/army-book-app-v2/re
 const root=new URL('../../../',import.meta.url);
 const read=file=>JSON.parse(fs.readFileSync(new URL(file,root),'utf8'));
 const index=read('glossary/v2/generated/index.en.json');
-const books=['death-guard','adeptus-mechanicus','chaos-space-marines'];
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'];
 const sources=new Map(books.map(book=>[book,read(`books/${book}/v2/generated/effective.json`).entities]));
 const units=[...sources].flatMap(([book,entities])=>entities.filter(entity=>entity.kind==='DATASHEET').map(entity=>({book,entity})));
-assert.equal(units.length,124,'All 36 DG, 34 AdMech and 54 CSM canonical datasheets are required');
+assert.equal(units.length,147,'All 36 DG, 34 AdMech, 54 CSM and 23 EC canonical datasheets are required');
 const owner=entity=>entity.parentId||entity.ownerId;
 const statsOf=(entity,byId)=>{
   const stats={...(entity.data.stats||entity.data.statline||Object.fromEntries(Object.entries(entity.data).filter(([key])=>['M','T','SV','W','LD','OC','INSV'].includes(key))))};
@@ -67,6 +67,7 @@ function verify(candidate){
     }else{
       const sections=children.filter(row=>row.kind==='DATASHEET_SECTION'&&row.data.title==='UNIT COMPOSITION');
       assert.equal(sections.length,1,`${entry.id}: canonical composition section`);
+      for(const memberId of sections[0].data.memberIds||[])assert.ok(definition.includes(byId.get(memberId).data.sourceText.replace(/^[-\u2022]\s*/,'')),`${entry.id}: composition member source identity`);
       assert.ok(definition.includes(sourceText(sections[0])),`${entry.id}: complete composition source text`);
     }
     for(const profile of entry.facts.profiles){

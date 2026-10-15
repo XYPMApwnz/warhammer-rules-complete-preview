@@ -16,7 +16,7 @@ const inputs=await loadGlossaryV2Inputs(),index=createGlossaryV2Index(inputs);
 const published=read('glossary/v2/generated/index.en.json');
 assertGlossaryV2Parity(published,inputs);
 assert.deepEqual(index.supportedArmyBooks,V2_ARMY_BOOK_IDS);
-const excludedBooks=new Set(['emperors-children','tyranids','tau-empire','space-marines','dark-angels','blood-angels']);
+const excludedBooks=new Set(['tyranids','tau-empire','space-marines','dark-angels','blood-angels']);
 assert.ok(index.entries.every(entry=>entry.domain!=='ARMY'||!excludedBooks.has(entry.sourceOwner.bookId)),'Unconnected standalone Army Book leaked into V2');
 const centralKinds=new Set(['POINTS_SCHEDULE_ROW','PAID_WARGEAR_COST','DETACHMENT_ROSTER_METADATA','ENHANCEMENT_COST_QUALIFIERS','ALLIED_POINTS_DEPENDENCY','ATTACHMENT_RELATION']);
 const ownerKey=(book,id)=>book+'\0'+id;
@@ -100,6 +100,32 @@ const lordWeapons=armyEntries.filter(record=>record.sourceOwner.bookId==='chaos-
 assert.equal(lordWeapons.filter(record=>record.label==='Astartes chainblade').length,1,'Chaos Lord duplicate chainblade');
 assert.ok(!armyEntries.some(record=>record.sourceOwner.bookId==='chaos-space-marines'&&record.parent?.canonicalId==='unit-havocs'&&record.recordType==='WEAPON_PROFILE'&&/bolt pistol/i.test(record.label)),'Orphan correction invented a Havocs bolt pistol');
 
+// EC is projected from the same effective owner as its Army Book, including
+// the exact already-reviewed v1.3 profile inventory and current rule conditions.
+const ecEntries=armyEntries.filter(record=>record.sourceOwner.bookId==='emperors-children');
+for(const [type,count]of Object.entries({UNIT:23,DETACHMENT:10,ENHANCEMENT:34,STRATAGEM:51}))assert.equal(ecEntries.filter(record=>record.recordType===type).length,count,'EC exact '+type+' inventory');
+const ecModels={
+  'datasheet-chaos-terminators:profile:1':['T','6'],'datasheet-lord-kakophonist:profile:1':['T','6'],
+  'datasheet-lucius-the-eternal:profile:1':['T','6'],'datasheet-infractors:profile:1':['T','5'],
+  'datasheet-lord-exultant:profile:1':['T','5'],'datasheet-sorcerer:profile:1':['T','5'],
+  'datasheet-tormentors:profile:1':['T','5'],'datasheet-noise-marines:profile:1':['W','3']
+};
+for(const [id,[field,value]]of Object.entries(ecModels))assert.equal(entry('emperors-children',id).facts.canonicalData.stats[field],value,'EC official model profile '+id);
+const ecQA=fs.readFileSync(path.join(repo,'books/emperors-children/v2/foundation-qa.py'),'utf8');
+const ecWeaponLiteral=ecQA.match(/^WEAPON_TARGETS = (\{[\s\S]*?^\})/m);assert.ok(ecWeaponLiteral,'Reviewed EC v1.3 weapon inventory missing');
+const ecWeapons=JSON.parse(ecWeaponLiteral[1].replace(/,\s*}/g,'}'));assert.equal(Object.keys(ecWeapons).length,17);
+for(const [id,fields]of Object.entries(ecWeapons))for(const [field,value]of Object.entries(fields))assert.equal(entry('emperors-children',id).facts.canonicalData[field],value,'EC official weapon profile '+id+'/'+field);
+const frantic=entry('emperors-children','detachment-frenzied-host:rule').facts.canonicalData.text;
+assert.ok(frantic.includes('BATTLELINE models')&&frantic.includes('until the end of the turn'),'Frantic Focus source model condition/duration lost');
+const surge=entry('emperors-children','detachment-slaaneshs-chosen:stratagem:6').facts.canonicalData.lines;
+assert.equal(surge.find(line=>line.label==='WHEN').text,'Your opponent\u2019s Shooting phase, when an enemy unit that targeted a friendly unengaged EMPEROR\u2019S CHILDREN CHARACTER unit this phase has shot.');
+assert.equal(surge.find(line=>line.label==='TARGET').text,'That EMPEROR\u2019S CHILDREN CHARACTER unit.');
+assert.ok(surge.find(line=>line.label==='EFFECT').text.includes('not your army\u2019s Favoured Champions'));
+const host=entry('emperors-children','datasheet-lord-exultant:section:4');
+assert.ok(host.facts.canonicalData.blocks[0].text.includes('Declare Battle Formations step'));
+assert.equal(host.parent.canonicalId,'unit-lord-exultant');
+assert.ok(!ecEntries.some(record=>record.recordType==='UPGRADE_OPTION'),'Contract weapon decisions became separate factual owners');
+
 // Every augmented current MFM value keeps the central record, version and provenance.
 const catalog=inputs.mfmCatalog,centralRecords=new Map();
 for(const partition of ['unitPointRecords','paidUpgradeRecords','leaderEligibilityRecords','supportEligibilityRecords','detachments','enhancementCosts','qualifierRecords'])for(const record of catalog[partition])centralRecords.set(record.id,record);
@@ -151,6 +177,8 @@ publicationMutation('wrong displayed normalized profile',publication=>{profile(p
 publicationMutation('wrong MFM points',publication=>{publication.entries.find(record=>record.mfm?.pointRecords?.length).mfm.pointRecords[0].pointSchedules[0].entries[0].value++;});
 publicationMutation('wrong MFM source version',publication=>{publication.entries.find(record=>record.mfm?.pointRecords?.length).mfm.pointRecords[0].provenance.sourceVersion='v1.5';});
 publicationMutation('wrong canonical caption',publication=>{profile(publication).label='Wrong profile';});
+publicationMutation('stale EC official profile',publication=>{publication.entries.find(record=>record.sourceOwner.bookId==='emperors-children'&&record.sourceOwner.canonicalId==='datasheet-noise-marines:profile:1').facts.canonicalData.stats.W='2';});
+publicationMutation('EC ability lost formation timing',publication=>{publication.entries.find(record=>record.id===host.id).facts.canonicalData.blocks[0].text='This model has Infiltrators.';});
 const changedModels=structuredClone(inputs.armyModels),changedModel=changedModels.find(model=>model.book.id==='chaos-space-marines');
 changedModel.entities.find(entity=>entity.id==='datasheet-legionaries:profile:1').data.stats.T='4';
 rejected(()=>assertV2ArmyBookParity(changedModels),'canonical/Army Book mismatch');
@@ -168,11 +196,18 @@ changedSource.appPayload.factManifest.find(field=>field.entityId==='datasheet-le
 changedSource.appPayload.cards.find(card=>card.id==='datasheet-legionaries:profile:1').fields.find(field=>field.source.path==='/stats/T').value='4';
 assertV2ArmyBookParity(changedInputs.armyModels,{published:bookId=>changedInputs.armyModels.find(model=>model.book.id===bookId).appPayload});
 rejected(()=>assertGlossaryV2Parity(index,changedInputs),'source change with matching fresh Army Book cannot leave old Glossary');
+const changedECInputs={...inputs,armyModels:structuredClone(inputs.armyModels)};
+const changedEC=changedECInputs.armyModels.find(model=>model.book.id==='emperors-children');
+changedEC.entities.find(entity=>entity.id==='datasheet-noise-marines:profile:1').data.stats.W='2';
+changedEC.appPayload.factManifest.find(field=>field.entityId==='datasheet-noise-marines:profile:1'&&field.path.join('/')==='stats/W').value='2';
+changedEC.appPayload.cards.find(card=>card.id==='datasheet-noise-marines:profile:1').fields.find(field=>field.source.path==='/stats/W').value='2';
+assertV2ArmyBookParity(changedECInputs.armyModels,{published:bookId=>changedECInputs.armyModels.find(model=>model.book.id===bookId).appPayload});
+rejected(()=>assertGlossaryV2Parity(index,changedECInputs),'fresh EC source/Army Book cannot leave old Glossary');
 const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 const artifacts=['index.en.json','index.en.js'].map(name=>path.join(repo,'glossary/v2/generated',name));
 const beforeHashes=artifacts.map(digest),temporary=fs.mkdtempSync(path.join(os.tmpdir(),'v2-glossary-stale-'));
 try{
-  const stale=structuredClone(index);stale.entries.find(record=>record.id===legionaryId).facts.canonicalData.stats.T='4';
+  const stale=structuredClone(index);stale.entries.find(record=>record.sourceOwner.bookId==='emperors-children'&&record.sourceOwner.canonicalId==='datasheet-noise-marines:profile:1').facts.canonicalData.stats.W='2';
   const publicationFile=path.join(temporary,'stale-index.json');fs.writeFileSync(publicationFile,JSON.stringify(stale));
   let error;try{execFileSync(process.execPath,['glossary/v2/tools/build-glossary-v2.mjs','--core-only','--check','--publication='+publicationFile],{cwd:repo,encoding:'utf8',stdio:['ignore','pipe','pipe'],maxBuffer:16*1024*1024});}catch(cause){error=cause;}
   assert.ok(error&&error.status!==0&&/Stale non-Core factual publication/.test(error.stderr||''),'Scoped CLI failed to reject stale Army publication');mutations++;
@@ -181,4 +216,4 @@ try{
   fs.rmSync(temporary,{recursive:true,force:true});
 }
 assert.deepEqual(artifacts.map(digest),beforeHashes,'Scoped --check modified generated publications');
-console.log(JSON.stringify({status:'PASS',armyBooks:V2_ARMY_BOOK_IDS,canonicalOwners:canonicalFacts,csmOfficialProfiles:Object.keys(csmExpected).length,mfmRecords:augmented.size,sourceOwnedDependencies:dependencyPoints.length,coreRecords:expectedCore.length,missionRecords:expectedMissionIds.size,mutationControls:mutations}));
+console.log(JSON.stringify({status:'PASS',armyBooks:V2_ARMY_BOOK_IDS,canonicalOwners:canonicalFacts,csmOfficialProfiles:Object.keys(csmExpected).length,ecOfficialModels:Object.keys(ecModels).length,ecOfficialWeapons:Object.keys(ecWeapons).length,mfmRecords:augmented.size,sourceOwnedDependencies:dependencyPoints.length,coreRecords:expectedCore.length,missionRecords:expectedMissionIds.size,mutationControls:mutations}));

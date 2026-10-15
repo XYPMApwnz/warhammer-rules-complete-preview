@@ -68,4 +68,4 @@ const missing=structuredClone(payload);missing.cards.find(card=>card.id==='datas
 assert.throws(()=>assertPresentationParity(missing),/Missing source block/);mutations++;
 const duplicate=buildECContracts();duplicate.book.entities.push(structuredClone(duplicate.book.entities[0]));assert.throws(()=>buildApp(duplicate),/Duplicate canonical entity/);mutations++;
 console.log(JSON.stringify({status:'PASS',datasheets:23,detachments:10,enhancements:34,stratagems:51,contracts:26,
-  compositionMembers:30,ruleReferences:54,updates:46,mutations,canonicalFactsUnchanged:true,productionRegistrationChanged:false}));
+  compositionMembers:30,ruleReferences:54,updates:46,mutations,canonicalFactsUnchanged:true,registrationId:registration.id}));

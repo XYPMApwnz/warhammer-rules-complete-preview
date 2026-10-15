@@ -7,6 +7,31 @@ import {validateGlossary} from '../books/shared/army-book-app-v2/glossary.mjs';
 import {encodeRoute,decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 
 const corpus=JSON.parse(fs.readFileSync(new URL('../glossary/v2/generated/index.en.json',import.meta.url),'utf8'));
+const includedBooks=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'];
+assert.deepEqual(corpus.supportedArmyBooks,includedBooks,'Exactly four registered V2 factual owners');
+const excludedBooks=['tyranids','tau-empire','space-marines','dark-angels','blood-angels'];
+for(const book of excludedBooks)assert.ok(!corpus.entries.some(entry=>entry.domain==='ARMY'&&entry.sourceOwner.bookId===book&&
+  !(entry.contexts||[]).some(context=>includedBooks.includes(context.effectiveBookId))),book+': unexpected standalone book');
+const ec=JSON.parse(fs.readFileSync(new URL('../books/emperors-children/v2/generated/effective.json',import.meta.url),'utf8'));
+const ecEntries=corpus.entries.filter(entry=>entry.domain==='ARMY'&&entry.sourceOwner.bookId==='emperors-children');
+assert.equal(ecEntries.length,ec.entities.length,'One EC Glossary record per existing canonical owner');
+for(const [kind,count]of [['DATASHEET',23],['DETACHMENT',10],['ENHANCEMENT',34],['STRATAGEM',51],['WEAPON_PROFILE',104]]){
+  const owners=ec.entities.filter(entity=>entity.kind===kind);assert.equal(owners.length,count);
+  assert.deepEqual(ecEntries.filter(entry=>owners.some(owner=>owner.id===entry.sourceOwner.canonicalId))
+    .map(entry=>entry.sourceOwner.canonicalId).sort(),owners.map(owner=>owner.id).sort(),kind+': EC owner inventory');
+}
+function assertECParity(entries){
+  for(const entity of ec.entities){
+    const matches=entries.filter(entry=>entry.sourceOwner.canonicalId===entity.id);
+    assert.equal(matches.length,1,'EC canonical owner missing/extra/duplicate: '+entity.id);
+    assert.deepEqual(matches[0].facts.canonicalData,entity.data,'EC factual parity: '+entity.id);
+  }
+}
+assertECParity(ecEntries);
+const mismatch=structuredClone(ecEntries);mismatch.find(entry=>entry.sourceOwner.canonicalId==='datasheet-noise-marines:profile:1').facts.canonicalData.stats.W='2';
+assert.throws(()=>assertECParity(mismatch),{name:'AssertionError'},'Stale EC profile escaped factual comparison');
+const missing=ecEntries.filter(entry=>entry.sourceOwner.canonicalId!=='datasheet-lord-exultant:section:1');
+assert.throws(()=>assertECParity(missing),{name:'AssertionError'},'Missing EC ability escaped owner comparison');
 const immutable=JSON.stringify(corpus),projection=adaptGlobalGlossary(corpus);
 const cards=new Map(projection.cards.map(card=>[card.id,card]));
 const contract=createReferenceContract({cards,index:projection.index});
@@ -96,5 +121,5 @@ for(const terrain of projection.cards.filter(card=>card.kind==='TERRAIN_LAYOUT')
 }
 assert.equal(JSON.stringify(corpus),immutable);
 console.log(JSON.stringify({status:'PASS',corpus:projection.counts,qualifiedIdentities:identities.size,canonicalResolution:true,
-  categories:contract.categories().length,titleAliasDefinition:true,namespaceCollision:true,subentryIsolation:true,crossRegistryIsolation:true,
+  categories:contract.categories().length,registeredArmyBooks:includedBooks,ecCanonicalOwners:ecEntries.length,ecParity:true,ecNegativeControls:2,titleAliasDefinition:true,namespaceCollision:true,subentryIsolation:true,crossRegistryIsolation:true,
   ambiguousAliasesFailClosed:true,immutable:true}));

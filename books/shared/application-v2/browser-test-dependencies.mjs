@@ -19,7 +19,8 @@ const dependencies=new Map([
   ...['core-rules-cover-480.webp','core-rules-cover-800.webp','adeptus-mechanicus-cover-480.webp','death-guard-cover-480.webp'].map(name=>[`/assets/${name}`,'image/webp']),
   ['/assets/core-rules-cover-fallback.jpg','image/jpeg'],
   ['/books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp','image/webp'],
-  ...['death-guard','adeptus-mechanicus','chaos-space-marines'].map(book=>[
+  ['/books/emperors-children/assets/emperors-children-cover-480.webp','image/webp'],
+  ...['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'].map(book=>[
     `/books/${book}/v2/registration.mjs`,'text/javascript'])
 ]);
 

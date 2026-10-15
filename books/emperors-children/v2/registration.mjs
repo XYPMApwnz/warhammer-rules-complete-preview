@@ -1,4 +1,4 @@
-/** Future EC configuration. Production registry is deliberately unchanged. */
+/** EC-owned configuration for the shared Unified V2 application. */
 export const registration=Object.freeze({
   id:'emperors-children',title:'Emperor’s Children',
   home:Object.freeze({shelf:Object.freeze({id:'chaos',title:'Chaos',subtitle:'Armies of Chaos',order:30}),

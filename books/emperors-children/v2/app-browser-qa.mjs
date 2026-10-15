@@ -1,4 +1,4 @@
-/** Isolated EC registration on the real shared application and renderer.
+/** Real shared application and renderer; --unified uses production boot bytes.
  * Fixtures are constructed source-backed New Recruit grammar, not real exports.
  * Browser evaluate calls inspect only; all changes use visible player controls. */
 import assert from 'node:assert/strict';
@@ -7,39 +7,44 @@ import http from 'node:http';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
+import {isApplicationTestDependency} from '../../shared/application-v2/browser-test-dependencies.mjs';
+import {adaptGlobalGlossary} from '../../shared/army-book-app-v2/global-glossary.mjs';
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const fixtures=JSON.parse(fs.readFileSync(new URL('./roster-import-fixtures.json',import.meta.url),'utf8'));
 assert.match(fixtures.captureStatus,/Constructed source-backed/);
 const fixture=id=>fixtures.fixtures.find(entry=>entry.id===id).text;
-const out=process.env.EC_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/ec-v2-app-browser';
+const unified=process.argv.includes('--unified');
+const out=process.env.EC_V2_SCREENSHOTS||(unified?'E:/Warhammer/qa-artifacts/ec-v2-unified-browser':'E:/Warhammer/qa-artifacts/ec-v2-app-browser');
 fs.mkdirSync(out,{recursive:true});
-const entry='/ec-v2-test.html',bootstrap='/ec-v2-test-boot.mjs';
+const entry=unified?'/v2/app.html':'/ec-v2-test.html',bootstrap='/ec-v2-test-boot.mjs';
 const wrapper='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EC isolated shared V2 UI</title></head><body><script type="module" src="'+bootstrap+'"></script></body></html>';
 const boot=`import {createBookRegistry} from '/books/shared/application-v2/registry.mjs';
 import {createApplication} from '/books/shared/application-v2/runtime.mjs';
 import {registration} from '/books/emperors-children/v2/registration.mjs';
 createApplication(document,{registry:createBookRegistry([registration]),entryURL:new URL('${entry}',location.origin).href});`;
-const allowed=address=>[entry,bootstrap].includes(address)||
+const allowed=address=>[entry,...(unified?[]:[bootstrap])].includes(address)||
+ (unified&&(isApplicationTestDependency(address)||/^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/v2\/[\w./-]+\.(?:mjs|json|css)$/.test(address)||
+ /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/assets\/[\w./-]+\.(?:webp|png|jpe?g|svg)$/.test(address)))||
  /^\/books\/emperors-children\/v2\/[\w./-]+\.(?:mjs|json|css)$/.test(address)||
  /^\/books\/emperors-children\/assets\/emperors-children-cover-(?:480|800)\.webp$/.test(address)||
  /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w./-]+\.(?:mjs|css|json)$/.test(address)||
  /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
- /^\/assets\/[\w./-]+\.(?:webp|png|svg|woff2)$/.test(address);
-for(const address of ['/books/emperors-children/scripts/data.js','/books/death-guard/v2/registration.mjs',
+ /^\/assets\/[\w./-]+\.(?:webp|png|jpe?g|svg|woff2)$/.test(address);
+for(const address of ['/books/emperors-children/scripts/data.js',...(!unified?['/books/death-guard/v2/registration.mjs']:[]),
  '/books/emperors-children/assets/unknown.webp','/books/tyranids/v2/app.html'])assert.equal(allowed(address),false);
 const requests=[],forbidden=[],missing=[],errors=[],results=[];
-const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.woff2':'font/woff2'};
+const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.svg':'image/svg+xml','.woff2':'font/woff2'};
 const server=http.createServer((req,res)=>{
  const address=new URL(req.url,'http://localhost').pathname;requests.push(address);
  if(address==='/favicon.ico'){res.writeHead(204);res.end();return;}
  if(!allowed(address)){forbidden.push(address);res.writeHead(404);res.end();return;}
  const file=path.resolve(repo,address.slice(1));
- if(![entry,bootstrap].includes(address)&&(!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile())){
+ if((unified||![entry,bootstrap].includes(address))&&(!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile())){
    missing.push(address);res.writeHead(404);res.end();return;
  }
  res.writeHead(200,{'Content-Type':mime[path.extname(address)]||'application/octet-stream','Cache-Control':'no-store'});
- res.end(address===entry?wrapper:address===bootstrap?boot:fs.readFileSync(file));
+ res.end(!unified&&address===entry?wrapper:!unified&&address===bootstrap?boot:fs.readFileSync(file));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
@@ -71,6 +76,46 @@ async function guide(page){await page.getByRole('button',{name:'Personal guide',
 async function guideUnit(page,id){await page.locator(`main [data-roster-nav-instance-id="${id}"]`).first().click();await page.locator('main .unit-card').first().waitFor();await geometry(page);}
 async function units(page){return page.locator('main .unit-card').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.rosterInstanceId,text:n.innerText})));}
 async function snapshot(page){return page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());}
+async function unifiedReferences(page,device){
+ const home=async()=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await ready(page);};
+ const openBook=async id=>{await home();await page.locator(`[data-v2-book="${id}"]`).click();await ready(page);};
+ await home();assert.deepEqual(await page.locator('[data-v2-book]').evaluateAll(nodes=>nodes.map(n=>n.dataset.v2Book)),
+   ['adeptus-mechanicus','death-guard','chaos-space-marines','emperors-children']);
+ const facts=JSON.parse(fs.readFileSync(new URL('./generated/effective.json',import.meta.url)));
+ const quote=facts.entities.find(e=>e.id==='datasheet-lord-exultant:section:1').data.blocks[0].text;
+ const normalized=text=>text.replace(/\s+/g,' ').trim();
+ await openBook('emperors-children');await page.locator('main a.v2-library-card[data-target-id="unit-lord-exultant"]').click();
+ assert.ok(normalized(await page.locator('main').innerText()).includes(normalized(quote)),'Army Book lost canonical ability text');
+ const corpus=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
+ const projected=adaptGlobalGlossary(corpus);
+ const target=projected.cards.find(c=>c.identity.registryId==='emperors-children'&&c.identity.canonicalId==='datasheet-lord-exultant:section:1'&&c.identity.fieldPath==='/blocks/0/text');
+ assert.ok(target,'EC source-owned ability field missing from Mega Glossary');
+ await home();await page.locator('[data-v2-primary-nav] [data-v2-destination="GLOSSARY"]').click();await ready(page);
+ await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill('Perfectionists');
+ const link=page.locator(`.v2-glossary-result[data-target-id="${target.id}"]`);await link.waitFor();const direct=await link.getAttribute('href');
+ await link.click();const popup=page.locator('dialog[open]');await popup.waitFor();
+ assert.deepEqual(await popup.locator('.reference-definition .reference-fact').allTextContents(),[quote],'Glossary/Army Book exact ability parity');
+ await popup.getByRole('link',{name:'Open full entry',exact:true}).click();
+ const article=page.locator(`main article[data-card-id="${target.id}"]`);await article.waitFor();
+ assert.ok(await article.locator('a[data-target-id]').count(),'EC ability has no canonical references');
+ await article.locator('a[data-target-id]').first().click();await page.locator('dialog[open]').waitFor();
+ assert.ok((await page.locator('dialog[open]').innerText()).trim().length>0);await page.keyboard.press('Escape');
+ await page.reload();await ready(page);assert.deepEqual(await article.locator('.reference-definition .reference-fact').allTextContents(),[quote]);
+ await page.goBack();await ready(page);await page.getByRole('searchbox',{name:'Search glossary',exact:true}).waitFor();
+ await page.goForward();await ready(page);await article.waitFor();
+ await page.goto(direct);await ready(page);await article.waitFor();await geometry(page);
+ await page.screenshot({path:path.join(out,device+'-unified-ec-glossary.png'),fullPage:false});
+ // One updated profile in each view proves the deployed canonical source,
+ // while full inventory/provenance parity belongs to the existing Node guard.
+ await openBook('emperors-children');await page.locator('main a.v2-library-card[data-target-id="unit-noise-marines"]').click();
+ assert.match(await page.locator('main .statline').first().innerText(),/W\s*3\b/);
+ for(const [book,id]of [['death-guard','unit-lord-of-contagion'],['adeptus-mechanicus','unit-tech-priest-dominus'],['chaos-space-marines','unit-chaos-lord']]){
+   await openBook(book);await page.locator(`main a.v2-library-card[data-target-id="${id}"]`).click();
+   await page.locator('main .unit-card').first().waitFor();await geometry(page);
+ }
+ await openBook('emperors-children');await roster(page);
+ assert.equal((await snapshot(page)).units[0].canonicalUnitId,'unit-lord-exultant','Returning from other books lost EC roster ownership');
+}
 
 try{
  for(const [device,viewport]of [['desktop',{width:1440,height:900}],['mobile',{width:390,height:844}]]){
@@ -150,7 +195,8 @@ try{
    const direct=page.url();await page.reload();await ready(page);await page.locator('main .unit-card').first().waitFor();
    await guide(page);await page.goBack();await page.locator('main .unit-card').first().waitFor();await page.goForward();await ready(page);
    await page.goto(direct);await ready(page);await geometry(page);
-   results.push({device,armyBookReference:true,import:true,attachments:true,formedComponents:true,legionsEquipment:true,selectedUnselected:true,cacophonicScopes:true,lordOfTheHostTiming:true,battleConditionsVisible:true,unitUpgrades:true,possessedBladeExplicitChoice:true,guide:true,reload:true,history:true,overflow:false});
+   if(unified)await unifiedReferences(page,device);
+   results.push({device,armyBookReference:true,import:true,attachments:true,formedComponents:true,legionsEquipment:true,selectedUnselected:true,cacophonicScopes:true,lordOfTheHostTiming:true,battleConditionsVisible:true,unitUpgrades:true,possessedBladeExplicitChoice:true,guide:true,reload:true,history:true,unifiedGlossaryParity:unified,returnToExistingBooks:unified,overflow:false});
   };
   try{await Promise.race([scenario(),pageFailure]);}catch(error){
    await page.screenshot({path:path.join(out,device+'-failure.png'),fullPage:true});
@@ -159,5 +205,5 @@ try{
   }await context.close();
  }
  assert.deepEqual(forbidden,[]);assert.deepEqual(missing,[]);assert.deepEqual(errors,[]);
- console.log(JSON.stringify({status:'PASS',captureStatus:fixtures.captureStatus,results,forbidden,missing,errors,screenshots:out},null,2));
+ console.log(JSON.stringify({status:'PASS',application:unified?'PRODUCTION_UNIFIED_V2':'ISOLATED_EC',captureStatus:fixtures.captureStatus,results,forbidden,missing,errors,screenshots:out},null,2));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

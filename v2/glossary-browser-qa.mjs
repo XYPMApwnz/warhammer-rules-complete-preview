@@ -14,12 +14,13 @@ const repo=fileURLToPath(new URL('../',import.meta.url));
 const corpus=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
 const projection=adaptGlobalGlossary(corpus),contract=createReferenceContract({cards:new Map(projection.cards.map(card=>[card.id,card])),index:projection.index});
 const projectedEntries=projection.index.entries.length;
-assert.equal(corpus.entries.length,3283,'Canonical source-entry inventory must remain unchanged');
-assert.equal(projectedEntries,3422,'139 source-field references augment, rather than replace, the canonical catalog');
+assert.equal(corpus.entries.length,3769,'Canonical inventory includes the 486 EC V2 source-owned records');
+assert.equal(projectedEntries,3952,'183 source-field references augment, rather than replace, the canonical catalog');
 const abilitySamples=[
   {book:'death-guard',id:'datasheet-lord-of-contagion:section:1',path:'/blocks/0/text',label:'Vector of Disease',category:'ABILITY'},
   {book:'adeptus-mechanicus',id:'datasheet-skitarii-rangers:section:1',path:'/blocks/0/text',label:'Objective Scouted',category:'ABILITY'},
   {book:'chaos-space-marines',id:'datasheet-chaos-lord:section:1:block:0:text',label:'Lord of Chaos',category:'ABILITY'},
+  {book:'emperors-children',id:'datasheet-lord-exultant:section:1',path:'/blocks/0/text',label:'Perfectionists',category:'ABILITY'},
   {book:'chaos-space-marines',id:'datasheet-abaddon-the-despoiler:section:5:block:0:text',label:'Paragon of Hatred (Aura)',category:'ABILITY',
     governing:{id:'datasheet-abaddon-the-despoiler:section:1:block:0:text'}},
   {book:'adeptus-mechanicus',id:'datasheet-belisarius-cawl:section:4',path:'/blocks/0/text',label:'Invocation of Machine Vengeance',category:'ABILITY',
@@ -29,8 +30,8 @@ const abilitySamples=[
   {book:'chaos-space-marines',id:'datasheet-legionaries:section:1:block:1:text',label:'Chaos Icon',category:'WARGEAR_ABILITY'},
   {book:'death-guard',id:'datasheet-great-unclean-one:raw-dsAbility:1',label:'Reverberating Summons',category:'WARGEAR_ABILITY'}
 ];
-const includedBooks=['death-guard','adeptus-mechanicus','chaos-space-marines'];
-const excludedBooks=['emperors-children','tyranids','tau-empire','space-marines','dark-angels','blood-angels'];
+const includedBooks=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'];
+const excludedBooks=['tyranids','tau-empire','space-marines','dark-angels','blood-angels'];
 const canonicalEntry=(bookId,canonicalId)=>{
   const matches=corpus.entries.filter(item=>item.domain==='ARMY'&&item.sourceOwner.bookId===bookId&&item.sourceOwner.canonicalId===canonicalId);
   assert.equal(matches.length,1,`${bookId}/${canonicalId}: exactly one canonical owner`);return matches[0];
@@ -52,7 +53,9 @@ const updatedReferences=[
     'When you have selected the Icon of War ability you want to use.']},
   {book:'chaos-space-marines',id:'datasheet-legionaries:profile:1',pattern:/\bT\s+5\b/},
   {book:'chaos-space-marines',id:'datasheet-havocs:profile:1',pattern:/\bW\s+3\b/},
-  {book:'chaos-space-marines',id:'datasheet-chaos-lord:weapon:4',pattern:/\bS\s+5\b/,text:['Astartes chainblade']}
+  {book:'chaos-space-marines',id:'datasheet-chaos-lord:weapon:4',pattern:/\bS\s+5\b/,text:['Astartes chainblade']},
+  {book:'emperors-children',id:'datasheet-noise-marines:profile:1',pattern:/\bW\s+3\b/},
+  {book:'emperors-children',id:'datasheet-chaos-terminators:profile:1',pattern:/\bT\s+6\b/}
 ];
 const csmAbility=canonicalEntry('chaos-space-marines','datasheet-chaos-lord:section:1:block:0:text');
 for(const book of includedBooks){
@@ -64,17 +67,22 @@ for(const book of includedBooks){
 const requests=[],forbidden=[],errors=[],results=[];
 const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json',
   '.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg'};
-const server=http.createServer((request,response)=>{
-  const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
-  if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
-  const allowed=isApplicationTestDependency(address)||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
-    /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
+const isAllowedResource=address=>isApplicationTestDependency(address)||address==='/books/emperors-children/assets/emperors-children-cover-800.webp'||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
+    /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
     /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address)||
     ['/glossary/index.html','/glossary/v2/compatibility.mjs','/glossary/v2/generated/index.en.json'].includes(address);
+assert.equal(isAllowedResource('/books/emperors-children/assets/emperors-children-cover-480.webp'),true);
+assert.equal(isAllowedResource('/books/emperors-children/assets/emperors-children-cover-800.webp'),true);
+for(const address of ['/books/emperors-children/assets/unknown.webp','/books/emperors-children/assets/emperors-children-cover-640.webp',
+  '/books/emperors-children/scripts/data.js','/books/tyranids/v2/registration.mjs'])
+  assert.equal(isAllowedResource(address),false,'Unexpected resource admitted: '+address);
+const server=http.createServer((request,response)=>{
+  const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
+  if(address==='/favicon.ico'){response.writeHead(204);response.end();return;}
   const file=path.resolve(repo,address.slice(1));
-  if(!allowed||!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){
+  if(!isAllowedResource(address)||!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){
     forbidden.push(address);response.writeHead(404);response.end();return;
   }
   response.writeHead(200,{'Content-Type':types[path.extname(file)],'Cache-Control':'no-store'});response.end(fs.readFileSync(file));
@@ -117,7 +125,7 @@ try {
     const homeRequestStart=requests.length;
     const page=await context.newPage();await page.goto(entry);await ready(page);
     assert.deepEqual(requests.slice(homeRequestStart).filter(address=>
-      /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/v2\//.test(address)&&!address.endsWith('/registration.mjs')),
+      /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children)\/v2\//.test(address)&&!address.endsWith('/registration.mjs')),
     [],'Home loaded book factual data or roster service before book selection');
     const home=await page.evaluate(()=>({title:document.title,html:document.querySelector('.v2-library-home').outerHTML,
       background:getComputedStyle(document.querySelector('.v2-library-home')).backgroundImage,styles:[...document.querySelectorAll('link[rel="stylesheet"]')].map(link=>link.href)}));
@@ -134,8 +142,8 @@ try {
     const expected=contract.search('',{category:category.id}).map(entry=>entry.targetId).sort();
     assert.deepEqual(await page.locator('.v2-glossary-result').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId).sort()),expected);
     await page.locator('[data-glossary-category=""]').click();
-    for(const [label,total,perBook]of [['Ability',213,{'death-guard':61,'adeptus-mechanicus':60,'chaos-space-marines':92}],
-      ['Wargear Ability',26,{'death-guard':7,'adeptus-mechanicus':12,'chaos-space-marines':7}]]){
+    for(const [label,total,perBook]of [['Ability',251,{'death-guard':61,'adeptus-mechanicus':60,'chaos-space-marines':92,'emperors-children':38}],
+      ['Wargear Ability',33,{'death-guard':7,'adeptus-mechanicus':12,'chaos-space-marines':7,'emperors-children':7}]]){
       const selected=contract.categories().find(category=>category.label===label);assert.ok(selected,`${label}: category exists`);
       await page.locator('[data-glossary-category="'+selected.id+'"]').click();
       const expected=contract.search('',{category:selected.id});assert.equal(expected.length,total,`${label}: exact source-derived inventory`);
@@ -248,7 +256,6 @@ try {
       await geometry(page);
     }
     const excludedLegacyIds={
-      'emperors-children':'army::emperors-children::unit::unit-noise-marines',
       tyranids:'army::tyranids::unit::unit-barbgaunts',
       'tau-empire':'army::tau-empire::unit::unit-breacher-team',
       'space-marines':'army::space-marines::unit::unit-adrax-agatone',
@@ -268,10 +275,12 @@ try {
     }
     await page.goto(origin+'/glossary/index.html');await ready(page);await global(page);await page.getByRole('searchbox',{name:'Search glossary',exact:true}).waitFor();
     // Each normal book and its real imported personal guide can enter the global catalog.
+    // Constructed source-backed examples use supported New Recruit grammar; these are not captured user exports.
     const fixtures={
       'death-guard':'+ DETACHMENT: Virulent Vectorium\nChar1: 1x Lord of Contagion (120 pts): Manreaper',
       'adeptus-mechanicus':'+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\nChar1: 1x Tech-priest Dominus (75 pts): Volkite blaster, Macrostubber, Omnissian axe',
-      'chaos-space-marines':'+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Pactbound Zealots\nChar1: 1x Chaos Lord (95 pts): Daemon hammer, Plasma pistol\n  Mark of Chaos: Nurgle'};
+      'chaos-space-marines':'+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Pactbound Zealots\nChar1: 1x Chaos Lord (95 pts): Daemon hammer, Plasma pistol\n  Mark of Chaos: Nurgle',
+      'emperors-children':"+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Peerless Bladesmen\nChar1: 1x Lord Exultant (95 pts): Bolt pistol, Plasma pistol, Phoenix power spear, Close combat weapon"};
     for(const [book,text]of Object.entries(fixtures)) {
       await page.evaluate(route=>window.WarhammerAppV2.navigate(route),{destination:'ARMY_BOOK',bookId:book});await active(page,book);
       const theme=await page.evaluate(()=>({bodyClass:document.body.className,background:getComputedStyle(document.body).backgroundColor,
@@ -299,14 +308,14 @@ try {
     await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await active(page,null);
     assert.deepEqual(await page.evaluate(()=>({title:document.title,html:document.querySelector('.v2-library-home').outerHTML,
       background:getComputedStyle(document.querySelector('.v2-library-home')).backgroundImage,styles:[...document.querySelectorAll('link[rel="stylesheet"]')].map(link=>link.href)})),home,'Glossary changed Home presentation');
-    results.push({device,corpus:corpus.entries.length,projectedEntries,abilityCategories:{ability:213,wargearAbility:26},qualifiedAbilitySamples:abilitySamples.length,
+    results.push({device,corpus:corpus.entries.length,projectedEntries,abilityCategories:{ability:251,wargearAbility:33},qualifiedAbilitySamples:abilitySamples.length,
       searchTitle:true,searchAliases:true,searchDefinition:true,categories:true,
       canonicalPopup:true,fullArticle:true,closeEscapeOutsideFocus:true,nativeNewTab:true,directReload:true,backForward:true,
-      legacyLinks:true,excludedLegacyUnavailable:excludedBooks.length,currentOfficialReferences:updatedReferences.length,mfmVersion:'v1.6',
+      legacyLinks:true,excludedLegacyUnavailable:excludedBooks.length,currentOfficialReferences:updatedReferences.length,mfmVersion:'v1.6',registeredArmyBooks:includedBooks,resourceNegativeControls:4,
       bookToGlobal:true,personalGuideToGlobal:true,scopeUnrestricted:true,lifecycleCleanup:true,themeIsolation:true,overflow:false});
     await context.close();
   }
-  assert.deepEqual(errors,[],'Global Glossary raised browser exceptions');assert.deepEqual(forbidden,[],'Global Glossary loaded a legacy/unexpected runtime');
+  assert.deepEqual(forbidden,[],'Global Glossary loaded a legacy/unexpected runtime');assert.deepEqual(errors,[],'Global Glossary raised browser exceptions');
   assert.ok(!requests.some(address=>/viewer\.js|viewer\.css|glossary\/v2\/viewer/.test(address)),'Divergent standalone viewer remains active');
   console.log(JSON.stringify({status:'PASS',results,errors,forbidden,resources:[...new Set(requests)].length,screenshots}));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
