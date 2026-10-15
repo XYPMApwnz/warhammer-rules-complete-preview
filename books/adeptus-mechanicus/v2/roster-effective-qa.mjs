@@ -64,6 +64,7 @@ export function effectiveIntegrationFixture(book) {
     attachments.push({leaderInstanceId:u.instanceId,bodyguardInstanceId:body.instanceId,role:name==='technoarcheologist'?'SUPPORT':'LEADER'});
   }
   units.push(make('global-mixed-a','servitor-battleclade'),make('global-mixed-b','servitor-battleclade'),make('global-corpus','corpuscarii-electro-priests'),make('global-robots','kastelan-robots'));
+  units.push(make('base-charge-a','sicarian-ruststalkers'),make('base-charge-b','sicarian-ruststalkers'));
   const detachmentIds=book.entities.filter(e=>e.kind==='DETACHMENT').map(e=>e.id);
   return {schema:'roster-v2/roster',bookId:book.bookId,rosterId:'am-complete-effective-integration',units,attachments,warlordInstanceId:null,
     detachmentIds,detachments:detachmentIds.map((canonicalDetachmentId,i)=>({instanceId:`det-${i}`,canonicalDetachmentId}))};
@@ -75,7 +76,7 @@ export function runEffectiveIntegration() {
   const create=()=>createAdMechRosterRuntime(prepared,readJson('roster-import-aliases.json'),{evaluator:built.schema.evaluator});
   const service=create(),state=effectiveIntegrationFixture(book),touched=new Set(),effectIds=new Set();
   const clauses=book.entities.flatMap(e=>(e.ruleContract?.clauses||[]).filter(c=>c.rosterClassification==='ROSTER_EXECUTABLE').map(c=>[e,c]));
-  assert.equal(clauses.length,43);assert.equal(built.blockedIds.size,0);
+  assert.equal(clauses.length,44);assert.equal(built.blockedIds.size,0);
   let rebuilds=0,provenanceChecks=0,effectiveChecks=0;
   const physical=(projection,id)=>projection.units.find(u=>u.instanceId===id);
   function run(snapshot){
@@ -103,6 +104,12 @@ export function runEffectiveIntegration() {
   const aloneState={...structuredClone(state),attachments:[]},alone=run(aloneState),attached=run(state);
   const wanted=new Set(clauses.map(([e,c])=>`${e.id}/${c.id}`));assert.deepEqual(touched,wanted,'Some current roster-known source clause never reached an effective physical datasheet');
   const wantedEffects=new Set(clauses.flatMap(([e,c])=>c.rosterEffects.map(x=>`${e.id}/${c.id}/${x.id}`)));assert.deepEqual(effectIds,wantedEffects);
+  for(const id of ['base-charge-a','base-charge-b']){
+    assert.deepEqual(physical(attached,id).metrics.chargeRoll,{modifier:1});
+    assert.ok(physical(attached,id).profiles.every(p=>p.metrics.chargeRoll===undefined));
+    assert.ok(physical(attached,id).conditional.some(c=>c.ruleId==='datasheet-sicarian-ruststalkers:section:1'&&c.clauseId==='block-1'));
+  }
+  assert.equal(physical(attached,'equipment-skitarii-rangers').metrics.chargeRoll,undefined);
 
   // Expected numeric/ability outcomes come from the source review, independent
   // of the service's evidence/provenance structures.
@@ -198,7 +205,7 @@ export function runEffectiveIntegration() {
   let relatedChecks=0;for(const id of ['owner-haloscreed-battle-clade-2','global-mixed-a','equipment-onager-dunecrawler'])for(const row of service.related(id)){
     assert.ok(state.detachmentIds.includes(row.detachmentId));assert.notEqual(row.state,'INVALID');assert.equal(row.instanceId,id);relatedChecks++;
   }
-  return {status:'PASS',rosterClauses:43,projectedClauses:touched.size,sourceOperations:effectIds.size,physicalInstances:state.units.length,rebuilds,provenanceChecks,effectiveChecks,
+  return {status:'PASS',rosterClauses:44,projectedClauses:touched.size,sourceOperations:effectIds.size,physicalInstances:state.units.length,rebuilds,provenanceChecks,effectiveChecks,
     relatedChecks,immutableCanonicalFacts:true,mixedProfileIsolation:true,physicalOwnerIsolation:true,attachmentReversibility:true,enhancementRemoveRestore:true,deterministic:true,battleEffectLeakage:0};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)console.log(JSON.stringify(runEffectiveIntegration()));

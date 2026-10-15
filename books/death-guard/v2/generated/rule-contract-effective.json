@@ -16986,11 +16986,67 @@
             ],
             "roles": [],
             "conditions": [],
-            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
+              "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "source-clause-3:roster-effect:1",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "equipmentRequirementSatisfied",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "can be equipped with 1 instrument of Chaos.",
+                        "otherEntityId": "datasheet-plague-drones:wargear:1"
+                      }
+                    }
+                  }
+                ],
+                "lifetime": "WHILE_INSTRUMENT_BEARER_IS_IN_UNIT",
+                "operation": "MODIFY_RULE_METRIC",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "FORMED",
+                "field": "chargeRoll",
+                "mode": "ADD",
+                "value": 1,
+                "equipmentRequirement": {
+                  "binding": "SOURCE",
+                  "kind": "EQUIPMENT_PRESENT",
+                  "equipmentId": "datasheet-plague-drones:wargear:1",
+                  "sourceFieldPath": [
+                    "text"
+                  ]
+                },
+                "sourceFields": [
+                  [
+                    "blocks",
+                    2,
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
+                }
+              }
+            ]
           }
         ],
         "currentness": {
@@ -19400,11 +19456,67 @@
             ],
             "roles": [],
             "conditions": [],
-            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
+              "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "source-clause-3:roster-effect:1",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "equipmentRequirementSatisfied",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "can be equipped with 1 instrument of Chaos.",
+                        "otherEntityId": "datasheet-plaguebearers:wargear:1"
+                      }
+                    }
+                  }
+                ],
+                "lifetime": "WHILE_INSTRUMENT_BEARER_IS_IN_UNIT",
+                "operation": "MODIFY_RULE_METRIC",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "FORMED",
+                "field": "chargeRoll",
+                "mode": "ADD",
+                "value": 1,
+                "equipmentRequirement": {
+                  "binding": "SOURCE",
+                  "kind": "EQUIPMENT_PRESENT",
+                  "equipmentId": "datasheet-plaguebearers:wargear:1",
+                  "sourceFieldPath": [
+                    "text"
+                  ]
+                },
+                "sourceFields": [
+                  [
+                    "blocks",
+                    2,
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
+                }
+              }
+            ]
           }
         ],
         "currentness": {

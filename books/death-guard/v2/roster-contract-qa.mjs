@@ -39,6 +39,10 @@ const expected=[
    ['MODIFY_STAT','SOURCE_UNIT_MODELS','MODEL','LD','SET',6]]],
  ['datasheet-plaguebearers:section:1','source-clause-2',text(1),'Models in the bearer’s unit have a Leadership characteristic of 6+',[
    ['MODIFY_STAT','SOURCE_UNIT_MODELS','MODEL','LD','SET',6]]],
+ ['datasheet-plague-drones:section:1','source-clause-3',text(2),'Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.',[
+   ['MODIFY_RULE_METRIC','SOURCE_UNIT','UNIT','chargeRoll','ADD',1]]],
+ ['datasheet-plaguebearers:section:1','source-clause-3',text(2),'Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.',[
+   ['MODIFY_RULE_METRIC','SOURCE_UNIT','UNIT','chargeRoll','ADD',1]]],
  ['detachment-virulent-vectorium:enhancement:2','weapon-modifiers',['text'],'Add 1 to the Strength and Attacks characteristics of the bearers melee weapons',[
    ['MODIFY_STAT','SOURCE_MODEL','MODEL','strength','ADD',1,null,'melee'],
    ['MODIFY_STAT','SOURCE_MODEL','MODEL','attacks','ADD',1,null,'melee'],
@@ -84,6 +88,8 @@ const expectedConditions=new Map([
  ['datasheet-noxious-blightbringer:section:1\0source-clause-1',[lead()]],
  ['datasheet-plague-drones:section:1\0source-clause-2',[gear('UNIT')]],
  ['datasheet-plaguebearers:section:1\0source-clause-2',[gear('UNIT')]],
+ ['datasheet-plague-drones:section:1\0source-clause-3',[gear('UNIT')]],
+ ['datasheet-plaguebearers:section:1\0source-clause-3',[gear('UNIT')]],
  ['detachment-shamblerot-vectorium:enhancement:1\0objective-control',[lead(),poxBodyguard()]],
  ['detachment-shamblerot-vectorium:enhancement:3\0plague-wind-damage',[lead(),poxBodyguard()]],
  ['detachment-shamblerot-vectorium:enhancement:4\0poxwalkers-toughness',[lead(),condShape('TARGET',atomShape('MODEL_KEYWORD','MODEL','STATIC',{keyword:'POXWALKERS'}))]],
@@ -134,7 +140,7 @@ export function verifyRosterContracts(model) {
       assert.deepEqual(effect.sourceFields,[field],'Exact existing source field binding');assert.ok(get(entity,effect.evidence.field).includes(effect.evidence.quote),'Exact evidence quote');assert.ok(effect.lifetime,'Source effect lifetime');
       assert.deepEqual(conditionsShape(effect.conditions),expectedConditions.get(ruleId+'\0'+clauseId)||[],'Independent semantic participant/condition/context '+ruleId+'/'+clauseId);
       const lifetime=entity.kind==='ENHANCEMENT'?'WHILE_ENHANCEMENT_ASSIGNED':entity.kind==='DETACHMENT_RULE'?'WHILE_DETACHMENT_SELECTED':ruleId==='datasheet-deathshroud-terminators:section:1'?'WHILE_LEADING_SOURCE_UNIT':ruleId==='datasheet-helbrute:section:1'?'WHILE_EQUIPMENT_REQUIREMENT_SATISFIED':ruleId==='datasheet-lord-of-poxes:section:1'?'WHILE_SOURCE_MODEL_HAS_RULE':['datasheet-plague-drones:section:1','datasheet-plaguebearers:section:1'].includes(ruleId)?'WHILE_DAEMONIC_ICON_BEARER_IS_IN_UNIT':'WHILE_LEADING';
-      assert.equal(effect.lifetime,lifetime,'Independent source lifetime '+ruleId);
+      assert.equal(effect.lifetime,effect.field==='chargeRoll'?'WHILE_INSTRUMENT_BEARER_IS_IN_UNIT':lifetime,'Independent source lifetime '+ruleId);
       for(const c of effect.conditions)for(const p of pnodes(c.predicate)) {
         assert.ok(['SOURCE','TARGET'].includes(c.binding),'Finite participant context binding');assert.ok(['STATIC','ROSTER'].includes(p.contextLevel),'No BATTLE roster effect condition');
         const evidenceOwner=index.get(p.evidence.otherEntityId||ruleId);assert.ok(get(evidenceOwner,p.evidence.field).includes(p.evidence.quote),'Independent condition evidence');
@@ -155,6 +161,8 @@ export function verifyRosterContracts(model) {
   const frenzy=effects('datasheet-helbrute:section:1','source-clause-2')[0];assert.deepEqual(frenzy.excludeWeaponIds,['datasheet-helbrute:weapon:10']);assert.deepEqual(frenzy.equipmentRequirement,{binding:'SOURCE',kind:'WEAPON_COUNT',weaponMode:'melee',excludeWeaponIds:['datasheet-helbrute:weapon:10'],equals:2});assert.ok(frenzy.conditions.some(c=>c.binding==='SOURCE'&&c.predicate.predicate==='FIELD'&&c.predicate.subject==='MODEL'&&c.predicate.arguments.key==='equipmentRequirementSatisfied'),'Explicit selected weapon prerequisite');
   for(const unit of ['plague-drones','plaguebearers']) {
     const icon=effects(`datasheet-${unit}:section:1`,'source-clause-2')[0];assert.deepEqual(icon.equipmentRequirement,{binding:'SOURCE',kind:'EQUIPMENT_PRESENT',equipmentId:`datasheet-${unit}:wargear:2`,sourceFieldPath:['text']});assert.ok(icon.conditions.some(c=>c.binding==='SOURCE'&&c.predicate.predicate==='FIELD'&&c.predicate.subject==='UNIT'&&c.predicate.arguments.key==='equipmentRequirementSatisfied'),'Icon selected in exact source unit');
+    const instrument=effects(`datasheet-${unit}:section:1`,'source-clause-3')[0];assert.equal(instrument.unitScope,'FORMED');
+    assert.deepEqual(instrument.equipmentRequirement,{binding:'SOURCE',kind:'EQUIPMENT_PRESENT',equipmentId:`datasheet-${unit}:wargear:1`,sourceFieldPath:['text']});
   }
   for(const [id,cid] of [['datasheet-lord-of-poxes:section:1','source-clause-1'],['detachment-paragons-of-putrescence:rule','contagion-range']])assert.equal(effects(id,cid)[0].max,12,'Source Contagion Range cap');
   const cap=effects('datasheet-lord-of-poxes:section:1','source-clause-1')[0].maxEvidence;assert.deepEqual(cap,{otherEntityId:'army-rule-nurgles-gift:contagion-range',field:['text'],quote:'Contagion Range cannot be greater than 12" after modifiers.'});assert.ok(get(index.get(cap.otherEntityId),cap.field).includes(cap.quote));

@@ -60436,7 +60436,7 @@
         "sourceId": "detachment-renegade-warband:enhancement:4",
         "kind": "ENHANCEMENT",
         "executionMode": "DECLARATIVE_APPLICABILITY",
-        "contextLevel": "BATTLE",
+        "contextLevel": "ROSTER",
         "detachmentId": "detachment-renegade-warband",
         "sourceFields": [
           [
@@ -60498,21 +60498,6 @@
               ],
               "quote": "detachment-renegade-warband:enhancement:4",
               "otherEntityId": "detachment-renegade-warband"
-            }
-          },
-          {
-            "predicate": "FIELD",
-            "subject": "MODEL",
-            "contextLevel": "BATTLE",
-            "arguments": {
-              "key": "ruleActive:detachment-renegade-warband:enhancement:4",
-              "equals": true
-            },
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit."
             }
           }
         ],
@@ -60578,14 +60563,12 @@
                 "subject": "UNIT",
                 "allegiance": "FRIENDLY",
                 "purpose": "RECIPIENT",
+                "binding": "SOURCE_UNIT",
                 "selector": {
-                  "predicate": "FIELD",
+                  "predicate": "ALWAYS",
                   "subject": "UNIT",
-                  "contextLevel": "ROSTER",
-                  "arguments": {
-                    "key": "sameUnitAsOwner:detachment-renegade-warband:enhancement:4",
-                    "equals": true
-                  },
+                  "contextLevel": "STATIC",
+                  "arguments": {},
                   "evidence": {
                     "field": [
                       "text"
@@ -60593,38 +60576,208 @@
                     "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
                   }
                 },
-                "conditions": [],
-                "binding": "SOURCE_UNIT"
+                "conditions": []
               }
             ],
-            "conditions": [
+            "conditions": [],
+            "productClassification": "ROSTER_KNOWN",
+            "effect": {
+              "sourceClause": "Add 1 to Advance and Charge rolls made for the bearer’s unit.",
+              "recipientRoleId": "bearer-unit"
+            },
+            "executionImplemented": false,
+            "rosterClassification": "DISPLAY_ONLY",
+            "effectSummary": "Add 1 to Advance rolls for the source-defined unit; a typed Advance-roll modifier is not implemented. No Movement substitution.",
+            "capabilityRequirement": {
+              "status": "CAPABILITY_MISSING",
+              "characteristic": "Advance roll",
+              "operation": "ADD",
+              "value": 1
+            },
+            "rosterEffects": [],
+            "rosterClassificationNote": {
+              "reason": "DISPLAY_ONLY"
+            }
+          },
+          {
+            "id": "charge-roll-clause",
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
+            },
+            "roles": [
               {
-                "predicate": "FIELD",
+                "id": "owner",
                 "subject": "MODEL",
-                "contextLevel": "BATTLE",
-                "arguments": {
-                  "key": "ruleActive:detachment-renegade-warband:enhancement:4:battle-clause-1",
-                  "equals": true
+                "allegiance": "FRIENDLY",
+                "purpose": "OWNER",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "HERETIC ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit."
+                  }
                 },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "enhancementAssigned:detachment-renegade-warband:enhancement:4",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit."
+                    },
+                    "roleId": "owner"
+                  }
+                ],
+                "binding": "SOURCE_MODEL"
+              },
+              {
+                "id": "bearer-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "productClassification": "ROSTER_KNOWN",
+            "executionImplemented": true,
+            "effectSummary": "Add 1 to Charge rolls for the source-defined current formed UNIT; does not change Movement or roll dice.",
+            "operation": "MODIFY_RULE_METRIC",
+            "effect": {
+              "sourceClause": "Add 1 to Advance and Charge rolls made for the bearer’s unit.",
+              "recipientRoleId": "bearer-unit",
+              "parameters": {
+                "field": "chargeRoll",
+                "mode": "ADD",
+                "value": 1,
+                "unitScope": "FORMED"
+              }
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-renegade-warband:enhancement:4::charge-roll-clause/effect-1",
+                "operation": "MODIFY_RULE_METRIC",
+                "targetSubject": "UNIT",
+                "targetBinding": "SOURCE_UNIT",
+                "field": "chargeRoll",
+                "mode": "ADD",
+                "value": 1,
+                "unitScope": "FORMED",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "ALWAYS",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {},
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
+                      }
+                    }
+                  }
+                ],
                 "evidence": {
                   "field": [
                     "text"
                   ],
                   "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
                 },
-                "roleId": "owner"
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-renegade-warband:enhancement:4",
+                  "canonicalOwnerId": "detachment-renegade-warband",
+                  "canonicalClauseId": "charge-roll-clause",
+                  "sourceEvidence": [
+                    {
+                      "sourceEntityId": "detachment-renegade-warband:enhancement:4",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "enhancements under Renegade Warband",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  ],
+                  "semanticEvidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
+                  },
+                  "sourceSelector": {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "HERETIC ASTARTES"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit."
+                    }
+                  },
+                  "recipientSelector": {
+                    "predicate": "ALWAYS",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {},
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
+                    }
+                  }
+                }
               }
             ],
-            "productClassification": "BATTLE_ONLY",
-            "effect": {
-              "sourceClause": "Add 1 to Advance and Charge rolls made for the bearer’s unit.",
-              "recipientRoleId": "bearer-unit"
-            },
-            "executionImplemented": false,
-            "rosterEffects": [],
-            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "BATTLE_ONLY"
+              "reason": "DISPLAY_ONLY"
             }
           }
         ],
@@ -110830,7 +110983,7 @@
         "sourceId": "datasheet-master-of-possession:section:1#/blocks/0/text",
         "kind": "DATASHEET_ABILITY",
         "executionMode": "DECLARATIVE_APPLICABILITY",
-        "contextLevel": "BATTLE",
+        "contextLevel": "ROSTER",
         "sourceFields": [
           [
             "text"
@@ -110859,22 +111012,6 @@
               }
             },
             "conditions": [
-              {
-                "predicate": "FIELD",
-                "subject": "MODEL",
-                "contextLevel": "BATTLE",
-                "arguments": {
-                  "key": "advanceOrChargeRoll",
-                  "equals": true
-                },
-                "evidence": {
-                  "field": [
-                    "text"
-                  ],
-                  "quote": "Advance and Charge rolls made for that unit"
-                },
-                "roleId": "source"
-              },
               {
                 "predicate": "LEADING",
                 "subject": "MODEL",
@@ -110929,22 +111066,6 @@
                 },
                 "conditions": [
                   {
-                    "predicate": "FIELD",
-                    "subject": "MODEL",
-                    "contextLevel": "BATTLE",
-                    "arguments": {
-                      "key": "advanceOrChargeRoll",
-                      "equals": true
-                    },
-                    "evidence": {
-                      "field": [
-                        "text"
-                      ],
-                      "quote": "Advance and Charge rolls made for that unit"
-                    },
-                    "roleId": "source"
-                  },
-                  {
                     "predicate": "LEADING",
                     "subject": "MODEL",
                     "contextLevel": "ROSTER",
@@ -110960,25 +111081,29 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "bearer-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+                  }
+                },
+                "conditions": []
               }
             ],
             "conditions": [
-              {
-                "predicate": "FIELD",
-                "subject": "MODEL",
-                "contextLevel": "BATTLE",
-                "arguments": {
-                  "key": "advanceOrChargeRoll",
-                  "equals": true
-                },
-                "evidence": {
-                  "field": [
-                    "text"
-                  ],
-                  "quote": "Advance and Charge rolls made for that unit"
-                },
-                "roleId": "source"
-              },
               {
                 "predicate": "LEADING",
                 "subject": "MODEL",
@@ -110995,17 +111120,263 @@
                 "roleId": "source"
               }
             ],
-            "rosterClassification": "BATTLE_ONLY",
-            "effectSummary": "Led unit Advance/Charge roll+1; not Move characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "effectSummary": "Add 1 to Advance rolls for the source-defined unit; a typed Advance-roll modifier is not implemented. No Movement substitution.",
             "evidence": {
               "field": [
                 "text"
               ],
               "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
             },
+            "productClassification": "ROSTER_KNOWN",
+            "executionImplemented": false,
+            "effect": {
+              "sourceClause": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit.",
+              "recipientRoleId": "bearer-unit"
+            },
+            "capabilityRequirement": {
+              "status": "CAPABILITY_MISSING",
+              "characteristic": "Advance roll",
+              "operation": "ADD",
+              "value": 1
+            },
             "rosterEffects": [],
             "rosterClassificationNote": {
-              "reason": "BATTLE_ONLY"
+              "reason": "DISPLAY_ONLY"
+            }
+          },
+          {
+            "id": "charge-roll-clause",
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+            },
+            "roles": [
+              {
+                "id": "source",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "OWNER",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-master-of-possession:section:2:member:1"
+                  },
+                  "evidence": {
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Master Of Possession",
+                    "otherEntityId": "datasheet-master-of-possession:profile:1"
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "While this model is leading a unit"
+                    },
+                    "roleId": "source"
+                  }
+                ]
+              },
+              {
+                "id": "bearer-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While this model is leading a unit"
+                },
+                "roleId": "source"
+              }
+            ],
+            "productClassification": "ROSTER_KNOWN",
+            "executionImplemented": true,
+            "effectSummary": "Add 1 to Charge rolls for the source-defined current formed UNIT; does not change Movement or roll dice.",
+            "operation": "MODIFY_RULE_METRIC",
+            "effect": {
+              "sourceClause": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit.",
+              "recipientRoleId": "bearer-unit",
+              "parameters": {
+                "field": "chargeRoll",
+                "mode": "ADD",
+                "value": 1,
+                "unitScope": "FORMED"
+              }
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-master-of-possession:section:1:block:0:text::charge-roll-clause/effect-1",
+                "operation": "MODIFY_RULE_METRIC",
+                "targetSubject": "UNIT",
+                "targetBinding": "SOURCE_UNIT",
+                "field": "chargeRoll",
+                "mode": "ADD",
+                "value": 1,
+                "unitScope": "FORMED",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-master-of-possession:section:2:member:1"
+                      },
+                      "evidence": {
+                        "field": [
+                          "name"
+                        ],
+                        "quote": "Master Of Possession",
+                        "otherEntityId": "datasheet-master-of-possession:profile:1"
+                      }
+                    }
+                  },
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "LEADING",
+                      "subject": "MODEL",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "value": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "While this model is leading a unit"
+                      },
+                      "roleId": "source"
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "ALWAYS",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {},
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_CONDITION_SATISFIED",
+                "provenance": {
+                  "canonicalRuleId": "datasheet-master-of-possession:section:1:block:0:text",
+                  "canonicalOwnerId": "unit-master-of-possession",
+                  "canonicalClauseId": "charge-roll-clause",
+                  "sourceEvidence": [
+                    {
+                      "sourceEntityId": "datasheet-master-of-possession:section:1#/blocks/0/text",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Master-Of-Possession.html",
+                      "location": "ABILITIES block 1",
+                      "sha256": "BF5F2E783CA50DF741B293CC60246A04EC963362FFAB3A855F1EEF2F04620AD5",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  ],
+                  "semanticEvidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+                  },
+                  "sourceSelector": {
+                    "predicate": "MODEL_ID",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "id": "datasheet-master-of-possession:section:2:member:1"
+                    },
+                    "evidence": {
+                      "field": [
+                        "name"
+                      ],
+                      "quote": "Master Of Possession",
+                      "otherEntityId": "datasheet-master-of-possession:profile:1"
+                    }
+                  },
+                  "recipientSelector": {
+                    "predicate": "ALWAYS",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {},
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+                    }
+                  }
+                }
+              }
+            ],
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "DISPLAY_ONLY"
             }
           }
         ],
@@ -202393,10 +202764,6 @@
         "contextLevel": "BATTLE",
         "valueType": "boolean"
       },
-      "advanceOrChargeRoll": {
-        "contextLevel": "BATTLE",
-        "valueType": "boolean"
-      },
       "oncePerPhaseSelectedShootFight": {
         "contextLevel": "BATTLE",
         "valueType": "boolean"
@@ -202414,6 +202781,10 @@
         "valueType": "boolean"
       },
       "shootFightCompletedPsychicAttackHit": {
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      "advanceOrChargeRoll": {
         "contextLevel": "BATTLE",
         "valueType": "boolean"
       },
@@ -203381,18 +203752,6 @@
         "contextLevel": "ROSTER",
         "valueType": "boolean"
       },
-      "ruleActive:detachment-renegade-warband:enhancement:4": {
-        "contextLevel": "BATTLE",
-        "valueType": "boolean"
-      },
-      "sameUnitAsOwner:detachment-renegade-warband:enhancement:4": {
-        "contextLevel": "ROSTER",
-        "valueType": "boolean"
-      },
-      "ruleActive:detachment-renegade-warband:enhancement:4:battle-clause-1": {
-        "contextLevel": "BATTLE",
-        "valueType": "boolean"
-      },
       "enhancementAssigned:detachment-fellhammer-siege-host:enhancement:1": {
         "contextLevel": "ROSTER",
         "valueType": "boolean"
@@ -204106,7 +204465,7 @@
     }
   ],
   "rosterEffectCensus": {
-    "executable": 59,
+    "executable": 61,
     "lowered": [
       "detachment-pactbound-zealots:rule::source-clause-1-1",
       "detachment-pactbound-zealots:enhancement:2::roster-clause-1",
@@ -204136,6 +204495,7 @@
       "detachment-renegade-warband:rule::roster-clause-1",
       "detachment-renegade-warband:rule::roster-clause-2",
       "detachment-renegade-warband:enhancement:2::roster-clause-1",
+      "detachment-renegade-warband:enhancement:4::charge-roll-clause",
       "detachment-fellhammer-siege-host:enhancement:2::roster-clause-1",
       "detachment-soulforged-warpack:enhancement:2::roster-clause-1",
       "detachment-cabal-of-chaos:enhancement:1::roster-clause-1",
@@ -204162,6 +204522,7 @@
       "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:3::selected-characteristic-modifier",
       "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:4::selected-model-keyword",
       "datasheet-heretic-astartes-daemon-prince-with-wings:section:3:option:4::selected-characteristic-modifier",
+      "datasheet-master-of-possession:section:1:block:0:text::charge-roll-clause",
       "datasheet-traitor-enforcer:section:1:block:1:text::character-feel-no-pain",
       "datasheet-fabius-bile:section:1:block:0:text::bodyguard-melee-strength",
       "datasheet-fabius-bile:section:1:block:0:text::bodyguard-toughness",

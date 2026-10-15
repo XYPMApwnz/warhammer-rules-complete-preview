@@ -56,6 +56,13 @@ for(const unit of ['plague-drones','plaguebearers']) {
   const specification=declarations.get(`datasheet-${unit}:section:1\0source-clause-2`);
   specification.effects[0].equipmentRequirement={binding:'SOURCE',kind:'EQUIPMENT_PRESENT',equipmentId,sourceFieldPath:text};
   specification.effects[0].lifetime='WHILE_DAEMONIC_ICON_BEARER_IS_IN_UNIT';
+  const instrumentId=`datasheet-${unit}:wargear:1`;
+  declare(`datasheet-${unit}:section:1`,'source-clause-3',b(2),
+    'Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.',
+    [{operation:'MODIFY_RULE_METRIC',targetBinding:'SOURCE_UNIT',targetSubject:UNIT,unitScope:'FORMED',field:'chargeRoll',mode:'ADD',value:1,
+      equipmentRequirement:{binding:'SOURCE',kind:'EQUIPMENT_PRESENT',equipmentId:instrumentId,sourceFieldPath:text},
+      conditions:[condition('SOURCE',atom('FIELD',UNIT,'ROSTER',{key:'equipmentRequirementSatisfied',equals:true},text,'can be equipped with 1 instrument of Chaos.',instrumentId))],
+      lifetime:'WHILE_INSTRUMENT_BEARER_IS_IN_UNIT'}]);
 }
 declare('detachment-virulent-vectorium:enhancement:2','weapon-modifiers',text,
   'Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability.',

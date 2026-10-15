@@ -76,7 +76,14 @@ function verify(candidate) {
     }
   }
   assert.equal(owners,205);
-  assert.deepEqual(counts,{ROSTER_EXECUTABLE:43,BATTLE_ONLY:175,DISPLAY_ONLY:0,NOT_AN_EFFECT:70});
+  assert.deepEqual(counts,{ROSTER_EXECUTABLE:44,BATTLE_ONLY:175,DISPLAY_ONLY:0,NOT_AN_EFFECT:70});
+  const gait=get(ds('sicarian-ruststalkers'),'base-charge');
+  assert.equal(gait.rosterClassification,'ROSTER_EXECUTABLE');
+  assert.deepEqual(gait.rosterEffects.map(shape),[['MODIFY_RULE_METRIC','SOURCE_UNIT','UNIT','chargeRoll','ADD',1,null,null,null]]);
+  assert.equal(gait.rosterEffects[0].unitScope,'FORMED');assert.deepEqual(gait.rosterEffects[0].conditions,[]);
+  assert.equal(gait.rosterClassificationNote.capabilityMissing[0].metric,'advanceRoll');
+  assert.equal(get(ds('sicarian-ruststalkers'),'block-1').rosterClassification,'BATTLE_ONLY');
+  assert.deepEqual(get(ds('sicarian-ruststalkers'),'block-1').rosterEffects,[]);
   for(const [id,cid,operation,targetBinding,targetSubject,values]of newlyBound) {
     const c=get(id,cid),e=c.rosterEffects[0];
     assert.equal(c.rosterEffects.length,1);
@@ -200,6 +207,8 @@ mutate(ds('skitarii-rangers'),'block-3',c=>c.rosterEffects[0].equipmentRequireme
 mutate(ds('kastelan-robots'),'block-1',c=>c.rosterEffects[0].targetBinding='SOURCE_FORMED_MODELS');
 mutate(ds('tech-priest-dominus'),'block-1-electro-priests',c=>c.rosterEffects[0].id=clause(ds('tech-priest-dominus'),'block-1').rosterEffects[0].id);
 mutate('detachment-haloscreed-battle-clade:enhancement:2','conqueror-roster-characteristics',c=>c.rosterEffects[0].field='ap');
+mutate(ds('sicarian-ruststalkers'),'base-charge',c=>{c.rosterClassification='BATTLE_ONLY';c.rosterEffects=[];});
+mutate(ds('sicarian-ruststalkers'),'base-charge',c=>c.rosterEffects[0].value=2);
 assert.deepEqual(readJson('generated/effective.json'),canonical,'Audit changed canonical data');
-console.log(JSON.stringify({status:'PASS',rules:205,clauses:288,counts,complete:'43/43',newlyBound:7,normalized:7,controls,mutations,
+console.log(JSON.stringify({status:'PASS',rules:205,clauses:289,counts,complete:'44/44',newlyBound:8,normalized:7,controls,mutations,
   unsupported:0,unclassified:0,battleEffectLeakage:0,effectiveDatasheetsProjected:false,sharedRuntimeChanged:false}));

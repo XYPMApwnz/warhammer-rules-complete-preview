@@ -14,6 +14,7 @@ import {buildCSMImportBook} from './roster-import-build.mjs';
 // replacement melee weapons are an explicit legal selected option.
 const selectedWeapons={
   'unit-dark-apostle':[[1,2],[3]],
+  'unit-master-of-possession':[[1,2,3,4]],
   'unit-legionaries':[[2,3,18],[2,3,18]],
   'unit-chaos-lord':[[1,2,5]],
   'unit-chaos-lord-with-jump-pack':[[1,4]],
@@ -101,6 +102,7 @@ export function buildImportedEffectFixtures(book=buildCSMRosterEffectBook(),buil
       ...(source.canonicalUnitId==='unit-fabius-bile'?{initialAttachments:structuredClone(attachments)}:{}),
       expectedOperations:witness.clause.rosterEffects.map(effect=>({operation:effect.operation,
         targetBinding:effect.targetBinding,targetSubject:effect.targetSubject,
+        ...(effect.unitScope?{unitScope:effect.unitScope}:{}),
         conditions:structuredClone(effect.conditions),
         ...(effect.recipientSelectors?{recipientSelectors:structuredClone(effect.recipientSelectors)}:{}),
         ...(effect.equipmentRequirement?{equipmentRequirement:structuredClone(effect.equipmentRequirement)}:{}),
@@ -111,6 +113,6 @@ export function buildImportedEffectFixtures(book=buildCSMRosterEffectBook(),buil
         ...(effect.keyword?{keyword:effect.keyword}:{}),
         ...(effect.weaponProfileIds?{weaponProfileIds:structuredClone(effect.weaponProfileIds)}:{})}))};
   });
-  assert.equal(fixtures.length,58);assert.equal(new Set(fixtures.map(fixture=>fixture.id)).size,58);
+  assert.equal(fixtures.length,60);assert.equal(new Set(fixtures.map(fixture=>fixture.id)).size,60);
   return fixtures;
 }

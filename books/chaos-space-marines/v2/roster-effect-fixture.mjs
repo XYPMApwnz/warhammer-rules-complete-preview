@@ -70,7 +70,7 @@ export function clauseFixture(book,ruleId,clauseId) {
   if(rule.kind==='UPGRADE_OPTION')a.selectedUpgradeIds=[rule.id];
   if(canonicalUnitId==='unit-helbrute')for(const unit of state.units)
     unit.modelRows[0].selections=unit.modelRows[0].selections.filter(s=>['datasheet-helbrute:weapon:10','datasheet-helbrute:weapon:11','datasheet-helbrute:weapon:12'].includes(s.canonicalProfileIds[0]));
-  const requireAttached=canonicalUnitId==='unit-dark-commune'||canonicalUnitId==='unit-fabius-bile'||
+  const requireAttached=canonicalUnitId==='unit-dark-commune'||canonicalUnitId==='unit-fabius-bile'||canonicalUnitId==='unit-master-of-possession'||
     ruleId==='detachment-chaos-cult:enhancement:4'||ruleId==='detachment-murdertalon-raiders:enhancement:1';
   const policies=book.rosterAttachmentPolicies.filter(p=>p.sourceId===canonicalUnitId);
   const policy=ruleId==='detachment-chaos-cult:enhancement:4'

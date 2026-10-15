@@ -4825,6 +4825,117 @@
       ],
       "clauses": [
         {
+          "id": "base-charge",
+          "roles": [
+            {
+              "id": "source",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "OWNER",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-sicarian-ruststalkers"
+                },
+                "evidence": {
+                  "otherEntityId": "unit-sicarian-ruststalkers",
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Sicarian Ruststalkers"
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "sourceUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-sicarian-ruststalkers"
+                },
+                "evidence": {
+                  "otherEntityId": "unit-sicarian-ruststalkers",
+                  "field": [
+                    "title"
+                  ],
+                  "quote": "Sicarian Ruststalkers"
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Add 1 to Advance and Charge rolls made for this unit."
+          },
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "The source UNIT always adds 1 to Charge rolls. This is a typed roll modifier, never a Move characteristic or a resolved roll.",
+            "capabilityMissing": [
+              {
+                "metric": "advanceRoll",
+                "status": "CAPABILITY_MISSING",
+                "reason": "The same source sentence also grants base Advance +1; the current shared metric vocabulary does not support Advance."
+              }
+            ]
+          },
+          "rosterEffects": [
+            {
+              "id": "base-charge-roster-effect",
+              "operation": "MODIFY_RULE_METRIC",
+              "targetBinding": "SOURCE_UNIT",
+              "targetSubject": "UNIT",
+              "unitScope": "FORMED",
+              "field": "chargeRoll",
+              "mode": "ADD",
+              "value": 1,
+              "recipientRoleId": "sourceUnit",
+              "lifetime": "WHILE_SOURCE_UNIT_HAS_RULE",
+              "conditions": [],
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Add 1 to Advance and Charge rolls made for this unit."
+              }
+            }
+          ],
+          "effectRecipientRoleIds": [
+            "sourceUnit"
+          ]
+        },
+        {
           "id": "block-1",
           "roles": [
             {
@@ -4930,11 +5041,11 @@
               0,
               "text"
             ],
-            "quote": "Optimised Gait: Add 1 to Advance and Charge rolls made for this unit. While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, add 2 to Advance and Charge rolls made for this unit instead."
+            "quote": "While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, add 2 to Advance and Charge rolls made for this unit instead."
           },
           "rosterClassification": "BATTLE_ONLY",
           "rosterClassificationNote": {
-            "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
+            "reason": "The replacement +2 requires a friendly ADEPTUS MECHANICUS BATTLELINE unit within 6\". Preserve the source-dependent replacement without inferring battlefield range."
           },
           "rosterEffects": []
         }

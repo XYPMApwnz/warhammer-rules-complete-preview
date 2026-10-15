@@ -17,7 +17,7 @@ assert.deepEqual(role.conditions,[]);assert.equal(clause.productClassification,'
 assert.equal(clause.operation,'REMOVE_ABILITY');assert.deepEqual(clause.effect.parameters,{ability:{canonicalId:abilityId}});
 assert.equal(clause.evidence.quote,exact);assert.deepEqual(clause.evidence.field,['content',0,'text']);
 assert.ok(built.facts.entities.some(entity=>entity.id===abilityId&&entity.kind==='ARMY_RULE'));
-assert.equal(built.declarations.size,315);assert.equal([...built.classifications.values()].filter(row=>row.status==='BUILT').length,66);
+assert.equal(built.declarations.size,315);assert.equal([...built.classifications.values()].filter(row=>row.status==='BUILT').length,68);
 assert.equal([...built.classifications.values()].filter(row=>row.blockers).length,0);
 
 function verify(removedId=abilityId) {
@@ -85,5 +85,5 @@ function verify(removedId=abilityId) {
 const facts=JSON.stringify(built.facts),result=verify();
 assert.throws(()=>verify('army-rule-cult-of-the-dark-gods'),/exact Dark Pacts canonical ID/,'Wrong canonical identity passed focused source QA');
 assert.equal(JSON.stringify(built.facts),facts);
-console.log(JSON.stringify({status:'PASS',...result,validContracts:315,builtOwners:66,blockedOwners:0,mutationRejected:true,
+console.log(JSON.stringify({status:'PASS',...result,validContracts:315,builtOwners:68,blockedOwners:0,mutationRejected:true,
   productionRosterIntegration:false,legacyReads:0,canonicalFactsChanged:0}));

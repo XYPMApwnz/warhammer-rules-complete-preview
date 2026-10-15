@@ -2,8 +2,8 @@
   "schema": "csm-rule-contract-census/v2",
   "ruleOwners": 554,
   "counts": {
-    "BUILT": 66,
-    "BATTLE_ONLY_NO_RUNTIME_NEEDED": 249,
+    "BUILT": 68,
+    "BATTLE_ONLY_NO_RUNTIME_NEEDED": 247,
     "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY": 0,
     "NOT_EFFECT_OR_PRESENTATION_ONLY": 239
   },
@@ -11569,8 +11569,8 @@
     },
     {
       "ruleId": "datasheet-master-of-possession:section:1:block:0:text",
-      "status": "BATTLE_ONLY_NO_RUNTIME_NEEDED",
-      "reason": "Execution requires the explicitly declared battle trigger/state; canonical source retained without battle execution.",
+      "status": "BUILT",
+      "reason": "Roster-known Charge-roll +1 uses the existing typed UNIT modifier. Advance-roll +1 remains an explicit unsupported typed capability, not a battle-only rule or a Movement modifier.",
       "evidence": [
         {
           "field": [
@@ -13356,8 +13356,8 @@
     },
     {
       "ruleId": "detachment-renegade-warband:enhancement:4",
-      "status": "BATTLE_ONLY_NO_RUNTIME_NEEDED",
-      "reason": "Reviewed typed source applicability; exact physical Enhancement owner and Detachment scope are explicit. Battle clauses remain conditional and non-executing.",
+      "status": "BUILT",
+      "reason": "Roster-known Charge-roll +1 uses the existing typed UNIT modifier. Advance-roll +1 remains an explicit unsupported typed capability, not a battle-only rule or a Movement modifier.",
       "evidence": [
         {
           "field": [

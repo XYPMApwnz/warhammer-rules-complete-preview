@@ -36,6 +36,8 @@ const sourceCases = [
   ['datasheet-noxious-blightbringer:section:1','source-clause-1','Noxious-Blightbringer.html','add 1" to the Move characteristic of models in that unit'],
   ['datasheet-plague-drones:section:1','source-clause-2','Plague-Drones.html','Models in the bearer’s unit have a Leadership characteristic of 6+'],
   ['datasheet-plaguebearers:section:1','source-clause-2','Plaguebearers.html','Models in the bearer’s unit have a Leadership characteristic of 6+'],
+  ['datasheet-plague-drones:section:1','source-clause-3','Plague-Drones.html','Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.'],
+  ['datasheet-plaguebearers:section:1','source-clause-3','Plaguebearers.html','Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.'],
   ['detachment-virulent-vectorium:enhancement:2','weapon-modifiers','death-guard.html','Add 1 to the Strength and Attacks characteristics of the bearers melee weapons'],
   ['detachment-virulent-vectorium:enhancement:4','feel-no-pain','death-guard.html','The bearer has the Feel No Pain 5+ ability'],
   ['detachment-shamblerot-vectorium:enhancement:1','objective-control','death-guard.html','add 1 to the Objective Control characteristic of models in that unit'],
@@ -67,6 +69,8 @@ const sourceOperations = [
   ['MODIFY_STAT|SOURCE_FORMED_MODELS|M:ADD:1'],
   ['MODIFY_STAT|SOURCE_UNIT_MODELS|LD:SET:6'],
   ['MODIFY_STAT|SOURCE_UNIT_MODELS|LD:SET:6'],
+  ['MODIFY_RULE_METRIC|SOURCE_UNIT|chargeRoll:ADD:1'],
+  ['MODIFY_RULE_METRIC|SOURCE_UNIT|chargeRoll:ADD:1'],
   ['MODIFY_STAT|SOURCE_MODEL|strength:ADD:1','MODIFY_STAT|SOURCE_MODEL|attacks:ADD:1','GRANT_WEAPON_ABILITY|SOURCE_MODEL|DEVASTATING WOUNDS'],
   ['GRANT_MODEL_ABILITY|SOURCE_MODEL|Feel No Pain:5'],
   ['MODIFY_STAT|SOURCE_FORMED_MODELS|OC:ADD:1'],
@@ -286,6 +290,12 @@ scenario(() => {
   assert(!projected(service,'parsed-unit-1').conditional.some(row=>row.ruleId==='datasheet-plaguebearers:section:1' && row.clauseId==='source-clause-2'));
 });
 
+for(const [slug,quantity]of [['plague-drones',3],['plaguebearers',10]])scenario(()=>{
+  const service=make(),name=byId.get('unit-'+slug).data.title;
+  assert.equal(service.import(`+ DETACHMENT: Tallyband Summoners\n${quantity}x ${name} (100 pts): 1x Instrument of Chaos\n${quantity}x ${name} (100 pts)`).status,'READY');
+  assert.equal(projected(service,'parsed-unit-1').metrics.chargeRoll.modifier,1);
+  assert.equal(projected(service,'parsed-unit-2').metrics.chargeRoll,undefined);capture(service);
+});
 assert.deepEqual(covered, expectedPaths, 'Every independently enumerated source clause has a positive runtime control');
 const expectedEffects = new Set(book.entities.flatMap(entity => (entity.ruleContract?.clauses || []).flatMap(clause => clause.rosterEffects.map(effect => `${entity.id}/${effect.id}`))));
 assert.deepEqual(coveredEffects, expectedEffects, 'All operations within the source-backed clause controls executed');

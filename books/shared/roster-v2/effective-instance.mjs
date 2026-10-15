@@ -17,7 +17,7 @@ export function projectEffectiveInstance(book,projection,instanceId) {
     if(!effect||effect.operation!=='MODIFY_RULE_METRIC'||effect.field!=='chargeRoll'||effect.targetSubject!=='UNIT'||
         !['PHYSICAL','FORMED'].includes(effect.unitScope)||row.targetInstanceId!==instanceId||row.targetModelInstanceId)
       throw new TypeError('Unresolved typed UNIT metric provenance');
-    return {...clone(row),unitScope:effect.unitScope,label:name(row.ruleId),provenance:clone(rule.provenance||{})};
+    return {...clone(row),unitScope:effect.unitScope,label:rule.displayName||name(row.ruleId),provenance:clone(rule.provenance||{})};
   });
   if(unitMetrics.chargeRoll&&!unitMetricSources.length)throw new TypeError('Missing computed UNIT metric provenance');
   const rangedAbilities=new Set(unit.profiles.flatMap(model=>model.abilities.filter(ability=>ability.rangePresentation).map(ability=>ability.canonicalId)));

@@ -1,0 +1,241 @@
+{
+  "authority": "Independently reviewed accepted raw source clauses; expected values are not extracted from executable contracts.",
+  "baselineAuditHead": "ee6387bed4483d44429249dcc9d9b5580cf2b80d",
+  "sourceAuditCsvSha256": "b31e2fa1237f3be0e1c7f9fccc127efa6debaae0b20ad5ebaab4041394f737cc",
+  "cases": [
+    {
+      "id": "dg-drones",
+      "auditRowId": "death-guard:067",
+      "bookId": "death-guard",
+      "source": {
+        "canonicalId": "datasheet-plague-drones:section:1",
+        "ownerId": "unit-plague-drones",
+        "field": [
+          "blocks",
+          2,
+          "text"
+        ],
+        "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.",
+        "document": "books/death-guard/v2/sources/accepted-waha-pages/Plague-Drones.html",
+        "sha256": "296b206286632017ea8323a9eeb6574528f587f0fd184c5e664d4019faade859"
+      },
+      "ownerUnitId": "unit-plague-drones",
+      "gate": "SELECTED_INSTRUMENT",
+      "expectedOperation": {
+        "operation": "MODIFY_RULE_METRIC",
+        "targetSubject": "UNIT",
+        "targetBinding": "SOURCE_UNIT",
+        "unitScope": "FORMED",
+        "field": "chargeRoll",
+        "mode": "ADD",
+        "value": 1
+      },
+      "expectedDelta": 1,
+      "presentation": {
+        "key": "chargeRoll",
+        "label": "Charge-roll modifier",
+        "value": 1
+      }
+    },
+    {
+      "id": "dg-bearers",
+      "auditRowId": "death-guard:075",
+      "bookId": "death-guard",
+      "source": {
+        "canonicalId": "datasheet-plaguebearers:section:1",
+        "ownerId": "unit-plaguebearers",
+        "field": [
+          "blocks",
+          2,
+          "text"
+        ],
+        "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.",
+        "document": "books/death-guard/v2/sources/accepted-waha-pages/Plaguebearers.html",
+        "sha256": "6dfeb4153ffc9329c27b91affec9c215fb682be402b4ece7f5a1613c56a641c8"
+      },
+      "ownerUnitId": "unit-plaguebearers",
+      "gate": "SELECTED_INSTRUMENT",
+      "expectedOperation": {
+        "operation": "MODIFY_RULE_METRIC",
+        "targetSubject": "UNIT",
+        "targetBinding": "SOURCE_UNIT",
+        "unitScope": "FORMED",
+        "field": "chargeRoll",
+        "mode": "ADD",
+        "value": 1
+      },
+      "expectedDelta": 1,
+      "presentation": {
+        "key": "chargeRoll",
+        "label": "Charge-roll modifier",
+        "value": 1
+      }
+    },
+    {
+      "id": "am-gait",
+      "auditRowId": "adeptus-mechanicus:074",
+      "bookId": "adeptus-mechanicus",
+      "source": {
+        "canonicalId": "datasheet-sicarian-ruststalkers:section:1",
+        "ownerId": "unit-sicarian-ruststalkers",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "quote": "Optimised Gait: Add 1 to Advance and Charge rolls made for this unit. While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, add 2 to Advance and Charge rolls made for this unit instead.",
+        "document": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/Sicarian-Ruststalkers.html",
+        "sha256": "6bde1844cd9f650a2491c0f14a90b1ad9adf5bcd7f4951ddaea7fe806c2901b8"
+      },
+      "ownerUnitId": "unit-sicarian-ruststalkers",
+      "gate": "SOURCE_PRESENT",
+      "expectedOperation": {
+        "operation": "MODIFY_RULE_METRIC",
+        "targetSubject": "UNIT",
+        "targetBinding": "SOURCE_UNIT",
+        "unitScope": "FORMED",
+        "field": "chargeRoll",
+        "mode": "ADD",
+        "value": 1
+      },
+      "expectedDelta": 1,
+      "presentation": {
+        "key": "chargeRoll",
+        "label": "Charge-roll modifier",
+        "value": 1
+      }
+    },
+    {
+      "id": "csm-daemonkin",
+      "auditRowId": "chaos-space-marines:110",
+      "bookId": "chaos-space-marines",
+      "source": {
+        "canonicalId": "datasheet-master-of-possession:section:1:block:0:text",
+        "ownerId": "unit-master-of-possession",
+        "field": [
+          "text"
+        ],
+        "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit.",
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/Master-Of-Possession.html",
+        "sha256": "bf5f2e783ca50df741b293cc60246a04ec963362ffab3a855f1eef2f04620ad5"
+      },
+      "ownerUnitId": "unit-master-of-possession",
+      "gate": "SOURCE_LEADING",
+      "expectedOperation": {
+        "operation": "MODIFY_RULE_METRIC",
+        "targetSubject": "UNIT",
+        "targetBinding": "SOURCE_UNIT",
+        "unitScope": "FORMED",
+        "field": "chargeRoll",
+        "mode": "ADD",
+        "value": 1
+      },
+      "expectedDelta": 1,
+      "presentation": {
+        "key": "chargeRoll",
+        "label": "Charge-roll modifier",
+        "value": 1
+      }
+    },
+    {
+      "id": "csm-symbiote",
+      "auditRowId": "chaos-space-marines:112",
+      "bookId": "chaos-space-marines",
+      "source": {
+        "canonicalId": "detachment-renegade-warband:enhancement:4",
+        "ownerId": "detachment-renegade-warband",
+        "field": [
+          "text"
+        ],
+        "quote": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit.",
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54e028296c063629f43e82a9aba26943568dee3ae819e36620f72dec47529c4e"
+      },
+      "ownerUnitId": "unit-chaos-lord",
+      "gate": "SELECTED_ENHANCEMENT",
+      "expectedOperation": {
+        "operation": "MODIFY_RULE_METRIC",
+        "targetSubject": "UNIT",
+        "targetBinding": "SOURCE_UNIT",
+        "unitScope": "FORMED",
+        "field": "chargeRoll",
+        "mode": "ADD",
+        "value": 1
+      },
+      "expectedDelta": 1,
+      "presentation": {
+        "key": "chargeRoll",
+        "label": "Charge-roll modifier",
+        "value": 1
+      }
+    },
+    {
+      "id": "ec-daemonettes",
+      "auditRowId": "emperors-children:020",
+      "bookId": "emperors-children",
+      "source": {
+        "canonicalId": "datasheet-daemonettes:section:1",
+        "ownerId": "unit-daemonettes",
+        "field": [
+          "blocks",
+          2,
+          "text"
+        ],
+        "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.",
+        "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Daemonettes.html",
+        "sha256": "f8a92acd1e4cd2fab39618ad826a313874d0505e2181ccaec759910d45723a41"
+      },
+      "ownerUnitId": "unit-daemonettes",
+      "gate": "SELECTED_INSTRUMENT",
+      "expectedOperation": {
+        "operation": "MODIFY_RULE_METRIC",
+        "targetSubject": "UNIT",
+        "targetBinding": "SOURCE_UNIT",
+        "unitScope": "FORMED",
+        "field": "chargeRoll",
+        "mode": "ADD",
+        "value": 1
+      },
+      "expectedDelta": 1,
+      "presentation": {
+        "key": "chargeRoll",
+        "label": "Charge-roll modifier",
+        "value": 1
+      }
+    },
+    {
+      "id": "ec-seekers",
+      "auditRowId": "emperors-children:026",
+      "bookId": "emperors-children",
+      "source": {
+        "canonicalId": "datasheet-seekers:section:1",
+        "ownerId": "unit-seekers",
+        "field": [
+          "blocks",
+          2,
+          "text"
+        ],
+        "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.",
+        "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Seekers.html",
+        "sha256": "188ac0d70a2209d93c6bee99de5bbeb2baec42a50b9f46f23f3cdf9618151a70"
+      },
+      "ownerUnitId": "unit-seekers",
+      "gate": "SELECTED_INSTRUMENT",
+      "expectedOperation": {
+        "operation": "MODIFY_RULE_METRIC",
+        "targetSubject": "UNIT",
+        "targetBinding": "SOURCE_UNIT",
+        "unitScope": "FORMED",
+        "field": "chargeRoll",
+        "mode": "ADD",
+        "value": 1
+      },
+      "expectedDelta": 1,
+      "presentation": {
+        "key": "chargeRoll",
+        "label": "Charge-roll modifier",
+        "value": 1
+      }
+    }
+  ]
+}

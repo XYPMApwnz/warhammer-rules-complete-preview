@@ -213,7 +213,7 @@ try {
       },row);
       await ready(page);await settle(page);await verify(page);breadth.push(row.CLAUSE_ID);
     }
-    assert.equal(new Set(breadth).size,58);
+    assert.equal(new Set(breadth).size,60);
     assert.deepEqual(errors,[]);results.push({device,status:'PASS',realUIImport:true,realUIAttachments:true,effectClauses:breadth.length,canonicalPopup:true,
       directReload:true,backForward:true,newTab:true,mixed:true,removeRestore:true,selectedMarkKeywords:'5/5',markEffectiveDatasheets:true,markPersonalGuide:true});await context.close();
   }

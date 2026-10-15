@@ -180,9 +180,10 @@ export function buildCSMRosterEffectBook(built=buildCSMContracts()) {
         conditions.push({binding,predicate:node});
       };
       // Static owner identity is established by source dispatch or the exact
-      // Enhancement owner selector. MODEL source roles without assignments are
-      // evaluated on each candidate target profile, never on a mixed UNIT.
-      if(owner&&rule.kind!=='ENHANCEMENT'&&owner.subject==='MODEL')bindCondition(clone(owner.selector),'TARGET');
+      // Enhancement owner selector. MODEL effects test each target profile;
+      // a UNIT effect tests the source MODEL, never a formed UNIT keyword bag.
+      if(owner&&rule.kind!=='ENHANCEMENT'&&owner.subject==='MODEL')bindCondition(clone(owner.selector),
+        effect.targetSubject==='UNIT'?'SOURCE':'TARGET');
       for(const condition of typed.conditions||[])bindCondition(clone(condition),
         condition.roleId===recipient.id&&owner?.id!==recipient.id?'TARGET':'SOURCE');
       for(const condition of recipient.conditions||[])if(!(typed.conditions||[]).some(c=>JSON.stringify(c)===JSON.stringify(condition)))
@@ -230,7 +231,7 @@ export function buildCSMRosterEffectBook(built=buildCSMContracts()) {
   evaluator.validateContracts(book);validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
   assert.equal(JSON.stringify(built),before,'Lowering mutated canonical facts/contracts');
   const clauses=book.entities.flatMap(r=>(r.ruleContract?.clauses||[]).filter(c=>c.rosterEffects.length).map(c=>`${r.id}::${c.id}`));
-  assert.equal(clauses.length,58);assert.ok(!clauses.includes(deferredClause));
-  book.rosterEffectCensus={executable:59,lowered:clauses,deferred:[deferredClause]};
+  assert.equal(clauses.length,60);assert.ok(!clauses.includes(deferredClause));
+  book.rosterEffectCensus={executable:61,lowered:clauses,deferred:[deferredClause]};
   return book;
 }

@@ -17,7 +17,7 @@ assert.equal(declaration.assignment.identity,'EXACT_PHYSICAL_INSTANCE_MODEL_PROF
 assert.equal(role.subject,'MODEL');assert.equal(role.binding,'SOURCE_MODEL');
 assert.deepEqual(role.selector.arguments,{keyword:'WARPSMITH'});
 assert.deepEqual(declaration.clauses.map(clause=>clause.effect.parameters.ability.canonicalId),abilityIds);
-assert.equal(built.declarations.size,315);assert.equal([...built.classifications.values()].filter(row=>row.status==='BUILT').length,66);
+assert.equal(built.declarations.size,315);assert.equal([...built.classifications.values()].filter(row=>row.status==='BUILT').length,68);
 assert.equal([...built.classifications.values()].filter(row=>row.blockers).length,0);
 for(const [index,clause] of declaration.clauses.entries()) {
   const canonical=factsById.get(abilityIds[index]),binding=clause.abilityRangeBinding;
@@ -110,5 +110,5 @@ const snapshot=JSON.stringify(built.facts),result=verify();
 assert.throws(()=>verify({value:4}),/must be 6\/6\/15/,'Mutated range value passed focused source QA');
 assert.throws(()=>verify({targetId:'synthetic-independent-ability'}),/must be 6\/6\/15/,'Mutated canonical target passed focused source QA');
 assert.equal(JSON.stringify(built.facts),snapshot);
-console.log(JSON.stringify({status:'PASS',...result,validContracts:315,builtOwners:66,blockedOwners:0,
+console.log(JSON.stringify({status:'PASS',...result,validContracts:315,builtOwners:68,blockedOwners:0,
   identityMutationRejected:true,rangeMutationRejected:true,productionRosterIntegration:false,legacyReads:0,canonicalFactsChanged:0}));

@@ -12718,8 +12718,8 @@
     },
     {
       "ruleId": "detachment-renegade-warband:enhancement:4",
-      "status": "BATTLE_ONLY_NO_RUNTIME_NEEDED",
-      "reason": "Reviewed typed source applicability; exact physical Enhancement owner and Detachment scope are explicit. Battle clauses remain conditional and non-executing.",
+      "status": "BUILT",
+      "reason": "Roster-known Charge-roll +1 uses the existing typed UNIT modifier. Advance-roll +1 remains an explicit unsupported typed capability, not a battle-only rule or a Movement modifier.",
       "evidence": [
         {
           "field": [
@@ -12731,7 +12731,7 @@
       "declaration": {
         "kind": "ENHANCEMENT",
         "executionMode": "DECLARATIVE_APPLICABILITY",
-        "contextLevel": "BATTLE",
+        "contextLevel": "ROSTER",
         "detachmentId": "detachment-renegade-warband",
         "sourceFields": [
           [
@@ -12793,21 +12793,6 @@
               ],
               "quote": "detachment-renegade-warband:enhancement:4",
               "otherEntityId": "detachment-renegade-warband"
-            }
-          },
-          {
-            "predicate": "FIELD",
-            "subject": "MODEL",
-            "contextLevel": "BATTLE",
-            "arguments": {
-              "key": "ruleActive:detachment-renegade-warband:enhancement:4",
-              "equals": true
-            },
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit."
             }
           }
         ],
@@ -12873,14 +12858,12 @@
                 "subject": "UNIT",
                 "allegiance": "FRIENDLY",
                 "purpose": "RECIPIENT",
+                "binding": "SOURCE_UNIT",
                 "selector": {
-                  "predicate": "FIELD",
+                  "predicate": "ALWAYS",
                   "subject": "UNIT",
-                  "contextLevel": "ROSTER",
-                  "arguments": {
-                    "key": "sameUnitAsOwner:detachment-renegade-warband:enhancement:4",
-                    "equals": true
-                  },
+                  "contextLevel": "STATIC",
+                  "arguments": {},
                   "evidence": {
                     "field": [
                       "text"
@@ -12888,34 +12871,114 @@
                     "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
                   }
                 },
-                "conditions": [],
-                "binding": "SOURCE_UNIT"
+                "conditions": []
               }
             ],
-            "conditions": [
-              {
-                "predicate": "FIELD",
-                "subject": "MODEL",
-                "contextLevel": "BATTLE",
-                "arguments": {
-                  "key": "ruleActive:detachment-renegade-warband:enhancement:4:battle-clause-1",
-                  "equals": true
-                },
-                "evidence": {
-                  "field": [
-                    "text"
-                  ],
-                  "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
-                },
-                "roleId": "owner"
-              }
-            ],
-            "productClassification": "BATTLE_ONLY",
+            "conditions": [],
+            "productClassification": "ROSTER_KNOWN",
             "effect": {
               "sourceClause": "Add 1 to Advance and Charge rolls made for the bearer’s unit.",
               "recipientRoleId": "bearer-unit"
             },
-            "executionImplemented": false
+            "executionImplemented": false,
+            "rosterClassification": "DISPLAY_ONLY",
+            "effectSummary": "Add 1 to Advance rolls for the source-defined unit; a typed Advance-roll modifier is not implemented. No Movement substitution.",
+            "capabilityRequirement": {
+              "status": "CAPABILITY_MISSING",
+              "characteristic": "Advance roll",
+              "operation": "ADD",
+              "value": 1
+            }
+          },
+          {
+            "id": "charge-roll-clause",
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
+            },
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "OWNER",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "HERETIC ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit."
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "enhancementAssigned:detachment-renegade-warband:enhancement:4",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit."
+                    },
+                    "roleId": "owner"
+                  }
+                ],
+                "binding": "SOURCE_MODEL"
+              },
+              {
+                "id": "bearer-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Add 1 to Advance and Charge rolls made for the bearer’s unit."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "productClassification": "ROSTER_KNOWN",
+            "executionImplemented": true,
+            "effectSummary": "Add 1 to Charge rolls for the source-defined current formed UNIT; does not change Movement or roll dice.",
+            "operation": "MODIFY_RULE_METRIC",
+            "effect": {
+              "sourceClause": "Add 1 to Advance and Charge rolls made for the bearer’s unit.",
+              "recipientRoleId": "bearer-unit",
+              "parameters": {
+                "field": "chargeRoll",
+                "mode": "ADD",
+                "value": 1,
+                "unitScope": "FORMED"
+              }
+            }
           }
         ],
         "assignment": {

@@ -71,7 +71,7 @@ for(const {rule:canonical,clause:typed} of executableClauses(built)) {
   }
   seen.add(`${rule.id}::${clause.id}`);results.push({id:`${rule.id}::${clause.id}`,operationsApplied:applied.length});
 }
-assert.deepEqual(seen,new Set(book.rosterEffectCensus.lowered));assert.equal(seen.size,58);
+assert.deepEqual(seen,new Set(book.rosterEffectCensus.lowered));assert.equal(seen.size,60);
 assert.deepEqual(book.rosterEffectCensus.deferred,[deferredClause]);
 assert.equal(book.entities.find(r=>r.id==='army-rule-cult-of-the-dark-gods').ruleContract.clauses.flatMap(c=>c.rosterEffects).length,0);
 assert.equal(book.entities.find(r=>r.id==='detachment-huron-s-marauders:enhancement:1').ruleContract.clauses[0].rosterClassification,'DISPLAY_ONLY');

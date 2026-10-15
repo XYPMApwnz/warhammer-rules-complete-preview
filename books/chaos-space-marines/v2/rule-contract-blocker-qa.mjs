@@ -47,6 +47,6 @@ assert.equal(built.classifications.get('detachment-pactbound-zealots:stratagem:1
   'BATTLE_ONLY_NO_RUNTIME_NEEDED');
 assert.equal(built.classifications.get('detachment-creations-of-bile:enhancement:2').status,'BUILT');
 assert.equal(built.declarations.size,315);
-assert.equal([...built.classifications.values()].filter(row=>row.status==='BUILT').length,66);
+assert.equal([...built.classifications.values()].filter(row=>row.status==='BUILT').length,68);
 console.log(JSON.stringify({status:'PASS',sourceProvenBlockers:blocked.length,
   independentSyntheticCapabilityProbes:5,implementedGenericCapabilities:3}));

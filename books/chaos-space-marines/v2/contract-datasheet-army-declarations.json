@@ -11393,8 +11393,8 @@
     },
     {
       "ruleId": "datasheet-master-of-possession:section:1:block:0:text",
-      "status": "BATTLE_ONLY_NO_RUNTIME_NEEDED",
-      "reason": "Execution requires the explicitly declared battle trigger/state; canonical source retained without battle execution.",
+      "status": "BUILT",
+      "reason": "Roster-known Charge-roll +1 uses the existing typed UNIT modifier. Advance-roll +1 remains an explicit unsupported typed capability, not a battle-only rule or a Movement modifier.",
       "evidence": [
         {
           "field": [
@@ -11406,7 +11406,7 @@
       "declaration": {
         "kind": "DATASHEET_ABILITY",
         "executionMode": "DECLARATIVE_APPLICABILITY",
-        "contextLevel": "BATTLE",
+        "contextLevel": "ROSTER",
         "sourceFields": [
           [
             "text"
@@ -11435,22 +11435,6 @@
               }
             },
             "conditions": [
-              {
-                "predicate": "FIELD",
-                "subject": "MODEL",
-                "contextLevel": "BATTLE",
-                "arguments": {
-                  "key": "advanceOrChargeRoll",
-                  "equals": true
-                },
-                "evidence": {
-                  "field": [
-                    "text"
-                  ],
-                  "quote": "Advance and Charge rolls made for that unit"
-                },
-                "roleId": "source"
-              },
               {
                 "predicate": "LEADING",
                 "subject": "MODEL",
@@ -11505,22 +11489,6 @@
                 },
                 "conditions": [
                   {
-                    "predicate": "FIELD",
-                    "subject": "MODEL",
-                    "contextLevel": "BATTLE",
-                    "arguments": {
-                      "key": "advanceOrChargeRoll",
-                      "equals": true
-                    },
-                    "evidence": {
-                      "field": [
-                        "text"
-                      ],
-                      "quote": "Advance and Charge rolls made for that unit"
-                    },
-                    "roleId": "source"
-                  },
-                  {
                     "predicate": "LEADING",
                     "subject": "MODEL",
                     "contextLevel": "ROSTER",
@@ -11536,25 +11504,29 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "bearer-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+                  }
+                },
+                "conditions": []
               }
             ],
             "conditions": [
-              {
-                "predicate": "FIELD",
-                "subject": "MODEL",
-                "contextLevel": "BATTLE",
-                "arguments": {
-                  "key": "advanceOrChargeRoll",
-                  "equals": true
-                },
-                "evidence": {
-                  "field": [
-                    "text"
-                  ],
-                  "quote": "Advance and Charge rolls made for that unit"
-                },
-                "roleId": "source"
-              },
               {
                 "predicate": "LEADING",
                 "subject": "MODEL",
@@ -11571,13 +11543,131 @@
                 "roleId": "source"
               }
             ],
-            "rosterClassification": "BATTLE_ONLY",
-            "effectSummary": "Led unit Advance/Charge roll+1; not Move characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "effectSummary": "Add 1 to Advance rolls for the source-defined unit; a typed Advance-roll modifier is not implemented. No Movement substitution.",
             "evidence": {
               "field": [
                 "text"
               ],
               "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+            },
+            "productClassification": "ROSTER_KNOWN",
+            "executionImplemented": false,
+            "effect": {
+              "sourceClause": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit.",
+              "recipientRoleId": "bearer-unit"
+            },
+            "capabilityRequirement": {
+              "status": "CAPABILITY_MISSING",
+              "characteristic": "Advance roll",
+              "operation": "ADD",
+              "value": 1
+            }
+          },
+          {
+            "id": "charge-roll-clause",
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+            },
+            "roles": [
+              {
+                "id": "source",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "OWNER",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-master-of-possession:profile:1"
+                  },
+                  "evidence": {
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Master Of Possession",
+                    "otherEntityId": "datasheet-master-of-possession:profile:1"
+                  }
+                },
+                "conditions": [
+                  {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "While this model is leading a unit"
+                    },
+                    "roleId": "source"
+                  }
+                ]
+              },
+              {
+                "id": "bearer-unit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While this model is leading a unit"
+                },
+                "roleId": "source"
+              }
+            ],
+            "productClassification": "ROSTER_KNOWN",
+            "executionImplemented": true,
+            "effectSummary": "Add 1 to Charge rolls for the source-defined current formed UNIT; does not change Movement or roll dice.",
+            "operation": "MODIFY_RULE_METRIC",
+            "effect": {
+              "sourceClause": "Daemonkin (Psychic): While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit.",
+              "recipientRoleId": "bearer-unit",
+              "parameters": {
+                "field": "chargeRoll",
+                "mode": "ADD",
+                "value": 1,
+                "unitScope": "FORMED"
+              }
             }
           }
         ]

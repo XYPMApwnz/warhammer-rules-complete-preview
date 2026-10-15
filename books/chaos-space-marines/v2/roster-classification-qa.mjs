@@ -45,13 +45,13 @@ const canonicalSnapshot=JSON.stringify(built.book),canonicalRows=clauseRows(buil
 const restored=canonicalRows.filter(row=>row.clause.rosterClassification==='BATTLE_ONLY');
 const runtimeIndex=new Map(runtimeRows.map(row=>[row.id,row]));
 assertBattlePreserved(built.book,book);
-assert.equal(restored.length,111);
+assert.equal(restored.length,110);
 const counts=runtimeRows.reduce((out,{clause})=>{out[clause.rosterClassification]=(out[clause.rosterClassification]||0)+1;return out;},{});
-assert.equal(runtimeRows.length,408);
-assert.deepEqual(counts,{DISPLAY_ONLY:29,BATTLE_ONLY:304,NOT_AN_EFFECT:17,ROSTER_EXECUTABLE:58});
+assert.equal(runtimeRows.length,410);
+assert.deepEqual(counts,{DISPLAY_ONLY:31,BATTLE_ONLY:302,NOT_AN_EFFECT:17,ROSTER_EXECUTABLE:60});
 const executable=new Set(executableClauses(built).map(({rule,clause})=>`${rule.id}::${clause.id}`));
 assert.deepEqual(new Set(runtimeRows.filter(row=>row.clause.rosterEffects.length).map(row=>row.id)),executable);
-assert.equal(executable.size,58);
+assert.equal(executable.size,60);
 for(const row of runtimeRows)if(!executable.has(row.id))assert.deepEqual(row.clause.rosterEffects,[]);
 for(const row of restored) {
   const result=runtimeIndex.get(row.id).clause;
@@ -109,13 +109,13 @@ for(const row of restored) {
   }
   assert.ok(!projection.units.some(unit=>unit.applied.some(entry=>entry.ruleId===row.owner.id&&entry.clauseId===row.clause.id)));
 }
-assert.equal(runtimeUnknown,106);assert.equal(referenceUnknown,5);
+assert.equal(runtimeUnknown,105);assert.equal(referenceUnknown,5);
 const darkPacts=runtimeIndex.get('army-rule-dark-pacts::source-clause');
 assert.equal(darkPacts.clause.rosterClassification,'BATTLE_ONLY');
 assert.deepEqual(darkPacts.clause.rosterEffects,[]);
 for(const unit of projection.units)for(const entry of unit.applied)
   assert.ok(executable.has(`${entry.ruleId}::${entry.clauseId}`),'Non-roster clause executed');
 assert.equal(JSON.stringify(book),snapshot);assert.equal(JSON.stringify(built.book),canonicalSnapshot);
-console.log(JSON.stringify({status:'PASS',total:408,counts,restored:restored.length,lost:0,
+console.log(JSON.stringify({status:'PASS',total:410,counts,restored:restored.length,lost:0,
   runtimeUnknown,referenceUnknown,darkPactsConditional:'PASS',executableSetDelta:0,battleEffectLeakage:0,
   syntheticDowngradeMutationsRejected:3,actualDowngradeMutationRejected:true,trueDisplayOnly:'PASS',deferredG1:'PASS'}));

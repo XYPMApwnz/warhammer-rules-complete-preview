@@ -87,7 +87,9 @@ for(const unitId of ['unit-plague-drones','unit-plaguebearers']){
  assert.deepEqual(leadership('parsed-unit-1'),['6+']);assert.deepEqual(leadership('parsed-unit-2'),[profile.data.LD]);assert.deepEqual(leadership('parsed-unit-3'),[profile.data.LD]);
  assert(optional.effective('parsed-unit-1').applied.some(p=>p.ruleId===unitId.replace('unit-','datasheet-')+':section:1'));
  assert(!optional.effective('parsed-unit-2').applied.some(p=>p.ruleId===unitId.replace('unit-','datasheet-')+':section:1'));
- assert(!optional.effective('parsed-unit-3').applied.some(p=>p.ruleId===unitId.replace('unit-','datasheet-')+':section:1'));
+ assert.equal(optional.projection.units.find(u=>u.instanceId==='parsed-unit-3').metrics.chargeRoll.modifier,1);
+ assert(optional.effective('parsed-unit-3').applied.some(p=>p.ruleId===unitId.replace('unit-','datasheet-')+':section:1'&&p.clauseId==='source-clause-3'&&p.field==='chargeRoll'));
+ for(const id of ['parsed-unit-1','parsed-unit-2'])assert.equal(optional.projection.units.find(u=>u.instanceId===id).metrics.chargeRoll,undefined);
  const optionalBackup=JSON.parse(JSON.stringify(optional.snapshot())),optionalReload=make();optionalReload.load(optionalBackup);assert.deepEqual(optionalReload.projection,optional.projection);
  report.cases.push({kind:'OPTIONAL_EQUIPMENT_EFFECT',unitId,status:'PASS'});
 }

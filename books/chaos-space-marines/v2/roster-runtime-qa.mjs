@@ -60,6 +60,7 @@ export function checkEffects(projection,fixture,state) {
       if(effect.targetBinding==='SOURCE_MODEL')return row.targetInstanceId===physicalSource?.instanceId&&
         (rule.kind==='ENHANCEMENT'?row.targetProfileId===fixture.bearerProfileId:
           physicalSource.modelRows.some(model=>model.canonicalProfileId===row.targetProfileId));
+      if(effect.targetBinding==='SOURCE_UNIT'&&effect.unitScope==='FORMED')return currentFormed.has(row.targetInstanceId);
       if(effect.targetBinding==='SOURCE_UNIT'||effect.targetBinding==='SOURCE_UNIT_MODELS')return row.targetInstanceId===physicalSource?.instanceId;
       if(effect.targetBinding==='SOURCE_FORMED_MODELS')return currentFormed.has(row.targetInstanceId);
       return ['ROSTER_MODELS','ROSTER_UNITS','LEADERS_OF_SOURCE'].includes(effect.targetBinding);
@@ -80,6 +81,7 @@ export function checkEffects(projection,fixture,state) {
     if(['GRANT_MODEL_KEYWORD','GRANT_UNIT_KEYWORD'].includes(row.operation))assert.ok(row.after.includes(effect.keyword),'Wrong keyword');
     if(row.operation==='REMOVE_ABILITY')assert.ok(!row.after.some(ability=>ability.canonicalId===effect.ability.canonicalId),'Target ability still present');
     if(row.operation==='MODIFY_ABILITY_RANGE')assert.equal(row.after,row.before+effect.value,'Wrong specific canonical range');
+    if(row.operation==='MODIFY_RULE_METRIC')assert.deepEqual(row.after,{modifier:(row.before?.modifier||0)+effect.value},'Wrong typed UNIT metric');
     assert.ok(row.sourceFields.length&&row.lifetime,'Missing execution provenance');
   }
   // Each source operation family must execute, while mutually exclusive
@@ -153,7 +155,7 @@ export async function run() {
       PHYSICAL_SOURCE_INSTANCE:rule.kind==='DETACHMENT_RULE'?null:source.instanceId,
       EXPECTED_RECIPIENT:fixture.expectedOperations.map(effect=>({binding:effect.targetBinding,subject:effect.targetSubject,
         candidatePhysicalInstances:effect.targetBinding.startsWith('ROSTER_')?state.units.map(raw=>raw.instanceId):
-          effect.targetBinding==='SOURCE_FORMED_MODELS'?[source.instanceId,...state.attachments
+          effect.targetBinding==='SOURCE_FORMED_MODELS'||effect.targetBinding==='SOURCE_UNIT'&&effect.unitScope==='FORMED'?[source.instanceId,...state.attachments
             .filter(edge=>edge.leaderInstanceId===source.instanceId).map(edge=>edge.bodyguardInstanceId)]:
           effect.targetBinding==='LEADERS_OF_SOURCE'?state.attachments.filter(edge=>edge.bodyguardInstanceId===source.instanceId)
             .map(edge=>edge.leaderInstanceId):rule.kind==='ENHANCEMENT'||rule.kind==='UPGRADE_OPTION'?[source.instanceId]:
@@ -164,7 +166,7 @@ export async function run() {
           profileIds:rule.kind==='ENHANCEMENT'?[fixture.bearerProfileId]:source.modelRows.map(row=>row.canonicalProfileId)}:{})})),
       EXPECTED_EFFECT:fixture.expectedOperations,ACTUAL_EFFECT:applied,RESULT:'PASS'});
   }
-  assert.deepEqual(new Set(matrix.map(row=>row.CLAUSE_ID)),valid);assert.equal(matrix.length,58);
+  assert.deepEqual(new Set(matrix.map(row=>row.CLAUSE_ID)),valid);assert.equal(matrix.length,60);
   assert.deepEqual(book.rosterEffectCensus.deferred,[deferredClause]);
   for(const rule of book.entities)for(const clause of rule.ruleContract?.clauses||[])
     if(!valid.has(`${rule.id}::${clause.id}`))assert.deepEqual(clause.rosterEffects,[],'Non-executable payload');
